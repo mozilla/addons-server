@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:11+0000\n"
+"PO-Revision-Date: 2022-12-26 17:12+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4789,7 +4789,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Našlo sa duplicitné ID doplnku."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Čísla verzií by mali mať najviac {max_length} znakov."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Číslo verzie môže obsahovať len čísla, písmená a nasledovné znaky: +*.-_."
@@ -4800,18 +4800,17 @@ msgstr ""
 msgid "You cannot submit this type of add-on"
 msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
 
-#, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Nemôžete nahrať rozšírenie, ktorého ID končí na %s"
+msgstr "Doplnok nemôžete odoslať pomocou ID končiaceho sa touto príponou"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Nemôžete odoslať jazykový balík"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Jazykové nastavenie existujúceho slovníka/jazykového balíka nemožno zmeniť"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
@@ -4869,7 +4868,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Pre rovnakú verziu doplnku nemôžete zanechať viac ako jednu recenziu."
 
 msgid "Invalid flag [{}] - must be one of [{}]"
-msgstr ""
+msgstr "Neplatný príznak [{}] – musí byť jedným z [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
 msgstr ""
