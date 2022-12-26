@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-26 17:31+0000\n"
+"PO-Revision-Date: 2022-12-26 17:41+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1886,12 +1886,15 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr ""
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Na tejto stránke. <span class=\"helptext\">Váš príspevok je verejne uvedený na stránkach {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"Na vlastnej stránke. <span class=\"helptext\">Po podpísaní príspevku spoločnosťou Mozilla si môžete stiahnuť súbor .xpi z Centra pre vývojárov a distribuovať ho svojmu publiku. Uistite sa, že je k "
+"dispozícii aktualizačná adresa <a {a_attrs}>update_url</a> uvedená v manifeste doplnku, pretože toto je adresa URL, na ktorej bude Firefox hľadať aktualizácie na automatické nasadenie u vašich "
+"používateľov.</span>"
 
 msgid "Display Name"
 msgstr "Zobrazovaný názov"
@@ -1919,10 +1922,10 @@ msgid "Name"
 msgstr "Názov"
 
 msgid "Created"
-msgstr "Vytvorené"
+msgstr "Dátum vytvorenia"
 
 msgid "Downloads"
-msgstr "Prevzatí"
+msgstr "Počet stiahnutí"
 
 msgid "Rating"
 msgstr "Hodnotenie"
@@ -2140,7 +2143,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "Po načítaní bude na vašom súbore spustená sada automatizovaných testov."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Chcete distribuovať doplnok prostredníctvom tejto stránky?"
+msgstr "Chcete, aby bol váš doplnok distribuovaný na tejto stránke?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -2369,7 +2372,7 @@ msgid "View Product Page"
 msgstr "Zobraziť stránku produktu"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Toto zhrnutie by malo jasne vysvetliť, čo váš doplnok robí. Zobrazí sa v zoznamoch a vyhľadávaniach a recenzenti ho použijú na otestovanie vášho doplnku."
 
 msgid "Description"
 msgstr "Popis"
@@ -2646,9 +2649,9 @@ msgstr "Tento doplnok nemá žiadne verzie."
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "Prevzatí za týždeň: <strong>{0}</strong>"
-msgstr[1] "Prevzatí za týždeň: <strong>{0}</strong>"
-msgstr[2] "Prevzatí za týždeň: <strong>{0}</strong>"
+msgstr[0] "Stiahnutí za týždeň: <strong>{0}</strong>"
+msgstr[1] "Stiahnutí za týždeň: <strong>{0}</strong>"
+msgstr[2] "Stiahnutí za týždeň: <strong>{0}</strong>"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
@@ -2980,7 +2983,7 @@ msgid "A confirmation link will be sent to your email address. After confirmatio
 msgstr ""
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "Nemáte žiadne prihlasovacie údaje k API."
 
 msgid "Revoke"
 msgstr "Odvolať"
@@ -2989,10 +2992,10 @@ msgid "Revoke and regenerate credentials"
 msgstr "Odvolať a regenerovať poverenia"
 
 msgid "Confirm and generate new credentials"
-msgstr ""
+msgstr "Potvrďte a vygenerujte nové prihlasovacie údaje"
 
 msgid "Generate new credentials"
-msgstr "Generovať nové poverenia"
+msgstr "Generovať nové prihlasovacie údaje"
 
 #, python-format
 msgid ""
@@ -3132,7 +3135,7 @@ msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
 
 msgid "More information on Developer Accounts"
-msgstr ""
+msgstr "Ďalšie informácie o účtoch vývojárov"
 
 msgid "Developer News"
 msgstr "Novinky od vývojárov"
@@ -5260,9 +5263,8 @@ msgstr "Viditeľnosť"
 msgid "Visible"
 msgstr "Viditeľný"
 
-#, fuzzy
 msgid "Weekly Downloads"
-msgstr "Prevzatí"
+msgstr "Stiahnutia za týždeň"
 
 msgid "Average Daily Users"
 msgstr "Priemerný počet denných používateľov"
@@ -6214,6 +6216,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
+"Skôr ako začnete, prečítajte si a prijmite našu Distribučnú zmluvu pre doplnky Firefoxu, ako aj naše Zásady a pravidlá kontroly. Distribučná zmluva pre doplnky Firefoxu tiež odkazuje na naše "
+"Vyhlásenie o ochrane osobných údajov, ktoré vysvetľuje, ako narábame s vašimi informáciami."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
