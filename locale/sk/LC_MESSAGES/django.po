@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-30 13:31+0000\n"
+"PO-Revision-Date: 2022-12-30 13:41+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3683,21 +3683,21 @@ msgstr "Usporiadajte svoje karty ich zoskupením podľa farieb na základe vzoro
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Zastavte škodlivé webové stránky vo využívaní výkonu vášho počítača na ťažbu kryptomien."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Získajte pomoc s gramatikou kdekoľvek na webe – sociálne médiá, e-mail, dokumenty a ďalšie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Zobrazte aktuálne celosvetové časy v stavovom riadku Firefoxu."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Jednoduché preklady. Zvýraznite text na ľubovoľnej webovej stránke – alebo vyberte celú stránku – a okamžite ich preložte do iného jazyka."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
@@ -3820,37 +3820,37 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Vynikajúci nástroj na sťahovanie iba pre systém Windows."
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Zistite, kto vás sleduje a kde môže zdieľať vaše informácie."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously. Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Surfujte anonymne. Prehliadajte web so skrytou identitou – dokonca sa javte, akoby ste prehliadali z inej krajiny."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Užite si vizuálne záložky. Získajte prístup k svojim obľúbeným stránkam, nedávno zatvoreným kartám a ďalším – to všetko z nádherného rozloženia dlaždíc."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Určite vlastnú domovskú stránku pre svoje nové karty."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Preveďte všetky svoje otvorené karty na zoznam, aby ste ich mohli jednoducho spravovať a zrýchliť Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Robustný správca sťahovania. Skontrolujte stav sťahovania prostredníctvom stavového riadka, stránky histórie sťahovania a ďalších."
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Uložte si informácie z internetu do OneNotu, aby ste ich mohli upravovať, pridávať anotácie a podobne."
 
 #. editorial content for the discovery pane.
 msgid "Stop ad trackers when you click Google and Yandex search returns."
@@ -3938,19 +3938,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr ""
+msgstr "Používa svieži, moderný vzhľad na Wikipédii."
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done quicker."
-msgstr ""
+msgstr "Použite gestá myši, aby ste sa dostali k veciam rýchlejšie."
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Skryte časti webovej stránky, ktorú si prezeráte."
 
 #. editorial content for the discovery pane.
 msgid "Download images you find on the web."
-msgstr ""
+msgstr "Stiahnite si obrázky, ktoré nájdete na webe."
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -4019,7 +4019,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
-msgstr ""
+msgstr "Okamžite zobrazte všetky odkazy z webovej stránky na nových kartách."
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
@@ -4031,7 +4031,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos and/or audio."
-msgstr ""
+msgstr "Stiahnite si videá a/alebo zvuk z YouTube."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4090,11 +4090,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr ""
+msgstr "Vypĺňajte formuláre automaticky. Uložte zadané údaje raz a nabudúce sa automaticky doplnia."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
-msgstr ""
+msgstr "Hľadajte súkromne jediným kliknutím."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4198,7 +4198,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Automaticky odstráni históriu prehliadania pre webové stránky, ktoré vyberiete."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4450,19 +4450,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Goodbye, annoying cookie warnings!"
-msgstr ""
+msgstr "Zbohom otravné upozornenia na cookies!"
 
 #. editorial content for the discovery pane.
 msgid "All your emoji needs—always just a click away."
-msgstr ""
+msgstr "Všetky vaše emotikony, ktoré potrebujete – vždy len na jedno kliknutie."
 
 #. editorial content for the discovery pane.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Prestaňte dávať stránkam svoju e-mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Menič tém vzhľadu založený na čase. Nechajte Firefox meniť farby podľa toho, ako sa mení denná doba."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4470,7 +4470,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Niektoré webové stránky majú problémy s prehrávaním videí v systéme Android. Tu je oprava."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -4546,43 +4546,43 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
-msgstr ""
+msgstr "Odstráňte neporiadok zo svojho Twitteru."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Prispôsobte si YouTube podľa chuti."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Vymažte údaje prehliadania priamo z panela s nástrojmi prehliadača."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Získajte automatické aktualizácie informačného kanála RSS priamo do priečinkov so záložkami."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
-msgstr ""
+msgstr "Účinné blokovanie všetkých typov reklám."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Správca hromadného sťahovania výrazne uľahčuje extrémne sťahovanie."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
-msgstr ""
+msgstr "Odstráňte reklamy a získajte lepšiu ochranu pred škodlivým softvérom."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove formatting from copied Clipboard text."
-msgstr ""
+msgstr "Odstráňte formátovanie zo skopírovaného textu zo schránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Ochrana súkromia pre snímaním odtlačkov prehliadača."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
-msgstr ""
+msgstr "Vylepšite svoj herný zážitok v službe Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
@@ -4603,7 +4603,7 @@ msgstr "Zobraziť všetky rozšírenia"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
-msgstr ""
+msgstr "Správcovia kariet"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4612,7 +4612,7 @@ msgstr "Prispôsobenie YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "Rozšírenia proti sledovaniu"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4639,9 +4639,8 @@ msgid "Enhanced privacy extensions"
 msgstr "Rozšírenia zamerané na zvýšenie súkromia"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more recommended privacy extensions"
-msgstr "Zobraziť všetky rozšírenia"
+msgstr "Ďalšie odporúčané rozšírenia pre ochranu súkromia"
 
 #. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
@@ -4662,7 +4661,7 @@ msgstr "Ďalšie odporúčané témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "Strong password managers"
-msgstr ""
+msgstr "Silní správcovia hesiel"
 
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
@@ -4677,9 +4676,8 @@ msgid "See more translation tool staff picks"
 msgstr "Pozrite si ďalšie tipy od prekladateľov"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Sociálne siete"
+msgstr "Streamovanie na sociálnych sieťach"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
@@ -4699,7 +4697,7 @@ msgstr "Pozrite si ďalšie rozšírenia so značkou \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "Elitné blokovanie reklám"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4735,7 +4733,7 @@ msgstr "Pozrite si ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "Vylepšenia pre platformu Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
