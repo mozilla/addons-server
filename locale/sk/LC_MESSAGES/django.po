@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-02 20:20+0000\n"
+"PO-Revision-Date: 2023-01-02 20:22+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1546,7 +1546,7 @@ msgid "Excellent (3)"
 msgstr ""
 
 msgid "Manual Reviewer Points"
-msgstr "Ručné body kontroly redaktora"
+msgstr "Body manuálnej kontroly redaktorom"
 
 msgid "New Legacy Add-on Review"
 msgstr "Nová kontrola staršieho doplnku"
@@ -2736,10 +2736,10 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr "Ak váš doplnok prenáša akékoľvek údaje z počítača používateľa, vyžadujú sa Zásady ochrany osobných údajov, ktoré vysvetľujú, aké údaje sa odosielajú a ako sa používajú."
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Poznámky ku kontrole:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Je niečo, čo by naši redaktori mali mať na pamäti pri kontrole tohto doplnku?"
 
 msgid "Remember"
 msgstr ""
@@ -2751,7 +2751,7 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Tieto poznámky budú viditeľné iba pre vás a našich redaktorov."
 
 msgid "Submit Version"
 msgstr ""
