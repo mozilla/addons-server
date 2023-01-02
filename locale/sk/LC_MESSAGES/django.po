@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-01 08:49+0000\n"
+"PO-Revision-Date: 2023-01-02 19:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2098,7 +2098,7 @@ msgstr "ďalšie doplnky..."
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr "Workshop tvorby rozšírenia"
+msgstr "Workshop tvorby rozšírení"
 
 msgid "Documentation"
 msgstr "Dokumentácia"
@@ -2807,6 +2807,8 @@ msgstr ""
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
+"Používateľov môžete k svojmu rozšíreniu prilákať pridaním podrobného popisu a snímok obrazovky na stránku svojho doplnku. Pomoc s <a %(a_attrs)s>vytvorením atraktívneho záznamu</a> nájdete vo "
+"Workshope tvorby rozšírení pre Firefox."
 
 msgid "Manage Listing"
 msgstr ""
@@ -2874,7 +2876,7 @@ msgstr ""
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Ďalšie informácie o <a %(a_attrs)s>Odoslaní zdrojového kódu</a> získate na stránkach Workshop tvorby rozšírení pre Firefox."
 
 msgid "Upload source code:"
 msgstr ""
@@ -3155,7 +3157,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
 
 msgid "Your account needs a display name set so users know who your add-on is coming from. Please enter one below."
-msgstr ""
+msgstr "Pre váš účet je potrebné nastaviť jeho zobrazovaný názov, aby používatelia vedeli, od koho váš doplnok pochádza. Zadajte ho nižšie."
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
@@ -3233,7 +3235,7 @@ msgid "Whether you’re new to extension development, polishing up or porting an
 msgstr ""
 
 msgid "Visit the Firefox Extension Workshop"
-msgstr ""
+msgstr "Navštívte Workshop tvorby rozšírení pre Firefox"
 
 msgid "Connect with us"
 msgstr "Spojte sa s nami"
@@ -4152,44 +4154,44 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
-msgstr ""
+msgstr "Pridáva možnosť zobrazenia/skrytia do všetkých polí hesiel."
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Zamerajte sa na to, čo sledujete, stlmením všetkého okrem prehrávača videa."
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Upravte svoje záložky prostredníctvom ľahko dostupného panela."
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Uchovávajte heslá bezpečne a automaticky sa prihlasujte na známe webové stránky."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
-msgstr ""
+msgstr "Jednoduchý blokovač reklám zameraný na zobrazovanie len požadovaného obsahu."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "Sledujte históriu cien Amazonu. Robte informované nákupné rozhodnutia."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Nakupujte s dôverou. Toto rozšírenie poskytuje dodatočnú kontrolu, aby ste sa uistili, že nakupujete na stránke, ktorá bola preverená z hľadiska spoľahlivosti."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Sledujte produktivitu. Zmerajte množstvo času, ktorý strávite na počítači alebo v konkrétnych pracovných aplikáciách, ako sú Trello, JIRA, Basecamp, GitHub a mnohé ďalšie."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Uložte si svoje obľúbené veci na web. Zostrihajte obsah, ako sú články, videá, obrázky a ďalšie, aby ste ich uložili a použili na individuálne projekty alebo tímovú spoluprácu v reálnom čase."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr ""
+msgstr "Povoľte spustenie webového obsahu iba zo stránok, ktorým dôverujete. Surfujte bezpečne."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4228,7 +4230,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Zistite, kde sa geograficky nachádza server ktorejkoľvek webovej lokality. Buďte informovaným webovým cestovateľom."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
