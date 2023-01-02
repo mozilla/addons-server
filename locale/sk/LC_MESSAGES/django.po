@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-02 20:01+0000\n"
+"PO-Revision-Date: 2023-01-02 20:10+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3907,7 +3907,7 @@ msgstr "Prístup k nedávno zatvoreným kartám získate kliknutím pravým tla�
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Podnecujte svoju produktivitu. Upravte svoju stránku na novej karte tak, aby zobrazovala krásne pozadie, nastavte si denné ciele a ďalšie."
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -4117,7 +4117,7 @@ msgstr "Zvýraznite text z ľubovoľnej webovej lokality a kliknutím pravým tl
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "Získajte výhody Amazonu. Ak si prezeráte stránky produktov v iných online obchodoch, ak sú dostupné aj na Amazone, môžete jednoducho kliknúť na tlačidlo a pozrieť si ich stránku na Amazone."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4142,7 +4142,7 @@ msgstr "Niekedy proste potrebujete mačky, ktoré strieľajú lasermi."
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox by easily accessing your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Vyhľadávajte vo Firefoxe a jednoducho pristupujte k otvoreným kartám, záložkám a histórii."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -4221,7 +4221,7 @@ msgstr "Našli ste na webe zaujímavý obrázok? Chcete sa o tom dozvedieť viac
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Ak chcete vykonať akcie, ako je kopírovanie, otvorenie, vyhľadávanie a ďalšie, pre text, obrázky či odkazy, stačí ich jednoducho potiahnuť."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -4965,7 +4965,7 @@ msgid "days"
 msgstr ""
 
 msgid "Choose one or more reasons:"
-msgstr ""
+msgstr "Vyberte jeden alebo viac dôvodov:"
 
 msgid "Version mismatch - the latest version has changed!"
 msgstr ""
@@ -5452,12 +5452,11 @@ msgstr ""
 msgid "You don't have permission to review it."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on important changes history"
-msgstr "História zmien doplnku používateľom"
+msgstr "História dôležitých zmien doplnku"
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Tabuľa je miesto na výmenu informácií relevantných pre tento doplnok (bez ohľadu na verziu) medzi vývojárom a recenzentom. Toto je viditeľné a upraviteľné oboma."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
 msgstr ""
@@ -5487,7 +5486,7 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Upozornenie!</strong> Iný používateľ pred vami túto stránku prezeral."
 
 msgid "More Actions"
-msgstr ""
+msgstr "Ďalšie akcie"
 
 msgid "Notify me about new listed versions"
 msgstr ""
@@ -5598,10 +5597,10 @@ msgid "No reviews found for this period."
 msgstr "Za toto obdobie neboli nájdené žiadne recenzie."
 
 msgid "Origin:"
-msgstr ""
+msgstr "Pôvod:"
 
 msgid "Method:"
-msgstr ""
+msgstr "Metóda:"
 
 msgid "Source:"
 msgstr "Zdroj:"
@@ -5616,11 +5615,10 @@ msgid "Download file"
 msgstr ""
 
 msgid "Validation results"
-msgstr ""
+msgstr "Výsledky overenia"
 
-#, fuzzy
 msgid "Browse all files in this version"
-msgstr "Súbory v tejto verzii:"
+msgstr "Prehľadávať všetky súbory v tejto verzii"
 
 msgid "Browse contents"
 msgstr ""
@@ -5745,9 +5743,8 @@ msgstr "Aktualizovať"
 msgid "Rating Reviews"
 msgstr "Čaká na kontrolu"
 
-#, fuzzy
 msgid "Auto Approved"
-msgstr "Schválený"
+msgstr "Automaticky schválený"
 
 #, fuzzy
 msgid "Pending Rejection"
@@ -5815,14 +5812,14 @@ msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
 msgid "Abort"
-msgstr ""
+msgstr "Prerušiť"
 
 msgid "Run"
-msgstr ""
+msgstr "Spustiť"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Neplatný parameter \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
