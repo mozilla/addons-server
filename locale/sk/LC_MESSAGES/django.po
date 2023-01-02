@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-02 20:10+0000\n"
+"PO-Revision-Date: 2023-01-02 20:20+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -886,7 +886,7 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Odpoveď redaktora"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1549,7 +1549,7 @@ msgid "Manual Reviewer Points"
 msgstr "Ručné body kontroly redaktora"
 
 msgid "New Legacy Add-on Review"
-msgstr ""
+msgstr "Nová kontrola staršieho doplnku"
 
 msgid "Preliminary Add-on Review"
 msgstr "Predbežná kontrola doplnku"
@@ -5823,33 +5823,33 @@ msgstr "Neplatný parameter \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinácia parametrov \"%s\" a \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Návrat na AMO je momentálne zakázaný"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinácia parametrov \"%s\", \"%s\" a \"%s\"."
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Bola prekročená maximálna dĺžka dopytu."
 
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr ""
+msgstr "Nepodarilo sa nájsť doplnok s ID \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Nie ste vlastníkom tohto doplnku."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Nové verzie nemôžete pridať do doplnku, ktorý má stav: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Verzia sa nezhoduje so súborom manifestu."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
@@ -5876,7 +5876,7 @@ msgid "by Content"
 msgstr "Podľa stiahnutí obsahu"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "Podľa stiahnutí v kampaniach"
 
 msgid "Daily Users"
 msgstr "Denní používatelia"
@@ -5982,9 +5982,8 @@ msgstr "Táto štatistika je <b>súkromná</b>."
 msgid "Application usage by Date"
 msgstr "Používané aplikácie podľa dátumu"
 
-#, fuzzy
 msgid "Download campaigns by Date"
-msgstr "Zdroje prevzatí podľa dátumu"
+msgstr "Stiahnutia v kampaniach podľa dátumu"
 
 msgid "About tracking external sources..."
 msgstr "O sledovaní externých zdrojov..."
