@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 13:40+0000\n"
+"PO-Revision-Date: 2023-01-03 13:50+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5971,7 +5971,7 @@ msgid "Custom..."
 msgstr "Vlastné..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Ospravedlňujeme sa, štatistiky sú dočasne nedostupné."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Načítavajú sa najnovšie údaje&hellip;"
@@ -5994,9 +5994,8 @@ msgstr "Stiahnutia v kampaniach podľa dátumu"
 msgid "About tracking external sources..."
 msgstr "O sledovaní externých zdrojov..."
 
-#, fuzzy
 msgid "Download contents by Date"
-msgstr "Zdroje prevzatí podľa dátumu"
+msgstr "Stiahnutia obsahu podľa dátumu"
 
 msgid "User countries by Date"
 msgstr "Krajiny používateľov podľa dátumu"
@@ -6013,9 +6012,8 @@ msgstr "Spôsoby stiahnutia podľa dátumu"
 msgid "Platform usage by Date"
 msgstr "Používané platformy podľa dátumu"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> prevzatí"
+msgstr "<b>{0}</b> stiahnutí za týždeň"
 
 msgid "Loading..."
 msgstr "Načítava sa..."
@@ -6057,6 +6055,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Čo sú denní používatelia?</h2> <p> Doplnky stiahnuté z tejto stránky kontrolujú aktualizácie raz za deň. Celkový počet týchto pingov na aktualizácie je známy ako aktívni denní používatelia. "
+"Denných používateľov možno rozdeliť podľa verzie doplnku, operačného systému, stavu doplnku, aplikácie a jazykového nastavenia.</p>"
 
 msgid "Application versions by Date"
 msgstr "Verzie doplnku podľa dátumu"
@@ -6164,25 +6164,25 @@ msgstr "Odstrániť jazyk"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Používateľovi \"%(user)s\" bol zakázaný prístup."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Obrázok patriaci používateľovi \"%(user)s\" bol odstránený."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Používateľom \"%(users)s\" bol zakázaný prístup."
 
 msgid "Ban selected users"
 msgstr "Zablokovať vybraných používateľov"
 
 #, python-format
 msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
+msgstr "Relácie používateľov \"%(users)s\" boli vynulované."
 
 msgid "Reset session"
-msgstr ""
+msgstr "Vynulovať reláciu"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
@@ -6198,10 +6198,10 @@ msgid "Collections"
 msgstr "Kolekcie"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Zadajte platnú adresu IPv4 alebo IPv6, napr. 127.0.0.1. Táto bude konvertovaná na sieť /32."
 
 msgid "You can only enter one, either IP Address or Network."
-msgstr ""
+msgstr "Môžete zadať iba jednu adresu IP alebo sieť."
 
 msgid "No user with that email."
 msgstr "Používateľ s touto e-mailovou adresou neexistuje."
@@ -6209,9 +6209,8 @@ msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 msgid "Firefox user {id}"
 msgstr "Používateľ Firefoxu - {id}"
 
-#, fuzzy
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
-msgstr "Zadajte platnú IP4 alebo IP6 sieť."
+msgstr "Zadajte platný rozsah siete IPv4 alebo IPv6 CIDR, napr. 127.0.0.1/28"
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
 msgstr "Z vašej lokality bolo odoslaných viacero doplnkov, ktoré porušujú naše pravidlá. Adresa IP bola zablokovaná."
@@ -6242,10 +6241,10 @@ msgstr ""
 "Vyhlásenie o ochrane osobných údajov, ktoré vysvetľuje, ako narábame s vašimi informáciami."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
+msgstr "Navštívte {url} a prečítajte si našu Dohodu o distribúcií doplnkov pre Firefox, ako aj naše Zásady a pravidlá kontroly a následne ich akceptujte."
 
 msgid "User Restriction History"
-msgstr ""
+msgstr "História obmedzení používateľov"
 
 msgid "an add-on developer replies to my review"
 msgstr "vývojár doplnku odpovedal na moju recenziu"
@@ -6260,7 +6259,7 @@ msgid "someone writes a review of my add-on"
 msgstr "niekto napíše recenziu na môj doplnok"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "majte prehľad o novinkách a akciách pre vývojárov doplnkov (obsahuje newsletter about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "nie je možné zmeniť kompatibilitu môjho doplnku"
@@ -6278,7 +6277,7 @@ msgid "An author has been added to your add-on"
 msgstr "K vášmu doplnku bol pridaný autor"
 
 msgid "An author role has been changed on your add-on"
-msgstr ""
+msgstr "Vo vašom doplnku bola zmenená rola autora"
 
 msgid "An author has been removed from your add-on"
 msgstr "Autor bol pri vašom doplnku odobraný"
@@ -6298,6 +6297,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Nasledujúci autor bol pridaný do vášho doplnku %(addon_name)s ( %(addon_url)s):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6314,6 +6316,18 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Dobrý deň, %(author_name)s,\n"
+"\n"
+"boli ste pozvaní stať sa autorom doplnku %(addon_name)s na stránkach %(domain)s. Prijatím pozvánky získate prístup na úpravu doplnku a vaše meno sa môže zobraziť v zozname autorov na webovej stránke.\n"
+"\n"
+"Ak chcete byť pridaný ako autor doplnku %(addon_name)s, kliknite na odkaz nižšie.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Ak ste neočakávali, že dostanete túto pozvánku, pošlite e-mail na adresu amo-admins@mozilla.com.\n"
+"\n"
+"S priateľským pozdravom,\n"
+"Tím doplnkov Mozilly"
 
 #, python-format
 msgid ""
@@ -6321,6 +6335,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s ): %(author_role)s"
 msgstr ""
+"Nasledujúci autor bol zmenený na vašom doplnku %(addon_name)s ( %(addon_url)s):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s"
 
 #, python-format
 msgid ""
@@ -6328,6 +6345,9 @@ msgid ""
 "\n"
 "%(author_name)s ( %(author_url)s )"
 msgstr ""
+"Nasledujúci autor bol odstránený z doplnku %(addon_name)s ( %(addon_url)s):\n"
+"\n"
+"%(author_name)s ( %(author_url)s )"
 
 #, python-format
 msgid ""
@@ -6341,6 +6361,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Dobrý deň,\n"
+"\n"
+"túto správu ste dostali, pretože váš používateľský účet %(name)s na stránkach %(site_url)s bol odstránený. Mohlo to byť vykonané automaticky, ak ste nedávno odstránili svoj účet Firefox.\n"
+"\n"
+"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e-mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
+"\n"
+"S pozdravom,\n"
+"\n"
+"Tím doplnkov Firefoxu"
 
 msgctxt "user_list_others"
 msgid "others"
