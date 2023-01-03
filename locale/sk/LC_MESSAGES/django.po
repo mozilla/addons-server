@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 13:50+0000\n"
+"PO-Revision-Date: 2023-01-03 13:52+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -6186,7 +6186,7 @@ msgstr "Vynulovať reláciu"
 
 #, python-format
 msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
+msgstr "Používateľom \"%(users)s\" boli vynulované kľúče API."
 
 msgid "Reset API Key"
 msgstr "Obnoviť kľúč API"
@@ -6216,7 +6216,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Z vašej lokality bolo odoslaných viacero doplnkov, ktoré porušujú naše pravidlá. Adresa IP bola zablokovaná."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Formát e-mailovej adresy"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
@@ -6286,7 +6286,7 @@ msgid "Ban"
 msgstr "Zablokovať"
 
 msgid "Reset session(s)"
-msgstr ""
+msgstr "Vynulovať relácie"
 
 msgid "Delete picture"
 msgstr "Odstrániť obrázok"
