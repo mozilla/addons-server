@@ -67,7 +67,8 @@ class RemoteSettings:
         # check if the bucket exists
         bucket_url = f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}'
         headers = self.headers
-        response = requests.get(bucket_url, headers=headers)
+        # Warning: The 'requests.get' method does not use any 'timeout' threshold which may cause program to hang indefinitely.
+        response = requests.get(bucket_url, headers=headers, timeout=0.4)
         data = {'permissions': {'read': ['system.Everyone']}}
         if response.status_code == 403:
             # lets create them
