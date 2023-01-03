@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-07 16:02+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,6 @@ msgstr "Viðbætur"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "lágmarksfjöldi skýrslna (flokkað eftir guid-auðkennum)"
-
-msgid "creation date"
-msgstr "upprunadagsetning"
 
 msgid "User / Add-on"
 msgstr "Notandi / Viðbót"
@@ -285,6 +282,9 @@ msgstr "Þemun mín"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "upprunadagsetning"
+
 msgid "Tools"
 msgstr "Verkfæri"
 
@@ -504,34 +504,6 @@ msgstr ""
 
 msgid "Confirmation for developer API keys"
 msgstr "Staðfesting fyrir API-lykla forritara"
-
-msgid "Application Versions"
-msgstr "Útgáfur forrits"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Ásættanlegar útgáfur fyrir öll forrit á AMO."
-
-msgid "Valid Application Versions"
-msgstr "Gildar útgáfur forrits"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Útgáfur"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
@@ -1036,6 +1008,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr "Höfnun afturkölluð"
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1494,6 +1469,9 @@ msgstr "Í kastljósi"
 msgid "Strategic"
 msgstr "Herkænska"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Viðbót"
 
@@ -1667,6 +1645,9 @@ msgstr "Lággæða, teygð eða auð mynd"
 
 msgid "Header image alignment problem"
 msgstr "Vandamál með afstillingu í haus myndar"
+
+msgid "Theme"
+msgstr "Þema"
 
 msgid "No action"
 msgstr "Engin aðgerð"
@@ -4525,13 +4506,12 @@ msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Flipastýringar"
+msgid "Elite ad blockers"
+msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Sérsníðing YouTube"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4606,6 +4586,10 @@ msgid "See more social streaming staff picks"
 msgstr "Skoðaðu fleiri samfélagsmiðlastreymi sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Flipastýringar"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Skoðaðu fleiri tól til umsýslu flipa sem starfsfólk hefur valið"
 
@@ -4618,12 +4602,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Sjá fleiri forritsauka merkta með \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Auglýsingabanar fyrir elítuna"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Sérsníðing YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4692,6 +4676,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -4952,6 +4939,9 @@ msgstr ""
 msgid "ID"
 msgstr "Auðkenni"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Flögg"
 
@@ -5075,14 +5065,14 @@ msgstr "Yfirferðarskrá"
 msgid "Add-on Review Guide"
 msgstr "Leiðbeiningar fyrir umsagnir um viðbætur"
 
-msgid "Security Scanners"
-msgstr "Öryggisskannar"
+msgid "Human Review Needed"
+msgstr ""
 
-msgid "Flagged By Scanners"
-msgstr "Flaggað af skönnum"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "Flaggað til mannlegrar yfirferðar"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Sjálfvirkt samþykktar viðbætur"
@@ -5581,9 +5571,6 @@ msgstr "Allra tíma"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Þú ert með <span>{0}</span> punkta."
-
-msgid "Theme"
-msgstr "Þema"
 
 msgid "No results found"
 msgstr "Engar niðurstöður fundust"

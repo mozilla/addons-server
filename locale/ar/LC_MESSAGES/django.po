@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -35,9 +35,6 @@ msgstr "الإضافات"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "الحد الأدنى لعدد التقارير (مجمعة حسب الدليل)"
-
-msgid "creation date"
-msgstr "تاريخ الإنشاء"
 
 msgid "User / Add-on"
 msgstr "مستخدم / إضافة"
@@ -294,6 +291,9 @@ msgstr "سِماتي"
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr "تاريخ الإنشاء"
+
 msgid "Tools"
 msgstr "أدوات"
 
@@ -505,34 +505,6 @@ msgstr ""
 
 msgid "Confirmation for developer API keys"
 msgstr "تأكيد لمفاتيح API المطور"
-
-msgid "Application Versions"
-msgstr "إصدارات التطبيقات"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "الإصدارات المقبولة لكل التطبيقات على ”موقع إضافات Mozilla“."
-
-msgid "Valid Application Versions"
-msgstr "إصدارات التطبيقات الصالحة"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "يجب أن تحتوي الإضافات المرسَلة إلى Mozilla على ملف بيان يحوي على الأقل تطبيقًا واحدًا مدعومًا من التطبيقات أسفله. الإصدارات المُسردة أسفله هي المسموح بها لهذه التطبيقات فقط."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "لاحظ أنّ WebExtensions لا تدعم علامة النجمة ”*“ في %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "المعرّف الفريد"
-
-msgid "Versions"
-msgstr "الإصدارات"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "لو لم يكن يحتاج تطبيقك إلى ملف بيان فما زال عليك تضمين واحدًا فيه الخصائص المطلوبة كما هو موضّح %(amo_manifests_mdn_link_open)sهنا%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "تستعمل إحدى تجميعاتك هذا العنوان المخصّص بالفعل."
@@ -1057,6 +1029,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "فَيَرفُكس"
 
@@ -1529,6 +1504,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "الإضافة"
 
@@ -1719,6 +1697,9 @@ msgstr "صورة ذات جودة منخفضة، ممدودة، أو فارغة"
 
 msgid "Header image alignment problem"
 msgstr ""
+
+msgid "Theme"
+msgstr "سِمة"
 
 #, fuzzy
 msgid "No action"
@@ -4701,12 +4682,11 @@ msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4796,6 +4776,10 @@ msgid "See more social streaming staff picks"
 msgstr "تصفح كل الإضافات"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "برنامج الإمتدادات المُقترحة"
@@ -4810,13 +4794,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "تصفح كل الإضافات"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "برنامج الإمتدادات المُقترحة"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4895,6 +4879,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5169,6 +5156,9 @@ msgstr ""
 msgid "ID"
 msgstr "المعرّف الفريد"
 
+msgid "GUID"
+msgstr "المعرّف الفريد"
+
 #, fuzzy
 msgid "Flags"
 msgstr "Flags"
@@ -5313,17 +5303,14 @@ msgstr "التعليق"
 msgid "Add-on Review Guide"
 msgstr "دليل مراجعة الإضافات"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "فحوص الأمان"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "فحوص الأمان"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "التعليق على {0}"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5878,9 +5865,6 @@ msgstr "كل الأوقات"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "لديك <span>{0}</span> نقطة/نقاط."
-
-msgid "Theme"
-msgstr "سِمة"
 
 msgid "No results found"
 msgstr "لم يُعثر على نتائج"

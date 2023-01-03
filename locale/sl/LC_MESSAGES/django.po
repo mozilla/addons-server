@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-19 22:31+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -27,9 +27,6 @@ msgstr "Dodatki"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "najmanjše število poročil (združeno po guid)"
-
-msgid "creation date"
-msgstr "datum nastanka"
 
 msgid "User / Add-on"
 msgstr "Uporabnik / Dodatek"
@@ -285,6 +282,9 @@ msgstr "Moje teme"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "datum nastanka"
+
 msgid "Tools"
 msgstr "Orodja"
 
@@ -504,34 +504,6 @@ msgstr "Neveljaven pk ali rekleta \"%s\" - objekt ne obstaja."
 
 msgid "Confirmation for developer API keys"
 msgstr "Potrditev za razvijalske ključe API"
-
-msgid "Application Versions"
-msgstr "Različice programa"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Sprejemljive različice za vse aplikacije na AMO."
-
-msgid "Valid Application Versions"
-msgstr "Veljavne različice aplikacije"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Dodatki poslani v dodatke Mozilla morajo meti datoteko manifesta s podporo za vsaj eno od spodnjih aplikacij. Za te aplikacije so dovoljene damo spodnje različice."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Upoštevajte, da WebExtensions v%(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s ne sme vsebovati \"*\"."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Različice"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "Če vaš podprt program datoteke manifesta ne zahteva, jo morate vseeno vključiti z vsemi lastnostmi, ki so navedene %(amo_manifests_mdn_link_open)stukaj%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ta spletni naslov po meri že uporablja druga vaša zbirka."
@@ -1046,6 +1018,9 @@ msgstr "Zavrnitev dodatka {addon} {version} razveljavljena."
 msgid "Un-rejected"
 msgstr "Zavrnitev razveljavljena"
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1511,6 +1486,9 @@ msgstr "Izpostavljeno"
 msgid "Strategic"
 msgstr "Strateško"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Dodatek"
 
@@ -1686,6 +1664,9 @@ msgstr "Nekvalitetna, raztegnjena ali prazna slika"
 
 msgid "Header image alignment problem"
 msgstr "Problem s poravnavo slike v glavi"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr "Ni dejanja"
@@ -4607,13 +4588,13 @@ msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Upravitelji zavihkov"
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Posodobi blokado dodatka"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Prilagajanje YouTuba"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4690,6 +4671,10 @@ msgid "See more social streaming staff picks"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Upravitelji zavihkov"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Več osebno izbranih razširitev za upravljanje zavihkov"
 
@@ -4702,13 +4687,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Več razširitev z oznako \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Posodobi blokado dodatka"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Več osebno izbranih razširitev za zavračanje oglasov"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Prilagajanje YouTuba"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4778,6 +4762,9 @@ msgstr "Neznana \"strict_min_version\" {appver} za {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Neznana \"strict_max_version\" {appver} za {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Vrsta arhiva ni podprta."
@@ -5042,6 +5029,9 @@ msgstr "Ne morete predložiti številke vrstice, ne da bi jo povezali z imenom d
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Zastave"
 
@@ -5166,14 +5156,14 @@ msgstr "Dnevnik pregledov"
 msgid "Add-on Review Guide"
 msgstr "Vodnik za pregledovanje dodatkov"
 
-msgid "Security Scanners"
-msgstr "Varnostni pregledovalniki"
+msgid "Human Review Needed"
+msgstr ""
 
-msgid "Flagged By Scanners"
-msgstr "označili pregledovalniki"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "Označeno za človeški pregled"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -5689,9 +5679,6 @@ msgstr "Ves čas"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Imate <span>{0}</span> točk."
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No results found"
 msgstr "Ni zadetkov"

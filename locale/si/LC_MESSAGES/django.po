@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-10 23:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,6 @@ msgstr "එක්කහු"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
-
-msgid "creation date"
-msgstr "සෑදූ දිනය"
 
 msgid "User / Add-on"
 msgstr "පරිශීලක / එක්කහුව"
@@ -285,6 +282,9 @@ msgstr "මාගේ තේමා"
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr "සෑදූ දිනය"
+
 msgid "Tools"
 msgstr "මෙවලම්"
 
@@ -490,34 +490,6 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
-
-msgid "Application Versions"
-msgstr "යෙදුමේ අනුවාද"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr ""
-
-msgid "Valid Application Versions"
-msgstr ""
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Versions"
-msgstr "අනුවාද"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -1023,6 +995,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "ෆයර්ෆොක්ස්"
 
@@ -1479,6 +1454,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "එක්කහුව"
 
@@ -1652,6 +1630,9 @@ msgstr ""
 
 msgid "Header image alignment problem"
 msgstr ""
+
+msgid "Theme"
+msgstr "තේමාව"
 
 msgid "No action"
 msgstr ""
@@ -4507,13 +4488,12 @@ msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "පටිති කළමනාකරණ"
+msgid "Elite ad blockers"
+msgstr "ප්‍රබල දැන්වීම් අවහිරක"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "යූටියුබ් අභිරුචිකරණය"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4588,6 +4568,10 @@ msgid "See more social streaming staff picks"
 msgstr "සමාජ ප්‍රවාර සඳහා මාණ්ඩලික තේරීම්"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "පටිති කළමනාකරණ"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "පටිති කළමනාකරණ සඳහා මාණ්ඩලික තේරීම්"
 
@@ -4600,12 +4584,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" අනන්‍යගත වෙනත් දිගු බලන්න"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "ප්‍රබල දැන්වීම් අවහිරක"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "දැන්වීම් අවහිරක සඳහා මාණ්ඩලික තේරීම්"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "යූටියුබ් අභිරුචිකරණය"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4674,6 +4658,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -4934,6 +4921,9 @@ msgstr ""
 msgid "ID"
 msgstr "හැඳු."
 
+msgid "GUID"
+msgstr ""
+
 msgid "Flags"
 msgstr ""
 
@@ -5057,13 +5047,13 @@ msgstr ""
 msgid "Add-on Review Guide"
 msgstr ""
 
-msgid "Security Scanners"
-msgstr "ආරක්‍ෂණ සුපිරික්සන"
-
-msgid "Flagged By Scanners"
+msgid "Human Review Needed"
 msgstr ""
 
-msgid "Flagged for Human Review"
+msgid "Versions Needing Human Review"
+msgstr ""
+
+msgid "Flagged by MAD for Human Review"
 msgstr ""
 
 msgid "Auto-Approved Add-ons"
@@ -5563,9 +5553,6 @@ msgstr ""
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
-
-msgid "Theme"
-msgstr "තේමාව"
 
 msgid "No results found"
 msgstr "ප්‍රතිඵල හමු නොවිණි"
