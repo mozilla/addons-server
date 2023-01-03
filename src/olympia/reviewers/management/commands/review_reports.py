@@ -32,12 +32,8 @@ REPORTS = {
         ),
         'reports': (
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 os.path.join(SQL_DIR, 'addon/weekly.sql'),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                os.path.join(SQL_DIR, 'addon/breakdown.sql'),
             ),
             (
                 'Weekly Add-on Reviews by Risk Profiles',
@@ -53,12 +49,8 @@ REPORTS = {
         ),
         'reports': (
             (
-                'Weekly Content Reviews, 10 Reviews or More',
+                'Weekly Content Reviews',
                 os.path.join(SQL_DIR, 'content/weekly.sql'),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                os.path.join(SQL_DIR, 'content/breakdown.sql'),
             ),
         ),
     },

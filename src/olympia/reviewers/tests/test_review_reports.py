@@ -146,25 +146,17 @@ class TestReviewReports:
         data = command.fetch_report_data('addon')
         expected = [
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Total Risk',
                     'Average Risk',
                     'Add-ons Reviewed',
                 ],
                 (
-                    ('Staff B', '*', '10,212', '1,458.86', '7'),
-                    ('Volunteer A', '', '2,393', '265.89', '9'),
-                ),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
-                (
+                    ('Staff B', '10,212', '1,458.86', '7'),
+                    ('Volunteer A', '2,393', '265.89', '9'),
                     ('All Reviewers', '12,605', '787.81', '16'),
-                    ('Volunteers', '2,393', '265.89', '9'),
                 ),
             ),
             (
@@ -207,17 +199,13 @@ class TestReviewReports:
 
         expected = [
             (
-                'Weekly Content Reviews, 10 Reviews or More',
-                ['Name', 'Staff', 'Add-ons Reviewed'],
+                'Weekly Content Reviews',
+                ['Name', 'Add-ons Reviewed'],
                 (
-                    (f'Firefox user {self.reviewer3.id}', '', '14'),
-                    ('Staff Content D', '*', '10'),
+                    (f'Firefox user {self.reviewer3.id}', '14'),
+                    ('Staff Content D', '10'),
+                    ('All Reviewers', '24'),
                 ),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Add-ons Reviewed'],
-                (('All Reviewers', '24'), ('Volunteers', '14')),
             ),
         ]
         assert data == expected
@@ -247,23 +235,14 @@ class TestReviewReports:
         data = command.fetch_report_data('addon')
         assert data == [
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Total Risk',
                     'Average Risk',
                     'Add-ons Reviewed',
                 ],
-                (),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
-                (
-                    ('All Reviewers', '-', '-', '0'),
-                    ('Volunteers', '-', '-', '0'),
-                ),
+                (('All Reviewers', '-', '-', '0'),),
             ),
             (
                 'Weekly Add-on Reviews by Risk Profiles',
@@ -298,14 +277,9 @@ class TestReviewReports:
 
         assert data == [
             (
-                'Weekly Content Reviews, 10 Reviews or More',
-                ['Name', 'Staff', 'Add-ons Reviewed'],
-                (),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Add-ons Reviewed'],
-                (('All Reviewers', '0'), ('Volunteers', '0')),
+                'Weekly Content Reviews',
+                ['Name', 'Add-ons Reviewed'],
+                (('All Reviewers', '0'),),
             ),
         ]
 
@@ -385,23 +359,14 @@ class TestReviewReports:
         data = command.fetch_report_data('addon')
         expected = [
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Total Risk',
                     'Average Risk',
                     'Add-ons Reviewed',
                 ],
-                (('Volunteer A', '', '0', '0', '5'),),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
-                (
-                    ('All Reviewers', '-', '-', '5'),
-                    ('Volunteers', '-', '-', '5'),
-                ),
+                (('Volunteer A', '0', '0', '5'), ('All Reviewers', '-', '-', '5')),
             ),
             (
                 'Weekly Add-on Reviews by Risk Profiles',
@@ -462,20 +427,14 @@ class TestReviewReports:
         data = command.fetch_report_data('content')
         expected = [
             (
-                'Weekly Content Reviews, 10 Reviews or More',
+                'Weekly Content Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Add-ons Reviewed',
                 ],
-                (('Volunteer A', '', '10'),),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Add-ons Reviewed'],
                 (
+                    ('Volunteer A', '10'),
                     ('All Reviewers', '10'),
-                    ('Volunteers', '10'),
                 ),
             ),
         ]
