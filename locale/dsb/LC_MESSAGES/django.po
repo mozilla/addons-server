@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-02 20:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,6 @@ msgstr "Dodanki"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "minimalna licba rozpšawow (zrědowanych pó guid)"
-
-msgid "creation date"
-msgstr "datum napóranja"
 
 msgid "User / Add-on"
 msgstr "Wužywaŕ / dodank"
@@ -285,6 +282,9 @@ msgstr "Móje drastwy"
 msgid "Git-Extract"
 msgstr "Git-ekstrakt"
 
+msgid "creation date"
+msgstr "datum napóranja"
+
 msgid "Tools"
 msgstr "Rědy"
 
@@ -503,35 +503,6 @@ msgstr "Njepłaśiwy pk abo njepłaśiwe adresowe mě „%s“ - objekt njeeksis
 
 msgid "Confirmation for developer API keys"
 msgstr "Wobkšuśenje za wuwijarske API-kluce"
-
-msgid "Application Versions"
-msgstr "Nałožeńske wersije"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Akceptabelne wersije za wšykne nałoženja na AMO."
-
-msgid "Valid Application Versions"
-msgstr "Płaśiwe nałožeńske wersije"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Dodanki zapódane pla Mozilla Add-ons muse manifestowu dataju měś, pśi comž nanejmjenjej jadno ze slědujucych nałoženjow se pódpěra. Jano dołojce pódane wersije su za toś te nałoženja dowólone."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Buźćo se wědobny, až WebExtensions žednu „*“ w %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s njeakceptěruju."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Wersije"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "Jolic wašo pódprěte nałoženje njetrjeba manifestowu dataju, musyśo hyšći jadnu z trěbnymi kakosćami pśidaś, ako su %(amo_manifests_mdn_link_open)show%(amo_manifests_mdn_link_close)s pódane."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Toś ten swójski URL se južo wót drugeje z wašych zběrkow wužywa."
@@ -1038,6 +1009,9 @@ msgstr "Wótpokazanje dodanka {addon} {version} jo wótpórane."
 msgid "Un-rejected"
 msgstr "Wótpokazanje jo wótpórane"
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1501,6 +1475,9 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategiski"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Dodank"
 
@@ -1674,6 +1651,9 @@ msgstr "Wobraz niskeje kwality, rozćěgnjony abo prozny wobraz"
 
 msgid "Header image alignment problem"
 msgstr "Problem z wusměrjenim głowowego wobraza"
+
+msgid "Theme"
+msgstr "Drastwa"
 
 msgid "No action"
 msgstr "Žedna akcija"
@@ -4639,13 +4619,12 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Zastojniki rejtarikow"
+msgid "Elite ad blockers"
+msgstr "Wugbałe blokěrowaki wabjenja"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Pśiměrjenje YouTube"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4720,6 +4699,10 @@ msgid "See more social streaming staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja socialnego tšuganja pokazaś"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Zastojniki rejtarikow"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja wó zastojanju rejtarikow pokazaś"
 
@@ -4732,12 +4715,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalšne rozšyrjenja z wobznamjenim „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Wugbałe blokěrowaki wabjenja"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja za blokěrowanje wabjenja pokazaś"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Pśiměrjenje YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4807,6 +4790,9 @@ msgstr "Njeznata \"strict_min_version\" {appver} za {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Njeznata \"strict_max_version\" {appver} za {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Njepódpěrany archiwowy typ."
@@ -5068,6 +5054,9 @@ msgstr "Njamóžośo smužkowy numer zapódaś, bźez togo aby jen datajowemu mj
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Markěrowanja"
 
@@ -5191,14 +5180,14 @@ msgstr "Protokol pśeglědanjow"
 msgid "Add-on Review Guide"
 msgstr "Rozpokazanje za pśeglědowanje dodankow"
 
-msgid "Security Scanners"
-msgstr "Wěstotne skannery"
+msgid "Human Review Needed"
+msgstr ""
 
-msgid "Flagged By Scanners"
-msgstr "Pśez scannery markěrowane"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "Za cłowjeske pśěglědanje markěrowany"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
@@ -5698,9 +5687,6 @@ msgstr "Ceły cas"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Maśo <span>{0}</span> dypkow."
-
-msgid "Theme"
-msgstr "Drastwa"
 
 msgid "No results found"
 msgstr "Žedne wuslědki namakane"

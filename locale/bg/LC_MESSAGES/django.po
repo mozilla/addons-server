@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-06-01 08:04+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -30,9 +30,6 @@ msgstr "Добавки"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "минимален брой отчети (групирани по глобален уникален идентификатор - guid)"
-
-msgid "creation date"
-msgstr "дата на създаване"
 
 msgid "User / Add-on"
 msgstr "Потребител / добавки"
@@ -291,6 +288,9 @@ msgstr "Мои теми"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "дата на създаване"
+
 msgid "Tools"
 msgstr "Инструменти"
 
@@ -520,34 +520,6 @@ msgstr ""
 #, fuzzy
 msgid "Confirmation for developer API keys"
 msgstr "Поискана е повече информация"
-
-msgid "Application Versions"
-msgstr "Версии на приложението"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Приемливи версии за всички приложения в AMO."
-
-msgid "Valid Application Versions"
-msgstr "Валидни версии на приложения"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Версии"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
@@ -1090,6 +1062,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1561,6 +1536,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Добавка"
 
@@ -1747,6 +1725,9 @@ msgstr ""
 
 msgid "Header image alignment problem"
 msgstr ""
+
+msgid "Theme"
+msgstr "Тема"
 
 #, fuzzy
 msgid "No action"
@@ -4688,12 +4669,11 @@ msgstr "Преглед на всички разширения"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4782,6 +4762,10 @@ msgid "See more social streaming staff picks"
 msgstr "Преглед на всички разширения"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Преглед на всички разширения"
@@ -4796,13 +4780,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Преглед на всички разширения"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Преглед на всички разширения"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4881,6 +4865,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5149,6 +5136,9 @@ msgstr ""
 msgid "ID"
 msgstr "CIDR"
 
+msgid "GUID"
+msgstr "GUID"
+
 # 80%
 # 100%
 msgid "Flags"
@@ -5287,17 +5277,14 @@ msgstr "Бележка от рецензията"
 msgid "Add-on Review Guide"
 msgstr "Рецензия на добавката"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Проверка на сигурността"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Проверка на сигурността"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Модерирана рецензия ({0})"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5835,9 +5822,6 @@ msgstr ""
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
-
-msgid "Theme"
-msgstr "Тема"
 
 msgid "No results found"
 msgstr "Няма резултати"

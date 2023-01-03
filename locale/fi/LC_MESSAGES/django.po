@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-12 15:19+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -30,9 +30,6 @@ msgstr "Lisäosat"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr ""
-
-msgid "creation date"
-msgstr "luomispäivämäärä"
 
 msgid "User / Add-on"
 msgstr "Käyttäjä / Lisäosa"
@@ -295,6 +292,9 @@ msgstr "Omat teemat"
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr "luomispäivämäärä"
+
 msgid "Tools"
 msgstr "Työkalut"
 
@@ -504,35 +504,6 @@ msgstr ""
 
 msgid "Confirmation for developer API keys"
 msgstr "Vahvistus kehittäjäliittymäavaimille"
-
-# 76%
-msgid "Application Versions"
-msgstr "Ohjelmaversiot"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr ""
-
-msgid "Valid Application Versions"
-msgstr "Kelvolliset ohjelmaversiot"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versiot"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tämä osoitemuoto on jo käytössä jossakin toisessa kokoelmassasi."
@@ -1067,6 +1038,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1543,6 +1517,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 # 85%
 # 100%
 msgid "Add-on"
@@ -1725,6 +1702,11 @@ msgstr "Heikkolaatuinen, venytetty tai tyhjä kuva"
 
 msgid "Header image alignment problem"
 msgstr "Otsikon kuvan kohdistusongelma"
+
+# 83%
+# 100%
+msgid "Theme"
+msgstr "Teema"
 
 #, fuzzy
 msgid "No action"
@@ -4670,13 +4652,12 @@ msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Välilehtien hallinta"
+msgid "Elite ad blockers"
+msgstr "Ensiluokkaiset mainosestäjät"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTuben mukauttaminen"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4756,6 +4737,10 @@ msgid "See more social streaming staff picks"
 msgstr "Katso lisää valittuja sosiaalisen suoratoiston laajennuksia"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Välilehtien hallinta"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Katso lisää valittuja välilehtien hallinnan laajennuksia"
 
@@ -4768,12 +4753,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Katso lisää \"{tag}\"-merkittyjä laajennuksia"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Ensiluokkaiset mainosestäjät"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Katso lisää valittuja mainosestäjiä"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTuben mukauttaminen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4854,6 +4839,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5124,6 +5112,9 @@ msgstr ""
 msgid "ID"
 msgstr "GUID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr ""
 
@@ -5271,16 +5262,14 @@ msgstr "Arvostelu:"
 msgid "Add-on Review Guide"
 msgstr "Ei vielä lisäosa-arvioita."
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Tietoturvatestit"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Tietoturvatestit"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "Merkitty ihmisen arvioitavaksi"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -5831,11 +5820,6 @@ msgstr ""
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
-
-# 83%
-# 100%
-msgid "Theme"
-msgstr "Teema"
 
 msgid "No results found"
 msgstr "Tuloksia ei löytynyt"

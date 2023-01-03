@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -34,9 +34,6 @@ msgstr "Complementos"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "número mínimo de informes (agrupado por guid)"
-
-msgid "creation date"
-msgstr "fecha de creación"
 
 msgid "User / Add-on"
 msgstr "Usuario / complemento"
@@ -294,6 +291,9 @@ msgstr "Mis temas"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "fecha de creación"
+
 msgid "Tools"
 msgstr "Herramientas"
 
@@ -517,38 +517,6 @@ msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
 
 msgid "Confirmation for developer API keys"
 msgstr ""
-
-msgid "Application Versions"
-msgstr "Versiones de la aplicación"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Versiones aceptadas en todas las aplicaciones de AMO."
-
-msgid "Valid Application Versions"
-msgstr "Versiones válidas para las aplicaciones"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Los complementos enviados a Mozilla Add-ons deben tener un archivo de manifiesto con al menos una de las siguientes aplicaciones compatibles. Sólo se admiten las versiones listadas a continuación "
-"para estas aplicaciones."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Por favor, ten en cuenta que WebExtensions no acepta el símbolo \"*\" en la versión %(amo_version_link_open)strict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versiones"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Aunque la aplicación admitida por tu complemento no requiera un archivo de manifiesto, tienes que incluir uno con las propiedades requeridas, tal y como se especifica "
-"%(amo_manifests_mdn_link_open)s aquí %(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta URL personalizada ya la utiliza otra de tus colecciones."
@@ -1059,6 +1027,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1533,6 +1504,9 @@ msgstr "Destacado"
 msgid "Strategic"
 msgstr "Estratégico"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Complemento"
 
@@ -1708,6 +1682,9 @@ msgstr "Imagen en blanco, deformada o de baja calidad"
 
 msgid "Header image alignment problem"
 msgstr "Problema de alineación de la imagen en el encabezado"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr ""
@@ -4745,12 +4722,12 @@ msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Actualizar bloqueadores de complementos"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4835,6 +4812,10 @@ msgid "See more social streaming staff picks"
 msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Ver más extensiones recomendadas"
@@ -4850,13 +4831,12 @@ msgstr "Ver más extensiones populares"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
-msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Ver más extensiones recomendadas"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4937,6 +4917,9 @@ msgstr "{appver} \"strict_min_version\" desconocida para {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "\"strict_max_version\" {appver} desconocida para {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Tipo de archivo no admitido."
@@ -5199,6 +5182,9 @@ msgstr "No puedes ingresar un número de línea sin asociarlo a un nombre de arc
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Marcas"
 
@@ -5329,17 +5315,14 @@ msgstr "Registro de revisiones"
 msgid "Add-on Review Guide"
 msgstr "Guía de revisión de complementos"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Pruebas de seguridad"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Marcado por escáneres"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Revisión de la calificación ({0})"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Complementos autoaprobados"
@@ -5869,9 +5852,6 @@ msgstr "Cualquier rango temporal"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Tienes <span>{0}</span> puntos."
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No results found"
 msgstr "No se ha encontrado ningún resultado"

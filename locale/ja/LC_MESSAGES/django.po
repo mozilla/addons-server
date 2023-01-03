@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -30,9 +30,6 @@ msgstr "アドオン"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "最低レポート数 (guid でグループ化)"
-
-msgid "creation date"
-msgstr "作成日"
 
 msgid "User / Add-on"
 msgstr "ユーザー / アドオン"
@@ -288,6 +285,9 @@ msgstr "自分のテーマ"
 msgid "Git-Extract"
 msgstr "Git-抽出"
 
+msgid "creation date"
+msgstr "作成日"
+
 msgid "Tools"
 msgstr "ツール"
 
@@ -508,38 +508,6 @@ msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが
 
 msgid "Confirmation for developer API keys"
 msgstr "開発者 API キーを確認する"
-
-msgid "Application Versions"
-msgstr "アプリケーションのバージョン"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "AMO のすべての対応アプリケーションにおける利用可能なバージョンです。"
-
-msgid "Valid Application Versions"
-msgstr "アプリケーションの有効バージョン"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケー"
-"ションで使用できます。"
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "WebExtensions では %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s に「*」を設定できないことに注意してください。"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "バージョン"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
-"れています。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
@@ -1045,6 +1013,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1506,6 +1477,9 @@ msgstr "スポットライト"
 msgid "Strategic"
 msgstr "戦略的"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "アドオン"
 
@@ -1679,6 +1653,9 @@ msgstr "低画質、引き延ばしもしくは空白の画像"
 
 msgid "Header image alignment problem"
 msgstr "ヘッダー画像の整列問題"
+
+msgid "Theme"
+msgstr "テーマ"
 
 msgid "No action"
 msgstr "アクションなし"
@@ -4624,12 +4601,11 @@ msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "タブ管理"
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4712,6 +4688,10 @@ msgid "See more social streaming staff picks"
 msgstr "人気の拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "タブ管理"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
@@ -4725,13 +4705,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "“{tag}” のタグが付いた拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4804,6 +4784,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5063,6 +5046,9 @@ msgstr ""
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "フラグ"
 
@@ -5193,17 +5179,14 @@ msgstr "審査ログ"
 msgid "Add-on Review Guide"
 msgstr "アドオン審査ガイド"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "セキュリティテスト"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "セキュリティテスト"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "レーティング審査 ({0})"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動承認されたアドオン"
@@ -5723,9 +5706,6 @@ msgstr "全期間"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
-
-msgid "Theme"
-msgstr "テーマ"
 
 msgid "No results found"
 msgstr "該当するアイテムはありません"
