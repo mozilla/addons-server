@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 12:55+0000\n"
+"PO-Revision-Date: 2023-01-03 13:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -3108,7 +3108,7 @@ msgstr "Vytvorené:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr "Naposledy aktualizované:"
+msgstr "Aktualizovaný:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -6351,16 +6351,16 @@ msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
 msgid "Auto-approved, Confirmed"
-msgstr ""
+msgstr "Automaticky schválený, potvrdený"
 
 msgid "Auto-approved, not Confirmed"
-msgstr ""
+msgstr "Automaticky schválený, nepotvrdený"
 
 msgid "Approved, Manual"
-msgstr ""
+msgstr "Schválený, manuálne"
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "Zakázaný vývojárom"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
