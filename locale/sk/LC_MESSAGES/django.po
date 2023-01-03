@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 12:51+0000\n"
+"PO-Revision-Date: 2023-01-03 12:55+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -135,13 +135,13 @@ msgid "Ratings"
 msgstr "Hodnotenia"
 
 msgid "Reviewer Tools (listed)"
-msgstr ""
+msgstr "Nástroje pre kontrolórov (uvedené)"
 
 msgid "Reviewer Tools (unlisted)"
-msgstr ""
+msgstr "Nástroje pre kontrolórov (neuvedené)"
 
 msgid "Reviewer links"
-msgstr ""
+msgstr "Odkazy pre kontrolórov"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
@@ -318,7 +318,7 @@ msgid "Manage API Keys"
 msgstr "Spravovať kľúče API"
 
 msgid "Reviewer Tools"
-msgstr "Nástroje kontrolóra"
+msgstr "Nástroje pre kontrolórov"
 
 msgid "Admin Tools"
 msgstr "Nástroje správcu"
@@ -2742,7 +2742,7 @@ msgid "Notes to Reviewer:"
 msgstr "Poznámky ku kontrole:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Je niečo, čo by naši redaktori mali mať na pamäti pri kontrole tohto doplnku?"
+msgstr "Je niečo, čo by naši kontrolóri mali mať na pamäti pri kontrole tohto doplnku?"
 
 msgid "Remember"
 msgstr "Pamätajte"
@@ -2756,7 +2756,7 @@ msgstr ""
 "%(policy_requirements_open)spožiadaviek uvedených v zásadách%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr "Tieto poznámky budú viditeľné iba pre vás a našich redaktorov."
+msgstr "Tieto poznámky budú viditeľné iba pre vás a našich kontrolórov."
 
 msgid "Submit Version"
 msgstr "Odoslať verziu"
@@ -5338,7 +5338,7 @@ msgid "Reviewer Tools – Add-ons for Firefox"
 msgstr ""
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Vrátiť sa na panel nástrojov kontrolóra"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -5462,10 +5462,10 @@ msgid "Add-on important changes history"
 msgstr "História dôležitých zmien doplnku"
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Nástenka je miesto na výmenu informácií relevantných pre tento doplnok (bez ohľadu na verziu) medzi vývojárom a redaktorom. Je viditeľná a upraviteľná oboma."
+msgstr "Nástenka je miesto na výmenu informácií relevantných pre tento doplnok (bez ohľadu na verziu) medzi vývojárom a kontrolórom. Je viditeľná a upraviteľná oboma."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Súkromná nástenka sa používa na výmenu informácií medzi redaktormi, ktoré sú nezávislé od verzie. Zachovajte prosím objektívny jazyk. Je viditeľná iba pre redaktorov."
+msgstr "Súkromná nástenka sa používa na výmenu informácií medzi kontrolórmi, ktoré sú nezávislé od verzie. Zachovajte prosím objektívny jazyk. Je viditeľná iba pre kontrolórov."
 
 msgid "Update whiteboards"
 msgstr "Aktualizovať poznámky"
@@ -5668,7 +5668,7 @@ msgid "No points awarded yet."
 msgstr "Doteraz ste nezískal žiadny bod."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr "Aktívni redaktori (za posledných 7 dní)"
+msgstr "Najlepší recenzenti (za posledných 7 dní)"
 
 msgid "No top reviewers yet."
 msgstr ""
@@ -6366,4 +6366,4 @@ msgid "{app} {min} and later"
 msgstr "{app} {min} a vyššie"
 
 msgid "The install origin {origin} is not permitted."
-msgstr ""
+msgstr "Pôvod inštalácie {origin} nie je povolený."
