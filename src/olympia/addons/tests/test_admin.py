@@ -131,8 +131,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' not in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' not in response.content
 
     def test_list_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.CHANNEL_UNLISTED}
@@ -141,8 +141,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' not in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' not in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_show_link_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory()
@@ -152,8 +152,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_queries(self):
         addon_factory(guid='@foo')
@@ -635,8 +635,9 @@ class TestReplacementAddonList(TestCase):
 
     def test_fields(self):
         model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
+        request = RequestFactory().get('/')
         self.assertEqual(
-            list(model_admin.get_list_display(None)),
+            list(model_admin.get_list_display(request)),
             ['guid', 'path', 'guid_slug', '_url'],
         )
 

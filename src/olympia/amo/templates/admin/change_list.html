@@ -1,0 +1,29 @@
+{% extends "admin/change_list.html" %}
+
+{% block search %}
+    <div id="searchbar-wrapper">
+        {{ block.super }}
+        <div id="searchbar-explainer">
+            {% if search_fields %}
+                <p>
+                    By default, search will be performed against {% for field in search_fields %}<strong>{{ field }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}.
+                </p>
+                {% if search_id_field or search_by_ip_actions_names or cl.model_admin.extra_list_filter_for_ip_searches %}
+                    <ul>
+                    {% if search_id_field %}
+                        <li>If the query contains only numeric terms, search will be performed against <strong>{{ search_id_field }}</strong> instead.</li>
+                    {% endif %}
+                    {% if search_by_ip_actions_names %}
+                        <li>If the query contains only IP addresses or networks, search will be performed against IP addresses recorded for {% for action in search_by_ip_actions_names %}<strong>{{ action }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}.</li>
+                    {% endif %}
+                    </ul>
+                {% endif %}
+            {% endif %}
+            <p> To join multiple search terms, choose one of the following options: </p>
+            <ul>
+                <li>Separate multiple terms with a <code>,</code> (comma) to return {{ module_name|capfirst }} matching any term (joining terms with a <em>OR</em>).</li>
+                <li>Separate multiple terms with a <code>&nbsp;</code> (space) to return {{ module_name|capfirst }} matching any term (joining terms with a <em>OR</em>).</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

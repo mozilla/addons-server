@@ -1,10 +1,8 @@
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
-from django.contrib.admin.views.main import ChangeList, ERROR_FLAG, PAGE_VAR
 from django.db.models import Count, Prefetch
 from django.http import Http404
-from django.http.request import QueryDict
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
@@ -18,7 +16,7 @@ from urllib.parse import urljoin, urlparse
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
 from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
 from olympia.constants.scanners import (
@@ -155,24 +153,9 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
         ]
 
 
-class ExcludeMatchedRulesFilter(SimpleListFilter):
+class ExcludeMatchedRulesFilter(MultipleRelatedListFilter):
     title = gettext('Excluding results solely matching these rules')
     parameter_name = 'exclude_rule'
-    template = 'admin/scanners/multiple_filter.html'
-
-    def __init__(self, request, params, *args):
-        # Django's implementation builds self.used_parameters by pop()ing keys
-        # from params, so we would normally only get a single value.
-        # We want the full list if a parameter is passed twice, to allow
-        # multiple values to be selected, so we rebuild self.used_parameters
-        # from request.GET ourselves, using .getlist() to get all values.
-        used_parameters = {}
-        if self.parameter_name in params:
-            used_parameters[self.parameter_name] = (
-                request.GET.getlist(self.parameter_name) or None
-            )
-        super().__init__(request, params, *args)
-        self.used_parameters = used_parameters
 
     def lookups(self, request, model_admin):
         # None is not included, since it's a <select multiple> to remove all
@@ -183,18 +166,6 @@ class ExcludeMatchedRulesFilter(SimpleListFilter):
                 'pk', 'scanner', 'pretty_name', 'name'
             ).order_by('scanner', 'pretty_name', 'name')
         ]
-
-    def choices(self, cl):
-        for lookup, title in self.lookup_choices:
-            selected = (
-                lookup is None if self.value() is None else str(lookup) in self.value()
-            )
-            yield {
-                'selected': selected,
-                'value': lookup,
-                'display': title,
-                'params': cl.get_filters_params(),
-            }
 
     def queryset(self, request, queryset):
         value = self.value()
@@ -269,52 +240,6 @@ class FileIsSigned(admin.BooleanFieldListFilter):
         self.title = gettext('file signature')
 
 
-class ScannerResultChangeList(ChangeList):
-    def __init__(self, request, *args, **kwargs):
-        super().__init__(request, *args, **kwargs)
-        # django's ChangeList does:
-        # self.params = dict(request.GET.items())
-        # But we want to keep a QueryDict to not lose parameters present
-        # multiple times.
-        self.params = request.GET.copy()
-        # We have to re-apply what django does to self.params:
-        if PAGE_VAR in self.params:
-            del self.params[PAGE_VAR]
-        if ERROR_FLAG in self.params:
-            del self.params[ERROR_FLAG]
-
-    def get_query_string(self, new_params=None, remove=None):
-        # django's ChangeList.get_query_string() doesn't respect parameters
-        # that are present multiple times, e.g. ?foo=1&foo=2 - it expects
-        # self.params to be a dict.
-        # We set self.params to a QueryDict in __init__, and if it is a
-        # QueryDict, then we use a copy of django's implementation with just
-        # the last line changed to p.urlencode().
-        # We have to keep compatibility for when self.params is not a QueryDict
-        # yet, because this method is called once in __init__() before we have
-        # the chance to set self.params to a QueryDict. It doesn't matter for
-        # our use case (it's to generate an url with no filters at all but we
-        # have to support it.
-        if not isinstance(self.params, QueryDict):
-            return super().get_query_string(new_params=new_params, remove=remove)
-        if new_params is None:
-            new_params = {}
-        if remove is None:
-            remove = []
-        p = self.params.copy()
-        for r in remove:
-            for k in list(p):
-                if k.startswith(r):
-                    del p[k]
-        for k, v in new_params.items():
-            if v is None:
-                if k in p:
-                    del p[k]
-            else:
-                p[k] = v
-        return '?%s' % p.urlencode()
-
-
 class AbstractScannerResultAdminMixin:
     actions = None
     view_on_site = False
@@ -323,11 +248,13 @@ class AbstractScannerResultAdminMixin:
 
     ordering = ('-pk',)
 
-    class Media:
-        css = {'all': ('css/admin/scannerresult.css',)}
-
-    def get_changelist(self, request, **kwargs):
-        return ScannerResultChangeList
+    class Media(AMOModelAdmin.Media):
+        css = {
+            'all': (
+                'css/admin/amoadmin.css',
+                'css/admin/scannerresult.css',
+            )
+        }
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -529,8 +456,13 @@ class AbstractScannerRuleAdminMixin:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
-    class Media:
-        css = {'all': ('css/admin/scannerrule.css',)}
+    class Media(AMOModelAdmin.Media):
+        css = {
+            'all': (
+                'css/admin/amoadmin.css',
+                'css/admin/scannerrule.css',
+            )
+        }
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)

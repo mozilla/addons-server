@@ -145,15 +145,23 @@ class FileInline(admin.TabularInline):
 
 
 class AddonAdmin(AMOModelAdmin):
-    class Media:
+    class Media(AMOModelAdmin.Media):
         css = {
             'all': (
+                'css/admin/amoadmin.css',
                 'css/admin/l10n.css',
                 'css/admin/pagination.css',
                 'css/admin/addons.css',
             )
         }
-        js = ('admin/js/jquery.init.js', 'js/admin/l10n.js', 'js/admin/recalc_hash.js')
+        js = (
+            'js/exports.js',
+            'js/node_lib/netmask.js',
+            'admin/js/jquery.init.js',
+            'js/admin/l10n.js',
+            'js/admin/recalc_hash.js',
+            'js/admin/userprofile.js',
+        )
 
     list_display = (
         '__str__',
@@ -166,7 +174,10 @@ class AddonAdmin(AMOModelAdmin):
         'reviewer_links',
     )
     list_filter = ('type', 'status')
-    search_fields = ('id', '^guid', '^slug')
+    search_fields = ('id', 'guid__startswith', 'slug__startswith')
+    search_by_ip_actions = (amo.LOG.ADD_VERSION.id,)
+    search_by_ip_activity_accessor = 'addonlog__activity_log'
+    search_by_ip_activity_reverse_accessor = 'activity_log__addonlog__addon'
     inlines = (AddonUserInline, FileInline)
     readonly_fields = (
         'id',
@@ -357,25 +368,27 @@ class AddonAdmin(AMOModelAdmin):
         # provided by annotations made in get_queryset()
         if obj._listed_versions_exists:
             links.append(
-                '<a href="{}">{}</a>'.format(
+                (
                     urljoin(
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['listed', obj.id]),
                     ),
-                    _('Reviewer Tools (listed)'),
+                    _('Review (listed)'),
                 )
             )
         if obj._unlisted_versions_exists:
             links.append(
-                '<a href="{}">{}</a>'.format(
+                (
                     urljoin(
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['unlisted', obj.id]),
                     ),
-                    _('Reviewer Tools (unlisted)'),
+                    _('Review (unlisted)'),
                 )
             )
-        return format_html('&nbsp;|&nbsp;'.join(links))
+        return format_html(
+            '<ul>{}</ul>', format_html_join('', '<li><a href="{}">{}</a></li>', links)
+        )
 
     reviewer_links.short_description = _('Reviewer links')
 

@@ -1,4 +1,5 @@
 import functools
+import ipaddress
 import operator
 from collections import OrderedDict
 
@@ -6,13 +7,69 @@ from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
 from django import forms
 from django.contrib import admin
-from django.contrib.admin.views.main import ChangeList, ChangeListSearchForm, SEARCH_VAR
+from django.contrib.admin.views.main import (
+    ChangeList,
+    ChangeListSearchForm,
+    ERROR_FLAG,
+    PAGE_VAR,
+    SEARCH_VAR,
+)
 from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
+from django.http.request import QueryDict
+from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext
 
+from olympia.activity.models import IPLog
+from olympia.amo.models import GroupConcat, Inet6Ntoa
+from olympia.constants.activity import LOG_BY_ID
 from .models import FakeEmail
+
+
+class MultipleRelatedListFilter(admin.SimpleListFilter):
+    template = 'admin/amo/multiple_filter.html'
+
+    def __init__(self, request, params, *args, **kwargs):
+        # Django's implementation builds self.used_parameters by pop()ing keys
+        # from params, so we would normally only get a single value.
+        # We want the full list if a parameter is passed twice, to allow
+        # multiple values to be selected, so we build our own _used_parameters
+        # property from request.GET ourselves, using .getlist() to get all the
+        # values.
+        self._used_parameters = {}
+        if self.parameter_name in params:
+            self._used_parameters[self.parameter_name] = (
+                request.GET.getlist(self.parameter_name) or None
+            )
+        super().__init__(request, params, *args, **kwargs)
+        # We copy our self._used_parameters in the real property so it's
+        # available in the rest of the code (for things called from
+        # super().__init__(), it's too late, they'll need to be overriden and
+        # use our property with the underscore if they want to benefit from
+        # that improvement).
+        self.used_parameters = self._used_parameters
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (
+                lookup is None if self.value() is None else str(lookup) in self.value()
+            )
+            yield {
+                'selected': selected,
+                'value': lookup,
+                'display': title,
+                # Django doesn't give the template access to the changelist
+                # instance. For its own filter classes, it builds a link for
+                # each choice from the changelist querystring, passing that
+                # here. In our case we have a form so we need to render an
+                # hidden input for each parameter in the query string. We help
+                # the template do that by passing a QueryDict instead of the
+                # raw query string
+                'params': QueryDict(
+                    cl.get_query_string(remove=[self.parameter_name])[1:]
+                ),
+            }
 
 
 class AMOModelAdminChangeListSearchForm(ChangeListSearchForm):
@@ -33,8 +90,69 @@ class AMOModelAdminChangeList(ChangeList):
 
     search_form_class = AMOModelAdminChangeListSearchForm
 
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # django's ChangeList does:
+        # self.params = dict(request.GET.items())
+        # But we want to keep a QueryDict to not lose parameters present
+        # multiple times.
+        self.params = request.GET.copy()
+        # We have to re-apply what django does to self.params:
+        if PAGE_VAR in self.params:
+            del self.params[PAGE_VAR]
+        if ERROR_FLAG in self.params:
+            del self.params[ERROR_FLAG]
+
+    def get_query_string(self, new_params=None, remove=None):
+        # django's ChangeList.get_query_string() doesn't respect parameters
+        # that are present multiple times, e.g. ?foo=1&foo=2 - it expects
+        # self.params to be a dict.
+        # We set self.params to a QueryDict in __init__, and if it is a
+        # QueryDict, then we use a copy of django's implementation with just
+        # the last line changed to p.urlencode().
+        # We have to keep compatibility for when self.params is not a QueryDict
+        # yet, because this method is called once in __init__() before we have
+        # the chance to set self.params to a QueryDict. It doesn't matter for
+        # our use case (it's to generate an url with no filters at all) but we
+        # have to support it.
+        if not isinstance(self.params, QueryDict):
+            return super().get_query_string(new_params=new_params, remove=remove)
+        if new_params is None:
+            new_params = {}
+        if remove is None:
+            remove = []
+        p = self.params.copy()
+        for r in remove:
+            for k in list(p):
+                if k.startswith(r):
+                    del p[k]
+        for k, v in new_params.items():
+            if v is None:
+                if k in p:
+                    del p[k]
+            else:
+                p[k] = v
+        return '?%s' % p.urlencode()
+
 
 class AMOModelAdmin(admin.ModelAdmin):
+    class Media:
+        js = (
+            'js/admin/ip_address_search.js',
+            'js/exports.js',
+            'js/node_lib/netmask.js',
+        )
+        css = {'all': ('css/admin/amoadmin.css',)}
+
+    # Classes that want to implement search by ip can override these if needed.
+    search_by_ip_actions = ()  # Deactivated by default.
+    search_by_ip_activity_accessor = 'activitylog'
+    search_by_ip_activity_reverse_accessor = 'activity_log__user'
+    # get_search_results() below searches using `IPLog`. It sets an annotation
+    # that we can then use in the custom `known_ip_adresses` method referenced
+    # in the line below, which is added to the` list_display` fields for IP
+    # searches.
+    extra_list_display_for_ip_searches = ('known_ip_adresses',)
     # We rarely care about showing this: it's the full count of the number of
     # objects for this model in the database, unfiltered. It does an extra
     # COUNT() query, so avoid it by default.
@@ -42,6 +160,20 @@ class AMOModelAdmin(admin.ModelAdmin):
 
     def get_changelist(self, request, **kwargs):
         return AMOModelAdminChangeList
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        extra_context.update(
+            {
+                'search_id_field': self.get_search_id_field(request),
+                'search_fields': self.get_search_fields(request),
+                'search_by_ip_actions_names': [
+                    LOG_BY_ID[action].__name__ for action in self.search_by_ip_actions
+                ],
+            }
+        )
+        return super().changelist_view(request, extra_context=extra_context)
 
     def get_search_id_field(self, request):
         """
@@ -51,6 +183,24 @@ class AMOModelAdmin(admin.ModelAdmin):
         return a foreign key.
         """
         return 'pk'
+
+    def get_search_query(self, request):
+        # We don't have access to the _search_form instance the ChangeList
+        # creates, so make our own just for this method to grab the cleaned
+        # search term.
+        search_form = AMOModelAdminChangeListSearchForm(request.GET)
+        return (
+            search_form.cleaned_data.get(SEARCH_VAR) if search_form.is_valid() else None
+        )
+
+    def get_list_display(self, request):
+        """Get fields to use for displaying changelist."""
+        list_display = super().get_list_display(request)
+        if (
+            search_term := self.get_search_query(request)
+        ) and self.ip_addresses_and_networks_from_query(search_term):
+            return (*list_display, *self.extra_list_display_for_ip_searches)
+        return list_display
 
     def lookup_spawns_duplicates(self, opts, lookup_path):
         """
@@ -76,6 +226,104 @@ class AMOModelAdmin(admin.ModelAdmin):
             rval = True
         return rval
 
+    def ip_addresses_and_networks_from_query(self, search_term):
+        # Caller should already have cleaned up search_term at this point,
+        # removing whitespace etc if there is a comma separating multiple
+        # terms.
+        search_terms = search_term.split(',')
+        ips = []
+        networks = []
+        for term in search_terms:
+            # If term is a number, skip trying to recognize an IP address
+            # entirely, because ip_address() is able to understand IP addresses
+            # as integers, and we don't want that, it's likely an user ID.
+            if term.isdigit():
+                return None
+            # Is the search term an IP ?
+            try:
+                ips.append(ipaddress.ip_address(term))
+                continue
+            except ValueError:
+                pass
+            # Is the search term a network ?
+            try:
+                networks.append(ipaddress.ip_network(term))
+                continue
+            except ValueError:
+                pass
+            # Is the search term an IP range ?
+            if term.count('-') == 1:
+                try:
+                    networks.extend(
+                        ipaddress.summarize_address_range(
+                            *(ipaddress.ip_address(i.strip()) for i in term.split('-'))
+                        )
+                    )
+                    continue
+                except (ValueError, TypeError):
+                    pass
+            # That search term doesn't look like an IP, network or range, so
+            # we're not doing an IP search.
+            return None
+        return {'ips': ips, 'networks': networks}
+
+    def get_queryset_with_related_ips(self, request, queryset, ips_and_networks):
+        condition = models.Q()
+        if ips_and_networks is not None:
+            if ips_and_networks['ips']:
+                # IPs search can be implemented in a single __in=() query.
+                arg = (
+                    f'{self.search_by_ip_activity_accessor}__'
+                    'iplog__ip_address_binary__in'
+                )
+                condition |= models.Q(**{arg: ips_and_networks['ips']})
+            if ips_and_networks['networks']:
+                # Networks search need one __range conditions for each network.
+                arg = (
+                    f'{self.search_by_ip_activity_accessor}__'
+                    'iplog__ip_address_binary__range'
+                )
+                for network in ips_and_networks['networks']:
+                    condition |= models.Q(**{arg: (network[0], network[-1])})
+        annotations = {
+            'activity_ips': GroupConcat(
+                Inet6Ntoa(
+                    f'{self.search_by_ip_activity_accessor}__iplog__ip_address_binary'
+                ),
+                distinct=True,
+            ),
+            # Add an annotation for {search_by_ip_activity_accessor}__iplog__id
+            # so that we can apply a filter on the specific JOIN that will be
+            # used to grab the IPs through GroupConcat to help MySQL optimizer
+            # remove non relevant activities from the DISTINCT bit.
+            'activity_ips_ids': models.F(
+                f'{self.search_by_ip_activity_accessor}__iplog__id'
+            ),
+        }
+        if condition:
+            arg = f'{self.search_by_ip_activity_accessor}__action__in'
+            condition &= models.Q(**{arg: self.search_by_ip_actions})
+            # When searching, we want to duplicate the joins against
+            # activitylog + iplog so that one is used for the group concat
+            # showing all IPs for activities related to that object and another
+            # for the search results. Django doesn't let us do that out of the
+            # box, but through FilteredRelation we can force it...
+            annotations['activitylog_filtered'] = models.FilteredRelation(
+                f'{self.search_by_ip_activity_accessor}__iplog',
+                condition=condition,
+            )
+        queryset = queryset.annotate(**annotations)
+        if condition:
+            queryset = queryset.filter(
+                activity_ips_ids__isnull=False,
+                activitylog_filtered__isnull=False,
+            )
+        # A GROUP_BY will already have been applied thanks to our annotations
+        # so we can let django know there won't be any duplicates and avoid
+        # doing a DISTINCT.
+        may_have_duplicates = False
+        return queryset, may_have_duplicates
+
     def get_search_results(self, request, queryset, search_term):
         """
         Return a tuple containing a queryset to implement the search,
@@ -90,6 +338,8 @@ class AMOModelAdmin(admin.ModelAdmin):
         - If the search terms are all numeric and there is more than one, then
           we also restrict the fields we search to the one returned by
           get_search_id_field(request) using a __in ORM lookup directly.
+        - If the search terms are all IP addresses, a special search for
+          objects matching those IPs is triggered
 
         """
         # Apply keyword searches.
@@ -122,7 +372,20 @@ class AMOModelAdmin(admin.ModelAdmin):
             # Otherwise, use the field with icontains.
             return '%s__icontains' % field_name
 
-        may_have_duplicates = False
+        if self.search_by_ip_actions:
+            ips_and_networks = self.ip_addresses_and_networks_from_query(search_term)
+            # If self.search_by_ip_actions is truthy, then we can call
+            # get_queryset_with_related_ips(), which will add IP
+            # annotations regardless of whether or not we're actually
+            # searching by IP...
+            queryset, may_have_duplicates = self.get_queryset_with_related_ips(
+                request, queryset, ips_and_networks
+            )
+            # ... We can return here early if we were indeed searching by IP.
+            if ips_and_networks:
+                return queryset, may_have_duplicates
+        else:
+            may_have_duplicates = False
 
         search_fields = self.get_search_fields(request)
         filters = []
@@ -170,6 +433,34 @@ class AMOModelAdmin(admin.ModelAdmin):
             if filters:
                 queryset = queryset.filter(functools.reduce(joining_operator, filters))
         return queryset, may_have_duplicates
+
+    def known_ip_adresses(self, obj):
+        # activity_ips is an annotation added by get_search_results() above
+        # thanks to a GROUP_CONCAT. If present, use that (avoiding making
+        # extra queries for each row of results), otherwise, look where
+        # appropriate.
+        unset = object()
+        activity_ips = getattr(obj, 'activity_ips', unset)
+        if activity_ips is not unset:
+            # The GroupConcat value is a comma seperated string of the ip
+            # addresses (already converted to string thanks to INET6_NTOA,
+            # except if there was nothing to find, then it would be None)
+            ip_addresses = set((activity_ips or '').split(','))
+        else:
+            arg = self.search_by_ip_activity_reverse_accessor
+            ip_addresses = set(
+                IPLog.objects.filter(**{arg: obj})
+                .values_list('ip_address_binary', flat=True)
+                .order_by()
+                .distinct()
+            )
+
+        contents = format_html_join(
+            '', '<li>{}</li>', ((ip,) for ip in sorted(ip_addresses))
+        )
+        return format_html('<ul>{}</ul>', contents)
+
+    known_ip_adresses.short_description = 'IP addresses'
 
     # Triggering a search by id only isn't always what the admin wants for an
     # all numeric query, but on the other hand is a nice optimization.
@@ -237,6 +528,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
     """
     Custom rangefilter.filters.DateTimeRangeFilter class that uses HTML5
     widgets and a template without the need for inline CSS/JavaScript.
+
     Needs FakeChoicesMixin for the fake choices the template will be using (the
     upstream implementation depends on inline JavaScript for this, which we
     want to avoid).

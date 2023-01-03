@@ -77,8 +77,13 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
 
 
 class AbuseReportAdmin(AMOModelAdmin):
-    class Media:
-        css = {'all': ('css/admin/abuse_reports.css',)}
+    class Media(AMOModelAdmin.Media):
+        css = {
+            'all': (
+                'css/admin/amoadmin.css',
+                'css/admin/abuse_reports.css',
+            )
+        }
 
     actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
@@ -213,15 +218,14 @@ class AbuseReportAdmin(AMOModelAdmin):
         if type_ == 'addon':
             search_fields = (
                 'addon_name',
-                '=guid',
+                'guid__startswith',
                 'message',
             )
         elif type_ == 'user':
             search_fields = (
                 'message',
-                '=user__id',
-                '^user__username',
-                '^user__email',
+                'user__id',
+                'user__email__like',
             )
         else:
             search_fields = ()
@@ -232,11 +236,11 @@ class AbuseReportAdmin(AMOModelAdmin):
         Return the field to use when all search terms are numeric, according to
         the type filter.
         """
-        type_ = request.GET.get('type')
+        type_ = request and request.GET.get('type')
         if type_ == 'user':
             search_field = 'user_id'
         else:
-            search_field = super().get_search_id_field(request)
+            search_field = None
         return search_field
 
     def get_search_results(self, request, qs, search_term):
