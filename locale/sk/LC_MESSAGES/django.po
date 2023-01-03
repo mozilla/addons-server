@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 14:17+0000\n"
+"PO-Revision-Date: 2023-01-03 14:23+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1185,7 +1185,7 @@ msgid "Download extensions that enhance bookmarks by password-protecting them, s
 msgstr "Stiahnite si rozšírenia, ktoré zlepšujú záložky tým, že ich chránia heslom, vyhľadávajú duplikáty, nachádzajú poškodené záložky a ďalšie."
 
 msgid "Download Management"
-msgstr "Správa preberania súborov"
+msgstr "Správa sťahovania"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr "Stiahnite si rozšírenia pre Firefox, ktoré vám pomôžu sťahovať web, hudbu a video obsah. Môžete tiež nájsť rozšírenia na správu sťahovania, zdieľanie súborov a ďalšie."
