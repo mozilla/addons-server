@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 12:21+0000\n"
+"PO-Revision-Date: 2023-01-03 12:28+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2914,7 +2914,7 @@ msgid "Create a Theme"
 msgstr "Vytvoriť tému"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Generovanie témy vzhľadu"
 
 msgid "Theme generator"
 msgstr "Generátor témy vzhľadu"
@@ -4773,10 +4773,10 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najnižšia možná hodnota \"strict_min_version\" je 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Neznáma hodnota \"strict_min_version\" {appver} pre {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
-msgstr ""
+msgstr "Neznáma hodnota \"strict_max_version\" {appver} pre {app}"
 
 msgid "Unsupported archive type."
 msgstr "Nepodporovaný typ archívu."
@@ -4852,7 +4852,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Chýba parameter \"channel\"."
 
 msgid "User"
 msgstr "Používateľ"
@@ -4970,13 +4970,13 @@ msgid "Choose one or more reasons:"
 msgstr "Vyberte jeden alebo viac dôvodov:"
 
 msgid "Version mismatch - the latest version has changed!"
-msgstr ""
+msgstr "Nesúlad verzií – posledná verzia sa zmenila!"
 
 msgid "Choose a canned response..."
 msgstr "Zvoľte pripravenú odpoveď..."
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Súkromná tabuľa"
 
 msgid "Keep review; remove flags"
 msgstr "Ponechať recenziu, odstrániť označenia"
