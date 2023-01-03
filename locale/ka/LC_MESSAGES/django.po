@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-03 19:20+0000\n"
+"PO-Revision-Date: 2023-01-03 19:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5078,10 +5078,10 @@ msgid "Last Updated"
 msgstr "ბოლოს განახლდა"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
+msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
+msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
 
 msgid "Listed version"
 msgstr "გამოქვეყნებული ვერსია"
@@ -5171,13 +5171,13 @@ msgid "Add-on Review Guide"
 msgstr "დამატების მიმოხილვის სახელმძღვანელო"
 
 msgid "Human Review Needed"
-msgstr "საჭიროებს ადამიანის მიერ მიმოხილვას"
+msgstr "საჭიროებს ადამიანის მონაწილეობით განხილვას"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "მონიშნულია MAD-ის მიერ ადამიანის მონაწილეობით განხილვისთვის"
 
 msgid "Auto-Approved Add-ons"
 msgstr "თვითდამოწმებული დამატებები"
