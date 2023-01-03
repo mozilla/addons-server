@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-03 19:20+0000\n"
+"PO-Revision-Date: 2023-01-03 19:27+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4676,9 +4676,8 @@ msgid "Social streaming"
 msgstr "Pretakanje na družbenih omrežjih"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Prikaži vse razširitve"
+msgstr "Več osebno izbranih razširitev za pretakanje na družbenih omrežjih"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4774,7 +4773,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Neznana \"strict_max_version\" {appver} za {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Nepodprt način stiskanja arhiva."
 
 msgid "Unsupported archive type."
 msgstr "Vrsta arhiva ni podprta."
@@ -4791,7 +4790,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Datoteka v arhivu presega omejitev velikosti: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Arhiv vsebuje prepovedano posebno datoteko (simbolno/trdo povezavo ali datoteko z napravo/blokado)"
 
 msgid "Uncompressed size is too large"
 msgstr "Nestisnjena velikost je prevelika"
@@ -4813,7 +4812,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Najden podvojen ID dodatka."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Številke različice lahko vsebujejo največ {max_length} znakov."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Številke različice smejo vsebovati le črke, številke in naslednja ločila: +*.-_."
@@ -5008,9 +5007,8 @@ msgstr "Samodejna odobritev odložena za nedoločen čas"
 msgid "Is locked by a reviewer"
 msgstr "Zaklenil pregledovalec"
 
-#, fuzzy
 msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Nastavljena zastavica „samodejna odobritev onemogočena“"
+msgstr "Nastavljena zastavica „samodejna odobritev onemogočena/preložena“"
 
 msgid "Is in a promoted add-on group that requires pre-review"
 msgstr ""
@@ -5167,13 +5165,13 @@ msgid "Add-on Review Guide"
 msgstr "Vodnik za pregledovanje dodatkov"
 
 msgid "Human Review Needed"
-msgstr ""
+msgstr "Potreben človeški pregled"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Različice, ki potrebujejo človeški pregled"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "MAD označil za človeški pregled"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Samodejno odobreni dodatki"
@@ -5629,22 +5627,22 @@ msgid "Dismiss this announcement"
 msgstr "Opusti to objavo"
 
 msgid "Download file"
-msgstr ""
+msgstr "Prenesi datoteko"
 
 msgid "Validation results"
-msgstr ""
+msgstr "Rezultati preverjanja veljavnosti"
 
 msgid "Browse all files in this version"
 msgstr "Prebrskaj vse datoteke v tej različici"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Prebrskaj vsebino"
 
 msgid "Compare this version to the last reviewed version"
 msgstr "Primerjaj to različico z zadnjo pregledano različico"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Primerjaj z zadnjo pregledano"
 
 msgid "Permissions:"
 msgstr "Dovoljenja:"
@@ -5726,7 +5724,7 @@ msgid "The Maliciousness Score represents the likelihood of this version being m
 msgstr "Ocena zlonamernosti na podlagi ugotovitev pregledovalnikov predstavlja verjetnost, da je ta različica zlonamerna."
 
 msgid "Scanners results:"
-msgstr ""
+msgstr "Rezultati pregledov:"
 
 msgid "Flagged for human review"
 msgstr "Označeno za človeški pregled"
@@ -5759,14 +5757,14 @@ msgid "Pending Rejection"
 msgstr "Čakajoč na zavrnitev"
 
 msgid "presence of matched rules"
-msgstr ""
+msgstr "prisotnost ujemajočih se pravil"
 
 #, fuzzy
 msgid "result state"
 msgstr "Začnite"
 
 msgid "Excluding results solely matching these rules"
-msgstr ""
+msgstr "Izključitev rezultatov, ki se ujemajo samo s temi pravili"
 
 msgid "presence of a version"
 msgstr "prisotnost različice"
@@ -5788,22 +5786,22 @@ msgid "file signature"
 msgstr "podpis datoteke"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "To je natančno ime pravila, ki ga uporablja pregledovalnik."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Človeku berljivo ime za pravilo pregledovalnika"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Človeku berljivo ime"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Človeku berljiv opis za pravilo pregledovalnika"
 
 msgid "Yara rules should have a definition"
 msgstr "Pravila Yara bi morala imeti definicijo"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Ime pravila v definiciji se mora ujemati z imenom pravila pregledovalnika"
 
 msgid "Only one Yara rule is allowed in the definition"
 msgstr "V definiciji je dovoljeno samo eno pravilo Yara"
@@ -5816,7 +5814,7 @@ msgid "An error occurred when compiling the definition"
 msgstr "Pri sestavljanju definicije je prišlo do napake"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "Če ni obkljukano, rezultati pregledovanja ne bodo vezani na to pravilo in dejanje ne bo izvedeno."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Zaženi to pravilo tudi za dodatke, ki so bili prisilno onemogočeni."
