@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 11:40+0000\n"
+"PO-Revision-Date: 2023-01-03 11:50+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -213,7 +213,7 @@ msgid "Upload is not valid."
 msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
+msgstr "Verzia {version} sa zhoduje s {block_link} pre tento doplnok. Ďalšie informácie vám poskytne {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Verzia {version_string} už bola v minulosti nahraná a odstránená."
@@ -557,14 +557,14 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr "Blok s GUID %(guid)s sa nenašiel"
+msgstr "Blokovanie s GUID %(guid)s sa nenašlo"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
 msgstr "Doplnok s GUID %(guid)s neexistuje"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Bloky, ktoré sa majú aktualizovať, sú odlišné, pretože sa zmenila minimálna alebo maximálna verzia."
+msgstr "Blokovanie, ktoré sa má aktualizovať, je odlišné, pretože sa zmenila minimálna alebo maximálna verzia."
 
 #, python-format
 msgid "%(value)s contains *"
@@ -591,7 +591,7 @@ msgstr "Domovská stránka"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
+msgstr "GUID doplnkov (celkom %(count)s) sú už blokované od verzie %(v_min)s po verziu %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
@@ -630,7 +630,7 @@ msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
-msgstr "Upraviť blok"
+msgstr "Upraviť blokovanie"
 
 msgid "versions"
 msgstr "verzie"
@@ -962,22 +962,22 @@ msgid "User {user} api key reset."
 msgstr ""
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Blokovanie pre {0} bolo pridané do zoznamu blokovaných."
 
 msgid "Block added"
-msgstr "Blok bol pridaný"
+msgstr "Blokovanie bolo pridané"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Blokovanie pre {0} bolo upravené v zozname blokovaných."
 
 msgid "Block edited"
-msgstr ""
+msgstr "Blokovanie bolo upravené"
 
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Blokovanie pre {0} bolo odstránené zo zoznamu blokovaných."
 
 msgid "Block deleted"
-msgstr ""
+msgstr "Blokovanie bolo odstránené"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -1856,7 +1856,7 @@ msgid "Need to select at least one application."
 msgstr "Musíte vybrať aspoň jednu aplikáciu."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "záznam v zozname blokovaných položiek"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzia {version} už bola v minulosti nahraná a odstránená."
@@ -4788,7 +4788,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Súbor prekračuje limit veľkosti v archíve: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr "Tento archív obsahuje zakázaný špeciálny súbor (symbolický / pevný odkaz alebo zariadenie / blokový súbor)"
+msgstr "Tento archív obsahuje zakázaný špeciálny súbor (symbolický / pevný odkaz alebo zariadenie / blokovaný súbor)"
 
 msgid "Uncompressed size is too large"
 msgstr "Nekomprimovaná veľkosť je príliš veľká"
@@ -5013,7 +5013,7 @@ msgid "Delayed because it's the first listed version"
 msgstr ""
 
 msgid "Version string and guid match a blocklist Block"
-msgstr ""
+msgstr "Reťazec verzie a guid sa zhodujú so záznamom v zozname blokovaných doplnkov"
 
 msgid "Weight breakdown not available."
 msgstr ""
@@ -5113,10 +5113,10 @@ msgid "This will un-reject the selected versions without notifying the developer
 msgstr ""
 
 msgid "Block Multiple Versions"
-msgstr ""
+msgstr "Blokovať viacero verzií"
 
 msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
+msgstr "Týmto sa potichu zablokujú vybrané schválené verzie a otvorí sa stránka správcu blokovania doplnkov."
 
 msgid "Confirm Multiple Versions"
 msgstr ""
@@ -5549,10 +5549,10 @@ msgid "View Blocklist Submission"
 msgstr ""
 
 msgid "Block add-on"
-msgstr ""
+msgstr "Blokovať doplnok"
 
 msgid "Update add-on block"
-msgstr ""
+msgstr "Aktualizovať blokovanie doplnku"
 
 msgid "(admin)"
 msgstr "(admin)"
@@ -6205,13 +6205,15 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadajte platnú IP4 alebo IP6 sieť."
 
 msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Z vašej lokality bolo odoslaných viacero doplnkov, ktoré porušujú naše pravidlá. Adresa IP bola zablokovaná."
 
 msgid "Email Pattern"
 msgstr ""
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
+"Zadajte celý e-mail, ktorý má byť zablokovaný, alebo použite zástupné znaky v štýle unix, napr. \"*@example.com\". Ak potrebujete zablokovať doménu vrátane subdomén, pridajte druhú položku, napr. "
+"\"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
@@ -6220,6 +6222,8 @@ msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
+"Zadajte úplnú jednorazovú e-mailovú doménu, ktorá má byť zablokovaná. Zástupné znaky nie sú podporované: ak ich potrebujete alebo potrebujete zadať celú e-mailovú adresu a nielen časť domény, "
+"použite namiesto toho položku „Obmedzenia na e-mailové adresy“."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
