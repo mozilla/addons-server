@@ -25,6 +25,7 @@ from olympia.amo.tests import (
 )
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.ratings.tasks import addon_rating_aggregates
+from olympia.ratings.views import RatingViewSet
 
 
 locmem_cache = settings.CACHES.copy()
@@ -2169,6 +2170,56 @@ class TestRatingViewSetPost(TestCase):
             )
             assert response.status_code == 201, response.content
 
+            # Add fake actions to get close to the daily limit.
+            for x in range(3, 23):
+                self._add_fake_throttling_action(
+                    view_class=RatingViewSet,
+                    url=self.url,
+                    user=self.user,
+                    remote_addr=get_random_ip(),
+                )
+            # We should be able to post one more today.
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview at the daily limit',
+                    'score': 3,
+                    'version': new_version.pk,
+                },
+            )
+            assert response.status_code == 201
+
+            # Over the daily limit now...
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview over the daily limit',
+                    'score': 4,
+                    'version': new_version.pk,
+                },
+            )
+            assert response.status_code == 429
+
+            # Wait a day and we're good.
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview should be fine now',
+                    'score': 5,
+                    'version': new_version.pk,
+                },
+            )
+            assert response.status_code == 201
+
     @override_settings(CACHES=locmem_cache)
     def test_throttle_by_ip(self):
         with freeze_time('2017-11-01') as frozen_time:
@@ -2183,10 +2234,8 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': self.addon.current_version.pk,
                 },
-                extra_kwargs={
-                    'REMOTE_ADDR': '4.8.15.16',
-                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
-                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
             )
             assert response.status_code == 201
 
@@ -2204,10 +2253,8 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={
-                    'REMOTE_ADDR': '4.8.15.16',
-                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
-                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
             )
             assert response.status_code == 429
 
@@ -2223,12 +2270,71 @@ class TestRatingViewSetPost(TestCase):
                     'score': 2,
                     'version': new_version.pk,
                 },
-                extra_kwargs={
-                    'REMOTE_ADDR': '4.8.15.16',
-                    'HTTP_X_FORWARDED_FOR': f'4.8.15.16, {get_random_ip()}',
-                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
             )
             assert response.status_code == 201, response.content
+
+            # Add fake actions to get close to the daily limit. Use the same IP
+            # everytime, but with a different user (no need to save it into the
+            # db) to avoid the per-user throttle.
+            from olympia.users.models import UserProfile
+
+            for x in range(3, 35):
+                frozen_time.tick(delta=timedelta(seconds=61))
+                self._add_fake_throttling_action(
+                    view_class=RatingViewSet,
+                    url=self.url,
+                    user=UserProfile(pk=x),
+                    remote_addr='4.8.15.16',
+                )
+            # We should be able to post one more today.
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview at the daily limit',
+                    'score': 3,
+                    'version': new_version.pk,
+                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
+            )
+            assert response.status_code == 201
+
+            # Over the daily limit for IPs now...
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview over the daily limit',
+                    'score': 4,
+                    'version': new_version.pk,
+                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
+            )
+            assert response.status_code == 429
+
+            # Wait a day and we're good.
+            new_version = version_factory(addon=self.addon)
+            frozen_time.tick(delta=timedelta(hours=24, seconds=1))
+            response = self.client.post(
+                self.url,
+                {
+                    'addon': self.addon.pk,
+                    'body': 'My réview should be fine now',
+                    'score': 5,
+                    'version': new_version.pk,
+                },
+                REMOTE_ADDR='4.8.15.16',
+                HTTP_X_FORWARDED_FOR=f'4.8.15.16, {get_random_ip()}',
+            )
+            assert response.status_code == 201
 
     @override_settings(CACHES=locmem_cache)
     def test_rating_post_throttle_separated_from_other_throttles(self):
