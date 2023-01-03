@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 14:23+0000\n"
+"PO-Revision-Date: 2023-01-03 15:01+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -312,7 +312,7 @@ msgid "Submit a New Theme"
 msgstr "Pridať novú tému vzhľadu"
 
 msgid "Developer Hub"
-msgstr "Centrum vývojárov"
+msgstr "Centrum pre vývojárov"
 
 msgid "Manage API Keys"
 msgstr "Spravovať kľúče API"
@@ -2090,7 +2090,7 @@ msgstr "Späť do Centra pre vývojárov"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "<small>Centrum pre</small> vývojárov doplnkov"
+msgstr "Centrum pre vývojárov <small>doplnkov</small>"
 
 msgid "more add-ons..."
 msgstr "ďalšie doplnky..."
@@ -3181,7 +3181,7 @@ msgid "Version Signature Pending"
 msgstr ""
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr ""
+msgstr "Hotovo! ✨ Keď bude podpísaný súbor pripravený na stiahnutie z Centra pre vývojárov, dostanete upozornenie e-mailom. Ak e-mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
 
 msgid "License"
 msgstr "Licencia"
@@ -3226,19 +3226,19 @@ msgstr ""
 "doplnkov."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Ak váš doplnok obsahuje minifikovaný, zreťazený alebo inak strojovo generovaný kód iný ako známe knižnice, odovzdajte jeho zdrojové kódy na kontrolu."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Zahrňte pokyny, ako reprodukovať konečný súbor doplnku, a to buď v súbore README alebo v Poznámkach pre kontrolu tejto verzie."
 
 msgid "Read more about the source code review policy."
 msgstr "Prečítajte si viac o zásadách pre kontrolu zdrojového kódu."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Vytvárajte najlepšie rozšírenia a témy vzhľadu"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Či už ste nováčikom pri vývoji rozšírení, dolaďujete alebo prenášate existujúce rozšírenie alebo tému vzhľadu, alebo vytvárate vlastné podnikové riešenie, máme zdroje, ktoré vám pomôžu."
 
 msgid "Visit the Firefox Extension Workshop"
 msgstr "Navštívte Workshop tvorby rozšírení pre Firefox"
@@ -3282,6 +3282,8 @@ msgstr "Ďakujeme!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
+"Ak ste v minulosti nepotvrdili odber noviniek Mozilly, mali by ste tak urobiť teraz. Pozrite sa, prosím, do vašej e-mailovej schránky, prípadne i do priečinku s nevyžiadanou poštou, či sa tam "
+"nenachádza e-mail od nás."
 
 msgid "Resources"
 msgstr "Zdroje"
@@ -3290,13 +3292,13 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: zostavovanie a testovanie rozšírení"
 
 msgid "Promote"
 msgstr "Propagácia"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Tlačidlo „Získať doplnok“."
 
 msgid "Recommended Extensions program"
 msgstr "Program Odporúčané rozšírenia"
@@ -3393,10 +3395,10 @@ msgid "Ready to submit or manage your extension?"
 msgstr ""
 
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr ""
+msgstr "Ak chcete odosielať alebo spravovať rozšírenia a témy vzhľadu, prihláste sa do Centra pre vývojárov."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Zaregistrujte si účet vývojára alebo sa prihláste do Centra pre vývojárov"
 
 msgid "Manage Version {0}"
 msgstr "Správa verzie {0}"
@@ -3470,7 +3472,7 @@ msgid "Loading Review History..."
 msgstr ""
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "Pri načítavaní poznámok ku kontrolám sa vyskytol problém"
 
 msgid "Load older..."
 msgstr "Načítať staršie..."
@@ -5134,7 +5136,7 @@ msgid "This will confirm approval of the selected versions without notifying the
 msgstr ""
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "Odpoveď kontrolóra"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
 msgstr ""
