@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-03 19:40+0000\n"
+"PO-Revision-Date: 2023-01-03 19:42+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4439,7 +4439,7 @@ msgstr "Shranite svežnje zavihkov kot priročne zaznamke."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
-msgstr ""
+msgstr "Zavihki in zaznamki, lično organizirani v stranskem pogledu Firefoxa."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4475,11 +4475,11 @@ msgstr "Ni treba, da spletnim mestom daste svoj e-poštni naslov. Firefox Relay 
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Časovni menjalnik tem. Naj Firefox spreminja barve glede na del dneva."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Prečistite si okolje na Twitterju."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4551,7 +4551,7 @@ msgstr "Znebite se motenj na YouTubu. Odstranite predlagane in povezane videopos
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
-msgstr ""
+msgstr "Imejte smeške pri roki povsod na spletu."
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
