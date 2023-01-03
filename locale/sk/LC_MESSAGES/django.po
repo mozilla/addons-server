@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 10:57+0000\n"
+"PO-Revision-Date: 2023-01-03 11:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -494,7 +494,7 @@ msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Ak sú nastavené iné preklady, vyžaduje sa hodnota v predvolenom jazyku \"{lang_code}\"."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -549,7 +549,7 @@ msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
 
 msgid "Signoff State"
-msgstr ""
+msgstr "Stav schválenia"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -557,24 +557,24 @@ msgstr ""
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
-msgstr ""
+msgstr "Blok s GUID %(guid)s sa nenašiel"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Doplnok s GUID %(guid)s neexistuje"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "Bloky, ktoré sa majú aktualizovať, sú odlišné, pretože sa zmenila minimálna alebo maximálna verzia."
 
 #, python-format
 msgid "%(value)s contains *"
-msgstr ""
+msgstr "%(value)s obsahuje hviezdičku"
 
 msgid "Invalid version"
 msgstr "Neplatná verzia"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "Minimálna verzia nemôže byť väčšia ako maximálna verzia"
 
 msgid "Review Listed"
 msgstr ""
@@ -601,7 +601,7 @@ msgid "Save"
 msgstr "Uložiť"
 
 msgid "Save and add more"
-msgstr ""
+msgstr "Uložiť a pridať ďalšie"
 
 msgid "Delete"
 msgstr "Odstrániť"
@@ -630,7 +630,7 @@ msgid "%(count)s Add-on GUIDs with %(adu)s users"
 msgstr ""
 
 msgid "Edit Block"
-msgstr ""
+msgstr "Upraviť blok"
 
 msgid "versions"
 msgstr "verzie"
@@ -684,7 +684,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Pre doplnok {addon} {version} odstránený súbor {0}."
 
 msgid "{addon} {version} approved."
-msgstr "Doplnok {addon} {version} schválený."
+msgstr "Doplnok {addon} {version} bol schválený."
 
 msgid "Approved"
 msgstr "Schválený"
@@ -729,7 +729,7 @@ msgid "{addon} {version} super review requested."
 msgstr "Pre doplnok {addon} {version} bola vyžiadaná super-kontrola."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "Doplnok bol označený na kontrolu správcom. Stále je v rade na kontrolu, ale bude to musieť skontrolovať jeden z našich správcovských recenzentov. Kontrola môže trvať dlhšie ako zvyčajne."
 
 msgid "Comment on {addon} {version}."
 msgstr "Doplnok {addon} {version} bol okomentovaný."
@@ -907,19 +907,19 @@ msgid "Auto-Approval confirmed"
 msgstr "Automatické schválenie potvrdené"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "Doplnok {addon} {version} bol znova povolený."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "Doplnok {addon} {version} bol zakázaný."
 
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "Obsah doplnku {addon}{version} bol schválený."
 
 msgid "Content approved"
 msgstr "Obsah bol schválený"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Obsah doplnku {addon} {version} bol zamietnutý."
 
 # 87%
 msgid "Content rejected"
@@ -944,10 +944,10 @@ msgid "Admin add-on-review requested"
 msgstr ""
 
 msgid "{addon} {version} admin content-review requested."
-msgstr ""
+msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola jeho obsahu."
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "Vyžiadaná kontrola obsahu doplnku"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
@@ -965,7 +965,7 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "Blok bol pridaný"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
@@ -997,14 +997,12 @@ msgstr ""
 msgid "User {user} throttled for scope \"{0}\""
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Doplnok {addon} {version} zamietnutý."
+msgstr "Pre doplnok {addon} {version} bolo naplánované odmietnutie obsahu."
 
 # 87%
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "Obsah bol zamietnutý"
+msgstr "Naplánované zamietnutie obsahu"
 
 #, fuzzy
 msgid "{addon} {version} reject scheduled."
@@ -1605,7 +1603,7 @@ msgid "Add-on Review Moderation Reverted"
 msgstr ""
 
 msgid "Add-on Content Review"
-msgstr ""
+msgstr "Kontrola obsahu doplnku"
 
 msgid "Add-on Review (Highest Risk)"
 msgstr ""
