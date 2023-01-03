@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 11:50+0000\n"
+"PO-Revision-Date: 2023-01-03 11:59+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -303,7 +303,7 @@ msgid "Log out"
 msgstr "Odhlásiť sa"
 
 msgid "Manage My Submissions"
-msgstr "Správa mnou odoslaných doplnkov"
+msgstr "Správa mojich doplnkov"
 
 msgid "Submit a New Add-on"
 msgstr "Pridať nový doplnok"
@@ -553,7 +553,7 @@ msgstr "Stav schválenia"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s sa nachádza v doplnku čakajúcom na kontrolu"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -610,10 +610,10 @@ msgid "Update"
 msgstr "Aktualizovať"
 
 msgid "Reject Submission"
-msgstr ""
+msgstr "Zamietnuť doplnok"
 
 msgid "Approve Submission"
-msgstr ""
+msgstr "Schváliť doplnok"
 
 #, python-format
 msgid "Add %(name)s"
@@ -1883,13 +1883,13 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr ""
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr "Na tejto stránke. <span class=\"helptext\">Váš príspevok je verejne uvedený na stránkach {site_domain}.</span>"
+msgstr "Na tejto stránke. <span class=\"helptext\">Váš doplnok je verejne uvedený na stránkach {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"Na vlastnej stránke. <span class=\"helptext\">Po podpísaní príspevku spoločnosťou Mozilla si môžete stiahnuť súbor .xpi z Centra pre vývojárov a distribuovať ho svojmu publiku. Uistite sa, že je k "
+"Na vlastnej stránke. <span class=\"helptext\">Po podpísaní doplnku spoločnosťou Mozilla si môžete stiahnuť súbor .xpi z Centra pre vývojárov a distribuovať ho svojmu publiku. Uistite sa, že je k "
 "dispozícii aktualizačná adresa <a {a_attrs}>update_url</a> uvedená v manifeste doplnku, pretože toto je adresa URL, na ktorej bude Firefox hľadať aktualizácie na automatické nasadenie u vašich "
 "používateľov.</span>"
 
@@ -2594,7 +2594,7 @@ msgid "Deleting your add-on will permanently delete all versions and files you h
 msgstr ""
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID doplnku nie je možné obnoviť a bude navždy nepoužiteľné pre ďalšie doplnky."
 
 msgid "Delete Add-on"
 msgstr "Odstrániť doplnok"
@@ -2609,7 +2609,7 @@ msgid "Actions"
 msgstr "Akcie"
 
 msgid "Resume the submission process for this add-on"
-msgstr ""
+msgstr "Pokračovať v procese odoslania tohto doplnku."
 
 msgid "Resume"
 msgstr "Pokračovať"
@@ -2687,6 +2687,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Upozornenie: V iných jazykových nastaveniach máte hodnoty názvu/súhrnu príliš dlhé. Tieto budú automaticky orezané, aby sa zmestili pod limit %(max_length)s znakov. Ak ich chcete upraviť, po "
+"dokončení procesu odoslania prejdite na stránku Upraviť stránku produktu."
 
 msgid "Add-on URL:"
 msgstr "URL adresa doplnku:"
@@ -2811,7 +2813,7 @@ msgid "Manage Listing"
 msgstr ""
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr ""
+msgstr "Túto verziu môžete upraviť aj tak, že pridáte poznámky k verzii alebo zdrojový kód, ak váš doplnok obsahuje minifikovaný, zreťazený alebo inak strojovo generovaný kód."
 
 msgid "Edit version {0}"
 msgstr "Upraviť verziu {0}"
@@ -2820,7 +2822,7 @@ msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr ""
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Prejsť do časti Moje doplnky"
 
 msgid "Source Code Upload"
 msgstr ""
@@ -3336,7 +3338,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr ""
+msgstr "Zobraziť všetky odoslané doplnky"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
@@ -5492,10 +5494,10 @@ msgid "Notify me about new unlisted versions"
 msgstr ""
 
 msgid "Allow resubmission"
-msgstr ""
+msgstr "Povoliť opätovné odoslanie"
 
 msgid "Deny resubmission"
-msgstr ""
+msgstr "Zakázať opätovné odoslanie"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -5546,7 +5548,7 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr ""
 
 msgid "View Blocklist Submission"
-msgstr ""
+msgstr "Zobraziť odoslanie do zoznamu blokovaných položiek"
 
 msgid "Block add-on"
 msgstr "Blokovať doplnok"
@@ -6216,7 +6218,7 @@ msgstr ""
 "\"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr ""
+msgstr "E-mailová adresa použitá pre váš účet nemá povolené odosielanie doplnkov."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
