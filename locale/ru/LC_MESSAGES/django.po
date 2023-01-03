@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-27 15:21+0000\n"
+"PO-Revision-Date: 2023-01-03 14:42+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2509,14 +2509,14 @@ msgstr "Выберите значок для вашего дополнения:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr "32x32px"
+msgstr "32x32 пикселей"
 
 msgid "Used in listings of add-ons, like search results."
 msgstr "Используется в списках дополнений, таких как результаты поиска."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr "64x64px"
+msgstr "64x64 пикселей"
 
 msgid "Used in add-on detail pages."
 msgstr "Используется на странице описания дополнения."
