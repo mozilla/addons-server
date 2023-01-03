@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 12:37+0000\n"
+"PO-Revision-Date: 2023-01-03 12:51+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -47,14 +47,14 @@ msgstr "Výňatok zo správy"
 
 #, python-format
 msgid "The %d selected reports have been marked as valid."
-msgstr ""
+msgstr "Označené hlásenia (celkom %d) boli označené ako platné."
 
 #, python-format
 msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
+msgstr "Označené hlásenia (celkom %d) boli označené ako podozrivé."
 
 msgid "Mark selected abuse reports as suspicious"
-msgstr ""
+msgstr "Označiť vybrané správy o zneužití ako podozrivé"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Uistite sa, že toto pole nemá viac ako {max_length} znakov."
@@ -318,7 +318,7 @@ msgid "Manage API Keys"
 msgstr "Spravovať kľúče API"
 
 msgid "Reviewer Tools"
-msgstr "Nástroje redaktora"
+msgstr "Nástroje kontrolóra"
 
 msgid "Admin Tools"
 msgstr "Nástroje správcu"
@@ -886,7 +886,7 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr "Odpoveď redaktora"
+msgstr "Odpoveď kontrolóra"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -1543,7 +1543,7 @@ msgid "Excellent (3)"
 msgstr ""
 
 msgid "Manual Reviewer Points"
-msgstr "Body manuálnej kontroly redaktorom"
+msgstr "Body manuálnej kontroly kontrolórom"
 
 msgid "New Legacy Add-on Review"
 msgstr "Nová kontrola staršieho doplnku"
@@ -2456,12 +2456,14 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr "Identifikátor UUID vášho doplnku je zadaný v jeho inštalačnom manifeste a unikátne doplnok identifikuje. Po odoslaní doplnku nie je možné meniť jeho identifikátor UUID."
 
 msgid "Whiteboard"
-msgstr "Poznámka pre redaktora"
+msgstr "Nástenka"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Nástenka je miesto, kde môžete kontrolórom poskytnúť informácie relevantné pre váš doplnok, bez ohľadu na jeho verziu. Použite ju na poskytnutie spôsobov testovania doplnku a akýchkoľvek ďalších "
+"informácií, ktoré môžu byť užitočné. Túto nástenku môžu upravovať aj redaktori."
 
 msgid "Add-on Media for {0}"
 msgstr "Média doplnku pre {0}"
@@ -4978,7 +4980,7 @@ msgid "Choose a canned response..."
 msgstr "Zvoľte pripravenú odpoveď..."
 
 msgid "Private Whiteboard"
-msgstr "Súkromná tabuľa"
+msgstr "Súkromná nástenka"
 
 msgid "Keep review; remove flags"
 msgstr "Ponechať recenziu, odstrániť označenia"
@@ -5460,13 +5462,13 @@ msgid "Add-on important changes history"
 msgstr "História dôležitých zmien doplnku"
 
 msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "Tabuľa je miesto na výmenu informácií relevantných pre tento doplnok (bez ohľadu na verziu) medzi vývojárom a recenzentom. Toto je viditeľné a upraviteľné oboma."
+msgstr "Nástenka je miesto na výmenu informácií relevantných pre tento doplnok (bez ohľadu na verziu) medzi vývojárom a redaktorom. Je viditeľná a upraviteľná oboma."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Súkromná nástenka sa používa na výmenu informácií medzi redaktormi, ktoré sú nezávislé od verzie. Zachovajte prosím objektívny jazyk. Je viditeľná iba pre redaktorov."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Aktualizovať poznámky"
 
 msgid "Add-on History"
 msgstr "História doplnku"
