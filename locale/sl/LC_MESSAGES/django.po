@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-03 19:10+0000\n"
+"PO-Revision-Date: 2023-01-03 19:20+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3025,6 +3025,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"Vašemu računu je bil dodan naslednji ključ API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Če menite, da je bil ključ ustvarjen po pomoti, ga lahko odstranite in\n"
+"onemogočite dostop na naslednjem mestu:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3037,6 +3045,14 @@ msgid ""
 "\n"
 "%(url)s"
 msgstr ""
+"V vašem računu je bil preklican ključ API:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Če menite, da je bil ključ preklican po pomoti, lahko ustvarite novega\n"
+"na naslednjem mestu:\n"
+"\n"
+"%(url)s"
 
 #, python-format
 msgid ""
@@ -3206,10 +3222,10 @@ msgid "Read more about the source code review policy."
 msgstr "Preberite več o pravilniku pregleda izvorne kode."
 
 msgid "Build best-in-class extensions and themes"
-msgstr ""
+msgstr "Ustvarite prvorazredne razširitve in teme"
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
-msgstr ""
+msgstr "Ne glede na to, ali ste začetnik v razvoju razširitev, izpopolnjujete ali izvažate obstoječo razširitev ali temo ali ustvarjate rešitev po meri za podjetje, imamo vire, ki vam bodo pomagali."
 
 msgid "Visit the Firefox Extension Workshop"
 msgstr "Obiščite delavnico Firefoxovih razširitev"
@@ -3365,7 +3381,7 @@ msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
 msgstr "Za predložitev ali upravljanje razširiev in tem se prijavite v središče za razvijalce."
 
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr ""
+msgstr "Ustvarite razvijalski račun ali se prijavite v razvojni center"
 
 msgid "Manage Version {0}"
 msgstr "Upravljanje različice {0}"
@@ -4523,7 +4539,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Put restrictions on distracting, time-wasting websites."
-msgstr ""
+msgstr "Omejite si spletna mesta, ki vam zapravljajo čas."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove clutter from your Twitter."
@@ -4547,7 +4563,7 @@ msgstr "Učinkovito zavračanje vseh vrst oglasov."
 
 #. editorial content for the primary hero shelves.
 msgid "Mass download manager makes extreme downloading extremely easy."
-msgstr ""
+msgstr "Upravitelj množičnih prenosov, s katerim je ekstremno prenašanje ekstremno preprosto."
 
 #. editorial content for the primary hero shelves.
 msgid "Remove ads & receive better protection against malware."
@@ -4589,7 +4605,7 @@ msgstr "Posodobi blokado dodatka"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Razširitve za Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4656,9 +4672,8 @@ msgid "See more translation tool staff picks"
 msgstr "Več osebno izbranih orodij za prevajanje"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Social streaming"
-msgstr "Družabnost na spletu"
+msgstr "Pretakanje na družbenih omrežjih"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
