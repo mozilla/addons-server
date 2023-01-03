@@ -4,12 +4,12 @@ from django.urls import reverse
 from django.utils.html import format_html
 
 from olympia.addons.models import Addon
-
+from olympia.amo.admin import AMOModelAdmin
 from .models import GitExtractionEntry
 
 
 @admin.register(GitExtractionEntry)
-class GitExtractionEntryAdmin(admin.ModelAdmin):
+class GitExtractionEntryAdmin(AMOModelAdmin):
     actions = ['delete_selected']
     view_on_site = False
 

@@ -1,10 +1,12 @@
 from django.contrib import admin
 
-from .models import ActivityLog, ReviewActionReasonLog
+from olympia.amo.admin import AMOModelAdmin
 from olympia.reviewers.models import ReviewActionReason
 
+from .models import ActivityLog, ReviewActionReasonLog
 
-class ActivityLogAdmin(admin.ModelAdmin):
+
+class ActivityLogAdmin(AMOModelAdmin):
     list_display = (
         'created',
         'user',
@@ -37,7 +39,7 @@ class ActivityLogAdmin(admin.ModelAdmin):
         return False
 
 
-class ReviewActionReasonLogAdmin(admin.ModelAdmin):
+class ReviewActionReasonLogAdmin(AMOModelAdmin):
     date_hierarchy = 'created'
     fields = (
         'created',

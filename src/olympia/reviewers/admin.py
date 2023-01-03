@@ -1,11 +1,12 @@
 from django.contrib import admin
 
+from olympia.amo.admin import AMOModelAdmin
 from olympia.translations.templatetags.jinja_helpers import truncate
 
 from .models import CannedResponse, ReviewActionReason, ReviewerScore
 
 
-class CannedResponseAdmin(admin.ModelAdmin):
+class CannedResponseAdmin(AMOModelAdmin):
     def truncate_response(obj):
         return truncate(obj.response, 50)
 
@@ -15,7 +16,7 @@ class CannedResponseAdmin(admin.ModelAdmin):
     list_filter = ('type',)
 
 
-class ReviewerScoreAdmin(admin.ModelAdmin):
+class ReviewerScoreAdmin(AMOModelAdmin):
     list_display = ('user', 'score', 'note_key', 'note', 'created')
     raw_id_fields = ('user', 'addon')
     fieldsets = (
@@ -29,7 +30,7 @@ class ReviewerScoreAdmin(admin.ModelAdmin):
     list_filter = ('note_key',)
 
 
-class ReviewActionReasonAdmin(admin.ModelAdmin):
+class ReviewActionReasonAdmin(AMOModelAdmin):
     list_display = ('name', 'addon_type', 'is_active')
     list_filter = (
         'addon_type',

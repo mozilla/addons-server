@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from olympia.amo.admin import AMOModelAdmin
+
 from .models import (
     DeniedInstallOrigin,
     InstallOrigin,
@@ -17,13 +19,13 @@ class VersionReviewerFlagsInline(admin.StackedInline):
     view_on_site = False
 
 
-class LicenseAdmin(admin.ModelAdmin):
+class LicenseAdmin(AMOModelAdmin):
     list_display = ('id', 'name', 'builtin', 'url')
     list_filter = ('builtin',)
     ordering = ('builtin',)
 
 
-class VersionAdmin(admin.ModelAdmin):
+class VersionAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/l10n.css',)}
         js = ('js/admin/l10n.js',)
@@ -55,7 +57,7 @@ class VersionAdmin(admin.ModelAdmin):
     inlines = (VersionReviewerFlagsInline,)
 
 
-class InstallOriginAdmin(admin.ModelAdmin):
+class InstallOriginAdmin(AMOModelAdmin):
     view_on_site = False
     raw_id_fields = ('version',)
     list_display = ('id', 'addon_guid', 'version_version', 'origin', 'base_domain')
@@ -84,7 +86,7 @@ class InstallOriginAdmin(admin.ModelAdmin):
     version_version.short_description = 'Version'
 
 
-class DeniedInstallOriginAdmin(admin.ModelAdmin):
+class DeniedInstallOriginAdmin(AMOModelAdmin):
     view_on_site = False
     list_display = ('id', 'hostname_pattern', 'include_subdomains')
     search_fields = ('hostname_pattern',)

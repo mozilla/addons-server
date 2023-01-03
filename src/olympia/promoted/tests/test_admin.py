@@ -73,17 +73,17 @@ class TestPromotedAddonAdmin(TestCase):
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             # 1. select current user
             # 2. savepoint (because we're in tests)
             # 3. select groups
             # 4. pagination count
-            # 5. pagination count (double…)
-            # 6. select list of promoted addons, ordered
-            # 7. prefetch add-ons
-            # 8. select translations for add-ons from 7.
-            # 9. prefetch PromotedApprovals for add-ons current_versions
-            # 10. savepoint (because we're in tests)
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # 5. select list of promoted addons, ordered
+            # 6. prefetch add-ons
+            # 7. select translations for add-ons from 7.
+            # 8. prefetch PromotedApprovals for add-ons current_versions
+            # 9. savepoint (because we're in tests)
             response = self.client.get(self.list_url, follow=True)
 
         assert response.status_code == 200
@@ -99,7 +99,7 @@ class TestPromotedAddonAdmin(TestCase):
         )
         assert not unlisted.addon.current_version
         assert not unlisted.addon._current_version
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(9):
             self.client.get(self.list_url, follow=True)
 
     def test_can_edit_with_discovery_edit_permission(self):

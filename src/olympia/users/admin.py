@@ -31,8 +31,8 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import (
-    CommaSearchInAdminMixin,
-    CommaSearchInAdminChangeListSearchForm,
+    AMOModelAdmin,
+    AMOModelAdminChangeListSearchForm,
     SEARCH_VAR,
 )
 from olympia.amo.fields import IPAddressBinaryField
@@ -61,10 +61,10 @@ class GroupUserInline(admin.TabularInline):
 
 
 @admin.register(UserProfile)
-class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
+class UserAdmin(AMOModelAdmin):
     list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
     # pk and IP address search are supported without needing to specify them in
-    # search_fields (see `CommaSearchInAdminMixin.get_search_results()` and
+    # search_fields (see `AMOModelAdminMixin.get_search_results()` and
     # `get_search_id_field()` as well as `get_search_results()` below)
     search_fields = ('email__like',)
     # We can trigger search by ids with only one search term, if somehow an
@@ -79,7 +79,6 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
     inlines = (GroupUserInline,)
-    show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = (
         'abuse_reports_by_this_user',
@@ -174,7 +173,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         # We don't have access to the _search_form instance the ChangeList
         # creates, so make our own just for this method to grab the cleaned
         # search term.
-        search_form = CommaSearchInAdminChangeListSearchForm(request.GET)
+        search_form = AMOModelAdminChangeListSearchForm(request.GET)
         search_term = (
             search_form.cleaned_data.get(SEARCH_VAR) if search_form.is_valid() else None
         )
@@ -595,7 +594,7 @@ class UserAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(DeniedName)
-class DeniedNameAdmin(admin.ModelAdmin):
+class DeniedNameAdmin(AMOModelAdmin):
     list_display = search_fields = ('name',)
     view_on_site = False
     model = DeniedName
@@ -649,7 +648,7 @@ class DeniedNameAdmin(admin.ModelAdmin):
 
 
 @admin.register(IPNetworkUserRestriction)
-class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
+class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
     list_display = ('network', 'restriction_type')
     list_filter = ('restriction_type',)
     search_fields = ('=network',)
@@ -657,21 +656,21 @@ class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
 
 
 @admin.register(EmailUserRestriction)
-class EmailUserRestrictionAdmin(admin.ModelAdmin):
+class EmailUserRestrictionAdmin(AMOModelAdmin):
     list_display = ('email_pattern', 'restriction_type')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
 
 
 @admin.register(DisposableEmailDomainRestriction)
-class DisposableEmailDomainRestrictionAdmin(admin.ModelAdmin):
+class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
     list_display = ('domain', 'restriction_type')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
 
 
 @admin.register(UserRestrictionHistory)
-class UserRestrictionHistoryAdmin(admin.ModelAdmin):
+class UserRestrictionHistoryAdmin(AMOModelAdmin):
     raw_id_fields = ('user',)
     readonly_fields = (
         'restriction',
@@ -705,7 +704,7 @@ class UserRestrictionHistoryAdmin(admin.ModelAdmin):
 
 
 @admin.register(UserHistory)
-class UserHistoryAdmin(admin.ModelAdmin):
+class UserHistoryAdmin(AMOModelAdmin):
     view_on_site = False
     search_fields = ('=user__id', '^email')
 

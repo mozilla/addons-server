@@ -12,6 +12,7 @@ from django.utils.translation import gettext
 
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import HttpResponseTemporaryRedirect
 from olympia.versions.models import Version
 
@@ -186,7 +187,7 @@ class BlockAdminAddMixin:
 
 
 @admin.register(BlocklistSubmission)
-class BlocklistSubmissionAdmin(admin.ModelAdmin):
+class BlocklistSubmissionAdmin(AMOModelAdmin):
     list_display = (
         'blocks_count',
         'action',
@@ -585,7 +586,7 @@ class BlocklistSubmissionAdmin(admin.ModelAdmin):
 
 
 @admin.register(Block)
-class BlockAdmin(BlockAdminAddMixin, admin.ModelAdmin):
+class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
     list_display = ('guid', 'min_version', 'max_version', 'updated_by', 'modified')
     readonly_fields = (
         'addon_guid',

@@ -8,6 +8,7 @@ from django.core.files.storage import default_storage as storage
 from django.forms import BaseInlineFormSet
 from django.utils.safestring import mark_safe
 
+from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import resize_image
 
 from .models import PrimaryHero, SecondaryHeroModule, PrimaryHeroImage
@@ -54,7 +55,7 @@ class PrimaryHeroInline(admin.StackedInline):
         return super().formfield_for_foreignkey(db_field, request, **kwargs)
 
 
-class PrimaryHeroImageAdmin(admin.ModelAdmin):
+class PrimaryHeroImageAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/discovery.css',)}
 
@@ -97,7 +98,7 @@ class SecondaryHeroModuleInline(admin.StackedInline):
     formset = HeroModuleInlineFormSet
 
 
-class SecondaryHeroAdmin(admin.ModelAdmin):
+class SecondaryHeroAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/discovery.css',)}
 

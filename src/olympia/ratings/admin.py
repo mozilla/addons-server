@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.translations.utils import truncate_text
 from olympia.zadmin.admin import related_single_content_link
 
@@ -45,7 +46,7 @@ class RatingTypeFilter(admin.SimpleListFilter):
         return queryset
 
 
-class RatingAdmin(admin.ModelAdmin):
+class RatingAdmin(AMOModelAdmin):
     raw_id_fields = (
         'addon',
         'version',

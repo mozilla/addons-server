@@ -1,9 +1,11 @@
 from django.contrib import admin
 
+from olympia.amo.admin import AMOModelAdmin
+
 from .models import AppVersion
 
 
-class AppVersionAdmin(admin.ModelAdmin):
+class AppVersionAdmin(AMOModelAdmin):
     list_display = (
         'version',
         'application',

@@ -18,6 +18,7 @@ from urllib.parse import urljoin, urlparse
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import is_safe_url
 from olympia.constants import scanners
 from olympia.constants.scanners import (
@@ -314,7 +315,7 @@ class ScannerResultChangeList(ChangeList):
         return '?%s' % p.urlencode()
 
 
-class AbstractScannerResultAdminMixin(admin.ModelAdmin):
+class AbstractScannerResultAdminMixin:
     actions = None
     view_on_site = False
     list_select_related = ('version',)
@@ -501,7 +502,7 @@ class AbstractScannerResultAdminMixin(admin.ModelAdmin):
     formatted_matched_rules.short_description = 'Matched rules'
 
 
-class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
+class AbstractScannerRuleAdminMixin:
     view_on_site = False
 
     list_display = ('__str__', 'scanner', 'action', 'is_active')
@@ -580,7 +581,7 @@ class AbstractScannerRuleAdminMixin(admin.ModelAdmin):
 
 
 @admin.register(ScannerResult)
-class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
+class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     fields = (
         'id',
         'upload',
@@ -783,7 +784,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
 
 
 @admin.register(ScannerQueryResult)
-class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin):
+class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
     fields = (
         'id',
         'formatted_addon',
@@ -907,12 +908,12 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, admin.ModelAdmin)
 
 
 @admin.register(ScannerRule)
-class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
+class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
     pass
 
 
 @admin.register(ScannerQueryRule)
-class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, admin.ModelAdmin):
+class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
     list_display = (
         '__str__',
         'scanner',

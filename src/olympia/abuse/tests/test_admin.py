@@ -86,10 +86,10 @@ class TestAbuse(TestCase):
         assert response.status_code == 403
 
     def test_list(self):
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             # - 2 queries to get the user and their permissions
-            # - 2 queries for a count of the total number of items
-            #   (duplicated by django itself)
+            # - 1 query for a count of the total number of items
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 2 savepoints
             # - 1 to get the abuse reports
             # - 2 for the date hierarchy
