@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:22+0000\n"
-"PO-Revision-Date: 2022-01-19 10:15+0000\n"
+"PO-Revision-Date: 2023-01-03 07:58+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -237,7 +237,7 @@ msgid "Add-ons Manager Learn More"
 msgstr "Frekari upplýsingar um viðbótastjóra"
 
 msgid "Search Suggestions"
-msgstr "Tillögur í leit"
+msgstr "Leitartillögur"
 
 msgid "Search Results"
 msgstr "Leitarniðurstöður"
