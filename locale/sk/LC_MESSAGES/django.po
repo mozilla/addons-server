@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 13:52+0000\n"
+"PO-Revision-Date: 2023-01-03 14:10+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -145,7 +145,7 @@ msgstr "Odkazy pre kontrolórov"
 
 #, python-format
 msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
+msgstr "Extrakcia z Git-u bola spustená pre \"%(addons)s\"."
 
 msgid "Activity Logs"
 msgstr "Záznam aktivity"
@@ -157,7 +157,7 @@ msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Bol prekročený maximálny počet kategórií na aplikáciu ({MAX_CATEGORIES})."
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategóriu \"Iné\" nie je možné kombinovať s inou kategóriou"
 
 msgid "Invalid category name."
 msgstr "Neplatný názov kategórie."
@@ -166,10 +166,10 @@ msgid "Invalid app name."
 msgstr "Neplatný názov aplikácie."
 
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Doména adresy URL musí byť jedna z [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Adresa URL pre sponzorov GitHub musí obsahovať /sponsors/."
 
 msgid "URLs must start with https://."
 msgstr "Webové adresy musia začínať https://."
@@ -178,7 +178,7 @@ msgid "License with slug={value} does not exist."
 msgstr ""
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Neplatný alebo poškodený archív."
@@ -210,7 +210,7 @@ msgid "Built in licenses can not be updated."
 msgstr "Vstavané licencie nie je možné aktualizovať."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Odoslanie nie je platné."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Verzia {version} sa zhoduje s {block_link} pre tento doplnok. Ďalšie informácie vám poskytne {amo_admins}."
@@ -246,13 +246,13 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Verzia {version_string} musí byť vyššia ako predchádzajúca schválená verzia {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Obe atribúty „license“ a „custom_license“ nemožno poskytnúť súčasne."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Toto pole alebo atribút custom_license sú povinné pre uvedené verzie."
 
 msgid "Wrong add-on type for this license."
 msgstr "Nesprávny typ doplnku pre túto licenciu."
