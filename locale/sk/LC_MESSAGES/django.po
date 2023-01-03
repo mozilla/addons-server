@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-02 20:33+0000\n"
+"PO-Revision-Date: 2023-01-03 10:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1747,7 +1747,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Nedávne zmeny pre moje doplmky"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "Doplnky Open Search už {blog_link_open}nie sú na AMO podporované{blog_link_close}. Namiesto toho môžete vytvoriť {doc_link_open}rozšírenie pre vyhľadávanie{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
@@ -4635,7 +4635,7 @@ msgstr "Populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "See more popular themes"
-msgstr "Pozrite si ďalšie populárne témy vzhľadu"
+msgstr "Ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "Enhanced privacy extensions"
@@ -4696,7 +4696,7 @@ msgstr "Rozšírenia so značkou “{tag}”."
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Pozrite si ďalšie rozšírenia so značkou \"{tag}\""
+msgstr "Ďalšie rozšírenia so značkou \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
@@ -4708,7 +4708,7 @@ msgstr "Ďalšie tipy od znalcov na blokovanie reklám"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
-msgstr "Pozrite si ďalšie tipy na rozšírenia pre YouTube"
+msgstr "Ďalšie tipy na rozšírenia pre YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
@@ -4716,7 +4716,7 @@ msgstr "Populárne témy"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
-msgstr "Pozrite si ďalšie populárne témy"
+msgstr "Ďalšie populárne témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "Top rated themes"
@@ -4724,7 +4724,7 @@ msgstr "Najlepšie hodnotené témy"
 
 #. editorial content for the homepage shelves.
 msgid "See more top rated themes"
-msgstr "Pozrite si ďalšie najlepšie hodnotené témy"
+msgstr "Ďalšie najlepšie hodnotené témy vzhľadu"
 
 #. editorial content for the homepage shelves.
 msgid "Trending extensions"
@@ -4732,7 +4732,7 @@ msgstr "Populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending extensions"
-msgstr "Pozrite si ďalšie populárne rozšírenia"
+msgstr "Ďalšie populárne rozšírenia"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
