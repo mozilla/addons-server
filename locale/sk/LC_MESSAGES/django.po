@@ -5139,7 +5139,7 @@ msgid "Reviewer reply"
 msgstr "Odpoveď kontrolóra"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Toto odošle správu vývojárovi. Keď vývojár odpovie, dostanete upozornenie."
 
 msgid "Request super-review"
 msgstr "Požadovať super-recenziu"
@@ -5281,9 +5281,8 @@ msgstr ""
 msgid "Internal AMO ID"
 msgstr "Interné ID doplnku na AMO"
 
-#, fuzzy
 msgid "Support Website"
-msgstr "Stránka podpory:"
+msgstr "Stránka podpory"
 
 msgid "Visibility"
 msgstr "Viditeľnosť"
