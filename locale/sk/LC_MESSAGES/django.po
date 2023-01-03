@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 11:59+0000\n"
+"PO-Revision-Date: 2023-01-03 12:10+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2665,7 +2665,7 @@ msgid "Submit a New Version"
 msgstr "Odoslať novú verziu"
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Zrušiť a zakázať verziu"
 
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "Naozaj chcete zrušiť a zakázať verziu?"
@@ -2700,7 +2700,7 @@ msgid "Name:"
 msgstr "Názov:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Názov v zozname na tejto stránke. Môže sa líšiť od názvu v doplnku, ktorý je zobrazený vo Firefoxe"
 
 msgid "Summary:"
 msgstr "Súhrn:"
@@ -2741,19 +2741,21 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Je niečo, čo by naši redaktori mali mať na pamäti pri kontrole tohto doplnku?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Pamätajte"
 
 #, python-format
 msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Ak ste odoslali zdrojový kód, ale nezahrnuli ste pokyny, musíte ich poskytnúť tu. Zadajte podrobné pokyny na zostavenie a vytvorte presnú kópiu kódu doplnku podľa "
+"%(policy_requirements_open)spožiadaviek uvedených v zásadách%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tieto poznámky budú viditeľné iba pre vás a našich redaktorov."
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Odoslať verziu"
 
 msgid "Describe Version"
 msgstr "Popíšte verziu"
@@ -2785,7 +2787,7 @@ msgid "Submission Complete"
 msgstr "Odoslanie dokončené"
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "Verzia bola odoslaná"
 
 msgid "Preview of the version submitted"
 msgstr "Náhľad odoslanej verzie"
@@ -2798,9 +2800,11 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Hotovo! ✨ Keď bude táto verzia zverejnená na stránkach %(site_domain)s, dostanete potvrdzujúci e-mail. Upozorňujeme, že zverejnenie môže trvať až 24 hodín alebo dlhšie, ak je váš doplnok vybratý na "
+"manuálnu kontrolu. Ak e-mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Váš doplnok bude úspešnejší, ak pridáte jeho podrobný popis. Pripravte sa na zverejnenie:"
 
 #, python-format
 msgid ""
@@ -2810,7 +2814,7 @@ msgstr ""
 "Workshope tvorby rozšírení pre Firefox."
 
 msgid "Manage Listing"
-msgstr ""
+msgstr "Spravovať záznam"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
 msgstr "Túto verziu môžete upraviť aj tak, že pridáte poznámky k verzii alebo zdrojový kód, ak váš doplnok obsahuje minifikovaný, zreťazený alebo inak strojovo generovaný kód."
@@ -2819,47 +2823,46 @@ msgid "Edit version {0}"
 msgstr "Upraviť verziu {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Pripomíname, že váš doplnok môže byť kedykoľvek predmetom manuálnej kontroly."
 
 msgid "Go to My Submissions"
 msgstr "Prejsť do časti Moje doplnky"
 
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Nahranie zdrojového kódu"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Potrebujete odoslať zdrojový kód?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Kontrolóri doplnkov Mozilly musia byť schopní čítať a reprodukovať kód vo vašom rozšírení. Ak to nedokážu, vaše rozšírenie môže byť zamietnuté."
 
 msgid "Do you use any of the following in your extension?"
-msgstr ""
+msgstr "Používate vo svojom rozšírení niečo z nasledujúceho?"
 
 msgid "Code generators or minifiers"
-msgstr ""
+msgstr "Generátory kódu alebo minifikátory"
 
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr ""
+msgstr "Nástroje, ktoré kombinujú viacero súborov do jedného súboru, ako napríklad <span class=\"tech-emphasis\">webpack</span>"
 
 msgid "Web template engines, both for HTML and CSS"
-msgstr ""
+msgstr "Nástroje využívajúce webové šablóny, pre HTML či CSS"
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the extension"
-msgstr ""
+msgstr "Akýkoľvek iný nástroj, ktorý preberá kód alebo súbory, aplikuje spracovanie a generuje kód alebo súbor(y), ktoré sa majú zahrnúť do rozšírenia"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "Nemusíte odosielať zdrojový kód a ste pripravení na ďalší krok."
 
 msgid "You must submit your extension's source code."
-msgstr ""
+msgstr "Musíte odoslať zdrojový kód rozšírenia."
 
-#, fuzzy
 msgid "Your source code must include:"
-msgstr "Zdrojový kód bol nahratý"
+msgstr "Váš zdrojový kód musí obsahovať:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr ""
+msgstr "Podrobné pokyny na vytvorenie presnej kópie kódu dopnku, a to v súbore README vo vašom zdrojovom kóde alebo v poli Poznámky ku kontrole na ďalšej stránke."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr ""
