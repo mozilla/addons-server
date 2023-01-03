@@ -19,10 +19,10 @@ class TestRatingAdmin(TestCase):
         self.detail_url = reverse('admin:ratings_rating_change', args=(self.rating.pk,))
         self.list_url = reverse('admin:ratings_rating_changelist')
         self.delete_url = reverse('admin:ratings_rating_delete', args=(self.rating.pk,))
+        self.user = UserProfile.objects.get(pk=999)
 
     def test_list(self):
         addon = Addon.objects.get(pk=3615)
-        user = UserProfile.objects.get(pk=999)
 
         # Create a few more ratings.
         Rating.objects.create(
@@ -39,12 +39,11 @@ class TestRatingAdmin(TestCase):
         Rating.objects.create(addon=addon, body=None, rating=5, user=user_factory())
         # Create a reply.
         Rating.objects.create(
-            addon=addon, user=user, body='Réply', reply_to=self.rating
+            addon=addon, user=self.user, body='Réply', reply_to=self.rating
         )
 
-        self.grant_permission(user, 'Ratings:Moderate')
-
-        self.client.force_login(user)
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.client.force_login(self.user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -70,9 +69,136 @@ class TestRatingAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
 
+    def test_filter_by_created(self):
+        some_time_ago = self.days_ago(97).date()
+        even_more_time_ago = self.days_ago(99).date()
+        Rating.objects.create(
+            addon=self.addon,
+            body='Öld',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(98),
+        )
+        Rating.objects.create(
+            addon=self.addon,
+            body='Evên older',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(100),
+        )
+        data = {
+            'created__range__gte': even_more_time_ago.isoformat(),
+            'created__range__lte': some_time_ago.isoformat(),
+        }
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.client.force_login(self.user)
+        response = self.client.get(self.list_url, data, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('#result_list tbody tr').length == 1
+        result_list_text = doc('#result_list tbody tr').text()
+        assert 'Bär' not in result_list_text
+        assert 'Evên older' not in result_list_text
+        assert 'Öld' in result_list_text
+
+        # Created filter should be selected. The rest shouldn't.
+        lis = doc('#changelist-filter li.selected')
+        # We've got 4 filters, so usually we'd get 4 selected list items
+        # (because of the "All" default choice) but since 'created' is actually
+        # 2 fields, and we have submitted both, we now have 5 expected items.
+        assert len(lis) == 5
+        assert lis.text().split() == ['All', 'All', 'All', 'From:', 'To:']
+        elm = lis.eq(3).find('#id_created__range__gte')
+        assert elm
+        assert elm.attr('name') == 'created__range__gte'
+        assert elm.attr('value') == even_more_time_ago.isoformat()
+        elm = lis.eq(4).find('#id_created__range__lte')
+        assert elm
+        assert elm.attr('name') == 'created__range__lte'
+        assert elm.attr('value') == some_time_ago.isoformat()
+
+    def test_filter_by_created_only_from(self):
+        not_long_ago = self.days_ago(2).date()
+        Rating.objects.create(
+            addon=self.addon,
+            body='Öld',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(98),
+        )
+        Rating.objects.create(
+            addon=self.addon,
+            body='Evên older',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(100),
+        )
+        data = {
+            'created__range__gte': not_long_ago.isoformat(),
+        }
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.client.force_login(self.user)
+        response = self.client.get(self.list_url, data, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('#result_list tbody tr').length == 1
+        result_list_text = doc('#result_list tbody tr').text()
+        assert 'Bär' in result_list_text
+        assert 'Evên older' not in result_list_text
+        assert 'Öld' not in result_list_text
+
+        # Created filter should be selected. The rest shouldn't.
+        lis = doc('#changelist-filter li.selected')
+        # We should have 4 filters.
+        assert len(lis) == 4
+        assert lis.text().split() == ['All', 'All', 'All', 'From:']
+        elm = lis.eq(3).find('#id_created__range__gte')
+        assert elm
+        assert elm.attr('name') == 'created__range__gte'
+        assert elm.attr('value') == not_long_ago.isoformat()
+
+    def test_filter_by_created_only_to(self):
+        some_time_ago = self.days_ago(97).date()
+        Rating.objects.create(
+            addon=self.addon,
+            body='Öld',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(98),
+        )
+        Rating.objects.create(
+            addon=self.addon,
+            body='Evên older',
+            rating=5,
+            user=user_factory(),
+            created=self.days_ago(100),
+        )
+        data = {
+            'created__range__lte': some_time_ago.isoformat(),
+        }
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.client.force_login(self.user)
+        response = self.client.get(self.list_url, data, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('#result_list tbody tr').length == 2
+        result_list_text = doc('#result_list tbody tr').text()
+        assert 'Bär' not in result_list_text
+        assert 'Öld' in result_list_text
+        assert 'Evên older' in result_list_text
+
+        # Created filter should be selected. The rest shouldn't.
+        lis = doc('#changelist-filter li.selected')
+        # We should have 4 filters.
+        assert len(lis) == 4
+        assert lis.text().split() == ['All', 'All', 'All', 'To:']
+        elm = lis.eq(3).find('#id_created__range__lte')
+        assert elm
+        assert elm.attr('name') == 'created__range__lte'
+        assert elm.attr('value') == some_time_ago.isoformat()
+
     def test_queries(self):
         addon = Addon.objects.get(pk=3615)
-        user = UserProfile.objects.get(pk=999)
 
         # Create a few more ratings.
         Rating.objects.create(
@@ -89,12 +215,11 @@ class TestRatingAdmin(TestCase):
         Rating.objects.create(addon=addon, body=None, rating=5, user=user_factory())
         # Create a reply.
         Rating.objects.create(
-            addon=addon, user=user, body='Réply', reply_to=self.rating
+            addon=addon, user=self.user, body='Réply', reply_to=self.rating
         )
 
-        self.grant_permission(user, 'Ratings:Moderate')
-
-        self.client.force_login(user)
+        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.client.force_login(self.user)
         with self.assertNumQueries(9):
             # - 2 Savepoint/release
             # - 2 user and its groups

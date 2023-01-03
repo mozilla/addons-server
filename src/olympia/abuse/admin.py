@@ -1,18 +1,13 @@
-from collections import OrderedDict
-
-from django import forms
 from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.template import loader
 from django.utils.translation import gettext
 
-from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
-
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
@@ -53,34 +48,6 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         return queryset
 
 
-class FakeChoicesMixin:
-    def choices(self, changelist):
-        """
-        Fake choices method (we don't need one, we don't really have choices
-        for this filter, it's an input widget) that fetches the params and the
-        current values for other filters, so that we can feed that into
-        the form that our template displays.
-
-        (We don't control the data passed down to the template, so re-using
-        this one is our only option)
-        """
-        # Grab search query parts and filter query parts as tuples of tuples.
-        search_query_parts = (
-            (((admin.views.main.SEARCH_VAR, changelist.query),))
-            if changelist.query
-            else ()
-        )
-        filters_query_parts = tuple(
-            (k, v)
-            for k, v in changelist.get_filters_params().items()
-            if k not in self.expected_parameters()
-        )
-        # Assemble them into a `query_parts` property on a unique fake choice.
-        all_choice = next(super().choices(changelist))
-        all_choice['query_parts'] = search_query_parts + filters_query_parts
-        yield all_choice
-
-
 class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
     """
     Custom filter for minimum reports count param.
@@ -107,56 +74,6 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
 
     def queryset(self, request, queryset):
         return queryset
-
-
-class HTML5DateInput(forms.DateInput):
-    format_key = 'DATE_INPUT_FORMATS'
-    input_type = 'date'
-
-
-class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
-    """
-    Custom rangefilter.filters.DateTimeRangeFilter class that uses HTML5
-    widgets and a template without the need for inline CSS/JavaScript.
-
-    Needs FakeChoicesMixin for the fake choices the template will be using (the
-    upstream implementation depends on JavaScript for this).
-    """
-
-    template = 'admin/abuse/abusereport/date_range_filter.html'
-    title = gettext('creation date')
-
-    def _get_form_fields(self):
-        return OrderedDict(
-            (
-                (
-                    self.lookup_kwarg_gte,
-                    forms.DateField(
-                        label='From',
-                        widget=HTML5DateInput(),
-                        localize=True,
-                        required=False,
-                    ),
-                ),
-                (
-                    self.lookup_kwarg_lte,
-                    forms.DateField(
-                        label='To',
-                        widget=HTML5DateInput(),
-                        localize=True,
-                        required=False,
-                    ),
-                ),
-            )
-        )
-
-    def choices(self, changelist):
-        # We want a fake 'All' choice as per FakeChoicesMixin, but as of 0.3.15
-        # rangefilter's implementation doesn't bother setting the selected
-        # property, and our mixin calls super(), so we have to do it here.
-        all_choice = next(super().choices(changelist))
-        all_choice['selected'] = not any(self.used_parameters)
-        yield all_choice
 
 
 class AbuseReportAdmin(AMOModelAdmin):
