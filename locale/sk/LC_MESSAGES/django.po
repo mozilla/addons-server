@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-03 12:28+0000\n"
+"PO-Revision-Date: 2023-01-03 12:37+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1757,6 +1757,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox pridáva podporu pre rozšírenia s manifestom verzie 3 (MV3) od Firefoxu {version}, avšak staršie verzie Firefoxu sú kompatibilné iba s rozšíreniami manifestu verzie 2 (MV2). Odporúčame zatiaľ"
+" nahrávať rozšírenia s manifestom verzie 3 len na vlastnú stránku, aby sa nenarušila kompatibilita pre vašich používateľov."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr ""
@@ -2534,13 +2536,13 @@ msgstr "Pokračovať"
 
 # 88%
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Môžu ostatní zdieľať váš doplnok, pokiaľ vás uvedú ako autora?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Môžu iní komerčne využívať váš doplnok?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Môžu iní vytvárať odvodené verzie z vášho doplnku?"
 
 msgid "Yes, as long as they share alike"
 msgstr "Áno, ak je rešpektovaná pôvodná licencia"
@@ -2552,7 +2554,7 @@ msgid "Your Add-on will be released under the following license:"
 msgstr "Váš doplnok bude k dispozícii v rámci nasledujúcej licencie:"
 
 msgid "Select a different license."
-msgstr "Zvoľte inú licenciu."
+msgstr "Zvoliť inú licenciu."
 
 msgid "More information on Creative Commons licenses"
 msgstr "Ďalšie informácie o licenciách Creative Commons"
@@ -2941,7 +2943,7 @@ msgid "Aligned to top-right"
 msgstr "Zarovnaný vpravo hore"
 
 msgid "Select a different header image"
-msgstr "Zvoľte iný obrázok hlavičky"
+msgstr "Zvoliť iný obrázok hlavičky"
 
 msgid "Select colors for your theme"
 msgstr "Zvoľte farby vašej témy"
@@ -2953,7 +2955,7 @@ msgid "Browser preview"
 msgstr "Ukážka v prehliadači"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Téma vzhľadu sa odosiela"
 
 msgid "Finish Theme"
 msgstr "Dokončiť tému vzhľadu"
