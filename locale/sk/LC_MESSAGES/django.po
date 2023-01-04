@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 14:34+0000\n"
+"PO-Revision-Date: 2023-01-04 15:09+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -267,7 +267,7 @@ msgid "A GUID must be specified in the manifest."
 msgstr "Identifikátor GUID musí byť uvedený v manifeste."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Identifikátory GUID v manifeste a adresu URL sa nezhodujú."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Zdroj sa nedá zmeniť, pretože túto verziu skontrolovala Mozilla."
@@ -2251,16 +2251,16 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Pozvánka pre autorstvo doplnku {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Boli ste pozvaní stať sa autorom doplnku {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Prijatím pozvánky získate prístup na úpravu doplnku a vaše meno sa môže zobraziť v zozname autorov na webovej stránke."
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Kliknutím na tlačidlo Prijať nižšie potvrďte, že chcete byť pridaný ako autor doplnku {addon_name}."
 
 msgid "Accept"
 msgstr "Prijať"
@@ -2275,15 +2275,17 @@ msgid "About author roles"
 msgstr "O roliach autorov"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autori čakajúci na ich potvrdenie"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autori, ktorí boli pridaní do tohto doplnku, ale neboli potvrdení."
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Doplnky môžu mať ľubovoľný počet autorov s 2 možnými rolami:</p> <ul> <li><b>Vlastník:</b> Môže spravovať všetky aspekty doplnku vrátane pridávania a odstraňovania iných autorov</li> "
+"<li><b>Vývojár:</b> Môže spravovať všetky aspekty doplnku okrem pridávania a odstraňovania iných autorov</li> </ul>"
 
 msgid "Additional Details"
 msgstr "Podrobnosti"
@@ -2467,7 +2469,7 @@ msgid "32x32px"
 msgstr "32x32 bodov"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Používa sa v zoznamoch doplnkov, ako sú výsledky vyhľadávania."
 
 #. The size of the icon
 msgid "64x64px"
@@ -2481,7 +2483,7 @@ msgid "128x128px"
 msgstr "128 x 128 pixelov"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Bude štandardom na budúcich stránkach s podrobnosťami o doplnkoch."
 
 msgid "Upload a Custom Icon..."
 msgstr "Odoslať vlastnú ikonu..."
@@ -2508,13 +2510,13 @@ msgid "Add a Screenshot..."
 msgstr "Pridať ukážku..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Podporované formáty PNG a JPG, odporúča sa PNG. Maximálna a odporúčaná veľkosť pre snímky obrazovky je 2400 x 1800 pixelov."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minimálna veľkosť je 1000 x 750 a vyžaduje sa pomer 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Snímky obrazovky na stránke vášho produktu výrazne zvyšujú jeho šance na inštaláciu."
 
 msgid "Continue"
 msgstr "Pokračovať"
@@ -2548,10 +2550,10 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "Váš doplnok je momentálne nastavený ako „Neviditeľný“."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "V tomto stave je jediným dostupným spôsobom distribúcie „Na vlastnej stránke“."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Priložené zdroje nemôžete zmeniť, pretože túto verziu skontrolovala Mozilla."
 
 msgid "General Tests"
 msgstr "Všeobecné testy"
@@ -2907,7 +2909,7 @@ msgid "Theme generator"
 msgstr "Generátor témy vzhľadu"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Upozornenie: Nasledujúce vlastnosti manifestu, ktoré ste použili v manifeste vašej poslednej nahranej verzie, nie sú v tomto sprievodcovi podporované a budú ignorované:"
 
 msgid "Theme name"
 msgstr "Názov témy vzhľadu"
@@ -3071,16 +3073,16 @@ msgid "Invisible"
 msgstr "Neviditeľný"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr ""
+msgstr "Dokončite svoj doplnok pridaním verzie alebo chýbajúcich metadát."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "Po dokončení kontroly dostanete e-mail. Dovtedy sa váš doplnok nenachádza v našej galérii, ale môžete k nemu pristupovať priamo zo stránky s jeho detailami."
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Váš doplnok je zobrazený v našej galérii a používatelia automaticky prijímajú aktualizácie."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
+msgstr "Váš doplnok bol zakázaný správcom stránky a už sa nezobrazuje v našej galérii. Ak máte nejaké otázky, pošlite e-mail na adresu amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Váš doplnok nebude zahrnutý do výsledkov vyhľadávania a jeho stránka bude indikovať, že ste ho deaktivovali. V tomto stave nebudú akceptované nové verzie na zaradenie do zoznamu."
@@ -3095,7 +3097,7 @@ msgstr "Aktualizovaný:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr ""
+msgstr "Uverejnený na tejto stránke po kontrole kódu. Táto stránka zabezpečuje automatické aktualizácie"
 
 msgid "Status:"
 msgstr "Stav:"
@@ -3113,7 +3115,7 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená"
 
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr ""
+msgstr "Podpísaný na vlastnú distribúciu. Aktualizácie riešite vy."
 
 msgid "Latest Version:"
 msgstr "Posledná verzia:"
