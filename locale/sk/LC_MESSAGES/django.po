@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 18:01+0000\n"
+"PO-Revision-Date: 2023-01-04 18:08+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4904,7 +4904,7 @@ msgid "You can't change the version of the add-on reviewed once the review has b
 msgstr ""
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Táto verzia doplnku neexistuje alebo nie je verejná."
 
 msgid "You can't leave a review on your own add-on."
 msgstr ""
@@ -4916,10 +4916,10 @@ msgid "Invalid flag [{}] - must be one of [{}]"
 msgstr "Neplatný príznak [{}] – musí byť jedným z [{}]"
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Toto hodnotenie nemožno označiť, pretože neobsahuje text hodnotenia."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Pri výbere možnosti „Iné“ ako dôvodu nahlásenia je potrebné poskytnúť krátke vysvetlenie."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -4977,13 +4977,13 @@ msgid "Applications:"
 msgstr "Aplikácie:"
 
 msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
+msgstr "Oneskorené odmietnutie vyžadujúce od vývojára opravu za menej ako…"
 
 msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
+msgstr "Okamžite odmietnuť. Používajte iba v prípade vážnych bezpečnostných problémov."
 
 msgid "days"
-msgstr ""
+msgstr "dní"
 
 msgid "Choose one or more reasons:"
 msgstr "Vyberte jeden alebo viac dôvodov:"
@@ -5490,7 +5490,7 @@ msgid "Add-on History"
 msgstr "História doplnku"
 
 msgid "Please select one or more versions in the list below."
-msgstr ""
+msgstr "Vyberte jednu alebo viac verzií v zozname nižšie."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
 msgstr "Stále môžete tento formulár odoslať, ale urobte tak len vtedy, ak viete, že to nespôsobí konflikt."
@@ -5595,13 +5595,13 @@ msgid "More Information"
 msgstr "Ďalšie informácie"
 
 msgid "Important Changes"
-msgstr ""
+msgstr "Dôležité zmeny"
 
 msgid "Resolution"
 msgstr "Riešenie"
 
 msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
+msgstr "Protokol kontroly doplnku – Doplnky pre Firefox"
 
 msgid "Reviewer"
 msgstr "Recenzent"
@@ -5628,13 +5628,13 @@ msgid "Source:"
 msgstr "Zdroj:"
 
 msgid "Source URL:"
-msgstr ""
+msgstr "Zdrojová URL:"
 
 msgid "Dismiss this announcement"
 msgstr "Skryť toto oznámenie"
 
 msgid "Download file"
-msgstr ""
+msgstr "Stiahnuť súbor"
 
 msgid "Validation results"
 msgstr "Výsledky overenia"
@@ -5643,20 +5643,19 @@ msgid "Browse all files in this version"
 msgstr "Prehľadávať všetky súbory v tejto verzii"
 
 msgid "Browse contents"
-msgstr ""
+msgstr "Prehľadávať obsah"
 
 msgid "Compare this version to the last reviewed version"
-msgstr ""
+msgstr "Porovnať túto verziu s poslednou skontrolovanou verziou"
 
 msgid "Compare with last reviewed"
-msgstr ""
+msgstr "Porovnať s naposledy skontrolovanou"
 
 msgid "Permissions:"
 msgstr "Povolenia:"
 
-#, fuzzy
 msgid "Optional permissions:"
-msgstr "Povolenia:"
+msgstr "Voliteľné povolenia:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5871,10 +5870,10 @@ msgid "Version does not match the manifest file."
 msgstr "Verzia sa nezhoduje so súborom manifestu."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Ak je v manifeste dlhší ako 64 znakov, uveďte svoje ID doplnku."
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "Neplatné ID doplnku v adrese URL alebo balíku"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "Do doplnku nastaveného na stav „Neviditeľný“ nemôžete pridať verejné verzie."
@@ -5883,7 +5882,7 @@ msgid "You cannot add a listed version to this add-on via the API due to missing
 msgstr "K tomuto doplnku nemôžete pridať verejnú verziu prostredníctvom rozhrania API z dôvodu chýbajúcich metadát. Odošlite ju prosím prostredníctvom webovej stránky"
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Pre túto verziu doplnku nebol nahraný žiadny súbor."
 
 msgid "by Source"
 msgstr "Podľa zdroja stiahnutia"
