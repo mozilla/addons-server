@@ -3967,6 +3967,26 @@ class TestVersionViewSetDelete(TestCase):
         assert self.version.reload().deleted
         assert self.addon.reload().status == amo.STATUS_NULL
 
+    def test_not_author_cannot_delete(self):
+        another_user = user_factory()
+        self.client.login_api(another_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+        # even if they are a reviewer
+        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_EDIT))
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+    def test_author_developer_can_delete(self):
+        self.addon.addonuser_set.all()[0].update(role=amo.AUTHOR_ROLE_DEV)
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.version.reload().deleted
+
     def test_cannot_delete_if_promoted(self):
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         self.client.login_api(self.user)
