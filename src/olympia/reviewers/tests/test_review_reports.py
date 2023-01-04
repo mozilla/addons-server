@@ -6,9 +6,15 @@ import pytest
 from django.core import mail
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, grant_permission, user_factory
+from olympia.activity.models import ActivityLog
+from olympia.amo.tests import (
+    addon_factory,
+    grant_permission,
+    user_factory,
+    version_factory,
+)
 from olympia.reviewers.management.commands.review_reports import Command
-from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
+from olympia.reviewers.models import AutoApprovalSummary
 
 
 @pytest.mark.django_db
@@ -37,17 +43,13 @@ class TestReviewReports:
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=verdict, weight=weight
         )
-        ReviewerScore.award_points(
-            user,
-            addon,
-            addon.status,
-            version=addon.versions.all()[0],
-            post_review=True,
-            content_review=content_review,
+        action = (
+            amo.LOG.APPROVE_VERSION if not content_review else amo.LOG.APPROVE_CONTENT
         )
+        ActivityLog.create(action, addon, addon.versions.all()[0], user=user)
 
     def generate_review_data(self):
-        with freeze_time(self.last_week_begin):
+        with freeze_time(self.last_week_begin) as frozen_time:
             self.reviewer1 = user_factory(display_name='Volunteer A')
             self.reviewer2 = user_factory(display_name='Staff B')
             self.reviewer3 = user_factory(display_name=None)
@@ -107,6 +109,7 @@ class TestReviewReports:
                 (self.reviewer5, 165, amo.AUTO_APPROVED, True),
             ]
             for review_action in data:
+                frozen_time.tick()
                 self.create_and_review_addon(
                     review_action[0],
                     review_action[1],
@@ -119,24 +122,22 @@ class TestReviewReports:
 
             # Search plugin (submitted before auto-approval was implemented)
             search_plugin = addon_factory(type=4)
-            ReviewerScore.award_points(
-                self.reviewer3,
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.APPROVE_CONTENT,
                 search_plugin,
-                amo.STATUS_APPROVED,
-                version=search_plugin.versions.all()[0],
-                post_review=False,
-                content_review=True,
+                search_plugin.versions.all()[0],
+                user=self.reviewer3,
             )
 
             # Dictionary (submitted before auto-approval was implemented)
-            dictionary = addon_factory(type=3)
-            ReviewerScore.award_points(
-                self.reviewer3,
+            dictionary = addon_factory(type=amo.ADDON_DICT)
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.APPROVE_CONTENT,
                 dictionary,
-                amo.STATUS_APPROVED,
-                version=dictionary.versions.all()[0],
-                post_review=False,
-                content_review=True,
+                dictionary.versions.all()[0],
+                user=self.reviewer3,
             )
 
     def test_report_addon_reviewer(self):
@@ -145,26 +146,17 @@ class TestReviewReports:
         data = command.fetch_report_data('addon')
         expected = [
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Total Risk',
                     'Average Risk',
-                    'Points',
                     'Add-ons Reviewed',
                 ],
                 (
-                    ('Staff B', '*', '10,212', '1,458.86', '-', '7'),
-                    ('Volunteer A', '', '2,393', '265.89', '810', '9'),
-                ),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
-                (
+                    ('Staff B', '10,212', '1,458.86', '7'),
+                    ('Volunteer A', '2,393', '265.89', '9'),
                     ('All Reviewers', '12,605', '787.81', '16'),
-                    ('Volunteers', '2,393', '265.89', '9'),
                 ),
             ),
             (
@@ -177,22 +169,7 @@ class TestReviewReports:
                     ('low', '3', '2'),
                 ),
             ),
-            (
-                'Quarterly contributions',
-                ['Name', 'Points', 'Add-ons Reviewed'],
-                # Empty here to cover edge-case, see below.
-                (),
-            ),
         ]
-        # If 'last_week_begin', which is used to generate the review data
-        # (see `generate_review_data`), doesn't fall into the previous quarter,
-        # fill in quarterly contributions.
-        if not self.last_week_begin < self.this_quarter_begin:
-            expected[3] = (
-                'Quarterly contributions',
-                ['Name', 'Points', 'Add-ons Reviewed'],
-                (('Volunteer A', '810', '9'),),
-            )
         assert data == expected
 
         html = command.generate_report_html('addon', data)
@@ -201,6 +178,13 @@ class TestReviewReports:
         assert 'Volunteer A' in html
         assert 'Staff B' in html
         assert 'Deleted' not in html
+        assert (
+            '<tfoot style="text-weight: bold">'
+            '<tr>'
+            '<td style="padding: 0 12px; text-align: left; white-space: nowrap">'
+            'All Reviewers'
+            '</td>'
+        ) in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '{} {}-{}'.format(
@@ -222,34 +206,15 @@ class TestReviewReports:
 
         expected = [
             (
-                'Weekly Content Reviews, 10 Reviews or More',
-                ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
+                'Weekly Content Reviews',
+                ['Name', 'Add-ons Reviewed'],
                 (
-                    (f'Firefox user {self.reviewer3.id}', '', '140', '14'),
-                    ('Staff Content D', '*', '-', '10'),
+                    (f'Firefox user {self.reviewer3.id}', '14'),
+                    ('Staff Content D', '10'),
+                    ('All Reviewers', '24'),
                 ),
             ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Add-ons Reviewed'],
-                (('All Reviewers', '24'), ('Volunteers', '14')),
-            ),
-            (
-                'Quarterly contributions',
-                ['Name', 'Points', 'Add-ons Reviewed'],
-                # Empty here to cover edge-case, see below.
-                (),
-            ),
         ]
-        # If 'last_week_begin', which is used to generate the review data
-        # (see `generate_review_data`), doesn't fall into the previous quarter,
-        # fill in quarterly contributions.
-        if not self.last_week_begin < self.this_quarter_begin:
-            expected[2] = (
-                'Quarterly contributions',
-                ['Name', 'Points', 'Add-ons Reviewed'],
-                ((f'Firefox user {self.reviewer3.id}', '140', '14'),),
-            )
         assert data == expected
 
         html = command.generate_report_html('content', data)
@@ -277,31 +242,20 @@ class TestReviewReports:
         data = command.fetch_report_data('addon')
         assert data == [
             (
-                'Weekly Add-on Reviews, 5 Reviews or More',
+                'Weekly Add-on Reviews',
                 [
                     'Name',
-                    'Staff',
                     'Total Risk',
                     'Average Risk',
-                    'Points',
                     'Add-ons Reviewed',
                 ],
-                (),
-            ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
-                (
-                    ('All Reviewers', '-', '-', '0'),
-                    ('Volunteers', '-', '-', '0'),
-                ),
+                (('All Reviewers', '-', '-', '0'),),
             ),
             (
                 'Weekly Add-on Reviews by Risk Profiles',
                 ['Risk Category', 'All Reviewers', 'Volunteers'],
                 (),
             ),
-            ('Quarterly contributions', ['Name', 'Points', 'Add-ons Reviewed'], ()),
         ]
 
         html = command.generate_report_html('addon', data)
@@ -330,16 +284,10 @@ class TestReviewReports:
 
         assert data == [
             (
-                'Weekly Content Reviews, 10 Reviews or More',
-                ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
-                (),
+                'Weekly Content Reviews',
+                ['Name', 'Add-ons Reviewed'],
+                (('All Reviewers', '0'),),
             ),
-            (
-                'Weekly Volunteer Contribution Ratio',
-                ['Group', 'Add-ons Reviewed'],
-                (('All Reviewers', '0'), ('Volunteers', '0')),
-            ),
-            ('Quarterly contributions', ['Name', 'Points', 'Add-ons Reviewed'], ()),
         ]
 
         html = command.generate_report_html('content', data)
@@ -361,3 +309,140 @@ class TestReviewReports:
         email = mail.outbox[0]
         assert to in email.to
         assert subject in email.subject
+
+    def test_multiple_version_review_counted_once_addon_reviewer(self):
+        self.reviewer1 = user_factory(display_name='Volunteer A')
+
+        with freeze_time(self.last_week_begin) as frozen_time:
+            ActivityLog.create(
+                amo.LOG.APPROVE_VERSION,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                user=self.reviewer1,
+            )
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.CONFIRM_AUTO_APPROVED,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                user=self.reviewer1,
+            )
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.APPROVE_VERSION,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                user=self.reviewer1,
+            )
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION_DELAYED,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                user=self.reviewer1,
+            )
+
+            addon = addon_factory()
+            version_factory(addon=addon)
+            version_factory(addon=addon)
+            all_versions = list(addon.versions.all())
+            frozen_time.tick()
+            # As these are logged at the exact same time, only 1 should be counted
+            for i in range(3):
+                ActivityLog.create(
+                    amo.LOG.REJECT_VERSION, addon, all_versions[i], user=self.reviewer1
+                )
+            # This should be ignored because it's an auto-rejection
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.REJECT_VERSION,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                details={'comments': 'Automatic rejection after grace period ended.'},
+                user=self.reviewer1,
+            )
+
+        command = Command()
+        data = command.fetch_report_data('addon')
+        expected = [
+            (
+                'Weekly Add-on Reviews',
+                [
+                    'Name',
+                    'Total Risk',
+                    'Average Risk',
+                    'Add-ons Reviewed',
+                ],
+                (('Volunteer A', '0', '0', '5'), ('All Reviewers', '-', '-', '5')),
+            ),
+            (
+                'Weekly Add-on Reviews by Risk Profiles',
+                ['Risk Category', 'All Reviewers', 'Volunteers'],
+                (),
+            ),
+        ]
+        assert data == expected
+
+    def test_multiple_version_review_counted_once_content_reviewer(self):
+        self.reviewer1 = user_factory(display_name='Volunteer A')
+
+        with freeze_time(self.last_week_begin) as frozen_time:
+            for i in range(3):
+                frozen_time.tick()
+                ActivityLog.create(
+                    amo.LOG.APPROVE_CONTENT,
+                    (addon := addon_factory()),
+                    addon.versions.all()[0],
+                    user=self.reviewer1,
+                )
+                frozen_time.tick()
+                ActivityLog.create(
+                    amo.LOG.REJECT_CONTENT,
+                    (addon := addon_factory()),
+                    addon.versions.all()[0],
+                    user=self.reviewer1,
+                )
+                frozen_time.tick()
+                ActivityLog.create(
+                    amo.LOG.REJECT_CONTENT_DELAYED,
+                    (addon := addon_factory()),
+                    addon.versions.all()[0],
+                    user=self.reviewer1,
+                )
+
+            addon = addon_factory()
+            version_factory(addon=addon)
+            version_factory(addon=addon)
+            all_versions = list(addon.versions.all())
+            frozen_time.tick()
+            # As these are logged at the exact same time, only 1 should be counted
+            for i in range(3):
+                ActivityLog.create(
+                    amo.LOG.REJECT_CONTENT, addon, all_versions[i], user=self.reviewer1
+                )
+            # This should be ignored because it's an auto-rejection
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.REJECT_CONTENT,
+                (addon := addon_factory()),
+                addon.versions.all()[0],
+                details={'comments': 'Automatic rejection after grace period ended.'},
+                user=self.reviewer1,
+            )
+
+        command = Command()
+        data = command.fetch_report_data('content')
+        expected = [
+            (
+                'Weekly Content Reviews',
+                [
+                    'Name',
+                    'Add-ons Reviewed',
+                ],
+                (
+                    ('Volunteer A', '10'),
+                    ('All Reviewers', '10'),
+                ),
+            ),
+        ]
+        assert data == expected
