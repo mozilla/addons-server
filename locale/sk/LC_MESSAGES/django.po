@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 13:51+0000\n"
+"PO-Revision-Date: 2023-01-04 14:01+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -328,7 +328,7 @@ msgstr "Kladné celé číslo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Toto pole možno použiť iba ako odkaz na externé webové stránky. Webové adresy na doméne %(domain)s nie sú povolené."
 
 msgid "Incorrect, please try again."
 msgstr "Nesprávne, skúste to znova."
@@ -364,14 +364,20 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Táto správa sa vám zobrazuje, pretože táto HTTPS stránka vyžaduje, aby váš webový prehliadač odoslal hlavičku „Referer header“, ale žiadna takáto hlavička nebola odoslaná. Táto hlavička je potrebná "
+"z bezpečnostných dôvodov, aby sa zaistilo, že váš prehliadač nebude napadnutý tretími stranami."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
+"Ak ste svoj prehliadač nakonfigurovali tak, aby zakázal hlavičky 'Referer', znova ich povoľte, aspoň pre túto stránku alebo pre pripojenia HTTPS alebo pre požiadavky rovnakého pôvodu ('same-"
+"origin')."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Táto správa sa vám zobrazuje, pretože táto stránka vyžaduje pri odosielaní formulárov súbor cookie CSRF. Tento súbor cookie je potrebný z bezpečnostných dôvodov, aby sa zabezpečilo, že váš "
+"prehliadač nebude zneužitý tretími stranami."
 
 msgid "Not Found"
 msgstr "Nebolo nájdené"
@@ -399,6 +405,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1>Ojoj! Vyskytla sa chyba.</h1> <p>Čoskoro to opravíme.</p> <p> Môžete skúsiť obnoviť stránku alebo sa vrátiť na <a href=\"%(home)s\">Domovskú stránku doplnkov</a>. Problém nám môžete to pomôcť "
+"vyriešiť aj <a href=\"https://github.com/mozilla/addons/issues/new\">zaslaním správy o probléme</a> s podrobnosťami o tom, ako ste sa dostali na túto stránku.</p>"
 
 msgid "Register or Log in"
 msgstr "Zaregistrujte sa alebo sa prihláste"
@@ -461,10 +469,10 @@ msgid "Valid user session not found matching the provided session key."
 msgstr "Nenašla sa platná používateľská relácia zodpovedajúca zadanému kľúču relácie."
 
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Obnovenie prístupového tokenu zlyhalo; používateľ sa musí znova prihlásiť do FxA."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Nesprávny typ jedného alebo viacerých kľúčov v dátovom obsahu"
 
 msgid "Signature has expired."
 msgstr "Platnosť podpisu vypršala."
@@ -491,14 +499,14 @@ msgid "You must provide an object of {{lang-code:value}}."
 msgstr "Musíte poskytnúť objekt {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Vyžaduje sa hodnota v predvolenom jazyku \"{lang_code}\"."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
 msgstr "Ak sú nastavené iné preklady, vyžaduje sa hodnota v predvolenom jazyku \"{lang_code}\"."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "Neplatný pk alebo slug \"%s\" - objekt neexistuje."
 
 msgid "Confirmation for developer API keys"
 msgstr "Potvrdenie kľúčov API pre vývojárov"
@@ -587,10 +595,10 @@ msgstr "Schváliť doplnok"
 
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Pridať %(name)s"
 
 msgid "Add-on GUIDs (one per line)"
-msgstr ""
+msgstr "GUID doplnku (jeden na riadok)"
 
 msgid "Submit"
 msgstr "Odoslať"
@@ -789,9 +797,8 @@ msgstr "Účet bol aktualizovaný."
 msgid "Account {user} deleted."
 msgstr "Účet {user} bol odstránený."
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Účet bol aktualizovaný."
+msgstr "Účet {user} bol odstránený, ako udalosť Účtu Firefox."
 
 msgid "Created: {0}."
 msgstr "Vytvorené: {0}."
@@ -840,10 +847,10 @@ msgstr "{file} bol podpísaný."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Doplnok id {0} s GUID {1} bol odstránený"
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "Doplnok {addon} migroval z predbežnej verzie."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr "Odpoveď od vývojára doplnku {addon} {version}."
@@ -852,13 +859,13 @@ msgid "Developer Reply"
 msgstr "Odpoveď vývojára"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Odpoveď kontrolóra k doplnku {addon} {version}."
 
 msgid "Reviewer Reply"
 msgstr "Odpoveď kontrolóra"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Poznámky o schválení pre {addon} {version} boli zmenené."
 
 msgid "Approval notes changed"
 msgstr "Poznámky na schválenie boli zmenené"
