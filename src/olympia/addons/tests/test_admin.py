@@ -635,8 +635,9 @@ class TestReplacementAddonList(TestCase):
 
     def test_fields(self):
         model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
+        request = RequestFactory().get('/')
         self.assertEqual(
-            list(model_admin.get_list_display(None)),
+            list(model_admin.get_list_display(request)),
             ['guid', 'path', 'guid_slug', '_url'],
         )
 
