@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 14:20+0000\n"
+"PO-Revision-Date: 2023-01-04 14:30+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1676,16 +1676,16 @@ msgid "Flag for human review"
 msgstr "Označiť na kontrolu človekom"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Odložiť automatické schválenie"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Odložiť automatické schválenie na neurčito"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Odložiť automatické schválenie na neurčito a pridať obmedzenia"
 
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Odložiť automatické schválenie na neurčito a pridať obmedzenia k budúcim schvaľovaniam"
 
 msgid "Unknown"
 msgstr "Neznámy"
@@ -1731,10 +1731,10 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Doplnky Open Search už {blog_link_open}nie sú na AMO podporované{blog_link_close}. Namiesto toho môžete vytvoriť {doc_link_open}rozšírenie pre vyhľadávanie{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Nahrávanie manifestu verzie 3 momentálne nie je podporované. {start_href}Prečítajte si viac plánoch na jeho podoru{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Upozornenie na kompatibilitu s Manifestom verzie 3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -1744,7 +1744,7 @@ msgstr ""
 " nahrávať rozšírenia s manifestom verzie 3 len na vlastnú stránku, aby sa nenarušila kompatibilita pre vašich používateľov."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Ďalšie informácie o zavádzaní rozšírení s manifestom verzie 3 alebo rozšírení s manifestom verzie 3 a s vlastným hosťovaním nájdete na https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Tento slug (časť URL adresy) sa už používa. Zvoľte iný."
