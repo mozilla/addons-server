@@ -178,6 +178,13 @@ class TestReviewReports:
         assert 'Volunteer A' in html
         assert 'Staff B' in html
         assert 'Deleted' not in html
+        assert (
+            '<tfoot style="text-weight: bold">'
+            '<tr>'
+            '<td style="padding: 0 12px; text-align: left; white-space: nowrap">'
+            'All Reviewers'
+            '</td>'
+        ) in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '{} {}-{}'.format(

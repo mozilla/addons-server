@@ -159,21 +159,18 @@ class Command(BaseCommand):
         # For each group, execute the individual SQL reports
         # and build the HTML email.
 
-        for section in report_data:
-            all_html += f'{h2}{section[0]}</h2>\n'
+        for title, headers, rows in report_data:
+            all_html += f'{h2}{title}</h2>\n'
 
             table_html = '<table>\n'
-            table_html += (
-                f'<tr>{th}'
-                + f'</th>{th}'.join([header for header in section[1]])
-                + '</th></tr>\n'
-            )
-            for row in section[2]:
-                table_html += (
-                    f'<tr>{td_first}'
-                    + f'</td>{td_rest}'.join([entry for entry in row])
-                    + '</td></tr>\n'
+            table_html += f'<tr>{th}' + f'</th>{th}'.join(headers) + '</th></tr>\n'
+            for row in rows:
+                row_html = (
+                    f'<tr>{td_first}' + f'</td>{td_rest}'.join(row) + '</td></tr>'
                 )
+                if row[0] == 'All Reviewers':
+                    row_html = f'<tfoot style="text-weight: bold">{row_html}</tfoot>'
+                table_html += row_html + '\n'
             table_html += '</table>\n'
             all_html += table_html
 
