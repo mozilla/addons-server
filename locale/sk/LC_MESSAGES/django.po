@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 14:07+0000\n"
+"PO-Revision-Date: 2023-01-04 14:20+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1357,31 +1357,32 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Stiahnite si témy vzhľadu pre Firefox s hudobnou tematikou. Táto kategória zahŕňa populárne kapely ako Nirvana a BTS, nástroje, hudobné videá a oveľa viac."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu pre Firefox so zvieratami a prírodnými krajinami. Táto kategória zahŕňa kvety, západy slnka, líšky, ročné obdobia, planéty, mačiatka, vtáky a ďalšie."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu pre Firefox, ktoré sú zaujímavé, kreatívne a jedinečné."
 
 msgid "Scenery"
 msgstr "Scenérie"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu pre Firefox, ktoré obsahujú prostredie a prírodný svet. Táto kategória zahŕňa západy slnka, pláže, ilustrácie, panorámy miest a ďalšie."
 
 msgid "Seasonal"
 msgstr "Sezónne"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu pre Firefox pre všetky štyri ročné obdobia – jeseň, zimu, jar a leto. Jesenné lístie, zasnežené štíty hôr, slnečné letné dni a jarné kvety."
 
 msgid "Solid"
 msgstr "Jednoduché"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
+"Stiahnite si témy vzhľadu pre Firefox s jednofarebnými motívmi alebo prechodmi farieb a prispôsobte si svoj prehliadač. Táto kategória zahŕňa výrazné červené, pastelové, jemné sivé a oveľa viac."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Stiahnite si témy vzhľadu pre Firefox, ktoré obsahujú rôzne športy. Táto kategória zahŕňa vlajky krajín, športové tímy, futbal, hokej a ďalšie."
 
 msgid "Websites"
 msgstr "Webové stránky"
@@ -1513,13 +1514,13 @@ msgid "No Reputation"
 msgstr "Žiadna reputácia"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Dobré (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Veľmi dobré (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Výborné (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Body manuálnej kontroly kontrolórom"
@@ -1585,16 +1586,16 @@ msgid "Add-on Content Review"
 msgstr "Kontrola obsahu doplnku"
 
 msgid "Add-on Review (Highest Risk)"
-msgstr ""
+msgstr "Kontrola doplnku (najvyššie riziko)"
 
 msgid "Add-on Review (High Risk)"
-msgstr ""
+msgstr "Kontrola doplnku (vysoké riziko)"
 
 msgid "Add-on Review (Medium Risk)"
 msgstr "Kontrola doplnku (stredné riziko)"
 
 msgid "Add-on Review (Low Risk)"
-msgstr ""
+msgstr "Kontrola doplnku (nízke riziko)"
 
 msgid "Level 1"
 msgstr "Úroveň 1"
@@ -1669,10 +1670,10 @@ msgid "Theme"
 msgstr "Téma vzhľadu"
 
 msgid "No action"
-msgstr ""
+msgstr "Žiadna akcia"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Označiť na kontrolu človekom"
 
 msgid "Delay auto-approval"
 msgstr ""
