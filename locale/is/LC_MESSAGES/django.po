@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 13:29+0000\n"
+"PO-Revision-Date: 2023-01-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -183,10 +183,10 @@ msgid "Invalid app specified"
 msgstr "Ógilt forrit tilgreint"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Óþekkt hámarksútgáfa forrits tilgreind"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Óþekkt lágmarksútgáfa forrits tilgreind"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -1470,7 +1470,7 @@ msgid "Strategic"
 msgstr "Herkænska"
 
 msgid "Notable"
-msgstr ""
+msgstr "Eftirtektarvert"
 
 msgid "Add-on"
 msgstr "Viðbót"
@@ -4604,7 +4604,7 @@ msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "YouTube customization"
-msgstr "Sérsníðing YouTube"
+msgstr "Gerðu YouTube að þínu"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
