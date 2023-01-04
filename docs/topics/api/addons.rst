@@ -214,17 +214,16 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
 
 .. _addon-detail-status:
 
-    Possible values for the ``status`` field / parameter:
+    Possible values for the add-on ``status`` field / parameter:
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-            public  Fully Reviewed
+            public  Approved
            deleted  Deleted
           disabled  Disabled by Mozilla
-         nominated  Awaiting Full Review
-        incomplete  Incomplete
-        unreviewed  Awaiting Preliminary Review
+         nominated  Awaiting Review
+        incomplete  Incomplete - no approved listed versions
     ==============  ==========================================================
 
 
@@ -536,7 +535,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json int file.size: The size for the file, in bytes.
-    :>json int file.status: The :ref:`status <addon-detail-status>` for the file.
+    :>json int file.status: The :ref:`status <version-detail-status>` for the file.
     :>json string file.url: The (absolute) URL to download the file.
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
@@ -549,6 +548,19 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.
+
+
+.. _version-detail-status:
+
+    Possible values for the version/file ``status`` field / parameter:
+
+    ==============  ==========================================================
+             Value  Description
+    ==============  ==========================================================
+            public  Approved
+          disabled  Rejected, disabled, or not reviewed
+         nominated  Awaiting Review
+    ==============  ==========================================================
 
 
 --------------
@@ -700,6 +712,20 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+
+
+--------------
+Version Delete
+--------------
+
+.. _version-delete:
+
+This endpoint allows a version to be deleted.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
 
 
 --------------
