@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 12:45+0000\n"
+"PO-Revision-Date: 2023-01-04 13:51+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -172,7 +172,7 @@ msgid "URLs must start with https://."
 msgstr "Webové adresy musia začínať https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Licencia s hodnotu atribútu slug={value} neexistuje."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom ({extensions})."
@@ -219,7 +219,7 @@ msgid "Version {version_string} already exists."
 msgstr "Verzia {version_string} už existuje."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr "Uvedené verzie nie je možné odoslať, kým je doplnok zakázaný."
+msgstr "Verejné verzie nie je možné odoslať, kým je doplnok zakázaný."
 
 msgid "Add-ons need at least one owner."
 msgstr "Doplnky potrebujú aspoň jedného vlastníka."
@@ -249,7 +249,7 @@ msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Obe atribúty „license“ a „custom_license“ nemožno poskytnúť súčasne."
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr "Toto pole alebo atribút custom_license sú povinné pre uvedené verzie."
+msgstr "Toto pole alebo atribút custom_license sú povinnými pre verejné verzie."
 
 msgid "Wrong add-on type for this license."
 msgstr "Nesprávny typ doplnku pre túto licenciu."
@@ -258,10 +258,10 @@ msgid "Custom licenses are not supported for themes."
 msgstr "Vlastné licencie nie sú podporované pre témy vzhľadu."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr "Toto pole je povinné pre doplnky s uvedenými verziami."
+msgstr "Toto pole je povinné pre doplnky s verejnými verziami."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Na vytvorenie verejnej verzie je potrebné nastaviť metadáta doplnku: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
 msgstr "Identifikátor GUID musí byť uvedený v manifeste."
@@ -282,7 +282,7 @@ msgid "My Themes"
 msgstr "Moje témy"
 
 msgid "Git-Extract"
-msgstr ""
+msgstr "Git-Extract"
 
 msgid "creation date"
 msgstr "dátum vytvorenia"
@@ -2240,7 +2240,7 @@ msgid "Preview"
 msgstr "Ukážka"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Náhľad verejnej verzie"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -2573,7 +2573,7 @@ msgid "Top"
 msgstr "Prejsť hore"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Odstránením doplnku sa natrvalo odstránia všetky verzie a súbory, ktoré ste odoslali pre tento doplnok, či už sú verejné alebo nie."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "ID doplnku nie je možné obnoviť a bude navždy nepoužiteľné pre ďalšie doplnky."
@@ -3096,13 +3096,13 @@ msgid "Status:"
 msgstr "Stav:"
 
 msgid "Listed Version:"
-msgstr "Uvedená verzia:"
+msgstr "Verejná verzia:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Toto je verzia vášho doplnku, ktorá sa nainštaluje, ak niekto klikne na tlačidlo Inštalovať na stránke addons.mozilla.org"
 
 msgid "Next Listed Version:"
-msgstr ""
+msgstr "Ďalšia verejná verzia:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená"
@@ -3114,7 +3114,7 @@ msgid "Latest Version:"
 msgstr "Posledná verzia:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "Toto je najnovšia nahraná neverejná verzia"
 
 msgid "Upload New Version"
 msgstr "Odoslať novú verziu"
@@ -3475,7 +3475,7 @@ msgid ""
 msgstr "{label_open}Neviditeľný:{label_close} Nebude zahrnutý do výsledkov vyhľadávania a na stránke produktu bude uvedené, že ste ho zakázali. V tomto stave nebudú akceptované nové verzie produktu."
 
 msgid "Listed versions"
-msgstr "Uvedené verzie"
+msgstr "Verejné verzie"
 
 msgid "Currently on AMO"
 msgstr "Aktuálne na AMO"
@@ -5005,7 +5005,7 @@ msgid "Is in a promoted add-on group that requires pre-review"
 msgstr ""
 
 msgid "Delayed because it's the first listed version"
-msgstr ""
+msgstr "Oneskorená, pretože je to prvá verejná verzia"
 
 msgid "Version string and guid match a blocklist Block"
 msgstr "Reťazec verzie a guid sa zhodujú so záznamom v zozname blokovaných doplnkov"
@@ -5063,16 +5063,16 @@ msgid "Last Updated"
 msgstr "Naposledy aktualizované"
 
 msgid "Listed versions needing human review ({0})"
-msgstr ""
+msgstr "Verejné verzie vyžadujúce kontrolu človekom ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr ""
+msgstr "Neverejné verzie vyžadujúce kontrolu človekom ({0})"
 
 msgid "Listed version"
-msgstr "Uvedená verzia"
+msgstr "Verejná verzia"
 
 msgid "Unlisted versions ({0})"
-msgstr ""
+msgstr "Neverejné verzie ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
@@ -5482,10 +5482,10 @@ msgid "More Actions"
 msgstr "Ďalšie akcie"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Informujte ma o nových verejných verziách"
 
 msgid "Notify me about new unlisted versions"
-msgstr ""
+msgstr "Informujte ma o nových neverejných verziách"
 
 msgid "Allow resubmission"
 msgstr "Povoliť opätovné odoslanie"
@@ -5848,10 +5848,10 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr "Uvedené verzie nemôžete pridať do doplnku nastaveného na stav „Neviditeľný“."
+msgstr "Do doplnku nastaveného na stav „Neviditeľný“ nemôžete pridať verejné verzie."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "K tomuto doplnku nemôžete pridať verejnú verziu prostredníctvom rozhrania API z dôvodu chýbajúcich metadát. Odošlite ju prosím prostredníctvom webovej stránky"
 
 msgid "No uploaded file for that add-on and version."
 msgstr ""
