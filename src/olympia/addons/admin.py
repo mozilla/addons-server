@@ -154,13 +154,10 @@ class AddonAdmin(AMOModelAdmin):
                 'css/admin/addons.css',
             )
         }
-        js = (
-            'js/exports.js',
-            'js/node_lib/netmask.js',
+        js = AMOModelAdmin.Media.js + (
             'admin/js/jquery.init.js',
             'js/admin/l10n.js',
             'js/admin/recalc_hash.js',
-            'js/admin/userprofile.js',
         )
 
     list_display = (
