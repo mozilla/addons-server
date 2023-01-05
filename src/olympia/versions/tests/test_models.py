@@ -1098,15 +1098,25 @@ class TestVersion(TestCase):
             id__in=(version_a.id, version_b.id)
         ).transform(Version.transformer_promoted)
         list(versions)  # to evaluate the queryset
+
+        def _sort(group_app_tuple):
+            return group_app_tuple[0].id, group_app_tuple[1].id
+
         with self.assertNumQueries(0):
-            assert versions[1].approved_for_groups == [
-                (RECOMMENDED, amo.FIREFOX),
-                (LINE, amo.FIREFOX),
-            ]
-            assert versions[0].approved_for_groups == [
-                (RECOMMENDED, amo.FIREFOX),
-                (RECOMMENDED, amo.ANDROID),
-            ]
+            assert sorted(versions[1].approved_for_groups, key=_sort) == sorted(
+                [
+                    (RECOMMENDED, amo.FIREFOX),
+                    (LINE, amo.FIREFOX),
+                ],
+                key=_sort,
+            )
+            assert sorted(versions[0].approved_for_groups, key=_sort) == sorted(
+                [
+                    (RECOMMENDED, amo.FIREFOX),
+                    (RECOMMENDED, amo.ANDROID),
+                ],
+                key=_sort,
+            )
 
     def test_version_string(self):
         addon = Addon.objects.get(id=3615)
