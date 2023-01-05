@@ -27,51 +27,6 @@ from olympia.constants.activity import LOG_BY_ID
 from .models import FakeEmail
 
 
-class MultipleRelatedListFilter(admin.SimpleListFilter):
-    template = 'admin/amo/multiple_filter.html'
-
-    def __init__(self, request, params, *args, **kwargs):
-        # Django's implementation builds self.used_parameters by pop()ing keys
-        # from params, so we would normally only get a single value.
-        # We want the full list if a parameter is passed twice, to allow
-        # multiple values to be selected, so we build our own _used_parameters
-        # property from request.GET ourselves, using .getlist() to get all the
-        # values.
-        self._used_parameters = {}
-        if self.parameter_name in params:
-            self._used_parameters[self.parameter_name] = (
-                request.GET.getlist(self.parameter_name) or None
-            )
-        super().__init__(request, params, *args, **kwargs)
-        # We copy our self._used_parameters in the real property so it's
-        # available in the rest of the code (for things called from
-        # super().__init__(), it's too late, they'll need to be overriden and
-        # use our property with the underscore if they want to benefit from
-        # that improvement).
-        self.used_parameters = self._used_parameters
-
-    def choices(self, cl):
-        for lookup, title in self.lookup_choices:
-            selected = (
-                lookup is None if self.value() is None else str(lookup) in self.value()
-            )
-            yield {
-                'selected': selected,
-                'value': lookup,
-                'display': title,
-                # Django doesn't give the template access to the changelist
-                # instance. For its own filter classes, it builds a link for
-                # each choice from the changelist querystring, passing that
-                # here. In our case we have a form so we need to render an
-                # hidden input for each parameter in the query string. We help
-                # the template do that by passing a QueryDict instead of the
-                # raw query string like MultipleRelatedListFilter does.
-                'params': QueryDict(
-                    cl.get_query_string(remove=[self.parameter_name])[1:]
-                ),
-            }
-
-
 class AMOModelAdminChangeListSearchForm(ChangeListSearchForm):
     def clean(self):
         self.cleaned_data = super().clean()
@@ -578,3 +533,48 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
         all_choice = next(super().choices(changelist))
         all_choice['selected'] = not any(self.used_parameters)
         yield all_choice
+
+
+class MultipleRelatedListFilter(admin.SimpleListFilter):
+    template = 'admin/amo/multiple_filter.html'
+
+    def __init__(self, request, params, *args, **kwargs):
+        # Django's implementation builds self.used_parameters by pop()ing keys
+        # from params, so we would normally only get a single value.
+        # We want the full list if a parameter is passed twice, to allow
+        # multiple values to be selected, so we build our own _used_parameters
+        # property from request.GET ourselves, using .getlist() to get all the
+        # values.
+        self._used_parameters = {}
+        if self.parameter_name in params:
+            self._used_parameters[self.parameter_name] = (
+                request.GET.getlist(self.parameter_name) or None
+            )
+        super().__init__(request, params, *args, **kwargs)
+        # We copy our self._used_parameters in the real property so it's
+        # available in the rest of the code (for things called from
+        # super().__init__(), it's too late, they'll need to be overriden and
+        # use our property with the underscore if they want to benefit from
+        # that improvement).
+        self.used_parameters = self._used_parameters
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (
+                lookup is None if self.value() is None else str(lookup) in self.value()
+            )
+            yield {
+                'selected': selected,
+                'value': lookup,
+                'display': title,
+                # Django doesn't give the template access to the changelist
+                # instance. For its own filter classes, it builds a link for
+                # each choice from the changelist querystring, passing that
+                # here. In our case we have a form so we need to render an
+                # hidden input for each parameter in the query string. We help
+                # the template do that by passing a QueryDict instead of the
+                # raw query string like MultipleRelatedListFilter does.
+                'params': QueryDict(
+                    cl.get_query_string(remove=[self.parameter_name])[1:]
+                ),
+            }
