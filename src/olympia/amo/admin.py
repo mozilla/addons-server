@@ -65,7 +65,7 @@ class MultipleRelatedListFilter(admin.SimpleListFilter):
                 # here. In our case we have a form so we need to render an
                 # hidden input for each parameter in the query string. We help
                 # the template do that by passing a QueryDict instead of the
-                # raw query string
+                # raw query string like MultipleRelatedListFilter does.
                 'params': QueryDict(
                     cl.get_query_string(remove=[self.parameter_name])[1:]
                 ),
@@ -509,8 +509,17 @@ class FakeChoicesMixin:
             if k not in self.expected_parameters()
         )
         # Assemble them into a `query_parts` property on a unique fake choice.
+        # For forms that don't display the 'All' link, also export the other
+        # params as a querydict.
         all_choice = next(super().choices(changelist))
-        all_choice['query_parts'] = search_query_parts + filters_query_parts
+        all_choice.update(
+            {
+                'query_parts': search_query_parts + filters_query_parts,
+                'params': QueryDict(
+                    changelist.get_query_string(remove=self.expected_parameters())[1:]
+                ),
+            }
+        )
         yield all_choice
 
 
