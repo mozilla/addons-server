@@ -3968,7 +3968,7 @@ class TestVersionViewSetDelete(TestCase):
         assert self.addon.reload().status == amo.STATUS_NULL
 
     def test_not_author_cannot_delete(self):
-        another_user = user_factory()
+        another_user = user_factory(read_dev_agreement=self.days_ago(0))
         self.client.login_api(another_user)
         response = self.client.delete(self.url)
         assert response.status_code == 403
