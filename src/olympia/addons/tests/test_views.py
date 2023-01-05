@@ -3940,6 +3940,90 @@ class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
     client_class = APITestClientJWT
 
 
+class TestVersionViewSetDelete(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.addon = addon_factory(users=(self.user,))
+        self.version = self.addon.current_version
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.version.id},
+            api_version='v5',
+        )
+
+    def test_delete(self):
+        assert not self.version.deleted
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 401
+        assert not self.version.reload().deleted
+
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.version.reload().deleted
+        assert self.addon.reload().status == amo.STATUS_NULL
+
+    def test_not_author_cannot_delete(self):
+        another_user = user_factory(read_dev_agreement=self.days_ago(0))
+        self.client.login_api(another_user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+        # even if they are a reviewer
+        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_REVIEW))
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+        # or have admin-ish permissions
+        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_EDIT))
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+    def test_author_developer_can_delete(self):
+        self.addon.addonuser_set.all()[0].update(role=amo.AUTHOR_ROLE_DEV)
+        self.client.login_api(self.user)
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.version.reload().deleted
+
+    def test_cannot_delete_if_promoted(self):
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        self.client.login_api(self.user)
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 400
+        assert response.json()[0].startswith(
+            'The latest approved version of this Recommended add-on cannot be deleted'
+        )
+        assert len(response.json()) == 1
+        assert not self.version.reload().deleted
+
+        # Now add another version so it's okay to delete one of them
+        self.version = version_factory(addon=self.addon, promotion_approved=True)
+        self.addon.reload()
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.version.id},
+            api_version='v5',
+        )
+
+        response = self.client.delete(self.url)
+        assert response.status_code == 204
+        assert self.version.reload().deleted
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+
+
+class TestVersionViewSetDeleteJWTAuth(TestVersionViewSetDelete):
+    client_class = APITestClientJWT
+
+
 class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     client_class = APITestClientSessionID
 

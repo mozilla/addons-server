@@ -5,6 +5,7 @@ from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
+from django.utils.translation import gettext
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers, status
@@ -432,6 +433,7 @@ class AddonChildMixin:
 class AddonVersionViewSet(
     AddonChildMixin,
     CreateModelMixin,
+    DestroyModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     ListModelMixin,
@@ -682,6 +684,19 @@ class AddonVersionViewSet(
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if not instance.can_be_disabled_and_deleted():
+            group = self.get_addon_object().promoted_group()
+            msg = gettext(
+                'The latest approved version of this %s add-on cannot be deleted '
+                'because the previous version was not approved for %s promotion. '
+                'Please contact AMO Admins if you need help with this.'
+            ) % (group.name, group.name)
+            raise exceptions.ValidationError(msg)
+
+        return super().destroy(request, *args, **kwargs)
 
 
 class AddonPreviewViewSet(
