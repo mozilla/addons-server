@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-22 17:59+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-03 19:45+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -27,9 +27,6 @@ msgstr "Add-ons"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "Minimale Anzahl von Berichten (gruppiert nach Guid)"
-
-msgid "creation date"
-msgstr "Erstelldatum"
 
 msgid "User / Add-on"
 msgstr "Benutzer / Add-on"
@@ -285,6 +282,9 @@ msgstr "Meine Themes"
 msgid "Git-Extract"
 msgstr "Git-Extrakt"
 
+msgid "creation date"
+msgstr "Erstelldatum"
+
 msgid "Tools"
 msgstr "Werkzeuge"
 
@@ -510,38 +510,6 @@ msgstr "Ungültiger pk oder Adressname „%s“ – Objekt existiert nicht."
 
 msgid "Confirmation for developer API keys"
 msgstr "Bestätigung für Entwickler-API-Schlüssel"
-
-msgid "Application Versions"
-msgstr "Anwendungs-Versionen"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Akzeptable Versionen für alle Anwendungen auf AMO."
-
-msgid "Valid Application Versions"
-msgstr "Gültige App-Versionen"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Bei Mozilla Add-ons eingereichte Add-ons müssen eine Manifest-Datei haben, dabei muss mindestens eine der folgenden Anwendungen unterstützt werden. Nur die im Folgenden aufgeführten Versionen sind "
-"für diese Anwendungen zugelassen."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Beachten Sie bitte, dass WebExtensions keinen „*“ in der %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s akzeptieren."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versionen"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Wenn Ihre unterstützte Anwendung keine Manifest-Datei benötigt, müssen Sie dennoch wie %(amo_manifests_mdn_link_open)shier%(amo_manifests_mdn_link_close)s beschrieben, die erforderlichen "
-"Eigenschaften angeben."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Diese benutzerdefinierte Adresse wird bereits von einer anderen Ihrer Sammlungen verwendet."
@@ -1048,6 +1016,9 @@ msgstr "Zurückweisung von {addon} {version} aufgehoben."
 msgid "Un-rejected"
 msgstr "Zurückweisung aufgehoben"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} wird über ein API-Token authentifiziert."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1528,6 +1499,9 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategisch"
 
+msgid "Notable"
+msgstr "Bemerkenswert"
+
 msgid "Add-on"
 msgstr "Add-on"
 
@@ -1701,6 +1675,9 @@ msgstr "Bild mit niedriger Qualität, gestrecktes oder leeres Bild"
 
 msgid "Header image alignment problem"
 msgstr "Problem mit Ausrichtung des Kopfzeilenbildes"
+
+msgid "Theme"
+msgstr "Theme"
 
 msgid "No action"
 msgstr "Keine Aktion"
@@ -4666,13 +4643,12 @@ msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tab-Verwaltung"
+msgid "Elite ad blockers"
+msgstr "Leistungsfähige Werbeblocker"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-Anpassungen"
+msgid "Steam extensions"
+msgstr "Steam-Erweiterungen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4748,6 +4724,10 @@ msgid "See more social streaming staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte soziale Streaming-Erweiterungen ansehen"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tab-Verwaltung"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen zur Tab-Verwaltung ansehen"
 
@@ -4760,12 +4740,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Weitere Erweiterungen mit dem Schlagwort „{tag}“ anzeigen"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Leistungsfähige Werbeblocker"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte Werbeblocker ansehen"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-Anpassungen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4835,6 +4815,9 @@ msgstr "Unbekannte „strict_min_version“ {appver} für {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unbekannte „strict_max_version“ {appver} für {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr "Nicht unterstützte Komprimierungsmethode im Archiv."
 
 msgid "Unsupported archive type."
 msgstr "Nicht unterstützter Archivtyp."
@@ -5094,6 +5077,9 @@ msgstr "Sie können eine Zeilennummer nicht senden, ohne sie einem Dateinamen zu
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Markierungen"
 
@@ -5217,14 +5203,14 @@ msgstr "Logbuch der Überprüfungen"
 msgid "Add-on Review Guide"
 msgstr "Leitfaden zur Add-on-Überprüfung"
 
-msgid "Security Scanners"
-msgstr "Sicherheitstests"
+msgid "Human Review Needed"
+msgstr "Menschliche Überprüfung erforderlich"
 
-msgid "Flagged By Scanners"
-msgstr "Von Scannern markiert"
+msgid "Versions Needing Human Review"
+msgstr "Versionen, die einer menschlichen Überprüfung bedürfen"
 
-msgid "Flagged for Human Review"
-msgstr "Für menschliche Überprüfung vorgelegt"
+msgid "Flagged by MAD for Human Review"
+msgstr "Von MAD für menschliche Überprüfung vorgelegt"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch freigeschaltete Add-ons"
@@ -5723,9 +5709,6 @@ msgstr "Gesamte Zeit"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Sie haben <span>{0}</span> Punkte."
-
-msgid "Theme"
-msgstr "Theme"
 
 msgid "No results found"
 msgstr "Keine Ergebnisse gefunden"

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-22 22:33+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-04 20:48+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -27,9 +27,6 @@ msgstr "Add-ons"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "minimum reports count (grouped by guid)"
-
-msgid "creation date"
-msgstr "creation date"
 
 msgid "User / Add-on"
 msgstr "User / Add-on"
@@ -284,6 +281,9 @@ msgstr "My Themes"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "creation date"
+
 msgid "Tools"
 msgstr "Tools"
 
@@ -501,36 +501,6 @@ msgstr "Invalid pk or slug \"%s\" - object does not exist."
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmation for developer API keys"
-
-msgid "Application Versions"
-msgstr "Application Versions"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Acceptable versions for all applications on AMO."
-
-msgid "Valid Application Versions"
-msgstr "Valid Application Versions"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versions"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "This custom URL is already in use by another one of your collections."
@@ -1035,6 +1005,9 @@ msgstr "{addon} {version} un-rejected."
 msgid "Un-rejected"
 msgstr "Un-rejected"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} authenticated through an API token."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1491,6 +1464,9 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategic"
 
+msgid "Notable"
+msgstr "Notable"
+
 msgid "Add-on"
 msgstr "Add-on"
 
@@ -1664,6 +1640,9 @@ msgstr "Low-quality, stretched, or blank image"
 
 msgid "Header image alignment problem"
 msgstr "Header image alignment problem"
+
+msgid "Theme"
+msgstr "Theme"
 
 msgid "No action"
 msgstr "No action"
@@ -4612,13 +4591,12 @@ msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tab managers"
+msgid "Elite ad blockers"
+msgstr "Elite ad blockers"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customisation"
+msgid "Steam extensions"
+msgstr "Steam extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4693,6 +4671,10 @@ msgid "See more social streaming staff picks"
 msgstr "See more social streaming staff picks"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tab managers"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "See more tab management staff picks"
 
@@ -4705,12 +4687,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "See more extensions tagged \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elite ad blockers"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "See more ad blocker staff picks"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube customisation"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4780,6 +4762,9 @@ msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unknown \"strict_max_version\" {appver} for {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr "Unsupported compression method in archive."
 
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
@@ -5039,6 +5024,9 @@ msgstr "You can't submit a line number without associating it to a filename."
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Flags"
 
@@ -5162,14 +5150,14 @@ msgstr "Review Log"
 msgid "Add-on Review Guide"
 msgstr "Add-on Review Guide"
 
-msgid "Security Scanners"
-msgstr "Security Scanners"
+msgid "Human Review Needed"
+msgstr "Human Review Needed"
 
-msgid "Flagged By Scanners"
-msgstr "Flagged By Scanners"
+msgid "Versions Needing Human Review"
+msgstr "Versions Needing Human Review"
 
-msgid "Flagged for Human Review"
-msgstr "Flagged for Human Review"
+msgid "Flagged by MAD for Human Review"
+msgstr "Flagged by MAD for Human Review"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-Approved Add-ons"
@@ -5668,9 +5656,6 @@ msgstr "All Time"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "You have <span>{0}</span> points."
-
-msgid "Theme"
-msgstr "Theme"
 
 msgid "No results found"
 msgstr "No results found"

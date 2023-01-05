@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-06-20 02:42+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -31,9 +31,6 @@ msgstr "Pengaya"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "jumlah laporan minimum (dikelompokkan sesuai guid)"
-
-msgid "creation date"
-msgstr "tanggal pembuatan"
 
 msgid "User / Add-on"
 msgstr "Pengguna / Pengaya"
@@ -290,6 +287,9 @@ msgstr "Tema Saya"
 msgid "Git-Extract"
 msgstr "Ekstrak-Git"
 
+msgid "creation date"
+msgstr "tanggal pembuatan"
+
 msgid "Tools"
 msgstr "Perangkat"
 
@@ -514,38 +514,6 @@ msgstr "Pk atau slug tidak valid \"%s\" - objek tidak ada."
 
 msgid "Confirmation for developer API keys"
 msgstr "Konfirmasi untuk pengembang kunci API"
-
-msgid "Application Versions"
-msgstr "Versi Aplikasi"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Versi yang diterima untuk seluruh aplikasi di AMO."
-
-msgid "Valid Application Versions"
-msgstr "Versi Aplikasi yang Sah"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Pengaya yang diajukan ke Pengaya Mozilla harus memiliki sebuah berkas keterangan dengan sekurangnya satu dari aplikasi di bawah ini yang didukung. Hanya versi yang tercantum di bawah ini yang "
-"diperkenankan untuk aplikasi ini."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Harap perhatikan bahwa WebExtensions tidak akan menerima \"*\" pada %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versi"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi sini"
-"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
@@ -1060,6 +1028,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1533,6 +1504,9 @@ msgstr "Sorotan"
 msgid "Strategic"
 msgstr "Strategis"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Pengaya"
 
@@ -1706,6 +1680,9 @@ msgstr "Gambar berkualitas rendah, meregang atau kosong"
 
 msgid "Header image alignment problem"
 msgstr "Masalah gambar di bagian atas yang sejajar"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr "Tidak ada tindakan"
@@ -4667,12 +4644,11 @@ msgstr "Lihat semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4761,6 +4737,10 @@ msgid "See more social streaming staff picks"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Lihat semua ekstensi"
@@ -4775,13 +4755,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Lihat semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4861,6 +4841,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5126,6 +5109,9 @@ msgstr ""
 msgid "ID"
 msgstr "CIDR"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Tanda"
 
@@ -5260,17 +5246,14 @@ msgstr "Log Tinjauan"
 msgid "Add-on Review Guide"
 msgstr "Panduan Ulasan Pengaya"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Uji Keamanan"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Uji Keamanan"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Peringkat Tinjauan ({0})"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Pengaya Disetujui Otomatis"
@@ -5801,9 +5784,6 @@ msgstr "Sepanjang Masa"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Anda memiliki <span>{0}</span> poin."
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No results found"
 msgstr "Tak ada hasil yang ditemukan"

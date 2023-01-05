@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-22 22:18+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-03 23:17+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -34,9 +34,6 @@ msgstr "Додатки"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "мінімальна кількість звітів (згруповано за guid)"
-
-msgid "creation date"
-msgstr "дата створення"
 
 msgid "User / Add-on"
 msgstr "Користувач / Додаток"
@@ -291,6 +288,9 @@ msgstr "Мої теми"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "дата створення"
+
 msgid "Tools"
 msgstr "Інструменти"
 
@@ -506,35 +506,6 @@ msgstr "Недійсний pk або slug \"%s\" - об'єкт не існує."
 
 msgid "Confirmation for developer API keys"
 msgstr "Підтвердження API ключів розробника"
-
-msgid "Application Versions"
-msgstr "Версії програми"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Прийнятні версії для всіх додатків на AMO."
-
-msgid "Valid Application Versions"
-msgstr "Дійсні версії програми"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Додатки відправлені до Додатків Mozilla повинні мати файл маніфест з хоча б одним із перерахованих нижче застосунків. Дозволеними для даних застосунків є версії перераховані нижче."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Майте на увазі, що для WebExtensions не допускається \"*\" в %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Версії"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Навіть якщо підтримуваний Вами застосунок не вимагає файлу маніфесту, Вам все одно необхідно вказати %(amo_manifests_mdn_link_open)sтут%(amo_manifests_mdn_link_close)s властивості, що вимагаються."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ця адреса URL вже використовується в одній з ваших збірок."
@@ -1041,6 +1012,9 @@ msgstr "Скасовано відхилення {addon} {version}."
 msgid "Un-rejected"
 msgstr "Скасовано відхилення"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} автентифіковано через токен API."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1509,6 +1483,9 @@ msgstr "Виділене"
 msgid "Strategic"
 msgstr "Стратегічне"
 
+msgid "Notable"
+msgstr "Варте уваги"
+
 msgid "Add-on"
 msgstr "Додаток"
 
@@ -1682,6 +1659,9 @@ msgstr "Низька якість, витягнуте чи пусте зобра
 
 msgid "Header image alignment problem"
 msgstr "Проблема розташування зображення в заголовку"
+
+msgid "Theme"
+msgstr "Тему"
 
 msgid "No action"
 msgstr "Немає дії"
@@ -4635,13 +4615,12 @@ msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Менеджери вкладок"
+msgid "Elite ad blockers"
+msgstr "Елітні блокувальники реклами"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
+msgid "Steam extensions"
+msgstr "Steam-розширення"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4716,6 +4695,10 @@ msgid "See more social streaming staff picks"
 msgstr "Переглянути більше розширень для стрічок суспільних мереж відібраних персоналом"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Менеджери вкладок"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Переглянути більше розширень для керування вкладками відібраних персоналом"
 
@@ -4728,12 +4711,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Переглянути інші розширення з міткою \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Елітні блокувальники реклами"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4803,6 +4786,9 @@ msgstr "Невідома \"strict_min_version\" {appver} для {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Невідома \"strict_max_version\" {appver} для {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr "Непідтримуваний метод стиснення в архів."
 
 msgid "Unsupported archive type."
 msgstr "Непідтримуваний тип архіву."
@@ -5063,6 +5049,9 @@ msgstr "Ви не можете надіслати номер рядка, без 
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Позначки"
 
@@ -5186,14 +5175,14 @@ msgstr "Журнал перевірки"
 msgid "Add-on Review Guide"
 msgstr "Настанови з перевірки додатків"
 
-msgid "Security Scanners"
-msgstr "Сканери безпеки"
+msgid "Human Review Needed"
+msgstr "Потрібна перевірка людиною"
 
-msgid "Flagged By Scanners"
-msgstr "Позначено сканерами"
+msgid "Versions Needing Human Review"
+msgstr "Версії, які потребують перевірки людьми"
 
-msgid "Flagged for Human Review"
-msgstr "Позначено для перевірки людиною"
+msgid "Flagged by MAD for Human Review"
+msgstr "Позначено MAD для перевірки людиною"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Автоматично схвалені додатки"
@@ -5692,9 +5681,6 @@ msgstr "Весь час"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "У вас <span>{0}</span> балів."
-
-msgid "Theme"
-msgstr "Тему"
 
 msgid "No results found"
 msgstr "Результатів не знайдено"

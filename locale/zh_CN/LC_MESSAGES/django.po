@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2023-01-02 16:00+0000\n"
-"Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-05 05:12+0000\n"
+"Last-Translator: wxie <xiewensheng@hotmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -27,9 +27,6 @@ msgstr "附加组件"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "最小报告数量（按 GUID 分组）"
-
-msgid "creation date"
-msgstr "创建日期"
 
 msgid "User / Add-on"
 msgstr "用户 / 附加组件"
@@ -285,6 +282,9 @@ msgstr "我的主题"
 msgid "Git-Extract"
 msgstr "Git 提取（Extract）"
 
+msgid "creation date"
+msgstr "创建日期"
+
 msgid "Tools"
 msgstr "工具"
 
@@ -497,34 +497,6 @@ msgstr "无效的 pk 或 slug \"%s\" - 对象不存在。"
 
 msgid "Confirmation for developer API keys"
 msgstr "确认开发者 API 密钥"
-
-msgid "Application Versions"
-msgstr "应用程序版本"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "AMO 上的所有应用程序可接受的的版本。"
-
-msgid "Valid Application Versions"
-msgstr "有效应用程序版本"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "提交到 Mozilla 附加组件的附加组件的清单文件必须支持下面的至少一个应用程序。只允许下面列出的这些应用程序版本。"
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "请注意，WebExtensions 不接受在 %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s 的值中包含“*”。"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "版本"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "即便您所支持的应用程序本身不需要一个清单文件，您仍必须按%(amo_manifests_mdn_link_open)s这里%(amo_manifests_mdn_link_close)s的要求附上包含所有必要属性的清单文件。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "此自定义网址已被您的另一个收藏集使用。"
@@ -1029,6 +1001,9 @@ msgstr "{addon} {version} 已撤销驳回。"
 msgid "Un-rejected"
 msgstr "撤销驳回"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} 通过 API 令牌进行身份验证。"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1489,6 +1464,9 @@ msgstr "新鲜快报"
 msgid "Strategic"
 msgstr "策略"
 
+msgid "Notable"
+msgstr "请注意"
+
 msgid "Add-on"
 msgstr "附加组件"
 
@@ -1662,6 +1640,9 @@ msgstr "低质量的、拉伸的、或者是空白图片"
 
 msgid "Header image alignment problem"
 msgstr "页眉图像对齐问题"
+
+msgid "Theme"
+msgstr "主题"
 
 msgid "No action"
 msgstr "没有操作"
@@ -4551,13 +4532,12 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "标签页管理器"
+msgid "Elite ad blockers"
+msgstr "王者级广告拦截工具"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 体验定制"
+msgid "Steam extensions"
+msgstr "Steam 扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4633,6 +4613,10 @@ msgid "See more social streaming staff picks"
 msgstr "更多编辑推荐 > 社交流媒体扩展"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "标签页管理器"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "更多编辑推荐 > 标签页管理扩展"
 
@@ -4645,12 +4629,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "更多含“{tag}”标签的扩展"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "王者级广告拦截工具"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "更多编辑推荐 > 广告拦截工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 体验定制"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4720,6 +4704,9 @@ msgstr "{app} 的“strict_min_version”版本 {appver} 未知"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} 的“strict_max_version”版本 {appver} 未知"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "不支持的压缩文件类型。"
@@ -4978,6 +4965,9 @@ msgstr "您不能提交尚未与文件名关联的行号。"
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "标记"
 
@@ -5101,14 +5091,14 @@ msgstr "审核日志"
 msgid "Add-on Review Guide"
 msgstr "附加组件审核指南"
 
-msgid "Security Scanners"
-msgstr "安全性扫描器"
+msgid "Human Review Needed"
+msgstr "需要人工审核"
 
-msgid "Flagged By Scanners"
-msgstr "由扫描器标记"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "标为需要人工审查"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动通过审核的附加组件"
@@ -5608,9 +5598,6 @@ msgstr "全部时间"
 msgid "You have <span>{0}</span> points."
 msgstr "您有 <span>{0}</span> 点。"
 
-msgid "Theme"
-msgstr "主题"
-
 msgid "No results found"
 msgstr "找不到结果"
 
@@ -5713,7 +5700,7 @@ msgid "Human-readable name for the scanner rule"
 msgstr ""
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "用户可读的名称"
 
 msgid "Human readable description for the scanner rule"
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,9 +24,6 @@ msgid "Add-ons"
 msgstr ""
 
 msgid "minimum reports count (grouped by guid)"
-msgstr ""
-
-msgid "creation date"
 msgstr ""
 
 #, fuzzy
@@ -287,6 +284,9 @@ msgstr ""
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr ""
+
 msgid "Tools"
 msgstr ""
 
@@ -493,34 +493,6 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
-
-msgid "Application Versions"
-msgstr ""
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr ""
-
-msgid "Valid Application Versions"
-msgstr ""
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Versions"
-msgstr ""
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -1029,6 +1001,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1488,6 +1463,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr ""
 
@@ -1668,6 +1646,9 @@ msgid "Low-quality, stretched, or blank image"
 msgstr ""
 
 msgid "Header image alignment problem"
+msgstr ""
+
+msgid "Theme"
 msgstr ""
 
 msgid "No action"
@@ -4528,12 +4509,11 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4612,6 +4592,10 @@ msgid "See more social streaming staff picks"
 msgstr "Социјални мрежи"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr ""
 
@@ -4624,13 +4608,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Социјални мрежи"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4704,6 +4688,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -4964,6 +4951,9 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
+msgid "GUID"
+msgstr ""
+
 msgid "Flags"
 msgstr ""
 
@@ -5093,15 +5083,13 @@ msgstr "Алатки за пребарување"
 msgid "Add-on Review Guide"
 msgstr "Алатки за пребарување"
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Приватност и безбедност"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Приватност и безбедност"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
+msgid "Flagged by MAD for Human Review"
 msgstr ""
 
 msgid "Auto-Approved Add-ons"
@@ -5606,9 +5594,6 @@ msgstr ""
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
-
-msgid "Theme"
 msgstr ""
 
 msgid "No results found"

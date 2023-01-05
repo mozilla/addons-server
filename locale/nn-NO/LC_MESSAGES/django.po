@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-01 05:40+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,6 @@ msgstr "Tillegg"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "miste tal på rapportar (gruppert etter guid)"
-
-msgid "creation date"
-msgstr "dato oppretta"
 
 msgid "User / Add-on"
 msgstr "Brukar/Tillegg"
@@ -286,6 +283,9 @@ msgstr "Mine tema"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "dato oppretta"
+
 msgid "Tools"
 msgstr "Verktøy"
 
@@ -504,35 +504,6 @@ msgstr "Ugyldig pk eller slugg «%s» - objektet finst ikkje."
 
 msgid "Confirmation for developer API keys"
 msgstr "Stadfesting for API-nøklar for utviklarar"
-
-msgid "Application Versions"
-msgstr "Applikasjonsversjonar"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Godtekne versjonar for alle applikasjonar på AMO."
-
-msgid "Valid Application Versions"
-msgstr "Gyldige applikasjonsversjonar"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Tillegg sende inn til Mozilla Add-ons må ha ei manifest-fil med støtte for minst eitt av programma nedanfor. Berre versjonane lista opp nedanfor er tillatne for desse programma."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Tenk på at WebExtensions ikkje kjem til å godta ein \"*\" i %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versjonar"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Om det støtta programmet ditt ikkje krev ei manifest-fil, må du likevel inkludere ein av følgjande eigenskapar som spesifisert %(amo_manifests_mdn_link_open)sher%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne tilpassa adressa vert allereie brukt av ei av samlingane dine."
@@ -1044,6 +1015,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1504,6 +1478,9 @@ msgstr "Framheva"
 msgid "Strategic"
 msgstr "Strategisk"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Utviding"
 
@@ -1677,6 +1654,9 @@ msgstr "Lågkvalitet, strekt eller tomt bilde"
 
 msgid "Header image alignment problem"
 msgstr "Problem med bildejustering i sidehovudet"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr "Inga handling"
@@ -4589,12 +4569,11 @@ msgstr "Vis alle utvidingar"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Fanehandterarar"
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4675,6 +4654,10 @@ msgid "See more social streaming staff picks"
 msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Fanehandterarar"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
@@ -4689,13 +4672,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vis fleire populære utvidingar"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vis fleire tilrådde utvidingar"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4774,6 +4757,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5038,6 +5024,9 @@ msgstr ""
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Flagg"
 
@@ -5161,16 +5150,14 @@ msgstr "Vurderingslogg"
 msgid "Add-on Review Guide"
 msgstr "Vurderingsretningslinjer for tillegg"
 
-msgid "Security Scanners"
-msgstr "Tryggingsskannarar"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Tryggingsskannarar"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Flagg for at nokon skal ta ei gjennomgåing"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-godkjende utvidingar"
@@ -5685,9 +5672,6 @@ msgstr "Totalt"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Du har <span>{0}</span> poeng."
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No results found"
 msgstr "Fann ingen resultat"

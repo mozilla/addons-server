@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-23 06:44+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-03 19:25+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -30,9 +30,6 @@ msgstr "Add-ons"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "minimum aantal rapporten (gegroepeerd op guid)"
-
-msgid "creation date"
-msgstr "creatiedatum"
 
 msgid "User / Add-on"
 msgstr "Gebruiker / add-on"
@@ -288,6 +285,9 @@ msgstr "Mijn thema’s"
 msgid "Git-Extract"
 msgstr "Git-extract"
 
+msgid "creation date"
+msgstr "creatiedatum"
+
 msgid "Tools"
 msgstr "Hulpmiddelen"
 
@@ -511,38 +511,6 @@ msgstr "Ongeldige pk of identificator ‘%s’ - object bestaat niet."
 
 msgid "Confirmation for developer API keys"
 msgstr "Bevestiging voor API-sleutels voor ontwikkelaars"
-
-msgid "Application Versions"
-msgstr "Toepassingsversies"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Acceptabele versies voor alle toepassingen op AMO."
-
-msgid "Valid Application Versions"
-msgstr "Geldige toepassingsversies"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Bij Mozilla Add-ons ingediende add-ons dienen een manifest-bestand te bevatten dat minstens een van de onderstaande toepassingen ondersteunt. Alleen de hieronder vermelde versies zijn voor deze "
-"toepassingen toegestaan."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Houd er rekening mee dat WebExtensions geen ‘*’ in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s accepteren."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versies"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Als uw ondersteunde toepassing geen manifest-bestand vereist, moet u er toch één toevoegen met de vereiste eigenschappen zoals %(amo_manifests_mdn_link_open)shier%(amo_manifests_mdn_link_close)s "
-"gespecificeerd."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Deze aangepaste URL wordt al door een van uw andere collecties gebruikt."
@@ -1051,6 +1019,9 @@ msgstr "Afwijzing {addon} {version} ongedaan gemaakt."
 msgid "Un-rejected"
 msgstr "Afwijzing ongedaan gemaakt"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} is geauthenticeerd via een API-token."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1513,6 +1484,9 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategisch"
 
+msgid "Notable"
+msgstr "Opmerkelijk"
+
 msgid "Add-on"
 msgstr "Add-on"
 
@@ -1688,6 +1662,9 @@ msgstr "Afbeelding van lage kwaliteit, opgerekt of leeg"
 
 msgid "Header image alignment problem"
 msgstr "Probleem met uitlijning headerafbeelding"
+
+msgid "Theme"
+msgstr "Thema"
 
 msgid "No action"
 msgstr "Geen actie"
@@ -4646,13 +4623,12 @@ msgstr "Alle extensies bekijken"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Tabbladbeheerders"
+msgid "Elite ad blockers"
+msgstr "De beste advertentieblokkeerders"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-aanpassingen"
+msgid "Steam extensions"
+msgstr "Steam-extensies"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4728,6 +4704,10 @@ msgid "See more social streaming staff picks"
 msgstr "Meer stafkeuzes voor sociale streaming bekijken"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Tabbladbeheerders"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Meer stafkeuzes voor tabbladbeheer bekijken"
 
@@ -4740,12 +4720,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Meer met ‘{tag}’ gelabelde extensies bekijken"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "De beste advertentieblokkeerders"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Meer stafkeuzes voor advertentieblokkering bekijken"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-aanpassingen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4815,6 +4795,9 @@ msgstr "Onbekende ‘strict_min_version’ {appver} voor {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Onbekende ‘strict_max_version’ {appver} voor {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr "Niet-ondersteunde compressiemethode in archief."
 
 msgid "Unsupported archive type."
 msgstr "Niet-ondersteund archieftype."
@@ -5074,6 +5057,9 @@ msgstr "U kunt geen regelnummer indienen zonder het aan een bestandsnaam te kopp
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Markeringen"
 
@@ -5197,14 +5183,14 @@ msgstr "Beoordelingslogboek"
 msgid "Add-on Review Guide"
 msgstr "Add-on-beoordelingsgids"
 
-msgid "Security Scanners"
-msgstr "Beveiligingsscanners"
+msgid "Human Review Needed"
+msgstr "Persoonlijke beoordeling nodig"
 
-msgid "Flagged By Scanners"
-msgstr "Door scanners gemarkeerd"
+msgid "Versions Needing Human Review"
+msgstr "Versies die door mensen moeten worden beoordeeld"
 
-msgid "Flagged for Human Review"
-msgstr "Gemarkeerd voor persoonlijke beoordeling"
+msgid "Flagged by MAD for Human Review"
+msgstr "Gemarkeerd door MAD voor persoonlijke beoordeling"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatisch goedgekeurde add-ons"
@@ -5705,9 +5691,6 @@ msgstr "Altijd"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "U hebt <span>{0}</span> punten."
-
-msgid "Theme"
-msgstr "Thema"
 
 msgid "No results found"
 msgstr "Geen resultaten gevonden"

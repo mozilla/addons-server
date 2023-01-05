@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-23 03:04+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-04 03:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -27,9 +27,6 @@ msgstr "附加元件"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "最小報告數量（依照 GUID 分組）"
-
-msgid "creation date"
-msgstr "建立日期"
 
 msgid "User / Add-on"
 msgstr "使用者 / 附加元件"
@@ -285,6 +282,9 @@ msgstr "我的佈景主題"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "建立日期"
+
 msgid "Tools"
 msgstr "工具"
 
@@ -496,34 +496,6 @@ msgstr "PK 或 slug「%s」無效，物件不存在。"
 
 msgid "Confirmation for developer API keys"
 msgstr "確認開發者 API 金鑰"
-
-msgid "Application Versions"
-msgstr "應用程式版本"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "於 AMO 上所有應用程式可接受的版本。"
-
-msgid "Valid Application Versions"
-msgstr "有效應用程式版本"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "要上架到 Mozilla 附加元件站的附加元件，安裝資訊檔中必須支援下列任一種以上的應用程式。僅接受下列版本號碼。"
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "請注意 WebExtensions 不接受 %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s 的值為「*」。"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "版本"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "就算您支援的應用程式不需要安裝資訊檔，您還是要依照%(amo_manifests_mdn_link_open)s此處%(amo_manifests_mdn_link_close)s描述的內容，加入包含所有必要屬性的安裝資訊檔。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "這個自訂網址已被您其他的收藏集使用。"
@@ -1040,6 +1012,9 @@ msgstr "已取消退回 {addon} {version}。"
 msgid "Un-rejected"
 msgstr "已取消退回"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} 使用 API toke 進行驗證。"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1500,6 +1475,9 @@ msgstr "焦點"
 msgid "Strategic"
 msgstr "策略"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "附加元件"
 
@@ -1673,6 +1651,9 @@ msgstr "低品質、草稿或者空白圖片"
 
 msgid "Header image alignment problem"
 msgstr "標題圖片對齊問題"
+
+msgid "Theme"
+msgstr "佈景主題"
 
 msgid "No action"
 msgstr "沒有操作"
@@ -4569,13 +4550,12 @@ msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "分頁管理員"
+msgid "Elite ad blockers"
+msgstr "菁英級廣告封鎖工具"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "自訂 YouTube"
+msgid "Steam extensions"
+msgstr "Steam 擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4651,6 +4631,10 @@ msgid "See more social streaming staff picks"
 msgstr "看更多看員工精選的社交串流套件"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "分頁管理員"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "看更多員工精選的分頁管理套件"
 
@@ -4663,12 +4647,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "看看更多含有「{tag}」標籤的擴充套件"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "菁英級廣告封鎖工具"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4738,6 +4722,9 @@ msgstr "{app} 的「strict_min_version」版本 {appver} 未知"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} 的「strict_max_version」版本 {appver} 未知"
+
+msgid "Unsupported compression method in archive."
+msgstr "封存檔使用了不支援的壓縮格式。"
 
 msgid "Unsupported archive type."
 msgstr "不支援的壓縮檔類型。"
@@ -4996,6 +4983,9 @@ msgstr "您不能單純送出行號，但不指出檔案名稱。"
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "旗標"
 
@@ -5119,14 +5109,14 @@ msgstr "審核紀錄"
 msgid "Add-on Review Guide"
 msgstr "附加元件審核指南"
 
-msgid "Security Scanners"
-msgstr "安全性掃描"
+msgid "Human Review Needed"
+msgstr "需要人工審核"
 
-msgid "Flagged By Scanners"
-msgstr "由掃描器標示"
+msgid "Versions Needing Human Review"
+msgstr "需要人工審核版本"
 
-msgid "Flagged for Human Review"
-msgstr "標示為需進行人工審查"
+msgid "Flagged by MAD for Human Review"
+msgstr "由 MAD 標示為需要人工審核"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動通過審核的附加元件"
@@ -5629,9 +5619,6 @@ msgstr "全部時間"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "您有 <span>{0}</span> 點。"
-
-msgid "Theme"
-msgstr "佈景主題"
 
 msgid "No results found"
 msgstr "搜尋沒有結果"

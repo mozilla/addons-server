@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-11-19 20:45+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -30,9 +30,6 @@ msgstr "Eklentiler"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "minimum rapor sayısı (guid'e göre gruplandırılmış)"
-
-msgid "creation date"
-msgstr "oluşturma tarihi"
 
 msgid "User / Add-on"
 msgstr "Kullanıcı / Eklenti"
@@ -289,6 +286,9 @@ msgstr "Temalarım"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "oluşturma tarihi"
+
 msgid "Tools"
 msgstr "Araçlar"
 
@@ -511,38 +511,6 @@ msgstr "Geçersiz pk veya kısa ad \"%s\" - nesne mevcut değil."
 
 msgid "Confirmation for developer API keys"
 msgstr "Geliştirici API anahtarları için onay"
-
-msgid "Application Versions"
-msgstr "Uygulama Sürümleri"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "AMO'daki tüm uygulamalar için kabul edilebilir sürümler."
-
-msgid "Valid Application Versions"
-msgstr "Geçerli Uygulama Sürümleri"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla Eklentileri'ne gönderilen eklentlerin aşağıdaki uygulamalardan en az birini destekleyen bir manifest dosyası olmalıdır. Bu uygulamalar için yalnızca aşağıda listelenen sürümlere izin "
-"verilir."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Lütfen WebExtensions'ın %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s'da \"*\" kabul etmeyeceğini unutmayın."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Sürümler"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Desteklenen uygulamanız manifest dosyası gerektirmese bile %(amo_manifests_mdn_link_open)sburada%(amo_manifests_mdn_link_close)s belirtildiği şekilde gerekli özelliklere sahip bir dosya "
-"eklemelisiniz."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu özel adres zaten koleksiyonlarınızdan biri tarafından kullanılıyor."
@@ -1051,6 +1019,9 @@ msgstr "{addon} {version} reddi geri alındı."
 msgid "Un-rejected"
 msgstr "Ret geri alındı"
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1525,6 +1496,9 @@ msgstr "Öne çıkanlar"
 msgid "Strategic"
 msgstr "Stratejik"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Eklenti"
 
@@ -1699,6 +1673,9 @@ msgstr "Düşük kaliteli, esnetilmiş veya boş resim"
 
 msgid "Header image alignment problem"
 msgstr "Tepe resmi hizalama sorunu"
+
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr "Eylem yok"
@@ -4621,13 +4598,12 @@ msgstr "Tüm uzantılara bak"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Sekme yöneticileri"
+msgid "Elite ad blockers"
+msgstr "Reklam engelleyiciler"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube özelleştirme"
+msgid "Steam extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4709,6 +4685,10 @@ msgid "See more social streaming staff picks"
 msgstr "Editörün seçtiği diğer sosyal akış uzantılarına bakın"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Sekme yöneticileri"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Editörün seçtiği diğer sekme yönetimi uzantılarına bakın"
 
@@ -4723,12 +4703,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" etiketli diğer uzantılara bakın"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Reklam engelleyiciler"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Editörün seçtiği diğer reklam engelleyicilere bakın"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube özelleştirme"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4801,6 +4781,9 @@ msgstr "{app} için bilinmeyen \"strict_min_version\" {appver}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} için bilinmeyen \"strict_max_version\" {appver}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
@@ -5065,6 +5048,9 @@ msgstr "Bir satır numarasını bir dosya adıyla ilişkilendirmeden gönderemez
 msgid "ID"
 msgstr "İD"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Bayraklar"
 
@@ -5196,14 +5182,14 @@ msgstr "İnceleme Günlüğü"
 msgid "Add-on Review Guide"
 msgstr "Eklenti İnceleme Rehberi"
 
-msgid "Security Scanners"
-msgstr "Güvenlik tarayıcıları"
+msgid "Human Review Needed"
+msgstr ""
 
-msgid "Flagged By Scanners"
-msgstr "Tarayıcılar tarafından işaretlendi"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "İnsan incelemesi için işaretlendi"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Otomatik onaylanmış eklentiler"
@@ -5713,9 +5699,6 @@ msgstr "Tüm zamanlar"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "<span>{0}</span> puanınız var."
-
-msgid "Theme"
-msgstr "Tema"
 
 msgid "No results found"
 msgstr "Sonuç bulunamadı"

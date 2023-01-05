@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-08 02:30+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-04 01:50+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -28,9 +28,6 @@ msgstr "Additivos"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "numero minime de reportos (gruppate por guid)"
-
-msgid "creation date"
-msgstr "data de creation"
 
 msgid "User / Add-on"
 msgstr "Usator / Additivo"
@@ -285,6 +282,9 @@ msgstr "Mi themas"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "data de creation"
+
 msgid "Tools"
 msgstr "Instrumentos"
 
@@ -503,38 +503,6 @@ msgstr "\"%s\" non es un clave primari o identificator valide - le objecto non e
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmation pro le claves API de disveloppator"
-
-msgid "Application Versions"
-msgstr "Versiones del application"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Versiones acceptabile pro tote le applicationes sur AMO."
-
-msgid "Valid Application Versions"
-msgstr "Versiones del application valide"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Le additivos submittite a Mozilla Add-ons debe haber un file de manifesto con al minus un del sequente applicationes supportate. Solmente le versiones listate infra es permittite pro iste "
-"applicationes."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Nota ben que WebExtensions non accepta un \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versiones"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Si tu application supportate non require un file de manifesto, tu debe totevia includer un con le proprietates requirite como specificate "
-"%(amo_manifests_mdn_link_open)shic%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste URL personalisate es jam usate per un altere de tu collectiones."
@@ -1041,6 +1009,9 @@ msgstr "{addon} {version} reapprobate."
 msgid "Un-rejected"
 msgstr "Reapprobate"
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1504,6 +1475,9 @@ msgstr "Puncto luce"
 msgid "Strategic"
 msgstr "Strategic"
 
+msgid "Notable"
+msgstr "Notabile"
+
 msgid "Add-on"
 msgstr "Additivo"
 
@@ -1677,6 +1651,9 @@ msgstr "Imagine de basse qualitate, deformate o vacue"
 
 msgid "Header image alignment problem"
 msgstr "Problema de alineamento del imagine del titulo"
+
+msgid "Theme"
+msgstr "Thema"
 
 msgid "No action"
 msgstr "Nulle action"
@@ -4617,13 +4594,12 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Gestores de scheda"
+msgid "Elite ad blockers"
+msgstr "Blocatores de avisos elite"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalisationes de YouTube"
+msgid "Steam extensions"
+msgstr "Extensiones de Steam"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4698,6 +4674,10 @@ msgid "See more social streaming staff picks"
 msgstr "Vide altere diffusion social seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Gestores de scheda"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "Vide altere gestion de schedas seligite per nostre equipa"
 
@@ -4710,12 +4690,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vide altere extensiones etiquettate \"{tag}\""
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatores de avisos elite"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalisationes de YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4785,6 +4765,9 @@ msgstr "“strict_min_version” {appver} incognite pro {app}"
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "“strict_max_version” {appver} incognite pro {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Typo de archivo non admittite."
@@ -5044,6 +5027,9 @@ msgstr "Tu non pote inviar un numero de riga sin associar lo a un nomine de file
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Flags"
 
@@ -5167,14 +5153,14 @@ msgstr "Registro de recensiones"
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
 
-msgid "Security Scanners"
-msgstr "Scanditores de securitate"
+msgid "Human Review Needed"
+msgstr ""
 
-msgid "Flagged By Scanners"
-msgstr "Signalate per scanditores"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
-msgstr "Signalate per revision human"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Additivos approbate automaticamente"
@@ -5673,9 +5659,6 @@ msgstr "De sempre"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Tu ha <span>{0}</span> punctos."
-
-msgid "Theme"
-msgstr "Thema"
 
 msgid "No results found"
 msgstr "Nulle resultatos trovate"

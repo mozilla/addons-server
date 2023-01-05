@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-11-24 12:20+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-04 14:07+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -35,9 +35,6 @@ msgstr "Kiegészítők"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "jelentések minimális száma (guid szerint csoportosítva)"
-
-msgid "creation date"
-msgstr "létrehozás dátuma"
 
 msgid "User / Add-on"
 msgstr "Felhasználó / Kiegészítő"
@@ -293,6 +290,9 @@ msgstr "Saját témák"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "létrehozás dátuma"
+
 msgid "Tools"
 msgstr "Eszközök"
 
@@ -510,36 +510,6 @@ msgstr "Érvénytelen pk vagy SEO URL: „%s” – az objektum nem létezik."
 
 msgid "Confirmation for developer API keys"
 msgstr "Megerősítés a fejlesztői API kulcsokhoz"
-
-msgid "Application Versions"
-msgstr "Alkalmazásverziók"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Az összes alkalmazásnak megfelelő verziók az AMO-n."
-
-msgid "Valid Application Versions"
-msgstr "Érvényes alkalmazásverziók"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla Kiegészítők közé benyújtott kiegészítőnek kell legyen egy jegyzékfájlja, mely legalább egyet támogat az alábbi alkalmazások közül. Ezeknek az alkalmazásoknak csak az alább felsorolt verziói "
-"engedélyezettek."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Vegye figyelembe, hogy a WebExtensionök nem fogadják el a „*” karaktert a %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s értékeként."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Verziók"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az %(amo_manifests_mdn_link_open)sitt%(amo_manifests_mdn_link_close)s meghatározott tartalommal."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
@@ -1046,6 +1016,9 @@ msgstr "{addon} {version} elutasítása visszavonva."
 msgid "Un-rejected"
 msgstr "Elutasítás visszavonva"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} API-token használatával hitelesítve."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1527,6 +1500,9 @@ msgstr "Reflektorfény"
 msgid "Strategic"
 msgstr "Stratégiai"
 
+msgid "Notable"
+msgstr "Jelentős"
+
 msgid "Add-on"
 msgstr "Kiegészítő"
 
@@ -1700,6 +1676,9 @@ msgstr "Alacsony minőségű, nyújtott vagy üres kép"
 
 msgid "Header image alignment problem"
 msgstr "Fejléckép-igazítási probléma"
+
+msgid "Theme"
+msgstr "Téma"
 
 msgid "No action"
 msgstr "Nincs művelet"
@@ -4660,13 +4639,12 @@ msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "Lapkezelők"
+msgid "Elite ad blockers"
+msgstr "Elit reklámblokkolók"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
+msgid "Steam extensions"
+msgstr "Steam-kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4742,6 +4720,10 @@ msgid "See more social streaming staff picks"
 msgstr "További, stáb által javasolt közösségi közvetítési kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "Lapkezelők"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "További, stáb által javasolt lapkezelő kiegészítők megtekintése"
 
@@ -4754,12 +4736,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elit reklámblokkolók"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4829,6 +4811,9 @@ msgstr "Ismeretlen „strict_min_version” érték: {appver} a(z) {app} alkalma
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Ismeretlen „strict_max_version” érték: {appver} a(z) {app} alkalmazásnál"
+
+msgid "Unsupported compression method in archive."
+msgstr "Nem támogatott tömörítési mód az archívumban."
 
 msgid "Unsupported archive type."
 msgstr "Nem támogatott archívumtípus."
@@ -5088,6 +5073,9 @@ msgstr "Nem küldhet be sorszámot anélkül, hogy fájlnévhez rendelné azt."
 msgid "ID"
 msgstr "Azonosító"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Jelzők"
 
@@ -5211,14 +5199,14 @@ msgstr "Értékelési napló"
 msgid "Add-on Review Guide"
 msgstr "Kiegészítő értékelési útmutató"
 
-msgid "Security Scanners"
-msgstr "Biztonsági átvizsgálók"
+msgid "Human Review Needed"
+msgstr "Emberi felülvizsgálat szükséges"
 
-msgid "Flagged By Scanners"
-msgstr "Átvizsgálók által megjelölt"
+msgid "Versions Needing Human Review"
+msgstr "Emberi felülvizsgálatot igénylő verziók"
 
-msgid "Flagged for Human Review"
-msgstr "Emberi felülvizsgálatra jelölt"
+msgid "Flagged by MAD for Human Review"
+msgstr "A MAD által emberi felülvizsgálatra jelölve"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatikusan jóváhagyott kiegészítők"
@@ -5723,9 +5711,6 @@ msgstr "Bármikor"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Önnek <span>{0}</span> pontja van."
-
-msgid "Theme"
-msgstr "Téma"
 
 msgid "No results found"
 msgstr "Nincs találat"

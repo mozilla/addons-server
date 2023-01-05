@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,9 +27,6 @@ msgstr "অ্যাড-অন"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "ন্যূনতম প্রতিবেদন গণনা (গাইড অনুসারে গ্রুপ করা)"
-
-msgid "creation date"
-msgstr ""
 
 msgid "User / Add-on"
 msgstr ""
@@ -288,6 +285,9 @@ msgstr "আমার থিমসমূহ"
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr ""
+
 msgid "Tools"
 msgstr "টুলস"
 
@@ -494,34 +494,6 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
-
-msgid "Application Versions"
-msgstr "অ্যাপ্লিকেশন সংস্করণ"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "AMO তে সব অ্যাপ্লিকেশনের জন্য গ্রহণযোগ্য সংস্করণ।"
-
-msgid "Valid Application Versions"
-msgstr "বৈধ অ্যাপ্লিকেশন সংস্করণ"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "সংস্করণ"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
@@ -1050,6 +1022,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "ফায়ারফক্স"
 
@@ -1517,6 +1492,9 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "অ্যাড-অন"
 
@@ -1690,6 +1668,9 @@ msgstr "নিম্ন মানের, প্রসারিত, বা ফা
 
 msgid "Header image alignment problem"
 msgstr "হেডার ইমেজের এলাইনমেন্টে সমস্যা"
+
+msgid "Theme"
+msgstr "থিম"
 
 #, fuzzy
 msgid "No action"
@@ -4558,12 +4539,11 @@ msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
+msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4651,6 +4631,10 @@ msgid "See more social streaming staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
@@ -4665,13 +4649,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "সকল এক্সটেনশন দেখুন"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "সকল এক্সটেনশন দেখুন"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4750,6 +4734,9 @@ msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
+msgstr ""
+
+msgid "Unsupported compression method in archive."
 msgstr ""
 
 msgid "Unsupported archive type."
@@ -5012,6 +4999,9 @@ msgstr ""
 msgid "ID"
 msgstr "CIDR"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr ""
 
@@ -5140,15 +5130,13 @@ msgstr ""
 msgid "Add-on Review Guide"
 msgstr ""
 
-#, fuzzy
-msgid "Security Scanners"
-msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "সুরক্ষাজনিত পরীক্ষাসমূহ"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-msgid "Flagged for Human Review"
+msgid "Flagged by MAD for Human Review"
 msgstr ""
 
 msgid "Auto-Approved Add-ons"
@@ -5658,9 +5646,6 @@ msgstr "সব সময়"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr ""
-
-msgid "Theme"
-msgstr "থিম"
 
 msgid "No results found"
 msgstr "কোন ফলাফল পাওয়া যায় নি"

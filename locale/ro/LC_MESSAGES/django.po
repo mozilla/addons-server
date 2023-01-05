@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -27,9 +27,6 @@ msgstr "Suplimente"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "număr minim de rapoarte (grupate în funcție de guid)"
-
-msgid "creation date"
-msgstr "data creării"
 
 msgid "User / Add-on"
 msgstr "Utilizator / Supliment"
@@ -285,6 +282,9 @@ msgstr "Temele mele"
 msgid "Git-Extract"
 msgstr ""
 
+msgid "creation date"
+msgstr "data creării"
+
 msgid "Tools"
 msgstr "Instrumente"
 
@@ -507,38 +507,6 @@ msgstr "Pk sau slug nevalid(ă) „%s” - obiectul nu există."
 
 msgid "Confirmation for developer API keys"
 msgstr "Confirmare pentru cheile API de dezvoltator"
-
-msgid "Application Versions"
-msgstr "Versiunile aplicației"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Versiuni acceptabile pentru toate aplicațiile de pe AMO."
-
-msgid "Valid Application Versions"
-msgstr "Versiuni valide de aplicație"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Suplimente trimise către Suplimente Mozilla trebuie să aibă un fișier manifest care să suporte cel puțin una dintre aplicațiile de mai jos. Numai versiunile de mai jos sunt permise pentru aceste "
-"aplicații."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Te rugăm să fii atent că WebExtensions nu va accepta un „*” în %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versiuni"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Dacă aplicația ta suportată nu necesită un fișier manifest, tot trebuie să incluzi unul care să aibă proprietățile obligatorii, conform specificațiilor%(amo_manifests_mdn_link_open)sde aici"
-"%(amo_manifests_mdn_link_close)s."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
@@ -1052,6 +1020,9 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
+msgid "{user} authenticated through an API token."
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1533,6 +1504,9 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategic"
 
+msgid "Notable"
+msgstr ""
+
 msgid "Add-on"
 msgstr "Supliment"
 
@@ -1707,6 +1681,9 @@ msgstr "Imagine de calitate proastă, deformată sau goală"
 
 msgid "Header image alignment problem"
 msgstr "Problemă de aliniere a imaginii antetului"
+
+msgid "Theme"
+msgstr "Temă"
 
 msgid "No action"
 msgstr "Nicio acțiune"
@@ -4695,12 +4672,11 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Steam extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4783,6 +4759,10 @@ msgid "See more social streaming staff picks"
 msgstr "Vezi mai multe extensii populare"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Vezi mai multe extensii recomandate"
@@ -4796,13 +4776,13 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Vezi mai multe extensii etichetate „{tag}”"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatoare de reclame de elită"
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vezi mai multe extensii recomandate"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4883,6 +4863,9 @@ msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 #, fuzzy
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr ""
 
 msgid "Unsupported archive type."
 msgstr "Tip de arhivă nesuportat."
@@ -5146,6 +5129,9 @@ msgstr "Nu poți trimite un număr de linie fără să îl asociezi la o denumir
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "Semnalizări"
 
@@ -5274,16 +5260,14 @@ msgstr "Jurnal de recenzii"
 msgid "Add-on Review Guide"
 msgstr "Ghid de recenzare pentru suplimente"
 
-msgid "Security Scanners"
-msgstr "Scanere de securitate"
+msgid "Human Review Needed"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Marcate de scanere"
+msgid "Versions Needing Human Review"
+msgstr ""
 
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Marcate pentru recenzie umană"
+msgid "Flagged by MAD for Human Review"
+msgstr ""
 
 msgid "Auto-Approved Add-ons"
 msgstr "Suplimente aprobate automat"
@@ -5798,9 +5782,6 @@ msgstr "Dintotdeauna"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "Ai <span>{0}</span> puncte."
-
-msgid "Theme"
-msgstr "Temă"
 
 msgid "No results found"
 msgstr "Nu s-a găsit niciun rezultat"

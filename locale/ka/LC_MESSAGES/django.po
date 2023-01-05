@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-11-22 17:21+0000\n"
-"PO-Revision-Date: 2022-12-03 18:20+0000\n"
+"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"PO-Revision-Date: 2023-01-03 19:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -28,9 +28,6 @@ msgstr "დამატებები"
 
 msgid "minimum reports count (grouped by guid)"
 msgstr "მოხსენების უმცირესი რაოდენობა (guid-დაჯგუფებით)"
-
-msgid "creation date"
-msgstr "შექმნის თარიღი"
 
 msgid "User / Add-on"
 msgstr "მომხმარებელი / დამატება"
@@ -285,6 +282,9 @@ msgstr "ჩემი თემები"
 msgid "Git-Extract"
 msgstr "Git-Extract"
 
+msgid "creation date"
+msgstr "შექმნის თარიღი"
+
 msgid "Tools"
 msgstr "ხელსაწყოები"
 
@@ -502,36 +502,6 @@ msgstr "არასწორი pk ან ბმულის დაბოლო
 
 msgid "Confirmation for developer API keys"
 msgstr "დადასტურება, შემმუშავებლის API-გასაღებებისთვის"
-
-msgid "Application Versions"
-msgstr "აპლიკაციის ვერსიები"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "ყველა აპლიკაციის დასაშვები ვერსიები AMO-ზე."
-
-msgid "Valid Application Versions"
-msgstr "აპლიკაციის მართებული ვერსიები"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla-ს დამატებების საიტისთვის წარდგენილ დამატებას, თან უნდა ახლდეს მანიფესტის ფაილი, ქვემოთ მოცემული პროგრამებიდან, ერთ-ერთის მხარდაჭერით მაინც. ამ პროგრამებისთვის, მხოლოდ ქვემოთ მითითებული "
-"ვესიებია დასაშვები."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "გთხოვთ გაითვალისწინოთ, რომ WebExtensions არ მიიღებს \"*\" სიმბოლოს <%(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s-ში."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "ვერსიები"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "თუ მხარდაჭერილი პროგრამა არ საჭიროებს მანიფესტის ფაილს, მისი მიმაგრება მაინც აუცილებელია, %(amo_manifests_mdn_link_open)sმოცემული მითითების%(amo_manifests_mdn_link_close)s შესაბამისად."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL-ბმულის ეს დაბოლოება უკვე გამოყენებულია თქვენს ერთ-ერთ კრებულში."
@@ -1038,6 +1008,9 @@ msgstr "{addon} {version} უარყოფა გაუქმებული�
 msgid "Un-rejected"
 msgstr "უარყოფის გაუქმება"
 
+msgid "{user} authenticated through an API token."
+msgstr "{user} დამოწმებულია API-ნიშნის მეშვეობით."
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -1522,6 +1495,9 @@ msgstr "საყურადღებო"
 msgid "Strategic"
 msgstr "სტრატეგიული"
 
+msgid "Notable"
+msgstr "ღირსშესანიშნავი"
+
 msgid "Add-on"
 msgstr "დამატება"
 
@@ -1695,6 +1671,9 @@ msgstr "უხარისხო, გაწელილი ან ცარი�
 
 msgid "Header image alignment problem"
 msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
+
+msgid "Theme"
+msgstr "თემა"
 
 msgid "No action"
 msgstr "მოქმედების გარეშე"
@@ -4632,13 +4611,12 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr "ჩანართის მმართველები"
+msgid "Elite ad blockers"
+msgstr "რეკლამის საუკეთესო შემზღუდავები"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-ის უკეთ მორგება"
+msgid "Steam extensions"
+msgstr "Steam-ის გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4713,6 +4691,10 @@ msgid "See more social streaming staff picks"
 msgstr "სოციალური ნაკადისთვის, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
+msgid "Tab managers"
+msgstr "ჩანართის მმართველები"
+
+#. editorial content for the homepage shelves.
 msgid "See more tab management staff picks"
 msgstr "ჩანართის სხვა მმართველები, თანამშრომლების შერჩეული"
 
@@ -4725,12 +4707,12 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
 
 #. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "რეკლამის საუკეთესო შემზღუდავები"
-
-#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "რეკლამის სხვა შემზღუდავები, თანამშრომლების შერჩეული"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-ის უკეთ მორგება"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4800,6 +4782,9 @@ msgstr "დაუდგენელი „strict_min_version“ {appver} აპ�
 
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "დაუდგენელი „strict_max_version“ {appver} აპლიკაციისთვის {app}"
+
+msgid "Unsupported compression method in archive."
+msgstr "მხარდაუჭერელი შეკუმშვის მეთოდი არქივში."
 
 msgid "Unsupported archive type."
 msgstr "მხარდაუჭერელი სახის არქივი."
@@ -5059,6 +5044,9 @@ msgstr "თქვენ ვერ წარადგენთ ხაზის �
 msgid "ID"
 msgstr "ID"
 
+msgid "GUID"
+msgstr "GUID"
+
 msgid "Flags"
 msgstr "მონიშვნები"
 
@@ -5090,10 +5078,10 @@ msgid "Last Updated"
 msgstr "ბოლოს განახლდა"
 
 msgid "Listed versions needing human review ({0})"
-msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
+msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
 
 msgid "Unlisted versions needing human review ({0})"
-msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მიერ განხილვას ({0})"
+msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
 
 msgid "Listed version"
 msgstr "გამოქვეყნებული ვერსია"
@@ -5182,14 +5170,14 @@ msgstr "მიმოხილვის ჩანაწერები"
 msgid "Add-on Review Guide"
 msgstr "დამატების მიმოხილვის სახელმძღვანელო"
 
-msgid "Security Scanners"
-msgstr "უსაფრთხოების შემოწმება"
+msgid "Human Review Needed"
+msgstr "საჭიროებს ადამიანის მონაწილეობით განხილვას"
 
-msgid "Flagged By Scanners"
-msgstr "მონიშნულია სკანერების მიერ"
+msgid "Versions Needing Human Review"
+msgstr "ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას"
 
-msgid "Flagged for Human Review"
-msgstr "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის"
+msgid "Flagged by MAD for Human Review"
+msgstr "მონიშნულია MAD-ის მიერ ადამიანის მონაწილეობით განხილვისთვის"
 
 msgid "Auto-Approved Add-ons"
 msgstr "თვითდამოწმებული დამატებები"
@@ -5688,9 +5676,6 @@ msgstr "ყველა დროის"
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
 msgstr "თქვენ გაქვთ <span>{0}</span> ქულა."
-
-msgid "Theme"
-msgstr "თემა"
 
 msgid "No results found"
 msgstr "შედეგები ვერ მოიძებნა."

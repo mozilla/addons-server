@@ -9,6 +9,7 @@ from django.utils.encoding import force_str
 
 import olympia.core.logger
 
+from olympia import amo
 from olympia.amo.utils import send_mail
 from olympia.constants.reviewers import (
     POST_REVIEW_WEIGHT_HIGHEST_RISK,
@@ -22,32 +23,37 @@ SQL_DIR = os.path.join(
 )
 
 REPORTS = {
-    'addon': [
-        (
-            'Weekly Add-on Reviews, 5 Reviews or More',
-            os.path.join(SQL_DIR, 'addon/weekly.sql'),
+    'addon': {
+        'activities': (
+            amo.LOG.APPROVE_VERSION,
+            amo.LOG.REJECT_VERSION,
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            amo.LOG.REJECT_VERSION_DELAYED,
         ),
-        (
-            'Weekly Volunteer Contribution Ratio',
-            os.path.join(SQL_DIR, 'addon/breakdown.sql'),
+        'reports': (
+            (
+                'Weekly Add-on Reviews',
+                os.path.join(SQL_DIR, 'addon/weekly.sql'),
+            ),
+            (
+                'Weekly Add-on Reviews by Risk Profiles',
+                os.path.join(SQL_DIR, 'addon/risk.sql'),
+            ),
         ),
-        (
-            'Weekly Add-on Reviews by Risk Profiles',
-            os.path.join(SQL_DIR, 'addon/risk.sql'),
+    },
+    'content': {
+        'activities': (
+            amo.LOG.APPROVE_CONTENT,
+            amo.LOG.REJECT_CONTENT,
+            amo.LOG.REJECT_CONTENT_DELAYED,
         ),
-        ('Quarterly contributions', os.path.join(SQL_DIR, 'addon/quarterly.sql')),
-    ],
-    'content': [
-        (
-            'Weekly Content Reviews, 10 Reviews or More',
-            os.path.join(SQL_DIR, 'content/weekly.sql'),
+        'reports': (
+            (
+                'Weekly Content Reviews',
+                os.path.join(SQL_DIR, 'content/weekly.sql'),
+            ),
         ),
-        (
-            'Weekly Volunteer Contribution Ratio',
-            os.path.join(SQL_DIR, 'content/breakdown.sql'),
-        ),
-        ('Quarterly contributions', os.path.join(SQL_DIR, 'content/quarterly.sql')),
-    ],
+    },
 }
 
 log = olympia.core.logger.getLogger('z.reviewers.review_report')
@@ -93,18 +99,20 @@ class Command(BaseCommand):
                 """
                 SET @WEEK_BEGIN=%s;
                 SET @WEEK_END=%s;
-                SET @QUARTER_BEGIN=%s;
                 SET @RISK_HIGHEST=%s;
                 SET @RISK_HIGH=%s;
                 SET @RISK_MEDIUM=%s;
+                SET @ACTIVITY_ID_LIST=%s;
                 """,
                 [
                     today - timedelta(days=today.weekday() + 7),
                     today - timedelta(days=today.weekday() + 1),
-                    date(today.year, (today.month - 1) // 3 * 3 + 1, 1),
                     POST_REVIEW_WEIGHT_HIGHEST_RISK,
                     POST_REVIEW_WEIGHT_HIGH_RISK,
                     POST_REVIEW_WEIGHT_MEDIUM_RISK,
+                    ','.join(
+                        str(activity.id) for activity in REPORTS[group]['activities']
+                    ),
                 ],
             )
 
@@ -117,7 +125,7 @@ class Command(BaseCommand):
 
             report_data = []
 
-            for header, query_file in REPORTS.get(group):
+            for header, query_file in REPORTS[group]['reports']:
                 with open(query_file) as report_query:
                     query_string = report_query.read().replace('\n', ' ')
                     cursor.execute(query_string)
@@ -151,21 +159,18 @@ class Command(BaseCommand):
         # For each group, execute the individual SQL reports
         # and build the HTML email.
 
-        for section in report_data:
-            all_html += f'{h2}{section[0]}</h2>\n'
+        for title, headers, rows in report_data:
+            all_html += f'{h2}{title}</h2>\n'
 
             table_html = '<table>\n'
-            table_html += (
-                f'<tr>{th}'
-                + f'</th>{th}'.join([header for header in section[1]])
-                + '</th></tr>\n'
-            )
-            for row in section[2]:
-                table_html += (
-                    f'<tr>{td_first}'
-                    + f'</td>{td_rest}'.join([entry for entry in row])
-                    + '</td></tr>\n'
+            table_html += f'<tr>{th}' + f'</th>{th}'.join(headers) + '</th></tr>\n'
+            for row in rows:
+                row_html = (
+                    f'<tr>{td_first}' + f'</td>{td_rest}'.join(row) + '</td></tr>'
                 )
+                if row[0] == 'All Reviewers':
+                    row_html = f'<tfoot style="text-weight: bold">{row_html}</tfoot>'
+                table_html += row_html + '\n'
             table_html += '</table>\n'
             all_html += table_html
 
