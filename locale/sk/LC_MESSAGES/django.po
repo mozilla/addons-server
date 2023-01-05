@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 18:08+0000\n"
+"PO-Revision-Date: 2023-01-05 18:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -786,7 +786,7 @@ msgid "Password changed."
 msgstr "Heslo bolo zmenené."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "Doplnok {addon} {version} bol schválený, ale čaká na uverejnenie pre verejnosť."
+msgstr "Doplnok {addon} {version} bol schválený, ale čaká na zverejnenie."
 
 msgid "Approved but waiting"
 msgstr "Schválené, ale čaká"
@@ -4540,8 +4540,8 @@ msgstr "Vráťte sa do jednoduchšieho obdobia – keď vaše najlepšie výsled
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
-"Prestaňte dávať stránkam svoju e-mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte. Inovujte na prémiovú službu a získajte ďalšie výhody, ako je blokovanie "
-"špecifickejších propagačných e-mailov."
+"Prestaňte dávať stránkam svoju e-mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte. Inovujte na prémiovú službu a získajte ďalšie výhody, ako je špecifickejšie "
+"blokovanie reklamných e-mailov."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4840,7 +4840,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Číslo verzie môže obsahovať len čísla, písmená a nasledovné znaky: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Maximálna veľkosť pre témy vzhľadu WebExtension je {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Pridávanie takéhoto typu doplnku nie je povolené"
@@ -5234,10 +5234,10 @@ msgid "Moderation Guide"
 msgstr ""
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Neverejné doplnky"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Všetky neverejné doplnky"
 
 msgid "Unlisted Add-ons Pending Manual Approval"
 msgstr ""
