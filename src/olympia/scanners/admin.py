@@ -323,8 +323,13 @@ class AbstractScannerResultAdminMixin:
 
     ordering = ('-pk',)
 
-    class Media:
-        css = {'all': ('css/admin/scannerresult.css',)}
+    class Media(AMOModelAdmin.Media):
+        css = {
+            'all': (
+                'css/admin/amoadmin.css',
+                'css/admin/scannerresult.css',
+            )
+        }
 
     def get_changelist(self, request, **kwargs):
         return ScannerResultChangeList

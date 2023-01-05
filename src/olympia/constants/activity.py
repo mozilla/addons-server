@@ -896,3 +896,6 @@ LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER
 LOG_SHOW_USER_TO_DEVELOPER = [
     log.id for log in LOGS if hasattr(log, 'show_user_to_developer')
 ]
+
+# Actions that store IP
+LOG_STORE_IPS = [log.id for log in LOGS if getattr(log, 'store_ip', False)]

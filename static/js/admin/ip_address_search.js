@@ -100,12 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const result_list = document.querySelector(
-    'body.change-list.model-userprofile.change-list #result_list',
-  );
+  const result_list = document.querySelector('body.change-list #result_list');
 
   if (!result_list) {
-    // This is only for the userprofile result change list page.
     return;
   }
 

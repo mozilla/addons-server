@@ -145,9 +145,10 @@ class FileInline(admin.TabularInline):
 
 
 class AddonAdmin(AMOModelAdmin):
-    class Media:
+    class Media(AMOModelAdmin.Media):
         css = {
             'all': (
+                'css/admin/amoadmin.css',
                 'css/admin/l10n.css',
                 'css/admin/pagination.css',
                 'css/admin/addons.css',
