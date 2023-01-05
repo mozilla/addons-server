@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-05 18:40+0000\n"
+"PO-Revision-Date: 2023-01-05 18:50+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -4907,7 +4907,7 @@ msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Táto verzia doplnku neexistuje alebo nie je verejná."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Nemôžete zanechať recenziu na svoj vlastný doplnok."
 
 msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Pre rovnakú verziu doplnku nemôžete zanechať viac ako jednu recenziu."
@@ -5025,7 +5025,7 @@ msgid "Auto-approval delayed indefinitely"
 msgstr ""
 
 msgid "Is locked by a reviewer"
-msgstr ""
+msgstr "Je uzamknutý kontrolórom"
 
 msgid "Has auto-approval disabled/delayed flag set"
 msgstr ""
@@ -5104,34 +5104,34 @@ msgid "Unlisted versions ({0})"
 msgstr "Neverejné verzie ({0})"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Týmto schválite, podpíšete a uverejníte túto verziu. Pripomienky budú odoslané vývojárovi."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Týmto zamietnete túto verziu a odstránite ju z frontu. Pripomienky budú odoslané vývojárovi."
 
 msgid "Approve Content"
 msgstr "Schváliť obsah"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Týmto sa zaznamená váš súhlas s obsahom najnovšej verejnej verzie bez toho, aby ste o tom informovali vývojára."
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Potvrdiť schválenie"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Najnovšia verejná verzia tohto doplnku bola automaticky schválená. Toto zaznamená vaše potvrdenie schválenia tejto verzie bez toho, aby ste o tom informovali vývojára."
 
 msgid "Approve Multiple Versions"
-msgstr ""
+msgstr "Schváliť viacero verzií"
 
 msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Týmto sa schvália vybrané verzie. Pripomienky budú odoslané vývojárovi."
 
 msgid "Reject Multiple Versions"
-msgstr ""
+msgstr "Odmietnuť viacero verzií"
 
 msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Toto zamietnete vybrané verzie. Pripomienky budú odoslané vývojárovi."
 
 msgid "Un-reject Versions"
 msgstr ""
@@ -5146,10 +5146,10 @@ msgid "This will disable the selected approved versions silently, and open up th
 msgstr "Týmto sa potichu zablokujú vybrané schválené verzie a otvorí sa stránka správcu blokovania doplnkov."
 
 msgid "Confirm Multiple Versions"
-msgstr ""
+msgstr "Potvrdiť viacero verzií"
 
 msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
+msgstr "Týmto sa potvrdí schválenie vybraných verzií bez upovedomenia vývojára."
 
 msgid "Reviewer reply"
 msgstr "Odpoveď kontrolóra"
@@ -5161,7 +5161,7 @@ msgid "Request super-review"
 msgstr "Požadovať super-recenziu"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "Ak máte obavy týkajúce sa tohto doplnku, ktoré by mal preskúmať administrátor, zadajte svoje pripomienky do poľa nižšie. Nebudú odoslané vývojárovi."
 
 msgid "Comment"
 msgstr "Komentár"
@@ -5170,16 +5170,16 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Pridajte komentár k tejto verzii. Vývojár ho neuvidí."
 
 msgid "Pre-Review Add-ons"
-msgstr ""
+msgstr "Predbežná kontrola doplnkov"
 
 msgid "Recommended ({0})"
-msgstr ""
+msgstr "Odporúčané ({0})"
 
 msgid "Other Pending Review ({0})"
-msgstr ""
+msgstr "Iná čakajúca kontrola ({0})"
 
 msgid "Review Log"
-msgstr ""
+msgstr "Záznam kontrol"
 
 msgid "Add-on Review Guide"
 msgstr "Sprievodca recenziou doplnkov"
@@ -5188,16 +5188,16 @@ msgid "Human Review Needed"
 msgstr "Vyžaduje sa kontrola človekom"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Verzie vyžadujúce kontrolu človekom"
 
 msgid "Flagged by MAD for Human Review"
 msgstr ""
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "Automaticky schválené doplnky"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Automaticky schválené doplnky ({0})"
 
 msgid "Add-on Review Log"
 msgstr "Záznam kontroly doplnku"
@@ -5206,32 +5206,32 @@ msgid "Review Guide"
 msgstr "Pokyny pre recenzentov"
 
 msgid "Content Review"
-msgstr ""
+msgstr "Kontrola obsahu"
 
 msgid "Content Review ({0})"
-msgstr ""
+msgstr "Kontrola obsahu ({0})"
 
 msgid "New ({0})"
-msgstr ""
+msgstr "Nové ({0})"
 
 msgid "Updates ({0})"
-msgstr ""
+msgstr "Aktualizácie ({0})"
 
 msgid "Theme Review Guide"
 msgstr "Sprievodca recenziou tém vzhľadu"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderovanie hodnotení od používateľov"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Hodnotenia čakajúce na moderovanie ({0})"
 
 # 80%
 msgid "Moderated Review Log"
 msgstr ""
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "Sprievodca moderovaním"
 
 msgid "Unlisted Add-ons"
 msgstr "Neverejné doplnky"
@@ -5240,7 +5240,7 @@ msgid "All Unlisted Add-ons"
 msgstr "Všetky neverejné doplnky"
 
 msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr ""
+msgstr "Neverejné doplnky čakajúce na manuálne schválenie"
 
 msgid "Announcement"
 msgstr "Oznámenie"
@@ -5248,9 +5248,8 @@ msgstr "Oznámenie"
 msgid "Update message of the day"
 msgstr "Aktualizovať správu dňa"
 
-#, fuzzy
 msgid "Add-ons Pending Rejection ({0})"
-msgstr "Média doplnku pre {0}"
+msgstr "Doplnky čakajúce na odmietnutie ({0})"
 
 msgid "An unknown error occurred"
 msgstr "Nastala neznáma chyba"
@@ -5271,7 +5270,7 @@ msgid "{addon} – Privacy Policy"
 msgstr "{addon} – Zásady ochrany súkromia"
 
 msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
+msgstr "Hlásenia o zneužití – {addon} – Doplnky pre Firefox"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
@@ -5327,10 +5326,10 @@ msgid "Last Approval Date"
 msgstr "Dátum posledného schválenia"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "Hlásenia o zneužití ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Zlé hodnotenia od používateľov ({num})"
 
 msgid "Theme Images"
 msgstr ""
@@ -5417,16 +5416,16 @@ msgid "Back to review"
 msgstr "Späť na recenziu"
 
 msgid "Content Review – Add-ons for Firefox"
-msgstr ""
+msgstr "Kontrola obsahu – Doplnky pre Firefox"
 
 msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Automaticky schválené doplnky – Doplnky pre Firefox"
 
 msgid "Review Moderation – Add-ons for Firefox"
 msgstr ""
 
 msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
+msgstr "Neverejné doplnky – Doplnky pre Firefox"
 
 msgid "Pending Rejection – Add-ons for Firefox"
 msgstr ""
