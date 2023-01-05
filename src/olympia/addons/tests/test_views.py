@@ -3975,6 +3975,12 @@ class TestVersionViewSetDelete(TestCase):
         assert not self.version.reload().deleted
 
         # even if they are a reviewer
+        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_REVIEW))
+        response = self.client.delete(self.url)
+        assert response.status_code == 403
+        assert not self.version.reload().deleted
+
+        # or have admin-ish permissions
         self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_EDIT))
         response = self.client.delete(self.url)
         assert response.status_code == 403
