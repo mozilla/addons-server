@@ -139,7 +139,10 @@ class RatingAdmin(AMOModelAdmin):
     list_select_related = ('user',)  # For addon/reply_to see get_queryset()
     search_fields = ('body',)
     extra_list_display_for_ip_searches = ()
-    search_by_ip_actions = (amo.LOG.ADD_RATING.id,)
+    search_by_ip_actions = (
+        amo.LOG.ADD_RATING.id,
+        amo.LOG.EDIT_RATING.id,
+    )
     search_by_ip_activity_accessor = 'ratinglog__activity_log'
     search_by_ip_activity_reverse_accessor = 'activity_log__ratinglog__rating'
 

@@ -466,6 +466,7 @@ class EDIT_RATING(_LOG):
     action_class = 'review'
     format = _('{rating} for {addon} updated.')
     show_user_to_developer = True
+    store_ip = True
 
 
 class THEME_REVIEW(_LOG):
