@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-05 18:51+0000\n"
+"PO-Revision-Date: 2023-01-06 18:30+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -569,11 +569,11 @@ msgstr "Domovská stránka"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "GUID doplnkov (celkom %(count)s) sú už blokované od verzie %(v_min)s po verziu %(v_max)s"
+msgstr "Identifikátory (GUID) doplnkov (celkom %(count)s) sú už blokované od verzie %(v_min)s po verziu %(v_max)s"
 
 #, python-format
 msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
+msgstr "Niekoľko identifikátorov doplnkov (GUID) sa nenašlo (celkom %(count)s)"
 
 msgid "Save"
 msgstr "Uložiť"
@@ -728,7 +728,7 @@ msgid "{addon} removed from {collection}."
 msgstr "Doplnok {addon} odstránený z kolekcie {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "Pre doplnok {addon} bolo napísané hodnotenie {rating}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -762,16 +762,16 @@ msgid "{addon} icon or previews changed."
 msgstr "Ikona alebo náhľady doplnku {addon} boli zmenené."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "Hodnotenie {rating} pre doplnok {addon} bol schválené."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "Používateľ {user} schválil hodnotenie {rating} pre doplnok {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Hodnotenie {rating} pre doplnok {addon} bola zmazané."
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "Používateľ {user} odstránil hodnotenie {rating} pre doplnok {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Maximálna verzia aplikácie pre {version} bola aktualizovaná."
@@ -1925,10 +1925,10 @@ msgid "Add-on Status"
 msgstr "Stav doplnku"
 
 msgid "User Collections"
-msgstr "Kolekcie používateľa"
+msgstr "Kolekcie používateľov"
 
 msgid "User Reviews"
-msgstr "Recenzie používateľa"
+msgstr "Recenzie od používateľov"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Doplněk nemôže byť odstránený. Namiesto toho ho zakážte."
