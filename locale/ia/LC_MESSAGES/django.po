@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-04 01:50+0000\n"
+"PO-Revision-Date: 2023-01-04 15:25+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1010,7 +1010,7 @@ msgid "Un-rejected"
 msgstr "Reapprobate"
 
 msgid "{user} authenticated through an API token."
-msgstr ""
+msgstr "{user} authenticate per un jeton API."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4767,7 +4767,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "“strict_max_version” {appver} incognite pro {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Methodo de compression non supportate in le archivo."
 
 msgid "Unsupported archive type."
 msgstr "Typo de archivo non admittite."
@@ -5154,13 +5154,13 @@ msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
 
 msgid "Human Review Needed"
-msgstr ""
+msgstr "Revision human necessari"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Versiones besoniante de revision human"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "Signalate per MAD pro revision human"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Additivos approbate automaticamente"
