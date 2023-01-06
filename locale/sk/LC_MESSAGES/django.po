@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-06 18:30+0000\n"
+"PO-Revision-Date: 2023-01-06 18:39+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -819,7 +819,7 @@ msgid "User {user} restricted."
 msgstr "Používateľ {user} bol obmedzený."
 
 msgid "Admin {0} viewed activity log for {user}."
-msgstr "Administrátor {0} si zobrazil záznam aktivity používateľa {user}."
+msgstr "Správca {0} zobrazil denník aktivít používateľa {user}."
 
 msgid "{rating} for {addon} updated."
 msgstr "Hodnotenie {rating} pre {addon} bolo aktualizované."
@@ -902,22 +902,22 @@ msgid "Content rejected"
 msgstr "Obsah bol zamietnutý"
 
 msgid "{addon} information request altered or removed by admin."
-msgstr ""
+msgstr "Žiadosť o informácie k doplnku {addon} bola zmenená alebo odstránená správcom."
 
 msgid "Information request altered"
-msgstr ""
+msgstr "Žiadosť o informácie zmenená"
 
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "Žiadosť o informácie k doplnku {addon} {version} bola vymazaná vývojárom."
 
 msgid "Information request removed"
-msgstr ""
+msgstr "Žiadosť o informácie bola odstránená"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
+msgstr "Vyžiadaná kontrola správcom pre doplnok {addon} {version}."
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "Vyžiadaná kontrola doplnku správcom"
 
 msgid "{addon} {version} admin content-review requested."
 msgstr "Pre doplnok {addon} {version} bola vyžiadaná kontrola jeho obsahu."
@@ -926,16 +926,16 @@ msgid "Admin content-review requested"
 msgstr "Vyžiadaná kontrola obsahu doplnku"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr ""
+msgstr "Pre {addon} {version} bola vyžiadaná kontrola témy vzhľadu správcom."
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "Vyžaduje sa kontrola témy vzhľadu správcom"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "Doplnok {addon} bol migrovaný z farebnej témy."
 
 msgid "User {user} api key reset."
-msgstr ""
+msgstr "Používateľ {user} resetoval kľúč API."
 
 msgid "Block for {0} added to Blocklist."
 msgstr "Blokovanie pre {0} bolo pridané do zoznamu blokovaných."
@@ -980,12 +980,11 @@ msgstr "Pre doplnok {addon} {version} bolo naplánované odmietnutie obsahu."
 msgid "Content reject scheduled"
 msgstr "Naplánované zamietnutie obsahu"
 
-#, fuzzy
 msgid "{addon} {version} reject scheduled."
-msgstr "Doplnok {addon} {version} zamietnutý."
+msgstr "Pre {addon} {version} bolo naplánované zamietnutie."
 
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Naplánované zamietnutie"
 
 msgid "{addon} {version} re-signed (previously {0})."
 msgstr "Doplnok {addon} {version} bol opätovne podpísaný (predtým {0})."
@@ -1985,7 +1984,7 @@ msgstr "Pri odosielaní ukážky sa vyskytla chyba."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Najnovšia schválená verzia doplnku %s sa nedá odstrániť ani zakázať, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte administrátorov AMO."
+"Najnovšia schválená verzia doplnku %s sa nedá odstrániť ani zakázať, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."
 
 #, python-format
 msgid "Version %s disabled."
@@ -3561,7 +3560,7 @@ msgid ""
 "AMO Admins if you need help with this."
 msgstr ""
 "Najnovšia schválená verzia doplnku %(promoted_group_name)s sa nedá odstrániť ani zakázať, pretože predchádzajúca verzia %(promoted_group_name)s nebola schválená na zverejnenie. Ak s tým potrebujete "
-"pomôcť, kontaktujte administrátorov AMO."
+"pomôcť, kontaktujte správcov stránok AMO."
 
 msgid "Hide Add-on"
 msgstr "Skryť doplnok"
@@ -5161,7 +5160,7 @@ msgid "Request super-review"
 msgstr "Požadovať super-recenziu"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Ak máte obavy týkajúce sa tohto doplnku, ktoré by mal preskúmať administrátor, zadajte svoje pripomienky do poľa nižšie. Nebudú odoslané vývojárovi."
+msgstr "Ak máte obavy týkajúce sa tohto doplnku, ktoré by mal preskúmať správca, zadajte svoje pripomienky do poľa nižšie. Nebudú odoslané vývojárovi."
 
 msgid "Comment"
 msgstr "Komentár"
