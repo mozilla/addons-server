@@ -3,7 +3,7 @@ updates:
 - package-ecosystem: "npm"
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
   open-pull-requests-limit: 99
 - package-ecosystem: pip
   directory: "/requirements"
