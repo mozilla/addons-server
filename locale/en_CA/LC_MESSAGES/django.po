@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-05 18:42+0000\n"
+"PO-Revision-Date: 2023-01-06 19:42+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -1007,7 +1007,7 @@ msgid "Un-rejected"
 msgstr "Un-rejected"
 
 msgid "{user} authenticated through an API token."
-msgstr ""
+msgstr "{user} authenticated through an API token."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1466,7 +1466,7 @@ msgid "Strategic"
 msgstr "Strategic"
 
 msgid "Notable"
-msgstr ""
+msgstr "Notable"
 
 msgid "Add-on"
 msgstr "Add-on"
@@ -1716,6 +1716,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
@@ -4574,7 +4576,7 @@ msgstr "Elite ad blockers"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4742,7 +4744,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unknown \"strict_max_version\" {appver} for {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Unsupported compression method in archive."
 
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
@@ -5129,13 +5131,13 @@ msgid "Add-on Review Guide"
 msgstr "Add-on Review Guide"
 
 msgid "Human Review Needed"
-msgstr ""
+msgstr "Human Review Needed"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Versions Needing Human Review"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "Flagged by MAD for Human Review"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Auto-Approved Add-ons"
