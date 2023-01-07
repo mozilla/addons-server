@@ -1628,6 +1628,29 @@ class TestAddonModels(TestCase):
         flags.reload()
         assert flags.notified_about_auto_approval_delay is False
 
+    def test_addon_reviewer_flags_signal(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        unlisted = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        assert not addon.current_version.due_date
+        assert not unlisted.due_date
+
+        flags = AddonReviewerFlags.objects.create(
+            addon=addon, auto_approval_disabled=True
+        )
+        assert addon.current_version.reload().due_date
+        assert not unlisted.reload().due_date
+
+        flags.update(auto_approval_disabled=False, auto_approval_disabled_unlisted=True)
+        assert not addon.current_version.reload().due_date
+        assert unlisted.reload().due_date
+
+        flags.update(auto_approval_disabled_unlisted=False)
+        assert not unlisted.reload().due_date
+
     def test_attach_previews(self):
         addons = [
             addon_factory(),
@@ -1919,9 +1942,15 @@ class TestHasListedAndUnlistedVersions(TestCase):
 class TestAddonDueDate(TestCase):
     fixtures = ['base/addon_3615']
 
+    def setUp(self):
+        AddonReviewerFlags.objects.create(
+            addon=Addon.objects.get(id=3615), auto_approval_disabled=True
+        )
+
     def test_set_due_date(self):
         addon = Addon.objects.get(id=3615)
         addon.update(status=amo.STATUS_NULL)
+        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
         addon.versions.latest().update(due_date=None)
         addon.update(status=amo.STATUS_NOMINATED)
         assert addon.versions.latest().due_date
@@ -1930,11 +1959,14 @@ class TestAddonDueDate(TestCase):
         addon = Addon.objects.get(id=3615)
         old_version = addon.versions.latest()
         addon.update(status=amo.STATUS_NOMINATED)
-        old_version.reload()
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        assert old_version.due_date
-        version = Version.objects.create(addon=addon, version=str('10.0'))
-        assert version.due_date == old_version.due_date
+        old_version.reload()
+        old_version_due_date = old_version.due_date
+        assert old_version_due_date
+        version = version_factory(
+            addon=addon, version='10.0', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        assert version.due_date == old_version_due_date
 
     def test_lone_version_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
@@ -1960,6 +1992,7 @@ class TestAddonDueDate(TestCase):
     def test_due_date_already_set(self):
         addon = Addon.objects.get(id=3615)
         earlier = datetime.today() - timedelta(days=2)
+        addon.versions.latest().file.update(status=amo.STATUS_AWAITING_REVIEW)
         addon.versions.latest().update(due_date=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
         assert addon.versions.latest().due_date.date() == earlier.date()
@@ -1967,25 +2000,20 @@ class TestAddonDueDate(TestCase):
     def setup_due_date(
         self, addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
     ):
-        addon = Addon.objects.create()
-        version = Version.objects.create(addon=addon)
-        File.objects.create(status=file_status, version=version, manifest_version=2)
+        addon = addon_factory(
+            status=addon_status,
+            file_kw={'status': file_status},
+            reviewer_flags={'auto_approval_disabled': True},
+        )
+        version = addon.current_version
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
         version.update(due_date=past, created=past, modified=past)
         addon.update(status=addon_status)
         due_date = addon.versions.latest().due_date
-        assert due_date
+        assert bool(due_date) == version.should_have_due_date
         return addon, due_date
-
-    def test_new_version_of_under_review_addon_does_not_reset_due_date(self):
-        addon, due_date = self.setup_due_date()
-        version = Version.objects.create(addon=addon, version='0.2')
-        File.objects.create(
-            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
-        )
-        assert addon.versions.latest().due_date == due_date
 
     def test_due_date_not_reset_if_adding_new_versions(self):
         """
@@ -1994,33 +2022,32 @@ class TestAddonDueDate(TestCase):
         addon, due_date = self.setup_due_date()
 
         # Adding a new unreviewed version.
-        version = Version.objects.create(addon=addon, version='0.3')
-        File.objects.create(
-            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        version_factory(
+            addon=addon,
+            version='0.3',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         assert addon.versions.latest().due_date == due_date
 
         # Adding a new unreviewed version.
-        version = Version.objects.create(addon=addon, version='0.4')
-        File.objects.create(
-            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        version_factory(
+            addon=addon,
+            version='0.4',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         assert addon.versions.latest().due_date == due_date
-
-    def check_due_date_reset_with_new_version(self, addon, due_date):
-        version = Version.objects.create(addon=addon, version='0.2')
-        assert version.due_date is None
-        File.objects.create(
-            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
-        )
-        assert addon.versions.latest().due_date != due_date
 
     def test_new_version_of_approved_addon_should_reset_due_date(self):
         addon, due_date = self.setup_due_date(
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
         )
         # Now create a new version with an attached file, and update status.
-        self.check_due_date_reset_with_new_version(addon, due_date)
+        version = Version.objects.create(addon=addon, version='0.2')
+        assert version.due_date is None
+        File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
+        )
+        assert addon.versions.latest().due_date != due_date
 
 
 class TestAddonDelete(TestCase):
@@ -3217,22 +3244,20 @@ class TestListedPendingManualApprovalQueue(TestCase):
 
     def test_versions_annotations(self):
         due_1 = self.days_ago(-2)
-        AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                status=amo.STATUS_NOMINATED,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                version_kw={'due_date': due_1},
-            ),
-            auto_approval_disabled=True,
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+            version_kw={'due_date': due_1},
         )
         due_2 = self.days_ago(1)
-        AddonReviewerFlags.objects.create(
-            addon=version_factory(
-                addon=addon_factory(version_kw={'due_date': self.days_ago(4)}),
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                due_date=due_2,
-            ).addon,
-            auto_approval_disabled=True,
+        version_factory(
+            addon=addon_factory(
+                reviewer_flags={'auto_approval_disabled': True},
+                version_kw={'due_date': self.days_ago(4)},
+            ),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=due_2,
         )
         expected = [due_1, due_2]
         qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')

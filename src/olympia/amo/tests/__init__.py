@@ -43,6 +43,7 @@ from olympia.addons.models import (
     Addon,
     AddonCategory,
     AddonGUID,
+    AddonReviewerFlags,
     update_search_index as addon_update_search_index,
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
@@ -674,6 +675,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         slug = name.replace(' ', '-').lower()[:30]
 
     promoted_group = kw.pop('promoted', None)
+    reviewer_flags = kw.pop('reviewer_flags', None)
 
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
@@ -704,6 +706,9 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         PromotedAddon.objects.create(addon=addon, group_id=promoted_group.id)
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
+
+    if reviewer_flags:
+        AddonReviewerFlags.objects.create(addon=addon, **reviewer_flags)
 
     if 'status' not in file_kw and version_kw.get('channel') != amo.CHANNEL_UNLISTED:
         match status:
@@ -765,6 +770,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if 'due_date' in version_kw:
         # If a due date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
+        version.due_date = version_kw['due_date']
         version.save()
 
     return addon
@@ -943,6 +949,8 @@ def version_factory(file_kw=None, **kw):
         file_factory(version=ver, **file_kw)
     if promotion_approved:
         kw['addon'].promotedaddon.approve_for_version(version=ver)
+    if 'due_date' not in kw:
+        ver.inherit_due_date()
     return ver
 
 

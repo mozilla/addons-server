@@ -284,6 +284,7 @@ def update_status(sender, instance, **kw):
                 addon.update_status(ignore_version=instance.version)
             else:
                 addon.update_status()
+            instance.version.reset_due_date()
         except models.ObjectDoesNotExist:
             pass
 

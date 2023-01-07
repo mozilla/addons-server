@@ -21,7 +21,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
-from olympia.addons.models import Addon, AddonCategory, AddonUser
+from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
     url as url_reverse,
@@ -1730,7 +1730,7 @@ class TestRequestReview(TestCase):
         # The author must upload a new version and re-nominate.
         # Renominating the same version resets the due date.
         mock_has_complete_metadata.return_value = True
-
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         orig_date = datetime.now() - timedelta(days=30)
         # Pretend it was due in the past:
         self.version.update(due_date=orig_date)

@@ -839,10 +839,9 @@ class ReviewBase:
         self.redirect_url = None
 
     def set_addon(self):
-        """Alter addon, set reviewed timestamp, clear due_date on version being
-        reviewed."""
+        """Alter addon, set reviewed timestamp on version being reviewed."""
         self.addon.update_status()
-        self.version.update(reviewed=datetime.now(), due_date=None)
+        self.version.update(reviewed=datetime.now())
 
     def set_data(self, data):
         self.data = data
