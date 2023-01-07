@@ -57,6 +57,7 @@ from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
 
 from .fields import VersionStringField
+from .utils import get_review_due_date
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -225,7 +226,7 @@ class Version(OnChangeMixin, ModelBase):
     )
     version = VersionStringField(max_length=255, default='0.1')
 
-    nomination = models.DateTimeField(null=True)
+    due_date = models.DateTimeField(null=True)
     reviewed = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
@@ -418,7 +419,7 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data=parsed_data,
         )
 
-        version.inherit_nomination()
+        version.inherit_due_date()
         version.disable_old_files()
 
         # After the upload has been copied to its permanent location, delete it
@@ -794,26 +795,26 @@ class Version(OnChangeMixin, ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    def reset_nomination_time(self, nomination=None):
-        if not self.nomination or nomination:
-            nomination = nomination or datetime.datetime.now()
+    def reset_due_date(self, due_date=None):
+        if not self.due_date or due_date:
+            due_date = due_date or get_review_due_date()
             # We need signal=False not to call update_status (which calls us).
-            self.update(nomination=nomination, _signal=False)
+            self.update(due_date=due_date, _signal=False)
 
-    def inherit_nomination(self):
+    def inherit_due_date(self):
         qs = (
             Version.objects.filter(addon=self.addon, channel=amo.CHANNEL_LISTED)
-            .exclude(nomination=None)
+            .exclude(due_date=None)
             .exclude(id=self.pk)
             .filter(file__status=amo.STATUS_AWAITING_REVIEW)
             .exclude(reviewerflags__pending_rejection__isnull=False)
-            .values_list('nomination', flat=True)
-            .order_by('-nomination')
+            .values_list('due_date', flat=True)
+            .order_by('-due_date')
         )
-        # If no matching version is found, we end up passing nomination=None
-        # which will update the nomination to datetime.now() if it wasn't
+        # If no matching version is found, we end up passing due_date=None
+        # which will update the due date to datetime.now() if it wasn't
         # already set on the instance.
-        self.reset_nomination_time(nomination=qs.first())
+        self.reset_due_date(due_date=qs.first())
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -1089,16 +1090,16 @@ def update_status(sender, instance, **kw):
             pass
 
 
-def inherit_nomination(sender, instance, **kw):
+def inherit_due_date(sender, instance, **kw):
     """
-    For new versions pending review, ensure nomination date
-    is inherited from last nominated version.
+    For new versions pending review, ensure the due date is inherited from last
+    nominated version.
     """
     if kw.get('raw'):
         return
     addon = instance.addon
-    if instance.nomination is None and addon.status == amo.STATUS_NOMINATED:
-        instance.inherit_nomination()
+    if instance.due_date is None and addon.status == amo.STATUS_NOMINATED:
+        instance.inherit_due_date()
 
 
 def cleanup_version(sender, instance, **kw):
@@ -1117,7 +1118,7 @@ models.signals.post_save.connect(
     update_status, sender=Version, dispatch_uid='version_update_status'
 )
 models.signals.post_save.connect(
-    inherit_nomination, sender=Version, dispatch_uid='version_inherit_nomination'
+    inherit_due_date, sender=Version, dispatch_uid='version_inherit_due_date'
 )
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version'

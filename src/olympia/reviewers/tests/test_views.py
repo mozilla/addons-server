@@ -1103,7 +1103,7 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(5),
-                            'nomination': self.days_ago(5),
+                            'due_date': self.days_ago(2),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_NOMINATED,
@@ -1117,7 +1117,7 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(4),
-                            'nomination': self.days_ago(4),
+                            'due_date': self.days_ago(1),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_NOMINATED,
@@ -1131,7 +1131,7 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(3),
-                            'nomination': self.days_ago(3),
+                            'due_date': self.days_ago(0),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_APPROVED,
@@ -1145,7 +1145,7 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(2),
-                            'nomination': self.days_ago(2),
+                            'due_date': self.days_ago(-1),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_APPROVED,
@@ -1159,7 +1159,7 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(1),
-                            'nomination': self.days_ago(1),
+                            'due_date': self.days_ago(-2),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_APPROVED,
@@ -1319,7 +1319,7 @@ class TestQueueBasics(QueueTest):
         expected = [
             'Add-on',
             'Type',
-            'Waiting Time',
+            'Due Date',
             'Flags',
         ]
         assert [pq(th).text() for th in doc('#addon-queue tr th')[1:]] == (expected)
@@ -1549,11 +1549,11 @@ class TestExtensionQueue(QueueTest):
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its nomination date must be coherent with that, but also
+        # to work. Its due date must be coherent with that, but also
         # not cause the queue order to change with respect to the other
         # add-ons.
         version2.created = version2.created + timedelta(minutes=1)
-        version2.nomination = version2.nomination + timedelta(minutes=1)
+        version2.due_date = version2.due_date + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()
@@ -1730,11 +1730,11 @@ class TestThemeNominatedQueue(QueueTest):
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its nomination date must be coherent with that, but also
+        # to work. Its due date must be coherent with that, but also
         # not cause the queue order to change with respect to the other
         # add-ons.
         version2.created = version2.created + timedelta(minutes=1)
-        version2.nomination = version2.nomination + timedelta(minutes=1)
+        version2.due_date = version2.due_date + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()
@@ -1812,11 +1812,11 @@ class TestRecommendedQueue(QueueTest):
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
         # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its nomination date must be coherent with that, but also
+        # to work. Its due date must be coherent with that, but also
         # not cause the queue order to change with respect to the other
         # add-ons.
         version2.created = version2.created + timedelta(minutes=1)
-        version2.nomination = version2.nomination + timedelta(minutes=1)
+        version2.due_date = version2.due_date + timedelta(minutes=1)
         version2.pk = None
         version2.version = '0.2'
         version2.save()

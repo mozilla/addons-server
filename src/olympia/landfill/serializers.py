@@ -19,7 +19,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
-from olympia.amo.utils import days_ago
 from olympia.constants.applications import FIREFOX
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
 from olympia.landfill.collection import generate_collection
@@ -96,7 +95,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(10):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
@@ -113,7 +111,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             generate_version(addon=addon)
@@ -141,7 +138,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author)],
                 name=f'{name}',
                 slug=f'{name}',
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             addon.save()
@@ -152,7 +148,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author.username)],
                 name=f'{name}',
                 slug=f'{name}',
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             addon.save()
@@ -183,7 +178,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
-            version_kw={'nomination': days_ago(6)},
             promoted=RECOMMENDED,
         )
         Preview.objects.create(addon=addon, position=1)
@@ -235,7 +229,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon for Android.',
-            version_kw={'nomination': days_ago(6)},
             promoted=RECOMMENDED,
         )
         Preview.objects.create(addon=addon, position=1)
@@ -274,7 +267,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             addon.save()
@@ -308,7 +300,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=777,
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
-            version_kw={'nomination': days_ago(6)},
             promoted=RECOMMENDED,
         )
         addon.save()
@@ -327,7 +318,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                version_kw={'nomination': days_ago(6)},
                 promoted=RECOMMENDED,
             )
             generate_collection(addon)

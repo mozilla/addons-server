@@ -172,7 +172,7 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name=_('Type'), accessor='type', orderable=False)
     waiting_time = tables.Column(
-        verbose_name=_('Waiting Time'), accessor='first_version_nominated'
+        verbose_name=_('Due Date'), accessor='first_version_due'
     )
 
     class Meta:
@@ -192,7 +192,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     def _get_waiting_time(self, record):
-        return record.first_version_nominated
+        return record.first_version_due
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
@@ -218,8 +218,8 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     @classmethod
     def default_order_by(cls):
         # waiting_time column is actually the date from the minimum version
-        # creation/nomination date. We want to display the add-ons which have
-        # waited the longest at the top by default, so we return waiting_time
+        # due date. We want to display the add-ons which have
+        # earliest due date at the top by default, so we return waiting_time
         # in ascending order.
         return 'waiting_time'
 
@@ -845,9 +845,10 @@ class ReviewBase:
         self.redirect_url = None
 
     def set_addon(self):
-        """Alter addon, set reviewed timestamp on version being reviewed."""
+        """Alter addon, set reviewed timestamp, clear due_date on version being
+        reviewed."""
         self.addon.update_status()
-        self.version.update(reviewed=datetime.now())
+        self.version.update(reviewed=datetime.now(), due_date=None)
 
     def set_data(self, data):
         self.data = data

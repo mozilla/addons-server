@@ -367,59 +367,6 @@ class TestReviewerScore(TestCase):
         )
         assert reviewer_score.note == 'ÔMG!'
 
-    def test_award_points_bonus(self):
-        user2 = UserProfile.objects.get(email='admin@mozilla.com')
-        bonus_days = 2
-        days = amo.REVIEWED_OVERDUE_LIMIT + bonus_days
-
-        bonus_addon = addon_factory(
-            status=amo.STATUS_NOMINATED,
-            type=amo.ADDON_STATICTHEME,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        bonus_addon.current_version.update(
-            nomination=(datetime.now() - timedelta(days=days, minutes=5))
-        )
-
-        self._give_points(user2, bonus_addon, amo.STATUS_NOMINATED)
-        score = ReviewerScore.objects.get(user=user2)
-        expected = amo.REVIEWED_SCORES[amo.REVIEWED_STATICTHEME] + (
-            amo.REVIEWED_OVERDUE_BONUS * bonus_days
-        )
-
-        assert score.score == expected
-
-    def test_award_points_no_bonus_for_content_review(self):
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(nomination=self.days_ago(28))
-        self.summary.update(verdict=amo.AUTO_APPROVED, weight=100)
-        ReviewerScore.award_points(
-            self.user,
-            self.addon,
-            self.addon.status,
-            version=self.addon.current_version,
-            post_review=False,
-            content_review=True,
-        )
-        score = ReviewerScore.objects.get(user=self.user)
-        assert score.score == amo.REVIEWED_SCORES[amo.REVIEWED_CONTENT_REVIEW]
-
-    def test_award_points_no_bonus_for_post_review(self):
-        self.addon.update(status=amo.STATUS_APPROVED)
-        self.addon.current_version.update(nomination=self.days_ago(29))
-        self.summary.update(verdict=amo.AUTO_APPROVED, weight=101)
-        ReviewerScore.award_points(
-            self.user,
-            self.addon,
-            self.addon.status,
-            version=self.addon.current_version,
-            post_review=True,
-            content_review=False,
-        )
-        score = ReviewerScore.objects.get(user=self.user)
-        assert score.score == amo.REVIEWED_SCORES[amo.REVIEWED_EXTENSION_MEDIUM_RISK]
-        assert score.version == self.addon.current_version
-
     def test_award_points_extension_disabled_autoapproval(self):
         self.version = version_factory(
             addon=self.addon,
@@ -1686,28 +1633,16 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.update(created=datetime.now())
         self.addon.update_status()
 
-        # First test with somehow no nomination date at all. The add-on
-        # creation date is used as a fallback, and it was created recently
-        # so it should be delayed.
-        assert self.version.nomination is None
+        # First test - the version was created recently so it should be delayed.
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
 
-        # Still using the add-on creation date as fallback, if it's old enough
-        # it should not be delayed.
-        self.addon.update(created=self.days_ago(2))
-        assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
-
-        # Now add a recent nomination date. It should be delayed.
-        self.version.update(nomination=datetime.now() - timedelta(hours=22))
-        assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
-
-        # Update nomination date in the past, it should no longer be delayed.
-        self.version.update(nomination=self.days_ago(2))
+        # Update the creation date so it's old enough to be not delayed.
+        self.version.update(created=self.days_ago(2))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
         # Unlisted shouldn't be affected.
         self.version.update(
-            nomination=datetime.now() - timedelta(hours=22),
+            created=datetime.now() - timedelta(hours=22),
             channel=amo.CHANNEL_UNLISTED,
         )
         assert (
@@ -1726,8 +1661,8 @@ class TestAutoApprovalSummary(TestCase):
         # Also remove AddonApprovalsCounter to start fresh.
         self.addon.addonapprovalscounter.delete()
 
-        # Set a recent nomination date. It should be delayed.
-        self.version.update(nomination=datetime.now() - timedelta(hours=12))
+        # Set a recent created date. It should be delayed.
+        self.version.update(created=datetime.now() - timedelta(hours=12))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is True
 
         # Add AddonApprovalsCounter with default values, it should still be
@@ -1752,13 +1687,12 @@ class TestAutoApprovalSummary(TestCase):
         self.addon.update(created=datetime.now())
         self.addon.update_status()
 
-        assert self.version.nomination is None
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
         self.addon.update(created=self.days_ago(2))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
-        self.version.update(nomination=datetime.now() - timedelta(hours=22))
+        self.version.update(created=datetime.now() - timedelta(hours=22))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
-        self.version.update(nomination=self.days_ago(2))
+        self.version.update(created=self.days_ago(2))
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 
     def test_check_is_blocked(self):

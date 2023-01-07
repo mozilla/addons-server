@@ -1105,34 +1105,6 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
-    def test_old_nomination_to_public_bonus_score(self):
-        self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
-        self.review_version.update(nomination=self.days_ago(9))
-
-        self.helper.handler.approve_latest_version()
-
-        assert self.addon.status == amo.STATUS_APPROVED
-        assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
-
-        assert len(mail.outbox) == 1
-        message = mail.outbox[0]
-        assert message.subject == ('%s Approved' % self.preamble)
-        assert 'has been approved' in message.body
-
-        # AddonApprovalsCounter counter is now at 1 for this addon.
-        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 1
-
-        self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file.path)
-
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-        # Score has bonus points added for reviewing an old add-on.
-        # 2 days over the limit = 4 points
-        self._check_score(amo.REVIEWED_STATICTHEME, bonus=4)
-
     def test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED, human_review=False)

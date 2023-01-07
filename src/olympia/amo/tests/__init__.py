@@ -762,8 +762,8 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
 
-    if 'nomination' in version_kw:
-        # If a nomination date was set on the version, then it might have been
+    if 'due_date' in version_kw:
+        # If a due date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
         version.save()
 

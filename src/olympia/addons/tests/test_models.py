@@ -1916,55 +1916,55 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.has_unlisted_versions(include_deleted=True)
 
 
-class TestAddonNomination(TestCase):
+class TestAddonDueDate(TestCase):
     fixtures = ['base/addon_3615']
 
-    def test_set_nomination(self):
+    def test_set_due_date(self):
         addon = Addon.objects.get(id=3615)
         addon.update(status=amo.STATUS_NULL)
-        addon.versions.latest().update(nomination=None)
+        addon.versions.latest().update(due_date=None)
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().nomination
+        assert addon.versions.latest().due_date
 
-    def test_new_version_inherits_nomination(self):
+    def test_new_version_inherits_due_date(self):
         addon = Addon.objects.get(id=3615)
         old_version = addon.versions.latest()
         addon.update(status=amo.STATUS_NOMINATED)
         old_version.reload()
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        assert old_version.nomination
+        assert old_version.due_date
         version = Version.objects.create(addon=addon, version=str('10.0'))
-        assert version.nomination == old_version.nomination
+        assert version.due_date == old_version.due_date
 
-    def test_lone_version_does_not_inherit_nomination(self):
+    def test_lone_version_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
         Version.objects.all().delete()
         version = Version.objects.create(addon=addon, version='1.0')
-        assert version.nomination is None
+        assert version.due_date is None
 
-    def test_reviewed_addon_does_not_inherit_nomination(self):
+    def test_reviewed_addon_does_not_inherit_due_date(self):
         addon = Addon.objects.get(id=3615)
         version_number = 10.0
         for status in (amo.STATUS_APPROVED, amo.STATUS_NULL):
             addon.update(status=status)
             version = Version.objects.create(addon=addon, version=str(version_number))
-            assert version.nomination is None
+            assert version.due_date is None
             version_number += 1
 
-    def test_nomination_no_version(self):
+    def test_due_date_no_version(self):
         # Check that the on_change method still works if there are no versions.
         addon = Addon.objects.get(id=3615)
         addon.versions.all().delete()
         addon.update(status=amo.STATUS_NOMINATED)
 
-    def test_nomination_already_set(self):
+    def test_due_date_already_set(self):
         addon = Addon.objects.get(id=3615)
         earlier = datetime.today() - timedelta(days=2)
-        addon.versions.latest().update(nomination=earlier)
+        addon.versions.latest().update(due_date=earlier)
         addon.update(status=amo.STATUS_NOMINATED)
-        assert addon.versions.latest().nomination.date() == earlier.date()
+        assert addon.versions.latest().due_date.date() == earlier.date()
 
-    def setup_nomination(
+    def setup_due_date(
         self, addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
     ):
         addon = Addon.objects.create()
@@ -1973,55 +1973,54 @@ class TestAddonNomination(TestCase):
         # Cheating date to make sure we don't have a date on the same second
         # the code we test is running.
         past = self.days_ago(1)
-        version.update(nomination=past, created=past, modified=past)
+        version.update(due_date=past, created=past, modified=past)
         addon.update(status=addon_status)
-        nomination = addon.versions.latest().nomination
-        assert nomination
-        return addon, nomination
+        due_date = addon.versions.latest().due_date
+        assert due_date
+        return addon, due_date
 
-    def test_new_version_of_under_review_addon_does_not_reset_nomination(self):
-        addon, nomination = self.setup_nomination()
+    def test_new_version_of_under_review_addon_does_not_reset_due_date(self):
+        addon, due_date = self.setup_due_date()
         version = Version.objects.create(addon=addon, version='0.2')
         File.objects.create(
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
-        assert addon.versions.latest().nomination == nomination
+        assert addon.versions.latest().due_date == due_date
 
-    def test_nomination_not_reset_if_adding_new_versions(self):
+    def test_due_date_not_reset_if_adding_new_versions(self):
         """
-        When under review, adding new versions and files should not
-        reset nomination.
+        When under review, adding new versions and files should not reset due date.
         """
-        addon, nomination = self.setup_nomination()
+        addon, due_date = self.setup_due_date()
 
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.3')
         File.objects.create(
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
-        assert addon.versions.latest().nomination == nomination
+        assert addon.versions.latest().due_date == due_date
 
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version='0.4')
         File.objects.create(
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
-        assert addon.versions.latest().nomination == nomination
+        assert addon.versions.latest().due_date == due_date
 
-    def check_nomination_reset_with_new_version(self, addon, nomination):
+    def check_due_date_reset_with_new_version(self, addon, due_date):
         version = Version.objects.create(addon=addon, version='0.2')
-        assert version.nomination is None
+        assert version.due_date is None
         File.objects.create(
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
-        assert addon.versions.latest().nomination != nomination
+        assert addon.versions.latest().due_date != due_date
 
-    def test_new_version_of_approved_addon_should_reset_nomination(self):
-        addon, nomination = self.setup_nomination(
+    def test_new_version_of_approved_addon_should_reset_due_date(self):
+        addon, due_date = self.setup_due_date(
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
         )
         # Now create a new version with an attached file, and update status.
-        self.check_nomination_reset_with_new_version(addon, nomination)
+        self.check_due_date_reset_with_new_version(addon, due_date)
 
 
 class TestAddonDelete(TestCase):
@@ -3217,27 +3216,27 @@ class TestListedPendingManualApprovalQueue(TestCase):
         assert list(qs) == expected
 
     def test_versions_annotations(self):
-        nomination_1 = self.days_ago(2)
+        due_1 = self.days_ago(-2)
         AddonReviewerFlags.objects.create(
             addon=addon_factory(
                 status=amo.STATUS_NOMINATED,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                version_kw={'nomination': nomination_1},
+                version_kw={'due_date': due_1},
             ),
             auto_approval_disabled=True,
         )
-        nomination_2 = self.days_ago(1)
+        due_2 = self.days_ago(1)
         AddonReviewerFlags.objects.create(
             addon=version_factory(
-                addon=addon_factory(version_kw={'nomination': self.days_ago(4)}),
+                addon=addon_factory(version_kw={'due_date': self.days_ago(4)}),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                nomination=nomination_2,
+                due_date=due_2,
             ).addon,
             auto_approval_disabled=True,
         )
-        expected = [nomination_1, nomination_2]
+        expected = [due_1, due_2]
         qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
-        result = [addon.first_version_nominated for addon in qs]
+        result = [addon.first_version_due for addon in qs]
         assert result == expected
 
     def test_staticthemes(self):

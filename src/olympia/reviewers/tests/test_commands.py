@@ -74,9 +74,8 @@ class AutoApproveTestsMixin:
 
     def create_candidates(self):
         # We already have an add-on with a version awaiting review that should
-        # be considered. Make sure its nomination and creation date is in the
-        # past to test ordering.
-        self.version.update(created=self.days_ago(1), nomination=self.days_ago(1))
+        # be considered. Make sure its creation date is in the past to test ordering.
+        self.version.update(created=self.days_ago(1), due_date=self.days_ago(-2))
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -89,7 +88,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         new_addon_version = new_addon.versions.all()[0]
-        new_addon_version.update(created=self.days_ago(2), nomination=self.days_ago(2))
+        new_addon_version.update(created=self.days_ago(2), due_date=self.days_ago(-1))
         # Even add an empty reviewer flags instance, that should not matter.
         AddonReviewerFlags.objects.create(addon=new_addon)
 
@@ -101,7 +100,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         langpack_version = langpack.versions.all()[0]
-        langpack_version.update(created=self.days_ago(3), nomination=self.days_ago(3))
+        langpack_version.update(created=self.days_ago(3), due_date=self.days_ago(0))
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
@@ -111,7 +110,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         dictionary_version = dictionary.versions.all()[0]
-        dictionary_version.update(created=self.days_ago(4), nomination=self.days_ago(4))
+        dictionary_version.update(created=self.days_ago(4), due_date=self.days_ago(1))
 
         # Some recommended add-ons - one nominated and one update.
         # They should be considered by fetch_candidates(), so that they get a
@@ -122,7 +121,7 @@ class AutoApproveTestsMixin:
             status=amo.STATUS_NOMINATED,
             promoted=RECOMMENDED,
             version_kw={
-                'nomination': self.days_ago(6),
+                'due_date': self.days_ago(3),
                 'created': self.days_ago(6),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -136,7 +135,7 @@ class AutoApproveTestsMixin:
         recommended_addon_version = version_factory(
             addon=recommended_addon,
             promotion_approved=True,
-            nomination=self.days_ago(7),
+            due_date=self.days_ago(4),
             created=self.days_ago(7),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -146,7 +145,7 @@ class AutoApproveTestsMixin:
         # - one non-listed version awaiting review.
         complex_addon = addon_factory(name='Complex Addon')
         complex_addon_version = version_factory(
-            nomination=self.days_ago(8),
+            due_date=self.days_ago(5),
             created=self.days_ago(8),
             addon=complex_addon,
             channel=amo.CHANNEL_UNLISTED,
@@ -160,7 +159,7 @@ class AutoApproveTestsMixin:
             name='Disabled by user waiting review', disabled_by_user=True
         )
         user_disabled_addon_version = version_factory(
-            nomination=self.days_ago(11),
+            due_date=self.days_ago(8),
             created=self.days_ago(11),
             channel=amo.CHANNEL_UNLISTED,
             addon=user_disabled_addon,
@@ -174,7 +173,7 @@ class AutoApproveTestsMixin:
             name='Pure unlisted',
             version_kw={
                 'channel': amo.CHANNEL_UNLISTED,
-                'nomination': self.days_ago(12),
+                'due_date': self.days_ago(9),
                 'created': self.days_ago(12),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -187,7 +186,7 @@ class AutoApproveTestsMixin:
             name='Unlisted theme',
             version_kw={
                 'channel': amo.CHANNEL_UNLISTED,
-                'nomination': self.days_ago(13),
+                'due_date': self.days_ago(10),
                 'created': self.days_ago(13),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -316,11 +315,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.addon.addonuser_set.create(user=self.author)
 
         # Delete the add-on current version and approval info, leaving it
-        # nominated. Set its nomination date in the past and it should be
+        # nominated. Set its creation date in the past and it should be
         # picked up and auto-approved.
         AddonApprovalsCounter.objects.filter(addon=self.addon).get().delete()
         self.addon.current_version.delete()
-        self.version.update(nomination=self.days_ago(2))
+        self.version.update(created=self.days_ago(2))
         self.addon.update_status()
 
         call_command('auto_approve', '--dry-run')
@@ -583,7 +582,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
             self.versions[0].file,
             self.versions[1].file,
         ]
-        self.versions[0].update(nomination=days_ago(1))
+        self.versions[0].update(created=days_ago(1))
         FileValidation.objects.create(file=self.versions[0].file, validation='{}')
         FileValidation.objects.create(file=self.versions[1].file, validation='{}')
         super().setUp()
@@ -1104,7 +1103,6 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
         old_version.update(
             channel=amo.CHANNEL_UNLISTED,
             created=self.days_ago(2),
-            nomination=self.days_ago(2),
         )
         command = notify_about_auto_approve_delay.Command()
         qs = command.fetch_versions_waiting_for_approval_for_too_long()

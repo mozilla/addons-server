@@ -70,7 +70,7 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
     VersionReviewerFlags,
-    inherit_nomination,
+    inherit_due_date,
 )
 
 from . import signals
@@ -326,7 +326,7 @@ class AddonManager(ManagerBase):
                 )
             )
         return qs.filter(filters).annotate(
-            first_version_nominated=Min('versions__nomination'),
+            first_version_due=Min('versions__due_date'),
             # Because of the Min(), a GROUP BY addon.id is created.
             # Unfortunately if we were to annotate with just
             # F('versions__version') Django would add version.version to
@@ -1187,7 +1187,7 @@ class Addon(OnChangeMixin, ModelBase):
             ):
                 # Addon is public, but its latest file is not (it's the case on
                 # a new file upload). So, force the update, to trigger watch_status,
-                # which takes care of setting nomination time when needed.
+                # which takes care of setting due date for the review when needed.
                 force_update = True
                 reason = 'triggering watch_status'
 
@@ -1797,13 +1797,13 @@ def update_search_index(sender, instance, **kw):
 @Addon.on_change
 def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
     """
-    Set nomination date if the addon is new in queue or updating.
+    Set due date if the addon is new in queue or updating.
 
-    The nomination date cannot be reset, say, when a developer cancels
-    their request for review and re-requests review.
+    The due date cannot be reset, say, when a developer cancels their request for review
+    and re-requests review.
 
-    If a version is rejected after nomination, the developer has
-    to upload a new version.
+    If a version is rejected after nomination, the developer has to upload a new
+    version.
     """
     new_status = new_attr.get('status') if new_attr else None
     old_status = old_attr.get('status') if old_attr else None
@@ -1818,13 +1818,13 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         return
 
     if old_status == amo.STATUS_NOMINATED:
-        # Updating: inherit nomination from last nominated version.
-        # Calls `inherit_nomination` manually given that signals are
+        # Updating: inherit due date from last nominated version.
+        # Calls `inherit_due_date` manually given that signals are
         # deactivated to avoid circular calls.
-        inherit_nomination(None, latest_version)
+        inherit_due_date(None, latest_version)
     else:
-        # New: will (re)set nomination only if it's None.
-        latest_version.reset_nomination_time()
+        # New: will (re)set due date only if it's None.
+        latest_version.reset_due_date()
 
 
 def attach_translations_dict(addons):

@@ -59,7 +59,7 @@ class Command(BaseCommand):
         auto approval."""
         return (
             Version.objects.auto_approvable()
-            .order_by('nomination', 'created')
+            .order_by('created')
             .values_list('id', flat=True)
         )
 

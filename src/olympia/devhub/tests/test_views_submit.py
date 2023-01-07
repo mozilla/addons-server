@@ -40,6 +40,7 @@ from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import AppVersion, License, VersionPreview
+from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import Config, set_config
 
 
@@ -1114,18 +1115,18 @@ class DetailsPageMixin:
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(response, 'describe_form', 'summary', error)
 
-    def test_nomination_date_set_only_once(self):
-        self.get_version().update(nomination=None, _signal=False)
+    def test_due_date_set_only_once(self):
+        self.get_version().update(due_date=None, _signal=False)
         self.is_success(self.get_dict())
-        self.assertCloseToNow(self.get_version().nomination)
+        self.assertCloseToNow(self.get_version().due_date, now=get_review_due_date())
 
-        # Check nomination date is only set once, see bug 632191.
-        nomdate = datetime.now() - timedelta(days=5)
-        self.get_version().update(nomination=nomdate, _signal=False)
+        # Check due date is only set once, see bug 632191.
+        duedate = datetime.now() - timedelta(days=5)
+        self.get_version().update(due_date=duedate, _signal=False)
         # Update something else in the addon:
         self.get_addon().update(slug='foobar')
-        assert self.get_version().nomination.timetuple()[0:5] == (
-            nomdate.timetuple()[0:5]
+        assert self.get_version().due_date.timetuple()[0:5] == (
+            duedate.timetuple()[0:5]
         )
 
     def test_submit_details_unlisted_should_redirect(self):
