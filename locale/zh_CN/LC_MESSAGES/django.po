@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-07 04:57+0000\n"
+"PO-Revision-Date: 2023-01-07 05:06+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5095,10 +5095,10 @@ msgid "Human Review Needed"
 msgstr "需要人工审核"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "需人工审核的版本"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "由 MAD 标记以供人工审核"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自动通过审核的附加组件"
@@ -5697,13 +5697,13 @@ msgid "This is the exact name of the rule used by a scanner."
 msgstr "这是扫描器所用规则的确切名称。"
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "扫描器规则的用户可读名称"
 
 msgid "Human-readable name"
 msgstr "用户可读的名称"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "扫描器规则的用户可读描述"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara 规则应包含定义"
