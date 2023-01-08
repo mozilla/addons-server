@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-08 16:38+0000\n"
+"PO-Revision-Date: 2023-01-08 16:43+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4514,7 +4514,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr ""
+msgstr "Joillakin verkkosivustoilla on vaikeuksia toistaa videoita Androidilla. Tässä on korjaus."
 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
@@ -4525,12 +4525,10 @@ msgid "Read ePUB files right in Firefox—increase font size, page dimensions & 
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Mukauta hiirieleitä. Löydä uusi tapa liikkua yli 50 eri määrityksen pohjalta."
 
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Käytä hiirieleitä sulkeaksesi välilehtiä, liikkuaksesi sivuilla jne."
 
@@ -4572,7 +4570,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
-msgstr ""
+msgstr "Käännä välittömästi mikä tahansa valittu teksti verkkosivuilla."
 
 #. editorial content for the primary hero shelves.
 msgid "Make Firefox change colors based on time of day."
@@ -4600,7 +4598,7 @@ msgstr "Muokkaa YouTubea makusi mukaan."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
-msgstr ""
+msgstr "Poista selaustiedot suoraan selaimen työkalupalkista."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
@@ -4653,7 +4651,7 @@ msgstr "Ensiluokkaiset mainosestäjät"
 
 #. editorial content for the secondary hero shelves.
 msgid "Steam extensions"
-msgstr ""
+msgstr "Steam-laajennukset"
 
 #. editorial content for the secondary hero shelves.
 msgid "Anti-tracking extensions"
@@ -4773,14 +4771,12 @@ msgstr "Katso lisää nousussa olevia teemoja"
 #. editorial content for the homepage shelves.
 # 87%
 # 100%
-#, fuzzy
 msgid "Top rated themes"
-msgstr "Nousussa olevat teemat"
+msgstr "Parhaiten arvioidut teemat"
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "See more top rated themes"
-msgstr "Katso lisää suositeltuja teemoja"
+msgstr "Katso lisää parhaiten arvioituja teemoja"
 
 #. editorial content for the homepage shelves.
 # 87%
@@ -4867,7 +4863,7 @@ msgid "No manifest.json found"
 msgstr ""
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "Virheellinen tai vioittunut tiedosto."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
