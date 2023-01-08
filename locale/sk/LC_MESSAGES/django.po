@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-06 18:39+0000\n"
+"PO-Revision-Date: 2023-01-08 11:23+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -5227,7 +5227,7 @@ msgstr "Hodnotenia čakajúce na moderovanie ({0})"
 
 # 80%
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Záznam moderovania recenzií"
 
 msgid "Moderation Guide"
 msgstr "Sprievodca moderovaním"
