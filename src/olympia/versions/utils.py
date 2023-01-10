@@ -4,6 +4,7 @@ import re
 import tempfile
 
 from base64 import b64encode
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.utils.encoding import force_str
@@ -11,15 +12,15 @@ from django.utils.encoding import force_str
 from PIL import Image
 
 from olympia.amo.utils import convert_svg_to_png
+from olympia.constants.reviewers import REVIEWER_STANDARD_REVIEW_TIME
 from olympia.core import logger
-
-from .models import Version
-
 
 log = logger.getLogger('z.versions.utils')
 
 
 def get_next_version_number(addon):
+    from .models import Version
+
     if not addon:
         return '1.0'
     last_version = Version.unfiltered.filter(addon=addon).order_by('id').last()
@@ -135,3 +136,16 @@ def process_color_value(prop, value):
         return prop, 'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
     return prop, str(value).replace(' ', '')
+
+
+def get_review_due_date(starting=None):
+    starting = starting or datetime.now()
+    # if starting falls on the weekend, move it to Monday morning
+    if starting.weekday() in (5, 6):
+        starting = starting.replace(hour=9) + timedelta(days=(7 - starting.weekday()))
+
+    due = starting + timedelta(days=REVIEWER_STANDARD_REVIEW_TIME)
+    # if due falls on a weekend, or passes over a weekend, add on 2 days
+    if due.weekday() in (5, 6) or due.weekday() < starting.weekday():
+        due += timedelta(days=2)
+    return due

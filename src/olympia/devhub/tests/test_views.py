@@ -1728,18 +1728,18 @@ class TestRequestReview(TestCase):
     def test_renominate_for_full_review(self, mock_has_complete_metadata):
         # When a version is rejected, the addon is disabled.
         # The author must upload a new version and re-nominate.
-        # Renominating the same version resets the nomination date.
+        # Renominating the same version resets the due date.
         mock_has_complete_metadata.return_value = True
 
         orig_date = datetime.now() - timedelta(days=30)
-        # Pretend it was nominated in the past:
-        self.version.update(nomination=orig_date)
+        # Pretend it was due in the past:
+        self.version.update(due_date=orig_date)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self.addon.update_status()
         response = self.client.post(self.public_url)
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        assert self.get_version().nomination.timetuple()[0:5] != (
+        assert self.get_version().due_date.timetuple()[0:5] != (
             orig_date.timetuple()[0:5]
         )
 

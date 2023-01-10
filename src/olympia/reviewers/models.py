@@ -374,19 +374,6 @@ class ReviewerScore(ModelBase):
             ).encode('utf-8')
         )
 
-        # Add bonus to reviews greater than our limit to encourage fixing
-        # old reviews. Does not apply to content-review/post-review at the
-        # moment, because it would need to be calculated differently.
-        award_overdue_bonus = (
-            version and version.nomination and not post_review and not content_review
-        )
-        if award_overdue_bonus:
-            waiting_time_days = (datetime.now() - version.nomination).days
-            days_over = waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
-            if days_over > 0:
-                bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
-                score = score + bonus
-
         if score is not None:
             cls.objects.create(
                 user=user,
@@ -1045,7 +1032,7 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_should_be_delayed(cls, version):
-        """Check whether the add-on new enough that the auto-approval of the
+        """Check whether the add-on is new enough that the auto-approval of the
         version should be delayed for 24 hours to catch spam.
 
         Doesn't apply to langpacks, which are submitted as part of Firefox
@@ -1055,7 +1042,6 @@ class AutoApprovalSummary(ModelBase):
         addon = version.addon
         is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
-        nomination = version.nomination or addon.created
         try:
             content_review = addon.addonapprovalscounter.last_content_review
         except AddonApprovalsCounter.DoesNotExist:
@@ -1064,7 +1050,7 @@ class AutoApprovalSummary(ModelBase):
             not is_langpack
             and version.channel == amo.CHANNEL_LISTED
             and version.addon.status == amo.STATUS_NOMINATED
-            and now - nomination < timedelta(hours=24)
+            and now - version.created < timedelta(hours=24)
             and content_review is None
         )
 

@@ -48,8 +48,9 @@ from olympia.users.models import (
     UserProfile,
 )
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import version_int, VersionString
-from olympia.versions.models import (
+
+from ..compare import version_int, VersionString
+from ..models import (
     ApplicationsVersions,
     DeniedInstallOrigin,
     License,
@@ -60,6 +61,7 @@ from olympia.versions.models import (
     VersionReviewerFlags,
     source_upload_path,
 )
+from ..utils import get_review_due_date
 
 
 pytestmark = pytest.mark.django_db
@@ -1654,16 +1656,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
             mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
-    def test_nomination_inherited_for_updates(self):
+    def test_due_date_inherited_for_updates(self):
         assert self.addon.status == amo.STATUS_APPROVED
-        self.addon.current_version.update(nomination=self.days_ago(2))
+        self.addon.current_version.update(due_date=self.days_ago(2))
         pending_version = version_factory(
             addon=self.addon,
-            nomination=self.days_ago(1),
+            due_date=self.days_ago(1),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert pending_version.nomination
+        assert pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1674,29 +1676,29 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.nomination == pending_version.nomination
+        assert upload_version.due_date == pending_version.due_date
         upload_version.reload()
-        assert upload_version.nomination == pending_version.nomination
+        assert upload_version.due_date == pending_version.due_date
 
-    def test_nomination_inherit_from_most_recent(self):
-        self.addon.current_version.update(nomination=self.days_ago(3))
+    def test_due_date_inherit_from_most_recent(self):
+        self.addon.current_version.update(due_date=self.days_ago(3))
         # In theory it isn't possible to get 2 listed versions awaiting review,
         # but this test ensures we inherit from the most recent version if
         # somehow this was to happen.
         pending_version = version_factory(
             addon=self.addon,
-            nomination=self.days_ago(2),
+            due_date=self.days_ago(2),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert pending_version.nomination
+        assert pending_version.due_date
         pending_version2 = version_factory(
             addon=self.addon,
-            nomination=self.days_ago(1),
+            due_date=self.days_ago(1),
             version='10.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        assert pending_version2.nomination > pending_version.nomination
+        assert pending_version2.due_date > pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1707,16 +1709,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.nomination == pending_version2.nomination
+        assert upload_version.due_date == pending_version2.due_date
         upload_version.reload()
-        assert upload_version.nomination == pending_version2.nomination
+        assert upload_version.due_date == pending_version2.due_date
 
-    def test_nomination_not_inherited_if_pending_rejection(self):
+    def test_due_date_not_inherited_if_pending_rejection(self):
         assert self.addon.status == amo.STATUS_APPROVED
-        self.addon.current_version.update(nomination=self.days_ago(2))
+        self.addon.current_version.update(due_date=self.days_ago(2))
         pending_version = version_factory(
             addon=self.addon,
-            nomination=self.days_ago(1),
+            due_date=self.days_ago(1),
             version='9.9',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -1724,7 +1726,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             version=pending_version,
             pending_rejection=datetime.now() + timedelta(days=1),
         )
-        assert pending_version.nomination
+        assert pending_version.due_date
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -1735,15 +1737,15 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        self.assertCloseToNow(upload_version.nomination)
+        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
         upload_version.reload()
-        self.assertCloseToNow(upload_version.nomination)
+        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
-    def test_nomination_not_inherited_with_addon_in_nominated_state_pending_rejection(
+    def test_due_date_not_inherited_with_addon_in_nominated_state_pending_rejection(
         self,
     ):
         pending_version = self.addon.current_version
-        pending_version.update(nomination=self.days_ago(2))
+        pending_version.update(due_date=self.days_ago(2))
         pending_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NOMINATED
@@ -1761,9 +1763,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        self.assertCloseToNow(upload_version.nomination)
+        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
         upload_version.reload()
-        self.assertCloseToNow(upload_version.nomination)
+        self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
