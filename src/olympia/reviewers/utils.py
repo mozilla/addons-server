@@ -171,12 +171,10 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name=_('Type'), accessor='type', orderable=False)
-    waiting_time = tables.Column(
-        verbose_name=_('Due Date'), accessor='first_version_due'
-    )
+    due_date = tables.Column(verbose_name=_('Due Date'), accessor='first_version_due')
 
     class Meta:
-        fields = ('addon_name', 'addon_type', 'waiting_time', 'flags')
+        fields = ('addon_name', 'addon_type', 'due_date', 'flags')
         exclude = (
             'last_human_review',
             'code_weight',
@@ -191,7 +189,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
             admin_reviewer=admin_reviewer
         )
 
-    def _get_waiting_time(self, record):
+    def _get_due_date(self, record):
         return record.first_version_due
 
     def render_addon_name(self, record):
@@ -209,19 +207,17 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     def render_addon_type(self, record):
         return record.get_type_display()
 
-    def render_waiting_time(self, record):
+    def render_due_date(self, record):
         return markupsafe.Markup(
-            f'<span title="{markupsafe.escape(self._get_waiting_time(record))}">'
-            f'{markupsafe.escape(naturaltime(self._get_waiting_time(record)))}</span>'
+            f'<span title="{markupsafe.escape(self._get_due_date(record))}">'
+            f'{markupsafe.escape(naturaltime(self._get_due_date(record)))}</span>'
         )
 
     @classmethod
     def default_order_by(cls):
-        # waiting_time column is actually the date from the minimum version
-        # due date. We want to display the add-ons which have
-        # earliest due date at the top by default, so we return waiting_time
-        # in ascending order.
-        return 'waiting_time'
+        # We want to display the add-ons which have earliest due date at the top by
+        # default, so we return due_date in ascending order.
+        return 'due_date'
 
 
 class RecommendedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
@@ -253,9 +249,7 @@ class UpdatedThemesQueueTable(NewThemesQueueTable):
 
 
 class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
-    waiting_time = tables.Column(
-        verbose_name=_('Waiting Time'), accessor='first_version_created'
-    )
+    created = tables.Column(verbose_name=_('Created'), accessor='first_version_created')
     score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
     show_count_in_dashboard = False
 
@@ -263,7 +257,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
         fields = (
             'addon_name',
             'addon_type',
-            'waiting_time',
+            'created',
             'score',
         )
         exclude = (
@@ -277,7 +271,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['unlisted', record.id])
 
-    def _get_waiting_time(self, record):
+    def _get_created(self, record):
         return record.first_version_created
 
     @classmethod
@@ -308,7 +302,7 @@ class PendingRejectionTable(AddonQueueTable):
             'weight',
             'score',
         )
-        exclude = ('waiting_time',)
+        exclude = ('due_date',)
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
