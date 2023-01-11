@@ -236,12 +236,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         Return the field to use when all search terms are numeric, according to
         the type filter.
         """
-        type_ = request and request.GET.get('type')
-        if type_ == 'user':
-            search_field = 'user_id'
-        else:
-            search_field = None
-        return search_field
+        return 'user_id' if request and request.GET.get('type') == 'user' else None
 
     def get_search_results(self, request, qs, search_term):
         """
