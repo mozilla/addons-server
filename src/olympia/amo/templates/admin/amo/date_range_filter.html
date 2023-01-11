@@ -4,8 +4,11 @@
 {% with choices.0 as all_choice %}
 <form method="GET" action=".">
     <div>
-        {% for k, v in all_choice.query_parts %}
-            <input type="hidden" name="{{ k }}" value="{{ v }}" />
+        {# Use .params.lists to properly support multiple values - so that if a filter using this template is present multiple times on the page, its current values are all passed to the new page when submitting this form #}
+        {% for key, values in all_choice.params.lists %}
+            {% for value in values %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endfor %}
         {% endfor %}
     </div>
     <ul>

@@ -131,8 +131,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' not in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' not in response.content
 
     def test_list_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.CHANNEL_UNLISTED}
@@ -141,8 +141,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' not in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' not in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_show_link_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory()
@@ -152,8 +152,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_queries(self):
         addon_factory(guid='@foo')
@@ -173,6 +173,96 @@ class TestAddonAdmin(TestCase):
             # - 1 all authors in one query
             response = self.client.get(self.list_url, follow=True)
             assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 3
+
+    def test_search_by_guid(self):
+        addon_factory(guid='@foo')
+        addon_factory(guid='@bar')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+
+        with self.assertNumQueries(8):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # - 1 main query
+            # - 1 translations
+            # - 1 all authors in one query
+            response = self.client.get(self.list_url, data={'q': '@fo'})
+            assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+
+    def test_search_tooltip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert doc('#searchbar-wrapper p').eq(0).text() == (
+            'By default, search will be performed against id, guid__startswith, '
+            'slug__startswith.'
+        )
+        assert doc('#searchbar-wrapper li').eq(0).text() == (
+            'If the query contains only numeric terms, search will be performed '
+            'against pk instead.'
+        )
+        assert doc('#searchbar-wrapper li').eq(1).text() == (
+            'If the query contains only IP addresses or networks, search will be '
+            'performed against IP addresses recorded for ADD_VERSION.'
+        )
+
+    def test_search_by_ip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='@foo')
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
+            )
+        version_factory(addon=addon)
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
+            )
+        second_addon = addon_factory(guid='@bar')
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                second_addon.current_version,
+                second_addon,
+                user=user,
+            )
+        third_addon = addon_factory(guid='@xyz')
+        with core.override_remote_addr('127.0.0.1'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                third_addon.current_version,
+                third_addon,
+                user=user,
+            )
+
+        with self.assertNumQueries(8):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # - 1 main query
+            # - 1 translations
+            # - 1 all authors in one query
+            response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
+            assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 2
+        result_list_text = doc('#result_list tbody tr').text()
+        assert addon.guid in result_list_text
+        assert second_addon.guid in result_list_text
+        assert third_addon.guid not in result_list_text
 
     def test_can_edit_with_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')

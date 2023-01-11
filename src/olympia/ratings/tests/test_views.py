@@ -2663,6 +2663,8 @@ class TestRatingViewSetReply(TestCase):
         assert response.status_code == 404
 
     def test_reply_admin(self):
+        ActivityLog.objects.all().delete()
+        mail.outbox = []
         self.admin_user = user_factory()
         self.grant_permission(self.admin_user, 'Addons:Edit')
         self.client.login_api(self.admin_user)
@@ -2690,6 +2692,8 @@ class TestRatingViewSetReply(TestCase):
         assert len(mail.outbox) == 1
 
     def test_reply(self):
+        ActivityLog.objects.all().delete()
+        mail.outbox = []
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         self.client.login_api(self.addon_author)
