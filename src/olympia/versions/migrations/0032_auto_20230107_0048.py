@@ -15,7 +15,8 @@ def set_due_date_from_nomination_date(apps, schema_editor):
     )
     # Calculate a due date based on the nomination date
     for version in version_qs:
-        version.update(get_review_due_date(version.nomination))
+        version.due_date = get_review_due_date(version.nomination)
+        version.save(update_fields=['due_date'])
 
 
 class Migration(migrations.Migration):
@@ -24,6 +25,4 @@ class Migration(migrations.Migration):
         ('versions', '0031_add_due_date'),
     ]
 
-    operations = [
-        migrations.RunPython(set_due_date_from_nomination_date)
-    ]
+    operations = [migrations.RunPython(set_due_date_from_nomination_date)]
