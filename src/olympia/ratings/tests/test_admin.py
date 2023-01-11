@@ -2,8 +2,9 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
+from olympia import core
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -117,6 +118,145 @@ class TestRatingAdmin(TestCase):
         assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
 
+    def test_search_tooltip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert doc('#searchbar-wrapper p').eq(0).text() == (
+            'By default, search will be performed against body.'
+        )
+        assert doc('#searchbar-wrapper li').eq(0).text() == (
+            'If the query contains only numeric terms, search will be performed '
+            'against addon instead.'
+        )
+        assert doc('#searchbar-wrapper li').eq(1).text() == (
+            'If the query contains only IP addresses or networks, search will be '
+            'performed against IP addresses recorded for ADD_RATING, EDIT_RATING.'
+        )
+
+    def test_search_by_ip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.force_login(user)
+
+        addon = Addon.objects.get(pk=3615)
+        second_addon = addon_factory(guid='@second_addon')
+        third_addon = addon_factory(guid='@third_addon')
+        fourth_addon = addon_factory(guid='@fourth_addon')
+
+        core.set_user(user)
+        with core.override_remote_addr('4.8.15.16'):
+            rating1 = Rating.objects.create(
+                addon=addon,
+                user=user_factory(),
+                rating=1,
+                body='Lôrem body 1',
+            )
+        with core.override_remote_addr('4.8.15.16'):
+            rating2 = Rating.objects.create(
+                addon=addon,
+                user=user_factory(),
+                rating=2,
+                body='Lôrem body 2',
+            )
+        with core.override_remote_addr('125.1.2.3'):
+            rating3 = Rating.objects.create(
+                addon=second_addon,
+                user=user_factory(),
+                rating=5,
+                body='Lôrem body 3',
+            )
+        with core.override_remote_addr('4.8.15.16'):
+            rating3.rating = 3
+            rating3.save()
+        with core.override_remote_addr('125.5.6.7'):
+            rating4 = Rating.objects.create(
+                addon=third_addon,
+                user=user_factory(),
+                rating=4,
+                body='Lôrem body 4',
+            )
+
+        with self.assertNumQueries(9):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 1 addons from the query (for the addon filter)
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # - 1 main query
+            # - 1 addons
+            # - 1 translations
+            response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
+            assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('#result_list tbody tr').length == 3
+        result_list_text = doc('#result_list tbody tr').text()
+        assert rating1.body in result_list_text
+        assert rating2.body in result_list_text
+        assert rating3.body in result_list_text
+        assert rating4.body not in result_list_text
+        addon_filter_options_text = (
+            doc('#changelist-filter form').eq(1).find('option').text()
+        )
+        assert addon.guid in addon_filter_options_text
+        assert second_addon.guid in addon_filter_options_text
+        assert third_addon.guid not in addon_filter_options_text
+        assert fourth_addon.guid not in addon_filter_options_text
+
+        response = self.client.get(
+            self.list_url, data={'q': '4.8.15.16', 'addon': [addon.pk, second_addon.pk]}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content.decode('utf-8'))
+        assert doc('#result_list tbody tr').length == 3
+        result_list_text = doc('#result_list tbody tr').text()
+        assert rating1.body in result_list_text
+        assert rating2.body in result_list_text
+        assert rating3.body in result_list_text
+        assert rating4.body not in result_list_text
+        addon_filter_options_text = (
+            doc('#changelist-filter form').eq(1).find('option').text()
+        )
+        assert addon.guid in addon_filter_options_text
+        assert second_addon.guid in addon_filter_options_text
+        assert third_addon.guid not in addon_filter_options_text
+        assert fourth_addon.guid not in addon_filter_options_text
+
+        # Make sure selected add-ons from the filter are going to be passed if
+        # we add more filters on top. Let's inspect the first form (created
+        # date filter) and the second link (first is to clear all filters).
+        form = doc('#changelist-filter form').eq(0)
+        hidden_inputs = form.find('input[type=hidden]')
+        assert hidden_inputs[0].attrib == {
+            'type': 'hidden',
+            'name': 'q',
+            'value': '4.8.15.16',
+        }
+        assert hidden_inputs[1].attrib == {
+            'type': 'hidden',
+            'name': 'addon',
+            'value': str(addon.pk),
+        }
+        assert hidden_inputs[2].attrib == {
+            'type': 'hidden',
+            'name': 'addon',
+            'value': str(second_addon.pk),
+        }
+        link = doc('#changelist-filter a').eq(1)
+        assert (
+            link.attr('href')
+            == f'?q=4.8.15.16&addon={addon.pk}&addon={second_addon.pk}'
+        )
+
+        # Make sure selected add-ons filters are pre-selected too.
+        addon_filter_options_text = (
+            doc('#changelist-filter form').eq(1).find('option:selected').text()
+        )
+        assert addon.guid in addon_filter_options_text
+        assert second_addon.guid in addon_filter_options_text
+
     def test_filter_by_created_only_from(self):
         not_long_ago = self.days_ago(2).date()
         Rating.objects.create(
@@ -197,7 +337,7 @@ class TestRatingAdmin(TestCase):
         assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
 
-    def test_queries(self):
+    def test_list_queries(self):
         addon = Addon.objects.get(pk=3615)
 
         # Create a few more ratings.
@@ -226,6 +366,7 @@ class TestRatingAdmin(TestCase):
             # - 1 COUNT(*)
             #     (show_full_result_count=False so we avoid the duplicate)
             # - 1 ratings themselves
+            # - 1 ratings replies
             # - 1 related add-ons
             # - 1 related add-ons translations
             response = self.client.get(self.list_url, follow=True)

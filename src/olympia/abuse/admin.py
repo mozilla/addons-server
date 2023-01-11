@@ -218,15 +218,14 @@ class AbuseReportAdmin(AMOModelAdmin):
         if type_ == 'addon':
             search_fields = (
                 'addon_name',
-                '=guid',
+                'guid__startswith',
                 'message',
             )
         elif type_ == 'user':
             search_fields = (
                 'message',
-                '=user__id',
-                '^user__username',
-                '^user__email',
+                'user__id',
+                'user__email__like',
             )
         else:
             search_fields = ()
@@ -237,12 +236,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         Return the field to use when all search terms are numeric, according to
         the type filter.
         """
-        type_ = request.GET.get('type')
-        if type_ == 'user':
-            search_field = 'user_id'
-        else:
-            search_field = super().get_search_id_field(request)
-        return search_field
+        return 'user_id' if request and request.GET.get('type') == 'user' else None
 
     def get_search_results(self, request, qs, search_term):
         """

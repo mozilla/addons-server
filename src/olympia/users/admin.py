@@ -529,7 +529,7 @@ class UserRestrictionHistoryAdmin(AMOModelAdmin):
 @admin.register(UserHistory)
 class UserHistoryAdmin(AMOModelAdmin):
     view_on_site = False
-    search_fields = ('=user__id', '^email')
+    search_fields = ('user__id', 'email__startswith')
 
     def has_delete_permission(self, request, obj=None):
         return False

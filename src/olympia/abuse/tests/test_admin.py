@@ -136,17 +136,7 @@ class TestAbuse(TestCase):
 
         user = AbuseReport.objects.get(message='Ehehehehe').user
         response = self.client.get(
-            self.list_url, {'q': user.username[:4], 'type': 'user'}, follow=True
-        )
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#changelist-search')
-        assert doc('#result_list tbody tr').length == 1
-        assert 'Ehehehehe' in doc('#result_list').text()
-
-        user = AbuseReport.objects.get(message='Ehehehehe').user
-        response = self.client.get(
-            self.list_url, {'q': user.email[:3], 'type': 'user'}, follow=True
+            self.list_url, {'q': f'{user.email[:3]}*', 'type': 'user'}, follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)

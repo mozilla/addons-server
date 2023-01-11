@@ -10,16 +10,20 @@ from django.contrib import admin
 from django.contrib.admin.views.main import (
     ChangeList,
     ChangeListSearchForm,
+    ERROR_FLAG,
+    PAGE_VAR,
     SEARCH_VAR,
 )
 from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
+from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 from django.utils.translation import gettext
 
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
+from olympia.constants.activity import LOG_BY_ID
 from .models import FakeEmail
 
 
@@ -40,6 +44,50 @@ class AMOModelAdminChangeList(ChangeList):
     parameter multiple times."""
 
     search_form_class = AMOModelAdminChangeListSearchForm
+
+    def __init__(self, request, *args, **kwargs):
+        super().__init__(request, *args, **kwargs)
+        # django's ChangeList does:
+        # self.params = dict(request.GET.items())
+        # But we want to keep a QueryDict to not lose parameters present
+        # multiple times.
+        self.params = request.GET.copy()
+        # We have to re-apply what django does to self.params:
+        if PAGE_VAR in self.params:
+            del self.params[PAGE_VAR]
+        if ERROR_FLAG in self.params:
+            del self.params[ERROR_FLAG]
+
+    def get_query_string(self, new_params=None, remove=None):
+        # django's ChangeList.get_query_string() doesn't respect parameters
+        # that are present multiple times, e.g. ?foo=1&foo=2 - it expects
+        # self.params to be a dict.
+        # We set self.params to a QueryDict in __init__, and if it is a
+        # QueryDict, then we use a copy of django's implementation with just
+        # the last line changed to p.urlencode().
+        # We have to keep compatibility for when self.params is not a QueryDict
+        # yet, because this method is called once in __init__() before we have
+        # the chance to set self.params to a QueryDict. It doesn't matter for
+        # our use case (it's to generate an url with no filters at all) but we
+        # have to support it.
+        if not isinstance(self.params, QueryDict):
+            return super().get_query_string(new_params=new_params, remove=remove)
+        if new_params is None:
+            new_params = {}
+        if remove is None:
+            remove = []
+        p = self.params.copy()
+        for r in remove:
+            for k in list(p):
+                if k.startswith(r):
+                    del p[k]
+        for k, v in new_params.items():
+            if v is None:
+                if k in p:
+                    del p[k]
+            else:
+                p[k] = v
+        return '?%s' % p.urlencode()
 
 
 class AMOModelAdmin(admin.ModelAdmin):
@@ -67,6 +115,20 @@ class AMOModelAdmin(admin.ModelAdmin):
 
     def get_changelist(self, request, **kwargs):
         return AMOModelAdminChangeList
+
+    def changelist_view(self, request, extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        extra_context.update(
+            {
+                'search_id_field': self.get_search_id_field(request),
+                'search_fields': self.get_search_fields(request),
+                'search_by_ip_actions_names': [
+                    LOG_BY_ID[action].__name__ for action in self.search_by_ip_actions
+                ],
+            }
+        )
+        return super().changelist_view(request, extra_context=extra_context)
 
     def get_search_id_field(self, request):
         """
@@ -402,8 +464,17 @@ class FakeChoicesMixin:
             if k not in self.expected_parameters()
         )
         # Assemble them into a `query_parts` property on a unique fake choice.
+        # For forms that don't display the 'All' link, also export the other
+        # params as a querydict.
         all_choice = next(super().choices(changelist))
-        all_choice['query_parts'] = search_query_parts + filters_query_parts
+        all_choice.update(
+            {
+                'query_parts': search_query_parts + filters_query_parts,
+                'params': QueryDict(
+                    changelist.get_query_string(remove=self.expected_parameters())[1:]
+                ),
+            }
+        )
         yield all_choice
 
 
@@ -421,6 +492,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
     """
     Custom rangefilter.filters.DateTimeRangeFilter class that uses HTML5
     widgets and a template without the need for inline CSS/JavaScript.
+
     Needs FakeChoicesMixin for the fake choices the template will be using (the
     upstream implementation depends on inline JavaScript for this, which we
     want to avoid).
@@ -461,3 +533,48 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
         all_choice = next(super().choices(changelist))
         all_choice['selected'] = not any(self.used_parameters)
         yield all_choice
+
+
+class MultipleRelatedListFilter(admin.SimpleListFilter):
+    template = 'admin/amo/multiple_filter.html'
+
+    def __init__(self, request, params, *args, **kwargs):
+        # Django's implementation builds self.used_parameters by pop()ing keys
+        # from params, so we would normally only get a single value.
+        # We want the full list if a parameter is passed twice, to allow
+        # multiple values to be selected, so we build our own _used_parameters
+        # property from request.GET ourselves, using .getlist() to get all the
+        # values.
+        self._used_parameters = {}
+        if self.parameter_name in params:
+            self._used_parameters[self.parameter_name] = (
+                request.GET.getlist(self.parameter_name) or None
+            )
+        super().__init__(request, params, *args, **kwargs)
+        # We copy our self._used_parameters in the real property so it's
+        # available in the rest of the code (for things called from
+        # super().__init__(), it's too late, they'll need to be overriden and
+        # use our property with the underscore if they want to benefit from
+        # that improvement).
+        self.used_parameters = self._used_parameters
+
+    def choices(self, cl):
+        for lookup, title in self.lookup_choices:
+            selected = (
+                lookup is None if self.value() is None else str(lookup) in self.value()
+            )
+            yield {
+                'selected': selected,
+                'value': lookup,
+                'display': title,
+                # Django doesn't give the template access to the changelist
+                # instance. For its own filter classes, it builds a link for
+                # each choice from the changelist querystring, passing that
+                # here. In our case we have a form so we need to render an
+                # hidden input for each parameter in the query string. We help
+                # the template do that by passing a QueryDict instead of the
+                # raw query string like MultipleRelatedListFilter does.
+                'params': QueryDict(
+                    cl.get_query_string(remove=[self.parameter_name])[1:]
+                ),
+            }
