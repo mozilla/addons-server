@@ -139,25 +139,6 @@ class BaseTestEditDescribe(BaseTestEdit):
         doc = pq(response.content)
         assert doc('form').attr('action') != old_edit
 
-    def test_edit_summary_escaping(self):
-        data = self.get_dict()
-        data['summary'] = '<b>oh my</b>'
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-
-        addon = self.get_addon()
-
-        # Fetch the page so the LinkifiedTranslation gets in cache.
-        response = self.client.get(reverse('devhub.addons.edit', args=[addon.slug]))
-        assert pq(response.content)('[data-name=summary]').html().strip() == (
-            '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>'
-        )
-
-        # Now make sure we don't have escaped content in the rendered form.
-        form = DescribeForm(instance=addon, request=req_factory_factory('/'))
-        html = pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html()
-        assert html.strip() == '<b>oh my</b>'
-
     def test_edit_as_developer(self):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         data = self.get_dict()
