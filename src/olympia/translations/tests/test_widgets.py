@@ -7,22 +7,25 @@ from olympia.translations import models, widgets
 class TestWidget(TestCase):
     def test_avoid_purified_translation(self):
         # Even if we pass in a LinkifiedTranslation the widget switches to a
-        # normal Translation before rendering.
-        w = widgets.TransTextarea.widget()
+        # normal Translation before rendering (avoiding double-escaping)
+        widget = widgets.TransTextarea.widget()
         link = models.LinkifiedTranslation(
             localized_string='<b>yum yum</b>', locale='fr', id=10
         )
         link.clean()
-        widget = w.render('name', link)
-        assert pq(widget).html().strip() == '<b>yum yum</b>'
+        result = widget.render('name', link)
+        assert result == (
+            '<textarea name="name_fr" cols="40" rows="10" lang="fr">\n'
+            '&lt;b&gt;yum yum&lt;/b&gt;</textarea>'
+        )
 
     def test_default_locale(self):
-        w = widgets.TransTextarea()
-        result = w.render('name', '')
+        widget = widgets.TransTextarea()
+        result = widget.render('name', '')
         assert pq(result)('textarea:not([lang=init])').attr('lang') == 'en-us'
 
-        w.default_locale = 'pl'
-        result = w.render('name', '')
+        widget.default_locale = 'pl'
+        result = widget.render('name', '')
         assert pq(result)('textarea:not([lang=init])').attr('lang') == 'pl'
 
     def test_transinput(self):
