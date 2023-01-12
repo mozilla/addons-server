@@ -17,14 +17,12 @@ from olympia.amo.tests import (
     addon_factory,
     formset,
     initial,
-    req_factory_factory,
     SQUOTE_ESCAPED,
     TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
-from olympia.devhub.forms import DescribeForm
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
