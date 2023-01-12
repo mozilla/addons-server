@@ -28,11 +28,9 @@
 
 <div class="queue-outer">
   <div class="queue-inner">
-    {% if page.has_other_pages() %}
-      <div class="data-grid-content data-grid-top">
-      {{ page|paginator }}
-      </div>
-    {% endif %}
+    <div class="data-grid-content data-grid-top">
+    {{ page|paginator }}
+    </div>
 
     {% if tab == 'moderated' %}
       <div id="reviews-flagged">
@@ -128,11 +126,9 @@
         <div class="no-results">{{ _('There are currently no add-ons of this type to review.') }}</div>
       {% endif %}
     {% endif %}
-    {% if page.has_other_pages() %}
-      <div class="data-grid-content data-grid-bottom">
-      {{ page|paginator }}
-      </div>
-    {% endif %}
+    <div class="data-grid-content data-grid-bottom">
+    {{ page|paginator }}
+    </div>
   </div>
 </div>
 

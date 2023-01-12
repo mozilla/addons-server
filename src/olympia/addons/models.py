@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
 from django.db.models.expressions import Func
@@ -50,7 +50,7 @@ from olympia.amo.utils import (
     to_language,
 )
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, PRE_REVIEW_GROUPS, RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -240,7 +240,6 @@ class AddonManager(ManagerBase):
         admin_reviewer=False,
         content_review=False,
         theme_review=False,
-        exclude_listed_pending_rejection=True,
         select_related_fields_for_listed=True,
     ):
         qs = (
@@ -274,10 +273,6 @@ class AddonManager(ManagerBase):
             )
         qs = qs.select_related(*select_related_fields)
 
-        if exclude_listed_pending_rejection:
-            qs = qs.filter(
-                _current_version__reviewerflags__pending_rejection__isnull=True
-            )
         if not admin_reviewer:
             if content_review:
                 qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
@@ -287,60 +282,84 @@ class AddonManager(ManagerBase):
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
 
-    def get_listed_pending_manual_approval_queue(
-        self,
-        admin_reviewer=False,
-        recommendable=False,
-        statuses=amo.VALID_ADDON_STATUSES,
-        types=amo.GROUP_TYPE_ADDON,
+    def get_queryset_for_pending_queues(
+        self, *, admin_reviewer=False, theme_review=False, filters=None, excludes=None
     ):
-        if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
-            raise ImproperlyConfigured(
-                'types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME'
-            )
-        theme_review = types == amo.GROUP_TYPE_THEME
+        def pending_version_transformer(addons):
+            version_ids = {addon.first_version_id for addon in addons}
+            versions = {
+                version.id: version
+                for version in Version.objects.filter(
+                    id__in=version_ids
+                ).no_transforms()
+            }
+            for addon in addons:
+                addon.first_pending_version = versions.get(addon.first_version_id)
+
+        if excludes is None:
+            excludes = {}
+        if filters is None:
+            filters = {}
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
-            # We'll filter on pending_rejection below without limiting
-            # ourselves to the current_version.
-            exclude_listed_pending_rejection=False,
             theme_review=theme_review,
+            # Extension queue merges listed & unlisted together, so the select
+            # related for listed don't make sense there, but the theme queues
+            # don't do that, so they need them.
+            select_related_fields_for_listed=theme_review,
         )
-        filters = Q(
-            status__in=statuses,
-            type__in=types,
-            versions__channel=amo.CHANNEL_LISTED,
-            versions__file__status=amo.STATUS_AWAITING_REVIEW,
-            versions__reviewerflags__pending_rejection=None,
-        ) & ~Q(disabled_by_user=True)
-        if recommendable:
-            filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
-        elif not theme_review:
-            filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
-                Q(reviewerflags__auto_approval_disabled=True)
-                | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
-                | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
-                | Q(
-                    promotedaddon__group_id__in=(
-                        group.id for group in PRE_REVIEW_GROUPS
-                    )
-                )
+        return (
+            qs.filter(**filters)
+            .exclude(**excludes)
+            .annotate(
+                first_version_due_date=Min('versions__due_date'),
+                # Because of the Min(), a GROUP BY addon.id is created, and the
+                # versions join will pick the first by due date. Unfortunately
+                # if we were to annotate with just F('versions__<something>')
+                # Django would add version.<something> to the GROUP BY, ruining
+                # it. To prevent that, we wrap it into a harmless Func() - we
+                # need a no-op function to do that, hence the ANY_VALUE().
+                # We'll then grab the id in our transformer to fetch all
+                # related versions.
+                first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
             )
-        return qs.filter(filters).annotate(
-            first_version_due=Min('versions__due_date'),
-            # Because of the Min(), a GROUP BY addon.id is created.
-            # Unfortunately if we were to annotate with just
-            # F('versions__version') Django would add version.version to
-            # the GROUP BY, ruining it. To prevent that, we wrap it into
-            # a harmless Func() - we need a no-op function to do that,
-            # hence the LOWER().
-            latest_version=Func(F('versions__version'), function='LOWER'),
+            .transform(pending_version_transformer)
+        )
+
+    def get_pending_review_queue(self, admin_reviewer=False):
+        filters = {
+            'type__in': amo.GROUP_TYPE_ADDON,
+            'versions__reviewerflags__pending_rejection': None,
+            'versions__due_date__isnull': False,
+        }
+        excludes = {
+            'status': amo.STATUS_DISABLED,
+        }
+        qs = self.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer, filters=filters, excludes=excludes
+        )
+        return qs.select_related('promotedaddon')
+
+    def get_listed_themes_pending_manual_approval_queue(
+        self,
+        admin_reviewer=False,
+        statuses=amo.VALID_ADDON_STATUSES,
+    ):
+        filters = {
+            'disabled_by_user': False,
+            'status__in': statuses,
+            'type__in': amo.GROUP_TYPE_THEME,
+            'versions__channel': amo.CHANNEL_LISTED,
+            'versions__file__status': amo.STATUS_AWAITING_REVIEW,
+            'versions__reviewerflags__pending_rejection': None,
+        }
+        return self.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer, theme_review=True, filters=filters
         )
 
     def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
         qs = self.get_base_queryset_for_queue(
             select_related_fields_for_listed=False,
-            exclude_listed_pending_rejection=False,
             admin_reviewer=admin_reviewer,
         )
         # Reset *all* select_related() made by get_base_queryset_for_queue(),
@@ -350,30 +369,6 @@ class AddonManager(ManagerBase):
             status=amo.STATUS_DISABLED
         )
 
-    def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
-        qs = self.get_base_queryset_for_queue(
-            select_related_fields_for_listed=False,
-            exclude_listed_pending_rejection=False,
-            admin_reviewer=admin_reviewer,
-        )
-        filters = Q(
-            versions__channel=amo.CHANNEL_UNLISTED,
-            versions__file__status=amo.STATUS_AWAITING_REVIEW,
-            type__in=amo.GROUP_TYPE_ADDON,
-            versions__reviewerflags__pending_rejection__isnull=True,
-        ) & (
-            Q(reviewerflags__auto_approval_disabled_unlisted=True)
-            | Q(reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True)
-            | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
-        )
-        return qs.filter(filters).annotate(
-            # These annotations should be applied to versions that match the
-            # filters above. They'll be used to sort the results or just
-            # display the data to reviewers in the queue.
-            first_version_created=Min('versions__created'),
-            worst_score=Max('versions__autoapprovalsummary__score'),
-        )
-
     def get_auto_approved_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that have been auto-approved but
         not confirmed by a human yet."""
@@ -381,7 +376,10 @@ class AddonManager(ManagerBase):
         qs = (
             self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
             .public()
-            .filter(_current_version__autoapprovalsummary__verdict=success_verdict)
+            .filter(
+                _current_version__autoapprovalsummary__verdict=success_verdict,
+                _current_version__reviewerflags__pending_rejection__isnull=True,
+            )
             .exclude(_current_version__autoapprovalsummary__confirmed=True)
             .order_by(
                 '-_current_version__autoapprovalsummary__score',
@@ -400,6 +398,7 @@ class AddonManager(ManagerBase):
             )
             .valid()
             .filter(
+                _current_version__reviewerflags__pending_rejection__isnull=True,
                 addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
                 # https://github.com/mozilla/addons-server/issues/11796 &
@@ -417,12 +416,7 @@ class AddonManager(ManagerBase):
         disabled versions - typically scanners queues, where anything could be
         flagged, approved or waiting for review."""
         return (
-            self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer,
-                # We'll filter on pending_rejection below without limiting
-                # ourselves to the current_version.
-                exclude_listed_pending_rejection=False,
-            )
+            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
             .filter(
                 # Only extensions to avoid looking at themes etc, which slows
                 # the query down.
@@ -482,10 +476,7 @@ class AddonManager(ManagerBase):
     def get_pending_rejection_queue(self, admin_reviewer=False):
         filter_kwargs = {'versions__reviewerflags__pending_rejection__isnull': False}
         return (
-            self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer,
-                exclude_listed_pending_rejection=False,
-            )
+            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
             .filter(**filter_kwargs)
             .order_by('_current_version__reviewerflags__pending_rejection')
             .distinct()

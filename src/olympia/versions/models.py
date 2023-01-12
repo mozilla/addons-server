@@ -1,5 +1,5 @@
-import datetime
 import os
+from datetime import datetime
 
 from base64 import b64encode
 from urllib.parse import urlparse
@@ -175,8 +175,11 @@ class VersionManager(ManagerBase):
         due date instead."""
         method = getattr(self, 'exclude' if negate else 'filter')
         is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
+        # Note: once the auto_approval_delayed_until date is past, we don't
+        # remove the due date unless something else causes the add-on to
+        # trigger that check.
         has_auto_approval_delayed = Q(
-            addon__reviewerflags__auto_approval_delayed_until__isnull=False
+            addon__reviewerflags__auto_approval_delayed_until__gt=datetime.now()
         )
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)
@@ -299,6 +302,7 @@ class Version(OnChangeMixin, ModelBase):
         indexes = [
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('license',), name='license_id'),
+            models.Index(fields=('due_date',), name='versions_due_date_b9c73ed7'),
         ]
         constraints = [
             models.UniqueConstraint(
@@ -515,7 +519,7 @@ class Version(OnChangeMixin, ModelBase):
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
         upload_start = utc_millesecs_from_epoch(upload.created)
-        now = datetime.datetime.now()
+        now = datetime.now()
         now_ts = utc_millesecs_from_epoch(now)
         upload_time = now_ts - upload_start
 

@@ -25,16 +25,12 @@ def queue_tabnav(context):
 
     if listed:
         tabnav = []
-        if acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
-        ):
-            tabnav.append(('recommended', 'queue_recommended', gettext('Recommended')))
         if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 (
                     'extension',
                     'queue_extension',
-                    '🛠️ ' + gettext('Other Pending Review'),
+                    '🛠️ ' + gettext('Manual Review'),
                 )
             )
             tabnav.append(
@@ -86,11 +82,6 @@ def queue_tabnav(context):
     else:
         tabnav = [
             ('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons')),
-            (
-                'pending_manual_approval',
-                'unlisted_queue_pending_manual_approval',
-                gettext('Unlisted Add-ons Pending Manual Approval'),
-            ),
         ]
 
     return tabnav

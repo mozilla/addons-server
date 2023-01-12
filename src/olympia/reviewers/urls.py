@@ -12,11 +12,6 @@ urlpatterns = (
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
     re_path(
-        r'^queue/recommended$',
-        views.queue_recommended,
-        name='reviewers.queue_recommended',
-    ),
-    re_path(
         r'^queue/extension$', views.queue_extension, name='reviewers.queue_extension'
     ),
     re_path(
@@ -57,11 +52,6 @@ urlpatterns = (
         r'^unlisted_queue/all$',
         views.unlisted_list,
         name='reviewers.unlisted_queue_all',
-    ),
-    re_path(
-        r'^unlisted_queue/pending_manual_approval$',
-        views.unlisted_pending_manual_approval,
-        name='reviewers.unlisted_queue_pending_manual_approval',
     ),
     re_path(
         r'^moderationlog$',
