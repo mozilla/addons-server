@@ -2,9 +2,9 @@
 cssselect==1.2.0 \
     --hash=sha256:666b19839cfaddb9ce9d36bfe4c969132c647b92fc9088c4e23f786b30f1b3dc \
     --hash=sha256:da1885f0c10b60c03ed5eccbb6b68d6eff248d91976fcde348f395d54c9fd35e
-pyquery==1.4.3 \
-    --hash=sha256:1fc33b7699455ed25c75282bc8f80ace1ac078b0dda5a933dacbd8b1c1f83963 \
-    --hash=sha256:a388eefb6bc4a55350de0316fbd97cda999ae669b6743ae5b99102ba54f5aa72
+pyquery==2.0.0 \
+    --hash=sha256:8dfc9b4b7c5f877d619bbae74b1898d5743f6ca248cfd5d72b504dd614da312f \
+    --hash=sha256:963e8d4e90262ff6d8dec072ea97285dc374a2f69cad7776f4082abcf6a1d8ae
 # execnet is required by pytest-xdist
 execnet==1.9.0 \
     --hash=sha256:a295f7cc774947aac58dde7fdc85f4aa00c42adf5d8f5468fc630c1acf30a142 \
