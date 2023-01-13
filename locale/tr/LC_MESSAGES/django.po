@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-13 14:22+0000\n"
+"PO-Revision-Date: 2023-01-13 22:24+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4257,7 +4257,7 @@ msgstr "İstenmeyen çerezleri otomatik olarak silin. Beyaz ve kara liste deste�
 
 #. editorial content for the discovery pane.
 msgid "With a simple click of the mouse you can watch videos in full screen glory."
-msgstr ""
+msgstr "Basit bir fare tıklamasıyla videoları tam ekran izleyebilirsiniz."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5183,10 +5183,10 @@ msgid "Human Review Needed"
 msgstr "İnsan İncelemesi Gerekli"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "İnsan İncelemesi Gereken Sürümler"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "MAD tarafından insan incelemesi için işaretlendi"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Otomatik onaylanmış eklentiler"
@@ -5402,7 +5402,7 @@ msgid "Review Text"
 msgstr "İnceleme Metni"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "İnceleme, silinmeden önce işaretlendi."
 
 msgid "Undelete"
 msgstr "Silmeyi geri al"
