@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-12 23:41+0000\n"
+"PO-Revision-Date: 2023-01-13 14:22+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1497,7 +1497,7 @@ msgid "Strategic"
 msgstr "Stratejik"
 
 msgid "Notable"
-msgstr ""
+msgstr "Dikkate değer"
 
 msgid "Add-on"
 msgstr "Eklenti"
@@ -4456,7 +4456,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "Twitter'daki dağınıklığı giderin."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4525,7 +4525,7 @@ msgstr "Firefox'un günün saatine göre renkleri değiştirmesini sağlayın."
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr ""
+msgstr "YouTube'da dikkat dağıtıcı unsurlarını ortadan kaldırın. İlgili ve önerilen videoları, yorumları ve daha fazlasını yok edin."
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
