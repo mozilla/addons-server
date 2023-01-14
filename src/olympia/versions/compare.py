@@ -50,8 +50,11 @@ def version_dict(version):
         for letter in letters:
             d[letter] = d[letter] if d[letter] else None
         for num in numbers:
-            if d[num] == '*':
+            # We only support triple digits on major versions right now.
+            if d[num] == '*' and num == "major":
                 d[num] = 999
+            elif d[num] == '*':
+                d[num] = 99
             else:
                 d[num] = int(d[num]) if d[num] else None
     else:
