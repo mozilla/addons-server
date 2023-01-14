@@ -129,8 +129,12 @@ var installButton = function() {
     // Calls InstallTrigger.install or AddSearchProvider if we capture a click
     // on something with a .installer class.
     var clickHijack = function() {
+        var hasAddonManager = ("mozAddonManager" in navigator) && navigator.mozAddonManager !== null;
+        var hasInstallTrigger = ("InstallTrigger" in window) && window.InstallTrigger !== null;
+
         try {
-            if (!appSupported && !no_compat_necessary || !("InstallTrigger" in window)) return;
+            if (!appSupported && !no_compat_necessary) return;
+            if (!hasAddonManager && !hasInstallTrigger) return;
         } catch (e) {
             return;
         }
@@ -163,10 +167,10 @@ var installButton = function() {
                 hashes[$(this).attr('href')] = $(this).attr('data-hash');
             });
             var hash = hashes[installer.attr('href')];
-
+            var installFn = hasAddonManager ? z.installAddon : z.installAddonDeprecated;
             var f = _.haskey(z.button.after, after) ? z.button.after[after] : _.identity,
                 callback = _.bind(f, self),
-                install = search ? z.installSearch : z.installAddon;
+                install = search ? z.installSearch : installFn;
             install(name, installer[0].href, icon, hash, callback);
         });
     };
@@ -299,8 +303,10 @@ jQuery.fn.installButton = function() {
  *
  * hash and callback are optional.  callback is triggered after the
  * installation is complete.
+ *
+ * This function uses the older deprecated window.InstallTrigger function.
  */
-z.installAddon = function(name, url, icon, hash, callback) {
+z.installAddonDeprecated = function(name, url, icon, hash, callback) {
     var params = {};
     params[name] = {
         URL: url,
@@ -312,6 +318,41 @@ z.installAddon = function(name, url, icon, hash, callback) {
     }
     // InstallTrigger is a Gecko API.
     InstallTrigger.install(params, callback);
+
+    _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
+};
+
+/* Install an XPI or a JAR (or something like that).
+ *
+ * hash and callback are optional.  callback is triggered after the
+ * installation is complete.
+ */
+z.installAddon = function(name, url, icon, hash, callback) {
+    /**
+     * Technically the only supported option is url,
+     * however hash is referenced in mozilla/addons-frontend, and the application
+     * @type {{url: string, hash?: string}}
+     */
+    var options = {
+        'url': url,
+    };
+
+    if (options) {
+        options.hash = hash;
+    }
+
+    /*
+     * mozAddonManager is a Gecko API. It's only available on hosts that are specifically defined in the application.
+     * See AddonManager.jsm, and AddonManagerWebAPI.cpp on the application side for more information.
+     */
+    navigator.mozAddonManager.createInstall(options).then(function (install) {
+        install.install().then(function () {
+            callback();
+        }).catch(function (error) {
+          console.error("Addon install has failed.", error);
+        });
+    });
+
     _gaq.push(['_trackEvent', 'AMO Addon / Theme Installs', 'addon', name]);
 };
 
