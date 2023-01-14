@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-13 22:24+0000\n"
+"PO-Revision-Date: 2023-01-14 11:38+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4097,7 +4097,7 @@ msgstr "Web sayfasındaki metni seçip sağ tıklayarak kolayca Vikipedi aramas�
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "Belli bir alan adında aradığınız sonuçları bulun."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -4122,7 +4122,7 @@ msgstr "Yeni sekme sayfalarında özel arka plan renkleri ve resimler kullanın.
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "Her yeni sekmede sevimli bir kedicikle tanışın. Kulağının arkasını kaşıyıp neler olduğunu görün."
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -4166,11 +4166,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
-msgstr ""
+msgstr "Güvenle alışveriş yapın. Bu uzantı, güvenilirliği bilinen bir siteden alışveriş yaptığınızdan emin olmak için ekstra bir kontrol sağlar."
 
 #. editorial content for the discovery pane.
 msgid "Track productivity. Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Üretkenliğinizi takip edin. Bilgisayarda veya Trello, JIRA, Basecamp, GitHub gibi iş uygulamalarında geçirdiğiniz süreyi ölçün."
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -5670,10 +5670,10 @@ msgid "Newer"
 msgstr "Daha Yeni"
 
 msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
+msgstr "Diğer sayfalardaki {num} sürüm tarayıcılar tarafından işaretlendi."
 
 msgid "{num} versions flagged for human review on other pages."
-msgstr ""
+msgstr "Diğer sayfalardaki {num} sürüm insan incelemesi için işaretlendi."
 
 msgid "{num} versions pending rejection on other pages."
 msgstr "{num} sürüm, diğer sayfalarda reddedilmeyi bekliyor."
@@ -5888,7 +5888,7 @@ msgid "by Source"
 msgstr "Kaynağa göre"
 
 msgid "by Medium"
-msgstr ""
+msgstr "Ortama göre"
 
 msgid "by Content"
 msgstr "İçeriğe göre"
