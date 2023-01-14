@@ -203,6 +203,7 @@ class RDFExtractor(object):
             'type': self.find_type(),
             'version': self.find('version'),
             'is_webextension': False,
+            'is_experiment': False,
             'name': self.find('name'),
             'summary': self.find('description'),
         }
@@ -526,6 +527,7 @@ class ManifestJSONExtractor(object):
             'type': self.type,
             'version': self.get('version', ''),
             'is_webextension': True,
+            'is_experiment': self.is_experiment,
             'name': self.get('name'),
             'summary': self.get('description'),
             'homepage': self.get('homepage_url'),
@@ -554,7 +556,6 @@ class ManifestJSONExtractor(object):
                 'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
                 'strict_compatibility': strict_compatibility,
                 'default_locale': self.get('default_locale'),
-                'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
                 # Only extensions have permissions and content scripts
@@ -618,6 +619,7 @@ def parse_search(fileorpath, addon=None):
             'name': data['name'],
             'is_restart_required': False,
             'is_webextension': False,
+            'is_experiment': False,
             'summary': data['description'],
             'version': datetime.now().strftime('%Y%m%d')}
 

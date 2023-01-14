@@ -506,7 +506,6 @@ class TestRunAddonsLinter(ValidatorTestCase):
             assert result['warnings'] == 24
             assert not result['errors']
 
-
 class TestValidateFilePath(ValidatorTestCase):
 
     def test_amo_validator_success(self):
@@ -1431,3 +1430,21 @@ class TestAPIKeyInSubmission(TestCase):
         # validation task.
         assert upload.processed_validation['errors'] == 1
         assert not upload.valid
+
+
+class TestAddonsLinterRegressions(ValidatorTestCase):
+
+    def test_run_linter_ensure_version_is_correct(self):
+        """
+        Regression test for https://github.com/thundernest/addons-server/issues/210
+        Addons-linter has been upgraded, so ensure this issue does not happen with their sample manifest.
+        """
+        file_ = get_addon_file('valid_webextension_with_good_version_string.xpi')
+        upload = FileUpload.objects.create(path=file_)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 0
+        assert upload.processed_validation['messages'] == []
+        assert upload.valid

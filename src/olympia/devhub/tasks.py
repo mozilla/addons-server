@@ -193,13 +193,13 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
+def validate_file_path(path, hash_, listed=True, is_webextension=False, is_experiment=False, **kw):
     """Run the validator against a file at the given path, and return the
     results.
 
     Should only be called directly by Validator."""
     if is_webextension:
-        return run_addons_linter(path, listed=listed)
+        return run_addons_linter(path, listed=listed, is_experiment=is_experiment)
     return run_validator(path, listed=listed)
 
 
@@ -714,7 +714,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
         return json_result
 
 
-def run_addons_linter(path, listed=True):
+def run_addons_linter(path, listed=True, is_experiment=False):
     from .utils import fix_addons_linter_output
 
     args = [
@@ -726,6 +726,10 @@ def run_addons_linter(path, listed=True):
 
     if not listed:
         args.append('--self-hosted')
+
+    # Needed with recent addons-linter update, enables support for the experimental api
+    if is_experiment:
+        args.append('--privileged')
 
     if not os.path.exists(path):
         raise ValueError(

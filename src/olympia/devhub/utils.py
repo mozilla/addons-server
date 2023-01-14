@@ -33,6 +33,9 @@ def process_validation(validation, is_compatibility=False, file_hash=None):
     compatibility messages, and limiting the number of messages displayed."""
     validation = fix_addons_linter_output(validation)
 
+    # Secondly remove any privileged errors
+    validation = remove_privileged_errors(validation)
+
     if is_compatibility:
         mangle_compatibility_messages(validation)
 
@@ -50,6 +53,30 @@ def process_validation(validation, is_compatibility=False, file_hash=None):
 
     return validation
 
+
+def remove_privileged_errors(validation):
+    """
+    New version of addons-linter includes some additional errors that we can't easily get around without pulling the code down,
+    which will happen eventually. But for now just pop them off the errors
+    """
+    # No errors to pop!
+    if validation['errors'] == 0:
+        return validation
+
+    to_remove = []
+
+    for index, error in enumerate(validation['messages']):
+        if error['id'][0] in ['PRIVILEGED_FEATURES_REQUIRED', 'MOZILLA_ADDONS_PERMISSION_REQUIRED']:
+            # Prepend to the list, this will ensure our positional pops work correctly
+            to_remove.insert(0, index)
+
+    # Iterate and remove the specific items, we're iterating in reverse order here.
+    for index in to_remove:
+        validation['messages'].pop(index)
+
+    validation['errors'] -= len(to_remove)
+
+    return validation
 
 def mangle_compatibility_messages(validation):
     """Mangle compatibility messages so that the message type matches the
@@ -233,6 +260,7 @@ class Validator(object):
             save = tasks.handle_upload_validation_result
             is_webextension = False
             is_mozilla_signed = False
+            is_experiment = False
 
             # We're dealing with a bare file upload. Try to extract the
             # metadata that we need to match it against a previous upload
@@ -240,6 +268,7 @@ class Validator(object):
             try:
                 addon_data = parse_addon(file_, minimal=True)
                 is_webextension = addon_data['is_webextension']
+                is_experiment = addon_data['is_experiment']
                 is_mozilla_signed = addon_data.get(
                     'is_mozilla_signed_extension', False)
             except ValidationError as form_error:
@@ -248,7 +277,7 @@ class Validator(object):
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
-            validate = self.validate_upload(file_, channel, is_webextension)
+            validate = self.validate_upload(file_, channel, is_webextension, is_experiment)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -291,18 +320,22 @@ class Validator(object):
         """Return a subtask to validate a File instance."""
         kwargs = {
             'hash_': file.original_hash,
-            'is_webextension': file.is_webextension}
+            'is_webextension': file.is_webextension,
+            'is_experiment': file.is_experiment
+        }
         return tasks.validate_file.subtask([file.pk], kwargs)
 
     @staticmethod
-    def validate_upload(upload, channel, is_webextension):
+    def validate_upload(upload, channel, is_webextension, is_experiment=False):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
         kwargs = {
             'hash_': upload.hash,
             'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
-            'is_webextension': is_webextension}
+            'is_webextension': is_webextension,
+            'is_experiment': is_experiment
+        }
         return tasks.validate_file_path.subtask([upload.path], kwargs)
 
 
