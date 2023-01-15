@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-03 18:28+0000\n"
-"PO-Revision-Date: 2023-01-14 21:51+0000\n"
-"Last-Translator: Темак <artemkotlubai@yandex.ru>\n"
+"PO-Revision-Date: 2023-01-15 14:29+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1489,7 +1489,7 @@ msgid "Strategic"
 msgstr "Стратегический"
 
 msgid "Notable"
-msgstr ""
+msgstr "Достойно внимания"
 
 msgid "Add-on"
 msgstr "Дополнение"
@@ -2818,7 +2818,7 @@ msgstr "Ваше дополнение будет успешнее, если вы
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
-"Вы можете привлечь пользователей к своему расширению, добавив подробное описание и скриншоты в свое заявление. Получите помощь по <a %(a_attrs)s>созданию привлекательного листинга</a> в Firefox "
+"Вы можете привлечь пользователей к своему расширению, добавив подробное описание и снимки экрана в своё заявление. Получите помощь по <a %(a_attrs)s>созданию привлекательного листинга</a> в Firefox "
 "Extension Workshop."
 
 msgid "Manage Listing"
@@ -3972,7 +3972,7 @@ msgstr "Отслеживайте изменения цен, находите к�
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr ""
-"Сделайте YouTube своим. Открывайте видео во всплывающих окнах, смотрите рекламу только на каналах, на которые вы подписаны, делайте скриншоты видео и пользуйтесь множеством других возможностей."
+"Сделайте YouTube своим. Открывайте видео во всплывающих окнах, смотрите рекламу только на каналах, на которые вы подписаны, делайте снимки экрана видео и пользуйтесь множеством других возможностей."
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
@@ -5208,10 +5208,10 @@ msgid "Add-on Review Guide"
 msgstr "Руководство по проверке дополнений"
 
 msgid "Human Review Needed"
-msgstr ""
+msgstr "Требуется проверка человека"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Версии, требующие проверки человеком"
 
 msgid "Flagged by MAD for Human Review"
 msgstr "Отмечено MAD для рассмотрения человеком"
