@@ -858,13 +858,28 @@ class TestVersion(TestCase):
 
         # Or if the version has already been reviewed but is pending rejection
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        VersionReviewerFlags.objects.create(
+        flags = VersionReviewerFlags.objects.create(
             version=version,
             pending_rejection=datetime.now(),
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
         )
         assert not version.should_have_due_date
+
+        # clear the flags and the due date is applicable again
+        flags.update(
+            pending_rejection=None,
+            pending_rejection_by=None,
+            pending_content_rejection=None,
+        )
+        assert version.should_have_due_date
+
+        # auto_approval_delayed_until addons should also have a due_date
+        addon.reviewerflags.update(
+            auto_approval_disabled_until_next_approval=False,
+            auto_approval_delayed_until=datetime.now(),
+        )
+        assert version.should_have_due_date
 
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
@@ -908,13 +923,28 @@ class TestVersion(TestCase):
 
         # Or if the version has already been reviewed but is pending rejection
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        VersionReviewerFlags.objects.create(
+        flags = VersionReviewerFlags.objects.create(
             version=version,
             pending_rejection=datetime.now(),
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
         )
         assert not version.should_have_due_date
+
+        # clear the flags and the due date is applicable again
+        flags.update(
+            pending_rejection=None,
+            pending_rejection_by=None,
+            pending_content_rejection=None,
+        )
+        assert version.should_have_due_date
+
+        # auto_approval_delayed_until addons should also have a due_date
+        addon.reviewerflags.update(
+            auto_approval_disabled_until_next_approval_unlisted=False,
+            auto_approval_delayed_until=datetime.now(),
+        )
+        assert version.should_have_due_date
 
     def test_reset_due_date(self):
         addon = Addon.objects.get(id=3615)

@@ -178,6 +178,7 @@ class VersionManager(ManagerBase):
                 | Q(
                     addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)
                 )
+                | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
                 | Q(
                     Q(addon__reviewerflags__auto_approval_disabled=True)
                     | Q(
