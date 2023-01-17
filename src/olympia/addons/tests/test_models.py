@@ -3107,23 +3107,22 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         assert set(results) == set(expected)
 
     def test_worst_score_and_first_created_ignores_versions_not_in_filter(self):
-        expected_first_created_date = self.days_ago(2)
-        addon = AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                version_kw={
-                    'channel': amo.CHANNEL_UNLISTED,
-                    'created': self.days_ago(1),
-                },
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            auto_approval_disabled_unlisted=True,
-        ).addon
+        expected_first_due_date = self.days_ago(2)
+
+        addon = addon_factory(
+            version_kw={
+                'channel': amo.CHANNEL_UNLISTED,
+                'due_date': self.days_ago(1),
+            },
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled_unlisted': True},
+        )
         AutoApprovalSummary.objects.create(version=addon.versions.all()[0], score=66)
         AutoApprovalSummary.objects.create(
             version=version_factory(
                 addon=addon,
                 channel=amo.CHANNEL_UNLISTED,
-                created=expected_first_created_date,
+                due_date=expected_first_due_date,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             score=55,
@@ -3132,7 +3131,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         AutoApprovalSummary.objects.create(
             version=version_factory(
                 addon=addon,
-                created=self.days_ago(99),
+                due_date=self.days_ago(99),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ),
             score=99,
@@ -3141,7 +3140,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
             version=version_factory(
                 addon=addon,
                 channel=amo.CHANNEL_UNLISTED,
-                created=self.days_ago(98),
+                due_date=self.days_ago(98),
                 file_kw={'status': amo.STATUS_APPROVED},
             ),
             score=98,
@@ -3149,7 +3148,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         AutoApprovalSummary.objects.create(
             version=version_factory(
                 addon=addon,
-                created=self.days_ago(97),
+                due_date=self.days_ago(97),
                 file_kw={'status': amo.STATUS_DISABLED},
             ),
             score=97,
@@ -3160,7 +3159,7 @@ class TestUnlistedPendingManualApprovalQueue(TestCase):
         result = results[0]
         assert result == addon
         assert result.worst_score == 66
-        assert result.first_version_created == expected_first_created_date
+        assert result.first_version_due == expected_first_due_date
 
 
 class TestListedPendingManualApprovalQueue(TestCase):

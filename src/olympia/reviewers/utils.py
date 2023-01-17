@@ -249,7 +249,6 @@ class UpdatedThemesQueueTable(NewThemesQueueTable):
 
 
 class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
-    created = tables.Column(verbose_name=_('Created'), accessor='first_version_created')
     score = tables.Column(verbose_name=_('Maliciousness Score'), accessor='worst_score')
     show_count_in_dashboard = False
 
@@ -257,7 +256,7 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
         fields = (
             'addon_name',
             'addon_type',
-            'created',
+            'due_date',
             'score',
         )
         exclude = (
@@ -270,9 +269,6 @@ class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
 
     def _get_addon_name_url(self, record):
         return reverse('reviewers.review', args=['unlisted', record.id])
-
-    def _get_created(self, record):
-        return record.first_version_created
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):

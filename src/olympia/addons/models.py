@@ -370,7 +370,7 @@ class AddonManager(ManagerBase):
             # These annotations should be applied to versions that match the
             # filters above. They'll be used to sort the results or just
             # display the data to reviewers in the queue.
-            first_version_created=Min('versions__created'),
+            first_version_due=Min('versions__due_date'),
             worst_score=Max('versions__autoapprovalsummary__score'),
         )
 
