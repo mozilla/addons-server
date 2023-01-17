@@ -890,12 +890,8 @@ class TestVersion(TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # But if it's in a pre-review promoted group it will.
+        # Promoted groups are ignored for unlisted, even pre-review groups.
         PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
-        assert version.should_have_due_date
-
-        # And not if it's a non-pre-review group
-        addon.promotedaddon.update(group_id=STRATEGIC.id)
         assert not version.should_have_due_date
 
         # But yes if auto approval is disabled

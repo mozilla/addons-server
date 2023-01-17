@@ -175,14 +175,16 @@ class VersionManager(ManagerBase):
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
                 Q(addon__type__in=amo.GROUP_TYPE_THEME)
-                | Q(
-                    addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)
-                )
                 | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
                 | Q(
                     Q(addon__reviewerflags__auto_approval_disabled=True)
                     | Q(
                         addon__reviewerflags__auto_approval_disabled_until_next_approval=True  # noqa
+                    )
+                    | Q(
+                        addon__promotedaddon__group_id__in=(
+                            g.id for g in PRE_REVIEW_GROUPS
+                        )
                     ),
                     channel=amo.CHANNEL_LISTED,
                 )
