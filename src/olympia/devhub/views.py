@@ -1843,7 +1843,7 @@ def request_review(request, addon_id, addon):
     if latest_version:
         if latest_version.file.status == amo.STATUS_DISABLED:
             latest_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        # Clear the due date so it gets set again in Addon.watch_status.
+        # Clear the due date so it gets set again in Addon.watch_status if nessecary.
         latest_version.update(due_date=None)
     if addon.has_complete_metadata():
         addon.update_status()

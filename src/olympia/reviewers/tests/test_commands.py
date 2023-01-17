@@ -535,6 +535,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             aps = self.version.autoapprovalsummary
             assert aps.has_auto_approval_disabled
 
+            self.addon.refresh_from_db()
             flags = self.addon.reviewerflags
             assert flags.auto_approval_delayed_until
 
@@ -1194,6 +1195,7 @@ class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
             user.email for user in users
         }
 
+        addon.refresh_from_db()
         assert addon.reviewerflags.notified_about_auto_approval_delay
 
 

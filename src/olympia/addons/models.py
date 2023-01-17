@@ -72,6 +72,7 @@ from olympia.versions.models import (
     VersionReviewerFlags,
     inherit_due_date,
 )
+from olympia.versions.utils import get_review_due_date
 
 from . import signals
 
@@ -1775,6 +1776,21 @@ class Addon(OnChangeMixin, ModelBase):
                 tag.remove_tag(self)
         self.tag_list = new_tag_list
 
+    def update_all_due_dates(self):
+        for version in self.versions.should_have_due_date().filter(
+            due_date__isnull=True
+        ):
+            due_date = get_review_due_date()
+            log.info(
+                'Version %r (%s) due_date set to %s', version, version.id, due_date
+            )
+            version.update(due_date=due_date, _signal=False)
+        for version in self.versions.should_have_due_date(negate=True).filter(
+            due_date__isnull=False
+        ):
+            log.info('Version %r (%s) due_date cleared', version, version.id)
+            version.update(due_date=None, _signal=False)
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
@@ -1861,6 +1877,13 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_delayed_rejections = models.BooleanField(
         default=None, null=True
     )
+
+
+@receiver(
+    dbsignals.post_save, sender=AddonReviewerFlags, dispatch_uid='addon_review_flags'
+)
+def update_due_date_for_auto_approval_changes(sender, instance=None, **kwargs):
+    instance.addon.update_all_due_dates()
 
 
 class AddonRegionalRestrictions(ModelBase):

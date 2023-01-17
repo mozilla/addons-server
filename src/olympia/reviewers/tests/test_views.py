@@ -616,25 +616,23 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Nominated and pending extensions.
-        AddonReviewerFlags.objects.create(
-            auto_approval_disabled=True,
-            addon=version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
+        version_factory(
+            addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        AddonReviewerFlags.objects.create(
-            needs_admin_code_review=True,
-            auto_approval_disabled=True,
-            addon=addon_factory(
-                status=amo.STATUS_NOMINATED,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_disabled': True,
+                'needs_admin_code_review': True,
+            },
         )
-        under_admin_review_and_pending = addon_factory()
-        AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending,
-            needs_admin_theme_review=True,
-            auto_approval_disabled=True,
+        under_admin_review_and_pending = addon_factory(
+            reviewer_flags={
+                'needs_admin_theme_review': True,
+                'auto_approval_disabled': True,
+            }
         )
         version_factory(
             addon=under_admin_review_and_pending,
@@ -646,27 +644,24 @@ class TestDashboard(TestCase):
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED
         )
-        under_content_review = addon_factory()
+        under_content_review = addon_factory(
+            reviewer_flags={'needs_admin_content_review': True}
+        )
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
         )
-        AddonReviewerFlags.objects.create(
-            addon=under_content_review, needs_admin_content_review=True
-        )
-        addon2 = addon_factory()
+        addon2 = addon_factory(reviewer_flags={'needs_admin_content_review': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon2)
         AutoApprovalSummary.objects.create(
             version=addon2.current_version, verdict=amo.AUTO_APPROVED
         )
-        AddonReviewerFlags.objects.create(addon=addon2, needs_admin_content_review=True)
-        under_code_review = addon_factory()
+        under_code_review = addon_factory(
+            reviewer_flags={'needs_admin_code_review': True}
+        )
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AddonReviewerFlags.objects.create(
-            addon=under_code_review, needs_admin_code_review=True
         )
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
@@ -789,38 +784,27 @@ class TestDashboard(TestCase):
 
     def test_regular_reviewer(self):
         # Create some add-ons to test the queue counts.
-        AddonReviewerFlags.objects.create(
-            auto_approval_disabled=True,
-            addon=addon_factory(
-                status=amo.STATUS_NOMINATED,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-        )
-        AddonReviewerFlags.objects.create(
-            auto_approval_disabled=True,
-            addon=version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
-        )
-        AddonReviewerFlags.objects.create(
-            auto_approval_disabled=True,
-            addon=version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
-        )
-        # These two are under admin review and will be ignored.
-        under_admin_review = addon_factory(
-            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        AddonReviewerFlags.objects.create(
-            addon=under_admin_review, needs_admin_code_review=True
-        )
-        under_admin_review_and_pending = addon_factory()
-        AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending, needs_admin_code_review=True
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
         )
         version_factory(
-            addon=under_admin_review_and_pending,
+            addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=addon_factory(reviewer_flags={'auto_approval_disabled': True}),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        # These two are under admin review and will be ignored.
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'needs_admin_code_review': True},
+        )
+        version_factory(
+            addon=addon_factory(reviewer_flags={'needs_admin_code_review': True}),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # This is a static theme so won't be shown
@@ -831,20 +815,18 @@ class TestDashboard(TestCase):
         )
         # Create an add-on to test the post-review queue count.
         # It's under admin content review but that does not have an impact.
-        addon = addon_factory()
+        addon = addon_factory(reviewer_flags={'needs_admin_content_review': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        AddonReviewerFlags.objects.create(addon=addon, needs_admin_content_review=True)
         # This one however is under admin code review, it's ignored.
-        under_code_review = addon_factory()
+        under_code_review = addon_factory(
+            reviewer_flags={'needs_admin_code_review': True}
+        )
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AddonReviewerFlags.objects.create(
-            addon=under_code_review, needs_admin_code_review=True
         )
 
         # Grant user the permission to see only the legacy/post add-ons section
@@ -873,20 +855,18 @@ class TestDashboard(TestCase):
     def test_content_reviewer(self):
         # Create an add-on to test the queue count. It's under admin code
         # review but that does not have an impact.
-        addon = addon_factory()
+        addon = addon_factory(reviewer_flags={'needs_admin_code_review': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        AddonReviewerFlags.objects.create(addon=addon, needs_admin_code_review=True)
         # This one is under admin *content* review so it's ignored.
-        under_content_review = addon_factory()
+        under_content_review = addon_factory(
+            reviewer_flags={'needs_admin_content_review': True}
+        )
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AddonReviewerFlags.objects.create(
-            addon=under_content_review, needs_admin_content_review=True
         )
 
         # Grant user the permission to see only the Content Review section.
@@ -988,20 +968,17 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # These two are under admin review and will be ignored.
-        under_admin_review = addon_factory(
+        addon_factory(
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        AddonReviewerFlags.objects.create(
-            addon=under_admin_review, needs_admin_theme_review=True
-        )
-        under_admin_review_and_pending = addon_factory(type=amo.ADDON_STATICTHEME)
-        AddonReviewerFlags.objects.create(
-            addon=under_admin_review_and_pending, needs_admin_theme_review=True
+            reviewer_flags={'needs_admin_theme_review': True},
         )
         version_factory(
-            addon=under_admin_review_and_pending,
+            addon=addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                reviewer_flags={'needs_admin_theme_review': True},
+            ),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # This is an extension so won't be shown
@@ -1089,7 +1066,13 @@ class QueueTest(ReviewerTest):
         self.expected_versions = {}
         self.channel_name = 'listed' if self.listed else 'unlisted'
 
-    def generate_files(self, subset=None, files=None, auto_approve_disabled=False):
+    def generate_files(
+        self,
+        subset=None,
+        files=None,
+        auto_approve_disabled=False,
+        addon_type=amo.ADDON_EXTENSION,
+    ):
         if subset is None:
             subset = []
         channel = amo.CHANNEL_LISTED if self.listed else amo.CHANNEL_UNLISTED
@@ -1168,19 +1151,30 @@ class QueueTest(ReviewerTest):
             ]
         )
         results = OrderedDict()
+        reviewer_flags = (
+            {
+                (
+                    'auto_approval_disabled'
+                    if self.listed
+                    else 'auto_approval_disabled_unlisted'
+                ): True
+            }
+            if auto_approve_disabled
+            else None
+        )
         for name, attrs in files.items():
             if not subset or name in subset:
                 version_kw = attrs.pop('version_kw', {})
                 version_kw['channel'] = channel
                 file_kw = attrs.pop('file_kw', {})
                 results[name] = addon_factory(
-                    name=name, version_kw=version_kw, file_kw=file_kw, **attrs
+                    name=name,
+                    version_kw=version_kw,
+                    file_kw=file_kw,
+                    type=addon_type,
+                    reviewer_flags=reviewer_flags,
+                    **attrs,
                 )
-                if auto_approve_disabled:
-                    AddonReviewerFlags.objects.create(
-                        addon=results[name],
-                        auto_approval_disabled=True,
-                    )
                 # status might be wrong because we want to force a particular
                 # status without necessarily having the requirements for it.
                 # So update it if we didn't end up with the one we want.
@@ -1204,9 +1198,13 @@ class QueueTest(ReviewerTest):
             channel = amo.CHANNEL_UNLISTED
         return addon.find_latest_version(channel=channel)
 
-    def get_expected_addons_by_names(self, names, auto_approve_disabled=False):
+    def get_expected_addons_by_names(
+        self, names, auto_approve_disabled=False, addon_type=amo.ADDON_EXTENSION
+    ):
         expected_addons = []
-        files = self.generate_files(auto_approve_disabled=auto_approve_disabled)
+        files = self.generate_files(
+            auto_approve_disabled=auto_approve_disabled, addon_type=addon_type
+        )
         for name in sorted(names):
             if name in files:
                 expected_addons.append(files[name])
@@ -1589,40 +1587,20 @@ class TestExtensionQueue(QueueTest):
         )
 
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending Two'], auto_approval_disabled=False
-        )
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated Two'],
+        self.generate_files(auto_approve_disabled=True)
+        self.addons['Pending Two'].reviewerflags.update(auto_approval_disabled=False)
+        self.addons['Nominated Two'].reviewerflags.update(
+            auto_approval_disabled=False,
             auto_approval_disabled_until_next_approval=False,
         )
-
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated One'], auto_approval_disabled=True
-        )
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending One'], auto_approval_disabled=True
-        )
+        assert self.addons['Pending One'].reviewerflags.auto_approval_disabled
+        assert self.addons['Nominated One'].reviewerflags.auto_approval_disabled
 
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
         ]
-        self._test_results()
-
-    def test_webextension_with_auto_approval_disabled_does_show_up(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending One'], auto_approval_disabled=True
-        )
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Nominated One'],
-            auto_approval_disabled_until_next_approval=True,
-        )
-
-        self.expected_addons = [
-            self.addons['Nominated One'],
-            self.addons['Pending One'],
-        ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()
 
     def test_webextension_with_auto_approval_delayed(self):
@@ -1661,11 +1639,14 @@ class TestExtensionQueue(QueueTest):
             self.addons['Nominated One'],
             self.addons['Pending One'],
         ]
+        # these are the same due_dates we default to in get_files
+        self.addons['Nominated One'].current_version.update(due_date=self.days_ago(2))
+        self.addons['Pending One'].current_version.update(due_date=self.days_ago(0))
+
         self._test_results()
 
     def test_static_theme_filtered_out(self):
-        for addon in self.addons.values():
-            AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
+        self.generate_files(auto_approve_disabled=True)
         self.addons['Pending Two'].update(type=amo.ADDON_STATICTHEME)
         self.addons['Nominated Two'].update(type=amo.ADDON_STATICTHEME)
 
@@ -1674,6 +1655,7 @@ class TestExtensionQueue(QueueTest):
             self.addons['Nominated One'],
             self.addons['Pending One'],
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()
 
         # Even if you have that permission also
@@ -1681,8 +1663,7 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_pending_rejection_filtered_out(self):
-        for addon in self.addons.values():
-            AddonReviewerFlags.objects.create(addon=addon, auto_approval_disabled=True)
+        self.generate_files(auto_approve_disabled=True)
         version_review_flags_factory(
             version=self.addons['Nominated Two'].current_version,
             pending_rejection=datetime.now(),
@@ -1695,6 +1676,7 @@ class TestExtensionQueue(QueueTest):
             self.addons['Nominated One'],
             self.addons['Pending One'],
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()
 
 
@@ -1703,10 +1685,9 @@ class TestThemeNominatedQueue(QueueTest):
         super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
-            ['Nominated One', 'Nominated Two']
+            ['Nominated One', 'Nominated Two'], addon_type=amo.ADDON_STATICTHEME
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
         self.url = reverse('reviewers.queue_theme_nominated')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
@@ -1789,8 +1770,12 @@ class TestRecommendedQueue(QueueTest):
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
+        due_date_counter = 2
         for addon in self.expected_addons:
             self.make_addon_promoted(addon, RECOMMENDED)
+            # these are the same due_dates we default to in get_files
+            addon.current_version.update(due_date=self.days_ago(due_date_counter))
+            due_date_counter -= 1
         self.url = reverse('reviewers.queue_recommended')
 
     def test_results(self):
@@ -2138,7 +2123,7 @@ class TestUnlistedPendingManualApproval(QueueTest):
     def setUp(self):
         super().setUp()
         self.url = reverse('reviewers.unlisted_queue_pending_manual_approval')
-        self.generate_files()
+        self.generate_files(auto_approve_disabled=True)
         self.expected_addons = [
             self.addons['Pending One'],
             self.addons['Nominated Two'],
@@ -2150,14 +2135,10 @@ class TestUnlistedPendingManualApproval(QueueTest):
             AutoApprovalSummary.objects.create(
                 version=addon.versions.latest('pk'), score=100 - i
             )
-            AddonReviewerFlags.objects.create(
-                addon=addon, auto_approval_disabled_unlisted=True
-            )
         # Set one of the add-ons as needing an admin, regular reviewer
         # shouldn't see it in their queue.
         self.reserved_addon = self.expected_addons.pop()
-        flags = AddonReviewerFlags.objects.get(addon=self.reserved_addon)
-        flags.update(needs_admin_code_review=True)
+        self.reserved_addon.reviewerflags.update(needs_admin_code_review=True)
 
     def test_results(self):
         with self.assertNumQueries(14):
@@ -2438,7 +2419,9 @@ class TestContentReviewQueue(QueueTest):
 
         # This one has never been content-reviewed, but it has the
         # needs_admin_content_review flag, and we're not an admin.
-        extra_addon4 = addon_factory(name='Extra Addön 4')
+        extra_addon4 = addon_factory(
+            name='Extra Addön 4', reviewer_flags={'needs_admin_content_review': True}
+        )
         extra_addon4.update(created=self.days_ago(2))
         AutoApprovalSummary.objects.create(
             version=extra_addon4.current_version,
@@ -2447,9 +2430,6 @@ class TestContentReviewQueue(QueueTest):
         )
         AddonApprovalsCounter.objects.create(
             addon=extra_addon4, last_content_review=None
-        )
-        AddonReviewerFlags.objects.create(
-            addon=extra_addon4, needs_admin_content_review=True
         )
 
         # Those should appear in the queue
@@ -2465,12 +2445,15 @@ class TestContentReviewQueue(QueueTest):
 
         # This one has never been content-reviewed. It has an
         # needs_admin_code_review flag, but that should not have any impact.
-        addon3 = addon_factory(name='Addön 3', created=self.days_ago(2))
+        addon3 = addon_factory(
+            name='Addön 3',
+            created=self.days_ago(2),
+            reviewer_flags={'needs_admin_code_review': True},
+        )
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED, confirmed=True
         )
         AddonApprovalsCounter.objects.create(addon=addon3, last_content_review=None)
-        AddonReviewerFlags.objects.create(addon=addon3, needs_admin_code_review=True)
 
         # This one has never been content reviewed either, and it does not even
         # have an AddonApprovalsCounter.
@@ -2592,16 +2575,16 @@ class TestScannersReviewQueue(QueueTest):
                 'channel': amo.CHANNEL_UNLISTED,
                 'needs_human_review': True,
             },
+            reviewer_flags={'needs_admin_content_review': True},
         )
-        addon3.versions.get()
         version_factory(addon=addon3, channel=amo.CHANNEL_UNLISTED)
-        AddonReviewerFlags.objects.create(addon=addon3, needs_admin_content_review=True)
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
-        addon4 = addon_factory(
-            created=self.days_ago(1), version_kw={'needs_human_review': True}
+        addon_factory(
+            created=self.days_ago(1),
+            version_kw={'needs_human_review': True},
+            reviewer_flags={'needs_admin_code_review': True},
         )
-        AddonReviewerFlags.objects.create(addon=addon4, needs_admin_code_review=True)
 
         self.expected_addons = [addon1, addon2, addon3]
         self.expected_versions = self.get_expected_versions(self.expected_addons)
@@ -8961,14 +8944,13 @@ class TestMadQueue(QueueTest):
         )
 
         # Needs admin code review, so wouldn't show up for regular reviewers.
-        addon_admin_only = addon_factory(created=self.days_ago(1))
+        addon_admin_only = addon_factory(
+            created=self.days_ago(1),
+            reviewer_flags={'needs_admin_code_review': True},
+        )
         version_review_flags_factory(
             version=version_factory(addon=addon_admin_only),
             needs_human_review_by_mad=True,
-        )
-        AddonReviewerFlags.objects.create(
-            addon=addon_admin_only,
-            needs_admin_code_review=True,
         )
 
         # Mixed listed and unlisted versions. Should not show up in queue.

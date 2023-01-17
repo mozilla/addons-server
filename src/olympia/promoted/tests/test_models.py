@@ -4,7 +4,7 @@ from django.conf import settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
     PromotedAddon,
@@ -206,3 +206,25 @@ class TestPromotedAddon(TestCase):
         promoted_addon.reload()
 
         assert promoted_addon.has_approvals
+
+    def test_signal(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        unlisted = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        assert not addon.current_version.due_date
+        assert not unlisted.due_date
+
+        # If add-on is added to a pre-review promoted group it should get a due date
+        promo = PromotedAddon.objects.create(
+            addon=addon, group_id=promoted.RECOMMENDED.id
+        )
+        assert addon.current_version.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted
+
+        # but not if the group isn't prereview
+        promo.update(group_id=promoted.STRATEGIC.id)
+        assert not addon.current_version.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted
