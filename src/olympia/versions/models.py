@@ -169,32 +169,36 @@ class VersionManager(ManagerBase):
         )
         return qs
 
-    def should_have_due_date(self, not_=False):
-        return getattr(self, 'exclude' if not_ else 'filter')(
+    def should_have_due_date(self, negate=False):
+        """Returns a queryset filtered to versions that should have a due date set.
+        If `negate=True` the queryset will contain versions that should not have a
+        due date instead."""
+        method = getattr(self, 'exclude' if negate else 'filter')
+        is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
+        has_auto_approval_delayed = Q(
+            addon__reviewerflags__auto_approval_delayed_until__isnull=False
+        )
+        requires_manual_listed_approval_and_is_listed = Q(
+            Q(addon__reviewerflags__auto_approval_disabled=True)
+            | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
+            | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
+            channel=amo.CHANNEL_LISTED,
+        )
+        requires_manual_unlisted_approval_and_is_unlisted = Q(
+            Q(addon__reviewerflags__auto_approval_disabled_unlisted=True)
+            | Q(
+                addon__reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True  # noqa
+            ),
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        return method(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
-                Q(addon__type__in=amo.GROUP_TYPE_THEME)
-                | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
-                | Q(
-                    Q(addon__reviewerflags__auto_approval_disabled=True)
-                    | Q(
-                        addon__reviewerflags__auto_approval_disabled_until_next_approval=True  # noqa
-                    )
-                    | Q(
-                        addon__promotedaddon__group_id__in=(
-                            g.id for g in PRE_REVIEW_GROUPS
-                        )
-                    ),
-                    channel=amo.CHANNEL_LISTED,
-                )
-                | Q(
-                    Q(addon__reviewerflags__auto_approval_disabled_unlisted=True)
-                    | Q(
-                        addon__reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True  # noqa
-                    ),
-                    channel=amo.CHANNEL_UNLISTED,
-                ),
+                is_theme
+                | has_auto_approval_delayed
+                | requires_manual_listed_approval_and_is_listed
+                | requires_manual_unlisted_approval_and_is_unlisted
             )
         )
 
@@ -826,6 +830,13 @@ class Version(OnChangeMixin, ModelBase):
                 f.update(status=amo.STATUS_DISABLED)
 
     def reset_due_date(self, due_date=None):
+        """Sets a due date on this version, if it is eligible for one, or clears it if
+        the version should not have a due date (see VersionManager.should_have_due_date
+        for logic).
+
+        If due_date is None then a new due date will only be set if the version doesn't
+        already have one; otherwise the provided due_date will be be used to overwrite
+        any value."""
         if self.should_have_due_date:
             # if the version should have a due date and it doesn't, set one
             if not self.due_date or due_date:
@@ -848,9 +859,9 @@ class Version(OnChangeMixin, ModelBase):
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        # If no matching version is found, we end up passing due_date=None
-        # which will update the due date to datetime.now() if it wasn't
-        # already set on the instance.
+        # If no matching version is found, we end up passing due_date=None which will
+        # set the due date to standard review time if it wasn't already set on the
+        # instance.
         self.reset_due_date(due_date=qs.first())
 
     @cached_property
@@ -865,10 +876,9 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def should_have_due_date(self):
-        """Add-ons that will be manually reviewed should have a due date.
-        This should be the same logic as the add-ons returned in
-        get_listed_pending_manual_approval_queue for listed versions, and similar logic
-        for unlisted versions."""
+        """Should this version have a due_date set, meaning it needs a manual review.
+
+        See VersionManager.should_have_due_date for logic."""
         return Version.objects.should_have_due_date().filter(id=self.id).exists()
 
     @property

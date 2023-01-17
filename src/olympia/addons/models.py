@@ -1777,16 +1777,16 @@ class Addon(OnChangeMixin, ModelBase):
         self.tag_list = new_tag_list
 
     def update_all_due_dates(self):
-        for version in Version.objects.should_have_due_date().filter(
-            addon=self, due_date__isnull=True
+        for version in self.versions.should_have_due_date().filter(
+            due_date__isnull=True
         ):
             due_date = get_review_due_date()
             log.info(
                 'Version %r (%s) due_date set to %s', version, version.id, due_date
             )
             version.update(due_date=due_date, _signal=False)
-        for version in Version.objects.should_have_due_date(not_=True).filter(
-            addon=self, due_date__isnull=False
+        for version in self.versions.should_have_due_date(negate=True).filter(
+            due_date__isnull=False
         ):
             log.info('Version %r (%s) due_date cleared', version, version.id)
             version.update(due_date=None, _signal=False)
