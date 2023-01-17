@@ -222,9 +222,9 @@ class TestPromotedAddon(TestCase):
             addon=addon, group_id=promoted.RECOMMENDED.id
         )
         assert addon.current_version.reload().due_date
-        assert unlisted.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted
 
         # but not if the group isn't prereview
         promo.update(group_id=promoted.STRATEGIC.id)
         assert not addon.current_version.reload().due_date
-        assert not unlisted.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted
