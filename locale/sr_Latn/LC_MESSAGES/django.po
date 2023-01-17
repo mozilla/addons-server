@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -135,13 +135,11 @@ msgstr "Autori"
 msgid "Ratings"
 msgstr "Ocene"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Recenzenti"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Recenzenti"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -293,11 +291,26 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid ""
+"The latest approved version of this %s add-on cannot be deleted because the "
+"previous version was not approved for %s promotion. Please contact AMO "
+"Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Moji dodaci"
 
 msgid "My Themes"
 msgstr "Moje teme"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Recenzenti"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Recenzenti"
 
 msgid "Git-Extract"
 msgstr ""
@@ -5453,15 +5466,16 @@ msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5525,10 +5539,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Pogledajte sve dodatke"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5745,10 +5755,6 @@ msgstr ""
 #, fuzzy
 msgid "User"
 msgstr "Korisničko ime"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Adresa e-pošte"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ili drugi sadržaj ne-recenzentnog tipa"
@@ -5967,8 +5973,8 @@ msgstr ""
 msgid "Type"
 msgstr "Tip"
 
-msgid "Waiting Time"
-msgstr "Vreme čekanja"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -7272,6 +7278,10 @@ msgstr "Profilna slika"
 
 msgid "Collections"
 msgstr "Kolekcije"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Adresa e-pošte"
 
 msgid ""
 "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into "

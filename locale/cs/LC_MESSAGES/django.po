@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-27 14:04+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -134,11 +134,11 @@ msgstr "Autoři"
 msgid "Ratings"
 msgstr "Hodnocení"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Nástroje pro redaktory (uvedené)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Nástroje pro redaktory (neuvedené)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Odkazy pro redaktora"
@@ -278,11 +278,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Tento typ doplňku neumožňuje vlastní kompatibilitu."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Mé doplňky"
 
 msgid "My Themes"
 msgstr "Mé motivy vzhledu"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Nástroje pro redaktory (uvedené)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Nástroje pro redaktory (neuvedené)"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4608,16 +4618,17 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Jazykové překladače"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Výkonné blokátory reklam"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Roblox extensions"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Rozšíření chránící před sledováním"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4671,10 +4682,6 @@ msgstr "Správci hesel"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Další vybraná rozšíření pro správu hesel"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Jazykové překladače"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4862,9 +4869,6 @@ msgstr ""
 
 msgid "User"
 msgstr "Uživatel"
-
-msgid "IP Address"
-msgstr "IP adresa"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Nevyžádaný příspěvek či obsah nesouvisící s recenzí"
@@ -5067,8 +5071,8 @@ msgstr ""
 msgid "Type"
 msgstr "Typ"
 
-msgid "Waiting Time"
-msgstr "Doba čekání"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -6186,6 +6190,9 @@ msgstr "Profilové foto"
 
 msgid "Collections"
 msgstr "Sbírky"
+
+msgid "IP Address"
+msgstr "IP adresa"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Zadejte platnou IPv4 nebo IPv6 adresu, např. 127.0.0.1. Bude převedena na síť /32."

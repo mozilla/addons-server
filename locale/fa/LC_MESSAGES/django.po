@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,13 +135,11 @@ msgstr "مؤلفان"
 msgid "Ratings"
 msgstr "رتبه"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "بررسی‌ها"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "بررسی‌ها"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -282,11 +280,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "افزودنی‌های من"
 
 msgid "My Themes"
 msgstr "مضمون‌های من"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "بررسی‌ها"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "بررسی‌ها"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4681,15 +4691,16 @@ msgstr "محبوب‌ترین ضمیمه‌ها"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4751,10 +4762,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "محبوب‌ترین ضمیمه‌ها"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4959,10 +4966,6 @@ msgstr ""
 #, fuzzy
 msgid "User"
 msgstr "نام کاربری"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "آدرس پست الکترونیکی"
 
 msgid "Spam or otherwise non-review content"
 msgstr "هرزنوشته و مطلب نامربوط به بررسی"
@@ -5170,7 +5173,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6378,6 +6381,10 @@ msgstr ""
 
 msgid "Collections"
 msgstr "مجموعه‌ها"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "آدرس پست الکترونیکی"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

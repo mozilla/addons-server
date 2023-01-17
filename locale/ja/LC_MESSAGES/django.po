@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -132,11 +132,11 @@ msgstr "作者"
 msgid "Ratings"
 msgstr "レーティング"
 
-msgid "Reviewer Tools (listed)"
-msgstr "審査担当者用ツール (リスト公開)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "審査担当者用ツール (リスト非公開)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "審査担当者用リンク"
@@ -276,11 +276,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "自分のアドオン"
 
 msgid "My Themes"
 msgstr "自分のテーマ"
+
+msgid "Reviewer Tools (listed)"
+msgstr "審査担当者用ツール (リスト公開)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "審査担当者用ツール (リスト非公開)"
 
 msgid "Git-Extract"
 msgstr "Git-抽出"
@@ -4601,15 +4611,16 @@ msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻訳ツール"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4667,10 +4678,6 @@ msgstr "おすすめのパスワードマネージャー"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻訳ツール"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4867,9 +4874,6 @@ msgstr ""
 
 msgid "User"
 msgstr "ユーザー"
-
-msgid "IP Address"
-msgstr "IP アドレス"
 
 msgid "Spam or otherwise non-review content"
 msgstr "スパムあるいはその他レビューと無関係の内容"
@@ -5072,8 +5076,8 @@ msgstr ""
 msgid "Type"
 msgstr "種類"
 
-msgid "Waiting Time"
-msgstr "待ち時間"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6231,6 +6235,9 @@ msgstr "プロファイル写真"
 
 msgid "Collections"
 msgstr "コレクション"
+
+msgid "IP Address"
+msgstr "IP アドレス"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "有効な IPv4 または IPv6 アドレスを入力してください (例: 127.0.0.1)。これは、/32 ネットワークに変換されます。"

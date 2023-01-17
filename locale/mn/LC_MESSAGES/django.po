@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2018-06-01 00:24+0000\n"
 "Last-Translator: pchew <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -138,13 +138,11 @@ msgstr "Authors"
 msgid "Ratings"
 msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Developer"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Developer"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -286,11 +284,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Миний нэмэгдлүүд"
 
 msgid "My Themes"
 msgstr ""
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Developer"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Developer"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4660,15 +4670,16 @@ msgstr "Өргөтгөлүүд"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4736,10 +4747,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Өргөтгөлүүд"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -4952,9 +4959,6 @@ msgid "Missing \"channel\" arg."
 msgstr ""
 
 msgid "User"
-msgstr ""
-
-msgid "IP Address"
 msgstr ""
 
 #, fuzzy
@@ -5170,7 +5174,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6372,6 +6376,9 @@ msgstr ""
 #, fuzzy
 msgid "Collections"
 msgstr "Collections"
+
+msgid "IP Address"
+msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

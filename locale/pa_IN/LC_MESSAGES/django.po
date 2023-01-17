@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-12-18 23:00+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,11 +130,11 @@ msgstr "ਲੇਖਕ"
 msgid "Ratings"
 msgstr "ਦਰਜਾ"
 
-msgid "Reviewer Tools (listed)"
-msgstr "ਪੜਤਾਲ ਸੰਦ (ਸੂਚੀਬੱਧ)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "ਪੜਤਾਲ ਸੰਦ (ਨਾ-ਸੂਚੀਬੱਧ)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "ਸਮੀਖਿਅਕ ਲਿੰਕ"
@@ -273,11 +273,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
 msgid "My Themes"
 msgstr "ਮੇਰੇ ਥੀਮ"
+
+msgid "Reviewer Tools (listed)"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਸੂਚੀਬੱਧ)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "ਪੜਤਾਲ ਸੰਦ (ਨਾ-ਸੂਚੀਬੱਧ)"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4616,15 +4626,16 @@ msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4687,10 +4698,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4897,9 +4904,6 @@ msgstr ""
 
 msgid "User"
 msgstr "ਯੂਜ਼ਰ"
-
-msgid "IP Address"
-msgstr "IP ਐਡਰੈੱਸ"
 
 msgid "Spam or otherwise non-review content"
 msgstr "ਸਪੈਮ ਜਾਂ ਹੋਰ ਬਿਨਾਂ-ਸਮੀਖਿਆ ਵਾਲੀ ਸਮੱਗਰੀ"
@@ -5108,8 +5112,8 @@ msgstr ""
 msgid "Type"
 msgstr "ਕਿਸਮ"
 
-msgid "Waiting Time"
-msgstr "ਉਡੀਕ ਸਮਾਂ"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6285,6 +6289,9 @@ msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੋਟੋ"
 
 msgid "Collections"
 msgstr "ਸੰਗ੍ਰਹਿ "
+
+msgid "IP Address"
+msgstr "IP ਐਡਰੈੱਸ"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "ਇੱਕ ਵੈਧ IPv4 ਜਾਂ IPv6 ਪਤਾ ਦਾਖਲ ਕਰੋ, ਜਿਵੇਂ ਕਿ 127.0.0.1। ਨੂੰ ਇੱਕ /32 ਨੈੱਟਵਰਕ ਵਿੱਚ ਬਦਲਿਆ ਜਾਵੇਗਾ।"

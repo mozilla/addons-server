@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,13 +135,11 @@ msgstr "Pengarang"
 msgid "Ratings"
 msgstr "Penarafan"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Alatan Pengulas"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Alatan Pengulas"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -282,11 +280,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Add-on Saya"
 
 msgid "My Themes"
 msgstr "Tema Saya"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Alatan Pengulas"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Alatan Pengulas"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4707,15 +4717,16 @@ msgstr "Layari semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4778,10 +4789,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Layari semua ekstensi"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4991,10 +4998,6 @@ msgstr ""
 msgid "User"
 msgstr "Nama pengguna"
 
-#, fuzzy
-msgid "IP Address"
-msgstr "Alamat E-mel"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam atau kandungan lain yang tiada kaitan"
 
@@ -5201,8 +5204,8 @@ msgstr ""
 msgid "Type"
 msgstr "Jenis"
 
-msgid "Waiting Time"
-msgstr "Tempoh Menunggu"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6389,6 +6392,10 @@ msgstr "Foto Profil"
 
 msgid "Collections"
 msgstr "Koleksi"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Alamat E-mel"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

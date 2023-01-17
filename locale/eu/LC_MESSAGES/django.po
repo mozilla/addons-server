@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -138,13 +138,11 @@ msgstr "Egileak"
 msgid "Ratings"
 msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Garatzailea"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Garatzailea"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -287,11 +285,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Nire gehigarriak"
 
 msgid "My Themes"
 msgstr ""
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Garatzailea"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Garatzailea"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4732,15 +4742,16 @@ msgstr "Arakatu gehigarri guztiak"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4805,10 +4816,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Arakatu gehigarri guztiak"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5015,10 +5022,6 @@ msgstr ""
 #, fuzzy
 msgid "User"
 msgstr "Erabiltzaile-izena"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Helbide elektronikoa"
 
 #, fuzzy
 msgid "Spam or otherwise non-review content"
@@ -5232,7 +5235,7 @@ msgstr ""
 msgid "Type"
 msgstr "Mota"
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6457,6 +6460,10 @@ msgstr "Profilaren argazkia"
 
 msgid "Collections"
 msgstr "Bildumak"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Helbide elektronikoa"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

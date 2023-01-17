@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-12-07 16:37+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,11 +130,11 @@ msgstr "Awtorojo"
 msgid "Ratings"
 msgstr "Pohódnoćenja"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Nastroje za přepruwowarjow (nalistowane)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Nastroje za přepruwowarjow (njenalistowane)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Wotkazy za přepruwowarjow"
@@ -273,11 +273,21 @@ msgstr "Žórło njeda so změnić, dokelž tuta wersija je so wot Mozilla přep
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Tutón přidatkowy typ swójsku kompatibelnosć njedowoluje."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Moje přidatki"
 
 msgid "My Themes"
 msgstr "Moje drasty"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Nastroje za přepruwowarjow (nalistowane)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Nastroje za přepruwowarjow (njenalistowane)"
 
 msgid "Git-Extract"
 msgstr "Git-ekstrakt"
@@ -4619,16 +4629,17 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Wukonliwe blokowaki wabjenja"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Roblox extensions"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Rozšěrjenja přećiwo slědowanju"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4681,10 +4692,6 @@ msgstr "Mócne zrjadowaki hesłow"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju hesłow pokazać"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Přełožowanske nastroje"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4872,9 +4879,6 @@ msgstr "Falowacy argument „channel“."
 
 msgid "User"
 msgstr "Wužiwar"
-
-msgid "IP Address"
-msgstr "IP-adresa"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam abo druhi wobsah, kotryž pohódnoćenje njeje"
@@ -5078,8 +5082,8 @@ msgstr "Wuslědk złósće"
 msgid "Type"
 msgstr "Typ"
 
-msgid "Waiting Time"
-msgstr "Čakanski čas"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Termin za wustejace wotpokazanje"
@@ -6195,6 +6199,9 @@ msgstr "Profilowe foto"
 
 msgid "Collections"
 msgstr "Zběrki"
+
+msgid "IP Address"
+msgstr "IP-adresa"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Zapodajće adresu IPv4 abo IPv6, na př. 127.0.0.1. Budźe so do syće /32 konwertować."

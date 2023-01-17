@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-12-16 18:33+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,11 +130,11 @@ msgstr "Imeskaren"
 msgid "Ratings"
 msgstr "Tizmilin"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Ifecka n umcegger (yettwabder)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Ifecka n umcegger (ur yettwabder ara)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Iseɣwan n umcegger"
@@ -273,11 +273,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Anaw-a n uzegrir ur issirig ara amṣada udmawan."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
 
 msgid "My Themes"
 msgstr "Isental-iw"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Ifecka n umcegger (yettwabder)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Ifecka n umcegger (ur yettwabder ara)"
 
 msgid "Git-Extract"
 msgstr "Git-Extract"
@@ -4575,15 +4585,16 @@ msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Ifecka n usuqel"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Ẓreg amsewḥel n yizegrar"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4637,10 +4648,6 @@ msgstr "Imsefraken n wawalen uffiren iǧehden"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Wali ugar n yisiɣzaf i usefrek n wawalen uffiren sɣur terbaεt"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Ifecka n usuqel"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4828,9 +4835,6 @@ msgstr ""
 
 msgid "User"
 msgstr "Aseqdac"
-
-msgid "IP Address"
-msgstr "Tansa IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Aspam neɣ agbur ur nelli d asenqed n uzegrir"
@@ -5032,8 +5036,8 @@ msgstr "Agmuḍ n yir asemres"
 msgid "Type"
 msgstr "Anaw"
 
-msgid "Waiting Time"
-msgstr "Akud n uṛaǧu"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Deg uraǧu n tenzagt n tugin."
@@ -6148,6 +6152,9 @@ msgstr "Tawlaft n umaɣnu"
 
 msgid "Collections"
 msgstr "Tigrummiwin"
+
+msgid "IP Address"
+msgstr "Tansa IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Sekcem tansa n IPv4 neɣ IPv6 iṣeḥḥan, e.g 127.0.0.1. Ad tettwaselket ɣer uzeṭṭa 32."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -139,13 +139,11 @@ msgstr "Údair"
 msgid "Ratings"
 msgstr "Rátálacha"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Eagarthóir"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Eagarthóir"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -288,11 +286,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Mo Chuid Breiseán"
 
 msgid "My Themes"
 msgstr "Mo Chuid Téamaí"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Eagarthóir"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Eagarthóir"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4751,15 +4761,16 @@ msgstr "Brabhsáil gach breiseán"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4822,10 +4833,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Brabhsáil gach breiseán"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5030,10 +5037,6 @@ msgstr ""
 #, fuzzy
 msgid "User"
 msgstr "Ainm an Úsáideora"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Seoladh Ríomhphoist"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Turscar nó ábhar nach mbaineann le léirmheas"
@@ -5247,8 +5250,8 @@ msgstr ""
 msgid "Type"
 msgstr "Cineál"
 
-msgid "Waiting Time"
-msgstr "Am Feithimh"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -6470,6 +6473,10 @@ msgstr "Grianghraf na Próifíle"
 
 msgid "Collections"
 msgstr "Bailiúcháin"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Seoladh Ríomhphoist"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,13 +134,11 @@ msgstr ""
 msgid "Ratings"
 msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Plėtojimo kanalas"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Plėtojimo kanalas"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -280,11 +278,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr ""
 
 msgid "My Themes"
 msgstr ""
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Plėtojimo kanalas"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Plėtojimo kanalas"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4614,15 +4624,16 @@ msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4684,10 +4695,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Populiarūs plėtiniai"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4889,9 +4896,6 @@ msgid "Missing \"channel\" arg."
 msgstr ""
 
 msgid "User"
-msgstr ""
-
-msgid "IP Address"
 msgstr ""
 
 msgid "Spam or otherwise non-review content"
@@ -5098,7 +5102,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6276,6 +6280,9 @@ msgstr ""
 
 msgid "Collections"
 msgstr "Rinkiniai"
+
+msgid "IP Address"
+msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

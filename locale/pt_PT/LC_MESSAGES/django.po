@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-29 14:58+0000\n"
 "Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -130,13 +130,11 @@ msgstr "Autores"
 msgid "Ratings"
 msgstr "Classificações"
 
-# 77%
-msgid "Reviewer Tools (listed)"
-msgstr "Ferramentas de Revisão (listadas)"
+msgid "Review (listed)"
+msgstr ""
 
-# 77%
-msgid "Reviewer Tools (unlisted)"
-msgstr "Ferramentas de Revisão (não listadas)"
+msgid "Review (unlisted)"
+msgstr ""
 
 # 77%
 msgid "Reviewer links"
@@ -277,11 +275,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Este tipo de extra não permite customização de compatibilidade."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Os meus Extras"
 
 msgid "My Themes"
 msgstr "Os meus temas"
+
+# 77%
+msgid "Reviewer Tools (listed)"
+msgstr "Ferramentas de Revisão (listadas)"
+
+# 77%
+msgid "Reviewer Tools (unlisted)"
+msgstr "Ferramentas de Revisão (não listadas)"
 
 msgid "Git-Extract"
 msgstr "Extração via Git"
@@ -4642,15 +4652,16 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Ferramentas de tradução"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Bloqueadores de anúncios de elite"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4705,10 +4716,6 @@ msgstr "Gestores de palavras-passe fortes"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Ver mais escolhas da equipa para gestores de palavras-passe"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Ferramentas de tradução"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4903,9 +4910,6 @@ msgstr ""
 
 msgid "User"
 msgstr "Utilizador"
-
-msgid "IP Address"
-msgstr "Endereço IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ou caso contrário conteúdo não revisto"
@@ -5108,8 +5112,8 @@ msgstr "Pontuação de malícia"
 msgid "Type"
 msgstr "Tipo"
 
-msgid "Waiting Time"
-msgstr "Tempo de espera"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Prazo limite da rejeição"
@@ -6226,6 +6230,9 @@ msgstr "Fotografia do perfil"
 
 msgid "Collections"
 msgstr "Coleções"
+
+msgid "IP Address"
+msgstr "Endereço IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Insira um endereço IPv4 ou IPv6 válido, por exemplo, 127.0.0.1. Será convertido para uma rede /32."

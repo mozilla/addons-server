@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-26 00:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -132,11 +132,11 @@ msgstr "제작자"
 msgid "Ratings"
 msgstr "별점"
 
-msgid "Reviewer Tools (listed)"
-msgstr "검토자 도구 (정렬됨)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "검토자 도구 (정렬되지 않음)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "검토자 링크"
@@ -277,11 +277,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "이 유형의 부가 기능은 사용자 지정 호환성을 허용하지 않습니다."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "내 부가 기능"
 
 msgid "My Themes"
 msgstr "내 테마"
+
+msgid "Reviewer Tools (listed)"
+msgstr "검토자 도구 (정렬됨)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "검토자 도구 (정렬되지 않음)"
 
 msgid "Git-Extract"
 msgstr "Git 추출"
@@ -4586,15 +4596,16 @@ msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "번역 도구"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "엘리트 광고 차단기"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4650,10 +4661,6 @@ msgstr "추천 비밀번호 관리자"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "비밀번호 관리자 직원 추천 더보기"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "번역 도구"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4846,9 +4853,6 @@ msgstr ""
 
 msgid "User"
 msgstr "사용자"
-
-msgid "IP Address"
-msgstr "IP 주소"
 
 msgid "Spam or otherwise non-review content"
 msgstr "스팸이거나 검토 내용이 아님"
@@ -5058,8 +5062,8 @@ msgstr ""
 msgid "Type"
 msgstr "종류"
 
-msgid "Waiting Time"
-msgstr "대기 시간"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6239,6 +6243,9 @@ msgstr "프로필 사진"
 
 msgid "Collections"
 msgstr "모음집"
+
+msgid "IP Address"
+msgstr "IP 주소"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,13 +132,11 @@ msgstr "Autores"
 msgid "Ratings"
 msgstr "Classificações"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Revisores"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Revisores"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -281,11 +279,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Os meus Extras"
 
 msgid "My Themes"
 msgstr "Os meus temas"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Revisores"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Revisores"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4803,15 +4813,16 @@ msgstr "Navegar em todos os extras"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4874,10 +4885,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Navegar em todos os extras"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5082,10 +5089,6 @@ msgstr ""
 #, fuzzy
 msgid "User"
 msgstr "Nome de utilizador"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Endereço de email"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ou conteúdo irrelevante"
@@ -5300,8 +5303,8 @@ msgstr ""
 msgid "Type"
 msgstr "Tipo"
 
-msgid "Waiting Time"
-msgstr "Tempo de espera"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6532,6 +6535,10 @@ msgstr "Fotografia do perfil"
 
 msgid "Collections"
 msgstr "Coleções"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Endereço de email"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-12-30 03:39+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
@@ -129,11 +129,11 @@ msgstr "రచయితలు"
 msgid "Ratings"
 msgstr "రేటింగులు"
 
-msgid "Reviewer Tools (listed)"
-msgstr "సమీక్షకుల పనిముట్లు (చూపిస్తున్నవి)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "సమీక్షకుల పనిముట్లు (చూపించబడనివి)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "సమీక్షకుల లంకెలు"
@@ -272,11 +272,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "నా పొడిగింతలు"
 
 msgid "My Themes"
 msgstr "నా అలంకారాలు"
+
+msgid "Reviewer Tools (listed)"
+msgstr "సమీక్షకుల పనిముట్లు (చూపిస్తున్నవి)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "సమీక్షకుల పనిముట్లు (చూపించబడనివి)"
 
 msgid "Git-Extract"
 msgstr "Git-ఎక్స్‌ట్రాక్ట్"
@@ -4489,15 +4499,16 @@ msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "అనువాద పనిముట్లు"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4552,10 +4563,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "అనువాద పనిముట్లు"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4758,9 +4765,6 @@ msgstr ""
 msgid "User"
 msgstr "వాడుకరి"
 
-msgid "IP Address"
-msgstr "ఐపీ చిరునామా"
-
 msgid "Spam or otherwise non-review content"
 msgstr "స్పామ్ లేదా సమీక్ష-కాని విషయం"
 
@@ -4961,8 +4965,8 @@ msgstr ""
 msgid "Type"
 msgstr "రకం"
 
-msgid "Waiting Time"
-msgstr "వేచి వుండు సమయము"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -6073,6 +6077,9 @@ msgstr "ప్రొఫైల్ ఫోటో"
 
 msgid "Collections"
 msgstr "సేకరణలు"
+
+msgid "IP Address"
+msgstr "ఐపీ చిరునామా"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
