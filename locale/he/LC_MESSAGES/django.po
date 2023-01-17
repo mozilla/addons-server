@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-06-25 18:40+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -134,10 +134,10 @@ msgstr "יוצרים"
 msgid "Ratings"
 msgstr "דירוגים"
 
-msgid "Reviewer Tools (listed)"
+msgid "Review (listed)"
 msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
+msgid "Review (unlisted)"
 msgstr ""
 
 msgid "Reviewer links"
@@ -278,11 +278,21 @@ msgstr "לא ניתן לשנות את המקור מכיוון שגרסה זו ע
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "התוספות שלי"
 
 msgid "My Themes"
 msgstr "ערכות הנושא שלי"
+
+msgid "Reviewer Tools (listed)"
+msgstr ""
+
+msgid "Reviewer Tools (unlisted)"
+msgstr ""
 
 msgid "Git-Extract"
 msgstr ""
@@ -4590,15 +4600,16 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "כלי תרגום"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4653,10 +4664,6 @@ msgstr "מנהלי ססמאות חזקות"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "כלי תרגום"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4844,9 +4851,6 @@ msgstr ""
 
 msgid "User"
 msgstr "משתמש"
-
-msgid "IP Address"
-msgstr "כתובת IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr "ספאם או תוכן שאינו שייך לסקירה"
@@ -5055,8 +5059,8 @@ msgstr ""
 msgid "Type"
 msgstr "סוג"
 
-msgid "Waiting Time"
-msgstr "זמן המתנה"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6223,6 +6227,9 @@ msgstr "תמונת פרופיל"
 
 msgid "Collections"
 msgstr "אוספים"
+
+msgid "IP Address"
+msgstr "כתובת IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

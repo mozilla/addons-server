@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -139,13 +139,11 @@ msgstr "Authors"
 msgid "Ratings"
 msgstr "Ratings"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Reviewers"
+msgid "Review (listed)"
+msgstr "Review (listed)"
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Reviewers"
+msgid "Review (unlisted)"
+msgstr "Review (unlisted)"
 
 #, fuzzy
 msgid "Reviewer links"
@@ -289,11 +287,23 @@ msgstr "Source cannot be changed because this version has been reviewed by Mozil
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "This type of add-on does not allow custom compatibility."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+
 msgid "My Add-ons"
 msgstr "My Add-ons"
 
 msgid "My Themes"
 msgstr "My Themes"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Reviewers"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "Reviewers"
 
 msgid "Git-Extract"
 msgstr "Git-Extract"
@@ -5012,16 +5022,18 @@ msgstr "Browse all add-ons"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Tab organizers and tools"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "Elite ad blockers"
 msgstr "Update add-on block"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr "Steam extensions"
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Anti-tracking extensions"
+msgid "Roblox extensions"
+msgstr "Roblox extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5085,11 +5097,6 @@ msgstr "Recommended password managers"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Recommended Extensions program"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "Tab organizers and tools"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5299,10 +5306,6 @@ msgstr "Missing \"channel\" arg."
 #, fuzzy
 msgid "User"
 msgstr "Username"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Email Address"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam or otherwise non-review content"
@@ -5524,8 +5527,8 @@ msgstr "Maliciousness Score"
 msgid "Type"
 msgstr "Type"
 
-msgid "Waiting Time"
-msgstr "Waiting Time"
+msgid "Due Date"
+msgstr "Due Date"
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6765,6 +6768,10 @@ msgstr "Profile Photo"
 
 msgid "Collections"
 msgstr "Collections"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Email Address"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."

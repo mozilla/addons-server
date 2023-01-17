@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2021-09-06 00:04+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,10 +130,10 @@ msgstr "Autores"
 msgid "Ratings"
 msgstr "Valoraciones"
 
-msgid "Reviewer Tools (listed)"
+msgid "Review (listed)"
 msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
+msgid "Review (unlisted)"
 msgstr ""
 
 msgid "Reviewer links"
@@ -273,11 +273,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Los mios complementos"
 
 msgid "My Themes"
 msgstr "Los mios estilos"
+
+msgid "Reviewer Tools (listed)"
+msgstr ""
+
+msgid "Reviewer Tools (unlisted)"
+msgstr ""
 
 msgid "Git-Extract"
 msgstr ""
@@ -4492,15 +4502,16 @@ msgstr "Ver toles estensiones"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4557,10 +4568,6 @@ msgstr "Xestores de contraseñes aconseyaos"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Ver más estensiones pa xestionar llingüetes"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4762,9 +4769,6 @@ msgstr ""
 msgid "User"
 msgstr "Usuariu"
 
-msgid "IP Address"
-msgstr "Direición IP"
-
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
@@ -4965,8 +4969,8 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
-msgstr "Tiempu d'espera"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr ""
@@ -6077,6 +6081,9 @@ msgstr ""
 
 msgid "Collections"
 msgstr "Coleiciones"
+
+msgid "IP Address"
+msgstr "Direición IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

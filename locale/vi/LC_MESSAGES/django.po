@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-23 11:21+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -129,11 +129,11 @@ msgstr "Tác giả"
 msgid "Ratings"
 msgstr "Xếp hạng"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Công cụ đánh giá (được liệt kê)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Công cụ đánh giá (chưa được liệt kê)"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -274,11 +274,21 @@ msgstr "Không thể thay đổi nguồn vì phiên bản này đã được xem
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
 
 msgid "My Themes"
 msgstr "Giao diện của tôi"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Công cụ đánh giá (được liệt kê)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Công cụ đánh giá (chưa được liệt kê)"
 
 msgid "Git-Extract"
 msgstr "Git-Extract"
@@ -4624,16 +4634,17 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Công cụ dịch thuật"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Trình chặn quảng cáo ưu tú"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Roblox extensions"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Tiện ích mở rộng chống theo dõi"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4687,10 +4698,6 @@ msgstr "Trình quản lý mật khẩu mạnh"
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Xem thêm trình quản lý mật khẩu được lựa chọn bởi biên tập viên"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Công cụ dịch thuật"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4878,9 +4885,6 @@ msgstr "Thiếu tham số \"channel\"."
 
 msgid "User"
 msgstr "Người dùng"
-
-msgid "IP Address"
-msgstr "Địa chỉ IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam hoặc các nội dung không phải là đánh giá"
@@ -5082,8 +5086,8 @@ msgstr "Điểm độc hại"
 msgid "Type"
 msgstr "Kiểu"
 
-msgid "Waiting Time"
-msgstr "Thời gian chờ"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6225,6 +6229,9 @@ msgstr "Hình ảnh Hồ sơ"
 
 msgid "Collections"
 msgstr "Bộ sưu tập"
+
+msgid "IP Address"
+msgstr "Địa chỉ IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Nhập địa chỉ IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1. Sẽ được chuyển đổi thành mạng a /32."

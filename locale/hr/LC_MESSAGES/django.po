@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -138,13 +138,11 @@ msgstr "Autori"
 msgid "Ratings"
 msgstr "Ocjene"
 
-# 75%
-msgid "Reviewer Tools (listed)"
-msgstr "Alati za recenzente (na popisu)"
+msgid "Review (listed)"
+msgstr ""
 
-# 75%
-msgid "Reviewer Tools (unlisted)"
-msgstr "Alati za recenzente (nisu na popisu)"
+msgid "Review (unlisted)"
+msgstr ""
 
 # 75%
 msgid "Reviewer links"
@@ -284,12 +282,24 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 # 80%
 msgid "My Add-ons"
 msgstr "Moji dodaci"
 
 msgid "My Themes"
 msgstr "Moje teme"
+
+# 75%
+msgid "Reviewer Tools (listed)"
+msgstr "Alati za recenzente (na popisu)"
+
+# 75%
+msgid "Reviewer Tools (unlisted)"
+msgstr "Alati za recenzente (nisu na popisu)"
 
 msgid "Git-Extract"
 msgstr "Git-Ekstrakcija"
@@ -4573,15 +4583,16 @@ msgstr "Pogledaj sva proširenja"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Alati za prevođenje"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Elitno blokiranje oglasa"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4636,10 +4647,6 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "Pogledaj izbor naših zaposlenika za upravljanje lozinkama"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Alati za prevođenje"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4836,9 +4843,6 @@ msgstr ""
 
 msgid "User"
 msgstr "Korisnik"
-
-msgid "IP Address"
-msgstr "IP adresa"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Neželjena pošta ili na drugi način ne revizirani sadržaj"
@@ -5044,8 +5048,8 @@ msgstr ""
 msgid "Type"
 msgstr "Vrsta"
 
-msgid "Waiting Time"
-msgstr "Vrijeme čekanja"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "Rok za odbijanje na čekanju"
@@ -6174,6 +6178,9 @@ msgstr "Fotografija profila"
 
 msgid "Collections"
 msgstr "Zbirke"
+
+msgid "IP Address"
+msgstr "IP adresa"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Upiši izpravnu IPv4 ili IPv6 adresu, npr. 127.0.0.1. Pretvorit će se u /32 mrežu."

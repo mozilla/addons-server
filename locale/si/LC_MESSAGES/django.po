@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-10 23:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,10 +130,10 @@ msgstr "කතුවරු"
 msgid "Ratings"
 msgstr "ඇගැයුම්"
 
-msgid "Reviewer Tools (listed)"
+msgid "Review (listed)"
 msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
+msgid "Review (unlisted)"
 msgstr ""
 
 msgid "Reviewer links"
@@ -273,11 +273,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "මාගේ එක්කහු"
 
 msgid "My Themes"
 msgstr "මාගේ තේමා"
+
+msgid "Reviewer Tools (listed)"
+msgstr ""
+
+msgid "Reviewer Tools (unlisted)"
+msgstr ""
 
 msgid "Git-Extract"
 msgstr ""
@@ -4488,16 +4498,17 @@ msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "පරිවර්තන මෙවලම්"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "ප්‍රබල දැන්වීම් අවහිරක"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
+msgid "Roblox extensions"
 msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "ප්‍රති-ලුහුබැඳීමේ දිගු"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4550,10 +4561,6 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more password manager staff picks"
 msgstr "මුරපද කළමනාකරණ සඳහා මාණ්ඩලික තේරීම්"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "පරිවර්තන මෙවලම්"
 
 #. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
@@ -4741,9 +4748,6 @@ msgstr ""
 
 msgid "User"
 msgstr "පරිශිලක"
-
-msgid "IP Address"
-msgstr "අ.ජා.කෙ. ලිපිනය"
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -4945,7 +4949,7 @@ msgstr ""
 msgid "Type"
 msgstr "වර්ගය"
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6057,6 +6061,9 @@ msgstr "පැතිකඩ රූපය"
 
 msgid "Collections"
 msgstr "එකතු"
+
+msgid "IP Address"
+msgstr "අ.ජා.කෙ. ලිපිනය"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

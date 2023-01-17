@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-11-22 00:45+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,11 +129,11 @@ msgstr "Opphavsmenn"
 msgid "Ratings"
 msgstr "Vurderinger"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Gjennomgangsverktøy (listet)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Gjennomgangsverktøy (ulistet)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Gjennomgangslenker"
@@ -272,11 +272,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Mine utvidelser"
 
 msgid "My Themes"
 msgstr "Mine temaer"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Gjennomgangsverktøy (listet)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Gjennomgangsverktøy (ulistet)"
 
 msgid "Git-Extract"
 msgstr "Git-henting"
@@ -4549,15 +4559,17 @@ msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Translation tools"
+msgstr "Fane-organisering og verktøy"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4613,11 +4625,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Vis flere anbefalte utvidelser"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "Fane-organisering og verktøy"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4822,9 +4829,6 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-msgid "IP Address"
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
@@ -5025,7 +5029,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6144,6 +6148,9 @@ msgstr ""
 
 msgid "Collections"
 msgstr "Samlinger"
+
+msgid "IP Address"
+msgstr ""
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -130,11 +130,11 @@ msgstr "Autori"
 msgid "Ratings"
 msgstr "Evaluări"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Instrumente pentru recenzori (listate)"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
-msgstr "Instrumente pentru recenzori (nelistate)"
+msgid "Review (unlisted)"
+msgstr ""
 
 msgid "Reviewer links"
 msgstr "Linkuri pentru recenzori"
@@ -273,11 +273,21 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Suplimentele mele"
 
 msgid "My Themes"
 msgstr "Temele mele"
+
+msgid "Reviewer Tools (listed)"
+msgstr "Instrumente pentru recenzori (listate)"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr "Instrumente pentru recenzori (nelistate)"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4672,15 +4682,16 @@ msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4738,10 +4749,6 @@ msgstr "Managere de parole recomandate"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii recomandate"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4946,9 +4953,6 @@ msgstr ""
 
 msgid "User"
 msgstr "Utilizator"
-
-msgid "IP Address"
-msgstr "Adresă IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam sau alt conținut care nu e o recenzie"
@@ -5155,8 +5159,8 @@ msgstr ""
 msgid "Type"
 msgstr "Tip"
 
-msgid "Waiting Time"
-msgstr "Timp de așteptare"
+msgid "Due Date"
+msgstr ""
 
 msgid "Pending Rejection Deadline"
 msgstr "În termenul-limită pentru respingere"
@@ -6302,6 +6306,9 @@ msgstr "Fotografie de profil"
 
 msgid "Collections"
 msgstr "Colecții"
+
+msgid "IP Address"
+msgstr "Adresă IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Introdu o adresă IPv4 sau IPv6 validă, de ex. 127.0.0.1. Va fi convertită într-una de rețea /32."

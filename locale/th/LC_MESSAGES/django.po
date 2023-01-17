@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-08-24 17:26+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -133,13 +133,11 @@ msgstr "ผู้สร้าง"
 msgid "Ratings"
 msgstr "การจัดอันดับ"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "เครื่องมือผู้ตรวจทาน"
+msgid "Review (listed)"
+msgstr ""
 
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "เครื่องมือผู้ตรวจทาน"
+msgid "Review (unlisted)"
+msgstr ""
 
 #, fuzzy
 msgid "Reviewer links"
@@ -279,11 +277,23 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "ส่วนเสริมของฉัน"
 
 msgid "My Themes"
 msgstr "ชุดตกแต่งของฉัน"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "เครื่องมือผู้ตรวจทาน"
+
+#, fuzzy
+msgid "Reviewer Tools (unlisted)"
+msgstr "เครื่องมือผู้ตรวจทาน"
 
 msgid "Git-Extract"
 msgstr ""
@@ -4567,15 +4577,16 @@ msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4638,10 +4649,6 @@ msgstr ""
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "ดูส่วนขยายทั้งหมด"
-
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4845,9 +4852,6 @@ msgstr ""
 
 msgid "User"
 msgstr "ผู้ใช้"
-
-msgid "IP Address"
-msgstr "ที่อยู่ IP"
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -5053,7 +5057,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-msgid "Waiting Time"
+msgid "Due Date"
 msgstr ""
 
 msgid "Pending Rejection Deadline"
@@ -6224,6 +6228,9 @@ msgstr "รูปโปรไฟล์"
 
 msgid "Collections"
 msgstr "ชุดสะสม"
+
+msgid "IP Address"
+msgstr "ที่อยู่ IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-03 18:28+0000\n"
+"POT-Creation-Date: 2023-01-17 18:15+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -137,11 +137,10 @@ msgstr "Autores"
 msgid "Ratings"
 msgstr "Calificaciones"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Herramientas de revisión"
+msgid "Review (listed)"
+msgstr ""
 
-msgid "Reviewer Tools (unlisted)"
+msgid "Review (unlisted)"
 msgstr ""
 
 msgid "Reviewer links"
@@ -282,11 +281,22 @@ msgstr ""
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
 
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "My Add-ons"
 msgstr "Mis complementos"
 
 msgid "My Themes"
 msgstr "Mis temas"
+
+#, fuzzy
+msgid "Reviewer Tools (listed)"
+msgstr "Herramientas de revisión"
+
+msgid "Reviewer Tools (unlisted)"
+msgstr ""
 
 msgid "Git-Extract"
 msgstr "Git-Extract"
@@ -4723,15 +4733,17 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "Organizadores de pestañas y herramientas"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "Elite ad blockers"
 msgstr "Actualizar bloqueadores de complementos"
 
 #. editorial content for the secondary hero shelves.
-msgid "Steam extensions"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Roblox extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4790,11 +4802,6 @@ msgstr "Gestores de contraseña recomendados"
 #, fuzzy
 msgid "See more password manager staff picks"
 msgstr "Ver más extensiones recomendadas"
-
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5000,9 +5007,6 @@ msgstr ""
 msgid "User"
 msgstr "Usuario"
 
-msgid "IP Address"
-msgstr "Dirección IP"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Publicidad u otro contenido no relacionado"
 
@@ -5206,8 +5210,8 @@ msgstr ""
 msgid "Type"
 msgstr "Tipo"
 
-msgid "Waiting Time"
-msgstr "Tiempo en espera"
+msgid "Due Date"
+msgstr ""
 
 #, fuzzy
 msgid "Pending Rejection Deadline"
@@ -6379,6 +6383,9 @@ msgstr "Foto del perfil"
 
 msgid "Collections"
 msgstr "Colecciones"
+
+msgid "IP Address"
+msgstr "Dirección IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Introduce una dirección IPv4 o IPv6 válida; por ejemplo, 127.0.0.1. Se convertirá en una red de /32."
