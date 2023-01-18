@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-17 18:15+0000\n"
-"PO-Revision-Date: 2023-01-18 09:06+0000\n"
-"Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2023-01-18 09:11+0000\n"
+"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -4709,7 +4709,7 @@ msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 
 #. editorial content for the secondary hero shelves.
 msgid "Roblox extensions"
-msgstr ""
+msgstr "Estensioni per Roblox"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
