@@ -3041,6 +3041,125 @@ class TestExtensionsQueues(TestCase):
         assert all(addon in addons for addon in expected_addons.values())
         assert not any(addon in addons for addon in unexpected_addons.values())
 
+    def test_pending_queue(self):
+        expected_addons = [
+            addon_factory(
+                name='Listed with auto-approval disabled',
+                status=amo.STATUS_NOMINATED,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                reviewer_flags={
+                    'auto_approval_disabled': True,
+                    'needs_admin_content_review': True,
+                },
+            ),
+            addon_factory(
+                name='Pure unlisted with auto-approval disabled',
+                status=amo.STATUS_NULL,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
+                reviewer_flags={
+                    'auto_approval_disabled_unlisted': True,
+                },
+            ),
+            version_factory(
+                addon=addon_factory(
+                    name='Mixed with auto-approval disabled for unlisted',
+                    reviewer_flags={
+                        'auto_approval_disabled_unlisted': True,
+                    },
+                ),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                channel=amo.CHANNEL_UNLISTED,
+            ).addon,
+            version_factory(
+                addon=version_factory(
+                    addon=addon_factory(
+                        name='Mixed with both channel awaiting review',
+                        reviewer_flags={
+                            'auto_approval_disabled_unlisted': True,
+                            'auto_approval_disabled': True,
+                        },
+                    ),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    channel=amo.CHANNEL_UNLISTED,
+                ).addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).addon,
+            version_factory(
+                addon=addon_factory(
+                    name='Listed already public with auto-approval disabled',
+                    reviewer_flags={'auto_approval_disabled': True},
+                ),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).addon,
+        ]
+
+        # Add add-ons that should not appear. For some it's because of
+        # something we're explicitly filtering out, for others it's because of
+        # something that causes the factories not to generate a due date for
+        # them.
+        addon_factory(name='Fully Public Add-on')
+        addon_factory(
+            name='Pure unlisted',
+            status=amo.STATUS_NULL,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+        )
+        addon_factory(
+            name='Add-on that will be auto-approved',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=addon_factory(name='Add-on with version that will be auto-approved'),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            name='Theme',
+            type=amo.ADDON_STATICTHEME,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        )
+        addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        )
+        version_review_flags_factory(
+            version=addon_factory(
+                name='Pending rejection',
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).current_version,
+            pending_rejection=datetime.now(),
+        )
+        # FIXME: deleted version
+        addon_needing_admin_code_review = addon_factory(
+            name='Listed with auto-approval disabled needing code review',
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_disabled': True,
+                'needs_admin_code_review': True,
+            },
+        )
+        addons = Addon.objects.get_pending_review_queue()
+        assert addons.count() == len(addons) == len(expected_addons)
+        assert list(addons.order_by('pk')) == expected_addons
+
+        # Test that we picked the version with the oldest due date and that we
+        # added the first_pending_version property.
+        for addon in addons:
+            expected_version = (
+                addon.versions.exclude(due_date=None).order_by('due_date').first()
+            )
+            assert expected_version
+            assert addon.first_pending_version == expected_version
+
+        # Admins should be able to see addons needing admin code review.
+        expected_addons.append(addon_needing_admin_code_review)
+        addons = Addon.objects.get_pending_review_queue(admin_reviewer=True)
+        assert set(addons) == set(expected_addons)
+
 
 class TestListedThemesPendingManualApprovalQueue(TestCase):
     def test_basic(self):
