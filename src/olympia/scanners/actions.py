@@ -29,6 +29,8 @@ def _delay_auto_approval(version):
         addon=version.addon,
         defaults={'auto_approval_delayed_until': in_twenty_four_hours},
     )
+    due_date = min(version.due_date or in_twenty_four_hours, in_twenty_four_hours)
+    version.reset_due_date(due_date=due_date)
 
 
 def _delay_auto_approval_indefinitely(version):
