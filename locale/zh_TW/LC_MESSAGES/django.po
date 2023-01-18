@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-17 18:15+0000\n"
-"PO-Revision-Date: 2023-01-18 05:50+0000\n"
+"PO-Revision-Date: 2023-01-18 07:22+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4544,7 +4544,7 @@ msgstr "加強您在 Steam 的遊戲體驗。"
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "按下按讚按紐，即可顯示倒讚按鈕。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4570,7 +4570,7 @@ msgstr "菁英級廣告封鎖工具"
 
 #. editorial content for the secondary hero shelves.
 msgid "Roblox extensions"
-msgstr ""
+msgstr "Roblox 擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5012,7 +5012,7 @@ msgid "Type"
 msgstr "類型"
 
 msgid "Due Date"
-msgstr ""
+msgstr "到期日"
 
 msgid "Pending Rejection Deadline"
 msgstr "待拒絕期限"
