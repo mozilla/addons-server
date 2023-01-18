@@ -107,7 +107,6 @@ urlpatterns = (
         views.abuse_reports,
         name='reviewers.abuse_reports',
     ),
-    re_path(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
     re_path(
         r'^theme_background_images/(?P<version_id>[^ /]+)?$',
         views.theme_background_images,

@@ -23,7 +23,6 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    ReviewerScore,
     ReviewerSubscription,
     get_flags,
 )
@@ -1028,9 +1027,6 @@ class ReviewBase:
         # Sign addon.
         self.sign_file()
 
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
         self.set_file(amo.STATUS_APPROVED, self.file)
@@ -1057,11 +1053,6 @@ class ReviewBase:
 
             # The counter can be incremented.
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
-
-            # Assign reviewer incentive scores.
-            ReviewerScore.award_points(
-                self.user, self.addon, status, version=self.version
-            )
         else:
             # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
@@ -1088,9 +1079,6 @@ class ReviewBase:
         # (it should use reject_multiple_versions instead).
         assert not self.content_review
 
-        # Hold onto the status before we change it.
-        status = self.addon.status
-
         self.set_file(amo.STATUS_DISABLED, self.file)
         if self.set_addon_status:
             self.set_addon()
@@ -1100,11 +1088,6 @@ class ReviewBase:
             # it's the only version we can be certain that the reviewer looked
             # at.
             self.clear_specific_needs_human_review_flags(self.version)
-
-            # Assign reviewer incentive scores.
-            ReviewerScore.award_points(
-                self.user, self.addon, status, version=self.version
-            )
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = '%s_to_rejected' % self.review_type
@@ -1157,18 +1140,6 @@ class ReviewBase:
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         self.log_action(amo.LOG.APPROVE_CONTENT, version=version)
 
-        # Assign reviewer incentive scores.
-        if self.human_review:
-            is_post_review = channel == amo.CHANNEL_LISTED
-            ReviewerScore.award_points(
-                self.user,
-                self.addon,
-                self.addon.status,
-                version=version,
-                post_review=is_post_review,
-                content_review=self.content_review,
-            )
-
     def confirm_auto_approved(self):
         """Confirm an auto-approval decision."""
 
@@ -1220,17 +1191,6 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
 
-            # Assign reviewer incentive scores.
-            is_post_review = channel == amo.CHANNEL_LISTED
-            ReviewerScore.award_points(
-                self.user,
-                self.addon,
-                self.addon.status,
-                version=version,
-                post_review=is_post_review,
-                content_review=self.content_review,
-            )
-
     def reject_multiple_versions(self):
         """Reject a list of versions.
         Note: this is used in blocklist.utils.disable_addon_for_block for both
@@ -1238,7 +1198,6 @@ class ReviewBase:
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None before finding the right
         # versions.
-        status = self.addon.status
         latest_version = self.version
         channel = self.version.channel if self.version else None
         self.version = None
@@ -1367,15 +1326,6 @@ class ReviewBase:
             # versions posted to the same channel.
             ReviewerSubscription.objects.get_or_create(
                 user=self.user, addon=self.addon, channel=latest_version.channel
-            )
-
-            ReviewerScore.award_points(
-                self.user,
-                self.addon,
-                status,
-                version=latest_version,
-                post_review=True,
-                content_review=self.content_review,
             )
 
     def unreject_multiple_versions(self):

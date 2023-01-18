@@ -26,7 +26,6 @@ from urllib.parse import (
 import django.core.mail
 
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import FieldDoesNotExist
 from django.core.files.storage import FileSystemStorage, default_storage as storage
 from django.core.paginator import EmptyPage, InvalidPage, Paginator as DjangoPaginator
@@ -792,32 +791,6 @@ class HttpResponseXSendFile(HttpResponse):
 
     def __iter__(self):
         return iter([])
-
-
-def cache_ns_key(namespace, increment=False):
-    """
-    Returns a key with namespace value appended. If increment is True, the
-    namespace will be incremented effectively invalidating the cache.
-
-    Memcache doesn't have namespaces, but we can simulate them by storing a
-    "%(key)s_namespace" value. Invalidating the namespace simply requires
-    editing that key. Your application will no longer request the old keys,
-    and they will eventually fall off the end of the LRU and be reclaimed.
-    """
-    ns_key = 'ns:%s' % namespace
-    if increment:
-        try:
-            ns_val = cache.incr(ns_key)
-        except ValueError:
-            log.info('Cache increment failed for key: %s. Resetting.' % ns_key)
-            ns_val = utc_millesecs_from_epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
-    else:
-        ns_val = cache.get(ns_key)
-        if ns_val is None:
-            ns_val = utc_millesecs_from_epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
-    return f'{ns_val}:{ns_key}'
 
 
 def get_email_backend(real_email=False):
