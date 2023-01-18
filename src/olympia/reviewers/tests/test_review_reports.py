@@ -140,6 +140,22 @@ class TestReviewReports:
                 user=self.reviewer3,
             )
 
+            # Theme (should be filtered out of the reports)
+            theme = addon_factory(type=amo.ADDON_STATICTHEME)
+            frozen_time.tick()
+            ActivityLog.create(
+                amo.LOG.APPROVE_VERSION,
+                theme,
+                theme.versions.all()[0],
+                user=self.reviewer2,
+            )
+            ActivityLog.create(
+                amo.LOG.APPROVE_CONTENT,
+                theme,
+                theme.versions.all()[0],
+                user=self.reviewer1,
+            )
+
     def test_report_addon_reviewer(self):
         self.generate_review_data()
         command = Command()

@@ -15,11 +15,14 @@ FROM (
 JOIN `log_activity_version` `activity_ver` ON `activity_ver`.`activity_log_id` = `activity`.`id`
 LEFT JOIN `log_activity_comment` `activity_comment` ON `activity_comment`.`activity_log_id` = `activity`.`id`
 LEFT JOIN `editors_autoapprovalsummary` `aa` ON `aa`.`version_id` = `activity_ver`.`version_id`
+LEFT JOIN `versions` ON `versions`.`id` = `activity_ver`.`version_id`
+LEFT JOIN `addons` ON `addons`.`id` = `versions`.`addon_id`
 JOIN `users` `u` ON `u`.`id` = `activity`.`user_id`
 WHERE
   /* Filter out internal task user */
   `user_id` <> 4757633
   AND `u`.`deleted` = 0
+  AND `addons`.`addontype_id` <> 10  /* We exclude theme reviews */
   AND (`activity_comment`.`comments` IS NULL OR `activity_comment`.`comments` != "Automatic rejection after grace period ended.")
 GROUP BY `user_id` HAVING `Add-ons Reviewed` >= 1
 UNION ALL
@@ -40,10 +43,13 @@ FROM (
 JOIN `log_activity_version` `activity_ver` ON `activity_ver`.`activity_log_id` = `activity`.`id`
 LEFT JOIN `log_activity_comment` `activity_comment` ON `activity_comment`.`activity_log_id` = `activity`.`id`
 LEFT JOIN `editors_autoapprovalsummary` `aa` ON `aa`.`version_id` = `activity_ver`.`version_id`
+LEFT JOIN `versions` ON `versions`.`id` = `activity_ver`.`version_id`
+LEFT JOIN `addons` ON `addons`.`id` = `versions`.`addon_id`
 JOIN `users` `u` ON `u`.`id` = `activity`.`user_id`
 WHERE
   /* Filter out internal task user */
   `user_id` <> 4757633
   AND `u`.`deleted` = 0
+  AND `addons`.`addontype_id` <> 10  /* We exclude theme reviews */
   AND (`activity_comment`.`comments` IS NULL OR `activity_comment`.`comments` != "Automatic rejection after grace period ended.")
 ORDER BY (`Name` = 'All Reviewers') ASC, CAST(`Total Risk` AS DECIMAL) DESC;
