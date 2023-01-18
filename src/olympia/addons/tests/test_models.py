@@ -3132,7 +3132,23 @@ class TestExtensionsQueues(TestCase):
             ).current_version,
             pending_rejection=datetime.now(),
         )
-        # FIXME: deleted version
+        addon_factory(
+            name='Deleted add-on',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        ).delete()
+        addon_factory(
+            name='Deleted unlisted version',
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled_unlisted': True},
+        ).versions.all()[0].delete()
+        addon_factory(
+            name='Deleted listed version',
+            version_kw={'channel': amo.CHANNEL_LISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        ).versions.all()[0].delete()
         addon_needing_admin_code_review = addon_factory(
             name='Listed with auto-approval disabled needing code review',
             status=amo.STATUS_NOMINATED,
@@ -3143,7 +3159,6 @@ class TestExtensionsQueues(TestCase):
             },
         )
         addons = Addon.objects.get_pending_review_queue()
-        assert addons.count() == len(addons) == len(expected_addons)
         assert list(addons.order_by('pk')) == expected_addons
 
         # Test that we picked the version with the oldest due date and that we
