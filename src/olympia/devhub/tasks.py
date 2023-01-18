@@ -715,7 +715,7 @@ def run_validator(path, for_appversions=None, test_all_tiers=False,
 
 
 def run_addons_linter(path, listed=True, is_experiment=False):
-    from .utils import fix_addons_linter_output
+    from .utils import fix_addons_linter_output, remove_privileged_errors
 
     args = [
         settings.ADDONS_LINTER_BIN,
@@ -766,7 +766,10 @@ def run_addons_linter(path, listed=True, is_experiment=False):
 
     parsed_data = json.loads(output)
 
-    result = json.dumps(fix_addons_linter_output(parsed_data, listed))
+    fixed_data = fix_addons_linter_output(parsed_data, listed)
+
+    # Remove any privileged errors
+    result = json.dumps(remove_privileged_errors(fixed_data))
     track_validation_stats(result, addons_linter=True)
 
     return result

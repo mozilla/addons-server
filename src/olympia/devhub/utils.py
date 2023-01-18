@@ -70,6 +70,10 @@ def remove_privileged_errors(validation):
             # Prepend to the list, this will ensure our positional pops work correctly
             to_remove.insert(0, index)
 
+    # If there's nothing to remove, then don't even bother
+    if len(to_remove) == 0:
+        return validation
+
     # Iterate and remove the specific items, we're iterating in reverse order here.
     for index in to_remove:
         validation['messages'].pop(index)
