@@ -15,7 +15,6 @@ from django.shortcuts import get_object_or_404
 from django.urls import re_path, resolve, reverse
 from django.utils.encoding import force_str
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 from olympia import amo
@@ -346,7 +345,7 @@ class AddonAdmin(AMOModelAdmin):
             else '-'
         )
 
-    authors_links.short_description = _('Authors')
+    authors_links.short_description = 'Authors'
 
     def total_ratings_link(self, obj):
         return related_content_link(
@@ -357,7 +356,7 @@ class AddonAdmin(AMOModelAdmin):
             text=obj.total_ratings,
         )
 
-    total_ratings_link.short_description = _('Ratings')
+    total_ratings_link.short_description = 'Ratings'
 
     def reviewer_links(self, obj):
         links = []
@@ -370,7 +369,7 @@ class AddonAdmin(AMOModelAdmin):
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['listed', obj.id]),
                     ),
-                    _('Review (listed)'),
+                    'Review (listed)',
                 )
             )
         if obj._unlisted_versions_exists:
@@ -380,14 +379,14 @@ class AddonAdmin(AMOModelAdmin):
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['unlisted', obj.id]),
                     ),
-                    _('Review (unlisted)'),
+                    'Review (unlisted)',
                 )
             )
         return format_html(
             '<ul>{}</ul>', format_html_join('', '<li><a href="{}">{}</a></li>', links)
         )
 
-    reviewer_links.short_description = _('Reviewer links')
+    reviewer_links.short_description = 'Reviewer links'
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
@@ -448,9 +447,7 @@ class AddonAdmin(AMOModelAdmin):
             GitExtractionEntry.objects.create(addon=addon)
             addon_ids.append(force_str(addon))
         kw = {'addons': ', '.join(addon_ids)}
-        self.message_user(
-            request, gettext('Git extraction triggered for "%(addons)s".' % kw)
-        )
+        self.message_user(request, 'Git extraction triggered for "%(addons)s".' % kw)
 
     git_extract_action.short_description = 'Git-Extract'
 
@@ -472,7 +469,7 @@ class AddonAdmin(AMOModelAdmin):
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'addonlog__addon')
 
-    activity.short_description = _('Activity Logs')
+    activity.short_description = 'Activity Logs'
 
 
 class FrozenAddonAdmin(AMOModelAdmin):
@@ -518,7 +515,7 @@ class ReplacementAddonAdmin(AMOModelAdmin):
         try:
             slug = models.Addon.objects.get(guid=obj.guid).slug
         except models.Addon.DoesNotExist:
-            slug = gettext('- Add-on not on AMO -')
+            slug = '- Add-on not on AMO -'
         return slug
 
     def has_module_permission(self, request):

@@ -1,4 +1,3 @@
-{% load i18n %}
 <h3>{{ title }} {% if spec.value %}({{ spec.value|length }}){% endif %}</h3>
 <form>
     {# Use .params.lists to properly support multiple values - so that if a filter using this template is present multiple times on the page, its current values are all passed to the new page when submitting this form #}

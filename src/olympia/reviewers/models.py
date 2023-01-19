@@ -8,7 +8,6 @@ from django.db import models
 from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
@@ -35,28 +34,28 @@ VIEW_QUEUE_FLAGS = (
     (
         'needs_admin_code_review',
         'needs-admin-code-review',
-        _('Needs Admin Code Review'),
+        'Needs Admin Code Review',
     ),
     (
         'needs_admin_content_review',
         'needs-admin-content-review',
-        _('Needs Admin Content Review'),
+        'Needs Admin Content Review',
     ),
     (
         'needs_admin_theme_review',
         'needs-admin-theme-review',
-        _('Needs Admin Static Theme Review'),
+        'Needs Admin Static Theme Review',
     ),
-    ('sources_provided', 'sources-provided', _('Sources provided')),
+    ('sources_provided', 'sources-provided', 'Sources provided'),
     (
         'auto_approval_delayed_temporarily',
         'auto-approval-delayed-temporarily',
-        _('Auto-approval delayed temporarily'),
+        'Auto-approval delayed temporarily',
     ),
     (
         'auto_approval_delayed_indefinitely',
         'auto-approval-delayed-indefinitely',
-        _('Auto-approval delayed indefinitely'),
+        'Auto-approval delayed indefinitely',
     ),
 )
 
@@ -217,22 +216,20 @@ class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
 
     version = models.OneToOneField(Version, on_delete=models.CASCADE, primary_key=True)
-    is_locked = models.BooleanField(
-        default=False, help_text=_('Is locked by a reviewer')
-    )
+    is_locked = models.BooleanField(default=False, help_text='Is locked by a reviewer')
     has_auto_approval_disabled = models.BooleanField(
-        default=False, help_text=_('Has auto-approval disabled/delayed flag set')
+        default=False, help_text='Has auto-approval disabled/delayed flag set'
     )
     is_promoted_prereview = models.BooleanField(
         default=False,
         null=True,  # TODO: remove this once code has deployed to prod.
-        help_text=_('Is in a promoted add-on group that requires pre-review'),
+        help_text='Is in a promoted add-on group that requires pre-review',
     )
     should_be_delayed = models.BooleanField(
-        default=False, help_text=_("Delayed because it's the first listed version")
+        default=False, help_text="Delayed because it's the first listed version"
     )
     is_blocked = models.BooleanField(
-        default=False, help_text=_('Version string and guid match a blocklist Block')
+        default=False, help_text='Version string and guid match a blocklist Block'
     )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
@@ -418,7 +415,7 @@ class AutoApprovalSummary(ModelBase):
                 '%s: %d' % (k, v) for k, v in self.weight_info.items() if v
             )
         else:
-            weight_info = [gettext('Weight breakdown not available.')]
+            weight_info = ['Weight breakdown not available.']
         return weight_info
 
     def find_previous_confirmed_version(self):
@@ -689,7 +686,7 @@ class Whiteboard(ModelBase):
 
 class ReviewActionReason(ModelBase):
     is_active = models.BooleanField(
-        default=True, help_text=_('Is available to be used in reviews')
+        default=True, help_text='Is available to be used in reviews'
     )
     name = models.CharField(max_length=255)
     canned_response = models.TextField(blank=True)

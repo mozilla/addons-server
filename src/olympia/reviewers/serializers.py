@@ -16,7 +16,6 @@ from django.core.cache import cache
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.encoding import force_bytes, force_str
-from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.activity.models import DraftComment
@@ -600,15 +599,15 @@ class DraftCommentSerializer(AMOModelSerializer):
         if comment and canned_response:
             raise serializers.ValidationError(
                 {
-                    'comment': gettext(
-                        "You can't submit a comment if `canned_response` is " 'defined.'
+                    'comment': (
+                        "You can't submit a comment if `canned_response` is defined."
                     )
                 }
             )
 
         if not canned_response and not comment:
             raise serializers.ValidationError(
-                {'comment': gettext("You can't submit an empty comment.")}
+                {'comment': "You can't submit an empty comment."}
             )
 
         lineno = self.get_or_default('lineno', data)
@@ -617,7 +616,7 @@ class DraftCommentSerializer(AMOModelSerializer):
         if lineno and not filename:
             raise serializers.ValidationError(
                 {
-                    'comment': gettext(
+                    'comment': (
                         "You can't submit a line number without associating "
                         'it to a filename.'
                     )

@@ -1,5 +1,3 @@
-{% load i18n %}
-
 <ul>
     {% for log in logs %}
       <li>
@@ -10,7 +8,7 @@
         {% endif %}
         {{ log.log.short }} by {{ log.user.name }}:
         {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
-            , {% trans 'versions' %} {{ log.details.min_version }} - {{ log.details.max_version }}.
+            , versions {{ log.details.min_version }} - {{ log.details.max_version }}.
         {% else %}.
         {% endif %}
         <ul>

@@ -3,7 +3,7 @@
     {% if pager.has_next() %}
       <li>
         <a rel="prev" href="{{ pager.url|urlparams(page=pager.next_page_number()) }}#history">
-          {{ _('Older') }}
+          Older
         </a>
       </li>
     {% endif %}
@@ -17,7 +17,7 @@
     {% if pager.has_previous() %}
       <li>
         <a rel="next" href="{{ pager.url|urlparams(page=pager.previous_page_number()) }}#history">
-          {{ _('Newer') }}
+          Newer
         </a>
       </li>
     {% endif %}
@@ -28,11 +28,11 @@
     {% endfor %}
   </ol>
   {% if versions_flagged_by_scanners_other %}
-    <strong class="other-flagged-by-scanners risk-high">{{ _('{num} versions flagged by scanners on other pages.')|format_html(num=versions_flagged_by_scanners_other) }}</strong>
+    <strong class="other-flagged-by-scanners risk-high">{{ versions_flagged_by_scanners_other }} versions flagged by scanners on other pages.</strong>
   {% elif versions_flagged_for_human_review_other %}
-    <strong class="other-flagged-for-human-review risk-medium">{{ _('{num} versions flagged for human review on other pages.')|format_html(num=versions_flagged_for_human_review_other) }}</strong>
+    <strong class="other-flagged-for-human-review risk-medium">{{ versions_flagged_for_human_review_other }} versions flagged for human review on other pages.</strong>
   {% endif %}
   {% if versions_pending_rejection_other %}
-    <strong class="other-pending-rejection risk-high">{{ _('{num} versions pending rejection on other pages.')|format_html(num=versions_pending_rejection_other) }}</strong>
+    <strong class="other-pending-rejection risk-high">{{ versions_pending_rejection_other }} versions pending rejection on other pages.</strong>
   {% endif %}
 {% endif %}

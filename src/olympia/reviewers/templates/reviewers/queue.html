@@ -2,15 +2,15 @@
 
 {% block title %}
   {% if tab == "content_review" %}
-    {{ _('Content Review – Add-ons for Firefox') }}
+    Content Review – Add-ons for Firefox
   {% elif tab == "auto_approved" %}
-    {{ _('Auto-approved Add-ons – Add-ons for Firefox') }}
+    Auto-approved Add-ons – Add-ons for Firefox
   {% elif tab == "moderated" %}
-    {{ _('Review Moderation – Add-ons for Firefox') }}
+    Review Moderation – Add-ons for Firefox
   {% elif tab == "unlisted_queue_all" %}
-    {{ _('Unlisted Add-ons – Add-ons for Firefox') }}
+    Unlisted Add-ons – Add-ons for Firefox
   {% elif tab == "pending_rejection" %}
-    {{ _('Pending Rejection – Add-ons for Firefox') }}
+    Pending Rejection – Add-ons for Firefox
   {% else %}
     {{ super() }}
   {% endif %}
@@ -38,7 +38,7 @@
       <div id="reviews-flagged">
         <form method="post" class="item">
           <div class="review-saved">
-            <button type="submit">{{ _('Process Reviews') }}</button>
+            <button type="submit">Process Reviews</button>
           </div>
           {% csrf_token %}
           {{ reviews_formset.management_form }}
@@ -46,7 +46,7 @@
           <div class="review-flagged{%- if not check_review_delete(review.instance) %} disabled{% endif %}">
             <div class="review-flagged-actions">
               {{ review.errors }}
-              <strong>{{ _('Moderation actions:') }}</strong>
+              <strong>Moderation actions:</strong>
               {{ review.id }}
               {{ review.action }}
             </div>
@@ -79,10 +79,10 @@
           </div>
           {% endfor %}
           {% if page.paginator.count == 0 %}
-            <div class="no-results">{{ _('All reviews have been moderated. Good work!') }}</div>
+            <div class="no-results">All reviews have been moderated. Good work!</div>
           {% else %}
             <div class="review-saved review-flagged">
-              <button type="submit">{{ _('Process Reviews') }}</button>
+              <button type="submit">Process Reviews</button>
             </div>
           {% endif %}
         </form>
@@ -125,7 +125,7 @@
         </tbody>
       </table>
       {% if page.paginator.count == 0 %}
-        <div class="no-results">{{ _('There are currently no add-ons of this type to review.') }}</div>
+        <div class="no-results">There are currently no add-ons of this type to review.</div>
       {% endif %}
     {% endif %}
     {% if page.has_other_pages() %}
@@ -137,10 +137,10 @@
 </div>
 
 <div id="helpfulLinks">
-{{ _('Helpful Links:') }}
-<a href="{{ url('devhub.docs', doc_name='policies') }}">{{ _('Add-on Policy') }}</a>
+Helpful Links:
+<a href="{{ url('devhub.docs', doc_name='policies') }}">Add-on Policy</a>
 |
-<a href="https://wiki.mozilla.org/Add-ons/Reviewers/Guide">{{ _("Reviewer's Guide") }}</a>
+<a href="https://wiki.mozilla.org/Add-ons/Reviewers/Guide">Reviewer's Guide</a>
 </div>
 
 <div class="popup" id="popup-notes" data-version-url="{{ url('reviewers.queue_version_notes') }}" data-review-url="{{ url('reviewers.queue_review_text') }}"></div>

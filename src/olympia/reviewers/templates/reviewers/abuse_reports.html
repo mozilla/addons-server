@@ -1,18 +1,18 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {{ _(' Abuse Reports – {addon} – Add-ons for Firefox')|format_html(addon=addon.name) }}
+  Abuse Reports – {{ addon.name }} – Add-ons for Firefox
 {% endblock %}
 
 {% block content %}
   <hgroup>
-    <h2>{{_('Abuse Reports for {addon} and its developers ({num})')|format_html(addon=addon.name, num=reports.paginator.count|numberfmt) }}</h2>
+    <h2>Abuse Reports for {{ addon.name }} and its developers ({{ reports.paginator.count|numberfmt }})</h2>
   </hgroup>
   {% with reports=None %}
     {# Include the addon details box, but without the abuse reports as we show them below #}
     {% include 'reviewers/addon_details_box.html' %}
   {% endwith %}
-  <h3>{{ _('Abuse Reports') }}</h3>
+  <h3>Abuse Reports</h3>
   {{ reports|paginator }}
   {% include "reviewers/includes/abuse_reports_list.html" %}
   {{ reports|paginator }}

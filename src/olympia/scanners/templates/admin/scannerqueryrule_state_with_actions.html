@@ -1,4 +1,4 @@
-{% load i18n admin_urls %}
+{% load admin_urls %}
 
 {# Note: constants have to be explicitly added to context by the method rendering this template in the ModelAdmin #}
 
@@ -7,12 +7,12 @@
 {% if obj.pk and obj.state == RUNNING %}
   &nbsp;
   <button class="button" formaction="{% url 'admin:scanners_scannerqueryrule_handle_abort' obj.pk %}">
-    {% trans 'Abort' %}
+    Abort
   </button>
 {% elif obj.pk and obj.state == NEW %}
   &nbsp;
   <button class="button" formaction="{% url 'admin:scanners_scannerqueryrule_handle_run' obj.pk %}">
-    {% trans 'Run' %}
+    Run
   </button>
 {% elif obj.pk and obj.state == COMPLETED and obj.completed %}
     ({{ obj.completed }})
