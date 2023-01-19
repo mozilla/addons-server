@@ -788,6 +788,7 @@ class FxaNotificationView(FxAConfigMixin, APIView):
                         request_jwt,
                         algorithm,
                         audience=client_id,
+                        leeway=1,
                         algorithms=[verifying_key['alg']],
                     )
                 except (ValueError, TypeError, jwt.exceptions.PyJWTError) as e:
