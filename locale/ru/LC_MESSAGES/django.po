@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-17 18:15+0000\n"
-"PO-Revision-Date: 2023-01-18 18:49+0000\n"
-"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
+"PO-Revision-Date: 2023-01-22 15:10+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -282,6 +282,8 @@ msgstr "Этот тип дополнения не допускает настр�
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Последнюю утвержденную версию этого дополнения %s нельзя удалить, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами AMO, если вам нужна "
+"помощь."
 
 msgid "My Add-ons"
 msgstr "Мои дополнения"
@@ -4666,7 +4668,7 @@ msgstr "Элитные блокировщики рекламы"
 
 #. editorial content for the secondary hero shelves.
 msgid "Roblox extensions"
-msgstr ""
+msgstr "Расширения Roblox"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5110,7 +5112,7 @@ msgid "Type"
 msgstr "Тип"
 
 msgid "Due Date"
-msgstr ""
+msgstr "Срок исполнения"
 
 msgid "Pending Rejection Deadline"
 msgstr "Ожидания срока отклонения"
