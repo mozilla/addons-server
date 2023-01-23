@@ -1310,12 +1310,7 @@ class TestQueueBasics(QueueTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        expected = [
-            'Add-on',
-            'Type',
-            'Due Date',
-            'Flags',
-        ]
+        expected = ['Add-on', 'Type', 'Due Date', 'Flags', 'Maliciousness Score']
         assert [pq(th).text() for th in doc('#addon-queue tr th')[1:]] == (expected)
 
     def test_no_results(self):
