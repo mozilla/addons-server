@@ -1,9 +1,9 @@
 {% extends "reviewers/base.html" %}
 
-{% block title %} {{ _('Reviewer Moderation Log – Add-ons for Firefox') }} {% endblock %}
+{% block title %} Reviewer Moderation Log – Add-ons for Firefox {% endblock %}
 
 {% block content %}
-<h2>{{ _('Moderated Review Log') }}</h2>
+<h2>Moderated Review Log</h2>
 
 <div class="listing results">
   <div class="results-inner controls">
@@ -18,15 +18,14 @@
 
         {{ form.filter.label_tag() }}
         {{ form.filter }}
-        {# L10n: "Filter" is a button label (verb) #}
-        <button type="submit">{{ _('Filter') }}</button>
+        <button type="submit">Filter</button>
       </p>
     </form>
     {% if pager.object_list %}
       <table class="data-grid">
         <thead><tr class="listing-header">
-          <th>{{ _('Date') }}</th>
-          <th>{{ _('Event') }}</th>
+          <th>Date</th>
+          <th>Event</th>
         </tr></thead>
         <tbody>
           {% for item in pager.object_list %}
@@ -39,7 +38,7 @@
               {% if item.details %}
               <a class="more-details"
                  href="{{ url('reviewers.ratings_moderation_log.detail', item.id) }}">
-                {{ _('More details.') }}
+                More details.
               </a>
               {% endif %}
             </td>
@@ -48,7 +47,7 @@
         </tbody>
       </table>
     {% else %}
-      <p class="no-results">{{ _('No events found for this period.') }}</p>
+      <p class="no-results">No events found for this period.</p>
     {% endif %}
   </div>
 

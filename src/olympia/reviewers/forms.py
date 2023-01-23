@@ -8,7 +8,6 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
@@ -28,18 +27,18 @@ log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 ACTION_FILTERS = (
     ('', ''),
-    ('approved', _('Approved reviews')),
-    ('deleted', _('Deleted reviews')),
+    ('approved', 'Approved reviews'),
+    ('deleted', 'Deleted reviews'),
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
 
 class RatingModerationLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_('View entries between'))
-    end = forms.DateField(required=False, label=_('and'))
+    start = forms.DateField(required=False, label='View entries between')
+    end = forms.DateField(required=False, label='and')
     filter = forms.ChoiceField(
-        required=False, choices=ACTION_FILTERS, label=_('Filter by type/action')
+        required=False, choices=ACTION_FILTERS, label='Filter by type/action'
     )
 
     def clean(self):
@@ -54,24 +53,21 @@ class RatingModerationLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_('View entries between'))
-    end = forms.DateField(required=False, label=_('and'))
-    search = forms.CharField(required=False, label=_('containing'))
+    start = forms.DateField(required=False, label='View entries between')
+    end = forms.DateField(required=False, label='and')
+    search = forms.CharField(required=False, label='containing')
 
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
 
-        # L10n: start, as in "start date"
         self.fields['start'].widget.attrs = {
-            'placeholder': gettext('start'),
+            'placeholder': 'start',
             'size': 10,
         }
 
-        # L10n: end, as in "end date"
-        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': gettext('end')}
+        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': 'end'}
 
-        # L10n: Description of what can be searched for
-        search_ph = gettext('add-on, reviewer or comment')
+        search_ph = 'add-on, reviewer or comment'
         self.fields['search'].widget.attrs = {'placeholder': search_ph, 'size': 30}
 
     def clean(self):
@@ -215,7 +211,7 @@ class ReviewForm(forms.Form):
     use_required_attribute = False
 
     comments = forms.CharField(
-        required=True, widget=forms.Textarea(), label=_('Comments:')
+        required=True, widget=forms.Textarea(), label='Comments:'
     )
     canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
@@ -231,8 +227,8 @@ class ReviewForm(forms.Form):
         queryset=Version.objects.none(),
     )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
-    applications = forms.CharField(required=False, label=_('Applications:'))
+    operating_systems = forms.CharField(required=False, label='Operating systems:')
+    applications = forms.CharField(required=False, label='Applications:')
     delayed_rejection = forms.BooleanField(
         # For the moment we default to immediate rejections, but in the future
         # this will have to be dynamically set in __init__() to default to
@@ -246,17 +242,12 @@ class ReviewForm(forms.Form):
             choices=(
                 (
                     True,
-                    _(
-                        'Delay rejection, requiring developer to correct in '
-                        'less than…'
-                    ),
+                    'Delay rejection, requiring developer to correct in ' 'less than…',
                 ),
                 (
                     False,
-                    _(
-                        'Reject immediately. Only use in case of serious '
-                        'security issues.'
-                    ),
+                    'Reject immediately. Only use in case of serious '
+                    'security issues.',
                 ),
             )
         ),
@@ -265,12 +256,12 @@ class ReviewForm(forms.Form):
         required=False,
         widget=NumberInput,
         initial=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-        label=_('days'),
+        label='days',
         min_value=1,
         max_value=99,
     )
     reasons = ReasonsChoiceField(
-        label=_('Choose one or more reasons:'),
+        label='Choose one or more reasons:',
         # queryset is set later in __init__.
         queryset=ReviewActionReason.objects.none(),
         required=True,
@@ -296,9 +287,7 @@ class ReviewForm(forms.Form):
     def clean_version_pk(self):
         version_pk = self.cleaned_data.get('version_pk')
         if version_pk and version_pk != self.helper.version.pk:
-            raise ValidationError(
-                gettext('Version mismatch - the latest version has changed!')
-            )
+            raise ValidationError('Version mismatch - the latest version has changed!')
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
@@ -346,7 +335,7 @@ class ReviewForm(forms.Form):
             )
         # For the canned responses, we're starting with an empty one, which
         # will be hidden via CSS.
-        canned_choices = [['', [('', gettext('Choose a canned response...'))]]]
+        canned_choices = [['', [('', 'Choose a canned response...')]]]
 
         canned_type = (
             amo.CANNED_RESPONSE_TYPE_THEME
@@ -412,22 +401,22 @@ class WhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['private', 'public']
-        labels = {'private': _('Private Whiteboard'), 'public': _('Whiteboard')}
+        labels = {'private': 'Private Whiteboard', 'public': 'Whiteboard'}
 
 
 class PublicWhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['public']
-        labels = {'public': _('Whiteboard')}
+        labels = {'public': 'Whiteboard'}
 
 
 class ModerateRatingFlagForm(AMOModelForm):
 
     action_choices = [
-        (ratings.REVIEW_MODERATE_KEEP, _('Keep review; remove flags')),
-        (ratings.REVIEW_MODERATE_SKIP, _('Skip for now')),
-        (ratings.REVIEW_MODERATE_DELETE, _('Delete review')),
+        (ratings.REVIEW_MODERATE_KEEP, 'Keep review; remove flags'),
+        (ratings.REVIEW_MODERATE_SKIP, 'Skip for now'),
+        (ratings.REVIEW_MODERATE_DELETE, 'Delete review'),
     ]
     action = forms.ChoiceField(
         choices=action_choices, required=False, initial=0, widget=forms.RadioSelect()

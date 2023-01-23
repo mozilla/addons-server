@@ -1,7 +1,5 @@
 import datetime
 
-from django.utils.translation import gettext
-
 import jinja2
 
 from django_jinja import library
@@ -28,68 +26,62 @@ def queue_tabnav(context):
         if acl.action_allowed_for(
             request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
         ):
-            tabnav.append(('recommended', 'queue_recommended', gettext('Recommended')))
+            tabnav.append(('recommended', 'queue_recommended', 'Recommended'))
         if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
             tabnav.append(
                 (
                     'extension',
                     'queue_extension',
-                    '🛠️ ' + gettext('Other Pending Review'),
+                    '🛠️ Other Pending Review',
                 )
             )
             tabnav.append(
                 (
                     'human_review',
                     'queue_human_review',
-                    gettext('Versions Needing Human Review'),
+                    'Versions Needing Human Review',
                 )
             )
-            tabnav.append(
-                ('mad', 'queue_mad', gettext('Flagged by MAD for Human Review'))
-            )
+            tabnav.append(('mad', 'queue_mad', 'Flagged by MAD for Human Review'))
         if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
             tabnav.extend(
                 (
                     (
                         'theme_nominated',
                         'queue_theme_nominated',
-                        '🎨 ' + gettext('New'),
+                        '🎨 New',
                     ),
                     (
                         'theme_pending',
                         'queue_theme_pending',
-                        '🎨 ' + gettext('Updates'),
+                        '🎨 Updates',
                     ),
                 )
             )
         if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
-            tabnav.append(('moderated', 'queue_moderated', gettext('Rating Reviews')))
+            tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
         if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-            tabnav.append(
-                ('auto_approved', 'queue_auto_approved', gettext('Auto Approved'))
-            )
+            tabnav.append(('auto_approved', 'queue_auto_approved', 'Auto Approved'))
 
         if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
-            tabnav.append(
-                ('content_review', 'queue_content_review', gettext('Content Review'))
-            )
+            tabnav.append(('content_review', 'queue_content_review', 'Content Review'))
 
         if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
             tabnav.append(
                 (
                     'pending_rejection',
                     'queue_pending_rejection',
-                    gettext('Pending Rejection'),
+                    'Pending Rejection',
                 )
             )
     else:
         tabnav = [
-            ('all', 'unlisted_queue_all', gettext('All Unlisted Add-ons')),
+            ('all', 'unlisted_queue_all', 'All Unlisted Add-ons'),
             (
                 'pending_manual_approval',
                 'unlisted_queue_pending_manual_approval',
-                gettext('Unlisted Add-ons Pending Manual Approval'),
+                'Unlisted Add-ons Pending Manual Approval',
             ),
         ]
 

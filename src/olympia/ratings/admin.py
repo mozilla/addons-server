@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.db.models import Prefetch
-from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -173,12 +172,12 @@ class RatingAdmin(AMOModelAdmin):
     def addon_link(self, obj):
         return related_single_content_link(obj, 'addon')
 
-    addon_link.short_description = _('Add-on')
+    addon_link.short_description = 'Add-on'
 
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
 
-    user_link.short_description = _('User')
+    user_link.short_description = 'User'
 
 
 admin.site.register(Rating, RatingAdmin)

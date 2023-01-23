@@ -8,7 +8,6 @@ from django.template.loader import render_to_string
 from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
-from django.utils.translation import gettext, gettext_lazy as _
 
 
 from urllib.parse import urljoin, urlparse
@@ -101,7 +100,7 @@ class PresenceFilter(SimpleListFilter):
 
 
 class MatchesFilter(PresenceFilter):
-    title = gettext('presence of matched rules')
+    title = 'presence of matched rules'
     parameter_name = 'has_matched_rules'
 
     def lookups(self, request, model_admin):
@@ -114,7 +113,7 @@ class MatchesFilter(PresenceFilter):
 
 
 class StateFilter(SimpleListFilter):
-    title = gettext('result state')
+    title = 'result state'
     parameter_name = 'state'
 
     def lookups(self, request, model_admin):
@@ -154,7 +153,7 @@ class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
 
 
 class ExcludeMatchedRulesFilter(MultipleRelatedListFilter):
-    title = gettext('Excluding results solely matching these rules')
+    title = 'Excluding results solely matching these rules'
     parameter_name = 'exclude_rule'
 
     def lookups(self, request, model_admin):
@@ -182,7 +181,7 @@ class ExcludeMatchedRulesFilter(MultipleRelatedListFilter):
 
 
 class WithVersionFilter(PresenceFilter):
-    title = gettext('presence of a version')
+    title = 'presence of a version'
     parameter_name = 'has_version'
 
     def lookups(self, request, model_admin):
@@ -197,27 +196,27 @@ class WithVersionFilter(PresenceFilter):
 class VersionChannelFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = gettext('version channel')
+        self.title = 'version channel'
 
 
 class AddonStatusFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = gettext('add-on status')
+        self.title = 'add-on status'
 
 
 class AddonVisibilityFilter(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = gettext('add-on listing visibility')
+        self.title = 'add-on listing visibility'
 
     def choices(self, changelist):
         # We're doing a lookup on disabled_by_user: if it's True then the
         # add-on listing is "invisible", and False it's "visible".
         for lookup, title in (
-            (None, _('All')),
-            ('1', _('Invisible')),
-            ('0', _('Visible')),
+            (None, 'All'),
+            ('1', 'Invisible'),
+            ('0', 'Visible'),
         ):
             yield {
                 'selected': self.lookup_val == lookup and not self.lookup_val2,
@@ -231,13 +230,13 @@ class AddonVisibilityFilter(admin.BooleanFieldListFilter):
 class FileStatusFiler(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = gettext('file status')
+        self.title = 'file status'
 
 
 class FileIsSigned(admin.BooleanFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = gettext('file signature')
+        self.title = 'file signature'
 
 
 class AbstractScannerResultAdminMixin:

@@ -1,7 +1,6 @@
 {% extends "admin/date_hierarchy.html" %}
-{% load i18n %}
 
 {% block date-hierarchy-toplinks %}
-    <li> {% trans 'Modified on:' %} </li>
+    <li> Modified on: </li>
     {{ block.super }}
 {% endblock %}

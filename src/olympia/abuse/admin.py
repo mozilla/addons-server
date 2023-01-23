@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.template import loader
-from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.access import acl
@@ -16,8 +15,7 @@ from .models import AbuseReport
 
 class AbuseReportTypeFilter(admin.SimpleListFilter):
     # Human-readable title to be displayed in the sidebar just above the filter options.
-    # L10n: label for the list of abuse report types: addons, users
-    title = gettext('type')
+    title = 'type'
 
     # Parameter for the filter that will be used in the URL query.
     parameter_name = 'type'
@@ -31,8 +29,8 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         in the right sidebar.
         """
         return (
-            ('user', gettext('Users')),
-            ('addon', gettext('Add-ons')),
+            ('user', 'Users'),
+            ('addon', 'Add-ons'),
         )
 
     def queryset(self, request, queryset):
@@ -63,7 +61,7 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
     """
 
     template = 'admin/abuse/abusereport/minimum_reports_count_filter.html'
-    title = gettext('minimum reports count (grouped by guid)')
+    title = 'minimum reports count (grouped by guid)'
     parameter_name = 'minimum_reports_count'
 
     def lookups(self, request, model_admin):
@@ -270,7 +268,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         name = obj.user.name if obj.user else obj.addon_name
         return '{} {}'.format(name, obj.addon_version or '')
 
-    target_name.short_description = gettext('User / Add-on')
+    target_name.short_description = 'User / Add-on'
 
     def addon_card(self, obj):
         # Note: this assumes we don't allow guids to be reused by developers
@@ -316,26 +314,24 @@ class AbuseReportAdmin(AMOModelAdmin):
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''
 
-    distribution.short_description = gettext('Distribution')
+    distribution.short_description = 'Distribution'
 
     def reporter_country(self, obj):
         return obj.country_code
 
-    reporter_country.short_description = gettext("Reporter's country")
+    reporter_country.short_description = "Reporter's country"
 
     def message_excerpt(self, obj):
         return truncate_text(obj.message, 140)[0] if obj.message else ''
 
-    message_excerpt.short_description = gettext('Message excerpt')
+    message_excerpt.short_description = 'Message excerpt'
 
     def mark_as_valid(self, request, qs):
         for obj in qs:
             obj.update(state=AbuseReport.STATES.VALID)
         self.message_user(
             request,
-            gettext(
-                'The %d selected reports have been marked as valid.' % (qs.count())
-            ),
+            'The %d selected reports have been marked as valid.' % (qs.count()),
         )
 
     mark_as_valid.short_description = 'Mark selected abuse reports as valid'
@@ -345,14 +341,10 @@ class AbuseReportAdmin(AMOModelAdmin):
             obj.update(state=AbuseReport.STATES.SUSPICIOUS)
         self.message_user(
             request,
-            gettext(
-                'The %d selected reports have been marked as suspicious.' % (qs.count())
-            ),
+            'The %d selected reports have been marked as suspicious.' % (qs.count()),
         )
 
-    mark_as_suspicious.short_description = gettext(
-        'Mark selected abuse reports as suspicious'
-    )
+    mark_as_suspicious.short_description = 'Mark selected abuse reports as suspicious'
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)

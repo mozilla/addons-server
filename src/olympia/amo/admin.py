@@ -19,7 +19,6 @@ from django.db import models
 from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import gettext
 
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
@@ -499,7 +498,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
     """
 
     template = 'admin/amo/date_range_filter.html'
-    title = gettext('creation date')
+    title = 'creation date'
     widget = HTML5DateInput
 
     def _get_form_fields(self):

@@ -15,7 +15,6 @@ from django.template.response import TemplateResponse
 from django.urls import re_path, reverse
 from django.utils.encoding import force_str
 from django.utils.html import format_html
-from django.utils.translation import gettext, gettext_lazy as _
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -241,7 +240,7 @@ class UserAdmin(AMOModelAdmin):
         ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
         UserProfile.ban_and_disable_related_content_bulk([obj], move_files=True)
         kw = {'user': force_str(obj)}
-        self.message_user(request, gettext('The user "%(user)s" has been banned.' % kw))
+        self.message_user(request, 'The user "%(user)s" has been banned.' % kw)
         return HttpResponseRedirect(
             reverse('admin:users_userprofile_change', args=(obj.pk,))
         )
@@ -296,7 +295,7 @@ class UserAdmin(AMOModelAdmin):
         kw = {'user': force_str(obj)}
         self.message_user(
             request,
-            gettext('The picture belonging to user "%(user)s" has been deleted.' % kw),
+            'The picture belonging to user "%(user)s" has been deleted.' % kw,
         )
         return HttpResponseRedirect(
             reverse('admin:users_userprofile_change', args=(obj.pk,))
@@ -309,11 +308,9 @@ class UserAdmin(AMOModelAdmin):
             ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
             users.append(force_str(obj))
         kw = {'users': ', '.join(users)}
-        self.message_user(
-            request, gettext('The users "%(users)s" have been banned.' % kw)
-        )
+        self.message_user(request, 'The users "%(users)s" have been banned.' % kw)
 
-    ban_action.short_description = _('Ban selected users')
+    ban_action.short_description = 'Ban selected users'
 
     def reset_session_action(self, request, qs):
         users = []
@@ -323,10 +320,10 @@ class UserAdmin(AMOModelAdmin):
             users.append(force_str(obj))
         kw = {'users': ', '.join(users)}
         self.message_user(
-            request, gettext('The users "%(users)s" had their session(s) reset.' % kw)
+            request, 'The users "%(users)s" had their session(s) reset.' % kw
         )
 
-    reset_session_action.short_description = _('Reset session')
+    reset_session_action.short_description = 'Reset session'
 
     def reset_api_key_action(self, request, qs):
         users = []
@@ -337,15 +334,15 @@ class UserAdmin(AMOModelAdmin):
             users.append(force_str(user))
         kw = {'users': ', '.join(users)}
         self.message_user(
-            request, gettext('The users "%(users)s" had their API Key reset.' % kw)
+            request, 'The users "%(users)s" had their API Key reset.' % kw
         )
 
-    reset_api_key_action.short_description = _('Reset API Key')
+    reset_api_key_action.short_description = 'Reset API Key'
 
     def picture_img(self, obj):
         return format_html('<img src="{}" />', obj.picture_url)
 
-    picture_img.short_description = _('Profile Photo')
+    picture_img.short_description = 'Profile Photo'
 
     def last_known_activity_time(self, obj):
         from django.contrib.admin.utils import display_for_value
@@ -367,7 +364,7 @@ class UserAdmin(AMOModelAdmin):
     def collections_authorship(self, obj):
         return related_content_link(obj, Collection, 'author')
 
-    collections_authorship.short_description = _('Collections')
+    collections_authorship.short_description = 'Collections'
 
     def addons_authorship(self, obj):
         counts = (
@@ -389,17 +386,17 @@ class UserAdmin(AMOModelAdmin):
             ),
         )
 
-    addons_authorship.short_description = _('Add-ons')
+    addons_authorship.short_description = 'Add-ons'
 
     def ratings_authorship(self, obj):
         return related_content_link(obj, Rating, 'user')
 
-    ratings_authorship.short_description = _('Ratings')
+    ratings_authorship.short_description = 'Ratings'
 
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'user')
 
-    activity.short_description = _('Activity Logs')
+    activity.short_description = 'Activity Logs'
 
     def abuse_reports_by_this_user(self, obj):
         return related_content_link(obj, AbuseReport, 'reporter')
@@ -516,7 +513,7 @@ class UserRestrictionHistoryAdmin(AMOModelAdmin):
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
 
-    user_link.short_description = _('User')
+    user_link.short_description = 'User'
 
     def has_add_permission(self, request):
         return False
