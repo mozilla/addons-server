@@ -175,11 +175,8 @@ class VersionManager(ManagerBase):
         due date instead."""
         method = getattr(self, 'exclude' if negate else 'filter')
         is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
-        # Note: once the auto_approval_delayed_until date is past, we don't
-        # remove the due date unless something else causes the add-on to
-        # trigger that check.
         has_auto_approval_delayed = Q(
-            addon__reviewerflags__auto_approval_delayed_until__gt=datetime.now()
+            addon__reviewerflags__auto_approval_delayed_until__isnull=False
         )
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)

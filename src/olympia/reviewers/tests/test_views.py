@@ -1594,7 +1594,6 @@ class TestExtensionQueue(QueueTest):
 
     def test_webextension_with_auto_approval_delayed(self):
         self.generate_files()
-        # Add a delay in the future for these two: they should show up.
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
@@ -1603,16 +1602,13 @@ class TestExtensionQueue(QueueTest):
             addon=self.addons['Nominated One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
         )
-        # Add a delay in the past for these: since it's past, they should not
-        # get a due_date when the flag is created, so they shouldn't show
-        # up in the queue.
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
+            auto_approval_delayed_until=None,
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
+            auto_approval_delayed_until=None,
         )
         self.expected_addons = [
             self.addons['Nominated One'],
