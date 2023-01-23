@@ -50,7 +50,6 @@ from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.reviewers.models import AutoApprovalSummary
 from olympia.translations.models import (
     Translation,
     TranslationSequence,
@@ -3042,229 +3041,143 @@ class TestExtensionsQueues(TestCase):
         assert all(addon in addons for addon in expected_addons.values())
         assert not any(addon in addons for addon in unexpected_addons.values())
 
-
-class TestUnlistedPendingManualApprovalQueue(TestCase):
-    def test_basic(self):
-        # Shouldn't be in the queue:
-        addon_factory()
-        addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
-        addon_factory(
-            version_kw={'channel': amo.CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                type=amo.ADDON_STATICTHEME,
-                version_kw={'channel': amo.CHANNEL_UNLISTED},
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            auto_approval_disabled_unlisted=True,
-        )
-        AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                version_kw={'channel': amo.CHANNEL_UNLISTED},
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            auto_approval_disabled=True,
-        )
-        deleted_addon = AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                version_kw={'channel': amo.CHANNEL_UNLISTED},
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            auto_approval_disabled_until_next_approval_unlisted=True,
-        ).addon
-        deleted_addon.delete()
-
-        # Should be in the queue:
-        expected = [
-            AddonReviewerFlags.objects.create(
-                addon=version_factory(
-                    addon=addon_factory(),
-                    channel=amo.CHANNEL_UNLISTED,
-                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                ).addon,
-                auto_approval_disabled_unlisted=True,
-            ).addon,
-            AddonReviewerFlags.objects.create(
-                addon=addon_factory(
-                    version_kw={'channel': amo.CHANNEL_UNLISTED},
-                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                ),
-                auto_approval_disabled_until_next_approval_unlisted=True,
-            ).addon,
-            AddonReviewerFlags.objects.create(
-                addon=addon_factory(
-                    version_kw={'channel': amo.CHANNEL_UNLISTED},
-                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                ),
-                auto_approval_delayed_until=datetime.now() + timedelta(days=99),
-            ).addon,
-        ]
-
-        results = Addon.objects.get_unlisted_pending_manual_approval_queue()
-        assert len(results) == len(expected)
-        assert set(results) == set(expected)
-
-    def test_worst_score_and_first_created_ignores_versions_not_in_filter(self):
-        expected_first_created_date = self.days_ago(2)
-        addon = AddonReviewerFlags.objects.create(
-            addon=addon_factory(
-                version_kw={
-                    'channel': amo.CHANNEL_UNLISTED,
-                    'created': self.days_ago(1),
-                },
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            auto_approval_disabled_unlisted=True,
-        ).addon
-        AutoApprovalSummary.objects.create(version=addon.versions.all()[0], score=66)
-        AutoApprovalSummary.objects.create(
-            version=version_factory(
-                addon=addon,
-                channel=amo.CHANNEL_UNLISTED,
-                created=expected_first_created_date,
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            score=55,
-        )
-        # None of the following should matter:
-        AutoApprovalSummary.objects.create(
-            version=version_factory(
-                addon=addon,
-                created=self.days_ago(99),
-                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            ),
-            score=99,
-        )
-        AutoApprovalSummary.objects.create(
-            version=version_factory(
-                addon=addon,
-                channel=amo.CHANNEL_UNLISTED,
-                created=self.days_ago(98),
-                file_kw={'status': amo.STATUS_APPROVED},
-            ),
-            score=98,
-        )
-        AutoApprovalSummary.objects.create(
-            version=version_factory(
-                addon=addon,
-                created=self.days_ago(97),
-                file_kw={'status': amo.STATUS_DISABLED},
-            ),
-            score=97,
-        )
-
-        results = Addon.objects.get_unlisted_pending_manual_approval_queue()
-        assert len(results) == 1
-        result = results[0]
-        assert result == addon
-        assert result.worst_score == 66
-        assert result.first_version_created == expected_first_created_date
-
-
-class TestListedPendingManualApprovalQueue(TestCase):
-    def test_basic(self):
-        # Shouldn't be in the queue:
-        addon_factory()
-        addon_factory(
-            type=amo.ADDON_STATICTHEME,
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        addon_factory(
-            status=amo.STATUS_NULL,
-            version_kw={'channel': amo.CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_factory(
-            addon=addon_factory(),
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        addon_factory(
-            status=amo.STATUS_NOMINATED, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        ),
-        version_factory(
-            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-        )
-        version_review_flags_factory(
-            version=version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ),
-            pending_rejection=datetime.now() + timedelta(days=1),
-        )
-        PromotedAddon.objects.create(
-            addon=version_factory(
-                addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
-            ).addon,
-            group_id=RECOMMENDED.id,
-        ).addon
-        AddonReviewerFlags.objects.create(
-            addon=addon_factory(
+    def test_pending_queue(self):
+        expected_addons = [
+            addon_factory(
+                name='Listed with auto-approval disabled',
                 status=amo.STATUS_NOMINATED,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                reviewer_flags={
+                    'auto_approval_disabled': True,
+                    'needs_admin_content_review': True,
+                },
             ),
-            auto_approval_delayed_until=datetime.now() - timedelta(days=1),
-        )
-
-        # Should be in the queue:
-        expected = [
-            AddonReviewerFlags.objects.create(
+            addon_factory(
+                name='Pure unlisted with auto-approval disabled',
+                status=amo.STATUS_NULL,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                version_kw={'channel': amo.CHANNEL_UNLISTED},
+                reviewer_flags={
+                    'auto_approval_disabled_unlisted': True,
+                },
+            ),
+            version_factory(
                 addon=addon_factory(
-                    status=amo.STATUS_NOMINATED,
-                    file_kw={
-                        'status': amo.STATUS_AWAITING_REVIEW,
+                    name='Mixed with auto-approval disabled for unlisted',
+                    reviewer_flags={
+                        'auto_approval_disabled_unlisted': True,
                     },
                 ),
-                auto_approval_disabled=True,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                channel=amo.CHANNEL_UNLISTED,
             ).addon,
-            AddonReviewerFlags.objects.create(
-                addon=addon_factory(
-                    status=amo.STATUS_NOMINATED,
-                    file_kw={
-                        'status': amo.STATUS_AWAITING_REVIEW,
-                    },
-                ),
-                auto_approval_disabled_until_next_approval=True,
+            version_factory(
+                addon=version_factory(
+                    addon=addon_factory(
+                        name='Mixed with both channel awaiting review',
+                        reviewer_flags={
+                            'auto_approval_disabled_unlisted': True,
+                            'auto_approval_disabled': True,
+                        },
+                    ),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    channel=amo.CHANNEL_UNLISTED,
+                ).addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ).addon,
-            AddonReviewerFlags.objects.create(
+            version_factory(
                 addon=addon_factory(
-                    status=amo.STATUS_NOMINATED,
-                    file_kw={
-                        'status': amo.STATUS_AWAITING_REVIEW,
-                    },
+                    name='Listed already public with auto-approval disabled',
+                    reviewer_flags={'auto_approval_disabled': True},
                 ),
-                auto_approval_delayed_until=datetime.now() + timedelta(days=1),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ).addon,
         ]
 
-        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
-        assert list(qs) == expected
-
-    def test_versions_annotations(self):
-        due_1 = self.days_ago(-2)
+        # Add add-ons that should not appear. For some it's because of
+        # something we're explicitly filtering out, for others it's because of
+        # something that causes the factories not to generate a due date for
+        # them.
+        addon_factory(name='Fully Public Add-on')
         addon_factory(
-            status=amo.STATUS_NOMINATED,
+            name='Pure unlisted',
+            status=amo.STATUS_NULL,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+        )
+        addon_factory(
+            name='Add-on that will be auto-approved',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=addon_factory(name='Add-on with version that will be auto-approved'),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            name='Theme',
+            type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
-            version_kw={'due_date': due_1},
         )
-        due_2 = self.days_ago(1)
-        version_factory(
-            addon=addon_factory(
-                reviewer_flags={'auto_approval_disabled': True},
-                version_kw={'due_date': self.days_ago(4)},
-            ),
+        addon_factory(
+            name='Disabled by Mozilla',
+            status=amo.STATUS_DISABLED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            due_date=due_2,
+            reviewer_flags={'auto_approval_disabled': True},
         )
-        expected = [due_1, due_2]
-        qs = Addon.objects.get_listed_pending_manual_approval_queue().order_by('pk')
-        result = [addon.first_version_due for addon in qs]
-        assert result == expected
+        version_review_flags_factory(
+            version=addon_factory(
+                name='Pending rejection',
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).current_version,
+            pending_rejection=datetime.now(),
+        )
+        addon_factory(
+            name='Deleted add-on',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        ).delete()
+        addon_factory(
+            name='Deleted unlisted version',
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled_unlisted': True},
+        ).versions.all()[0].delete()
+        addon_factory(
+            name='Deleted listed version',
+            version_kw={'channel': amo.CHANNEL_LISTED},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+        ).versions.all()[0].delete()
+        addon_needing_admin_code_review = addon_factory(
+            name='Listed with auto-approval disabled needing code review',
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_disabled': True,
+                'needs_admin_code_review': True,
+            },
+        )
+        addons = Addon.objects.get_pending_review_queue()
+        assert list(addons.order_by('pk')) == expected_addons
 
-    def test_staticthemes(self):
+        # Test that we picked the version with the oldest due date and that we
+        # added the first_pending_version property.
+        for addon in addons:
+            expected_version = (
+                addon.versions.exclude(due_date=None).order_by('due_date').first()
+            )
+            assert expected_version
+            assert addon.first_pending_version == expected_version
+
+        # Admins should be able to see addons needing admin code review.
+        expected_addons.append(addon_needing_admin_code_review)
+        addons = Addon.objects.get_pending_review_queue(admin_reviewer=True)
+        assert set(addons) == set(expected_addons)
+
+
+class TestThemesPendingManualApprovalQueue(TestCase):
+    def test_basic(self):
         expected = [
             addon_factory(
                 type=amo.ADDON_STATICTHEME,
@@ -3276,29 +3189,30 @@ class TestListedPendingManualApprovalQueue(TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        qs = Addon.objects.get_listed_pending_manual_approval_queue(
-            types=amo.GROUP_TYPE_THEME
-        ).order_by('pk')
+        qs = Addon.objects.get_themes_pending_manual_approval_queue().order_by('pk')
         assert list(qs) == expected
 
-    def test_with_recommended(self):
+    def test_approved_theme_pending_version(self):
         expected = [
-            PromotedAddon.objects.create(
-                addon=version_factory(
-                    addon=addon_factory(),
-                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-                ).addon,
-                group_id=RECOMMENDED.id,
-            ).addon
+            addon_factory(
+                type=amo.ADDON_STATICTHEME,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            )
         ]
-        qs = Addon.objects.get_listed_pending_manual_approval_queue(
-            recommendable=True
+        addon_factory(
+            type=amo.ADDON_STATICTHEME,
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(type=amo.ADDON_STATICTHEME)
+        addon_factory(
+            status=amo.STATUS_NOMINATED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        qs = Addon.objects.get_themes_pending_manual_approval_queue(
+            statuses=(amo.STATUS_APPROVED,)
         ).order_by('pk')
         assert list(qs) == expected
-
-    def test_query_only_group_by_on_addon_id(self):
-        sql = str(Addon.objects.get_listed_pending_manual_approval_queue().query)
-        assert sql.endswith('GROUP BY `addons`.`id` ORDER BY NULL')
 
 
 class TestAddonGUID(TestCase):

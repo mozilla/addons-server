@@ -119,9 +119,12 @@ class AddonQueueTable(tables.Table, ItemStateTable):
         )
         orderable = False
 
+    def get_version(self, record):
+        return record.current_version
+
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
-            record.flags = get_flags(record, record.current_version)
+            record.flags = get_flags(record, self.get_version(record))
         return markupsafe.Markup(
             ''.join(
                 '<div class="app-icon ed-sprite-%s" title="%s"></div>' % flag
@@ -130,16 +133,20 @@ class AddonQueueTable(tables.Table, ItemStateTable):
         )
 
     def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=[record.id])
+        args = [record.id]
+        if self.get_version(record).channel == amo.CHANNEL_UNLISTED:
+            args.insert(0, 'unlisted')
+        return reverse('reviewers.review', args=args)
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
+        self.increment_item()
         return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
             % (
                 url,
                 markupsafe.escape(record.name),
-                markupsafe.escape(record.current_version),
+                markupsafe.escape(self.get_version(record).version),
             )
         )
 
@@ -151,7 +158,9 @@ class AddonQueueTable(tables.Table, ItemStateTable):
             '<span title="%s">%d</span>'
             % (
                 '\n'.join(
-                    record.current_version.autoapprovalsummary.get_pretty_weight_info()
+                    self.get_version(
+                        record
+                    ).autoapprovalsummary.get_pretty_weight_info()
                 ),
                 value,
             )
@@ -165,7 +174,7 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
-    due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due')
+    due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'due_date', 'flags')
@@ -179,32 +188,21 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_pending_manual_approval_queue(
-            admin_reviewer=admin_reviewer
-        )
+        return Addon.objects.get_pending_review_queue(admin_reviewer=admin_reviewer)
 
-    def _get_due_date(self, record):
-        return record.first_version_due
-
-    def render_addon_name(self, record):
-        url = self._get_addon_name_url(record)
-        self.increment_item()
-        return markupsafe.Markup(
-            '<a href="%s">%s <em>%s</em></a>'
-            % (
-                url,
-                markupsafe.escape(record.name),
-                markupsafe.escape(getattr(record, 'latest_version', '')),
-            )
-        )
+    def get_version(self, record):
+        # Use the property set by get_pending_review_queue() to display the
+        # right version.
+        return record.first_pending_version
 
     def render_addon_type(self, record):
         return record.get_type_display()
 
     def render_due_date(self, record):
+        due_date = self.get_version(record).due_date
         return markupsafe.Markup(
-            f'<span title="{markupsafe.escape(self._get_due_date(record))}">'
-            f'{markupsafe.escape(naturaltime(self._get_due_date(record)))}</span>'
+            f'<span title="{markupsafe.escape(due_date)}">'
+            f'{markupsafe.escape(naturaltime(due_date))}</span>'
         )
 
     @classmethod
@@ -214,69 +212,22 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         return 'due_date'
 
 
-class RecommendedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_pending_manual_approval_queue(
-            admin_reviewer=admin_reviewer, recommendable=True
-        )
-
-
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_pending_manual_approval_queue(
+        return Addon.objects.get_themes_pending_manual_approval_queue(
             admin_reviewer=admin_reviewer,
             statuses=(amo.STATUS_NOMINATED,),
-            types=amo.GROUP_TYPE_THEME,
         )
 
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_pending_manual_approval_queue(
+        return Addon.objects.get_themes_pending_manual_approval_queue(
             admin_reviewer=admin_reviewer,
             statuses=(amo.STATUS_APPROVED,),
-            types=amo.GROUP_TYPE_THEME,
         )
-
-
-class UnlistedPendingManualApprovalQueueTable(PendingManualApprovalQueueTable):
-    created = tables.Column(verbose_name='Created', accessor='first_version_created')
-    score = tables.Column(verbose_name='Maliciousness Score', accessor='worst_score')
-    show_count_in_dashboard = False
-
-    class Meta(PendingManualApprovalQueueTable.Meta):
-        fields = (
-            'addon_name',
-            'addon_type',
-            'created',
-            'score',
-        )
-        exclude = (
-            'last_human_review',
-            'code_weight',
-            'metadata_weight',
-            'weight',
-            'flags',
-        )
-
-    def _get_addon_name_url(self, record):
-        return reverse('reviewers.review', args=['unlisted', record.id])
-
-    def _get_created(self, record):
-        return record.first_version_created
-
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_unlisted_pending_manual_approval_queue(
-            admin_reviewer=admin_reviewer
-        )
-
-    @classmethod
-    def default_order_by(cls):
-        return '-score'
 
 
 class PendingRejectionTable(AddonQueueTable):

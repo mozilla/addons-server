@@ -100,10 +100,8 @@ from olympia.reviewers.utils import (
     NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
-    RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
     HumanReviewTable,
-    UnlistedPendingManualApprovalQueueTable,
     UpdatedThemesQueueTable,
     ViewUnlistedAllListTable,
 )
@@ -196,32 +194,17 @@ def dashboard(request):
     queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
 
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-        sections['Pre-Review Add-ons'] = []
-        if view_all or acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
-        ):
-            sections['Pre-Review Add-ons'].append(
-                (
-                    'Recommended ({0})'.format(queue_counts['recommended']),
-                    reverse('reviewers.queue_recommended'),
-                )
-            )
-        sections['Pre-Review Add-ons'].extend(
+        sections['Manual Review'] = [
             (
-                (
-                    'Other Pending Review ({0})'.format(queue_counts['extension']),
-                    reverse('reviewers.queue_extension'),
-                ),
-                (
-                    'Review Log',
-                    reverse('reviewers.reviewlog'),
-                ),
-                (
-                    'Add-on Review Guide',
-                    'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-                ),
-            )
-        )
+                'Manual Review ({0})'.format(queue_counts['extension']),
+                reverse('reviewers.queue_extension'),
+            ),
+            ('Review Log', reverse('reviewers.reviewlog')),
+            (
+                'Add-on Review Guide',
+                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+            ),
+        ]
         sections['Human Review Needed'] = [
             (
                 'Versions Needing Human Review',
@@ -301,10 +284,6 @@ def dashboard(request):
             (
                 ('All Unlisted Add-ons'),
                 reverse('reviewers.unlisted_queue_all'),
-            ),
-            (
-                'Unlisted Add-ons Pending Manual Approval',
-                reverse('reviewers.unlisted_queue_pending_manual_approval'),
             ),
             (
                 'Review Guide',
@@ -416,7 +395,6 @@ def _queue(request, tab, unlisted=False):
 
 reviewer_tables_registry = {
     'extension': PendingManualApprovalQueueTable,
-    'recommended': RecommendedPendingManualApprovalQueueTable,
     'theme_pending': UpdatedThemesQueueTable,
     'theme_nominated': NewThemesQueueTable,
     'auto_approved': AutoApprovedTable,
@@ -424,7 +402,6 @@ reviewer_tables_registry = {
     'mad': MadReviewTable,
     'human_review': HumanReviewTable,
     'pending_rejection': PendingRejectionTable,
-    'unlisted_pending_manual_approval': UnlistedPendingManualApprovalQueueTable,
     'unlisted': ViewUnlistedAllListTable,
 }
 
@@ -459,11 +436,6 @@ def fetch_queue_counts(admin_reviewer):
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
     return _queue(request, 'extension')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
-def queue_recommended(request):
-    return _queue(request, 'recommended')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
@@ -1042,15 +1014,6 @@ def unlisted_list(request):
     return _queue(
         request,
         'unlisted',
-        unlisted=True,
-    )
-
-
-@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
-def unlisted_pending_manual_approval(request):
-    return _queue(
-        request,
-        'unlisted_pending_manual_approval',
         unlisted=True,
     )
 

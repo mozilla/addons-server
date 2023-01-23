@@ -708,7 +708,6 @@ class TestDashboard(TestCase):
         doc = pq(response.content)
         assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
-            reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
@@ -726,7 +725,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
-            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -734,19 +732,18 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         # pre-approval addons
-        assert doc('.dashboard a')[0].text == 'Recommended (2)'
-        assert doc('.dashboard a')[1].text == 'Other Pending Review (3)'
+        assert doc('.dashboard a')[0].text == 'Manual Review (5)'
         # auto-approved addons
-        assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
+        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[9].text == 'Content Review (11)'
+        assert doc('.dashboard a')[8].text == 'Content Review (11)'
         # themes
-        assert doc('.dashboard a')[10].text == 'New (1)'
-        assert doc('.dashboard a')[11].text == 'Updates (1)'
+        assert doc('.dashboard a')[9].text == 'New (1)'
+        assert doc('.dashboard a')[10].text == 'Updates (1)'
         # user ratings moderation
-        assert doc('.dashboard a')[14].text == 'Ratings Awaiting Moderation (1)'
+        assert doc('.dashboard a')[13].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[21].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[19].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -755,7 +752,6 @@ class TestDashboard(TestCase):
         doc = pq(response.content)
         assert len(doc('.dashboard h3')) == 9  # All sections are present.
         expected_links = [
-            reverse('reviewers.queue_recommended'),
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
@@ -773,7 +769,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
             reverse('reviewers.unlisted_queue_all'),
-            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
@@ -848,7 +843,7 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Other Pending Review (3)'
+        assert doc('.dashboard a')[0].text == 'Manual Review (3)'
         assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
@@ -926,7 +921,6 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 1
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
-            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -943,7 +937,6 @@ class TestDashboard(TestCase):
         assert len(doc('.dashboard h3')) == 9
         expected_links = [
             reverse('reviewers.unlisted_queue_all'),
-            reverse('reviewers.unlisted_queue_pending_manual_approval'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
@@ -952,22 +945,25 @@ class TestDashboard(TestCase):
     def test_static_theme_reviewer(self):
         # Create some static themes to test the queue counts.
         addon_factory(
+            name='Nominated theme',
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         version_factory(
-            addon=addon_factory(type=amo.ADDON_STATICTHEME),
+            addon=addon_factory(name='Updated theme', type=amo.ADDON_STATICTHEME),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         version_factory(
             addon=addon_factory(
+                name='Other updated theme',
                 type=amo.ADDON_STATICTHEME,
             ),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # These two are under admin review and will be ignored.
         addon_factory(
+            name='Nominated theme under admin review',
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_STATICTHEME,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -975,6 +971,7 @@ class TestDashboard(TestCase):
         )
         version_factory(
             addon=addon_factory(
+                name='Updated theme under admin review',
                 type=amo.ADDON_STATICTHEME,
                 reviewer_flags={'needs_admin_theme_review': True},
             ),
@@ -982,6 +979,7 @@ class TestDashboard(TestCase):
         )
         # This is an extension so won't be shown
         addon_factory(
+            name='Nominated extension',
             status=amo.STATUS_NOMINATED,
             type=amo.ADDON_EXTENSION,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -1032,7 +1030,7 @@ class TestDashboard(TestCase):
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'Other Pending Review (0)'
+        assert doc('.dashboard a')[0].text == 'Manual Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
         assert doc('.dashboard a')[8].text == ('Ratings Awaiting Moderation (0)')
         assert 'target' not in doc('.dashboard a')[5].attrib
@@ -1141,7 +1139,6 @@ class QueueTest(ReviewerTest):
                         },
                         'version_kw': {
                             'created': self.days_ago(1),
-                            'due_date': self.days_ago(-2),
                             'version': '0.1',
                         },
                         'status': amo.STATUS_APPROVED,
@@ -1326,11 +1323,6 @@ class TestQueueBasics(QueueTest):
         assert response.status_code == 200
         assert pq(response.content)('.queue-outer .no-results').length == 1
 
-    def test_no_paginator_when_on_single_page(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert pq(response.content)('.pagination').length == 0
-
     def test_paginator_when_many_pages(self):
         # 'Pending One' and 'Pending Two' should be the only add-ons in
         # the pending queue, but we'll generate them all for good measure.
@@ -1339,6 +1331,7 @@ class TestQueueBasics(QueueTest):
         response = self.client.get(self.url, {'per_page': 1})
         assert response.status_code == 200
         doc = pq(response.content)
+        assert doc('.pagination').length == 2
         assert doc('.data-grid-top .num-results').text() == ('Results 1\u20131 of 4')
         assert doc('.data-grid-bottom .num-results').text() == ('Results 1\u20131 of 4')
 
@@ -1390,14 +1383,6 @@ class TestQueueBasics(QueueTest):
         doc = pq(response.content)
         links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
         expected.append(reverse('reviewers.queue_content_review'))
-        assert links == expected
-
-        self.grant_permission(self.user, 'Addons:RecommendedReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        links = doc('.tabnav li a').map(lambda i, e: e.attrib['href'])
-        expected.insert(0, reverse('reviewers.queue_recommended'))
         assert links == expected
 
         self.grant_permission(self.user, 'Reviews:Admin')
@@ -1469,21 +1454,21 @@ class TestThemePendingQueue(QueueTest):
         super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two']
+            ['Pending One', 'Pending Two'], addon_type=amo.ADDON_STATICTHEME
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
         self.url = reverse('reviewers.queue_theme_pending')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 3 for the addons in the queues, their versions/files and
+            #     translations and their files (regardless of how many are in
+            #     the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -1494,6 +1479,9 @@ class TestThemePendingQueue(QueueTest):
         )
 
     def test_extensions_filtered_out(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending Two'], auto_approval_disabled=True
+        )
         self.addons['Pending Two'].update(type=amo.ADDON_EXTENSION)
 
         # Extensions shouldn't be shown
@@ -1509,12 +1497,9 @@ class TestThemePendingQueue(QueueTest):
 class TestExtensionQueue(QueueTest):
     def setUp(self):
         super().setUp()
-        # These should be the only ones present.
-        addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
-        )
-        self.expected_versions = self.get_expected_versions(addons)
-        self.expected_addons = []
+        # Don't generate add-ons in setUp for this class, its tests are too
+        # different from one another, otherwise it would create duplicate as
+        # the tests each make their own calls to generate what they need.
         self.url = reverse('reviewers.queue_extension')
 
     def test_results(self):
@@ -1523,12 +1508,13 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 3 for the addons in the queues, their versions/files and
+            #     translations and their files (regardless of how many are in
+            #     the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -1538,6 +1524,7 @@ class TestExtensionQueue(QueueTest):
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
             auto_approve_disabled=True,
         )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         version1 = self.addons['Nominated One'].versions.all()[0]
         version2 = self.addons['Nominated Two'].versions.all()[0]
         file_ = version2.file
@@ -1579,8 +1566,13 @@ class TestExtensionQueue(QueueTest):
         )
 
     def test_queue_layout(self):
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_queue_layout(
-            '🛠️ Other Pending Review', tab_position=0, total_addons=4, total_queues=4
+            '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=4
         )
 
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
@@ -1601,6 +1593,7 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_webextension_with_auto_approval_delayed(self):
+        self.generate_files()
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
             auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
@@ -1611,34 +1604,40 @@ class TestExtensionQueue(QueueTest):
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending Two'],
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
+            auto_approval_delayed_until=None,
         )
         AddonReviewerFlags.objects.create(
             addon=self.addons['Nominated Two'],
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=24),
+            auto_approval_delayed_until=None,
         )
-
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
         ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()
 
     def test_promoted_addon_in_pre_review_group_does_show_up(self):
+        self.generate_files()
         self.make_addon_promoted(self.addons['Pending One'], group=LINE)
         self.make_addon_promoted(self.addons['Nominated One'], group=SPOTLIGHT)
         # STRATEGIC isn't a pre_review group so won't show up
         self.make_addon_promoted(self.addons['Nominated Two'], group=STRATEGIC)
-        # RECOMMENDED is pre_review, but is handled in it's own queue
+        # RECOMMENDED is pre_review too, it *should* show up
         self.make_addon_promoted(self.addons['Pending Two'], group=RECOMMENDED)
 
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
+            self.addons['Pending Two'],
         ]
-        # these are the same due_dates we default to in get_files
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        # These are the same due_dates we default to in generate_files()
+        # (they were reset since the add-ons were not originally promoted when
+        # created).
         self.addons['Nominated One'].current_version.update(due_date=self.days_ago(2))
         self.addons['Pending One'].current_version.update(due_date=self.days_ago(0))
+        self.addons['Pending Two'].current_version.update(due_date=self.days_ago(-1))
 
         self._test_results()
 
@@ -1690,12 +1689,13 @@ class TestThemeNominatedQueue(QueueTest):
         self.grant_permission(self.user, 'Addons:ThemeReview')
 
     def test_results(self):
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 3 for the addons in the queues, their versions/files and
+            #     translations and their files (regardless of how many are in
+            #     the queue - that's the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -1754,88 +1754,6 @@ class TestThemeNominatedQueue(QueueTest):
         # Even if you have that permission also
         self.grant_permission(self.user, 'Addons:Review')
         self.expected_addons = [self.addons['Nominated One']]
-        self._test_results()
-
-
-class TestRecommendedQueue(QueueTest):
-    def setUp(self):
-        super().setUp()
-        self.grant_permission(self.user, 'Addons:RecommendedReview')
-        # These should be the only ones present.
-        self.expected_addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two']
-        )
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
-        due_date_counter = 2
-        for addon in self.expected_addons:
-            self.make_addon_promoted(addon, RECOMMENDED)
-            # these are the same due_dates we default to in get_files
-            addon.current_version.update(due_date=self.days_ago(due_date_counter))
-            due_date_counter -= 1
-        self.url = reverse('reviewers.queue_recommended')
-
-    def test_results(self):
-        with self.assertNumQueries(10):
-            # - 2 for savepoints because we're in tests
-            # - 2 for user/groups
-            # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
-            # - 2 for config items (motd / site notice)
-            # - 1 for my add-ons in user menu
-            self._test_results()
-
-    def test_results_two_versions(self):
-        version1 = self.addons['Nominated One'].versions.all()[0]
-        version2 = self.addons['Nominated Two'].versions.all()[0]
-        file_ = version2.file
-
-        # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
-        # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its due date must be coherent with that, but also
-        # not cause the queue order to change with respect to the other
-        # add-ons.
-        version2.created = version2.created + timedelta(minutes=1)
-        version2.due_date = version2.due_date + timedelta(minutes=1)
-        version2.pk = None
-        version2.version = '0.2'
-        version2.save()
-
-        # Associate v0.2 it with a file.
-        file_.pk = None
-        file_.version = version2
-        file_.save()
-
-        # disable old files like Version.from_upload() would.
-        version2.disable_old_files()
-
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        expected = [
-            (
-                'Nominated One 0.1',
-                reverse('reviewers.review', args=[version1.addon.pk]),
-            ),
-            (
-                'Nominated Two 0.2',
-                reverse('reviewers.review', args=[version2.addon.pk]),
-            ),
-        ]
-        doc = pq(response.content)
-        check_links(
-            expected, doc('#addon-queue tr.addon-row td a:not(.app-icon)'), verify=False
-        )
-
-    def test_queue_layout(self):
-        self._test_queue_layout(
-            'Recommended', tab_position=0, total_addons=4, total_queues=5
-        )
-
-    def test_nothing_recommended_filtered_out(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addons['Pending Two'], auto_approval_disabled=False
-        )
-
         self._test_results()
 
 
@@ -2088,70 +2006,6 @@ class TestUnlistedAllList(QueueTest):
         response = self.client.get(url)
         assert response.status_code == 200
         assert json.loads(response.content) == {'reviewtext': 'stish goin` down son'}
-
-
-class TestUnlistedPendingManualApproval(QueueTest):
-    listed = False
-
-    def setUp(self):
-        super().setUp()
-        self.url = reverse('reviewers.unlisted_queue_pending_manual_approval')
-        self.generate_files(auto_approve_disabled=True)
-        self.expected_addons = [
-            self.addons['Pending One'],
-            self.addons['Nominated Two'],
-            self.addons['Pending Two'],
-            self.addons['Nominated One'],
-        ]
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
-        for i, addon in enumerate(self.expected_addons):
-            AutoApprovalSummary.objects.create(
-                version=addon.versions.latest('pk'), score=100 - i
-            )
-        # Set one of the add-ons as needing an admin, regular reviewer
-        # shouldn't see it in their queue.
-        self.reserved_addon = self.expected_addons.pop()
-        self.reserved_addon.reviewerflags.update(needs_admin_code_review=True)
-
-    def test_results(self):
-        with self.assertNumQueries(10):
-            # - 2 for savepoints because we're in tests
-            # - 2 for user/groups
-            # - 1 for the current queue count for pagination purposes
-            # - 2 for config items (motd / site notice)
-            # - 1 for my add-ons in user menu
-            # - 1 main queue query
-            # - 1 translations
-            self._test_results()
-
-    def test_results_admin_reviewer(self):
-        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
-        # Add back the add-on set as needing an admin code review to the
-        # expected list since we are now an admin reviewer.
-        self.expected_addons.append(self.reserved_addon)
-        self.test_results()
-        self.test_queue_layout()
-
-    def test_queue_layout(self):
-        self._test_queue_layout(
-            'Unlisted Add-ons Pending Manual Approval',
-            tab_position=1,
-            total_addons=len(self.expected_addons),
-            total_queues=2,
-            per_page=1,
-        )
-
-    def test_only_viewable_with_specific_permission(self):
-        # Regular addon reviewer does not have access.
-        self.user.groupuser_set.all().delete()  # Remove all permissions
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-
-        # Regular user doesn't have access.
-        self.client.logout()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
-        response = self.client.get(self.url)
-        assert response.status_code == 403
 
 
 class TestAutoApprovedQueue(QueueTest):
@@ -2644,9 +2498,9 @@ class TestScannersReviewQueue(QueueTest):
 
         self._test_queue_layout(
             'Versions Needing Human Review',
-            tab_position=2,
+            tab_position=1,
             total_addons=4,
-            total_queues=10,
+            total_queues=9,
             per_page=1,
         )
 
