@@ -1519,6 +1519,37 @@ class TestExtensionQueue(QueueTest):
             # - 1 for my add-ons in user menu
             self._test_results()
 
+    def test_results_with_maliciousness_score(self):
+        self.expected_addons = self.get_expected_addons_by_names(
+            ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],
+            auto_approve_disabled=True,
+        )
+        AutoApprovalSummary.objects.create(
+            verdict=amo.NOT_AUTO_APPROVED,
+            version=self.addons['Pending One'].current_version,
+            score=97,
+        )
+        AutoApprovalSummary.objects.create(
+            verdict=amo.NOT_AUTO_APPROVED,
+            version=self.addons['Nominated One'].current_version,
+            score=None,
+        )
+        AutoApprovalSummary.objects.create(
+            verdict=amo.NOT_AUTO_APPROVED,
+            version=self.addons['Pending Two'].current_version,
+            score=0,
+        )
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        with self.assertNumQueries(11):
+            # See above for the queries. There should be a select_related()
+            # when fetching the versions, so the score doesn't cost us any
+            # extra queries.
+            doc = self._test_results()
+
+        addon_queue = doc('#addon-queue')
+        assert addon_queue.find('th:nth-child(6)').text() == 'Maliciousness Score'
+        assert addon_queue.find('td:nth-child(6)').text() == '— — 97% n/a'
+
     def test_results_two_versions(self):
         self.expected_addons = self.get_expected_addons_by_names(
             ['Pending One', 'Pending Two', 'Nominated One', 'Nominated Two'],

@@ -289,9 +289,9 @@ class AddonManager(ManagerBase):
             version_ids = {addon.first_version_id for addon in addons}
             versions = {
                 version.id: version
-                for version in Version.objects.filter(
-                    id__in=version_ids
-                ).no_transforms()
+                for version in Version.objects.filter(id__in=version_ids)
+                .no_transforms()
+                .select_related('autoapprovalsummary')
             }
             for addon in addons:
                 addon.first_pending_version = versions.get(addon.first_version_id)
