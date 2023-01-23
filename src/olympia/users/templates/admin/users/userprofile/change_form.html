@@ -1,5 +1,5 @@
 {% extends "admin/change_form.html" %}
-{% load i18n static admin_list admin_urls %}
+{% load static admin_list admin_urls %}
 
 {% block submit_buttons_bottom %}
     {{ block.super }}
@@ -12,14 +12,14 @@
             {% endcomment %}
             {% if has_users_edit_permission %}
                 <input formaction="{% url 'admin:users_userprofile_ban' original.pk|admin_urlquote %}"
-                       type="submit" value="{% trans 'Ban' %}" />
+                       type="submit" value="Ban" />
                 <input formaction="{% url 'admin:users_userprofile_reset_api_key' original.pk|admin_urlquote %}"
-                       type="submit" value="{% trans 'Reset API Key' %}" />
+                       type="submit" value="Reset API Key" />
                 <input formaction="{% url 'admin:users_userprofile_reset_session' original.pk|admin_urlquote %}"
-                       type="submit" value="{% trans 'Reset session(s)' %}" />
+                       type="submit" value="Reset session(s)" />
             {% endif %}
             <input formaction="{% url 'admin:users_userprofile_delete_picture' original.pk|admin_urlquote %}"
-                   type="submit" value="{% trans 'Delete picture' %}" />
+                   type="submit" value="Delete picture" />
         </div>
     </div>
 {% endblock %}

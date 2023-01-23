@@ -1,11 +1,11 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {{ page_title|format_html(addon=addon.name) + _(' – Reviewer Tools – Add-ons for Firefox') }}
+  {{ page_title|format_html(addon=addon.name) + ' – Reviewer Tools – Add-ons for Firefox' }}
 {% endblock %}
 
 {% block content %}
   <h2>{{ long_title }}</h2>
-  <a href="{{ review_url }}">{{ _('Back to review') }}</a>
+  <a href="{{ review_url }}">Back to review</a>
   <div class="policy-statement">{{ content|nl2br }}</div>
 {% endblock %}

@@ -10,7 +10,6 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
-from django.utils.translation import gettext_lazy as _
 
 from olympia import amo
 from olympia.access import acl
@@ -49,11 +48,9 @@ def safe_substitute(string, *args):
 
 
 class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
-    id = tables.Column(verbose_name=_('ID'))
-    addon_name = tables.Column(
-        verbose_name=_('Add-on'), accessor='name', orderable=False
-    )
-    guid = tables.Column(verbose_name=_('GUID'))
+    id = tables.Column(verbose_name='ID')
+    addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
+    guid = tables.Column(verbose_name='GUID')
     show_count_in_dashboard = False
 
     @classmethod
@@ -84,30 +81,28 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
 
 
 class AddonQueueTable(tables.Table, ItemStateTable):
-    addon_name = tables.Column(
-        verbose_name=_('Add-on'), accessor='name', orderable=False
-    )
+    addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
-    flags = tables.Column(verbose_name=_('Flags'), empty_values=(), orderable=False)
+    flags = tables.Column(verbose_name='Flags', empty_values=(), orderable=False)
     last_human_review = tables.DateTimeColumn(
-        verbose_name=_('Last Review'),
+        verbose_name='Last Review',
         accessor='addonapprovalscounter__last_human_review',
     )
     code_weight = tables.Column(
-        verbose_name=_('Code Weight'),
+        verbose_name='Code Weight',
         accessor='_current_version__autoapprovalsummary__code_weight',
     )
     metadata_weight = tables.Column(
-        verbose_name=_('Metadata Weight'),
+        verbose_name='Metadata Weight',
         accessor='_current_version__autoapprovalsummary__metadata_weight',
     )
     weight = tables.Column(
-        verbose_name=_('Total Weight'),
+        verbose_name='Total Weight',
         accessor='_current_version__autoapprovalsummary__weight',
     )
     score = tables.Column(
-        verbose_name=_('Maliciousness Score'),
+        verbose_name='Maliciousness Score',
         accessor='_current_version__autoapprovalsummary__score',
     )
     show_count_in_dashboard = True
@@ -178,9 +173,9 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
-    addon_type = tables.Column(verbose_name=_('Type'), accessor='type', orderable=False)
+    addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(
-        verbose_name=_('Due Date'), accessor='first_version_due_date'
+        verbose_name='Due Date', accessor='first_version_due_date'
     )
 
     class Meta:
@@ -239,7 +234,7 @@ class UpdatedThemesQueueTable(NewThemesQueueTable):
 
 class PendingRejectionTable(AddonQueueTable):
     deadline = tables.Column(
-        verbose_name=_('Pending Rejection Deadline'),
+        verbose_name='Pending Rejection Deadline',
         accessor='_current_version__reviewerflags__pending_rejection',
     )
 
@@ -282,7 +277,7 @@ class AutoApprovedTable(AddonQueueTable):
 
 
 class ContentReviewTable(AutoApprovedTable):
-    last_updated = tables.DateTimeColumn(verbose_name=_('Last Updated'))
+    last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
 
     class Meta(AutoApprovedTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
@@ -307,8 +302,8 @@ class ContentReviewTable(AutoApprovedTable):
 
 
 class HumanReviewTable(AddonQueueTable):
-    listed_text = _('Listed versions needing human review ({0})')
-    unlisted_text = _('Unlisted versions needing human review ({0})')
+    listed_text = 'Listed versions needing human review ({0})'
+    unlisted_text = 'Unlisted versions needing human review ({0})'
     show_count_in_dashboard = False
 
     @classmethod
@@ -363,8 +358,8 @@ class HumanReviewTable(AddonQueueTable):
 
 
 class MadReviewTable(HumanReviewTable):
-    listed_text = _('Listed version')
-    unlisted_text = _('Unlisted versions ({0})')
+    listed_text = 'Listed version'
+    unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
 
     @classmethod
@@ -568,12 +563,12 @@ class ReviewHelper:
         actions['public'] = {
             'method': self.handler.approve_latest_version,
             'minimal': False,
-            'details': _(
+            'details': (
                 'This will approve, sign, and publish this '
                 'version. The comments will be sent to the '
                 'developer.'
             ),
-            'label': _('Approve'),
+            'label': 'Approve',
             'available': (
                 not self.content_review
                 and addon_is_reviewable
@@ -587,8 +582,8 @@ class ReviewHelper:
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
-            'label': _('Reject'),
-            'details': _(
+            'label': 'Reject',
+            'details': (
                 'This will reject this version and remove it '
                 'from the queue. The comments will be sent '
                 'to the developer.'
@@ -609,8 +604,8 @@ class ReviewHelper:
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
-            'label': _('Approve Content'),
-            'details': _(
+            'label': 'Approve Content',
+            'details': (
                 'This records your approbation of the '
                 'content of the latest public version, '
                 'without notifying the developer.'
@@ -625,8 +620,8 @@ class ReviewHelper:
         }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
-            'label': _('Confirm Approval'),
-            'details': _(
+            'label': 'Confirm Approval',
+            'details': (
                 'The latest public version of this add-on was '
                 'automatically approved. This records your '
                 'confirmation of the approval of that version, '
@@ -643,10 +638,10 @@ class ReviewHelper:
         }
         actions['approve_multiple_versions'] = {
             'method': self.handler.approve_multiple_versions,
-            'label': _('Approve Multiple Versions'),
+            'label': 'Approve Multiple Versions',
             'minimal': True,
             'multiple_versions': True,
-            'details': _(
+            'details': (
                 'This will approve the selected versions. '
                 'The comments will be sent to the developer.'
             ),
@@ -656,7 +651,7 @@ class ReviewHelper:
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
-            'label': _('Reject Multiple Versions'),
+            'label': 'Reject Multiple Versions',
             'minimal': True,
             'delayable': (
                 # Either the version is listed
@@ -665,7 +660,7 @@ class ReviewHelper:
                 or self.version.file.status == amo.STATUS_AWAITING_REVIEW
             ),
             'multiple_versions': True,
-            'details': _(
+            'details': (
                 'This will reject the selected versions. '
                 'The comments will be sent to the developer.'
             ),
@@ -676,10 +671,10 @@ class ReviewHelper:
         }
         actions['unreject_multiple_versions'] = {
             'method': self.handler.unreject_multiple_versions,
-            'label': _('Un-reject Versions'),
+            'label': 'Un-reject Versions',
             'minimal': True,
             'multiple_versions': True,
-            'details': _(
+            'details': (
                 'This will un-reject the selected versions without notifying the '
                 'developer.'
             ),
@@ -688,11 +683,11 @@ class ReviewHelper:
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,
-            'label': _('Block Multiple Versions'),
+            'label': 'Block Multiple Versions',
             'minimal': True,
             'multiple_versions': True,
             'comments': False,
-            'details': _(
+            'details': (
                 'This will disable the selected approved '
                 'versions silently, and open up the block creation '
                 'admin page.'
@@ -703,10 +698,10 @@ class ReviewHelper:
         }
         actions['confirm_multiple_versions'] = {
             'method': self.handler.confirm_multiple_versions,
-            'label': _('Confirm Multiple Versions'),
+            'label': 'Confirm Multiple Versions',
             'minimal': True,
             'multiple_versions': True,
-            'details': _(
+            'details': (
                 'This will confirm approval of the selected '
                 'versions without notifying the developer.'
             ),
@@ -717,8 +712,8 @@ class ReviewHelper:
         }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
-            'label': _('Reviewer reply'),
-            'details': _(
+            'label': 'Reviewer reply',
+            'details': (
                 'This will send a message to the developer. '
                 'You will be notified when they reply.'
             ),
@@ -733,8 +728,8 @@ class ReviewHelper:
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
-            'label': _('Request super-review'),
-            'details': _(
+            'label': 'Request super-review',
+            'details': (
                 'If you have concerns about this add-on that '
                 'an admin reviewer should look into, enter '
                 'your comments in the area below. They will '
@@ -745,8 +740,8 @@ class ReviewHelper:
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
-            'label': _('Comment'),
-            'details': _(
+            'label': 'Comment',
+            'details': (
                 'Make a comment on this version. The developer '
                 "won't be able to see this."
             ),

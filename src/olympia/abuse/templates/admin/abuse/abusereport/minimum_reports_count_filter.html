@@ -1,6 +1,4 @@
-{% load i18n %}
-
-<h3>{% blocktrans with filter_title=title %}By {{ filter_title }}{% endblocktrans %}</h3>
+<h3>By {{ title }}</h3>
 {% with choices.0 as all_choice %}
 <form method="GET" action=".">
     <div>
@@ -10,7 +8,7 @@
     </div>
     <ul>
         <li {% if all_choice.selected %}class="selected"{% endif %}>
-            <a href="{{ all_choice.query_string }}">{% trans 'All' %}</a>
+            <a href="{{ all_choice.query_string }}">All</a>
         </li>
         <li {% if not all_choice.selected %}class="selected"{% endif %}>
             <input type="number"

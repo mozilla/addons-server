@@ -522,7 +522,7 @@ class TestAbuse(TestCase):
         assert 'Neo' in doc('.addon-info-and-previews h2').text()
         assert doc('.addon-info-and-previews .meta-abuse td').text() == '2'
         assert doc('.addon-info-and-previews .meta-rating td').text() == (
-            'Rated 2 out of 5 stars 1 review'
+            'Rated 2 out of 5 stars 1 review(s)'
         )
         assert doc('.addon-info-and-previews .last-approval-date td').text()
         assert doc('.reports-and-ratings')
