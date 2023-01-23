@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-17 18:15+0000\n"
-"PO-Revision-Date: 2023-01-23 16:39+0000\n"
+"PO-Revision-Date: 2023-01-23 16:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -131,10 +131,10 @@ msgid "Ratings"
 msgstr "Pohódnoćenja"
 
 msgid "Review (listed)"
-msgstr ""
+msgstr "Pohódnoćenje (nalistowane)"
 
 msgid "Review (unlisted)"
-msgstr ""
+msgstr "Pohódnoćenje (njenalistowane)"
 
 msgid "Reviewer links"
 msgstr "Wotkazy za přepruwowarjow"
@@ -4795,7 +4795,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Njeznata \"strict_max_version\" {appver} za {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Njepodpěrana kompresiska metoda w archiwje."
 
 msgid "Unsupported archive type."
 msgstr "Njepodpěrany archiwowy typ."
@@ -5079,7 +5079,7 @@ msgid "Type"
 msgstr "Typ"
 
 msgid "Due Date"
-msgstr ""
+msgstr "Datum płaćiwosće"
 
 msgid "Pending Rejection Deadline"
 msgstr "Termin za wustejace wotpokazanje"
@@ -5181,13 +5181,13 @@ msgid "Add-on Review Guide"
 msgstr "Nawod za přepruwowanje přidatkow"
 
 msgid "Human Review Needed"
-msgstr ""
+msgstr "Čłowjeske přepruwowanje trěbne"
 
 msgid "Versions Needing Human Review"
-msgstr ""
+msgstr "Wersije, kotrež čłowjeske přepruwowanje trjebaja"
 
 msgid "Flagged by MAD for Human Review"
-msgstr ""
+msgstr "Wot MAD za čłowjeske přepruwowanje markěrowany"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatisce schwalene přidatki"
