@@ -29,6 +29,10 @@ def _delay_auto_approval(version):
         addon=version.addon,
         defaults={'auto_approval_delayed_until': in_twenty_four_hours},
     )
+    # When introducing a short auto-approval delay, reset the due date to match
+    # the delay, unless it's already set to before the delay expires. That way
+    # reviewers are incentivized to look at those versions before they go back
+    # to being auto-approved.
     due_date = min(version.due_date or in_twenty_four_hours, in_twenty_four_hours)
     version.reset_due_date(due_date=due_date)
 
