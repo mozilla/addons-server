@@ -215,7 +215,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_themes_pending_manual_approval_queue(
+        return Addon.objects.get_themes_pending_manual_approval_queue(
             admin_reviewer=admin_reviewer,
             statuses=(amo.STATUS_NOMINATED,),
         )
@@ -224,7 +224,7 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
 class UpdatedThemesQueueTable(NewThemesQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_listed_themes_pending_manual_approval_queue(
+        return Addon.objects.get_themes_pending_manual_approval_queue(
             admin_reviewer=admin_reviewer,
             statuses=(amo.STATUS_APPROVED,),
         )

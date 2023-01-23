@@ -1454,10 +1454,9 @@ class TestThemePendingQueue(QueueTest):
         super().setUp()
         # These should be the only ones present.
         self.expected_addons = self.get_expected_addons_by_names(
-            ['Pending One', 'Pending Two']
+            ['Pending One', 'Pending Two'], addon_type=amo.ADDON_STATICTHEME
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        Addon.objects.all().update(type=amo.ADDON_STATICTHEME)
         self.url = reverse('reviewers.queue_theme_pending')
         GroupUser.objects.filter(user=self.user).delete()
         self.grant_permission(self.user, 'Addons:ThemeReview')
@@ -1480,6 +1479,9 @@ class TestThemePendingQueue(QueueTest):
         )
 
     def test_extensions_filtered_out(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending Two'], auto_approval_disabled=True
+        )
         self.addons['Pending Two'].update(type=amo.ADDON_EXTENSION)
 
         # Extensions shouldn't be shown

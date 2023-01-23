@@ -3176,7 +3176,7 @@ class TestExtensionsQueues(TestCase):
         assert set(addons) == set(expected_addons)
 
 
-class TestListedThemesPendingManualApprovalQueue(TestCase):
+class TestThemesPendingManualApprovalQueue(TestCase):
     def test_basic(self):
         expected = [
             addon_factory(
@@ -3189,9 +3189,7 @@ class TestListedThemesPendingManualApprovalQueue(TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        qs = Addon.objects.get_listed_themes_pending_manual_approval_queue().order_by(
-            'pk'
-        )
+        qs = Addon.objects.get_themes_pending_manual_approval_queue().order_by('pk')
         assert list(qs) == expected
 
     def test_approved_theme_pending_version(self):
@@ -3211,7 +3209,7 @@ class TestListedThemesPendingManualApprovalQueue(TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        qs = Addon.objects.get_listed_themes_pending_manual_approval_queue(
+        qs = Addon.objects.get_themes_pending_manual_approval_queue(
             statuses=(amo.STATUS_APPROVED,)
         ).order_by('pk')
         assert list(qs) == expected

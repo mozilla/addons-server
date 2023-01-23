@@ -329,7 +329,6 @@ class AddonManager(ManagerBase):
     def get_pending_review_queue(self, admin_reviewer=False):
         filters = {
             'type__in': amo.GROUP_TYPE_ADDON,
-            'versions__reviewerflags__pending_rejection': None,
             'versions__due_date__isnull': False,
         }
         excludes = {
@@ -340,21 +339,24 @@ class AddonManager(ManagerBase):
         )
         return qs.select_related('promotedaddon')
 
-    def get_listed_themes_pending_manual_approval_queue(
+    def get_themes_pending_manual_approval_queue(
         self,
         admin_reviewer=False,
         statuses=amo.VALID_ADDON_STATUSES,
     ):
         filters = {
-            'disabled_by_user': False,
-            'status__in': statuses,
             'type__in': amo.GROUP_TYPE_THEME,
-            'versions__channel': amo.CHANNEL_LISTED,
-            'versions__file__status': amo.STATUS_AWAITING_REVIEW,
-            'versions__reviewerflags__pending_rejection': None,
+            'versions__due_date__isnull': False,
+            'status__in': statuses,
+        }
+        excludes = {
+            'status': amo.STATUS_DISABLED,
         }
         return self.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer, theme_review=True, filters=filters
+            admin_reviewer=admin_reviewer,
+            theme_review=True,
+            filters=filters,
+            excludes=excludes,
         )
 
     def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
