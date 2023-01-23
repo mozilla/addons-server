@@ -201,7 +201,7 @@ def dashboard(request):
             ),
             ('Review Log', reverse('reviewers.reviewlog')),
             (
-                gettext('Add-on Review Guide'),
+                'Add-on Review Guide',
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]

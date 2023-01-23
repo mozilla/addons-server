@@ -174,9 +174,7 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
-    due_date = tables.Column(
-        verbose_name='Due Date', accessor='first_version_due_date'
-    )
+    due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'due_date', 'flags')
