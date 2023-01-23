@@ -274,6 +274,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
              Value  Description
     ==============  ==========================================================
               line  "By Firefox" category
+           notable  Notable category
        recommended  Recommended category
          sponsored  Sponsored category
          spotlight  Spotlight category
