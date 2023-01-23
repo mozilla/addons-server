@@ -874,19 +874,13 @@ class TestVersion(TestCase):
         )
         assert version.should_have_due_date
 
-        # If auto_approval_delayed_until is in the future it should also have a
+        # If auto_approval_delayed_until is present it should also have a
         # due_date
         addon.reviewerflags.update(
             auto_approval_disabled_until_next_approval=False,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
         )
         assert version.should_have_due_date
-
-        # But not if it's in the past.
-        addon.reviewerflags.update(
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=1),
-        )
-        assert not version.should_have_due_date
 
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
@@ -942,19 +936,13 @@ class TestVersion(TestCase):
         )
         assert version.should_have_due_date
 
-        # If auto_approval_delayed_until is in the future it should also have a
+        # If auto_approval_delayed_until is present it should also have a
         # due_date
         addon.reviewerflags.update(
             auto_approval_disabled_until_next_approval_unlisted=False,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
         )
         assert version.should_have_due_date
-
-        # But not if it's in the past.
-        addon.reviewerflags.update(
-            auto_approval_delayed_until=datetime.now() - timedelta(hours=1),
-        )
-        assert not version.should_have_due_date
 
     def test_reset_due_date(self):
         addon = Addon.objects.get(id=3615)
