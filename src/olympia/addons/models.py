@@ -1773,8 +1773,6 @@ class Addon(OnChangeMixin, ModelBase):
         """
         # This method should also affects deleted versions, so be careful when
         # modifying.
-        # Maybe I'm not getting in there because there is no status to update ?
-        # though there is...
         for version in (
             self.versions(manager='unfiltered_for_relations')
             .should_have_due_date()
