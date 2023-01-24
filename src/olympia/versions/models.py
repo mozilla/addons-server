@@ -851,6 +851,7 @@ class Version(OnChangeMixin, ModelBase):
             log.info('Version %r (%s) due_date cleared', self, self.id)
             self.update(due_date=None, _signal=False)
 
+    @use_primary_db
     def inherit_due_date(self):
         qs = (
             Version.objects.filter(addon=self.addon, channel=self.channel)

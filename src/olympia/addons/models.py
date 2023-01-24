@@ -1162,8 +1162,8 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        # We don't auto-update the status of deleted or disabled add-ons.
-        if self.status == amo.STATUS_DELETED or self.is_disabled:
+        # We don't auto-update the status of deleted or force disabled add-ons.
+        if self.status in (amo.STATUS_DELETED, amo.STATUS_DISABLED):
             self.update_version(ignore=ignore_version)
             return
 
