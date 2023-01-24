@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,57 +15,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr ""
-
-msgid "Users"
-msgstr ""
-
-msgid "Add-ons"
-msgstr "অ্যাড-অন"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "ন্যূনতম প্রতিবেদন গণনা (গাইড অনুসারে গ্রুপ করা)"
-
-msgid "User / Add-on"
-msgstr ""
-
-msgid "Distribution"
-msgstr ""
-
-msgid "Reporter's country"
-msgstr "প্রতিবেদকের দেশ"
-
-msgid "Message excerpt"
-msgstr "বার্তা অংশ"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "নির্বাচিত %d টি প্রতিবেদনগুলি বৈধ হিসাবে চিহ্নিত হয়েছে।"
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "নির্বাচিত %d প্রতিবেদনগুলি সন্দেহজনক হিসাবে চিহ্নিত হয়েছে।"
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr ""
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "দয়া করে নিশ্চিত করুন যে এই ক্ষেত্রটিতে {max_length} অক্ষরের বেশি নেই।"
 
 msgid "Invalid value"
 msgstr ""
-
-msgid "Modified on:"
-msgstr "সংশোধিত:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr ""
-
-msgid "All"
-msgstr "সব"
 
 msgid "No links are allowed."
 msgstr "কোন লিঙ্ক গ্রহণযোগ্য নয়।"
@@ -122,32 +76,6 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "শুধুমাত্র অ্যাডঅনসটির সর্বশেষ সংস্করণে যোগকৃত নোটগুলো থাকতে পারে।"
 
 msgid "Request content length is too large."
-msgstr ""
-
-msgid "Authors"
-msgstr "লেখক"
-
-msgid "Ratings"
-msgstr "রেটিংসমূহ"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "পর্যালোচনাকারীদের টুলস"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-msgid "Activity Logs"
-msgstr ""
-
-msgid "- Add-on not on AMO -"
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -283,20 +211,6 @@ msgstr "আমার অ্যাড-অনসমূহ"
 
 msgid "My Themes"
 msgstr "আমার থিমসমূহ"
-
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "পর্যালোচনাকারীদের টুলস"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "পর্যালোচনাকারীদের টুলস"
-
-msgid "Git-Extract"
-msgstr ""
-
-msgid "creation date"
-msgstr ""
 
 msgid "Tools"
 msgstr "টুলস"
@@ -521,9 +435,6 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
 
-msgid "Signoff State"
-msgstr ""
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -557,63 +468,6 @@ msgstr "পর্যালোচনার জন্য অনুরোধ কর
 #, fuzzy
 msgid "Review Unlisted"
 msgstr "পর্যালোচনা নোট"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr ""
-
-#, fuzzy
-msgid "Home"
-msgstr "হোমপেজ"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr "সংরক্ষণ করা"
-
-msgid "Save and add more"
-msgstr ""
-
-msgid "Delete"
-msgstr "মুছে ফেলুন"
-
-msgid "Update"
-msgstr "হালনাগাদ"
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "আমার জমার দিকে যান"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "আমার জমার দিকে যান"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-msgid "Submit"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr ""
-
-#, fuzzy
-msgid "versions"
-msgstr "সংস্করণ"
 
 msgid "{addon} was created."
 msgstr "{addon} তৈরি করা হয়েছিল।"
@@ -1535,108 +1389,6 @@ msgstr "খুব ভালো (2)"
 msgid "Excellent (3)"
 msgstr "চমৎকার (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "ম্যানুয়াল রিভিউয়ার পয়েন্ট সমূহ"
-
-msgid "New Legacy Add-on Review"
-msgstr ""
-
-msgid "Preliminary Add-on Review"
-msgstr "প্রাথমিক অ্যাড-অন পর্যালোচনা"
-
-msgid "Updated Legacy Add-on Review"
-msgstr ""
-
-msgid "New Dictionary Review"
-msgstr "নতুন অভিধান পর্যালোচনা"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr "নতুন ভাষা প্যাক পর্যালোচনা"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "থিম রিভিউ"
-
-msgid "Theme (Static) Review"
-msgstr ""
-
-msgid "New Search Provider Review"
-msgstr "নতুন অনুসন্ধান সরবরাহকারীর পর্যালোচনা"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "নতুন সম্পূর্ণ থিম পর্যালোচনা"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "সম্পূর্ণ থিমের প্রাথমিক পর্যালোচনা"
-
-msgid "Updated Complete Theme Review"
-msgstr "সম্পূর্ণ থিম পর্যালোচনা হালনাগাদ করা হয়েছে"
-
-msgid "Moderated Add-on Review"
-msgstr ""
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Add-on Content Review"
-msgstr ""
-
-msgid "Add-on Review (Highest Risk)"
-msgstr ""
-
-msgid "Add-on Review (High Risk)"
-msgstr ""
-
-msgid "Add-on Review (Medium Risk)"
-msgstr ""
-
-msgid "Add-on Review (Low Risk)"
-msgstr ""
-
-msgid "Level 1"
-msgstr "লেভেল ১"
-
-msgid "Level 2"
-msgstr "লেভেল 2"
-
-msgid "Level 3"
-msgstr "লেভেল ৩"
-
-msgid "Level 4"
-msgstr "লেভেল ৪"
-
-msgid "Level 5"
-msgstr "লেভেল 5"
-
-msgid "Level 6"
-msgstr "লেভেল 6"
-
-msgid "Level 7"
-msgstr "লেভেল 7"
-
-msgid "Level 8"
-msgstr "লেভেল 8"
-
-msgid "Level 9"
-msgstr "লেভেল 9"
-
 msgid "Request More Info"
 msgstr "আরো তথ্যের জন্য অনুরোধ করুন"
 
@@ -1652,32 +1404,8 @@ msgstr "বাতিল"
 msgid "Approve"
 msgstr "অনুমোদন"
 
-msgid "Sexual or pornographic content"
-msgstr "যৌন অথবা পর্নোগ্রাফি সংশ্লিষ্ট বিষয়"
-
-msgid "Inappropriate or offensive content"
-msgstr "অনুপযুক্ত বা আপত্তিকর বিষয়বস্তু"
-
-msgid "Violence, war, or weaponry images"
-msgstr "সহিংসতা, যুদ্ধ, বা অস্ত্র সম্পর্কিত ছবি"
-
-msgid "Nazi or other hate content"
-msgstr "নাৎসি বা অন্যান্য ঘৃণ্য বিষয়বস্তু"
-
-msgid "Defamatory content"
-msgstr "মানহানিকর বিষয়বস্তু"
-
-msgid "Online gambling"
-msgstr "অনলাইন জুয়া"
-
-msgid "Spam content"
-msgstr "স্প্যাম বিষয়বস্তু"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "নিম্ন মানের, প্রসারিত, বা ফাঁকা ছবি"
-
-msgid "Header image alignment problem"
-msgstr "হেডার ইমেজের এলাইনমেন্টে সমস্যা"
+msgid "All"
+msgstr "সব"
 
 msgid "Theme"
 msgstr "থিম"
@@ -2274,6 +2002,9 @@ msgstr ""
 msgid "Manage Authors & License"
 msgstr ""
 
+msgid "Authors"
+msgstr "লেখক"
+
 msgid "About author roles"
 msgstr "লেখকের ভূমিকা সম্বন্ধে"
 
@@ -2597,6 +2328,9 @@ msgstr "পুনরায় আরম্ভ করুন"
 
 msgid "Delete this add-on."
 msgstr "এই এড-অনটি মুছে ফেলুন"
+
+msgid "Delete"
+msgstr "মুছে ফেলুন"
 
 msgid "Edit details on this add-on's product page"
 msgstr ""
@@ -4822,9 +4556,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-msgid "User"
-msgstr ""
-
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
@@ -4882,510 +4613,8 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-msgid "Approved reviews"
-msgstr "অনুমোদিত পর্যালোচনা"
-
-msgid "Deleted reviews"
-msgstr "মুছে ফেলা পর্যালোচনা"
-
-msgid "View entries between"
-msgstr ""
-
-msgid "and"
-msgstr "এবং"
-
-msgid "Filter by type/action"
-msgstr ""
-
-msgid "containing"
-msgstr ""
-
-msgid "start"
-msgstr "শুরু"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "শেষ"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr ""
-
-msgid "Comments:"
-msgstr "মন্তব্যগুলো:"
-
-msgid "Operating systems:"
-msgstr "অপারেটিং সিস্টেম:"
-
-msgid "Applications:"
-msgstr "অ্যাপ্লিকেশন:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr ""
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr ""
-
-msgid "Private Whiteboard"
-msgstr ""
-
-msgid "Keep review; remove flags"
-msgstr ""
-
-msgid "Skip for now"
-msgstr "এখকার জন্য স্কিপ করুন"
-
-msgid "Delete review"
-msgstr "পর্যালোচনা মুছে ফেলুন"
-
-msgid "Needs Admin Code Review"
-msgstr ""
-
-msgid "Needs Admin Content Review"
-msgstr ""
-
-msgid "Needs Admin Static Theme Review"
-msgstr ""
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr ""
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-#, fuzzy
-msgid "You can't submit an empty comment."
-msgstr "আপনি এই ধরণের এড-অন জমা দিতে পারবেন না"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-#, fuzzy
-msgid "ID"
-msgstr "CIDR"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr ""
-
-msgid "Last Review"
-msgstr "শেষ পর্যালোচনা"
-
-#, fuzzy
-msgid "Code Weight"
-msgstr "ওজন"
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "ওজন"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "ধরণ"
-
-msgid "Due Date"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr ""
-
-msgid "Last Updated"
-msgstr ""
-
-msgid "Listed versions needing human review ({0})"
-msgstr ""
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "Listed version"
-msgstr "সংস্করণ সম্পাদনা করুন {0}"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "সংস্করণ সম্পাদনা করুন {0}"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Approve Content"
-msgstr ""
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr ""
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr ""
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "অ্যাপ্লিকেশন সংস্করণ"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-msgid "Confirm Multiple Versions"
-msgstr ""
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Reviewer reply"
-msgstr ""
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Comment"
-msgstr "মন্তব্য করুন"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Pre-Review Add-ons"
-msgstr ""
-
-msgid "Recommended ({0})"
-msgstr ""
-
-msgid "Other Pending Review ({0})"
-msgstr ""
-
-msgid "Review Log"
-msgstr ""
-
-msgid "Add-on Review Guide"
-msgstr ""
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr ""
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr ""
-
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Review Guide"
-msgstr ""
-
-msgid "Content Review"
-msgstr ""
-
-msgid "Content Review ({0})"
-msgstr ""
-
-msgid "New ({0})"
-msgstr ""
-
-msgid "Updates ({0})"
-msgstr ""
-
-msgid "Theme Review Guide"
-msgstr ""
-
-msgid "User Ratings Moderation"
-msgstr ""
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Moderation Guide"
-msgstr ""
-
-msgid "Unlisted Add-ons"
-msgstr ""
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr ""
-
-msgid "Announcement"
-msgstr "ঘোষণা"
-
-msgid "Update message of the day"
-msgstr ""
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr ""
-
-msgid "An unknown error occurred"
-msgstr ""
-
-msgid "Self-reviews are not allowed."
-msgstr ""
-
-msgid "Review successfully processed."
-msgstr ""
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr ""
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-msgid "Abuse Reports"
-msgstr "অপব্যবহারের রিপোর্ট"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "{0} এর জন্য অ্যাড-অনের তথ্য"
-
-msgid "Add-on ID"
-msgstr ""
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "সাইন অ্যাড-অন"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-#, fuzzy
-msgid "Support Website"
-msgstr "সহায়ক ওয়েবসাইট:"
-
-msgid "Visibility"
-msgstr "দৃশ্যমানতা"
-
-msgid "Visible"
-msgstr "দৃশ্যমান"
-
-#, fuzzy
-msgid "Weekly Downloads"
-msgstr "ডাউনলোডসমূহ"
-
-msgid "Average Daily Users"
-msgstr "প্রতিদিন গড় ব্যবহারকারী"
-
-msgid "View Privacy Policy"
-msgstr "গোপনীয়তার নীতি দেখুন"
-
-msgid "Requires Payment"
-msgstr ""
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "এন্ড ইউজার লাইসেন্স এগ্রিমেন্ট দেখুন"
-
-msgid "Last Approval Date"
-msgstr ""
-
-msgid "Abuse Reports ({num})"
-msgstr ""
-
-msgid "Bad User Ratings ({num})"
-msgstr ""
-
-msgid "Theme Images"
-msgstr ""
-
-msgid "Rendered Preview"
-msgstr ""
-
-msgid "More about this add-on"
-msgstr "এই অ্যাড-অনটি সম্পর্কে আরও জানুন"
-
-msgid "Image Gallery"
-msgstr "ইমেজ গ্যালারি"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "এখানে দেখার মতো কিছু নেই!  ডেভেলপার কোনো বিবরণ অন্তর্ভুক্ত করেনি।"
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "এড-অন ভার্সন"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "র‌্যাঙ্ক"
-
-msgid "Score"
-msgstr "স্কোর"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "ফিল্টার"
-
-msgid "Date"
-msgstr "তারিখ"
-
-msgid "Event"
-msgstr "ইভেন্ট"
-
-msgid "More details."
-msgstr "আরো বিস্তারিত।"
-
-msgid "No events found for this period."
-msgstr ""
-
-msgid "Log details"
-msgstr "লগ বিস্তারিত"
-
-msgid "Review Author"
-msgstr ""
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-msgid "Add-on Title"
-msgstr "এড-অন শিরোনাম"
-
-msgid "Review Text"
-msgstr "টেক্সট পর্যালোচনা করুন"
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr ""
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "পর্যালোচনায় ফিরে যান"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr ""
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr ""
-
-msgid "Process Reviews"
-msgstr ""
-
-msgid "Moderation actions:"
 msgstr ""
 
 #, python-format
@@ -5396,263 +4625,12 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-msgid "There are currently no add-ons of this type to review."
-msgstr ""
-
-msgid "Helpful Links:"
-msgstr ""
-
-msgid "Add-on Policy"
-msgstr ""
-
-msgid "Reviewer's Guide"
-msgstr ""
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr ""
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr ""
-
-msgid "Add-on History"
-msgstr ""
-
-msgid "Please select one or more versions in the list below."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr ""
-
-msgid "Files:"
-msgstr "ফাইলগুলো:"
-
-msgid "Tested on:"
-msgstr "পরীক্ষা করা হয়েছে:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
-
-msgid "More Actions"
-msgstr ""
-
-msgid "Notify me about new listed versions"
-msgstr ""
-
-msgid "Notify me about new unlisted versions"
-msgstr ""
-
-msgid "Allow resubmission"
-msgstr ""
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "আমার জমাকৃতগুলো নিয়ন্ত্রন করা"
-
-msgid "Force-disable add-on"
-msgstr ""
-
-msgid "Force-enable add-on"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-msgid "Clear Admin Content Review Flag"
-msgstr ""
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
-
-msgid "View Blocklist Submission"
-msgstr ""
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "অ্যাড-অনে ফিরে যান"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(এডমিন)"
-
-msgid "Admin Page"
-msgstr "এডমিন পেজ"
-
-msgid "Review This Add-on"
-msgstr ""
-
-msgid "Overview"
-msgstr "সারসংক্ষেপ"
-
-msgid "More Information"
-msgstr "আরও তথ্য"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "রেজুলেশন"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "পর্যালোচনাকারী"
-
-msgid "Add-on has been deleted."
-msgstr ""
-
-msgid "Show Comments"
-msgstr "মন্তব্যসমূহ দেখান"
-
-msgid "Hide Comments"
-msgstr "মন্তব্য গোপন করুন"
-
-msgid "No reviews found for this period."
-msgstr ""
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr ""
-
-msgid "Source:"
-msgstr ""
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "সোর্স কোড"
-
-msgid "Dismiss this announcement"
-msgstr "এই ঘোষণা খারিজ করুন"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "সকল এক্সটেনসন ব্রাউজ করুন"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr ""
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "অ্যাপ্লিকেশন সংস্করণ"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
-
-msgid "Older"
-msgstr "পুরাতন"
-
-msgid "Newer"
-msgstr "নতুন"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "সাম্প্রতিক পয়েন্ট"
-
-msgid "No points awarded yet."
-msgstr ""
-
-msgid "Top Reviewers (past 7 days)"
-msgstr ""
-
-msgid "No top reviewers yet."
-msgstr "এখনো কোন শীর্ষ পর্যালোচক নেই।"
-
-msgid "All Time"
-msgstr "সব সময়"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr ""
-
-msgid "No results found"
-msgstr "কোন ফলাফল পাওয়া যায় নি"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5661,98 +4639,6 @@ msgstr ""
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
-
-msgid "(Confirmed)"
-msgstr ""
-
-msgid "Pending Rejection on review of new version"
-msgstr ""
-
-msgid "Compatibility:"
-msgstr ""
-
-msgid "Additional sources:"
-msgstr ""
-
-msgid "Download files"
-msgstr "ফাইল ডাউনলোড করুন"
-
-msgid "The developer has provided source code."
-msgstr ""
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-msgid "Flagged for human review"
-msgstr ""
-
-msgid "Download"
-msgstr "ডাউনলোড"
-
-msgid "Not Auto Approved Because"
-msgstr ""
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
-
-#, fuzzy
-msgid "Updates"
-msgstr "হালনাগাদ"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "পর্যালোচনার জন্য অপেক্ষা করছে"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "অনুমোদিত"
-
-msgid "Pending Rejection"
-msgstr ""
-
-msgid "presence of matched rules"
-msgstr ""
-
-msgid "result state"
-msgstr ""
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-msgid "presence of a version"
-msgstr ""
-
-#, fuzzy
-msgid "version channel"
-msgstr "সংস্করণের সাইনড"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "এড-অন স্ট্যাটাস"
-
-msgid "add-on listing visibility"
-msgstr ""
-
-#, fuzzy
-msgid "file status"
-msgstr "সাইট এর অবস্থা"
-
-#, fuzzy
-msgid "file signature"
-msgstr "{file} স্বাক্ষরিত।"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5786,12 +4672,6 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, python-format
@@ -5843,6 +4723,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "সারসংক্ষেপ"
+
 msgid "by Source"
 msgstr "সোর্স দ্বারা"
 
@@ -5885,6 +4768,9 @@ msgstr "হইতে"
 
 msgid "To"
 msgstr "প্রতি"
+
+msgid "Update"
+msgstr "হালনাগাদ"
 
 msgid "Export"
 msgstr "এক্সপোর্ট"
@@ -6092,6 +4978,9 @@ msgstr "চলুন"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} অ্যাড-অনের হোম পেজে ফিরে যান"
 
+msgid "Add-ons"
+msgstr "অ্যাড-অন"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">রেজিস্টার</a> অথবা <a href=\"%(login)s\">লগ ইন</a>"
@@ -6130,42 +5019,6 @@ msgstr ""
 
 msgid "Delete Locale"
 msgstr ""
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr ""
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr ""
-
-msgid "Ban selected users"
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
-
-#, fuzzy
-msgid "Reset session"
-msgstr "সংস্করণ মুছে ফেলুন"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
-
-msgid "Reset API Key"
-msgstr "API রিসেট করুন"
-
-msgid "Profile Photo"
-msgstr "প্রোফাইল ছবি"
-
-msgid "Collections"
-msgstr "সংগ্রহ"
 
 msgid "IP Address"
 msgstr ""
@@ -6248,16 +5101,6 @@ msgid "An author role has been changed on your add-on"
 msgstr ""
 
 msgid "An author has been removed from your add-on"
-msgstr ""
-
-msgid "Ban"
-msgstr ""
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "সংস্করণ মুছে ফেলুন"
-
-msgid "Delete picture"
 msgstr ""
 
 #, python-format

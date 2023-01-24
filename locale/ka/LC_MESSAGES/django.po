@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2023-01-03 19:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "სახეობა"
-
-msgid "Users"
-msgstr "მომხმარებლები"
-
-msgid "Add-ons"
-msgstr "დამატებები"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "მოხსენების უმცირესი რაოდენობა (guid-დაჯგუფებით)"
-
-msgid "User / Add-on"
-msgstr "მომხმარებელი / დამატება"
-
-msgid "Distribution"
-msgstr "განთავსება"
-
-msgid "Reporter's country"
-msgstr "მომხსენებლის ქვეყანა"
-
-msgid "Message excerpt"
-msgstr "ამონაწერი წერილიდან"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "შერჩეული %d მოხსენება მოინიშნა მართებულად."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "შერჩეული %d მოხსენება მოინიშნა საეჭვოდ."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "შერჩეული არამართებული მოხსენებების მონიშვნა საეჭვოდ"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "დარწმუნდით, რომ ამ ველში არაუმეტეს {max_length} სიმბოლოა."
 
 msgid "Invalid value"
 msgstr "არასწორი მნიშვნელობა"
-
-msgid "Modified on:"
-msgstr "შესწორებული:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "გამორჩევა %(filter_title)s"
-
-msgid "All"
-msgstr "ყველა"
 
 msgid "No links are allowed."
 msgstr "ბმულები დაშვებული არაა."
@@ -123,31 +77,6 @@ msgstr "შენიშვნების დართვა შესაძლ�
 
 msgid "Request content length is too large."
 msgstr "მოთხოვნის შიგთავსი მეტად ვრცელია."
-
-msgid "Authors"
-msgstr "ავტორები"
-
-msgid "Ratings"
-msgstr "შეფასება"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-msgid "Reviewer links"
-msgstr "მიმომხილველის ბმულები"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Git-ამოღების დაწყება დამატებისთვის „%(addons)s“."
-
-msgid "Activity Logs"
-msgstr "აღრიცხული მოქმედებები"
-
-msgid "- Add-on not on AMO -"
-msgstr "- დამატება არაა განთავსებული AMO საიტზე -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "აჭარბებს კატეგორიების დასაშვებ ოდენობას ({MAX_CATEGORIES})"
@@ -282,18 +211,6 @@ msgstr "ჩემი დამატებები"
 
 msgid "My Themes"
 msgstr "ჩემი თემები"
-
-msgid "Reviewer Tools (listed)"
-msgstr "მიმომხილველის ხელსაწყოები (გამოქვეყნებული)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "მიმომხილველის ხელსაწყოები (გამოუქვეყნებელი)"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
-
-msgid "creation date"
-msgstr "შექმნის თარიღი"
 
 msgid "Tools"
 msgstr "ხელსაწყოები"
@@ -528,9 +445,6 @@ msgstr "ამ URL-ბმულის გამოყენება შეუ�
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
 
-msgid "Signoff State"
-msgstr "დამოწმების მდგომარეობა"
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s ელოდება წარდგენას"
@@ -561,59 +475,6 @@ msgstr "მიმოხილვა გამოქვეყნებული�
 
 msgid "Review Unlisted"
 msgstr "მიმოხილვა გამოუქვეყნებელია"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "წაიშალოს რამდენიმე %(name)s"
-
-msgid "Home"
-msgstr "მთავარი გვერდი"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s დამატება GUID უკვე შეზღუდულია ვერსიებისთვის %(v_min)s – %(v_max)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s დამატება GUID ვერ მოიძებნა"
-
-msgid "Save"
-msgstr "შენახვა"
-
-msgid "Save and add more"
-msgstr "შენახვა და კიდევ დამატება"
-
-msgid "Delete"
-msgstr "წაშლა"
-
-msgid "Update"
-msgstr "განახლება"
-
-msgid "Reject Submission"
-msgstr "წარდგენილის უარყოფა"
-
-msgid "Approve Submission"
-msgstr "წარდგენილის დამოწმება"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "დაემატოს %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "დამატება GUID (თითო ცალკე ხაზზე)"
-
-msgid "Submit"
-msgstr "წარდგენა"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s დამატება GUID მომხმარებლებით %(adu)s"
-
-msgid "Edit Block"
-msgstr "შეზღუდვის ჩასწორება"
-
-msgid "versions"
-msgstr "ვერსიები"
 
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
@@ -1538,108 +1399,6 @@ msgstr "ძალიან კარგი (2)"
 msgid "Excellent (3)"
 msgstr "ბრწყინვალე (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "ქულები მიმოხილვისთვის"
-
-msgid "New Legacy Add-on Review"
-msgstr "მოძველებული დამატების ახალი განხილვა"
-
-msgid "Preliminary Add-on Review"
-msgstr "დამატების წინასწარი მიმოხილვა"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "მოძველებული დამატების განახლებული განხილვა"
-
-msgid "New Dictionary Review"
-msgstr "ახალი ლექსიკონის განხილვა"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ლექსიკონის წინასწარი მიმოხილვა"
-
-msgid "Updated Dictionary Review"
-msgstr "ლექსიკონის განახლებული მიმოხილვა"
-
-msgid "New Language Pack Review"
-msgstr "ენის ახალი ნაკრების განხილვა"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ენის ნაკრები წინასწარი მიმოხილვა"
-
-msgid "Updated Language Pack Review"
-msgstr "ენის ნაკრები განახლებული მიმოხილვა"
-
-msgid "Theme Review"
-msgstr "თემის მიმოხილვა"
-
-msgid "Theme (Static) Review"
-msgstr "თემა (უცვლელი)"
-
-msgid "New Search Provider Review"
-msgstr "ახალი საძიებო სისტემის მიმოხილვა"
-
-msgid "Preliminary Search Provider Review"
-msgstr "საძიებო სისტემის წინასწარი მიმოხილვა"
-
-msgid "Updated Search Provider Review"
-msgstr "განახლებული საძიებო სისტემის მიმოხილვა"
-
-msgid "New Complete Theme Review"
-msgstr "ახალი სრული თემის მიმოხილვა"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "სრული თემის წინასწარი მიმოხილვა"
-
-msgid "Updated Complete Theme Review"
-msgstr "განახლებული სრული თემის მიმოხილვა"
-
-msgid "Moderated Add-on Review"
-msgstr "შემოწმებული დამატების მიმოხილვა"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "დამატების მიმოხილვის შემოწმება უარყოფილია"
-
-msgid "Add-on Content Review"
-msgstr "დამატების შიგთავსის მიმოხილვა"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "დამატების განხილვა (უმაღლესი საფრთხით)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "დამატების განხილვა (მაღალი საფრთხით)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "დამატების განხილვა (საშუალო საფრთხით)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "დამატების განხილვა (დაბალი რისკის)"
-
-msgid "Level 1"
-msgstr "დონე 1"
-
-msgid "Level 2"
-msgstr "დონე 2"
-
-msgid "Level 3"
-msgstr "დონე 3"
-
-msgid "Level 4"
-msgstr "დონე 4"
-
-msgid "Level 5"
-msgstr "დონე 5"
-
-msgid "Level 6"
-msgstr "დონე 6"
-
-msgid "Level 7"
-msgstr "დონე 7"
-
-msgid "Level 8"
-msgstr "დონე 8"
-
-msgid "Level 9"
-msgstr "დონე 9"
-
 msgid "Request More Info"
 msgstr "დამატებითი ინფორმაციის მოთხოვნა"
 
@@ -1655,32 +1414,8 @@ msgstr "უარყოფა"
 msgid "Approve"
 msgstr "დამოწმება"
 
-msgid "Sexual or pornographic content"
-msgstr "ეროტიკული ან პორნოგრაფიული შინაარსის"
-
-msgid "Inappropriate or offensive content"
-msgstr "შუსაბამო ან უხამსი შინაარსის"
-
-msgid "Violence, war, or weaponry images"
-msgstr "ძალადობის, ომის ან შეიარაღების ამსახველი სურათი"
-
-msgid "Nazi or other hate content"
-msgstr "ფაშისტური ან სიძულვილის ენის შემცველი შინაარსი"
-
-msgid "Defamatory content"
-msgstr "ცილისმწამებლური შინაარსის"
-
-msgid "Online gambling"
-msgstr "აზარტული თამაშები"
-
-msgid "Spam content"
-msgstr "სარეკლამო შინაარსის"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "უხარისხო, გაწელილი ან ცარიელი სურათი"
-
-msgid "Header image alignment problem"
-msgstr "ზედა სურათი არ არის სათანადოდ გასწორებული"
+msgid "All"
+msgstr "ყველა"
 
 msgid "Theme"
 msgstr "თემა"
@@ -2281,6 +2016,9 @@ msgstr "უარყოფა"
 msgid "Manage Authors & License"
 msgstr "ავტორებისა და ლიცენზიის მართვა"
 
+msgid "Authors"
+msgstr "ავტორები"
+
 msgid "About author roles"
 msgstr "ავტორის მოვალეობის შესახებ"
 
@@ -2620,6 +2358,9 @@ msgstr "გაგრძელება"
 
 msgid "Delete this add-on."
 msgstr "დამატების წაშლა"
+
+msgid "Delete"
+msgstr "წაშლა"
 
 msgid "Edit details on this add-on's product page"
 msgstr "მონაცემების ჩასწორება დამატების გვერდზე"
@@ -4875,9 +4616,6 @@ msgstr "„upload“ გასაღები ფაილის მონაც
 msgid "Missing \"channel\" arg."
 msgstr "აკლია „channel“."
 
-msgid "User"
-msgstr "მომხმარებელი"
-
 msgid "Spam or otherwise non-review content"
 msgstr "სარეკლამო ან შეუსაბამო შიგთავსი"
 
@@ -4935,499 +4673,9 @@ msgstr "{0} შეფასება 5 ვარსკვლავიდან"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s შეფასება 5 ვარსკვლავიდან"
 
-msgid "Approved reviews"
-msgstr "დამოწმებული მიმოხილვები"
-
-msgid "Deleted reviews"
-msgstr "წაშლილი მიმოხილვები"
-
-msgid "View entries between"
-msgstr "იხილეთ ჩანაწერები მათ შორის"
-
-msgid "and"
-msgstr "და"
-
-msgid "Filter by type/action"
-msgstr "გამორჩევა სახეების/მოქმედებების მიხედვით"
-
-msgid "containing"
-msgstr "შემცველი"
-
-msgid "start"
-msgstr "დაწყება"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "დასრულება"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "დამატება, მიმომხილველი ან გამოხმაურება"
-
-msgid "Comments:"
-msgstr "შენიშვნები:"
-
-msgid "Operating systems:"
-msgstr "საოპერაციო სისტემები:"
-
-msgid "Applications:"
-msgstr "პროგრამები:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "უარყოფის გადადება, შემმუშავებელს გასასწორებლად აქვს არაუმეტეს…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "უარყავით დაუყოვნებლივ. გამოიყენეთ, მხოლოდ უსაფრთხოების გადაუდებელი შემთხვევებისას."
-
-msgid "days"
-msgstr "დღე"
-
-msgid "Choose one or more reasons:"
-msgstr "აირჩიეთ ერთი ან რამდენიმე მიზეზი:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "ვერსიების შეუსაბამობა – ბოლო ვერსია შეცვლილია!"
-
-msgid "Choose a canned response..."
-msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
-
-msgid "Private Whiteboard"
-msgstr "პირადი შენიშვნების გვერდი"
-
-msgid "Keep review; remove flags"
-msgstr "განხილვის გაგრძელება; მონიშვნების მოხსნა"
-
-msgid "Skip for now"
-msgstr "ამჟამად გამოტოვება"
-
-msgid "Delete review"
-msgstr "მიმოხილვის წაშლა"
-
-msgid "Needs Admin Code Review"
-msgstr "კოდი საჭიროებს მმართველის მიერ გადახედვას"
-
-msgid "Needs Admin Content Review"
-msgstr "დამატების შიგთავსი საჭიროებს მმართველის მიერ გადახედვას"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "უცვლელი თემა საჭიროებს მმართველის მიერ გადახედვას"
-
-msgid "Sources provided"
-msgstr "წყაროები მოცემულია"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "თვითდამოწმება გადადებულია დროებით"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "თვითდამოწმება გადადებულია გაურკვეველი ვადით"
-
-msgid "Is locked by a reviewer"
-msgstr "შეჩერებულია მიმომხილველის მიერ"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "გათიშული/დაყოვნებული თვითდამოწმების მონიშვნა აქვს მითითებული"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "დაფინანსებული დამატებების ჯგუფშია და საჭიროებს წინასწარ განხილვას"
-
-msgid "Delayed because it's the first listed version"
-msgstr "გადადებულია, ვინაიდან პირველი გამოქვეყნებული ვერსიაა"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "ვერსიის სტრიქონი და guid ემთხვევა შეზღუდვის სიის ჩანაწერს"
-
-msgid "Weight breakdown not available."
-msgstr "დაშლა მოცულობის მიხედვით შეუძლებელია."
-
-msgid "Is available to be used in reviews"
-msgstr "ხელმისაწვდომია მიმოხილვებში გამოსაყენებლად"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "გამოხმაურების გაგზავნას ვერ შეძლებთ, როცა „წინასწარ განსაზღვრული პასუხია“ მითითებული."
-
-msgid "You can't submit an empty comment."
-msgstr "ცარიელ გამოხმაურებას ვერ გაგზავნით."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "თქვენ ვერ წარადგენთ ხაზის ნომერს, დაკავშირებული ფაილის სახელის გარეშე."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "მონიშვნები"
-
-msgid "Last Review"
-msgstr "ბოლო მიმოხილვა"
-
-msgid "Code Weight"
-msgstr "კოდის მოცულობა"
-
-msgid "Metadata Weight"
-msgstr "მონაცემების აღმწერის მოცულობა"
-
-msgid "Total Weight"
-msgstr "საერთო მოცულობა"
-
-msgid "Maliciousness Score"
-msgstr "მავნებლობის ქულა"
-
-msgid "Type"
-msgstr "სახეობა"
-
-msgid "Due Date"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr "უარყოფის ვადის მომლოდინე"
-
-msgid "Last Updated"
-msgstr "ბოლოს განახლდა"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "გამოქვეყნებული ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "გამოუქვეყნებელი ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას ({0})"
-
-msgid "Listed version"
-msgstr "გამოქვეყნებული ვერსია"
-
-msgid "Unlisted versions ({0})"
-msgstr "გამოუქვეყნებელი ვერსიები ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "შედეგად, ეს ვერსია მიიღება, დამოწმდება და გამოქვეყნდება. შენიშვნები გადაეგზავნება შემმუშავებელს."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "შედეგად, ეს ვერსია უარყოფილი იქნება და რიგიდან ამოიშლება. შეფასებები, გადაეგზავნება შემმუშავებელს."
-
-msgid "Approve Content"
-msgstr "შიგთავსის დამოწმება"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "შედეგად, თქვენ მიერ ამ ვერსიის შიგთავსის დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
-
-msgid "Confirm Approval"
-msgstr "დამოწმების დადასტურება"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "დამატების ბოლო გამოქვეყნებული ვერსია თვითდამოწმებულია. ამის შედეგად, თქვენი დადასტურება ჩაიწერება, შემმუშავებლის შეუტყობინებლად."
-
-msgid "Approve Multiple Versions"
-msgstr "რამდენიმე ვერსიის მიღება"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "შედეგად, შერჩეული ვერსიები მიღებულია იქნება. გამოხმაურებები გაეგზავნება შემმუშავებელს."
-
-msgid "Reject Multiple Versions"
-msgstr "რამდენიმე ვერსიის უარყოფა"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "შედეგად, შერჩეული ვერსიები უარყოფილი იქნება. გამოხმაურებები გაეგზავნება შემმუშავებელს."
-
-msgid "Un-reject Versions"
-msgstr "ვერსიების უარყოფის გაუქმება"
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr "შედეგად, შერჩეული ვერსიების უარყოფა გაუქმდება შემმუშავებლის შეუტყობინებლად."
-
-msgid "Block Multiple Versions"
-msgstr "რამდენიმე ვერსიის შეზღუდვა"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "შედეგად, მითითებული დამოწმებული ვერსიები გაითიშება შეუმჩნევლად და გაიხსნება შეზღუდვის შესაქმნელი სამართავი გვერდი."
-
-msgid "Confirm Multiple Versions"
-msgstr "რამდენიმე ვერსიის დამოწმება"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "შედეგად, დადასტურდება შერჩეული ვერსიები, შემმუშავებლის შეუტყობინებლად."
-
-msgid "Reviewer reply"
-msgstr "მიმომხილველის პასუხი"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "შედეგად, შემმუშავებელს გაეგზავნება შეტყობინება. გამოხმაურებისთანავე, გეცნობებათ."
-
-msgid "Request super-review"
-msgstr "განსაკუთრებული განხილვის მოთხოვნა"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა მმართველმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
-
-msgid "Comment"
-msgstr "შენიშვნა"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "შენიშვნის დატოვება ამ ვერსიაზე. შემმუშავებელი ვერ იხილავს."
-
-msgid "Pre-Review Add-ons"
-msgstr "დამატებების წინასწარი განხილვა"
-
-msgid "Recommended ({0})"
-msgstr "სასურველი ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "სხვა მომლოდინე განხილვა ({0})"
-
-msgid "Review Log"
-msgstr "მიმოხილვის ჩანაწერები"
-
-msgid "Add-on Review Guide"
-msgstr "დამატების მიმოხილვის სახელმძღვანელო"
-
-msgid "Human Review Needed"
-msgstr "საჭიროებს ადამიანის მონაწილეობით განხილვას"
-
-msgid "Versions Needing Human Review"
-msgstr "ვერსიები საჭიროებს ადამიანის მონაწილეობით განხილვას"
-
-msgid "Flagged by MAD for Human Review"
-msgstr "მონიშნულია MAD-ის მიერ ადამიანის მონაწილეობით განხილვისთვის"
-
-msgid "Auto-Approved Add-ons"
-msgstr "თვითდამოწმებული დამატებები"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "თვითდამოწმებული დამატებები ({0})"
-
-msgid "Add-on Review Log"
-msgstr "დამატების განხილვის ჩანაწერები"
-
-msgid "Review Guide"
-msgstr "მიმოხილვის სახელმძღვანელო"
-
-msgid "Content Review"
-msgstr "შიგთავსის განხილვა"
-
-msgid "Content Review ({0})"
-msgstr "შიგთავსის განხილვა ({0})"
-
-msgid "New ({0})"
-msgstr "ახალი ({0})"
-
-msgid "Updates ({0})"
-msgstr "განახლებები ({0})"
-
-msgid "Theme Review Guide"
-msgstr "თემის მიმოხილვის სახელმძღვანელო"
-
-msgid "User Ratings Moderation"
-msgstr "მომხმარებელთა შეფასების შემოწმება"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "შეფასებები, დაყოვნებული შესამოწმებლად ({0})"
-
-msgid "Moderated Review Log"
-msgstr "შემოწმებული განხილვის ჩანაწერები"
-
-msgid "Moderation Guide"
-msgstr "შემოწმების სახელმძღვანელო:"
-
-msgid "Unlisted Add-ons"
-msgstr "გამოუქვეყნებელი დამატებები"
-
-msgid "All Unlisted Add-ons"
-msgstr "ყველა გამოუქვეყნებელი დამატება"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "გამოუქვეყნებელი დამატებების დაყოვნება, ხელით დამოწმებამდე"
-
-msgid "Announcement"
-msgstr "გამოცხადება"
-
-msgid "Update message of the day"
-msgstr "დღის შეტყობინების განახლება"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "უარყოფის მომლოდინე დამატებები ({0})"
-
-msgid "An unknown error occurred"
-msgstr "უცნობი შეცდომა"
-
-msgid "Self-reviews are not allowed."
-msgstr "თვითმიმოხილვა არაა ნებადართული."
-
-msgid "Review successfully processed."
-msgstr "მიმოხილვა წარმატებით შესრულდა."
-
-msgid "Review lock limit reached"
-msgstr "მიმოხილვის შეზღუდვის ზღვარი მიღწეულია"
-
-msgid "{addon} – EULA"
-msgstr "{addon} – სამომხმარებლო შეთნხმება"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – პირადულობის დებულება"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "დარღვევებზე მოხსენებები – {addon} – Firefox-ის დამატებები"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "დარღვევის შესახებ მოხსენებები, {addon} და მის შემმუშავებლებთან ({num}) დაკავშირებით"
-
-msgid "Abuse Reports"
-msgstr "დარღვევების მოხსენებები"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "დამატების შესახებ მონაცემები {0}-ისთვის"
-
-msgid "Add-on ID"
-msgstr "დამატების ID"
-
-msgid "Original Add-on ID"
-msgstr "დამატების საკუთარი ID"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "დამატება(ებ)ს აქვს საერთო ID"
-
-msgid "Internal AMO ID"
-msgstr "AMO-ს შიდა ID"
-
-msgid "Support Website"
-msgstr "მხარდაჭერის საიტი"
-
-msgid "Visibility"
-msgstr "ხილულობა"
-
-msgid "Visible"
-msgstr "ხილულობა"
-
-msgid "Weekly Downloads"
-msgstr "ყოველკვირეული ჩამოტვირთვები"
-
-msgid "Average Daily Users"
-msgstr "საშუალო დღიური მომხმარებლები"
-
-msgid "View Privacy Policy"
-msgstr "გაეცანით პირადი მონაცემების დაცვის დებულებას"
-
-msgid "Requires Payment"
-msgstr "გადახდა სავალდებულოა"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "მომხმარებლის სალიცენზიო შეთანხმების ნახვა"
-
-msgid "Last Approval Date"
-msgstr "ბოლო დამოწმების თარიღი"
-
-msgid "Abuse Reports ({num})"
-msgstr "მოხსენებები დარღვევების შესახებ ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "მომხმარებლის უარყოფითი მიმოხილვები ({num})"
-
-msgid "Theme Images"
-msgstr "თემის სურათები"
-
-msgid "Rendered Preview"
-msgstr "შემუშავებული წინასწარი ვარიანტი"
-
-msgid "More about this add-on"
-msgstr "ვრცლად ამ დამატების შესახებ"
-
-msgid "Image Gallery"
-msgstr "სურათების გალერეა"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "აქ არაფერია სანახავი! შემქმნელმა დაწვრილებითი ინფორმაცია არ მოაყოლა."
-
-msgid "Add-on name translations"
-msgstr "დამატების სახელის თარგმანი"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "მიმომხილველის ხელსაწყოები – Firefox-ის დამატებები"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "მიმომხილველის ხელსაწყოების გვერდზე დაბრუნება"
-
-msgid "Reviewer Leaderboard"
-msgstr "მოწინავე მიმომხილველთა სია"
-
-msgid "No review points awarded yet."
-msgstr "მომოხილვის ქულები ჯერ არ არის."
-
-msgid "Rank"
-msgstr "ადგილი"
-
-msgid "Score"
-msgstr "ქულა"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "მიმომხილველის ზედამხედველობის ჩანაწერი – Firefox-ის დამატებები"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "დახარისხება"
-
-msgid "Date"
-msgstr "თარიღი"
-
-msgid "Event"
-msgstr "მოვლენა"
-
-msgid "More details."
-msgstr "უფრო ვრცლად."
-
-msgid "No events found for this period."
-msgstr "დროის ამ მონაკვეთისთვის მოვლენები ვერ მოიძებნა."
-
-msgid "Log details"
-msgstr "აღრიცხვის მონაცემები"
-
-msgid "Review Author"
-msgstr "მიმოხილვის ავტორი"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "დამატების სათაური"
-
-msgid "Review Text"
-msgstr "მიმოხილვის ტექსტი"
-
-msgid "Review was flagged prior to deletion."
-msgstr "მიმოხილვა მონიშნულია წასაშლელად."
-
-msgid "Undelete"
-msgstr "წაშლილის აღდგენა"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– მიმომხილველის ხელსაწყოები – Firefox-ის დამატებები"
-
-msgid "Back to review"
-msgstr "მიმოხილვაზე დაბრუნება"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "შიგთავსის განხილვა – Firefox-ის დამატებები"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "თვითდამოწმებული დამატებები – Firefox-ის დამატებები"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "ზედამხედველობის მიმოხილვა – Firefox-ის დამატებები"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "გამოუქვეყნებელი დამატებები – Firefox-ის დამატებები"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "უარყოფის მომლოდინე – Firefox-ის დამატებები"
-
-msgid "Process Reviews"
-msgstr "მიმოხილვების დამუშავება"
-
-msgid "Moderation actions:"
-msgstr "შემმოწმებლის მოვალეობები:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5437,258 +4685,12 @@ msgstr "%(user)s-ის მიერ %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">მონიშნულია %(user)s-ის მიერ %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "ყველა მიმოხილვა შემოწმებულია. ყოჩაღ!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "ამ სახის არცერთი დამატება არ არის განსახილველად."
-
-msgid "Helpful Links:"
-msgstr "სასარგებლო ბმულები:"
-
-msgid "Add-on Policy"
-msgstr "დამატების დებულებები"
-
-msgid "Reviewer's Guide"
-msgstr "მიმომხილველის სახელმძღვანელო"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Firefox-ის დამატებები"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr "შიგთავსის განხილვა – <em>{0}</em>"
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr "განხილვა – <em>{0}</em>"
-
-msgid "You don't have permission to review it."
-msgstr "თქვენ არ გაქვთ მიმოხილვის უფლება."
-
-msgid "Add-on important changes history"
-msgstr "დამატების მნიშვნლოვანი ცვლილების ისტორია"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "შენიშვნების გვერდი არის ადგილი, თქვენს დამატებასთან დაკავშირებული ინფორმაციის გასაცვლელად (ვერსიის განურჩევლად), შემმუშავებელსა და შემსწორებელს შორის. ტექსტის ნახვა და შეცვლა შეუძლიათ ორივეს."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "პირადი შენიშვნების გვერდი გამოიყენება ინფორმაციის მიმოცვლისთვის შემსწორებელთა შორის, ვერსიის განურჩევლად. გთხოვთ, გამოიყენოთ საქმიანი მიმართვებისთვის. ხილულია, მხოლოდ შემსწორებლებისთვის."
-
-msgid "Update whiteboards"
-msgstr "შენიშვნების გვერდის განახლება"
-
-msgid "Add-on History"
-msgstr "დამატების ისტორია"
-
-msgid "Please select one or more versions in the list below."
-msgstr "გთხოვთ, აირჩიოთ ერთი ან მეტი ვერსია, ზემოთ მოცემული ჩამონათვალიდან."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "ამ შევსებული ველების წარდგენა კიდევ შეგიძლიათ, მხოლოდ იმ შემთხვევაში, თუ იცით რომ არ იქნება წინააღმდეგობრივი."
-
-msgid "Insert canned response..."
-msgstr "მიუთითეთ წინასწარ განსაზღვრული პასუხი..."
-
-msgid "Files:"
-msgstr "ფაილები:"
-
-msgid "Tested on:"
-msgstr "გამოცდის თარიღი:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>შენიშვნა!</strong> თქვენამდე, სხვა მომხმარებელმა უკვე ნახა ეს გვერდი."
-
-msgid "More Actions"
-msgstr "დამატებითი მოქმედებები"
-
-msgid "Notify me about new listed versions"
-msgstr "შეტყობინების მიღება, ახლადგამოქვეყნებული ვერსიების შესახებ"
-
-msgid "Notify me about new unlisted versions"
-msgstr "შეტყობინების მიღება, ახლადგამოუქვეყნებელი ვერსიების შესახებ"
-
-msgid "Allow resubmission"
-msgstr "ხელახლა წარდგენის დაშვება"
-
-msgid "Deny resubmission"
-msgstr "ხელახლა წარდგენის აკრძალვა"
-
-msgid "Force-disable add-on"
-msgstr "დამატების იძულებით გამორთვა"
-
-msgid "Force-enable add-on"
-msgstr "დამატების იძულებით ჩართვა"
-
-msgid "Disable Listed Auto-Approval"
-msgstr "გამოქვეყნებულების თვითდამოწმების გამორთვა"
-
-msgid "Enable Listed Auto-Approval"
-msgstr "გამოქვეყნებულების თვითდამოწმების ჩართვა"
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr "გამოუქვეყნებლების თვითდამოწმების გამორთვა"
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr "გამოუქვეყნებლების თვითდამოწმების ჩართვა"
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "გამოქვეყნებულების თვითდამოწმების გამორთვა, ხელით მომდევნო დამოწმებამდე"
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "გამოქვეყნებულების თვითდამოწმების ჩართვა, ხელით მომდევნო დამოწმებამდე"
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "გამოუქვეყნებლების თვითდამოწმების გამორთვა, ხელით მომდევნო დამოწმებამდე"
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "გამოუქვეყნებლების თვითდამოწმების ჩართვა, ხელით მომდევნო დამოწმებამდე"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "ავტომატური დადასტურება გამორთულია თარიღამდე {date}"
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "თვითდამოწმების დამატებითი დაყოვნების გასუფთავება"
-
-msgid "Clear pending rejections"
-msgstr "უარყოფის მომლოდინეების გასუფთავება"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "მმართველის მიმოხილვის მონიშვნის მოხსნა"
-
-msgid "View Blocklist Submission"
-msgstr "შეზღუდვის სიის წარდგენის ნახვა"
-
-msgid "Block add-on"
-msgstr "დამატების შეზღუდვა"
-
-msgid "Update add-on block"
-msgstr "განახლება დამატების შეზღუდვის"
-
-msgid "(admin)"
-msgstr "(მმართველი)"
-
-msgid "Admin Page"
-msgstr "მმართველის გვერდი"
-
-msgid "Review This Add-on"
-msgstr "დამატების მიმოხილვა"
-
-msgid "Overview"
-msgstr "ზოგადი მიმოხილვა"
-
-msgid "More Information"
-msgstr "დამატებითი ინფორმაცია"
-
-msgid "Important Changes"
-msgstr "მნიშვნელოვანი ცვლილებები"
-
-msgid "Resolution"
-msgstr "გარჩევადობა"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "დამატების განხილვის ჩანაწერი – Firefox-ის დამატებები"
-
-msgid "Reviewer"
-msgstr "მიმომხილველი"
-
-msgid "Add-on has been deleted."
-msgstr "დამატება წაშლილია."
-
-msgid "Show Comments"
-msgstr "შენიშვნების გამოჩენა"
-
-msgid "Hide Comments"
-msgstr "შენიშვნების დამალვა"
-
-msgid "No reviews found for this period."
-msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
-
-msgid "Origin:"
-msgstr "წარმომავლობა:"
-
-msgid "Method:"
-msgstr "მეთოდი:"
-
-msgid "Source:"
-msgstr "წყარო:"
-
-msgid "Source URL:"
-msgstr "წყაროს ბმული:"
-
-msgid "Dismiss this announcement"
-msgstr "განცხადების გამოტოვება"
-
-msgid "Download file"
-msgstr "ფაილის ჩამოტვირთვა"
-
-msgid "Validation results"
-msgstr "შემოწმების შედეგები"
-
-msgid "Browse all files in this version"
-msgstr "ყველა ფაილის მოძიება ამ ვერსიაში"
-
-msgid "Browse contents"
-msgstr "შიგთავსის დათვალიერება"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "შედარება ამ ვერსიის ბოლო განხილულ ვერსიასთან"
-
-msgid "Compare with last reviewed"
-msgstr "ბოლოს განხილულთან შედარება"
-
-msgid "Permissions:"
-msgstr "ნებართვები:"
-
-msgid "Optional permissions:"
-msgstr "დამატებითი ნებართვები:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>%(user)s-ის მიერ %(date)s</div>"
-
-msgid "Older"
-msgstr "უფრო ძველი"
-
-msgid "Newer"
-msgstr "უფრო ახალი"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} ვერსიები მონიშნულია სკანერების მიერ სხვა გვერდებზე."
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} ვერსიები მონიშნულია ადამიანის მონაწილეობით განხილვისთვის სხვა გვერდებზე."
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} ვერსიები ელოდება უარყოფას სხვა გვერდებზე."
-
-msgid "Recent Points"
-msgstr "ბოლო ქულები"
-
-msgid "No points awarded yet."
-msgstr "მოგებული ქულები ჯერ არ არის."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "რჩეული მიმომხილველები (ბოლო 7 დღეში)"
-
-msgid "No top reviewers yet."
-msgstr "რჩეული მიმომხილველები ჯერ არ არიან."
-
-msgid "All Time"
-msgstr "ყველა დროის"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "თქვენ გაქვთ <span>{0}</span> ქულა."
-
-msgid "No results found"
-msgstr "შედეგები ვერ მოიძებნა."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5697,90 +4699,6 @@ msgstr "%(user)s [%(ip_address)s] %(date)s"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "ვერსია %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(დამოწმებული)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "ახალი ვერსიის განხილვის უარყოფის მომლოდინე"
-
-msgid "Compatibility:"
-msgstr "თავსებადობა:"
-
-msgid "Additional sources:"
-msgstr "დამატებითი წყაროები:"
-
-msgid "Download files"
-msgstr "ფაილების ჩამოტვირთვა"
-
-msgid "The developer has provided source code."
-msgstr "შემმუშავებელმა წარმოადგინა პირველწყარო კოდი."
-
-msgid "Maliciousness Score:"
-msgstr "მავნებლობის ქულა:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "მავნებლობის ქულა აჩვენებს, თუ რამდენად მავნე შეიძლება აღმოჩნდეს ეს ვერსია, სკანერების კვლევის საფუძველზე."
-
-msgid "Scanners results:"
-msgstr "სკანერების შედეგები:"
-
-msgid "Flagged for human review"
-msgstr "მონიშნულია ადამიანის მონაწილეობით განხილვისთვის"
-
-msgid "Download"
-msgstr "ჩამოტვირთვა"
-
-msgid "Not Auto Approved Because"
-msgstr "თვითდამოწმებული არაა, ვინაიდან"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "მისაღებად ავტომატური სკრიპტი ამ ვერსიაზე, ჯერ არ გაშვებულა."
-
-msgid "This version has not been reviewed."
-msgstr "ეს ვერსია, ჯერ არ განხილულა."
-
-msgid "Other Pending Review"
-msgstr "სხვა მომლოდინე განხილვა"
-
-msgid "Updates"
-msgstr "განახლებები"
-
-msgid "Rating Reviews"
-msgstr "მიმოხილვები შეფასებისთვის"
-
-msgid "Auto Approved"
-msgstr "თვითდამოწმებული"
-
-msgid "Pending Rejection"
-msgstr "უარყოფის მომლოდინე"
-
-msgid "presence of matched rules"
-msgstr "შესაბამისი წესების არსებობა"
-
-msgid "result state"
-msgstr "შედეგის მდგომარეობა"
-
-msgid "Excluding results solely matching these rules"
-msgstr "ყველა შედეგი, გარდა ამ წესის შესაბამისისა"
-
-msgid "presence of a version"
-msgstr "წინასწარი ვერსია"
-
-msgid "version channel"
-msgstr "ვერსიის არხი"
-
-msgid "add-on status"
-msgstr "დამატების მდგომარეობა"
-
-msgid "add-on listing visibility"
-msgstr "დამატებების ხილულობა"
-
-msgid "file status"
-msgstr "ფაილის მდგომარეობა"
-
-msgid "file signature"
-msgstr "ფაილის ხელმოწერა"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "ესაა ზუსტი დასახელება წესის, რომელსაც სკანერი იყენებს."
@@ -5815,12 +4733,6 @@ msgstr "როცა მოუნიშნავია, სკანერის
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "ამ წესის გამოყენება იძულებით ამორთულ დამატებებზეც."
-
-msgid "Abort"
-msgstr "შეწყვეტა"
-
-msgid "Run"
-msgstr "გაშვება"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5871,6 +4783,9 @@ msgstr "ამ დამატებას ვერ მიეთითება
 msgid "No uploaded file for that add-on and version."
 msgstr "ამ დამატებისთვის ატვირთული ფაილები არ არის."
 
+msgid "Overview"
+msgstr "ზოგადი მიმოხილვა"
+
 msgid "by Source"
 msgstr "წყარო"
 
@@ -5912,6 +4827,9 @@ msgstr "საწყისი"
 
 msgid "To"
 msgstr "საბოლოო"
+
+msgid "Update"
+msgstr "განახლება"
 
 msgid "Export"
 msgstr "ფაილად შენახვა"
@@ -6121,6 +5039,9 @@ msgstr "გადასვლა"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} დამატების გვერდზე დაბრუნება"
 
+msgid "Add-ons"
+msgstr "დამატებები"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">რეგისტრაცია</a> ან <a href=\"%(login)s\">შესვლა</a>"
@@ -6159,41 +5080,6 @@ msgstr "ნამდვილად გსურთ ყველა <b>{0}</b> �
 
 msgid "Delete Locale"
 msgstr "ენის წაშლა"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "მომხმარებელი „%(user)s“ შეზღუდულია."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "„%(user)s“ მომხმარებლის კუთვნილი სურათი წაშლილია."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "მომხმარებლები „%(users)s“ არიან შეზღუდულები."
-
-msgid "Ban selected users"
-msgstr "მითითებული მომხმარებლების შეზღუდვა"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "„%(users)s“ მომხმარებლების სეანს(ებ)ი ახლიდან გაიმართა."
-
-msgid "Reset session"
-msgstr "სეანსის ახლიდან გამართვა"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "„%(users)s“ მომხმარებლების API-გასაღები ხელახლა შეიქმნა."
-
-msgid "Reset API Key"
-msgstr "API-გასაღების ხელახლა შექმნა"
-
-msgid "Profile Photo"
-msgstr "პროფილის სურათი"
-
-msgid "Collections"
-msgstr "კრებულები"
 
 msgid "IP Address"
 msgstr "IP-მისამართი"
@@ -6281,15 +5167,6 @@ msgstr "თქვენი დამატების თანაავტო�
 
 msgid "An author has been removed from your add-on"
 msgstr "თქვენს დამატებას ერთ-ერთი ავტორი გამოაკლდა"
-
-msgid "Ban"
-msgstr "შეზღუდვა"
-
-msgid "Reset session(s)"
-msgstr "სეანს(ებ)ის ახლიდან გამართვა"
-
-msgid "Delete picture"
-msgstr "სურათის წაშლა"
 
 #, python-format
 msgid ""

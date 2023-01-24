@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2022-12-30 03:39+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
@@ -15,57 +15,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "రకం"
-
-msgid "Users"
-msgstr "వాడుకరులు"
-
-msgid "Add-ons"
-msgstr "పొడిగింతలు"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "కనీస నివేదికల సంఖ్య (guid ద్వారా సమూహించి)"
-
-msgid "User / Add-on"
-msgstr "వాడుకరి / పొడగింత"
-
-msgid "Distribution"
-msgstr "పంపిణీ"
-
-msgid "Reporter's country"
-msgstr "నివేదించినవారి దేశం"
-
-msgid "Message excerpt"
-msgstr "సందేశ సంగ్రహం"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "ఎంచుకున్న%d నివేదికలు సరైనవిగా గుర్తించబడ్డాయి."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "ఎంచుకున్న%d నివేదికలు అనుమానాస్పదంగా గుర్తించబడ్డాయి."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "ఎంచుకున్న దుర్వినియోగ నివేదికలను అనుమానాస్పదంగా గుర్తించు"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "దయచేసి ఈ ఫీల్డులో {max_length} కంటే ఎక్కువ అక్షరాలు లేకుండా చూడండి."
 
 msgid "Invalid value"
 msgstr "చెల్లని విలువ"
-
-msgid "Modified on:"
-msgstr "సవరించిన తేదీ:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "%(filter_title)s ద్వారా"
-
-msgid "All"
-msgstr "అన్నీ"
 
 msgid "No links are allowed."
 msgstr "లంకెలు అనుమతించబడవు."
@@ -122,31 +76,6 @@ msgstr "పొడగింతల సరికొత్త వెర్షన్�
 
 msgid "Request content length is too large."
 msgstr "అభ్యర్థన కంటెంట్ పొడవు చాలా పెద్దది."
-
-msgid "Authors"
-msgstr "రచయితలు"
-
-msgid "Ratings"
-msgstr "రేటింగులు"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-msgid "Reviewer links"
-msgstr "సమీక్షకుల లంకెలు"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-msgid "Activity Logs"
-msgstr "కార్యాచరణ చిట్టాలు"
-
-msgid "- Add-on not on AMO -"
-msgstr "- AMOలో పొడిగింత లేదు -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -281,18 +210,6 @@ msgstr "నా పొడిగింతలు"
 
 msgid "My Themes"
 msgstr "నా అలంకారాలు"
-
-msgid "Reviewer Tools (listed)"
-msgstr "సమీక్షకుల పనిముట్లు (చూపిస్తున్నవి)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "సమీక్షకుల పనిముట్లు (చూపించబడనివి)"
-
-msgid "Git-Extract"
-msgstr "Git-ఎక్స్‌ట్రాక్ట్"
-
-msgid "creation date"
-msgstr "సృష్టించిన తేదీ"
 
 msgid "Tools"
 msgstr "పనిముట్లు"
@@ -516,9 +433,6 @@ msgstr "ఈ అభిమత URLను ఉపయోగించలేము."
 msgid "This add-on already belongs to the collection"
 msgstr "ఈ పొడగింత ఇప్పటికీ ఆ సేకరణలో ఉంది"
 
-msgid "Signoff State"
-msgstr "సైన్ఆఫ్ స్థితి"
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -549,59 +463,6 @@ msgstr "సమీక్ష జాబితా చేయబడింది"
 
 msgid "Review Unlisted"
 msgstr ""
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "బహుళ %(name)s ను తొలగించండి"
-
-msgid "Home"
-msgstr "ముంగిలి"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr "భద్రపరచు"
-
-msgid "Save and add more"
-msgstr "ప్రపంచం చుట్టుపక్కలనుండి తక్షణ వాతావరణ సమాచారం"
-
-msgid "Delete"
-msgstr "తొలగించు"
-
-msgid "Update"
-msgstr "తాజాకరించు"
-
-msgid "Reject Submission"
-msgstr "సమర్పణను తిరస్కరించు"
-
-msgid "Approve Submission"
-msgstr "సమర్పణను ఆమోదించు"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s‌ను చేర్చు"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-msgid "Submit"
-msgstr "సమర్పించు"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr "బ్లాక్‌ని సవరించండి"
-
-msgid "versions"
-msgstr "వెర్షన్లు"
 
 msgid "{addon} was created."
 msgstr "{addon} సృష్టించబడింది."
@@ -1498,108 +1359,6 @@ msgstr "చాలా మంచిది (2)"
 msgid "Excellent (3)"
 msgstr "అద్భుతం (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "మానవీయ సమీక్షకుల బిందువులు"
-
-msgid "New Legacy Add-on Review"
-msgstr "కొత్త లెగసీ పొడిగింత సమీక్ష"
-
-msgid "Preliminary Add-on Review"
-msgstr "ప్రాథమిక పొడగింత సమీక్ష"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "నవీకరించబడిన లెగసీ పొడిగింత సమీక్ష"
-
-msgid "New Dictionary Review"
-msgstr "కొత్త నిఘంటువు సమీక్ష"
-
-msgid "Preliminary Dictionary Review"
-msgstr "ప్రాథమిక నిఘంటువు సమీక్ష"
-
-msgid "Updated Dictionary Review"
-msgstr "నవీకరించబడిన నిఘంటువు సమీక్ష"
-
-msgid "New Language Pack Review"
-msgstr "కొత్త భాష ప్యాక్‌ల సమీక్ష"
-
-msgid "Preliminary Language Pack Review"
-msgstr "ప్రాథమిక భాష ప్యాక్‌ల సమీక్ష"
-
-msgid "Updated Language Pack Review"
-msgstr "నవీకరించబడింది భాష ప్యాక్‌ల సమీక్ష"
-
-msgid "Theme Review"
-msgstr "అలంకారపు సమీక్ష"
-
-msgid "Theme (Static) Review"
-msgstr "అలంకారం (స్థిరమైన) సమీక్ష"
-
-msgid "New Search Provider Review"
-msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
-
-msgid "Preliminary Search Provider Review"
-msgstr "ప్రాధమిక శోధన ప్రదాత సమీక్ష"
-
-msgid "Updated Search Provider Review"
-msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
-
-msgid "New Complete Theme Review"
-msgstr "కొత్త పూర్తి అలంకారం సమీక్ష"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "ప్రాథమిక పూర్తి అలంకారం సమీక్ష"
-
-msgid "Updated Complete Theme Review"
-msgstr "పూర్తి అలంకారపు సమీక్ష తాజాకరించబడింది"
-
-msgid "Moderated Add-on Review"
-msgstr "మోడరేట్ చేసిన పొడిగింత సమీక్ష"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Add-on Content Review"
-msgstr "పొడిగింత విషయం సమీక్ష"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "పొడిగింత సమీక్ష (అత్యధిక ప్రమాదం)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "పొడిగింత సమీక్ష (అధిక ప్రమాదం)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "పొడగింత సమీక్ష (మధ్యస్థ ప్రమాదం)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "పొడగింత సమీక్ష (తక్కువ ప్రమాదం)"
-
-msgid "Level 1"
-msgstr "స్థాయి 1"
-
-msgid "Level 2"
-msgstr "స్థాయి 2"
-
-msgid "Level 3"
-msgstr "స్థాయి 3"
-
-msgid "Level 4"
-msgstr "స్థాయి 4"
-
-msgid "Level 5"
-msgstr "స్థాయి 5"
-
-msgid "Level 6"
-msgstr "స్థాయి 6"
-
-msgid "Level 7"
-msgstr "స్థాయి 7"
-
-msgid "Level 8"
-msgstr "స్థాయి 8"
-
-msgid "Level 9"
-msgstr "స్థాయి 9"
-
 msgid "Request More Info"
 msgstr "మరింత సమాచారం కోసం అభ్యర్థన"
 
@@ -1615,32 +1374,8 @@ msgstr "తిరస్కరించు"
 msgid "Approve"
 msgstr "ఆమోదించు"
 
-msgid "Sexual or pornographic content"
-msgstr "లైంగిక లేదా అశ్లీల కంటెంట్"
-
-msgid "Inappropriate or offensive content"
-msgstr "అనుచితమైన లేదా అభ్యంతరకరమైన విషయం"
-
-msgid "Violence, war, or weaponry images"
-msgstr "హింస, యుద్ధం, లేదా ఆయుధాల చిత్రాలు"
-
-msgid "Nazi or other hate content"
-msgstr "నాజీ లేదా ఇతర ద్వేషపూరిత విషయం"
-
-msgid "Defamatory content"
-msgstr "అపనిందాపూర్వక విషయం"
-
-msgid "Online gambling"
-msgstr "ఆన్‌లైను జూదం"
-
-msgid "Spam content"
-msgstr "స్పామ్ విషయం"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "తక్కువ నాణ్యత, సాగదీసిన లేదా ఖాళీ చిత్రం"
-
-msgid "Header image alignment problem"
-msgstr "శీర్షిక చిత్రం అమరిక సమస్య"
+msgid "All"
+msgstr "అన్నీ"
 
 msgid "Theme"
 msgstr "అలంకారం"
@@ -2234,6 +1969,9 @@ msgstr "తిరస్కరించు"
 msgid "Manage Authors & License"
 msgstr "రచయితలు & లైసెన్సులు నిర్వహించండి"
 
+msgid "Authors"
+msgstr "రచయితలు"
+
 msgid "About author roles"
 msgstr "రచయిత పాత్రల గురించి"
 
@@ -2557,6 +2295,9 @@ msgstr "తిరిగికొనసాగించు"
 
 msgid "Delete this add-on."
 msgstr "ఈ పొడగింతని తొలగించండి."
+
+msgid "Delete"
+msgstr "తొలగించు"
 
 msgid "Edit details on this add-on's product page"
 msgstr "ఈ పొడగింత ఉత్పత్తి పేజీలో వివరాలను సవరించండి"
@@ -4762,9 +4503,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-msgid "User"
-msgstr "వాడుకరి"
-
 msgid "Spam or otherwise non-review content"
 msgstr "స్పామ్ లేదా సమీక్ష-కాని విషయం"
 
@@ -4822,499 +4560,9 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-msgid "Approved reviews"
-msgstr "ఆమోదించబడిన సమీక్షలు"
-
-msgid "Deleted reviews"
-msgstr "తొలగించిన సమీక్షలు"
-
-msgid "View entries between"
-msgstr "మధ్య పద్దలను చూడండి"
-
-msgid "and"
-msgstr "మరియు"
-
-msgid "Filter by type/action"
-msgstr "రకం ద్వారా వడపోత/action"
-
-msgid "containing"
-msgstr "కలిగి ఉంటోంది"
-
-msgid "start"
-msgstr "ప్రారంభం"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "ముగింపు"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "యాడ్-ఆన్, సమీక్షకులు లేదా వ్యాఖ్య"
-
-msgid "Comments:"
-msgstr "వ్యాఖ్యలు:"
-
-msgid "Operating systems:"
-msgstr "నిర్వాహక వ్యవస్థలు:"
-
-msgid "Applications:"
-msgstr "అనువర్తనాలు:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "రోజులు"
-
-msgid "Choose one or more reasons:"
-msgstr "ఒకటి లేదా ఎక్కువ కారణాలను ఎంచుకోండి:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr ""
-
-msgid "Private Whiteboard"
-msgstr "అంతరంగిక వైట్‌బోర్డ్"
-
-msgid "Keep review; remove flags"
-msgstr "సమీక్షను ఉంచు; ఫ్లాగులను తొలగించు"
-
-msgid "Skip for now"
-msgstr "ప్రస్తుతం దాటవేయి"
-
-msgid "Delete review"
-msgstr "సమీక్షను తొలగించండి"
-
-msgid "Needs Admin Code Review"
-msgstr "నిర్వాహక కోడు సమీక్ష అవసరం"
-
-msgid "Needs Admin Content Review"
-msgstr ""
-
-msgid "Needs Admin Static Theme Review"
-msgstr ""
-
-msgid "Sources provided"
-msgstr "అందించిన మూలాలు"
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr "ఒక సమీక్షకుడు తాళం వేసారు"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr "ఆలస్యం ఎందుకంటే ఇది మొదటిసారి జాబితా చేయబడిన వెర్షను"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-msgid "You can't submit an empty comment."
-msgstr "మీరు ఖాళీ వ్యాఖ్యను సమర్పించలేరు."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-msgid "ID"
-msgstr "‌ఐడీ"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "ఫ్లాగ్‌లు"
-
-msgid "Last Review"
-msgstr "చివరి సమీక్ష"
-
-msgid "Code Weight"
-msgstr "కోడు బరువు"
-
-msgid "Metadata Weight"
-msgstr ""
-
-msgid "Total Weight"
-msgstr "మొత్తం బరువు"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "రకం"
-
-msgid "Due Date"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr ""
-
-msgid "Last Updated"
-msgstr "చివరిగా తాజాకరణ"
-
-msgid "Listed versions needing human review ({0})"
-msgstr ""
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr ""
-
-msgid "Listed version"
-msgstr "జాబితా చేసిన వెర్షను"
-
-msgid "Unlisted versions ({0})"
-msgstr ""
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Approve Content"
-msgstr "విషయం ఆమోదం"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr "ఆమోదాన్ని నిర్ధారించండి"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr ""
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Block Multiple Versions"
-msgstr ""
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-msgid "Confirm Multiple Versions"
-msgstr ""
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Reviewer reply"
-msgstr "సమీక్షకుల ప్రత్యుత్తరం"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Comment"
-msgstr "వ్యాఖ్య"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Pre-Review Add-ons"
-msgstr "సమీక్షింపబడని పొడగింతలు"
-
-msgid "Recommended ({0})"
-msgstr "సిఫార్సుచేయబడినవి ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "ఇతర వేచివున్న సమీక్ష ({0})"
-
-msgid "Review Log"
-msgstr "సమీక్షల చిట్టా"
-
-msgid "Add-on Review Guide"
-msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr ""
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr ""
-
-msgid "Add-on Review Log"
-msgstr ""
-
-msgid "Review Guide"
-msgstr "సమీక్షల మార్గదర్శిని"
-
-msgid "Content Review"
-msgstr "విషయం సమీక్ష"
-
-msgid "Content Review ({0})"
-msgstr "విషయ సమీక్ష ({0})"
-
-msgid "New ({0})"
-msgstr "కొత్తవి ({0})"
-
-msgid "Updates ({0})"
-msgstr "తాజాకరణలు ({0})"
-
-msgid "Theme Review Guide"
-msgstr "అలంకారపు సమీక్ష గైడు"
-
-msgid "User Ratings Moderation"
-msgstr "వాడుకరి రేటింగుల మితత్వం"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr "మితత్వ సమీక్షల చిట్టా"
-
-msgid "Moderation Guide"
-msgstr "మోడరేషన్ గైడు"
-
-msgid "Unlisted Add-ons"
-msgstr "చూపించని పొడగింతలు"
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr ""
-
-msgid "Announcement"
-msgstr "ప్రకటన"
-
-msgid "Update message of the day"
-msgstr "రోజు యొక్క సందేశాన్ని నవీకరించండి"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "తిరస్కరణకై వేచివున్న పొడగింతలు ({0})"
-
-msgid "An unknown error occurred"
-msgstr "ఒక తెలియని దోషం ఎదురైంది"
-
-msgid "Self-reviews are not allowed."
-msgstr "స్వయం-సమీక్షలు అనుమతించబడవు."
-
-msgid "Review successfully processed."
-msgstr "సమీక్ష విజయవంతంగా ప్రాసెస్ చేయబడింది."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – గోప్యతా విధానం"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-msgid "Abuse Reports"
-msgstr "దుర్వినియోగ నివేదికలు"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "పొడిగింత సమాచారం కోసం {0}"
-
-msgid "Add-on ID"
-msgstr "పొడగింత ID"
-
-msgid "Original Add-on ID"
-msgstr ""
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-msgid "Support Website"
-msgstr "తోడ్పాటు వెబ్‌సైటు"
-
-msgid "Visibility"
-msgstr "దృశ్యత"
-
-msgid "Visible"
-msgstr "కనిపించు"
-
-msgid "Weekly Downloads"
-msgstr "వారంవారం దింపుకోళ్ళు"
-
-msgid "Average Daily Users"
-msgstr "సగటు రోజువారీ వాడుకరులు"
-
-msgid "View Privacy Policy"
-msgstr "గోప్యతా విధానాన్ని వీక్షించండి"
-
-msgid "Requires Payment"
-msgstr "చెల్లింపు అవసరం"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందాన్ని వీక్షించండి"
-
-msgid "Last Approval Date"
-msgstr "చివరి ఆమోదం తేదీ"
-
-msgid "Abuse Reports ({num})"
-msgstr "దుర్వినియోగ నివేదికలు ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "వాడుకరుల చెడు రేటింగులు ({num})"
-
-msgid "Theme Images"
-msgstr "అలంకారపు బొమ్మలు"
-
-msgid "Rendered Preview"
-msgstr "అన్వయించబడిన మునుజూపు"
-
-msgid "More about this add-on"
-msgstr "ఈ పొడగింత గురించి మరింత"
-
-msgid "Image Gallery"
-msgstr "బొమ్మల సేకరణ"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "ఇక్కడ చూడటానికి ఏమీ లేదు!  డెవలపర్ ఎటువంటి వివరాలను చేర్చలేదు."
-
-msgid "Add-on name translations"
-msgstr "పొడగింత పేరు అనువాదాలు"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "సమీక్షకుల పనిముట్లు – Firefox పొడగింతలు"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "సమీక్షకుల పనిమట్లల డాష్‌బోర్డ్‌కు తిరిగి వెళ్ళు"
-
-msgid "Reviewer Leaderboard"
-msgstr "సమీక్షకుల లీడర్‌బోర్డ్"
-
-msgid "No review points awarded yet."
-msgstr "సమీక్ష పాయింట్లేమీ ఇంకా బహూకరించలేదు."
-
-msgid "Rank"
-msgstr "ర్యాంక్"
-
-msgid "Score"
-msgstr "స్కోరు"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "వడపోత"
-
-msgid "Date"
-msgstr "తేదీ"
-
-msgid "Event"
-msgstr "కార్యక్రమం"
-
-msgid "More details."
-msgstr "మరిన్ని వివరాలు."
-
-msgid "No events found for this period."
-msgstr "ఈ కాలానికి ఎటువంటి సంఘటనలు కనబడలేదు."
-
-msgid "Log details"
-msgstr "చిట్టా వివరాలు"
-
-msgid "Review Author"
-msgstr "రచయిత సమీక్ష"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "పొడిగింత పేరు"
-
-msgid "Review Text"
-msgstr "సమీక్షా పాఠ్యం"
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr "తొలగించనిది"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "తిరిగి సమీక్షకి"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr ""
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "తిరస్కరణకు వేచివున్నవి – Firefox కొరకు పొడగింతలు"
-
-msgid "Process Reviews"
-msgstr "ప్రక్రియలో సమీక్షలు"
-
-msgid "Moderation actions:"
-msgstr "నియంత్రణ చర్యలు:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5324,258 +4572,12 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "అన్ని సమీక్షలు మోడరేట్ చేయబడ్డాయి. మంచి పని!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "సమీక్షించడానికి ప్రస్తుతం ఈ రకమైన పొడగింతలు ఏమీ లేవు."
-
-msgid "Helpful Links:"
-msgstr "ఉపయోగపడే లంకెలు:"
-
-msgid "Add-on Policy"
-msgstr "పొడిగింత విధానం"
-
-msgid "Reviewer's Guide"
-msgstr "సమీక్షకుల మార్గదర్శిని"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr "దీన్ని సమీక్షించడానికి మీకు అనుమతి లేదు."
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr "వైట్‌బోర్డులను తాజాకరించు"
-
-msgid "Add-on History"
-msgstr "పొడగింత చరిత్ర"
-
-msgid "Please select one or more versions in the list below."
-msgstr "కింది జాబితా నుండి ఒకటి అంతకంటే ఎక్కువ వెర్షన్లను ఎంచుకోండి."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr ""
-
-msgid "Files:"
-msgstr "ఫైళ్లు:"
-
-msgid "Tested on:"
-msgstr "పరీక్షించబడింది:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>హెచ్చరిక!</ strong> మీ ముందు మరొక వాడుకరి ఈ పేజీని చూస్తున్నారు."
-
-msgid "More Actions"
-msgstr "మరిన్ని చర్యలు"
-
-msgid "Notify me about new listed versions"
-msgstr "కొత్తగా చూపించబడిన వెర్షన్ల గురించి నాకు తెలియజేయి"
-
-msgid "Notify me about new unlisted versions"
-msgstr "కొత్తగా జాబితాచేయబడని వెర్షన్ల గురించి నాకు తెలియజేయి"
-
-msgid "Allow resubmission"
-msgstr ""
-
-msgid "Deny resubmission"
-msgstr ""
-
-msgid "Force-disable add-on"
-msgstr "పొడగింతను బలవంతంగా నిలిపివేయి"
-
-msgid "Force-enable add-on"
-msgstr "పొడగింతను బలవంతంగా చేతనించు"
-
-msgid "Disable Listed Auto-Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-msgid "Clear Admin Content Review Flag"
-msgstr ""
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
-
-msgid "View Blocklist Submission"
-msgstr ""
-
-msgid "Block add-on"
-msgstr ""
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(నిర్వాహకుడు)"
-
-msgid "Admin Page"
-msgstr "నిర్వాహకుని పేజీ"
-
-msgid "Review This Add-on"
-msgstr "ఈ పొడిగింతను సమీక్షించండి"
-
-msgid "Overview"
-msgstr "అవలోకనం"
-
-msgid "More Information"
-msgstr "మరింత సమాచారం"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "పరిష్కారం"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "సమీక్షకులు"
-
-msgid "Add-on has been deleted."
-msgstr "యాడ్ఆన్ తొలగించబడింది."
-
-msgid "Show Comments"
-msgstr "వ్యాఖ్యానాలు చూపు"
-
-msgid "Hide Comments"
-msgstr "వ్యాఖ్యలను దాచు"
-
-msgid "No reviews found for this period."
-msgstr "ఈ కాలానికి సమీక్షలేమీ కనబడలేదు."
-
-msgid "Origin:"
-msgstr "మూలం:"
-
-msgid "Method:"
-msgstr "పద్ధతి:"
-
-msgid "Source:"
-msgstr "మూలం:"
-
-msgid "Source URL:"
-msgstr "మూల చిరునామా:"
-
-msgid "Dismiss this announcement"
-msgstr "ఈ ప్రకటనను తీసివేయండి"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-msgid "Browse all files in this version"
-msgstr "ఈ వెర్షను లోని ఫైళ్ళనీ చూడండి"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "అనుమతులు:"
-
-msgid "Optional permissions:"
-msgstr "ఐచ్ఛిక అనుమతులు:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
-
-msgid "Older"
-msgstr "పాతవి"
-
-msgid "Newer"
-msgstr "సరికొత్తవి"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "ఇటీవలి పాయింట్లు"
-
-msgid "No points awarded yet."
-msgstr "ఇంకా పాయింట్లు ఇవ్వలేదు."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "మేటి సమీక్షకులు (గత 7 రోజులు)"
-
-msgid "No top reviewers yet."
-msgstr "ఇంకా మేటి సమీక్షకులు లేరు."
-
-msgid "All Time"
-msgstr "అన్ని సమయాలలో"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "మీకు <span>{0}</span> పాయింట్లు ఉన్నాయి."
-
-msgid "No results found"
-msgstr "ఫలితాలు కనుగొనబడలేదు"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5584,90 +4586,6 @@ msgstr ""
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "వెర్షను %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(ధ్రువీకరించారు)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "కొత్త వెర్షను సమీక్షపై వేచివున్న తిరస్కరణ"
-
-msgid "Compatibility:"
-msgstr "అనుకూలత:"
-
-msgid "Additional sources:"
-msgstr "అదనపు వనరులు:"
-
-msgid "Download files"
-msgstr "ఫైళ్లను దింపుకోళ్ళు చేయండి"
-
-msgid "The developer has provided source code."
-msgstr "డెవలపర్ సోర్స్ కోడ్ను అందుబాటులోవుంచాడు."
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-msgid "Flagged for human review"
-msgstr ""
-
-msgid "Download"
-msgstr "దింపుకోలు"
-
-msgid "Not Auto Approved Because"
-msgstr "స్వయంచాలకంగా అమోదించబడలేదు ఎందుకంటే"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "ఈ వెర్షను సమీక్షించబడి లేదు."
-
-msgid "Other Pending Review"
-msgstr "ఇతర వేచివున్న సమీక్ష"
-
-msgid "Updates"
-msgstr "తాజాకరణలు"
-
-msgid "Rating Reviews"
-msgstr "రేటింగు సమీక్షలు"
-
-msgid "Auto Approved"
-msgstr "ఆటో అనుమతించబడినవి"
-
-msgid "Pending Rejection"
-msgstr "వేచివున్న తిరస్కరణ"
-
-msgid "presence of matched rules"
-msgstr ""
-
-msgid "result state"
-msgstr ""
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-msgid "presence of a version"
-msgstr ""
-
-msgid "version channel"
-msgstr ""
-
-msgid "add-on status"
-msgstr "పొడగింత స్థితి"
-
-msgid "add-on listing visibility"
-msgstr ""
-
-msgid "file status"
-msgstr "ఫైలు స్థితి"
-
-msgid "file signature"
-msgstr "ఫైలు సంతకం"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5702,12 +4620,6 @@ msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
-msgstr "నడుపు"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5758,6 +4670,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "అవలోకనం"
+
 msgid "by Source"
 msgstr "మూల ద్వారా"
 
@@ -5799,6 +4714,9 @@ msgstr "నుంచి"
 
 msgid "To"
 msgstr "గ్రహీత"
+
+msgid "Update"
+msgstr "తాజాకరించు"
 
 msgid "Export"
 msgstr "ఎగుమతించు"
@@ -6004,6 +4922,9 @@ msgstr "వెళ్ళు"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "తిరిగి {0} పొడగింతల ముంగిలి పేజీకి వెళ్ళండి"
 
+msgid "Add-ons"
+msgstr "పొడిగింతలు"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">నమోదవ్వండి</a> లేదా <a href=\"%(login)s\">ప్రవేశించండి</a>"
@@ -6042,41 +4963,6 @@ msgstr "మీరు <b>{0}</b> అనువాదాలన్నింటిన
 
 msgid "Delete Locale"
 msgstr "లొకేల్‌ను తొలగించండి"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "వాడుకరి \"%(user)s\" నిషేధించబడ్డారు."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "వాడుకరి \"%(user)s\"కు చెందిన బొమ్మ తొలగించబడింది."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
-
-msgid "Ban selected users"
-msgstr "ఎంచుకున్న వాడుకరులను నిషేధించు"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "\"%(users)s\" వాడుకరుల సెషను(లు) పునరుద్ధరించబడ్డాయి."
-
-msgid "Reset session"
-msgstr "సెషనుని పునరుద్ధరించు"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "\"%(users)s\" వాడుకరుల API కీ రీసెట్ చేయబడింది."
-
-msgid "Reset API Key"
-msgstr ""
-
-msgid "Profile Photo"
-msgstr "ప్రొఫైల్ ఫోటో"
-
-msgid "Collections"
-msgstr "సేకరణలు"
 
 msgid "IP Address"
 msgstr "ఐపీ చిరునామా"
@@ -6160,15 +5046,6 @@ msgstr "మీ పొడగింతలో ఒక రచయిత పాత్�
 
 msgid "An author has been removed from your add-on"
 msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
-
-msgid "Ban"
-msgstr "నిషేధించు"
-
-msgid "Reset session(s)"
-msgstr ""
-
-msgid "Delete picture"
-msgstr "బొమ్మను తొలగించు"
 
 #, python-format
 msgid ""

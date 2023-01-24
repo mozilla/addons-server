@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,60 +16,10 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr ""
-
-#, fuzzy
-msgid "Users"
-msgstr "Nama pengguna"
-
-msgid "Add-ons"
-msgstr "Add-ons"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr ""
-
-#, fuzzy
-msgid "User / Add-on"
-msgstr "Add-ons Tidak Disenaraikan"
-
-#, fuzzy
-msgid "Distribution"
-msgstr "Keterangan"
-
-msgid "Reporter's country"
-msgstr ""
-
-msgid "Message excerpt"
-msgstr ""
-
-#, fuzzy, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "Teks yang dimasukkan telah ditanda sebagai spam."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
-
-#, fuzzy
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Laporan atau sokongan pepijat yang tersalah tempat"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
-
-msgid "Modified on:"
-msgstr ""
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr ""
-
-msgid "All"
 msgstr ""
 
 msgid "No links are allowed."
@@ -128,32 +78,6 @@ msgstr "Hanya add-ons versi terkini boleh disertakan dengan nota."
 
 msgid "Request content length is too large."
 msgstr ""
-
-msgid "Authors"
-msgstr "Pengarang"
-
-msgid "Ratings"
-msgstr "Penarafan"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "Alatan Pengulas"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-msgid "Activity Logs"
-msgstr "Log Aktiviti"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Add-on bukan dalam AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -289,21 +213,6 @@ msgstr "Add-on Saya"
 
 msgid "My Themes"
 msgstr "Tema Saya"
-
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Alatan Pengulas"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Alatan Pengulas"
-
-msgid "Git-Extract"
-msgstr ""
-
-#, fuzzy
-msgid "creation date"
-msgstr "Panduan Moderasi"
 
 msgid "Tools"
 msgstr "Alatan"
@@ -541,9 +450,6 @@ msgstr "URL penyesuaian ini tidak boleh digunakan."
 msgid "This add-on already belongs to the collection"
 msgstr "Add-on ini sudah ada dalam koleksi"
 
-msgid "Signoff State"
-msgstr ""
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -577,64 +483,6 @@ msgstr "Perlu semakan"
 #, fuzzy
 msgid "Review Unlisted"
 msgstr "Nota ulasan"
-
-#, fuzzy, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Tolak Versi Pelbagai"
-
-#, fuzzy
-msgid "Home"
-msgstr "Halaman utama"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr "Simpan"
-
-msgid "Save and add more"
-msgstr ""
-
-msgid "Delete"
-msgstr "Buang"
-
-msgid "Update"
-msgstr "Kemaskini"
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "Pergi ke Serahan Saya"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "Pergi ke Serahan Saya"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-#, fuzzy
-msgid "Submit"
-msgstr "Hantar Versi"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr ""
-
-#, fuzzy
-msgid "versions"
-msgstr "Versi"
 
 msgid "{addon} was created."
 msgstr "{addon} dicipta."
@@ -1562,108 +1410,6 @@ msgstr "Amat Baik (2)"
 msgid "Excellent (3)"
 msgstr "Cemerlang (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "Poin Penyemak Manual"
-
-msgid "New Legacy Add-on Review"
-msgstr "Ulasan Add-on Legasi Baru"
-
-msgid "Preliminary Add-on Review"
-msgstr "Ulasan Add-on Awalan"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Ulasan Add-on Legasi Dikemaskini"
-
-msgid "New Dictionary Review"
-msgstr "Ulasan Kamus Baru"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Ulasan Kamus Awalan"
-
-msgid "Updated Dictionary Review"
-msgstr "Ulasan Kamus Dikemaskini"
-
-msgid "New Language Pack Review"
-msgstr "Ulasan Pek Bahasa Baru"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Ulasan Pek Bahasa Awalan"
-
-msgid "Updated Language Pack Review"
-msgstr "Ulasan Pek Bahasa Dikemaskini"
-
-msgid "Theme Review"
-msgstr "Ulasan Tema"
-
-msgid "Theme (Static) Review"
-msgstr "Ulasan Tema (Statik)"
-
-msgid "New Search Provider Review"
-msgstr "Ulasan Penyedia Carian Baru"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Ulasan Penyedia Carian Awalan"
-
-msgid "Updated Search Provider Review"
-msgstr "Ulasan Penyedia Carian Dikemaskini"
-
-msgid "New Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Baru"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Awalan"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ulasan Tema Lengkap Dikemaskini"
-
-msgid "Moderated Add-on Review"
-msgstr "Semakan Add-on Moderat"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderat Semakan Add-on Diterbalikkan"
-
-msgid "Add-on Content Review"
-msgstr "Semakan Kandungan Add-on"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Ulasan Add-on (Risiko Tertinggi)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Ulasan Add-on (Risiko Tinggi)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Ulasan Add-on (Risiko Medium)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Ulasan Add-on (Risiko Rendah)"
-
-msgid "Level 1"
-msgstr "Tahap 1"
-
-msgid "Level 2"
-msgstr "Tahap 2"
-
-msgid "Level 3"
-msgstr "Tahap 3"
-
-msgid "Level 4"
-msgstr "Tahap 4"
-
-msgid "Level 5"
-msgstr "Tahap 5"
-
-msgid "Level 6"
-msgstr "Tahap 6"
-
-msgid "Level 7"
-msgstr "Tahap 7"
-
-msgid "Level 8"
-msgstr "Tahap 8"
-
-msgid "Level 9"
-msgstr "Tahap 9"
-
 msgid "Request More Info"
 msgstr "Minta Info Lanjutan"
 
@@ -1679,32 +1425,8 @@ msgstr "Tolak"
 msgid "Approve"
 msgstr "Lulus"
 
-msgid "Sexual or pornographic content"
-msgstr "Kandungan seksual atau pornografi"
-
-msgid "Inappropriate or offensive content"
-msgstr "Kandungan tidak sesuai atau menyinggung"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Imej keganasan, peperangan, atau senjata"
-
-msgid "Nazi or other hate content"
-msgstr "Nazi atau kandungan kebencian lain"
-
-msgid "Defamatory content"
-msgstr "Kandungan fitnah"
-
-msgid "Online gambling"
-msgstr "Perjudian dalam talian"
-
-msgid "Spam content"
-msgstr "Kandungan spam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Rendah kualiti, diregangkan, atau imej kosong"
-
-msgid "Header image alignment problem"
-msgstr "Masalah penjajaran imej pengepala"
+msgid "All"
+msgstr ""
 
 msgid "Theme"
 msgstr "Tema"
@@ -2313,6 +2035,9 @@ msgstr ""
 msgid "Manage Authors & License"
 msgstr "Urus Pengarang & Lesen"
 
+msgid "Authors"
+msgstr "Pengarang"
+
 msgid "About author roles"
 msgstr "Perihal peranan pengarang"
 
@@ -2656,6 +2381,9 @@ msgstr "Sambung"
 
 msgid "Delete this add-on."
 msgstr "Buang add-on ini."
+
+msgid "Delete"
+msgstr "Buang"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -4994,10 +4722,6 @@ msgstr "Kehilangan kekunci \"muat naik\" dalam berbilang bahagian data fail."
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-#, fuzzy
-msgid "User"
-msgstr "Nama pengguna"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam atau kandungan lain yang tiada kaitan"
 
@@ -5054,530 +4778,9 @@ msgstr "Tahap {0} daripada 5 bintang"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Tahap %(rating)s daripada 5 bintang"
 
-msgid "Approved reviews"
-msgstr "Semakan diluluskan"
-
-msgid "Deleted reviews"
-msgstr "Semakan yang dibuang"
-
-msgid "View entries between"
-msgstr "Papar entri antara"
-
-msgid "and"
-msgstr "dan"
-
-msgid "Filter by type/action"
-msgstr "Tapis mengikut jenis/tindakan"
-
-msgid "containing"
-msgstr "mengandungi"
-
-msgid "start"
-msgstr "mula"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "akhir"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "add-on, penyemak atau komen"
-
-msgid "Comments:"
-msgstr "Komen:"
-
-msgid "Operating systems:"
-msgstr "Sistem pengoperasian:"
-
-msgid "Applications:"
-msgstr "Aplikasi:"
-
-#, fuzzy
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Menghendaki pembangun untuk respons dalam tempoh kurang daripada…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "hari"
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr "Pilih respons lazim..."
-
-msgid "Private Whiteboard"
-msgstr "Papan putih Peribadi"
-
-msgid "Keep review; remove flags"
-msgstr "Kekalkan semakan; buang tanda"
-
-msgid "Skip for now"
-msgstr "Langkau dulu sekarang"
-
-msgid "Delete review"
-msgstr "Buang semakan"
-
-msgid "Needs Admin Code Review"
-msgstr "Perlu Semakan Kod Pentadbir"
-
-msgid "Needs Admin Content Review"
-msgstr "Perlu Semakan Kandungan Pentadbir"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Perlu Semakan Pentadbir Tema Statik"
-
-msgid "Sources provided"
-msgstr "Sumber disediakan"
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-#, fuzzy
-msgid "Is locked by a reviewer"
-msgstr "Dikunci oleh penyemak."
-
-#, fuzzy
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Ada tetapan auto-kelulusan nyahdaya."
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-#, fuzzy
-msgid "You can't submit an empty comment."
-msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-#, fuzzy
-msgid "ID"
-msgstr "GUID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Tanda"
-
-msgid "Last Review"
-msgstr "Semakan Terakhir"
-
-#, fuzzy
-msgid "Code Weight"
-msgstr "Pertimbangkan"
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Pertimbangkan"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "Jenis"
-
-msgid "Due Date"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "Tarikh Akhir Permintaan Maklumat"
-
-#, fuzzy
-msgid "Last Updated"
-msgstr "Kemaskini Terakhir:"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Ulasan Penilaian ({0})"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Ulasan Penilaian ({0})"
-
-#, fuzzy
-msgid "Listed version"
-msgstr "Versi disenaraikan"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "Versi disenaraikan"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Ini akan meluluskan, menandatangani, dan menerbitkan versi ini. Komen akan dihantar kepada pembangun."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ini akan menolak versi ini dan menyingkirkannya daripada baris gilir. Komen akan dihantar kepada pembangun."
-
-msgid "Approve Content"
-msgstr "Kandungan Lulus"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
-
-msgid "Confirm Approval"
-msgstr "Sahkan Kelulusan"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Versi umum terkini add-on ini diluluskan secara automatik. Ini akan merekodkan pengesahan kelulusan anda tanpa memaklumkan pembangun."
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr "Tolak Versi Pelbagai"
-
-#, fuzzy
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Ini akan menolak versi umum yang dipilih. Komen akan dihantar kepada pembangun."
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Tolak Versi Pelbagai"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Tolak Versi Pelbagai"
-
-#, fuzzy
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ini akan merekodkan penerimaan anda terhadap kandungan versi ini tanpa memaklumkan pembangun."
-
-msgid "Reviewer reply"
-msgstr "Jawapan penyemak"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Ini akan menghantar mesej kepada pembangun. Anda akan dimaklumkan apabila mereka membalas."
-
-msgid "Request super-review"
-msgstr "Minta semakan-teliti"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Jika anda ada sesuatu yang perlu diberi perhatian pentadbir semakan terhadap add-on ini, sila masukkan komen anda dalam kawasan di bawah. Ini tidak akan dihantar kepada pembangun."
-
-msgid "Comment"
-msgstr "Komen"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Beri komen untuk versi ini. Pembangun tidak akan dapat melihatnya."
-
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Semak Add-ons"
-
-msgid "Recommended ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Ulasan Penilaian ({0})"
-
-msgid "Review Log"
-msgstr "Log Ulasan"
-
-msgid "Add-on Review Guide"
-msgstr "Panduan Ulasan Add-on"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr "Add-ons Auto-Lulus"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Add-on Auto Lulus ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Log Semakan Add-on"
-
-msgid "Review Guide"
-msgstr "Panduan Semakan"
-
-msgid "Content Review"
-msgstr "Semakan Kandungan"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgstr "Semakan Kandungan ({0})"
-
-msgid "New ({0})"
-msgstr "Baru ({0})"
-
-msgid "Updates ({0})"
-msgstr "Kemaskini ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Panduan Semakan Tema"
-
-msgid "User Ratings Moderation"
-msgstr "Moderat Pengkadaran Pengguna"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Pengkadaran Menunggu Moderat ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Log Ulasan Moderat"
-
-msgid "Moderation Guide"
-msgstr "Panduan Moderasi"
-
-msgid "Unlisted Add-ons"
-msgstr "Add-ons Tidak Disenaraikan"
-
-msgid "All Unlisted Add-ons"
-msgstr "Semua Add-ons Tiada-disenaraikan"
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Nyahdaya Auto-Kelulusan"
-
-msgid "Announcement"
-msgstr "Pengumuman"
-
-msgid "Update message of the day"
-msgstr "Kemaskini mesej penting hari ini"
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Ulasan Penilaian ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Ada ralat yang tidak diketahui"
-
-msgid "Self-reviews are not allowed."
-msgstr "Semakan-sendiri tidak dibenarkan."
-
-msgid "Review successfully processed."
-msgstr "Semakan berjaya diproses."
-
-msgid "Review lock limit reached"
-msgstr "Mencapai had semakan dikunci"
-
-#, fuzzy
-msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Polisi Privasi"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
-
-msgid "Abuse Reports"
-msgstr "Laporan Penyalahgunaan"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Maklumat Add-on untuk {0}"
-
-#, fuzzy
-msgid "Add-on ID"
-msgstr "Add-on"
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Tandatangan Add-on"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-#, fuzzy
-msgid "Support Website"
-msgstr "Laman web Sokongan:"
-
-msgid "Visibility"
-msgstr "Ketampakan"
-
-msgid "Visible"
-msgstr "Tampak"
-
-#, fuzzy
-msgid "Weekly Downloads"
-msgstr "Muat turun"
-
-msgid "Average Daily Users"
-msgstr "Purata Pengguna Harian"
-
-msgid "View Privacy Policy"
-msgstr "Lihat Dasar Privasi"
-
-msgid "Requires Payment"
-msgstr "Perlu Bayaran"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Lihat Perjanjian Lesen Pengguna Akhir"
-
-msgid "Last Approval Date"
-msgstr "Tarikh Kelulusan Terakhir"
-
-msgid "Abuse Reports ({num})"
-msgstr "Laporan Penyalahgunaan ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Pengkadaran Teruk Pengguna ({num})"
-
-msgid "Theme Images"
-msgstr "Imej Tema"
-
-msgid "Rendered Preview"
-msgstr "Semakan Dihurai"
-
-msgid "More about this add-on"
-msgstr "Maklumat lanjut perihal add-on ini"
-
-msgid "Image Gallery"
-msgstr "Galeri Imej"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Tiada apa-apa.di sini!   Pembangun tidak sertakan sebarang butiran."
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "mengikut Versi Add-on"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Kembali ke papan pemuka Alatan Penyemak"
-
-msgid "Reviewer Leaderboard"
-msgstr "Carta-kedudukan Penyemak"
-
-msgid "No review points awarded yet."
-msgstr "Belum ada markah yang diberikan."
-
-msgid "Rank"
-msgstr "Kedudukan"
-
-msgid "Score"
-msgstr "Markah"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Tapis"
-
-msgid "Date"
-msgstr "Tarikh"
-
-msgid "Event"
-msgstr "Acara"
-
-msgid "More details."
-msgstr "Butiran lanjut."
-
-msgid "No events found for this period."
-msgstr "Tiada acara dalam tempoh ini."
-
-msgid "Log details"
-msgstr "Butiran log"
-
-msgid "Review Author"
-msgstr "Pengarang Semakan"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Tajuk Add-on"
-
-msgid "Review Text"
-msgstr "Teks Semakan"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Semakan telah ditandakan sebelum dihapuskan."
-
-msgid "Undelete"
-msgstr "Batalkan membuang"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "Kembali ke semakan"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Add-ons Auto-Lulus"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Permintaan Maklumat Tamat Tempoh"
-
-msgid "Process Reviews"
-msgstr "Proses Semakan"
-
-msgid "Moderation actions:"
-msgstr "Tindakan moderat:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5587,280 +4790,12 @@ msgstr "mengikut %(user)s pada %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandakan oleh %(user)s pada %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Semua semakan adalah moderat. Syabas!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Masih belum ada add-on jenis ini untuk disemak buat masa ini."
-
-msgid "Helpful Links:"
-msgstr "Pautan Berguna:"
-
-msgid "Add-on Policy"
-msgstr "Polisi Add-on"
-
-msgid "Reviewer's Guide"
-msgstr "Panduan Penyemak"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "Anda tidak ada sebarang kelayakan API."
-
-#, fuzzy
-msgid "Add-on important changes history"
-msgstr "Sejarah perubahan pengguna add-on"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Papan putih peribadi digunakan untuk penyemak bertukar maklumat bebas versi antara mereka. Sila pastikan matlamat bahasa. Ini hanya boleh dilihat oleh penyemak."
-
-msgid "Update whiteboards"
-msgstr "Kemaskini papan putih"
-
-msgid "Add-on History"
-msgstr "Sejarah Add-on"
-
-#, fuzzy
-msgid "Please select one or more versions in the list below."
-msgstr "Sila pilih satu atau lebih versi dalam senarai di atas."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Anda masih boleh hantar borang ini, tapi jika anda tahu tidak akan berlaku konflik."
-
-msgid "Insert canned response..."
-msgstr "Sertakan respons lazim..."
-
-msgid "Files:"
-msgstr "Fail:"
-
-msgid "Tested on:"
-msgstr "Diuji pada:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Amaran!</strong> Ada pengguna lain meninjau halaman ini sebelum anda."
-
-msgid "More Actions"
-msgstr "Tindakan Lanjutan"
-
-msgid "Notify me about new listed versions"
-msgstr "Maklumkan saya apabila ada versi baru yang disenaraikan"
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Maklumkan saya apabila ada versi baru yang disenaraikan"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Tinjau Semua Serahan"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Urus Serahan Saya"
-
-msgid "Force-disable add-on"
-msgstr "Add-on yang dipaksa-nyahdaya"
-
-msgid "Force-enable add-on"
-msgstr "Add-on yang dipaksa-daya"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Nyahdaya Auto-Kelulusan"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Dayakan Auto-Kelulusan"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Nyahdaya Auto-Kelulusan"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Dayakan Auto-Kelulusan"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Nyahdaya Auto-Kelulusan"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Dayakan Auto-Kelulusan"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Nyahdaya Auto-Kelulusan"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Dayakan Auto-Kelulusan"
-
-#, fuzzy
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Ada tetapan auto-kelulusan nyahdaya."
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Dayakan Auto-Kelulusan"
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Buang Tanda Semakan Kod Pentadbir"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Buang Tanda Semakan Kandungan Pentadbir"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Buang Tanda Semakan Pentadbir Tema Statik"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Tinjau Semua Serahan"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Kembali ke add-on"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(pentadbir)"
-
-msgid "Admin Page"
-msgstr "Halaman Pentadbir"
-
-msgid "Review This Add-on"
-msgstr "Semak Add-ons Ini"
-
-msgid "Overview"
-msgstr "Intisari"
-
-msgid "More Information"
-msgstr "Maklumat Lanjut"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "Resolusi"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "Penyemak"
-
-msgid "Add-on has been deleted."
-msgstr "Add-on telah dibuang."
-
-msgid "Show Comments"
-msgstr "Papar Komen"
-
-msgid "Hide Comments"
-msgstr "Sorok Komen"
-
-msgid "No reviews found for this period."
-msgstr "Tiada semakan ditemukan dalam tempoh ini."
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr ""
-
-#, fuzzy
-msgid "Source:"
-msgstr "mengikut Sumber"
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "mengikut Sumber"
-
-msgid "Dismiss this announcement"
-msgstr "Abaikan pengumuman ini"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "Fail dalam versi ini:"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Keizinan:"
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "Keizinan:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Oleh %(user)s pada %(date)s</div>"
-
-msgid "Older"
-msgstr "Lebih lama"
-
-msgid "Newer"
-msgstr "Lebih baru"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "Poin Terkini"
-
-msgid "No points awarded yet."
-msgstr "Belum ada poin yang diberikan."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Penyemak Teratas (7 hari lepas)"
-
-msgid "No top reviewers yet."
-msgstr "Belum ada penyemak teratas lagi."
-
-msgid "All Time"
-msgstr "Sepanjang Masa"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Anda ada <span>{0}</span> poin."
-
-msgid "No results found"
-msgstr "Tiada hasil ditemukan"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5869,104 +4804,6 @@ msgstr "%(user)s pada %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Versi %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(Disahkan)"
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "Tarikh Akhir Permintaan Maklumat"
-
-msgid "Compatibility:"
-msgstr "Keserasian:"
-
-msgid "Additional sources:"
-msgstr "Sumber tambahan:"
-
-msgid "Download files"
-msgstr "Muat turun fail"
-
-msgid "The developer has provided source code."
-msgstr "Pembangun menyediakan kod sumber."
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "Ulasan Penilaian ({0})"
-
-msgid "Download"
-msgstr "Muat turun"
-
-msgid "Not Auto Approved Because"
-msgstr "Tidak Auto Diluluskan Kerana"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Skrip auto-diluluskan masih belum dijalankan untuk versi ini."
-
-msgid "This version has not been reviewed."
-msgstr "Versi ini masih belum disemak."
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Ulasan Penilaian ({0})"
-
-#, fuzzy
-msgid "Updates"
-msgstr "Kemaskini"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Menunggu Semakan"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "Auto-lulus ({0})"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Ulasan Penilaian ({0})"
-
-msgid "presence of matched rules"
-msgstr ""
-
-#, fuzzy
-msgid "result state"
-msgstr "Mulakan"
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Previu versi disenaraikan"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Versi Ditandatangani"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Status Add-on"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Ketampakan penyenaraian"
-
-#, fuzzy
-msgid "file status"
-msgstr "Status Laman"
-
-#, fuzzy
-msgid "file signature"
-msgstr "{file} telah ditandatangan."
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6000,12 +4837,6 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, fuzzy, python-format
@@ -6060,6 +4891,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "Intisari"
+
 msgid "by Source"
 msgstr "mengikut Sumber"
 
@@ -6102,6 +4936,9 @@ msgstr "Daripada"
 
 msgid "To"
 msgstr "Hingga"
+
+msgid "Update"
+msgstr "Kemaskini"
 
 msgid "Export"
 msgstr "Eksport"
@@ -6317,6 +5154,9 @@ msgstr "Teruskan"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Kembali ke halaman utama Add-ons {0}"
 
+msgid "Add-ons"
+msgstr "Add-ons"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Log masuk</a>"
@@ -6355,43 +5195,6 @@ msgstr "Adakah anda pasti mahu menghapuskan semua terjemahan <b>{0}</b>? Ini tid
 
 msgid "Delete Locale"
 msgstr "Buang Lokaliti"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "Pengguna \"%(user)s\" telah disekat."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Gambar milik pengguna \"%(user)s\" telah dibuang."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Pengguna \"%(users)s\" telah disekat."
-
-msgid "Ban selected users"
-msgstr "Sekat pengguna yang dipilih"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Pengguna \"%(users)s\" telah disekat."
-
-#, fuzzy
-msgid "Reset session"
-msgstr "Buang Versi"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Pengguna \"%(users)s\" telah disekat."
-
-#, fuzzy
-msgid "Reset API Key"
-msgstr "Urus Kekunci API"
-
-msgid "Profile Photo"
-msgstr "Foto Profil"
-
-msgid "Collections"
-msgstr "Koleksi"
 
 #, fuzzy
 msgid "IP Address"
@@ -6482,16 +5285,6 @@ msgstr "Peranan pengarang add-on anda telah ditukar"
 
 msgid "An author has been removed from your add-on"
 msgstr "Seorang pengarang disingkir daripada add-on anda"
-
-msgid "Ban"
-msgstr "Sekat"
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "Buang Versi"
-
-msgid "Delete picture"
-msgstr "Buang gambar"
 
 #, python-format
 msgid ""
