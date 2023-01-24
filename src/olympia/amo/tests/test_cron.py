@@ -31,7 +31,7 @@ class TestGC(TestCase):
             ActivityLog.objects.create(action=amo.LOG.THROTTLED.id, user=user),
             # Old activity from action that should always be kept.
             ActivityLog.objects.create(
-                action=amo.LOG.LOG_IN.id, user=user, created=self.days_ago(181)
+                action=amo.LOG.LOG_IN.id, user=user, created=self.days_ago(366)
             ),
             # Newer activity that should not be deleted and that should be kept
             # anyway regardless of age because of the action.
@@ -41,7 +41,7 @@ class TestGC(TestCase):
         to_delete = [
             # Old activity that should be deleted
             ActivityLog.objects.create(
-                action=amo.LOG.THROTTLED.id, user=user, created=self.days_ago(181)
+                action=amo.LOG.THROTTLED.id, user=user, created=self.days_ago(366)
             ),
         ]
 
