@@ -3,6 +3,7 @@ from inspect import isclass
 
 from django.utils.translation import gettext_lazy as _
 
+RETENTION_DAYS = 365
 
 __all__ = (
     'LOG',

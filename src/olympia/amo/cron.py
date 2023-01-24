@@ -5,6 +5,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.constants.activity import RETENTION_DAYS
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
@@ -33,7 +34,7 @@ def gc(test_result=True):
     log.info('Collecting data to delete')
 
     logs = (
-        ActivityLog.objects.filter(created__lt=days_ago(180))
+        ActivityLog.objects.filter(created__lt=days_ago(RETENTION_DAYS))
         .exclude(action__in=amo.LOG_KEEP)
         .values_list('id', flat=True)
     )
