@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
 from olympia.reviewers.models import ReviewActionReason
+from olympia.zadmin.admin import related_single_content_link
 
 from .models import ActivityLog, ReviewActionReasonLog
 
@@ -9,20 +10,20 @@ from .models import ActivityLog, ReviewActionReasonLog
 class ActivityLogAdmin(AMOModelAdmin):
     list_display = (
         'created',
-        'user',
-        '__str__',
+        'user_link',
+        'pretty_arguments',
     )
     raw_id_fields = ('user',)
     readonly_fields = (
         'created',
         'user',
-        '__str__',
+        'pretty_arguments',
     )
     date_hierarchy = 'created'
     fields = (
         'user',
         'created',
-        '__str__',
+        'pretty_arguments',
     )
     raw_id_fields = ('user',)
     view_on_site = False
@@ -37,6 +38,14 @@ class ActivityLogAdmin(AMOModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def pretty_arguments(self, obj):
+        return obj.to_string(type_='admin')
+
+    def user_link(self, obj):
+        return related_single_content_link(obj, 'user')
+
+    user_link.short_description = 'User'
 
 
 class ReviewActionReasonLogAdmin(AMOModelAdmin):

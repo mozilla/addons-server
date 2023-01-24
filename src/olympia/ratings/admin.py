@@ -117,9 +117,9 @@ class RatingAdmin(AMOModelAdmin):
     )
     list_display = (
         'id',
-        'addon',
+        'addon_link',
         'created',
-        'user',
+        'user_link',
         'known_ip_adresses',
         'rating',
         'is_reply',
