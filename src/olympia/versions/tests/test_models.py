@@ -866,12 +866,17 @@ class TestVersion(TestCase):
         )
         assert not version.should_have_due_date
 
-        # clear the flags and the due date is applicable again
+        # Clear the flags and try with an incomplete add-on
         flags.update(
             pending_rejection=None,
             pending_rejection_by=None,
             pending_content_rejection=None,
         )
+        addon.update(status=amo.STATUS_NULL)
+        assert not version.should_have_due_date
+
+        # And now with an approved add-on.
+        addon.update(status=amo.STATUS_APPROVED)
         assert version.should_have_due_date
 
         # If auto_approval_delayed_until is present it should also have a
