@@ -182,6 +182,7 @@ class VersionManager(ManagerBase):
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
             | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
+            addon__status__in=(amo.VALID_ADDON_STATUSES),
             channel=amo.CHANNEL_LISTED,
         )
         requires_manual_unlisted_approval_and_is_unlisted = Q(
@@ -200,7 +201,7 @@ class VersionManager(ManagerBase):
                 | requires_manual_listed_approval_and_is_listed
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
-        )
+        ).using('default')
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -850,6 +851,7 @@ class Version(OnChangeMixin, ModelBase):
             log.info('Version %r (%s) due_date cleared', self, self.id)
             self.update(due_date=None, _signal=False)
 
+    @use_primary_db
     def inherit_due_date(self):
         qs = (
             Version.objects.filter(addon=self.addon, channel=self.channel)

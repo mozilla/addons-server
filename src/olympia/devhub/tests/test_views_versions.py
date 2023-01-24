@@ -341,7 +341,7 @@ class TestVersion(TestCase):
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
     def test_disabling_addon_awaiting_review_disables_version(self):
-        self.addon.update(status=amo.STATUS_AWAITING_REVIEW, disabled_by_user=False)
+        self.addon.update(status=amo.STATUS_NOMINATED, disabled_by_user=False)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         res = self.client.post(self.disable_url)

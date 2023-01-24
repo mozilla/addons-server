@@ -1275,12 +1275,15 @@ class TestAddonModels(TestCase):
         File.objects.create(status=status, version=version, manifest_version=2)
         return addon, version
 
-    def test_no_change_disabled_user(self):
+    def test_disabled_by_user_disables_listed_versions_waiting_for_review(self):
         addon, version = self.setup_files(amo.STATUS_AWAITING_REVIEW)
         addon.update(status=amo.STATUS_APPROVED)
         addon.update(disabled_by_user=True)
         version.save()
-        assert addon.status == amo.STATUS_APPROVED
+        file_ = version.file
+        file_.reload()
+        assert version.file.status == amo.STATUS_DISABLED
+        assert addon.status == amo.STATUS_NULL
         assert addon.is_disabled
 
     def test_no_change_disabled(self):

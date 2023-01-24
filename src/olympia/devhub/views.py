@@ -445,13 +445,6 @@ def cancel(request, addon_id, addon, channel):
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    # Also set the latest listed version to STATUS_DISABLED if it was
-    # AWAITING_REVIEW, to not waste reviewers time.
-    latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-    if latest_version and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
-        latest_version.file.update(status=amo.STATUS_DISABLED)
-    addon.update_version()
-    addon.update_status()
     addon.update(disabled_by_user=True)
     ActivityLog.create(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
