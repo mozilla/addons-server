@@ -1809,16 +1809,19 @@ def update_search_index(sender, instance, **kw):
 @Addon.on_change
 def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
     """
-    Set due date if the addon is new in queue or updating.
+    Watch add-on status changes and react accordingly, updating author profile
+    visibility, disabling versions when disabled_by_user is set, and setting
+    due date on versions if the addon is new in queue or updating.
 
-    The due date cannot be reset, say, when a developer cancels their request for review
-    and re-requests review.
+    The due date cannot be reset, say, when a developer cancels their request
+    for review and re-requests review.
 
-    If a version is rejected after nomination, the developer has to upload a new
-    version.
+    If a version is rejected after nomination, the developer has to upload a
+    new version.
     """
     new_status = new_attr.get('status') if new_attr else None
     old_status = old_attr.get('status') if old_attr else None
+    disabled_by_user = new_attr.get('disabled_by_user') if new_attr else None
 
     # Update the author's account profile visibility
     if new_status != old_status:
@@ -1828,8 +1831,14 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         latest_version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
     ):
         return
-
-    if old_status == amo.STATUS_NOMINATED:
+    if disabled_by_user and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
+        # If a developer disables their add-on, the listed version waiting for
+        # review should be disabled right away, we don't want reviewers to look
+        # at it. That might in turn change the add-on status from NOMINATED
+        # back to NULL, through update_status().
+        latest_version.file.update(status=amo.STATUS_DISABLED)
+        instance.update_status()
+    elif old_status == amo.STATUS_NOMINATED:
         # Updating: inherit due date from last nominated version.
         # Calls `inherit_due_date` manually given that signals are
         # deactivated to avoid circular calls.
