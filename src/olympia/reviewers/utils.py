@@ -175,15 +175,18 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 class PendingManualApprovalQueueTable(AddonQueueTable):
     addon_type = tables.Column(verbose_name='Type', accessor='type', orderable=False)
     due_date = tables.Column(verbose_name='Due Date', accessor='first_version_due_date')
+    score = tables.Column(
+        verbose_name='Maliciousness Score',
+        accessor='first_pending_version__autoapprovalsummary__score',
+    )
 
     class Meta:
-        fields = ('addon_name', 'addon_type', 'due_date', 'flags')
+        fields = ('addon_name', 'addon_type', 'due_date', 'flags', 'score')
         exclude = (
             'last_human_review',
             'code_weight',
             'metadata_weight',
             'weight',
-            'score',
         )
 
     @classmethod
