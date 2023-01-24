@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2023-01-20 13:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -18,57 +18,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "tyyppi"
-
-msgid "Users"
-msgstr "Käyttäjät"
-
-msgid "Add-ons"
-msgstr "Lisäosat"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr ""
-
-msgid "User / Add-on"
-msgstr "Käyttäjä / Lisäosa"
-
-msgid "Distribution"
-msgstr "Jakelu"
-
-msgid "Reporter's country"
-msgstr "Ilmoittajan maa"
-
-msgid "Message excerpt"
-msgstr ""
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "%d valituista raporteista on merkitty kelvollisiksi."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d valituista raporteista on merkitty epäilyttäviksi."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr ""
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Varmista ettei kentässä ole enempää kuin {max_length} merkkiä."
 
 msgid "Invalid value"
 msgstr "Virheellinen arvo"
-
-msgid "Modified on:"
-msgstr "Muokattu:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr ""
-
-msgid "All"
-msgstr "Kaikki"
 
 msgid "No links are allowed."
 msgstr "Linkit eivät ole sallittuja."
@@ -128,33 +82,6 @@ msgstr "Vain lisäosien uusimmilla versioilla voi olla huomautuksia lisättynä.
 
 msgid "Request content length is too large."
 msgstr ""
-
-msgid "Authors"
-msgstr "Tekijät"
-
-# 85%
-msgid "Ratings"
-msgstr "Arviot"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-msgid "Reviewer links"
-msgstr "Tarkastajan linkit"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-# 75%
-msgid "Activity Logs"
-msgstr "Aktiivisuuslokit"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Lisäosa ei ole AMO:ssa -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -291,20 +218,6 @@ msgstr "Lisäosani"
 msgid "My Themes"
 msgstr "Omat teemat"
 
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Tarkastajan työkalut"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Tarkastajan työkalut"
-
-msgid "Git-Extract"
-msgstr ""
-
-msgid "creation date"
-msgstr "luomispäivämäärä"
-
 msgid "Tools"
 msgstr "Työkalut"
 
@@ -397,10 +310,10 @@ msgstr "Ei löytynyt"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -530,9 +443,6 @@ msgstr "Tätä muokattua URL:ää ei voida käyttää."
 msgid "This add-on already belongs to the collection"
 msgstr "Tämä lisäosa kuuluu jo kokoelmaan"
 
-msgid "Signoff State"
-msgstr ""
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -567,65 +477,6 @@ msgstr "Tarkastajan huomautukset"
 #, fuzzy
 msgid "Review Unlisted"
 msgstr "Tarkastajan huomautukset"
-
-#, fuzzy, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Löydä lisäosia"
-
-msgid "Home"
-msgstr "Koti"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr "Tallenna"
-
-msgid "Save and add more"
-msgstr "Tallenna ja lisää enemmän"
-
-msgid "Delete"
-msgstr "Poista"
-
-# 85%
-# 100%
-msgid "Update"
-msgstr "Päivitä"
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "Näytä kaikki versiot"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "Näytä kaikki versiot"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Lisää %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-#, fuzzy
-msgid "Submit"
-msgstr "Lisää uusi lisäosa"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr ""
-
-#, fuzzy
-msgid "versions"
-msgstr "Versiot"
 
 msgid "{addon} was created."
 msgstr "{addon} luotiin."
@@ -1564,113 +1415,6 @@ msgstr "Erittäin hyvä (2)"
 msgid "Excellent (3)"
 msgstr "Erinomainen (3)"
 
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Legacy Add-on Review"
-msgstr "Uusi Legacy-lisäosa arvionti"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Päivitetty Legacy-lisäosan arviointi"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Uusi sanaston arviointi"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr "Uusi kielipakettiarviointi"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-msgid "Theme (Static) Review"
-msgstr "(Staattisen) teeman arviointi"
-
-msgid "New Search Provider Review"
-msgstr "Uusi hakupalveluntarjoajan arviointi"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "Uusi kokonaisvaltainen teeman arviointi"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-msgid "Moderated Add-on Review"
-msgstr "Valvottu lisäosan arviointi"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-# 100%
-msgid "Add-on Content Review"
-msgstr "Lisäosan sisällön arviointi"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "(Suurimman riskin omaavan) lisäosan arviointi"
-
-#, fuzzy
-msgid "Add-on Review (High Risk)"
-msgstr "Lisäosan arviointi"
-
-#, fuzzy
-msgid "Add-on Review (Medium Risk)"
-msgstr "Ei vielä lisäosa-arvioita."
-
-#, fuzzy
-msgid "Add-on Review (Low Risk)"
-msgstr "Lisäosan arviointi"
-
-msgid "Level 1"
-msgstr "Taso 1"
-
-msgid "Level 2"
-msgstr "Taso 2"
-
-msgid "Level 3"
-msgstr "Taso 3"
-
-msgid "Level 4"
-msgstr "Taso 4"
-
-msgid "Level 5"
-msgstr "Taso 5"
-
-msgid "Level 6"
-msgstr "Taso 6"
-
-msgid "Level 7"
-msgstr "Taso 7"
-
-msgid "Level 8"
-msgstr "Taso 8"
-
-msgid "Level 9"
-msgstr "Taso 9"
-
 msgid "Request More Info"
 msgstr "Pyydä lisätietoja"
 
@@ -1686,32 +1430,8 @@ msgstr "Hylkää"
 msgid "Approve"
 msgstr "Hyväksy"
 
-msgid "Sexual or pornographic content"
-msgstr "Seksuaalinen tai pornografinen sisältö"
-
-msgid "Inappropriate or offensive content"
-msgstr "Sopimaton tai loukkaava sisältö"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Väkivaltaa, sotaa tai aseita esittäviä kuvia"
-
-msgid "Nazi or other hate content"
-msgstr "Natsi- tai muuta vihasisältöä"
-
-msgid "Defamatory content"
-msgstr "Loukkaavaa sisältöä"
-
-msgid "Online gambling"
-msgstr "Verkkouhkapeliä"
-
-msgid "Spam content"
-msgstr "Roskapostisisältöä"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Heikkolaatuinen, venytetty tai tyhjä kuva"
-
-msgid "Header image alignment problem"
-msgstr "Otsikon kuvan kohdistusongelma"
+msgid "All"
+msgstr "Kaikki"
 
 # 83%
 # 100%
@@ -2218,7 +1938,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2321,6 +2043,9 @@ msgstr "Hylkää"
 
 msgid "Manage Authors & License"
 msgstr "Hallitse tekijöitä ja lisenssiä"
+
+msgid "Authors"
+msgstr "Tekijät"
 
 msgid "About author roles"
 msgstr ""
@@ -2454,8 +2179,8 @@ msgid "Email"
 msgstr "Sähköposti"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2500,8 +2225,8 @@ msgid "Whiteboard"
 msgstr "Valkotaulu"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2660,6 +2385,9 @@ msgstr "Jatka"
 msgid "Delete this add-on."
 msgstr "Poista tämä lisäosa."
 
+msgid "Delete"
+msgstr "Poista"
+
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
@@ -2696,8 +2424,8 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> lataus viikossa"
 msgstr[1] "<strong>{0}</strong> latausta viikossa"
 
-#. {0} is the number of active users.
 # 78%
+#. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
@@ -3030,8 +2758,8 @@ msgstr "JWT-salaisuus"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -3103,7 +2831,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3389,7 +3118,8 @@ msgid "View All Submissions"
 msgstr "Näytä kaikki versiot"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
+msgstr ""
+"Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Julkaise ensimmäinen lisäosani"
@@ -3444,8 +3174,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Hallitse versiota {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Hallitse {0}"
 
@@ -3619,15 +3349,15 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} virhe"
 msgstr[1] "{0} virhettä"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varoitus"
@@ -4672,9 +4402,9 @@ msgstr "Roblox-laajennukset"
 msgid "See staff picks"
 msgstr "Katso henkilöstön valinnat"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended extensions"
 msgstr "Suositellut laajennukset"
 
@@ -4698,8 +4428,8 @@ msgstr "Yksityisyyttä parantavat laajennukset"
 msgid "See more recommended privacy extensions"
 msgstr "Katso lisää suositeltuja yksityisyyttä parantavia laajennuksia"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Suositut laajennukset"
 
@@ -4707,9 +4437,9 @@ msgstr "Suositut laajennukset"
 msgid "See more popular extensions"
 msgstr "Katso lisää suosittuja laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended themes"
 msgstr "Suositellut teemat"
 
@@ -4765,9 +4495,9 @@ msgstr "YouTuben mukauttaminen"
 msgid "See more YouTube extension staff picks"
 msgstr "Katso lisää valittuja YouTube-laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending themes"
 msgstr "Nousussa olevat teemat"
 
@@ -4775,9 +4505,9 @@ msgstr "Nousussa olevat teemat"
 msgid "See more trending themes"
 msgstr "Katso lisää nousussa olevia teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Top rated themes"
 msgstr "Parhaiten arvioidut teemat"
 
@@ -4785,9 +4515,9 @@ msgstr "Parhaiten arvioidut teemat"
 msgid "See more top rated themes"
 msgstr "Katso lisää parhaiten arvioituja teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending extensions"
 msgstr "Nousussa olevat laajennukset"
 
@@ -4804,9 +4534,9 @@ msgstr "Steamin tehostajat"
 msgid "See more Steam staff picks"
 msgstr "Katso lisää sosiaalisen suoratoiston laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "Creativity extensions"
 msgstr "Nousussa olevat laajennukset"
@@ -4919,9 +4649,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-msgid "User"
-msgstr "Käyttäjä"
-
 msgid "Spam or otherwise non-review content"
 msgstr ""
 
@@ -4982,559 +4709,9 @@ msgstr "Arvosteltu: {0}/5 tähteä"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-msgid "Approved reviews"
-msgstr ""
-
-msgid "Deleted reviews"
-msgstr ""
-
-msgid "View entries between"
-msgstr ""
-
-msgid "and"
-msgstr "ja"
-
-msgid "Filter by type/action"
-msgstr "Suodata tyypin ja toimen suhteen"
-
-msgid "containing"
-msgstr ""
-
-msgid "start"
-msgstr "alku"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr ""
-
-#. L10n: Description of what can be searched for
-# 100%
-#, fuzzy
-msgid "add-on, reviewer or comment"
-msgstr "Kehittäjän kommentit"
-
-msgid "Comments:"
-msgstr "Kommentit:"
-
-msgid "Operating systems:"
-msgstr "Käyttöjärjestelmät:"
-
-msgid "Applications:"
-msgstr "Ohjelmat:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "päivää"
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr ""
-
-msgid "Private Whiteboard"
-msgstr ""
-
-msgid "Keep review; remove flags"
-msgstr ""
-
-msgid "Skip for now"
-msgstr "Ohita nyt"
-
-msgid "Delete review"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-# 100%
-#, fuzzy
-msgid "Needs Admin Content Review"
-msgstr "Ei tarkastettu"
-
-#, fuzzy
-msgid "Needs Admin Static Theme Review"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr ""
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-msgid "You can't submit an empty comment."
-msgstr "Et voi lähettää tyhjää kommenttia."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-#, fuzzy
-msgid "ID"
-msgstr "GUID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr ""
-
-msgid "Last Review"
-msgstr ""
-
-msgid "Code Weight"
-msgstr ""
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Tarkastuksia yhteensä"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "Tyyppi"
-
-msgid "Due Date"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr ""
-
-msgid "Last Updated"
-msgstr "Viimeksi päivitetty"
-
-# 100%
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Ei tarkastettu"
-
-# 100%
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Ei tarkastettu"
-
-#, fuzzy
-msgid "Listed version"
-msgstr "Beetaversio {0}"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "Beetaversio {0}"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Hyväksy tai hylkää"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr ""
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Reject Multiple Versions"
-msgstr "Löydä lisäosia"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Löydä lisäosia"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Löydä lisäosia"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Reviewer reply"
-msgstr "Tarkastajan vastaus"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-#, fuzzy
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Jos uskot, että ylläpitäjän tulisi tarkistaa tämä lisäosa turvallisuus-, tekijänoikeus- tai muiden ongelmien takia, kirjoita tästä kommentteihin alle. Kommentteja ei lähetetä lisäosan tekijälle vaan"
-" vain ylläpidolle."
-
-# 87%
-# 100%
-msgid "Comment"
-msgstr "Kommentoi"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-# 78%
-# 100%
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Tarkista lisäosia"
-
-msgid "Recommended ({0})"
-msgstr "Suositeltu ({0})"
-
-# 100%
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Ei tarkastettu"
-
-# 85%
-#, fuzzy
-msgid "Review Log"
-msgstr "Arvostelu:"
-
-#, fuzzy
-msgid "Add-on Review Guide"
-msgstr "Ei vielä lisäosa-arvioita."
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approved Add-ons"
-msgstr "Android-lisäosat"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-#, fuzzy
-msgid "Auto Approved Add-ons ({0})"
-msgstr "{0}in lisäosat"
-
-msgid "Add-on Review Log"
-msgstr ""
-
-#, fuzzy
-msgid "Review Guide"
-msgstr "Arvioijat"
-
-# 100%
-#, fuzzy
-msgid "Content Review"
-msgstr "Ei tarkastettu"
-
-msgid "Content Review ({0})"
-msgstr ""
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New ({0})"
-msgstr "Uusi ({0})"
-
-msgid "Updates ({0})"
-msgstr "Päivitykset ({0})"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Arvioijat"
-
-msgid "User Ratings Moderation"
-msgstr ""
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-#, fuzzy
-msgid "Moderation Guide"
-msgstr "Ei vielä lisäosa-arvioita."
-
-#, fuzzy
-msgid "Unlisted Add-ons"
-msgstr "Android-lisäosat"
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
-
-msgid "Announcement"
-msgstr "Ilmoitus"
-
-msgid "Update message of the day"
-msgstr "Päivitä päivän viesti"
-
-# 100%
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Ei tarkastettu"
-
-msgid "An unknown error occurred"
-msgstr "Tapahtui tuntematon virhe"
-
-msgid "Self-reviews are not allowed."
-msgstr "Omia lisäosiaan ei voi tarkastaa."
-
-msgid "Review successfully processed."
-msgstr "Arvio käsiteltiin."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr ""
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Tietosuojakäytäntö"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-msgid "Abuse Reports"
-msgstr ""
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Lisäosan {0} tiedot"
-
-# 85%
-# 100%
-msgid "Add-on ID"
-msgstr "Lisäosan ID"
-
-# 81%
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Lisää lisäosa"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-msgid "Support Website"
-msgstr "Tukisivusto"
-
-msgid "Visibility"
-msgstr "Näkyvyys"
-
-msgid "Visible"
-msgstr "Näkyvillä"
-
-# 100%
-msgid "Weekly Downloads"
-msgstr "Viikottaiset lataukset"
-
-msgid "Average Daily Users"
-msgstr ""
-
-msgid "View Privacy Policy"
-msgstr "Näytä tietosuojakäytäntö"
-
-msgid "Requires Payment"
-msgstr "Vaatii maksun"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Näytä loppukäyttäjän lisenssisopimus"
-
-msgid "Last Approval Date"
-msgstr "Viimeinen hyväksymispäivä"
-
-msgid "Abuse Reports ({num})"
-msgstr "Väärinkäytösraportit ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Huonot käyttäjäarvostelut ({num})"
-
-msgid "Theme Images"
-msgstr "Teemakuvat"
-
-msgid "Rendered Preview"
-msgstr "Renderöity esikatselu"
-
-msgid "More about this add-on"
-msgstr "Lisätietoja tästä lisäosasta"
-
-msgid "Image Gallery"
-msgstr "Kuvagalleria"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "Lisäosan kelpuutus"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Palaa arvostelijan työkalujen hallintapaneeliin"
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
-msgstr ""
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr ""
-
-# 100%
-msgid "Date"
-msgstr "Päiväys"
-
-msgid "Event"
-msgstr ""
-
-msgid "More details."
-msgstr ""
-
-# 87%
-msgid "No events found for this period."
-msgstr "Ei tapahtumia annetulla aikavälillä."
-
-msgid "Log details"
-msgstr ""
-
-# 78%
-# 100%
-msgid "Review Author"
-msgstr "Arvostele kirjoittaja"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Text"
-msgstr ""
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr ""
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr ""
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Android-lisäosat"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Tukitiedot"
-
-msgid "Process Reviews"
-msgstr "Käsittele arviot"
-
-msgid "Moderation actions:"
-msgstr ""
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5544,281 +4721,12 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-# %1 is the queue mode
-msgid "There are currently no add-ons of this type to review."
-msgstr "Tällä hetkellä ei ole yhtään tarkastettavia in lisäosia."
-
-msgid "Helpful Links:"
-msgstr "Hyödylliset linkit:"
-
-msgid "Add-on Policy"
-msgstr "Lisäosakäytäntö"
-
-msgid "Reviewer's Guide"
-msgstr "Arvioijan opas"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Lisäosia Firefoxiin"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr ""
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr ""
-
-msgid "Add-on History"
-msgstr "Lisäosan historia"
-
-msgid "Please select one or more versions in the list below."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr ""
-
-msgid "Files:"
-msgstr "Tiedostot:"
-
-msgid "Tested on:"
-msgstr ""
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
-
-msgid "More Actions"
-msgstr "Lisää toimintoja"
-
-msgid "Notify me about new listed versions"
-msgstr ""
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Beetaversio {0}"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Näytä kaikki versiot"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Oikeudet:"
-
-msgid "Force-disable add-on"
-msgstr ""
-
-msgid "Force-enable add-on"
-msgstr "Pakota lisäosa päälle"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Ota käyttöön automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Ota käyttöön automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Ota käyttöön automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Poista käytöstä automaattinen hyväksyminen"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Ota käyttöön automaattinen hyväksyminen"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Ota käyttöön automaattinen hyväksyminen"
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-# 100%
-msgid "Clear Admin Content Review Flag"
-msgstr "Poista järjestelmänvalvojan sisällön tarkistus-flag"
-
-# 100%
-#, fuzzy
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Ei tarkastettu"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Näytä kaikki versiot"
-
-# 80%
-# 100%
-#, fuzzy
-msgid "Block add-on"
-msgstr "Takaisin lisäosaan"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr ""
-
-msgid "Admin Page"
-msgstr ""
-
-msgid "Review This Add-on"
-msgstr ""
-
-msgid "Overview"
-msgstr ""
-
-msgid "More Information"
-msgstr ""
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr ""
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-# 88%
-msgid "Reviewer"
-msgstr ""
-
-msgid "Add-on has been deleted."
-msgstr "Lisäosa on poistettu."
-
-msgid "Show Comments"
-msgstr "Näytä kommentit"
-
-msgid "Hide Comments"
-msgstr "Piilota kommentit"
-
-msgid "No reviews found for this period."
-msgstr "Ei tarkastuksia annetulla aikavälillä."
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr ""
-
-#, fuzzy
-msgid "Source:"
-msgstr "Lähdekoodi"
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "Lähdekoodi"
-
-msgid "Dismiss this announcement"
-msgstr ""
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-msgid "Browse all files in this version"
-msgstr "Selaa kaikkia tämän version tiedostoja"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Oikeudet:"
-
-msgid "Optional permissions:"
-msgstr "Valinnaiset oikeudet:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr ""
-
-msgid "Older"
-msgstr ""
-
-msgid "Newer"
-msgstr ""
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr ""
-
-msgid "No points awarded yet."
-msgstr ""
-
-msgid "Top Reviewers (past 7 days)"
-msgstr ""
-
-msgid "No top reviewers yet."
-msgstr ""
-
-msgid "All Time"
-msgstr ""
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr ""
-
-msgid "No results found"
-msgstr "Tuloksia ei löytynyt"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5827,111 +4735,6 @@ msgstr ""
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Versio %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "Tukitiedot"
-
-msgid "Compatibility:"
-msgstr "Yhteensopivuus:"
-
-msgid "Additional sources:"
-msgstr ""
-
-msgid "Download files"
-msgstr "Lataa tiedostot"
-
-msgid "The developer has provided source code."
-msgstr ""
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "Merkitse ihmisten arvioitavaksi"
-
-msgid "Download"
-msgstr "Lataa"
-
-msgid "Not Auto Approved Because"
-msgstr "Ei automaattisesti hyväksytty, koska"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-# 76%
-msgid "This version has not been reviewed."
-msgstr "Tätä versiota ei ole tarkistettu."
-
-# 100%
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Ei tarkastettu"
-
-# 85%
-# 100%
-#, fuzzy
-msgid "Updates"
-msgstr "Päivitä"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Odottaa arviointia"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-#, fuzzy
-msgid "Auto Approved"
-msgstr "{0}in lisäosat"
-
-# 100%
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Ei tarkastettu"
-
-msgid "presence of matched rules"
-msgstr ""
-
-#, fuzzy
-msgid "result state"
-msgstr "Aloittaminen"
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Beetaversio {0}"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Versiokommentit"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Lisäosan tila päivittäin"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Näkyvyys"
-
-#, fuzzy
-msgid "file status"
-msgstr "Sivuston tila"
-
-msgid "file signature"
-msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5965,12 +4768,6 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, fuzzy, python-format
@@ -6022,6 +4819,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr ""
+
 msgid "by Source"
 msgstr ""
 
@@ -6068,6 +4868,11 @@ msgstr "Alku"
 
 msgid "To"
 msgstr "Loppu"
+
+# 85%
+# 100%
+msgid "Update"
+msgstr "Päivitä"
 
 msgid "Export"
 msgstr ""
@@ -6288,6 +5093,9 @@ msgstr "Mene"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Palaa {0}-lisäosien etusivulle"
 
+msgid "Add-ons"
+msgstr "Lisäosat"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Rekisteröidy</a> tai <a href=\"%(login)s\">kirjaudu sisään</a>"
@@ -6327,41 +5135,6 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr ""
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Käyttäjälle \"%(user)s\" kuuluva kuva on poistettu."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr ""
-
-msgid "Ban selected users"
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
-
-msgid "Reset session"
-msgstr "Nollaa istunto"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
-
-msgid "Reset API Key"
-msgstr "Nollaa API-avain"
-
-msgid "Profile Photo"
-msgstr "Profiilikuva"
-
-msgid "Collections"
-msgstr "Kokoelmat"
-
 msgid "IP Address"
 msgstr "IP-osoite"
 
@@ -6399,8 +5172,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Ennen kuin aloitat, lue ja hyväksy Firefoxin lisäosan jakelusopimusehtomme sekä tarkistuskäytäntömme ja -sääntömme. Firefoxin lisäosan jakelusopimusehdot sekä tarkistuskäytäntöjen ja -sääntöjen "
 "hyväksyminen sisältävät myös linkit yksityisyyskäytäntöömme, jossa kerrotaan kuinka käsittelemme tietojasi."
@@ -6452,17 +5225,6 @@ msgstr ""
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-msgid "Ban"
-msgstr "Estä"
-
-msgid "Reset session(s)"
-msgstr "Nollaa istunto/istunnot"
-
-# 80%
-# 100%
-msgid "Delete picture"
-msgstr "Poista kuva"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6474,7 +5236,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

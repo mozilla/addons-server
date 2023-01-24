@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2022-11-23 11:21+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -15,57 +15,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "kiểu"
-
-msgid "Users"
-msgstr "Người dùng"
-
-msgid "Add-ons"
-msgstr "Tiện ích"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "số lượng báo cáo tối thiểu (được nhóm bởi guid)"
-
-msgid "User / Add-on"
-msgstr "Người dùng / Tiện ích"
-
-msgid "Distribution"
-msgstr "Phân phối"
-
-msgid "Reporter's country"
-msgstr "Quốc gia của người báo cáo"
-
-msgid "Message excerpt"
-msgstr "Đoạn trích tin nhắn"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "%d báo cáo được chọn đã được đánh dấu là hợp lệ."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d báo cáo được chọn đã được đánh dấu là đáng ngờ."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Đánh dấu các báo cáo lạm dụng đã chọn là đáng ngờ"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Hãy đảm bảo rằng trường này không vượt quá {max_length} ký tự."
 
 msgid "Invalid value"
 msgstr "Giá trị không hợp lệ"
-
-msgid "Modified on:"
-msgstr "Được chỉnh sửa lúc:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Bởi %(filter_title)s"
-
-msgid "All"
-msgstr "Tất cả"
 
 msgid "No links are allowed."
 msgstr "Không có liên kết được cho phép."
@@ -122,32 +76,6 @@ msgstr "Chỉ các phiên bản mới nhất của tiện ích có thể có ghi
 
 msgid "Request content length is too large."
 msgstr ""
-
-msgid "Authors"
-msgstr "Tác giả"
-
-msgid "Ratings"
-msgstr "Xếp hạng"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "Công cụ đánh giá"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Đã khởi tạo giải nén Git cho \"%(addons)s\"."
-
-msgid "Activity Logs"
-msgstr "Nhật ký hoạt động"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Tiện ích không có trên AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Số danh mục tối đa ({MAX_CATEGORIES}) cho mỗi ứng dụng đã đạt giới hạn"
@@ -283,18 +211,6 @@ msgstr "Tiện ích của tôi"
 
 msgid "My Themes"
 msgstr "Giao diện của tôi"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Công cụ đánh giá (được liệt kê)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Công cụ đánh giá (chưa được liệt kê)"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
-
-msgid "creation date"
-msgstr "ngày thành lập"
 
 msgid "Tools"
 msgstr "Công cụ"
@@ -532,9 +448,6 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
 
-msgid "Signoff State"
-msgstr "Trạng thái đăng xuất"
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s đang trong một đệ trình đang chờ xử lý"
@@ -567,59 +480,6 @@ msgstr "Yêu cầu đánh giá"
 #, fuzzy
 msgid "Review Unlisted"
 msgstr "Ghi chú review"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Xóa nhiều %(name)s"
-
-msgid "Home"
-msgstr "Trang chủ"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s GUIDs tiện ích đã bị chặn từ %(v_min)s đến %(v_max)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "Không tìm thấy %(count)s GUIDs tiện ích"
-
-msgid "Save"
-msgstr "Lưu"
-
-msgid "Save and add more"
-msgstr "Lưu và thêm nữa"
-
-msgid "Delete"
-msgstr "Xóa"
-
-msgid "Update"
-msgstr "Cập nhật"
-
-msgid "Reject Submission"
-msgstr "Từ chối đệ trình"
-
-msgid "Approve Submission"
-msgstr "Chấp nhận đệ trình"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Thêm %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "GUID tiện ích (một trên mỗi dòng)"
-
-msgid "Submit"
-msgstr "Gửi"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s tiện ích GUIDs với %(adu)s người dùng"
-
-msgid "Edit Block"
-msgstr "Chỉnh sửa khối"
-
-msgid "versions"
-msgstr "phiên bản"
 
 msgid "{addon} was created."
 msgstr "{addon} đã được tạo."
@@ -1535,108 +1395,6 @@ msgstr "Rất tốt (2)"
 msgid "Excellent (3)"
 msgstr "Tuyệt vời (3)"
 
-msgid "Manual Reviewer Points"
-msgstr ""
-
-msgid "New Legacy Add-on Review"
-msgstr "Đánh giá tiện ích kế thừa mới"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Đã cập nhật tiện ích kế thừa"
-
-msgid "New Dictionary Review"
-msgstr "Đánh giá từ điển mới"
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr "Đánh giá gói ngôn ngữ mới"
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Theme Review"
-msgstr "Đánh giá chủ đề"
-
-msgid "Theme (Static) Review"
-msgstr "Đánh giá chủ đề (tĩnh)"
-
-msgid "New Search Provider Review"
-msgstr "Đánh giá nhà cung cấp dịch vụ tìm kiếm mới"
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr "Đánh giá chủ đề hoàn chỉnh mới"
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-msgid "Moderated Add-on Review"
-msgstr "Đánh giá tiện ích được kiểm duyệt"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-msgid "Add-on Content Review"
-msgstr "Đánh giá nội dung tiện ích"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Đánh giá tiện ích (Rủi ro cao nhất)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Đánh giá tiện ích (Rủi ro cao)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Đánh giá tiện ích (Rủi ro trung bình)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Đánh giá tiện ích (Rủi ro thấp)"
-
-msgid "Level 1"
-msgstr "Cấp 1"
-
-msgid "Level 2"
-msgstr "Cấp 2"
-
-msgid "Level 3"
-msgstr "Cấp 3"
-
-msgid "Level 4"
-msgstr "Cấp 4"
-
-msgid "Level 5"
-msgstr "Cấp 5"
-
-msgid "Level 6"
-msgstr "Cấp 6"
-
-msgid "Level 7"
-msgstr "Cấp 7"
-
-msgid "Level 8"
-msgstr "Cấp 8"
-
-msgid "Level 9"
-msgstr "Cấp 9"
-
 msgid "Request More Info"
 msgstr "Yêu cầu Thêm Thông tin"
 
@@ -1652,32 +1410,8 @@ msgstr "Từ chối"
 msgid "Approve"
 msgstr "Phê duyệt"
 
-msgid "Sexual or pornographic content"
-msgstr "Nội dung tình dục hoặc khiêu dâm"
-
-msgid "Inappropriate or offensive content"
-msgstr "Nội dung không phù hợp hoặc công kích"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Hình ảnh bạo lực, chiến tranh hoặc vũ khí"
-
-msgid "Nazi or other hate content"
-msgstr "Nội dung phản động hay thù địch"
-
-msgid "Defamatory content"
-msgstr "Thông tin công kích, phỉ báng"
-
-msgid "Online gambling"
-msgstr ""
-
-msgid "Spam content"
-msgstr "Nội dung rác"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Chất lượng thấp, kéo dài hoặc hình ảnh trống"
-
-msgid "Header image alignment problem"
-msgstr ""
+msgid "All"
+msgstr "Tất cả"
 
 msgid "Theme"
 msgstr "Giao diện"
@@ -2280,6 +2014,9 @@ msgstr "Từ chối"
 msgid "Manage Authors & License"
 msgstr "Quản lí Tác giả & Giấy phép"
 
+msgid "Authors"
+msgstr "Tác giả"
+
 msgid "About author roles"
 msgstr "Giới thiệu vai trò tác giả"
 
@@ -2619,6 +2356,9 @@ msgstr "Tiếp tục"
 
 msgid "Delete this add-on."
 msgstr "Xóa tiện ích này."
+
+msgid "Delete"
+msgstr "Xóa"
 
 msgid "Edit details on this add-on's product page"
 msgstr "Chỉnh sửa chi tiết trên trang sản phẩm của tiện ích này"
@@ -4883,9 +4623,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr "Thiếu tham số \"channel\"."
 
-msgid "User"
-msgstr "Người dùng"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam hoặc các nội dung không phải là đánh giá"
 
@@ -4942,506 +4679,9 @@ msgstr "Đã xếp hạng {0} trên 5 sao"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Đã xếp hạng %(rating)s trên 5 sao"
 
-msgid "Approved reviews"
-msgstr "Đánh giá được chấp thuận"
-
-msgid "Deleted reviews"
-msgstr "Đánh giá đã bị xóa"
-
-msgid "View entries between"
-msgstr "Xem các mục giữa"
-
-msgid "and"
-msgstr "và"
-
-msgid "Filter by type/action"
-msgstr "Lọc theo kiểu/thao tác"
-
-msgid "containing"
-msgstr ""
-
-msgid "start"
-msgstr ""
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr ""
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "tiện ích, đánh giá hoặc nhận xét"
-
-msgid "Comments:"
-msgstr "Bình luận:"
-
-msgid "Operating systems:"
-msgstr "Hệ điều hành:"
-
-msgid "Applications:"
-msgstr "Ứng dụng:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Trì hoãn từ chối, yêu cầu nhà phát triển sửa chữa trong thời gian ngắn hơn…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Từ chối ngay lập tức. Chỉ sử dụng trong trường hợp các vấn đề bảo mật nghiêm trọng."
-
-msgid "days"
-msgstr "ngày"
-
-msgid "Choose one or more reasons:"
-msgstr "Chọn một hoặc nhiều lý do:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Phiên bản không khớp - phiên bản mới nhất đã thay đổi!"
-
-msgid "Choose a canned response..."
-msgstr "Chọn một mẫu phản hồi sẵn..."
-
-msgid "Private Whiteboard"
-msgstr "Bảng trắng riêng tư"
-
-msgid "Keep review; remove flags"
-msgstr "Tiếp tục đánh giá; loại bỏ cờ"
-
-msgid "Skip for now"
-msgstr "Bỏ qua"
-
-msgid "Delete review"
-msgstr "Xóa đánh giá"
-
-msgid "Needs Admin Code Review"
-msgstr "Cần xem lại đoạn mã của quản trị"
-
-msgid "Needs Admin Content Review"
-msgstr "Cần xem lại nội dung của quản trị"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Cần xem lại chủ đề tĩnh của quản trị"
-
-msgid "Sources provided"
-msgstr "Nguồn đã cung cấp"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Tự động phê duyệt tạm thời bị trì hoãn"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Tự động phê duyệt bị trì hoãn hoàn toàn"
-
-msgid "Is locked by a reviewer"
-msgstr "Bị khóa bởi người xét duyệt"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Đã đặt cờ vô hiệu hóa/trì hoãn tự động phê duyệt"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Nằm trong nhóm tiện ích được quảng cáo yêu cầu xem xét trước"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Bị trì hoãn vì đây là phiên bản được liệt kê đầu tiên"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "Bạn không thể gửi bình luận nếu `canned_response` đã được chỉ định."
-
-msgid "You can't submit an empty comment."
-msgstr "Bạn không thể gửi một bình luận trống."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "Bạn không thể gửi số dòng mà không liên kết số đó với tên tập tin."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Cờ"
-
-msgid "Last Review"
-msgstr "Xét duyệt gần đây nhất"
-
-msgid "Code Weight"
-msgstr ""
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Tổng số Bài đánh giá"
-
-msgid "Maliciousness Score"
-msgstr "Điểm độc hại"
-
-msgid "Type"
-msgstr "Kiểu"
-
-msgid "Due Date"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "Thời hạn yêu cầu thông tin"
-
-msgid "Last Updated"
-msgstr "Cập nhật lần cuối"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "Các phiên bản liệt kê cần người xét duyệt ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Các phiên bản không liệt kê cần người xét duyệt ({0})"
-
-msgid "Listed version"
-msgstr "Phiên bản được liệt kê"
-
-msgid "Unlisted versions ({0})"
-msgstr "Phiên bản không liệt kê ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Điều này sẽ từ chối phiên bản này và loại bỏ nó khỏi hàng đợi. Các ý kiến sẽ được gửi đến nhà phát triển."
-
-msgid "Approve Content"
-msgstr "Phê duyệt nội dung"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr "Xác nhận phê duyệt"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr "Phê duyệt nhiều phiên bản"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "Điều này sẽ phê duyệt các phiên bản đã chọn. Các ý kiến sẽ được gửi đến nhà phát triển."
-
-msgid "Reject Multiple Versions"
-msgstr "Từ chối nhiều phiên bản"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Điều này sẽ từ chối các phiên bản được chọn. Các bình luận sẽ được gửi đến nhà phát triển."
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Block Multiple Versions"
-msgstr "Chặn nhiều phiên bản"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-msgid "Confirm Multiple Versions"
-msgstr "Xác nhận nhiều phiên bản"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Điều này sẽ xác nhận phê duyệt các phiên bản đã chọn mà không thông báo cho nhà phát triển."
-
-msgid "Reviewer reply"
-msgstr "Trả lời của người đánh giá"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Điều này sẽ gửi một thông điệp cho nhà phát triển. Bạn sẽ được thông báo khi họ trả lời."
-
-msgid "Request super-review"
-msgstr "Yêu cầu siêu xét duyệt"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Nếu bạn lo ngại về tiện ích này mà người đánh giá quản trị nên xem xét, hãy nhập nhận xét của bạn vào khu vực bên dưới. Nó sẽ không được gửi đến nhà phát triển."
-
-msgid "Comment"
-msgstr "Bình luận"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Đưa ra nhận xét về phiên bản này. Nhà phát triển sẽ không thể thấy điều này."
-
-msgid "Pre-Review Add-ons"
-msgstr ""
-
-msgid "Recommended ({0})"
-msgstr "Được đề xuất ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "Đánh giá đang chờ xử lý khác ({0})"
-
-msgid "Review Log"
-msgstr "Nhật ký đánh giá"
-
-msgid "Add-on Review Guide"
-msgstr "Hướng dẫn đánh giá tiện ích"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr "Tự động phê duyệt tiện ích"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Tự động phê duyệt tiện ích ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Nhật ký xét duyệt tiện ích"
-
-msgid "Review Guide"
-msgstr "Hướng dẫn đánh giá"
-
-msgid "Content Review"
-msgstr "Đánh giá nội dung"
-
-msgid "Content Review ({0})"
-msgstr "Xét duyệt nội dung ({0})"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "New ({0})"
-msgstr "Mới ({0})"
-
-msgid "Updates ({0})"
-msgstr "Cập nhật ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Hướng dẫn đánh giá chủ đề"
-
-msgid "User Ratings Moderation"
-msgstr ""
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Moderation Guide"
-msgstr "Hướng dẫn kiểm duyệt"
-
-msgid "Unlisted Add-ons"
-msgstr "Tiện ích không công khai"
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Bật tự động phê duyệt"
-
-msgid "Announcement"
-msgstr "Thông báo"
-
-msgid "Update message of the day"
-msgstr "Cập nhật thông điệp trong ngày"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr ""
-
-msgid "An unknown error occurred"
-msgstr "Đã có lỗi xảy ra"
-
-msgid "Self-reviews are not allowed."
-msgstr "Không được tự xét duyệt"
-
-msgid "Review successfully processed."
-msgstr "Việc xét duyệt được tiến hành thành công."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Chính sách riêng tư"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr " Báo cáo lạm dụng – {addon} – Tiện ích cho Firefox"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Báo cáo lạm dụng cho {addon} và các nhà phát triển của nó ({num})"
-
-msgid "Abuse Reports"
-msgstr "Báo cáo lạm dụng"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Thông tin tiện ích cho {0}"
-
-msgid "Add-on ID"
-msgstr "ID tiện ích"
-
-msgid "Original Add-on ID"
-msgstr "ID tiện ích ban đầu"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "(Các) tiện ích chia sẻ cùng một ID"
-
-msgid "Internal AMO ID"
-msgstr "ID AMO nội bộ"
-
-msgid "Support Website"
-msgstr "Trang web hỗ trợ"
-
-msgid "Visibility"
-msgstr "Trạng thái hiển thị"
-
-msgid "Visible"
-msgstr "Hiển thị"
-
-msgid "Weekly Downloads"
-msgstr "Tải về hàng tuần"
-
-msgid "Average Daily Users"
-msgstr "Người dùng Hàng ngày Trung bình"
-
-msgid "View Privacy Policy"
-msgstr "Xem chính sách riêng tư"
-
-msgid "Requires Payment"
-msgstr "Yêu cầu thanh toán"
-
-msgid "EULA"
-msgstr "Thỏa thuận Người dùng Cuối"
-
-msgid "View End-User License Agreement"
-msgstr "Xem Thỏa thuận giấy phép người dùng cuối"
-
-msgid "Last Approval Date"
-msgstr "Ngày phê duyệt cuối cùng"
-
-msgid "Abuse Reports ({num})"
-msgstr "Báo cáo lạm dụng ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Xếp hạng người dùng xấu ({num})"
-
-msgid "Theme Images"
-msgstr "Hình ảnh chủ đề"
-
-msgid "Rendered Preview"
-msgstr "Xem trước đã được kết xuất"
-
-msgid "More about this add-on"
-msgstr "Thông tin thêm về tiện ích"
-
-msgid "Image Gallery"
-msgstr "Trưng bày Hình ảnh"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Không có gì để thấy ở đây!  Nhà phát triển đã không bao gồm bất kỳ chi tiết nào."
-
-msgid "Add-on name translations"
-msgstr "Bản dịch tên tiện ích"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Công cụ xét duyệt – Tiện ích cho Firefox"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Quay trở lại bảng điều khiển Công cụ đánh giá"
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr "Xếp hạng"
-
-msgid "Score"
-msgstr "Điểm"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Nhật ký kiểm duyệt người xét duyệt – Tiện ích cho Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Bộ lọc"
-
-msgid "Date"
-msgstr "Ngày"
-
-msgid "Event"
-msgstr "Sự kiện"
-
-msgid "More details."
-msgstr "Thêm chi tiết."
-
-msgid "No events found for this period."
-msgstr ""
-
-msgid "Log details"
-msgstr "Chi tiết lưu kí"
-
-msgid "Review Author"
-msgstr "Đánh giá tác giả"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Tiêu đề tiện ích"
-
-msgid "Review Text"
-msgstr "Văn bản xét duyệt"
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr "Hoàn tác xóa"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr " – Công cụ xét duyệt – Tiện ích cho Firefox"
-
-msgid "Back to review"
-msgstr "Quay lại xét duyệt"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Đánh giá nội dung – Tiện ích cho Firefox"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Tiện ích được phê duyệt tự động - Tiện ích cho Firefox"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Tiện ích không liệt kê – Tiện ích cho Firefox"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Yêu cầu thông tin đã hết hạn"
-
-msgid "Process Reviews"
-msgstr "Tiến hành Xét duyệt"
-
-msgid "Moderation actions:"
-msgstr "Thao tác điều chỉnh:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5451,270 +4691,12 @@ msgstr "bởi %(user)s lúc %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Được gắn cờ bởi %(user)s trên %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Tất cả xét duyệt đã được điều chỉnh. Làm tốt lắm!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Hiện không có tiện ích nào kiểu này để xét duyệt."
-
-msgid "Helpful Links:"
-msgstr "Liên kết Hữu ích:"
-
-msgid "Add-on Policy"
-msgstr "Chính sách Tiện ích"
-
-msgid "Reviewer's Guide"
-msgstr "Hướng dẫn đánh giá"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Tiện ích cho Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr "Bạn không được phép đánh giá nó."
-
-msgid "Add-on important changes history"
-msgstr "Lịch sử thay đổi quan trọng của tiện ích"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr "Cập nhật bảng trắng"
-
-msgid "Add-on History"
-msgstr "Lịch sử tiện ích"
-
-msgid "Please select one or more versions in the list below."
-msgstr "Vui lòng chọn một hoặc nhiều phiên bản trong danh sách dưới đây."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Bạn vẫn có thể gửi biểu mẫu này, tuy nhiên chỉ làm như vậy nếu bạn biết nó sẽ không xung đột."
-
-msgid "Insert canned response..."
-msgstr "Chèn mẫu phản hồi sẵn..."
-
-msgid "Files:"
-msgstr "Tập tin:"
-
-msgid "Tested on:"
-msgstr "Đã thử nghiệm trên:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Cảnh báo!</strong> Một người dùng khác đã xem trang này trước bạn."
-
-msgid "More Actions"
-msgstr "Hành động thêm"
-
-msgid "Notify me about new listed versions"
-msgstr "Thông báo cho tôi về các phiên bản mới được liệt kê"
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Thông báo cho tôi về các phiên bản mới được liệt kê"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Xem tất cả các đệ trình"
-
-msgid "Deny resubmission"
-msgstr "Từ chối gửi lại"
-
-msgid "Force-disable add-on"
-msgstr "Buộc vô hiệu hóa tiện ích"
-
-msgid "Force-enable add-on"
-msgstr "Buộc kích hoạt tiện ích mở rộng"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Bật tự động phê duyệt"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Bật tự động phê duyệt"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Tự động phê duyệt hiện bị vô hiệu hóa cho đến {date}"
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Bật tự động phê duyệt"
-
-msgid "Clear pending rejections"
-msgstr "Xóa các từ chối đang chờ xử lý"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Xóa cờ đánh giá đoạn mã của quản trị"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Xóa cờ đánh giá nội dung của quản trị"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Xóa cờ đánh giá chủ đề tĩnh của quản trị"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Xem tất cả các đệ trình"
-
-msgid "Block add-on"
-msgstr "Chặn tiện ích"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(quản trị viên)"
-
-msgid "Admin Page"
-msgstr "Trang quản trị"
-
-msgid "Review This Add-on"
-msgstr "Xét duyệt Tiện ích này"
-
-msgid "Overview"
-msgstr "Tổng quan"
-
-msgid "More Information"
-msgstr "Thông tin Thêm"
-
-msgid "Important Changes"
-msgstr "Thay đổi quan trọng"
-
-msgid "Resolution"
-msgstr "Giải pháp"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Nhật ký đánh giá tiện ích – Tiện ích cho Firefox"
-
-msgid "Reviewer"
-msgstr "Người xét duyệt"
-
-msgid "Add-on has been deleted."
-msgstr "Tiện ích đã bị xóa."
-
-msgid "Show Comments"
-msgstr "Hiện bình luận"
-
-msgid "Hide Comments"
-msgstr "Ẩn bình luận"
-
-msgid "No reviews found for this period."
-msgstr "Không tìm thấy đánh giá nào trong khoảng thời gian này."
-
-msgid "Origin:"
-msgstr "Nguồn gốc:"
-
-msgid "Method:"
-msgstr "Phương thức:"
-
-msgid "Source:"
-msgstr "Nguồn:"
-
-msgid "Source URL:"
-msgstr "URL nguồn:"
-
-msgid "Dismiss this announcement"
-msgstr "Bỏ thông báo này"
-
-msgid "Download file"
-msgstr "Tải xuống tập tin"
-
-msgid "Validation results"
-msgstr ""
-
-msgid "Browse all files in this version"
-msgstr "Duyệt qua tất cả các tập tin trong phiên bản này"
-
-msgid "Browse contents"
-msgstr "Duyệt nội dung"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "So sánh phiên bản này với phiên bản cuối cùng được xét duyệt"
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Quyền hạn:"
-
-msgid "Optional permissions:"
-msgstr "Quyền hạn tùy chọn:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Bởi %(user)s vào %(date)s</div>"
-
-msgid "Older"
-msgstr "Cũ hơn"
-
-msgid "Newer"
-msgstr "Mới hơn"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} phiên bản được gắn cờ bởi máy quét trên các trang khác."
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} phiên bản được gắn cờ để người xem xét trên các trang khác."
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} phiên bản đang chờ từ chối trên các trang khác."
-
-msgid "Recent Points"
-msgstr "Điểm gần đây"
-
-msgid "No points awarded yet."
-msgstr ""
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Người Đánh giá Hạng nhất (7 ngày trước)"
-
-msgid "No top reviewers yet."
-msgstr ""
-
-msgid "All Time"
-msgstr "Từ Trước đến Nay"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Bạn có <span>{0}</span> điểm."
-
-msgid "No results found"
-msgstr "Không tìm thấy kết quả nào"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5723,94 +4705,6 @@ msgstr "%(user)s vào %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Phiên bản %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(Đã xác nhận)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "Đang chờ từ chối về việc xét duyệt phiên bản mới"
-
-msgid "Compatibility:"
-msgstr "Khả năng tương thích:"
-
-msgid "Additional sources:"
-msgstr "Nguồn bổ sung:"
-
-msgid "Download files"
-msgstr "Tải xuống tập tin"
-
-msgid "The developer has provided source code."
-msgstr "Nhà phát triển đã cung cấp mã nguồn."
-
-msgid "Maliciousness Score:"
-msgstr "Điểm độc hại:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Điểm độc hại thể hiện khả năng phiên bản này là độc hại, dựa trên phát hiện của máy quét."
-
-msgid "Scanners results:"
-msgstr "Kết quả quét:"
-
-msgid "Flagged for human review"
-msgstr "Đã gắn cờ cho người đánh giá"
-
-msgid "Download"
-msgstr "Tải xuống"
-
-msgid "Not Auto Approved Because"
-msgstr "Không được tự động phê duyệt vì"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Tập lệnh tự động phê duyệt chưa được chạy trên phiên bản này."
-
-msgid "This version has not been reviewed."
-msgstr "Phiên bản này chưa được xét duyệt."
-
-msgid "Other Pending Review"
-msgstr "Đang chờ xét duyệt khác"
-
-msgid "Updates"
-msgstr "Cập nhật"
-
-msgid "Rating Reviews"
-msgstr "Đánh giá xếp hạng"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "Auto Approved"
-msgstr "Tự động phê duyệt"
-
-msgid "Pending Rejection"
-msgstr "Đang chờ từ chối"
-
-msgid "presence of matched rules"
-msgstr ""
-
-msgid "result state"
-msgstr "trạng thái kết quả"
-
-msgid "Excluding results solely matching these rules"
-msgstr "Loại trừ các kết quả chỉ phù hợp với các quy tắc này"
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Xem trước phiên bản được liệt kê"
-
-msgid "version channel"
-msgstr "kênh phiên bản"
-
-msgid "add-on status"
-msgstr "trạng thái tiện ích"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Danh sách hiển thị"
-
-msgid "file status"
-msgstr "trạng thái tập tin"
-
-msgid "file signature"
-msgstr "chữ ký tập tin"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Đây là tên chính xác của quy tắc được sử dụng bởi trình quét."
@@ -5845,12 +4739,6 @@ msgstr "Khi bỏ chọn, kết quả trình quét sẽ không bị ràng buộc 
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Chạy quy tắc này trên các tiện ích cũng đã bị vô hiệu hóa."
-
-msgid "Abort"
-msgstr "Hủy bỏ"
-
-msgid "Run"
-msgstr "Chạy"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5901,6 +4789,9 @@ msgstr "Bạn không thể thêm phiên bản được liệt kê vào tiện í
 msgid "No uploaded file for that add-on and version."
 msgstr "Không có tập tin nào được tải lên cho tiện ích và phiên bản đó."
 
+msgid "Overview"
+msgstr "Tổng quan"
+
 msgid "by Source"
 msgstr "theo Nguồn"
 
@@ -5942,6 +4833,9 @@ msgstr "Từ"
 
 msgid "To"
 msgstr "Tới"
+
+msgid "Update"
+msgstr "Cập nhật"
 
 msgid "Export"
 msgstr "Xuất"
@@ -6156,6 +5050,9 @@ msgstr "Đi"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Trở lại trang chủ Tiện ích {0}"
 
+msgid "Add-ons"
+msgstr "Tiện ích"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Đăng ký</a> hoặc <a href=\"%(login)s\">Đăng nhập</a>"
@@ -6194,41 +5091,6 @@ msgstr "Bạn có chắc chắn muốn xóa tất cả <b>{0}</b> bản dịch k
 
 msgid "Delete Locale"
 msgstr "Xóa ngôn ngữ"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "Người dùng \"%(user)s\" đã bị cấm."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Ảnh của người dùng \"%(user)s\" đã bị xóa."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Người dùng \"%(users)s\" đã bị cấm."
-
-msgid "Ban selected users"
-msgstr "Cấm người dùng đã chọn"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Người dùng \"%(users)s\" đã đặt lại (các) phiên của họ."
-
-msgid "Reset session"
-msgstr "Đặt lại phiên"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Người dùng \"%(users)s\" đã đặt lại khóa API của họ."
-
-msgid "Reset API Key"
-msgstr "Đặt lại khóa API"
-
-msgid "Profile Photo"
-msgstr "Hình ảnh Hồ sơ"
-
-msgid "Collections"
-msgstr "Bộ sưu tập"
 
 msgid "IP Address"
 msgstr "Địa chỉ IP"
@@ -6313,15 +5175,6 @@ msgstr "Vai trò tác giả đã được thay đổi trên tiện ích của b�
 
 msgid "An author has been removed from your add-on"
 msgstr "Một tác giả đã bị xóa khỏi tiện ích của bạn"
-
-msgid "Ban"
-msgstr "Cấm"
-
-msgid "Reset session(s)"
-msgstr "Đặt lại (các) phiên"
-
-msgid "Delete picture"
-msgstr "Xóa ảnh"
 
 #, python-format
 msgid ""

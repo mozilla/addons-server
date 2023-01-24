@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2021-05-04 00:37+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,11 @@ msgstr ""
 "Generated-By: Babel 2.5.1\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "ruwäch"
-
-msgid "Users"
-msgstr "Rub'i' okisanel"
-
-msgid "Add-ons"
-msgstr "Taq tz'aqat"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "ko'öl rutzijol (molon ruma ri guid)"
-
-msgid "User / Add-on"
-msgstr "Winäq / Tz'aqat"
-
-msgid "Distribution"
-msgstr "Rujachik"
-
-msgid "Reporter's country"
-msgstr "Ramaq' ri ya'öl rutzijol"
-
-msgid "Message excerpt"
-msgstr "Ch'uti tzijol"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "Xya' ketal chi ri taq %d rutzijol samaj echa'on e ütz."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "Ri %d rutzijol xcha' xya' ketal achi'el e ya'öl k'ayewal. "
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Tiya' ketal achi'el etz'ilanel ri rutzijol cha'on taq k'ayewal"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Tatz'eta' chi re k'ojlib'äl re' man nik'o ta chi re ri {max_length} taq tz'ib'."
 
 msgid "Invalid value"
 msgstr ""
-
-msgid "Modified on:"
-msgstr "Jalon pa:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Ruma %(filter_title)s"
-
-msgid "All"
-msgstr "Ronojel"
 
 msgid "No links are allowed."
 msgstr "Majun ximonel ya'on q'ij chi re."
@@ -124,31 +78,6 @@ msgstr "Xa xe tikirel yetz'aqatisäx ch'utitzijol pa ri ruk'isib'äl taq kiwäch
 
 msgid "Request content length is too large."
 msgstr ""
-
-msgid "Authors"
-msgstr "Taq b'anel"
-
-msgid "Ratings"
-msgstr "Kejqalem"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-msgid "Reviewer links"
-msgstr "Kiximöy Nik'onel"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-msgid "Activity Logs"
-msgstr "Kitz'ib'axik Samaj"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Tz'aqat man wachel ta pa AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
@@ -284,18 +213,6 @@ msgstr "Taq Nutz'aqat"
 
 msgid "My Themes"
 msgstr "Taq Nuwachinel"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Taq Rusamajib'al Nik'onel (xcholajïx)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Taq Rusamajib'al Nik'onel (man xcholajïx ta)"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
-
-msgid "creation date"
-msgstr "ruq'ijul tz'ukuj"
 
 msgid "Tools"
 msgstr "Taq samajib'äl"
@@ -532,9 +449,6 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
-msgid "Signoff State"
-msgstr "Rub'anikil Rutz'apixik Molojri'ïl"
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s nitaq na"
@@ -565,59 +479,6 @@ msgstr "Xcholajïx Nik'oxïk"
 
 msgid "Review Unlisted"
 msgstr "Man Xcholajïx Ta Nik'oxïk"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Keyuj K'ïy Ruwäch %(name)s"
-
-msgid "Home"
-msgstr "Tikirib'äl"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s Tz'aqat GUIDs man xilitäj ta"
-
-msgid "Save"
-msgstr "Tiyak"
-
-msgid "Save and add more"
-msgstr "Tiyak chuqa' titz'aqatisäx ch'aqa'"
-
-msgid "Delete"
-msgstr "Tiyuj"
-
-msgid "Update"
-msgstr "Tik'ex"
-
-msgid "Reject Submission"
-msgstr "Tixutüx K'utunïk"
-
-msgid "Approve Submission"
-msgstr "Ütz Titz'et K'utunïk"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Titz'aqatisäx %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "Titz'aqatisäx GUIDs (jujun pa cholaj)"
-
-msgid "Submit"
-msgstr "Titaq"
-
-#, fuzzy, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s Tz'aqat GUIDs"
-
-msgid "Edit Block"
-msgstr "Tinuk' Peraj"
-
-msgid "versions"
-msgstr "Taq ruwäch"
 
 msgid "{addon} was created."
 msgstr "{addon} xtz'uk."
@@ -1550,108 +1411,6 @@ msgstr "Yalan Ütz (2)"
 msgid "Excellent (3)"
 msgstr "Jwi' (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "Ketal Ajq'ab'aj Nik'onela'"
-
-msgid "New Legacy Add-on Review"
-msgstr "K'ak'a' Rutzijoxik Ichinan Tz'aqat"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nab'ey Rutzijoxik Tz'aqat"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Xk'ex Runik'oxik Ichinan Tz'aqat"
-
-msgid "New Dictionary Review"
-msgstr "K'ak'a' Rutzijoxik Sotzij"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nab'ey Rutzijoxik Soltzij"
-
-msgid "Updated Dictionary Review"
-msgstr "Xk'ex Rutzijoxik Soltzij"
-
-msgid "New Language Pack Review"
-msgstr "K'ak'a' Rutzijoxik Tanaj Ch'ab'äl"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nab'ey Rutzijoxik Tanaj Ch'ab'äl"
-
-msgid "Updated Language Pack Review"
-msgstr "Xk'ex Rutzijoxik Tanaj Ch'ab'äl"
-
-msgid "Theme Review"
-msgstr "Rutzijoxik Wachinel"
-
-msgid "Theme (Static) Review"
-msgstr "Runik'oxik ri Wachinel (Mesilon)"
-
-msgid "New Search Provider Review"
-msgstr "K'ak'a' Rejqalem Ajya'öl richin Kanoxïk"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nab'ey Rejqalem Ajya'öl richin Kanoxïk"
-
-msgid "Updated Search Provider Review"
-msgstr "Xk'ex Rejqalem Ajya'öl richin Kanoxïk"
-
-msgid "New Complete Theme Review"
-msgstr "K'ak'a' Rejqalem Tz'aqät Wachinel"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nab'ey Rejqalem Tz'aqät Wachinel"
-
-msgid "Updated Complete Theme Review"
-msgstr "Xk'ex Rejqalem Tz'aqät Wachinel"
-
-msgid "Moderated Add-on Review"
-msgstr "Xwetch'owïx Rutzijoxik Tz'aqat"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Xchojmirisäx ri retch'owik Runik'oxik Tz'aqat"
-
-msgid "Add-on Content Review"
-msgstr "Runik'oxik Rupam Tz'aqat"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Runik'oxik Tz'aqat (Nïm Ruk'ayewal)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Runik'oxik Tz'aqat (Nïm Ruk'ayewal)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Runik'oxik Tz'aqat(Loman Ruk'ayewal)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Runik'oxik Tz'aqat (Ko'öl Ruk'ayewal)"
-
-msgid "Level 1"
-msgstr "Chojwi' 1"
-
-msgid "Level 2"
-msgstr "Chojwi' 2"
-
-msgid "Level 3"
-msgstr "Chojwi' 3"
-
-msgid "Level 4"
-msgstr "Chojwi' 4"
-
-msgid "Level 5"
-msgstr "Chojwi' 5"
-
-msgid "Level 6"
-msgstr "Chojwi' 6"
-
-msgid "Level 7"
-msgstr "Chojwi' 7"
-
-msgid "Level 8"
-msgstr "Chojwi' 8"
-
-msgid "Level 9"
-msgstr "Chojwi' 9"
-
 msgid "Request More Info"
 msgstr "Tik'utüx Ch'aqa' Etamab'äl"
 
@@ -1667,32 +1426,8 @@ msgstr "Tixutüx"
 msgid "Approve"
 msgstr "Xjuch'"
 
-msgid "Sexual or pornographic content"
-msgstr "Jisil o jisowäch rupam"
-
-msgid "Inappropriate or offensive content"
-msgstr "Tz'ilonel o mek'amonel rupam"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Oyowal, lab'al, o q'aq' taq wachib'äl"
-
-msgid "Nazi or other hate content"
-msgstr "Nasi o itzelanïk rupam"
-
-msgid "Defamatory content"
-msgstr "Q'ab'an tzij rupam"
-
-msgid "Online gambling"
-msgstr "Molöl ixim etz'anem pa k'amab'ey"
-
-msgid "Spam content"
-msgstr "Seq'tzijol rupam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "B'achab'ïk, yuqun o pa saqil wachib'äl"
-
-msgid "Header image alignment problem"
-msgstr "Ruk'ayewal rucholajem wachib'äl pa ri jub'i'aj"
+msgid "All"
+msgstr "Ronojel"
 
 msgid "Theme"
 msgstr "Wachinel"
@@ -2299,6 +2034,9 @@ msgstr "Tixutüx"
 msgid "Manage Authors & License"
 msgstr "Kenuk'samajïx B'anel & Ya'öl Q'ij"
 
+msgid "Authors"
+msgstr "Taq b'anel"
+
 msgid "About author roles"
 msgstr "Chi rij kisamaj b'anel"
 
@@ -2640,6 +2378,9 @@ msgstr "Titikïr chik el"
 
 msgid "Delete this add-on."
 msgstr "Tiyuj re tz'aqat re'."
+
+msgid "Delete"
+msgstr "Tiyuj"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -4947,9 +4688,6 @@ msgstr "Nrajo' na ri \"upload\" tzij pa ri kiyakb'al multipart."
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-msgid "User"
-msgstr "Okisanel"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Man ruk'amon ta ri eltzijol o jun chik rupam"
 
@@ -5007,523 +4745,9 @@ msgstr "Ya'on {0} richin 5 ch'umil"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ya'on %(rating)s richin 5 taq ch'umil"
 
-msgid "Approved reviews"
-msgstr "Ütz taq ejqalem"
-
-msgid "Deleted reviews"
-msgstr "Keyuj ri taq ejqalem"
-
-msgid "View entries between"
-msgstr "Ketz'et taq okem chi kikojol"
-
-msgid "and"
-msgstr "chuqa'"
-
-msgid "Filter by type/action"
-msgstr "Tichayüx rik'in ruwäch/action"
-
-msgid "containing"
-msgstr "k'wayon"
-
-msgid "start"
-msgstr "titikirisäx"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "ruchi'"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "tz'aqat, nuk'unel o tzijoxïk"
-
-msgid "Comments:"
-msgstr "Taq tzijoxïk"
-
-msgid "Operating systems:"
-msgstr "Samajel taq q'inoj:"
-
-msgid "Applications:"
-msgstr "Taq chokoy:"
-
-#, fuzzy
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Tik'utüx chi tutzolij pe tzij ri b'anonel pa…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "taq q'ij"
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr "Ticha' jun k'o wi chi tzolin tzij..."
-
-msgid "Private Whiteboard"
-msgstr "Ichinan Tz'ib'ab'äl"
-
-msgid "Keep review; remove flags"
-msgstr "Tik'oje' na nik'oxïk; keyuj taq yaketal"
-
-msgid "Skip for now"
-msgstr "Wakami tuk'owisaj"
-
-msgid "Delete review"
-msgstr "Tiyuj tzijoxïk"
-
-msgid "Needs Admin Code Review"
-msgstr "Nrajo' Runik'oxik Rub'itz'ib' Nuk'samajel"
-
-msgid "Needs Admin Content Review"
-msgstr "Nrajo' Runik'oxik Ka'i' Oxi' Rutzij Nuk'samajel"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "K'atzinel Ninik'öx ri Mesilon Wachinel Ruma ri Nuk'samajel"
-
-msgid "Sources provided"
-msgstr "Ya'on taq xe'el"
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr "Q'aton ruma jun nik'onel."
-
-#, fuzzy
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Achupun retal ruyon-ütz-nitz'et."
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-#, fuzzy
-msgid "You can't submit an empty comment."
-msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-msgid "ID"
-msgstr "ID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Tiya' ketal"
-
-msgid "Last Review"
-msgstr "Ruk'isib'äl nik'oxïk"
-
-#, fuzzy
-msgid "Code Weight"
-msgstr "Ralal"
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Ralal"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "Ruwäch"
-
-msgid "Due Date"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
-
-msgid "Last Updated"
-msgstr "Ruk'isib'äl K'exoj"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Runik'oxik Rajil ({0})"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Runik'oxik Rajil ({0})"
-
-msgid "Listed version"
-msgstr "Cholajin ruwäch"
-
-msgid "Unlisted versions ({0})"
-msgstr "Cholajin taq ruwäch ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Re re' ütz xtutz'ët, xtujüx chuqa' xtrelesaj rutzijol ri ruwäch. Xkeruk'ül ri taq na'oj ri b'anonel."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Re re' xtuyüj re ruwäch re' chuqa' xtuyüj el pa kicholajem nik'oxïk. Xtitaq taq na'oj chi re r' b'anobnel."
-
-msgid "Approve Content"
-msgstr "Ütz Titz'et Rupam"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
-
-msgid "Confirm Approval"
-msgstr "Tijikib'äx Ütz Tz'etoj"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Ri ruk'isib'äl ruwäch re tz'aqat re' ri elesan rutzijol ruyonil ütz xtz'et. Re re' nuyäk ri ajikib'anik richin ütz rutz'etik re ruwäch re', akuchi' man xya' ta rutzijol chi re ri b'anonel."
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr "Kexutüx K'ïy taq Ruwäch"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Re re' xkeruyüj ri taq ruwäch echa'on. Xkeruk'ül ri taq na'oj ri b'anonel."
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Kexutüx K'ïy taq Ruwäch"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Kexutüx K'ïy taq Ruwäch"
-
-#, fuzzy
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
-
-msgid "Reviewer reply"
-msgstr "Tzolin rutzij nik'onel"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Re re' xtutäq rutzijol chi re ri b'anonel. Xtiya' rutzijol toq xtitzolïx pe tzij."
-
-msgid "Request super-review"
-msgstr "Tik'utüx nimanik'oxïk"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "We nana'ojij chi ri nuk'samajel k'o ta chi nunik'oj re tz'aqat re', katzib'an kan pa xulan. Man xtiqatäq ta chi re ri b'anonel."
-
-msgid "Comment"
-msgstr "Tzijoxïk"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Tatzijoj rij re ruwäch re'. Man xtitikïr ta xtutz'ët ri b'anonel."
-
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Kenik'öx taq Tz'aqat"
-
-msgid "Recommended ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Runik'oxik Rajil ({0})"
-
-msgid "Review Log"
-msgstr "Kitz'ib'axik Nik'oxïk"
-
-msgid "Add-on Review Guide"
-msgstr "Rucholajem Runik'oxik Tz'aqat"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr "Ruyon Ütz Etz'eton taq Tz'aqat"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Ruyon Ütz Etz'eton taq Tz'aqat ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Kitz'ib'axik Runik'oxik Tz'aqat"
-
-msgid "Review Guide"
-msgstr "Ruk'amöl Nik'oxïk"
-
-msgid "Content Review"
-msgstr "Runik'oxik Rupam"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgstr "Runik'oxik Rupam ({0})"
-
-msgid "New ({0})"
-msgstr "K'ak'a' ({0})"
-
-msgid "Updates ({0})"
-msgstr "Taq k'exoj ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Rucholajem Rutzijoxik Wachinel"
-
-msgid "User Ratings Moderation"
-msgstr "Kiwetwachinik ri Kejaqalem Okisanela'"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Kiwetwachinik Oyob'en taq Ejqalem ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Kitz'ib'axik Etwachin taq Nik'oxïk"
-
-msgid "Moderation Guide"
-msgstr "Kicholajil Etwachinela'"
-
-msgid "Unlisted Add-ons"
-msgstr "Mecholajin taq Tz'aqat"
-
-msgid "All Unlisted Add-ons"
-msgstr "Ronojel Mecholajin taq Tz'aqat"
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Tichup Ruyon-Ütz-Nitz'et"
-
-msgid "Announcement"
-msgstr "Eltzijol"
-
-msgid "Update message of the day"
-msgstr "Tik'ex ri tzijol wakami"
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Runik'oxik Rajil ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Xk'ulwachitäj jun man etaman ta ruwäch chi sachoj."
-
-msgid "Self-reviews are not allowed."
-msgstr "Man ya'on ta q'ij chi ke ri kiyon yenik'on."
-
-msgid "Review successfully processed."
-msgstr "Ütz xsamajïx ri nik'oxïk."
-
-msgid "Review lock limit reached"
-msgstr "Xq'i' ruchi' kiq'atoj taq nik'oxïk"
-
-#, fuzzy
-msgid "{addon} – EULA"
-msgstr "{addon} :: EULA"
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} :: Runa'ojil Ichinanem"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Rutz'ijol Tz'ilanem ruma {addon} chuqa' rub'anonela' ({num})"
-
-msgid "Abuse Reports"
-msgstr "Kitzijol Tz'ilanem"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Retamab'al Tz'aqat richin {0}"
-
-#, fuzzy
-msgid "Add-on ID"
-msgstr "Tz'aqat"
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Tijux Tz'aqat"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-#, fuzzy
-msgid "Support Website"
-msgstr "Ruxaq Ruk'amaya'l Tob'äl:"
-
-msgid "Visibility"
-msgstr "Wachel"
-
-msgid "Visible"
-msgstr "Tz'etel"
-
-msgid "Weekly Downloads"
-msgstr "Wuqq'ijul taq Qasanïk"
-
-msgid "Average Daily Users"
-msgstr "Kipajik Okisanela' Q'ij Q'ij"
-
-msgid "View Privacy Policy"
-msgstr "Titz'et Runa'ojil Ichinanem"
-
-msgid "Requires Payment"
-msgstr "K'o chi Nitoj"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Titz'et ri Rutununa'oj Ya'öl Q'ij richin K'isib'äl Okisanel"
-
-msgid "Last Approval Date"
-msgstr "Ruk'isib'äl Q'ij Ütz Nitz'et"
-
-msgid "Abuse Reports ({num})"
-msgstr "Kitzijol Tz'ilanem ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Kejqalem Itzel Okisanel ({num})"
-
-msgid "Theme Images"
-msgstr "Kiwachib'al Wachinel"
-
-msgid "Rendered Preview"
-msgstr "Nab'ey Rutzub'al Xb'an"
-
-msgid "More about this add-on"
-msgstr "Ch'aqa' chik chi rij re tz'aqat re'"
-
-msgid "Image Gallery"
-msgstr "Ruwachib'al Wachib'äl Jay"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "¡Majun tz'etel wawe'!   Majun rub'anikil xutz'aqatisaj ri b'anonel."
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "chi Ruwäch Tz'aqat"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Titzolin pa ri ruxaq Rusamajib'al Nik'onel"
-
-msgid "Reviewer Leaderboard"
-msgstr "Rupas Rajil Nik'onel"
-
-msgid "No review points awarded yet."
-msgstr "K'a wakami majun rajil ya'on."
-
-msgid "Rank"
-msgstr "K'ojlib'äl"
-
-msgid "Score"
-msgstr "Rejqalem"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Tichayüx"
-
-msgid "Date"
-msgstr "Q'ijul"
-
-msgid "Event"
-msgstr "Molojri'ïl"
-
-msgid "More details."
-msgstr "Ch'aqa' chik rub'anikil."
-
-msgid "No events found for this period."
-msgstr "Majun molojri'ïl xe'ilitäj pa re q'ijul re'."
-
-msgid "Log details"
-msgstr "Kib'anikil kitz'ib'anik"
-
-msgid "Review Author"
-msgstr "Rub'anel Nik'oxïk"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Rub'i' Tz'aqat"
-
-msgid "Review Text"
-msgstr "Tinik'öx Tz'ib'anïk"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Ri nik'oxik ya'on retal richin niyuj."
-
-msgid "Undelete"
-msgstr "Man tiyuj"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "Titzolin pa runik'oxik"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Ruyon Ütz Etz'eton taq Tz'aqat"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
-
-msgid "Process Reviews"
-msgstr "Kesamajïx taq Nik'oxïk"
-
-msgid "Moderation actions:"
-msgstr "Kib'anik taq Etwachinïk:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5533,280 +4757,12 @@ msgstr "ruma %(user)s pa %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ya'on retal ruma %(user)s ri %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Xek'is ronojel ri taq nik'oxïk. ¡Ütz asamaj!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Majun ruwäch re tz'aqat re richin ninik'öx."
-
-msgid "Helpful Links:"
-msgstr "Jeb'ël taq Ximonel:"
-
-msgid "Add-on Policy"
-msgstr "Kina'ojil Tz'aqat"
-
-msgid "Reviewer's Guide"
-msgstr "Kik'amöl Nik'onela'"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Taq tz'aqat richin Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "Man k'o ta API awujil."
-
-#, fuzzy
-msgid "Add-on important changes history"
-msgstr "Jalon runatab'al rokisanel tz'aqat"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Ri ichinan tz'alamtz'ib'äl nokisäx richin chi ri nik'onela' kikek'exela' etamab'äl chuqa' rujachon ri' rik'in ri ruwäch. Jikïl tzij nrokisaj. Xa xe wachel chi kiwäch ri nik'onela'."
-
-msgid "Update whiteboards"
-msgstr "Kek'ex tz'alamtz'ib'ab'äl"
-
-msgid "Add-on History"
-msgstr "Runatab'al Tz'aqat"
-
-#, fuzzy
-msgid "Please select one or more versions in the list below."
-msgstr "Tacha' jun o ch'aqa' chik ruwäch pa ri rucholb'äl ajsik."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "K'a yatikïr natäq re nojwuj re', ütz we awetaman chi majun k'ayewal."
-
-msgid "Insert canned response..."
-msgstr "Tinim jun k'o wi chi tzolin tzij..."
-
-msgid "Files:"
-msgstr "Taq yakb'äl:"
-
-msgid "Tested on:"
-msgstr "Tojtob'en pa:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>¡K'ayewal!</strong> Jun chik okisanel xutz'ët re ruxaq re' chawäch."
-
-msgid "More Actions"
-msgstr "Ch'aqa' chik taq B'anoj"
-
-msgid "Notify me about new listed versions"
-msgstr "Tiya' rutzijol chwe toq k'o k'ak'a' ch'olajin ruwäch"
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Tiya' rutzijol chwe toq k'o k'ak'a' ch'olajin ruwäch"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Ketz'eto Ronojel ri Etaqon"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Kenuk'samajïx Taq Nutaqoj"
-
-msgid "Force-disable add-on"
-msgstr "Tib'an chi tichup ri tz'aqat"
-
-msgid "Force-enable add-on"
-msgstr "Tib'an chi titzij ri tz'aqat"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Tichup Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Tichup Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Tichup Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Tichup Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-#, fuzzy
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Achupun retal ruyon-ütz-nitz'et."
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Titzij Ruyon-Ütz-Nitz'et"
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Tijosq'ïx Retal Runik'oxik Rub'itz'ib' Nuk'samajel"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Tijosq'ïx Retal Runik'oxik Rupam Nuk'samajel"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Tijosq'ïx Retal Runik'oxik Che' Ruwachinel Nuk'samajel"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Ketz'eto Ronojel ri Etaqon"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Titzolin pa Tz'aqat"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(nuk'samajel)"
-
-msgid "Admin Page"
-msgstr "Ruxaq Nuk'samajinïk"
-
-msgid "Review This Add-on"
-msgstr "nik'öx Re Tz'aqat Re'"
-
-msgid "Overview"
-msgstr "Chijun rutzijoxkil"
-
-msgid "More Information"
-msgstr "Ch'aqa' chik Rutzijol"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "Rusaqil"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "Nik'onel"
-
-msgid "Add-on has been deleted."
-msgstr "Xyuj ri tz'aqat."
-
-msgid "Show Comments"
-msgstr "Kek'ut Ka'i' oxi' Na'oj"
-
-msgid "Hide Comments"
-msgstr "Ke'ewäx Ka'i' Oxi' Na'oj"
-
-msgid "No reviews found for this period."
-msgstr "Majun nik'oxïk xe'ilitäj pa re q'ijul re'."
-
-msgid "Origin:"
-msgstr "Ruxe'el:"
-
-msgid "Method:"
-msgstr "B'eyal:"
-
-#, fuzzy
-msgid "Source:"
-msgstr "chi Ruxe'el"
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "chi Ruxe'el"
-
-msgid "Dismiss this announcement"
-msgstr "Titz'apïx re rutzijol re'"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "Taq ruyakb'al re ruwäch re':"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Taq ya'oj q'ij:"
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "Taq ya'oj q'ij:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div> Ruma %(user)s pa %(date)s</div>"
-
-msgid "Older"
-msgstr "Ojer"
-
-msgid "Newer"
-msgstr "K'ak'a'"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "K'ak'a' Rajil"
-
-msgid "No points awarded yet."
-msgstr "K'a majun rajil ya'on."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Samajel Nik'onela' (ruk'isib'äl 7 taq q'ij)"
-
-msgid "No top reviewers yet."
-msgstr "Majun nik'onel ya'on ruq'ij."
-
-msgid "All Time"
-msgstr "Ronojel Q'ij"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "K'o <span>{0}</span> taq awajil."
-
-msgid "No results found"
-msgstr "Majun achike xilitäj"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5815,104 +4771,6 @@ msgstr "%(user)s pa %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Ruwäch %(version)s &middot; %(created)s <span class=\"light\">&middot;%(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(Xjikib'äx)"
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
-
-msgid "Compatibility:"
-msgstr "K'amonïk:"
-
-msgid "Additional sources:"
-msgstr "Rutz'aqat ruxe'el:"
-
-msgid "Download files"
-msgstr "Ruyakb'al qasanïk"
-
-msgid "The developer has provided source code."
-msgstr "Xuya' ri ruxe'el b'itz'ib' ri b'anonel."
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "Runik'oxik Rajil ({0})"
-
-msgid "Download"
-msgstr "Tiqasäx"
-
-msgid "Not Auto Approved Because"
-msgstr "Man Ruyon ta Ütz Tz'eton Ruma"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "K'a man samajib'en ta ri runuk' ruyon ütz nitz'et pa re ruwäch re'."
-
-msgid "This version has not been reviewed."
-msgstr "Man nik'on ta re ruwäch re'."
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Runik'oxik Rajil ({0})"
-
-#, fuzzy
-msgid "Updates"
-msgstr "Tik'ex"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Noyob'ëx Nik'oxïk"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "Ruyon Ütz Nitz'et ({0})"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Runik'oxik Rajil ({0})"
-
-msgid "presence of matched rules"
-msgstr ""
-
-#, fuzzy
-msgid "result state"
-msgstr "Titikirisäx"
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Nab'ey rutzub'al ri cholajin ruwäch"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Ruwäch Juch'un"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Kib'anikilTz'aqat"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Kitz'etik cholb'äl"
-
-#, fuzzy
-msgid "file status"
-msgstr "Rub'anikil Ruxaq K'amaya'l"
-
-#, fuzzy
-msgid "file signature"
-msgstr "{file} xjuch'."
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5947,12 +4805,6 @@ msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
-msgstr "Tib'anatäj"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6006,6 +4858,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "Chijun rutzijoxkil"
+
 msgid "by Source"
 msgstr "chi Ruxe'el"
 
@@ -6048,6 +4903,9 @@ msgstr "Richin"
 
 msgid "To"
 msgstr "Chi re"
+
+msgid "Update"
+msgstr "Tik'ex"
 
 msgid "Export"
 msgstr "Tik'wäx el"
@@ -6263,6 +5121,9 @@ msgstr "Jo'"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
 
+msgid "Add-ons"
+msgstr "Taq tz'aqat"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Rutz'ib'axik b'i'aj</a></a> o <a href=\"%(login)s\">Titikirisäx molojri'ïl</a>"
@@ -6301,43 +5162,6 @@ msgstr "¿La kan nawajo' ye'ayüj ri taq <b>{0}</b> tzalq'omanïk? Man xkatikïr
 
 msgid "Delete Locale"
 msgstr "Tiyuj Ch'ab'äl"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "Xyuj ri okisanel \"%(user)s\"."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Xyuj ruwachib'al ri okisanel \"%(user)s\"."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
-
-msgid "Ban selected users"
-msgstr "Kech'aqïx el ri okisanela' echa'on"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
-
-#, fuzzy
-msgid "Reset session"
-msgstr "Tiyuj Ruwäch"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
-
-#, fuzzy
-msgid "Reset API Key"
-msgstr "Kenuk'samajïx API Kik'u'x Tzij"
-
-msgid "Profile Photo"
-msgstr "Ruwachib'al Ruwäch B'i'aj"
-
-msgid "Collections"
-msgstr "Taq mol"
 
 msgid "IP Address"
 msgstr "IP Ochochib'äl"
@@ -6428,16 +5252,6 @@ msgstr "Jun b'anel xujäl jun samaj pan atz'aqat"
 
 msgid "An author has been removed from your add-on"
 msgstr "Jun b'anel xuyüj el pa ri atz'aqat"
-
-msgid "Ban"
-msgstr "Tik'aq"
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "Tiyuj Ruwäch"
-
-msgid "Delete picture"
-msgstr "Tiyuj wachib'äl"
 
 #, python-format
 msgid ""

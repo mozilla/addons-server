@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -15,60 +15,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr ""
-
-#, fuzzy
-msgid "Users"
-msgstr "Корисничко име"
-
-msgid "Add-ons"
-msgstr "Додаци"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr ""
-
-#, fuzzy
-msgid "User / Add-on"
-msgstr "Сви додаци"
-
-#, fuzzy
-msgid "Distribution"
-msgstr "Опис"
-
-msgid "Reporter's country"
-msgstr ""
-
-msgid "Message excerpt"
-msgstr ""
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr ""
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
-
-#, fuzzy
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Погрешно постављен извештај о грешци или захтев за подршку"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Invalid value"
-msgstr ""
-
-msgid "Modified on:"
-msgstr ""
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr ""
-
-msgid "All"
 msgstr ""
 
 msgid "No links are allowed."
@@ -127,33 +77,6 @@ msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
 msgid "Request content length is too large."
-msgstr ""
-
-msgid "Authors"
-msgstr "Аутори"
-
-msgid "Ratings"
-msgstr "Оцене"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "Рецензенти"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-#, fuzzy
-msgid "Activity Logs"
-msgstr "Активност"
-
-msgid "- Add-on not on AMO -"
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -292,21 +215,6 @@ msgstr "Моји додаци"
 
 msgid "My Themes"
 msgstr "Моје теме"
-
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Рецензенти"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Рецензенти"
-
-msgid "Git-Extract"
-msgstr ""
-
-#, fuzzy
-msgid "creation date"
-msgstr "Акције модерације:"
 
 msgid "Tools"
 msgstr "Алати"
@@ -551,9 +459,6 @@ msgstr "Ово корисничко име не може да се корист�
 msgid "This add-on already belongs to the collection"
 msgstr "Овај url је у употреби од стране друге колекције"
 
-msgid "Signoff State"
-msgstr ""
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -587,64 +492,6 @@ msgstr "Захтевана рецензија"
 #, fuzzy
 msgid "Review Unlisted"
 msgstr "Датум рецензије"
-
-#, fuzzy, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Верзија за штампање"
-
-#, fuzzy
-msgid "Home"
-msgstr "Почетна"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr "Сачувај"
-
-msgid "Save and add more"
-msgstr ""
-
-msgid "Delete"
-msgstr "Избриши"
-
-msgid "Update"
-msgstr "Ажурирај"
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "Моје доставе"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "Моје доставе"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-#, fuzzy
-msgid "Submit"
-msgstr "Поднеси нови додатак"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr ""
-
-#, fuzzy
-msgid "versions"
-msgstr "Верзије"
 
 msgid "{addon} was created."
 msgstr "{addon} је креиран."
@@ -1641,122 +1488,6 @@ msgstr ""
 msgid "Excellent (3)"
 msgstr ""
 
-msgid "Manual Reviewer Points"
-msgstr "Поени самосталног рецензента"
-
-#, fuzzy
-msgid "New Legacy Add-on Review"
-msgstr "Пуна рецензија додатка"
-
-msgid "Preliminary Add-on Review"
-msgstr "Прелиминарна рецензија додатка"
-
-#, fuzzy
-msgid "Updated Legacy Add-on Review"
-msgstr "Ажурирана рецензија додатка"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Пуна рецензија речника"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Прелиминарна рецензија речника"
-
-msgid "Updated Dictionary Review"
-msgstr "Ажурирана рецензија речника"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Пуна рецензија језичког пакета"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Прелиминарна рецензија језичког пакета"
-
-msgid "Updated Language Pack Review"
-msgstr "Ажурирана рецензија језичког пакета"
-
-msgid "Theme Review"
-msgstr "Рецензија теме"
-
-#, fuzzy
-msgid "Theme (Static) Review"
-msgstr "Детаљи теме"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Пуна рецензија претраживача"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Прелиминарна рецензија претраживача"
-
-msgid "Updated Search Provider Review"
-msgstr "Ажурирана рецензија претраживача"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Пуна рецензија теме"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Прелиминарна рецензија потпуне теме"
-
-msgid "Updated Complete Theme Review"
-msgstr "Ажурирана рецензија потпуне теме"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Рецензија уређене апликације"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Модерација рецензије додатка је поништена"
-
-#, fuzzy
-msgid "Add-on Content Review"
-msgstr "Извршити рецензију"
-
-#, fuzzy
-msgid "Add-on Review (Highest Risk)"
-msgstr "Пуна рецензија додатка"
-
-#, fuzzy
-msgid "Add-on Review (High Risk)"
-msgstr "Дневник рецензија додатка"
-
-#, fuzzy
-msgid "Add-on Review (Medium Risk)"
-msgstr "Пуна рецензија додатка"
-
-#, fuzzy
-msgid "Add-on Review (Low Risk)"
-msgstr "Дневник рецензија додатка"
-
-msgid "Level 1"
-msgstr "Ниво 1"
-
-msgid "Level 2"
-msgstr "Ниво 2"
-
-msgid "Level 3"
-msgstr "Ниво 3"
-
-msgid "Level 4"
-msgstr "Ниво 4"
-
-msgid "Level 5"
-msgstr "Ниво 5"
-
-msgid "Level 6"
-msgstr "Ниво 6"
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
-msgstr ""
-
 msgid "Request More Info"
 msgstr "Захтевај више информација"
 
@@ -1772,32 +1503,8 @@ msgstr "Одбиј"
 msgid "Approve"
 msgstr "Одобри"
 
-msgid "Sexual or pornographic content"
-msgstr "Сексуални или порнографски садржај"
-
-msgid "Inappropriate or offensive content"
-msgstr "Неприкладан или увредљив садржај"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Насиље, рат или слике оружја"
-
-msgid "Nazi or other hate content"
-msgstr "Нацистички или други садржај мржње"
-
-msgid "Defamatory content"
-msgstr "Клеветнички садржај"
-
-msgid "Online gambling"
-msgstr "Онлајн коцкање"
-
-msgid "Spam content"
-msgstr "Спам садржај"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Лошег квалитета, истегнута или празна слика"
-
-msgid "Header image alignment problem"
-msgstr "Проблем равнања слике заглавља"
+msgid "All"
+msgstr ""
 
 msgid "Theme"
 msgstr "Тема"
@@ -2418,6 +2125,9 @@ msgstr ""
 msgid "Manage Authors & License"
 msgstr "Управљајте Ауторима и лиценцама"
 
+msgid "Authors"
+msgstr "Аутори"
+
 msgid "About author roles"
 msgstr "О улогама аутора"
 
@@ -2765,6 +2475,9 @@ msgstr "Наставак"
 
 msgid "Delete this add-on."
 msgstr "Избришите овај додатак."
+
+msgid "Delete"
+msgstr "Избриши"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -5088,10 +4801,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-#, fuzzy
-msgid "User"
-msgstr "Корисничко име"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Спам или други садржај не-рецензентног типа"
 
@@ -5153,564 +4862,9 @@ msgstr "Оцењено са {0} од 5 звездица"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Оцењено са %(rating)s од 5 звездица"
 
-msgid "Approved reviews"
-msgstr "Одобрене критике"
-
-msgid "Deleted reviews"
-msgstr "Обрисане критике"
-
-msgid "View entries between"
-msgstr "Погледај уносе између"
-
-msgid "and"
-msgstr "и"
-
-msgid "Filter by type/action"
-msgstr "Филтрирај по типу/радњи"
-
-msgid "containing"
-msgstr "који садрже"
-
-msgid "start"
-msgstr "почетак"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "крај"
-
-#. L10n: Description of what can be searched for
-#, fuzzy
-msgid "add-on, reviewer or comment"
-msgstr "додатак, уредник или коментар"
-
-msgid "Comments:"
-msgstr "Коментари:"
-
-msgid "Operating systems:"
-msgstr "Оперативни системи:"
-
-msgid "Applications:"
-msgstr "Апликације:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-#, fuzzy
-msgid "days"
-msgstr "7 дана"
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr "Изабери готов одговор..."
-
-#, fuzzy
-msgid "Private Whiteboard"
-msgstr "Табла"
-
-msgid "Keep review; remove flags"
-msgstr "Задржи рецензију; уклони заставице"
-
-msgid "Skip for now"
-msgstr "Прескочи за сада"
-
-msgid "Delete review"
-msgstr "Обрисана критика"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Рецензија администратора"
-
-#, fuzzy
-msgid "Needs Admin Content Review"
-msgstr "Извршити рецензију"
-
-#, fuzzy
-msgid "Needs Admin Static Theme Review"
-msgstr "Рецензија администратора"
-
-msgid "Sources provided"
-msgstr "Пружени извори"
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-#, fuzzy
-msgid "Is locked by a reviewer"
-msgstr "mој додатак је прегледан од стране уредника"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-msgid "You can't submit an empty comment."
-msgstr ""
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-#, fuzzy
-msgid "ID"
-msgstr "GUID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Ознаке"
-
-msgid "Last Review"
-msgstr ""
-
-msgid "Code Weight"
-msgstr ""
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Укупно рецензија"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Due Date"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "Захтеване додатне информације"
-
-#, fuzzy
-msgid "Last Updated"
-msgstr "Последње ажурирање:"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Конторлисан преглед ({0})"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Конторлисан преглед ({0})"
-
-#, fuzzy
-msgid "Listed version"
-msgstr "Погледајте друге верзије"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "Погледајте друге верзије"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ово ће одбити додатак и уклонити га са листе чекања."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Дозволи / одбиј"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Approval"
-msgstr "Одобрење у току"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Reject Multiple Versions"
-msgstr "Верзија за штампање"
-
-#, fuzzy
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Ово ће одбити додатак и уклонити га са листе чекања."
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Верзија за штампање"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Верзија за штампање"
-
-#, fuzzy
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ово ће одбити додатак и уклонити га са листе чекања."
-
-#, fuzzy
-msgid "Reviewer reply"
-msgstr "Програмерске вести"
-
-#, fuzzy
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Користите ову форму да бисте захтевали више информација од аутора. Примиће е-пошту и биће у могућности овде да одговори. Бићете обавештени путем е-поште када одговори."
-
-msgid "Request super-review"
-msgstr "Захтевај супер-рецензију"
-
-#, fuzzy
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"Ако бринете о безбедности овог додатка, о његовим ауторским правима, или неким другим стварима које би администратор требао да погледа, унесите Ваш коментар у поље испод. Биће послат "
-"администраторима, не аутору."
-
-msgid "Comment"
-msgstr "Коментариши"
-
-#, fuzzy
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Коментаришите ову верзију. Аутор неће бити у могућности да га види."
-
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Прегледај овај додатак"
-
-msgid "Recommended ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Конторлисан преглед ({0})"
-
-#, fuzzy
-msgid "Review Log"
-msgstr "Датум рецензије"
-
-#, fuzzy
-msgid "Add-on Review Guide"
-msgstr "Пуна рецензија додатка"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-Approved Add-ons"
-msgstr "Додаци за Android"
-
-#, fuzzy
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Сви моји додаци"
-
-msgid "Add-on Review Log"
-msgstr "Дневник рецензија додатка"
-
-#, fuzzy
-msgid "Review Guide"
-msgstr "Водич за рецензенте"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Извршити рецензију"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgstr "Конторлисан преглед ({0})"
-
-#, fuzzy
-msgid "New ({0})"
-msgstr "Сви моји додаци"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "Ажурирано {0}"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Ред прегледања тема"
-
-msgid "User Ratings Moderation"
-msgstr ""
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr "Контролисан дневник прегледа"
-
-#, fuzzy
-msgid "Moderation Guide"
-msgstr "Акције модерације:"
-
-#, fuzzy
-msgid "Unlisted Add-ons"
-msgstr "Сви додаци"
-
-#, fuzzy
-msgid "All Unlisted Add-ons"
-msgstr "Сви додаци"
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Статус дозволе"
-
-msgid "Announcement"
-msgstr "Саопштење"
-
-msgid "Update message of the day"
-msgstr "Ажурирај поруку дана"
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Конторлисан преглед ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Појавила се непозната грешка"
-
-msgid "Self-reviews are not allowed."
-msgstr "Сопствене рецензије нису дозвољене."
-
-msgid "Review successfully processed."
-msgstr "Рецензија успешно процесирана."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-#, fuzzy
-msgid "{addon} – EULA"
-msgstr "{addon} :: Извештаји злостављања"
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "Овај додатак има Полису приватности"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Извештаји о злостављању за {addon} ({num})"
-
-msgid "Abuse Reports"
-msgstr "Извештаји о злоупотреби"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Информације о {0} додатку"
-
-#, fuzzy
-msgid "Add-on ID"
-msgstr "Додатак"
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Пошаљи додатак"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-#, fuzzy
-msgid "Support Website"
-msgstr "Сајт подршке"
-
-msgid "Visibility"
-msgstr ""
-
-msgid "Visible"
-msgstr ""
-
-#, fuzzy
-msgid "Weekly Downloads"
-msgstr "Преузимања"
-
-msgid "Average Daily Users"
-msgstr "Просечани дневни корисници"
-
-msgid "View Privacy Policy"
-msgstr "Погледај полису приватности"
-
-#, fuzzy
-msgid "Requires Payment"
-msgstr "Потребна поља"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Погледајте Уговор о лиценци софтвера за крајњег корисника"
-
-#, fuzzy
-msgid "Last Approval Date"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Abuse Reports ({num})"
-msgstr "Извештаји о злостављању за {addon} ({num})"
-
-#, fuzzy
-msgid "Bad User Ratings ({num})"
-msgstr "({num}) уређена рецензија"
-
-#, fuzzy
-msgid "Theme Images"
-msgstr "назив теме"
-
-#, fuzzy
-msgid "Rendered Preview"
-msgstr "Обрисане критике"
-
-msgid "More about this add-on"
-msgstr "Више о овом додатку"
-
-msgid "Image Gallery"
-msgstr "Галерија слика"
-
-#, fuzzy
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Ту нема ништа за видети! Програмер није обухватио никакве детаље."
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "по верзији додатка"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Врати се на почетну страницу Алатке уредника"
-
-msgid "Reviewer Leaderboard"
-msgstr "Табела лидере рецезената"
-
-msgid "No review points awarded yet."
-msgstr "Још нема награђених поена за рецензију."
-
-msgid "Rank"
-msgstr "Позиција"
-
-msgid "Score"
-msgstr "Резултат"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Филтрирај"
-
-msgid "Date"
-msgstr "Датум"
-
-msgid "Event"
-msgstr "Догађај"
-
-msgid "More details."
-msgstr "Више детаља."
-
-msgid "No events found for this period."
-msgstr "Нема пронађених догађаја за овај период."
-
-msgid "Log details"
-msgstr "Детаљи дневника"
-
-#, fuzzy
-msgid "Review Author"
-msgstr "Историја рецензија"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr ""
-
-msgid "Add-on Title"
-msgstr "Наслов додатка"
-
-msgid "Review Text"
-msgstr "Прегледај текст"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Рецензија је означена пре брисања."
-
-msgid "Undelete"
-msgstr "Поништи брисање"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "Назад на рецензије"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Додаци за Android"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Захтеване додатне информације"
-
-msgid "Process Reviews"
-msgstr "Процесирај рецензије"
-
-msgid "Moderation actions:"
-msgstr "Акције модерације:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5720,286 +4874,12 @@ msgstr "од %(user)s дана %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Означио %(user)s дана %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Све рецензије су уређене. Свака част!"
-
-# %1 is the queue mode
-msgid "There are currently no add-ons of this type to review."
-msgstr "Тренутно нема додатака овог типа за преглед."
-
-msgid "Helpful Links:"
-msgstr "Корисне везе:"
-
-msgid "Add-on Policy"
-msgstr "Политика додатка"
-
-#, fuzzy
-msgid "Reviewer's Guide"
-msgstr "Водич за рецензенте"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "Немам налог."
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-#, fuzzy
-msgid "Update whiteboards"
-msgstr "Ажурирај таблу"
-
-msgid "Add-on History"
-msgstr "Историјат додатка"
-
-msgid "Please select one or more versions in the list below."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Још увек можете доставити овај форум, али само у случају ако знате да неће правити конфликт."
-
-msgid "Insert canned response..."
-msgstr "Унеси готов одговор..."
-
-msgid "Files:"
-msgstr "Датотеке:"
-
-msgid "Tested on:"
-msgstr "Тестирано:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Упозорење!</strong> Други корисник је прегледавао ову страницу пре Вас."
-
-#, fuzzy
-msgid "More Actions"
-msgstr "Још опција:"
-
-msgid "Notify me about new listed versions"
-msgstr ""
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Ово је најновија верзија, али још увек није јавна на сајту."
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Погледај све верзије"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Управљај мојим доставама"
-
-msgid "Force-disable add-on"
-msgstr ""
-
-#, fuzzy
-msgid "Force-enable add-on"
-msgstr "Верзија за штампање"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Статус дозволе"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Статус дозволе"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Статус дозволе"
-
-msgid "Clear pending rejections"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Уклони ознаку за рецензију администратора"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Уклони ознаку за рецензију администратора"
-
-#, fuzzy
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Уклони ознаку за рецензију администратора"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Погледај све верзије"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Назад на додатке"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(администратор)"
-
-msgid "Admin Page"
-msgstr "Админ страница"
-
-msgid "Review This Add-on"
-msgstr "Прегледај овај додатак"
-
-msgid "Overview"
-msgstr "Преглед"
-
-msgid "More Information"
-msgstr "Више информација"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "Резолуција"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "Рецензент"
-
-msgid "Add-on has been deleted."
-msgstr "Додатак је избрисан."
-
-msgid "Show Comments"
-msgstr "Прикажи коментаре"
-
-msgid "Hide Comments"
-msgstr "Сакриј коментаре"
-
-msgid "No reviews found for this period."
-msgstr "Није пронађена ни једна рецензија за овај период."
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr ""
-
-#, fuzzy
-msgid "Source:"
-msgstr "по извору"
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "по извору"
-
-msgid "Dismiss this announcement"
-msgstr "Одбаци ову најаву"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "Датотеке у овој верзији:"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-#, fuzzy
-msgid "Permissions:"
-msgstr "Верзије"
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "Верзије"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Од %(user)s дана %(date)s</div>"
-
-msgid "Older"
-msgstr "Старије"
-
-msgid "Newer"
-msgstr "Новије"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "Недавно додељени поени"
-
-msgid "No points awarded yet."
-msgstr "Нема додељених бодова."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Најбољи рецензенти (у последњих 7 дана)"
-
-msgid "No top reviewers yet."
-msgstr "Још увек нема листе најбољих рецензената."
-
-msgid "All Time"
-msgstr "Све време"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Имате <span>{0}</span> поена."
-
-msgid "No results found"
-msgstr "Нема пронађених резултата"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -6008,103 +4888,6 @@ msgstr "%(user)s дана %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Верзија %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "Захтеване додатне информације"
-
-msgid "Compatibility:"
-msgstr "Компатибилност:"
-
-msgid "Additional sources:"
-msgstr "Додатни извори:"
-
-msgid "Download files"
-msgstr "Преузми датотеке"
-
-msgid "The developer has provided source code."
-msgstr "Програмер је пружио изворни код."
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "Конторлисан преглед ({0})"
-
-msgid "Download"
-msgstr "Преузми"
-
-#, fuzzy
-msgid "Not Auto Approved Because"
-msgstr "Додаци за Android"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "Ова верзија није прегледана."
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Конторлисан преглед ({0})"
-
-#, fuzzy
-msgid "Updates"
-msgstr "Ажурирај"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Чекам оцену"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "Сви моји додаци"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Конторлисан преглед ({0})"
-
-msgid "presence of matched rules"
-msgstr ""
-
-#, fuzzy
-msgid "result state"
-msgstr "Како почети"
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Погледајте друге верзије"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Белешке о верзији"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Статус додатка"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Историјат додатка"
-
-msgid "file status"
-msgstr ""
-
-msgid "file signature"
-msgstr ""
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -6138,12 +4921,6 @@ msgid "When unchecked, the scanner results will not be bound to this rule and th
 msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, fuzzy, python-format
@@ -6195,6 +4972,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "Преглед"
+
 msgid "by Source"
 msgstr "по извору"
 
@@ -6237,6 +5017,9 @@ msgstr "Од"
 
 msgid "To"
 msgstr "За"
+
+msgid "Update"
+msgstr "Ажурирај"
 
 msgid "Export"
 msgstr "Извоз"
@@ -6458,6 +5241,9 @@ msgstr "Крени"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Вратите се на почетну страницу {0} додатака"
 
+msgid "Add-ons"
+msgstr "Додаци"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Региструјте налог</a> или се <a href=\"%(login)s\">пријавите</a>"
@@ -6496,42 +5282,6 @@ msgstr "Да ли сте сигурни да желите да уклоните 
 
 msgid "Delete Locale"
 msgstr "Избриши локал"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr ""
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr ""
-
-msgid "Ban selected users"
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
-
-#, fuzzy
-msgid "Reset session"
-msgstr "Обриши верзију"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
-
-msgid "Reset API Key"
-msgstr ""
-
-msgid "Profile Photo"
-msgstr "Профилна слика"
-
-msgid "Collections"
-msgstr "Колекције"
 
 #, fuzzy
 msgid "IP Address"
@@ -6619,18 +5369,6 @@ msgstr "Аутор је променио улогу Вашег додатка"
 
 msgid "An author has been removed from your add-on"
 msgstr "Аутор је уклоњен са Вашег додатка"
-
-#, fuzzy
-msgid "Ban"
-msgstr "и"
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "Обриши верзију"
-
-#, fuzzy
-msgid "Delete picture"
-msgstr "Обриши моју корисничку слику"
 
 #, python-format
 msgid ""

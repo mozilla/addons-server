@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2023-01-23 16:44+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "typ"
-
-msgid "Users"
-msgstr "Wužiwarjo"
-
-msgid "Add-ons"
-msgstr "Přidatki"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "minimalna ličba rozprawow (zeskupjenych po guid)"
-
-msgid "User / Add-on"
-msgstr "Wužiwar / přidatk"
-
-msgid "Distribution"
-msgstr "Distribucija"
-
-msgid "Reporter's country"
-msgstr "Kraj rozprawjerja"
-
-msgid "Message excerpt"
-msgstr "Wućah powěsće"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "%d wubranych rozprawow je so jako płaćiwe markěrowało."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d wubranych rozprawow je so jako podhladne markěrowało."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Wubrane znjewužiwanske zdźělenja jako podhladne markěrować"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Prošu zawěsćće, zo tute polo wjace hač {max_length} znamješkow nima."
 
 msgid "Invalid value"
 msgstr "Njepłaćiwa hódnota"
-
-msgid "Modified on:"
-msgstr "Změnjeny:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Po %(filter_title)s"
-
-msgid "All"
-msgstr "Wšě"
 
 msgid "No links are allowed."
 msgstr "Wotkazy dowolene njejsu."
@@ -123,31 +77,6 @@ msgstr "Přispomnjenki dadźa so jenož najnowšim wersijam přidatkow přidać.
 
 msgid "Request content length is too large."
 msgstr "Dołhosć naprašowanskeho wobsaha je přewulka."
-
-msgid "Authors"
-msgstr "Awtorojo"
-
-msgid "Ratings"
-msgstr "Pohódnoćenja"
-
-msgid "Review (listed)"
-msgstr "Pohódnoćenje (nalistowane)"
-
-msgid "Review (unlisted)"
-msgstr "Pohódnoćenje (njenalistowane)"
-
-msgid "Reviewer links"
-msgstr "Wotkazy za přepruwowarjow"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Git-ekstrakcija je so za „%(addons)s“ wuwabiła."
-
-msgid "Activity Logs"
-msgstr "Protokole aktiwnosće"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Přidatk na AMO njeje -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maksimalna ličba kategorijow na nałoženje ({MAX_CATEGORIES}) je překročena"
@@ -285,18 +214,6 @@ msgstr "Moje přidatki"
 msgid "My Themes"
 msgstr "Moje drasty"
 
-msgid "Reviewer Tools (listed)"
-msgstr "Nastroje za přepruwowarjow (nalistowane)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Nastroje za přepruwowarjow (njenalistowane)"
-
-msgid "Git-Extract"
-msgstr "Git-ekstrakt"
-
-msgid "creation date"
-msgstr "datum wutworjenja"
-
 msgid "Tools"
 msgstr "Nastroje"
 
@@ -374,8 +291,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Widźiće tutu powěsć, dokelž tute HTTPS-sydło hłowowu linku ‚Referer‘ trjeba, kotruž waš wobhladowak dyrbi słać, ale njeje pósłał. Tuta hłowowa linka je trěbna z přičinow wěstoty, zo by zawěsćiła, zo"
-" so waš wobhladowak wot třećich njekapruje."
+"Widźiće tutu powěsć, dokelž tute HTTPS-sydło hłowowu linku ‚Referer‘ trjeba, kotruž waš wobhladowak dyrbi słać, ale njeje pósłał. Tuta hłowowa linka je trěbna z přičinow wěstoty, zo by zawěsćiła, "
+"zo so waš wobhladowak wot třećich njekapruje."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "Jeli sće swój wobhladowak konfigurował, zo byšće hłowowe linki ‚Referer‘ znjemóžnił, zmóžńće je zaso prošu, znajmjeńša za tute sydło abo za HTTPS-zwiski abo za naprašowanja ‚same-origin‘."
@@ -391,17 +308,17 @@ msgstr "Njenamakany"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Bohužel njemóžemy namakać, štož pytaće.</h1> <p> Strona abo dataja, wo kotruž sće prosył, njeje so na našim sydle namakała. Je móžno, zo sće na zestarjeny wotkaz kliknył abo adresu wopak "
-"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, %(open_bug_link)spisajće prošu zmylkowu "
-"rozprawu%(close_bug_link)s. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo móžeće prosće k někotrym z "
-"woblubowanych stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a href=\"%(search)s\">přidatki pytać</a>? "
-"Móžeće k <a href=\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće k <a href=\"%(home)s\">startowej "
-"stronje přidatkow</a>. </li> </ul>"
+"zapisał. </p> <ul> <li>Jeli sće adresu zapisał, klikńće dwójce, zo byšće prawopis kontrolował.</li> <li> Jeli sće wotkazej wot něhdźe slědował, %(open_bug_link)spisajće prošu zmylkowu rozprawu"
+"%(close_bug_link)s. Zdźělće nam, zwotkelž sće přišoł a za čimž sće pytał, a my budźemy naše najlěpše činić, zo bychmy problem rozrisali. </li> </ul> <p>Abo móžeće prosće k někotrym z woblubowanych "
+"stronow na našim websydle skočić.</p> <ul> <li>Zajimujeće so za <a href=\"%(rec)s\">lisćinu předstajenych přidatkow</a>?</li> <li> Chceće <a href=\"%(search)s\">přidatki pytać</a>? Móžeće k <a href="
+"\"%(search)s\">pytanskej stronje</a> přeńć abo prosće pytanske polo horjeka wužiwać. </li> <li> Jeli chceće radšo znowa započeć, dźiće prosće k <a href=\"%(home)s\">startowej stronje přidatkow</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Hopla"
@@ -411,8 +328,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Hopla! Zmylk je wustupił.</h1> <p>Budźemy problem bórze rozrisować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a href=\"%(home)s\">startowej stronje přidatkow</a>. Móžeće nam tež"
-" pomhać to rozrisać, hdyž <a href=\"https://github.com/mozilla/addons/issues/new\">zmylkowu rozprawu pisaće</a>, z podrobnosćemi, kak sće so k tutej stronje dóstał.</p>"
+"<h1>Hopla! Zmylk je wustupił.</h1> <p>Budźemy problem bórze rozrisować.</p><p> Móžeće spytać, stronu aktualizować abo wróćće so k <a href=\"%(home)s\">startowej stronje přidatkow</a>. Móžeće nam "
+"tež pomhać to rozrisać, hdyž <a href=\"https://github.com/mozilla/addons/issues/new\">zmylkowu rozprawu pisaće</a>, z podrobnosćemi, kak sće so k tutej stronje dóstał.</p>"
 
 msgid "Register or Log in"
 msgstr "Registrować abo přizjewić"
@@ -529,9 +446,6 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
 
-msgid "Signoff State"
-msgstr "Status schwalenja"
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr "GUID %(guid)s je we wustejacym zapodaću"
@@ -562,59 +476,6 @@ msgstr "Nalistowane přepruwować"
 
 msgid "Review Unlisted"
 msgstr "Njenalistowane přepruwować"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Wjacore %(name)s zhašeć"
-
-msgid "Home"
-msgstr "Startowa strona"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "LIčba přidatkowych GUID, kotrež su so hižo za %(v_min)s do %(v_max)s zablokowali: %(count)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "Ličba přidatkowych GUID, kotrež njejsu so namakali: %(count)s"
-
-msgid "Save"
-msgstr "Składować"
-
-msgid "Save and add more"
-msgstr "Składować a wjace přidać"
-
-msgid "Delete"
-msgstr "Zhašeć"
-
-msgid "Update"
-msgstr "Aktualizować"
-
-msgid "Reject Submission"
-msgstr "Zapodaće wotpokazać"
-
-msgid "Approve Submission"
-msgstr "Zapodaće schwalić"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s přidać"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "GUID přidatkow (jedyn na linku)"
-
-msgid "Submit"
-msgstr "Zapodać"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "Ličba přidatkowych GUIDs: %(count)s - ličba wužiwarjow: %(adu)s"
-
-msgid "Edit Block"
-msgstr "Blok wobdźěłać"
-
-msgid "versions"
-msgstr "wersije"
 
 msgid "{addon} was created."
 msgstr "{addon} je so wutworił."
@@ -1518,108 +1379,6 @@ msgstr "Jara dobry (2)"
 msgid "Excellent (3)"
 msgstr "Wuběrny (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "Dypki za manuelne přepruwowanje"
-
-msgid "New Legacy Add-on Review"
-msgstr "Nowe přepruwowanje zestarjeneho přidatka"
-
-msgid "Preliminary Add-on Review"
-msgstr "Nachwilne přepruwowanje přidatka"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Zaktualizowane přepruwowanje zestarjeneho přidatka"
-
-msgid "New Dictionary Review"
-msgstr "Nowe přepruwowanje słownika"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Nachwilne přepruwowanje słownika"
-
-msgid "Updated Dictionary Review"
-msgstr "Přepruwowanje zaktualizowaneho słownika"
-
-msgid "New Language Pack Review"
-msgstr "Nowe přepruwowanje rěčneho pakćika"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Nachwilne přepruowanje rěčneho pakćika"
-
-msgid "Updated Language Pack Review"
-msgstr "Přepruwowanje zaktualizowaneho rěčneho pakćika"
-
-msgid "Theme Review"
-msgstr "Přepruwowanje drasty"
-
-msgid "Theme (Static) Review"
-msgstr "Přepruwowanje (statiskeje) drasty"
-
-msgid "New Search Provider Review"
-msgstr "Nowe přepruwowanje pytanskeho poskićowarja"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Nachwilne přepruwowanje pytanskeho poskićowarja"
-
-msgid "Updated Search Provider Review"
-msgstr "Přepruwowanje zaktualizowaneho pytanskeho poskićowarja"
-
-msgid "New Complete Theme Review"
-msgstr "Nowe přepruwowanje dospołneje drasty"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Nachwilne přepruwowanje dospołneje drasty"
-
-msgid "Updated Complete Theme Review"
-msgstr "Přepruwowanje zaktualizowaneje dospołneje drasty"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderěrowane pohódnoćenje přidatka"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Moderacija za pohódnoćenje přidatka je so anulowała"
-
-msgid "Add-on Content Review"
-msgstr "Přepruwowanje wobsaha přidatka"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Přepruwowanje přidatka (najwyše riziko)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Přepruwowanje přidatka (wysoke riziko)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Přepruwowanje přidatk (srjedźne riziko)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Přepruwowanje přidatka (niske riziko)"
-
-msgid "Level 1"
-msgstr "Schodźenk 1"
-
-msgid "Level 2"
-msgstr "Schodźenk 2"
-
-msgid "Level 3"
-msgstr "Schodźenk 3"
-
-msgid "Level 4"
-msgstr "Schodźenk 4"
-
-msgid "Level 5"
-msgstr "Schodźenk 5"
-
-msgid "Level 6"
-msgstr "Schodźenk 6"
-
-msgid "Level 7"
-msgstr "Schodźenk 7"
-
-msgid "Level 8"
-msgstr "Schodźenk 8"
-
-msgid "Level 9"
-msgstr "Schodźenk 9"
-
 msgid "Request More Info"
 msgstr "Dalše informacije požadać"
 
@@ -1635,32 +1394,8 @@ msgstr "Wotpokazać"
 msgid "Approve"
 msgstr "Schwalić"
 
-msgid "Sexual or pornographic content"
-msgstr "Seksualny abo pornografiski wobsah"
-
-msgid "Inappropriate or offensive content"
-msgstr "Njepřistojny abo křiwdźacy wobsah"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Wobrazy wo namocy, wójnje abo brónjach"
-
-msgid "Nazi or other hate content"
-msgstr "Nacistiski abo druhi hidu rozšěrjacy wobsah"
-
-msgid "Defamatory content"
-msgstr "Přisłodźaty wobsah"
-
-msgid "Online gambling"
-msgstr "Hraće wo zbožo online"
-
-msgid "Spam content"
-msgstr "Spam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Wobraz niskeje kwality, rozćehnjeny abo prózdny wobraz"
-
-msgid "Header image alignment problem"
-msgstr "Problem z wusměrjenjom hłowoweho wobraza"
+msgid "All"
+msgstr "Wšě"
 
 msgid "Theme"
 msgstr "Drasta"
@@ -2165,7 +1900,9 @@ msgstr ""
 "nowšeje wersije tutoho přidatka."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a href=\"#\" "
 "class=\"close\">Ignorować</a>"
@@ -2267,6 +2004,9 @@ msgstr "Wotpokazać"
 
 msgid "Manage Authors & License"
 msgstr "Awtorow a licencu rjadować"
+
+msgid "Authors"
+msgstr "Awtorojo"
 
 msgid "About author roles"
 msgstr "Wo awtorowych rólach"
@@ -2398,11 +2138,11 @@ msgid "Email"
 msgstr "E-mejlowa adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
-"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane přidatki"
-" relewantne."
+"Jeli chceće e-mejlowu adresu za naprašowanja pomocy pokazać, zapodajće ju tu. Jeli maće rozdźělne adresy za kóždy rěč, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane "
+"přidatki relewantne."
 
 msgid "Website"
 msgstr "Websydło"
@@ -2447,8 +2187,8 @@ msgid "Whiteboard"
 msgstr "Informaciska taflička"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Informaciska tafla je městno, hdźež móžeće přepruwowarjam informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a "
 "dalše informacije podał, kotrež móhli pomhać. Tuta Informaciska tafla da so tež wot přepruwowarjow wobdźěłać."
@@ -2609,6 +2349,9 @@ msgstr "Pokročować"
 
 msgid "Delete this add-on."
 msgstr "Tutón přidatk zhašeć."
+
+msgid "Delete"
+msgstr "Zhašeć"
 
 msgid "Edit details on this add-on's product page"
 msgstr "Podrobnosće na produktowej stronje přidatka wobdźěłać"
@@ -2867,7 +2610,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Dźěłowy system a žadanja tworjenskeje wokoliny."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr "Trěbna wersija a instalaciske instrukcije programow, kotrež so w twarjenskim procesu wužiwaja (na přikład <span class=\"tech-emphasis\">node</span> a <span class=\"tech-emphasis\">npm</span>)."
+msgstr ""
+"Trěbna wersija a instalaciske instrukcije programow, kotrež so w twarjenskim procesu wužiwaja (na přikład <span class=\"tech-emphasis\">node</span> a <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
 msgstr "Žórłowe dataje (nimo bibliotekow wotewrjeneho žórła třećich poskićowarjow) njedadźa so transkompilować, zwjazać, minifikować abo na druhe wašnje přez mašinu wutworić."
@@ -2975,11 +2719,11 @@ msgstr "JWT-kluč"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a "
-"href=\"%(docs_url)s\">API-dokumentaciji</a> wujasnja."
+"Zo byšće API-naprašowanja stajił, pósćelće <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> jako awtorizowansku hłowu. Dyrbiće JWT za kóžde naprašowanje tworić, kaž so to w<a href=\"%(docs_url)s"
+"\">API-dokumentaciji</a> wujasnja."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -3078,17 +2822,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Waženy přidatkowy wužiwarjo,\n"
 "\n"
-"smy zwěsćili, zo waše tajne přizjewjenske daty AMO API su w přidatku wobsahowane, kotryž je so pola addons.mozilla.org zapodał. Zo bychmy waše konto a přidatki škitali, smy roznjesłe přizjewjenske daty wotwołali.\n"
+"smy zwěsćili, zo waše tajne přizjewjenske daty AMO API su w přidatku wobsahowane, kotryž je so pola addons.mozilla.org zapodał. Zo bychmy waše konto a přidatki škitali, smy roznjesłe přizjewjenske "
+"daty wotwołali.\n"
 "Móžeće na %(api_keys_url)s nowe přizjewjenske daty API wutworić \n"
 "\n"
-"Prošu njedźělće swoje přizjewjenske daty z nikim. Njepodajće je ženje w zjawnym repozitoriju, přidatku abo na někajkim druhim městnje.  Poručamy wam, swoje kodowe repozitorije a swoje rozšěrjenja přepruwować, zo byšće referency na waše přizjewjenske daty AMO wotstronił.\n"
+"Prošu njedźělće swoje přizjewjenske daty z nikim. Njepodajće je ženje w zjawnym repozitoriju, přidatku abo na někajkim druhim městnje.  Poručamy wam, swoje kodowe repozitorije a swoje rozšěrjenja "
+"přepruwować, zo byšće referency na waše přizjewjenske daty AMO wotstronił.\n"
 "\n"
 "Wulki dźak,\n"
 "Team přidatkow Mozilla"
@@ -4873,9 +4620,6 @@ msgstr "Falowacy kluč „upload“ we wjacedźělnych datajowych datach."
 msgid "Missing \"channel\" arg."
 msgstr "Falowacy argument „channel“."
 
-msgid "User"
-msgstr "Wužiwar"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam abo druhi wobsah, kotryž pohódnoćenje njeje"
 
@@ -4935,499 +4679,9 @@ msgstr "Z {0} z 5 hwěžkow pohódnoćeny"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Z %(rating)s z 5 hwěžkow pohódnoćeny"
 
-msgid "Approved reviews"
-msgstr "Schwalene přepruwowanja"
-
-msgid "Deleted reviews"
-msgstr "Zhašane přepruwowanja"
-
-msgid "View entries between"
-msgstr "Zapiski sej wobhladać mjez"
-
-msgid "and"
-msgstr "a"
-
-msgid "Filter by type/action"
-msgstr "Po typje/akciji filtrować"
-
-msgid "containing"
-msgstr "z"
-
-msgid "start"
-msgstr "spočatk"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "kónc"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "přidatk, přepruwowar abo komentar"
-
-msgid "Comments:"
-msgstr "Komentary:"
-
-msgid "Operating systems:"
-msgstr "Dźěłowe systemy:"
-
-msgid "Applications:"
-msgstr "Nałoženja:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Wotpokazanje wotstorčić, wuwiwar je trěbny, kotryž koriguje za mjenje hač …"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Hnydom wotpokazać. Wužiwajće to jenož w padźe ćežkich wěstotnych problemow."
-
-msgid "days"
-msgstr "dnjow"
-
-msgid "Choose one or more reasons:"
-msgstr "Wubjerće jednu přičinu abo wjacore přičiny:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Wersijowy konflikt – najnowša wersija je so změniła!"
-
-msgid "Choose a canned response..."
-msgstr "Wubjerće přihotowanu wotmołwu..."
-
-msgid "Private Whiteboard"
-msgstr "Priwatne pokazy"
-
-msgid "Keep review; remove flags"
-msgstr "Přepruwowanje wobchować; markěrowanja wotstronić"
-
-msgid "Skip for now"
-msgstr "Nětko přeskočić"
-
-msgid "Delete review"
-msgstr "Pohódnoćenje zhašeć"
-
-msgid "Needs Admin Code Review"
-msgstr "Žórłowy kod dyrbi so wot administratora přepruwować"
-
-msgid "Needs Admin Content Review"
-msgstr "Wobsah dyrbi so wot administratora přepruwować"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Statiska drasta dyrbi so wot administratora přepruwować"
-
-msgid "Sources provided"
-msgstr "Podate žórła"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Awtomatiske schwalenje je so nachwilu zadźeržało."
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Awtomatiske schwalenje je so na njewěsty čas zadźeržało."
-
-msgid "Is locked by a reviewer"
-msgstr "Je wot přepruwowarja zawrjeny"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Je marku „awtomatiske schwalenje znjemóžnjene/zadźeržane“ stajił"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Je w spěchowanej skupinje přidatkow, za kotruž je předpruwowanje trěbne"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Zadźerženy, dokelž je prěnja podata wersija"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "Znamješkowy rjećazk a GUID wersije blokowanju blokowanskeje lisćiny wotpowědujetej"
-
-msgid "Weight breakdown not available."
-msgstr "Analyza wažnosće k dispoziciji njeje."
-
-msgid "Is available to be used in reviews"
-msgstr "Hodźi so w pohódnoćenjach wužiwać"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "NJemóžeće komentar wotpósłać, jeli ‚canned_response‘ je definowany."
-
-msgid "You can't submit an empty comment."
-msgstr "Njemóžeće prózdny komentar zapodać"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "Njemóžeće linkowe čisło zapodać, bjeztoho zo byšće je datajowemu mjenu připokazał."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Markěrowanja"
-
-msgid "Last Review"
-msgstr "Poslednje přepruwowanje"
-
-msgid "Code Weight"
-msgstr "Wažnosć žórłoweho koda"
-
-msgid "Metadata Weight"
-msgstr "Wažnosć metadatow"
-
-msgid "Total Weight"
-msgstr "Cyłkowna wažnosć"
-
-msgid "Maliciousness Score"
-msgstr "Wuslědk złósće"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Due Date"
-msgstr "Datum płaćiwosće"
-
-msgid "Pending Rejection Deadline"
-msgstr "Termin za wustejace wotpokazanje"
-
-msgid "Last Updated"
-msgstr "Poslednja aktualizacija"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "Nalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Njenalistowane wersije, kotrež sej čłowjeske přepruwowanje wužaduja ({0})"
-
-msgid "Listed version"
-msgstr "Nalistowana wersija"
-
-msgid "Unlisted versions ({0})"
-msgstr "Njenalistowane wersije ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "To tutu wersiju schwala, signěruje a wozjewja. Komentary so wuwiwarjej pósćelu."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "To wotpokaza tutu wersiju a wotstroni jón z čakanskeho rynka. Komentary so wuwiwarjej pósćelu."
-
-msgid "Approve Content"
-msgstr "Wobsah schwalić"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "To waše schwalenje wobsaha najnowšeje zjawneje tuteje wersije registruje bjez toho, zo by so wuwiwar informował."
-
-msgid "Confirm Approval"
-msgstr "Schwalenje wobkrućić"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "Najnowša zjawna wersija tutoho přidatka je so awtomatisce schwaliła. To registruje waše wobkrućenje schwalenja bjez toho, zo by so wuwiwar informował."
-
-msgid "Approve Multiple Versions"
-msgstr "Wjacore wersije schwalić"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "To wubrane wersije schwali. Komentary so na wuwiwarja pósćelu."
-
-msgid "Reject Multiple Versions"
-msgstr "Wjacore wersije wotpokazać"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "To wubrane wersije wotpokaza. Komentary so na wuwiwarja pósćelu."
-
-msgid "Un-reject Versions"
-msgstr "Wotpokazanje wersijow zběhnyć"
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr "To wotpokazanje wubranych wersijow zběhnje, bjeztoho zo by so wuwiwar informował."
-
-msgid "Block Multiple Versions"
-msgstr "Wjacore wersije blokować"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "To wubrane schwalene wersije skradźu znjemóžni a administracisku stronu za wutworjenje blokowanja wočini."
-
-msgid "Confirm Multiple Versions"
-msgstr "Wjacore wersije wobkrućić"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "To schwalenje wubranych wersijow wobkrući, bjeztoho zo by so wuwiwar informował."
-
-msgid "Reviewer reply"
-msgstr "Wotmołwa přepruwowarja"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "To powěsć na wuwiwarja pósćele. Dóstanjeće zdźělenku, hdyž wotmołwja."
-
-msgid "Request super-review"
-msgstr "Superpřepruwowanje požadać"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Jeli maće wobmylsenja při tutym přidatku, tak zo administrator ma jón přepruwować, zapodajće swoje komentary do slědowaceho pola. Na wuwiwarja so njesćelu."
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Komentujće tutu wersiju. Wuwiwar njemóže jón widźeć."
-
-msgid "Pre-Review Add-ons"
-msgstr "Přidatki předpřepruwować"
-
-msgid "Recommended ({0})"
-msgstr "Doporučene ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "Druhe wustejace přepruwowanje ({0})"
-
-msgid "Review Log"
-msgstr "Protokol přepruwowanjow"
-
-msgid "Add-on Review Guide"
-msgstr "Nawod za přepruwowanje přidatkow"
-
-msgid "Human Review Needed"
-msgstr "Čłowjeske přepruwowanje trěbne"
-
-msgid "Versions Needing Human Review"
-msgstr "Wersije, kotrež čłowjeske přepruwowanje trjebaja"
-
-msgid "Flagged by MAD for Human Review"
-msgstr "Wot MAD za čłowjeske přepruwowanje markěrowany"
-
-msgid "Auto-Approved Add-ons"
-msgstr "Awtomatisce schwalene přidatki"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Awtomatisce schwalene přidatki ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Protokol přidatkowych přepruwowanjow"
-
-msgid "Review Guide"
-msgstr "Přewodnik za pohódnoćenja"
-
-msgid "Content Review"
-msgstr "Přepruwowanje wobsaha"
-
-msgid "Content Review ({0})"
-msgstr "Přepruwowanje wobsaha ({0})"
-
-msgid "New ({0})"
-msgstr "Nowy ({0})"
-
-msgid "Updates ({0})"
-msgstr "Aktualizacije ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Nawod za přepruwowanje drastow"
-
-msgid "User Ratings Moderation"
-msgstr "Moderacija wužiwarskich pohódnoćenjow"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Pohódnoćenja, kotrež na moderaciju čakaja ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Protokol moderěrowanych přepruwowanjow"
-
-msgid "Moderation Guide"
-msgstr "Přewodnik moderacije"
-
-msgid "Unlisted Add-ons"
-msgstr "Njenalistowane přidatki"
-
-msgid "All Unlisted Add-ons"
-msgstr "Wšě njenalistowane přidatki"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Njenalistowane přidatki, kotrež na manuelne schwalenje čakaja"
-
-msgid "Announcement"
-msgstr "Připowědźenje"
-
-msgid "Update message of the day"
-msgstr "Powěsć dnja aktualizować"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Přidatki, kotrež na wotpokazanje čakaja ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Njeznaty zmylk je wustupił"
-
-msgid "Self-reviews are not allowed."
-msgstr "Samopřepruwowanja dowolene njejsu."
-
-msgid "Review successfully processed."
-msgstr "Přepruwowanje je so wuspěšnje předźěłało."
-
-msgid "Review lock limit reached"
-msgstr "Limit za pohódnoćenske zawěry docpěty"
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Prawidła priwatnosće"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Rozprawy wo znjewužiwanju – {addon} – Přidatki za Firefox"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
-
-msgid "Abuse Reports"
-msgstr "Rozprawy wo znjewužiwanju"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Přidatkowe informacije za {0}"
-
-msgid "Add-on ID"
-msgstr "ID přidatka"
-
-msgid "Original Add-on ID"
-msgstr "Originalny přidatkowy ID"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Přidatki, kotrež samsny ID dźěla"
-
-msgid "Internal AMO ID"
-msgstr "Nutřkowny ID AMO"
-
-msgid "Support Website"
-msgstr "Websydło pomocy"
-
-msgid "Visibility"
-msgstr "Widźomnosć"
-
-msgid "Visible"
-msgstr "Widźomny"
-
-msgid "Weekly Downloads"
-msgstr "Tydźenske sćehnjenja"
-
-msgid "Average Daily Users"
-msgstr "Přerězna ličba wšědnych wužiwarjow"
-
-msgid "View Privacy Policy"
-msgstr "Prawidła priwatnosće pokazać"
-
-msgid "Requires Payment"
-msgstr "Płaćenje trěbne"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Licencne dojednanje za kóncnych wužiwarjow (EULA) pokazać"
-
-msgid "Last Approval Date"
-msgstr "Datum poslednjeho schwalenja"
-
-msgid "Abuse Reports ({num})"
-msgstr "Znjewužiwanske rozprawy ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Špatne wužiwarske pohódnoćenja ({num})"
-
-msgid "Theme Images"
-msgstr "Wobrazy drasty"
-
-msgid "Rendered Preview"
-msgstr "Narysowany přehlad"
-
-msgid "More about this add-on"
-msgstr "Wjace wo tutym přidatku"
-
-msgid "Image Gallery"
-msgstr "Wobrazowa galerija"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Tu njeje ničo widźeć! Wuwiwar njeje žane podrobnosće integrował."
-
-msgid "Add-on name translations"
-msgstr "Přełožki přidatkoweho mjena"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Nastroje za přepruwowarjow – Přidatki za Firefox"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Wróćo k přehladej nastrojow za přepruwowarjow"
-
-msgid "Reviewer Leaderboard"
-msgstr "Lisćina porjada přepruwowarjow"
-
-msgid "No review points awarded yet."
-msgstr "Hišće žane pohódnoćenske dypki spožčene."
-
-msgid "Rank"
-msgstr "Pozicija"
-
-msgid "Score"
-msgstr "Staw po dypkach"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Protokol moderacije za přepruwowarjow – Přidatki za Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filter"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Event"
-msgstr "Podawk"
-
-msgid "More details."
-msgstr "Dalše podrobnosće."
-
-msgid "No events found for this period."
-msgstr "Za tutu dobu so žane podawki namakali njejsu."
-
-msgid "Log details"
-msgstr "Protokolowe podrobnosće"
-
-msgid "Review Author"
-msgstr "Awtor pohódnoćenja"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Titul přidatka"
-
-msgid "Review Text"
-msgstr "Tekst pohódnoćenja"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Pohódnoćenje je so před zhašenjom markěrowało."
-
-msgid "Undelete"
-msgstr "Wotstronjenje cofnyć"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– Nastroje za přepruwowarjow – Přidatki za Firefox"
-
-msgid "Back to review"
-msgstr "Wróćo k přepruwowanju"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Přepruwowanje wobsaha – Přidatki za Firefox"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Awtomatisce schwalene přidatki – Přidatki za Firefox"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Moderacija přepruwowarjow - Přidatki za Firefox"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Njenalistowane přidatki – Přidatki za Firefox"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Wustejace wotpokazanje - Přidatki za Firefox"
-
-msgid "Process Reviews"
-msgstr "Přepruwowanja předźěłać"
-
-msgid "Moderation actions:"
-msgstr "Akcije moderatora:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5437,259 +4691,12 @@ msgstr "wot %(user)s dnja %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wot %(user)s %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Wšě pohódnoćenja buchu moderěrowane. Dobre dźěło!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Tuchwilu žane přidatki tutoho typa njejsu, kotrež dyrbja so přepruwować."
-
-msgid "Helpful Links:"
-msgstr "Wužitne wotkazy:"
-
-msgid "Add-on Policy"
-msgstr "Prawidła přidatka"
-
-msgid "Reviewer's Guide"
-msgstr "Příručka za přepruwowarjow"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Přidatki za Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr "Přepruwowanje wobsaha <em>{0}</em>"
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr "Přepruwowanje <em>{0}</em>"
-
-msgid "You don't have permission to review it."
-msgstr "Nimaće prawo to přepruwować."
-
-msgid "Add-on important changes history"
-msgstr "Historija wažnych změnow přidatka"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-"Informaciska tafla je městno, hdźež wuwiwar a přepruwowar móžetej informacije wuměnić, kotrež su relewantne za tutón přidatk (njedźiwajo na wersiju). To da so sej wot wobeju wobhladać a wobdźěłać."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "Priwatne pokazy so za wuměnu informacijow mjez přepruwowarjemi wužiwaja, kotrež su njetwotwisne wot wersije. Prošu wostańće objektiwny. Jenož přepruwowarjo móžeja to widźeć."
-
-msgid "Update whiteboards"
-msgstr "Pokazy aktualizować"
-
-msgid "Add-on History"
-msgstr "Historija přidatka"
-
-msgid "Please select one or more versions in the list below."
-msgstr "Prošu wubjerće jednu wersiju abo wjacore wersije z lisćiny deleka."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Móžeće hišće tutón formular wotpósłać, ale čińće to jenož, jeli wěsće, zo konflikt njeje."
-
-msgid "Insert canned response..."
-msgstr "Přihotowanu wotmołwu zasadźić..."
-
-msgid "Files:"
-msgstr "Dataje:"
-
-msgid "Tested on:"
-msgstr "Testowany:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami wobhladał."
-
-msgid "More Actions"
-msgstr "Dalše akcije"
-
-msgid "Notify me about new listed versions"
-msgstr "Wo nowych nalistowanych wersijach informować"
-
-msgid "Notify me about new unlisted versions"
-msgstr "Wo nowych njenalistowanych wersijach informować"
-
-msgid "Allow resubmission"
-msgstr "Zasozapodaće dowolić"
-
-msgid "Deny resubmission"
-msgstr "Zasozapodaće wotpokazać"
-
-msgid "Force-disable add-on"
-msgstr "Znjemóžnjenje přidatka wunuzować"
-
-msgid "Force-enable add-on"
-msgstr "Zmóžnjenje přidatka wunuzować"
-
-msgid "Disable Listed Auto-Approval"
-msgstr "Awtomatiske schwalenje nalistowanych přidatkow znjemóžnić"
-
-msgid "Enable Listed Auto-Approval"
-msgstr "Awtomatiske schwalenje nalistowanych přidatkow zmóžnić"
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Awtomatiske schwalenje njenalistowanych přidatkow znjemóžnić"
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Awtomatiske schwalenje njenalistowanych přidatkow zmóžnić"
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Awtomatiske nalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Awtomatiske nalistowane awtomatiske schwalenje před přichodnym manuelnym schwalenjom zmóžnić"
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Awtomatiske njenalistowane awtomatiske schwalenje hač do přichodneho manuelneho schwalenja znjemóžnić"
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Awtomatiske njenalistowane awtomatiske schwalenje před přichodnym manuelnym schwalenjom zmóžnić"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Awtomatiske schwalenje je tuchwilu hač do {date} znjemóžnjene"
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Přidatne zadźerženje awtomatiskeho schwalenja wotstronić"
-
-msgid "Clear pending rejections"
-msgstr "Wustejace wotpokazanja zhašeć"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Marku za přepruwowanje žórłoweho teksta wot administratora wotstronić"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Marku za přepruwowanje wobsaha wot administratora wotstronić"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Marku za přepruwowanje statiskeje drasty wot administratora wotstronić"
-
-msgid "View Blocklist Submission"
-msgstr "Zapodaća za lisćinu blokowanjow pokazać"
-
-msgid "Block add-on"
-msgstr "Přidatk blokować"
-
-msgid "Update add-on block"
-msgstr "Blokowanje přidatka aktualizować"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Strona administratora"
-
-msgid "Review This Add-on"
-msgstr "Tutón přidatk přepruwować"
-
-msgid "Overview"
-msgstr "Přehlad"
-
-msgid "More Information"
-msgstr "Dalše informacije"
-
-msgid "Important Changes"
-msgstr "Wažne změny"
-
-msgid "Resolution"
-msgstr "Rozsud"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Protokol za přepruwowanje přidatkow – Přidatki za Firefox"
-
-msgid "Reviewer"
-msgstr "Přepruwowar"
-
-msgid "Add-on has been deleted."
-msgstr "Přidatk je so zhašał."
-
-msgid "Show Comments"
-msgstr "Komentary pokazać"
-
-msgid "Hide Comments"
-msgstr "Komentary schować"
-
-msgid "No reviews found for this period."
-msgstr "Žane pohódnoćenja za tutón čas namakane."
-
-msgid "Origin:"
-msgstr "Pochad:"
-
-msgid "Method:"
-msgstr "Metoda:"
-
-msgid "Source:"
-msgstr "Žórło:"
-
-msgid "Source URL:"
-msgstr "Žórłowy URL:"
-
-msgid "Dismiss this announcement"
-msgstr "Tute připowědźenje zaćisnyć"
-
-msgid "Download file"
-msgstr "Dataju sćahnyć"
-
-msgid "Validation results"
-msgstr "Přepruwowanske wuslědki"
-
-msgid "Browse all files in this version"
-msgstr "Wšě dataje w tutej wersiji přepytować"
-
-msgid "Browse contents"
-msgstr "Wobsah přepytać"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "Tutu wersiju z poslednjej přepruwowanej wersiju přirunać"
-
-msgid "Compare with last reviewed"
-msgstr "Z poslednim přepruwowanjom přirunać"
-
-msgid "Permissions:"
-msgstr "Prawa:"
-
-msgid "Optional permissions:"
-msgstr "Opcionalne prawa:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Wot %(user)s dnja %(date)s</div>"
-
-msgid "Older"
-msgstr "Starše"
-
-msgid "Newer"
-msgstr "Nowše"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "Wersije, kotrež su so přez skenery na druhich stronach markěrowali: {num}"
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "Wersije, kotrež su so za čłowjeske přepruwowanje na druhich stronach markěrowali: {num}"
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "Wersije z falowacym wótpokazanjom na druhich stronach: {num}"
-
-msgid "Recent Points"
-msgstr "Najnowše dypki"
-
-msgid "No points awarded yet."
-msgstr "Hišće žane dypki spožčene."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Najlěpši přepruwowarjo (zańdźenych 7 dnjow)"
-
-msgid "No top reviewers yet."
-msgstr "Hišće žani přepruwowarjo njejsu."
-
-msgid "All Time"
-msgstr "Cyły čas"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Maće <span>{0}</span> dypkow."
-
-msgid "No results found"
-msgstr "Žane wuslědki namakane"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5698,90 +4705,6 @@ msgstr "%(user)s dnja %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Wersija %(version)s &middot; %(created)s <span class=\"light\">&middot;%(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(Wobkrućeny)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "Wustejace wotpokazanje při přepruwowanju noweje wersije"
-
-msgid "Compatibility:"
-msgstr "Kompatibelnosć:"
-
-msgid "Additional sources:"
-msgstr "Přidatne žórłowe teksty:"
-
-msgid "Download files"
-msgstr "Dataje sćahnyć"
-
-msgid "The developer has provided source code."
-msgstr "Wuwiwar je žórłowy kod k dispoziciji stajił."
-
-msgid "Maliciousness Score:"
-msgstr "Wuslědk złósće:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Wuslědk złósće prawdźepodobnosć zwuraznja, z kajkejž je wersija na zakładźe namakankow skenera złóstna ."
-
-msgid "Scanners results:"
-msgstr "Skenerowe wuslědki:"
-
-msgid "Flagged for human review"
-msgstr "Za čłowjeske přepruwowanje markěrowany"
-
-msgid "Download"
-msgstr "Sćahnyć"
-
-msgid "Not Auto Approved Because"
-msgstr "NJeje awtomatisce schwaleny, dokelž"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Skript za awtomatiske schwalenje njeje so hišće w tutej wersiji wuwjedł."
-
-msgid "This version has not been reviewed."
-msgstr "Tuta wersija njeje so přepruwowała."
-
-msgid "Other Pending Review"
-msgstr "Druhe wustejace přepruwowanje"
-
-msgid "Updates"
-msgstr "Aktualizacije"
-
-msgid "Rating Reviews"
-msgstr "Přepruwowanja pohódnoćenjow"
-
-msgid "Auto Approved"
-msgstr "Awtomatisce schwaleny"
-
-msgid "Pending Rejection"
-msgstr "Wustejace wotpokazanje"
-
-msgid "presence of matched rules"
-msgstr "eksistenca wotpowědowacych prawidłow"
-
-msgid "result state"
-msgstr "Wuslědkowy staw"
-
-msgid "Excluding results solely matching these rules"
-msgstr "Nimo wuslědkow, kotrež jenož tutym prawidłam wotpowěduja"
-
-msgid "presence of a version"
-msgstr "eksistenca wersije"
-
-msgid "version channel"
-msgstr "wersijowy kanal"
-
-msgid "add-on status"
-msgstr "status přidatka"
-
-msgid "add-on listing visibility"
-msgstr "Widźomnosć lisćinoweho zapiska přidatka"
-
-msgid "file status"
-msgstr "datajowy status"
-
-msgid "file signature"
-msgstr "datajowa signatura"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "To je eksaktne mjeno prawidła, kotrež so přez skener wužiwa."
@@ -5816,12 +4739,6 @@ msgstr "Hdyž to je znjemóžnjene, skenerowe wuslědki z tutym prawidłom zwjaz
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Nałožće tute prawidło na přidatki, kotrež su so tež pod nućenjom znjemóžnili."
-
-msgid "Abort"
-msgstr "Přetorhnyć"
-
-msgid "Run"
-msgstr "Wuwjesć"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5872,6 +4789,9 @@ msgstr "Njemóžeće tutomu přidatkej nalistowanu wersiju přez API přidać, d
 msgid "No uploaded file for that add-on and version."
 msgstr "Žana nahrata dataja za tutón přidatk a tutu wersiju."
 
+msgid "Overview"
+msgstr "Přehlad"
+
 msgid "by Source"
 msgstr "po žórle"
 
@@ -5913,6 +4833,9 @@ msgstr "Wot"
 
 msgid "To"
 msgstr "Do"
+
+msgid "Update"
+msgstr "Aktualizować"
 
 msgid "Export"
 msgstr "Eksportować"
@@ -6122,6 +5045,9 @@ msgstr "Start"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Wróćo k startowej stronje přidatka {0}"
 
+msgid "Add-ons"
+msgstr "Přidatki"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrować</a> abo <a href=\"%(login)s\">Přizjewić</a>"
@@ -6160,41 +5086,6 @@ msgstr "Chceće woprawdźe wšě přełožki za <b>{0}</b> wotstronić? To njeda
 
 msgid "Delete Locale"
 msgstr "Rěč zhašeć"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "Wužiwar „%(user)s“ je so zahnał."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Wobraz, kotryž wužiwarjej „%(user)s“ słuša, je so zhašał."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Wužiwarjo „%(users)s“ su so zahnali."
-
-msgid "Ban selected users"
-msgstr "Wubranych wužiwarjow zahnać"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Wužiwarjo „%(users)s“ su swoje posedźenja wróćo stajili."
-
-msgid "Reset session"
-msgstr "Posedźenje wróćo stajić"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Wužiwarjo „%(users)s“ su so swój API-kluč wróćo stajili."
-
-msgid "Reset API Key"
-msgstr "API-kluč wróćo stajić"
-
-msgid "Profile Photo"
-msgstr "Profilowe foto"
-
-msgid "Collections"
-msgstr "Zběrki"
 
 msgid "IP Address"
 msgstr "IP-adresa"
@@ -6236,8 +5127,8 @@ msgstr ""
 "dźělom, wužiwajće „e-mejlowe wužiwarske wobmjezwanja“ město toho."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Prjedy hač započnjeće, čitajće a akceptujće prošu naše dojednanje wo rozdźělowanju a naše přepruwowanske zasady a prawidła. Dojednanje wo rozdźělowanju Firefox tež na naš pokazku priwatnosće "
 "wotkazuje, kotryž wujasnja, kak z wašimi informacijemi wobchadźamy."
@@ -6284,15 +5175,6 @@ msgstr "Awtorowa róla je so za waš přidatk změniła"
 msgid "An author has been removed from your add-on"
 msgstr "Awtor je so z wašeho přidatka wotstronił"
 
-msgid "Ban"
-msgstr "Zahnać"
-
-msgid "Reset session(s)"
-msgstr "Posedźenja wróćo stajić"
-
-msgid "Delete picture"
-msgstr "Wobraz zhašeć"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6307,7 +5189,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -6320,7 +5203,8 @@ msgid ""
 msgstr ""
 "Witajće %(author_name)s,\n"
 "\n"
-"přeprosychu was so z awtorom přidatka  %(addon_name)s na %(domain)s stać. Hdyž přeprošenje přiwozmjeće, dóstanjeće přistup, zo byšće přidatk wobdźěłował a waše mjeno so w lisćinje awtorow na websydle pokaza.\n"
+"přeprosychu was so z awtorom přidatka  %(addon_name)s na %(domain)s stać. Hdyž přeprošenje přiwozmjeće, dóstanjeće přistup, zo byšće přidatk wobdźěłował a waše mjeno so w lisćinje awtorow na "
+"websydle pokaza.\n"
 "\n"
 "Klikńće na slědowacy wotkaz, zo byšće wotmołwił, hač chceće so jako awtor za  %(addon_name)s přidać.\n"
 "\n"

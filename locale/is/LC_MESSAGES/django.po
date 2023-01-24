@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-17 18:15+0000\n"
+"POT-Creation-Date: 2023-01-24 19:00+0000\n"
 "PO-Revision-Date: 2023-01-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,57 +16,11 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "tegund"
-
-msgid "Users"
-msgstr "Notendur"
-
-msgid "Add-ons"
-msgstr "Viðbætur"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "lágmarksfjöldi skýrslna (flokkað eftir guid-auðkennum)"
-
-msgid "User / Add-on"
-msgstr "Notandi / Viðbót"
-
-msgid "Distribution"
-msgstr "Dreifing"
-
-msgid "Reporter's country"
-msgstr "Land tilkynnanda"
-
-msgid "Message excerpt"
-msgstr "Útdráttur úr skilaboðum"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "%d valdar skýrslur hafa verið merktar sem gildar."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "%d valdar skýrslur hafa verið merktar sem grunsamlegar."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Merkja valdar misnotkunarskýrslur sem grunsamlegar"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
 
 msgid "Invalid value"
 msgstr "Ógilt gildi"
-
-msgid "Modified on:"
-msgstr "Breytt:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Eftir %(filter_title)s"
-
-msgid "All"
-msgstr "Allt"
 
 msgid "No links are allowed."
 msgstr "Engir tenglar eru leyfðir."
@@ -123,31 +77,6 @@ msgstr "Aðeins nýjustu útgáfur af viðbótum geta bætt athugasemdum við."
 
 msgid "Request content length is too large."
 msgstr ""
-
-msgid "Authors"
-msgstr "Höfundar"
-
-msgid "Ratings"
-msgstr "Einkunnir"
-
-msgid "Review (listed)"
-msgstr ""
-
-msgid "Review (unlisted)"
-msgstr ""
-
-msgid "Reviewer links"
-msgstr "Tenglar yfirferðar"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Git-útdráttur ræstur fyrir \"%(addons)s\"."
-
-msgid "Activity Logs"
-msgstr "Atvikaskrár virkni"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Viðbót ekki á AMO -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Farið er yfir hámarksfjölda flokka á hvert forrit ({MAX_CATEGORIES})"
@@ -282,18 +211,6 @@ msgstr "Viðbæturnar mínar"
 
 msgid "My Themes"
 msgstr "Þemun mín"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Yfirferðarverkfæri (í lista)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Yfirferðarverkfæri (ekki í lista)"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
-
-msgid "creation date"
-msgstr "upprunadagsetning"
 
 msgid "Tools"
 msgstr "Verkfæri"
@@ -530,9 +447,6 @@ msgstr "Ekki er hægt að nota þessa sérsniðnu slóð."
 msgid "This add-on already belongs to the collection"
 msgstr "Þessi viðbót tilheyrir nú þegar safninu"
 
-msgid "Signoff State"
-msgstr ""
-
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
 msgstr ""
@@ -563,59 +477,6 @@ msgstr "Yfirfara í lista"
 
 msgid "Review Unlisted"
 msgstr "Yfirfara ekki í lista"
-
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Eyða mörgum %(name)s"
-
-msgid "Home"
-msgstr "Heim"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s GUID viðbóta fundust ekki"
-
-msgid "Save"
-msgstr "Vista"
-
-msgid "Save and add more"
-msgstr "Vista og bæta við fleiru"
-
-msgid "Delete"
-msgstr "Eyða"
-
-msgid "Update"
-msgstr "Uppfæra"
-
-msgid "Reject Submission"
-msgstr "Hafna innsendingu"
-
-msgid "Approve Submission"
-msgstr "Samþykkja innsendingu"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Bæta við %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "GUID-auðkenni viðbóta (eitt á hverja línu)"
-
-msgid "Submit"
-msgstr "Senda inn"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s GUID viðbóta með %(adu)s notendur"
-
-msgid "Edit Block"
-msgstr "Breyta blokk"
-
-msgid "versions"
-msgstr "útgáfur"
 
 msgid "{addon} was created."
 msgstr "{addon} var búin til."
@@ -1512,108 +1373,6 @@ msgstr "Mjög gott (2)"
 msgid "Excellent (3)"
 msgstr "Frábært (3)"
 
-msgid "Manual Reviewer Points"
-msgstr "Handvirkir punktar yfirferðaraðila"
-
-msgid "New Legacy Add-on Review"
-msgstr "Yfirferð á nýrri eldri gerð viðbótar"
-
-msgid "Preliminary Add-on Review"
-msgstr "Bráðabirgðayfirferð viðbótar"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Yfirferð á uppfærðri eldri gerð viðbótar"
-
-msgid "New Dictionary Review"
-msgstr "Yfirferð á nýju orðasafni"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Bráðabirgðayfirferð orðasafns"
-
-msgid "Updated Dictionary Review"
-msgstr "Yfirferð á uppfærðu orðasafni"
-
-msgid "New Language Pack Review"
-msgstr "Yfirferð á nýjum tungumálapakka"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Bráðabirgðayfirferð tungumálapakka"
-
-msgid "Updated Language Pack Review"
-msgstr "Yfirferð á uppfærðum tungumálapakka"
-
-msgid "Theme Review"
-msgstr "Yfirferð á þema"
-
-msgid "Theme (Static) Review"
-msgstr "Yfirferð á þema (fast - static)"
-
-msgid "New Search Provider Review"
-msgstr "Yfirferð á nýrri leitarþjónustu"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Bráðabirgðayfirferð leitarþjónustu"
-
-msgid "Updated Search Provider Review"
-msgstr "Yfirferð á uppfærðri leitarþjónustu"
-
-msgid "New Complete Theme Review"
-msgstr "Yfirferð á nýju heilu þema"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Bráðabirgðayfirferð á nýju heilu þema"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bráðabirgðayfirferð á uppfærðu heilu þema"
-
-msgid "Moderated Add-on Review"
-msgstr "Ritstýrð yfirferð viðbótar"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Ritstýrð yfirferð viðbótar afturkölluð"
-
-msgid "Add-on Content Review"
-msgstr "Yfirferð á efni viðbótar"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Yfirferð viðbótar (mesta áhætta)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Yfirferð viðbótar (mikil áhætta)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Yfirferð viðbótar (miðlungs áhætta)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Yfirferð viðbótar (lítil áhætta)"
-
-msgid "Level 1"
-msgstr "Stig 1"
-
-msgid "Level 2"
-msgstr "Stig 2"
-
-msgid "Level 3"
-msgstr "Stig 3"
-
-msgid "Level 4"
-msgstr "Stig 4"
-
-msgid "Level 5"
-msgstr "Stig 5"
-
-msgid "Level 6"
-msgstr "Stig 6"
-
-msgid "Level 7"
-msgstr "Stig 7"
-
-msgid "Level 8"
-msgstr "Stig 8"
-
-msgid "Level 9"
-msgstr "Stig 9"
-
 msgid "Request More Info"
 msgstr "Biðja um nánari upplýsingar"
 
@@ -1629,32 +1388,8 @@ msgstr "Hafna"
 msgid "Approve"
 msgstr "Samþykkja"
 
-msgid "Sexual or pornographic content"
-msgstr "Kynferðirlegt efni eða klám"
-
-msgid "Inappropriate or offensive content"
-msgstr "Óviðeigandi eða særandi efni"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Ofbeldi, stríð eða myndir af vopnum"
-
-msgid "Nazi or other hate content"
-msgstr "Nasismi eða hatursefni"
-
-msgid "Defamatory content"
-msgstr "Meiðandi efni"
-
-msgid "Online gambling"
-msgstr "Fjárhættuspil og veðmál á netinu"
-
-msgid "Spam content"
-msgstr "Ruslpóstar og svikaefni"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Lággæða, teygð eða auð mynd"
-
-msgid "Header image alignment problem"
-msgstr "Vandamál með afstillingu í haus myndar"
+msgid "All"
+msgstr "Allt"
 
 msgid "Theme"
 msgstr "Þema"
@@ -2248,6 +1983,9 @@ msgstr "Hafna"
 msgid "Manage Authors & License"
 msgstr "Sýsla með höfunda og notkunarleyfi"
 
+msgid "Authors"
+msgstr "Höfundar"
+
 msgid "About author roles"
 msgstr "Um hlutverk höfunda"
 
@@ -2571,6 +2309,9 @@ msgstr "Halda áfram"
 
 msgid "Delete this add-on."
 msgstr "Eyða þessari viðbót."
+
+msgid "Delete"
+msgstr "Eyða"
 
 msgid "Edit details on this add-on's product page"
 msgstr "Breyta nánari upplýsingum á vörusíðu viðbótarinnar"
@@ -4764,9 +4505,6 @@ msgstr ""
 msgid "Missing \"channel\" arg."
 msgstr ""
 
-msgid "User"
-msgstr "Notandi"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Ruslpóstur eða annað ótengt efni"
 
@@ -4824,499 +4562,9 @@ msgstr "Gefin {0} af 5 stjörnum"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Gefin %(rating)s af 5 stjörnum"
 
-msgid "Approved reviews"
-msgstr "Samþykktar umsagnir"
-
-msgid "Deleted reviews"
-msgstr "Eyddar umsagnir"
-
-msgid "View entries between"
-msgstr "Skoða færslur milli"
-
-msgid "and"
-msgstr "og"
-
-msgid "Filter by type/action"
-msgstr "Sía eftir tegund/aðgerð"
-
-msgid "containing"
-msgstr "sem innihalda"
-
-msgid "start"
-msgstr "upphaf"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "endir"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "viðbót, umsagnaraðili eða athugasemd"
-
-msgid "Comments:"
-msgstr "Athugasemdir:"
-
-msgid "Operating systems:"
-msgstr "Stýrikerfi:"
-
-msgid "Applications:"
-msgstr "Forrit:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "dagar"
-
-msgid "Choose one or more reasons:"
-msgstr "Veldu eina eða fleiri ástæður:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr "Veldu staðlað svar..."
-
-msgid "Private Whiteboard"
-msgstr ""
-
-msgid "Keep review; remove flags"
-msgstr "Halda umsögn; fjarlægja flögg"
-
-msgid "Skip for now"
-msgstr "Sleppa í bili"
-
-msgid "Delete review"
-msgstr "Eyða umsögn"
-
-msgid "Needs Admin Code Review"
-msgstr ""
-
-msgid "Needs Admin Content Review"
-msgstr ""
-
-msgid "Needs Admin Static Theme Review"
-msgstr ""
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr "er læst af yfirferðaraðila"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "Þú getur ekki sent inn athugasemd ef \"staðlað svar\" er skilgreint."
-
-msgid "You can't submit an empty comment."
-msgstr ""
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-msgid "ID"
-msgstr "Auðkenni"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Flags"
-msgstr "Flögg"
-
-msgid "Last Review"
-msgstr "Síðasta yfirferð"
-
-msgid "Code Weight"
-msgstr "Vægi kóða"
-
-msgid "Metadata Weight"
-msgstr "Vægi lýsigagna"
-
-msgid "Total Weight"
-msgstr "Heildarvægi"
-
-msgid "Maliciousness Score"
-msgstr "Illskustig"
-
-msgid "Type"
-msgstr "Tegund"
-
-msgid "Due Date"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr ""
-
-msgid "Last Updated"
-msgstr "Síðast uppfært"
-
-msgid "Listed versions needing human review ({0})"
-msgstr ""
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr ""
-
-msgid "Listed version"
-msgstr ""
-
-msgid "Unlisted versions ({0})"
-msgstr ""
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Approve Content"
-msgstr "Samþykkja efni"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr "Staðfesta samþykki"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr ""
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Un-reject Versions"
-msgstr ""
-
-msgid "This will un-reject the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Block Multiple Versions"
-msgstr ""
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-msgid "Confirm Multiple Versions"
-msgstr ""
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
-
-msgid "Reviewer reply"
-msgstr "Svar yfirferðaraðila"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Comment"
-msgstr "Athugasemd"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-msgid "Pre-Review Add-ons"
-msgstr ""
-
-msgid "Recommended ({0})"
-msgstr "Mælt með ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr ""
-
-msgid "Review Log"
-msgstr "Yfirferðarskrá"
-
-msgid "Add-on Review Guide"
-msgstr "Leiðbeiningar fyrir umsagnir um viðbætur"
-
-msgid "Human Review Needed"
-msgstr ""
-
-msgid "Versions Needing Human Review"
-msgstr ""
-
-msgid "Flagged by MAD for Human Review"
-msgstr ""
-
-msgid "Auto-Approved Add-ons"
-msgstr "Sjálfvirkt samþykktar viðbætur"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Sjálfvirkt samþykktar viðbætur ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Atvikaskrá fyrir umsagnir um viðbætur"
-
-msgid "Review Guide"
-msgstr "Leiðbeiningar fyrir umsagnir"
-
-msgid "Content Review"
-msgstr "Yfirferð á efni"
-
-msgid "Content Review ({0})"
-msgstr "Yfirferð á efni ({0})"
-
-msgid "New ({0})"
-msgstr "Nýtt ({0})"
-
-msgid "Updates ({0})"
-msgstr "Uppfærslur ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Leiðbeiningar fyrir umsagnir um þema"
-
-msgid "User Ratings Moderation"
-msgstr "Umsjón með einkunum notenda"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-msgid "Moderation Guide"
-msgstr ""
-
-msgid "Unlisted Add-ons"
-msgstr "Óskráðar viðbætur"
-
-msgid "All Unlisted Add-ons"
-msgstr "Allar óskráðar viðbætur"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Óskráðar viðbætur sem bíða handvirks samþykkis"
-
-msgid "Announcement"
-msgstr "Tilkynning"
-
-msgid "Update message of the day"
-msgstr "Uppfæra skilaboð dagsins"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Viðbætur sem bíða höfnunar ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Óþekkt villa kom upp"
-
-msgid "Self-reviews are not allowed."
-msgstr "Yfirferð sjálfs sín eru ekki leyfðar."
-
-msgid "Review successfully processed."
-msgstr "Yfirferð hefur verið meðhöndluð."
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Meðferð persónuupplýsinga"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Misnotkunarskýrslur – {addon} – Viðbætur fyrir Firefox"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Misnotkunarskýrslur fyrir {addon} og hönnuði hennar ({num})"
-
-msgid "Abuse Reports"
-msgstr "Misnotkunarskýrslur"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Upplýsingar um viðbótina {0}"
-
-msgid "Add-on ID"
-msgstr "Auðkenni viðbótar"
-
-msgid "Original Add-on ID"
-msgstr "Upprunalegt auðkenni viðbótar"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Viðbætur sem deila sama auðkenni"
-
-msgid "Internal AMO ID"
-msgstr "Innra AMO-auðkenni"
-
-msgid "Support Website"
-msgstr "Aðstoðarvefur"
-
-msgid "Visibility"
-msgstr "Sýnileiki"
-
-msgid "Visible"
-msgstr "Sýnilegt"
-
-msgid "Weekly Downloads"
-msgstr "Vikulegt niðurhal"
-
-msgid "Average Daily Users"
-msgstr "Meðaltal daglegra notenda"
-
-msgid "View Privacy Policy"
-msgstr "Skoða stefnu vegna meðferðar persónuupplýsinga"
-
-msgid "Requires Payment"
-msgstr "Krefst greiðslu"
-
-msgid "EULA"
-msgstr "EULA-skilmálar"
-
-msgid "View End-User License Agreement"
-msgstr "Skoða samning um notandaleyfi"
-
-msgid "Last Approval Date"
-msgstr "Síðast samþykkt þann"
-
-msgid "Abuse Reports ({num})"
-msgstr "Misnotkunarskýrslur ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Slæmar einkunnir notenda ({num})"
-
-msgid "Theme Images"
-msgstr "Myndir í þema"
-
-msgid "Rendered Preview"
-msgstr "Myndgerð forskoðun"
-
-msgid "More about this add-on"
-msgstr "Meira um þessa viðbót"
-
-msgid "Image Gallery"
-msgstr "Myndasafn"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Ekkert að sjá hér. Hönnuðurinn hafði ekki með neinar nánari upplýsingar."
-
-msgid "Add-on name translations"
-msgstr "Þýðingar á nafni viðbótar"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Yfirferðarverkfæri – Viðbætur fyrir Firefox"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr "Engir yfirferðarpunktar gefnir ennþá."
-
-msgid "Rank"
-msgstr "Sæti"
-
-msgid "Score"
-msgstr "Einkunn"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Atvikaskrá ritstýrðra yfirferða – Viðbætur fyrir Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Sía"
-
-msgid "Date"
-msgstr "Dagsetning"
-
-msgid "Event"
-msgstr "Atvik"
-
-msgid "More details."
-msgstr "Nánari upplýsingar."
-
-msgid "No events found for this period."
-msgstr "Engin atvik fundust á þessu tímabili."
-
-msgid "Log details"
-msgstr "Ítarlegt í atvikaskrá"
-
-msgid "Review Author"
-msgstr "Höfundur yfirferðar"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Titill viðbótar"
-
-msgid "Review Text"
-msgstr "Yfirfara texta"
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr "Endurvekja"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr " – Yfirferðarverkfæri – Viðbætur fyrir Firefox"
-
-msgid "Back to review"
-msgstr "Til baka í yfirferð"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Yfirferð á efni – Viðbætur fyrir Firefox"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Sjálfvirkt samþykktar viðbætur – Viðbætur fyrir Firefox"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Ritstýrð yfirferð – Viðbætur fyrir Firefox"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Óskráðar viðbætur – Viðbætur fyrir Firefox"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Höfnun í bið – Viðbætur fyrir Firefox"
-
-msgid "Process Reviews"
-msgstr ""
-
-msgid "Moderation actions:"
-msgstr "Umsjónaraðgerðir:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5326,258 +4574,12 @@ msgstr "eftir %(user)s þann %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-msgid "There are currently no add-ons of this type to review."
-msgstr ""
-
-msgid "Helpful Links:"
-msgstr "Hjálplegir tenglar:"
-
-msgid "Add-on Policy"
-msgstr "Stefna varðandi viðbætur"
-
-msgid "Reviewer's Guide"
-msgstr "Leiðbeiningar yfirferðaraðila"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Viðbætur fyrir Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review <em>{0}</em>"
-msgstr ""
-
-#. "Review [add-on name]"
-msgid "Review <em>{0}</em>"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr ""
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr ""
-
-msgid "Add-on History"
-msgstr "Ferill viðbótar"
-
-msgid "Please select one or more versions in the list below."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr "Setja inn staðlað svar..."
-
-msgid "Files:"
-msgstr "Skrár:"
-
-msgid "Tested on:"
-msgstr "Prófað á:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
-
-msgid "More Actions"
-msgstr "Fleiri aðgerðir"
-
-msgid "Notify me about new listed versions"
-msgstr ""
-
-msgid "Notify me about new unlisted versions"
-msgstr ""
-
-msgid "Allow resubmission"
-msgstr ""
-
-msgid "Deny resubmission"
-msgstr ""
-
-msgid "Force-disable add-on"
-msgstr ""
-
-msgid "Force-enable add-on"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-msgid "Clear Admin Content Review Flag"
-msgstr ""
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
-
-msgid "View Blocklist Submission"
-msgstr ""
-
-msgid "Block add-on"
-msgstr "Loka á viðbót"
-
-msgid "Update add-on block"
-msgstr "Uppfæra bann á viðbót"
-
-msgid "(admin)"
-msgstr "(stjórnandi)"
-
-msgid "Admin Page"
-msgstr "Stjórnandasíða"
-
-msgid "Review This Add-on"
-msgstr "Yfirfara þessa viðbót"
-
-msgid "Overview"
-msgstr "Yfirlit"
-
-msgid "More Information"
-msgstr "Nánari upplýsingar"
-
-msgid "Important Changes"
-msgstr ""
-
-msgid "Resolution"
-msgstr "Upplausn"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "Yfirferðaraðili"
-
-msgid "Add-on has been deleted."
-msgstr "Viðbótinni hefur verið eytt."
-
-msgid "Show Comments"
-msgstr "Birta athugasemdir"
-
-msgid "Hide Comments"
-msgstr "Fela athugasemdir"
-
-msgid "No reviews found for this period."
-msgstr "Engar umsagnir fundust á þessu tímabili."
-
-msgid "Origin:"
-msgstr "Upphaf:"
-
-msgid "Method:"
-msgstr "Aðferð:"
-
-msgid "Source:"
-msgstr "Uppruni:"
-
-msgid "Source URL:"
-msgstr "Upprunaslóð:"
-
-msgid "Dismiss this announcement"
-msgstr "Hunsa þessa tilkynningu"
-
-msgid "Download file"
-msgstr ""
-
-msgid "Validation results"
-msgstr ""
-
-msgid "Browse all files in this version"
-msgstr "Skoða allar skrár þessari útgáfu"
-
-msgid "Browse contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr "Bera þessa útgáfu saman við síðustu yfirförnu útgáfu"
-
-msgid "Compare with last reviewed"
-msgstr ""
-
-msgid "Permissions:"
-msgstr "Heimildir:"
-
-msgid "Optional permissions:"
-msgstr "Upprunalegar heimildir:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Frá %(user)s á %(date)s</div>"
-
-msgid "Older"
-msgstr "Eldri"
-
-msgid "Newer"
-msgstr "Nýrri"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "Nýlegir punktar"
-
-msgid "No points awarded yet."
-msgstr "Engir punktar gefnir ennþá."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Efstu yfirferðaraðilar (síðustu 7 daga)"
-
-msgid "No top reviewers yet."
-msgstr "Ennþá engir efstu yfirferðaraðilar."
-
-msgid "All Time"
-msgstr "Allra tíma"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Þú ert með <span>{0}</span> punkta."
-
-msgid "No results found"
-msgstr "Engar niðurstöður fundust"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5586,90 +4588,6 @@ msgstr "%(user)s á %(date)s [%(ip_address)s]"
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Útgáfa %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-
-msgid "(Confirmed)"
-msgstr "(staðfest)"
-
-msgid "Pending Rejection on review of new version"
-msgstr ""
-
-msgid "Compatibility:"
-msgstr "Samhæfni:"
-
-msgid "Additional sources:"
-msgstr "Aðrir upprunar:"
-
-msgid "Download files"
-msgstr "Sækja skrár"
-
-msgid "The developer has provided source code."
-msgstr "Forritarinn hefur gefið upp upprunakóða."
-
-msgid "Maliciousness Score:"
-msgstr "Illskustig:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Scanners results:"
-msgstr ""
-
-msgid "Flagged for human review"
-msgstr "Flaggað til mannlegrar yfirferðar"
-
-msgid "Download"
-msgstr "Sækja"
-
-msgid "Not Auto Approved Because"
-msgstr "Ekki samþykkt sjálfvirkt vegna"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr "Ekki er búið að yfirfara þessa útgáfu."
-
-msgid "Other Pending Review"
-msgstr "Annað sem bíður eftir yfirlestri"
-
-msgid "Updates"
-msgstr "Uppfærslur"
-
-msgid "Rating Reviews"
-msgstr "Einkunn umsagna"
-
-msgid "Auto Approved"
-msgstr "Samþykkt sjálfvirkt"
-
-msgid "Pending Rejection"
-msgstr "Höfnun í bið"
-
-msgid "presence of matched rules"
-msgstr ""
-
-msgid "result state"
-msgstr ""
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-msgid "presence of a version"
-msgstr ""
-
-msgid "version channel"
-msgstr ""
-
-msgid "add-on status"
-msgstr "staða viðbótar"
-
-msgid "add-on listing visibility"
-msgstr ""
-
-msgid "file status"
-msgstr "staða skrár"
-
-msgid "file signature"
-msgstr "undirritun skrár"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -5704,12 +4622,6 @@ msgstr ""
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
-
-msgid "Abort"
-msgstr "Hætta við"
-
-msgid "Run"
-msgstr "Keyra"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5760,6 +4672,9 @@ msgstr ""
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
+msgid "Overview"
+msgstr "Yfirlit"
+
 msgid "by Source"
 msgstr "eftir uppruna"
 
@@ -5801,6 +4716,9 @@ msgstr "Frá"
 
 msgid "To"
 msgstr "Til"
+
+msgid "Update"
+msgstr "Uppfæra"
 
 msgid "Export"
 msgstr "Flytja út"
@@ -6008,6 +4926,9 @@ msgstr "Fara"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Fara til baka á heimasíðu {0} viðbótarinnar"
 
+msgid "Add-ons"
+msgstr "Viðbætur"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Nýskráðu þig</a> eða <a href=\"%(login)s\">skráðu þig inn</a>"
@@ -6046,41 +4967,6 @@ msgstr "Ertu viss um að þú viljir fjarlægja allar þýðingar <b>{0}</b>? Ek
 
 msgid "Delete Locale"
 msgstr "Eyða staðfærslu"
-
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "Notandinn \"%(user)s\" hefur verið bannaður."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "Myndinni sem tilheyrir \"%(user)s\" hefur verið eytt."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Notendurnir \"%(users)s\" hafa verið bannaðir."
-
-msgid "Ban selected users"
-msgstr "Banna valda notendur"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
-
-msgid "Reset session"
-msgstr "Frumstilla setu"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
-
-msgid "Reset API Key"
-msgstr "Frumstilla API-lykil"
-
-msgid "Profile Photo"
-msgstr "Auðkennismynd"
-
-msgid "Collections"
-msgstr "Söfn"
 
 msgid "IP Address"
 msgstr "IP-vistfang"
@@ -6163,15 +5049,6 @@ msgstr "Hlutverk höfundar breyttist í viðbótinni þinni"
 
 msgid "An author has been removed from your add-on"
 msgstr "Höfundur var fjarlægður af viðbótinni þinni"
-
-msgid "Ban"
-msgstr "Banna"
-
-msgid "Reset session(s)"
-msgstr "Frumstilla lotu(r)"
-
-msgid "Delete picture"
-msgstr "Eyða mynd"
 
 #, python-format
 msgid ""
