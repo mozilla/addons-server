@@ -706,16 +706,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 9  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.queue_theme_nominated'),
             reverse('reviewers.queue_theme_pending'),
@@ -724,8 +721,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
-            reverse('reviewers.unlisted_queue_all'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
         ]
@@ -733,33 +728,28 @@ class TestDashboard(TestCase):
         assert links == expected_links
         # pre-approval addons
         assert doc('.dashboard a')[0].text == 'Manual Review (5)'
-        # auto-approved addons
-        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (4)'
         # content review
-        assert doc('.dashboard a')[8].text == 'Content Review (11)'
+        assert doc('.dashboard a')[5].text == 'Content Review (11)'
         # themes
-        assert doc('.dashboard a')[9].text == 'New (1)'
-        assert doc('.dashboard a')[10].text == 'Updates (1)'
+        assert doc('.dashboard a')[6].text == 'New (1)'
+        assert doc('.dashboard a')[7].text == 'Updates (1)'
         # user ratings moderation
-        assert doc('.dashboard a')[13].text == 'Ratings Awaiting Moderation (1)'
+        assert doc('.dashboard a')[10].text == 'Ratings Awaiting Moderation (1)'
         # admin tools
-        assert doc('.dashboard a')[19].text == 'Add-ons Pending Rejection (1)'
+        assert doc('.dashboard a')[14].text == 'Add-ons Pending Rejection (1)'
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 9  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.queue_theme_nominated'),
             reverse('reviewers.queue_theme_pending'),
@@ -768,8 +758,6 @@ class TestDashboard(TestCase):
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
-            reverse('reviewers.unlisted_queue_all'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.motd'),
             reverse('reviewers.queue_pending_rejection'),
         ]
@@ -830,21 +818,17 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 3
+        assert len(doc('.dashboard h3')) == 2
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
         ]
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Manual Review (3)'
-        assert doc('.dashboard a')[5].text == 'Auto Approved Add-ons (1)'
 
     def test_content_reviewer(self):
         # Create an add-on to test the queue count. It's under admin code
@@ -909,38 +893,6 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Ratings Awaiting Moderation (1)'
-
-    def test_unlisted_reviewer(self):
-        # Grant user the permission to see only the unlisted add-ons section.
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 1
-        expected_links = [
-            reverse('reviewers.unlisted_queue_all'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert links == expected_links
-
-    def test_unlisted_viewer(self):
-        # Grant user the permission read-only unlisted access.
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 9
-        expected_links = [
-            reverse('reviewers.unlisted_queue_all'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert (expected_link in links for expected_link in expected_links)
 
     def test_static_theme_reviewer(self):
         # Create some static themes to test the queue counts.
@@ -1014,16 +966,13 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 4
+        assert len(doc('.dashboard h3')) == 3
         expected_links = [
             reverse('reviewers.queue_extension'),
             reverse('reviewers.reviewlog'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
-            reverse('reviewers.queue_auto_approved'),
-            reverse('reviewers.reviewlog'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -1032,11 +981,11 @@ class TestDashboard(TestCase):
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Manual Review (0)'
         assert 'target' not in doc('.dashboard a')[0].attrib
-        assert doc('.dashboard a')[8].text == ('Ratings Awaiting Moderation (0)')
+        assert doc('.dashboard a')[5].text == ('Ratings Awaiting Moderation (0)')
         assert 'target' not in doc('.dashboard a')[5].attrib
-        assert doc('.dashboard a')[10].text == 'Moderation Guide'
-        assert doc('.dashboard a')[10].attrib['target'] == '_blank'
-        assert doc('.dashboard a')[10].attrib['rel'] == 'noopener noreferrer'
+        assert doc('.dashboard a')[7].text == 'Moderation Guide'
+        assert doc('.dashboard a')[7].attrib['target'] == '_blank'
+        assert doc('.dashboard a')[7].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -1354,7 +1303,6 @@ class TestQueueBasics(QueueTest):
             reverse('reviewers.queue_extension'),
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
-            reverse('reviewers.queue_auto_approved'),
         ]
         assert links == expected
 
@@ -1368,7 +1316,6 @@ class TestQueueBasics(QueueTest):
             reverse('reviewers.queue_human_review'),
             reverse('reviewers.queue_mad'),
             reverse('reviewers.queue_moderated'),
-            reverse('reviewers.queue_auto_approved'),
         ]
         assert links == expected
 
@@ -1598,7 +1545,7 @@ class TestExtensionQueue(QueueTest):
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_queue_layout(
-            '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=4
+            '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=3
         )
 
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
@@ -2293,7 +2240,7 @@ class TestScannersReviewQueue(QueueTest):
             'Versions Needing Human Review',
             tab_position=1,
             total_addons=3,
-            total_queues=4,
+            total_queues=3,
             per_page=1,
         )
 
@@ -2306,7 +2253,7 @@ class TestScannersReviewQueue(QueueTest):
             'Versions Needing Human Review',
             tab_position=1,
             total_addons=4,
-            total_queues=9,
+            total_queues=8,
             per_page=1,
         )
 
@@ -8617,7 +8564,7 @@ class TestMadQueue(QueueTest):
             'Flagged by MAD for Human Review',
             tab_position=2,
             total_addons=4,
-            total_queues=4,
+            total_queues=3,
             per_page=1,
         )
 
@@ -8629,6 +8576,6 @@ class TestMadQueue(QueueTest):
             'Flagged by MAD for Human Review',
             tab_position=2,
             total_addons=5,
-            total_queues=5,
+            total_queues=4,
             per_page=1,
         )
