@@ -12,21 +12,25 @@ class ActivityLogAdmin(AMOModelAdmin):
         'created',
         'user_link',
         'pretty_arguments',
+        'ip_address',
     )
     raw_id_fields = ('user',)
     readonly_fields = (
         'created',
         'user',
         'pretty_arguments',
+        'ip_address',
     )
     date_hierarchy = 'created'
     fields = (
         'user',
         'created',
         'pretty_arguments',
+        'ip_address',
     )
     raw_id_fields = ('user',)
     view_on_site = False
+    list_select_related = ('iplog',)
 
     def lookup_allowed(self, lookup, value):
         if lookup == 'addonlog__addon':
@@ -39,13 +43,17 @@ class ActivityLogAdmin(AMOModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    @admin.display(description='Arguments')
     def pretty_arguments(self, obj):
         return obj.to_string(type_='admin')
 
+    @admin.display(description='User')
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
 
-    user_link.short_description = 'User'
+    @admin.display(description='IP Address', ordering='iplog__ip_address_binary')
+    def ip_address(self, obj):
+        return str(obj.iplog)
 
 
 class ReviewActionReasonLogAdmin(AMOModelAdmin):

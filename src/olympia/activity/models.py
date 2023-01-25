@@ -209,7 +209,7 @@ class IPLog(ModelBase):
     actions).
     """
 
-    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
     _ip_address = models.CharField(max_length=45, db_column='ip_address', null=True)
     ip_address_binary = IPAddressBinaryField(null=True)
 
@@ -226,6 +226,9 @@ class IPLog(ModelBase):
                 name='log_activity_ip_ip_address_binary_209777a9',
             ),
         ]
+
+    def __str__(self):
+        return str(self.ip_address_binary)
 
     def save(self, *args, **kwargs):
         # ip_address_binary fulfils our needs, but we're keeping filling ip_address for
