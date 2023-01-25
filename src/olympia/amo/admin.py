@@ -388,6 +388,7 @@ class AMOModelAdmin(admin.ModelAdmin):
                 queryset = queryset.filter(functools.reduce(joining_operator, filters))
         return queryset, may_have_duplicates
 
+    @admin.display(ordering='activity_ips', description='IP addresses')
     def known_ip_adresses(self, obj):
         # activity_ips is an annotation added by get_search_results() above
         # thanks to a GROUP_CONCAT. If present, use that (avoiding making
@@ -413,8 +414,6 @@ class AMOModelAdmin(admin.ModelAdmin):
             '', '<li>{}</li>', ((ip,) for ip in sorted(ip_addresses))
         )
         return format_html('<ul>{}</ul>', contents)
-
-    known_ip_adresses.short_description = 'IP addresses'
 
     # Triggering a search by id only isn't always what the admin wants for an
     # all numeric query, but on the other hand is a nice optimization.
