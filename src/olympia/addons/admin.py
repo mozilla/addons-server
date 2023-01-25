@@ -169,7 +169,6 @@ class AddonAdmin(AMOModelAdmin):
         js = AMOModelAdmin.Media.js + (
             'admin/js/jquery.init.js',
             'js/admin/l10n.js',
-            'js/admin/recalc_hash.js',
         )
 
     list_display = (
