@@ -243,7 +243,7 @@ class ContentReviewTable(AddonQueueTable):
 
     class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
-        # Exclude base fields AutoApprovedTable has that we don't want.
+        # Exclude base fields AddonQueueTable has that we don't want.
         exclude = (
             'last_human_review',
             'code_weight',

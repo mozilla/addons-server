@@ -94,7 +94,6 @@ from olympia.reviewers.serializers import (
     FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
-    AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
     NewThemesQueueTable,
@@ -103,7 +102,6 @@ from olympia.reviewers.utils import (
     ReviewHelper,
     HumanReviewTable,
     UpdatedThemesQueueTable,
-    ViewUnlistedAllListTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.users.models import UserProfile
