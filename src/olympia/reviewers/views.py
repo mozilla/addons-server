@@ -112,7 +112,6 @@ from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
     permission_or_tools_listed_view_required,
-    permission_or_tools_unlisted_view_required,
     reviewer_addon_view_factory,
 )
 
