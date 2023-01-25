@@ -371,27 +371,6 @@ class AddonManager(ManagerBase):
             status=amo.STATUS_DISABLED
         )
 
-    def get_auto_approved_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved but
-        not confirmed by a human yet."""
-        success_verdict = amo.AUTO_APPROVED
-        qs = (
-            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
-            .public()
-            .filter(
-                _current_version__autoapprovalsummary__verdict=success_verdict,
-                _current_version__reviewerflags__pending_rejection__isnull=True,
-            )
-            .exclude(_current_version__autoapprovalsummary__confirmed=True)
-            .order_by(
-                '-_current_version__autoapprovalsummary__score',
-                '-_current_version__autoapprovalsummary__weight',
-                'addonapprovalscounter__last_human_review',
-                'created',
-            )
-        )
-        return qs
-
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""
         qs = (

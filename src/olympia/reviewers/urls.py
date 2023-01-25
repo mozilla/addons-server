@@ -28,11 +28,6 @@ urlpatterns = (
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
     ),
     re_path(
-        r'^queue/auto_approved',
-        views.queue_auto_approved,
-        name='reviewers.queue_auto_approved',
-    ),
-    re_path(
         r'^queue/content_review',
         views.queue_content_review,
         name='reviewers.queue_content_review',
@@ -47,11 +42,6 @@ urlpatterns = (
         r'queue/pending_rejection',
         views.queue_pending_rejection,
         name='reviewers.queue_pending_rejection',
-    ),
-    re_path(
-        r'^unlisted_queue/all$',
-        views.unlisted_list,
-        name='reviewers.unlisted_queue_all',
     ),
     re_path(
         r'^moderationlog$',
