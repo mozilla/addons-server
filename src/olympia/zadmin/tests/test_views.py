@@ -6,9 +6,7 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, user_factory, version_factory
-from olympia.files.models import File
+from olympia.amo.tests import TestCase, user_factory
 from olympia.users.models import UserProfile
 
 
@@ -104,36 +102,6 @@ class TestHomeAndIndex(TestCase):
         url = reverse('admin:logout')
         response = self.client.get(url, follow=False)
         self.assert3xx(response, '/', status_code=302)
-
-
-class TestRecalculateHash(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super().setUp()
-        self.addon = Addon.objects.get(pk=3615)
-        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
-
-    def test_regenerate_hash(self):
-        file = version_factory(
-            addon=self.addon, file_kw={'filename': 'https-everywhere.xpi'}
-        ).file
-
-        response = self.client.post(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert response.json()['success'] == 1
-
-        file = File.objects.get(pk=file.id)
-
-        assert file.size, 'File size should not be zero'
-        assert file.hash, 'File hash should not be empty'
-
-    def test_regenerate_hash_get(self):
-        """Don't allow GET"""
-        file = version_factory(
-            addon=self.addon, file_kw={'filename': 'https-everywhere.xpi'}
-        ).file
-        response = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
-        assert response.status_code == 405  # GET out of here
 
 
 class TestPerms(TestCase):

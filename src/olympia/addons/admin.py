@@ -28,7 +28,7 @@ from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
 from olympia.versions.models import Version
-from olympia.zadmin.admin import related_content_link
+from olympia.zadmin.admin import related_content_link, related_single_content_link
 
 from . import models
 from .forms import AdminBaseFileFormSet, FileStatusForm
@@ -70,11 +70,13 @@ class FileInline(admin.TabularInline):
     max_num = 0
     fields = (
         'created',
+        'version__id',
         'version__version',
         'version__channel',
+        'version__deleted',
         'status',
         'version__is_blocked',
-        'hash_link',
+        'version__needs_human_review',
     )
     editable_fields = ('status',)
     readonly_fields = tuple(set(fields) - set(editable_fields))
@@ -82,9 +84,15 @@ class FileInline(admin.TabularInline):
     view_on_site = False
     template = 'admin/addons/file_inline.html'
     checks_class = FileInlineChecks
+    show_change_link = True
+
+    def version__id(self, obj):
+        return obj.version_id
+
+    version__id.short_description = 'Version ID'
 
     def version__version(self, obj):
-        return obj.version.version + (' - Deleted' if obj.version.deleted else '')
+        return related_single_content_link(obj, 'version')
 
     version__version.short_description = 'Version'
 
@@ -92,6 +100,12 @@ class FileInline(admin.TabularInline):
         return obj.version.get_channel_display()
 
     version__channel.short_description = 'Channel'
+
+    def version__deleted(self, obj):
+        return obj.version.deleted
+
+    version__deleted.short_description = 'Deleted'
+    version__deleted.boolean = True
 
     def version__is_blocked(self, obj):
         block = self.instance.block
@@ -103,12 +117,11 @@ class FileInline(admin.TabularInline):
 
     version__is_blocked.short_description = 'Block status'
 
-    def hash_link(self, obj):
-        url = reverse('zadmin.recalc_hash', args=(obj.id,))
-        template = '<a href="{}" class="recalc" title="{}">Recalc Hash</a>'
-        return format_html(template, url, obj.hash)
+    def version__needs_human_review(self, obj):
+        return obj.version.needs_human_review
 
-    hash_link.short_description = 'Hash'
+    version__needs_human_review.short_description = 'Needs human review'
+    version__needs_human_review.boolean = True
 
     def get_formset(self, request, obj=None, **kwargs):
         self.instance = obj
@@ -156,7 +169,6 @@ class AddonAdmin(AMOModelAdmin):
         js = AMOModelAdmin.Media.js + (
             'admin/js/jquery.init.js',
             'js/admin/l10n.js',
-            'js/admin/recalc_hash.js',
         )
 
     list_display = (
