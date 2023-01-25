@@ -515,6 +515,16 @@ class TestAddonAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#id_files-0-id').attr('value') == str(unlisted_version.file.id)
         assert doc('#id_files-1-id').attr('value') == str(addon.current_version.file.id)
+        link = doc('.field-version__version a')[0]
+        assert link.text == unlisted_version.version
+        assert link.attrib['href'] == reverse(
+            'admin:versions_version_change', args=(unlisted_version.id,)
+        )
+        link = doc('.field-version__version a')[1]
+        assert link.text == addon.current_version.version
+        assert link.attrib['href'] == reverse(
+            'admin:versions_version_change', args=(addon.current_version.id,)
+        )
 
         # pagination links aren't shown for less than page size (30) files.
         next_url = self.detail_url + '?page=2'
@@ -560,8 +570,9 @@ class TestAddonAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert f'{file.version} - Deleted' in response.content.decode('utf-8')
-        assert 'disabled' in (pq(response.content)('#id_files-0-status')[0].attrib)
+        doc = pq(response.content)
+        assert doc('.field-version__deleted img')[0].attrib['alt'] == 'True'
+        assert 'disabled' in doc('#id_files-0-status')[0].attrib
         post_data.update(
             **{
                 'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
