@@ -2264,10 +2264,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
         assert logs_qs.count() == 1
         log = logs_qs.get()
-        assert log.iplog_set.count() == 1
-        assert log.iplog_set.get().ip_address_binary == IPv4Address(
-            self.upload.ip_address
-        )
+        assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
 
     def test_experiment_inside_webext_upload_without_permission(self):

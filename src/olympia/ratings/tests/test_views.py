@@ -1734,9 +1734,7 @@ class TestRatingViewSetPost(TestCase):
         assert activity_log.user == self.user
         assert activity_log.arguments == [self.addon, review]
         assert activity_log.action == amo.LOG.ADD_RATING.id
-
-        ip_log = activity_log.iplog_set.get()
-        assert ip_log.ip_address_binary == IPv4Address('213.225.31.25')
+        assert activity_log.iplog.ip_address_binary == IPv4Address('213.225.31.25')
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [addon_author.email]

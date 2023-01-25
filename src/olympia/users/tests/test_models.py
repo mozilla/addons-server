@@ -56,8 +56,7 @@ class TestUserProfile(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 1
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
-        ip_log = log.iplog_set.get()
-        assert ip_log.ip_address_binary == IPv4Address('4.8.15.16')
+        assert log.ip_log.ip_address_binary == IPv4Address('4.8.15.16')
 
         with core.override_remote_addr('23.42.42.42'):
             self.client.force_login(user)
@@ -65,8 +64,7 @@ class TestUserProfile(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 2
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
-        ip_log = log.iplog_set.get()
-        assert ip_log.ip_address_binary == IPv4Address('23.42.42.42')
+        assert log.ip_log.ip_address_binary == IPv4Address('23.42.42.42')
 
     def test_is_addon_developer(self):
         user = user_factory()
