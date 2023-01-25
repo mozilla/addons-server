@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-24 19:00+0000\n"
-"PO-Revision-Date: 2023-01-25 09:30+0000\n"
+"PO-Revision-Date: 2023-01-25 09:40+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -833,16 +833,16 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "Identifikátor GUID pre doplnok {addon} bol odstránený zo zoznamu DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Akcia blokovania {1} pre {0} odsúhlasená."
 
 msgid "Block action signoff"
 msgstr "Odsúhlasenie akcie blokovania"
 
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "Relácie používateľa {user} boli resetované."
 
 msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
+msgstr "Používateľ {user} bol obmedzený pre rozsah „{0}“"
 
 msgid "{addon} {version} content reject scheduled."
 msgstr "Pre doplnok {addon} {version} bolo naplánované odmietnutie obsahu."
@@ -863,21 +863,17 @@ msgstr "Doplnok {addon} {version} bol opätovne podpísaný (predtým {0})."
 msgid "Version re-signed"
 msgstr "Verzia bola opätovne podpísaná"
 
-#, fuzzy
 msgid "{user} force-disabled {addon}."
-msgstr "Pre doplnok {addon} upravená verzia {version}."
+msgstr "Používateľ {user} vynútene zakázal doplnok {addon}."
 
-#, fuzzy
 msgid "Force disabled"
-msgstr "Doplnok {addon} bol zakázaný."
+msgstr "Vynútene zakázaný"
 
-#, fuzzy
 msgid "{user} force-enabled {addon}."
-msgstr "Doplnok {addon} bol povolený."
+msgstr "Používateľ {user} vynútene povolil doplnok {addon}."
 
-#, fuzzy
 msgid "Force enabled"
-msgstr "Doplnok {addon} bol povolený."
+msgstr "Vynútene povolený"
 
 msgid "{user} logged in."
 msgstr "Používateľ {user} sa prihlásil."
@@ -886,10 +882,10 @@ msgid "{user} restricted."
 msgstr "Používateľ {user} bol obmedzený."
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "Pre doplnok {addon} {version} bolo zrušené zamietnutie."
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "Zrušené zamietnutie"
 
 msgid "{user} authenticated through an API token."
 msgstr "Používateľ {user} overený prostredníctvom tokenu API."
@@ -2933,7 +2929,7 @@ msgid "View the blog &#9658;"
 msgstr "Zobraziť blog &#9658;"
 
 msgid "Version Signature Pending"
-msgstr ""
+msgstr "Čaká sa na podpis verzie"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr "Hotovo! ✨ Keď bude podpísaný súbor pripravený na stiahnutie z Centra pre vývojárov, dostanete upozornenie e-mailom. Ak e-mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
@@ -4615,7 +4611,7 @@ msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Typ (%s) sa nezhoduje s typom vášho doplnku na AMO (%s)"
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "V údajoch viacdielneho súboru chýba kľúč „upload“."
 
 msgid "Missing \"channel\" arg."
 msgstr "Chýba parameter \"channel\"."
@@ -4636,13 +4632,13 @@ msgid "This field is required."
 msgstr "Toto pole je povinné."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Po vytvorení recenzie doplnku ho už nemôžete zmeniť."
 
 msgid "You can't reply to a review that is already a reply."
 msgstr "Nemôžete odpovedať na recenziu, ktorá už je odpoveďou."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Po vytvorení recenzie nemôžete zmeniť verziu doplnku, ktorý bol recenzovaný."
 
 msgid "This version of the add-on doesn't exist or isn't public."
 msgstr "Táto verzia doplnku neexistuje alebo nie je verejná."
@@ -4752,7 +4748,7 @@ msgid "Return To AMO is currently disabled"
 msgstr "Návrat na AMO je momentálne zakázaný"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Neplatný guid pre návrat na AMO (nie je vo formáte base64url?)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -5262,7 +5258,7 @@ msgstr "iné"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
-msgstr ""
+msgstr "Oneskorené odmietnutie, naplánované pre %s"
 
 msgid "Auto-approved, Confirmed"
 msgstr "Automaticky schválený, potvrdený"
