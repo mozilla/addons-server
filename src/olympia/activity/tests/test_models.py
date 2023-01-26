@@ -162,8 +162,10 @@ class TestActivityLog(TestCase):
 
     def test_fancy_rendering(self):
         """HTML for Rating, and Collection."""
-        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_RATING.id)
         user = UserProfile.objects.create()
+        activity_log = ActivityLog.objects.create(
+            action=amo.LOG.ADD_RATING.id, user=user
+        )
         rating = Rating.objects.create(user=user, addon_id=3615)
         activity_log.arguments = [activity_log, rating]
         assert '>Review</a> for None written.' in activity_log.to_string()
@@ -172,7 +174,7 @@ class TestActivityLog(TestCase):
         assert 'None added to <a href="http://testserver/' in activity_log.to_string()
 
     def test_bad_arguments(self):
-        activity_log = ActivityLog()
+        activity_log = ActivityLog(user=UserProfile.objects.create())
         activity_log.arguments = []
         activity_log.action = amo.LOG.ADD_USER_WITH_ROLE.id
         assert activity_log.to_string() == 'Something magical happened.'
@@ -428,9 +430,10 @@ class TestActivityLog(TestCase):
         log = ActivityLog.objects.get()
 
         log_expected = (
-            'Yolo role changed to Owner for <a href="http://testserver/en-US/'
+            f'<a href="http://testserver/en-US/firefox/user/{self.user.pk}/">Yolo</a> '
+            'role changed to Owner for <a href="http://testserver/en-US/'
             'firefox/addon/a3615/">Delicious &lt;script src='
-            '&#34;x.js&#34;&gt;Bookmarks</a>.'
+            '&quot;x.js&quot;&gt;Bookmarks</a>.'
         )
         assert log.to_string() == log_expected
 
