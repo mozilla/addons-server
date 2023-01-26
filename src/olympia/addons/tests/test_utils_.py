@@ -214,7 +214,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        assert activity.ip_log.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_bypassing_read_dev_agreement(self, incr_mock):
         self.request.user.update(read_dev_agreement=None)
@@ -260,7 +260,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        assert activity.ip_log.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
@@ -286,7 +286,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        assert activity.ip_log.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_submission_allowed_bypassing_read_dev_agreement_restricted(
         self, incr_mock
@@ -319,7 +319,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        assert activity.ip_log.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
 
     def test_is_auto_approval_allowed_email_restricted_only_for_submission(
         self, incr_mock
@@ -374,7 +374,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.user == self.request.user
         # Note that there is no request in this case, the ip_adress is coming
         # from the upload.
-        assert activity.ip_log.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
 
     def test_no_request_or_upload_at_init(self, incr_mock):
         with self.assertRaises(ImproperlyConfigured):
