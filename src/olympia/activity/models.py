@@ -328,7 +328,9 @@ class ActivityLog(ModelBase):
     TYPES = sorted(
         (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
     )
-    user = models.ForeignKey('users.UserProfile', on_delete=models.PROTECT)
+    # We should never hard-delete users, so the on_delete can be set to DO_NOTHING,
+    # if somehow a hard-delete still occurs, it will raise an IntegrityError.
+    user = models.ForeignKey('users.UserProfile', on_delete=models.DO_NOTHING)
     action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')

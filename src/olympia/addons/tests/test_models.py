@@ -2058,7 +2058,10 @@ class TestAddonDelete(TestCase):
         FrozenAddon.objects.create(addon=addon)
 
         AddonLog.objects.create(
-            addon=addon, activity_log=ActivityLog.objects.create(action=0)
+            addon=addon,
+            activity_log=ActivityLog.objects.create(
+                action=0, user=UserProfile.objects.create()
+            ),
         )
         RssKey.objects.create(addon=addon)
 
