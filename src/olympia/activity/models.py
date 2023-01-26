@@ -535,7 +535,7 @@ class ActivityLog(ModelBase):
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                if arg.has_listed_versions():
+                if type_ == 'admin' or arg.has_listed_versions():
                     addon = format_html(
                         '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                     )
@@ -549,7 +549,7 @@ class ActivityLog(ModelBase):
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
-                if arg.channel == amo.CHANNEL_LISTED:
+                if type_ == 'admin' or arg.channel == amo.CHANNEL_LISTED:
                     version = format_html(
                         '<a href="{1}">%s</a>' % text,
                         arg.version,
