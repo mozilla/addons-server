@@ -400,12 +400,12 @@ class USER_EDITED(_LOG):
 
 class USER_DELETED(_LOG):
     id = 61
-    format = _('Account {0} deleted.')
+    format = _('Account {user} deleted.')
 
 
 class USER_AUTO_DELETED(_LOG):
     id = 62
-    format = _('Account {0} deleted, from Firefox Accounts event.')
+    format = _('Account {user} deleted, from Firefox Accounts event.')
 
 
 class CUSTOM_TEXT(_LOG):
@@ -479,21 +479,21 @@ class THEME_REVIEW(_LOG):
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
-    format = _('User {0} banned.')
+    format = _('User {user} banned.')
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_PICTURE_DELETED(_LOG):
     id = 110
-    format = _('User {0} picture deleted.')
+    format = _('User {user} picture deleted.')
     admin_event = True
 
 
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'
-    format = _('User {0} added to {group}.')
+    format = _('User {user} added to {group}.')
     keep = True
     admin_event = True
 
@@ -501,7 +501,7 @@ class GROUP_USER_ADDED(_LOG):
 class GROUP_USER_REMOVED(_LOG):
     id = 121
     action_class = 'access'
-    format = _('User {0} removed from {group}.')
+    format = _('User {user} removed from {group}.')
     keep = True
     admin_event = True
 
@@ -710,7 +710,7 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
 
 class ADMIN_API_KEY_RESET(_LOG):
     id = 155
-    format = _('User {0} api key reset.')
+    format = _('User {user} api key reset.')
     admin_event = True
 
 
@@ -767,7 +767,7 @@ class BLOCKLIST_SIGNOFF(_LOG):
 
 class ADMIN_USER_SESSION_RESET(_LOG):
     id = 162
-    format = _('User {0} session(s) reset.')
+    format = _('User {user} session(s) reset.')
     admin_event = True
 
 
