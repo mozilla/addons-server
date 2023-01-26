@@ -257,6 +257,30 @@ class TestRatingAdmin(TestCase):
         assert addon.guid in addon_filter_options_text
         assert second_addon.guid in addon_filter_options_text
 
+        # Sort by IP address using django admin built-in sort:
+        # parameter is `o`, value is -5.3 because we're sorting by IP (the 5th
+        # column) desc and then created (3rd column) asc.
+        with core.override_remote_addr('125.1.1.2'):
+            rating5 = Rating.objects.create(
+                addon=third_addon, user=user_factory(), rating=4, body='Lôrem body 5'
+            )
+        response = self.client.get(self.list_url, data={'o': '-5.3'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list .field-id').text() == ' '.join(
+            map(
+                str,
+                [
+                    self.rating.pk,
+                    rating4.pk,
+                    rating5.pk,
+                    rating3.pk,
+                    rating2.pk,
+                    rating1.pk,
+                ],
+            )
+        )
+
     def test_filter_by_created_only_from(self):
         not_long_ago = self.days_ago(2).date()
         Rating.objects.create(
