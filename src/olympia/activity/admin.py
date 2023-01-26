@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from olympia import amo
 from olympia.amo.admin import AMOModelAdmin
 from olympia.reviewers.models import ReviewActionReason
 from olympia.zadmin.admin import related_single_content_link
@@ -12,6 +13,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'created',
         'user_link',
         'pretty_arguments',
+        'kept_forever',
         'ip_address',
     )
     raw_id_fields = ('user',)
@@ -19,13 +21,14 @@ class ActivityLogAdmin(AMOModelAdmin):
         'created',
         'user',
         'pretty_arguments',
+        'kept_forever',
         'ip_address',
     )
-    date_hierarchy = 'created'
     fields = (
         'user',
         'created',
         'pretty_arguments',
+        'kept_forever',
         'ip_address',
     )
     raw_id_fields = ('user',)
@@ -55,9 +58,21 @@ class ActivityLogAdmin(AMOModelAdmin):
     def ip_address(self, obj):
         return str(obj.iplog)
 
+    @admin.display(description='Kept forever', boolean=True)
+    def kept_forever(self, obj):
+        return getattr(amo.LOG_BY_ID.get(obj.action), 'keep', False)
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        if extra_context is None:
+            extra_context = {}
+        # The __str__ for ActivityLog contains HTML, so use a simpler subtitle.
+        extra_context['subtitle'] = f'{self.model._meta.verbose_name} {object_id}'
+        return super().change_view(
+            request, object_id, form_url=form_url, extra_context=extra_context
+        )
+
 
 class ReviewActionReasonLogAdmin(AMOModelAdmin):
-    date_hierarchy = 'created'
     fields = (
         'created',
         'activity_log',
