@@ -328,7 +328,7 @@ class ActivityLog(ModelBase):
     TYPES = sorted(
         (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
     )
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey('users.UserProfile', on_delete=models.PROTECT)
     action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')
@@ -505,7 +505,7 @@ class ActivityLog(ModelBase):
         )
 
         def get_absolute_url(obj):
-            return getattr(obj, absolute_url_method)()
+            return getattr(obj, absolute_url_method)() if obj is not None else ''
 
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.

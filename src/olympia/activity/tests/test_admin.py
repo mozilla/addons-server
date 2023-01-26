@@ -42,7 +42,9 @@ class TestReviewActionReasonLogAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        activity_log = ActivityLog.objects.create(action=amo.LOG.APPROVE_VERSION.id)
+        activity_log = ActivityLog.objects.create(
+            action=amo.LOG.APPROVE_VERSION.id, user=user
+        )
         reason_log = ReviewActionReasonLog.objects.create(
             activity_log=activity_log,
             reason=reason_1,
