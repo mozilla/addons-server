@@ -71,6 +71,7 @@ class PromotedAddonAdmin(AMOModelAdmin):
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
     inlines = (PromotedApprovalInline, PrimaryHeroInline)
+    list_select_related = ('primaryhero',)
 
     @classmethod
     def _transformer(self, objs):
@@ -88,7 +89,6 @@ class PromotedAddonAdmin(AMOModelAdmin):
         # are being run, though, we only care about translations
         qset = (
             self.model.objects.all()
-            .select_related('primaryhero')
             .prefetch_related(
                 Prefetch(
                     'addon',

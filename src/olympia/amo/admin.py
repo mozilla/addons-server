@@ -76,6 +76,14 @@ class AMOModelAdminChangeList(ChangeList):
         self.root_queryset = old_root_queryset
         return queryset.count()
 
+    def get_filters(self, request):
+        # Cache added because our custom get_results()/get_results_count() will
+        # cause get_filters() to be called twice, and it can generate some db
+        # queries.
+        if not hasattr(self, '_filters_cache'):
+            self._filters_cache = super().get_filters(request)
+        return self._filters_cache
+
     def get_results(self, request):
         # Copied from django, including comments. The only change is the
         # addition of the get_results_count() method that overrides the
@@ -119,13 +127,15 @@ class AMOModelAdminChangeList(ChangeList):
         self.paginator = paginator
 
     def apply_select_related(self, qs):
-        qs = super().apply_select_related(qs)
-        # Annotations that we don't want to apply to the count(*) query are
-        # added to our special get_queryset_annotations() method.
-        if 'for_count' not in qs.query.annotations and hasattr(
-            self.model_admin, 'get_queryset_annotations'
-        ):
-            qs = qs.annotate(**self.model_admin.get_queryset_annotations())
+        # Only apply select_related() if we're not doing a COUNT(*) query.
+        # When we really want to force a select_related to always take place it
+        # can be added to the get_queryset() method of the ModelAdmin.
+        if 'for_count' not in qs.query.annotations:
+            qs = super().apply_select_related(qs)
+            # Annotations that we don't want to apply to the count(*) query are
+            # added to our special get_queryset_annotations() method.
+            if hasattr(self.model_admin, 'get_queryset_annotations'):
+                qs = qs.annotate(**self.model_admin.get_queryset_annotations())
         return qs
 
     def get_query_string(self, new_params=None, remove=None):

@@ -138,7 +138,9 @@ class ManagerBase(models.Manager):
             qs = qs.transform(transformer.get_trans)
             # Annotate the queryset with the current language to prevent any
             # caching of the query to share results across languages.
-            qs = qs.annotate(__lang=Value(translation.get_language()))
+            qs = qs.annotate(
+                __lang=Value(translation.get_language() or '', output_field=CharField())
+            )
         return qs
 
     def transform(self, fn):
