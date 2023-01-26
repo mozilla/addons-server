@@ -94,7 +94,6 @@ from olympia.reviewers.serializers import (
     FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
-    AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
     NewThemesQueueTable,
@@ -103,7 +102,6 @@ from olympia.reviewers.utils import (
     ReviewHelper,
     HumanReviewTable,
     UpdatedThemesQueueTable,
-    ViewUnlistedAllListTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.users.models import UserProfile
@@ -114,7 +112,6 @@ from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
     permission_or_tools_listed_view_required,
-    permission_or_tools_unlisted_view_required,
     reviewer_addon_view_factory,
 )
 
@@ -215,21 +212,6 @@ def dashboard(request):
                 reverse('reviewers.queue_mad'),
             ),
         ]
-
-        sections['Auto-Approved Add-ons'] = [
-            (
-                'Auto Approved Add-ons ({0})'.format(queue_counts['auto_approved']),
-                reverse('reviewers.queue_auto_approved'),
-            ),
-            (
-                'Add-on Review Log',
-                reverse('reviewers.reviewlog'),
-            ),
-            (
-                'Review Guide',
-                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-            ),
-        ]
     if view_all or acl.action_allowed_for(
         request.user, amo.permissions.ADDONS_CONTENT_REVIEW
     ):
@@ -275,19 +257,6 @@ def dashboard(request):
             (
                 'Moderation Guide',
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
-            ),
-        ]
-    if view_all or acl.action_allowed_for(
-        request.user, amo.permissions.ADDONS_REVIEW_UNLISTED
-    ):
-        sections['Unlisted Add-ons'] = [
-            (
-                ('All Unlisted Add-ons'),
-                reverse('reviewers.unlisted_queue_all'),
-            ),
-            (
-                'Review Guide',
-                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
     if view_all or acl.action_allowed_for(
@@ -397,12 +366,10 @@ reviewer_tables_registry = {
     'extension': PendingManualApprovalQueueTable,
     'theme_pending': UpdatedThemesQueueTable,
     'theme_nominated': NewThemesQueueTable,
-    'auto_approved': AutoApprovedTable,
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
     'human_review': HumanReviewTable,
     'pending_rejection': PendingRejectionTable,
-    'unlisted': ViewUnlistedAllListTable,
 }
 
 
@@ -487,11 +454,6 @@ def queue_moderated(request):
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     return _queue(request, 'content_review')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_auto_approved(request):
-    return _queue(request, 'auto_approved')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
@@ -1007,15 +969,6 @@ def whiteboard(request, addon, channel):
 
         return redirect('reviewers.review', channel_as_text, addon.pk)
     raise PermissionDenied
-
-
-@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
-def unlisted_list(request):
-    return _queue(
-        request,
-        'unlisted',
-        unlisted=True,
-    )
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):

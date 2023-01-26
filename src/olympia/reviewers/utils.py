@@ -47,39 +47,6 @@ def safe_substitute(string, *args):
     return string % tuple(markupsafe.escape(arg) for arg in args)
 
 
-class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
-    id = tables.Column(verbose_name='ID')
-    addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
-    guid = tables.Column(verbose_name='GUID')
-    show_count_in_dashboard = False
-
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.unfiltered.get_addons_with_unlisted_versions_queue(
-            admin_reviewer=True
-        )
-
-    def render_addon_name(self, record):
-        url = reverse(
-            'reviewers.review',
-            args=[
-                'unlisted',
-                record.id,
-            ],
-        )
-        self.increment_item()
-        return markupsafe.Markup(
-            safe_substitute('<a href="%s">%s</a>', url, record.name)
-        )
-
-    def render_guid(self, record):
-        return markupsafe.Markup(safe_substitute('%s', record.guid))
-
-    @classmethod
-    def default_order_by(cls):
-        return '-id'
-
-
 class AddonQueueTable(tables.Table, ItemStateTable):
     addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
     # Override empty_values for flags so that they can be displayed even if the
@@ -271,18 +238,12 @@ class PendingRejectionTable(AddonQueueTable):
         )
 
 
-class AutoApprovedTable(AddonQueueTable):
-    @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_auto_approved_queue(admin_reviewer=admin_reviewer)
-
-
-class ContentReviewTable(AutoApprovedTable):
+class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
 
-    class Meta(AutoApprovedTable.Meta):
+    class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
-        # Exclude base fields AutoApprovedTable has that we don't want.
+        # Exclude base fields AddonQueueTable has that we don't want.
         exclude = (
             'last_human_review',
             'code_weight',

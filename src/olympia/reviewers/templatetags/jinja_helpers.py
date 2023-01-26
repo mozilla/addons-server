@@ -19,62 +19,52 @@ def queue_tabnav(context):
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     request = context['request']
-    listed = not context.get('unlisted')
-
-    if listed:
-        tabnav = []
-        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-            tabnav.append(
-                (
-                    'extension',
-                    'queue_extension',
-                    '🛠️ Manual Review',
-                )
+    tabnav = []
+    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
+        tabnav.append(
+            (
+                'extension',
+                'queue_extension',
+                '🛠️ Manual Review',
             )
-            tabnav.append(
-                (
-                    'human_review',
-                    'queue_human_review',
-                    'Versions Needing Human Review',
-                )
+        )
+        tabnav.append(
+            (
+                'human_review',
+                'queue_human_review',
+                'Versions Needing Human Review',
             )
-            tabnav.append(('mad', 'queue_mad', 'Flagged by MAD for Human Review'))
-        if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
-            tabnav.extend(
+        )
+        tabnav.append(('mad', 'queue_mad', 'Flagged by MAD for Human Review'))
+    if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
+        tabnav.extend(
+            (
                 (
-                    (
-                        'theme_nominated',
-                        'queue_theme_nominated',
-                        '🎨 New',
-                    ),
-                    (
-                        'theme_pending',
-                        'queue_theme_pending',
-                        '🎨 Updates',
-                    ),
-                )
-            )
-        if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
-            tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
-
-        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-            tabnav.append(('auto_approved', 'queue_auto_approved', 'Auto Approved'))
-
-        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
-            tabnav.append(('content_review', 'queue_content_review', 'Content Review'))
-
-        if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
-            tabnav.append(
+                    'theme_nominated',
+                    'queue_theme_nominated',
+                    '🎨 New',
+                ),
                 (
-                    'pending_rejection',
-                    'queue_pending_rejection',
-                    'Pending Rejection',
-                )
+                    'theme_pending',
+                    'queue_theme_pending',
+                    '🎨 Updates',
+                ),
             )
-    else:
-        tabnav = [
-            ('all', 'unlisted_queue_all', 'All Unlisted Add-ons'),
-        ]
+        )
+    if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
+        tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
+
+    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
+        tabnav.append(('content_review', 'queue_content_review', 'Content Review'))
+
+    if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
+        tabnav.append(
+            (
+                'pending_rejection',
+                'queue_pending_rejection',
+                'Pending Rejection',
+            )
+        )
 
     return tabnav
 
