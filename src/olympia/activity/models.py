@@ -1,5 +1,4 @@
 import json
-import string
 import uuid
 
 from collections import defaultdict
@@ -10,10 +9,9 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django.utils.translation import gettext
 
-import markupsafe
 
 import olympia.core.logger
 
@@ -289,28 +287,28 @@ class ActivityLogManager(ManagerBase):
         if isinstance(addons, Addon):
             addons = (addons,)
 
-        return self.filter(addonlog__addon__in=addons)
+        return format_htmlilter(addonlog__addon__in=addons)
 
     def for_versions(self, versions):
         if isinstance(versions, Version):
             versions = (versions,)
 
-        return self.filter(versionlog__version__in=versions)
+        return format_htmlilter(versionlog__version__in=versions)
 
     def for_groups(self, groups):
         if isinstance(groups, Group):
             groups = (groups,)
 
-        return self.filter(grouplog__group__in=groups)
+        return format_htmlilter(grouplog__group__in=groups)
 
     def for_block(self, block):
-        return self.filter(blocklog__block=block)
+        return format_htmlilter(blocklog__block=block)
 
     def for_guidblock(self, guid):
-        return self.filter(blocklog__guid=guid)
+        return format_htmlilter(blocklog__guid=guid)
 
     def moderation_events(self):
-        return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
+        return format_htmlilter(action__in=constants.activity.LOG_RATING_MODERATION)
 
     def review_log(self):
         qs = self._by_type()
@@ -327,15 +325,6 @@ class ActivityLogManager(ManagerBase):
         )
 
 
-class SafeFormatter(string.Formatter):
-    """A replacement for str.format that escapes interpolated values."""
-
-    def get_field(self, *args, **kw):
-        # obj is the value getting interpolated into the string.
-        obj, used_key = super().get_field(*args, **kw)
-        return mark_safe(markupsafe.escape(obj)), used_key
-
-
 class ActivityLog(ModelBase):
     TYPES = sorted(
         (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
@@ -346,8 +335,6 @@ class ActivityLog(ModelBase):
     _details = models.TextField(blank=True, db_column='details')
     objects = ActivityLogManager()
 
-    formatter = SafeFormatter()
-
     class Meta:
         db_table = 'log_activity'
         ordering = ('-created',)
@@ -355,11 +342,6 @@ class ActivityLog(ModelBase):
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
             models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
-
-    def f(self, *args, **kw):
-        """Calls SafeFormatter.format and returns a Markup string."""
-        # SafeFormatter escapes everything so this is safe.
-        return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
     def transformer_anonymize_user_for_developer(cls, logs):
@@ -542,40 +524,40 @@ class ActivityLog(ModelBase):
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
                 if type_ == 'admin' or arg.has_listed_versions():
-                    addon = self.f(
+                    addon = format_html(
                         '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                     )
                 else:
-                    addon = self.f('{0}', arg.name)
+                    addon = format_html('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
-                rating = self.f(
+                rating = format_html(
                     '<a href="{0}">{1}</a>', get_absolute_url(arg), gettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
                 if type_ == 'admin' or arg.channel == amo.CHANNEL_LISTED:
-                    version = self.f(
+                    version = format_html(
                         '<a href="{1}">%s</a>' % text,
                         arg.version,
                         get_absolute_url(arg),
                     )
                 else:
-                    version = self.f(text, arg.version)
+                    version = format_html(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = self.f(
+                collection = format_html(
                     '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
-                    tag = self.f(
+                    tag = format_html(
                         '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.tag_text
                     )
                 else:
-                    tag = self.f('{0}', arg.tag_text)
+                    tag = format_html('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
                 group = arg.name
                 arguments.remove(arg)
@@ -587,7 +569,7 @@ class ActivityLog(ModelBase):
                 ):
                     validation = 'ignored'
 
-                file_ = self.f(
+                file_ = format_html(
                     '<a href="{0}">{1}</a> (validation {2})',
                     get_absolute_url(arg),
                     arg.pretty_filename,
@@ -595,7 +577,9 @@ class ActivityLog(ModelBase):
                 )
                 arguments.remove(arg)
             if isinstance(arg, UserProfile) and not user:
-                user = self.f('<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name)
+                user = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
+                )
                 arguments.remove(arg)
             if self.action == amo.LOG.CHANGE_STATUS.id and not isinstance(arg, Addon):
                 # Unfortunately, this action has been abused in the past and
@@ -609,7 +593,7 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user_responsible = self.f(
+        user_responsible = format_html(
             '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
         )
 
@@ -626,7 +610,7 @@ class ActivityLog(ModelBase):
                 'file': file_,
                 'status': status,
             }
-            return self.f(str(format), *arguments, **kw)
+            return format_html(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
