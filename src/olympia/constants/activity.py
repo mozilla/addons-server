@@ -345,7 +345,7 @@ class APPROVE_RATING(_LOG):
     id = 40
     action_class = 'approve'
     format = _('{rating} for {addon} approved.')
-    reviewer_format = _('{user} approved {rating} for {addon}.')
+    reviewer_format = '{user_responsible} approved {rating} for {addon}.'
     keep = True
     reviewer_event = True
 
@@ -356,7 +356,7 @@ class DELETE_RATING(_LOG):
     id = 41
     action_class = 'review'
     format = _('Review {rating} for {addon} deleted.')
-    reviewer_format = _('{user} deleted {rating} for {addon}.')
+    reviewer_format = '{user_responsible} deleted {rating} for {addon}.'
     keep = True
     reviewer_event = True
 
@@ -437,27 +437,27 @@ class OBJECT_DELETED(_LOG):
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _('User {0} edited')
+    format = 'User {user} edited by {user_responsible}'
     admin_event = True
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _('User {0} anonymized.')
+    format = 'User {user} anonymized by {user_responsible}.'
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
-    format = _('User {0} restricted.')
+    format = 'User {user} restricted by {user_responsible}.'
     keep = True
     admin_event = True
 
 
 class ADMIN_VIEWED_LOG(_LOG):
     id = 106
-    format = _('Admin {user} viewed activity log for {0}.')
+    format = 'Admin {user_responsible} viewed activity log for {user}.'
     admin_event = True
 
 
@@ -492,7 +492,7 @@ class ADMIN_USER_PICTURE_DELETED(_LOG):
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'
-    format = _('User {0.name} added to {group}.')
+    format = _('User {0} added to {group}.')
     keep = True
     admin_event = True
 
@@ -500,7 +500,7 @@ class GROUP_USER_ADDED(_LOG):
 class GROUP_USER_REMOVED(_LOG):
     id = 121
     action_class = 'access'
-    format = _('User {0.name} removed from {group}.')
+    format = _('User {0} removed from {group}.')
     keep = True
     admin_event = True
 
@@ -709,7 +709,7 @@ class CREATE_STATICTHEME_FROM_PERSONA(_LOG):
 
 class ADMIN_API_KEY_RESET(_LOG):
     id = 155
-    format = _('User {user} api key reset.')
+    format = _('User {0} api key reset.')
     admin_event = True
 
 
@@ -766,13 +766,13 @@ class BLOCKLIST_SIGNOFF(_LOG):
 
 class ADMIN_USER_SESSION_RESET(_LOG):
     id = 162
-    format = _('User {user} session(s) reset.')
+    format = _('User {0} session(s) reset.')
     admin_event = True
 
 
 class THROTTLED(_LOG):
     id = 163
-    format = _('User {user} throttled for scope "{0}"')
+    format = 'User {user_responsible} throttled for scope "{0}"'
     admin_event = True
 
 
@@ -814,8 +814,8 @@ class FORCE_DISABLE(_LOG):
     # add-on is likely malicious.
     hide_developer = True
     reviewer_review_action = True
-    format = _('{user} force-disabled {addon}.')
-    short = _('Force disabled')
+    format = '{user_responsible} force-disabled {addon}.'
+    short = 'Force disabled'
 
 
 class FORCE_ENABLE(_LOG):
@@ -823,8 +823,8 @@ class FORCE_ENABLE(_LOG):
     keep = True
     hide_developer = True
     reviewer_review_action = True
-    format = _('{user} force-enabled {addon}.')
-    short = _('Force enabled')
+    format = '{user_responsible} force-enabled {addon}.'
+    short = 'Force enabled'
 
 
 class LOG_IN(_LOG):
@@ -834,7 +834,7 @@ class LOG_IN(_LOG):
     keep = True
     admin_event = True
     store_ip = True
-    format = _('{user} logged in.')
+    format = '{user_responsible} logged in.'
 
 
 class RESTRICTED(_LOG):
@@ -842,7 +842,7 @@ class RESTRICTED(_LOG):
     keep = True
     admin_event = True
     store_ip = True
-    format = _('{user} restricted.')
+    format = '{user_responsible} restricted.'
 
 
 class UNREJECT_VERSION(_LOG):
@@ -863,7 +863,7 @@ class LOG_IN_API_TOKEN(_LOG):
     keep = True
     admin_event = True
     store_ip = True
-    format = _('{user} authenticated through an API token.')
+    format = '{user_responsible} authenticated through an API token.'
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

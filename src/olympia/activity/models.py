@@ -10,7 +10,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
 
 import markupsafe
@@ -356,6 +356,11 @@ class ActivityLog(ModelBase):
             models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
 
+    def f(self, *args, **kw):
+        """Calls SafeFormatter.format and returns a Markup string."""
+        # SafeFormatter escapes everything so this is safe.
+        return markupsafe.Markup(self.formatter.format(*args, **kw))
+
     @classmethod
     def transformer_anonymize_user_for_developer(cls, logs):
         """Replace the user with a generic user in actions where it shouldn't
@@ -536,40 +541,40 @@ class ActivityLog(ModelBase):
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
                 if type_ == 'admin' or arg.has_listed_versions():
-                    addon = format_html(
+                    addon = self.f(
                         '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                     )
                 else:
-                    addon = format_html('{0}', arg.name)
+                    addon = self.f('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
-                rating = format_html(
+                rating = self.f(
                     '<a href="{0}">{1}</a>', get_absolute_url(arg), gettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
                 if type_ == 'admin' or arg.channel == amo.CHANNEL_LISTED:
-                    version = format_html(
+                    version = self.f(
                         '<a href="{1}">%s</a>' % text,
                         arg.version,
                         get_absolute_url(arg),
                     )
                 else:
-                    version = format_html(text, arg.version)
+                    version = self.f(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = format_html(
+                collection = self.f(
                     '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
-                    tag = format_html(
+                    tag = self.f(
                         '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.tag_text
                     )
                 else:
-                    tag = format_html('{0}', arg.tag_text)
+                    tag = self.f('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
                 group = arg.name
                 arguments.remove(arg)
@@ -581,7 +586,7 @@ class ActivityLog(ModelBase):
                 ):
                     validation = 'ignored'
 
-                file_ = format_html(
+                file_ = self.f(
                     '<a href="{0}">{1}</a> (validation {2})',
                     get_absolute_url(arg),
                     arg.pretty_filename,
@@ -600,7 +605,7 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user = format_html(
+        user = self.f(
             '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
         )
 
@@ -616,13 +621,13 @@ class ActivityLog(ModelBase):
                 'file': file_,
                 'status': status,
             }
-            return format_html(str(format), *arguments, **kw)
+            return self.f(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
 
     def __str__(self):
-        return self.to_string()
+        return mark_safe(self.to_string())
 
     def __html__(self):
         return self
