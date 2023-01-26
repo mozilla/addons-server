@@ -333,7 +333,7 @@ class SafeFormatter(string.Formatter):
     def get_field(self, *args, **kw):
         # obj is the value getting interpolated into the string.
         obj, used_key = super().get_field(*args, **kw)
-        return markupsafe.escape(obj), used_key
+        return mark_safe(markupsafe.escape(obj)), used_key
 
 
 class ActivityLog(ModelBase):
@@ -537,6 +537,7 @@ class ActivityLog(ModelBase):
         group = None
         file_ = None
         status = None
+        user = None
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
@@ -593,6 +594,9 @@ class ActivityLog(ModelBase):
                     validation,
                 )
                 arguments.remove(arg)
+            if isinstance(arg, UserProfile) and not user:
+                user = self.f('<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name)
+                arguments.remove(arg)
             if self.action == amo.LOG.CHANGE_STATUS.id and not isinstance(arg, Addon):
                 # Unfortunately, this action has been abused in the past and
                 # the non-addon argument could be a string or an int. If it's
@@ -605,7 +609,7 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user = self.f(
+        user_responsible = self.f(
             '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
         )
 
@@ -617,6 +621,7 @@ class ActivityLog(ModelBase):
                 'collection': collection,
                 'tag': tag,
                 'user': user,
+                'user_responsible': user_responsible,
                 'group': group,
                 'file': file_,
                 'status': status,
@@ -627,7 +632,7 @@ class ActivityLog(ModelBase):
             return 'Something magical happened.'
 
     def __str__(self):
-        return mark_safe(self.to_string())
+        return self.to_string()
 
     def __html__(self):
         return self

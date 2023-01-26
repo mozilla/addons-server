@@ -49,7 +49,8 @@ class EDIT_CATEGORIES(_LOG):
 class ADD_USER_WITH_ROLE(_LOG):
     id = 5
     action_class = 'add'
-    format = _('{0.name} ({1}) added to {addon}.')
+    # L10n: {0} is the user role.
+    format = _('{user} ({0}) added to {addon}.')
     keep = True
     show_user_to_developer = True
 
@@ -57,8 +58,8 @@ class ADD_USER_WITH_ROLE(_LOG):
 class REMOVE_USER_WITH_ROLE(_LOG):
     id = 6
     action_class = 'delete'
-    # L10n: {0} is the user being removed, {1} is their role.
-    format = _('{0.name} ({1}) removed from {addon}.')
+    # L10n: {0} is the user role.
+    format = _('{user} ({0}) removed from {addon}.')
     keep = True
     show_user_to_developer = True
 
@@ -119,7 +120,7 @@ class DELETE_VERSION(_LOG):
 class ADD_FILE_TO_VERSION(_LOG):
     id = 19
     action_class = 'add'
-    format = _('File {0.name} added to {version} of {addon}.')
+    format = _('File {file} added to {version} of {addon}.')
 
 
 class DELETE_FILE_FROM_VERSION(_LOG):
@@ -312,8 +313,8 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     """Expects: author.user, role, addon"""
 
     id = 36
-    # L10n: {0} is a user, {1} is their role
-    format = _('{0.name} role changed to {1} for {addon}.')
+    # L10n: {0} is the user role
+    format = _('{user} role changed to {0} for {addon}.')
     keep = True
     show_user_to_developer = True
 
