@@ -399,12 +399,12 @@ class USER_EDITED(_LOG):
 
 class USER_DELETED(_LOG):
     id = 61
-    format = _('Account {user} deleted.')
+    format = _('Account {0} deleted.')
 
 
 class USER_AUTO_DELETED(_LOG):
     id = 62
-    format = _('Account {user} deleted, from Firefox Accounts event.')
+    format = _('Account {0} deleted, from Firefox Accounts event.')
 
 
 class CUSTOM_TEXT(_LOG):
@@ -437,27 +437,27 @@ class OBJECT_DELETED(_LOG):
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _('User {user} edited, reason: {1}')
+    format = _('User {0} edited')
     admin_event = True
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _('User {user} anonymized.')
+    format = _('User {0} anonymized.')
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
-    format = _('User {user} restricted.')
+    format = _('User {0} restricted.')
     keep = True
     admin_event = True
 
 
 class ADMIN_VIEWED_LOG(_LOG):
     id = 106
-    format = _('Admin {0} viewed activity log for {user}.')
+    format = _('Admin {user} viewed activity log for {0}.')
     admin_event = True
 
 
@@ -478,14 +478,14 @@ class THEME_REVIEW(_LOG):
 
 class ADMIN_USER_BANNED(_LOG):
     id = 109
-    format = _('User {user} banned.')
+    format = _('User {0} banned.')
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_PICTURE_DELETED(_LOG):
     id = 110
-    format = _('User {user} picture deleted.')
+    format = _('User {0} picture deleted.')
     admin_event = True
 
 
