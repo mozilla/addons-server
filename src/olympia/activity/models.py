@@ -12,7 +12,6 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.translation import gettext
 
-
 import olympia.core.logger
 
 from olympia import amo, constants
@@ -287,28 +286,28 @@ class ActivityLogManager(ManagerBase):
         if isinstance(addons, Addon):
             addons = (addons,)
 
-        return format_htmlilter(addonlog__addon__in=addons)
+        return self.filter(addonlog__addon__in=addons)
 
     def for_versions(self, versions):
         if isinstance(versions, Version):
             versions = (versions,)
 
-        return format_htmlilter(versionlog__version__in=versions)
+        return self.filter(versionlog__version__in=versions)
 
     def for_groups(self, groups):
         if isinstance(groups, Group):
             groups = (groups,)
 
-        return format_htmlilter(grouplog__group__in=groups)
+        return self.filter(grouplog__group__in=groups)
 
     def for_block(self, block):
-        return format_htmlilter(blocklog__block=block)
+        return self.filter(blocklog__block=block)
 
     def for_guidblock(self, guid):
-        return format_htmlilter(blocklog__guid=guid)
+        return self.filter(blocklog__guid=guid)
 
     def moderation_events(self):
-        return format_htmlilter(action__in=constants.activity.LOG_RATING_MODERATION)
+        return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
 
     def review_log(self):
         qs = self._by_type()
