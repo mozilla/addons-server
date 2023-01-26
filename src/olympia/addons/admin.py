@@ -5,6 +5,7 @@ from django import http, forms
 from django.conf import settings
 from django.contrib import admin
 from django.core import validators
+from django.db.models import Exists, OuterRef
 from django.forms.models import modelformset_factory
 from django.http.response import (
     HttpResponseForbidden,
@@ -258,44 +259,25 @@ class AddonAdmin(AMOModelAdmin):
     )
     actions = ['git_extract_action']
 
-    def get_queryset(self, request):
-        # We want to _unlisted_versions_exists/_listed_versions_exists to avoid
-        # repeating that query for each add-on in the list. A cleaner way to do this
-        # would be to use annotate like this:
-        # sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
-        # (...).annotate(
-        #     _unlisted_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.CHANNEL_UNLISTED)
-        #     ),
-        #     _listed_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.CHANNEL_LISTED)
-        #     ),
-        # )
-        # But while this works, the subquery is a lot less optimized (it does a full
-        # query instead of the SELECT 1 ... LIMIT 1) and to make things worse django
-        # admin doesn't know it's only for displayed data (it doesn't realize we aren't
-        # filtering on it, and even if it did can't remove the annotations from the
-        # queryset anyway) so it uses it for the count() queries as well, making them a
-        # lot slower.
-        subquery = (
-            'SELECT 1 FROM `versions` WHERE `channel` = %s'
-            ' AND `addon_id` = `addons`.`id` LIMIT 1'
-        )
-        extra = {
-            'select': {
-                '_unlisted_versions_exists': subquery,
-                '_listed_versions_exists': subquery,
-            },
-            'select_params': (
-                amo.CHANNEL_UNLISTED,
-                amo.CHANNEL_LISTED,
+    def get_queryset_annotations(self):
+        # Add annotation for _unlisted_versions_exists/_listed_versions_exists
+        # to avoid repeating those queries for each add-on in the list.
+        sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
+        annotations = {
+            '_unlisted_versions_exists': Exists(
+                sub_qs.filter(channel=amo.CHANNEL_UNLISTED)
+            ),
+            '_listed_versions_exists': Exists(
+                sub_qs.filter(channel=amo.CHANNEL_LISTED)
             ),
         }
+        return annotations
+
+    def get_queryset(self, request):
         return (
             Addon.unfiltered.all()
             .only_translations()
             .transform(Addon.attach_all_authors)
-            .extra(**extra)
         )
 
     def get_urls(self):
