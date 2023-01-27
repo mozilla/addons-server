@@ -139,6 +139,7 @@ class TestRatingAdmin(TestCase):
     def test_search_by_ip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
 
         addon = Addon.objects.get(pk=3615)
@@ -259,26 +260,24 @@ class TestRatingAdmin(TestCase):
 
         # Sort by IP address using django admin built-in sort:
         # parameter is `o`, value is -5.3 because we're sorting by IP (the 5th
-        # column) desc and then created (3rd column) asc.
+        # column) desc and then created (3rd column) asc. Note that our user
+        # has permission to delete ratings, which adds a special column with
+        # a checkbox to delete ratings, and it does count towards the column
+        # index values.
+        core.set_user(user)
         with core.override_remote_addr('125.1.1.2'):
-            rating5 = Rating.objects.create(
-                addon=third_addon, user=user_factory(), rating=4, body='Lôrem body 5'
+            Rating.objects.create(
+                addon=addon_factory(),
+                user=user_factory(),
+                rating=4,
+                body='Lôrem body 5',
             )
         response = self.client.get(self.list_url, data={'o': '-5.3'})
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list .field-id').text() == ' '.join(
-            map(
-                str,
-                [
-                    self.rating.pk,
-                    rating4.pk,
-                    rating5.pk,
-                    rating3.pk,
-                    rating2.pk,
-                    rating1.pk,
-                ],
-            )
+        assert len(doc('#result_list .field-id')) == 6
+        assert doc('#result_list .field-known_ip_adresses').text().strip() == ' '.join(
+            ['4.8.15.16', '4.8.15.16', '125.5.6.7', '125.1.2.3\n4.8.15.16 125.1.1.2']
         )
 
     def test_filter_by_created_only_from(self):
