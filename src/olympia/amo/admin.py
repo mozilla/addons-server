@@ -76,6 +76,13 @@ class AMOModelAdminChangeList(ChangeList):
         self.root_queryset = old_root_queryset
         return queryset.count()
 
+    def get_ordering(self, request, queryset):
+        # Don't try to order results when counting, the annotations the
+        # ordering depends on do not exist and it's pointless anyway.
+        if 'for_count' in queryset.query.annotations:
+            return []
+        return super().get_ordering(request, queryset)
+
     def get_filters(self, request):
         # Cache added because our custom get_results()/get_results_count() will
         # cause get_filters() to be called twice, and it can generate some db
