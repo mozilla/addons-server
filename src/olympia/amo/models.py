@@ -132,15 +132,15 @@ class ManagerBase(models.Manager):
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
+        from django.db.models import Value
 
-        # Since we're attaching translations to the object, we need to stick
-        # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
-            # We just add lang=lang in the query. We want to avoid NULL=NULL
-            # though, so if lang is null we just add use dummy value instead.
-            lang = translation.get_language() or '0'
             qs = qs.transform(transformer.get_trans)
-            qs = qs.extra(where=['%s=%s'], params=[lang, lang])
+            # Annotate the queryset with the current language to prevent any
+            # caching of the query to share results across languages.
+            qs = qs.annotate(
+                __lang=Value(translation.get_language() or '', output_field=CharField())
+            )
         return qs
 
     def transform(self, fn):

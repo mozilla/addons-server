@@ -7,6 +7,7 @@ from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
 from django import forms
 from django.contrib import admin
+from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.admin.views.main import (
     ChangeList,
     ChangeListSearchForm,
@@ -15,6 +16,7 @@ from django.contrib.admin.views.main import (
     SEARCH_VAR,
 )
 from django.core.exceptions import FieldDoesNotExist
+from django.core.paginator import InvalidPage
 from django.db import models
 from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
@@ -40,7 +42,9 @@ class AMOModelAdminChangeListSearchForm(ChangeListSearchForm):
 class AMOModelAdminChangeList(ChangeList):
     """Custom ChangeList companion for AMOModelAdmin, allowing to have a custom
     search form and providing support for query string containing the same
-    parameter multiple times."""
+    parameter multiple times, as well as a separate count_queryset property
+    to use a different, leaner queryset when figuring out the count for
+    pagination purposes."""
 
     search_form_class = AMOModelAdminChangeListSearchForm
 
@@ -56,6 +60,83 @@ class AMOModelAdminChangeList(ChangeList):
             del self.params[PAGE_VAR]
         if ERROR_FLAG in self.params:
             del self.params[ERROR_FLAG]
+
+    def get_results_count(self, request):
+        """Return the count for the number of results for this changelist.
+
+        Separate custom method in order to exclude display only annotations,
+        optimizing database performance (at the expense of rebuilding the
+        queryset a second time).
+        """
+        old_root_queryset = self.root_queryset._clone()
+        self.root_queryset = self.root_queryset.alias(for_count=models.Value(True))
+        # get_queryset() uses self.root_queryset, which we've now annotated.
+        queryset = self.get_queryset(request)
+        # Revert root_queryset to the non-annotated original one.
+        self.root_queryset = old_root_queryset
+        return queryset.count()
+
+    def get_filters(self, request):
+        # Cache added because our custom get_results()/get_results_count() will
+        # cause get_filters() to be called twice, and it can generate some db
+        # queries.
+        if not hasattr(self, '_filters_cache'):
+            self._filters_cache = super().get_filters(request)
+        return self._filters_cache
+
+    def get_results(self, request):
+        # Copied from django, including comments. The only change is the
+        # addition of the get_results_count() method that overrides the
+        # paginator count.
+
+        paginator = self.model_admin.get_paginator(
+            request, self.queryset, self.list_per_page
+        )
+        paginator.count = self.get_results_count(request)
+        # Get the number of objects, with admin filters applied.
+        result_count = paginator.count
+
+        # Get the total number of objects, with no admin filters applied.
+        if self.model_admin.show_full_result_count:
+            full_result_count = self.root_queryset.count()
+        else:
+            full_result_count = None
+        can_show_all = result_count <= self.list_max_show_all
+        multi_page = result_count > self.list_per_page
+
+        # Get the list of objects to display on this page.
+        if (self.show_all and can_show_all) or not multi_page:
+            result_list = self.queryset._clone()
+        else:
+            try:
+                result_list = paginator.page(self.page_num).object_list
+            except InvalidPage:
+                raise IncorrectLookupParameters
+
+        self.result_count = result_count
+        self.show_full_result_count = self.model_admin.show_full_result_count
+        # Admin actions are shown if there is at least one entry
+        # or if entries are not counted because show_full_result_count is disabled
+        self.show_admin_actions = not self.show_full_result_count or bool(
+            full_result_count
+        )
+        self.full_result_count = full_result_count
+        self.result_list = result_list
+        self.can_show_all = can_show_all
+        self.multi_page = multi_page
+        self.paginator = paginator
+
+    def apply_select_related(self, qs):
+        # Only apply select_related() if we're not doing a COUNT(*) query.
+        # When we really want to force a select_related to always take place it
+        # can be added to the get_queryset() method of the ModelAdmin.
+        if 'for_count' not in qs.query.annotations:
+            qs = super().apply_select_related(qs)
+            # Annotations that we don't want to apply to the count(*) query are
+            # added to our special get_queryset_annotations() method.
+            if hasattr(self.model_admin, 'get_queryset_annotations'):
+                qs = qs.annotate(**self.model_admin.get_queryset_annotations())
+        return qs
 
     def get_query_string(self, new_params=None, remove=None):
         # django's ChangeList.get_query_string() doesn't respect parameters
@@ -239,21 +320,19 @@ class AMOModelAdmin(admin.ModelAdmin):
                 )
                 for network in ips_and_networks['networks']:
                     condition |= models.Q(**{arg: (network[0], network[-1])})
-        annotations = {
-            'activity_ips': GroupConcat(
-                Inet6Ntoa(
-                    f'{self.search_by_ip_activity_accessor}__iplog__ip_address_binary'
-                ),
-                distinct=True,
-            ),
-            # Add an annotation for {search_by_ip_activity_accessor}__iplog__id
-            # so that we can apply a filter on the specific JOIN that will be
-            # used to grab the IPs through GroupConcat to help MySQL optimizer
-            # remove non relevant activities from the DISTINCT bit.
-            'activity_ips_ids': models.F(
-                f'{self.search_by_ip_activity_accessor}__iplog__id'
-            ),
-        }
+        if condition or (
+            'known_ip_adresses' in self.list_display
+            and 'for_count' not in queryset.query.annotations
+        ):
+            queryset = queryset.annotate(
+                activity_ips=GroupConcat(
+                    Inet6Ntoa(
+                        self.search_by_ip_activity_accessor
+                        + '__iplog__ip_address_binary'
+                    ),
+                    distinct=True,
+                )
+            )
         if condition:
             arg = f'{self.search_by_ip_activity_accessor}__action__in'
             condition &= models.Q(**{arg: self.search_by_ip_actions})
@@ -262,13 +341,19 @@ class AMOModelAdmin(admin.ModelAdmin):
             # showing all IPs for activities related to that object and another
             # for the search results. Django doesn't let us do that out of the
             # box, but through FilteredRelation we can force it...
-            annotations['activitylog_filtered'] = models.FilteredRelation(
-                f'{self.search_by_ip_activity_accessor}__iplog',
-                condition=condition,
-            )
-        queryset = queryset.annotate(**annotations)
-        if condition:
-            queryset = queryset.filter(
+            aliases = {
+                # Add an alias for {search_by_ip_activity_accessor}__iplog__id
+                # so that we can apply a filter on the specific JOIN that will be
+                # used to grab the IPs through GroupConcat to help MySQL optimizer
+                # remove non relevant activities from the DISTINCT bit.
+                'activity_ips_ids': models.F(
+                    f'{self.search_by_ip_activity_accessor}__iplog__id'
+                ),
+                'activitylog_filtered': models.FilteredRelation(
+                    f'{self.search_by_ip_activity_accessor}__iplog', condition=condition
+                ),
+            }
+            queryset = queryset.alias(**aliases).filter(
                 activity_ips_ids__isnull=False,
                 activitylog_filtered__isnull=False,
             )
@@ -294,7 +379,9 @@ class AMOModelAdmin(admin.ModelAdmin):
           get_search_id_field(request) using a __in ORM lookup directly.
         - If the search terms are all IP addresses, a special search for
           objects matching those IPs is triggered
-
+        - If the queryset has a `for_count` property, then we use that to do
+          some optimizations, removing annotations that are only needed for
+          display purposes.
         """
         # Apply keyword searches.
         def construct_search(field_name):
@@ -330,8 +417,8 @@ class AMOModelAdmin(admin.ModelAdmin):
             ips_and_networks = self.ip_addresses_and_networks_from_query(search_term)
             # If self.search_by_ip_actions is truthy, then we can call
             # get_queryset_with_related_ips(), which will add IP
-            # annotations regardless of whether or not we're actually
-            # searching by IP...
+            # annotations if needed (either because we're doing an IP search
+            # or because the known_ip_addresses field is in list_display)
             queryset, may_have_duplicates = self.get_queryset_with_related_ips(
                 request, queryset, ips_and_networks
             )
