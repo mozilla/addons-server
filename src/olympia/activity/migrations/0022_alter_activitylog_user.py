@@ -13,9 +13,22 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
-            model_name='activitylog',
-            name='user',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='users.userprofile'),
-        ),
+        migrations.SeparateDatabaseAndState(
+            # Avoid a database operation for this, as we just need to alter the
+            # python on_delete callback. Database operations would normally be:
+            # ALTER TABLE `log_activity` DROP FOREIGN KEY `log_activity_user_id_6ed3455e_fk_users_id`;
+            # ALTER TABLE `log_activity` MODIFY `user_id` integer NOT NULL;
+            # ALTER TABLE `log_activity` ADD CONSTRAINT `log_activity_user_id_6ed3455e_fk_users_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+            database_operations=[],
+            state_operations=[
+                migrations.AlterField(
+                    model_name='activitylog',
+                    name='user',
+                    field=models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to='users.userprofile',
+                    ),
+                )
+            ],
+        )
     ]
