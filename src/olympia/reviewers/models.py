@@ -579,13 +579,16 @@ class AutoApprovalSummary(ModelBase):
         auto_approval_disabled_until_next_approval = getattr(
             addon, f'auto_approval_disabled_until_next_approval{flag_suffix}'
         )
-        auto_approval_delayed = getattr(
+        auto_approval_delayed_until = getattr(
             addon, f'auto_approval_delayed_until{flag_suffix}'
         )
         return bool(
             auto_approval_disabled
             or auto_approval_disabled_until_next_approval
-            or (auto_approval_delayed and datetime.now() < auto_approval_delayed)
+            or (
+                auto_approval_delayed_until
+                and datetime.now() < auto_approval_delayed_until
+            )
         )
 
     @classmethod
