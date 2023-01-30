@@ -748,9 +748,14 @@ class ReviewBase:
         self.redirect_url = None
 
     def set_addon(self):
-        """Alter addon, set reviewed timestamp on version being reviewed."""
+        """Alter addon, set human_review_date timestamp on version being reviewed."""
         self.addon.update_status()
-        self.version.update(reviewed=datetime.now())
+        self.set_human_review_date()
+
+    def set_human_review_date(self, version=None):
+        version = version or self.version
+        if self.human_review and not version.human_review_date:
+            version.update(human_review_date=datetime.now())
 
     def set_data(self, data):
         self.data = data
@@ -758,7 +763,8 @@ class ReviewBase:
     def set_file(self, status, file):
         """Change the file to be the new status."""
         file.datestatuschanged = datetime.now()
-        file.reviewed = datetime.now()
+        if status == amo.STATUS_APPROVED:
+            file.approval_date = datetime.now()
         file.status = status
         file.save()
 
@@ -890,12 +896,8 @@ class ReviewBase:
     def reviewer_reply(self):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        if self.version:
-            if (
-                self.version.channel == amo.CHANNEL_UNLISTED
-                and not self.version.reviewed
-            ):
-                self.version.update(reviewed=datetime.now())
+        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
+            self.set_human_review_date()
 
         log.info(
             'Sending reviewer reply for %s to authors and other'
@@ -915,13 +917,8 @@ class ReviewBase:
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
-        update_reviewed = (
-            self.version
-            and self.version.channel == amo.CHANNEL_UNLISTED
-            and not self.version.reviewed
-        )
-        if update_reviewed:
-            self.version.update(reviewed=datetime.now())
+        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
+            self.set_human_review_date()
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
@@ -1180,6 +1177,7 @@ class ReviewBase:
                         else None,
                     },
                 )
+                self.set_human_review_date(version)
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.

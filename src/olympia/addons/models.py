@@ -181,8 +181,8 @@ class AddonQuerySet(BaseQuerySet):
         return self.filter(id=val)
 
     def public(self):
-        """Get reviewed add-ons only"""
-        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
+        """Get approved add-ons only"""
+        return self.filter(self.valid_q(amo.APPROVED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -1339,7 +1339,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         latest_version = self.find_latest_version(amo.CHANNEL_LISTED, exclude=())
 
-        return latest_version is not None and not latest_version.file.reviewed
+        return (
+            latest_version is not None
+            and not latest_version.file.approval_date
+            and not latest_version.human_review_date
+        )
 
     @property
     def is_disabled(self):

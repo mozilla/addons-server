@@ -99,7 +99,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
     for version in qset:
         file_obj = version.file
         # We only sign files that have been reviewed
-        if file_obj.status not in amo.REVIEWED_STATUSES:
+        if file_obj.status not in amo.APPROVED_STATUSES:
             log.info(
                 'Not signing addon {}, version {} (no files)'.format(
                     version.addon, version

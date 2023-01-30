@@ -336,8 +336,8 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file = File(status=amo.STATUS_NULL)
         assert file.get_review_status_display() == '[status:0]'
         file.update(status=amo.STATUS_DISABLED)
-        assert file.get_review_status_display() == 'Rejected or Unreviewed'
-        file.update(reviewed=datetime.now())
+        assert file.get_review_status_display() == 'Unreviewed'
+        file.version = Version(human_review_date=datetime.now())
         assert file.get_review_status_display() == 'Rejected'
         file.update(status=amo.STATUS_APPROVED)
         assert file.get_review_status_display() == 'Approved'

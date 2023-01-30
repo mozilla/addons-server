@@ -403,7 +403,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
                     'en-US': 'Release notes in english',
                     'fr': 'Notes de version en français',
                 },
-                'reviewed': self.days_ago(0),
+                'human_review_date': self.days_ago(0),
             },
         )
 
@@ -433,7 +433,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
         assert data['channel'] == 'listed'
         assert data['reviewed'] == (
-            self.version.reviewed.replace(microsecond=0).isoformat() + 'Z'
+            self.version.human_review_date.replace(microsecond=0).isoformat() + 'Z'
         )
 
         # Custom fields

@@ -247,7 +247,7 @@ class CategoriesSitemap(Sitemap):
                 addon___current_version__isnull=False,
                 addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
-                addon__status__in=amo.REVIEWED_STATUSES,
+                addon__status__in=amo.APPROVED_STATUSES,
             )
             .values('category_id')
             .annotate(count=Count('addon_id'))
@@ -295,7 +295,7 @@ class AccountSitemap(Sitemap):
             addons___current_version__isnull=False,
             addons___current_version__apps__application=current_app.id,
             addons__disabled_by_user=False,
-            addons__status__in=amo.REVIEWED_STATUSES,
+            addons__status__in=amo.APPROVED_STATUSES,
             addonuser__listed=True,
             addonuser__role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER),
         )
@@ -383,7 +383,7 @@ class TagPagesSitemap(Sitemap):
                 addon___current_version__isnull=False,
                 addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
-                addon__status__in=amo.REVIEWED_STATUSES,
+                addon__status__in=amo.APPROVED_STATUSES,
             )
             .values('tag_id')
             .annotate(count=Count('addon_id'))

@@ -551,7 +551,9 @@ class AddonIndexer:
                         'optional_permissions': version_obj.file.optional_permissions,
                     }
                 ],
-                'reviewed': version_obj.reviewed,
+                'reviewed': (
+                    version_obj.file.approval_date or version_obj.human_review_date
+                ),
                 'version': version_obj.version,
             }
             if version_obj

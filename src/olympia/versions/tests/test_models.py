@@ -570,7 +570,7 @@ class TestVersion(TestCase):
         )
         assert list(Version.objects.valid()) == [additional_version, self.version]
 
-    def test_reviewed_versions(self):
+    def test_approved_versions(self):
         addon = Addon.objects.get(id=3615)
         version_factory(
             addon=addon, version='0.1', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
@@ -578,7 +578,7 @@ class TestVersion(TestCase):
         version_factory(
             addon=addon, version='0.2', file_kw={'status': amo.STATUS_DISABLED}
         )
-        assert list(Version.objects.reviewed()) == [self.version]
+        assert list(Version.objects.approved()) == [self.version]
 
     def test_unlisted_addon_get_url_path(self):
         self.make_addon_unlisted(self.version.addon)
@@ -1336,35 +1336,6 @@ class TestVersion(TestCase):
         assert not License.objects.filter(pk=license.pk).exists()
         assert Version.objects.filter(pk=self.version.pk).exists()
 
-    def test_has_been_human_reviewed(self):
-        assert AutoApprovalSummary.objects.count() == 0
-        self.version.file.update(status=amo.STATUS_DISABLED)
-        assert not self.version.has_been_human_reviewed
-
-        self.version.file.update(reviewed=datetime.now())
-        assert self.version.has_been_human_reviewed
-
-        self.version.file.update(status=amo.STATUS_NOMINATED)
-        assert not self.version.has_been_human_reviewed
-
-        self.version.file.update(status=amo.STATUS_APPROVED)
-        assert self.version.has_been_human_reviewed
-
-        summary = AutoApprovalSummary.objects.create(version=self.version)
-        assert self.version.has_been_human_reviewed
-
-        summary.update(verdict=amo.AUTO_APPROVED)
-        assert not self.version.has_been_human_reviewed
-
-        summary.update(verdict=amo.NOT_AUTO_APPROVED)
-        assert self.version.has_been_human_reviewed
-
-        summary.update(verdict=amo.AUTO_APPROVED, confirmed=True)
-        assert self.version.has_been_human_reviewed
-
-        self.version.file.update(status=amo.STATUS_DISABLED)
-        assert self.version.has_been_human_reviewed
-
     def test_get_review_status_display(self):
         assert (
             self.version.get_review_status_display()
@@ -1372,7 +1343,9 @@ class TestVersion(TestCase):
             == self.version.file.get_review_status_display()
         )
         self.version.file.update(status=amo.STATUS_DISABLED)
-        assert self.version.get_review_status_display() == 'Rejected or Unreviewed'
+        assert self.version.get_review_status_display() == 'Unreviewed'
+        self.version.update(human_review_date=datetime.now())
+        assert self.version.get_review_status_display() == 'Rejected'
         self.version.file.update(original_status=amo.STATUS_APPROVED)
         assert self.version.get_review_status_display() == 'Disabled by Developer'
         self.version.update(deleted=True)

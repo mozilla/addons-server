@@ -1752,28 +1752,28 @@ class TestReviewHelper(TestReviewHelperBase):
             assert self.addon.needs_admin_code_review
 
     def test_nominated_review_time_set_version_approve_latest_version(self):
-        self.review_version.update(reviewed=None)
+        self.review_version.update(human_review_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
-        assert self.review_version.reload().reviewed
+        assert self.review_version.reload().human_review_date
 
     def test_nominated_review_time_set_version_reject_latest_version(self):
-        self.review_version.update(reviewed=None)
+        self.review_version.update(human_review_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
-        assert self.review_version.reload().reviewed
+        assert self.review_version.reload().human_review_date
 
     def test_nominated_review_time_set_file_approve_latest_version(self):
-        self.file.update(reviewed=None)
+        self.file.update(approval_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
-        assert File.objects.get(pk=self.file.pk).reviewed
+        assert File.objects.get(pk=self.file.pk).approval_date
 
     def test_nominated_review_time_set_file_reject_latest_version(self):
-        self.file.update(reviewed=None)
+        self.file.update(approval_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
-        assert File.objects.get(pk=self.file.pk).reviewed
+        assert not File.objects.get(pk=self.file.pk).approval_date
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
         self.make_addon_unlisted(self.addon)

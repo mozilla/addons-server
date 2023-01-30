@@ -1,6 +1,7 @@
-import datetime
 import os.path
 import zipfile
+
+from datetime import datetime
 
 from django.core import mail
 from django.core.files import temp
@@ -575,14 +576,12 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.file.update(
-            reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED
+            approval_date=datetime.now(), status=amo.STATUS_DISABLED
         )
         version_factory(
             addon=self.addon,
-            file_kw={
-                'reviewed': datetime.datetime.now(),
-                'status': amo.STATUS_DISABLED,
-            },
+            human_review_date=datetime.now(),
+            file_kw={'status': amo.STATUS_DISABLED},
         )
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button')
@@ -872,7 +871,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.arguments == [self.addon, self.version]
 
     def test_source_field_disabled_after_human_review_no_source(self):
-        self.version.autoapprovalsummary.update(confirmed=True)
+        self.version.update(human_review_date=datetime.now())
         response = self.client.get(self.url)
         assert b'You cannot change attached sources' in response.content
         doc = pq(response.content)
@@ -893,7 +892,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert not version.source
 
     def test_source_field_disabled_after_human_review_has_source(self):
-        self.version.autoapprovalsummary.update(confirmed=True)
+        self.version.update(human_review_date=datetime.now())
         # This test sets source and checks the link is present
         self.test_existing_source_link()
 

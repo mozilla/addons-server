@@ -308,6 +308,7 @@ class CompactLicenseSerializer(LicenseSerializer):
 
 class MinimalVersionSerializer(AMOModelSerializer):
     file = FileSerializer(read_only=True)
+    reviewed = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
@@ -321,6 +322,11 @@ class MinimalVersionSerializer(AMOModelSerializer):
             # In v3/v4 files is expected to be a list but now we only have one file.
             repr['files'] = [repr.pop('file')]
         return repr
+
+    def get_reviewed(self, instance):
+        return serializers.DateTimeField().to_representation(
+            instance.file.approval_date or instance.human_review_date
+        )
 
 
 class LanguageToolVersionSerializer(MinimalVersionSerializer):
@@ -1320,7 +1326,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 addon=obj,
                 created=self.handle_date(data['files'][0]['created']),
                 id=data['id'],
-                reviewed=self.handle_date(data['reviewed']),
+                # This isn't the same thing, but for our purposes it'll do.
+                human_review_date=self.handle_date(data['reviewed']),
                 version=data['version'],
                 channel=channel,
             )
