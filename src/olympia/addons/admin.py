@@ -4,6 +4,7 @@ from urllib.parse import urlencode, urljoin
 from django import http, forms
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.admin.utils import display_for_field
 from django.core import validators
 from django.db.models import Exists, OuterRef
 from django.forms.models import modelformset_factory
@@ -21,8 +22,8 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonUser
-from olympia.amo.admin import AMOModelAdmin
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
@@ -36,6 +37,14 @@ from .forms import AdminBaseFileFormSet, FileStatusForm
 
 
 log = olympia.core.logger.getLogger('z.addons.admin')
+
+
+class AddonReviewerFlagsInline(admin.TabularInline):
+    model = AddonReviewerFlags
+    # fields = ('pending_rejection', 'needs_human_review_by_mad')
+    verbose_name_plural = 'Reviewer Flags'
+    can_delete = False
+    view_on_site = False
 
 
 class AddonUserInline(admin.TabularInline):
@@ -181,13 +190,46 @@ class AddonAdmin(AMOModelAdmin):
         'average_rating',
         'authors_links',
         'reviewer_links',
+        'reviewer_flags',
     )
-    list_filter = ('type', 'status')
+    list_filter = (
+        'type',
+        'status',
+        (
+            'reviewerflags__auto_approval_disabled',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_unlisted',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_until_next_approval',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_until_next_approval_unlisted',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_delayed_until',
+            DateRangeFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_delayed_until_unlisted',
+            DateRangeFilter,
+        ),
+    )
+    list_select_related = ('reviewerflags',)
     search_fields = ('id', 'guid__startswith', 'slug__startswith')
     search_by_ip_actions = (amo.LOG.ADD_VERSION.id,)
     search_by_ip_activity_accessor = 'addonlog__activity_log'
     search_by_ip_activity_reverse_accessor = 'activity_log__addonlog__addon'
-    inlines = (AddonUserInline, FileInline)
+    inlines = (
+        AddonReviewerFlagsInline,
+        AddonUserInline,
+        FileInline,
+    )
     readonly_fields = (
         'id',
         'created',
@@ -460,10 +502,39 @@ class AddonAdmin(AMOModelAdmin):
             reverse('admin:addons_addon_change', args=(obj.pk,))
         )
 
+    @admin.display(description='Activity Logs')
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'addonlog__addon')
 
-    activity.short_description = 'Activity Logs'
+    @admin.display(description='Flags')
+    def reviewer_flags(self, obj):
+        fields = (
+            field
+            for field in AddonReviewerFlags._meta.get_fields()
+            if field.name not in ('created', 'modified', 'addon')
+        )
+        try:
+            contents = (
+                (
+                    field.verbose_name,
+                    display_for_field(
+                        getattr(obj.reviewerflags, field.name), field, False
+                    ),
+                )
+                for field in fields
+                if getattr(obj.reviewerflags, field.name)
+            )
+            if contents:
+                return format_html(
+                    '<table>{}</table>',
+                    format_html_join(
+                        '',
+                        '<tr class="alt"><th>{}</th><td>{}</td></tr>',
+                        contents,
+                    ),
+                )
+        except AddonReviewerFlags.DoesNotExist:
+            pass
 
 
 class FrozenAddonAdmin(AMOModelAdmin):

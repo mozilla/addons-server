@@ -65,7 +65,124 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until,
             now=datetime.now() + timedelta(hours=24),
         )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
         assert version.needs_human_review
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_null(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'needs_admin_content_review': True},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_existing_lower_delay_on_right_channels(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_delayed_until': datetime.now() + timedelta(days=2),
+                'auto_approval_delayed_until_unlisted': datetime.now()
+                - timedelta(days=2),
+            },
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() - timedelta(days=2),
+        )
+        _delay_auto_approval(version)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_dont_overwrite_existing_higher_delay(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_delayed_until': datetime.now() + timedelta(days=2),
+                'auto_approval_delayed_until_unlisted': datetime.now()
+                + timedelta(days=2),
+            },
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(days=2),
+        )
+        _delay_auto_approval(version)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(days=2),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_existing_lower_delay(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(addon.auto_approval_delayed_until, now=datetime.now())
+        assert addon.auto_approval_delayed_until_unlisted is None
+        _delay_auto_approval(version)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(hours=24)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
         self.assertCloseToNow(
             version.due_date,
             now=datetime.now() + timedelta(hours=24),

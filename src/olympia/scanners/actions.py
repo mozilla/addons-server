@@ -19,16 +19,14 @@ def _flag_for_human_review(version):
 
 
 def _delay_auto_approval(version):
-    """Delay auto-approval for the whole add-on for 24 hours."""
-    # Always flag for human review.
-    from olympia.addons.models import AddonReviewerFlags
+    """Delay auto-approval for both channels on the whole add-on for 24 hours.
 
+    If delay was already set for either channel, only override it if the new
+    delay is further in the future."""
+    # Always flag for human review.
     _flag_for_human_review(version)
     in_twenty_four_hours = datetime.now() + timedelta(hours=24)
-    AddonReviewerFlags.objects.update_or_create(
-        addon=version.addon,
-        defaults={'auto_approval_delayed_until': in_twenty_four_hours},
-    )
+    version.addon.set_auto_approval_delay_if_higher_than_existing(in_twenty_four_hours)
     # When introducing a short auto-approval delay, reset the due date to match
     # the delay, unless it's already set to before the delay expires. That way
     # reviewers are incentivized to look at those versions before they go back

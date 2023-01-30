@@ -134,6 +134,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'addons.add_addonuser': ADMIN_ADVANCED,
         'addons.change_addonuser': ADMIN_ADVANCED,
         'addons.delete_addonuser': ADMIN_ADVANCED,
+        'addons.change_addonreviewerflags': ADMIN_ADVANCED,
         # Users with Admin:Curation can do anything to ReplacementAddon.
         # In addition, the modeladmin will also check for Addons:Edit and give them
         # read-only access to the changelist (obj=None passed to the
@@ -210,5 +211,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'ratings.change_rating': RATINGS_MODERATE,
         'ratings.delete_rating': ADMIN_ADVANCED,
         'versions.change_version': ADMIN_ADVANCED,
+        'versions.change_versionreviewerflags': ADMIN_ADVANCED,
     }
 )

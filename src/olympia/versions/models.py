@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from base64 import b64encode
 from urllib.parse import urlparse
@@ -56,6 +56,7 @@ from olympia.translations.fields import (
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
+from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
 from .utils import get_review_due_date
@@ -510,9 +511,33 @@ class Version(OnChangeMixin, ModelBase):
                 addon=addon, defaults=reviewer_flags_defaults
             )
 
+        # Unlisted versions approval is delayed depending on how far we are
+        # from creation of the add-on.
+        if channel == amo.CHANNEL_UNLISTED:
+            try:
+                INITIAL_DELAY_FOR_UNLISTED = int(
+                    get_config('INITIAL_DELAY_FOR_UNLISTED')
+                )
+            except (ValueError, TypeError):
+                INITIAL_DELAY_FOR_UNLISTED = 0
+            auto_approval_delay_for_unlisted = addon.created + timedelta(
+                seconds=INITIAL_DELAY_FOR_UNLISTED
+            )
+            if datetime.now() < auto_approval_delay_for_unlisted:
+                addon.set_auto_approval_delay_if_higher_than_existing(
+                    auto_approval_delay_for_unlisted, unlisted_only=True
+                )
+
         # Authors need to be notified about auto-approval delay again since
         # they are submitting a new version.
         addon.reset_notified_about_auto_approval_delay()
+
+        # Reload the flags for the add-on in case some code is using it after
+        # creating the version - the related field could be out of date.
+        try:
+            version.addon.reviewerflags.reload()
+        except AddonReviewerFlags.DoesNotExist:
+            pass
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.

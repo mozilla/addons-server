@@ -1535,6 +1535,19 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_delayed_until=in_the_past)
         assert addon.auto_approval_delayed_until == in_the_past
 
+    def test_auto_approval_delayed_until_unlisted_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_until_unlisted is None
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert flags.auto_approval_delayed_until_unlisted is None
+        assert addon.auto_approval_delayed_until_unlisted is None
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until_unlisted=in_the_past)
+        assert addon.auto_approval_delayed_until_unlisted == in_the_past
+
     def test_auto_approval_delayed_indefinitely_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
@@ -1554,6 +1567,36 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_delayed_until=datetime.max)
         assert addon.auto_approval_delayed_indefinitely is True
 
+    def test_auto_approval_delayed_indefinitely_property_with_unlisted(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
+        flags.update(auto_approval_delayed_until_unlisted=in_the_past)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # In the future, but not far enough.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until_unlisted=in_the_future)
+        assert addon.auto_approval_delayed_indefinitely is False
+        # This time it's truly delayed indefinitely.
+        flags.update(auto_approval_delayed_until_unlisted=datetime.max)
+        assert addon.auto_approval_delayed_indefinitely is True
+        # If both unlisted or listed are set, we only need one to match.
+        flags.update(
+            auto_approval_delayed_until_unlisted=datetime.now(),
+            auto_approval_delayed_until=datetime.max,
+        )
+        assert addon.auto_approval_delayed_indefinitely is True
+        flags.update(
+            auto_approval_delayed_until_unlisted=datetime.max,
+            auto_approval_delayed_until=datetime.now(),
+        )
+        assert addon.auto_approval_delayed_indefinitely is True
+
     def test_auto_approval_delayed_temporarily_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
@@ -1571,6 +1614,15 @@ class TestAddonModels(TestCase):
         assert addon.auto_approval_delayed_temporarily is True
         # Not considered temporary any more if it's until the end of time!
         flags.update(auto_approval_delayed_until=datetime.max)
+        assert addon.auto_approval_delayed_temporarily is False
+        # But if the unlisted flag is set in the future, then yes.
+        flags.update(auto_approval_delayed_until_unlisted=in_the_future)
+        assert addon.auto_approval_delayed_temporarily is True
+        # Unless it's also at max.
+        flags.update(auto_approval_delayed_until_unlisted=datetime.max)
+        assert addon.auto_approval_delayed_temporarily is False
+        # But not if it's in the past.
+        flags.update(auto_approval_delayed_until_unlisted=in_the_past)
         assert addon.auto_approval_delayed_temporarily is False
 
     def test_needs_admin_code_review_property(self):

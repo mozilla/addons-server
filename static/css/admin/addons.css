@@ -1,9 +1,9 @@
-#changelist ul {
+#changelist .results ul {
     margin: 0 0 .8em 0;
     padding-left: 0;
 }
 
-#changelist li {
+#changelist .results li {
     list-style-type: none;
 }
 
