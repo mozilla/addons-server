@@ -872,12 +872,16 @@ class Addon(OnChangeMixin, ModelBase):
                  self.id, key))
 
     def latest_compatible_version(self, request, app):
+        """Retrieve the latest compatible version of this addon given the Thunderbird version,
+        which is retrieved by the latest product version, or user agent string.
+
+        Defaults to the current version
+        """
         if app is not THUNDERBIRD:
             return self.current_version, True
 
         app_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
         app_version_int = version_int(app_version)
-        latest = True
 
         if request is not None:
             user_agent = request.META.get('HTTP_USER_AGENT', '')
@@ -888,12 +892,18 @@ class Addon(OnChangeMixin, ModelBase):
         for v in self.versions.all():
             if not v.is_public() or not v.all_files:
                 continue
+
             compat = v.compatible_apps.get(app)
-            if compat is None or compat.min.version_int > app_version_int:
-                latest = False
-                continue
-            if v.is_compatible_by_default or compat.max.version_int >= app_version_int:
-                return v, latest
+            within_version_range = False
+
+            # Check if we're within compat versions
+            if compat is not None:
+                within_version_range = compat.min.version_int <= app_version_int and compat.max.version_int >= app_version_int
+
+            # Is this version compatible?
+            if v.is_compatible_by_default or within_version_range:
+                return v, v == self.current_version
+
 
         return self.current_version, True
 
