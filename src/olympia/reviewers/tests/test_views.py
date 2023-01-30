@@ -4742,26 +4742,26 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        ActivityLog.create(
+        activity0 = ActivityLog.create(
             amo.LOG.ADD_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        ActivityLog.create(
+        activity1 = ActivityLog.create(
             amo.LOG.CHANGE_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        ActivityLog.create(
+        activity2 = ActivityLog.create(
             amo.LOG.REMOVE_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        ActivityLog.create(amo.LOG.FORCE_DISABLE, self.addon)
-        ActivityLog.create(
+        activity3 = ActivityLog.create(amo.LOG.FORCE_DISABLE, self.addon)
+        activity4 = ActivityLog.create(
             amo.LOG.FORCE_ENABLE,
             self.addon,
         )
@@ -4783,20 +4783,29 @@ class TestReview(ReviewBase):
         # Make sure the logs are displayed in the page.
         important_changes = doc('#important-changes-history li')
         assert len(important_changes) == 5
-        assert '(Owner) added to ' in important_changes[0].text_content()
+        assert important_changes[0].text_content() == (
+            f'{format_datetime(activity0.created)}: {activity1.user.name} '
+            '(Owner) added to Public.'
+        )
+        assert 'class' not in important_changes[0].attrib
+        assert important_changes[1].text_content() == (
+            f'{format_datetime(activity1.created)}: {activity1.user.name} '
+            'role changed to Owner for Public.'
+        )
         assert 'class' not in important_changes[1].attrib
-        assert 'role changed to Owner for ' in important_changes[1].text_content()
-        assert 'class' not in important_changes[1].attrib
-        assert '(Owner) removed from ' in important_changes[2].text_content()
+        assert important_changes[2].text_content() == (
+            f'{format_datetime(activity2.created)}: {activity1.user.name} '
+            '(Owner) removed from Public.'
+        )
         assert 'class' not in important_changes[2].attrib
-        assert (
-            'regularuser التطب force-disabled Public.'
-            in important_changes[3].text_content()
+        assert important_changes[3].text_content() == (
+            f'{format_datetime(activity3.created)}: {activity1.user.name} '
+            'force-disabled Public.'
         )
         assert important_changes[3].attrib['class'] == 'reviewer-review-action'
-        assert (
-            'regularuser التطب force-enabled Public.'
-            in important_changes[4].text_content()
+        assert important_changes[4].text_content() == (
+            f'{format_datetime(activity4.created)}: {activity1.user.name} '
+            'force-enabled Public.'
         )
         assert important_changes[4].attrib['class'] == 'reviewer-review-action'
 

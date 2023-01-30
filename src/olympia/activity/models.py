@@ -1,5 +1,4 @@
 import json
-import string
 import uuid
 
 from collections import defaultdict
@@ -10,9 +9,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.html import format_html
 from django.utils.translation import gettext
-
-import markupsafe
 
 import olympia.core.logger
 
@@ -29,7 +27,6 @@ from olympia.reviewers.models import CannedResponse, ReviewActionReason
 
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.versions.models import Version
 
 
@@ -209,7 +206,7 @@ class IPLog(ModelBase):
     actions).
     """
 
-    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
     _ip_address = models.CharField(max_length=45, db_column='ip_address', null=True)
     ip_address_binary = IPAddressBinaryField(null=True)
 
@@ -226,6 +223,9 @@ class IPLog(ModelBase):
                 name='log_activity_ip_ip_address_binary_209777a9',
             ),
         ]
+
+    def __str__(self):
+        return str(self.ip_address_binary)
 
     def save(self, *args, **kwargs):
         # ip_address_binary fulfils our needs, but we're keeping filling ip_address for
@@ -324,26 +324,17 @@ class ActivityLogManager(ManagerBase):
         )
 
 
-class SafeFormatter(string.Formatter):
-    """A replacement for str.format that escapes interpolated values."""
-
-    def get_field(self, *args, **kw):
-        # obj is the value getting interpolated into the string.
-        obj, used_key = super().get_field(*args, **kw)
-        return markupsafe.escape(obj), used_key
-
-
 class ActivityLog(ModelBase):
     TYPES = sorted(
         (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
     )
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.SET_NULL)
+    # We should never hard-delete users, so the on_delete can be set to DO_NOTHING,
+    # if somehow a hard-delete still occurs, it will raise an IntegrityError.
+    user = models.ForeignKey('users.UserProfile', on_delete=models.DO_NOTHING)
     action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')
     objects = ActivityLogManager()
-
-    formatter = SafeFormatter()
 
     class Meta:
         db_table = 'log_activity'
@@ -352,11 +343,6 @@ class ActivityLog(ModelBase):
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
             models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
-
-    def f(self, *args, **kw):
-        """Calls SafeFormatter.format and returns a Markup string."""
-        # SafeFormatter escapes everything so this is safe.
-        return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
     def transformer_anonymize_user_for_developer(cls, logs):
@@ -516,6 +502,12 @@ class ActivityLog(ModelBase):
             format = getattr(log_type, '%s_format' % type_)
         else:
             format = log_type.format
+        absolute_url_method = (
+            'get_admin_absolute_url' if type_ == 'admin' else 'get_absolute_url'
+        )
+
+        def get_absolute_url(obj):
+            return getattr(obj, absolute_url_method)() if obj is not None else ''
 
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.
@@ -528,44 +520,45 @@ class ActivityLog(ModelBase):
         group = None
         file_ = None
         status = None
+        user = None
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                if arg.has_listed_versions():
-                    addon = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
+                if type_ == 'admin' or arg.has_listed_versions():
+                    addon = format_html(
+                        '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                     )
                 else:
-                    addon = self.f('{0}', arg.name)
+                    addon = format_html('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
-                rating = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), gettext('Review')
+                rating = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), gettext('Review')
                 )
                 arguments.remove(arg)
             if isinstance(arg, Version) and not version:
                 text = gettext('Version {0}')
-                if arg.channel == amo.CHANNEL_LISTED:
-                    version = self.f(
+                if type_ == 'admin' or arg.channel == amo.CHANNEL_LISTED:
+                    version = format_html(
                         '<a href="{1}">%s</a>' % text,
                         arg.version,
-                        arg.get_absolute_url(),
+                        get_absolute_url(arg),
                     )
                 else:
-                    version = self.f(text, arg.version)
+                    version = format_html(text, arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
+                collection = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
-                    tag = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.tag_text
+                    tag = format_html(
+                        '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.tag_text
                     )
                 else:
-                    tag = self.f('{0}', arg.tag_text)
+                    tag = format_html('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
                 group = arg.name
                 arguments.remove(arg)
@@ -577,11 +570,16 @@ class ActivityLog(ModelBase):
                 ):
                     validation = 'ignored'
 
-                file_ = self.f(
+                file_ = format_html(
                     '<a href="{0}">{1}</a> (validation {2})',
-                    arg.get_absolute_url(),
+                    get_absolute_url(arg),
                     arg.pretty_filename,
                     validation,
+                )
+                arguments.remove(arg)
+            if isinstance(arg, UserProfile) and not user:
+                user = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if self.action == amo.LOG.CHANGE_STATUS.id and not isinstance(arg, Addon):
@@ -596,7 +594,9 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user = user_link(self.user)
+        user_responsible = format_html(
+            '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
+        )
 
         try:
             kw = {
@@ -606,11 +606,12 @@ class ActivityLog(ModelBase):
                 'collection': collection,
                 'tag': tag,
                 'user': user,
+                'user_responsible': user_responsible,
                 'group': group,
                 'file': file_,
                 'status': status,
             }
-            return self.f(str(format), *arguments, **kw)
+            return format_html(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
