@@ -576,8 +576,8 @@ class AutoApprovalSummary(ModelBase):
         auto_approval_disabled = bool(
             getattr(addon, f'auto_approval_disabled{flag_suffix}')
         )
-        auto_approval_disabled_until_next_approval = getattr(
-            addon, f'auto_approval_disabled_until_next_approval{flag_suffix}'
+        auto_approval_disabled_until_next_approval = bool(
+            getattr(addon, f'auto_approval_disabled_until_next_approval{flag_suffix}')
         )
         auto_approval_delayed_until = getattr(
             addon, f'auto_approval_delayed_until{flag_suffix}'
