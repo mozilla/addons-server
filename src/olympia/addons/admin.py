@@ -41,7 +41,6 @@ log = olympia.core.logger.getLogger('z.addons.admin')
 
 class AddonReviewerFlagsInline(admin.TabularInline):
     model = AddonReviewerFlags
-    # fields = ('pending_rejection', 'needs_human_review_by_mad')
     verbose_name_plural = 'Reviewer Flags'
     can_delete = False
     view_on_site = False
