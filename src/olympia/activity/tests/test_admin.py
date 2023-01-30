@@ -3,9 +3,75 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import TestCase, user_factory
+from olympia import activity
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.activity.models import ActivityLog, ReviewActionReasonLog
 from olympia.reviewers.models import ReviewActionReason
+
+
+class TestActivityLogAdmin(TestCase):
+    def setUp(self):
+        self.list_url = reverse('admin:activity_activitylog_changelist')
+
+    def test_list(self):
+        author = user_factory()
+        addon1 = addon_factory()
+        activity.log_create(
+            amo.LOG.ADD_VERSION, addon1.current_version, addon1, user=author
+        )
+        addon2 = addon_factory()
+        activity.log_create(
+            amo.LOG.ADD_VERSION, addon2.current_version, addon2, user=author
+        )
+        addon3 = addon_factory()
+        activity.log_create(
+            amo.LOG.ADD_VERSION, addon3.current_version, addon3, user=author
+        )
+
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+
+        with self.assertNumQueries(11):
+            # - 2 savepoints/release
+            # - 2 user and groups
+            # - 1 count for pagination
+            # - 1 activities
+            # - 1 all users from activities
+            # - 1 all versions from activities
+            # - 1 all translations from those versions
+            # - 1 all add-ons from activities
+            # - 1 all translations for those add-ons
+            response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 4  # 3 add versions, 1 log in.
+
+    def test_escaping_and_links(self):
+        user = user_factory(
+            email='someone@mozilla.com', display_name='<script>alert(52)</script>'
+        )
+        addon = addon_factory(name='<script>alert(41)</script>')
+        activity.log_create(
+            amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
+        )
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8)')
+        assert (
+            '<a href="http://testserver/en-US/admin/models/users/userprofile/'
+            f'{user.pk}/change/">&lt;script&gt;alert(52)&lt;/script&gt;</a> '
+            'logged in.'
+        ) in content
+        assert (
+            '<a href="http://testserver/en-US/admin/models/versions/version/'
+            f'{addon.current_version.pk}/change/">Version '
+            f'{addon.current_version.version}</a> added to '
+            f'<a href="http://testserver/en-US/admin/models/addons/addon/'
+            f'{addon.pk}/change/">&lt;script&gt;alert(41)&lt;/script&gt;</a>'
+        ) in content
 
 
 class TestReviewActionReasonLogAdmin(TestCase):
