@@ -158,7 +158,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_queryset_for_pending_queues(
+        return Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=admin_reviewer
         )
 
