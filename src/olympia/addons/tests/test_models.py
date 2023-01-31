@@ -3234,7 +3234,12 @@ class TestExtensionsQueues(TestCase):
         assert set(addons) == set(expected_addons)
 
     def test_human_review_queue_entries_have_no_due_date(self):
-        no_due_date = addon_factory(version_kw={'needs_human_review': True})
+        no_due_date = addon_factory(
+            version_kw={
+                'needs_human_review': True,
+                'due_date': None,
+            }
+        )
         # This add-on has a due date and should not appear in the queue.
         due_date = addon_factory(
             version_kw={
