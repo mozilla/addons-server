@@ -2263,6 +2263,36 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             now=self.addon.created + timedelta(seconds=3600),
         )
 
+    def test_second_unlisted_version(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        self.make_addon_unlisted(self.addon)
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_second_unlisted_version_deleted(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        version = self.addon.current_version
+        self.make_addon_unlisted(self.addon)
+        version.delete()
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
     def test_set_in_future(self):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
