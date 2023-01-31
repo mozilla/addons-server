@@ -176,12 +176,10 @@ class VersionManager(ManagerBase):
         due date instead."""
         method = getattr(self, 'exclude' if negate else 'filter')
         is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
-        has_auto_approval_delayed = Q(
-            addon__reviewerflags__auto_approval_delayed_until__isnull=False
-        )
         requires_manual_listed_approval_and_is_listed = Q(
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
+            | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
             | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
             channel=amo.CHANNEL_LISTED,
@@ -190,6 +188,9 @@ class VersionManager(ManagerBase):
             Q(addon__reviewerflags__auto_approval_disabled_unlisted=True)
             | Q(
                 addon__reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True  # noqa
+            )
+            | Q(
+                addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
             ),
             channel=amo.CHANNEL_UNLISTED,
         )
@@ -198,7 +199,6 @@ class VersionManager(ManagerBase):
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
                 is_theme
-                | has_auto_approval_delayed
                 | requires_manual_listed_approval_and_is_listed
                 | requires_manual_unlisted_approval_and_is_unlisted
             )

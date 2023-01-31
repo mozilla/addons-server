@@ -846,6 +846,7 @@ class TestVersion(TestCase):
         addon.reviewerflags.update(
             auto_approval_disabled=False,
             auto_approval_disabled_unlisted=True,
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
             auto_approval_disabled_until_next_approval_unlisted=True,
         )
         assert not version.should_have_due_date
@@ -911,6 +912,7 @@ class TestVersion(TestCase):
         addon.reviewerflags.update(
             auto_approval_disabled_unlisted=False,
             auto_approval_disabled=True,
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
             auto_approval_disabled_until_next_approval=True,
         )
         assert not version.should_have_due_date
@@ -942,11 +944,11 @@ class TestVersion(TestCase):
         )
         assert version.should_have_due_date
 
-        # If auto_approval_delayed_until is present it should also have a
+        # If auto_approval_delayed_until_unlisted is present it should also have a
         # due_date
         addon.reviewerflags.update(
             auto_approval_disabled_until_next_approval_unlisted=False,
-            auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=1),
         )
         assert version.should_have_due_date
 
