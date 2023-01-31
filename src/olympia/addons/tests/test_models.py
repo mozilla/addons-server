@@ -1851,6 +1851,8 @@ class TestGetVersion(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
 
+        self.app = amo.THUNDERBIRD
+
     def test_public_new_public_version(self):
         new_version = version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_PUBLIC})
@@ -1876,6 +1878,74 @@ class TestGetVersion(TestCase):
         # should still find the current one.
         assert self.addon.find_latest_public_listed_version() == self.version
 
+    def test_latest_compatible_version_should_give_latest(self):
+        """Ensure we should retrieve the latest compatible version, with Latest=True"""
+        new_version = version_factory(
+            addon=self.addon,
+            max_app_version=self.app.latest_version,
+            application=self.app.id,
+            file_kw={'status': amo.STATUS_PUBLIC, 'strict_compatibility': True})
+
+        # Also need to update the previous version for this to work
+        self.version.all_files[0].update(strict_compatibility=True)
+        self.version.apps.update(application=self.app.id)
+
+        version, latest = self.addon.latest_compatible_version(None, self.app)
+        assert version != self.version
+        assert version == new_version
+        assert latest == True
+
+    def test_latest_compatible_version_should_not_give_an_incompatible_version(self):
+        """Ensure we don't give out any versions that aren't compatible with our current application."""
+        good_version = version_factory(
+            addon=self.addon,
+            max_app_version=self.app.latest_version,
+            application=self.app.id,
+            file_kw={'status': amo.STATUS_PUBLIC, 'strict_compatibility': True})
+
+        bad_version = version_factory(
+            addon=self.addon,
+            min_app_version='4.0.99',
+            max_app_version='4.0.99',
+            application=self.app.id,
+            file_kw={'status': amo.STATUS_PUBLIC, 'strict_compatibility': True})
+
+        # Also need to update the previous version for this to work
+        self.version.all_files[0].update(strict_compatibility=True)
+        self.version.apps.update(application=self.app.id)
+
+        version, latest = self.addon.latest_compatible_version(None, self.app)
+
+        assert version != bad_version
+        assert version == good_version
+        assert latest == False
+
+    def test_latest_compatible_version_with_custom_user_agent_app_id(self):
+        """Ensure that latest compatible version reads the version from our user agent correctly, and returns the appropriately versioned addon."""
+        class FakeMeta:
+            """A fake meta class for our fake WSGIRequest class"""
+            def get(self, string, default):
+                return 'Mozilla/5.0 (X11; Linux x86_64; rv:1337.0) Gecko/20100101 Thunderbird/1337.0'
+
+        test_app_version = '1337.0'
+
+        fake_request = Mock(META=FakeMeta())
+
+        new_version = version_factory(
+            addon=self.addon,
+            min_app_version=test_app_version,
+            max_app_version=test_app_version,
+            application=self.app.id,
+            file_kw={'status': amo.STATUS_PUBLIC, 'strict_compatibility': True})
+
+        # Also need to update the previous version for this to work
+        self.version.all_files[0].update(strict_compatibility=True)
+        self.version.apps.update(application=self.app.id)
+
+        version, latest = self.addon.latest_compatible_version(fake_request, self.app)
+        assert version != self.version
+        assert version == new_version
+        assert latest == True
 
 class TestAddonGetURLPath(TestCase):
 
