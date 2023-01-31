@@ -1816,7 +1816,12 @@ class Addon(OnChangeMixin, ModelBase):
         for version in self.versions.should_have_due_date(negate=True).filter(
             due_date__isnull=False
         ):
-            log.info('Version %r (%s) due_date cleared', version, version.id)
+            log.info(
+                'Version %r (%s) due_date of %s cleared',
+                version,
+                version.id,
+                version.due_date,
+            )
             version.update(due_date=None, _signal=False)
 
 

@@ -255,6 +255,21 @@
 
     {% if is_admin %}
     <ul class="admin_only">
+      {% if not version.needs_human_review %}
+        <li>
+          <button data-api-url="{{ drf_url('reviewers-addon-set-needs-human-review', addon.pk) }}"
+                  data-api-data="{&quot;version&quot;: {{ version.pk }}}"
+                  id="set_needs_human_review" type="button">{{ _('Set Needs Human Review') }}</button>
+        </li>
+      {% endif %}
+      <li {% if not version.due_date %}class="hidden"{% endif %}>
+        <label for="due_date_update">{{ _('Change Version Review Due Date') }}</label>
+        <input type="datetime-local" id="due_date_update"
+                {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
+                data-api-data="{{ version.pk }}"
+                data-api-url="{{ drf_url('reviewers-addon-due-date', addon.pk) }}"
+        />
+      </li>
       {% if addon.is_deleted %}
         <li {% if not addon.is_guid_denied %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-allow-resubmission', addon.pk) }}"

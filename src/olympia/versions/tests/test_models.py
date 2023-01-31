@@ -826,7 +826,13 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
 
+        assert not version.should_have_due_date
+        # having the needs_human_review flag means a due dute is needed
+        version.update(needs_human_review=True)
+        assert version.should_have_due_date
+
         # Just a version awaiting review will be auto approved so won't need a due date
+        version.update(needs_human_review=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
@@ -893,7 +899,13 @@ class TestVersion(TestCase):
         self.make_addon_unlisted(addon)
         version = addon.versions.first()
 
+        assert not version.should_have_due_date
+        # having the needs_human_review flag means a due dute is needed
+        version.update(needs_human_review=True)
+        assert version.should_have_due_date
+
         # Just a version awaiting review will be auto approved so won't need a due date
+        version.update(needs_human_review=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
@@ -1002,6 +1014,17 @@ class TestVersion(TestCase):
             pending_content_rejection=None,
         )
         assert version.reload().due_date
+
+    def test_needs_human_review_signal(self):
+        addon = addon_factory()
+        version = addon.current_version
+        assert not version.due_date
+
+        version.update(needs_human_review=True)
+        assert version.reload().due_date
+
+        version.update(needs_human_review=False)
+        assert not version.reload().due_date
 
     def test_transformer_license(self):
         addon = Addon.objects.get(id=3615)

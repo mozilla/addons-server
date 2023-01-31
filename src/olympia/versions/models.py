@@ -193,7 +193,7 @@ class VersionManager(ManagerBase):
             ),
             channel=amo.CHANNEL_UNLISTED,
         )
-        return method(
+        is_pre_review_version = Q(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
@@ -202,7 +202,10 @@ class VersionManager(ManagerBase):
                 | requires_manual_listed_approval_and_is_listed
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
-        ).using('default')
+        )
+        return method(Q(needs_human_review=True) | is_pre_review_version).using(
+            'default'
+        )
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -873,7 +876,9 @@ class Version(OnChangeMixin, ModelBase):
                 self.update(due_date=due_date, _signal=False)
         elif self.due_date:
             # otherwise it shouldn't have a due_date so clear it.
-            log.info('Version %r (%s) due_date cleared', self, self.id)
+            log.info(
+                'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
+            )
             self.update(due_date=None, _signal=False)
 
     @use_primary_db
@@ -1063,6 +1068,18 @@ class Version(OnChangeMixin, ModelBase):
             and self.get_review_status_for_auto_approval_and_delay_reject()
             or status
         )
+
+
+@receiver(
+    models.signals.post_save,
+    sender=Version,
+    dispatch_uid='version',
+)
+def update_due_date_for_needs_human_review_change(
+    sender, instance=None, update_fields=None, **kwargs
+):
+    if update_fields is None or 'needs_human_review' in update_fields:
+        instance.reset_due_date()
 
 
 class VersionReviewerFlags(ModelBase):

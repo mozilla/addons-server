@@ -1503,12 +1503,12 @@ class TestExtensionQueue(QueueTest):
         file_ = version2.file
 
         # Create another version for Nominated Two, v0.2, by "cloning" v0.1.
-        # Its creation date must be more recent than v0.1 for version ordering
-        # to work. Its due date must be coherent with that, but also
-        # not cause the queue order to change with respect to the other
-        # add-ons.
+        # Its creation date must be more recent than v0.1 for version ordering to work.
+        # Its due date must be coherent with that, but also not cause the queue order to
+        # change with respect to the other add-ons.
         version2.created = version2.created + timedelta(minutes=1)
-        version2.due_date = version2.due_date + timedelta(minutes=1)
+        version2_due_date = version2.due_date + timedelta(minutes=1)
+        version2.due_date = version2_due_date
         version2.pk = None
         version2.version = '0.2'
         version2.save()
@@ -1520,6 +1520,7 @@ class TestExtensionQueue(QueueTest):
 
         # disable old files like Version.from_upload() would.
         version2.disable_old_files()
+        version2.update(due_date=version2_due_date)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -6104,6 +6105,12 @@ class TestAddonReviewerViewSet(TestCase):
         self.clear_pending_rejections_url = reverse_ns(
             'reviewers-addon-clear-pending-rejections', kwargs={'pk': self.addon.pk}
         )
+        self.due_date_url = reverse_ns(
+            'reviewers-addon-due-date', kwargs={'pk': self.addon.pk}
+        )
+        self.set_needs_human_review_url = reverse_ns(
+            'reviewers-addon-set-needs-human-review', kwargs={'pk': self.addon.pk}
+        )
 
     def test_subscribe_not_logged_in(self):
         response = self.client.post(self.subscribe_url_listed)
@@ -6538,6 +6545,40 @@ class TestAddonReviewerViewSet(TestCase):
         assert not VersionReviewerFlags.objects.filter(
             version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
+
+    def test_due_date(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        version = self.addon.current_version
+        version.update(needs_human_review=True)
+        assert version.due_date
+        new_due_date = datetime.now() - timedelta(weeks=1)
+        response = self.client.post(
+            self.due_date_url,
+            data={
+                'version': version.id,
+                'due_date': new_due_date.isoformat(timespec='seconds'),
+            },
+        )
+        assert response.status_code == 202
+        version.reload()
+        self.assertCloseToNow(version.due_date, now=new_due_date)
+
+    def test_set_needs_human_review(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        version = self.addon.current_version
+        assert not version.needs_human_review
+        response = self.client.post(
+            self.set_needs_human_review_url, data={'version': version.id}
+        )
+        assert response.status_code == 202
+        version.reload()
+        assert version.needs_human_review
+        # We strip off the milliseconds in the response
+        assert response.data == {
+            'due_date': version.due_date.isoformat(timespec='seconds')
+        }
 
 
 class TestAddonReviewerViewSetJsonValidation(TestCase):

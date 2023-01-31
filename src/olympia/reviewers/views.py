@@ -1248,6 +1248,38 @@ class AddonReviewerViewSet(GenericViewSet):
             }
         )
 
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
+    )
+    def due_date(self, request, **kwargs):
+        version = get_object_or_404(
+            Version, pk=request.data.get('version'), addon_id=kwargs['pk']
+        )
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            due_date = datetime.fromisoformat(request.data.get('due_date'))
+            version.update(due_date=due_date)
+        except TypeError:
+            status_code = status.HTTP_400_BAD_REQUEST
+        return Response(status=status_code)
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
+    )
+    def set_needs_human_review(self, request, **kwargs):
+        version = get_object_or_404(
+            Version, pk=request.data.get('version'), addon_id=kwargs['pk']
+        )
+        status_code = status.HTTP_202_ACCEPTED
+        version.update(needs_human_review=True)
+        due_date = version.reload().due_date
+        due_date_string = due_date.isoformat(timespec='seconds') if due_date else None
+        return Response(status=status_code, data={'due_date': due_date_string})
+
 
 class ReviewAddonVersionMixin:
     permission_classes = [

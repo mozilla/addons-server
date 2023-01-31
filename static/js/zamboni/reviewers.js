@@ -256,6 +256,29 @@ function initExtraReviewActions() {
     }),
   );
 
+  $('#due_date_update').change(
+    _pd(function () {
+      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      var apiUrl = $input.data('api-url');
+      var data = { due_date: $input.val(), version: $input.data('api-data') };
+      callReviewersAPI(apiUrl, 'post', data);
+    }),
+  );
+
+  $('#set_needs_human_review').click(
+    _pd(function () {
+      var $button = $(this).prop('disabled', true); // Prevent double-send.
+      var apiUrl = $button.data('api-url');
+      var data = $button.data('api-data') || null;
+      var $due_date_update_input = $('#due_date_update');
+      callReviewersAPI(apiUrl, 'post', data, function (response) {
+        $button.remove();
+        $due_date_update_input.parents('li').removeClass('hidden').show();
+        $due_date_update_input.val(response.due_date);
+      });
+    }),
+  );
+
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
     _pd(function () {
@@ -263,7 +286,7 @@ function initExtraReviewActions() {
       var apiUrl = $button.data('api-url');
       var data = $button.data('api-data') || null;
       var method = $button.data('api-method') || 'post';
-      callReviewersAPI(apiUrl, method, data, function () {
+      callReviewersAPI(apiUrl, method, data, function (response) {
         $button.remove();
       });
     }),
