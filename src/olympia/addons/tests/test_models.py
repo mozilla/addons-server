@@ -3233,6 +3233,19 @@ class TestExtensionsQueues(TestCase):
         addons = Addon.objects.get_pending_review_queue(admin_reviewer=True)
         assert set(addons) == set(expected_addons)
 
+    def test_human_review_queue_entries_have_no_due_date(self):
+        no_due_date = addon_factory(version_kw={'needs_human_review': True})
+        # This add-on has a due date and should not appear in the queue.
+        due_date = addon_factory(
+            version_kw={
+                'needs_human_review': True,
+                'due_date': datetime.today() + timedelta(days=2),
+            },
+        )
+        queue_contents = Addon.objects.get_human_review_queue(admin_reviewer=True)
+        assert no_due_date in queue_contents
+        assert due_date not in queue_contents
+
 
 class TestThemesPendingManualApprovalQueue(TestCase):
     def test_basic(self):
