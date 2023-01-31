@@ -9,7 +9,7 @@ REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 # Default delayed rejection period in days
 REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT = 14
 
-REVIEWER_STANDARD_REVIEW_TIME = 3  # How many (week)days we expect to review within
+REVIEWER_STANDARD_REVIEW_TIME = 4  # How many (week)days we expect to review within
 
 # Types of Canned Responses for reviewer tools.
 CANNED_RESPONSE_TYPE_ADDON = 1
