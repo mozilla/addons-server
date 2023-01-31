@@ -565,29 +565,31 @@ class AutoApprovalSummary(ModelBase):
         """Check whether the add-on has auto approval disabled or delayed.
 
         It could be:
-        - Disabled by a reviewer (different flag for listed or unlisted)
-        - Disabled until next manual approval (only applies to listed, typically
-          set when a previous version is on a delayed rejection)
-        - Delayed until a future date by scanners (applies to both listed and
-          unlisted)
+        - Disabled
+        - Disabled until next manual approval
+        - Delayed until a future date
+
+        Those flags are set by scanners or reviewers for a specific channel.
         """
         addon = version.addon
-        is_listed = version.channel == amo.CHANNEL_LISTED
-        if is_listed:
-            auto_approval_disabled = bool(
-                addon.auto_approval_disabled
-                or addon.auto_approval_disabled_until_next_approval
-            )
-        else:
-            auto_approval_disabled = bool(
-                addon.auto_approval_disabled_unlisted
-                or addon.auto_approval_disabled_until_next_approval_unlisted
-            )
-        auto_approval_delayed = bool(
-            addon.auto_approval_delayed_until
-            and datetime.now() < addon.auto_approval_delayed_until
+        flag_suffix = '_unlisted' if version.channel == amo.CHANNEL_UNLISTED else ''
+        auto_approval_disabled = bool(
+            getattr(addon, f'auto_approval_disabled{flag_suffix}')
         )
-        return auto_approval_disabled or auto_approval_delayed
+        auto_approval_disabled_until_next_approval = bool(
+            getattr(addon, f'auto_approval_disabled_until_next_approval{flag_suffix}')
+        )
+        auto_approval_delayed_until = getattr(
+            addon, f'auto_approval_delayed_until{flag_suffix}'
+        )
+        return bool(
+            auto_approval_disabled
+            or auto_approval_disabled_until_next_approval
+            or (
+                auto_approval_delayed_until
+                and datetime.now() < auto_approval_delayed_until
+            )
+        )
 
     @classmethod
     def check_is_promoted_prereview(cls, version):

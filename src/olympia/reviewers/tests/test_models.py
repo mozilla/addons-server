@@ -1152,10 +1152,39 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
         )
 
-        # *That* flag applies to both listed and unlisted.
+        # That flag only applies to listed.
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+    def test_check_has_auto_approval_delayed_until_unlisted(self):
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        flags = AddonReviewerFlags.objects.create(addon=self.addon)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        past_date = datetime.now() - timedelta(hours=1)
+        flags.update(auto_approval_delayed_until_unlisted=past_date)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        future_date = datetime.now() + timedelta(hours=1)
+        flags.update(auto_approval_delayed_until_unlisted=future_date)
+        assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
+        )
+
+        # That flag only applies to unlisted.
+        self.version.update(channel=amo.CHANNEL_LISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
 
     def test_check_is_promoted_prereview(self):

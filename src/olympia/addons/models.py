@@ -14,6 +14,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
 from django.db.models import F, Max, Min, Q, signals as dbsignals
 from django.db.models.expressions import Func
+from django.db.models.functions import Coalesce, Greatest
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
@@ -1663,8 +1664,18 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def auto_approval_delayed_until_unlisted(self):
+        try:
+            return self.reviewerflags.auto_approval_delayed_until_unlisted
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def auto_approval_delayed_indefinitely(self):
-        return self.auto_approval_delayed_until == datetime.max
+        return (
+            self.auto_approval_delayed_until == datetime.max
+            or self.auto_approval_delayed_until_unlisted == datetime.max
+        )
 
     @property
     def auto_approval_delayed_temporarily(self):
@@ -1672,7 +1683,49 @@ class Addon(OnChangeMixin, ModelBase):
             bool(self.auto_approval_delayed_until)
             and self.auto_approval_delayed_until != datetime.max
             and self.auto_approval_delayed_until > datetime.now()
+        ) or (
+            bool(self.auto_approval_delayed_until_unlisted)
+            and self.auto_approval_delayed_until_unlisted != datetime.max
+            and self.auto_approval_delayed_until_unlisted > datetime.now()
         )
+
+    def set_auto_approval_delay_if_higher_than_existing(
+        self, delay, unlisted_only=False
+    ):
+        """
+        Set auto_approval_delayed_until/auto_approval_delayed_until_unlisted on
+        the add-on to a new value if the new value is further in the future
+        than the existing one.
+        """
+        # There are 4 cases to handle:
+        # - flag object is non-existent
+        # - flag object exists, but current delay is NULL
+        # - flag object exists, but current delay is higher than new one
+        # - flag object exists, but current delay is lower than new one
+        # Django doesn't support F()/Coalesce() in update_or_create() calls
+        # (https://code.djangoproject.com/ticket/25195) so we have to create
+        # the flag first if it doesn't exist. On top of that, with MySQL,
+        # Greatest() returns NULL if either value is NULL, so we need to
+        # Coalesce the existing value to avoid that.
+        defaults = {
+            'auto_approval_delayed_until_unlisted': delay,
+        }
+        update_defaults = {
+            'auto_approval_delayed_until_unlisted': Greatest(
+                Coalesce('auto_approval_delayed_until_unlisted', delay),
+                delay,
+            ),
+        }
+        if not unlisted_only:
+            defaults['auto_approval_delayed_until'] = delay
+            update_defaults['auto_approval_delayed_until'] = Greatest(
+                Coalesce('auto_approval_delayed_until', delay),
+                delay,
+            )
+        AddonReviewerFlags.objects.get_or_create(addon=self, defaults=defaults)
+        AddonReviewerFlags.objects.filter(addon=self).update(**update_defaults)
+        # Make sure the cached related field is up to date.
+        self.reviewerflags.reload()
 
     def reset_notified_about_auto_approval_delay(self):
         """
@@ -1856,7 +1909,12 @@ class AddonReviewerFlags(ModelBase):
     auto_approval_disabled_until_next_approval_unlisted = models.BooleanField(
         default=None, null=True
     )
-    auto_approval_delayed_until = models.DateTimeField(default=None, null=True)
+    auto_approval_delayed_until = models.DateTimeField(
+        blank=True, default=None, null=True
+    )
+    auto_approval_delayed_until_unlisted = models.DateTimeField(
+        blank=True, default=None, null=True
+    )
     notified_about_auto_approval_delay = models.BooleanField(default=None, null=True)
     notified_about_expiring_delayed_rejections = models.BooleanField(
         default=None, null=True

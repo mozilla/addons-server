@@ -1,12 +1,14 @@
-from django.test.client import RequestFactory
-from olympia.git.models import GitExtractionEntry
+from datetime import datetime, timedelta
+
 from pyquery import PyQuery as pq
 
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.core import mail
+from django.test.client import RequestFactory
 from django.urls import reverse
+from django.utils import formats, timezone
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -21,6 +23,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.reverse import django_reverse
 from olympia.blocklist.models import Block
+from olympia.git.models import GitExtractionEntry
 
 
 class TestReplacementAddonForm(TestCase):
@@ -175,6 +178,44 @@ class TestAddonAdmin(TestCase):
             assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 3
+
+    def test_list_show_reviewerflags(self):
+        delay = datetime.now() + timedelta(days=1)
+        delay_unlisted = datetime.now() + timedelta(days=2)
+        addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+                'needs_admin_content_review': False,
+                'auto_approval_delayed_until': delay,
+                'auto_approval_delayed_until_unlisted': delay_unlisted,
+            },
+        )
+        addon_factory(guid='@bar')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list > tbody > tr').length == 2
+        # First add-on (default order is id DESC) has no flags.
+        assert (
+            doc('#result_list > tbody > tr:nth-child(1) .field-reviewer_flags').text()
+            == '-'
+        )
+        # Second should have a bunch.
+        assert doc(
+            '#result_list > tbody > tr:nth-child(2) .field-reviewer_flags'
+        ).text() == '\n'.join(
+            [
+                'needs admin code review',
+                'auto approval delayed until',
+                formats.localize(timezone.template_localtime(delay)),
+                'auto approval delayed until unlisted',
+                formats.localize(timezone.template_localtime(delay_unlisted)),
+            ]
+        )
 
     def test_search_by_guid(self):
         addon_factory(guid='@foo')
@@ -439,6 +480,11 @@ class TestAddonAdmin(TestCase):
             'files-MAX_NUM_FORMS': 0,
             'files-0-id': addon.current_version.file.pk,
             'files-0-status': addon.current_version.file.status,
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '1',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-addon': str(addon.pk),
         }
 
     def test_can_edit_addonuser_and_files_if_has_admin_advanced(self):
@@ -469,6 +515,64 @@ class TestAddonAdmin(TestCase):
         assert addonuser.user == user
         file.reload()
         assert file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_can_edit_reviewerflags_if_has_admin_advanced(self):
+        addon = addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+            },
+            users=[user_factory()],
+        )
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        doc = pq(response.content)
+        assert doc('#id_reviewerflags-0-needs_admin_code_review')[0].value == 'on'
+        post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
+        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
+        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reviewerflags.reload()
+        assert not addon.reviewerflags.needs_admin_code_review
+        assert addon.reviewerflags.needs_admin_content_review
+
+    def test_cannot_edit_reviewerflags_if_doesnt_have_admin_advanced(self):
+        addon = addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+            },
+            users=[user_factory()],
+        )
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        doc = pq(response.content)
+        assert not doc('#id_reviewerflags-0-needs_admin_code_review')
+        post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
+        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
+        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reviewerflags.reload()
+        # Unchanged.
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
 
     def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
@@ -614,7 +718,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(22):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -623,7 +727,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(22):
             # Confirm it scales
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)

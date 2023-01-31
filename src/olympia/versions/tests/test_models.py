@@ -48,6 +48,7 @@ from olympia.users.models import (
     UserProfile,
 )
 from olympia.users.utils import get_task_user
+from olympia.zadmin.models import set_config
 
 from ..compare import version_int, VersionString
 from ..models import (
@@ -2133,6 +2134,127 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
+
+
+class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
+    filename = 'webextension.xpi'
+
+    def test_no_config(self):
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_config_no_int(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', 'blah')
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_config_zero(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '0')
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_set_in_future_but_creation_date_is_too_far_in_the_past(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=3601))
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_set_in_future_but_existing_delay_higher(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_delayed_until_unlisted=datetime.now()
+            + timedelta(seconds=86400),
+        )
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        self.assertCloseToNow(
+            self.addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(seconds=86400),
+        )
+
+    def test_set_in_future_but_version_is_listed(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_set_in_future_overwrite_existing_lower_delay(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_delayed_until_unlisted=datetime.now()
+        )
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        self.assertCloseToNow(
+            self.addon.auto_approval_delayed_until_unlisted,
+            now=self.addon.created + timedelta(seconds=3600),
+        )
+
+    def test_set_in_future(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(created=datetime.now() - timedelta(seconds=600))
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        self.assertCloseToNow(
+            self.addon.auto_approval_delayed_until_unlisted,
+            now=self.addon.created + timedelta(seconds=3600),
+        )
 
 
 class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMixin):
