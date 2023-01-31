@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from olympia import amo
 from olympia.amo.admin import AMOModelAdmin
+from olympia.constants.activity import LOG_STORE_IPS
 from olympia.reviewers.models import ReviewActionReason
 from olympia.zadmin.admin import related_single_content_link
 
@@ -14,7 +15,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'user_link',
         'pretty_arguments',
         'kept_forever',
-        'ip_address',
+        'known_ip_adresses',
     )
     raw_id_fields = ('user',)
     readonly_fields = (
@@ -22,18 +23,23 @@ class ActivityLogAdmin(AMOModelAdmin):
         'user',
         'pretty_arguments',
         'kept_forever',
-        'ip_address',
+        'known_ip_adresses',
     )
     fields = (
         'user',
         'created',
         'pretty_arguments',
         'kept_forever',
-        'ip_address',
+        'known_ip_adresses',
     )
     raw_id_fields = ('user',)
     view_on_site = False
-    list_select_related = ('iplog',)
+    search_fields = ('pk',)  # Not that useful, it's there to unlock search.
+    search_by_ip_actions = LOG_STORE_IPS
+    # We're already dealing with activity logs so the accessor should just be
+    # an empty string. The reverse one from iplog should be 'activity_log'.
+    search_by_ip_activity_accessor = ''
+    search_by_ip_activity_reverse_accessor = 'activity_log'
 
     def lookup_allowed(self, lookup, value):
         if lookup == 'addonlog__addon':
@@ -53,10 +59,6 @@ class ActivityLogAdmin(AMOModelAdmin):
     @admin.display(description='User')
     def user_link(self, obj):
         return related_single_content_link(obj, 'user')
-
-    @admin.display(description='IP Address', ordering='iplog__ip_address_binary')
-    def ip_address(self, obj):
-        return str(obj.iplog)
 
     @admin.display(description='Kept forever', boolean=True)
     def kept_forever(self, obj):

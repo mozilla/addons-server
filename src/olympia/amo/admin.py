@@ -239,8 +239,13 @@ class AMOModelAdmin(admin.ModelAdmin):
         """Get fields to use for displaying changelist."""
         list_display = super().get_list_display(request)
         if (
-            search_term := self.get_search_query(request)
-        ) and self.ip_addresses_and_networks_from_query(search_term):
+            self.search_by_ip_actions
+            and (search_term := self.get_search_query(request))
+            and self.ip_addresses_and_networks_from_query(search_term)
+            and not set(list_display).issuperset(
+                self.extra_list_display_for_ip_searches
+            )
+        ):
             return (*list_display, *self.extra_list_display_for_ip_searches)
         return list_display
 
@@ -309,21 +314,27 @@ class AMOModelAdmin(admin.ModelAdmin):
             return None
         return {'ips': ips, 'networks': networks}
 
+    def get_activity_accessor_prefix(self):
+        return (
+            f'{self.search_by_ip_activity_accessor}__'
+            if self.search_by_ip_activity_accessor
+            else ''
+        )
+
     def get_queryset_with_related_ips(self, request, queryset, ips_and_networks):
         condition = models.Q()
         if ips_and_networks is not None:
             if ips_and_networks['ips']:
                 # IPs search can be implemented in a single __in=() query.
                 arg = (
-                    f'{self.search_by_ip_activity_accessor}__'
-                    'iplog__ip_address_binary__in'
+                    self.get_activity_accessor_prefix() + 'iplog__ip_address_binary__in'
                 )
                 condition |= models.Q(**{arg: ips_and_networks['ips']})
             if ips_and_networks['networks']:
                 # Networks search need one __range conditions for each network.
                 arg = (
-                    f'{self.search_by_ip_activity_accessor}__'
-                    'iplog__ip_address_binary__range'
+                    self.get_activity_accessor_prefix()
+                    + 'iplog__ip_address_binary__range'
                 )
                 for network in ips_and_networks['networks']:
                     condition |= models.Q(**{arg: (network[0], network[-1])})
@@ -334,14 +345,13 @@ class AMOModelAdmin(admin.ModelAdmin):
             queryset = queryset.annotate(
                 activity_ips=GroupConcat(
                     Inet6Ntoa(
-                        self.search_by_ip_activity_accessor
-                        + '__iplog__ip_address_binary'
+                        self.get_activity_accessor_prefix() + 'iplog__ip_address_binary'
                     ),
                     distinct=True,
                 )
             )
         if condition:
-            arg = f'{self.search_by_ip_activity_accessor}__action__in'
+            arg = self.get_activity_accessor_prefix() + 'action__in'
             condition &= models.Q(**{arg: self.search_by_ip_actions})
             # When searching, we want to duplicate the joins against
             # activitylog + iplog so that one is used for the group concat
@@ -349,15 +359,15 @@ class AMOModelAdmin(admin.ModelAdmin):
             # for the search results. Django doesn't let us do that out of the
             # box, but through FilteredRelation we can force it...
             aliases = {
-                # Add an alias for {search_by_ip_activity_accessor}__iplog__id
+                # Add an alias for {get_activity_accessor_prefix()}__iplog__id
                 # so that we can apply a filter on the specific JOIN that will be
                 # used to grab the IPs through GroupConcat to help MySQL optimizer
                 # remove non relevant activities from the DISTINCT bit.
                 'activity_ips_ids': models.F(
-                    f'{self.search_by_ip_activity_accessor}__iplog__id'
+                    self.get_activity_accessor_prefix() + 'iplog__id'
                 ),
                 'activitylog_filtered': models.FilteredRelation(
-                    f'{self.search_by_ip_activity_accessor}__iplog', condition=condition
+                    self.get_activity_accessor_prefix() + 'iplog', condition=condition
                 ),
             }
             queryset = queryset.alias(**aliases).filter(
