@@ -437,7 +437,8 @@ class AddonManager(ManagerBase):
         added to a flag_for_human_review Promoted group (regardless of channel).
         """
         return self.get_base_extensions_queue_with_non_disabled_versions(
-            Q(versions__needs_human_review=True), admin_reviewer=admin_reviewer
+            Q(versions__needs_human_review=True, versions__due_date__isnull=True),
+            admin_reviewer=admin_reviewer,
         )
 
     def get_mad_queue(self, admin_reviewer=False):
