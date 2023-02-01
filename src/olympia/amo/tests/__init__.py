@@ -721,6 +721,10 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
 
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
+    if addon.current_version:
+        # Override local version with fresh one fetched by update_version()
+        # so that everything is in sync.
+        version = addon.current_version
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
@@ -771,7 +775,6 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         # If a due date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
         version.update(due_date=version_kw['due_date'], _signal=False)
-
     return addon
 
 
