@@ -5416,14 +5416,16 @@ class TestReview(ReviewBase):
         customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
         for i in range(0, 10):
-            # Add versions 1.0 to 1.9. Flag a few of them as needing human
-            # review.
+            # Add versions 1.0 to 1.9. Some of them will have yara matching
+            # rules, some of them customs matching rules, and some also have
+            # the needing human review flag.
             matched_yara_rule = not bool(i % 3)
             matched_customs_rule = not bool(i % 3) and not bool(i % 2)
+            needs_human_review = not bool(i % 5)
             version = version_factory(
                 addon=self.addon,
                 version=f'1.{i}',
-                needs_human_review=matched_yara_rule or matched_customs_rule,
+                needs_human_review=needs_human_review,
                 created=self.days_ago(365 - i),
             )
             if matched_yara_rule:
@@ -5450,11 +5452,12 @@ class TestReview(ReviewBase):
         assert tds.length == 10
         # Original version should not be there any more, it's on the second
         # page. Versions on the page should be displayed in chronological order
-        # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
-        assert 'Scanners results:' in tds.eq(0).text()
-        assert 'Scanners results:' in tds.eq(3).text()
-        assert 'Scanners results:' in tds.eq(6).text()
-        assert 'Scanners results:' in tds.eq(9).text()
+        # Versions 1.0, 1.3, 1.6, 1.9 have scanner results. Header is displayed
+        # only once for each.
+        assert tds.eq(0).text().count('Scanners results:') == 1
+        assert tds.eq(3).text().count('Scanners results:') == 1
+        assert tds.eq(6).text().count('Scanners results:') == 1
+        assert tds.eq(9).text().count('Scanners results:') == 1
         # There should be a link to the scanner result page. Let's check one.
         scanner_results = self.addon.versions.get(version='1.0').scannerresults.all()
         links = tds.eq(0).find('.scanners-results a.result-link')
@@ -5474,7 +5477,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         span = doc('#review-files-header .risk-high')
         assert span.length == 1
-        assert span.text() == '4 versions flagged by scanners on other pages.'
+        assert span.text() == '2 versions flagged by scanners on other pages.'
 
     def test_versions_that_needs_human_review_are_highlighted(self):
         self.addon.current_version.update(created=self.days_ago(366))
