@@ -213,6 +213,9 @@ class AMOModelAdmin(admin.ModelAdmin):
                 'search_by_ip_actions_names': [
                     LOG_BY_ID[action].__name__ for action in self.search_by_ip_actions
                 ],
+                'minimum_search_terms_to_search_by_id': (
+                    self.minimum_search_terms_to_search_by_id
+                ),
             }
         )
         return super().changelist_view(request, extra_context=extra_context)

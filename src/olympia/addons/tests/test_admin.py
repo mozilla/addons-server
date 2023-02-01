@@ -248,12 +248,12 @@ class TestAddonAdmin(TestCase):
             'slug__startswith.'
         )
         assert doc('#searchbar-wrapper li').eq(0).text() == (
-            'If the query contains only numeric terms, search will be performed '
-            'against pk instead.'
+            'If the query contains only numeric terms, and there are 2 or more terms, '
+            'search will be performed against pk instead.'
         )
         assert doc('#searchbar-wrapper li').eq(1).text() == (
-            'If the query contains only IP addresses or networks, search will be '
-            'performed against IP addresses recorded for ADD_VERSION.'
+            'If the query contains only IP addresses or networks, separated by commas, '
+            'search will be performed against IP addresses recorded for ADD_VERSION.'
         )
 
     def test_search_by_ip(self):
