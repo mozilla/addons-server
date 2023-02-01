@@ -2222,7 +2222,6 @@ class TestScannersReviewQueue(QueueTest):
 
         doc = pq(response.content)
         links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
-        print(links)
         # Number of expected links is not equal to len(self.expected_addons)
         # because we display a review link for each channel that has versions
         # needing review per add-on, and addon2 has both unlisted and listed
