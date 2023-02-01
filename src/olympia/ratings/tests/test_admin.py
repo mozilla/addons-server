@@ -128,7 +128,7 @@ class TestRatingAdmin(TestCase):
             'By default, search will be performed against body.'
         )
         assert doc('#searchbar-wrapper li').eq(0).text() == (
-            'If the query contains only numeric terms, and there are at least 2 terms, '
+            'If the query contains only numeric terms, and there are 2 or more terms, '
             'search will be performed against addon instead.'
         )
         assert doc('#searchbar-wrapper li').eq(1).text() == (

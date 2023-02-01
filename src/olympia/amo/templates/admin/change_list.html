@@ -11,7 +11,7 @@
                 {% if search_id_field or search_by_ip_actions_names or cl.model_admin.extra_list_filter_for_ip_searches %}
                     <ul>
                     {% if search_id_field %}
-                        <li>If the query contains only numeric terms,{% if minimum_search_terms_to_search_by_id %} and there are at least <strong>{{ minimum_search_terms_to_search_by_id }}</strong> terms,{% endif %} search will be performed against <strong>{{ search_id_field }}</strong> instead.</li>
+                        <li>If the query contains only numeric terms,{% if minimum_search_terms_to_search_by_id %} and there are <strong>{{ minimum_search_terms_to_search_by_id }}</strong> or more terms,{% endif %} search will be performed against <strong>{{ search_id_field }}</strong> instead.</li>
                     {% endif %}
                     {% if search_by_ip_actions_names %}
                         <li>If the query contains only IP addresses or networks, separated by commas, search will be performed against IP addresses recorded for {% for action in search_by_ip_actions_names %}<strong>{{ action }}</strong>{% if not forloop.last %}, {% endif %}{% endfor %}.</li>
