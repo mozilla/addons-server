@@ -770,8 +770,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if 'due_date' in version_kw:
         # If a due date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
-        version.due_date = version_kw['due_date']
-        version.save()
+        version.update(due_date=version_kw['due_date'], _signal=False)
 
     return addon
 
@@ -932,9 +931,8 @@ def version_factory(file_kw=None, **kw):
         else:
             kw['license'] = license_factory(**{'builtin': 99, **license_kw})
     promotion_approved = kw.pop('promotion_approved', False)
+    kw['created'] = _get_created(kw.pop('created', 'now'))
     ver = Version.objects.create(version=version_str, **kw)
-    ver.created = _get_created(kw.pop('created', 'now'))
-    ver.save()
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )
@@ -951,6 +949,10 @@ def version_factory(file_kw=None, **kw):
         kw['addon'].promotedaddon.approve_for_version(version=ver)
     if 'due_date' not in kw:
         ver.inherit_due_date()
+    elif ver.due_date != kw['due_date']:
+        # It got overridden after initial save, but we want it set to what we
+        # intended, even if that's not consistent with should_have_due_date().
+        ver.update(due_date=kw['due_date'], _signal=False)
     return ver
 
 
