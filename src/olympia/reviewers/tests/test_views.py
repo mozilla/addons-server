@@ -2126,10 +2126,11 @@ class TestScannersReviewQueue(QueueTest):
 
         # Has 3 listed versions, 2 needing human review, 1 unlisted but not
         # needing human review.
-        addon1 = addon_factory(created=self.days_ago(31))
-        addon1_v1 = addon1.current_version
-        addon1_v1.update(needs_human_review=True)
-        version_factory(addon=addon1, needs_human_review=True)
+        addon1 = addon_factory(
+            created=self.days_ago(31),
+            version_kw={'needs_human_review': True, 'due_date': None},
+        )
+        version_factory(addon=addon1, needs_human_review=True, due_date=None)
         version_factory(addon=addon1)
         version_factory(addon=addon1, channel=amo.CHANNEL_UNLISTED)
         AddonApprovalsCounter.objects.create(
@@ -2138,11 +2139,17 @@ class TestScannersReviewQueue(QueueTest):
 
         # Has 1 listed and 1 unlisted versions, both needing human review.
         addon2 = addon_factory(
-            created=self.days_ago(15), version_kw={'needs_human_review': True}
+            created=self.days_ago(15),
+            version_kw={
+                'needs_human_review': True,
+                'due_date': None,
+            },
         )
-        addon2.current_version
         version_factory(
-            addon=addon2, channel=amo.CHANNEL_UNLISTED, needs_human_review=True
+            addon=addon2,
+            channel=amo.CHANNEL_UNLISTED,
+            needs_human_review=True,
+            due_date=None,
         )
 
         # Has 2 unlisted versions, 1 needing human review. Needs admin content
@@ -2152,6 +2159,7 @@ class TestScannersReviewQueue(QueueTest):
             version_kw={
                 'channel': amo.CHANNEL_UNLISTED,
                 'needs_human_review': True,
+                'due_date': None,
             },
             reviewer_flags={'needs_admin_content_review': True},
         )
@@ -2160,7 +2168,7 @@ class TestScannersReviewQueue(QueueTest):
         # Needs admin code review, so wouldn't show up for regular reviewers.
         addon_factory(
             created=self.days_ago(1),
-            version_kw={'needs_human_review': True},
+            version_kw={'needs_human_review': True, 'due_date': None},
             reviewer_flags={'needs_admin_code_review': True},
         )
 
