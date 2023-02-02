@@ -185,25 +185,14 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
-    created_date = tables.Column(
-        verbose_name='Created', accessor='first_pending_version__created'
-    )
-
     class Meta(AddonQueueTable.Meta):
         exclude = (
             'score',
+            'addon_type',
             'last_human_review',
             'code_weight',
             'metadata_weight',
             'weight',
-            'due_date',
-        )
-
-    def render_created_date(self, record):
-        created = self.get_version(record).created
-        return markupsafe.Markup(
-            f'<span title="{markupsafe.escape(created)}">'
-            f'{markupsafe.escape(naturaltime(created))}</span>'
         )
 
     @classmethod
