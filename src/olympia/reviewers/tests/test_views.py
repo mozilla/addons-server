@@ -1184,15 +1184,20 @@ class QueueTest(ReviewerTest):
         expected = []
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
-        # We typically don't include the channel name if it's the
-        # default one, 'listed'.
-        channel = [] if self.channel_name == 'listed' else [self.channel_name]
         for idx, addon in enumerate(self.expected_addons):
             if self.channel_name == 'unlisted' or dont_expect_version_number:
                 # In unlisted queue we don't display latest version number.
                 name = str(addon.name)
             else:
                 expected_version = self.expected_versions[addon]
+                if self.channel_name == 'content':
+                    channel = [self.channel_name]
+                elif expected_version.channel == amo.CHANNEL_LISTED:
+                    # We typically don't include the channel name if it's the
+                    # default one, 'listed'.
+                    channel = []
+                else:
+                    channel = ['unlisted']
                 name = f'{str(addon.name)} {expected_version.version}'
             url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
@@ -1408,9 +1413,9 @@ class TestThemePendingQueue(QueueTest):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queues, their versions/files and
-            #     translations and their files (regardless of how many are in
-            #     the queue - that's the important bit)
+            # - 3 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -1454,9 +1459,9 @@ class TestExtensionQueue(QueueTest):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queues, their versions/files and
-            #     translations and their files (regardless of how many are in
-            #     the queue - that's the important bit)
+            # - 3 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -1667,9 +1672,9 @@ class TestThemeNominatedQueue(QueueTest):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 3 for the addons in the queues, their versions/files and
-            #     translations and their files (regardless of how many are in
-            #     the queue - that's the important bit)
+            # - 3 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -2073,8 +2078,9 @@ class TestContentReviewQueue(QueueTest):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 2 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             self._test_results()
@@ -2181,8 +2187,9 @@ class TestScannersReviewQueue(QueueTest):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 2 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
             response = self.client.get(self.url)
@@ -2303,14 +2310,15 @@ class TestPendingRejectionReviewQueue(QueueTest):
         version_review_flags_factory(
             version=pending_version1, pending_rejection=datetime.now()
         )
-        pending_version2 = version_factory(
+        pending_version_unlisted_addon = version_factory(
             addon=unlisted_addon,
             created=self.days_ago(1),
             version='0.2',
             channel=amo.CHANNEL_UNLISTED,
         )
         version_review_flags_factory(
-            version=pending_version2, pending_rejection=datetime.now()
+            version=pending_version_unlisted_addon,
+            pending_rejection=datetime.now() - timedelta(hours=1),
         )
         version_factory(
             addon=unlisted_addon, version='0.3', channel=amo.CHANNEL_UNLISTED
@@ -2322,20 +2330,25 @@ class TestPendingRejectionReviewQueue(QueueTest):
         # Addon 2 has an older creation date, but what matters for the ordering
         # is the pending rejection deadline.
         self.expected_addons = [unlisted_addon, addon1, addon2]
-        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self.expected_versions = {
+            unlisted_addon: pending_version_unlisted_addon,
+            addon1: addon1.current_version,
+            addon2: addon2.current_version,
+        }
 
     def test_results(self):
         self.login_as_admin()
         self.generate_files()
-        with self.assertNumQueries(10):
+        with self.assertNumQueries(11):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
             # - 1 for the current queue count for pagination purposes
-            # - 2 for the addons in the queues and their files (regardless of
-            #     how many are in the queue - that's the important bit)
+            # - 3 for the addons in the queue, their translations and the
+            #     versions (regardless of how many are in the queue - that's
+            #     the important bit)
             # - 2 for config items (motd / site notice)
             # - 1 for my add-ons in user menu
-            self._test_results(dont_expect_version_number=True)
+            self._test_results()
 
 
 class ReviewBase(QueueTest):

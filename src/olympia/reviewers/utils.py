@@ -215,6 +215,18 @@ class PendingRejectionTable(AddonQueueTable):
         verbose_name='Pending Rejection Deadline',
         accessor='first_version_pending_rejection_date',
     )
+    code_weight = tables.Column(
+        verbose_name='Code Weight',
+        accessor='first_pending_version__autoapprovalsummary__code_weight',
+    )
+    metadata_weight = tables.Column(
+        verbose_name='Metadata Weight',
+        accessor='first_pending_version__autoapprovalsummary__metadata_weight',
+    )
+    weight = tables.Column(
+        verbose_name='Total Weight',
+        accessor='first_pending_version__autoapprovalsummary__weight',
+    )
     score = tables.Column(
         verbose_name='Maliciousness Score',
         accessor='first_pending_version__autoapprovalsummary__score',
