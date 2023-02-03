@@ -56,16 +56,17 @@
         <span class="tip tooltip" title="The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.">?</span>
       </div>
 
-      {% if version.needs_human_review %}
-        <div class="scanners-results">
-          <h5>Scanners results:</h5>
-          {% for result in version.scannerresults.all() %}
-            {% if result.has_matches %}
-              {{ format_matched_rules(result, display_scanner=True, display_data=True, limit_to=5) }}
-            {% endif %}
-          {% endfor %}
-        </div>
-      {% elif version.needs_human_review_by_mad %}
+      <div class="scanners-results">
+      {% for result in version.scannerresults.all() %}
+        {% if result.has_matches %}
+          {% if loop.changed() %}  {# Only display header once #}
+            <h5>Scanners results:</h5>
+          {% endif %}
+          {{ format_matched_rules(result, display_scanner=True, display_data=True, limit_to=5) }}
+        {% endif %}
+      {% endfor %}
+      </div>
+      {% if version.needs_human_review_by_mad %}
         <div><h5 class="risk-medium">Flagged for human review</h5></div>
       {% endif %}
     {% else %}
