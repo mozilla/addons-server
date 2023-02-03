@@ -35,19 +35,11 @@ import markupsafe
 log = olympia.core.logger.getLogger('z.mailer')
 
 
-class ItemStateTable:
-    def increment_item(self):
-        self.item_number += 1
-
-    def set_page(self, page):
-        self.item_number = page.start_index()
+def is_admin_reviewer(user):
+    return acl.action_allowed_for(user, amo.permissions.REVIEWS_ADMIN)
 
 
-def safe_substitute(string, *args):
-    return string % tuple(markupsafe.escape(arg) for arg in args)
-
-
-class AddonQueueTable(tables.Table, ItemStateTable):
+class AddonQueueTable(tables.Table):
     addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
@@ -89,6 +81,11 @@ class AddonQueueTable(tables.Table, ItemStateTable):
     def get_version(self, record):
         return record.current_version
 
+    def render_flags_classes(self, record):
+        if not hasattr(record, 'flags'):
+            record.flags = get_flags(record, self.get_version(record))
+        return ' '.join(flag[0] for flag in record.flags)
+
     def render_flags(self, record):
         if not hasattr(record, 'flags'):
             record.flags = get_flags(record, self.get_version(record))
@@ -107,7 +104,6 @@ class AddonQueueTable(tables.Table, ItemStateTable):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
-        self.increment_item()
         return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
             % (
@@ -157,10 +153,30 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer
+    def get_queryset(cls, request):
+        qs = Addon.objects.get_queryset_for_pending_queues(
+            admin_reviewer=is_admin_reviewer(request.user)
         )
+        if not acl.action_allowed_for(
+            request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
+        ):
+            qs = qs.exclude(
+                (
+                    Q(versions__channel=amo.CHANNEL_UNLISTED)
+                    & Q(
+                        reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
+                    )
+                    & ~Q(
+                        reviewerflags__auto_approval_delayed_until_unlisted=datetime.max
+                    )
+                )
+                | (
+                    Q(versions__channel=amo.CHANNEL_LISTED)
+                    & Q(reviewerflags__auto_approval_delayed_until__isnull=False)
+                    & ~Q(reviewerflags__auto_approval_delayed_until=datetime.max)
+                )
+            )
+        return qs
 
     def get_version(self, record):
         # Use the property set by get_queryset_for_pending_queues() to display
@@ -196,17 +212,17 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
+    def get_queryset(cls, request):
         return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer, theme_review=True
+            admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_NOMINATED,))
 
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
+    def get_queryset(cls, request):
         return Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer, theme_review=True
+            admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_APPROVED,))
 
 
@@ -246,8 +262,10 @@ class PendingRejectionTable(AddonQueueTable):
         exclude = ('due_date',)
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
+    def get_queryset(cls, request):
+        return Addon.objects.get_pending_rejection_queue(
+            admin_reviewer=is_admin_reviewer(request.user)
+        )
 
     def get_version(self, record):
         # Use the property set by get_pending_rejection_queue() to display
@@ -273,8 +291,10 @@ class ContentReviewTable(AddonQueueTable):
         orderable = False
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_content_review_queue(admin_reviewer=admin_reviewer)
+    def get_queryset(cls, request):
+        return Addon.objects.get_content_review_queue(
+            admin_reviewer=is_admin_reviewer(request.user)
+        )
 
     def render_last_updated(self, value):
         return naturaltime(value) if value else ''
@@ -289,9 +309,9 @@ class HumanReviewTable(AddonQueueTable):
     show_count_in_dashboard = False
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
+    def get_queryset(cls, request):
         return Addon.objects.get_human_review_queue(
-            admin_reviewer=admin_reviewer
+            admin_reviewer=is_admin_reviewer(request.user)
         ).annotate(
             unlisted_versions_that_need_human_review=Count(
                 'versions',
@@ -345,8 +365,10 @@ class MadReviewTable(HumanReviewTable):
     show_count_in_dashboard = False
 
     @classmethod
-    def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_mad_queue(admin_reviewer=admin_reviewer).annotate(
+    def get_queryset(cls, request):
+        return Addon.objects.get_mad_queue(
+            admin_reviewer=is_admin_reviewer(request.user)
+        ).annotate(
             unlisted_versions_that_need_human_review=Count(
                 'versions',
                 filter=Q(
@@ -486,8 +508,8 @@ class ReviewHelper:
         is_appropriate_reviewer_post_review = acl.action_allowed_for(
             self.user, permission_post_review
         )
-        is_admin_reviewer = is_appropriate_reviewer and acl.action_allowed_for(
-            self.user, amo.permissions.REVIEWS_ADMIN
+        is_appropriate_admin_reviewer = is_appropriate_reviewer and is_admin_reviewer(
+            self.user
         )
 
         addon_is_not_disabled_or_deleted = self.addon.status not in (
@@ -661,7 +683,9 @@ class ReviewHelper:
                 'developer.'
             ),
             'comments': False,
-            'available': (addon_is_not_disabled_or_deleted and is_admin_reviewer),
+            'available': (
+                addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
+            ),
         }
         actions['block_multiple_versions'] = {
             'method': self.handler.block_multiple_versions,

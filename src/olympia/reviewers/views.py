@@ -187,8 +187,7 @@ def dashboard(request):
     view_all = any(
         acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
     )
-    admin_reviewer = is_admin_reviewer(request)
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
+    queue_counts = fetch_queue_counts(request)
 
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections['Manual Review'] = [
@@ -308,30 +307,9 @@ def save_motd(request):
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
-def is_admin_reviewer(request):
-    return acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
-
-
-def filter_admin_review_for_legacy_queue(qs):
-    return qs.filter(
-        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False),
-        Q(needs_admin_theme_review=None) | Q(needs_admin_theme_review=False),
-    )
-
-
 def _queue(request, tab, unlisted=False):
-    admin_reviewer = is_admin_reviewer(request)
     TableObj = reviewer_tables_registry[tab]
-    qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
-
-    admin_reviewer = is_admin_reviewer(request)
-
-    # Those restrictions will only work with our RawSQLModel, so we need to
-    # make sure we're not dealing with a regular Django ORM queryset first.
-    if hasattr(qs, 'sql_model'):
-        if not admin_reviewer:
-            qs = filter_admin_review_for_legacy_queue(qs)
-
+    qs = TableObj.get_queryset(request=request)
     params = {}
     order_by = request.GET.get('sort')
     if order_by is None and hasattr(TableObj, 'default_order_by'):
@@ -348,7 +326,6 @@ def _queue(request, tab, unlisted=False):
         per_page = REVIEWS_PER_PAGE
     count = construct_count_queryset_from_queryset(qs)()
     page = paginate(request, table.rows, per_page=per_page, count=count)
-    table.set_page(page)
 
     return TemplateResponse(
         request,
@@ -382,14 +359,12 @@ def construct_count_queryset_from_queryset(qs):
     return qs.values('pk').order_by().count
 
 
-def fetch_queue_counts(admin_reviewer):
-    def count_from_registered_table(table, *, admin_reviewer):
-        return construct_count_queryset_from_queryset(
-            table.get_queryset(admin_reviewer=admin_reviewer)
-        )
+def fetch_queue_counts(request):
+    def count_from_registered_table(table, *, request):
+        return construct_count_queryset_from_queryset(table.get_queryset(request))
 
     counts = {
-        key: count_from_registered_table(table, admin_reviewer=admin_reviewer)
+        key: count_from_registered_table(table, request=request)
         for key, table in reviewer_tables_registry.items()
         if table.show_count_in_dashboard
     }

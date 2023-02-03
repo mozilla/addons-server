@@ -18,7 +18,7 @@
 /* sprites for data grid icons */
 
 .app-icon, .platform-icon {
-    background: url(../../img/developers/reviewer-sprite.png?12) no-repeat top left;
+    background: url(../../img/developers/reviewer-sprite.png) no-repeat top left;
     display: inline-block;
     text-decoration: none;
     vertical-align: middle;
@@ -47,6 +47,11 @@
 .ed-sprite-promoted-line { background-position: 0 -368px; }
 .ed-sprite-promoted-strategic { background-position: 0 -320px; }
 .ed-sprite-promoted-spotlight { background-position: 0 -320px; }
+.ed-sprite-auto-approval-delayed-temporarily-unlisted { background-position: 0 -386px; }
+.ed-sprite-auto-approval-delayed-indefinitely-unlisted { background-position: 0 -402px; }
+.ed-sprite-needs-human-review { background-position: 0 -418px; }
+.ed-sprite-auto-approval-disabled { background-position: 0 -434px }
+.ed-sprite-auto-approval-disabled-unlisted { background-position: 0 -450px }
 
 .platform-icon {
     background: url(../../img/developers/platforms.png?8) no-repeat top left;
@@ -198,6 +203,14 @@ table.data-grid tbody tr:nth-child(odd) {
 }
 table.data-grid tbody tr:nth-child(even) {
     background-color: #FFFFFF;
+}
+table.data-grid tbody tr.auto-approval-delayed-temporarily:nth-child(odd),
+table.data-grid tbody tr.auto-approval-delayed-temporarily-unlisted:nth-child(odd) {
+    background-color: #FAF5E4;
+}
+table.data-grid tbody tr.auto-approval-delayed-temporarily:nth-child(even),
+table.data-grid tbody tr.auto-approval-delayed-temporarily-unlisted:nth-child(even) {
+    background-color: #FFFDF5;
 }
 table.data-grid .addon-locked {
     width: 16px;

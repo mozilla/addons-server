@@ -32,30 +32,45 @@ log = olympia.core.logger.getLogger('z.reviewers')
 
 VIEW_QUEUE_FLAGS = (
     (
+        'needs_human_review',
+        'Needs Human Review',
+    ),
+    (
         'needs_admin_code_review',
-        'needs-admin-code-review',
         'Needs Admin Code Review',
     ),
     (
         'needs_admin_content_review',
-        'needs-admin-content-review',
         'Needs Admin Content Review',
     ),
     (
         'needs_admin_theme_review',
-        'needs-admin-theme-review',
         'Needs Admin Static Theme Review',
     ),
-    ('sources_provided', 'sources-provided', 'Sources provided'),
+    ('sources_provided', 'Source Code Provided'),
+    (
+        'auto_approval_disabled',
+        'Auto-approval disabled',
+    ),
     (
         'auto_approval_delayed_temporarily',
-        'auto-approval-delayed-temporarily',
         'Auto-approval delayed temporarily',
     ),
     (
         'auto_approval_delayed_indefinitely',
-        'auto-approval-delayed-indefinitely',
         'Auto-approval delayed indefinitely',
+    ),
+    (
+        'auto_approval_disabled_unlisted',
+        'Unlisted Auto-approval disabled',
+    ),
+    (
+        'auto_approval_delayed_temporarily_unlisted',
+        'Unlisted Auto-approval delayed temporarily',
+    ),
+    (
+        'auto_approval_delayed_indefinitely_unlisted',
+        'Unlisted Auto-approval delayed indefinitely',
     ),
 )
 
@@ -105,10 +120,24 @@ class CannedResponse(ModelBase):
 def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
+    flag_filters_by_channel = {
+        amo.CHANNEL_UNLISTED: (
+            'auto_approval_disabled',
+            'auto_approval_delayed_temporarily',
+            'auto_approval_delayed_indefinitely',
+        ),
+        amo.CHANNEL_LISTED: (
+            'auto_approval_disabled_unlisted',
+            'auto_approval_delayed_temporarily_unlisted',
+            'auto_approval_delayed_indefinitely_unlisted',
+        ),
+    }
     flags = [
-        (cls, title)
-        for (prop, cls, title) in VIEW_QUEUE_FLAGS
+        (prop.replace('_', '-'), title)
+        for (prop, title) in VIEW_QUEUE_FLAGS
         if getattr(version, prop, getattr(addon, prop, None))
+        and prop
+        not in flag_filters_by_channel.get(getattr(version, 'channel', None), ())
     ]
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):

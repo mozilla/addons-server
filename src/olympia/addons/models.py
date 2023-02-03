@@ -1652,10 +1652,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def auto_approval_delayed_indefinitely(self):
-        return (
-            self.auto_approval_delayed_until == datetime.max
-            or self.auto_approval_delayed_until_unlisted == datetime.max
-        )
+        return self.auto_approval_delayed_until == datetime.max
 
     @property
     def auto_approval_delayed_temporarily(self):
@@ -1663,7 +1660,15 @@ class Addon(OnChangeMixin, ModelBase):
             bool(self.auto_approval_delayed_until)
             and self.auto_approval_delayed_until != datetime.max
             and self.auto_approval_delayed_until > datetime.now()
-        ) or (
+        )
+
+    @property
+    def auto_approval_delayed_indefinitely_unlisted(self):
+        return self.auto_approval_delayed_until_unlisted == datetime.max
+
+    @property
+    def auto_approval_delayed_temporarily_unlisted(self):
+        return (
             bool(self.auto_approval_delayed_until_unlisted)
             and self.auto_approval_delayed_until_unlisted != datetime.max
             and self.auto_approval_delayed_until_unlisted > datetime.now()
