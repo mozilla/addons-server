@@ -4372,7 +4372,7 @@ msgstr "რეკლამის საუკეთესო შემზღუ�
 
 #. editorial content for the secondary hero shelves.
 msgid "Roblox extensions"
-msgstr ""
+msgstr "Roblox-გაფართოება"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
