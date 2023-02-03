@@ -174,6 +174,20 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
+def first_pending_version_transformer(addons):
+    """Transformer used to attach the special first_pending_version field on
+    addons, used in reviewer queues."""
+    version_ids = {addon.first_version_id for addon in addons}
+    versions = {
+        version.id: version
+        for version in Version.unfiltered.filter(id__in=version_ids)
+        .no_transforms()
+        .select_related('autoapprovalsummary')
+    }
+    for addon in addons:
+        addon.first_pending_version = versions.get(addon.first_version_id)
+
+
 class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
@@ -258,6 +272,7 @@ class AddonManager(ManagerBase):
         select_related_fields = [
             'reviewerflags',
             'addonapprovalscounter',
+            'promotedaddon',
         ]
         if select_related_fields_for_listed:
             # Most listed queues need these to avoid extra queries because
@@ -269,7 +284,6 @@ class AddonManager(ManagerBase):
                     '_current_version__autoapprovalsummary',
                     '_current_version__file',
                     '_current_version__reviewerflags',
-                    'promotedaddon',
                 )
             )
         qs = qs.select_related(*select_related_fields)
@@ -284,30 +298,26 @@ class AddonManager(ManagerBase):
         return qs
 
     def get_queryset_for_pending_queues(
-        self, *, admin_reviewer=False, theme_review=False, filters=None, excludes=None
+        self, *, admin_reviewer=False, theme_review=False
     ):
-        def pending_version_transformer(addons):
-            version_ids = {addon.first_version_id for addon in addons}
-            versions = {
-                version.id: version
-                for version in Version.objects.filter(id__in=version_ids)
-                .no_transforms()
-                .select_related('autoapprovalsummary')
+        if theme_review:
+            filters = {
+                'type__in': amo.GROUP_TYPE_THEME,
             }
-            for addon in addons:
-                addon.first_pending_version = versions.get(addon.first_version_id)
-
-        if excludes is None:
-            excludes = {}
-        if filters is None:
-            filters = {}
+        else:
+            filters = {
+                'type__in': amo.GROUP_TYPE_ADDON,
+            }
+        excludes = {
+            'status': amo.STATUS_DISABLED,
+        }
+        filters['versions__due_date__isnull'] = False
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             theme_review=theme_review,
-            # Extension queue merges listed & unlisted together, so the select
-            # related for listed don't make sense there, but the theme queues
-            # don't do that, so they need them.
-            select_related_fields_for_listed=theme_review,
+            # These queues merge unlisted and listed together, so the
+            # select_related() for listed fields don't make sense.
+            select_related_fields_for_listed=False,
         )
         return (
             qs.filter(**filters)
@@ -324,52 +334,7 @@ class AddonManager(ManagerBase):
                 # related versions.
                 first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
             )
-            .transform(pending_version_transformer)
-        )
-
-    def get_pending_review_queue(self, admin_reviewer=False):
-        filters = {
-            'type__in': amo.GROUP_TYPE_ADDON,
-            'versions__due_date__isnull': False,
-        }
-        excludes = {
-            'status': amo.STATUS_DISABLED,
-        }
-        qs = self.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer, filters=filters, excludes=excludes
-        )
-        return qs.select_related('promotedaddon')
-
-    def get_themes_pending_manual_approval_queue(
-        self,
-        admin_reviewer=False,
-        statuses=amo.VALID_ADDON_STATUSES,
-    ):
-        filters = {
-            'type__in': amo.GROUP_TYPE_THEME,
-            'versions__due_date__isnull': False,
-            'status__in': statuses,
-        }
-        excludes = {
-            'status': amo.STATUS_DISABLED,
-        }
-        return self.get_queryset_for_pending_queues(
-            admin_reviewer=admin_reviewer,
-            theme_review=True,
-            filters=filters,
-            excludes=excludes,
-        )
-
-    def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
-        qs = self.get_base_queryset_for_queue(
-            select_related_fields_for_listed=False,
-            admin_reviewer=admin_reviewer,
-        )
-        # Reset *all* select_related() made by get_base_queryset_for_queue(),
-        # we don't want them for the unlisted queue.
-        qs = qs.select_related(None)
-        return qs.filter(versions__channel=amo.CHANNEL_UNLISTED).exclude(
-            status=amo.STATUS_DISABLED
+            .transform(first_pending_version_transformer)
         )
 
     def get_content_review_queue(self, admin_reviewer=False):
@@ -457,12 +422,26 @@ class AddonManager(ManagerBase):
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):
-        filter_kwargs = {'versions__reviewerflags__pending_rejection__isnull': False}
         return (
-            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
-            .filter(**filter_kwargs)
-            .order_by('_current_version__reviewerflags__pending_rejection')
-            .distinct()
+            self.get_base_queryset_for_queue(
+                select_related_fields_for_listed=False, admin_reviewer=admin_reviewer
+            )
+            .filter(versions__reviewerflags__pending_rejection__isnull=False)
+            .annotate(
+                first_version_pending_rejection_date=Min(
+                    'versions__reviewerflags__pending_rejection'
+                ),
+                # Because of the Min(), a GROUP BY addon.id is created, and the
+                # versions join will pick the first by due date. Unfortunately
+                # if we were to annotate with just F('versions__<something>')
+                # Django would add version.<something> to the GROUP BY, ruining
+                # it. To prevent that, we wrap it into a harmless Func() - we
+                # need a no-op function to do that, hence the ANY_VALUE().
+                # We'll then grab the id in our transformer to fetch all
+                # related versions.
+                first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
+            )
+            .transform(first_pending_version_transformer)
         )
 
 

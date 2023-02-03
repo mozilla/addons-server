@@ -158,11 +158,13 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_pending_review_queue(admin_reviewer=admin_reviewer)
+        return Addon.objects.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer
+        )
 
     def get_version(self, record):
-        # Use the property set by get_pending_review_queue() to display the
-        # right version.
+        # Use the property set by get_queryset_for_pending_queues() to display
+        # the right version.
         return record.first_pending_version
 
     def render_addon_type(self, record):
@@ -183,27 +185,51 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
+    class Meta(AddonQueueTable.Meta):
+        exclude = (
+            'score',
+            'addon_type',
+            'last_human_review',
+            'code_weight',
+            'metadata_weight',
+            'weight',
+        )
+
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_themes_pending_manual_approval_queue(
-            admin_reviewer=admin_reviewer,
-            statuses=(amo.STATUS_NOMINATED,),
-        )
+        return Addon.objects.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer, theme_review=True
+        ).filter(status__in=(amo.STATUS_NOMINATED,))
 
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
     @classmethod
     def get_queryset(cls, admin_reviewer=False):
-        return Addon.objects.get_themes_pending_manual_approval_queue(
-            admin_reviewer=admin_reviewer,
-            statuses=(amo.STATUS_APPROVED,),
-        )
+        return Addon.objects.get_queryset_for_pending_queues(
+            admin_reviewer=admin_reviewer, theme_review=True
+        ).filter(status__in=(amo.STATUS_APPROVED,))
 
 
 class PendingRejectionTable(AddonQueueTable):
     deadline = tables.Column(
         verbose_name='Pending Rejection Deadline',
-        accessor='_current_version__reviewerflags__pending_rejection',
+        accessor='first_version_pending_rejection_date',
+    )
+    code_weight = tables.Column(
+        verbose_name='Code Weight',
+        accessor='first_pending_version__autoapprovalsummary__code_weight',
+    )
+    metadata_weight = tables.Column(
+        verbose_name='Metadata Weight',
+        accessor='first_pending_version__autoapprovalsummary__metadata_weight',
+    )
+    weight = tables.Column(
+        verbose_name='Total Weight',
+        accessor='first_pending_version__autoapprovalsummary__weight',
+    )
+    score = tables.Column(
+        verbose_name='Maliciousness Score',
+        accessor='first_pending_version__autoapprovalsummary__score',
     )
 
     class Meta(PendingManualApprovalQueueTable.Meta):
@@ -223,19 +249,13 @@ class PendingRejectionTable(AddonQueueTable):
     def get_queryset(cls, admin_reviewer=False):
         return Addon.objects.get_pending_rejection_queue(admin_reviewer=admin_reviewer)
 
+    def get_version(self, record):
+        # Use the property set by get_pending_rejection_queue() to display
+        # the right version.
+        return record.first_pending_version
+
     def render_deadline(self, value):
         return naturaltime(value) if value else ''
-
-    def render_addon_name(self, record):
-        url = self._get_addon_name_url(record)
-        self.increment_item()
-        return markupsafe.Markup(
-            '<a href="%s">%s'
-            % (
-                url,
-                markupsafe.escape(record.name),
-            )
-        )
 
 
 class ContentReviewTable(AddonQueueTable):

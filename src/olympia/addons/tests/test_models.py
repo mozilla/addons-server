@@ -3234,7 +3234,7 @@ class TestExtensionsQueues(TestCase):
                 'needs_admin_code_review': True,
             },
         )
-        addons = Addon.objects.get_pending_review_queue()
+        addons = Addon.objects.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
 
         # Test that we picked the version with the oldest due date and that we
@@ -3248,7 +3248,7 @@ class TestExtensionsQueues(TestCase):
 
         # Admins should be able to see addons needing admin code review.
         expected_addons.append(addon_needing_admin_code_review)
-        addons = Addon.objects.get_pending_review_queue(admin_reviewer=True)
+        addons = Addon.objects.get_queryset_for_pending_queues(admin_reviewer=True)
         assert set(addons) == set(expected_addons)
 
 
@@ -3265,7 +3265,9 @@ class TestThemesPendingManualApprovalQueue(TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        qs = Addon.objects.get_themes_pending_manual_approval_queue().order_by('pk')
+        qs = Addon.objects.get_queryset_for_pending_queues(theme_review=True).order_by(
+            'pk'
+        )
         assert list(qs) == expected
 
     def test_approved_theme_pending_version(self):
@@ -3285,9 +3287,11 @@ class TestThemesPendingManualApprovalQueue(TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        qs = Addon.objects.get_themes_pending_manual_approval_queue(
-            statuses=(amo.STATUS_APPROVED,)
-        ).order_by('pk')
+        qs = (
+            Addon.objects.get_queryset_for_pending_queues(theme_review=True)
+            .filter(status__in=(amo.STATUS_APPROVED,))
+            .order_by('pk')
+        )
         assert list(qs) == expected
 
 
