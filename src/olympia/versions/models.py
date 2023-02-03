@@ -516,10 +516,11 @@ class Version(OnChangeMixin, ModelBase):
 
         # Unlisted versions approval is delayed depending on how far we are
         # from creation of the add-on. This is applied only once, during the
-        # first unlisted version creation (so the flag can be dropped by admins
-        # or reviewers, not affecting subsequent versions).
+        # first unlisted version creation of an extension (so the flag can be
+        # dropped by admins or reviewers, not affecting subsequent versions).
         if (
             channel == amo.CHANNEL_UNLISTED
+            and addon.type == amo.ADDON_EXTENSION
             and not addon.versions(manager='unfiltered_for_relations')
             .filter(channel=amo.CHANNEL_UNLISTED)
             .exclude(pk=version.pk)

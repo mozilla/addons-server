@@ -2246,6 +2246,36 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         assert not self.addon.auto_approval_delayed_until
         assert not self.addon.auto_approval_delayed_until_unlisted
 
+    def test_set_in_future_but_addon_is_a_theme(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(
+            type=amo.ADDON_STATICTHEME, created=datetime.now() - timedelta(seconds=600)
+        )
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
+    def test_set_in_future_but_addon_is_a_langpack(self):
+        set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
+        self.addon.update(
+            type=amo.ADDON_LPAPP, created=datetime.now() - timedelta(seconds=600)
+        )
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert not self.addon.auto_approval_delayed_until
+        assert not self.addon.auto_approval_delayed_until_unlisted
+
     def test_set_in_future_overwrite_existing_lower_delay(self):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))

@@ -42,7 +42,11 @@ def _delay_auto_approval_indefinitely(version):
 
     _flag_for_human_review(version)
     AddonReviewerFlags.objects.update_or_create(
-        addon=version.addon, defaults={'auto_approval_delayed_until': datetime.max}
+        addon=version.addon,
+        defaults={
+            'auto_approval_delayed_until': datetime.max,
+            'auto_approval_delayed_until_unlisted': datetime.max,
+        },
     )
 
 
