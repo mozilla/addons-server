@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-24 19:00+0000\n"
-"PO-Revision-Date: 2023-02-04 18:20+0000\n"
+"PO-Revision-Date: 2023-02-04 18:23+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -45,19 +45,19 @@ msgstr "Les imatges no poden ser animades."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Utilitzeu imatges amb una mida inferior a %dMb"
+msgstr "Utilitzeu imatges amb una mida inferior a %d MB."
 
 msgid "You are already logged in."
-msgstr ""
+msgstr "Ja heu iniciat la sessió."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
+msgstr "Ha fallat l'intent d'inici de sessió. Torneu-ho a provar."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
+msgstr "No s’ha trobat el vostre compte del Firefox. Torneu-ho a provar."
 
 msgid "You could not be logged in. Please try again."
-msgstr ""
+msgstr "No s'ha pogut iniciar la sessió. Torneu-ho a provar."
 
 msgid "Need help?"
 msgstr "Necessiteu ajuda?"
