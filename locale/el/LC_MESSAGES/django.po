@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-24 19:00+0000\n"
-"PO-Revision-Date: 2023-01-24 20:25+0000\n"
+"PO-Revision-Date: 2023-02-04 11:47+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4401,7 +4401,7 @@ msgstr "Βελτιώστε την εμπειρία σας με τα παιχνί
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "«Μου αρέσει» η επιστροφή του «Δεν μου αρέσει»."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4757,7 +4757,7 @@ msgid "Human-readable name for the scanner rule"
 msgstr ""
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Ευανάγνωστο όνομα από άνθρωπο"
 
 msgid "Human readable description for the scanner rule"
 msgstr ""
