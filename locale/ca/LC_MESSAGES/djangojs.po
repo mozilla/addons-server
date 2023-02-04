@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-24 19:01+0000\n"
-"PO-Revision-Date: 2023-02-04 18:02+0000\n"
+"PO-Revision-Date: 2023-02-04 18:09+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -93,17 +93,21 @@ msgstr "Incloeu les notes de la versió detallades (podeu fer-ho en el pas segü
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Si el vostre complement requereix un compte en un lloc web per poder-lo provar completament, incloeu un nom d'usuari i una contrasenya de prova a les Notes per al revisor (això es pot fer en el pas "
+"següent)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Llista de comprovació per a l'enviament de complements"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Verifiqueu els següents punts abans de finalitzar el vostre enviament. Això minimitzarà demores o malentesos durant el procés de revisió:"
+msgstr "Verifiqueu els següents punts abans de finalitzar l'enviament. Això minimitzarà demores o malentesos durant el procés de revisió:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Els scripts reduïts, concatenats o generats per màquina (excepte les biblioteques conegudes) han d'enviar el corresponent codi font per separat per a revisar-lo. Assegureu-vos que feu servir el camp"
+" de càrrega del codi font per evitar que es rebutgi l'enviament."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
