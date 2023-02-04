@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-01-24 19:00+0000\n"
-"PO-Revision-Date: 2023-02-04 18:23+0000\n"
+"PO-Revision-Date: 2023-02-04 18:37+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -282,23 +282,20 @@ msgstr ""
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algunes característiques s'han inhabilitat temporalment mentre fem tasques de manteniment del lloc web. Tornarem a la plena capacitat aviat."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Ha de tenir com a mínim un propietari."
+msgstr "Ha de tenir com a mínim un caràcter imprimible."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Ha de tenir com a mínim un propietari."
+msgstr "Assegureu-vos que aquest camp contingui com a mínim una lletra o un caràcter numèric."
 
 msgid "Not allowed"
-msgstr ""
+msgstr "No permès"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "No teniu permís."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Ups! No permès.</h1> <p>Heu intentat fer alguna cosa que no teniu permesa.</p>"
+msgstr "Heu intentat fer alguna cosa per a la qual no teniu permís."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -312,6 +309,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Esteu veient aquest missatge perquè aquest lloc requereix una galeta CSRF per enviar formularis. Aquesta galeta és necessària per motius de seguretat, per garantir que el vostre navegador no sigui "
+"suplantat per tercers."
 
 msgid "Not Found"
 msgstr "No s'ha trobat"
