@@ -337,6 +337,8 @@ class AddonManager(ManagerBase):
             .transform(first_pending_version_transformer)
         )
         if not show_temporarily_delayed:
+            unlisted_delay_field = 'reviewerflags__auto_approval_delayed_until_unlisted'
+            listed_delay_field = 'reviewerflags__auto_approval_delayed_until'
             qs = qs.alias(
                 # As above, F() with ANY_VALUE() to prevent another JOIN, while
                 # exposing the channel to the rest of the queryset in order to
@@ -347,17 +349,13 @@ class AddonManager(ManagerBase):
             ).exclude(
                 Q(
                     Q(first_version_channel=amo.CHANNEL_UNLISTED)
-                    & Q(
-                        reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
-                    )
-                    & ~Q(
-                        reviewerflags__auto_approval_delayed_until_unlisted=datetime.max
-                    )
+                    & Q(**{f'{unlisted_delay_field}__isnull': False})
+                    & ~Q(**{unlisted_delay_field: datetime.max})
                 )
                 | Q(
                     Q(first_version_channel=amo.CHANNEL_LISTED)
-                    & Q(reviewerflags__auto_approval_delayed_until__isnull=False)
-                    & ~Q(reviewerflags__auto_approval_delayed_until=datetime.max)
+                    & Q(**{f'{listed_delay_field}__isnull': False})
+                    & ~Q(**{listed_delay_field: datetime.max})
                 )
             )
         return qs
