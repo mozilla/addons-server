@@ -78,7 +78,6 @@ PATCH_PATH = 'olympia.addons.tasks'
 @pytest.mark.django_db
 @mock.patch(f'{PATCH_PATH}.parse_addon')
 def test_create_missing_theme_previews(parse_addon_mock):
-
     parse_addon_mock.return_value = {}
     theme = addon_factory(type=amo.ADDON_STATICTHEME)
     amo_preview = VersionPreview.objects.create(

@@ -412,7 +412,6 @@ class PublicWhiteboardForm(AMOModelForm):
 
 
 class ModerateRatingFlagForm(AMOModelForm):
-
     action_choices = [
         (ratings.REVIEW_MODERATE_KEEP, 'Keep review; remove flags'),
         (ratings.REVIEW_MODERATE_SKIP, 'Skip for now'),

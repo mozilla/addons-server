@@ -162,7 +162,7 @@ class Command(BaseCommand):
         # should have been rolled back. This ensures that, for instance, a
         # signing error doesn't leave the version and its autoapprovalsummary
         # in conflicting states.
-        except (AutoApprovalNoValidationResultError):
+        except AutoApprovalNoValidationResultError:
             log.info(
                 'Version %s was skipped either because it had no '
                 'files or because it had no validation attached.',

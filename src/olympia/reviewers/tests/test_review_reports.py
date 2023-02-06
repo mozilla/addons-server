@@ -19,7 +19,6 @@ from olympia.reviewers.models import AutoApprovalSummary
 
 @pytest.mark.django_db
 class TestReviewReports:
-
     # Dates are chosen on purpose:
     # 2019-01-07: part of the reported week is previous quarter (year even)
     # 2019-01-14: back to reported week being within the quarter

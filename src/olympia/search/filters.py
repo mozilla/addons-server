@@ -1002,7 +1002,6 @@ class SortingFilter(BaseFilterBackend):
             # query is absent (to prevent clashing with the score functions
             # coming from a search query).
             if split_sort_params == ['random']:
-
                 is_random_sort_available = (
                     AddonFeaturedQueryParam.query_param in request.GET
                     or AddonPromotedQueryParam.query_param in request.GET

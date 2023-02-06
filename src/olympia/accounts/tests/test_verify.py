@@ -172,7 +172,6 @@ class TestToken(TestCase):
 
 
 class TestIdentify(TestCase):
-
     CONFIG = {'foo': 'bar'}
 
     def setUp(self):
