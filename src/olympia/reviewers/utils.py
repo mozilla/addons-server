@@ -896,9 +896,6 @@ class ReviewBase:
     def reviewer_reply(self):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
-            self.set_human_review_date()
-
         log.info(
             'Sending reviewer reply for %s to authors and other'
             'recipients' % self.addon
@@ -917,8 +914,6 @@ class ReviewBase:
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
-        if self.version and self.version.channel == amo.CHANNEL_UNLISTED:
-            self.set_human_review_date()
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
