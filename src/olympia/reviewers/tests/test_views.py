@@ -1571,7 +1571,35 @@ class TestExtensionQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()
 
-    def test_webextension_with_auto_approval_delayed(self):
+    def test_webextension_with_auto_approval_delayed_and_no_triage_permission(self):
+        self.generate_files()
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending One'],
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated One'],
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=24),
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Pending Two'],
+            auto_approval_delayed_until=None,
+            auto_approval_disabled=True,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addons['Nominated Two'],
+            auto_approval_delayed_until=None,
+            auto_approval_disabled=True,
+        )
+        self.expected_addons = [
+            self.addons['Nominated Two'],
+            self.addons['Pending Two'],
+        ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self._test_results()
+
+    def test_webextension_with_auto_approval_delayed_with_triage_permission(self):
+        self.grant_permission(self.user, 'Addons:TriageDelayed')
         self.generate_files()
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
@@ -3282,6 +3310,7 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval_until_next_approval_unlisted')
         assert not doc('#enable_auto_approval_until_next_approval_unlisted')
         assert not doc('#clear_auto_approval_delayed_until')
+        assert not doc('#clear_auto_approval_delayed_until_unlisted')
         assert not doc('#clear_pending_rejections')
         assert not doc('#deny_resubmission')
         assert not doc('#allow_resubmission')
@@ -3301,6 +3330,7 @@ class TestReview(ReviewBase):
 
         # Not present because it hasn't been set yet
         assert not doc('#clear_auto_approval_delayed_until')
+        assert not doc('#clear_auto_approval_delayed_until_unlisted')
 
         flags = AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_delayed_until=self.days_ago(1)
@@ -3317,6 +3347,25 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_auto_approval_delayed_until')
+        assert not doc('#clear_auto_approval_delayed_until_unlisted')
+
+        flags.update(auto_approval_delayed_until_unlisted=self.days_ago(42))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # Still not present because it's in the past.
+        assert not doc('#clear_auto_approval_delayed_until_unlisted')
+        # Listed flag should still be there however, that delay has changed.
+        assert doc('#clear_auto_approval_delayed_until')
+
+        flags.update(
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=24)
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#clear_auto_approval_delayed_until')  # Is still there.
+        assert doc('#clear_auto_approval_delayed_until_unlisted')  # Was added.
 
     def test_no_resubmission_buttons_when_addon_is_not_deleted(self):
         self.login_as_admin()
@@ -6486,6 +6535,7 @@ class TestAddonReviewerViewSet(TestCase):
             auto_approval_disabled=True,
             auto_approval_disabled_unlisted=True,
             auto_approval_delayed_until=self.days_ago(42),
+            auto_approval_delayed_until_unlisted=self.days_ago(),
         )
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
@@ -6495,6 +6545,7 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled_until_next_approval': True,
             'auto_approval_disabled_until_next_approval_unlisted': True,
             'auto_approval_delayed_until': None,
+            'auto_approval_delayed_until_unlisted': None,
             'needs_admin_code_review': True,
             'needs_admin_content_review': True,
             'needs_admin_theme_review': True,
@@ -6510,6 +6561,7 @@ class TestAddonReviewerViewSet(TestCase):
             reviewer_flags.auto_approval_disabled_until_next_approval_unlisted is True
         )
         assert reviewer_flags.auto_approval_delayed_until is None
+        assert reviewer_flags.auto_approval_delayed_until_unlisted is None
         assert reviewer_flags.needs_admin_code_review is True
         assert reviewer_flags.needs_admin_content_review is True
         assert reviewer_flags.needs_admin_theme_review is True
