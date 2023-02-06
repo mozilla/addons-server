@@ -393,6 +393,7 @@ class AMOModelAdmin(admin.ModelAdmin):
           some optimizations, removing annotations that are only needed for
           display purposes.
         """
+
         # Apply keyword searches.
         def construct_search(field_name):
             if field_name.startswith('^'):

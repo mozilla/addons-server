@@ -187,7 +187,6 @@ class CollectionAddon(ModelBase):
 
     @staticmethod
     def post_delete(sender, instance, **kwargs):
-
         from olympia.addons.tasks import index_addons
 
         if kwargs.get('raw'):

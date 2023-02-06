@@ -282,7 +282,6 @@ def test_pngcrush_image(subprocess_mock):
 
 
 def test_utc_millesecs_from_epoch():
-
     with freezegun.freeze_time('2018-11-18 06:05:04.030201'):
         timestamp = utc_millesecs_from_epoch()
     assert timestamp == 1542521104030

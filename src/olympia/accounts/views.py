@@ -350,7 +350,6 @@ class LoginStartView(FxAConfigMixin, APIView):
 
 
 class AuthenticateView(FxAConfigMixin, APIView):
-
     authentication_classes = (SessionAuthentication,)
 
     @method_decorator(never_cache)

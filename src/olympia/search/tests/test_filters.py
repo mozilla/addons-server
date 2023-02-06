@@ -50,7 +50,6 @@ class FilterTestsBase(TestCase):
 
 
 class TestQueryFilter(FilterTestsBase):
-
     filter_classes = [SearchQueryFilter]
 
     def _test_q(self, qs):
@@ -410,7 +409,6 @@ class TestQueryFilter(FilterTestsBase):
 
 
 class TestReviewedContentFilter(FilterTestsBase):
-
     filter_classes = [ReviewedContentFilter]
 
     def test_status(self):
@@ -424,7 +422,6 @@ class TestReviewedContentFilter(FilterTestsBase):
 
 
 class TestSortingFilter(FilterTestsBase):
-
     filter_classes = [SortingFilter]
 
     def _reformat_order(self, key):

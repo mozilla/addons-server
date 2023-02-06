@@ -949,7 +949,7 @@ class ReviewBase:
             self.clear_all_needs_human_review_flags_in_channel()
 
             # Clear pending rejection since we approved that version.
-            VersionReviewerFlags.objects.filter(version=self.version,).update(
+            VersionReviewerFlags.objects.filter(version=self.version).update(
                 pending_rejection=None,
                 pending_rejection_by=None,
                 pending_content_rejection=None,

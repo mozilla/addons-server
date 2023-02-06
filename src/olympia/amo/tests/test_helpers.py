@@ -439,5 +439,4 @@ SPACELESS_RESULT = """
 
 
 def test_spaceless_extension():
-
     assert render(SPACELESS_TEMPLATE) == SPACELESS_RESULT
