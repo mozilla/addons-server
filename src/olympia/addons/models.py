@@ -298,7 +298,7 @@ class AddonManager(ManagerBase):
         return qs
 
     def get_queryset_for_pending_queues(
-        self, *, admin_reviewer=False, theme_review=False
+        self, *, admin_reviewer=False, theme_review=False, show_temporarily_delayed=True
     ):
         if theme_review:
             filters = {
@@ -319,7 +319,7 @@ class AddonManager(ManagerBase):
             # select_related() for listed fields don't make sense.
             select_related_fields_for_listed=False,
         )
-        return (
+        qs = (
             qs.filter(**filters)
             .exclude(**excludes)
             .annotate(
@@ -336,6 +336,31 @@ class AddonManager(ManagerBase):
             )
             .transform(first_pending_version_transformer)
         )
+        if not show_temporarily_delayed:
+            qs = qs.alias(
+                # As above, F() with ANY_VALUE() to prevent another JOIN, while
+                # exposing the channel to the rest of the queryset in order to
+                # filter in show_temporarily_delayed condition below.
+                first_version_channel=Func(
+                    F('versions__channel'), function='ANY_VALUE'
+                ),
+            ).exclude(
+                Q(
+                    Q(first_version_channel=amo.CHANNEL_UNLISTED)
+                    & Q(
+                        reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
+                    )
+                    & ~Q(
+                        reviewerflags__auto_approval_delayed_until_unlisted=datetime.max
+                    )
+                )
+                | Q(
+                    Q(first_version_channel=amo.CHANNEL_LISTED)
+                    & Q(reviewerflags__auto_approval_delayed_until__isnull=False)
+                    & ~Q(reviewerflags__auto_approval_delayed_until=datetime.max)
+                )
+            )
+        return qs
 
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""

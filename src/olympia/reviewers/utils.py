@@ -155,27 +155,11 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
     @classmethod
     def get_queryset(cls, request):
         qs = Addon.objects.get_queryset_for_pending_queues(
-            admin_reviewer=is_admin_reviewer(request.user)
+            admin_reviewer=is_admin_reviewer(request.user),
+            show_temporarily_delayed=acl.action_allowed_for(
+                request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
+            ),
         )
-        if not acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
-        ):
-            qs = qs.exclude(
-                (
-                    Q(versions__channel=amo.CHANNEL_UNLISTED)
-                    & Q(
-                        reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
-                    )
-                    & ~Q(
-                        reviewerflags__auto_approval_delayed_until_unlisted=datetime.max
-                    )
-                )
-                | (
-                    Q(versions__channel=amo.CHANNEL_LISTED)
-                    & Q(reviewerflags__auto_approval_delayed_until__isnull=False)
-                    & ~Q(reviewerflags__auto_approval_delayed_until=datetime.max)
-                )
-            )
         return qs
 
     def get_version(self, record):
