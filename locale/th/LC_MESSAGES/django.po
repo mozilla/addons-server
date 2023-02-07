@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-08-24 17:26+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -488,12 +488,13 @@ msgstr "แก้ไขคำอธิบายของ {addon} แล้ว"
 msgid "Categories edited for {addon}."
 msgstr "แก้ไขหมวดหมู่ของ {addon} แล้ว"
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "เพิ่ม {0.name} ({1}) ไปยัง {addon} แล้ว"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "เอา {0.name} ({1}) ออกจาก {addon} แล้ว"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "การบริจาคสำหรับ {addon}"
@@ -518,8 +519,8 @@ msgstr "แก้ไข {version} สำหรับ {addon} แล้ว"
 msgid "Version {0} deleted from {addon}."
 msgstr "ลบรุ่น {0} ออกจาก {addon} แล้ว"
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "ไฟล์ {0.name} ถูกเพิ่มไปยังรุ่น {version} ของ {addon}"
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "ไฟล์ {0} ถูกลบออกจากรุ่น {version} ของ {addon}"
@@ -611,9 +612,9 @@ msgstr "{addon} ไม่ถูกแนะนำอีกต่อไป"
 msgid "{0} {1} added."
 msgstr "เพิ่ม {0} {1} แล้ว"
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "บทบาท {0.name} ถูกเปลี่ยนเป็น {1} สำหรับ {addon}"
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} ได้รับสิทธิ์ใช้งานในขณะนี้ภายใต้ {0}"
@@ -628,14 +629,8 @@ msgstr "เปลี่ยนไอคอนของ {addon} แล้ว"
 msgid "{rating} for {addon} approved."
 msgstr "อนุมัติ {rating} สำหรับ {addon} แล้ว"
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} ได้อนุมัติ {rating} สำหรับ {addon}"
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "ลบบทวิจารณ์ {rating} สำหรับ {addon} แล้ว"
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} ได้ลบ {rating} สำหรับ {addon}"
 
 msgid "Application max version for {version} updated."
 msgstr "อัปเดตเวอร์ชันสูงสุดของแอปพลิเคชันสำหรับ {version} แล้ว"
@@ -675,18 +670,6 @@ msgstr "เขตข้อมูลที่แก้ไข: ตั้ง {2} �
 msgid "Deleted: {1}."
 msgstr "ลบเมื่อ: {1}"
 
-msgid "User {user} edited, reason: {1}"
-msgstr "ผู้ใช้ {user} แก้ไข เหตุผล: {1}"
-
-msgid "User {user} anonymized."
-msgstr "ไม่ระบุชื่อ {user} แล้ว"
-
-msgid "User {user} restricted."
-msgstr "จำกัดผู้ใช้ {user} แล้ว"
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "ผู้ดูแล {0} ดูรายการบันทึกกิจกรรมสำหรับ {user} แล้ว"
-
 msgid "{rating} for {addon} updated."
 msgstr "อัปเดต {rating} สำหรับ {addon} แล้ว"
 
@@ -699,11 +682,11 @@ msgstr "ห้ามผู้ใช้ {user} แล้ว"
 msgid "User {user} picture deleted."
 msgstr "ลบรูปภาพของผู้ใช้ {user} แล้ว"
 
-msgid "User {0.name} added to {group}."
-msgstr "ผู้ใช้ {0.name} ถูกเพิ่มเข้าสู่ {group}"
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "ผู้ใช้ {0.name} ถูกลบออกจาก {group}"
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} ได้ถูกนำออกจากรายการแล้ว"
@@ -839,10 +822,6 @@ msgid "User {user} session(s) reset."
 msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} แล้ว"
 
 #, fuzzy
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "ผู้ใช้ {user} แก้ไข เหตุผล: {1}"
-
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "ปฏิเสธเนื้อหา {addon} {version} แล้ว"
 
@@ -865,35 +844,10 @@ msgstr "ร้องขอการพิจารณา {addon} {version} แ�
 msgid "Version re-signed"
 msgstr "เปิดใช้งานรุ่น %s ใหม่แล้ว"
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "แก้ไข {version} สำหรับ {addon} แล้ว"
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "ปิดการใช้งาน {addon} แล้ว"
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้ว"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "เปิดการใช้งาน {addon} แล้ว"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4484,7 +4438,7 @@ msgstr "แสดงความคิดเห็นแล้ว"
 msgid "See more creativity staff picks"
 msgstr "ตัวตรวจสอบส่วนเสริม"
 
-msgid "Rejected or Unreviewed"
+msgid "Unreviewed"
 msgstr ""
 
 #, python-format
@@ -4658,6 +4612,12 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format

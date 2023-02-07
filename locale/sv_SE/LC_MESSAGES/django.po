@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-18 01:38+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -488,12 +488,13 @@ msgstr "Beskrivning för {addon} redigerad."
 msgid "Categories edited for {addon}."
 msgstr "Kategorier redigerad för {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) lades till {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) togs bort från {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Bidrag till {addon}."
@@ -518,8 +519,8 @@ msgstr "{version} redigerad för {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} borttagen från {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Fil {0.name} lades till {version} av {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Fil {0} togs bort från {version} av {addon}."
@@ -612,9 +613,9 @@ msgstr "{addon} inte längre utvald."
 msgid "{0} {1} added."
 msgstr "{0} {1} lades till."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} roll ändrad till {1} för {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} licensieras nu under {0}."
@@ -628,14 +629,8 @@ msgstr "{addon} ikonen eller förhandsgranskningarna har ändrats."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} för {addon} godkänd."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} godkände {rating} för {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Granska {rating} för {addon} borttagen."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} tog bort {rating} för {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Applikationens maximala version för {version} uppdaterad."
@@ -673,18 +668,6 @@ msgstr "Redigerat fält: {2} satt till: {0}."
 msgid "Deleted: {1}."
 msgstr "Borttagen: {1}"
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Användare {user} redigerad, orsak: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Användare {user} anonymiserad."
-
-msgid "User {user} restricted."
-msgstr "Användare {user} begränsad."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} visade aktivitetslogg för {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} för {addon} uppdaterad."
 
@@ -697,11 +680,11 @@ msgstr "Användare {user} bannlyst."
 msgid "User {user} picture deleted."
 msgstr "Användare {user} bild raderad."
 
-msgid "User {0.name} added to {group}."
-msgstr "Användare {0.name} lades till {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Användare {0.name} togs bort från {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} olistad."
@@ -833,9 +816,6 @@ msgstr "Blockåtgärd godkänd"
 msgid "User {user} session(s) reset."
 msgstr "Användare {user} sessionsåterställning."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Användare {user} stängde av för omfattningen \"{0}\""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} innehåll avvisat schemalagt."
 
@@ -854,32 +834,11 @@ msgstr "{addon} {version} signerad igen (tidigare {0})."
 msgid "Version re-signed"
 msgstr "Version signerad igen"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} tvångsinaktiverade {addon}."
-
-msgid "Force disabled"
-msgstr "Tvångsinaktiverad"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} tvångsaktiverade {addon}."
-
-msgid "Force enabled"
-msgstr "Tvångsaktiverad"
-
-msgid "{user} logged in."
-msgstr "{user} loggade in."
-
-msgid "{user} restricted."
-msgstr "{user} begränsad."
-
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} godkänd igen."
 
 msgid "Un-rejected"
 msgstr "Godkänd igen"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} har autentiserat via en API-token."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4505,8 +4464,8 @@ msgstr "Kreativitetstillägg"
 msgid "See more creativity staff picks"
 msgstr "Se fler kreativitetstillägg som valts av anställda"
 
-msgid "Rejected or Unreviewed"
-msgstr "Avvisad och ogranskad"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4680,6 +4639,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flaggad av %(user)s de
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Varning!</strong> En annan användare tittade på denna sida innan dig."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

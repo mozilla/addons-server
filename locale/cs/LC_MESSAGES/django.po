@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-18 20:00+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -496,12 +496,13 @@ msgstr "U doplňku {addon} byl upraven popis."
 msgid "Categories edited for {addon}."
 msgstr "U doplňku {addon} byly upraveny kategorie."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "Uživatel {0.name} ({1}) byl přidán k doplňku {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "Uživatel {0.name} ({1}) byl odebrán od doplňku {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Příspěvky pro doplněk {addon}."
@@ -526,8 +527,8 @@ msgstr "U doplňku {addon} byla upravena verze {version}."
 msgid "Version {0} deleted from {addon}."
 msgstr "U doplňku {addon} byla smazána verze {0}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "K doplňku {addon} verze {version} byl přidán soubor {0.name}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
@@ -619,9 +620,9 @@ msgstr "Doplněk {addon} již není mezi doporučenými."
 msgid "{0} {1} added."
 msgstr "{0} {1} byl přidán."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Uživatel {0.name} má u doplňku {addon} nově roli {1}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "Doplněk {addon} je nyní dostupný pod licencí {0}."
@@ -635,14 +636,8 @@ msgstr "Ikona nebo náhled pro {addon} byly změněny."
 msgid "{rating} for {addon} approved."
 msgstr "Hodnocení {rating} pro doplněk {addon} bylo schváleno."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "Uživatel {user} schválil hodnocení {rating} pro doplněk {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Hodnocení {rating} bylo pro {addon} smazáno."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "Uživatel {user} smazal hodnocení {rating} pro doplněk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Maximální verze aplikace byla pro verzi {version} aktualizována."
@@ -680,18 +675,6 @@ msgstr "Upravené pole: {2} nastaveno na: {0}."
 msgid "Deleted: {1}."
 msgstr "Smazáno: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Uživatel {user} upraven, důvod: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Uživatel {user} anonymizován."
-
-msgid "User {user} restricted."
-msgstr "Uživatel {user} byl omezen."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Administrátor {0} si zobrazil log aktivity u uživatele {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "Hodnocení {rating} pro doplněk {addon} bylo aktualizováno."
 
@@ -704,11 +687,11 @@ msgstr "Uživatel {user} zablokován."
 msgid "User {user} picture deleted."
 msgstr "Obrázek uživatele {user} byl smazán."
 
-msgid "User {0.name} added to {group}."
-msgstr "Uživatel {0.name} byl přidán do skupiny {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Uživatel {0.name} byl odebrán ze skupiny {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} již není v seznamech."
@@ -840,9 +823,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr ""
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Zamítnutí obsahu doplňku {addon} {version} bylo naplánováno."
 
@@ -861,31 +841,10 @@ msgstr "Doplněk {addon} {version} znovu podepsán (původně {0})."
 msgid "Version re-signed"
 msgstr "Verze znovu podepsána"
 
-msgid "{user} force-disabled {addon}."
-msgstr ""
-
-msgid "Force disabled"
-msgstr "Nuceně vypnuté"
-
-msgid "{user} force-enabled {addon}."
-msgstr ""
-
-msgid "Force enabled"
-msgstr "Nuceně povolené"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4504,8 +4463,8 @@ msgstr "Kreativní rozšíření"
 msgid "See more creativity staff picks"
 msgstr ""
 
-msgid "Rejected or Unreviewed"
-msgstr "Zamítnuté nebo nezkontrolované"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4680,6 +4639,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(u
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku prohlížel."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-12-30 03:39+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
@@ -476,12 +476,13 @@ msgstr "{addon} వివరణ సవరించబడింది."
 msgid "Categories edited for {addon}."
 msgstr "{addon} కోసం వర్గం సవరించబడింది."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{addon}కు {0.name} ({1}) జోడించబడింది."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{addon} నుండి {0.name} ({1}) తొలగించబడింది."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "{addon} కోసం సహకారాలు."
@@ -506,8 +507,8 @@ msgstr "{addon} కోసం {version} సవరించబడింది."
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} నుండి వెర్షన్ {0} తొలగించబడింది."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon} యొక్క {version}కు {0.name} ఫైలు చేర్చబడింది."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} యొక్క {version} నుండి {0} ఫైలు తొలగించబడింది."
@@ -599,9 +600,9 @@ msgstr "{addon} ఇకపై ఫీచర్ అవ్వదు."
 msgid "{0} {1} added."
 msgstr "{0} {1} జోడించబడింది."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} కోసం {0.name} పాత్ర {1} కు మార్చబడింది."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} ఇప్పుడు {0} లైసెన్సు క్రింద లభ్యం."
@@ -616,14 +617,8 @@ msgstr "{addon} ప్రతీకం మార్చబడింది."
 msgid "{rating} for {addon} approved."
 msgstr "{addon} కోసం {rating} ఆమోదించబడింది."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{addon} కోసం {user} {rating}ను ఆమోదించారు."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "తొలగించబడిన {addon} కోసం {rating} సమీక్ష తొలగించబడింది."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{addon} కోసం {user} {rating}ను తొలగించారు."
 
 msgid "Application max version for {version} updated."
 msgstr "{version} కోసం అనువర్తనం గరిష్ట వెర్షన్ నవీకరించబడింది."
@@ -662,18 +657,6 @@ msgstr "మార్చిన ఫీల్డు: {2} కొత్త విల�
 msgid "Deleted: {1}."
 msgstr "తొలగించినవి: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
-
-msgid "User {user} anonymized."
-msgstr "వాడుకరి {user} అజ్ఞాతం చేయబడ్డారు."
-
-msgid "User {user} restricted."
-msgstr "వాడుకరి {user} పరిమితం చేయబడ్డాడు."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "నిర్వాహకులు {0} {user} కార్యాచరణ చిట్టాను చూసారు."
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} కోసం {rating} తాజాకరించబడింది."
 
@@ -686,11 +669,11 @@ msgstr "వాడుకరి {user} నిషేధించబడ్డార�
 msgid "User {user} picture deleted."
 msgstr "వాడుకరి {user} బొమ్మ తొలగించబడింది."
 
-msgid "User {0.name} added to {group}."
-msgstr "వాడుకరి {0.name} {group}కు జోడించబడింది."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "{group} నుండి వాడుకరి {0.name}‌ని తొలగించారు."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} జాబితా చేయబడలేదు."
@@ -822,9 +805,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr ""
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
@@ -843,31 +823,10 @@ msgstr ""
 msgid "Version re-signed"
 msgstr ""
 
-msgid "{user} force-disabled {addon}."
-msgstr "{addon}‌ను {user} బలవంతంగా అచేతనించారు."
-
-msgid "Force disabled"
-msgstr "బలవంతంగా నిలిపివేయబడింది"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{addon}‌ను {user} బలవంతంగా చేతనించారు."
-
-msgid "Force enabled"
-msgstr "బలవంతంగా చేతనించబడింది"
-
-msgid "{user} logged in."
-msgstr "{user} ప్రవేశించారు."
-
-msgid "{user} restricted."
-msgstr "{user} నియంత్రించబడ్డారు."
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4399,8 +4358,8 @@ msgstr "ట్రెండవుతూన్న అలంకారాలు"
 msgid "See more creativity staff picks"
 msgstr "మరిన్ని అనువాద పనిముట్లను చూడండి"
 
-msgid "Rejected or Unreviewed"
-msgstr "తిరస్కరించబడింది లేదా సమీక్షించబడలేదు"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4574,6 +4533,12 @@ msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>హెచ్చరిక!</ strong> మీ ముందు మరొక వాడుకరి ఈ పేజీని చూస్తున్నారు."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

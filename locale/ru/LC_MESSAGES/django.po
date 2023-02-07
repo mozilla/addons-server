@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-22 15:10+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -498,12 +498,13 @@ msgstr "описание {addon} отредактировано."
 msgid "Categories edited for {addon}."
 msgstr "Категории для {addon} отредактированы."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) добавлен к {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) удалён из {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Взносы для {addon}."
@@ -528,8 +529,8 @@ msgstr "{version} отредактирована для {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Версия {0} удалена из {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Файл {0.name} добавлен в версию {version} дополнения {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Файл {0} удалён из версии {version} дополнения {addon}."
@@ -621,9 +622,9 @@ msgstr "{addon} больше не избрано."
 msgid "{0} {1} added."
 msgstr "{0} {1} добавлено."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "роль {0.name} изменена на {1} для {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} теперь лицензировано на условиях {0}."
@@ -637,14 +638,8 @@ msgstr "Значок {addon} или превью изменён."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} для {addon} одобрен."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} одобрил {rating} для {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Отзыв {rating} на {addon} удалён."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} удалил {rating} для {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Максимальная версия приложения для {version} обновлена."
@@ -682,18 +677,6 @@ msgstr "Поле изменено: {2} установлено в: {0}."
 msgid "Deleted: {1}."
 msgstr "Удалено: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Пользователь {user} отредактирован, причина: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Пользователь {user} анонимизирован."
-
-msgid "User {user} restricted."
-msgstr "Пользователь {user} ограничен."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Администратор {0} просмотрел журнал активности для {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} для {addon} обновлён."
 
@@ -706,11 +689,11 @@ msgstr "Пользователь {user} заблокирован."
 msgid "User {user} picture deleted."
 msgstr "Изображение пользователя {user} удалено."
 
-msgid "User {0.name} added to {group}."
-msgstr "Пользователь {0.name} добавлен в {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Пользователь {0.name} удалён из {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} скрыто."
@@ -842,9 +825,6 @@ msgstr "Действие блокировки подписано"
 msgid "User {user} session(s) reset."
 msgstr "Сброс сессии пользователя {user}."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Пользователь {user} регулируется для области \"{0}\""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Запланировано отклонение содержимого {addon} {version}."
 
@@ -863,32 +843,11 @@ msgstr "{addon} {version} подписано повторно (ранее {0})."
 msgid "Version re-signed"
 msgstr "Версия подписана повторно"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} принудительно отключил(а) {addon}."
-
-msgid "Force disabled"
-msgstr "Принудительно отключено"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} принудительно включил(а) {addon}."
-
-msgid "Force enabled"
-msgstr "Принудительно включено"
-
-msgid "{user} logged in."
-msgstr "{user} вошёл в систему."
-
-msgid "{user} restricted."
-msgstr "{user} ограничен."
-
 msgid "{addon} {version} un-rejected."
 msgstr "Отклонение {addon} {version} отменено."
 
 msgid "Un-rejected"
 msgstr "Отклонение отменено"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} прошел аутентификацию с помощью токена API."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4549,8 +4508,8 @@ msgstr "Расширения для творчества"
 msgid "See more creativity staff picks"
 msgstr "Больше креативных инструментов отобранных нашими сотрудниками"
 
-msgid "Rejected or Unreviewed"
-msgstr "Отклонено или не проверено"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4725,6 +4684,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(use
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

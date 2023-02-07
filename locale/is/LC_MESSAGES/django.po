@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -490,12 +490,13 @@ msgstr "{addon} lýsingu breytt."
 msgid "Categories edited for {addon}."
 msgstr "Flokkum breytt fyrir {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) bætt við {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) fjarlægt úr {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Framlög til {addon}."
@@ -520,8 +521,8 @@ msgstr "{version} breytt fyrir {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Útgáfu {0} eytt úr {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Skránni {0.name} bætt við {version} af {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Skránni {0} eytt úr {version} af {addon}."
@@ -613,9 +614,9 @@ msgstr "{addon} birtist ekki lengur áberandi."
 msgid "{0} {1} added."
 msgstr "{0} {1} bætt við"
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Hlutverki {0.name} breytt í {1} fyrir {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} er nú með notkunarleyfi samkvæmt {0}."
@@ -629,14 +630,8 @@ msgstr "Táknmynd eða forskoðun {addon} breyttist."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} fyrir {addon} samþykkt."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} samþykkti {rating} fyrir {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Yfirferð {rating} fyrir {addon} eytt."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} eyddi {rating} fyrir {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Hámarksútgáfa forrits fyrir {version} uppfærð."
@@ -674,18 +669,6 @@ msgstr "Breytti gagnasviði: {2} sett á: {0}."
 msgid "Deleted: {1}."
 msgstr "Eytt: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Notandanum {user} breytt, ástæða: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Notandinn {user} gerður nafnlaus."
-
-msgid "User {user} restricted."
-msgstr "Notandinn {user} takmarkaður."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Kerfisstjórinn {0} skoðaði virkniskráningu fyrir {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} fyrir {addon} uppfærð."
 
@@ -698,11 +681,11 @@ msgstr "Notandinn {user} bannaður."
 msgid "User {user} picture deleted."
 msgstr "Mynd notandans {user} eytt."
 
-msgid "User {0.name} added to {group}."
-msgstr "Notanda {0.name} bætt í {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Notandi {0.name} fjarlægður úr {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} afskráð."
@@ -834,9 +817,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr ""
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
@@ -855,32 +835,11 @@ msgstr "{addon} {version} endur-undirrituð (áður {0})."
 msgid "Version re-signed"
 msgstr "Útgáfa endur-undirrituð"
 
-msgid "{user} force-disabled {addon}."
-msgstr ""
-
-msgid "Force disabled"
-msgstr "Þvingað óvirkt"
-
-msgid "{user} force-enabled {addon}."
-msgstr ""
-
-msgid "Force enabled"
-msgstr "Þvingað virkt"
-
-msgid "{user} logged in."
-msgstr "{user} skráður inn."
-
-msgid "{user} restricted."
-msgstr "{user} takmarkaður."
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
 msgstr "Höfnun afturkölluð"
-
-msgid "{user} authenticated through an API token."
-msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4401,8 +4360,8 @@ msgstr "Forritsaukar fyrir sköpunargleði"
 msgid "See more creativity staff picks"
 msgstr "Skoðaðu fleiri sköpunartól sem starfsfólk hefur valið"
 
-msgid "Rejected or Unreviewed"
-msgstr "Hafnað eða óyfirfarið"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4575,6 +4534,12 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format

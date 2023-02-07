@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -483,11 +483,12 @@ msgstr "Priedo „{addon}“ aprašymas pakeistas."
 msgid "Categories edited for {addon}."
 msgstr ""
 
-msgid "{0.name} ({1}) added to {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
 msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
 msgstr ""
 
 msgid "Contributions for {addon}."
@@ -513,7 +514,7 @@ msgstr ""
 msgid "Version {0} deleted from {addon}."
 msgstr ""
 
-msgid "File {0.name} added to {version} of {addon}."
+msgid "File {file} added to {version} of {addon}."
 msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
@@ -607,8 +608,8 @@ msgstr ""
 msgid "{0} {1} added."
 msgstr ""
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
 msgstr ""
 
 msgid "{addon} is now licensed under {0}."
@@ -624,13 +625,7 @@ msgstr "Priedas „{addon}“ sukurtas."
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-msgid "{user} approved {rating} for {addon}."
-msgstr ""
-
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
-
-msgid "{user} deleted {rating} for {addon}."
 msgstr ""
 
 msgid "Application max version for {version} updated."
@@ -669,18 +664,6 @@ msgstr ""
 msgid "Deleted: {1}."
 msgstr ""
 
-msgid "User {user} edited, reason: {1}"
-msgstr ""
-
-msgid "User {user} anonymized."
-msgstr ""
-
-msgid "User {user} restricted."
-msgstr ""
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
-
 msgid "{rating} for {addon} updated."
 msgstr ""
 
@@ -693,10 +676,10 @@ msgstr ""
 msgid "User {user} picture deleted."
 msgstr ""
 
-msgid "User {0.name} added to {group}."
+msgid "User {user} added to {group}."
 msgstr ""
 
-msgid "User {0.name} removed from {group}."
+msgid "User {user} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
@@ -844,9 +827,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr ""
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "Priedas „{addon}“ sukurtas."
@@ -869,33 +849,10 @@ msgstr "Priedas „{addon}“ sukurtas."
 msgid "Version re-signed"
 msgstr "Versijos pastabos"
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Priedas „{addon}“ sukurtas."
-
-msgid "Force disabled"
-msgstr ""
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Priedas „{addon}“ sukurtas."
-
-msgid "Force enabled"
-msgstr ""
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4512,7 +4469,7 @@ msgstr "Komentuoti"
 msgid "See more creativity staff picks"
 msgstr "Populiarūs plėtiniai"
 
-msgid "Rejected or Unreviewed"
+msgid "Unreviewed"
 msgstr ""
 
 #, python-format
@@ -4687,6 +4644,12 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-18 10:43+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -498,12 +498,13 @@ msgstr "Beskriuwing fan {addon} bewurke."
 msgid "Categories edited for {addon}."
 msgstr "Kategoryen foar {addon} bewurke."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) tafoege oan {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) fuortsmiten fan {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Bydragen foar {addon}."
@@ -528,8 +529,8 @@ msgstr "{version} foar {addon} bewurke."
 msgid "Version {0} deleted from {addon}."
 msgstr "Ferzje {0} út {addon} fuortsmiten."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Bestân {0.name} oan {version} fan {addon} tafoege."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Bestân {0} út {version} fan {addon} fuortsmiten."
@@ -623,9 +624,9 @@ msgstr "{addon} is net mear oanrekkommandearre."
 msgid "{0} {1} added."
 msgstr "{0} {1} tafoege."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "rol fan {0.name} wizige yn {1} foar {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} falt no ûnder de lisinsje {0}."
@@ -639,14 +640,8 @@ msgstr "{addon}-piktogram of foarbylden wizige."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} foar {addon} goedkard."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} hat {rating} foar {addon} goedkard."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Beoardieling {rating} foar {addon} fuortsmiten."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} hat {rating} foar {addon} fuortsmiten."
 
 msgid "Application max version for {version} updated."
 msgstr "Maksimumferzje tapassing foar {version} bywurke."
@@ -684,18 +679,6 @@ msgstr "Fjild bewurke: {2} ynsteld op: {0}."
 msgid "Deleted: {1}."
 msgstr "Fuortsmiten: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Brûker {user} bywurke, reden: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Brûker {user} anonimisearre."
-
-msgid "User {user} restricted."
-msgstr "Brûker {user} beheint."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Behearder {0} hat aktiviteitenlochboek foar {user} besjoen."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} foar {addon} bywurke."
 
@@ -708,11 +691,11 @@ msgstr "Brûker {user} ferballe."
 msgid "User {user} picture deleted."
 msgstr "Ofbylding brûker {user} fuortsmiten."
 
-msgid "User {0.name} added to {group}."
-msgstr "Brûker {0.name} tafoege oan {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Brûker {0.name} fuortsmiten út {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} net fermeld."
@@ -844,9 +827,6 @@ msgstr "Oftekenje blokkearringsaksje"
 msgid "User {user} session(s) reset."
 msgstr "Sesje(s) fan brûker {user} opnij inisjalisearre."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Brûker {user} beheind foar berik ‘{0}’"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Ofwizen ynhâld fan {addon} {version} ynpland."
 
@@ -865,32 +845,11 @@ msgstr "{addon} {version} opnij ûndertekene (earder {0})."
 msgid "Version re-signed"
 msgstr "Ferzje opnij ûndertekene"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} hat {addon} forsearre útskeakele."
-
-msgid "Force disabled"
-msgstr "Add-on twongen útskeakelje"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} hat {addon} forsearre ynskeakele."
-
-msgid "Force enabled"
-msgstr "Twongen ynskeakele"
-
-msgid "{user} logged in."
-msgstr "{user} oanmeld."
-
-msgid "{user} restricted."
-msgstr "{user} beheind."
-
 msgid "{addon} {version} un-rejected."
 msgstr "Ofwizing {addon} {version} ûngedien makke."
 
 msgid "Un-rejected"
 msgstr "Ofwizing ûngedien makke"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} is autentisearre fia in API-token."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4526,8 +4485,8 @@ msgstr "Kreativiteitsútwreidingen"
 msgid "See more creativity staff picks"
 msgstr "Mear stêfkarren foar kreativiteit besjen"
 
-msgid "Rejected or Unreviewed"
-msgstr "Ofwezen of net beoardield"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4701,6 +4660,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markearre troch %(user
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as jo besjoen."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

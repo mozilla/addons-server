@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -490,11 +490,12 @@ msgstr "{addon} विवरण संपादित किया गया।"
 msgid "Categories edited for {addon}."
 msgstr "{addon} के लिए श्रेणियां संपादित की गई।"
 
-msgid "{0.name} ({1}) added to {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
 msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
 msgstr ""
 
 msgid "Contributions for {addon}."
@@ -520,8 +521,8 @@ msgstr "{addon} के लिए {version} संपादित किया �
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} से संस्करण {0} हटाया गया।"
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon} के {version} में फ़ाइल {0.name} जोड़ा गया।"
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} के {version} से फ़ाइल {0} को हटा दिया गया।"
@@ -613,9 +614,9 @@ msgstr "{addon} अब प्रदर्शित नहीं है।"
 msgid "{0} {1} added."
 msgstr "{0} {1} जोड़ा गया।"
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} के लिए {0.name} भूमिका बदलकर {1} हो गई।"
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} अब {0} के तहत लाइसेंस प्राप्त है।"
@@ -630,13 +631,7 @@ msgstr "{addon} आइकन बदला गया है।"
 msgid "{rating} for {addon} approved."
 msgstr "{addon} के लिए {rating} स्वीकृत।"
 
-msgid "{user} approved {rating} for {addon}."
-msgstr ""
-
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
-
-msgid "{user} deleted {rating} for {addon}."
 msgstr ""
 
 msgid "Application max version for {version} updated."
@@ -677,18 +672,6 @@ msgstr ""
 msgid "Deleted: {1}."
 msgstr ""
 
-msgid "User {user} edited, reason: {1}"
-msgstr ""
-
-msgid "User {user} anonymized."
-msgstr ""
-
-msgid "User {user} restricted."
-msgstr ""
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "व्यवस्थापक {0} ने {user} के लिए गतिविधि लॉग देखें।"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} के लिए {rating} अपडेट किया गया।"
 
@@ -701,11 +684,11 @@ msgstr ""
 msgid "User {user} picture deleted."
 msgstr "उपयोगकर्ता {user} तस्वीर मिटाया गया।"
 
-msgid "User {0.name} added to {group}."
-msgstr "{group} में उपयोगकर्ता {0.name} जोड़ा गया।"
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "{group} से उपयोगकर्ता {0.name} हटाया गया।"
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} गैर-सूचीबद्ध ।"
@@ -840,9 +823,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "उपयोगकर्ता {user} तस्वीर मिटाया गया।"
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} सामग्री अस्वीकृत।"
@@ -866,35 +846,10 @@ msgstr "{addon} {version} समीक्षा अनुरोधित है 
 msgid "Version re-signed"
 msgstr "संस्करण टिप्पणियाँ"
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "{addon} के लिए {version} संपादित किया गया।"
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "{addon} अक्षम।"
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "{addon} सक्षम किया गया।"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "{addon} सक्षम किया गया।"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4470,8 +4425,8 @@ msgstr "टिप्पणी की गई"
 msgid "See more creativity staff picks"
 msgstr "ऐड-ऑन संस्करण द्वारा"
 
-msgid "Rejected or Unreviewed"
-msgstr "अस्वीकृत या अप्राप्त"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4644,6 +4599,12 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format

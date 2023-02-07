@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-11-23 11:21+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -493,12 +493,13 @@ msgstr "Mô tả {addon} đã được sửa."
 msgid "Categories edited for {addon}."
 msgstr "Phân mục đã được chỉnh cho {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) được thêm vào {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) bị xóa khỏi {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Đóng góp cho {addon}."
@@ -523,8 +524,8 @@ msgstr "{version} được chỉnh cho {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Phiên bản {0} được xóa khỏi {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Tập tin {0.name} được thêm vào {version} của {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Tập tin {0} được xóa khỏi {version} của {addon}."
@@ -618,9 +619,9 @@ msgstr "{addon} không còn được giới thiệu."
 msgid "{0} {1} added."
 msgstr "{0} {1} đã được thêm."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Vai trò {0.name} được chuyển thành {1} cho {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} có giấy phép dưới dạng {0}."
@@ -635,14 +636,8 @@ msgstr "Biểu tượng {addon} đã thay đổi."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} cho {addon} được phê duyệt."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} đã phê duyệt {rating} cho {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Đánh giá {rating} cho {addon} đã bị xóa."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} đã xóa {rating} cho {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Đã cập nhật phiên bản tối đa cho {version}."
@@ -680,18 +675,6 @@ msgstr "Trường đã chỉnh sửa: {2} được đặt thành: {0}."
 msgid "Deleted: {1}."
 msgstr "Đã xóa: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Người dùng {user} đã chỉnh sửa, lý do: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Người dùng {user} đã ẩn danh."
-
-msgid "User {user} restricted."
-msgstr "Người dùng {user} đã bị hạn chế."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Quản trị viên {0} đã xem nhật ký hoạt động của {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} cho {addon} đã cập nhật."
 
@@ -704,11 +687,11 @@ msgstr "Người dùng {user} đã bị cấm."
 msgid "User {user} picture deleted."
 msgstr "Đã xóa hình ảnh người dùng {user}."
 
-msgid "User {0.name} added to {group}."
-msgstr "Đã thêm người dùng {0.name} vào {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Đã xóa người dùng {0.name} khỏi {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} chưa được thêm vào danh sách."
@@ -843,10 +826,6 @@ msgid "User {user} session(s) reset."
 msgstr "Đã đặt lại phiên người dùng {user}."
 
 #, fuzzy
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Người dùng {user} đã chỉnh sửa, lý do: {1}"
-
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "Nội dung {addon} {version} đã từ chối."
 
@@ -865,31 +844,10 @@ msgstr "{addon} {version} đã được ký lại (trước đây là {0})."
 msgid "Version re-signed"
 msgstr "Phiên bản đã được ký lại"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} đã buộc vô hiệu hóa {addon}."
-
-msgid "Force disabled"
-msgstr "Đã buộc vô hiệu hóa"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} đã buộc kích hoạt {addon}."
-
-msgid "Force enabled"
-msgstr "Đã buộc kích hoạt"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4519,8 +4477,8 @@ msgstr "Chủ đề thịnh hành"
 msgid "See more creativity staff picks"
 msgstr "Xem thêm các tiện ích sáng tạo được lựa chọn bởi biên tập viên"
 
-msgid "Rejected or Unreviewed"
-msgstr "Bị từ chối hoặc chưa được xét duyệt"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4693,6 +4651,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Được gắn cờ b�
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Cảnh báo!</strong> Một người dùng khác đã xem trang này trước bạn."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

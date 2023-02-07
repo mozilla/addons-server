@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-06-23 21:34+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -494,12 +494,13 @@ msgstr "Beskrivelse af {addon} redigeret."
 msgid "Categories edited for {addon}."
 msgstr ""
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) føjet til {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) fjernet fra {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr ""
@@ -524,7 +525,7 @@ msgstr ""
 msgid "Version {0} deleted from {addon}."
 msgstr ""
 
-msgid "File {0.name} added to {version} of {addon}."
+msgid "File {file} added to {version} of {addon}."
 msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
@@ -617,9 +618,9 @@ msgstr "{addon} er ikke længere udvalgt."
 msgid "{0} {1} added."
 msgstr "{0} {1} tilføjet."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Rollen {0.name} blev ændret til {1} for {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} er nu udgivet under {0}."
@@ -634,14 +635,8 @@ msgstr "{addon} {version} afvist."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} af {addon} godkendt."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} godkendte {rating} af {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Anmeldelse {rating} af {addon} slettet."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} slettede {rating} af {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -680,18 +675,6 @@ msgstr ""
 msgid "Deleted: {1}."
 msgstr "Slettet: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr ""
-
-msgid "User {user} anonymized."
-msgstr ""
-
-msgid "User {user} restricted."
-msgstr ""
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} af {addon} opdateret."
 
@@ -704,10 +687,10 @@ msgstr "Bruger {user} udelukket."
 msgid "User {user} picture deleted."
 msgstr ""
 
-msgid "User {0.name} added to {group}."
+msgid "User {user} added to {group}."
 msgstr ""
 
-msgid "User {0.name} removed from {group}."
+msgid "User {user} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
@@ -847,9 +830,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Bruger {user} udelukket."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "Indholdet i {addon} {version} er blevet afvist."
@@ -873,35 +853,10 @@ msgstr "{addon} {version} genaktiveret."
 msgid "Version re-signed"
 msgstr "Version %s genaktiveret."
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "{addon} deaktiveret."
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "{addon} deaktiveret."
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Tilføjelser til Mobilen"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "Tilføjelser til Mobilen"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4488,7 +4443,7 @@ msgstr "Kommenterede"
 msgid "See more creativity staff picks"
 msgstr "efter version"
 
-msgid "Rejected or Unreviewed"
+msgid "Unreviewed"
 msgstr ""
 
 #, python-format
@@ -4662,6 +4617,12 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgstr ""
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format
