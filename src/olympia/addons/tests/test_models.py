@@ -3173,8 +3173,10 @@ class TestExtensionsQueues(TestCase):
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     channel=amo.CHANNEL_UNLISTED,
+                    due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
                 addon=addon_factory(
@@ -3195,8 +3197,10 @@ class TestExtensionsQueues(TestCase):
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     channel=amo.CHANNEL_UNLISTED,
+                    due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
                 addon=version_factory(
@@ -3209,9 +3213,11 @@ class TestExtensionsQueues(TestCase):
                         },
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    due_date=datetime.now() + timedelta(hours=24),
                     channel=amo.CHANNEL_UNLISTED,
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
             ).addon,
         ]
         deleted_addon_human_review = addon_factory(
@@ -3352,7 +3358,7 @@ class TestExtensionsQueues(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             version_kw={'channel': amo.CHANNEL_UNLISTED},
         )
-        addons = Addon.objects.get_queryset_for_pending_queues(
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
             show_temporarily_delayed=False
         )
         expected_addons.remove(addon_needing_admin_code_review)
