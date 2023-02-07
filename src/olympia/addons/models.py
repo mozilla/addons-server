@@ -452,25 +452,23 @@ class AddonManager(ManagerBase):
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):
+        versions_pending_rejection_qs = (
+            Version.unfiltered.filter(reviewerflags__pending_rejection__isnull=False)
+            .no_transforms()
+            .order_by('reviewerflags__pending_rejection')
+        )
         return (
             self.get_base_queryset_for_queue(
                 select_related_fields_for_listed=False, admin_reviewer=admin_reviewer
             )
-            .filter(versions__reviewerflags__pending_rejection__isnull=False)
             .annotate(
-                first_version_pending_rejection_date=Min(
-                    'versions__reviewerflags__pending_rejection'
-                ),
-                # Because of the Min(), a GROUP BY addon.id is created, and the
-                # versions join will pick the first by due date. Unfortunately
-                # if we were to annotate with just F('versions__<something>')
-                # Django would add version.<something> to the GROUP BY, ruining
-                # it. To prevent that, we wrap it into a harmless Func() - we
-                # need a no-op function to do that, hence the ANY_VALUE().
-                # We'll then grab the id in our transformer to fetch all
-                # related versions.
-                first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
+                first_version_id=Subquery(
+                    versions_pending_rejection_qs.filter(addon=OuterRef('pk')).values(
+                        'pk'
+                    )[:1]
+                )
             )
+            .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
         )
 

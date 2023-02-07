@@ -3364,6 +3364,33 @@ class TestExtensionsQueues(TestCase):
         expected_addons.remove(addon_needing_admin_code_review)
         assert set(addons) == set(expected_addons)
 
+    def test_get_pending_rejection_queue(self):
+        expected_addons = [
+            version_review_flags_factory(
+                version=version_factory(
+                    addon=version_review_flags_factory(
+                        version=version_factory(addon=addon_factory()),
+                        pending_rejection=datetime.now() + timedelta(hours=24),
+                    ).version.addon,
+                ),
+                pending_rejection=datetime.now() + timedelta(hours=48),
+            ).version.addon,
+        ]
+        addon_factory()
+        addons = Addon.objects.get_pending_rejection_queue()
+        assert set(addons) == set(expected_addons)
+        # Test that we picked the version with the oldest due date and that we
+        # added the first_pending_version property.
+        for addon in addons:
+            expected_version = (
+                addon.versions(manager='unfiltered_for_relations')
+                .filter(reviewerflags__pending_rejection__isnull=False)
+                .order_by('reviewerflags__pending_rejection')
+                .first()
+            )
+            assert expected_version
+            assert addon.first_pending_version == expected_version
+
 
 class TestThemesPendingManualApprovalQueue(TestCase):
     def test_basic(self):
