@@ -93,8 +93,8 @@ class VersionManager(ManagerBase):
     def valid(self):
         return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
 
-    def reviewed(self):
-        return self.filter(file__status__in=amo.REVIEWED_STATUSES)
+    def approved(self):
+        return self.filter(file__status__in=amo.APPROVED_STATUSES)
 
     def latest_public_compatible_with(
         self, application, appversions, *, strict_compat_mode=False
@@ -266,7 +266,7 @@ class Version(OnChangeMixin, ModelBase):
     version = VersionStringField(max_length=255, default='0.1')
 
     due_date = models.DateTimeField(null=True)
-    reviewed = models.DateTimeField(null=True)
+    human_review_date = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
 
@@ -937,22 +937,6 @@ class Version(OnChangeMixin, ModelBase):
         except AutoApprovalSummary.DoesNotExist:
             pass
         return False
-
-    @property
-    def has_been_human_reviewed(self):
-        """Return whether or not this version was reviewed by a human."""
-        from olympia.reviewers.models import AutoApprovalSummary
-
-        autoapproval = AutoApprovalSummary.objects.filter(version=self).first()
-
-        return (
-            self.file.status == amo.STATUS_APPROVED
-            and (
-                not autoapproval
-                or autoapproval.verdict == amo.NOT_AUTO_APPROVED
-                or autoapproval.confirmed is True
-            )
-        ) or (self.file.status == amo.STATUS_DISABLED and self.file.reviewed)
 
     def get_background_images_encoded(self, header_only=False):
         file_obj = self.file

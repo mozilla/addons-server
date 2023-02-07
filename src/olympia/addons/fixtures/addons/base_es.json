@@ -209,7 +209,6 @@
     "modified": "2014-12-08T06:39:45",
     "deleted": false,
     "version": "0.4",
-    "reviewed": null,
     "nomination": "2014-12-08T06:39:45",
     "addon": 1
   }
@@ -226,7 +225,6 @@
     "modified": "2014-12-08T06:40:07",
     "deleted": false,
     "version": "1.2",
-    "reviewed": null,
     "nomination": null,
     "addon": 2
   }
@@ -243,7 +241,6 @@
     "modified": "2014-12-08T06:40:16",
     "deleted": false,
     "version": "1.9",
-    "reviewed": null,
     "nomination": "2014-12-08T06:40:16",
     "addon": 3
   }
@@ -260,7 +257,6 @@
     "modified": "2014-12-08T06:40:23",
     "deleted": false,
     "version": "1.8",
-    "reviewed": null,
     "nomination": "2014-12-08T06:40:23",
     "addon": 4
   }
@@ -277,7 +273,6 @@
     "modified": "2014-12-08T06:40:24",
     "deleted": false,
     "version": "1.1",
-    "reviewed": null,
     "nomination": "2014-12-08T06:40:25",
     "addon": 5
   }
@@ -294,7 +289,6 @@
     "modified": "2014-12-08T06:40:25",
     "deleted": false,
     "version": "0.3",
-    "reviewed": null,
     "nomination": "2014-12-08T06:40:25",
     "addon": 6
   }
@@ -392,7 +386,6 @@
     "strict_compatibility": false,
     "file": "01/0001/1/1-1.xpi",
     "version": 1,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:39:45",
     "manifest_version": 2,
     "size": 0
@@ -409,7 +402,6 @@
     "strict_compatibility": false,
     "file": "02/0002/2/2-2.xpi",
     "version": 2,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:40:07",
     "manifest_version": 2,
     "size": 0
@@ -426,7 +418,6 @@
     "strict_compatibility": false,
     "file": "03/0003/3/3-3.xpi",
     "version": 3,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:40:16",
     "manifest_version": 2,
     "size": 0
@@ -443,7 +434,6 @@
     "strict_compatibility": false,
     "file": "04/0004/4/4-4.xpi",
     "version": 4,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:40:23",
     "manifest_version": 2,
     "size": 0
@@ -460,7 +450,6 @@
     "strict_compatibility": false,
     "file": "05/0005/5/5-5.xpi",
     "version": 5,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:40:24",
     "manifest_version": 2,
     "size": 0
@@ -477,7 +466,6 @@
     "strict_compatibility": false,
     "file": "06/0006/6/6-6.xpi",
     "version": 6,
-    "reviewed": null,
     "datestatuschanged": "2014-12-08T06:40:25",
     "manifest_version": 2,
     "size": 0

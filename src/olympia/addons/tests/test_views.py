@@ -8,6 +8,7 @@ import tempfile
 import zipfile
 
 from collections import Counter
+from datetime import datetime
 from unittest import mock
 from unittest.mock import patch
 from urllib.parse import unquote
@@ -3879,14 +3880,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
                 'Mozilla.'
             ]
         }
-        self.version.update(source='src.zip')
+        self.version.update(source='src.zip', human_review_date=datetime.now())
 
         with mock.patch(
-            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
-        ) as reviewed_mock, mock.patch(
             f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
         ) as pending_mock:
-            reviewed_mock.return_value = True
             pending_mock.return_value = False
 
             response = self.client.patch(self.url, data={'source': None})
@@ -3922,11 +3920,9 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
         assert not self.version.source
         with mock.patch(
-            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
-        ) as reviewed_mock, mock.patch(
             f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
         ) as pending_mock:
-            reviewed_mock.return_value = True
+            self.version.update(human_review_date=datetime.now())
             pending_mock.return_value = False
             assert self._submit_source(new_source, error=True)[0].data == error
             assert not self.version.source

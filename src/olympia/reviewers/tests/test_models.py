@@ -485,15 +485,18 @@ class TestAutoApprovalSummary(TestCase):
         # Old rejected version, does not count.
         version_factory(
             addon=self.addon,
-            file_kw={'reviewed': self.days_ago(370), 'status': amo.STATUS_DISABLED},
+            human_review_date=self.days_ago(370),
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+            },
         )
 
         # Version disabled by the developer, not Mozilla (original_status
         # is set to something different than STATUS_NULL), does not count.
         version_factory(
             addon=self.addon,
+            human_review_date=self.days_ago(15),
             file_kw={
-                'reviewed': self.days_ago(15),
                 'status': amo.STATUS_DISABLED,
                 'original_status': amo.STATUS_APPROVED,
             },
@@ -502,14 +505,17 @@ class TestAutoApprovalSummary(TestCase):
         # Rejected version.
         version_factory(
             addon=self.addon,
-            file_kw={'reviewed': self.days_ago(14), 'status': amo.STATUS_DISABLED},
+            human_review_date=self.days_ago(14),
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+            },
         )
 
         # Another rejected version
         version_factory(
             addon=self.addon,
+            human_review_date=self.days_ago(13),
             file_kw={
-                'reviewed': self.days_ago(13),
                 'status': amo.STATUS_DISABLED,
             },
         )
@@ -517,12 +523,15 @@ class TestAutoApprovalSummary(TestCase):
         # Rejected version on a different add-on, does not count.
         version_factory(
             addon=addon_factory(),
-            file_kw={'reviewed': self.days_ago(12), 'status': amo.STATUS_DISABLED},
+            human_review_date=self.days_ago(12),
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+            },
         )
 
         # Approved version, does not count.
         new_approved_version = version_factory(
-            addon=self.addon, file_kw={'reviewed': self.days_ago(11)}
+            addon=self.addon, human_review_date=self.days_ago(11)
         )
         FileValidation.objects.create(file=new_approved_version.file, validation='{}')
 
@@ -539,10 +548,8 @@ class TestAutoApprovalSummary(TestCase):
             version_factory(
                 addon=self.addon,
                 version=str(i),
-                file_kw={
-                    'reviewed': self.days_ago(10),
-                    'status': amo.STATUS_DISABLED,
-                },
+                human_review_date=self.days_ago(10),
+                file_kw={'status': amo.STATUS_DISABLED},
             )
 
         summary = AutoApprovalSummary(version=self.version)

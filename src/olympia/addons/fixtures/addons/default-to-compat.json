@@ -164,7 +164,6 @@
             "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.0",
-            "reviewed": null,
             "nomination": null,
             "addon": 337203
         }
@@ -189,7 +188,6 @@
             "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.1",
-            "reviewed": null,
             "nomination": null,
             "addon": 337203
         }
@@ -214,7 +212,6 @@
             "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.2",
-            "reviewed": null,
             "nomination": null,
             "addon": 337203
         }
@@ -239,7 +236,6 @@
             "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.3",
-            "reviewed": null,
             "nomination": null,
             "addon": 337203
         }
@@ -265,7 +261,6 @@
             "strict_compatibility": false,
             "file": "03/7203/337203/337203-1268881.xpi",
             "version": 1268881,
-            "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
             "manifest_version": 2,
             "size": 0
@@ -282,7 +277,6 @@
             "strict_compatibility": false,
             "file": "03/7203/337203/337203-1268882.xpi",
             "version": 1268882,
-            "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
             "manifest_version": 2,
             "size": 0
@@ -299,7 +293,6 @@
             "strict_compatibility": false,
             "file": "03/7203/337203/337203-1268883.xpi",
             "version": 1268883,
-            "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
             "manifest_version": 2,
             "size": 0
@@ -316,7 +309,6 @@
             "strict_compatibility": false,
             "file": "03/7203/337203/337203-1268884.xpi",
             "version": 1268884,
-            "reviewed": null,
             "datestatuschanged": "2011-12-05 14:46:43",
             "manifest_version": 2,
             "size": 0

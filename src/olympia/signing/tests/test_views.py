@@ -262,8 +262,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def test_version_failed_review(self):
         self.create_version('3.0')
         version = Version.objects.get(addon__guid=self.guid, version='3.0')
-        version.update(reviewed=datetime.today())
-        version.file.update(reviewed=datetime.today(), status=amo.STATUS_DISABLED)
+        version.update(human_review_date=datetime.today())
+        version.file.update(status=amo.STATUS_DISABLED)
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409

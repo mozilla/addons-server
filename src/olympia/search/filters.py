@@ -836,7 +836,7 @@ class SearchQueryFilter(BaseFilterBackend):
                     'weight': 4.0,
                     'filter': (
                         Q('term', is_experimental=False)
-                        & Q('terms', status=amo.REVIEWED_STATUSES)
+                        & Q('terms', status=amo.APPROVED_STATUSES)
                         & Q('exists', field='current_version')
                         & Q('term', is_disabled=False)
                     ),
@@ -953,7 +953,7 @@ class ReviewedContentFilter(BaseFilterBackend):
         return qs.query(
             query.Bool(
                 filter=[
-                    Q('terms', status=amo.REVIEWED_STATUSES),
+                    Q('terms', status=amo.APPROVED_STATUSES),
                     Q('exists', field='current_version'),
                     Q('term', is_disabled=False),
                 ]

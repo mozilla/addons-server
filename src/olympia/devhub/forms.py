@@ -812,10 +812,7 @@ class VersionForm(TranslationFormMixin, WithSourceMixin, AMOModelForm):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if (
-            self.instance.has_been_human_reviewed
-            and not self.instance.pending_rejection
-        ):
+        if self.instance.human_review_date and not self.instance.pending_rejection:
             self.fields['source'].disabled = True
 
 

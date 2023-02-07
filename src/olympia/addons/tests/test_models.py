@@ -1311,9 +1311,8 @@ class TestAddonModels(TestCase):
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
         latest_version = addon.find_latest_version(amo.CHANNEL_LISTED)
-        latest_version.file.update(
-            status=amo.STATUS_DISABLED, reviewed=datetime.today()
-        )
+        latest_version.update(human_review_date=datetime.now())
+        latest_version.file.update(status=amo.STATUS_DISABLED)
         assert addon.can_request_review() is False
 
     def check_can_request_review(self, status, expected, extra_update_kw=None):

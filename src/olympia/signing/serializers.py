@@ -88,16 +88,18 @@ class SigningFileUploadSerializer(AMOModelSerializer):
             return None
 
     def get_reviewed(self, instance):
-        return self.version is not None and self.version.file.reviewed
+        return self.get_active(instance) or (
+            self.version is not None and bool(self.version.human_review_date)
+        )
 
     def get_active(self, instance):
         return (
             self.version is not None
-            and self.version.file.status in amo.REVIEWED_STATUSES
+            and self.version.file.status in amo.APPROVED_STATUSES
         )
 
     def get_passed_review(self, instance):
-        return self.get_reviewed(instance) and self.get_active(instance)
+        return self.get_active(instance)
 
     def get_automated_signing(self, instance):
         return instance.channel == amo.CHANNEL_UNLISTED
