@@ -4501,7 +4501,7 @@ msgid "See more creativity staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Nicht überprüft"
 
 #, python-format
 msgid "[status:%s]"
@@ -4677,10 +4677,10 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnung!</strong> Ein anderer Benutzer hat vor Ihnen diese Seite angesehen."
 
 msgid "Set Needs Human Review"
-msgstr ""
+msgstr "Markierung „Benötigt menschliche Überprüfung“ setzen"
 
 msgid "Change Version Review Due Date"
-msgstr ""
+msgstr "Fälligkeitsdatum der Versionsprüfung ändern"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
