@@ -52,7 +52,7 @@ class VersionAdmin(AMOModelAdmin):
                 )
             },
         ),
-        ('Flags', {'fields': ('deleted', 'needs_human_review')}),
+        ('Flags', {'fields': ('deleted', 'needs_human_review', 'due_date')}),
     )
     inlines = (VersionReviewerFlagsInline,)
 
