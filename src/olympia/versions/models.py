@@ -267,7 +267,7 @@ class Version(OnChangeMixin, ModelBase):
     )
     version = VersionStringField(max_length=255, default='0.1')
 
-    due_date = models.DateTimeField(null=True)
+    due_date = models.DateTimeField(null=True, blank=True)
     human_review_date = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
