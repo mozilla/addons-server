@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -513,12 +513,13 @@ msgstr "{addon} description edited."
 msgid "Categories edited for {addon}."
 msgstr "Categories edited for {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) added to {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr "{user} ({0}) added to {addon}."
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) removed from {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr "{user} ({0}) removed from {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Contributions for {addon}."
@@ -544,8 +545,8 @@ msgstr "{version} edited for {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} deleted from {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "File {0.name} added to {version} of {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr "File {file} added to {version} of {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} deleted from {version} of {addon}."
@@ -639,9 +640,9 @@ msgstr "{addon} is no longer featured."
 msgid "{0} {1} added."
 msgstr "{0} {1} added."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} role changed to {1} for {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr "{user} role changed to {0} for {addon}."
 
 #, fuzzy
 msgid "{addon} is now licensed under {0}."
@@ -659,16 +660,8 @@ msgid "{rating} for {addon} approved."
 msgstr "{review} for {addon} approved."
 
 #, fuzzy
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} approved {review} for {addon}."
-
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
 msgstr "Review {review} for {addon} deleted."
-
-#, fuzzy
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} deleted {review} for {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Application max version for {version} updated."
@@ -708,18 +701,6 @@ msgstr "Edited field: {2} set to: {0}."
 msgid "Deleted: {1}."
 msgstr "Deleted: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "User {user} edited, reason: {1}"
-
-msgid "User {user} anonymized."
-msgstr "User {user} anonymized."
-
-msgid "User {user} restricted."
-msgstr "User {user} restricted."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} viewed activity log for {user}."
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "{review} for {addon} updated."
@@ -735,11 +716,11 @@ msgstr "User {user} anonymized."
 msgid "User {user} picture deleted."
 msgstr "User {user} restricted."
 
-msgid "User {0.name} added to {group}."
-msgstr "User {0.name} added to {group}."
+msgid "User {user} added to {group}."
+msgstr "User {user} added to {group}."
 
-msgid "User {0.name} removed from {group}."
-msgstr "User {0.name} removed from {group}."
+msgid "User {user} removed from {group}."
+msgstr "User {user} removed from {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} unlisted."
@@ -904,10 +885,6 @@ msgid "User {user} session(s) reset."
 msgstr "User {user} restricted."
 
 #, fuzzy
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "User {user} edited, reason: {1}"
-
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} rejected."
 
@@ -931,36 +908,11 @@ msgstr "{addon} {version} review requested."
 msgid "Version re-signed"
 msgstr "Version %s re-enabled."
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Force-disable add-on"
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "Force-disable add-on"
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Re-enable Version"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "Re-enable Version"
-
-msgid "{user} logged in."
-msgstr "{user} logged in."
-
-msgid "{user} restricted."
-msgstr "{user} restricted."
-
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} un-rejected."
 
 msgid "Un-rejected"
 msgstr "Un-rejected"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} authenticated through an API token."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4907,8 +4859,8 @@ msgstr "Recommended ({0})"
 msgid "See more creativity staff picks"
 msgstr "by Add-on Version"
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejected or Unreviewed"
+msgid "Unreviewed"
+msgstr "Unreviewed"
 
 #, fuzzy, python-format
 msgid "[status:%s]"
@@ -5093,6 +5045,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warning!</strong> Another user was viewing this page before you."
+
+msgid "Set Needs Human Review"
+msgstr "Set Needs Human Review"
+
+msgid "Change Version Review Due Date"
+msgstr "Change Version Review Due Date"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

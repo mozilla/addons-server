@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -494,12 +494,13 @@ msgstr "{addon} の説明が編集されました。"
 msgid "Categories edited for {addon}."
 msgstr "{addon} のカテゴリーが編集されました。"
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) が {addon} へ追加されました。"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) が {addon} から削除されました。"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "{addon} への寄付。"
@@ -524,8 +525,8 @@ msgstr "{addon} の {version} が編集されました。"
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} のバージョン {0}が削除されました。"
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon} のバージョン {version} にファイル {0.name} が追加されました。"
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} のバージョン {version} からファイル {0}が削除されました。"
@@ -617,9 +618,9 @@ msgstr "{addon} がおすすめのアドオンから外されました。"
 msgid "{0} {1} added."
 msgstr "{0}{1} が追加されました。"
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} における {0.name} の役割が {1}へ変更されました。"
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} のライセンスが {0}へ変更されました。"
@@ -634,14 +635,8 @@ msgstr "{addon} のアイコンが変更されました。"
 msgid "{rating} for {addon} approved."
 msgstr "{addon} の {rating} が承認されました。"
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} が {addon} の {rating} を承認しました。"
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} のレビュー {rating} が削除されました。"
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} が {addon} の {rating} を削除しました。"
 
 msgid "Application max version for {version} updated."
 msgstr "{version} のアプリケーション最高バージョンが更新されました。"
@@ -679,18 +674,6 @@ msgstr "フィールド編集: {2}が {0} へ変更されました。"
 msgid "Deleted: {1}."
 msgstr "{1}が削除されました。"
 
-msgid "User {user} edited, reason: {1}"
-msgstr "ユーザー {user} が編集されました。理由: {1}"
-
-msgid "User {user} anonymized."
-msgstr "ユーザー {user} が匿名化されました。"
-
-msgid "User {user} restricted."
-msgstr "ユーザー {user} が制限されました。"
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "管理者 {0}が {user} の活動記録を見ました。"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} の {rating} が更新されました。"
 
@@ -703,11 +686,11 @@ msgstr "ユーザー {user} のアカウントが停止されました。"
 msgid "User {user} picture deleted."
 msgstr "ユーザー {user} の写真が削除されました。"
 
-msgid "User {0.name} added to {group}."
-msgstr "ユーザー {0.name} が {group} へ追加されました。"
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "ユーザー {0.name} が {group} から削除されました。"
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} のリスト掲載が中止されました。"
@@ -839,9 +822,6 @@ msgstr "ログオフ操作をブロック"
 msgid "User {user} session(s) reset."
 msgstr "ユーザー {user} のセッションをリセットしました。"
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "ユーザー {user} がスコープ \"{0}\" について抑制されました"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} のコンテンツ却下が予定されています。"
 
@@ -860,31 +840,10 @@ msgstr "{addon} {version} が再署名されました (以前は {0})。"
 msgid "Version re-signed"
 msgstr "バージョンが再署名されました"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} が {addon} を強制的に無効化しました。"
-
-msgid "Force disabled"
-msgstr "強制無効化"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} が {addon} を強制的に有効化しました。"
-
-msgid "Force enabled"
-msgstr "強制有効化"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4509,8 +4468,8 @@ msgstr "流行の拡張機能"
 msgid "See more creativity staff picks"
 msgstr "翻訳ツールをもっと見る"
 
-msgid "Rejected or Unreviewed"
-msgstr "却下もしくは未審査"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4683,6 +4642,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">フラグを付けた�
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong> あなたの前に、別のユーザーがこのページを見ていました。"
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

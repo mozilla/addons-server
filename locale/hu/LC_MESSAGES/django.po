@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-18 13:25+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -498,12 +498,13 @@ msgstr "{addon} leírás szerkesztve."
 msgid "Categories edited for {addon}."
 msgstr "{addon} kategóriái szerkesztve."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) hozzáadva a(z) {addon} kiegészítőhöz."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1})eltávolítva a(z) {addon} kiegészítőből."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Támogatás a(z) {addon} kiegészítőhöz."
@@ -528,8 +529,8 @@ msgstr "A(z) {addon} kiegészítő {version} verziójának szerkesztése."
 msgid "Version {0} deleted from {addon}."
 msgstr "{0} verzió törlése a(z) {addon} kiegészítőtől."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{0.name} fájl hozzáadva a(z) {addon} kiegészítő {version} változatához."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "A(z) {0} fájl törölve a(z) {addon} kiegészítő {version} verziójából."
@@ -623,9 +624,9 @@ msgstr "A(z) {addon} kiegészítő már nem kiemelt."
 msgid "{0} {1} added."
 msgstr "{0} {1} hozzáadva."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "A(z) {0.name} felhasználó szerepe megváltozott erre: {1} a(z) {addon} kiegészítőhöz."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "A(z) {addon} kiegészítőre mostantól {0} licenc vonatkozik."
@@ -639,14 +640,8 @@ msgstr "A(z) {addon} ikonja vagy előnézetei megváltoztak."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {rating} értékelését."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törlésre került."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} törölte a(z) {addon} kiegészítőhöz tartozó {rating} értékelést."
 
 msgid "Application max version for {version} updated."
 msgstr "Az alkalmazás legmagasabb verziószáma frissítve lett erre: {version}."
@@ -684,18 +679,6 @@ msgstr "Szerkesztett mező: {2} módosítva erre: {0}."
 msgid "Deleted: {1}."
 msgstr "Törölve: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "{user} felhasználó szerkesztette a következő okból: {1}"
-
-msgid "User {user} anonymized."
-msgstr "A(z) {user} felhasználó elrejtett."
-
-msgid "User {user} restricted."
-msgstr "{user} felhasználó korlátozva."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "{0} admin megjelenítette {user} felhasználó tevékenységnaplóját."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} frissítve a(z) {addon} kiegészítőnél."
 
@@ -708,11 +691,11 @@ msgstr "{user} felhasználó kitiltva."
 msgid "User {user} picture deleted."
 msgstr "{user} felhasználó képe törölve."
 
-msgid "User {0.name} added to {group}."
-msgstr "{0.name} felhasználó hozzáadva ehhez: {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "{0.name} felhasználó eltávolítva ebből: {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} titkos."
@@ -844,9 +827,6 @@ msgstr "Blokkolási művelet aláírása"
 msgid "User {user} session(s) reset."
 msgstr "{user} felhasználó munkamenetei helyreállítva."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "{user} felhasználót lekorlátozták „{0}” hatókörre"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} tartalmának elutasítása beütemezve."
 
@@ -865,32 +845,11 @@ msgstr "{addon} {version} újra aláírva (korábban {0})."
 msgid "Version re-signed"
 msgstr "Verzió újra aláírva"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} erőltetetten letiltotta a(z) {addon} kiegészítőt."
-
-msgid "Force disabled"
-msgstr "Erőltetetten letiltva"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} erőltetetten engedélyezte a(z) {addon} kiegészítőt."
-
-msgid "Force enabled"
-msgstr "Erőltetetten engedélyezve"
-
-msgid "{user} logged in."
-msgstr "{user} bejelentkezett."
-
-msgid "{user} restricted."
-msgstr "{user} korlátozva."
-
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} elutasítása visszavonva."
 
 msgid "Un-rejected"
 msgstr "Elutasítás visszavonva"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} API-token használatával hitelesítve."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4543,8 +4502,8 @@ msgstr "Kreatív kiegészítők"
 msgid "See more creativity staff picks"
 msgstr "További, stáb által javasolt kreatív eszközök megtekintése"
 
-msgid "Rejected or Unreviewed"
-msgstr "Visszautasított vagy nem értékelt"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4718,6 +4677,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s jelölte meg,
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Figyelem!</strong> Egy másik felhasználó korábban már megtekintette ezt az oldalt."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

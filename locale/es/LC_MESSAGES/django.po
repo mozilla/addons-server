@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -502,12 +502,13 @@ msgstr "Descripción de {addon} editada."
 msgid "Categories edited for {addon}."
 msgstr "Categorías de {addon} editadas."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) añadido a {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) eliminado de {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Colaboraciones para {addon}."
@@ -532,8 +533,8 @@ msgstr "{version} editada para {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "La versión {0} se ha borrado de {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Archivo {0.name} añadido a {version} de {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Archivo {0} borrado de {version} de {addon}."
@@ -625,9 +626,9 @@ msgstr "{addon} ya no es destacado."
 msgid "{0} {1} added."
 msgstr "{0} {1} añadido."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "El rol de {0.name} se ha cambiado a {1} para {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} está ahora bajo la licencia {0}."
@@ -642,14 +643,8 @@ msgstr "Icono de {addon} cambiado."
 msgid "{rating} for {addon} approved."
 msgstr "Se aprobó el {rating} de {addon}."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} aprobó el {rating} para {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Se eliminó el {rating} para {addon}."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} eliminó el {rating} para {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Máxima versión para {version} actualizada."
@@ -687,18 +682,6 @@ msgstr "Campo editado: {2} establecido a: {0}."
 msgid "Deleted: {1}."
 msgstr "Eliminado: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Usuario {user} editado, razón: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Usuario {user} anonimizado."
-
-msgid "User {user} restricted."
-msgstr "Usuario {user} restringido."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "El administrador {0} visualizó el registro de la actividad de {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "Se actualizó el {rating} para {addon}."
 
@@ -711,11 +694,11 @@ msgstr "Usuario {user} expulsado."
 msgid "User {user} picture deleted."
 msgstr "Imagen de {user} eliminada."
 
-msgid "User {0.name} added to {group}."
-msgstr "Usuario/a {0.name} agregado/a a {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Usuario/a {0.name} eliminado/a de {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} no listado."
@@ -848,10 +831,6 @@ msgstr "Bloquear registro de acción"
 msgid "User {user} session(s) reset."
 msgstr "Restablecida la llave api del usuario {user}."
 
-#, fuzzy
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Usuario {user} editado, razón: {1}"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr ""
 
@@ -871,33 +850,10 @@ msgstr "Se ha solicitado la revisión de {addon} {version}."
 msgid "Version re-signed"
 msgstr ""
 
-msgid "{user} force-disabled {addon}."
-msgstr ""
-
-msgid "Force disabled"
-msgstr ""
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Forzar activación del complemento"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "Forzar activación del complemento"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4639,8 +4595,8 @@ msgstr "Temas recomendados"
 msgid "See more creativity staff picks"
 msgstr "por versión del complemento"
 
-msgid "Rejected or Unreviewed"
-msgstr "Rechazados o sin revisar"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4816,6 +4772,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">marcada por %(user)s e
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>¡Atención!</strong> Otro usuario estuvo mirando esta página antes que tú."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

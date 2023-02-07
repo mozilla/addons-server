@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-23 16:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -489,12 +489,13 @@ msgstr "Wopisanje {addon} jo se wobźěłało."
 msgid "Categories edited for {addon}."
 msgstr "Kategorije su se za {addon} wobźěłali."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) jo se {addon} pśidał."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) jo se z {addon} wótpórał."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Pósćiwanki za {addon}."
@@ -519,8 +520,8 @@ msgstr "Wersija {version} dodanka {addon} jo se wobźěłała."
 msgid "Version {0} deleted from {addon}."
 msgstr "Wersija {0} dodanka {addon} jo se wulašowała."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Dataja {0.name} jo se wersiji {version} dodanka {addon} pśidała."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Dataja {0} jo se z wersije {version} dodanka {addon} wulašowała."
@@ -614,9 +615,9 @@ msgstr "Dodank {addon} se wěcej njepśedstaja."
 msgid "{0} {1} added."
 msgstr "{0} {1} pśidany."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Rola {0.name} za dodank {addon} do {1} změnjona."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} jo něnto pód licencu {0}."
@@ -630,14 +631,8 @@ msgstr "Symbol abo pśeglědy dodanka {addon} su se změnili."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} za dodank {addon} pśizwólone."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "Wužywaŕ {user} jo pógódnośenje {rating} za dodank {addon} pśizwólił."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Pógódnośenje {rating} za {addon} wulašowane."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} jo {rating} za {addon} wulašował."
 
 msgid "Application max version for {version} updated."
 msgstr "Maks. wersija nałoženja jo se za wersiju {version} zaktualizěrowała."
@@ -675,18 +670,6 @@ msgstr "Wobźěłane pólo: {2} změnjony do: {0}."
 msgid "Deleted: {1}."
 msgstr "Wulašowany: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Wužywaŕ {user} jo se wobźěłał, pśicyna: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Wužywaŕ {user} jo se anonymizěrował."
-
-msgid "User {user} restricted."
-msgstr "Wužywaŕ {user} jo se wobgranicował."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Administrator {0} jo se protokol aktiwitow za wužywarja {user} woglědał."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} jo se za dodank {addon} zaktualizěrował."
 
@@ -699,11 +682,11 @@ msgstr "Wužywaŕ {user} jo se wugnał."
 msgid "User {user} picture deleted."
 msgstr "Wobraz wužywaja {user} jo se wulašował."
 
-msgid "User {0.name} added to {group}."
-msgstr "Wužywaŕ {0.name} jo se kupce {group} pśidał."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Wužywaŕ {0.name} jo se z kupki {group} wótpórał."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} njejo nalicony."
@@ -835,9 +818,6 @@ msgstr "Blokěrowanje akcije wótpóraś"
 msgid "User {user} session(s) reset."
 msgstr "Pósejźenja wužywarja  {user} su se slědk stajili."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Wužywaŕ {user} jo se zdroslował za wobceŕk „{0}“"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Wótpokazanje wopśimjeśa {addon} {version} planowane."
 
@@ -856,32 +836,11 @@ msgstr "Dodank {addon} {version} jo se nowo signěrował (do togo {0})."
 msgid "Version re-signed"
 msgstr "Wersija jo se nowo signěrowała"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} jo znjemóžnił dodank z nuzkanim."
-
-msgid "Force disabled"
-msgstr "Znjemóžnjanje wunuźone"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} jo zmóžnił dodank z nuzkanim."
-
-msgid "Force enabled"
-msgstr "Zmóžnjanje wunuźone"
-
-msgid "{user} logged in."
-msgstr "{user} jo se pśizjawił."
-
-msgid "{user} restricted."
-msgstr "{user} je wobgranicowany."
-
 msgid "{addon} {version} un-rejected."
 msgstr "Wótpokazanje dodanka {addon} {version} jo wótpórane."
 
 msgid "Un-rejected"
 msgstr "Wótpokazanje jo wótpórane"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} se pśez API-token awtentificěrujo."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4514,8 +4473,8 @@ msgstr "Rozšyrjenja za kreatiwnosć"
 msgid "See more creativity staff picks"
 msgstr "Wěcej wót sobuźěłaśerjow wubrane rozšyrjenja kreatiwnosći pokazaś"
 
-msgid "Rejected or Unreviewed"
-msgstr "Wótpokazane abo njepśeglědane"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4691,6 +4650,12 @@ msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wót %(use
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami woglědał."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-21 20:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -500,12 +500,13 @@ msgstr "Deskripsi {addon} diedit."
 msgid "Categories edited for {addon}."
 msgstr "Kategori diedit untuk {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) ditambahkan ke {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) dihapus dari {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Kontribusi untuk {addon}."
@@ -530,8 +531,8 @@ msgstr "{version} disunting untuk {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Versi {0} dihapus dari {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Berkas {0.name} ditambahkan ke {version} dari {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Berkas {0} dihapus dari {version} dari {addon}."
@@ -623,9 +624,9 @@ msgstr "{addon} tidak lagi diunggulkan."
 msgid "{0} {1} added."
 msgstr "{0} {1} ditambahkan."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} peran berubah menjadi {1} untuk {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} kini berlisensi di bawah {0}."
@@ -640,14 +641,8 @@ msgstr "Ikon {addon} diganti."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} untuk {addon} yang disetujui."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} menyetujui {rating} untuk {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Ulasan {rating} untuk {addon} dihapus."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} menghapus {rating} untuk {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versi aplikasi maksimal untuk {version} diperbarui."
@@ -687,18 +682,6 @@ msgstr "Bidang yang disunting: {2} diatur jadi: {0}."
 msgid "Deleted: {1}."
 msgstr "Dihapus: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Pengguna {user} diedit, alasan: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Pengguna {user} dianonimkan."
-
-msgid "User {user} restricted."
-msgstr "Pengguna {user} dibatasi."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} memperlihatkan catatan aktivitas untuk {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} untuk {addon} yang diperbarui."
 
@@ -711,11 +694,11 @@ msgstr "Pengguna {user} telah diblokir."
 msgid "User {user} picture deleted."
 msgstr "Pengguna {user} gambar telah dihapus."
 
-msgid "User {0.name} added to {group}."
-msgstr "Pengguna {0.name} ditambahkan ke {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Pengguna {0.name} dihilangkan dari {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} tidak terdaftar."
@@ -847,9 +830,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr "Reset pengguna {user} sesi."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Pengguna {user} dibatasi untuk ruang lingkup \"{0}\""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Penolakan konten {addon} {version} dijadwalkan."
 
@@ -871,35 +851,10 @@ msgstr "{addon} {version} ulasan dimintakan."
 msgid "Version re-signed"
 msgstr "Versi %s dihidupkan lagi."
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Nonaktifkan-paksa pengaya"
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "Nonaktifkan-paksa pengaya"
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Pengaya yang dihidupkan paksa"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "Pengaya yang dihidupkan paksa"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4565,8 +4520,8 @@ msgstr "Disarankan"
 msgid "See more creativity staff picks"
 msgstr "berdasarkan Versi Pengaya"
 
-msgid "Rejected or Unreviewed"
-msgstr "Ditolak atau Tidak Diulas"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4741,6 +4696,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandai oleh %(user)s
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Perhatian!</strong> Pengguna lain sedang menyaksikan laman ini sebelum anda."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

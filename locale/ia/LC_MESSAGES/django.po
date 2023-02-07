@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2023-01-18 23:19+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -490,12 +490,13 @@ msgstr "Description de {addon} modificate."
 msgid "Categories edited for {addon}."
 msgstr "Categorias modificate pro {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) addite a {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) removite ex {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Donationes pro {addon}."
@@ -520,8 +521,8 @@ msgstr "{version} redigite pro {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} de {addon} delite."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "File {0.name} addite al {version} de {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} delite ex {version} de {addon}."
@@ -615,9 +616,9 @@ msgstr "{addon} non es plus promovite."
 msgid "{0} {1} added."
 msgstr "Addite {0} {1}."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Rolo de {0.name} cambiate a {1} pro {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} es ora licentiate sub {0}."
@@ -631,14 +632,8 @@ msgstr "Icone o vistas preliminar de {addon} cambiate."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} pro {addon} approbate."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} ha approbate {rating} pro {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Revision {rating} pro {addon} delite."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user}ha delite {rating} pro {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Version maximal del application actualisate al {version}."
@@ -676,18 +671,6 @@ msgstr "Campo {2} modificate, definite a: {0}."
 msgid "Deleted: {1}."
 msgstr "Delite: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Usator {user} modificate, ration: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Usator {user} rendite anonyme."
-
-msgid "User {user} restricted."
-msgstr "Usator {user} limitate."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Le administrator {0} revideva le registro de activitate pro {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} pro {addon} actualisate."
 
@@ -700,11 +683,11 @@ msgstr "Usator {user} blocate."
 msgid "User {user} picture deleted."
 msgstr "Photo del usator {user} delite."
 
-msgid "User {0.name} added to {group}."
-msgstr "Usator {0.name} addite a {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Usator {0.name} removite ex {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} non listate."
@@ -836,9 +819,6 @@ msgstr "Blocar action de disconnexion"
 msgid "User {user} session(s) reset."
 msgstr "Le session(es) de usator {user} ha essite reinitialisate."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Le usator {user} ha essite limitate pro le ambito \"{0}\""
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Contento de {addon} {version} programmate."
 
@@ -857,32 +837,11 @@ msgstr "{addon} {version} resignate (precedentemente {0})."
 msgid "Version re-signed"
 msgstr "Version resignate"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} ha disactivate a fortia {addon}."
-
-msgid "Force disabled"
-msgstr "Disactivation fortiate"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} ha activate a fortia {addon}."
-
-msgid "Force enabled"
-msgstr "Activate a fortia"
-
-msgid "{user} logged in."
-msgstr "{user} accedite."
-
-msgid "{user} restricted."
-msgstr "{user} limitate."
-
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} reapprobate."
 
 msgid "Un-rejected"
 msgstr "Reapprobate"
-
-msgid "{user} authenticated through an API token."
-msgstr "{user} authenticate per un jeton API."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4493,8 +4452,8 @@ msgstr "Extensiones de creativitate"
 msgid "See more creativity staff picks"
 msgstr "Vide altere utensile de creativitate eligite per nostre equipa"
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejectate o non revidite"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4668,6 +4627,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Signalate per %(user)s
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

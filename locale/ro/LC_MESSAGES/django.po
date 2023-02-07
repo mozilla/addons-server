@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-01-24 19:00+0000\n"
+"POT-Creation-Date: 2023-02-07 18:35+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -493,12 +493,13 @@ msgstr "Descrierea {addon} editată."
 msgid "Categories edited for {addon}."
 msgstr "Categorii editate pentru {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) adăugat la {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) eliminat din {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "Contribuții pentru {addon}."
@@ -523,8 +524,8 @@ msgstr "{version} a fost editată pentru {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Versiunea {0} a fost ștearsă din {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Fișierul {0.name} a fost adăugat la {version} de {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Fișierul {0} a fost șters din {version} de {addon}."
@@ -616,9 +617,9 @@ msgstr "{addon} nu mai este promovat."
 msgid "{0} {1} added."
 msgstr "{0} {1} adăugat."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "Rolul lui {0.name} a fost modificat în {1} pentru {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} este acum disponibil sub licența {0}."
@@ -633,14 +634,8 @@ msgstr "Pictograma {addon} modificată."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} pentru {addon} aprobată."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} a aprobat {rating} pentru {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Recenzia {rating} pentru {addon} a fost ștearsă."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} a șters {rating} pentru {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Versiune maximă a aplicației pentru {version} actualizată."
@@ -680,18 +675,6 @@ msgstr "Câmp editat: {2} setat pe: {0}."
 msgid "Deleted: {1}."
 msgstr "Șters: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Utilizatorul {user} a editat, motivul: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Utilizator {user} anonimizat."
-
-msgid "User {user} restricted."
-msgstr "Utilizator {user} restricționat."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} a vizualizat jurnalul de activitate pentru {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} pentru {addon} actualizată."
 
@@ -704,11 +687,11 @@ msgstr "Utilizatorul {user} exclus."
 msgid "User {user} picture deleted."
 msgstr "Imagine utilizator {user} ștearsă."
 
-msgid "User {0.name} added to {group}."
-msgstr "Utilizator {0.name} adăugat la {group}."
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "Utilizator {0.name} eliminat din {group}."
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} nelistat."
@@ -840,9 +823,6 @@ msgstr "Validarea acțiunii de blocare"
 msgid "User {user} session(s) reset."
 msgstr "Resetare sesiune(i) {user}."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Utilizatorul {user} cu trafic limitat pentru domeniul „{0}”"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Respingere programată a conținutului {addon} {version}."
 
@@ -863,35 +843,10 @@ msgstr "S-a solicitat o recenzie pentru {addon} {version}."
 msgid "Version re-signed"
 msgstr "Versiune %s reactivată."
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Dezactivează forțat suplimentul"
-
-#, fuzzy
-msgid "Force disabled"
-msgstr "Dezactivează forțat suplimentul"
-
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Activează forțat suplimentul"
-
-#, fuzzy
-msgid "Force enabled"
-msgstr "Activează forțat suplimentul"
-
-msgid "{user} logged in."
-msgstr ""
-
-msgid "{user} restricted."
-msgstr ""
-
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
-
-msgid "{user} authenticated through an API token."
 msgstr ""
 
 msgid "Firefox"
@@ -4585,8 +4540,8 @@ msgstr "Teme recomandate"
 msgid "See more creativity staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
 
-msgid "Rejected or Unreviewed"
-msgstr "Respinse sau fără recenzii"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
@@ -4764,6 +4719,12 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Semnalat de %(user)s l
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Avertisment!</strong> Alt utilizator a vizualizat această pagină înaintea ta."
+
+msgid "Set Needs Human Review"
+msgstr ""
+
+msgid "Change Version Review Due Date"
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
