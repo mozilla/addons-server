@@ -153,6 +153,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     @classmethod
+    def get_queryset(self, request):
         qs = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user),
             show_temporarily_delayed=acl.action_allowed_for(
