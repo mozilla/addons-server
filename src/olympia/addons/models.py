@@ -21,7 +21,6 @@ from django.db.models import (
     Subquery,
     signals as dbsignals,
 )
-from django.db.models.expressions import Func
 from django.db.models.functions import Coalesce, Greatest
 from django.dispatch import receiver
 from django.urls import reverse
@@ -319,6 +318,7 @@ class AddonManager(ManagerBase):
         excludes = {
             'status': amo.STATUS_DISABLED,
         }
+        filters['versions__due_date__isnull'] = False
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
             theme_review=theme_review,
@@ -358,9 +358,10 @@ class AddonManager(ManagerBase):
             qs.filter(**filters)
             .exclude(**excludes)
             .annotate(
+                first_version_due_date=Min('versions__due_date'),
                 first_version_id=Subquery(
                     versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
-                )
+                ),
             )
             .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
@@ -461,12 +462,16 @@ class AddonManager(ManagerBase):
             self.get_base_queryset_for_queue(
                 select_related_fields_for_listed=False, admin_reviewer=admin_reviewer
             )
+            .filter(versions__reviewerflags__pending_rejection__isnull=False)
             .annotate(
+                first_version_pending_rejection_date=Min(
+                    'versions__reviewerflags__pending_rejection'
+                ),
                 first_version_id=Subquery(
                     versions_pending_rejection_qs.filter(addon=OuterRef('pk')).values(
                         'pk'
                     )[:1]
-                )
+                ),
             )
             .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
