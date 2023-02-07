@@ -93,8 +93,8 @@ class VersionManager(ManagerBase):
     def valid(self):
         return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
 
-    def reviewed(self):
-        return self.filter(file__status__in=amo.REVIEWED_STATUSES)
+    def approved(self):
+        return self.filter(file__status__in=amo.APPROVED_STATUSES)
 
     def latest_public_compatible_with(
         self, application, appversions, *, strict_compat_mode=False
@@ -196,6 +196,7 @@ class VersionManager(ManagerBase):
         )
         is_pre_review_version = Q(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
+            & ~Q(addon__status=amo.STATUS_DELETED)
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
                 is_theme
@@ -203,9 +204,10 @@ class VersionManager(ManagerBase):
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
         )
-        return method(Q(needs_human_review=True) | is_pre_review_version).using(
-            'default'
+        is_needs_human_review = Q(
+            Q(deleted=False) | Q(file__is_signed=True), needs_human_review=True
         )
+        return method(is_needs_human_review | is_pre_review_version).using('default')
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -266,7 +268,7 @@ class Version(OnChangeMixin, ModelBase):
     version = VersionStringField(max_length=255, default='0.1')
 
     due_date = models.DateTimeField(null=True)
-    reviewed = models.DateTimeField(null=True)
+    human_review_date = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
 
@@ -516,10 +518,11 @@ class Version(OnChangeMixin, ModelBase):
 
         # Unlisted versions approval is delayed depending on how far we are
         # from creation of the add-on. This is applied only once, during the
-        # first unlisted version creation (so the flag can be dropped by admins
-        # or reviewers, not affecting subsequent versions).
+        # first unlisted version creation of an extension (so the flag can be
+        # dropped by admins or reviewers, not affecting subsequent versions).
         if (
             channel == amo.CHANNEL_UNLISTED
+            and addon.type == amo.ADDON_EXTENSION
             and not addon.versions(manager='unfiltered_for_relations')
             .filter(channel=amo.CHANNEL_UNLISTED)
             .exclude(pk=version.pk)
@@ -920,7 +923,7 @@ class Version(OnChangeMixin, ModelBase):
         """Should this version have a due_date set, meaning it needs a manual review.
 
         See VersionManager.should_have_due_date for logic."""
-        return Version.objects.should_have_due_date().filter(id=self.id).exists()
+        return Version.unfiltered.should_have_due_date().filter(id=self.id).exists()
 
     @property
     def was_auto_approved(self):
@@ -936,22 +939,6 @@ class Version(OnChangeMixin, ModelBase):
         except AutoApprovalSummary.DoesNotExist:
             pass
         return False
-
-    @property
-    def has_been_human_reviewed(self):
-        """Return whether or not this version was reviewed by a human."""
-        from olympia.reviewers.models import AutoApprovalSummary
-
-        autoapproval = AutoApprovalSummary.objects.filter(version=self).first()
-
-        return (
-            self.file.status == amo.STATUS_APPROVED
-            and (
-                not autoapproval
-                or autoapproval.verdict == amo.NOT_AUTO_APPROVED
-                or autoapproval.confirmed is True
-            )
-        ) or (self.file.status == amo.STATUS_DISABLED and self.file.reviewed)
 
     def get_background_images_encoded(self, header_only=False):
         file_obj = self.file

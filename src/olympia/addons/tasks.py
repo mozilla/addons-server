@@ -282,7 +282,7 @@ def update_addon_hotness(averages):
     averages = dict(averages)
     addons = (
         Addon.objects.filter(guid__in=averages.keys())
-        .filter(status__in=amo.REVIEWED_STATUSES)
+        .filter(status__in=amo.APPROVED_STATUSES)
         .no_transforms()
     )
 

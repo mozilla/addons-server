@@ -1311,9 +1311,8 @@ class TestAddonModels(TestCase):
     def test_can_request_review_rejected(self):
         addon = Addon.objects.get(pk=3615)
         latest_version = addon.find_latest_version(amo.CHANNEL_LISTED)
-        latest_version.file.update(
-            status=amo.STATUS_DISABLED, reviewed=datetime.today()
-        )
+        latest_version.update(human_review_date=datetime.now())
+        latest_version.file.update(status=amo.STATUS_DISABLED)
         assert addon.can_request_review() is False
 
     def check_can_request_review(self, status, expected, extra_update_kw=None):
@@ -3215,6 +3214,29 @@ class TestExtensionsQueues(TestCase):
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             ).addon,
         ]
+        deleted_addon_human_review = addon_factory(
+            name='Deleted add-on - human review',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
+            version_kw={'needs_human_review': True},
+        )
+        deleted_addon_human_review.delete()
+        expected_addons.append(deleted_addon_human_review)
+        deleted_unlisted_version_human_review = addon_factory(
+            name='Deleted unlisted version - human review',
+            version_kw={'channel': amo.CHANNEL_UNLISTED, 'needs_human_review': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
+            reviewer_flags={'auto_approval_disabled_unlisted': True},
+        )
+        deleted_unlisted_version_human_review.versions.all()[0].delete()
+        expected_addons.append(deleted_unlisted_version_human_review)
+        deleted_listed_version_human_review = addon_factory(
+            name='Deleted listed version - human review',
+            version_kw={'channel': amo.CHANNEL_LISTED, 'needs_human_review': True},
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
+            reviewer_flags={'auto_approval_disabled': True},
+        )
+        deleted_listed_version_human_review.versions.all()[0].delete()
+        expected_addons.append(deleted_listed_version_human_review)
 
         # Add add-ons that should not appear. For some it's because of
         # something we're explicitly filtering out, for others it's because of
@@ -3280,21 +3302,24 @@ class TestExtensionsQueues(TestCase):
                 'needs_admin_code_review': True,
             },
         )
-        addons = Addon.objects.get_queryset_for_pending_queues()
+        addons = Addon.unfiltered.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
 
         # Test that we picked the version with the oldest due date and that we
         # added the first_pending_version property.
         for addon in addons:
             expected_version = (
-                addon.versions.exclude(due_date=None).order_by('due_date').first()
+                addon.versions(manager='unfiltered_for_relations')
+                .exclude(due_date=None)
+                .order_by('due_date')
+                .first()
             )
             assert expected_version
             assert addon.first_pending_version == expected_version
 
         # Admins should be able to see addons needing admin code review.
         expected_addons.append(addon_needing_admin_code_review)
-        addons = Addon.objects.get_queryset_for_pending_queues(admin_reviewer=True)
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(admin_reviewer=True)
         assert set(addons) == set(expected_addons)
 
         # If we pass show_temporarily_delayed=False, versions in a channel that

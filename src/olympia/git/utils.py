@@ -165,7 +165,6 @@ class TemporaryWorktree:
 
 
 class AddonGitRepository:
-
     GIT_DESCRIPTION = '.git/description'
 
     def __init__(self, addon_or_id, package_type='addon'):

@@ -306,7 +306,7 @@ class TestAddonIndexer(TestCase):
                 'string': "Quelque chose en fran\xe7ais.\n\nQuelque chose d'autre.",
             },
         ]
-        assert extracted['current_version']['reviewed'] == version.reviewed
+        assert extracted['current_version']['reviewed'] == version.human_review_date
         assert extracted['current_version']['version'] == version.version
         extracted_file = extracted['current_version']['files'][0]
         assert extracted_file['id'] == version.file.pk

@@ -447,6 +447,11 @@ class AddonBrowseVersionSerializer(
     def get_has_been_validated(self, obj):
         return obj.file.has_been_validated
 
+    def get_reviewed(self, obj):
+        return serializers.DateTimeField().to_representation(
+            obj.file.approval_date or obj.human_review_date
+        )
+
 
 class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
     pass

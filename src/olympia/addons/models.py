@@ -196,8 +196,8 @@ class AddonQuerySet(BaseQuerySet):
         return self.filter(id=val)
 
     def public(self):
-        """Get reviewed add-ons only"""
-        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
+        """Get approved add-ons only"""
+        return self.filter(self.valid_q(amo.APPROVED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -1343,7 +1343,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         latest_version = self.find_latest_version(amo.CHANNEL_LISTED, exclude=())
 
-        return latest_version is not None and not latest_version.file.reviewed
+        return (
+            latest_version is not None
+            and not latest_version.file.approval_date
+            and not latest_version.human_review_date
+        )
 
     @property
     def is_disabled(self):
@@ -1813,15 +1817,14 @@ class Addon(OnChangeMixin, ModelBase):
         """
         Update all due dates on versions of this add-on.
         """
-        for version in self.versions.should_have_due_date().filter(
-            due_date__isnull=True
-        ):
+        versions = self.versions(manager='unfiltered_for_relations')
+        for version in versions.should_have_due_date().filter(due_date__isnull=True):
             due_date = get_review_due_date()
             log.info(
                 'Version %r (%s) due_date set to %s', version, version.id, due_date
             )
             version.update(due_date=due_date, _signal=False)
-        for version in self.versions.should_have_due_date(negate=True).filter(
+        for version in versions.should_have_due_date(negate=True).filter(
             due_date__isnull=False
         ):
             log.info(
@@ -1891,6 +1894,15 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
     else:
         # New: will (re)set due date only if it's None.
         latest_version.reset_due_date()
+
+
+@receiver(
+    models.signals.post_delete,
+    sender=Addon,
+    dispatch_uid='addon-delete',
+)
+def update_due_date_for_addon_delete(sender, instance, **kw):
+    instance.update_all_due_dates()
 
 
 def attach_translations_dict(addons):

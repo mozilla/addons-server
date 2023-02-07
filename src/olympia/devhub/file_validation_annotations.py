@@ -17,7 +17,6 @@ def insert_validation_message(
     compatibility_type=None,
     description=None,
 ):
-
     if description is None:
         description = []
 

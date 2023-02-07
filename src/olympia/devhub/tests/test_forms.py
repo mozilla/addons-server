@@ -1,7 +1,7 @@
 import os
 import shutil
 import tempfile
-from datetime import timedelta
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -1089,15 +1089,13 @@ class TestVersionForm(TestCase):
         mock_point = 'olympia.versions.models.Version.'
         form = forms.VersionForm
         with mock.patch(
-            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
-        ) as reviewed_mock, mock.patch(
             f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
         ) as pending_mock:
-            reviewed_mock.return_value = False
+            assert version.human_review_date is None
             pending_mock.return_value = False
             assert form(instance=version).fields['source'].disabled is False
 
-            reviewed_mock.return_value = True
+            version.update(human_review_date=datetime.now())
             assert form(instance=version).fields['source'].disabled is True
 
             pending_mock.return_value = True

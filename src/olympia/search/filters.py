@@ -836,7 +836,7 @@ class SearchQueryFilter(BaseFilterBackend):
                     'weight': 4.0,
                     'filter': (
                         Q('term', is_experimental=False)
-                        & Q('terms', status=amo.REVIEWED_STATUSES)
+                        & Q('terms', status=amo.APPROVED_STATUSES)
                         & Q('exists', field='current_version')
                         & Q('term', is_disabled=False)
                     ),
@@ -953,7 +953,7 @@ class ReviewedContentFilter(BaseFilterBackend):
         return qs.query(
             query.Bool(
                 filter=[
-                    Q('terms', status=amo.REVIEWED_STATUSES),
+                    Q('terms', status=amo.APPROVED_STATUSES),
                     Q('exists', field='current_version'),
                     Q('term', is_disabled=False),
                 ]
@@ -1002,7 +1002,6 @@ class SortingFilter(BaseFilterBackend):
             # query is absent (to prevent clashing with the score functions
             # coming from a search query).
             if split_sort_params == ['random']:
-
                 is_random_sort_available = (
                     AddonFeaturedQueryParam.query_param in request.GET
                     or AddonPromotedQueryParam.query_param in request.GET

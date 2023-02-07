@@ -97,7 +97,7 @@ class File(OnChangeMixin, ModelBase):
     )
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     strict_compatibility = models.BooleanField(default=False)
-    reviewed = models.DateTimeField(null=True, blank=True)
+    approval_date = models.DateTimeField(null=True)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -266,9 +266,8 @@ class File(OnChangeMixin, ModelBase):
         if self.status == amo.STATUS_DISABLED:
             return (
                 gettext('Rejected')
-                if self.reviewed is not None
-                # We can't assume that a missing reviewed date means it is unreviewed.
-                else gettext('Rejected or Unreviewed')
+                if getattr(self, 'version', None) and self.version.human_review_date
+                else gettext('Unreviewed')
             )
         return self.STATUS_CHOICES.get(
             self.status, gettext('[status:%s]') % self.status

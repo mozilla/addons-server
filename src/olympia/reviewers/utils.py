@@ -153,8 +153,7 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request):
-        qs = Addon.objects.get_queryset_for_pending_queues(
+        qs = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user),
             show_temporarily_delayed=acl.action_allowed_for(
                 request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
@@ -776,9 +775,14 @@ class ReviewBase:
         self.redirect_url = None
 
     def set_addon(self):
-        """Alter addon, set reviewed timestamp on version being reviewed."""
+        """Alter addon, set human_review_date timestamp on version being reviewed."""
         self.addon.update_status()
-        self.version.update(reviewed=datetime.now())
+        self.set_human_review_date()
+
+    def set_human_review_date(self, version=None):
+        version = version or self.version
+        if self.human_review and not version.human_review_date:
+            version.update(human_review_date=datetime.now())
 
     def set_data(self, data):
         self.data = data
@@ -786,7 +790,8 @@ class ReviewBase:
     def set_file(self, status, file):
         """Change the file to be the new status."""
         file.datestatuschanged = datetime.now()
-        file.reviewed = datetime.now()
+        if status == amo.STATUS_APPROVED:
+            file.approval_date = datetime.now()
         file.status = status
         file.save()
 
@@ -815,6 +820,9 @@ class ReviewBase:
             version__addon=self.addon,
             version__channel=self.version.channel,
         ).update(needs_human_review_by_mad=False)
+        # Trigger a check of all due dates on the add-on since we mass-updated
+        # versions.
+        self.addon.update_all_due_dates()
         # Also reset it on self.version in case this instance is saved later.
         self.version.needs_human_review = False
 
@@ -918,13 +926,6 @@ class ReviewBase:
     def reviewer_reply(self):
         # Default to reviewer reply action.
         action = amo.LOG.REVIEWER_REPLY_VERSION
-        if self.version:
-            if (
-                self.version.channel == amo.CHANNEL_UNLISTED
-                and not self.version.reviewed
-            ):
-                self.version.update(reviewed=datetime.now())
-
         log.info(
             'Sending reviewer reply for %s to authors and other'
             'recipients' % self.addon
@@ -943,13 +944,6 @@ class ReviewBase:
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
-        update_reviewed = (
-            self.version
-            and self.version.channel == amo.CHANNEL_UNLISTED
-            and not self.version.reviewed
-        )
-        if update_reviewed:
-            self.version.update(reviewed=datetime.now())
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
@@ -977,7 +971,7 @@ class ReviewBase:
             self.clear_all_needs_human_review_flags_in_channel()
 
             # Clear pending rejection since we approved that version.
-            VersionReviewerFlags.objects.filter(version=self.version,).update(
+            VersionReviewerFlags.objects.filter(version=self.version).update(
                 pending_rejection=None,
                 pending_rejection_by=None,
                 pending_content_rejection=None,
@@ -991,6 +985,7 @@ class ReviewBase:
 
             # The counter can be incremented.
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
+            self.set_human_review_date()
         else:
             # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
@@ -1026,6 +1021,7 @@ class ReviewBase:
             # it's the only version we can be certain that the reviewer looked
             # at.
             self.clear_specific_needs_human_review_flags(self.version)
+            self.set_human_review_date()
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = '%s_to_rejected' % self.review_type
@@ -1128,6 +1124,7 @@ class ReviewBase:
                 pending_rejection_by=None,
                 pending_content_rejection=None,
             )
+            self.set_human_review_date(version)
 
     def reject_multiple_versions(self):
         """Reject a list of versions.
@@ -1208,6 +1205,7 @@ class ReviewBase:
                         else None,
                     },
                 )
+                self.set_human_review_date(version)
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
@@ -1369,6 +1367,7 @@ class ReviewUnlisted(ReviewBase):
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
+            self.set_human_review_date()
 
         self.notify_email(template, subject, perm_setting=None)
 
@@ -1412,6 +1411,7 @@ class ReviewUnlisted(ReviewBase):
                 # Clear needs_human_review on rejected versions, we consider
                 # that the reviewer looked at all versions they are approving.
                 self.clear_specific_needs_human_review_flags(version)
+                self.set_human_review_date(version)
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""

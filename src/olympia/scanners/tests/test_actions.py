@@ -242,6 +242,37 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needs_human_review
+
+    def test_delay_auto_approval_indefinitely_overwrite_existing(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(addon.auto_approval_delayed_until)
+        assert addon.auto_approval_delayed_until_unlisted is None
+        _delay_auto_approval_indefinitely(version)
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needs_human_review
+
+    def test_delay_auto_approval_indefinitely_overwrite_existing_unlisted(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until_unlisted': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        self.assertCloseToNow(addon.auto_approval_delayed_until_unlisted)
+        _delay_auto_approval_indefinitely(version)
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
 
     def test_delay_auto_approval_indefinitely_and_restrict(self):
@@ -263,6 +294,7 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -314,6 +346,7 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -367,6 +400,7 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         # We added a new restriction for submission without touching the existing one
         # for approval for user1 and user3
@@ -431,6 +465,7 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict_future_approvals(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         # We added a new restriction for approval without touching the existing one
         # for submission for user1 and user3
@@ -474,6 +509,7 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely(version)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
 
     def test_flag_for_human_review_by_scanner(self):

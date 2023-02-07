@@ -355,7 +355,7 @@ class AutoApprovalSummary(ModelBase):
             'past_rejection_history': min(
                 Version.objects.filter(
                     addon=addon,
-                    file__reviewed__gte=one_year_ago,
+                    human_review_date__gte=one_year_ago,
                     file__original_status=amo.STATUS_NULL,
                     file__status=amo.STATUS_DISABLED,
                 ).count()

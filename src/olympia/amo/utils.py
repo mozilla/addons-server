@@ -1075,6 +1075,7 @@ def find_language(locale):
 
 def has_links(html):
     """Return True if links (text or markup) are found in the given html."""
+
     # Call bleach.linkify to transform text links to real links, and add some
     # content to the ``href`` attribute. If the result is different from the
     # initial string, links were found.

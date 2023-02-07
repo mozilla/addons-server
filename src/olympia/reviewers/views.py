@@ -1367,7 +1367,6 @@ class ReviewAddonVersionDraftCommentViewSet(
     UpdateModelMixin,
     GenericViewSet,
 ):
-
     permission_classes = [
         AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
     ]

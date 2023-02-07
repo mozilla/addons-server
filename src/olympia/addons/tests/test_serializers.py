@@ -139,7 +139,7 @@ class AddonSerializerOutputTestMixin:
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url('versions.edit', args=[version.pk], prefix_only=True)
         )
-        assert data['reviewed'] == version.reviewed
+        assert data['reviewed'] == version.human_review_date
         assert data['version'] == version.version
 
     def test_basic(self):
@@ -1156,7 +1156,7 @@ class TestVersionSerializerOutput(TestCase):
                     'en-US': 'Release notes in english',
                     'fr': 'Notes de version en français',
                 },
-                'reviewed': now,
+                'human_review_date': now,
             },
         )
 
@@ -1453,7 +1453,7 @@ class TestSimpleVersionSerializerOutput(TestCase):
         addon = addon_factory(
             version_kw={
                 'license': license,
-                'reviewed': now,
+                'human_review_date': now,
             }
         )
 

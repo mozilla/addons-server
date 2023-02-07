@@ -1020,7 +1020,7 @@ class TestStatsWithBigQuery(TestCase):
         assert response.status_code == 503
 
     def test_usage_breakdown_series(self):
-        for (url_name, source) in [
+        for url_name, source in [
             ('stats.apps_series', 'apps'),
             ('stats.countries_series', 'countries'),
             ('stats.locales_series', 'locales'),
@@ -1044,7 +1044,7 @@ class TestStatsWithBigQuery(TestCase):
 
     @override_switch('disable-bigquery', active=True)
     def test_usage_breakdown_series_disabled(self):
-        for (url_name, source) in [
+        for url_name, source in [
             ('stats.apps_series', 'apps'),
             ('stats.countries_series', 'countries'),
             ('stats.locales_series', 'locales'),
@@ -1066,7 +1066,7 @@ class TestStatsWithBigQuery(TestCase):
     def test_usage_breakdown_series_csv_disabled(self):
         self.series_args[4] = 'csv'
 
-        for (url_name, source) in [
+        for url_name, source in [
             ('stats.apps_series', 'apps'),
             ('stats.countries_series', 'countries'),
             ('stats.locales_series', 'locales'),

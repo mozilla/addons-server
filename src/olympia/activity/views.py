@@ -142,7 +142,6 @@ def inbound_email(request):
 
     def check_content_length(request):
         try:
-
             length = int(request.META.get('CONTENT_LENGTH'))
         except ValueError:
             length = 0

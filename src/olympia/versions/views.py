@@ -26,7 +26,7 @@ log = olympia.core.logger.getLogger('z.versions')
 @non_atomic_requests
 def update_info(request, addon, version_num):
     version = get_object_or_404(
-        addon.versions.reviewed()
+        addon.versions.approved()
         .filter(channel=amo.CHANNEL_LISTED)
         .select_related(None)
         .only_translations(),
@@ -45,7 +45,7 @@ def update_info(request, addon, version_num):
 @non_atomic_requests
 def update_info_redirect(request, version_id):
     version = get_object_or_404(
-        Version.objects.reviewed()
+        Version.objects.approved()
         .filter(channel=amo.CHANNEL_LISTED)
         .select_related(None)
         .no_transforms()
