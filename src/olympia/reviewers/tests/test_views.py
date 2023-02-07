@@ -6535,7 +6535,7 @@ class TestAddonReviewerViewSet(TestCase):
             auto_approval_disabled=True,
             auto_approval_disabled_unlisted=True,
             auto_approval_delayed_until=self.days_ago(42),
-            auto_approval_delayed_until_unlisted=self.days_ago(),
+            auto_approval_delayed_until_unlisted=self.days_ago(0),
         )
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
