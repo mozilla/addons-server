@@ -895,6 +895,39 @@ class TestVersion(TestCase):
         )
         assert version.should_have_due_date
 
+    def _test_should_have_due_date_deleted(self, channel):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.update(channel=channel)
+        # set up
+        AddonReviewerFlags.objects.create(
+            addon=addon,
+            auto_approval_disabled=True,
+            auto_approval_disabled_unlisted=True,
+        )
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert not version.needs_human_review
+        assert version.should_have_due_date
+
+        # Then delete - the version shouldn't have a due date
+        version.delete()
+        assert not version.should_have_due_date
+
+        # except if the reason was needs human review
+        version.update(needs_human_review=True)
+        version.file.update(is_signed=True)
+        assert version.should_have_due_date
+
+        # but only if the file is signed
+        version.file.update(is_signed=False)
+        assert not version.should_have_due_date
+
+    def test_should_have_due_date_deleted_listed(self):
+        self._test_should_have_due_date_deleted(amo.CHANNEL_LISTED)
+
+    def test_should_have_due_date_deleted_unlisted(self):
+        self._test_should_have_due_date_deleted(amo.CHANNEL_UNLISTED)
+
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
         self.make_addon_unlisted(addon)

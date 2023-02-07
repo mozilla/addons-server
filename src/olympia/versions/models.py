@@ -196,6 +196,7 @@ class VersionManager(ManagerBase):
         )
         is_pre_review_version = Q(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
+            & ~Q(addon__status=amo.STATUS_DELETED)
             & Q(reviewerflags__pending_rejection__isnull=True)
             & Q(
                 is_theme
@@ -203,9 +204,10 @@ class VersionManager(ManagerBase):
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
         )
-        return method(Q(needs_human_review=True) | is_pre_review_version).using(
-            'default'
+        is_needs_human_review = Q(
+            Q(deleted=False) | Q(file__is_signed=True), needs_human_review=True
         )
+        return method(is_needs_human_review | is_pre_review_version).using('default')
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -921,7 +923,7 @@ class Version(OnChangeMixin, ModelBase):
         """Should this version have a due_date set, meaning it needs a manual review.
 
         See VersionManager.should_have_due_date for logic."""
-        return Version.objects.should_have_due_date().filter(id=self.id).exists()
+        return Version.unfiltered.should_have_due_date().filter(id=self.id).exists()
 
     @property
     def was_auto_approved(self):
