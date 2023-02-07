@@ -1497,10 +1497,25 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         self.addon.current_version.update(needs_human_review=True)
+        assert self.addon.current_version.due_date
         self.test_public_addon_confirm_auto_approval()
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review is False
+        assert not self.addon.current_version.due_date
         assert self.addon.current_version.human_review_date
+
+    def test_addon_with_old_versions_needing_human_review_confirm_auto_approval(self):
+        previous_version = self.addon.current_version
+        self.addon.current_version.update(needs_human_review=True)
+        assert self.addon.current_version.due_date
+        self.review_version = version_factory(addon=self.addon)
+        self.test_public_addon_confirm_auto_approval()
+        self.review_version.reload()
+        previous_version.reload()
+        assert not self.review_version.needs_human_review
+        assert not self.review_version.due_date
+        assert not previous_version.needs_human_review
+        assert not previous_version.due_date
 
     def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
         flags = version_review_flags_factory(

@@ -813,6 +813,9 @@ class ReviewBase:
             version__addon=self.addon,
             version__channel=self.version.channel,
         ).update(needs_human_review_by_mad=False)
+        # Trigger a check of all due dates on the add-on since we mass-updated
+        # versions.
+        self.addon.update_all_due_dates()
         # Also reset it on self.version in case this instance is saved later.
         self.version.needs_human_review = False
 
