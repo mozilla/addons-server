@@ -388,9 +388,9 @@ django-recaptcha==3.0.0 \
 django-statsd-mozilla==0.4.0 \
     --hash=sha256:81084f3d426f5184f0a0f1dbfe035cc26b66f041d2184559d916a228d856f0d3 \
     --hash=sha256:0d87cb63de8107279cbb748caad9aa74c6a44e7e96ccc5dbf07b89f77285a4b8
-django-tables2==2.5.1 \
-    --hash=sha256:25ed2c28d3508558a4246a255c381784b20b439ef175e3954a103ffbc3a63757 \
-    --hash=sha256:62d65e745073892741ccdb6137bfdbcae7f83142d07494fe865d389af1f2befd
+django-tables2==2.5.2 \
+    --hash=sha256:6e22dd27fcddb1aa2f1c3cb089fcfa4df9094dae1ec16314c7c774289a3bf1fc \
+    --hash=sha256:9441862bfe7a3a29cc11d25d94a9da449e7665dd2510d0d242953230cf58b0cd
 django-waffle==3.0.0 \
     --hash=sha256:3acef6692cb745ed8109f0a3076c5a27da38a716deb70d64c5fb404d65ccd910 \
     --hash=sha256:dd8bcc62269b35000a05a7d87e8a000136b6b1568952e2e707ef450717b1cd9f
