@@ -16,7 +16,7 @@ def set_human_review_date_from_reviewed(apps, schema_editor):
             | Q(autoapprovalsummary__confirmed=True)
             , file__status=amo.STATUS_APPROVED,
         ),
-        reviewed__isnull=False)
+        reviewed__isnull=False).using('default')
     for version in version_qs:
         version.human_review_date = version.reviewed
         version.save(update_fields=['human_review_date'])
