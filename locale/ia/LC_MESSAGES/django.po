@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-08 14:00+0000\n"
+"PO-Revision-Date: 2023-02-08 14:03+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -492,11 +492,11 @@ msgstr "Categorias modificate pro {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) addite a {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) removite de {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Donationes pro {addon}."
@@ -522,7 +522,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} de {addon} delite."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "File {file} addite al {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} delite ex {version} de {addon}."
@@ -618,7 +618,7 @@ msgstr "Addite {0} {1}."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rolo de {user} cambiate a {0} pro {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} es ora licentiate sub {0}."
@@ -684,10 +684,10 @@ msgid "User {user} picture deleted."
 msgstr "Photo del usator {user} delite."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Usator {user} addite a {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Usator {user} removite de {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} non listate."
