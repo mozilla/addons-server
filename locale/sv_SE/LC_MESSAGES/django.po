@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-08 01:21+0000\n"
+"PO-Revision-Date: 2023-02-08 01:27+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4635,10 +4635,10 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Varning!</strong> En annan användare tittade på denna sida innan dig."
 
 msgid "Set Needs Human Review"
-msgstr ""
+msgstr "Ange behöver mänsklig granskning"
 
 msgid "Change Version Review Due Date"
-msgstr ""
+msgstr "Ändra förfallodatumet för versionskontroll"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
