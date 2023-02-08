@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-08 14:03+0000\n"
+"PO-Revision-Date: 2023-02-08 18:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4626,10 +4626,10 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
 
 msgid "Set Needs Human Review"
-msgstr ""
+msgstr "Le configuration necessita revision human"
 
 msgid "Change Version Review Due Date"
-msgstr ""
+msgstr "Cambiar le data limite de revision del version"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
