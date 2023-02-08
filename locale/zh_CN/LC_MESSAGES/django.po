@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-08 11:51+0000\n"
+"PO-Revision-Date: 2023-02-08 11:53+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -675,10 +675,10 @@ msgid "User {user} picture deleted."
 msgstr "已删除用户 {user} 的照片。"
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "{group} 已添加 {user}。"
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "{group} 已移除 {user}。"
 
 msgid "{addon} unlisted."
 msgstr "{addon} 已下架。"
@@ -4388,7 +4388,7 @@ msgid "See more creativity staff picks"
 msgstr "更多编辑推荐 > 创意工具"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "未审核"
 
 #, python-format
 msgid "[status:%s]"
@@ -4563,10 +4563,10 @@ msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong>已有其他用户先于您在查看此页。"
 
 msgid "Set Needs Human Review"
-msgstr ""
+msgstr "已设为需要人工审核"
 
 msgid "Change Version Review Due Date"
-msgstr ""
+msgstr "更改版本审核到期日"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
