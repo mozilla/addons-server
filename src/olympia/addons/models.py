@@ -12,8 +12,15 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
-from django.db.models import F, Max, Min, Q, signals as dbsignals
-from django.db.models.expressions import Func
+from django.db.models import (
+    F,
+    Max,
+    Min,
+    OuterRef,
+    Q,
+    Subquery,
+    signals as dbsignals,
+)
 from django.db.models.functions import Coalesce, Greatest
 from django.dispatch import receiver
 from django.urls import reverse
@@ -298,7 +305,7 @@ class AddonManager(ManagerBase):
         return qs
 
     def get_queryset_for_pending_queues(
-        self, *, admin_reviewer=False, theme_review=False
+        self, *, admin_reviewer=False, theme_review=False, show_temporarily_delayed=True
     ):
         if theme_review:
             filters = {
@@ -319,23 +326,47 @@ class AddonManager(ManagerBase):
             # select_related() for listed fields don't make sense.
             select_related_fields_for_listed=False,
         )
-        return (
+        versions_due_qs = (
+            Version.unfiltered.filter(due_date__isnull=False)
+            .no_transforms()
+            .order_by('due_date')
+        )
+        if not show_temporarily_delayed:
+            # If we were asked not to show temporarily delayed, we need to
+            # exclude versions from the channel of the corresponding addon auto
+            # approval delay flag.This way, we keep showing the add-on if it
+            # has other versions that would not be in that channel.
+            unlisted_delay_flag_field = (
+                'addon__reviewerflags__auto_approval_delayed_until_unlisted'
+            )
+            listed_delay_flag_field = (
+                'addon__reviewerflags__auto_approval_delayed_until'
+            )
+            versions_due_qs = versions_due_qs.exclude(
+                Q(
+                    Q(channel=amo.CHANNEL_UNLISTED)
+                    & Q(**{f'{unlisted_delay_flag_field}__isnull': False})
+                    & ~Q(**{unlisted_delay_flag_field: datetime.max})
+                )
+                | Q(
+                    Q(channel=amo.CHANNEL_LISTED)
+                    & Q(**{f'{listed_delay_flag_field}__isnull': False})
+                    & ~Q(**{listed_delay_flag_field: datetime.max})
+                )
+            )
+        qs = (
             qs.filter(**filters)
             .exclude(**excludes)
             .annotate(
                 first_version_due_date=Min('versions__due_date'),
-                # Because of the Min(), a GROUP BY addon.id is created, and the
-                # versions join will pick the first by due date. Unfortunately
-                # if we were to annotate with just F('versions__<something>')
-                # Django would add version.<something> to the GROUP BY, ruining
-                # it. To prevent that, we wrap it into a harmless Func() - we
-                # need a no-op function to do that, hence the ANY_VALUE().
-                # We'll then grab the id in our transformer to fetch all
-                # related versions.
-                first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
+                first_version_id=Subquery(
+                    versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
+                ),
             )
+            .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
         )
+        return qs
 
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""
@@ -422,6 +453,11 @@ class AddonManager(ManagerBase):
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):
+        versions_pending_rejection_qs = (
+            Version.unfiltered.filter(reviewerflags__pending_rejection__isnull=False)
+            .no_transforms()
+            .order_by('reviewerflags__pending_rejection')
+        )
         return (
             self.get_base_queryset_for_queue(
                 select_related_fields_for_listed=False, admin_reviewer=admin_reviewer
@@ -431,16 +467,13 @@ class AddonManager(ManagerBase):
                 first_version_pending_rejection_date=Min(
                     'versions__reviewerflags__pending_rejection'
                 ),
-                # Because of the Min(), a GROUP BY addon.id is created, and the
-                # versions join will pick the first by due date. Unfortunately
-                # if we were to annotate with just F('versions__<something>')
-                # Django would add version.<something> to the GROUP BY, ruining
-                # it. To prevent that, we wrap it into a harmless Func() - we
-                # need a no-op function to do that, hence the ANY_VALUE().
-                # We'll then grab the id in our transformer to fetch all
-                # related versions.
-                first_version_id=Func(F('versions__id'), function='ANY_VALUE'),
+                first_version_id=Subquery(
+                    versions_pending_rejection_qs.filter(addon=OuterRef('pk')).values(
+                        'pk'
+                    )[:1]
+                ),
             )
+            .filter(first_version_id__isnull=False)
             .transform(first_pending_version_transformer)
         )
 
@@ -1656,10 +1689,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def auto_approval_delayed_indefinitely(self):
-        return (
-            self.auto_approval_delayed_until == datetime.max
-            or self.auto_approval_delayed_until_unlisted == datetime.max
-        )
+        return self.auto_approval_delayed_until == datetime.max
 
     @property
     def auto_approval_delayed_temporarily(self):
@@ -1667,7 +1697,15 @@ class Addon(OnChangeMixin, ModelBase):
             bool(self.auto_approval_delayed_until)
             and self.auto_approval_delayed_until != datetime.max
             and self.auto_approval_delayed_until > datetime.now()
-        ) or (
+        )
+
+    @property
+    def auto_approval_delayed_indefinitely_unlisted(self):
+        return self.auto_approval_delayed_until_unlisted == datetime.max
+
+    @property
+    def auto_approval_delayed_temporarily_unlisted(self):
+        return (
             bool(self.auto_approval_delayed_until_unlisted)
             and self.auto_approval_delayed_until_unlisted != datetime.max
             and self.auto_approval_delayed_until_unlisted > datetime.now()

@@ -43,6 +43,7 @@ class AddonReviewerFlagsSerializer(AMOModelSerializer):
         model = AddonReviewerFlags
         fields = (
             'auto_approval_delayed_until',
+            'auto_approval_delayed_until_unlisted',
             'auto_approval_disabled',
             'auto_approval_disabled_unlisted',
             'auto_approval_disabled_until_next_approval',

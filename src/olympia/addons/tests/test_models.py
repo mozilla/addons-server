@@ -1566,35 +1566,35 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_delayed_until=datetime.max)
         assert addon.auto_approval_delayed_indefinitely is True
 
-    def test_auto_approval_delayed_indefinitely_property_with_unlisted(self):
+    def test_auto_approval_delayed_indefinitely_unlisted_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
-        assert addon.auto_approval_delayed_indefinitely is False
+        assert addon.auto_approval_delayed_indefinitely_unlisted is False
         # Flag present, value is None (default): None.
         flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert addon.auto_approval_delayed_indefinitely is False
+        assert addon.auto_approval_delayed_indefinitely_unlisted is False
         # Flag present, value is a date.
         in_the_past = self.days_ago(1)
         flags.update(auto_approval_delayed_until_unlisted=in_the_past)
-        assert addon.auto_approval_delayed_indefinitely is False
+        assert addon.auto_approval_delayed_indefinitely_unlisted is False
         # In the future, but not far enough.
         in_the_future = datetime.now() + timedelta(hours=24)
         flags.update(auto_approval_delayed_until_unlisted=in_the_future)
-        assert addon.auto_approval_delayed_indefinitely is False
+        assert addon.auto_approval_delayed_indefinitely_unlisted is False
         # This time it's truly delayed indefinitely.
         flags.update(auto_approval_delayed_until_unlisted=datetime.max)
-        assert addon.auto_approval_delayed_indefinitely is True
-        # If both unlisted or listed are set, we only need one to match.
+        assert addon.auto_approval_delayed_indefinitely_unlisted is True
+        # We only consider the unlisted flag.
         flags.update(
             auto_approval_delayed_until_unlisted=datetime.now(),
             auto_approval_delayed_until=datetime.max,
         )
-        assert addon.auto_approval_delayed_indefinitely is True
+        assert addon.auto_approval_delayed_indefinitely_unlisted is False
         flags.update(
             auto_approval_delayed_until_unlisted=datetime.max,
             auto_approval_delayed_until=datetime.now(),
         )
-        assert addon.auto_approval_delayed_indefinitely is True
+        assert addon.auto_approval_delayed_indefinitely_unlisted is True
 
     def test_auto_approval_delayed_temporarily_property(self):
         addon = Addon.objects.get(pk=3615)
@@ -1614,15 +1614,31 @@ class TestAddonModels(TestCase):
         # Not considered temporary any more if it's until the end of time!
         flags.update(auto_approval_delayed_until=datetime.max)
         assert addon.auto_approval_delayed_temporarily is False
-        # But if the unlisted flag is set in the future, then yes.
+        # Not even if the unlisted flag is set since it's a separate property.
         flags.update(auto_approval_delayed_until_unlisted=in_the_future)
-        assert addon.auto_approval_delayed_temporarily is True
-        # Unless it's also at max.
-        flags.update(auto_approval_delayed_until_unlisted=datetime.max)
         assert addon.auto_approval_delayed_temporarily is False
-        # But not if it's in the past.
+
+    def test_auto_approval_delayed_temporarily_unlisted_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No flags: None
+        assert addon.auto_approval_delayed_temporarily_unlisted is False
+        # Flag present, value is None (default): None.
+        flags = AddonReviewerFlags.objects.create(addon=addon)
+        assert addon.auto_approval_delayed_temporarily_unlisted is False
+        # Flag present, value is a date.
+        in_the_past = self.days_ago(1)
         flags.update(auto_approval_delayed_until_unlisted=in_the_past)
-        assert addon.auto_approval_delayed_temporarily is False
+        assert addon.auto_approval_delayed_temporarily_unlisted is False
+        # Flag present, now properly in the future.
+        in_the_future = datetime.now() + timedelta(hours=24)
+        flags.update(auto_approval_delayed_until_unlisted=in_the_future)
+        assert addon.auto_approval_delayed_temporarily_unlisted is True
+        # Not considered temporary any more if it's until the end of time!
+        flags.update(auto_approval_delayed_until_unlisted=datetime.max)
+        assert addon.auto_approval_delayed_temporarily_unlisted is False
+        # Not even if the listed flag is set since it's a separate property.
+        flags.update(auto_approval_delayed_until=in_the_future)
+        assert addon.auto_approval_delayed_temporarily_unlisted is False
 
     def test_needs_admin_code_review_property(self):
         addon = Addon.objects.get(pk=3615)
@@ -3157,8 +3173,10 @@ class TestExtensionsQueues(TestCase):
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     channel=amo.CHANNEL_UNLISTED,
+                    due_date=datetime.now() + timedelta(hours=24),
                 ).addon,
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
             ).addon,
             version_factory(
                 addon=addon_factory(
@@ -3166,6 +3184,40 @@ class TestExtensionsQueues(TestCase):
                     reviewer_flags={'auto_approval_disabled': True},
                 ),
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).addon,
+            version_factory(
+                addon=version_factory(
+                    addon=addon_factory(
+                        name='Auto-approval delayed for listed, disabled for unlisted',
+                        reviewer_flags={
+                            'auto_approval_delayed_until': datetime.now()
+                            + timedelta(hours=24),
+                            'auto_approval_disabled_unlisted': True,
+                        },
+                    ),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    channel=amo.CHANNEL_UNLISTED,
+                    due_date=datetime.now() + timedelta(hours=24),
+                ).addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
+            ).addon,
+            version_factory(
+                addon=version_factory(
+                    addon=addon_factory(
+                        name='Auto-approval delayed for unlisted, disabled for listed',
+                        reviewer_flags={
+                            'auto_approval_delayed_until_unlisted': datetime.now()
+                            + timedelta(hours=24),
+                            'auto_approval_disabled': True,
+                        },
+                    ),
+                    file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                    due_date=datetime.now() + timedelta(hours=24),
+                    channel=amo.CHANNEL_UNLISTED,
+                ).addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                due_date=datetime.now() + timedelta(hours=48),
             ).addon,
         ]
         deleted_addon_human_review = addon_factory(
@@ -3275,6 +3327,69 @@ class TestExtensionsQueues(TestCase):
         expected_addons.append(addon_needing_admin_code_review)
         addons = Addon.unfiltered.get_queryset_for_pending_queues(admin_reviewer=True)
         assert set(addons) == set(expected_addons)
+
+        # If we pass show_temporarily_delayed=False, versions in a channel that
+        # is temporarily delayed should not be considered. We already have a
+        # couple add-ons with versions delayed, but they should show up since
+        # they also have a version non-delayed in another channel. Let's add
+        # some that shouldn't show up.
+        version_factory(
+            addon=version_factory(
+                addon=addon_factory(
+                    name='Auto-approval delayed for unlisted and listed',
+                    reviewer_flags={
+                        'auto_approval_delayed_until_unlisted': datetime.now()
+                        + timedelta(hours=24),
+                        'auto_approval_delayed_until': datetime.now()
+                        + timedelta(hours=24),
+                    },
+                ),
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+                channel=amo.CHANNEL_UNLISTED,
+            ).addon,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        addon_factory(
+            name='Pure unlisted with auto-approval delayed',
+            reviewer_flags={
+                'auto_approval_delayed_until_unlisted': datetime.now()
+                + timedelta(hours=24),
+            },
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+        )
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
+            show_temporarily_delayed=False
+        )
+        expected_addons.remove(addon_needing_admin_code_review)
+        assert set(addons) == set(expected_addons)
+
+    def test_get_pending_rejection_queue(self):
+        expected_addons = [
+            version_review_flags_factory(
+                version=version_factory(
+                    addon=version_review_flags_factory(
+                        version=version_factory(addon=addon_factory()),
+                        pending_rejection=datetime.now() + timedelta(hours=24),
+                    ).version.addon,
+                ),
+                pending_rejection=datetime.now() + timedelta(hours=48),
+            ).version.addon,
+        ]
+        addon_factory()
+        addons = Addon.objects.get_pending_rejection_queue()
+        assert set(addons) == set(expected_addons)
+        # Test that we picked the version with the oldest due date and that we
+        # added the first_pending_version property.
+        for addon in addons:
+            expected_version = (
+                addon.versions(manager='unfiltered_for_relations')
+                .filter(reviewerflags__pending_rejection__isnull=False)
+                .order_by('reviewerflags__pending_rejection')
+                .first()
+            )
+            assert expected_version
+            assert addon.first_pending_version == expected_version
 
 
 class TestThemesPendingManualApprovalQueue(TestCase):

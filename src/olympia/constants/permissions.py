@@ -45,6 +45,8 @@ ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 # Can review recommend(ed|able) add-ons
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
+# Can triage (and therefore see in the queues) add-ons with a temporary delay
+ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')

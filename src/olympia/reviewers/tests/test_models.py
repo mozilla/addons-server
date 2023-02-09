@@ -30,6 +30,7 @@ from olympia.reviewers.models import (
     CannedResponse,
     ReviewActionReason,
     ReviewerSubscription,
+    get_flags,
     send_notifications,
     set_reviewing_cache,
 )
@@ -1579,3 +1580,144 @@ class TestReviewActionReason(TestCase):
         assert reason.name == name
         assert reason.__str__() == name
         assert not reason.is_active
+
+
+class TestGetFlags(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_none(self):
+        assert get_flags(self.addon, self.addon.current_version) == []
+        AddonReviewerFlags.objects.create(addon=self.addon)
+        assert get_flags(self.addon, self.addon.current_version) == []
+
+    def test_listed_version_single_flag(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled=True,
+        )
+        expected_flags = [
+            ('auto-approval-disabled', 'Auto-approval disabled'),
+        ]
+        assert get_flags(self.addon, self.addon.current_version) == expected_flags
+
+    def test_listed_version(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled=True,
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=2),
+            needs_admin_content_review=True,
+            needs_admin_code_review=True,
+            needs_admin_theme_review=True,
+        )
+        self.addon.current_version.update(
+            source='something.zip', needs_human_review=True
+        )
+        expected_flags = [
+            ('needs-human-review', 'Needs Human Review'),
+            ('needs-admin-code-review', 'Needs Admin Code Review'),
+            ('needs-admin-content-review', 'Needs Admin Content Review'),
+            ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
+            ('sources-provided', 'Source Code Provided'),
+            ('auto-approval-disabled', 'Auto-approval disabled'),
+            ('auto-approval-delayed-temporarily', 'Auto-approval delayed temporarily'),
+        ]
+        assert get_flags(self.addon, self.addon.current_version) == expected_flags
+
+        # With infinite delay.
+        self.addon.reviewerflags.update(auto_approval_delayed_until=datetime.max)
+        expected_flags = [
+            ('needs-human-review', 'Needs Human Review'),
+            ('needs-admin-code-review', 'Needs Admin Code Review'),
+            ('needs-admin-content-review', 'Needs Admin Content Review'),
+            ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
+            ('sources-provided', 'Source Code Provided'),
+            ('auto-approval-disabled', 'Auto-approval disabled'),
+            (
+                'auto-approval-delayed-indefinitely',
+                'Auto-approval delayed indefinitely',
+            ),
+        ]
+        assert get_flags(self.addon, self.addon.current_version) == expected_flags
+
+        # Adding unlisted flags doesn't matter.
+        self.addon.reviewerflags.update(
+            auto_approval_disabled_unlisted=True,
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=2),
+        )
+        assert get_flags(self.addon, self.addon.current_version) == expected_flags
+
+    def test_unlisted_version(self):
+        version = self.addon.current_version
+        version.update(
+            channel=amo.CHANNEL_UNLISTED,
+            source='something.zip',
+            needs_human_review=True,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled_unlisted=True,
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=2),
+            needs_admin_content_review=True,
+            needs_admin_code_review=True,
+            needs_admin_theme_review=True,
+        )
+        expected_flags = [
+            ('needs-human-review', 'Needs Human Review'),
+            ('needs-admin-code-review', 'Needs Admin Code Review'),
+            ('needs-admin-content-review', 'Needs Admin Content Review'),
+            ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
+            ('sources-provided', 'Source Code Provided'),
+            ('auto-approval-disabled-unlisted', 'Unlisted Auto-approval disabled'),
+            (
+                'auto-approval-delayed-temporarily-unlisted',
+                'Unlisted Auto-approval delayed temporarily',
+            ),
+        ]
+        assert get_flags(self.addon, version) == expected_flags
+
+        # With infinite delay.
+        self.addon.reviewerflags.update(
+            auto_approval_delayed_until_unlisted=datetime.max
+        )
+        expected_flags = [
+            ('needs-human-review', 'Needs Human Review'),
+            ('needs-admin-code-review', 'Needs Admin Code Review'),
+            ('needs-admin-content-review', 'Needs Admin Content Review'),
+            ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
+            ('sources-provided', 'Source Code Provided'),
+            ('auto-approval-disabled-unlisted', 'Unlisted Auto-approval disabled'),
+            (
+                'auto-approval-delayed-indefinitely-unlisted',
+                'Unlisted Auto-approval delayed indefinitely',
+            ),
+        ]
+        assert get_flags(self.addon, version) == expected_flags
+
+        # Adding listed flags doesn't matter.
+        self.addon.reviewerflags.update(
+            auto_approval_disabled=True,
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=2),
+        )
+        assert get_flags(self.addon, version) == expected_flags
+
+    def test_listed_version_no_flags(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled_unlisted=True,
+            auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=2),
+        )
+        assert get_flags(self.addon, self.addon.current_version) == []
+
+    def test_unlisted_version_no_flags(self):
+        version = self.addon.current_version
+        version.update(channel=amo.CHANNEL_UNLISTED)
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled=True,
+            auto_approval_delayed_until=datetime.now() + timedelta(hours=2),
+        )
+        assert get_flags(self.addon, version) == []
+
+    def test_version_none(self):
+        assert get_flags(self.addon, None) == []

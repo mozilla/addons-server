@@ -363,6 +363,16 @@
                       id="clear_auto_approval_delayed_until" class="oneoff" type="button">Clear Auto-Approval Extra Delay</button>
             </li>
           {% endif %}
+          {% if addon.auto_approval_delayed_until_unlisted and addon.auto_approval_delayed_until_unlisted > now %}
+            {# This flag is only meant to be enabled by scanners/new submissions automatically, but admins can still unset it. #}
+            <li>
+              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                      data-api-method="patch"
+                      data-api-data="{&quot;auto_approval_delayed_until_unlisted&quot;: null}"
+                      title="Unlisted Auto-Approval currently disabled until {{ addon.auto_approval_delayed_until_unlisted|datetime }}"
+                      id="clear_auto_approval_delayed_until_unlisted" class="oneoff" type="button">Clear Unlisted Auto-Approval Extra Delay</button>
+            </li>
+          {% endif %}
         {% endif %}
 
         {% if has_versions_pending_rejection %}
@@ -471,7 +481,7 @@
     {% endfor %}
   </ul>
 
-  {% if flags: %}
+  {% if flags %}
   <strong>Flags</strong>
   <ul>
     {% for cls, title in flags %}
