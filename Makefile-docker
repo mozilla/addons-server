@@ -170,7 +170,7 @@ setup-codestyle:
 lint: ## lint the code
 	black --check src/ tests/
 	flake8 src/ tests/
-	$(shell npm $(NPM_ARGS) bin)/prettier --check '**'
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
 lint-codestyle: lint
