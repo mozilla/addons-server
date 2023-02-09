@@ -1218,8 +1218,12 @@ def version_reenable(request, addon_id, addon):
 
 
 def check_validation_override(request, form, addon, version):
-    if version and form.cleaned_data.get('admin_override_validation'):
-        helper = ReviewHelper(request=request, addon=addon, version=version)
+    if (
+        version
+        and form.cleaned_data.get('admin_override_validation')
+        and acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    ):
+        helper = ReviewHelper(addon=addon, version=version, user=request.user)
         helper.set_data(
             {
                 'operating_systems': '',
@@ -1231,7 +1235,7 @@ def check_validation_override(request, form, addon, version):
                 ),
             }
         )
-        helper.actions['super']['method']()
+        helper.handler.process_super_review()
 
 
 @dev_required

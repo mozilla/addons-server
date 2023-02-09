@@ -2249,6 +2249,24 @@ class VersionSubmitUploadMixin:
         else:
             assert version.previews.all().count() == 0
 
+    def test_admin_override(self):
+        self.grant_permission(self.user, ':'.join(amo.permissions.REVIEWS_ADMIN))
+        assert not AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
+        response = self.post(override_validation=True)
+        assert response.status_code == 302
+        assert AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
+
+    def test_admin_override_no_permission(self):
+        response = self.post(override_validation=True)
+        assert response.status_code == 302
+        assert not AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
+
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_LISTED
