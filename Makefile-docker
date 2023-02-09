@@ -226,16 +226,16 @@ test_failed: ## rerun the failed tests from the previous run
 
 .PHONY: run_js_tests
 run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) $$(npm bin $(NPM_ARGS))/jest
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
-	NODE_PATH=$(NODE_MODULES) $$(npm bin $(NPM_ARGS))/jest --watch
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- jest --watch
 
 .PHONY: format
 format: ## Autoformat our codebase.
-	$(shell npm $(NPM_ARGS) bin)/prettier --write '**'
-	black src/ services/ tests/
+	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	black src/ tests/
 
 .PHONY: help_submake
 help_submake:
