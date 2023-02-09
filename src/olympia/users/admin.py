@@ -469,7 +469,7 @@ class DeniedNameAdmin(AMOModelAdmin):
 
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
-    list_display = ('network', 'restriction_type')
+    list_display = ('network', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('=network',)
     form = forms.IPNetworkUserRestrictionForm
@@ -477,14 +477,14 @@ class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(AMOModelAdmin):
-    list_display = ('email_pattern', 'restriction_type')
+    list_display = ('email_pattern', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
 
 
 @admin.register(DisposableEmailDomainRestriction)
 class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
-    list_display = ('domain', 'restriction_type')
+    list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
 

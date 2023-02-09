@@ -675,6 +675,12 @@ class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
     restriction_type = models.PositiveSmallIntegerField(
         default=RESTRICTION_TYPES.SUBMISSION, choices=RESTRICTION_TYPES.choices
     )
+    reason = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Private description of why this restriction was added.',
+    )
 
     class Meta:
         abstract = True
