@@ -3,8 +3,10 @@ import functools
 from django import http
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
+from django.db import models
 from django.db.models import Count, Q
 from django.db.utils import IntegrityError
+from django.forms import TextInput
 from django.http import (
     Http404,
     HttpResponseForbidden,
@@ -469,24 +471,33 @@ class DeniedNameAdmin(AMOModelAdmin):
 
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
-    list_display = ('network', 'restriction_type')
+    list_display = ('network', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('=network',)
     form = forms.IPNetworkUserRestrictionForm
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
 
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(AMOModelAdmin):
-    list_display = ('email_pattern', 'restriction_type')
+    list_display = ('email_pattern', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
 
 
 @admin.register(DisposableEmailDomainRestriction)
 class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
-    list_display = ('domain', 'restriction_type')
+    list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
 
 
 @admin.register(UserRestrictionHistory)

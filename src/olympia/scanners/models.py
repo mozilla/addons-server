@@ -308,7 +308,9 @@ class ScannerResult(AbstractScannerResult):
                 or not customs_models_agree
             ):
                 log.info('Flagging version %s for human review by MAD.', version.pk)
-                _flag_for_human_review_by_scanner(version, MAD)
+                _flag_for_human_review_by_scanner(
+                    version=version, rule=None, scanner=MAD
+                )
         except cls.DoesNotExist:
             log.info('No MAD scanner result for version %s.', version.pk)
             pass
@@ -356,7 +358,7 @@ class ScannerResult(AbstractScannerResult):
 
         # We have a valid action to execute, so let's do it!
         log.info('Starting action "%s" for version %s.', action_name, version.pk)
-        action_function(version)
+        action_function(version=version, rule=rule)
         log.info('Ending action "%s" for version %s.', action_name, version.pk)
 
 
