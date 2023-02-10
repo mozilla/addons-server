@@ -547,8 +547,8 @@ class TestValidateFilePath(ValidatorTestCase):
 
 
 @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
-def test_send_welcome_email(send_html_mail_jinja_mock):
-    tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
+def test_send_initial_submission_acknowledgement_email(send_html_mail_jinja_mock):
+    tasks.send_initial_submission_acknowledgement_email(3615, ['del@icio.us'], {'omg': 'yes'})
     send_html_mail_jinja_mock.assert_called_with(
         ('Mozilla Add-ons: Your add-on has been submitted to addons.mozilla.org!'),
         'devhub/emails/submission.html',

@@ -19,7 +19,7 @@ from django.db import transaction
 from django.template import loader
 from django.urls import reverse
 from django.utils.encoding import force_str
-from django.utils.translation import gettext
+from django.utils.translation import activate, gettext
 
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
@@ -30,11 +30,13 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     image_size,
     resize_image,
     send_html_mail_jinja,
     send_mail,
+    to_language,
     utc_millesecs_from_epoch,
 )
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
@@ -607,12 +609,29 @@ def get_content_and_check_size(response, max_size, error_message):
 
 
 @task
-def send_welcome_email(addon_pk, emails, context, **kw):
-    log.info(f'[1@None] Sending welcome email for {addon_pk} to {emails}.')
-    subject = (
-        'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!'
-        % context.get('addon_name', 'Your add-on')
+@use_primary_db
+def send_initial_submission_acknowledgement_email(addon_pk, channel, email, **kw):
+    log.info(
+        '[1@None] Sending initial_submission acknowledgement email for %s to %s',
+        (addon_pk, email),
     )
+    try:
+        addon = Addon.objects.get(pk=addon_pk)
+    except Addon.DoesNotExist:
+        # Add-on already deleted ? Ignore.
+        return
+    # The email itself is not translated, but we should get the right locale
+    # prefix for the URLs by activating a language that makes sense.
+    with activate(to_language(addon.default_locale)):
+        context = {
+            'addon_name': str(addon.name),
+            'app': str(amo.FIREFOX.pretty),
+            'listed': channel == amo.CHANNEL_LISTED,
+            'detail_url': absolutify(addon.get_url_path()),
+        }
+        subject = (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
     html_template = 'devhub/emails/submission.html'
     text_template = 'devhub/emails/submission.txt'
     return send_html_mail_jinja(
@@ -620,7 +639,7 @@ def send_welcome_email(addon_pk, emails, context, **kw):
         html_template,
         text_template,
         context,
-        recipient_list=emails,
+        recipient_list=[email],
         from_email=settings.ADDONS_EMAIL,
         use_deny_list=False,
         perm_setting='individual_contact',

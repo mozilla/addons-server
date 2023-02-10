@@ -883,7 +883,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.revoke_api_key': {'queue': 'devhub'},
-    'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
+    'olympia.devhub.tasks.send_initial_submission_acknowledgement_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},

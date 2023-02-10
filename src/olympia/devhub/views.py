@@ -1759,35 +1759,6 @@ def submit_version_details(request, addon_id, addon, version_id):
 def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
 
-    try:
-        author = addon.authors.all()[0]
-    except IndexError:
-        # This should never happen.
-        author = None
-
-    if (
-        not version
-        and author
-        and uploaded_version.channel == amo.CHANNEL_LISTED
-        and not Version.objects.exclude(pk=uploaded_version.pk)
-        .filter(addon__authors=author, channel=amo.CHANNEL_LISTED)
-        .exclude(addon__status=amo.STATUS_NULL)
-        .exists()
-    ):
-        # If that's the first time this developer has submitted an listed addon
-        # (no other listed Version by this author exists) send them a welcome
-        # email.
-        # We can use locale-prefixed URLs because the submitter probably
-        # speaks the same language by the time he/she reads the email.
-        context = {
-            'addon_name': str(addon.name),
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': absolutify(addon.get_url_path()),
-            'version_url': absolutify(addon.get_dev_url('versions')),
-            'edit_url': absolutify(addon.get_dev_url('edit')),
-        }
-        tasks.send_welcome_email.delay(addon.id, [author.email], context)
-
     submit_page = 'version' if version else 'addon'
     return TemplateResponse(
         request,

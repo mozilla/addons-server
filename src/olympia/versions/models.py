@@ -347,6 +347,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.addons.utils import RestrictionChecker
+        from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -514,6 +515,17 @@ class Version(OnChangeMixin, ModelBase):
         if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults=reviewer_flags_defaults
+            )
+
+        # First submission of every add-on should trigger an initial
+        # submission acknowledgement email regardless of channel.
+        if (
+            not addon.versions(manager='unfiltered_for_relations')
+            .exclude(pk=version.pk)
+            .exists()
+        ):
+            send_initial_submission_acknowledgement_email.delay(
+                addon.pk, version.channel, upload.user.email
             )
 
         # Unlisted versions approval is delayed depending on how far we are
