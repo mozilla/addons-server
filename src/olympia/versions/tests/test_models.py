@@ -1560,21 +1560,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def setUp(self):
         super().setUp()
 
-    def test_notified_about_auto_approval_delay_flag_is_reset(self):
-        flags = AddonReviewerFlags.objects.create(
-            addon=self.addon, notified_about_auto_approval_delay=True
-        )
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        assert version
-        flags.reload()
-        assert flags.notified_about_auto_approval_delay is False
-
     def test_upload_already_attached_to_different_addon(self):
         # The exception isn't necessarily caught, but it's fine to 500 and go
         # to Sentry in this case - this isn't supposed to happen.

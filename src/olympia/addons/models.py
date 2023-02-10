@@ -1749,18 +1749,6 @@ class Addon(OnChangeMixin, ModelBase):
         # Make sure the cached related field is up to date.
         self.reviewerflags.reload()
 
-    def reset_notified_about_auto_approval_delay(self):
-        """
-        Reset notified_about_auto_approval_delay reviewer flag for this addon.
-
-        This doesn't create an AddonReviewerFlags if there wasn't one, just
-        resets notified_about_auto_approval_delay to False if there were flags
-        for this add-on.
-        """
-        AddonReviewerFlags.objects.filter(addon=self).update(
-            notified_about_auto_approval_delay=False
-        )
-
     @classmethod
     def get_lookup_field(cls, identifier):
         lookup_field = 'pk'
@@ -1950,7 +1938,6 @@ class AddonReviewerFlags(ModelBase):
     auto_approval_delayed_until_unlisted = models.DateTimeField(
         blank=True, default=None, null=True
     )
-    notified_about_auto_approval_delay = models.BooleanField(default=None, null=True)
     notified_about_expiring_delayed_rejections = models.BooleanField(
         default=None, null=True
     )

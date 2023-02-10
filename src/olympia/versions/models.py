@@ -542,10 +542,6 @@ class Version(OnChangeMixin, ModelBase):
                     auto_approval_delay_for_unlisted, unlisted_only=True
                 )
 
-        # Authors need to be notified about auto-approval delay again since
-        # they are submitting a new version.
-        addon.reset_notified_about_auto_approval_delay()
-
         # Reload the flags for the add-on in case some code is using it after
         # creating the version - the related field could be out of date.
         try:
