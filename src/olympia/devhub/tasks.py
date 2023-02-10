@@ -613,7 +613,8 @@ def get_content_and_check_size(response, max_size, error_message):
 def send_initial_submission_acknowledgement_email(addon_pk, channel, email, **kw):
     log.info(
         '[1@None] Sending initial_submission acknowledgement email for %s to %s',
-        (addon_pk, email),
+        addon_pk,
+        email,
     )
     try:
         addon = Addon.objects.get(pk=addon_pk)
@@ -622,16 +623,14 @@ def send_initial_submission_acknowledgement_email(addon_pk, channel, email, **kw
         return
     # The email itself is not translated, but we should get the right locale
     # prefix for the URLs by activating a language that makes sense.
-    with activate(to_language(addon.default_locale)):
-        context = {
-            'addon_name': str(addon.name),
-            'app': str(amo.FIREFOX.pretty),
-            'listed': channel == amo.CHANNEL_LISTED,
-            'detail_url': absolutify(addon.get_url_path()),
-        }
-        subject = (
-            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
-        )
+    activate(to_language(addon.default_locale))
+    context = {
+        'addon_name': str(addon.name),
+        'app': str(amo.FIREFOX.pretty),
+        'listed': channel == amo.CHANNEL_LISTED,
+        'detail_url': absolutify(addon.get_url_path()),
+    }
+    subject = f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
     html_template = 'devhub/emails/submission.html'
     text_template = 'devhub/emails/submission.txt'
     return send_html_mail_jinja(
