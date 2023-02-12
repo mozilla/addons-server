@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 16:30+0000\n"
+"PO-Revision-Date: 2023-02-12 16:40+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -4576,10 +4576,10 @@ msgstr "โดย %(user)s เมื่อ %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">ตั้งค่าสถานะโดย %(user)s เมื่อ %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>คำเตือน!</strong> มีผู้ใช้คนอื่นได้เข้ามาชมหน้านี้ก่อนคุณ"
 
 msgid "Set Needs Human Review"
 msgstr ""
@@ -4593,11 +4593,11 @@ msgstr "<div>โดย %(user)s เมื่อ %(date)s</div>"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s เมื่อ %(date)s [%(ip_address)s]"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "รุ่น %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
@@ -4688,14 +4688,13 @@ msgid "Overview"
 msgstr "ภาพรวม"
 
 msgid "by Source"
-msgstr ""
+msgstr "ตามต้นฉบับ"
 
 msgid "by Medium"
 msgstr ""
 
-#, fuzzy
 msgid "by Content"
-msgstr "เนื้อหา"
+msgstr "ตามเนื้อหา"
 
 msgid "by Campaign"
 msgstr ""
@@ -4704,25 +4703,25 @@ msgid "Daily Users"
 msgstr "ผู้ใช้ต่อวัน"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "ตามรุ่นของส่วนเสริม"
 
 msgid "by Application"
-msgstr ""
+msgstr "ตามแอปพลิเคชัน"
 
 msgid "by Language"
-msgstr ""
+msgstr "ตามภาษา"
 
 msgid "by Platform"
-msgstr ""
+msgstr "ตามแพลตฟอร์ม"
 
 msgid "by Country"
-msgstr ""
+msgstr "ตามประเทศ"
 
 msgid "close"
 msgstr "ปิด"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "ช่วงวันที่ที่กำหนดเอง"
 
 msgid "From"
 msgstr "จาก"
@@ -4738,29 +4737,29 @@ msgstr "ส่งออก"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: แดชบอร์ดสถิติ :: ส่วนเสริมสำหรับ {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: แดชบอร์ดสถิติ"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "แดชบอร์ดสถิติ :: ส่วนเสริมสำหรับ {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "สถิติสำหรับ {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "แดชบอร์ดสถิติ"
 
 msgid "Controls:"
-msgstr ""
+msgstr "ส่วนควบคุม:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "กลับค่าเดิมของการซูม"
 
 msgid "Group by:"
-msgstr ""
+msgstr "จัดกลุ่มตาม:"
 
 msgid "day"
 msgstr "วัน"
@@ -4772,7 +4771,7 @@ msgid "month"
 msgstr "เดือน"
 
 msgid "For last:"
-msgstr ""
+msgstr "นานสุด:"
 
 msgid "7 days"
 msgstr "7 วัน"
@@ -4793,7 +4792,7 @@ msgid "Sorry, the statistics are temporarily unavailable."
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "กำลังโหลดข้อมูลล่าสุด&hellip;"
 
 msgid "No data available."
 msgstr "ไม่มีข้อมูล"
@@ -4805,7 +4804,7 @@ msgid "This dashboard is <b>private</b>."
 msgstr ""
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "การใช้แอปพลิเคชันตามวันที่"
 
 #, fuzzy
 msgid "Download campaigns by Date"
@@ -4821,73 +4820,74 @@ msgid "User countries by Date"
 msgstr ""
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "จำนวนการดาวน์โหลดตามวันที่"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "ภาษาของผู้ใช้ตามวันที่"
 
 msgid "Download mediums by Date"
 msgstr ""
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "การใช้แพลตฟอร์มตามวันที่"
 
-#, fuzzy
 msgid "<b>{0}</b> Weekly Downloads"
-msgstr "<b>{0}</b> การดาวน์โหลด"
+msgstr "การดาวน์โหลดรายสัปดาห์ <b>{0}</b> ครั้ง"
 
 msgid "Loading..."
 msgstr "กำลังโหลด..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "ผู้ใช้รายวันเฉลี่ย <b>{0}</b> คน"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "แอปพลิเคชันยอดนิยม"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "ดูแอปพลิเคชันเพิ่มเติม&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "ภาษายอดนิยม"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "ดูภาษาเพิ่มเติม&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "แพลตฟอร์มยอดนิยม"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "ดูแพลตฟอร์มเพิ่มเติม&hellip;"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "แหล่งการดาวน์โหลดตามวันที่"
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "สถานะส่วนเสริมตามวันที่"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "ผู้ใช้รายวันตามวันที่"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "ผู้ใช้รายวันคืออะไร?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>ผู้ใช้รายวันคืออะไร?</h2> <p> ส่วนเสริมที่ดาวน์โหลดจากไซต์นี้จะตรวจหาการอัปเดตหนึ่งครั้งในแต่ละวัน จำนวนรวมของ ping การอัปเดตเหล่านี้เรียกว่า ผู้ใช้รายวันที่ใช้งานอยู่ "
+"ผู้ใช้รายวันสามารถแบ่งได้ตามรุ่นส่วนเสริม ระบบปฏิบัติการ สถานะส่วนเสริม แอปพลิเคชัน และรูปแบบภาษา </p>"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "รุ่นแอปพลิเคชันตามวันที่"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "ส่วนเสริม Mozilla"
 
 msgid "Back to Add-ons"
 msgstr "กลับไปที่ส่วนเสริม"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "โลโก้ส่วนท้าย"
 
 msgid "Legal Notices"
 msgstr "ข้อกฎหมาย"
@@ -4904,7 +4904,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "ทำความรู้จักกับ<b>ส่วนเสริม</b>"
 
 msgid "About"
 msgstr "เกี่ยวกับ"
@@ -4955,21 +4955,21 @@ msgstr "(ไม่บังคับ)"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "แปลเป็นภาษาท้องถิ่นสำหรับ: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "ภาษาที่มีอยู่"
 
 msgid "New Locales"
 msgstr "ภาษาใหม่"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึกในภาษา <b>{0}</b> คุณต้องการบันทึกการเปลี่ยนแปลงก่อนที่จะเปลี่ยนภาษาหรือไม่?"
 
 msgid "Discard Changes"
 msgstr "ละทิ้งการเปลี่ยนแปลง"
