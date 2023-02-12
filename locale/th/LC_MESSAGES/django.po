@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 16:01+0000\n"
+"PO-Revision-Date: 2023-02-12 16:10+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1532,7 +1532,7 @@ msgid "Need to select at least one application."
 msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "รายการในรายการปิดกั้น"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "มีการอัปโหลดรุ่น {version} ก่อนหน้าและลบแล้ว"
@@ -1553,7 +1553,7 @@ msgid "You have not uploaded a source file."
 msgstr "คุณไม่ได้อัปโหลดไฟล์ต้นฉบับ"
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "อัปโหลดไฟล์ต้นฉบับแล้ว แต่คุณระบุไว้ว่าไม่ต้องการต้นฉบับ"
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
@@ -1573,13 +1573,13 @@ msgid "Invalid or corrupt add-on file."
 msgstr "ไฟล์ส่วนเสริมไม่ถูกต้องหรือเสียหาย"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
-msgstr ""
+msgstr "พบคีย์ API นักพัฒนาของคุณในไฟล์ที่ส่งมา คีย์ดังกล่าวจะถูกเพิกถอนเพื่อเป็นการปกป้องบัญชีของคุณ"
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "พบคีย์ API นักพัฒนาของผู้สร้างร่วมในไฟล์ที่ส่งมา คีย์ดังกล่าวจะถูกเพิกถอนเพื่อเป็นการปกป้องส่วนเสริมของคุณ"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "ประกาศเกี่ยวกับความปลอดภัยของ Mozilla: ข้อมูลประจำตัว API บน AMO ของคุณถูกเพิกถอนแล้ว"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
@@ -1694,7 +1694,7 @@ msgid "Header area background"
 msgstr "พื้นหลังของพื้นที่ส่วนหัว"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "สีของพื้นหลังพื้นที่ส่วนหัว ซึ่งจะแสดงในส่วนของส่วนหัวที่ไม่ถูกครอบคลุมหรือมองเห็นได้ผ่านภาพส่วนหัว ฟีลด์ในข้อมูลกำกับ:  frame"
 
 msgid "Header area text and icons"
 msgstr "ข้อความและไอคอนพื้นที่ส่วนหัว"
@@ -1715,16 +1715,16 @@ msgid "The color of the text and icons in the toolbar and the active tab. Manife
 msgstr ""
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "พื้นหลังของพื้นที่ฟีลด์แถบเครื่องมือ"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "สีพื้นหลังสำหรับฟีลด์ต่าง ๆ ในแถบเครื่องมือ เช่น แถบ URL ฟิลด์ในข้อมูลกำกับ:  toolbar_field"
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "ข้อความในพื้นที่ฟีลด์แถบเครื่องมือ"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "สีของข้อความในฟีลด์ต่าง ๆ ในแถบเครื่องมือ เช่น แถบ URL ฟีลด์ในข้อมูลกำกับ:  toolbar_field_text"
 
 msgid "Tab highlight"
 msgstr ""
