@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 16:40+0000\n"
+"PO-Revision-Date: 2023-02-12 16:42+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -4976,7 +4976,7 @@ msgstr "ละทิ้งการเปลี่ยนแปลง"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบคำแปลภาษา <b>{0}</b> ทั้งหมด? การกระทำนี้ไม่สามารถยกเลิกได้"
 
 msgid "Delete Locale"
 msgstr "ลบภาษา"
@@ -4991,7 +4991,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "ไม่มีผู้ใช้อีเมลนั้น"
 
 msgid "Firefox user {id}"
 msgstr "ผู้ใช้ Firefox {id}"
@@ -5030,38 +5030,37 @@ msgid "User Restriction History"
 msgstr "ชุดสะสมของผู้ใช้"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "นักพัฒนาส่วนเสริมตอบกลับบทวิจารณ์ของฉัน"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "มีคุณลักษณะของส่วนเสริมหรือ Firefox ใหม่"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "อัปเกรดความเข้ากันได้ของส่วนเสริมของฉันสำเร็จ"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "มีใครบางคนเขียนบทวิจารณ์เกี่ยวกับส่วนเสริมของฉัน"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "ไม่พลาดข่าวสารและเหตุการณ์ที่เกี่ยวข้องกับนักพัฒนาส่วนเสริม (รวมถึงจดหมายข่าว about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "ไม่สามารถอัปเกรดความเข้ากันได้ของส่วนเสริมของฉัน"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "ส่วนเสริมของฉันได้รับการตรวจทานโดยผู้ตรวจทาน"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla ต้องการติดต่อฉันเกี่ยวกับส่วนเสริมของฉันเอง"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "การแจ้งเตือนผู้ใช้"
 
 msgid "An author has been added to your add-on"
 msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
 
-#, fuzzy
 msgid "An author role has been changed on your add-on"
-msgstr "เพิ่มผู้สร้างไปยังส่วนเสริมของคุณแล้ว"
+msgstr "เปลี่ยนบทบาทผู้สร้างบนส่วนเสริมของคุณแล้ว"
 
 msgid "An author has been removed from your add-on"
 msgstr "เอาผู้สร้างออกจากส่วนเสริมของคุณแล้ว"
@@ -5137,7 +5136,7 @@ msgid "Disabled by Developer"
 msgstr ""
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} และใหม่กว่า"
 
 msgid "The install origin {origin} is not permitted."
 msgstr ""
