@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 15:49+0000\n"
+"PO-Revision-Date: 2023-02-12 16:01+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1006,7 +1006,7 @@ msgid "Language Support"
 msgstr "การรองรับภาษา"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยาย Firefox ที่ให้การรองรับภาษาด้านต่าง ๆ เช่น การตรวจสอบไวยากรณ์ การค้นหาคำ การแปลข้อความ การแปลงข้อความเป็นคำพูด และอื่น ๆ"
 
 msgid "Photos, Music & Videos"
 msgstr "รูปถ่าย, เพลง และวิดีโอ"
@@ -1024,13 +1024,13 @@ msgid "Search Tools"
 msgstr "เครื่องมือค้นหา"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยาย Firefox สำหรับการค้นหาสิ่งต่าง ๆ หมวดหมู่นี้ประกอบด้วยส่วนขยายที่เน้นและค้นหาข้อความ รวมทั้งค้นหาที่อยู่ IP/โดเมน และอื่น ๆ"
 
 msgid "Shopping"
 msgstr "การซื้อของ"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยาย Firefox ที่สามารถยกระดับประสบการณ์การช็อปปิ้งออนไลน์ของคุณได้ด้วยตัวค้นหาคูปอง ตัวค้นหาดีล ตัววิเคราะห์บทวิจารณ์ และอื่น ๆ อีกมากมาย"
 
 msgid "Social & Communication"
 msgstr "สังคมและการสื่อสาร"
@@ -1060,7 +1060,7 @@ msgid "Device Features & Location"
 msgstr "คุณลักษณะและตำแหน่งที่ตั้งของอุปกรณ์"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยายเพื่อเสริมเขี้ยวเล็บให้กับ Firefox สำหรับ Android ในการทำการค้นหาอย่างรวดเร็ว เพิ่มพื้นที่สำหรับทรัพยากรระบบ จดบันทึก และอื่น ๆ"
 
 msgid "Experimental"
 msgstr "การทดลอง"
@@ -1289,9 +1289,8 @@ msgstr "Creative Commons แบบแสดงที่มา ไม่ดัด
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons แบบแสดงที่มา อนุญาตแบบเดียวกัน 3.0"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "โปรโมต"
+msgstr "ไม่ได้โปรโมต"
 
 msgid "Recommended"
 msgstr "แนะนำ"
@@ -1397,9 +1396,8 @@ msgstr "ผลบวกเท็จ"
 msgid "Inconclusive"
 msgstr "สรุปไม่ได้"
 
-#, fuzzy
 msgid "New"
-msgstr "ใหม่กว่า"
+msgstr "ใหม่"
 
 msgid "Running"
 msgstr "กำลังทำงาน"
@@ -1410,9 +1408,8 @@ msgstr "ยุติอย่างล้มเหลว"
 msgid "Aborting"
 msgstr "กำลังยุติการทำงาน"
 
-#, fuzzy
 msgid "Completed"
-msgstr "ไม่สมบูรณ์"
+msgstr "เสร็จสมบูรณ์"
 
 msgid "Scheduled"
 msgstr "นัดหมายแล้ว"
@@ -1428,7 +1425,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "การเปลี่ยนแปลงล่าสุดสำหรับส่วนเสริมของฉัน"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "ไม่รองรับส่วนเสริม Open Search {blog_link_open}บน AMO อีกต่อไป{blog_link_close} คุณสามารถสร้าง{doc_link_open}ส่วนขยายการค้นหาแทน{doc_link_close}ได้"
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
@@ -1472,7 +1469,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "ก่อนที่จะเปลี่ยนภาษาเริ่มต้นของคุณ คุณจะต้องมีชื่อ บทสรุป และคำอธิบายในภาษานั้น คุณยังขาด %s"
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "ไม่สามารถเพิ่มผู้ใช้โดยตรงได้"
 
 msgid "Must have at least one owner."
 msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
