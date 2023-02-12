@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 15:39+0000\n"
+"PO-Revision-Date: 2023-02-12 15:49+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -459,7 +459,7 @@ msgid "Add-on with GUID %(guid)s does not exist"
 msgstr ""
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
+msgstr "บล็อกที่จะอัปเดตนั้นแตกต่างกันเนื่องจากรุ่นต่ำสุดหรือรุ่นสูงสุดได้ถูกเปลี่ยนแปลง"
 
 #, python-format
 msgid "%(value)s contains *"
@@ -469,7 +469,7 @@ msgid "Invalid version"
 msgstr "รุ่นไม่ถูกต้อง"
 
 msgid "Min version can not be greater than Max version"
-msgstr ""
+msgstr "รุ่นต่ำสุดต้องไม่มากกว่ารุ่นสูงสุด"
 
 #, fuzzy
 msgid "Review Listed"
@@ -656,13 +656,11 @@ msgstr "อนุมัติแล้วแต่กำลังรอ"
 msgid "Account updated."
 msgstr "อัปเดตบัญชีแล้ว"
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "อัปเดตบัญชีแล้ว"
+msgstr "ลบบัญชี {user} แล้ว"
 
-#, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "อัปเดตบัญชีแล้ว"
+msgstr "ลบบัญชี {user} จากเหตุการณ์ในบัญชี Firefox แล้ว"
 
 msgid "Created: {0}."
 msgstr "สร้างเมื่อ: {0}"
@@ -789,36 +787,34 @@ msgid "User {user} api key reset."
 msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} แล้ว"
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "เพิ่มการปิดกั้นสำหรับ {0} ในรายการปิดกั้นแล้ว"
 
 msgid "Block added"
 msgstr "เพิ่มการปิดกั้นแล้ว"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "แก้ไขการปิดกั้นสำหรับ {0} ในรายการปิดกั้นแล้ว"
 
 msgid "Block edited"
 msgstr "แก้ไขการปิดกั้นแล้ว"
 
-#, fuzzy
 msgid "Block for {0} deleted from Blocklist."
-msgstr "ลบรุ่น {0} ออกจาก {addon} แล้ว"
+msgstr "ลบการปิดกั้นสำหรับ {0} ออกจากรายการปิดกั้นแล้ว"
 
 msgid "Block deleted"
 msgstr "ลบการปิดกั้นแล้ว"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "เพิ่ม GUID สำหรับ {addon} ใน DeniedGuid แล้ว"
 
-#, fuzzy
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "{addon} ถูกเอาออกจาก {collection}"
+msgstr "ลบ GUID สำหรับ {addon} ออกจาก DeniedGuid แล้ว"
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "ยืนยันการกระทำการปิดกั้น"
 
 #, fuzzy
 msgid "User {user} session(s) reset."
@@ -828,16 +824,15 @@ msgstr "รีเซ็ตคีย์ api ของผู้ใช้ {user} �
 msgid "{addon} {version} content reject scheduled."
 msgstr "ปฏิเสธเนื้อหา {addon} {version} แล้ว"
 
-#, fuzzy
 msgid "Content reject scheduled"
-msgstr "ปฏิเสธเนื้อหาแล้ว"
+msgstr "จัดตารางการปฏิเสธเนื้อหาแล้ว"
 
 #, fuzzy
 msgid "{addon} {version} reject scheduled."
 msgstr "{addon} {version} ถูกปฏิเสธ"
 
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "จัดตารางการปฏิเสธแล้ว"
 
 #, fuzzy
 msgid "{addon} {version} re-signed (previously {0})."
