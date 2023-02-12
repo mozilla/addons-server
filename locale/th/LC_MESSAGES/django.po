@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-07 18:35+0000\n"
-"PO-Revision-Date: 2023-02-12 16:10+0000\n"
+"PO-Revision-Date: 2023-02-12 16:20+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1736,10 +1736,10 @@ msgid "Review requested."
 msgstr "ได้ขอคำวิจารณ์แล้ว"
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "คุณต้องระบุรายละเอียดเพิ่มเติมเพื่อดำเนินการต่อ"
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "ข้อมูลประจำตัวเดิมของคุณถูกเพิกถอนและใช้ไม่ได้อีกต่อไป"
 
 msgid "New API key created"
 msgstr "สร้างกุญแจ API ใหม่แล้ว"
@@ -1767,9 +1767,8 @@ msgstr "ศูนย์กลางนักพัฒนา <small>ส่วน�
 msgid "more add-ons..."
 msgstr "ส่วนเสริมเพิ่มเติม..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "ส่วนขยาย"
+msgstr "เวิร์กช็อปส่วนขยาย"
 
 msgid "Documentation"
 msgstr "เอกสารประกอบ"
@@ -1931,9 +1930,8 @@ msgstr "ดูรุ่นอื่น"
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
-#, fuzzy
 msgid "Author invitation for {addon_name}"
-msgstr "การบริจาคสำหรับ {addon}"
+msgstr "คำเชิญผู้สร้างสำหรับ {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr ""
@@ -2170,11 +2168,10 @@ msgid "PNG and JPG supported."
 msgstr "รองรับ PNG และ JPG"
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "ไอคอนต้องเป็นสี่เหลี่ยมจัตุรัสและมีขนาดขั้นต่ำ 128x128 พิกเซล"
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "รองรับ PNG และ JPG ไอคอนจะถูกปรับขนาดเป็น 64x64 ถ้ามีขนาดใหญ่กว่านี้"
+msgstr "ไอคอนจะถูกปรับขนาดเป็น 128x128 พิกเซล หากใหญ่กว่านี้"
 
 msgid "Screenshots"
 msgstr "ภาพถ่ายหน้าจอ"
@@ -2201,13 +2198,13 @@ msgid "Continue"
 msgstr "ทำต่อ"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "คนอื่นสามารถแบ่งปันส่วนเสริมของคุณตราบใดที่คุณได้รับเครดิตได้หรือไม่?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "คนอื่นสามารถใช้ส่วนเสริมของคุณในเชิงพาณิชย์ได้หรือไม่?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "คนอื่นสามารถสร้างผลงานลอกเลียนแบบจากส่วนเสริมของคุณได้หรือไม่?"
 
 msgid "Yes, as long as they share alike"
 msgstr "ใช่ ตราบใดที่พวกเขาแบ่งปันเหมือนกัน"
@@ -2216,7 +2213,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr "ผู้อนุญาตอนุญาตให้ผู้อื่นแจกจ่ายงานอนุพันธ์ภายใต้ใบอนุญาตเดียวกันหรืออย่างใดอย่างหนึ่งที่เข้ากันได้กับงานที่ควบคุมงานของผู้อนุญาต"
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "ส่วนเสริมของคุณจะถูกเผยแพร่ภายใต้สัญญาอนุญาตต่อไปนี้:"
 
 msgid "Select a different license."
 msgstr "เลือกสัญญาอนุญาตอื่น"
@@ -2249,10 +2246,10 @@ msgid "Compatibility Tests"
 msgstr "การทดสอบความเข้ากันได้"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "ซ่อนข้อความที่ไม่จำเป็นสำหรับการลงลายเซ็นแบบอัตโนมัติ"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "ซ่อนข้อความที่พบในรุ่นก่อนหน้าและถูกเพิกเฉย"
 
 msgid "Top"
 msgstr "ด้านบน"
@@ -2625,7 +2622,7 @@ msgid "Back"
 msgstr "ย้อนกลับ"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "ข้อมูลประจำตัว API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2755,16 +2752,14 @@ msgstr ""
 msgid "Status:"
 msgstr "สถานะ:"
 
-#, fuzzy
 msgid "Listed Version:"
-msgstr "รุ่นล่าสุด:"
+msgstr "รุ่นที่แสดง:"
 
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "รุ่นล่าสุด:"
+msgstr "รุ่นที่แสดงถัดไป:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
@@ -2785,13 +2780,13 @@ msgid "View All"
 msgstr "ดูทั้งหมด"
 
 msgid "Listed Review Page"
-msgstr "หน้าบทวิจารณ์ที่อยู่ในรายการ"
+msgstr "หน้าบทวิจารณ์ที่ถูกแสดง"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "หน้าบทวิจารณ์ที่ยังไม่ถูกแสดง"
 
 msgid "Admin Manage"
-msgstr "จัดการผู้ดูแล"
+msgstr "การจัดการผู้ดูแล"
 
 msgid "View Statistics Dashboard"
 msgstr "ดูแดชบอร์ดสถิติ"
