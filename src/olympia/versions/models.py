@@ -347,6 +347,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.addons.utils import RestrictionChecker
+        from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -516,6 +517,17 @@ class Version(OnChangeMixin, ModelBase):
                 addon=addon, defaults=reviewer_flags_defaults
             )
 
+        # First submission of every add-on should trigger an initial
+        # submission acknowledgement email regardless of channel.
+        if (
+            not addon.versions(manager='unfiltered_for_relations')
+            .exclude(pk=version.pk)
+            .exists()
+        ):
+            send_initial_submission_acknowledgement_email.delay(
+                addon.pk, version.channel, upload.user.email
+            )
+
         # Unlisted versions approval is delayed depending on how far we are
         # from creation of the add-on. This is applied only once, during the
         # first unlisted version creation of an extension (so the flag can be
@@ -541,10 +553,6 @@ class Version(OnChangeMixin, ModelBase):
                 addon.set_auto_approval_delay_if_higher_than_existing(
                     auto_approval_delay_for_unlisted, unlisted_only=True
                 )
-
-        # Authors need to be notified about auto-approval delay again since
-        # they are submitting a new version.
-        addon.reset_notified_about_auto_approval_delay()
 
         # Reload the flags for the add-on in case some code is using it after
         # creating the version - the related field could be out of date.

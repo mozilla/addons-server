@@ -12,7 +12,6 @@ HOME=/tmp
 
 # Once per hour
 1 * * * * %(django)s auto_reject
-5 * * * * %(django)s notify_about_auto_approve_delay
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_pending_rejection_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated

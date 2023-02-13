@@ -1296,17 +1296,6 @@ class ReviewBase:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status(self.user)
 
-    def notify_about_auto_approval_delay(self, version):
-        """Notify developers of the add-on when their version has not been
-        auto-approved for a while."""
-        template = 'held_for_review'
-        subject = 'Mozilla Add-ons: %s %s is pending review'
-        AddonReviewerFlags.objects.update_or_create(
-            addon=self.addon, defaults={'notified_about_auto_approval_delay': True}
-        )
-        self.data['version'] = version
-        self.notify_email(template, subject, version=version)
-
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 

@@ -17,6 +17,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory, root_storage
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -546,19 +547,97 @@ class TestValidateFilePath(ValidatorTestCase):
         )
 
 
-@mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
-def test_send_welcome_email(send_html_mail_jinja_mock):
-    tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
-    send_html_mail_jinja_mock.assert_called_with(
-        ('Mozilla Add-ons: Your add-on has been submitted to addons.mozilla.org!'),
-        'devhub/emails/submission.html',
-        'devhub/emails/submission.txt',
-        {'omg': 'yes'},
-        recipient_list=['del@icio.us'],
-        from_email=settings.ADDONS_EMAIL,
-        use_deny_list=False,
-        perm_setting='individual_contact',
-    )
+class TestInitialSubmissionAcknoledgementEmail(TestCase):
+    @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
+    def test_send_with_mock(self, send_html_mail_jinja_mock):
+        addon = addon_factory()
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'del@icio.us'
+        )
+        send_html_mail_jinja_mock.assert_called_with(
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!',
+            'devhub/emails/submission.html',
+            'devhub/emails/submission.txt',
+            {
+                'addon_name': str(addon.name),
+                'app': str(amo.FIREFOX.pretty),
+                'listed': True,
+                'detail_url': absolutify(addon.get_url_path()),
+            },
+            recipient_list=['del@icio.us'],
+            from_email=settings.ADDONS_EMAIL,
+            use_deny_list=False,
+            perm_setting='individual_contact',
+        )
+
+    def test_send_email(self):
+        addon = addon_factory()
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert 'your add-on listing will appear on our website' in text_body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'http://testserver/en-US/firefox/addon/' in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' in html_body
+        assert 'http://testserver/en-US/firefox/addon/' in html_body
+
+    def test_send_email_unlisted(self):
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_UNLISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'your add-on listing will appear on our website' not in text_body
+        assert 'http://testserver/en-US/firefox/addon/' not in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' not in html_body
+        assert 'http://testserver/en-US/firefox/addon/' not in html_body
+
+    def test_dont_send_addon_doesnotexist(self):
+        tasks.send_initial_submission_acknowledgement_email(
+            424242, amo.CHANNEL_UNLISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 0
+
+    def test_urls_locale_prefix(self):
+        addon = addon_factory(default_locale='pt-BR')
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert 'your add-on listing will appear on our website' in text_body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'http://testserver/pt-BR/firefox/addon/' in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' in html_body
+        assert 'http://testserver/pt-BR/firefox/addon/' in html_body
 
 
 class TestSubmitFile(UploadMixin, TestCase):

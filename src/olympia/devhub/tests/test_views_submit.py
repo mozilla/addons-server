@@ -1658,74 +1658,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_for_newbies(self, send_welcome_email_mock):
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
-        new_addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_if_previous_addon_is_incomplete(
-        self, send_welcome_email_mock
-    ):
-        # If the developer already submitted an addon but didn't finish or was
-        # rejected, we send the email anyway, it might be a dupe depending on
-        # how far they got but it's better than not sending any.
-        new_addon = addon_factory(status=amo.STATUS_NULL)
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email(self, send_welcome_email_mock):
-        """You already submitted an add-on? We won't spam again."""
-        new_addon = addon_factory(status=amo.STATUS_NOMINATED)
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        assert not send_welcome_email_mock.called
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email_if_unlisted(self, send_welcome_email_mock):
-        self.make_addon_unlisted(self.addon)
-        self.client.get(self.url)
-        assert not send_welcome_email_mock.called
-
     def test_finish_submitting_listed_addon(self):
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
 
@@ -2637,11 +2569,13 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
             'devhub.submit.version.finish', args=[addon.slug, self.version.pk]
         )
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email(self, send_welcome_email_mock):
+    @mock.patch(
+        'olympia.devhub.tasks.send_initial_submission_acknowledgement_email.delay'
+    )
+    def test_no_welcome_email(self, send_initial_submission_acknowledgement_email_mock):
         """No emails for version finish."""
         self.client.get(self.url)
-        assert not send_welcome_email_mock.called
+        assert not send_initial_submission_acknowledgement_email_mock.called
 
     def test_finish_submitting_listed_addon(self):
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)

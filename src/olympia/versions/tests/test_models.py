@@ -1560,21 +1560,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def setUp(self):
         super().setUp()
 
-    def test_notified_about_auto_approval_delay_flag_is_reset(self):
-        flags = AddonReviewerFlags.objects.create(
-            addon=self.addon, notified_about_auto_approval_delay=True
-        )
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        assert version
-        flags.reload()
-        assert flags.notified_about_auto_approval_delay is False
-
     def test_upload_already_attached_to_different_addon(self):
         # The exception isn't necessarily caught, but it's fine to 500 and go
         # to Sentry in this case - this isn't supposed to happen.
@@ -2165,6 +2150,75 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
+
+    @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
+    def test_send_initial_submission_acknowledgement_email_first_version(
+        self, send_initial_submission_acknowledgement_email_mock
+    ):
+        self.addon.current_version.delete(hard=True)
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.pk
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 1
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_args == [
+            (3615, amo.CHANNEL_LISTED, self.upload.user.email)
+        ]
+
+    @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
+    def test_send_initial_submission_acknowledgement_email_first_version_unlisted(
+        self, send_initial_submission_acknowledgement_email_mock
+    ):
+        self.addon.current_version.delete(hard=True)
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.pk
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 1
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_args == [
+            (3615, amo.CHANNEL_UNLISTED, self.upload.user.email)
+        ]
+
+    @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
+    def test_dont_send_initial_submission_acknowledgement_email_second_version(
+        self, send_initial_submission_acknowledgement_email_mock
+    ):
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.pk
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 0
+
+    @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
+    def test_dont_send_initial_submission_acknowledgement_email_first_was_soft_deleted(
+        self, send_initial_submission_acknowledgement_email_mock
+    ):
+        self.addon.current_version.delete()
+        parsed_data = parse_addon(self.upload, self.addon, user=self.fake_user)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=parsed_data,
+        )
+        assert version.pk
+        assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 0
 
 
 class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):

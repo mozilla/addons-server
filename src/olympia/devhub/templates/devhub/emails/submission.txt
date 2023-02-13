@@ -1,18 +1,21 @@
-Thanks for submitting your {{ addon_name }} add-on to addons.mozilla.org (AMO)! Your add-on listing will go live shortly in our gallery here: {{ detail_url }}
+Thanks for submitting your {{ addon_name }} add-on to addons.mozilla.org (AMO)!{% if listed %} Upon approval, your add-on listing will appear on our website here: {{ detail_url }}{% endif %}
 
-Please keep in mind that while your add-on has been screened and approved for listing, other reviewers may look into it in the future and determine that it requires changes or should be removed from the gallery. If that occurs, you will receive a separate notification with details and next steps.
+Please note that your add-on can be subject to human review at any time. Some submissions might be held for up to a few days for human review before they get approved. While your add-on might be screened and automatically approved, reviewers may look into it later and determine that it requires changes{% if listed %} or should be removed from the website{% endif %}. If that occurs, you will receive a separate notification with details and next steps.
 
-For more information about the review process and policies, please visit https://extensionworkshop.com/documentation/publish/add-on-policies/
+For more information about the review process and policies, please visit https://extensionworkshop.com/documentation/publish/add-on-policies/.
 
+{% if listed %}
 ********
 Attract Users, Stay Updated, & Get in Touch
 ********
+{% endif %}
 
 Add-ons help personalize the web experience for millions of users who have installed Firefox, and we want to help make your users happy!
 
-To learn how to help users discover your extension, stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://extensionworkshop.com/documentation/manage/resources-for-publishers/
+To {% if listed %}learn how to help users discover your extension, {% endif %}stay up-to-date with news from the add-ons community, or contact the add-ons team, please visit https://extensionworkshop.com/documentation/manage/resources-for-publishers/.
 
 Happy developing!
+
 
 -- 
 Mozilla Add-ons

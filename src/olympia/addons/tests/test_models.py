@@ -1676,27 +1676,6 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_theme_review=True)
         assert addon.needs_admin_theme_review is True
 
-    def test_reset_notified_about_auto_approval_delay(self):
-        addon = Addon.objects.get(pk=3615)
-        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
-
-        # No flags: nothing happens, flags still absent
-        addon.reset_notified_about_auto_approval_delay()
-        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
-
-        # Flags with property already false: nothing happens, flags still there
-        flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.notified_about_auto_approval_delay is None
-        addon.reset_notified_about_auto_approval_delay()
-        flags.reload()
-        assert flags.notified_about_auto_approval_delay is False
-
-        # Flags with property True: value reset to False.
-        flags.update(notified_about_auto_approval_delay=True)
-        addon.reset_notified_about_auto_approval_delay()
-        flags.reload()
-        assert flags.notified_about_auto_approval_delay is False
-
     def test_addon_reviewer_flags_signal(self):
         addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         unlisted = version_factory(
