@@ -22,6 +22,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         alog_ids = ActivityLog.objects.filter(
-            action__in=self.rating_actions
+            action__in=self.rating_actions, ratinglog__id__isnull=True
         ).values_list('id', flat=True)
         create_chunked_tasks_signatures(create_ratinglog, alog_ids, 100).apply_async()

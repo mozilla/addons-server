@@ -87,6 +87,16 @@ def test_backfill_ratinglog_command():
     has_rating_log = ActivityLog.create(amo.LOG.ADD_RATING, has_rating, user=user)
     assert has_rating_log.arguments == [has_rating]
 
+    has_rating_not_no_ratinglog_yet = Rating.objects.create(addon=addon, user=user)
+    has_rating_not_no_ratinglog_yet_log = ActivityLog.create(
+        amo.LOG.ADD_RATING, has_rating_not_no_ratinglog_yet, user=user
+    )
+    assert has_rating_not_no_ratinglog_yet_log.arguments == [
+        has_rating_not_no_ratinglog_yet
+    ]
+
+    has_rating_log.ratinglog_set.all().delete()
+
     other_action = Rating.objects.create(addon=addon, user=user)
     other_action_log = ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, user=user)
     assert other_action_log.arguments == [addon]
@@ -96,9 +106,11 @@ def test_backfill_ratinglog_command():
     assert RatingLog.objects.count() == 1
     call_command('backfill_ratinglog')
 
-    assert RatingLog.objects.count() == 2
-    ratinglog1, ratinglog2 = list(RatingLog.objects.all().order_by('-id'))
+    assert RatingLog.objects.count() == 3
+    ratinglog1, ratinglog2, ratinglog3 = list(RatingLog.objects.all().order_by('-id'))
     assert ratinglog1.activity_log == missing_log
     assert ratinglog1.rating == missing
     assert ratinglog2.activity_log == has_rating_log
     assert ratinglog2.rating == has_rating
+    assert ratinglog3.activity_log == has_rating_not_no_ratinglog_yet_log
+    assert ratinglog3.rating == has_rating_not_no_ratinglog_yet
