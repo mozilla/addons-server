@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from olympia.addons.models import Addon, Preview
-from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File
 from olympia.git.utils import AddonGitRepository
@@ -17,29 +16,24 @@ from olympia.versions.models import Version, VersionPreview
 
 
 def collect_user_pics(since):
-    qs = UserProfile.objects.filter(modified__gt=since).values_list('id', flat=True)
-    return [UserProfile(id=id_).picture_dir for id_ in qs]
+    qs = UserProfile.objects.filter(modified__gt=since).only('id', 'username')
+    return [user.picture_dir for user in qs.iterator()]
 
 
 def collect_files(since):
-    path = settings.ADDONS_PATH
-    qs = File.objects.filter(modified__gt=since).values_list(
-        'version__addon_id', flat=True
-    )
-    return list({os.path.join(path, id_to_path(id_, breadth=2)) for id_ in qs})
+    qs = File.objects.filter(modified__gt=since).only('file')
+    return list({os.path.dirname(file_.file.path) for file_ in qs.iterator()})
 
 
 def collect_sources(since):
-    path = os.path.join(settings.MEDIA_ROOT, 'version_source')
-    qs = Version.unfiltered.filter(modified__gt=since).values_list('id', flat=True)
-    return [os.path.join(path, id_to_path(id_, breadth=1)) for id_ in qs]
+    qs = Version.unfiltered.filter(modified__gt=since).no_transforms().only('source')
+    return [os.path.dirname(version.source.path) for version in qs]
 
 
-def _get_previews(since, Model):
+def _get_previews(since, PreviewModel):
     out = set()
-    qs = Model.objects.filter(created__gt=since).values_list('id', flat=True)
-    for preview_id in qs:
-        preview = Model(id=preview_id)
+    qs = PreviewModel.objects.filter(created__gt=since).only('id', 'sizes')
+    for preview in qs.iterator():
         out = out | {
             os.path.dirname(preview.thumbnail_path),
             os.path.dirname(preview.image_path),
@@ -57,8 +51,8 @@ def collect_theme_previews(since):
 
 
 def collect_addon_icons(since):
-    qs = Addon.unfiltered.filter(modified__gt=since).values_list('id', flat=True)
-    return list({Addon(id=addon_id).get_icon_dir() for addon_id in qs})
+    qs = Addon.unfiltered.filter(modified__gt=since).only('id')
+    return list({addon.get_icon_dir() for addon in qs.iterator()})
 
 
 def collect_editoral(since):
@@ -70,10 +64,14 @@ def collect_editoral(since):
 
 
 def collect_git(since):
-    qs = File.objects.filter(modified__gt=since).values_list(
-        'version__addon_id', flat=True
+    qs_iter = (
+        File.objects.filter(modified__gt=since)
+        .values_list('version__addon_id', flat=True)
+        .iterator()
     )
-    return list({AddonGitRepository(addon_id).git_repository_path for addon_id in qs})
+    return list(
+        {AddonGitRepository(addon_id).git_repository_path for addon_id in qs_iter}
+    )
 
 
 def collect_blocklist(since):
