@@ -6,8 +6,6 @@ from os import scandir
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
-import olympia.core.logger
-
 from olympia.addons.models import Addon, Preview
 from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
@@ -53,11 +51,6 @@ def collect_sources(since):
     )
 
 
-def collect_xpi_uploads(since):
-    # all the files are in a single folder so return it
-    return [os.path.join(settings.ADDONS_PATH, 'temp')]
-
-
 def get_previews(since, path, manager):
     out = set()
     qs = manager.filter(created__gt=since).values_list('id', flat=True)
@@ -99,10 +92,6 @@ def collect_editoral(since):
     )
 
 
-def collect_sitemaps(since):
-    return [settings.SITEMAP_STORAGE_PATH]  # sitemaps change each day
-
-
 def collect_git(since):
     path = settings.GIT_FILE_STORAGE_PATH
     qs = File.objects.filter(modified__gt=since).values_list(
@@ -131,7 +120,6 @@ class Command(BaseCommand):
         'Get folders containing files that have changed on the filesystem in the past '
         'X seconds'
     )
-    log = olympia.core.logger.getLogger('z.appversions')
 
     def add_arguments(self, parser):
         parser.add_argument('since', type=int)
@@ -141,12 +129,10 @@ class Command(BaseCommand):
             collect_user_pics,
             collect_files,
             collect_sources,
-            collect_xpi_uploads,
             collect_addon_previews,
             collect_theme_previews,
             collect_addon_icons,
             collect_editoral,
-            collect_sitemaps,
             collect_git,
             collect_blocklist,
         ]

@@ -16,12 +16,10 @@ from olympia.amo.management.commands.get_changed_files import (
     collect_user_pics,
     collect_files,
     collect_sources,
-    collect_xpi_uploads,
     collect_addon_previews,
     collect_theme_previews,
     collect_addon_icons,
     collect_editoral,
-    collect_sitemaps,
     collect_git,
     collect_blocklist,
 )
@@ -176,12 +174,14 @@ class TestGetChangedFilesCommand(TestCase):
         self.older = self.yesterday - timedelta(seconds=10)
 
     def test_command(self):
+        user = user_factory()
+        PrimaryHeroImage.objects.create()
+
         with io.StringIO() as out:
             call_command('get_changed_files', '1', stdout=out)
-            # These two dirs are always returned as we can't track modification
             assert out.getvalue() == (
-                f'{os.path.join(settings.ADDONS_PATH, "temp")}\n'
-                f'{settings.SITEMAP_STORAGE_PATH}\n'
+                f'{user.picture_dir}\n'
+                f'{os.path.join(settings.MEDIA_ROOT, "hero-featured-image")}\n'
             )
 
     def test_collect_user_pics(self):
@@ -210,11 +210,6 @@ class TestGetChangedFilesCommand(TestCase):
         assert unchanged.modified < self.yesterday
         assert collect_sources(self.yesterday) == [
             f'{os.path.dirname(changed.source.path)}/'
-        ]
-
-    def test_collect_xpi_uploads(self):
-        assert collect_xpi_uploads(self.yesterday) == [
-            os.path.join(settings.ADDONS_PATH, 'temp')
         ]
 
     def test_collect_addon_previews(self):
@@ -279,9 +274,6 @@ class TestGetChangedFilesCommand(TestCase):
         assert collect_editoral(self.yesterday) == [
             os.path.join(settings.MEDIA_ROOT, 'hero-featured-image')
         ]
-
-    def test_collect_sitemaps(self):
-        assert collect_sitemaps(self.yesterday) == [settings.SITEMAP_STORAGE_PATH]
 
     def test_collect_git(self):
         new_file = File.objects.get(id=33046)
