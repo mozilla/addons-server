@@ -198,9 +198,7 @@ class TestGetChangedFilesCommand(TestCase):
         old_file = addon_factory().current_version.file
         old_file.update(modified=self.older)
         assert old_file.modified < self.yesterday
-        assert collect_files(self.yesterday) == [
-            os.path.dirname(new_file.file.path)
-        ]
+        assert collect_files(self.yesterday) == [os.path.dirname(new_file.file.path)]
 
     def test_collect_sources(self):
         changed = addon_factory().current_version
@@ -208,9 +206,7 @@ class TestGetChangedFilesCommand(TestCase):
         unchanged = addon_factory().current_version
         unchanged.update(modified=self.older)
         assert unchanged.modified < self.yesterday
-        assert collect_sources(self.yesterday) == [
-            os.path.dirname(changed.source.path)
-        ]
+        assert collect_sources(self.yesterday) == [os.path.dirname(changed.source.path)]
 
     def test_collect_addon_previews(self):
         preview1 = Preview.objects.create(addon=addon_factory())

@@ -73,12 +73,7 @@ def collect_git(since):
     qs = File.objects.filter(modified__gt=since).values_list(
         'version__addon_id', flat=True
     )
-    return list(
-        {
-            AddonGitRepository(addon_id).git_repository_path
-            for addon_id in qs
-        }
-    )
+    return list({AddonGitRepository(addon_id).git_repository_path for addon_id in qs})
 
 
 def collect_blocklist(since):
