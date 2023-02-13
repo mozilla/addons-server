@@ -10,27 +10,15 @@ from olympia.addons.models import Addon, Preview
 from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File
+from olympia.git.utils import AddonGitRepository
 from olympia.hero.models import PrimaryHeroImage
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionPreview
 
 
-def get_modified_folders(since, *, path, manager, datefield, id_to_path_breadth):
-    qs = manager.filter(**{f'{datefield}__gt': since}).values_list('id', flat=True)
-    return [
-        os.path.join(path, id_to_path(id_, breadth=id_to_path_breadth), '')
-        for id_ in qs
-    ]
-
-
 def collect_user_pics(since):
-    return get_modified_folders(
-        since,
-        path=os.path.join(settings.MEDIA_ROOT, 'userpics'),
-        manager=UserProfile.objects,
-        datefield='modified',
-        id_to_path_breadth=2,
-    )
+    qs = UserProfile.objects.filter(modified__gt=since).values_list('id', flat=True)
+    return [UserProfile(id=id_).picture_dir for id_ in qs]
 
 
 def collect_files(since):
@@ -38,50 +26,39 @@ def collect_files(since):
     qs = File.objects.filter(modified__gt=since).values_list(
         'version__addon_id', flat=True
     )
-    return list({os.path.join(path, id_to_path(id_, breadth=2), '') for id_ in qs})
+    return list({os.path.join(path, id_to_path(id_, breadth=2)) for id_ in qs})
 
 
 def collect_sources(since):
-    return get_modified_folders(
-        since,
-        path=os.path.join(settings.MEDIA_ROOT, 'version_source'),
-        manager=Version.unfiltered,
-        datefield='modified',
-        id_to_path_breadth=1,
-    )
+    path = os.path.join(settings.MEDIA_ROOT, 'version_source')
+    qs = Version.unfiltered.filter(modified__gt=since).values_list('id', flat=True)
+    return [os.path.join(path, id_to_path(id_, breadth=1)) for id_ in qs]
 
 
-def get_previews(since, path, manager):
+def _get_previews(since, Model):
     out = set()
-    qs = manager.filter(created__gt=since).values_list('id', flat=True)
+    qs = Model.objects.filter(created__gt=since).values_list('id', flat=True)
     for preview_id in qs:
-        subdir = str(preview_id // 1000)
+        preview = Model(id=preview_id)
         out = out | {
-            os.path.join(path, 'thumbs', subdir, ''),
-            os.path.join(path, 'full', subdir, ''),
-            os.path.join(path, 'original', subdir, ''),
+            os.path.dirname(preview.thumbnail_path),
+            os.path.dirname(preview.image_path),
+            os.path.dirname(preview.original_path),
         }
     return list(out)
 
 
 def collect_addon_previews(since):
-    return get_previews(
-        since, os.path.join(settings.MEDIA_ROOT, 'previews'), Preview.objects
-    )
+    return _get_previews(since, Preview)
 
 
 def collect_theme_previews(since):
-    return get_previews(
-        since,
-        os.path.join(settings.MEDIA_ROOT, 'version-previews'),
-        VersionPreview.objects,
-    )
+    return _get_previews(since, VersionPreview)
 
 
 def collect_addon_icons(since):
-    path = os.path.join(settings.MEDIA_ROOT, 'addon_icons')
     qs = Addon.unfiltered.filter(modified__gt=since).values_list('id', flat=True)
-    return list({os.path.join(path, str(preview_id // 1000), '') for preview_id in qs})
+    return list({Addon(id=addon_id).get_icon_dir() for addon_id in qs})
 
 
 def collect_editoral(since):
@@ -93,13 +70,12 @@ def collect_editoral(since):
 
 
 def collect_git(since):
-    path = settings.GIT_FILE_STORAGE_PATH
     qs = File.objects.filter(modified__gt=since).values_list(
         'version__addon_id', flat=True
     )
     return list(
         {
-            os.path.join(path, id_to_path(addon_id, breadth=2), 'addon', '')
+            AddonGitRepository(addon_id).git_repository_path
             for addon_id in qs
         }
     )

@@ -189,7 +189,7 @@ class TestGetChangedFilesCommand(TestCase):
         unchanged = user_factory()
         unchanged.update(modified=self.older)
         assert unchanged.modified < self.yesterday
-        assert collect_user_pics(self.yesterday) == [f'{changed.picture_dir}/']
+        assert collect_user_pics(self.yesterday) == [changed.picture_dir]
 
     def test_collect_files(self):
         new_file = File.objects.get(id=33046)
@@ -199,7 +199,7 @@ class TestGetChangedFilesCommand(TestCase):
         old_file.update(modified=self.older)
         assert old_file.modified < self.yesterday
         assert collect_files(self.yesterday) == [
-            f'{os.path.dirname(new_file.file.path)}/'
+            os.path.dirname(new_file.file.path)
         ]
 
     def test_collect_sources(self):
@@ -209,7 +209,7 @@ class TestGetChangedFilesCommand(TestCase):
         unchanged.update(modified=self.older)
         assert unchanged.modified < self.yesterday
         assert collect_sources(self.yesterday) == [
-            f'{os.path.dirname(changed.source.path)}/'
+            os.path.dirname(changed.source.path)
         ]
 
     def test_collect_addon_previews(self):
@@ -226,9 +226,9 @@ class TestGetChangedFilesCommand(TestCase):
         )
         assert sorted(collect_addon_previews(self.yesterday)) == [
             # only one set of dirs because 1 and 2 are in same subdirs
-            f'{os.path.dirname(preview1.image_path)}/',
-            f'{os.path.dirname(preview1.original_path)}/',
-            f'{os.path.dirname(preview1.thumbnail_path)}/',
+            os.path.dirname(preview1.image_path),
+            os.path.dirname(preview1.original_path),
+            os.path.dirname(preview1.thumbnail_path),
         ]
 
     def test_collect_theme_previews(self):
@@ -249,9 +249,9 @@ class TestGetChangedFilesCommand(TestCase):
         )
         assert sorted(collect_theme_previews(self.yesterday)) == [
             # only one set of dirs because 1 and 2 are in same subdirs
-            f'{os.path.dirname(preview1.image_path)}/',
-            f'{os.path.dirname(preview1.original_path)}/',
-            f'{os.path.dirname(preview1.thumbnail_path)}/',
+            os.path.dirname(preview1.image_path),
+            os.path.dirname(preview1.original_path),
+            os.path.dirname(preview1.thumbnail_path),
         ]
 
     def test_collect_addon_icons(self):
@@ -259,7 +259,7 @@ class TestGetChangedFilesCommand(TestCase):
         unchanged = addon_factory()
         unchanged.update(modified=self.older)
         assert unchanged.modified < self.yesterday
-        assert collect_addon_icons(self.yesterday) == [f'{changed.get_icon_dir()}/']
+        assert collect_addon_icons(self.yesterday) == [changed.get_icon_dir()]
 
     def test_collect_editoral(self):
         image1 = PrimaryHeroImage.objects.create()
@@ -283,7 +283,7 @@ class TestGetChangedFilesCommand(TestCase):
         old_file.update(modified=self.older)
         assert old_file.modified < self.yesterday
         assert collect_git(self.yesterday) == [
-            f'{AddonGitRepository(new_file.addon).git_repository_path}/'
+            AddonGitRepository(new_file.addon).git_repository_path
         ]
 
     def test_collect_blocklist(self):
