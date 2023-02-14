@@ -483,7 +483,7 @@ class Addon(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
 
     guid = models.CharField(max_length=255, unique=True, null=True)
-    slug = models.CharField(max_length=30, unique=True, null=True)
+    slug = models.CharField(max_length=30, unique=True, null=True, blank=True)
     name = TranslatedField(max_length=50)
     default_locale = models.CharField(
         max_length=10, default=settings.LANGUAGE_CODE, db_column='defaultlocale'
