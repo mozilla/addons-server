@@ -13,8 +13,8 @@ USER root
 
 # Add support for https apt repos and gpg signed repos
 RUN apt-get update && apt-get install -y \
-        apt-transport-https              \
-        gnupg2                           \
+    apt-transport-https                  \
+    gnupg2                               \
     && rm -rf /var/lib/apt/lists/*
 # Add keys and repos for node and mysql
 COPY docker/*.gpg.key /etc/pki/gpg/
@@ -30,33 +30,33 @@ COPY docker/*.list /etc/apt/sources.list.d/
 # packages.
 RUN touch /addons-server-docker-container \
     && apt-get update && apt-get -t buster install -y \
-        # General (dev-) dependencies
-        bash-completion \
-        build-essential \
-        curl \
-        libcap-dev \
-        libjpeg-dev \
-        libpcre3-dev \
-        libsasl2-dev \
-        libxml2-dev \
-        libxslt-dev \
-        locales \
-        zlib1g-dev \
-        libffi-dev \
-        libssl-dev \
-        libpcre3-dev \
-        nodejs \
-        # Git, because we're using git-checkout dependencies
-        git \
-        # Dependencies for mysql-python (from mysql apt repo, not debian)
-        mysql-client \
-        libmysqlclient-dev \
-        swig \
-        gettext \
-        # Use rsvg-convert to render our static theme previews
-        librsvg2-bin \
-        # Use pngcrush to optimize the PNGs uploaded by developers
-        pngcrush \
+    # General (dev-) dependencies
+    bash-completion \
+    build-essential \
+    curl \
+    libcap-dev \
+    libjpeg-dev \
+    libpcre3-dev \
+    libsasl2-dev \
+    libxml2-dev \
+    libxslt-dev \
+    locales \
+    zlib1g-dev \
+    libffi-dev \
+    libssl-dev \
+    libpcre3-dev \
+    nodejs \
+    # Git, because we're using git-checkout dependencies
+    git \
+    # Dependencies for mysql-python (from mysql apt repo, not debian)
+    default-mysql-client \
+    default-libmysqlclient-dev \
+    swig \
+    gettext \
+    # Use rsvg-convert to render our static theme previews
+    librsvg2-bin \
+    # Use pngcrush to optimize the PNGs uploaded by developers
+    pngcrush \
     && rm -rf /var/lib/apt/lists/*
 
 # IMPORTANT: When editing one of these lists below, make sure to also update
