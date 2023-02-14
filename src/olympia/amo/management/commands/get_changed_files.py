@@ -23,9 +23,11 @@ def collect_user_pics(since):
 
 def collect_files(since):
     path = settings.ADDONS_PATH
-    id_iter = File.objects.filter(modified__gt=since).values_list(
-        'version__addon_id', flat=True
-    ).iterator()
+    id_iter = (
+        File.objects.filter(modified__gt=since)
+        .values_list('version__addon_id', flat=True)
+        .iterator()
+    )
     return list({os.path.join(path, id_to_path(id_, breadth=2)) for id_ in id_iter})
 
 
