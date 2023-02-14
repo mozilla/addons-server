@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from olympia.addons.models import Addon, Preview
+from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File
 from olympia.git.utils import AddonGitRepository
@@ -21,13 +22,17 @@ def collect_user_pics(since):
 
 
 def collect_files(since):
-    qs = File.objects.filter(modified__gt=since).only('file')
-    return list({os.path.dirname(file_.file.path) for file_ in qs.iterator()})
+    path = settings.ADDONS_PATH
+    id_iter = File.objects.filter(modified__gt=since).values_list(
+        'version__addon_id', flat=True
+    ).iterator()
+    return list({os.path.join(path, id_to_path(id_, breadth=2)) for id_ in id_iter})
 
 
 def collect_sources(since):
-    qs = Version.unfiltered.filter(modified__gt=since).no_transforms().only('source')
-    return [os.path.dirname(version.source.path) for version in qs]
+    path = os.path.join(settings.MEDIA_ROOT, 'version_source')
+    id_iter = Version.unfiltered.filter(modified__gt=since).values_list('id', flat=True)
+    return [os.path.join(path, id_to_path(id_, breadth=1)) for id_ in id_iter]
 
 
 def _get_previews(since, PreviewModel):
