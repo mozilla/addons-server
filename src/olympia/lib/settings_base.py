@@ -1046,6 +1046,7 @@ CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
     'https://www.google-analytics.com/analytics.js',
+    'https://www.googletagmanager.com/gtag/js',
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
