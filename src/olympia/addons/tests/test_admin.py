@@ -326,7 +326,7 @@ class TestAddonAdmin(TestCase):
             'bayesian_rating': addon.bayesian_rating,
             'reputation': addon.reputation,
             'type': addon.type,
-            'slug': addon.slug,
+            'slug': 'something-new',
             'status': addon.status,
         }
         post_data['guid'] = '@bar'  # it's readonly
@@ -334,6 +334,41 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@foo'  # no change
+        assert addon.slug == 'something-new'
+
+    def test_can_edit_deleted_addon_with_addons_edit_permission(self):
+        addon = addon_factory(guid='@foo')
+        addon.delete()
+        assert addon.slug is None
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': 'fr',  # Changed.
+            'weekly_downloads': addon.weekly_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': '',
+            'status': addon.status,
+        }
+        post_data['guid'] = '@bar'  # it's readonly
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.guid == '@foo'  # no change
+        assert addon.slug is None # no change
+        assert addon.default_locale == 'fr'
 
     def test_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory(guid='@foo')
