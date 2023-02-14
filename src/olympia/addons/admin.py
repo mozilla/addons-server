@@ -192,8 +192,20 @@ class AddonAdmin(AMOModelAdmin):
         'reviewer_flags',
     )
     list_filter = (
+        (
+            'created',
+            DateRangeFilter,
+        ),
         'type',
         'status',
+        (
+            'addonuser__user__created',
+            DateRangeFilter,
+        ),
+        (
+            'addonuser__user__banned',
+            admin.EmptyFieldListFilter,
+        ),
         (
             'reviewerflags__auto_approval_disabled',
             admin.BooleanFieldListFilter,
@@ -349,6 +361,9 @@ class AddonAdmin(AMOModelAdmin):
             ),
         ]
         return custom_urlpatterns + urlpatterns
+
+    def get_rangefilter_addonuser__user__created_title(self, request, field_path):
+        return 'author created'
 
     def authors_links(self, obj):
         # Note: requires .transform(Addon.attach_all_authors) to have been
