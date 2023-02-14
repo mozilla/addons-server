@@ -367,7 +367,7 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@foo'  # no change
-        assert addon.slug is None # no change
+        assert addon.slug is None  # no change
         assert addon.default_locale == 'fr'
 
     def test_show_link_to_reviewer_tools_listed(self):
