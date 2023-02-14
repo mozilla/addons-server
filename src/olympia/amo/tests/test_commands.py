@@ -24,6 +24,7 @@ from olympia.amo.management.commands.get_changed_files import (
     collect_blocklist,
 )
 from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File, files_upload_to_callback
 from olympia.git.utils import AddonGitRepository
@@ -201,6 +202,7 @@ class TestGetChangedFilesCommand(TestCase):
         )  # an extra file to check de-duping
         old_file = addon_factory().current_version.file
         old_file.update(modified=self.older)
+        version_factory(addon=new_file.addon, file_kw={'file': None})  # no file
         assert old_file.modified < self.yesterday
         with self.assertNumQueries(1):
             assert collect_files(self.yesterday) == [
@@ -212,10 +214,16 @@ class TestGetChangedFilesCommand(TestCase):
         changed.update(source=source_upload_path(changed, 'foo.zip'))
         unchanged = addon_factory().current_version
         unchanged.update(modified=self.older)
+        no_source_version = version_factory(addon=changed.addon, source=None)
         assert unchanged.modified < self.yesterday
         with self.assertNumQueries(1):
             assert collect_sources(self.yesterday) == [
-                os.path.dirname(changed.source.path)
+                os.path.join(
+                    settings.MEDIA_ROOT,
+                    'version_source',
+                    id_to_path(no_source_version.id),
+                ),
+                os.path.dirname(changed.source.path),
             ]
 
     def test_collect_addon_previews(self):
