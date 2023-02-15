@@ -17,7 +17,7 @@ from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason, Whiteboard
+from olympia.reviewers.models import ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
 import markupsafe
@@ -213,7 +213,6 @@ class ReviewForm(forms.Form):
     comments = forms.CharField(
         required=True, widget=forms.Textarea(), label='Comments:'
     )
-    canned_response = NonValidatingChoiceField(required=False)
     action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
     versions = VersionsChoiceField(
         # The <select> is displayed/hidden dynamically depending on the action
@@ -333,34 +332,6 @@ class ReviewForm(forms.Form):
             self.fields['versions'].widget.attrs['data-value'] = ' '.join(
                 versions_actions
             )
-        # For the canned responses, we're starting with an empty one, which
-        # will be hidden via CSS.
-        canned_choices = [['', [('', 'Choose a canned response...')]]]
-
-        canned_type = (
-            amo.CANNED_RESPONSE_TYPE_THEME
-            if self.helper.addon.type == amo.ADDON_STATICTHEME
-            else amo.CANNED_RESPONSE_TYPE_ADDON
-        )
-        responses = CannedResponse.objects.filter(type=canned_type)
-
-        # Loop through the actions (public, etc).
-        for k, action in self.helper.actions.items():
-            action_choices = [
-                [c.response, c.name]
-                for c in responses
-                if c.sort_group and k in c.sort_group.split(',')
-            ]
-
-            # Add the group of responses to the canned_choices array.
-            if action_choices:
-                canned_choices.append([action['label'], action_choices])
-
-        # Now, add everything not in a group.
-        for canned_response in responses:
-            if not canned_response.sort_group:
-                canned_choices.append([canned_response.response, canned_response.name])
-        self.fields['canned_response'].choices = canned_choices
 
         # Set choices on the action field dynamically to raise an error when
         # someone tries to use an action they don't have access to.

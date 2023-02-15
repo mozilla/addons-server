@@ -55,8 +55,6 @@
 })();
 
 function initReviewActions() {
-  var groups = $('#id_canned_response').find('optgroup');
-
   function showForm(element, pageload) {
     var $element = $(element),
       value = $element.find('input').val(),
@@ -85,20 +83,10 @@ function initReviewActions() {
     // Hide everything, then show the ones containing the value we're interested in.
     $data_toggle.hide();
     $data_toggle.filter('[data-value~="' + value + '"]').show();
-
-    /* Fade out canned responses */
-    var label = $element.text().trim();
-    groups.css('color', '#AAA');
-    groups.filter("[label='" + label + "']").css('color', '#444');
   }
 
   $('#review-actions .action_nav ul li:not(.disabled)').click(function () {
     showForm(this);
-  });
-
-  /* Canned Response stuff */
-  $('.review-actions-canned select').change(function () {
-    insertAtCursor($('#id_comments'), $(this).val());
   });
 
   var review_checked = $('#review-actions [name=action]:checked');
