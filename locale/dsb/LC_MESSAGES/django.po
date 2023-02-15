@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2023-01-23 16:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4650,12 +4650,6 @@ msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wót %(use
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warnowanje!</strong> Drugi wužywaŕ jo se toś ten bok pśed wami woglědał."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

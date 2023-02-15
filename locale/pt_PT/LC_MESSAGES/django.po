@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2022-11-29 14:58+0000\n"
 "Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -4676,12 +4676,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcado por %(user)s e
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro utilizador estava a visualizar esta página antes de si."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

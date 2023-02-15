@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2022-12-07 07:22+0000\n"
 "Last-Translator: JiYoon Kim <efff1654@gmail.com>\n"
 "Language-Team: none\n"
@@ -4620,12 +4620,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">표시자: %(user)s �
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>경고!</strong> 다른 사용자가 먼저 이 페이지를 조회했습니다."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
