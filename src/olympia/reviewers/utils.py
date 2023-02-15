@@ -714,7 +714,7 @@ class ReviewHelper:
                 and (not promoted_group.admin_review or is_appropriate_reviewer)
             ),
             'allows_reasons': not is_static_theme,
-            'requires_reasons': not is_static_theme,
+            'requires_reasons': False,
         }
         actions['super'] = {
             'method': self.handler.process_super_review,

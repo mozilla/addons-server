@@ -226,7 +226,7 @@ class TestReviewForm(TestCase):
         assert list(choices.queryset)[0] == self.reason_all
         assert list(choices.queryset)[1] == self.reason_theme
 
-    def test_reasons_required(self):
+    def test_reasons_not_required_for_reply(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
@@ -236,25 +236,25 @@ class TestReviewForm(TestCase):
                 'comments': 'lol',
             }
         )
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {
-            'reasons': ['This field is required.'],
-        }
-
-        # Alter the action to make it not require reasons to be sent
-        # regardless of what the action actually is, what we want to test is
-        # the form behaviour.
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'comments': 'lol',
-            }
-        )
-        form.helper.actions['reply']['requires_reasons'] = False
+        assert form.helper.actions['reply']['requires_reasons'] is False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
+
+    def test_reasons_required_for_reject_multiple_versions(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'reject_multiple_versions',
+                'comments': 'lol',
+                'versions': self.addon.versions.all(),
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'reasons': ['This field is required.']}
 
     def test_reasons_optional_for_public(self):
         self.grant_permission(self.request.user, 'Addons:Review')
