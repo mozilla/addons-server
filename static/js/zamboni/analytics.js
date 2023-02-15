@@ -42,4 +42,20 @@ if (isDoNotTrackEnabled() === false) {
   ga('create', 'UA-36116321-7', 'auto');
   ga('set', 'transport', 'beacon');
   ga('send', 'pageview');
+
+  // Insert the script tag for GA4.
+  const ga4Id = 'G-B9CY1C9VBC';
+  const newTag = document.createElement('script');
+  const firstTag = document.getElementsByTagName('script')[0];
+  newTag.async = 1;
+  newTag.src = `https://www.googletagmanager.com/gtag/js?id=${ga4Id}`;
+  firstTag.parentNode.insertBefore(newTag, firstTag);
+
+  // Set up GA4.
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag('js', new Date());
+  gtag('config', ga4Id);
 }
