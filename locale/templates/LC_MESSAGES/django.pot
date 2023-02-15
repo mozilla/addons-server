@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,12 +160,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2022 src/olympia/addons/models.py:2082
+#: src/olympia/addons/models.py:2047 src/olympia/addons/models.py:2107
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2265
+#: src/olympia/addons/models.py:2290
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -347,7 +347,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:1984
+#: src/olympia/devhub/views.py:1959
 msgid "Manage API Keys"
 msgstr ""
 
@@ -1216,7 +1216,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1054
+#: src/olympia/constants/base.py:27 src/olympia/versions/models.py:1062
 msgid "Deleted"
 msgstr ""
 
@@ -2256,23 +2256,23 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:183
+#: src/olympia/devhub/tasks.py:184
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:376
+#: src/olympia/devhub/tasks.py:377
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:383
+#: src/olympia/devhub/tasks.py:384
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:632
+#: src/olympia/devhub/tasks.py:649
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -2422,100 +2422,100 @@ msgstr ""
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1227
+#: src/olympia/devhub/views.py:1231
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1343
+#: src/olympia/devhub/views.py:1347
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1344
+#: src/olympia/devhub/views.py:1348
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1353
+#: src/olympia/devhub/views.py:1357
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1354
+#: src/olympia/devhub/views.py:1358
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1362
+#: src/olympia/devhub/views.py:1366
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1363
+#: src/olympia/devhub/views.py:1367
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1371
+#: src/olympia/devhub/views.py:1375
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1372
+#: src/olympia/devhub/views.py:1376
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1380
+#: src/olympia/devhub/views.py:1384
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1381
+#: src/olympia/devhub/views.py:1385
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1389
+#: src/olympia/devhub/views.py:1393
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1390
+#: src/olympia/devhub/views.py:1394
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1399
+#: src/olympia/devhub/views.py:1403
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1400
+#: src/olympia/devhub/views.py:1404
 msgid ""
 "The highlight color of the active tab. Implemented as a border around the tab"
 " on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
 "  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1843
+#: src/olympia/devhub/views.py:1818
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1845
+#: src/olympia/devhub/views.py:1820
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1950
+#: src/olympia/devhub/views.py:1925
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1997
+#: src/olympia/devhub/views.py:1972
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2008
+#: src/olympia/devhub/views.py:1983
 msgid "API key revoked"
 msgstr ""
 
@@ -6663,14 +6663,6 @@ msgstr ""
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:262
-msgid "Set Needs Human Review"
-msgstr ""
-
-#: src/olympia/reviewers/templates/reviewers/review.html:266
-msgid "Change Version Review Due Date"
-msgstr ""
-
 #: src/olympia/reviewers/templates/reviewers/includes/history.html:6
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -6733,7 +6725,7 @@ msgid ""
 "action will not be executed."
 msgstr ""
 
-#: src/olympia/scanners/models.py:382
+#: src/olympia/scanners/models.py:384
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr ""
 
@@ -7239,39 +7231,39 @@ msgstr ""
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:688
+#: src/olympia/users/models.py:694
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:691
+#: src/olympia/users/models.py:697
 msgid ""
 "Multiple add-ons violating our policies have been submitted from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:790
+#: src/olympia/users/models.py:796
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:792
+#: src/olympia/users/models.py:798
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:799
+#: src/olympia/users/models.py:805
 msgid "The email address used for your account is not allowed for add-on submission."
 msgstr ""
 
-#: src/olympia/users/models.py:864
+#: src/olympia/users/models.py:870
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1001
+#: src/olympia/users/models.py:1007
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7279,13 +7271,13 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1018
+#: src/olympia/users/models.py:1024
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1067
+#: src/olympia/users/models.py:1073
 msgid "User Restriction History"
 msgstr ""
 
@@ -7410,32 +7402,32 @@ msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#: src/olympia/versions/models.py:1039
+#: src/olympia/versions/models.py:1047
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1044
+#: src/olympia/versions/models.py:1052
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1046
+#: src/olympia/versions/models.py:1054
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1049
+#: src/olympia/versions/models.py:1057
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1056
+#: src/olympia/versions/models.py:1064
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1324
+#: src/olympia/versions/models.py:1332
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1363
+#: src/olympia/versions/models.py:1371
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 

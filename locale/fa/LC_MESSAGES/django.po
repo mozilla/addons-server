@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4701,12 +4701,6 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
 msgstr ""
 
 #, python-format

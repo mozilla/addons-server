@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2023-01-21 20:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4696,12 +4696,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandai oleh %(user)s
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Perhatian!</strong> Pengguna lain sedang menyaksikan laman ini sebelum anda."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

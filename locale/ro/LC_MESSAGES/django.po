@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4719,12 +4719,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Semnalat de %(user)s l
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Avertisment!</strong> Alt utilizator a vizualizat această pagină înaintea ta."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

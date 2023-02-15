@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-07 18:35+0000\n"
+"POT-Creation-Date: 2023-02-15 14:06+0000\n"
 "PO-Revision-Date: 2023-01-18 20:00+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -4639,12 +4639,6 @@ msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil uživatel %(u
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Upozornění!</strong> Jiný uživatel před vámi tuto stránku prohlížel."
-
-msgid "Set Needs Human Review"
-msgstr ""
-
-msgid "Change Version Review Due Date"
-msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
