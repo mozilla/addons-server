@@ -1,7 +1,7 @@
 import pytest
 
 from olympia.users.models import UserProfile
-from olympia.users.templatetags.jinja_helpers import user_link, users_list
+from olympia.users.templatetags.jinja_helpers import user_link
 
 
 pytestmark = pytest.mark.django_db
@@ -36,38 +36,6 @@ def test_user_link_xss():
         user.get_absolute_url(),
         html,
         html,
-    )
-
-
-def test_users_list():
-    user1 = UserProfile(username='jconnor', display_name='John Connor', pk=1)
-    user2 = UserProfile(username='sconnor', display_name='Sarah Connor', pk=2)
-    assert users_list([user1, user2]) == (
-        ', '.join((user_link(user1), user_link(user2)))
-    )
-
-    # handle None gracefully
-    assert user_link(None) == ''
-
-
-def test_short_users_list():
-    """Test the option to shortened the users list to a certain size."""
-    # short list with 'others'
-    user1 = UserProfile(username='oscar', display_name='Oscar the Grouch', pk=1)
-    user2 = UserProfile(username='grover', display_name='Grover', pk=2)
-    user3 = UserProfile(username='cookies!', display_name='Cookie Monster', pk=3)
-    shortlist = users_list([user1, user2, user3], size=2)
-    assert shortlist == (', '.join((user_link(user1), user_link(user2))) + ', others')
-
-
-def test_users_list_truncate_display_name():
-    user = UserProfile(
-        username='oscar', display_name='Some Very Long Display Name', pk=1
-    )
-    truncated_list = users_list([user], None, 10)
-    assert truncated_list == (
-        '<a href="%s" title="%s">Some Very...</a>'
-        % (user.get_absolute_url(), user.name)
     )
 
 

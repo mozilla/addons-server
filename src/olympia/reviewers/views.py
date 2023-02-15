@@ -43,6 +43,7 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
+    AddonUser,
 )
 from olympia.amo.decorators import (
     json_view,
@@ -1059,6 +1060,21 @@ def download_git_stored_file(request, version_id, filename):
     response['Content-Length'] = actual_blob.size
 
     return response
+
+
+@any_reviewer_required
+def developer_profile(request, user_id):
+    developer = get_object_or_404(UserProfile, id=user_id)
+    qs = AddonUser.unfiltered.filter(user=developer).order_by('addon_id')
+    addonusers_pager = paginate(request, qs, 100)
+    return TemplateResponse(
+        request,
+        'reviewers/developer_profile.html',
+        context={
+            'developer': developer,
+            'addonusers_pager': addonusers_pager,
+        },
+    )
 
 
 class AddonReviewerViewSet(GenericViewSet):

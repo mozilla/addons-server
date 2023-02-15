@@ -24,7 +24,12 @@
       <span class="version">{{ version.version }} ({{ version.get_channel_display() }})</span>
     {% endif %}
   </h2>
-  <h4 class="author">by {{ users_list(addon.listed_authors) }}</h4>
+  <h4 class="author">by
+    {% for author in addon.listed_authors %}
+    <a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a>
+    {% endfor %}
+  </h4>
+
 </hgroup>
 
 {% if promoted_group %}
@@ -470,7 +475,7 @@
   <strong>Authors</strong>
   <ul>
     {% for author in addon.authors.all() %}
-    <li><a href="{{ author.get_url_path() }}">{{ author.name }}</a></li>
+    <li><a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a></li>
     {% endfor %}
   </ul>
 
