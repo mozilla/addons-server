@@ -26,7 +26,7 @@
   </h2>
   <h4 class="author">by
     {% for author in addon.listed_authors %}
-    <a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a>
+    <a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a>{% if not loop.last %},{% endif %}
     {% endfor %}
   </h4>
 

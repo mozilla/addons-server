@@ -5668,6 +5668,25 @@ class TestReview(ReviewBase):
         )
         self.assert3xx(response, self.listed_url)
 
+    def test_links_to_developer_profile(self):
+        author = self.addon.authors.all()[0]
+        response = self.client.get(self.url)
+        self.assertContains(response, author.name)
+        self.assertContains(
+            response, reverse('reviewers.developer_profile', args=(author.id,))
+        )
+
+        another_author = user_factory()
+        AddonUser.objects.create(addon=self.addon, user=another_author)
+        response = self.client.get(self.url)
+        print(response.content)
+        self.assertContains(response, another_author.name)
+        profile_url = reverse('reviewers.developer_profile', args=(another_author.id,))
+        self.assertContains(response, profile_url)
+        self.assertContains(
+            response, f'{author.name}</a>,        <a href="{profile_url}">'
+        )
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):
