@@ -48,7 +48,7 @@ def create_ratinglog(activitylog_ids):
         'Creating RatingLog for activities %d-%d [%d]',
         activitylog_ids[0],
         activitylog_ids[-1],
-        len(activitylog_ids)
+        len(activitylog_ids),
     )
 
     alogs = ActivityLog.objects.filter(id__in=activitylog_ids)
