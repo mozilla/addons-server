@@ -25,6 +25,7 @@ _PromotedSuperClass = namedtuple(
     defaults=(
         # "Since fields with a default value must come after any fields without
         # a default, the defaults are applied to the rightmost parameters"
+        # No defaults for: id, name, api_name.
         0.0,  # search_ranking_bump
         True,  # warning
         False,  # pre_review

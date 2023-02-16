@@ -1209,6 +1209,9 @@ class TestAutoApprovalSummary(TestCase):
         promoted.update(group_id=LINE.id)  # LINE is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
+        self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
+        assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
+
     def test_check_should_be_delayed(self):
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False
 

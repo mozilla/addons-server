@@ -789,7 +789,7 @@ class ReviewBase:
 
     def set_promoted(self):
         group = self.addon.promoted_group(currently_approved=False)
-        if group and group.pre_review:
+        if self.version.channel == amo.CHANNEL_LISTED and group.pre_review:
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
