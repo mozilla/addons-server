@@ -602,8 +602,17 @@ class AutoApprovalSummary(ModelBase):
         """Check whether the add-on is a promoted addon group that requires
         pre-review."""
         return bool(
-            version.channel == amo.CHANNEL_LISTED
-            and version.addon.promoted_group(currently_approved=False).pre_review
+            (promo_group := version.addon.promoted_group(currently_approved=False))
+            and (
+                (
+                    version.channel == amo.CHANNEL_LISTED
+                    and promo_group.listed_pre_review
+                )
+                or (
+                    version.channel == amo.CHANNEL_UNLISTED
+                    and promo_group.unlisted_pre_review
+                )
+            )
         )
 
     @classmethod

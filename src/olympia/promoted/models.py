@@ -7,7 +7,6 @@ from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
 from olympia.constants.promoted import (
     NOT_PROMOTED,
-    PRE_REVIEW_GROUPS,
     PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
 )
@@ -68,7 +67,7 @@ class PromotedAddon(ModelBase):
     def _get_approved_applications_for_version(self, version):
         group = self.group
         all_apps = self.all_applications
-        if not group.pre_review:
+        if not group.listed_pre_review:
             return all_apps
         return [
             app
@@ -118,7 +117,29 @@ class PromotedAddon(ModelBase):
         else:
             return None
 
+    def _set_needs_human_review_on_version(self, channel, due_date=None):
+        version = (
+            self.addon.versions(manager='unfiltered_for_relations')
+            .filter(file__is_signed=True, channel=channel)
+            .only_translations()
+            .first()
+        )
+        if (
+            not version
+            or version.needs_human_review
+            or version.human_review_date
+            or self._get_approved_applications_for_version(version)
+        ):
+            return
+        had_due_date_already = bool(version.due_date)
+        version.update(needs_human_review=True)
+        if not had_due_date_already and due_date:
+            # If we have a specific due_date, override the default
+            version.reset_due_date(due_date)
+
     def save(self, *args, **kwargs):
+        due_date = kwargs.pop('_due_date', None)
+
         super().save(*args, **kwargs)
 
         if (
@@ -126,25 +147,9 @@ class PromotedAddon(ModelBase):
             and self.approved_applications != self.all_applications
         ):
             self.approve_for_addon()
-        elif (
-            self.group.flag_for_human_review
-            and (
-                # Find the latest listed signed version, and mark it as
-                # needing human review if necessary. It could be deleted or
-                # disabled, we only care that it has been signed already.
-                version := (
-                    self.addon.versions(manager='unfiltered_for_relations')
-                    .filter(file__is_signed=True, channel=amo.CHANNEL_LISTED)
-                    .only_translations()
-                    .order_by('created')
-                    .last()
-                )
-            )
-            and not version.needs_human_review
-            and not version.human_review_date
-            and not self._get_approved_applications_for_version(version)
-        ):
-            version.update(needs_human_review=True)
+        elif self.group.flag_for_human_review:
+            self._set_needs_human_review_on_version(amo.CHANNEL_LISTED, due_date)
+            self._set_needs_human_review_on_version(amo.CHANNEL_UNLISTED, due_date)
 
 
 class PromotedTheme(PromotedAddon):
@@ -165,7 +170,11 @@ class PromotedTheme(PromotedAddon):
 
 
 class PromotedApproval(ModelBase):
-    GROUP_CHOICES = [(g.id, g.name) for g in PRE_REVIEW_GROUPS]
+    GROUP_CHOICES = [
+        (g.id, g.name)
+        for g in PROMOTED_GROUPS
+        if g.listed_pre_review or g.unlisted_pre_review
+    ]
     group_id = models.SmallIntegerField(
         choices=GROUP_CHOICES, null=True, verbose_name='Group'
     )
