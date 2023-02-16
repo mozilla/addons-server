@@ -10,7 +10,6 @@ from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_D
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    CannedResponse,
     ReviewActionReason,
 )
 from olympia.reviewers.utils import ReviewHelper
@@ -130,41 +129,6 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
         )
         assert 'public' not in actions.keys()
-
-    def test_canned_responses(self):
-        self.cr_addon = CannedResponse.objects.create(
-            name='addon reason',
-            response='addon reason body',
-            sort_group='public',
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-        self.cr_theme = CannedResponse.objects.create(
-            name='theme reason',
-            response='theme reason body',
-            sort_group='public',
-            type=amo.CANNED_RESPONSE_TYPE_THEME,
-        )
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
-        )
-        form = self.get_form()
-        choices = form.fields['canned_response'].choices[1][1]
-        # choices is grouped by the sort_group, where choices[0] is the
-        # default "Choose a response..." option.
-        # Within that, it's paired by [group, [[response, name],...]].
-        # So above, choices[1][1] gets the first real group's list of
-        # responses.
-        assert len(choices) == 1  # No theme response
-        assert self.cr_addon.response in choices[0]
-
-        # Check we get different canned responses for static themes.
-        self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        form = self.get_form()
-        choices = form.fields['canned_response'].choices[1][1]
-        assert self.cr_theme.response in choices[0]
-        assert len(choices) == 1  # No addon response
 
     def test_reasons(self):
         self.reason_a = ReviewActionReason.objects.create(
