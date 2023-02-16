@@ -44,6 +44,13 @@ def process_email(message, spam_rating, **kwargs):
 
 @task
 def create_ratinglog(activitylog_ids):
+    log.info(
+        'Creating RatingLog for activities %d-%d [%d]',
+        activitylog_ids[0],
+        activitylog_ids[-1],
+        len(activitylog_ids)
+    )
+
     alogs = ActivityLog.objects.filter(id__in=activitylog_ids)
     for alog in alogs:
         rating = None
@@ -52,5 +59,6 @@ def create_ratinglog(activitylog_ids):
                 rating = obj
                 break
         else:
+            log.info('No Rating to create a RatingLog for in ActivityLog %s', alog.pk)
             continue
         RatingLog.objects.get_or_create(activity_log=alog, rating=rating)
