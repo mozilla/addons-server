@@ -7,7 +7,6 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
@@ -22,7 +21,6 @@ from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
 from rest_framework.exceptions import NotFound
-from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (
     CreateModelMixin,
     DestroyModelMixin,
@@ -73,7 +71,6 @@ from olympia.reviewers.forms import (
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    CannedResponse,
     ReviewerSubscription,
     Whiteboard,
     clear_reviewing_cache,
@@ -88,7 +85,6 @@ from olympia.reviewers.serializers import (
     AddonCompareVersionSerializer,
     AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer,
-    CannedResponseSerializer,
     DiffableVersionSerializer,
     DraftCommentSerializer,
     FileInfoSerializer,
@@ -1525,18 +1521,3 @@ class ReviewAddonVersionCompareViewSet(
             instance=version, data={'parent_version': objs['parent_version']}
         )
         return Response(serializer.data)
-
-
-class CannedResponseViewSet(ListAPIView):
-    permission_classes = [AllowAnyKindOfReviewer]
-
-    queryset = CannedResponse.objects.all()
-    serializer_class = CannedResponseSerializer
-    # The amount of data will be small so that paginating will be
-    # overkill and result in unnecessary additional requests
-    pagination_class = None
-
-    @classmethod
-    def as_view(cls, **initkwargs):
-        """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(super().as_view(**initkwargs))
