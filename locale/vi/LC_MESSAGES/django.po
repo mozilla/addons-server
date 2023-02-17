@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-17 06:51+0000\n"
+"PO-Revision-Date: 2023-02-17 06:53+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -824,9 +824,8 @@ msgstr "Chặn hành động đăng xuất"
 msgid "User {user} session(s) reset."
 msgstr "Đã đặt lại phiên người dùng {user}."
 
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
-msgstr "Nội dung {addon} {version} đã từ chối."
+msgstr ""
 
 msgid "Content reject scheduled"
 msgstr "Đã lên lịch nội dung bị từ chối"
@@ -4704,7 +4703,7 @@ msgid "Return To AMO is currently disabled"
 msgstr "Quay lại AMO hiện đang bị vô hiệu hóa"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Guid Quay lại AMO không hợp lệ (không phải ở định dạng base64url?)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
@@ -5066,7 +5065,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Nhiều tiện ích vi phạm chính sách của chúng tôi đã được gửi từ địa chỉ của bạn. Địa chỉ IP đã bị chặn."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "Mẫu email"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
