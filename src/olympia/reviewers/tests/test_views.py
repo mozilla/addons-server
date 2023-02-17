@@ -5667,6 +5667,25 @@ class TestReview(ReviewBase):
         )
         self.assert3xx(response, self.listed_url)
 
+    def test_links_to_developer_profile(self):
+        author = self.addon.authors.all()[0]
+        response = self.client.get(self.url)
+        self.assertContains(response, author.name)
+        self.assertContains(
+            response, reverse('reviewers.developer_profile', args=(author.id,))
+        )
+
+        another_author = user_factory()
+        AddonUser.objects.create(addon=self.addon, user=another_author)
+        response = self.client.get(self.url)
+        print(response.content)
+        self.assertContains(response, another_author.name)
+        profile_url = reverse('reviewers.developer_profile', args=(another_author.id,))
+        self.assertContains(response, profile_url)
+        self.assertContains(
+            response, f'{author.name}</a>,        <a href="{profile_url}">'
+        )
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):
@@ -6138,6 +6157,93 @@ class TestPolicyView(ReviewerTest):
         assert response.status_code == 200
         self.assertContains(response, 'Prívacy Pólicy?')
         self.assertContains(response, str(unlisted_review_url))
+
+
+class TestDeveloperProfile(ReviewerTest):
+    def setUp(self):
+        super().setUp()
+        self.developer = user_factory()
+        self.addon = addon_factory(users=(self.developer,))
+        self.login_as_reviewer()
+        self.url = reverse(
+            'reviewers.developer_profile',
+            args=(self.developer.pk,),
+        )
+
+    def test_basic(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        self.assertContains(response, f'User #{self.developer.id} – Reviewer Tools')
+        self.assertContains(
+            response,
+            'Developer profile for User: '
+            f'<a href="{self.developer.get_url_path()}">'
+            f'{self.developer.id} {self.developer.name}</a>',
+        )
+        self.assertContains(response, f'&lt;{self.developer.email}&gt;')
+
+        self.assertContains(response, self.addon.get_url_path())
+        self.assertContains(response, self.addon.guid)
+        self.assertContains(response, 'Extension')
+        self.assertContains(response, 'Approved')
+        self.assertContains(response, 'Owner')
+
+    def test_deleted_owner(self):
+        self.addon.addonuser_set.get(user=self.developer).delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        self.assertContains(response, f'User #{self.developer.id} – Reviewer Tools')
+        self.assertContains(
+            response,
+            'Developer profile for User: '
+            f'<a href="{self.developer.get_url_path()}">'
+            f'{self.developer.id} {self.developer.name}</a>',
+        )
+        self.assertContains(response, f'&lt;{self.developer.email}&gt;')
+
+        self.assertContains(response, self.addon.get_url_path())
+        self.assertContains(response, self.addon.guid)
+        self.assertContains(response, '(Deleted)')
+
+    def test_deleted_addon(self):
+        self.addon.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        self.assertContains(response, f'User #{self.developer.id} – Reviewer Tools')
+        self.assertContains(
+            response,
+            'Developer profile for User: '
+            f'<a href="{self.developer.get_url_path()}">'
+            f'{self.developer.id} {self.developer.name}</a>',
+        )
+        self.assertContains(response, f'&lt;{self.developer.email}&gt;')
+        self.assertContains(response, self.addon.guid)
+        self.assertNotContains(response, f'">{self.addon.id}: {self.addon.name}</a>')
+        self.assertContains(response, f'{self.addon.id}: {self.addon.name}')
+        self.assertContains(response, 'Owner')
+
+    def test_deleted_user(self):
+        AddonUser.objects.create(addon=self.addon, user=user_factory())
+        self.developer.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(response, f'User #{self.developer.id} – Reviewer Tools')
+        self.assertContains(
+            response,
+            'Developer profile for User: '
+            f'<a href="{self.developer.get_url_path()}">'
+            f'{self.developer.id} {self.developer.name}</a>',
+        )
+        self.assertContains(response, f'&lt;{self.developer.email}&gt;')
+
+        self.assertContains(response, self.addon.get_url_path())
+        self.assertContains(response, self.addon.guid)
+        self.assertContains(response, 'Extension')
+        self.assertContains(response, 'Approved')
+        self.assertContains(response, '(Deleted)')
 
 
 class TestAddonReviewerViewSet(TestCase):

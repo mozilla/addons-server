@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
+from olympia.users.urls import USER_ID
 
 
 # All URLs under /reviewers/
@@ -96,5 +97,10 @@ urlpatterns = (
         r'^download-git-file/(?P<version_id>\d+)/(?P<filename>.*)/',
         views.download_git_stored_file,
         name='reviewers.download_git_file',
+    ),
+    re_path(
+        r'^developer_profile/%s$' % USER_ID,
+        views.developer_profile,
+        name='reviewers.developer_profile',
     ),
 )
