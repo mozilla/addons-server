@@ -6521,15 +6521,13 @@ class TestAddonReviewerViewSet(TestCase):
         instance = AddonReviewerFlags.objects.create(addon=self.addon)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
-        from unittest import mock
-
         with mock.patch(
             'olympia.reviewers.views.AddonReviewerFlags.objects.get_or_create',
-        ) as mock:
+        ) as mocked_get_or_create:
             # Force a fake race condition by modifying a flag on the instance
             # the serializer receives that wasn't passed in the PATCH call.
             instance.auto_approval_disabled_unlisted = True
-            mock.return_value = instance, False
+            mocked_get_or_create.return_value = instance, False
             response = self.client.patch(
                 self.flags_url, {'auto_approval_disabled': True}
             )
