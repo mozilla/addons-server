@@ -7,7 +7,7 @@ import tarfile
 import tempfile
 import zipfile
 
-from collections import Counter
+from collections import Counter, OrderedDict
 from datetime import datetime
 from unittest import mock
 from unittest.mock import patch
@@ -887,10 +887,17 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == DeveloperAddonSerializer(
+        expected_version = addon.find_latest_version(channel=None)
+        assert expected_version.channel == amo.CHANNEL_UNLISTED
+        expected_data = DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(addon)
-        assert addon.find_latest_version(channel=None).channel == amo.CHANNEL_UNLISTED
+        # The additional `version` property contains the version we just
+        # uploaded.
+        expected_data['version'] = DeveloperVersionSerializer(
+            context={'request': request}
+        ).to_representation(expected_version)
+        assert dict(data) == dict(expected_data)
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
@@ -919,10 +926,18 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == DeveloperAddonSerializer(
+        expected_version = addon.find_latest_version(channel=None)
+        assert expected_version.channel == amo.CHANNEL_LISTED
+        expected_data = DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(addon)
-        assert addon.current_version.channel == amo.CHANNEL_LISTED
+        expected_data = OrderedDict(sorted(expected_data.items()))
+        # The additional `version` property contains the version we just
+        # uploaded.
+        expected_data['version'] = DeveloperVersionSerializer(
+            context={'request': request}
+        ).to_representation(expected_version)
+        assert dict(data) == dict(expected_data)
         assert (
             ActivityLog.objects.for_addons(addon)
             .filter(action=amo.LOG.CREATE_ADDON.id)
@@ -1665,9 +1680,16 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         request = APIRequestFactory().get('/')
         request.version = 'v5'
         request.user = self.user
-        assert data == DeveloperAddonSerializer(
+
+        expected_data = DeveloperAddonSerializer(
             context={'request': request}
         ).to_representation(self.addon)
+        if 'version' in getattr(self, 'minimal_data', {}):
+            expected_version = self.addon.find_latest_version(channel=None)
+            expected_data['version'] = DeveloperVersionSerializer(
+                context={'request': request}
+            ).to_representation(expected_version)
+        assert dict(data) == dict(expected_data)
         assert self.addon.summary == 'summary update!'
         alog = ActivityLog.objects.exclude(
             action__in=(
