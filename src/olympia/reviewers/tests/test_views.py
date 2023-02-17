@@ -6531,6 +6531,8 @@ class TestAddonReviewerViewSet(TestCase):
             response = self.client.patch(
                 self.flags_url, {'auto_approval_disabled': True}
             )
+            # Make sure our mock was correctly called.
+            assert mocked_get_or_create.call_count == 1
         assert response.status_code == 200
         assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
