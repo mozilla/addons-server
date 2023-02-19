@@ -1,4 +1,4 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "Kết nối tới máy chủ có vấn đề."
+msgstr ""
 
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
