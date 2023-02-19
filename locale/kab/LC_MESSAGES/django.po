@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-19 19:22+0000\n"
+"PO-Revision-Date: 2023-02-19 19:25+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -683,7 +683,7 @@ msgid "User {user} added to {group}."
 msgstr "Aseqdac {user} yettwarna ɣer {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Aseqdac {user} yettwakkes seg {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} ur yettwabder ara."
@@ -4255,7 +4255,7 @@ msgstr "Kkes amsal seg uḍris yettwaneɣlen ɣer tecfawt."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Ammesten n tudert tabaḍnit s udsil umḍin."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
