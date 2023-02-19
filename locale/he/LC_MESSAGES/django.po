@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-19 21:41+0000\n"
+"PO-Revision-Date: 2023-02-19 21:44+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2279,10 +2279,10 @@ msgid "Top"
 msgstr "למעלה"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "מחיקת התוספת שלךך תמחק לצמיתות את כל הגרסאות והקבצים שהגשת עבור תוספת זו, בין אם הן מוצגות או לא."
+msgstr "מחיקת התוספת שלך תמחק לצמיתות את כל הגרסאות והקבצים שהגשת עבור תוספת זו, בין אם הן מוצגות או לא."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "לא ניתן לשחזר את מזהה התוספת, והוא לנצח יהיה בלתי שמיש להגשה."
 
 msgid "Delete Add-on"
 msgstr "מחיקת תוספת"
@@ -3217,7 +3217,7 @@ msgid "Delete Version"
 msgstr "מחיקת גרסה"
 
 msgid "Disable Version"
-msgstr "נטרול גרסה"
+msgstr "השבתת הגרסה"
 
 #, python-format
 msgid ""
