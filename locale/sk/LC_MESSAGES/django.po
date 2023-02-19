@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-19 14:27+0000\n"
+"PO-Revision-Date: 2023-02-19 14:41+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2982,7 +2982,7 @@ msgstr "E-mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
-msgstr "Súhlasím s tým, že Mozilla narába s mojimi informáciami tak, ako je vysvetlené v týchto %(link_open)sZásadách ochrany osobných údajov%(link_close)s."
+msgstr "Súhlasím s tým, že Mozilla narába s mojimi informáciami tak, ako je vysvetlené v tomto %(link_open)sVyhlásení o ochrane osobných údajov%(link_close)s."
 
 msgid "Sign Up"
 msgstr "Zaregistrovať sa"
