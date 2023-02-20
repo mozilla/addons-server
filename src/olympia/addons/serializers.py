@@ -942,7 +942,7 @@ class AddonSerializer(AMOModelSerializer):
     )
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
-        write_only=True,
+        write_only=True,  # Overridden in create/update to expose the version submitted.
         validators=(
             PreventPartialUpdateValidator(),
             MatchingGuidValidator(),
