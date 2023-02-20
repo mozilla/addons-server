@@ -942,7 +942,7 @@ class AddonSerializer(AMOModelSerializer):
     )
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
-        write_only=True,
+        write_only=True,  # Overridden in create/update to expose the version submitted.
         validators=(
             PreventPartialUpdateValidator(),
             MatchingGuidValidator(),
@@ -1196,11 +1196,12 @@ class AddonSerializer(AMOModelSerializer):
         # Add categories
         addon.set_categories(validated_data.get('all_categories', []))
         addon.set_tag_list(validated_data.get('tag_list', []))
-
-        self.fields['version'].create(
+        addon.version = self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
         )
-
+        # When creating, always return the version we just created in the
+        # representation. It uses <instance>.version.
+        self.fields['version'].write_only = False
         addon.update_status()
 
         return addon
@@ -1228,9 +1229,12 @@ class AddonSerializer(AMOModelSerializer):
             del instance.tag_list  # super.update will have set it.
             instance.set_tag_list(validated_data['tag_list'])
         if 'version' in validated_data:
-            self.fields['version'].create(
+            instance.version = self.fields['version'].create(
                 {**validated_data.get('version', {}), 'addon': instance}
             )
+            # When updating, always return the version we just created in the
+            # representation if there was one.
+            self.fields['version'].write_only = False
 
         self.log(instance, validated_data)
         return instance
