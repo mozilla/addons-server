@@ -22,6 +22,7 @@ services:
   worker: &worker
     <<: *env
     image: addons/addons-server:latest
+    platform: linux/amd64
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     user: olympia
     volumes:
@@ -31,6 +32,7 @@ services:
 
   web:
     <<: *worker
+    platform: linux/amd64
     command: supervisord -n -c /code/docker/supervisor.conf
 
   nginx:
@@ -55,6 +57,8 @@ services:
 
   memcached:
     image: memcached:1.4
+    # Remove this once we upgrade to a version that provides multi-platform images
+    platform: linux/amd64
 
   mysqld:
     image: mysql:8.0
@@ -92,6 +96,7 @@ services:
 
   autograph:
     image: mozilla/autograph:3.3.2
+    platform: linux/amd64
     command: /go/bin/autograph -c /code/scripts/autograph_localdev_config.yaml
     volumes:
       - .:/code
@@ -99,6 +104,7 @@ services:
   addons-frontend:
     <<: *env
     image: mozilla/addons-frontend:latest
+    platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the
       # webpack port to avoid a conflict in case someone runs both addons-server
