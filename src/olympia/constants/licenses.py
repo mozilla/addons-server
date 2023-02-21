@@ -48,14 +48,14 @@ class LICENSE_LGPL3(_LicenseBase):
 
 class LICENSE_MIT(_LicenseBase):
     name = _('The MIT License')
-    url = 'http://www.opensource.org/licenses/mit-license.php'
+    url = 'http://www.opensource.org/license/mit'
     builtin = 6
     slug = 'MIT'
 
 
 class LICENSE_BSD(_LicenseBase):
     name = _('The BSD License')
-    url = 'http://www.opensource.org/licenses/bsd-license.php'
+    url = 'http://www.opensource.org/license/bsd-2-clause'
     builtin = 7
     slug = 'BSD-2-Clause'
 

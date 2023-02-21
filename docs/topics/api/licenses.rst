@@ -30,8 +30,8 @@ Open source license slugs are taken from the `SPDX License list <https://spdx.or
        GPL-3.0-or-later  `GNU General Public License v3.0 (or later) <http://www.gnu.org/licenses/gpl-3.0.html>`_
       LGPL-2.1-or-later  `GNU Library General Public License v2.1 (or later) <http://www.gnu.org/licenses/lgpl-2.1.html>`_
       LGPL-3.0-or-later  `GNU Library General Public License v3.0 (or later) <http://www.gnu.org/licenses/lgpl-3.0.html>`_
-                    MIT  `The MIT License <http://www.opensource.org/licenses/mit-license.php>`_
-           BSD-2-Clause  `The BSD (2 clause) License <http://www.opensource.org/licenses/bsd-license.php>`_
+                    MIT  `The MIT License <http://www.opensource.org/license/mit>`_
+           BSD-2-Clause  `The BSD (2 clause) License <http://www.opensource.org/license/bsd-2-clause>`_
     ===================  ==============================================================
 
 
