@@ -1013,8 +1013,8 @@ LOGGING = {
 }
 
 # CSP Settings
-
-ANALYTICS_HOST = 'https://www.google-analytics.com'
+# See https://github.com/mozilla/bedrock/issues/11768
+ANALYTICS_HOST = 'https://*.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = False
