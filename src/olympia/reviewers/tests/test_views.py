@@ -6623,6 +6623,32 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.flags_url)
         assert response.status_code == 404
 
+    def test_patch_flags_only_save_changed(self):
+        instance = AddonReviewerFlags.objects.create(addon=self.addon)
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.client.login_api(self.user)
+        with mock.patch(
+            'olympia.reviewers.views.AddonReviewerFlags.objects.get_or_create',
+        ) as mocked_get_or_create:
+            # Force a fake race condition by modifying a flag on the instance
+            # the serializer receives that wasn't passed in the PATCH call.
+            instance.auto_approval_disabled_unlisted = True
+            mocked_get_or_create.return_value = instance, False
+            response = self.client.patch(
+                self.flags_url, {'auto_approval_disabled': True}
+            )
+            # Make sure our mock was correctly called.
+            assert mocked_get_or_create.call_count == 1
+        assert response.status_code == 200
+        assert AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        reviewer_flags = AddonReviewerFlags.objects.get(addon=self.addon)
+        # That flag should have been saved.
+        assert reviewer_flags.auto_approval_disabled
+        # That flag we forced to set on the instance earlier should not have
+        # been saved in the database as it wasn't part of the request data.
+        assert reviewer_flags.auto_approval_disabled_unlisted is None
+        assert ActivityLog.objects.count() == 0
+
     def test_patch_flags_no_flags_yet_still_works_transparently(self):
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         self.grant_permission(self.user, 'Reviews:Admin')

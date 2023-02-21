@@ -53,6 +53,17 @@ class AddonReviewerFlagsSerializer(AMOModelSerializer):
             'needs_admin_theme_review',
         )
 
+    def update(self, instance, validated_data):
+        # Only update fields that changed. Note that this only supports basic
+        # fields.
+        if self.partial and instance:
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+            instance.save(update_fields=validated_data.keys())
+        else:
+            instance = super().update(instance, validated_data)
+        return instance
+
 
 class FileEntriesMixin:
     def _get_version(self):
