@@ -54,7 +54,7 @@ class AddonReviewerFlagsSerializer(AMOModelSerializer):
         )
 
     def update(self, instance, validated_data):
-        # Only update fields that changed. Note that this only support basic
+        # Only update fields that changed. Note that this only supports basic
         # fields.
         if self.partial and instance:
             for attr, value in validated_data.items():
