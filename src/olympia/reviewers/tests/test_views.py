@@ -2784,7 +2784,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(54):
+        with self.assertNumQueries(55):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2806,47 +2806,48 @@ class TestReview(ReviewBase):
             # 11. previews
             # 12. autoapprovalsummary for current version
             # 13. promoted info for the add-on
-            # 14. latest version + file
-            # 15. latest version translations
-            # 16. latest version (repeated because different status filter)
-            # 17. latest version translations (repeated because different qs)
-            # 18. addon reviewer flags
-            # 19. version reviewer flags
-            # 20. version reviewer flags (repeated)
-            # 21. autoapprovalsummary (repeated)
-            # 22. addonreusedguid
-            # 23. blocklist
-            # 24. abuse reports count against user or addon
-            # 25. low ratings count
-            # 26. base version pk for comparison
-            # 27. count of all versions in channel
-            # 28. paginated list of versions in channel
-            # 29. scanner results for paginated list of versions
-            # 30. translations for  paginated list of versions
-            # 31. applications versions for  paginated list of versions
-            # 32. files for  paginated list of versions
-            # 33. activity log for  paginated list of versions
-            # 34. ready for auto-approval info for  paginated list of versions
-            # 35. versionreviewer flags exists to find out if pending rejection
-            # 36. count versions needing human review on other pages
-            # 37. count versions needing human review by mad on other pages
-            # 38. count versions pending rejection on other pages
-            # 39. whiteboard
-            # 40. reviewer subscriptions for listed
-            # 41. reviewer subscriptions for unlisted
-            # 42. release savepoint (?)
-            # 43. config for motd
-            # 44. count add-ons the user is a developer of
-            # 45. config for site notice
-            # 46. translations for... (?! id=1)
-            # 47. important activity log about the add-on
-            # 48. user for the activity (from the ActivityLog foreignkey)
-            # 49. user for the activity (from the ActivityLog arguments)
-            # 50. add-on for the activity
-            # 51. translation for the add-on for the activity
-            # 52. select all versions in channel for versions dropdown widget
-            # 53. reviewer reasons for the reason dropdown
-            # 54. select users by role for this add-on (?)
+            # 14. needs_human_review status for all versions in channel
+            # 15. latest version + file
+            # 16. latest version translations
+            # 17. latest version (repeated because different status filter)
+            # 18. latest version translations (repeated because different qs)
+            # 19. addon reviewer flags
+            # 20. version reviewer flags
+            # 21. version reviewer flags (repeated)
+            # 22. autoapprovalsummary (repeated)
+            # 23. addonreusedguid
+            # 24. blocklist
+            # 25. abuse reports count against user or addon
+            # 26. low ratings count
+            # 27. base version pk for comparison
+            # 28. count of all versions in channel
+            # 29. paginated list of versions in channel
+            # 30. scanner results for paginated list of versions
+            # 31. translations for  paginated list of versions
+            # 32. applications versions for  paginated list of versions
+            # 33. files for  paginated list of versions
+            # 34. activity log for  paginated list of versions
+            # 35. ready for auto-approval info for  paginated list of versions
+            # 36. versionreviewer flags exists to find out if pending rejection
+            # 37. count versions needing human review on other pages
+            # 38. count versions needing human review by mad on other pages
+            # 39. count versions pending rejection on other pages
+            # 40. whiteboard
+            # 41. reviewer subscriptions for listed
+            # 42. reviewer subscriptions for unlisted
+            # 43. release savepoint (?)
+            # 44. config for motd
+            # 45. count add-ons the user is a developer of
+            # 46. config for site notice
+            # 47. translations for... (?! id=1)
+            # 48. important activity log about the add-on
+            # 49. user for the activity (from the ActivityLog foreignkey)
+            # 50. user for the activity (from the ActivityLog arguments)
+            # 51. add-on for the activity
+            # 52. translation for the add-on for the activity
+            # 53. select all versions in channel for versions dropdown widget
+            # 54. reviewer reasons for the reason dropdown
+            # 55. select users by role for this add-on (?)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4806,6 +4807,34 @@ class TestReview(ReviewBase):
         )
         self.assertRedirects(response, new_block_url)
 
+    def test_clear_needs_human_review(self):
+        old_version = self.version
+        old_version.update(needs_human_review=True)
+        self.version = version_factory(addon=self.addon, needs_human_review=True)
+
+        GroupUser.objects.filter(user=self.reviewer).all().delete()
+        self.grant_permission(self.reviewer, 'Addons:Review')
+
+        response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
+        # the action needs an admin
+        assert response.status_code == 200
+        assert self.version.reload().needs_human_review
+        assert old_version.reload().needs_human_review
+
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
+        assert response.status_code == 302
+        assert not self.version.reload().needs_human_review
+        assert not old_version.reload().needs_human_review
+
+    def test_clear_needs_human_review_deleted_addon(self):
+        self.addon.delete()
+        self.test_clear_needs_human_review()
+
+    def test_block_multiple_versions_deleted_addon(self):
+        self.addon.delete()
+        self.test_block_multiple_versions()
+
     def test_important_changes_log(self):
         # Activity logs related to user changes should be displayed.
         # Create an activy log for each of the following: user addition, role
@@ -5502,7 +5531,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(51):
+        with self.assertNumQueries(52):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5678,7 +5707,6 @@ class TestReview(ReviewBase):
         another_author = user_factory()
         AddonUser.objects.create(addon=self.addon, user=another_author)
         response = self.client.get(self.url)
-        print(response.content)
         self.assertContains(response, another_author.name)
         profile_url = reverse('reviewers.developer_profile', args=(another_author.id,))
         self.assertContains(response, profile_url)
