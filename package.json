@@ -29,6 +29,6 @@
     "jest-environment-jsdom": "^29.4.3",
     "lodash": "^4.17.21",
     "prettier": "^2.8.4",
-    "terser": "^5.16.3"
+    "terser": "^5.16.4"
   }
 }
