@@ -448,6 +448,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-01-05: added ``applications/<application>/`` API endpoint to list all valid appversions for a given application. https://github.com/mozilla/addons-server/issues/20066
 * 2023-01-12: added the ability to delete add-on versions. https://github.com/mozilla/addons-server/issues/19784
 * 2023-02-23: removed the /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/20354
+* 2023-02-23: removed ``canned-response`` from the /draft_comments/ endpoint. https://github.com/mozilla/addons-server/issues/20353
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

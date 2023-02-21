@@ -32,7 +32,6 @@ from olympia.api.serializers import AMOModelSerializer
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File, FileValidation
-from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
@@ -552,19 +551,6 @@ class AddonCompareVersionSerializer(
         pass
 
 
-class CannedResponseSerializer(AMOModelSerializer):
-    # Title is actually more fitting than the internal "name"
-    title = serializers.CharField(source='name')
-    category = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CannedResponse
-        fields = ('id', 'title', 'response', 'category')
-
-    def get_category(self, obj):
-        return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
-
-
 class DraftCommentSerializer(AMOModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
@@ -572,14 +558,6 @@ class DraftCommentSerializer(AMOModelSerializer):
     )
     version_id = serializers.PrimaryKeyRelatedField(
         queryset=Version.unfiltered.all(), source='version'
-    )
-    canned_response = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=CannedResponse.objects.all(), required=False
-        ),
-        CannedResponseSerializer(),
-        allow_null=True,
-        required=False,
     )
 
     class Meta:
@@ -591,7 +569,6 @@ class DraftCommentSerializer(AMOModelSerializer):
             'comment',
             'version_id',
             'user',
-            'canned_response',
         )
 
     def get_or_default(self, key, data, default=''):
@@ -610,19 +587,9 @@ class DraftCommentSerializer(AMOModelSerializer):
         return retval or default
 
     def validate(self, data):
-        canned_response = self.get_or_default('canned_response', data)
         comment = self.get_or_default('comment', data)
 
-        if comment and canned_response:
-            raise serializers.ValidationError(
-                {
-                    'comment': (
-                        "You can't submit a comment if `canned_response` is defined."
-                    )
-                }
-            )
-
-        if not canned_response and not comment:
+        if not comment:
             raise serializers.ValidationError(
                 {'comment': "You can't submit an empty comment."}
             )

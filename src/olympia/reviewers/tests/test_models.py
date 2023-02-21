@@ -27,7 +27,6 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
-    CannedResponse,
     ReviewActionReason,
     ReviewerSubscription,
     get_flags,
@@ -1540,30 +1539,6 @@ class TestAutoApprovalSummary(TestCase):
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
-
-
-class TestCannedResponse(TestCase):
-    def test_basic(self):
-        response = CannedResponse.objects.create(
-            name='Terms of services',
-            response='test',
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        assert response.name == 'Terms of services'
-        assert response.response == 'test'
-        assert response.category == amo.CANNED_RESPONSE_CATEGORY_OTHER
-        assert response.type == amo.CANNED_RESPONSE_TYPE_ADDON
-
-    def test_category_default(self):
-        response = CannedResponse.objects.create(
-            name='Terms of services',
-            response='test',
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        assert response.category == amo.CANNED_RESPONSE_CATEGORY_OTHER
 
 
 class TestReviewActionReason(TestCase):
