@@ -50,6 +50,7 @@ from olympia.reviewers.utils import (
     ReviewUnlisted,
 )
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
 
@@ -134,9 +135,12 @@ class TestReviewHelperBase(TestCase):
         self.addon.update(status=status)
         return self.get_helper().handler.review_type
 
-    def check_log_count(self, id):
+    def check_log_count(self, id, user=None):
+        user = user or self.user
         return (
-            ActivityLog.objects.for_addons(self.helper.addon).filter(action=id).count()
+            ActivityLog.objects.for_addons(self.helper.addon)
+            .filter(action=id, user=user)
+            .count()
         )
 
 
@@ -1133,7 +1137,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id, get_task_user()) == 1
 
         assert not self.review_version.human_review_date
 
@@ -2368,7 +2372,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert logs[0].created == logs[1].created
 
-    def _test_reject_multiple_versions_delayed(self, content_review):
+    def _setup_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
         original_user = self.user
         self.review_version = version_factory(addon=self.addon, version='3.0')
@@ -2418,9 +2422,11 @@ class TestReviewHelper(TestReviewHelperBase):
         for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
             assert log.user == original_user
 
+    def _test_reject_multiple_versions_delayed(self, content_review):
+        self._setup_reject_multiple_versions_delayed(content_review)
+        original_user = self.user
         # Now reject without delay, running as the task user.
-        task_user = UserProfile.objects.get(id=settings.TASK_USER_ID)
-        self.user = task_user
+        self.user = get_task_user()
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
         self.helper = self.get_helper(human_review=False)
@@ -2434,17 +2440,46 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
 
-        assert self.check_log_count(action.id) == 2
-
+        action = (
+            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        )
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
-            assert log.user == original_user
+        assert self.check_log_count(action.id, original_user) == 2
 
     def test_reject_multiple_versions_delayed_code_review(self):
         self._test_reject_multiple_versions_delayed(content_review=False)
 
     def test_reject_multiple_versions_delayed_content_review(self):
         self._test_reject_multiple_versions_delayed(content_review=True)
+
+    def _test_reject_multiple_versions_delayed_with_human(self, content_review):
+        self._setup_reject_multiple_versions_delayed(content_review)
+        # Now reject without delay, as a different reviewer
+        self.user = user_factory()
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper = self.get_helper(human_review=True, content_review=content_review)
+        self.helper.set_data(data)
+
+        # Clear our the ActivityLogs.
+        ActivityLog.objects.all().delete()
+
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
+
+        action = (
+            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        )
+        # The new user is recorded as scheduling the rejection.
+        assert self.check_log_count(action.id, self.user) == 2
+
+    def test_reject_multiple_versions_delayed_with_human_code_review(self):
+        self._test_reject_multiple_versions_delayed_with_human(content_review=False)
+
+    def test_reject_multiple_versions_delayed_with_human_content_review(self):
+        self._test_reject_multiple_versions_delayed_with_human(content_review=True)
 
     def test_approve_content_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')

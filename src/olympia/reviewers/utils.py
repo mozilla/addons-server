@@ -1181,13 +1181,6 @@ class ReviewBase:
                     if flags.pending_content_rejection
                     else amo.LOG.REJECT_VERSION
                 )
-            self.log_action(
-                action_id,
-                version=version,
-                file=file,
-                timestamp=now,
-                user=version.pending_rejection_by,
-            )
             if self.human_review:
                 # Clear needs human review flags on rejected versions, we
                 # consider that the reviewer looked at them before rejecting.
@@ -1207,6 +1200,16 @@ class ReviewBase:
                     },
                 )
                 self.set_human_review_date(version)
+                user_to_attribute_action_to = self.user
+            else:
+                user_to_attribute_action_to = version.pending_rejection_by
+            self.log_action(
+                action_id,
+                version=version,
+                file=file,
+                timestamp=now,
+                user=user_to_attribute_action_to,
+            )
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
