@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-21 21:57+0000\n"
+"PO-Revision-Date: 2023-02-21 22:12+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1306,7 +1306,7 @@ msgid "By Firefox"
 msgstr "Od Firefoxu"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "Vybrané"
 
 msgid "Strategic"
 msgstr "Strategický"
@@ -1430,7 +1430,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "Manifest V3 není v současné době pro nahrávání podporován. {start_href}Přečtěte si více o době podpory{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Upozornění na kompatibilitu s Manifestem V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -2251,7 +2251,7 @@ msgid "While in this state, \"On your own\" is the only distribution method avai
 msgstr "V tomto stavu je jedinou dostupnou metodou distribuce „Vlastní cestou“."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Přiložené zdroje nemůžete změnit, protože tato verze již byla zkontrolována Mozillou."
 
 msgid "General Tests"
 msgstr "Obecné testy"
@@ -2281,7 +2281,7 @@ msgid "Deleting your add-on will permanently delete all versions and files you h
 msgstr "Smazáním doplňku trvale odstraníte všechny jeho verze a soubory, které jste kdy v souvislosti s tímto doplňkem odeslali, ať už veřejně nebo ne."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "ID doplňku nelze obnovit a bude navždy nepoužitelné pro další doplňky."
 
 msgid "Delete Add-on"
 msgstr "Smazat doplněk"
@@ -2512,7 +2512,7 @@ msgid "Edit version {0}"
 msgstr "Upravit verzi {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Připomínáme, že váš doplněk může být kdykoli ručně zkontrolován."
 
 msgid "Go to My Submissions"
 msgstr "Přejít k mým příspěvkům"
