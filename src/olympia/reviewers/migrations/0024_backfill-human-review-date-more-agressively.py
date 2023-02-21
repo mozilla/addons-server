@@ -8,6 +8,10 @@ from olympia.constants.activity import LOG
 class Migration(migrations.Migration):
     dependencies = [
         ('reviewers', '0023_delete_reviewerscore'),
+        ('versions', '0034_auto_20230131_1821'),  # Need human_review_date.
+        ('addons', '0001_initial'),  # Need addons
+        ('files', '0001_initial'),  # Need files
+        ('activity', '0001_initial'),  # Need activity
     ]
 
     operations = [
