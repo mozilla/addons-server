@@ -124,6 +124,10 @@ class AlreadyUsedUpload(forms.ValidationError):
     pass
 
 
+class DuplicateAddonID(forms.ValidationError):
+    pass
+
+
 def get_appversions(app, min_version, max_version):
     """Return the `AppVersion`s that correspond to the given versions."""
     qs = AppVersion.objects.filter(application=app.id)
@@ -871,7 +875,7 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             Addon.unfiltered.filter(guid=guid).exists()
             or DeniedGuid.objects.filter(guid=guid).exists()
         ):
-            raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
+            raise DuplicateAddonID(gettext('Duplicate add-on ID found.'))
 
     version_field_max_length = Version.version.field.max_length
     if len(xpi_info['version']) > version_field_max_length:
