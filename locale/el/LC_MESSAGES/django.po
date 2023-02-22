@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-02 14:16+0000\n"
-"Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
+"PO-Revision-Date: 2023-02-22 09:38+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -530,7 +530,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Διαγράφηκε η έκδοση {0} του {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Το αρχείο {file} προστέθηκε στην έκδοση {version} του {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Διαγράφηκε το αρχείο {0} από την έκδοση {version} του {addon}."
@@ -626,7 +626,7 @@ msgstr "Το {0} {1} προστέθηκε."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Ο ρόλος του/της {user} άλλαξε σε {0} για το {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "Το {addon} υπόκειται στην άδεια {0}."
