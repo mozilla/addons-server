@@ -366,7 +366,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :>json string user.name: The name for an author.
     :>json string user.username: The username for an author.
     :>json string|null user.url: The link to the profile page for an author, if the author's profile is public.
-    :>json object|null canned_response: Object holding the :ref:`canned response <reviewers-canned-response-format>` if set.
 
 .. http:post:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
@@ -375,7 +374,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-format>` (optional).
 
     :statuscode 201: New comment has been created.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
@@ -399,20 +397,9 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-format>` (optional).
 
     :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
 
     **Response**
         In case of successful creation, the response is a :ref:`draft comment object<reviewers-draft-comment-detail-object>`.
-
-
-.. _reviewers-canned-response-format:
-
-    Canned response format:
-
-    :>json int id: The canned response id.
-    :>json string title: The title of the canned response.
-    :>json string response: The text that will be filled in as the response.
-    :>json string category: The category of the canned response. For example, "Other", "Privacy reasons" etc.

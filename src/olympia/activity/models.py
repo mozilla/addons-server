@@ -23,7 +23,7 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason
+from olympia.reviewers.models import ReviewActionReason
 
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
@@ -260,9 +260,6 @@ class DraftComment(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, null=True, blank=True)
     lineno = models.PositiveIntegerField(null=True)
-    canned_response = models.ForeignKey(
-        CannedResponse, null=True, default=None, on_delete=models.SET_DEFAULT
-    )
     comment = models.TextField(blank=True)
 
     class Meta:

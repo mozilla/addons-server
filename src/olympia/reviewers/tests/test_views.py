@@ -64,14 +64,12 @@ from olympia.git.tests.test_utils import apply_changes
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    CannedResponse,
     ReviewActionReason,
     ReviewerSubscription,
     Whiteboard,
 )
 from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
 from olympia.reviewers.views import _queue
-from olympia.reviewers.serializers import CannedResponseSerializer
 from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
@@ -2676,21 +2674,6 @@ class TestReview(ReviewBase):
             self.url, {'action': 'super', 'comments': 'hello sailor'}
         )
         assert response.status_code == 302
-
-    def test_reviewer_reply_canned_response(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
-        response = self.client.post(
-            self.url,
-            {
-                'action': 'reply',
-                'comments': 'hello sailor',
-                'canned_response': 'foo',
-                'reasons': [reason.id],
-            },
-        )
-        assert response.status_code == 302
-        assert len(mail.outbox) == 1
-        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
 
     def test_page_title(self):
         response = self.client.get(self.url)
@@ -7402,7 +7385,6 @@ class TestDraftCommentViewSet(TestCase):
             'filename': 'manifest.json',
             'lineno': 20,
             'comment': 'Some really fancy comment',
-            'canned_response': None,
             'version_id': self.version.pk,
             'user': json.loads(
                 json.dumps(
@@ -7577,7 +7559,6 @@ class TestDraftCommentViewSet(TestCase):
         assert response.json()['comment'] == 'Some really fancy comment'
         assert response.json()['lineno'] is None
         assert response.json()['filename'] is None
-        assert response.json()['canned_response'] is None
 
     def test_delete(self):
         user = user_factory(username='reviewer')
@@ -7605,40 +7586,6 @@ class TestDraftCommentViewSet(TestCase):
         assert response.status_code == 204
 
         assert DraftComment.objects.first() is None
-
-    def test_canned_response_and_comment_not_together(self):
-        user = user_factory(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        canned_response = CannedResponse.objects.create(
-            name='Terms of services',
-            response="doesn't regard our terms of services",
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        data = {
-            'comment': 'Some really fancy comment',
-            'canned_response': canned_response.pk,
-            'lineno': 20,
-            'filename': 'manifest.json',
-        }
-
-        url = reverse_ns(
-            'reviewers-versions-draft-comment-list',
-            kwargs={
-                'addon_pk': self.addon.pk,
-                'version_pk': self.version.pk,
-            },
-        )
-
-        response = self.client.post(url, data)
-        assert response.status_code == 400
-        assert (
-            str(response.data['comment'][0])
-            == "You can't submit a comment if `canned_response` is defined."
-        )
 
     def test_doesnt_allow_empty_comment(self):
         user = user_factory(username='reviewer')
@@ -7689,87 +7636,6 @@ class TestDraftCommentViewSet(TestCase):
             == "You can't submit a line number without associating it to a "
             'filename.'
         )
-
-    def test_allows_explicit_canned_response_null(self):
-        user = user_factory(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        data = {
-            'comment': 'Some random comment',
-            'canned_response': None,
-            'lineno': 20,
-            'filename': 'manifest.json',
-        }
-
-        url = reverse_ns(
-            'reviewers-versions-draft-comment-list',
-            kwargs={
-                'addon_pk': self.addon.pk,
-                'version_pk': self.version.pk,
-            },
-        )
-
-        response = self.client.post(url, data)
-        assert response.status_code == 201
-
-    def test_canned_response(self):
-        user = user_factory(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        canned_response = CannedResponse.objects.create(
-            name='Terms of services',
-            response="doesn't regard our terms of services",
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        data = {
-            'canned_response': canned_response.pk,
-            'lineno': 20,
-            'filename': 'manifest.json',
-        }
-
-        url = reverse_ns(
-            'reviewers-versions-draft-comment-list',
-            kwargs={
-                'addon_pk': self.addon.pk,
-                'version_pk': self.version.pk,
-            },
-        )
-
-        response = self.client.post(url, data)
-        comment_id = response.json()['id']
-
-        assert response.status_code == 201
-        assert DraftComment.objects.count() == 1
-
-        response = self.client.get(url)
-
-        request = APIRequestFactory().get('/')
-        request.user = user
-
-        assert response.json()['count'] == 1
-        assert response.json()['results'][0] == {
-            'id': comment_id,
-            'filename': 'manifest.json',
-            'lineno': 20,
-            'comment': '',
-            'canned_response': json.loads(
-                json.dumps(
-                    CannedResponseSerializer(canned_response).data,
-                    cls=amo.utils.AMOJSONEncoder,
-                )
-            ),
-            'version_id': self.version.id,
-            'user': json.loads(
-                json.dumps(
-                    BaseUserSerializer(user, context={'request': request}).data,
-                    cls=amo.utils.AMOJSONEncoder,
-                )
-            ),
-        }
 
     def test_delete_not_comment_owner(self):
         user = user_factory(username='reviewer')

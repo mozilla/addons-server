@@ -25,7 +25,7 @@ from olympia.amo.tests import (
 )
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason
+from olympia.reviewers.models import ReviewActionReason
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -510,24 +510,4 @@ class TestDraftComment(TestCase):
         assert comment.version == addon.current_version
         assert comment.filename is None
         assert comment.lineno is None
-        assert comment.canned_response is None
         assert comment.comment == ''
-
-    def test_canned_response_on_delete(self):
-        addon = addon_factory()
-        user = user_factory()
-
-        canned_response = CannedResponse.objects.create(
-            name='Terms of services',
-            response='test',
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        DraftComment.objects.create(
-            user=user, version=addon.current_version, canned_response=canned_response
-        )
-
-        canned_response.delete()
-
-        assert DraftComment.objects.get().canned_response is None

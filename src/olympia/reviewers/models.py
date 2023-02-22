@@ -15,7 +15,6 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
@@ -93,28 +92,6 @@ def set_reviewing_cache(addon_id, user_id):
     cache.set(
         get_reviewing_cache_key(addon_id), user_id, amo.REVIEWER_VIEWING_INTERVAL * 2
     )
-
-
-class CannedResponse(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    response = models.TextField()
-    sort_group = models.CharField(max_length=255)
-    type = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_TYPE_CHOICES.items(), db_index=True, default=0
-    )
-
-    # Category is used only by code-manager
-    category = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_CATEGORY_CHOICES.items(),
-        default=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-    )
-
-    class Meta:
-        db_table = 'cannedresponses'
-
-    def __str__(self):
-        return str(self.name)
 
 
 def get_flags(addon, version):

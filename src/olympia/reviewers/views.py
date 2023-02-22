@@ -1414,13 +1414,9 @@ class ReviewAddonVersionDraftCommentViewSet(
         super().check_object_permissions(self.request, version.addon)
 
     def get_queryset(self):
-        # Preload version once for all drafts returned, and join with user and
-        # canned response to avoid extra queries for those.
-        return (
-            self.get_version_object()
-            .draftcomment_set.all()
-            .select_related('user', 'canned_response')
-        )
+        # Preload version once for all drafts returned, and join with user to
+        # avoid extra queries for those.
+        return self.get_version_object().draftcomment_set.all().select_related('user')
 
     def get_object(self, **kwargs):
         qset = self.filter_queryset(self.get_queryset())
