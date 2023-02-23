@@ -37,7 +37,12 @@ from olympia.files.models import (
     WebextPermission,
     track_file_status_change,
 )
-from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
+from olympia.files.utils import (
+    check_xpi_info,
+    DuplicateAddonID,
+    ManifestJSONExtractor,
+    parse_addon,
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -534,8 +539,9 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='@webextension-guid', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse()
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_no_dupe_webextension_no_id(self):
@@ -544,15 +550,17 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_guid_dupe_webextension_guid_given(self):
         Addon.objects.create(guid='@webextension-guid', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse(filename='webextension.xpi')
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_dupe_deleted_addon_not_allowed_if_same_author_and_switch_is_off(self):
         addon = addon_factory(guid='@webextension-guid', users=[self.user])
         addon.delete()
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse(filename='webextension.xpi')
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_nomatch_webextension(self):

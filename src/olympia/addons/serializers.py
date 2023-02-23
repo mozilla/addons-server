@@ -20,6 +20,7 @@ from olympia.amo.validators import (
     OneOrMoreLetterOrNumberCharacterValidator,
     PreventPartialUpdateValidator,
 )
+from olympia.api.exceptions import Conflict
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -39,7 +40,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
@@ -486,7 +487,10 @@ class DeveloperVersionSerializer(VersionSerializer):
         if not own_upload or not value.valid or value.validation_timeout:
             raise exceptions.ValidationError(gettext('Upload is not valid.'))
         # Parse the file to get and validate package data with the addon.
-        self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
+        try:
+            self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
+        except DuplicateAddonID as exc:
+            raise Conflict({self.field_name: exc.messages})
         return value
 
     def _check_blocklist(self, guid, version_string):
@@ -517,9 +521,7 @@ class DeveloperVersionSerializer(VersionSerializer):
                 )
             else:
                 msg = gettext('Version {version_string} already exists.')
-            raise exceptions.ValidationError(
-                {'version': msg.format(version_string=version_string)}
-            )
+            raise Conflict({'version': [msg.format(version_string=version_string)]})
 
     def validate(self, data):
         if not self.instance:

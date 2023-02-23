@@ -18,6 +18,12 @@ class UnavailableForLegalReasons(exceptions.APIException):
     default_code = 'unavailable_for_legal_reasons'
 
 
+class Conflict(exceptions.APIException):
+    status_code = status.HTTP_409_CONFLICT
+    default_detail = 'Conflict'
+    default_code = 'conflict'
+
+
 def custom_exception_handler(exc, context=None):
     """
     Custom exception handler for DRF, which ensures every exception we throw

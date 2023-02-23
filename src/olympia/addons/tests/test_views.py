@@ -907,6 +907,32 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.statsd_incr_mock.assert_any_call('addons.submission.addon.unlisted')
         self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
 
+    def test_invalid_upload(self):
+        self.upload.update(valid=False)
+        response = self.request()
+        assert response.status_code == 400
+        assert response.json() == {'version': {'upload': ['Upload is not valid.']}}
+
+    def test_not_own_upload(self):
+        self.upload.update(user=user_factory())
+        response = self.request()
+        assert response.status_code == 400
+        assert response.json() == {'version': {'upload': ['Upload is not valid.']}}
+
+    def test_duplicate_addon_id(self):
+        response = self.request()
+        assert response.status_code == 201, response.content
+        self.upload = self.get_upload(
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        self.minimal_data = {'version': {'upload': self.upload.uuid}}
+        response = self.request()
+        assert response.status_code == 409, response.status_code
+        assert response.json() == {'version': ['Duplicate add-on ID found.']}
+
     def test_basic_listed(self):
         self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.request(
@@ -1648,6 +1674,75 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
         self.url = reverse_ns('addon-detail', kwargs={'pk': 'slug'}, api_version='v5')
         response = self.request()
         assert response.status_code == 404
+
+    def test_duplicate_addon_id(self):
+        # When using PUT, we automatically load the add-on if it exists, so we
+        # aren't going to get the Duplicate add-on ID found error that we have
+        # in the add-on creation test, but instead we're going to hit the
+        # version already exists error, so this test is overridden to expect
+        # that different error message.
+        response = self.request()
+        assert response.status_code == 201, response.content
+        self.upload = self.get_upload(
+            'webextension.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        self.minimal_data = {'version': {'upload': self.upload.uuid}}
+        response = self.request()
+        assert response.status_code == 409, response.status_code
+        assert response.json() == {'version': ['Version 0.0.1 already exists.']}
+
+    def test_addon_already_exists_add_version(self):
+        addon = addon_factory(
+            guid='@webextension-guid',
+            version_kw={'version': '0.0.0'},
+            users=[self.user],
+            name='My Custom Addôn Nâme',
+        )
+        ActivityLog.objects.for_addons(addon).delete()  # Start fresh.
+        response = self.request()
+        assert response.status_code == 200
+        data = response.data
+        addon.reload()
+        assert data['name'] == {'en-US': 'My Custom Addôn Nâme'}
+        assert data['status'] == 'public'
+        expected_version = addon.find_latest_version(channel=None)
+        assert expected_version.channel == amo.CHANNEL_UNLISTED
+        assert expected_version.version == '0.0.1'
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        expected_data = DeveloperAddonSerializer(
+            context={'request': request}
+        ).to_representation(addon)
+        # The additional `version` property contains the version we just
+        # uploaded.
+        expected_data['version'] = DeveloperVersionSerializer(
+            context={'request': request}
+        ).to_representation(expected_version)
+        assert dict(data) == dict(expected_data)
+        assert (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.ADD_VERSION.id)
+            .count()
+            == 1
+        )
+
+    def test_not_your_addon(self):
+        # This test already exists below for POSTing new versions, but since
+        # this can also be done via PUT when the add-on exists, test it here
+        # too.
+        addon = addon_factory(
+            guid='@webextension-guid',  # Same guid we're using in URL
+        )
+        response = self.request()
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        assert addon.reload().versions.count() == 1
 
 
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
@@ -3395,8 +3490,8 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             self.url,
             data=self.minimal_data,
         )
-        assert response.status_code == 400, response.content
-        assert response.data == {
+        assert response.status_code == 409, response.content
+        assert response.json() == {
             'version': ['Version 0.0.1 already exists.'],
         }
 
@@ -3406,8 +3501,8 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             self.url,
             data=self.minimal_data,
         )
-        assert response.status_code == 400, response.content
-        assert response.data == {
+        assert response.status_code == 409, response.content
+        assert response.json() == {
             'version': ['Version 0.0.1 already exists.'],
         }
 
@@ -3417,8 +3512,8 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             self.url,
             data=self.minimal_data,
         )
-        assert response.status_code == 400, response.content
-        assert response.data == {
+        assert response.status_code == 409, response.content
+        assert response.json() == {
             'version': ['Version 0.0.1 was uploaded before and deleted.'],
         }
 
