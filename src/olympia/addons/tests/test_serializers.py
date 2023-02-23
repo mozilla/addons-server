@@ -1410,6 +1410,15 @@ class TestDeveloperVersionSerializerOutput(TestVersionSerializerOutput):
         result = self.serialize()
         assert result['approval_notes'] == 'Plz approve!'
 
+    def test_is_disabled(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert result['is_disabled'] is False
+
+        self.version.is_user_disabled = True
+        result = self.serialize()
+        assert result['is_disabled'] is True
+
 
 class TestListVersionSerializerOutput(TestCase):
     serializer_class = ListVersionSerializer

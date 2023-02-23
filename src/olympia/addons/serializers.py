@@ -417,6 +417,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         required=False,
         source='license',
     )
+    is_disabled = serializers.BooleanField(source='is_user_disabled', required=False)
     source = SourceFileField(
         required=False, allow_null=True, validators=(ReviewedSourceFileValidator(),)
     )
@@ -442,6 +443,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'custom_license',
             'edit_url',
             'file',
+            'is_disabled',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',
@@ -454,6 +456,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'approval_notes',
             'compatibility',
             'custom_license',
+            'is_disabled',
             'license',
             'release_notes',
             'source',
@@ -492,6 +495,25 @@ class DeveloperVersionSerializer(VersionSerializer):
         except DuplicateAddonID as exc:
             raise Conflict({self.field_name: exc.messages})
         return value
+
+    def validate_is_disabled(self, disable):
+        # The Version.is_user_disabled setter just ignores any change it doesn't like,
+        # but we'd like to raise instead if the value wouldn't be accepted.
+        if disable and (version := self.instance):
+            if (
+                not version.is_user_disabled
+                and version.file.status == amo.STATUS_DISABLED
+            ):
+                raise exceptions.ValidationError(gettext('File is already disabled.'))
+            if not version.can_be_disabled_and_deleted():
+                group = version.addon.promoted_group()
+                msg = gettext(
+                    'The latest approved version of this %s add-on cannot be deleted '
+                    'because the previous version was not approved for %s promotion. '
+                    'Please contact AMO Admins if you need help with this.'
+                ) % (group.name, group.name)
+                raise exceptions.ValidationError(msg)
+        return disable
 
     def _check_blocklist(self, guid, version_string):
         # check the guid/version isn't in the addon blocklist
@@ -674,6 +696,7 @@ class SimpleDeveloperVersionSerializer(DeveloperVersionSerializer):
             'compatibility',
             'edit_url',
             'file',
+            'is_disabled',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',

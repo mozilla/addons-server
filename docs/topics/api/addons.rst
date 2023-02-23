@@ -543,6 +543,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int file.size: The size for the file, in bytes.
     :>json int file.status: The :ref:`status <version-detail-status>` for the file.
     :>json string file.url: The (absolute) URL to download the file.
+    :>json boolean is_disabled: If this version has been disabled by the developer. This field is only present for authenticated users, for their own add-ons.
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
@@ -713,6 +714,7 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
+    :<json boolean is_disabled: If this version has been disabled by the developer. Note: a version with an already disabled file (``file.status`` is ``disabled``) cannot be changed to ``true``.
     :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
