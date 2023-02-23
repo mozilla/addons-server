@@ -239,7 +239,7 @@ class AddonViewSet(
     ]
     serializer_class = AddonSerializer
     serializer_class_for_developers = DeveloperAddonSerializer
-    lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+    lookup_value_regex = r'[^/]+'  # Allow '.' for email-like guids.
     throttle_classes = addon_submission_throttles
 
     def get_queryset(self):
@@ -450,6 +450,19 @@ class AddonVersionViewSet(
         SessionIDAuthentication,
     ]
     throttle_classes = addon_submission_throttles
+
+    lookup_value_regex = r'[^/]+'  # Allow '.' for version number lookups.
+
+    def get_lookup_field(self, identifier):
+        # Note: looking up pure integers version numbers (without a dot) is not
+        # supported.
+        return 'version' if '.' in identifier else 'pk'
+
+    def get_object(self):
+        identifier = self.kwargs.get('pk')
+        self.lookup_field = self.get_lookup_field(identifier)
+        self.kwargs[self.lookup_field] = identifier
+        return super().get_object()
 
     def get_serializer_class(self):
         use_developer_serializer = getattr(

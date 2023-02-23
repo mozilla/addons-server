@@ -2598,12 +2598,15 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory(
-            guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
+            guid=generate_addon_guid(),
+            name='My Addôn',
+            slug='my-addon',
+            version_kw={'version': '1.0'},
         )
 
         # Don't use addon.current_version, changing its state as we do in
         # the tests might render the add-on itself inaccessible.
-        self.version = version_factory(addon=self.addon)
+        self.version = version_factory(addon=self.addon, version='2.0')
         self._set_tested_url(self.addon.pk)
 
     def _test_url(self):
@@ -2629,6 +2632,33 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns(
             'addon-version-detail',
             kwargs={'addon_pk': self.addon.pk, 'pk': self.version.pk + 42},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_lookup_by_version_number(self):
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.version},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_lookup_by_version_number_not_found(self):
+        # Add a different add-on with the version number we'll be using in the
+        # URL, making sure we don't accidentally find it.
+        addon_factory(version_kw={'version': '3.0'})
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': '3.0'},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_lookup_by_version_number_garbage(self):
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': 'somestring'},
         )
         response = self.client.get(self.url)
         assert response.status_code == 404
