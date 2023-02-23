@@ -690,7 +690,7 @@ Note: as form-data can not be nested as objects it's not possible to set ``sourc
     :reqheader Content-Type: multipart/form-data
 
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-sources-request-edit:
 
@@ -709,7 +709,11 @@ This endpoint allows the metadata for an existing version to be edited.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        Version numbers without a dot (``.``) character are not supported in
+        this API URL. Use the version ``id`` instead to fetch those versions.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-edit-request:
 
@@ -735,7 +739,11 @@ This endpoint allows a version to be deleted.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
-.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        Version numbers without a dot (``.``) character are not supported in
+        this API URL. Use the version ``id`` instead to fetch those versions.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
 
 --------------
