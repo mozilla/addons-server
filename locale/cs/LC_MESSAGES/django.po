@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-24 21:32+0000\n"
+"PO-Revision-Date: 2023-02-24 21:35+0000\n"
 "Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -912,16 +912,16 @@ msgid "Dictionary"
 msgstr "Slovník"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Zastaralý vyhledávač"
 
 msgid "Language Pack (Application)"
 msgstr "Jazykový balíček (aplikace)"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Zastaralý jazykový balíček (doplněk)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "Zastaralý zásuvný modul"
 
 msgid "Deprecated LWT"
 msgstr "Zastaralý odlehčený motiv vzhledu"
@@ -1312,7 +1312,7 @@ msgid "Strategic"
 msgstr "Strategický"
 
 msgid "Notable"
-msgstr ""
+msgstr "Pozoruhodný"
 
 msgid "Add-on"
 msgstr "Doplněk"
