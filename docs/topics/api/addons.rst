@@ -710,8 +710,7 @@ This endpoint allows the metadata for an existing version to be edited.
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
     .. note::
-        Version numbers without a dot (``.``) character are not supported in
-        this API URL. Use the version ``id`` instead to fetch those versions.
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
 
 .. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
@@ -740,8 +739,7 @@ This endpoint allows a version to be deleted.
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
     .. note::
-        Version numbers without a dot (``.``) character are not supported in
-        this API URL. Use the version ``id`` instead to fetch those versions.
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
 
 .. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 

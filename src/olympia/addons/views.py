@@ -453,15 +453,14 @@ class AddonVersionViewSet(
 
     lookup_value_regex = r'[^/]+'  # Allow '.' for version number lookups.
 
-    def get_lookup_field(self, identifier):
-        # Note: looking up pure integers version numbers (without a dot) is not
-        # supported.
-        return 'version' if '.' in identifier else 'pk'
-
     def get_object(self):
-        identifier = self.kwargs.get('pk')
-        self.lookup_field = self.get_lookup_field(identifier)
-        self.kwargs[self.lookup_field] = identifier
+        if identifier := self.kwargs.get('pk'):
+            if identifier.startswith('v'):
+                identifier = identifier[1:]
+                self.lookup_field = 'version'
+            elif '.' in identifier:
+                self.lookup_field = 'version'
+            self.kwargs[self.lookup_field] = identifier
         return super().get_object()
 
     def get_serializer_class(self):

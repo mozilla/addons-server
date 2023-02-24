@@ -2663,6 +2663,26 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+    def test_lookup_by_version_number_integer_doesnt_work(self):
+        # Set the version number to an integer (no dots) that isn't the pk.
+        self.version.update(version=str(self.version.pk + 2))
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': self.version.version},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_lookup_by_version_number_integer_with_v_prefix(self):
+        # Set the version number to an integer (no dots) that isn't the pk.
+        self.version.update(version=str(self.version.pk + 2))
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.pk, 'pk': f'v{self.version.version}'},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_disabled_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
