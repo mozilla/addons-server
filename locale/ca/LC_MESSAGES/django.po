@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-25 18:32+0000\n"
+"PO-Revision-Date: 2023-02-25 18:38+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -176,7 +176,7 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Els noms de complements no poden contenir les marques registrades de Mozilla ni Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -219,7 +219,7 @@ msgid "My Add-ons"
 msgstr "Els meus complements"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Els meus temes"
 
 msgid "Tools"
 msgstr "Eines"
@@ -234,48 +234,47 @@ msgid "My Collections"
 msgstr "Les meves col·leccions"
 
 msgid "Log out"
-msgstr "Surt"
+msgstr "Tanca la sessió"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Gestiona els meus enviaments"
 
 msgid "Submit a New Add-on"
 msgstr "Envia un complement nou"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Envia un tema nou"
 
 msgid "Developer Hub"
 msgstr "Centre de desenvolupadors"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gestiona les claus de l'API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Respost pel desenvolupador {0}"
+msgstr "Eines de revisió"
 
 msgid "Admin Tools"
 msgstr "Eines de l'administrador"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Enter positiu"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Aquest camp només es pot utilitzar per enllaçar a llocs web externs. No es permeten els URL en %(domain)s."
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Incorrecte, torneu-ho a provar."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "S'ha produït un error verificar l'entrada. Torneu-ho a provar."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Introduïu una xarxa IP4 o IP6 vàlida."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algunes característiques s'han inhabilitat temporalment mentre fem tasques de manteniment del lloc web. Tornarem a la plena capacitat aviat."
