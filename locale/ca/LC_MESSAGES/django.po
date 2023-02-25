@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-25 18:38+0000\n"
+"PO-Revision-Date: 2023-02-25 18:52+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -298,6 +298,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Esteu veient aquest missatge perquè aquest lloc HTTPS requereix que el navegador web enviï una «capçalera de referència» («Referer»), però no n'ha enviat cap. Aquesta capçalera és necessària per "
+"motius de seguretat, per garantir que el vostre navegador no sigui suplantat per tercers."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -337,14 +339,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registreu-vos o inicieu la sessió"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Adreça electrònica:"
 
 msgid "OK"
-msgstr ""
+msgstr "D'acord"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -377,13 +378,13 @@ msgid "{0} ago"
 msgstr "fa {0}"
 
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 msgid "Body"
 msgstr ""
 
 msgid "Another Title"
-msgstr ""
+msgstr "Un altre títol"
 
 msgid "Another Body"
 msgstr ""
@@ -448,7 +449,7 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "No podeu fer servir aquest nom."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
