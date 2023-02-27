@@ -21,21 +21,16 @@ def queue_tabnav(context):
     request = context['request']
     tabnav = []
     if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-        tabnav.append(
+        tabnav.extend(
             (
-                'extension',
-                'queue_extension',
-                '🛠️ Manual Review',
+                (
+                    'extension',
+                    'queue_extension',
+                    '🛠️ Manual Review',
+                ),
+                ('mad', 'queue_mad', 'Flagged by MAD for Human Review'),
             )
         )
-        tabnav.append(
-            (
-                'human_review',
-                'queue_human_review',
-                'Versions Needing Human Review',
-            )
-        )
-        tabnav.append(('mad', 'queue_mad', 'Flagged by MAD for Human Review'))
     if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
         tabnav.extend(
             (

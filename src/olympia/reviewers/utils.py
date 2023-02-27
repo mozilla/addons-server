@@ -287,31 +287,10 @@ class ContentReviewTable(AddonQueueTable):
         return reverse('reviewers.review', args=['content', record.id])
 
 
-class HumanReviewTable(AddonQueueTable):
-    listed_text = 'Listed versions needing human review ({0})'
-    unlisted_text = 'Unlisted versions needing human review ({0})'
+class MadReviewTable(AddonQueueTable):
+    listed_text = 'Listed version'
+    unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
-
-    @classmethod
-    def get_queryset(cls, request):
-        return Addon.objects.get_human_review_queue(
-            admin_reviewer=is_admin_reviewer(request.user)
-        ).annotate(
-            unlisted_versions_that_need_human_review=Count(
-                'versions',
-                filter=Q(
-                    versions__needs_human_review=True,
-                    versions__channel=amo.CHANNEL_UNLISTED,
-                ),
-            ),
-            listed_versions_that_need_human_review=Count(
-                'versions',
-                filter=Q(
-                    versions__needs_human_review=True,
-                    versions__channel=amo.CHANNEL_LISTED,
-                ),
-            ),
-        )
 
     def render_addon_name(self, record):
         rval = [markupsafe.escape(record.name)]
@@ -341,12 +320,6 @@ class HumanReviewTable(AddonQueueTable):
             )
 
         return markupsafe.Markup(''.join(rval))
-
-
-class MadReviewTable(HumanReviewTable):
-    listed_text = 'Listed version'
-    unlisted_text = 'Unlisted versions ({0})'
-    show_count_in_dashboard = False
 
     @classmethod
     def get_queryset(cls, request):

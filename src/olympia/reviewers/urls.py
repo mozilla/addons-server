@@ -35,11 +35,6 @@ urlpatterns = (
     ),
     re_path(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
     re_path(
-        r'^queue/human_review',
-        views.queue_human_review,
-        name='reviewers.queue_human_review',
-    ),
-    re_path(
         r'queue/pending_rejection',
         views.queue_pending_rejection,
         name='reviewers.queue_pending_rejection',
