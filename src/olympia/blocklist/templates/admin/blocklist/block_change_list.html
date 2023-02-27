@@ -6,7 +6,7 @@
   <li>
     {% url cl.opts|admin_urlname:'delete_multiple' as delete_multiple_url %}
     <a href="{% add_preserved_filters delete_multiple_url %}" class="addlink">
-      {% with cl.opts.verbose_name_plural as name %}Delete Multiple {{ name }}{% endwith %}
+      Delete Multiple {{ cl.opts.verbose_name_plural }}
     </a>
   </li>
 {% endblock %}
