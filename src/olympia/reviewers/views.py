@@ -97,7 +97,6 @@ from olympia.reviewers.utils import (
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
     ReviewHelper,
-    HumanReviewTable,
     UpdatedThemesQueueTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
@@ -199,10 +198,6 @@ def dashboard(request):
             ),
         ]
         sections['Human Review Needed'] = [
-            (
-                'Versions Needing Human Review',
-                reverse('reviewers.queue_human_review'),
-            ),
             (
                 'Flagged by MAD for Human Review',
                 reverse('reviewers.queue_mad'),
@@ -342,7 +337,6 @@ reviewer_tables_registry = {
     'theme_nominated': NewThemesQueueTable,
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
-    'human_review': HumanReviewTable,
     'pending_rejection': PendingRejectionTable,
 }
 
@@ -426,11 +420,6 @@ def queue_moderated(request):
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     return _queue(request, 'content_review')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_human_review(request):
-    return _queue(request, 'human_review')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)

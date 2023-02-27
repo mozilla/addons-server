@@ -427,16 +427,6 @@ class AddonManager(ManagerBase):
             .distinct()
         )
 
-    def get_human_review_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that contain versions that were
-        automatically flagged as needing human review by scanners, or because they were
-        added to a flag_for_human_review Promoted group (regardless of channel).
-        """
-        return self.get_base_extensions_queue_with_non_disabled_versions(
-            Q(versions__needs_human_review=True, versions__due_date__isnull=True),
-            admin_reviewer=admin_reviewer,
-        )
-
     def get_mad_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that contain unlisted versions or
         had their current listed version flagged by MAD.
