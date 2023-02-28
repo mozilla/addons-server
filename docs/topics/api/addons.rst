@@ -504,8 +504,7 @@ Version Detail
 This endpoint allows you to fetch a single version belonging to a specific add-on.
 
     .. note::
-        Version numbers without a dot (``.``) character are not supported in
-        this API URL. Use the version ``id`` instead to fetch those versions.
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
 
 .. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
