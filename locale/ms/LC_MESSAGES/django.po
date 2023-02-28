@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1331,27 +1331,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Add-on"
-
-msgid "Static Theme"
-msgstr "Tema Statik"
-
-msgid "Persona"
-msgstr "Persona"
-
-#, fuzzy
-msgid "Security"
-msgstr "Ujian Keselamatan"
-
-#, fuzzy
-msgid "Privacy"
-msgstr "Dasar Privasi"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Polisi Pembangun"
-
 msgid "No Reputation"
 msgstr "Tiada Reputasi"
 
@@ -1872,6 +1851,9 @@ msgstr "Tiada hasil ditemukan."
 
 msgid "Refine Activity"
 msgstr "Aktiviti Penapisan"
+
+msgid "Add-on"
+msgstr "Add-on"
 
 msgid "Activity"
 msgstr "Aktiviti"
@@ -3746,10 +3728,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "Akses WhatsApp dari dalam panel bar alatan Firefox untuk mendapatkan notifikasi yang belum dibaca."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Dapatkan penterjemahan pakar Bahasa Jerman untuk Bahasa Inggeris, Perancis, Sepanyol, dan bahasa lain."
-
-#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Hadkan Firefox daripada mengakses laman web yang anda tentukan."
@@ -4398,17 +4376,15 @@ msgid "See all extensions"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4473,6 +4449,10 @@ msgid "See more password manager staff picks"
 msgstr "Layari semua ekstensi"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "mengikut Versi Add-on"
@@ -4504,6 +4484,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Layari semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5290,10 +5274,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "lain-lain"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

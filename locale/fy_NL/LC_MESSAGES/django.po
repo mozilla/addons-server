@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-08 09:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1321,24 +1321,6 @@ msgstr "Strategysk"
 msgid "Notable"
 msgstr "Opmerklik"
 
-msgid "Add-on"
-msgstr "Add-on"
-
-msgid "Static Theme"
-msgstr "Statysk tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Befeiliging"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Development Practices"
-msgstr "Untwikkelpraktiken"
-
 msgid "No Reputation"
 msgstr "Gjin reputaasje"
 
@@ -1855,6 +1837,9 @@ msgstr "Gjin resultaten fûn."
 
 msgid "Refine Activity"
 msgstr "Aktiviteit ferfynje"
+
+msgid "Add-on"
+msgstr "Add-on"
 
 msgid "Activity"
 msgstr "Aktiviteit"
@@ -3715,10 +3700,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp op it web. Benaderje WhatsApp fan de arkbalke fan Firefox út om meldingen fan net lêzen konversaasjes te krijen."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Krij profesjonele Dútsk oersettingen fan it Ingelsk, Frânsk, Spaansk en oare talen út."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Behein de tagong fan Firefox ta websites dy’t jo definiearje. In geweldich helpmiddel om online-seldisipline te trainen."
 
@@ -4339,18 +4320,16 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Oersethelpmiddelen"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "De bêste advertinsjeblokkearders"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox-útwreidingen"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4406,6 +4385,10 @@ msgid "See more password manager staff picks"
 msgstr "Mear stêfkarren foar wachtwurdbehear besjen"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Oersethelpmiddelen"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Mear stêfkarren foar oersethelpmiddelen besjen"
 
@@ -4432,6 +4415,10 @@ msgstr "Mei ‘{tag}’ labele útwreidingen"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Mear mei ‘{tag}’ labele útwreidingen besjen"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "De bêste advertinsjeblokkearders"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5224,10 +5211,6 @@ msgstr ""
 "Mei freonlike groet,\n"
 "\n"
 "It Firefox Add-ons-team"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "oaren"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

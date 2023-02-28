@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-07 22:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1308,24 +1308,6 @@ msgstr "Strategiski"
 msgid "Notable"
 msgstr "Kedźbyhódny"
 
-msgid "Add-on"
-msgstr "Přidatk"
-
-msgid "Static Theme"
-msgstr "Statiska drasta"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Wěstota"
-
-msgid "Privacy"
-msgstr "Priwatnosć"
-
-msgid "Development Practices"
-msgstr "Wuwiwanske praktiki"
-
 msgid "No Reputation"
 msgstr "Žane mjeno"
 
@@ -1845,6 +1827,9 @@ msgstr "Žane wuslědki namakane."
 
 msgid "Refine Activity"
 msgstr "Aktiwitu polěpšić"
+
+msgid "Add-on"
+msgstr "Přidatk"
 
 msgid "Activity"
 msgstr "Aktiwita"
@@ -3707,10 +3692,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp we webje. Wužiwajće WhatsApp ze symboloweje lajsty Firefox, zo byšće zdźělenki wo nječitanych nitkach dóstał."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Dóstańće profesionelne němske přełožki z jendźelšćiny, francošćiny, španišćiny a druhich rěčow."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Wobarajće Firefox přistup k wěstym websydłam. Wulkotny nastroj za sebjedisciplinu online."
 
@@ -4332,18 +4313,16 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Přełožowanske nastroje"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Wukonliwe blokowaki wabjenja"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Rozšěrjenja Roblox"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4398,6 +4377,10 @@ msgid "See more password manager staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju hesłow pokazać"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Přełožowanske nastroje"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane přełožowanske nastroje pokazać"
 
@@ -4424,6 +4407,10 @@ msgstr "Rozšěrjenja ze značku „{tag}“"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalše rozšěrjenja ze značku „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Wukonliwe blokowaki wabjenja"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5218,10 +5205,6 @@ msgstr ""
 "Postrowy,\n"
 "\n"
 "Team přidatkow Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "druhe"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-07 20:37+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1297,24 +1297,6 @@ msgstr "Strategic"
 msgid "Notable"
 msgstr "Notable"
 
-msgid "Add-on"
-msgstr "Add-on"
-
-msgid "Static Theme"
-msgstr "Static Theme"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Security"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Development Practices"
-msgstr "Development Practices"
-
 msgid "No Reputation"
 msgstr "No Reputation"
 
@@ -1829,6 +1811,9 @@ msgstr "No results found."
 
 msgid "Refine Activity"
 msgstr "Refine Activity"
+
+msgid "Add-on"
+msgstr "Add-on"
 
 msgid "Activity"
 msgstr "Activity"
@@ -3687,10 +3672,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Get expert German translations between English, French, Spanish and other languages."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Restrict Firefox from accessing web sites you define. A great tool for exercising online self discipline."
 
@@ -4307,18 +4288,16 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Translation tools"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elite ad blockers"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox extensions"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4373,6 +4352,10 @@ msgid "See more password manager staff picks"
 msgstr "See more password manager staff picks"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Translation tools"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "See more translation tool staff picks"
 
@@ -4399,6 +4382,10 @@ msgstr "“{tag}” tagged extensions"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "See more extensions tagged \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Elite ad blockers"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5188,10 +5175,6 @@ msgstr ""
 "Regards,\n"
 "\n"
 "The Firefox Add-ons Team"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "others"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

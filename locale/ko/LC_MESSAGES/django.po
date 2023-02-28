@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-12-07 07:22+0000\n"
 "Last-Translator: JiYoon Kim <efff1654@gmail.com>\n"
 "Language-Team: none\n"
@@ -1316,24 +1316,6 @@ msgstr "전략적"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "부가 기능"
-
-msgid "Static Theme"
-msgstr "정적 테마"
-
-msgid "Persona"
-msgstr "페르소나"
-
-msgid "Security"
-msgstr "보안"
-
-msgid "Privacy"
-msgstr "개인 정보 보호"
-
-msgid "Development Practices"
-msgstr "개발 사례"
-
 msgid "No Reputation"
 msgstr "평판 없음"
 
@@ -1848,6 +1830,9 @@ msgstr "검색 결과가 없습니다."
 
 msgid "Refine Activity"
 msgstr "활동 내역 정리"
+
+msgid "Add-on"
+msgstr "부가 기능"
 
 msgid "Activity"
 msgstr "활동 내역"
@@ -3672,10 +3657,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "웹의 WhatsApp. 읽지 않은 글타래에 대한 배지 알림을 받으려면 Firefox의 도구 모음 패널에서 WhatsApp에 접근하세요."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "영어, 프랑스어, 스페인어 및 기타 언어 간의 전문 독일어 번역을 받으세요."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "지정한 웹사이트에 Firefox가 접근하지 못하도록 제한합니다. 온라인 자기 관리을 위한 훌륭한 도구입니다."
 
@@ -4292,17 +4273,15 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "번역 도구"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "엘리트 광고 차단기"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4360,6 +4339,10 @@ msgid "See more password manager staff picks"
 msgstr "비밀번호 관리자 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "번역 도구"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "번역 도구 직원 추천 더보기"
 
@@ -4387,6 +4370,10 @@ msgstr "“{tag}” 태그 확장 기능"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" 태그 확장 기능 더보기"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "엘리트 광고 차단기"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5176,10 +5163,6 @@ msgstr ""
 "감사합니다.\n"
 "\n"
 "Firefox 부가 기능 팀"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "그 외 여러명"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

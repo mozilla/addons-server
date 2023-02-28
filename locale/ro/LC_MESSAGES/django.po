@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1333,24 +1333,6 @@ msgstr "Strategic"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Supliment"
-
-msgid "Static Theme"
-msgstr "Temă statică"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Securitate"
-
-msgid "Privacy"
-msgstr "Confidențialitate"
-
-msgid "Development Practices"
-msgstr "Practici de dezvoltare"
-
 msgid "No Reputation"
 msgstr "Nicio reputație"
 
@@ -1865,6 +1847,9 @@ msgstr "Niciun rezultat găsit."
 
 msgid "Refine Activity"
 msgstr "Rafinează activitatea"
+
+msgid "Add-on"
+msgstr "Supliment"
 
 msgid "Activity"
 msgstr "Activitate"
@@ -3742,10 +3727,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp pe web. Accesează WhatsApp din panoul barei de unelte din Firefox ca să primești notificări în insignă pentru conversații necitite."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Obții traduceri experte în germană din engleză, franceză, spaniolă și alte limbi."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Restricționează accesul Firefox la site-uri web definite de tine. O unealtă grozavă pentru exercitarea autodisciplinei online."
 
@@ -4376,17 +4357,15 @@ msgid "See all extensions"
 msgstr "Vezi toate extensiile"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Instrumente de traducere"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Blocatoare de reclame de elită"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4446,6 +4425,10 @@ msgid "See more password manager staff picks"
 msgstr "Vezi mai multe extensii recomandate"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Instrumente de traducere"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Vezi mai multe instrumente de traducere"
@@ -4476,6 +4459,10 @@ msgstr "Extensii etichetate „{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Vezi mai multe extensii etichetate „{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Blocatoare de reclame de elită"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5273,10 +5260,6 @@ msgstr ""
 "Numai bine,\n"
 "\n"
 "Echipa de suplimente Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "altele"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
