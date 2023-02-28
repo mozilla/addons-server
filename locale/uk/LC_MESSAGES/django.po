@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-08 06:51+0000\n"
 "Last-Translator: Artem Polivanchuk <a.polivanchuk@outlook.com>\n"
 "Language-Team: \n"
@@ -1317,24 +1317,6 @@ msgstr "Стратегічне"
 msgid "Notable"
 msgstr "Варте уваги"
 
-msgid "Add-on"
-msgstr "Додаток"
-
-msgid "Static Theme"
-msgstr "Статична тема"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Безпека"
-
-msgid "Privacy"
-msgstr "Приватність"
-
-msgid "Development Practices"
-msgstr "Рекомендації з розробки"
-
 msgid "No Reputation"
 msgstr "Немає репутації"
 
@@ -1852,6 +1834,9 @@ msgstr "Результатів не знайдено."
 
 msgid "Refine Activity"
 msgstr "Уточнити активність"
+
+msgid "Add-on"
+msgstr "Додаток"
 
 msgid "Activity"
 msgstr "Активність"
@@ -3705,10 +3690,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp онлайн. Отримуйте доступ до WhatsApp з панелі інструментів Firefox, щоб бачити сповіщення про нові розмови."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Отримайте професійний переклад німецькою мовою з англійської, французької, іспанської та інших мов."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Обмежте для Firefox доступ до визначених вами вебсайтів. Чудовий інструмент для самодисципліни."
 
@@ -4329,18 +4310,16 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Засоби для перекладу"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Елітні блокувальники реклами"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Розширення Roblox"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4395,6 +4374,10 @@ msgid "See more password manager staff picks"
 msgstr "Переглянути більше менеджерів паролів відібраних персоналом"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Засоби для перекладу"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Переглянути більше засобів перекладу відібрані персоналом"
 
@@ -4421,6 +4404,10 @@ msgstr "Розширення з мітками “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Переглянути інші розширення з міткою \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Елітні блокувальники реклами"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5213,10 +5200,6 @@ msgstr ""
 "З повагою,\n"
 "\n"
 "Команда додатків Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "інші"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

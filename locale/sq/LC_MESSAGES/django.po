@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-01-04 19:05+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -1315,24 +1315,6 @@ msgstr "Strategjike"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Shtesë"
-
-msgid "Static Theme"
-msgstr "Temë Statike"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Siguri"
-
-msgid "Privacy"
-msgstr "Privatësi"
-
-msgid "Development Practices"
-msgstr "Praktika Zhvillimi"
-
 msgid "No Reputation"
 msgstr "S’ka Reputacion"
 
@@ -1850,6 +1832,9 @@ msgstr "S’u gjetën përfundime."
 
 msgid "Refine Activity"
 msgstr "Përimtoni Veprimtarinë"
+
+msgid "Add-on"
+msgstr "Shtesë"
 
 msgid "Activity"
 msgstr "Veprimtari"
@@ -3714,10 +3699,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp në internet. Përdoreni WhatsApp-in që nga paneli i Firefox-it për të marrë njoftime rrjedhash të palexuara."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Merrni përkthime eksperti në gjermanisht që nga anglishtja, frëngjishtja, spanjishtja dhe gjuhë të tjerë."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Kufizojini Firefox-it hyrjen në sajtet që caktoni ju. Një mjet i goditur për të ushtruar vetëdisiplinë internetore."
 
@@ -4339,17 +4320,15 @@ msgid "See all extensions"
 msgstr "Shihni tërë zgjerimet"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Mjete përkthimi"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bllokues reklamash elitarë"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4406,6 +4385,10 @@ msgid "See more password manager staff picks"
 msgstr "Shihni më tepër zgjerime përgjegjës fjalëkalimesh të zgjedhura nga stafi"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Mjete përkthimi"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Shihni më tepër mjete përkthimi të zgjedhura nga stafi"
 
@@ -4432,6 +4415,10 @@ msgstr "Zgjerime të etiketuara me “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Shihni më tepër zgjerime të etiketuara me \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Bllokues reklamash elitarë"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5224,10 +5211,6 @@ msgstr ""
 "Të fala,\n"
 "\n"
 "Ekipi i Shtesave të Firefox-it"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "të tjera"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

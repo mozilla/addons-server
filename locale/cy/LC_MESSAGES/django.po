@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2020-10-21 10:59+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1314,26 +1314,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr ""
-
-# "Me" in this context is the user shown on the User Info page
-msgid "Static Theme"
-msgstr "Thema Sefydlog"
-
-msgid "Persona"
-msgstr ""
-
-msgid "Security"
-msgstr ""
-
-msgid "Privacy"
-msgstr ""
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Polisïau Datblygwyr"
-
 msgid "No Reputation"
 msgstr "Dim Enw Da"
 
@@ -1854,6 +1834,9 @@ msgid "No results found."
 msgstr "Heb ganfod canlyniad."
 
 msgid "Refine Activity"
+msgstr ""
+
+msgid "Add-on"
 msgstr ""
 
 msgid "Activity"
@@ -3668,10 +3651,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4290,17 +4269,15 @@ msgid "See all extensions"
 msgstr "Estyniadau"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4369,6 +4346,10 @@ msgstr ""
 msgid "See more password manager staff picks"
 msgstr "Estyniadau"
 
+#. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4404,6 +4385,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Estyniadau"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
@@ -5179,10 +5164,6 @@ msgid ""
 "Regards,\n"
 "\n"
 "The Firefox Add-ons Team"
-msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
 msgstr ""
 
 #, python-format

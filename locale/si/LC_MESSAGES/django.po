@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-11-10 23:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1287,24 +1287,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "එක්කහුව"
-
-msgid "Static Theme"
-msgstr "ස්ථිතික තේමාව"
-
-msgid "Persona"
-msgstr ""
-
-msgid "Security"
-msgstr "ආරක්‍ෂාව"
-
-msgid "Privacy"
-msgstr "රහස්‍යතාව"
-
-msgid "Development Practices"
-msgstr ""
-
 msgid "No Reputation"
 msgstr ""
 
@@ -1814,6 +1796,9 @@ msgstr ""
 
 msgid "Refine Activity"
 msgstr ""
+
+msgid "Add-on"
+msgstr "එක්කහුව"
 
 msgid "Activity"
 msgstr "ක්‍රියාකාරකම"
@@ -3577,10 +3562,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4197,17 +4178,15 @@ msgid "See all extensions"
 msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "පරිවර්තන මෙවලම්"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "ප්‍රබල දැන්වීම් අවහිරක"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4263,6 +4242,10 @@ msgid "See more password manager staff picks"
 msgstr "මුරපද කළමනාකරණ සඳහා මාණ්ඩලික තේරීම්"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "පරිවර්තන මෙවලම්"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "පරිවර්තන මෙවලම් සඳහා මාණ්ඩලික තේරීම්"
 
@@ -4289,6 +4272,10 @@ msgstr "“{tag}” අනන්‍යගත දිගු"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "\"{tag}\" අනන්‍යගත වෙනත් දිගු බලන්න"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "ප්‍රබල දැන්වීම් අවහිරක"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5039,10 +5026,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "වෙනත්"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-08 11:53+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -1300,24 +1300,6 @@ msgstr "策略"
 msgid "Notable"
 msgstr "请注意"
 
-msgid "Add-on"
-msgstr "附加组件"
-
-msgid "Static Theme"
-msgstr "静态主题"
-
-msgid "Persona"
-msgstr "炫彩风格"
-
-msgid "Security"
-msgstr "安全"
-
-msgid "Privacy"
-msgstr "隐私"
-
-msgid "Development Practices"
-msgstr "开发实践"
-
 msgid "No Reputation"
 msgstr "不知名"
 
@@ -1830,6 +1812,9 @@ msgstr "未找到结果。"
 
 msgid "Refine Activity"
 msgstr "动态提要"
+
+msgid "Add-on"
+msgstr "附加组件"
 
 msgid "Activity"
 msgstr "动态"
@@ -3634,10 +3619,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "网页版 WhatsApp。从 Firefox 的工具栏面板直接访问 WhatsApp，配有未读通知显示。"
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "获得专业的德语翻译，自英语、法语、西班牙语等语言。"
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "一款锻炼自律上网的好工具。限制 Firefox 访问您设定的网站。"
 
@@ -4254,18 +4235,16 @@ msgid "See all extensions"
 msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻译工具"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "王者级广告拦截工具"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox 扩展"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4321,6 +4300,10 @@ msgid "See more password manager staff picks"
 msgstr "更多编辑推荐 > 密码管理器"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻译工具"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "更多编辑推荐 > 翻译工具"
 
@@ -4347,6 +4330,10 @@ msgstr "含“{tag}”标签的扩展"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "更多含“{tag}”标签的扩展"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "王者级广告拦截工具"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5131,10 +5118,6 @@ msgstr ""
 "祝好，\n"
 "\n"
 "Firefox 附加组件团队"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "等"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

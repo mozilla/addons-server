@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -1332,25 +1332,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "الإضافة"
-
-#, fuzzy
-msgid "Static Theme"
-msgstr "أنشئ سمتك الخاصة بنفسك"
-
-msgid "Persona"
-msgstr ""
-
-msgid "Security"
-msgstr "الأمان"
-
-msgid "Privacy"
-msgstr "الخصوصية"
-
-msgid "Development Practices"
-msgstr "ممارسات التطوير"
-
 #, fuzzy
 msgid "No Reputation"
 msgstr "التوثيق"
@@ -1878,6 +1859,9 @@ msgstr "لم يُعثر على نتائج."
 
 msgid "Refine Activity"
 msgstr ""
+
+msgid "Add-on"
+msgstr "الإضافة"
 
 msgid "Activity"
 msgstr "النشاط"
@@ -3750,10 +3734,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4371,18 +4351,15 @@ msgid "See all extensions"
 msgstr "تصفح كل الإضافات"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Translation tools"
-msgstr "أدوات التحكم في الألسنة وتنظيمها"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Download Managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4449,6 +4426,11 @@ msgstr "برنامج الإمتدادات المُقترحة"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Translation tools"
+msgstr "أدوات التحكم في الألسنة وتنظيمها"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "حسب إصدارة الإضافة"
 
@@ -4479,6 +4461,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "تصفح كل الإضافات"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5261,10 +5247,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "أخرى"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

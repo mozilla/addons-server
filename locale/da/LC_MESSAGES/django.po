@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-06-23 21:34+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -1324,25 +1324,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Tilføjelse"
-
-msgid "Static Theme"
-msgstr "Statisk tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Sikkerhed"
-
-msgid "Privacy"
-msgstr "Privatliv"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Politikker for udviklere"
-
 #, fuzzy
 msgid "No Reputation"
 msgstr "Omdømme"
@@ -1859,6 +1840,9 @@ msgstr "Ingen resultater fundet."
 
 msgid "Refine Activity"
 msgstr "Tilpas aktivitet"
+
+msgid "Add-on"
+msgstr "Tilføjelse"
 
 msgid "Activity"
 msgstr "Aktivitet"
@@ -3659,10 +3643,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4284,17 +4264,15 @@ msgid "See all extensions"
 msgstr "Se alle udvidelser"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4354,6 +4332,10 @@ msgid "See more password manager staff picks"
 msgstr "Se alle udvidelser"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "efter version"
@@ -4385,6 +4367,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Se alle udvidelser"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5152,10 +5138,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "andre"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

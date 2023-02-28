@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -1310,24 +1310,6 @@ msgstr "戦略的"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "アドオン"
-
-msgid "Static Theme"
-msgstr "静的テーマ"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "セキュリティ"
-
-msgid "Privacy"
-msgstr "プライバシー"
-
-msgid "Development Practices"
-msgstr "開発プラクティス"
-
 msgid "No Reputation"
 msgstr "評判がありません"
 
@@ -1836,6 +1818,9 @@ msgstr "該当するアドオンはありません。"
 
 msgid "Refine Activity"
 msgstr "アクティビティを整理"
+
+msgid "Add-on"
+msgstr "アドオン"
 
 msgid "Activity"
 msgstr "アクティビティ"
@@ -3661,10 +3646,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "Firefox のツールバーパネルから WhatsApp にアクセスして、未読スレッドのバッジ通知を取得。"
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "プロによるドイツ語翻訳。英語、フランス語、スペイン語、その他の言語間に対応します。"
-
-#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "定義したウェブサイトへの Firefox のアクセスを制限。"
@@ -4310,17 +4291,15 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "翻訳ツール"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Download Managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4380,6 +4359,10 @@ msgid "See more password manager staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "翻訳ツール"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "翻訳ツールをもっと見る"
@@ -4410,6 +4393,10 @@ msgstr "“{tag}” のタグが付いた拡張機能"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "“{tag}” のタグが付いた拡張機能をもっと見る"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5180,10 +5167,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "その他"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
