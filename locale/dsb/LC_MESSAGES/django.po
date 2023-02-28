@@ -619,7 +619,7 @@ msgstr "{0} {1} pśidany."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr "Rola {user}} za dodank {addon} do {0} změnjona."
+msgstr "Rola {user} za dodank {addon} do {0} změnjona."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} jo něnto pód licencu {0}."
