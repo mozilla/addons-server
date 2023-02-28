@@ -503,7 +503,10 @@ Version Detail
 
 This endpoint allows you to fetch a single version belonging to a specific add-on.
 
-.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-detail-object:
 
@@ -686,7 +689,7 @@ Note: as form-data can not be nested as objects it's not possible to set ``sourc
     :reqheader Content-Type: multipart/form-data
 
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-sources-request-edit:
 
@@ -705,7 +708,10 @@ This endpoint allows the metadata for an existing version to be edited.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-edit-request:
 
@@ -731,7 +737,10 @@ This endpoint allows a version to be deleted.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
-.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
 
 --------------
