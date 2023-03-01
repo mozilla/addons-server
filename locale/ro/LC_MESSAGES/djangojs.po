@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2022-06-25 13:24+0000\n"
-"Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2018-10-19 07:16+0000\n"
+"Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "Validating {0}"
 msgstr "Se validează {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "Suplimentul depășește mărimea maximă de {0}."
+msgstr "Suplimentul depășește dimensiunea maximă de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S-a primit un răspuns gol de la server; stare: {0}"
