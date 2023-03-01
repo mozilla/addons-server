@@ -444,37 +444,32 @@ class TestReviewLog(ReviewerTest):
             'Add-on has been deleted.'
         )
 
-    def test_super_review_logs(self):
-        self.make_an_approval(amo.LOG.REQUEST_ADMIN_REVIEW_CODE)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert pq(response.content)('#log-listing tr td a').eq(1).text() == (
-            'Admin add-on-review requested'
-        )
-
     def test_comment_logs(self):
         self.make_an_approval(amo.LOG.COMMENT_VERSION)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert pq(response.content)('#log-listing tr td a').eq(1).text() == (
-            'Commented'
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review/3615">Delicious Bookmarks</a> '
+            'Version 2.1.072 reviewer comment.'
         )
 
     def test_content_approval(self):
         self.make_an_approval(amo.LOG.APPROVE_CONTENT)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/reviewers/review-content/3615'
-        assert link.text_content().strip() == 'Content approved'
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
+            'Version 2.1.072 content approved.'
+        )
 
     def test_content_rejection(self):
         self.make_an_approval(amo.LOG.REJECT_CONTENT)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        link = pq(response.content)('#log-listing tbody td a').eq(1)[0]
-        assert link.attrib['href'] == '/en-US/reviewers/review-content/3615'
-        assert link.text_content().strip() == 'Content rejected'
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-content/3615">Delicious Bookmarks</a> '
+            'Version 2.1.072 content rejected.'
+        )
 
     @freeze_time('2017-08-03')
     def test_review_url(self):
@@ -493,8 +488,7 @@ class TestReviewLog(ReviewerTest):
         response = self.client.get(self.url)
         assert response.status_code == 200
         url = reverse('reviewers.review', args=[addon.pk])
-
-        link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(1)
+        link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(0)
         assert link.attr('href') == url
 
         entry = ActivityLog.create(
@@ -511,7 +505,7 @@ class TestReviewLog(ReviewerTest):
 
         response = self.client.get(self.url)
         url = reverse('reviewers.review', args=['unlisted', addon.pk])
-        assert pq(response.content)('#log-listing tr td a').eq(1).attr('href') == url
+        assert pq(response.content)('#log-listing tr td a').eq(0).attr('href') == url
 
     def test_review_url_force_disable(self):
         self.login_as_reviewer()
@@ -527,7 +521,7 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         url = reverse('reviewers.review', args=[addon.pk])
 
-        link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(1)
+        link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(0)
         assert link.attr('href') == url
 
     def test_reviewers_can_only_see_addon_types_they_have_perms_for(self):
@@ -4719,13 +4713,13 @@ class TestReview(ReviewBase):
         )
         assert 'class' not in important_changes[2].attrib
         assert important_changes[3].text_content() == (
-            f'{format_datetime(activity3.created)}: {activity1.user.name} '
-            'force-disabled Public.'
+            f'{format_datetime(activity3.created)}: Public force-disabled by '
+            f'{activity1.user.name}.'
         )
         assert important_changes[3].attrib['class'] == 'reviewer-review-action'
         assert important_changes[4].text_content() == (
-            f'{format_datetime(activity4.created)}: {activity1.user.name} '
-            'force-enabled Public.'
+            f'{format_datetime(activity4.created)}: Public force-enabled by '
+            f'{activity1.user.name}.'
         )
         assert important_changes[4].attrib['class'] == 'reviewer-review-action'
 

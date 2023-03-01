@@ -1646,16 +1646,13 @@ class TestReviewHelper(TestReviewHelperBase):
             AddonApprovalsCounter.objects.filter(addon=self.addon).count() == 0
         )  # Not incremented since it was unlisted.
 
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 2
-        activities = (
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (
             ActivityLog.objects.for_addons(self.addon)
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-            .order_by('-pk')
+            .get()
         )
-        activity = activities[0]
-        assert activity.arguments == [self.addon, first_unlisted]
-        activity = activities[1]
-        assert activity.arguments == [self.addon, second_unlisted]
+        assert activity.arguments == [self.addon, second_unlisted, first_unlisted]
 
     def test_null_to_public_unlisted(self):
         self.sign_file_mock.reset()
@@ -1907,13 +1904,15 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # listed auto approvals should be disabled until the next manual approval.
         flags = self.addon.reviewerflags
@@ -1984,12 +1983,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 1
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION_DELAYED.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION_DELAYED.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # The flag to prevent the authors from being notified several times
         # about pending rejections should have been reset, and auto approvals
@@ -2048,7 +2049,7 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.filter(version=self.review_version).get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
         assert old_version.reload().human_review_date
@@ -2115,7 +2116,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 1
 
     def test_reject_multiple_versions_content_review_with_delay(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
@@ -2176,13 +2177,15 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_CONTENT_DELAYED.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_CONTENT_DELAYED.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # The reviewer was already subscribed to new listed versions for this
         # addon, nothing has changed.
@@ -2338,13 +2341,15 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.APPROVE_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.review_version
@@ -2396,17 +2401,20 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
     def _setup_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
         original_user = self.user
+        old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
@@ -2445,14 +2453,15 @@ class TestReviewHelper(TestReviewHelperBase):
             if not content_review
             else amo.LOG.REJECT_CONTENT_DELAYED
         )
-        assert self.check_log_count(delayed_action.id) == 2
-
-        action = (
-            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        assert self.check_log_count(delayed_action.id) == 1
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=delayed_action.id)
+            .get()
         )
+        assert log.arguments == [self.addon, self.review_version, old_version]
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
-            assert log.user == original_user
+        assert log.user == original_user
 
     def _test_reject_multiple_versions_delayed(self, content_review):
         self._setup_reject_multiple_versions_delayed(content_review)
@@ -2476,7 +2485,7 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
         )
         # The request user is recorded as scheduling the rejection.
-        assert self.check_log_count(action.id, original_user) == 2
+        assert self.check_log_count(action.id, original_user) == 1
 
     def test_reject_multiple_versions_delayed_code_review(self):
         self._test_reject_multiple_versions_delayed(content_review=False)
@@ -2505,7 +2514,7 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
         )
         # The new user is recorded as scheduling the rejection.
-        assert self.check_log_count(action.id, self.user) == 2
+        assert self.check_log_count(action.id, self.user) == 1
 
     def test_reject_multiple_versions_delayed_with_human_code_review(self):
         self._test_reject_multiple_versions_delayed_with_human(content_review=False)

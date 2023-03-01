@@ -233,7 +233,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
 
 class COMMENT_VERSION(_LOG):
     id = 49
-    format = _('Comment on {addon} {version}.')
+    format = '{addon} {version} reviewer comment.'
     short = _('Commented')
     keep = True
     review_queue = True
@@ -614,7 +614,7 @@ class SOURCE_CODE_UPLOADED(_LOG):
 
 class CONFIRM_AUTO_APPROVED(_LOG):
     id = 144
-    format = _('Auto-Approval confirmed for {addon} {version}.')
+    format = _('{addon} {version} auto-approval confirmed.')
     short = _('Auto-Approval confirmed')
     keep = True
     reviewer_review_action = True
@@ -816,7 +816,7 @@ class FORCE_DISABLE(_LOG):
     # add-on is likely malicious.
     hide_developer = True
     reviewer_review_action = True
-    format = '{user_responsible} force-disabled {addon}.'
+    format = '{addon} force-disabled by {user_responsible}.'
     short = 'Force disabled'
 
 
@@ -825,7 +825,7 @@ class FORCE_ENABLE(_LOG):
     keep = True
     hide_developer = True
     reviewer_review_action = True
-    format = '{user_responsible} force-enabled {addon}.'
+    format = '{addon} force-enabled by {user_responsible}.'
     short = 'Force enabled'
 
 

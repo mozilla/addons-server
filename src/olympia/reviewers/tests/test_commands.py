@@ -1189,6 +1189,132 @@ class TestAutoReject(TestCase):
             version=another_pending_rejection,
             pending_rejection=self.yesterday,
             pending_rejection_by=self.user,
+            pending_content_rejection=True,
+        )
+        ActivityLog.objects.for_addons(self.addon).delete()
+
+        command = auto_reject.Command()
+        command.dry_run = False
+        command.reject_versions(
+            addon=self.addon,
+            versions=[self.version, another_pending_rejection],
+            latest_version=another_pending_rejection,
+        )
+
+        # The versions should be rejected now.
+        self.version.refresh_from_db()
+        assert not self.version.is_public()
+        another_pending_rejection.refresh_from_db()
+        assert not self.version.is_public()
+
+        # There should be a single activity log for the rejection
+        # and one because the add-on is changing status as a result.
+        logs = ActivityLog.objects.for_addons(self.addon)
+        assert len(logs) == 2
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
+        assert logs[0].user == self.task_user
+        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+            another_pending_rejection,
+        ]
+        assert logs[1].user == self.user
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied (there are no other pending rejections
+        # in this test).
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
+        ).exists()
+        # And pending_content_rejection too
+        assert not VersionReviewerFlags.objects.filter(
+            pending_content_rejection__isnull=False
+        ).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
+
+    def test_reject_versions_different_user(self):
+        # Add another version pending rejection, but this one was rejected by
+        # another reviewer, so it should be processed separately, resulting in
+        # 2 rejections.
+        another_pending_rejection = version_factory(addon=self.addon, version='2.0')
+        other_reviewer = user_factory()
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=other_reviewer,
+            pending_content_rejection=True,
+        )
+        ActivityLog.objects.for_addons(self.addon).delete()
+
+        command = auto_reject.Command()
+        command.dry_run = False
+        command.reject_versions(
+            addon=self.addon,
+            versions=[self.version, another_pending_rejection],
+            latest_version=another_pending_rejection,
+        )
+
+        # The versions should be rejected now.
+        self.version.refresh_from_db()
+        assert not self.version.is_public()
+        another_pending_rejection.refresh_from_db()
+        assert not self.version.is_public()
+
+        # There should be a single activity log for the rejection
+        # and one because the add-on is changing status as a result.
+        logs = ActivityLog.objects.for_addons(self.addon)
+        assert len(logs) == 3
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
+        assert logs[0].user == self.task_user
+        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+        ]
+        assert logs[1].user == self.user
+        assert logs[2].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[2].arguments == [
+            self.addon,
+            another_pending_rejection,
+        ]
+        assert logs[2].user == other_reviewer
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied (there are no other pending rejections
+        # in this test).
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
+        ).exists()
+        # And pending_content_rejection too
+        assert not VersionReviewerFlags.objects.filter(
+            pending_content_rejection__isnull=False
+        ).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
+
+    def test_reject_versions_different_action(self):
+        # Add another version pending rejection, but for this one it's not a
+        # content rejection, so it should be processed separately, resulting in
+        # 2 rejections.
+        another_pending_rejection = version_factory(addon=self.addon, version='2.0')
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
             pending_content_rejection=False,
         )
         ActivityLog.objects.for_addons(self.addon).delete()
@@ -1207,7 +1333,7 @@ class TestAutoReject(TestCase):
         another_pending_rejection.refresh_from_db()
         assert not self.version.is_public()
 
-        # There should be an activity log for each version with the rejection
+        # There should be a single activity log for the rejection
         # and one because the add-on is changing status as a result.
         logs = ActivityLog.objects.for_addons(self.addon)
         assert len(logs) == 3
@@ -1215,9 +1341,17 @@ class TestAutoReject(TestCase):
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.REJECT_CONTENT.id
-        assert logs[1].arguments == [self.addon, self.version]
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+        ]
+        assert logs[1].user == self.user
         assert logs[2].action == amo.LOG.REJECT_VERSION.id
-        assert logs[2].arguments == [self.addon, another_pending_rejection]
+        assert logs[2].arguments == [
+            self.addon,
+            another_pending_rejection,
+        ]
+        assert logs[2].user == self.user
 
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections

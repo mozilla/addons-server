@@ -271,7 +271,7 @@ class TestActivityLog(TestCase):
             assert len(activities) == 2
             addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                f'<a href="{addon_url}versions/">Version 2.1.072</a> added to '
+                f'Version <a href="{addon_url}versions/">2.1.072</a> added to '
                 f'<a href="{addon_url}">Delicious Bookmarks</a>.'
             )
             assert activities[1].to_string()
