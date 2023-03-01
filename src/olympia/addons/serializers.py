@@ -97,6 +97,7 @@ class FileSerializer(AMOModelSerializer):
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
+    host_permissions = serializers.ListField(child=serializers.CharField())
     is_restart_required = serializers.SerializerMethodField()
     is_webextension = serializers.SerializerMethodField()
 
@@ -115,6 +116,7 @@ class FileSerializer(AMOModelSerializer):
             'url',
             'permissions',
             'optional_permissions',
+            'host_permissions',
         )
 
     def get_url(self, obj):
@@ -150,6 +152,7 @@ class FileSerializer(AMOModelSerializer):
 class LanguageToolFileSerializer(FileSerializer):
     permissions = serializers.SerializerMethodField()
     optional_permissions = serializers.SerializerMethodField()
+    host_permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, obj):
         # Language tools are not "real" webextensions, they don't have
@@ -159,6 +162,11 @@ class LanguageToolFileSerializer(FileSerializer):
     def get_optional_permissions(self, obj):
         # Language tools are not "real" webextensions, they don't have
         # optional permissions.
+        return []
+
+    def get_host_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # host permissions.
         return []
 
 
@@ -1347,6 +1355,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             'permissions', data.get('webext_permissions_list', [])
         )
         file_.optional_permissions = data.get('optional_permissions', [])
+        file_.host_permissions = data.get('host_permissions', [])
         return file_
 
     def fake_version_object(self, obj, data, channel):
