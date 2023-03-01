@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2023-03-01 14:23+0000\n"
+"PO-Revision-Date: 2023-03-01 14:28+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4212,7 +4212,7 @@ msgstr "დაგღალათ შეტყობინებამ „ვი�
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr "აქშა, ფუნთუშების აბეზარო შეტყობინებებო!"
+msgstr "ფუნთუშების აბეზარო შეტყობინებებო, გაქრით!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
