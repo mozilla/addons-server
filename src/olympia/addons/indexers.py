@@ -391,6 +391,7 @@ class AddonIndexer:
                         'status': {'type': 'byte'},
                         'permissions': {'type': 'keyword', 'index': False},
                         'optional_permissions': {'type': 'keyword', 'index': False},
+                        'host_permissions': {'type': 'keyword', 'index': False},
                     },
                 },
                 'license': {
@@ -549,6 +550,7 @@ class AddonIndexer:
                         'strict_compatibility': version_obj.file.strict_compatibility,
                         'permissions': version_obj.file.permissions,
                         'optional_permissions': version_obj.file.optional_permissions,
+                        'host_permissions': version_obj.file.host_permissions,
                     }
                 ],
                 'reviewed': (

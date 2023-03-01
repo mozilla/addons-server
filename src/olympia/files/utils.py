@@ -414,6 +414,7 @@ class ManifestJSONExtractor:
                     {
                         'optional_permissions': self.get('optional_permissions', []),
                         'permissions': self.get('permissions', []),
+                        'host_permissions': self.get('host_permissions', []),
                         'content_scripts': self.get('content_scripts', []),
                     }
                 )

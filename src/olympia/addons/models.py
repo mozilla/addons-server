@@ -1598,15 +1598,6 @@ class Addon(OnChangeMixin, ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def should_show_permissions(self, version=None):
-        version = version or self.current_version
-        return (
-            self.type == amo.ADDON_EXTENSION
-            and version
-            and version.file
-            and (version.file.permissions or version.file.optional_permissions)
-        )
-
     # Aliases for reviewerflags below are not just useful in case
     # AddonReviewerFlags does not exist for this add-on: they are also used
     # by reviewer tools get_flags() function to return flags shown to reviewers
