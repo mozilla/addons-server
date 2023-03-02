@@ -2673,7 +2673,11 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_clear_needs_human_review(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.review_version.update(needs_human_review=True)
-        # another some other versions that are also needs_human_review
+        # set needs_human_review_by_mad - it shouldn't be cleared
+        flags = VersionReviewerFlags.objects.create(
+            version=self.review_version, needs_human_review_by_mad=True
+        )
+        # some other versions that are also needs_human_review
         disabled = version_factory(
             addon=self.review_version.addon,
             needs_human_review=True,
@@ -2693,7 +2697,14 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.helper.handler.clear_needs_human_review()
 
-        assert self.check_log_count(amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS.id) == 1
+        log_type_id = amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS.id
+        assert self.check_log_count(log_type_id) == 1
+        assert (
+            ActivityLog.objects.for_addons(self.helper.addon)
+            .get(action=log_type_id)
+            .details.get('channel')
+            == 'listed'
+        )
         assert len(mail.outbox) == 0
         assert not self.review_version.human_review_date  # its not been reviewed
         assert not self.review_version.reload().needs_human_review
@@ -2704,6 +2715,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not deleted.due_date
         assert unlisted.reload().needs_human_review  # not cleared
         assert unlisted.due_date
+
+        # mad flag hasn't changed
+        assert flags.reload().needs_human_review_by_mad
+        assert self.review_version.needs_human_review_by_mad
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

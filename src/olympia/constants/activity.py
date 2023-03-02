@@ -870,7 +870,7 @@ class LOG_IN_API_TOKEN(_LOG):
 
 class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
     id = 173
-    format = _('{addon} {version} needs_human_review flag cleared.')
+    format = _('{addon} needs_human_review flag cleared.')
     short = _('Needs Human Review cleared')
     admin_event = True
     review_queue = True

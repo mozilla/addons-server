@@ -1013,7 +1013,7 @@ class Addon(OnChangeMixin, ModelBase):
         exclude -- exclude versions for which all files have one of those statuses
                    (default STATUS_DISABLED).  `exclude=()` to include all statuses.
         deleted -- include deleted addons and versions. You probably want `exclude=()`
-                   too as files are typically set to STATUS_DELETED on delete."""
+                   too as files are typically set to STATUS_DISABLED on delete."""
 
         # If the add-on hasn't been saved yet, it should not have a latest version.
         # Nor if it's deleted, unless specified.

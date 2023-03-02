@@ -855,10 +855,19 @@ class ReviewBase:
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
 
-    def log_action(self, action, version=None, file=None, timestamp=None, user=None):
+    def log_action(
+        self,
+        action,
+        version=None,
+        file=None,
+        timestamp=None,
+        user=None,
+        extra_details=None,
+    ):
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
+            **(extra_details or {}),
         }
         if file is None and self.file:
             file = self.file
@@ -1329,7 +1338,11 @@ class ReviewBase:
     def clear_needs_human_review(self):
         """clears human review all versions in this channel."""
         self.clear_all_needs_human_review_flags_in_channel(mad_too=False)
-        self.log_action(amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS)
+        channel = amo.CHANNEL_CHOICES_API.get(self.version.channel)
+        self.version = None  # we don't want to associate the log with a version
+        self.log_action(
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS, extra_details={'channel': channel}
+        )
 
 
 class ReviewAddon(ReviewBase):
