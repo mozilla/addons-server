@@ -327,9 +327,9 @@ class AddonAndVersionViewSetDetailMixin:
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
             excluded_regions=['AB', 'CD', 'FR']
         )
-        # Regional restrictions should be processed after other permission
-        # handling, so something that would return a 401/403/404 without
-        # region restrictions would still do that.
+        # Regional restrictions should be processed after other permission handling, so
+        # something that would return a 401/403/404 without region restrictions would
+        # still do that.
         response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 401
         # Response is short enough that it won't be compressed, so it doesn't
@@ -350,9 +350,9 @@ class AddonAndVersionViewSetDetailMixin:
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
             excluded_regions=['AB', 'CD', 'FR']
         )
-        # Regional restrictions should be processed after other permission
-        # handling, so something that would return a 401/403/404 without
-        # region restrictions would still do that.
+        # Regional restrictions should be processed after other permission handling, so
+        # something that would return a 401/403/404 without region restrictions would
+        # still do that.
         response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 403
         # Response is short enough that it won't be compressed, so it doesn't
@@ -470,9 +470,9 @@ class AddonAndVersionViewSetDetailMixin:
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
             excluded_regions=['AB', 'CD', 'FR']
         )
-        # Regional restrictions should be processed after other permission
-        # handling, so something that would return a 401/403/404 without
-        # region restrictions would still do that.
+        # Regional restrictions should be processed after other permission handling, so
+        # something that would return a 401/403/404 without region restrictions would
+        # still do that.
         response = self.client.get(self.url, HTTP_X_COUNTRY_CODE='fr')
         assert response.status_code == 404
         # Response is short enough that it won't be compressed, so it doesn't
@@ -4097,6 +4097,75 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             pending_mock.return_value = True
             assert self._submit_source(new_source, error=False)[0].data != error
             assert self.version.source
+
+    def test_disable_enabled_version(self):
+        # first test the case where the file is disabled by rejection or obsolescence
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        assert not self.version.is_user_disabled
+        response = self.client.patch(self.url, data={'is_disabled': True})
+        assert response.status_code == 400, response.content
+        assert response.data == {'is_disabled': ['File is already disabled.']}
+
+        # But if the file isn't disabled the version should be good to disable
+        self.version.file.update(status=amo.STATUS_APPROVED)
+        response = self.client.patch(self.url, data={'is_disabled': True})
+
+        assert response.status_code == 200, response.content
+        assert response.data['is_disabled'] is True
+        self.version.reload()
+        self.version.file.reload()
+        assert self.version.is_user_disabled
+        assert self.version.file.status == amo.STATUS_DISABLED
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+        ).get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.DISABLE_VERSION.id
+
+    def test_cannot_disable_if_promoted(self):
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+
+        response = self.client.patch(self.url, data={'is_disabled': True})
+        assert response.status_code == 400
+        assert response.json()['is_disabled'][0].startswith(
+            'The latest approved version of this Recommended add-on cannot be deleted'
+        )
+        assert len(response.json()) == 1
+        assert not self.version.reload().is_user_disabled
+
+        # Now add another version so it's okay to disable one of them
+        self.version = version_factory(addon=self.addon, promotion_approved=True)
+        self.addon.reload()
+        self.url = reverse_ns(
+            'addon-version-detail',
+            kwargs={'addon_pk': self.addon.slug, 'pk': self.version.id},
+            api_version='v5',
+        )
+        response = self.client.patch(self.url, data={'is_disabled': True})
+        assert response.status_code == 200
+        self.version.reload()
+        self.version.file.reload()
+        assert self.version.is_user_disabled
+        assert self.version.file.status == amo.STATUS_DISABLED
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+        ).get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.DISABLE_VERSION.id
+
+    def test_enable_disabled_version(self):
+        self.version.is_user_disabled = True
+        response = self.client.patch(self.url, data={'is_disabled': False})
+        assert response.status_code == 200, response.content
+        assert response.data['is_disabled'] is False
+        self.version.reload()
+        self.version.file.reload()
+        assert not self.version.is_user_disabled
+        alog = ActivityLog.objects.exclude(
+            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+        ).get()
+        assert alog.user == self.user
+        assert alog.action == amo.LOG.ENABLE_VERSION.id
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
