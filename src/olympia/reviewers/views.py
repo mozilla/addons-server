@@ -480,8 +480,8 @@ def review(request, addon, channel=None):
 
     # Other cases are handled in ReviewHelper by limiting what actions are
     # available depending on user permissions and add-on/version state.
-
-    version = addon.find_latest_version(channel=channel, exclude=())
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    version = addon.find_latest_version(channel=channel, exclude=(), deleted=is_admin)
     latest_not_disabled_version = addon.find_latest_version(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
@@ -521,7 +521,6 @@ def review(request, addon, channel=None):
     form = ReviewForm(
         request.POST if request.method == 'POST' else None, helper=form_helper
     )
-    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
     user_ratings = Paginator(

@@ -992,18 +992,22 @@ class Addon(OnChangeMixin, ModelBase):
             .last()
         )
 
-    def find_latest_version(self, channel, exclude=((amo.STATUS_DISABLED,))):
+    def find_latest_version(
+        self, channel, exclude=((amo.STATUS_DISABLED,)), deleted=False
+    ):
         """Retrieve the latest version of an add-on for the specified channel.
 
         If channel is None either channel is returned.
 
         Keyword arguments:
-        exclude -- exclude versions for which all files have one
-                   of those statuses (default STATUS_DISABLED)."""
+        exclude -- exclude versions for which all files have one of those statuses
+                   (default STATUS_DISABLED).  `exclude=()` to include all statuses.
+        deleted -- include deleted addons and versions. You probably want `exclude=()`
+                   too as files are typically set to STATUS_DISABLED on delete."""
 
-        # If the add-on is deleted or hasn't been saved yet, it should not
-        # have a latest version.
-        if not self.id or self.status == amo.STATUS_DELETED:
+        # If the add-on hasn't been saved yet, it should not have a latest version.
+        # Nor if it's deleted, unless specified.
+        if not self.id or (self.status == amo.STATUS_DELETED and not deleted):
             return None
 
         # Avoid most transformers - keep translations because they don't
@@ -1011,8 +1015,10 @@ class Addon(OnChangeMixin, ModelBase):
         # having made the query beforehand, and we don't know what callers
         # will want ; but for the rest of them, since it's a single
         # instance there is no reason to call the default transformers.
+        manager = 'objects' if not deleted else 'unfiltered_for_relations'
         return (
-            self.versions.exclude(file__status__in=exclude)
+            self.versions(manager=manager)
+            .exclude(file__status__in=exclude)
             .filter(
                 **{'channel': channel} if channel is not None else {},
                 file__isnull=False,

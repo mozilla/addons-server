@@ -515,6 +515,13 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
+        has_needs_human_review = (
+            self.version
+            and self.addon.versions(manager='unfiltered_for_relations')
+            .filter(needs_human_review=True, channel=self.version.channel)
+            .exists()
+        )
+
         # Definitions for all actions.
         boilerplate_for_approve = 'Thank you for your contribution.'
         boilerplate_for_reject = (
@@ -711,6 +718,17 @@ class ReviewHelper:
             'minimal': True,
             'available': (is_reviewer),
         }
+        actions['clear_needs_human_review'] = {
+            'method': self.handler.clear_needs_human_review,
+            'label': 'Clear Needs Human Review',
+            'details': (
+                'Clear needs human review flag from all versions in this channel, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'minimal': True,
+            'comments': False,
+            'available': (is_appropriate_admin_reviewer and has_needs_human_review),
+        }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
         )
@@ -777,23 +795,26 @@ class ReviewBase:
             assert not self.user.id == settings.TASK_USER_ID
             self.addon.promotedaddon.approve_for_version(self.version)
 
-    def clear_all_needs_human_review_flags_in_channel(self):
+    def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
 
         To be called when approving a listed version: For listed, the version
         reviewers are approving is always the latest listed one, and then users
         are supposed to automatically get the update to that version, so we
         don't need to care about older ones anymore.
+
+        Also used by clear_needs_human_review action for unlisted too.
         """
         # Do a mass UPDATE.
-        self.addon.versions.filter(
+        self.addon.versions(manager='unfiltered_for_relations').filter(
             needs_human_review=True, channel=self.version.channel
         ).update(needs_human_review=False)
-        # Another one for the needs_human_review_by_mad flag.
-        VersionReviewerFlags.objects.filter(
-            version__addon=self.addon,
-            version__channel=self.version.channel,
-        ).update(needs_human_review_by_mad=False)
+        if mad_too:
+            # Another one for the needs_human_review_by_mad flag.
+            VersionReviewerFlags.objects.filter(
+                version__addon=self.addon,
+                version__channel=self.version.channel,
+            ).update(needs_human_review_by_mad=False)
         # Trigger a check of all due dates on the add-on since we mass-updated
         # versions.
         self.addon.update_all_due_dates()
@@ -807,10 +828,19 @@ class ReviewBase:
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
 
-    def log_action(self, action, version=None, file=None, timestamp=None, user=None):
+    def log_action(
+        self,
+        action,
+        version=None,
+        file=None,
+        timestamp=None,
+        user=None,
+        extra_details=None,
+    ):
         details = {
             'comments': self.data.get('comments', ''),
             'reviewtype': self.review_type.split('_')[1],
+            **(extra_details or {}),
         }
         if file is None and self.file:
             file = self.file
@@ -1280,6 +1310,15 @@ class ReviewBase:
 
     def block_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
+
+    def clear_needs_human_review(self):
+        """clears human review all versions in this channel."""
+        self.clear_all_needs_human_review_flags_in_channel(mad_too=False)
+        channel = amo.CHANNEL_CHOICES_API.get(self.version.channel)
+        self.version = None  # we don't want to associate the log with a version
+        self.log_action(
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS, extra_details={'channel': channel}
+        )
 
 
 class ReviewAddon(ReviewBase):

@@ -392,8 +392,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     def test_actions_no_version(self):
-        """Deleted addons and addons with no versions in that channel have no
-        version set."""
+        """Addons with no versions in that channel have no version set."""
         expected = []
         self.review_version = None
         assert (
@@ -785,6 +784,39 @@ class TestReviewHelper(TestReviewHelperBase):
                 addon_status=amo.STATUS_APPROVED,
                 file_status=amo.STATUS_AWAITING_REVIEW,
                 human_review=False,
+            ).keys()
+        )
+        assert expected == actions
+
+    def test_actions_deleted_addon(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
+            ).keys()
+        )
+        assert expected == actions
+
+    def test_actions_versions_needing_human_review(self):
+        self.review_version.update(needs_human_review=True)
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
+            ).keys()
+        )
+        assert expected == actions
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = ['reply', 'super', 'comment', 'clear_needs_human_review']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
             ).keys()
         )
         assert expected == actions
@@ -2672,6 +2704,56 @@ class TestReviewHelper(TestReviewHelperBase):
 
         with self.assertRaises(AssertionError):
             self.helper.handler.approve_latest_version()
+
+    def test_clear_needs_human_review(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version.update(needs_human_review=True)
+        # set needs_human_review_by_mad - it shouldn't be cleared
+        flags = VersionReviewerFlags.objects.create(
+            version=self.review_version, needs_human_review_by_mad=True
+        )
+        # some other versions that are also needs_human_review
+        disabled = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        deleted = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+        )
+        deleted.delete()
+        # This is in a different channel so shouldn't be cleared
+        unlisted = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+
+        self.helper.handler.clear_needs_human_review()
+
+        log_type_id = amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS.id
+        assert self.check_log_count(log_type_id) == 1
+        assert (
+            ActivityLog.objects.for_addons(self.helper.addon)
+            .get(action=log_type_id)
+            .details.get('channel')
+            == 'listed'
+        )
+        assert len(mail.outbox) == 0
+        assert not self.review_version.human_review_date  # its not been reviewed
+        assert not self.review_version.reload().needs_human_review
+        assert not disabled.reload().needs_human_review
+        assert not deleted.reload().needs_human_review
+        assert not self.review_version.due_date
+        assert not disabled.due_date
+        assert not deleted.due_date
+        assert unlisted.reload().needs_human_review  # not cleared
+        assert unlisted.due_date
+
+        # mad flag hasn't changed
+        assert flags.reload().needs_human_review_by_mad
+        assert self.review_version.needs_human_review_by_mad
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

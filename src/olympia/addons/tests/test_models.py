@@ -472,6 +472,20 @@ class TestAddonModels(TestCase):
         # set to listed, and version 4.0 is unlisted.
         assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v2.id
 
+    def test_find_latest_version_include_deleted(self):
+        addon = Addon.objects.get(pk=3615)
+        v0 = addon.current_version
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(1))
+        v1.delete()
+        assert addon.find_latest_version(None, exclude=()).id == v0.id
+        assert addon.find_latest_version(None, exclude=(), deleted=True).id == v1.id
+
+        addon.delete()
+        assert addon.find_latest_version(None, exclude=()) is None
+        assert addon.find_latest_version(None, exclude=(), deleted=True).id == v1.id
+
     def test_current_version_unsaved(self):
         addon = Addon()
         addon._current_version = Version()
