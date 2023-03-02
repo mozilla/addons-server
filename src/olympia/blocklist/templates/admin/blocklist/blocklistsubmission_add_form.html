@@ -33,7 +33,7 @@
   <div>
     <div class="form-row horizontal-grid">
       <div>
-        <h3>{% with count=existing_guids|length v_min=form.min_version.value v_max=form.max_version.value %}{{ count }} Add-on GUIDs are already blocked for {{ v_min }} to {{ v_max }}{% endwith %}:</h3>
+        <h3>{{ existing_guids|length }} Add-on GUIDs are already blocked for {{ form.min_version.value }} to {{ form.max_version.value }}:</h3>
         <ul class="guid_list field-existing-guids">
           {% for guid in existing_guids %}
           <li>{{ guid }}</li>
@@ -41,7 +41,7 @@
         </ul>
       </div>
       <div>
-        <h3>{% with count=invalid_guids|length %}{{ count }} Add-on GUIDs were not found{% endwith %}:</h3>
+        <h3>{{ invalid_guids|length }} Add-on GUIDs were not found:</h3>
         <ul class="guid_list">
           {% for guid in invalid_guids %}
           <li>{{ guid }}</li>

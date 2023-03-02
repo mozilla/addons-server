@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1388,28 +1388,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "ਐਡ-ਆਨ"
-
-#, fuzzy
-msgid "Static Theme"
-msgstr "ਥੀਮ ਦਾਖਲ ਕਰੋ"
-
-msgid "Persona"
-msgstr "ਪਰਸੋਨਾ"
-
-#, fuzzy
-msgid "Security"
-msgstr "ਸੁਰੱਖਿਆ ਪਰਖ"
-
-#, fuzzy
-msgid "Privacy"
-msgstr "ਪਰਦਾ ਨੀਤੀ"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
-
 #, fuzzy
 msgid "No Reputation"
 msgstr "ਮਤਾ"
@@ -1937,6 +1915,9 @@ msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂਂ ਮਿਲਿਆ"
 
 msgid "Refine Activity"
 msgstr "ਸਰਗਰਮੀ ਸੁਧਾਰ"
+
+msgid "Add-on"
+msgstr "ਐਡ-ਆਨ"
 
 msgid "Activity"
 msgstr "ਸਰਗਰਮੀ"
@@ -3834,10 +3815,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4455,17 +4432,15 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4530,6 +4505,10 @@ msgid "See more password manager staff picks"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "ਐਡ-ਆਨ ਵਰਜਨ ਦੁਆਰਾ"
@@ -4560,6 +4539,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5349,10 +5332,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "ਹੋਰ"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

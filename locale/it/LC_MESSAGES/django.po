@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-19 17:19+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"PO-Revision-Date: 2023-03-01 10:10+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -1357,24 +1357,6 @@ msgstr "Strategico"
 msgid "Notable"
 msgstr "Rilevanti"
 
-msgid "Add-on"
-msgstr "Componente aggiuntivo"
-
-msgid "Static Theme"
-msgstr "Tema statico"
-
-msgid "Persona"
-msgstr "Tema di Personas"
-
-msgid "Security"
-msgstr "Sicurezza"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Development Practices"
-msgstr "Pratiche di sviluppo"
-
 msgid "No Reputation"
 msgstr "Nessuna reputazione"
 
@@ -1896,6 +1878,9 @@ msgstr "Nessun risultato."
 
 msgid "Refine Activity"
 msgstr "Restringi attività"
+
+msgid "Add-on"
+msgstr "Componente aggiuntivo"
 
 msgid "Activity"
 msgstr "Attività"
@@ -3773,10 +3758,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp sul Web. Accedi a WhatsApp dal pannello della barra degli strumenti di Firefox per ricevere notifiche delle conversazioni non lette."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Ottieni traduzioni fatte da esperti nelle combinazioni tedesco da/verso inglese, francese, spagnolo e altre lingue."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Impedisci a Firefox l’accesso a siti web da te indicati. Un ottimo strumento per esercitare l’autodisciplina in rete."
 
@@ -4399,18 +4380,16 @@ msgid "See all extensions"
 msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Strumenti di traduzione"
+msgid "Extension starter pack"
+msgstr "Pacchetto di estensioni per iniziare"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Strumenti esclusivi per il blocco delle pubblicità"
+msgid "Download Managers"
+msgstr "Gestori download"
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Estensioni per Roblox"
+msgid "Games & Entertainment extensions"
+msgstr "Estensioni per giochi e intrattenimento"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4466,6 +4445,10 @@ msgid "See more password manager staff picks"
 msgstr "Visualizza altri strumenti per la gestione delle password scelti dallo staff"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Strumenti di traduzione"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Visualizza altri strumenti per la traduzione scelti dallo staff"
 
@@ -4492,6 +4475,10 @@ msgstr "Estensioni con etichetta “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Visualizza altre estensioni con etichetta “{tag}”"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5282,10 +5269,6 @@ msgstr ""
 "Saluti,\n"
 "\n"
 "Il team di Firefox Add-ons"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "altri"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-04 18:37+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"PO-Revision-Date: 2023-02-25 18:53+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -23,10 +23,10 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Assegureu-vos que aquest camp no conté més de {max_length} caràcters."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "El valor no és vàlid"
 
 msgid "No links are allowed."
 msgstr "No s'accepten enllaços."
@@ -38,7 +38,7 @@ msgid "The homepage field can only be used to link to external websites."
 msgstr "El camp de pàgina d’inici només es pot fer servir per enllaçar amb llocs web externs."
 
 msgid "Images must be either PNG or JPG."
-msgstr "Les imatges han de ser o bé PNG o bé JPG."
+msgstr "Les imatges han de ser en PNG o bé JPG."
 
 msgid "Images cannot be animated."
 msgstr "Les imatges no poden ser animades."
@@ -66,22 +66,20 @@ msgstr "Necessiteu ajuda?"
 msgid "Notification [%s] does not exist"
 msgstr "La notificació [%s] no existeix"
 
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "Valoració completa del complement"
+msgstr "Equip de revisió de complements"
 
 msgid "Review"
-msgstr "Comentari"
+msgstr "Revisió"
 
 msgid "Version {0}"
 msgstr "Versió {0}"
 
-#, fuzzy
 msgid "Review note"
-msgstr "Comentari"
+msgstr "Nota de revisió"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Només es poden afegir notes a les últimes versions dels complements."
 
 msgid "Request content length is too large."
 msgstr ""
@@ -178,7 +176,7 @@ msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Els noms de complements no poden contenir les marques registrades de Mozilla ni Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
@@ -221,7 +219,7 @@ msgid "My Add-ons"
 msgstr "Els meus complements"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Els meus temes"
 
 msgid "Tools"
 msgstr "Eines"
@@ -236,48 +234,47 @@ msgid "My Collections"
 msgstr "Les meves col·leccions"
 
 msgid "Log out"
-msgstr "Surt"
+msgstr "Tanca la sessió"
 
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Gestiona els meus enviaments"
 
 msgid "Submit a New Add-on"
 msgstr "Envia un complement nou"
 
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Envia un tema nou"
 
 msgid "Developer Hub"
 msgstr "Centre de desenvolupadors"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gestiona les claus de l'API"
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Respost pel desenvolupador {0}"
+msgstr "Eines de revisió"
 
 msgid "Admin Tools"
 msgstr "Eines de l'administrador"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Enter positiu"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Aquest camp només es pot utilitzar per enllaçar a llocs web externs. No es permeten els URL en %(domain)s."
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Incorrecte, torneu-ho a provar."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "S'ha produït un error verificar l'entrada. Torneu-ho a provar."
 
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Introduïu una xarxa IP4 o IP6 vàlida."
 
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algunes característiques s'han inhabilitat temporalment mentre fem tasques de manteniment del lloc web. Tornarem a la plena capacitat aviat."
@@ -301,6 +298,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Esteu veient aquest missatge perquè aquest lloc HTTPS requereix que el navegador web enviï una «capçalera de referència» («Referer»), però no n'ha enviat cap. Aquesta capçalera és necessària per "
+"motius de seguretat, per garantir que el vostre navegador no sigui suplantat per tercers."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -339,14 +338,13 @@ msgid ""
 msgstr ""
 
 msgid "Register or Log in"
-msgstr ""
+msgstr "Registreu-vos o inicieu la sessió"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Email"
+msgstr "Adreça electrònica:"
 
 msgid "OK"
-msgstr ""
+msgstr "D'acord"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -379,13 +377,13 @@ msgid "{0} ago"
 msgstr "fa {0}"
 
 msgid "Title"
-msgstr ""
+msgstr "Títol"
 
 msgid "Body"
 msgstr ""
 
 msgid "Another Title"
-msgstr ""
+msgstr "Un altre títol"
 
 msgid "Another Body"
 msgstr ""
@@ -450,7 +448,7 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "No podeu fer servir aquest nom."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -598,9 +596,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "Comentari sobre {addon} {version}."
 
-#, fuzzy
 msgid "Commented"
-msgstr "Comentari"
+msgstr "Ha comentat"
 
 msgid "{tag} added to {addon}."
 msgstr "S'ha afegit l'etiqueta {tag} al complement {addon}."
@@ -1383,28 +1380,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Complement"
-
-#, fuzzy
-msgid "Static Theme"
-msgstr "Temes destacats"
-
-msgid "Persona"
-msgstr "Persona"
-
-#, fuzzy
-msgid "Security"
-msgstr "Proves de seguretat"
-
-#, fuzzy
-msgid "Privacy"
-msgstr "Política de privadesa"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Comentaris del desenvolupador"
-
 #, fuzzy
 msgid "No Reputation"
 msgstr "Excepció"
@@ -1934,6 +1909,9 @@ msgstr "No s'han trobat resultats."
 
 msgid "Refine Activity"
 msgstr "Afina l'activitat"
+
+msgid "Add-on"
+msgstr "Complement"
 
 msgid "Activity"
 msgstr "Activitat"
@@ -3816,10 +3794,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4437,17 +4411,15 @@ msgid "See all extensions"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4513,6 +4485,10 @@ msgid "See more password manager staff picks"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "per la versió del complement"
@@ -4544,6 +4520,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Mostra tots els complements"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5324,10 +5304,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "altres"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

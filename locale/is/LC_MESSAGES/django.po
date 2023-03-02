@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-01-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1302,24 +1302,6 @@ msgstr "Herkænska"
 msgid "Notable"
 msgstr "Eftirtektarvert"
 
-msgid "Add-on"
-msgstr "Viðbót"
-
-msgid "Static Theme"
-msgstr "Fast þema"
-
-msgid "Persona"
-msgstr "Persóna"
-
-msgid "Security"
-msgstr "Öryggi"
-
-msgid "Privacy"
-msgstr "Gagnaleynd"
-
-msgid "Development Practices"
-msgstr "Venjur við þróunarvinnu"
-
 msgid "No Reputation"
 msgstr "Ekkert orðspor"
 
@@ -1829,6 +1811,9 @@ msgstr "Engar niðurstöður fundust."
 
 msgid "Refine Activity"
 msgstr "Fínstilla virkni"
+
+msgid "Add-on"
+msgstr "Viðbót"
 
 msgid "Activity"
 msgstr "Virkni"
@@ -3593,10 +3578,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp á vefnum. Fáðu aðgang frá WhatsApp í verkfærastiku Firefox að tilkynningum um ólesna þræði."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Fáðu sérfræðiþýðingar af þýsku á ensku, frönsku, spænsku og öðrum tungumálum."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Takmarka aðgang Firefox að vefsíðum sem þú skilgreinir. Frábært tæki til að æfa sjálfsaga á netinu."
 
@@ -4215,17 +4196,15 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Þýðingatól"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Auglýsingabanar fyrir elítuna"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4281,6 +4260,10 @@ msgid "See more password manager staff picks"
 msgstr "Skoðaðu fleiri lykilorðastjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Þýðingatól"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
@@ -4307,6 +4290,10 @@ msgstr "Forritsaukar merktir “{tag}”"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Sjá fleiri forritsauka merkta með \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5059,10 +5046,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "aðrir"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

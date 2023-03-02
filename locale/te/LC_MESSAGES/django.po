@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2022-12-30 03:39+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
@@ -1288,24 +1288,6 @@ msgstr "వ్యూహాత్మకం"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "పొడగింత"
-
-msgid "Static Theme"
-msgstr "స్టాటిక్ అలంకరణ"
-
-msgid "Persona"
-msgstr "పెర్సోనా"
-
-msgid "Security"
-msgstr "భద్రత"
-
-msgid "Privacy"
-msgstr "అంతరంగికత"
-
-msgid "Development Practices"
-msgstr "డెవలప్‌మెంట్ పద్ధతులు"
-
 msgid "No Reputation"
 msgstr "ప్రఖ్యాతి ఏమీ లేదు"
 
@@ -1815,6 +1797,9 @@ msgstr "ఫలితాలు కనుగొనబడలేదు."
 
 msgid "Refine Activity"
 msgstr "కార్యాచరణను మెరుగుపరచండి"
+
+msgid "Add-on"
+msgstr "పొడగింత"
 
 msgid "Activity"
 msgstr "కార్యాచరణ"
@@ -3578,10 +3563,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "ఇంగ్లీష్, ఫ్రెంచ్, స్పానిష్, ఇతర భాషల మధ్య నిపుణుల జర్మన్ అనువాదాలను పొందండి."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4198,17 +4179,15 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "అనువాద పనిముట్లు"
-
-#. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Download Managers"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4265,6 +4244,10 @@ msgid "See more password manager staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "అనువాద పనిముట్లు"
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "మరిన్ని అనువాద పనిముట్లను చూడండి"
@@ -4295,6 +4278,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "మరిన్ని ప్రాచుర్య పొడగింతలను చూడండి"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5056,10 +5043,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "ఇతరులు"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

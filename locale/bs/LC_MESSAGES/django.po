@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1317,26 +1317,6 @@ msgstr ""
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr ""
-
-msgid "Static Theme"
-msgstr "Statička tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-#, fuzzy
-msgid "Security"
-msgstr "Sigurnosni testovi"
-
-msgid "Privacy"
-msgstr ""
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Vijesti programera"
-
 msgid "No Reputation"
 msgstr ""
 
@@ -1861,6 +1841,9 @@ msgstr "Nema rezultata."
 
 msgid "Refine Activity"
 msgstr "Poboljšajte aktivnost"
+
+msgid "Add-on"
+msgstr ""
 
 msgid "Activity"
 msgstr "Aktivnost"
@@ -3692,10 +3675,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4313,17 +4292,15 @@ msgid "See all extensions"
 msgstr "Sve verzije"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4388,6 +4365,10 @@ msgid "See more password manager staff picks"
 msgstr "Sve verzije"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more translation tool staff picks"
 msgstr "Sve verzije"
@@ -4418,6 +4399,10 @@ msgstr ""
 #, fuzzy
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Sve verzije"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5192,10 +5177,6 @@ msgid ""
 "Regards,\n"
 "\n"
 "The Firefox Add-ons Team"
-msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
 msgstr ""
 
 #, python-format

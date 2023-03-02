@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-11 19:17+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -1318,24 +1318,6 @@ msgstr "Strateško"
 msgid "Notable"
 msgstr ""
 
-msgid "Add-on"
-msgstr "Dodatek"
-
-msgid "Static Theme"
-msgstr "Statična tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Varnost"
-
-msgid "Privacy"
-msgstr "Zasebnost"
-
-msgid "Development Practices"
-msgstr "Razvojne prakse"
-
 msgid "No Reputation"
 msgstr "Ni slovesa"
 
@@ -1855,6 +1837,9 @@ msgstr "Ni najti rezultatov."
 
 msgid "Refine Activity"
 msgstr "Izboljšaj dejavnost"
+
+msgid "Add-on"
+msgstr "Dodatek"
 
 msgid "Activity"
 msgstr "Dejavnost"
@@ -3707,10 +3692,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp na spletu. Uporabljajte WhatsApp neposredno iz orodne vrstice Firefoxa, ki vam prikazuje obvestila o neprebranih sporočilih."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Profesionalni nemški prevodi iz angleščine, francoščine, španščine in drugih jezikov."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Omejite Firefoxu dostop do spletnih mest, ki jih določite. Odlično orodje za izvajanje spletne samodiscipline."
 
@@ -4328,19 +4309,16 @@ msgid "See all extensions"
 msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Orodja za prevajanje"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Posodobi blokado dodatka"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Razširitve za Roblox"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4395,6 +4373,10 @@ msgid "See more password manager staff picks"
 msgstr "Več osebno izbranih razširitev za upravljanje gesel"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Orodja za prevajanje"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Več osebno izbranih orodij za prevajanje"
 
@@ -4421,6 +4403,11 @@ msgstr "Razširitve z oznako \"{tag}\""
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Več razširitev z oznako \"{tag}\""
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Elite ad blockers"
+msgstr "Posodobi blokado dodatka"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5229,10 +5216,6 @@ msgstr ""
 "Lep pozdrav,\n"
 "\n"
 "ekipa Dodatkov za Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "drugi"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

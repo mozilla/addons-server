@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-01-23 16:40+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"PO-Revision-Date: 2023-02-27 20:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -205,6 +205,8 @@ msgstr "Toś ten dodankowy typ swójsku kompatibelnosć njedowólujo."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom "
+"trjebaśo."
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -491,11 +493,11 @@ msgstr "Kategorije su se za {addon} wobźěłali."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) jo se pśidał {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) jo se wótwónoźeł z dodanka {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Pósćiwanki za {addon}."
@@ -521,7 +523,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Wersija {0} dodanka {addon} jo se wulašowała."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Dataja {file} jo se wersiji {version} dodanka {addon} pśidała."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Dataja {0} jo se z wersije {version} dodanka {addon} wulašowała."
@@ -617,7 +619,7 @@ msgstr "{0} {1} pśidany."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rola {user} za dodank {addon} do {0} změnjona."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} jo něnto pód licencu {0}."
@@ -683,10 +685,10 @@ msgid "User {user} picture deleted."
 msgstr "Wobraz wužywaja {user} jo se wulašował."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se pśidał kupce {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Wužywaŕ {user} jo se wótwónoźeł z kupki {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} njejo nalicony."
@@ -1308,24 +1310,6 @@ msgstr "Strategiski"
 msgid "Notable"
 msgstr "Późiwabny"
 
-msgid "Add-on"
-msgstr "Dodank"
-
-msgid "Static Theme"
-msgstr "Statiska drastwa"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Wěstota"
-
-msgid "Privacy"
-msgstr "Priwatnosć"
-
-msgid "Development Practices"
-msgstr "Wuwijańske praktiki"
-
 msgid "No Reputation"
 msgstr "Žedno mě"
 
@@ -1430,9 +1414,11 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox pódpěru za rozšyrjenja manifestoweje wersije 3 (MV 3) w Firefox {version} pśidawa, starše wersije Firefox pak su jano z rozšyrjenjami z manifestoweju wersiju 2 (MV 2) kompatibelne. "
+"Pórucujomy, až rozšyrjenja manifesta v3 ako sam hostowane nagrawaśo, až njeby kazył kompatibelnosć za swóje wužywarje."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Za dalšne informacije wó zawjeźenju rozšyrjenjow MV 3 abo sam hostowanych rozšyrjenjach MV 3, woglědajśo k https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toś to adresowe mě se južo wužywa. Pšosym wubjeŕśo druge."
@@ -1843,6 +1829,9 @@ msgstr "Žedne wuslědki namakane."
 
 msgid "Refine Activity"
 msgstr "Aktiwitu pólěpšyś"
+
+msgid "Add-on"
+msgstr "Dodank"
 
 msgid "Activity"
 msgstr "Aktiwitu"
@@ -3703,10 +3692,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp we webje. Wužywajśo WhatsApp ze symboloweje rědki Firefox, aby powěźeńki wó njecytanych nitkach dostał."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Dóstańśo profesionelne nimske pśełožki z engelšćiny, francojšćiny, špańšćiny a drugich rěcow."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Zawoborajśo Firefox pśistup k wěstym websydłam. Wjelicny rěd za sebjedisciplinu online."
 
@@ -4313,7 +4298,7 @@ msgstr "Pólěpšćo swójo grajne dožywjenje na Steam."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Wjeliki palc dołoj jo se wrośił – na to wjeliki palc górjej."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4328,17 +4313,15 @@ msgid "See all extensions"
 msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Pśełožowańske rědy"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Wugbałe blokěrowaki wabjenja"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4394,6 +4377,10 @@ msgid "See more password manager staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja wó zastojanju gronidłow pokazaś"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Pśełožowańske rědy"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Dalšne wót sobuźěłaśerjow wubrane pśełožowańske rědy pokazaś"
 
@@ -4420,6 +4407,10 @@ msgstr "Rozšyrjenja z wobznamjenim „{tag}“"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Dalšne rozšyrjenja z wobznamjenim „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Wugbałe blokěrowaki wabjenja"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -4474,7 +4465,7 @@ msgid "See more creativity staff picks"
 msgstr "Wěcej wót sobuźěłaśerjow wubrane rozšyrjenja kreatiwnosći pokazaś"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Njepśeglědany"
 
 #, python-format
 msgid "[status:%s]"
@@ -5213,10 +5204,6 @@ msgstr ""
 "Póstrowy,\n"
 "\n"
 "Team dodankow Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "druge"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

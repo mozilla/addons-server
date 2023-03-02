@@ -868,6 +868,15 @@ class LOG_IN_API_TOKEN(_LOG):
     format = '{user_responsible} authenticated through an API token.'
 
 
+class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
+    id = 173
+    format = _('{addon} needs_human_review flag cleared.')
+    short = _('Needs Human Review cleared')
+    admin_event = True
+    review_queue = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-19 09:25+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"PO-Revision-Date: 2023-02-28 23:53+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1299,24 +1299,6 @@ msgstr "Strategisk"
 msgid "Notable"
 msgstr "Anmärkningsvärd"
 
-msgid "Add-on"
-msgstr "Tillägg"
-
-msgid "Static Theme"
-msgstr "Statisk tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Säkerhet"
-
-msgid "Privacy"
-msgstr "Sekretess"
-
-msgid "Development Practices"
-msgstr "Utvecklingspraxis"
-
 msgid "No Reputation"
 msgstr "Inget rykte"
 
@@ -1832,6 +1814,9 @@ msgstr "Inga resultat hittades."
 
 msgid "Refine Activity"
 msgstr "Begränsa aktivitet"
+
+msgid "Add-on"
+msgstr "Tillägg"
 
 msgid "Activity"
 msgstr "Aktivitet"
@@ -3692,10 +3677,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp på webben. Åtkomst till WhatsApp från Firefox:s verktygsfält för att få aviseringar om olästa trådar."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Få tyska expertöversättningar mellan engelska, franska, spanska och andra språk."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Begränsa Firefox från att komma åt webbplatser som du definierar. Ett bra verktyg för att utöva självdisciplin online."
 
@@ -4313,18 +4294,16 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Översättningsverktyg"
+msgid "Extension starter pack"
+msgstr "Tilläggsstartpaket"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Kraftfulla annonsblockerare"
+msgid "Download Managers"
+msgstr "Nedladdningshanterare"
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox-tillägg"
+msgid "Games & Entertainment extensions"
+msgstr "Spel och underhållningstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4379,6 +4358,10 @@ msgid "See more password manager staff picks"
 msgstr "Se fler utvalda lösenordshanterare som valts av anställda"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Översättningsverktyg"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "Se fler översättningsverktyg som valts av anställda"
 
@@ -4405,6 +4388,10 @@ msgstr "\"{tag}\" taggade tillägg"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Se fler tillägg taggade \"{tag}\""
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Kraftfulla annonsblockerare"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5194,10 +5181,6 @@ msgstr ""
 "Hälsningar,\n"
 "\n"
 "Firefox-tilläggsteamet"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "andra"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<h3>{% with count=blocks|length|intcomma adu=total_adu|intcomma %}{{ count }} Add-on GUIDs with {{ adu }} users{% endwith %}:</h3>
+<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
  <ul class="guid_list">
   {% for block_obj in blocks %}
     <li>

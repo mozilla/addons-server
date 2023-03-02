@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
-"PO-Revision-Date: 2023-02-18 19:41+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"PO-Revision-Date: 2023-03-01 14:44+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1328,24 +1328,6 @@ msgstr "სტრატეგიული"
 msgid "Notable"
 msgstr "ღირსშესანიშნავი"
 
-msgid "Add-on"
-msgstr "დამატება"
-
-msgid "Static Theme"
-msgstr "უცვლელი თემა"
-
-msgid "Persona"
-msgstr "პიროვნება"
-
-msgid "Security"
-msgstr "უსაფრთხოება"
-
-msgid "Privacy"
-msgstr "პირადულობა"
-
-msgid "Development Practices"
-msgstr "გამოსადეგი მასალა შემუშავებისთვის"
-
 msgid "No Reputation"
 msgstr "შეფასების გარეშე"
 
@@ -1860,6 +1842,9 @@ msgstr "შედეგები ვერ მოიძებნა."
 
 msgid "Refine Activity"
 msgstr "მოქმედებების დაზუსტება"
+
+msgid "Add-on"
+msgstr "დამატება"
 
 msgid "Activity"
 msgstr "მოქმედება"
@@ -3697,10 +3682,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp ვებსივრცეში. მიიღეთ წვდომა WhatsApp-ზე Firefox-ის ხელსაწყოთა არეში, წაუკითხავი თემების შესახებ შეტყობინებების მისაღებად."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "მიიღეთ მაღალი დონის თარგმანი გერმანულსა და ინგლისურ, ფრანგულ, ესპანურ ან სხვა ენებს შორის."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "აუკრძალეთ Firefox-ს მითითებულ ვებსაიტებთან წვდომა. საუკეთესო საშუალება, თვითწესრიგისთვის."
 
@@ -3727,7 +3708,7 @@ msgstr "სანიშნების უფრო მოსახერხე�
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr "მოაცილეთ უსარგებლო გაფორმება და დააკოპირეთ მხოლოდ ტექსტი."
+msgstr "აიღეთ ტექსტის ასლი უსარგებლო გაფორმების მოცილებით."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4231,7 +4212,7 @@ msgstr "დაგღალათ შეტყობინებამ „ვი�
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
-msgstr "აქშა, ფუნთუშების აბეზარო შეტყობინებებო!"
+msgstr "ფუნთუშების აბეზარო შეტყობინებებო, გაქრით!"
 
 #. editorial content for the primary hero shelves.
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
@@ -4320,18 +4301,16 @@ msgid "See all extensions"
 msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "თარგმნის ხელსაწყოები"
+msgid "Extension starter pack"
+msgstr "საწყისი გაფართოებების ნაკრები"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "რეკლამის საუკეთესო შემზღუდავები"
+msgid "Download Managers"
+msgstr "ჩამოტვირთვის მმართველები"
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox-გაფართოება"
+msgid "Games & Entertainment extensions"
+msgstr "გაფართოებები თამაშებისა და გასართობისთვის"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4386,6 +4365,10 @@ msgid "See more password manager staff picks"
 msgstr "პაროლის სხვა მმართველები, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "თარგმნის ხელსაწყოები"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "თარგმნის სხვა ხელსაწყოები, თანამშრომლების შერჩეული"
 
@@ -4412,6 +4395,10 @@ msgstr "გაფართოებები „{tag}“ მონიშვნ�
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "რეკლამის საუკეთესო შემზღუდავები"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5200,10 +5187,6 @@ msgstr ""
 "პატივისცემით,\n"
 "\n"
 "Firefox-დამატებების გუნდი"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "და სხვები"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

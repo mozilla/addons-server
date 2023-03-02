@@ -472,6 +472,20 @@ class TestAddonModels(TestCase):
         # set to listed, and version 4.0 is unlisted.
         assert addon.find_latest_version(amo.CHANNEL_LISTED, exclude=()).id == v2.id
 
+    def test_find_latest_version_include_deleted(self):
+        addon = Addon.objects.get(pk=3615)
+        v0 = addon.current_version
+
+        v1 = version_factory(addon=addon, version='1.0')
+        v1.update(created=self.days_ago(1))
+        v1.delete()
+        assert addon.find_latest_version(None, exclude=()).id == v0.id
+        assert addon.find_latest_version(None, exclude=(), deleted=True).id == v1.id
+
+        addon.delete()
+        assert addon.find_latest_version(None, exclude=()) is None
+        assert addon.find_latest_version(None, exclude=(), deleted=True).id == v1.id
+
     def test_current_version_unsaved(self):
         addon = Addon()
         addon._current_version = Version()
@@ -3021,92 +3035,6 @@ class TestExtensionsQueues(TestCase):
         )
 
         addons = Addon.objects.get_mad_queue().all()
-
-        assert all(addon in addons for addon in expected_addons.values())
-        assert not any(addon in addons for addon in unexpected_addons.values())
-
-    def test_human_review_queue(self):
-        expected_addons = {
-            'flagged_addon': addon_factory(
-                version_kw={'needs_human_review': True, 'due_date': None}
-            )
-        }
-        unexpected_addons = {}
-        unexpected_addons['other_addon'] = addon_factory()
-        version_factory(addon=unexpected_addons['other_addon'])
-        unexpected_addons['addon_pending_rejection'] = addon_factory(
-            version_kw={'needs_human_review': True, 'due_date': None}
-        )
-        version_review_flags_factory(
-            version=unexpected_addons['addon_pending_rejection'].current_version,
-            pending_rejection=datetime.now(),
-        )
-        unexpected_addons['addon_with_unlisted_pending_rejection'] = addon_factory(
-            version_kw={
-                'channel': amo.CHANNEL_UNLISTED,
-                'needs_human_review': True,
-                'due_date': None,
-            }
-        )
-        version_review_flags_factory(
-            version=unexpected_addons[
-                'addon_with_unlisted_pending_rejection'
-            ].versions.get(),
-            pending_rejection=datetime.now(),
-        )
-        unexpected_addons['addon_with_older_listed_pending_rejection'] = addon_factory(
-            version_kw={
-                'created': self.days_ago(42),
-                'needs_human_review': True,
-                'due_date': None,
-            }
-        )
-        version_review_flags_factory(
-            version=unexpected_addons[
-                'addon_with_older_listed_pending_rejection'
-            ].versions.get(),
-            pending_rejection=datetime.now(),
-        )
-        version_factory(
-            addon=unexpected_addons['addon_with_older_listed_pending_rejection']
-        )
-        unexpected_addons['disabled_addon'] = addon_factory(
-            status=amo.STATUS_DISABLED,
-            version_kw={'needs_human_review': True, 'due_date': None},
-        )
-        unexpected_addons['disabled_version_addon'] = addon_factory(
-            version_kw={
-                'channel': amo.CHANNEL_UNLISTED,
-                'needs_human_review': True,
-                'due_date': None,
-            },
-            file_kw={'status': amo.STATUS_DISABLED},
-        )
-        unexpected_addons['has_due_date'] = addon_factory(
-            version_kw={
-                'channel': amo.CHANNEL_UNLISTED,
-                'needs_human_review': True,
-                'due_date': datetime.now() + timedelta(hours=2),
-            },
-        )
-        # scanners_queue() considers all versions in all channels, so this one
-        # is expected to be found.
-        expected_addons['addon_with_old_listed_version_flagged'] = addon_factory(
-            version_kw={'needs_human_review': True, 'due_date': None}
-        )
-        version_factory(addon=expected_addons['addon_with_old_listed_version_flagged'])
-        # Non-extensions should not be flagged by scanners - if that somehow
-        # happens this should be ignored by this method - filtering on
-        # extensions only is good for this query's performance.
-        unexpected_addons['non_extension'] = addon_factory(
-            type=amo.ADDON_DICT,
-            version_kw={'needs_human_review': True, 'due_date': None},
-        )
-        version_review_flags_factory(
-            version=unexpected_addons['non_extension'].current_version,
-        )
-
-        addons = Addon.objects.get_human_review_queue().all()
 
         assert all(addon in addons for addon in expected_addons.values())
         assert not any(addon in addons for addon in unexpected_addons.values())

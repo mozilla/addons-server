@@ -449,7 +449,10 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-01-12: added the ability to delete add-on versions. https://github.com/mozilla/addons-server/issues/19784
 * 2023-02-23: removed the /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/20354
 * 2023-02-23: removed ``canned-response`` from the /draft_comments/ endpoint. https://github.com/mozilla/addons-server/issues/20353
-* 2023-03-02: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
+* 2023-03-02: added specific HTTP 409 status code for add-on/version submissions that already exist
+* 2023-03-02: added support for calling the version detail endpoint using a version number instead of an ``id``.
+* 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
+
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

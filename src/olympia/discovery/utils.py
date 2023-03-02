@@ -6,6 +6,7 @@ from django.conf import settings
 from django.utils.http import urlencode
 
 import requests
+import waffle
 
 from django_statsd.clients import statsd
 
@@ -25,6 +26,8 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     POST as json.
     The HTTP verb to use is either "get" or "post", controlled through `verb`,
     which defaults to "get"."""
+    if not waffle.switch_is_active('enable-taar'):
+        return None
     request_kwargs = {'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT}
     # Don't blindly trust client_id_or_guid, urljoin() will use its host name
     # and/or scheme if present! Fortunately we know what it must looks like.
@@ -43,8 +46,10 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     try:
         with statsd.timer('services.recommendations'):
             response = getattr(requests, verb)(endpoint, **request_kwargs)
-        if response.status_code != 200:
-            raise requests.exceptions.RequestException()
+        response.raise_for_status()
+    except requests.exceptions.ReadTimeout:
+        statsd.incr('services.recommendations.fail')
+        return None
     except requests.exceptions.RequestException as e:
         log.exception('Calling recommendation engine failed: %s', e)
         statsd.incr('services.recommendations.fail')

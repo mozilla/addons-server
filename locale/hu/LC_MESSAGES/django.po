@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-15 14:06+0000\n"
+"POT-Creation-Date: 2023-02-28 17:06+0000\n"
 "PO-Revision-Date: 2023-02-09 11:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1335,24 +1335,6 @@ msgstr "Stratégiai"
 msgid "Notable"
 msgstr "Jelentős"
 
-msgid "Add-on"
-msgstr "Kiegészítő"
-
-msgid "Static Theme"
-msgstr "Statikus téma"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Biztonság"
-
-msgid "Privacy"
-msgstr "Adatvédelem"
-
-msgid "Development Practices"
-msgstr "Fejlesztői gyakorlatokat"
-
 msgid "No Reputation"
 msgstr "Nincs hírneve"
 
@@ -1869,6 +1851,9 @@ msgstr "A keresés eredménytelen."
 
 msgid "Refine Activity"
 msgstr "Tevékenység pontosítása"
+
+msgid "Add-on"
+msgstr "Kiegészítő"
 
 msgid "Activity"
 msgstr "Tevékenység"
@@ -3734,10 +3719,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp a weben. Érje el a WhatsAppot a Firefox eszköztár paneljéről, és kapjon értesítéseket az olvasatlan szálakról."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Kapjon szakértő német fordítást angol, francia, spanyol és más nyelvekről."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Korlátozza a Firefoxot, hogy ne érje el a megadott oldalakat. Nagyszerű eszköz az online önfegyelemhez."
 
@@ -4356,18 +4337,16 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Translation tools"
-msgstr "Fordítási eszközök"
+msgid "Extension starter pack"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elit reklámblokkolók"
+msgid "Download Managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Roblox extensions"
-msgstr "Roblox kiegészítők"
+msgid "Games & Entertainment extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4423,6 +4402,10 @@ msgid "See more password manager staff picks"
 msgstr "További, stáb által javasolt jelszókezelő kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
+msgid "Translation tools"
+msgstr "Fordítási eszközök"
+
+#. editorial content for the homepage shelves.
 msgid "See more translation tool staff picks"
 msgstr "További, stáb által javasolt fordítási eszközök megtekintése"
 
@@ -4449,6 +4432,10 @@ msgstr "„{tag}” címkéjű kiegészítők"
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Elit reklámblokkolók"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
@@ -5241,10 +5228,6 @@ msgstr ""
 "Üdvözlettel,\n"
 "\n"
 "A Firefox kiegészítők csapata"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "mások"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
