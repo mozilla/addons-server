@@ -115,7 +115,21 @@ class TestPromotedAddon(TestCase):
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert not promo.addon.current_version.needs_human_review
 
-        # then with a group thats flag_for_human_review == True
+        # then with a group thats flag_for_human_review == True but pretend
+        # the version has already been reviewed by a human (so it's not
+        # necessary to flag it as needing human review again).
+        promo.addon.current_version.update(human_review_date=self.days_ago(1))
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not promo.addon.current_version.needs_human_review
+
+        # then with a group thats flag_for_human_review == True without the
+        # version having been reviewed by a human (it should be flagged).
+        promo.addon.current_version.update(human_review_date=None)
         promo.group_id = promoted.NOTABLE.id
         promo.save()
         promo.addon.reload()

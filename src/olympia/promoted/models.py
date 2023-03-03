@@ -130,6 +130,7 @@ class PromotedAddon(ModelBase):
             and not self.has_approvals
             and self.addon.current_version
             and not self.addon.current_version.needs_human_review
+            and not self.addon.current_version.human_review_date
         ):
             self.addon.current_version.update(needs_human_review=True)
 
