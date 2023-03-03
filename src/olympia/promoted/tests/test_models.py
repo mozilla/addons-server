@@ -131,6 +131,7 @@ class TestPromotedAddon(TestCase):
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert not listed_ver.reload().needs_human_review
+        assert not unlisted_ver.reload().needs_human_review
 
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human (it should be flagged).
