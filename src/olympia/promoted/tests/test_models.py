@@ -130,7 +130,7 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert not promo.addon.current_version.needs_human_review
+        assert not listed_ver.reload().needs_human_review
 
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human (it should be flagged).
@@ -147,12 +147,38 @@ class TestPromotedAddon(TestCase):
         assert not unlisted_ver.due_date
 
         # But we should only flag before the add-on is approved for Promoted
-        listed_ver.update(needs_human_review=False)
+        promo.addon.current_version.update(needs_human_review=False)
         promo.approve_for_version(listed_ver)
         assert promo.addon.reload().promoted_group() == promoted.NOTABLE
         promo.save()
         promo.addon.reload()
         assert not listed_ver.reload().needs_human_review
+
+    def test_disabled_and_deleted_versions_flagged_for_human_review(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
+        )
+        version = addon.find_latest_version(None, exclude=(), deleted=True)
+        promo = PromotedAddon.objects.create(
+            addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
+        )
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+
+        # And if deleted too
+        version.update(needs_human_review=False, due_date=None)
+        version.delete()
+        promo.save()
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+
+        # even if the add-on is deleted
+        version.update(needs_human_review=False, due_date=None)
+        addon.delete()
+        promo.save()
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):

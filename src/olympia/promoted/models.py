@@ -1,6 +1,7 @@
 from django.db import models
 from django.dispatch import receiver
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
@@ -127,7 +128,14 @@ class PromotedAddon(ModelBase):
             self.approve_for_addon()
         elif (
             self.group.flag_for_human_review
-            and (version := self.addon.current_version)
+            and (
+                version := (
+                    self.addon.current_version
+                    or self.addon.find_latest_version(
+                        amo.CHANNEL_LISTED, exclude=(), deleted=True
+                    )
+                )
+            )
             and not version.needs_human_review
             and not version.human_review_date
             and not self._get_approved_applications_for_version(version)

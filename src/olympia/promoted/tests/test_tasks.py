@@ -27,11 +27,17 @@ def test_add_high_adu_extensions_to_notable():
     unlisted_only_extension = addon_factory(
         average_daily_users=adu_limit + 1, version_kw={'channel': amo.CHANNEL_UNLISTED}
     )
-    mixed_extension = addon_factory(average_daily_users=adu_limit + 1)
+    mixed_extension = addon_factory(
+        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+    )
     mixed_extension_listed_version = mixed_extension.current_version
     mixed_extension_listed_version.delete()
-    version_factory(addon=mixed_extension, channel=amo.CHANNEL_UNLISTED)
-    deleted_extension = addon_factory(average_daily_users=adu_limit + 1)
+    mixed_extension_unlisted_version = version_factory(
+        addon=mixed_extension, channel=amo.CHANNEL_UNLISTED
+    )
+    deleted_extension = addon_factory(
+        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+    )
     deleted_extension_version = deleted_extension.current_version
     deleted_extension.delete()
 
@@ -63,12 +69,9 @@ def test_add_high_adu_extensions_to_notable():
     unlisted_latest_version = unlisted_only_extension.find_latest_version(channel=None)
     assert not unlisted_latest_version.needs_human_review
     assert not unlisted_latest_version.due_date
-    mixed_latest_version = mixed_extension.find_latest_version(
-        channel=amo.CHANNEL_UNLISTED
-    )
-    assert not mixed_latest_version.needs_human_review
-    assert not mixed_latest_version.due_date
-    assert not mixed_extension_listed_version.reload().needs_human_review
-    assert not mixed_extension_listed_version.due_date
-    assert not deleted_extension_version.reload().needs_human_review
-    assert not deleted_extension_version.due_date
+    assert not mixed_extension_unlisted_version.needs_human_review
+    assert not mixed_extension_unlisted_version.due_date
+    assert mixed_extension_listed_version.reload().needs_human_review
+    assert mixed_extension_listed_version.due_date
+    assert deleted_extension_version.reload().needs_human_review
+    assert deleted_extension_version.due_date
