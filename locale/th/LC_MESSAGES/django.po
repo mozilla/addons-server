@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2023-03-04 21:54+0000\n"
+"PO-Revision-Date: 2023-03-04 21:57+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1897,7 +1897,7 @@ msgstr "กิจกรรมเก่ากว่าของส่วนเส
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> ชุดตกแต่ง"
+msgstr[0] ""
 
 msgid "Edit Product Page"
 msgstr "แก้ไขหน้าผลิตภัณฑ์"
@@ -2552,10 +2552,10 @@ msgid "Administrative overrides"
 msgstr "การเขียนทับโดยผู้ดูแล"
 
 msgid "Create a Theme Version"
-msgstr "สร้างรุ่นชุดตกแต่ง"
+msgstr "สร้างรุ่นของชุดรูปแบบ"
 
 msgid "Create a Theme"
-msgstr "สร้างชุดตกแต่ง"
+msgstr "สร้างชุดรูปแบบ"
 
 msgid "Theme generate"
 msgstr "การสร้างชุดตกแต่ง"
@@ -2567,7 +2567,7 @@ msgid "Warning: the following manifest properties that your most recent version 
 msgstr ""
 
 msgid "Theme name"
-msgstr "ชื่อชุดตกแต่ง"
+msgstr "ชื่อชุดรูปแบบ"
 
 msgid "Select a header image for your theme"
 msgstr "เลือกภาพส่วนหัวสำหรับชุดตกแต่งของคุณ"
@@ -2598,7 +2598,7 @@ msgid "Browser preview"
 msgstr "ตัวอย่างเบราว์เซอร์"
 
 msgid "Uploading Theme"
-msgstr "กำลังอัปโหลดชุดตกแต่ง"
+msgstr "กำลังอัปโหลดชุดรูปแบบ"
 
 msgid "Finish Theme"
 msgstr "สิ้นสุดการสร้างชุดตกแต่ง"
