@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2023-03-04 21:53+0000\n"
+"PO-Revision-Date: 2023-03-04 22:04+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -413,16 +413,14 @@ msgstr "Error en descodificar la signatura."
 msgid "Invalid JWT Token."
 msgstr "El testimoni JWT no és vàlid."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Arxiu invàlid."
+msgstr "El testimoni o la funció resum no són vàlids."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "Adreça de correu"
+msgstr "No s'ha trobat l'adreça electrònica."
 
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "No disponible per motius legals."
 
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
@@ -444,9 +442,8 @@ msgstr ""
 msgid "Confirmation for developer API keys"
 msgstr "S'ha sol·licitat més informació"
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
+msgstr "Aquest URL personalitzat ja l'esteu utilitzant en una altra col·lecció."
 
 msgid "This name cannot be used."
 msgstr "No podeu fer servir aquest nom."
@@ -454,13 +451,11 @@ msgstr "No podeu fer servir aquest nom."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "«{0}» és una etiqueta reservada i no es pot fer servir."
+msgstr "Aquest URL personalitzat no es pot fer sevir."
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
+msgstr "Aquest complement ja pertany a la col·lecció"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -481,9 +476,8 @@ msgstr ""
 msgid "%(value)s contains *"
 msgstr ""
 
-#, fuzzy
 msgid "Invalid version"
-msgstr "Número de versió invàlid. "
+msgstr "La versió no és vàlida"
 
 msgid "Min version can not be greater than Max version"
 msgstr ""
@@ -526,9 +520,8 @@ msgid "{addon} enabled."
 msgstr "{addon} habilitat."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "L'estat del complement {addon} ha canviat a {0}."
+msgstr "L'estat del complement {addon} ha canviat a {status}."
 
 msgid "{version} added to {addon}."
 msgstr "S'ha afegit la versió {version} del complement {addon}."
@@ -612,9 +605,8 @@ msgstr "S'ha afegit el complement {addon} a la col·lecció {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "S'ha suprimit el complement {addon} de la col·lecció {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "S'ha escrit el comentari {review} pel complement {addon}."
+msgstr "S'ha escrit la valoració {rating} per al complement {addon}."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -638,9 +630,8 @@ msgstr "S'ha afegit {0} {1}"
 msgid "{user} role changed to {0} for {addon}."
 msgstr ""
 
-#, fuzzy
 msgid "{addon} is now licensed under {0}."
-msgstr "S'ha canviat la llicència del complement {addon} a {0.name}."
+msgstr "La llicència del complement {addon} ha canviat a {0}."
 
 msgid "{addon} policy changed."
 msgstr "S'han canviat els permisos del complement {addon}."
@@ -649,9 +640,8 @@ msgstr "S'han canviat els permisos del complement {addon}."
 msgid "{addon} icon or previews changed."
 msgstr "S'ha canviat la icona del complement {addon}."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "S'ha aprovat el comentari {review} del complement {addon}."
+msgstr "S'ha aprovat la valoració {rating} del complement {addon}."
 
 #, fuzzy
 msgid "Review {rating} for {addon} deleted."
@@ -664,7 +654,7 @@ msgid "Authors emailed about compatibility of {version}."
 msgstr "S'ha enviat un missatge de correu als autors sobre la compatibilitat de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "S'ha enviat un correu electrònic a l'autor sobre la compatibilitat del complement."
 
 msgid "Password changed."
 msgstr "Contrasenya canviada."
@@ -676,7 +666,7 @@ msgid "Approved but waiting"
 msgstr "Aprovat però en espera."
 
 msgid "Account updated."
-msgstr ""
+msgstr "S'ha actualitzat el compte."
 
 #, fuzzy
 msgid "Account {user} deleted."
@@ -717,10 +707,10 @@ msgid "User {user} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "El complement {addon} s'ha eliminat de la llista."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "S'ha signat {fitxer}."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
@@ -734,9 +724,8 @@ msgstr "S'ha passat la revisió preliminar de la versió {addon} {version}"
 msgid "Reply by developer on {addon} {version}."
 msgstr "Comentari sobre {addon} {version}."
 
-#, fuzzy
 msgid "Developer Reply"
-msgstr "Respost pel desenvolupador {0}"
+msgstr "Resposta del desenvolupador"
 
 #, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
@@ -781,17 +770,15 @@ msgstr "S'ha decidit escalar la revisió de la versió {addon} {version}"
 msgid "{addon} {version} content approved."
 msgstr "S'ha aprovat el complement {addon} {version}"
 
-#, fuzzy
 msgid "Content approved"
-msgstr "va ser aprovada"
+msgstr "S'ha aprovat el contingut"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "S'ha rebutjat la versió {addon} {version}"
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "va ser rebutjada"
+msgstr "S'ha rebutjat el contingut"
 
 #, fuzzy
 msgid "{addon} information request altered or removed by admin."
@@ -845,7 +832,7 @@ msgid "Block for {0} added to Blocklist."
 msgstr ""
 
 msgid "Block added"
-msgstr ""
+msgstr "S'ha afegit el bloc"
 
 msgid "Block for {0} edited in Blocklist."
 msgstr ""
@@ -857,9 +844,8 @@ msgstr ""
 msgid "Block for {0} deleted from Blocklist."
 msgstr "S'ha suprimit la versió {0} del complement {addon}."
 
-#, fuzzy
 msgid "Block deleted"
-msgstr "S'ha suprimit el complement"
+msgstr "S'ha suprimit el bloc"
 
 msgid "GUID for {addon} added to DeniedGuid."
 msgstr ""
@@ -924,7 +910,7 @@ msgid "Mobile"
 msgstr "Mòbils"
 
 msgid "Firefox for Android"
-msgstr ""
+msgstr "Firefox per a l'Android"
 
 msgid "Mozilla"
 msgstr "Mozilla"
@@ -933,7 +919,7 @@ msgid "Incomplete"
 msgstr "Incomplet"
 
 msgid "Awaiting Review"
-msgstr ""
+msgstr "Pendent de revisió"
 
 msgid "Disabled by Mozilla"
 msgstr "Inhabilitat per Mozilla"
@@ -960,9 +946,8 @@ msgstr "Propietari"
 msgid "Developer"
 msgstr "Desenvolupador"
 
-#, fuzzy
 msgid "(Deleted)"
-msgstr "Eliminat"
+msgstr "(Suprimit)"
 
 msgid "Extension"
 msgstr "Extensió"
@@ -990,7 +975,7 @@ msgid "Deprecated LWT"
 msgstr ""
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Tema (estàtic)"
 
 #, fuzzy
 msgid "Site Permission"
@@ -1025,7 +1010,7 @@ msgid "Deprecated LWTs"
 msgstr ""
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Temes (estàtics)"
 
 #, fuzzy
 msgid "Site Permissions"
