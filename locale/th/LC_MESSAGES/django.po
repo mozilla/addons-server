@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2023-03-04 21:57+0000\n"
+"PO-Revision-Date: 2023-03-04 22:13+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1345,7 +1345,7 @@ msgid "All"
 msgstr "ทั้งหมด"
 
 msgid "Theme"
-msgstr "ชุดตกแต่ง"
+msgstr "ชุดรูปแบบ"
 
 #, fuzzy
 msgid "No action"
@@ -1605,13 +1605,13 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "ส่วนเสริมนี้ไม่สามารถลบได้ ให้ปิดการทำงานของส่วนเสริมนี้แทน"
 
 msgid "Theme deleted."
-msgstr "ลบชุดตกแต่งแล้ว"
+msgstr "ลบชุดรูปแบบแล้ว"
 
 msgid "Add-on deleted."
 msgstr "ลบส่วนเสริมแล้ว"
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "ชื่อ URL ไม่ถูกต้อง ไม่ได้ลบชุดตกแต่ง"
+msgstr "ชื่อ URL ไม่ถูกต้อง ไม่ได้ลบชุดรูปแบบ"
 
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "ชื่อ URL ไม่ถูกต้อง ไม่ได้ลบส่วนเสริม"
@@ -1759,7 +1759,7 @@ msgid "Extension Development"
 msgstr "การพัฒนาส่วนขยาย"
 
 msgid "Themes"
-msgstr "ชุดตกแต่ง"
+msgstr "ชุดรูปแบบ"
 
 msgid "Developer Policies"
 msgstr "นโยบายนักพัฒนา"
