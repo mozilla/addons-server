@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-02-28 17:06+0000\n"
-"PO-Revision-Date: 2023-03-04 22:06+0000\n"
+"PO-Revision-Date: 2023-03-04 22:32+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
 "Language: ca\n"
@@ -1379,7 +1379,7 @@ msgid "Excellent (3)"
 msgstr ""
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Sol·licita més informació"
 
 msgid "Flag"
 msgstr ""
@@ -1394,14 +1394,13 @@ msgid "Approve"
 msgstr ""
 
 msgid "All"
-msgstr ""
+msgstr "Tots"
 
 msgid "Theme"
 msgstr "Tema"
 
-#, fuzzy
 msgid "No action"
-msgstr "Més opcions"
+msgstr "Cap acció"
 
 msgid "Flag for human review"
 msgstr ""
@@ -1444,9 +1443,8 @@ msgstr ""
 msgid "Aborting"
 msgstr ""
 
-#, fuzzy
 msgid "Completed"
-msgstr "Incomplet"
+msgstr "Ha acabat"
 
 msgid "Scheduled"
 msgstr ""
@@ -1456,10 +1454,10 @@ msgstr ""
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Canvis recents per a %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Canvis recents dels meus complements"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
@@ -1666,7 +1664,7 @@ msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "No es pot suprimir el complement. Mireu d'inhabilitar-lo."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "S’ha suprimit el tema."
 
 msgid "Add-on deleted."
 msgstr "S'ha suprimit el complement"
@@ -1723,7 +1721,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "S’ha inhabilitat la versió %s."
 
 #, python-format
 msgid "Version %s deleted."
@@ -1731,7 +1729,7 @@ msgstr "S'ha suprimit la versió %s."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "S’ha rehabilitat la versió %s."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
@@ -1851,10 +1849,10 @@ msgid "Add-ons Forum"
 msgstr "Fòrum del complement"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Més recursos"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Cerca a la documentació dels desenvolupadors"
 
 msgid "Search"
 msgstr "Cerca"
@@ -1909,8 +1907,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Aquest complement no és compatible amb la última versió del complement %(app_name)s, <b>%(app_name)s %(app_version)s</b>. Si us plau actualitzeu la informació de compatibilitat del vostre complement"
-" o bé mireu d'arreglar-ho en una nova versió del complement."
+"Aquest complement no és compatible amb l'última versió del complement %(app_name)s: <b>%(app_name)s %(app_version)s</b>. Actualitzeu la informació de compatibilitat del vostre complement o bé pugeu "
+"una versió més nova del complement."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2011,7 +2009,7 @@ msgid "Click on the Accept button below to confirm you want to be added as an au
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Accepta"
 
 msgid "Decline"
 msgstr ""
@@ -2682,9 +2680,8 @@ msgstr ""
 msgid "Create a Theme Version"
 msgstr "Temes destacats"
 
-#, fuzzy
 msgid "Create a Theme"
-msgstr "Temes destacats"
+msgstr "Crea un tema"
 
 msgid "Theme generate"
 msgstr ""
@@ -2722,9 +2719,8 @@ msgstr "Seleccioneu una imatge de capçalera diferent"
 msgid "Select colors for your theme"
 msgstr "Seleccioneu una icona pel vostre complement:"
 
-#, fuzzy
 msgid "optional"
-msgstr "(opcional)"
+msgstr "opcional"
 
 #, fuzzy
 msgid "Browser preview"
@@ -2739,10 +2735,10 @@ msgid "Finish Theme"
 msgstr "Temes de %s"
 
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Credencials de l’API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -2864,7 +2860,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
-msgstr ""
+msgstr "Última actualització:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -2956,7 +2952,7 @@ msgid "Please choose a license appropriate for the rights you grant on your sour
 msgstr ""
 
 msgid "Sort by:"
-msgstr "Ordenat per:"
+msgstr "Ordena per:"
 
 #. %s is a list of HTML tags.
 #, python-format
@@ -3091,9 +3087,8 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
-msgstr "Com començar"
+msgstr "Primers passos"
 
 #, fuzzy
 msgid "More Ways to Participate"
@@ -3238,7 +3233,7 @@ msgid "Re-enable Version"
 msgstr ""
 
 msgid "Review History"
-msgstr ""
+msgstr "Historial de revisions"
 
 #, fuzzy
 msgid "Close Review History"
