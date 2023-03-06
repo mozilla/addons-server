@@ -95,10 +95,17 @@ class TestTranslationSerializerField(TestCase):
         }
         assert result == expected
 
-    def _test_expected_single_locale(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None, requested='es'):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {'es': 'Name in Español'}
+        if requested == 'es':
+            expected = {'es': 'Name in Español'}
+        else:
+            expected = {
+                'en-US': str(self.addon.name),
+                requested: None,
+                '_default': 'en-US',
+            }
         assert result == expected
 
         field.source = None
@@ -106,7 +113,7 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': str(self.addon.description),
-            'es': None,
+            requested: None,
             '_default': 'en-US',
         }
         # We need the order to be exactly the same
@@ -341,10 +348,19 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
+    def test_lang_value_escaped(self):
+        request = Request(
+            self.factory.get('/', {'lang': 'en-USf<script>alert(1)</script>'})
+        )
+        escaped = 'en-USf&lt;script&gt;alert(1)&lt;/script&gt;'
+        mock_serializer = serializers.Serializer(context={'request': request})
+        field = self.field_class()
+        self._test_expected_single_locale(field, mock_serializer, requested=escaped)
+
 
 @override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
 class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
-    def _test_expected_single_locale(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None, requested='es'):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = str(self.addon.name)
@@ -434,12 +450,19 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         expected = self.addon.description_translations
         assert result == expected
 
-    def _test_expected_single_locale(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None, requested='es'):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = {
-            'es': str(self.addon.name_translations['es']),
-        }
+        if requested == 'es':
+            expected = {
+                'es': str(self.addon.name_translations['es']),
+            }
+        else:
+            expected = {
+                'en-US': str(self.addon.name_translations['en-US']),
+                requested: None,
+                '_default': 'en-US',
+            }
         assert result == expected
 
         field.source = None
@@ -447,7 +470,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
             'en-US': str(self.addon.description_translations['en-US']),
-            'es': None,
+            requested: None,
             '_default': 'en-US',
         }
         # We need the order to be exactly the same
@@ -489,10 +512,13 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
 class TestESTranslationSerializerFieldFlat(
     TestTranslationSerializerFieldFlat, TestESTranslationSerializerField
 ):
-    def _test_expected_single_locale(self, field, serializer=None):
+    def _test_expected_single_locale(self, field, serializer=None, requested='es'):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = str(self.addon.name_translations['es'])
+        if requested == 'es':
+            expected = str(self.addon.name_translations['es'])
+        else:
+            expected = str(self.addon.name_translations['en-US'])
         assert result == expected
 
         field.source = None

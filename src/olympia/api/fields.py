@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import RegexValidator
 from django.utils.encoding import smart_str
+from django.utils.html import escape
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
 from rest_framework import exceptions, fields, serializers
@@ -109,7 +110,7 @@ class TranslationSerializerField(fields.CharField):
     def get_requested_language(self):
         request = self.context.get('request', None)
         if request and request.method == 'GET' and 'lang' in request.GET:
-            return request.GET['lang']
+            return escape(request.GET['lang'])
         else:
             return None
 
@@ -130,16 +131,15 @@ class TranslationSerializerField(fields.CharField):
     def _format_single_translation_response(self, value, lang, requested_lang):
         if not value or not lang:
             return None
-        if lang == requested_lang:
+        lang = to_language(lang)
+        if lang == to_language(requested_lang):
             return {lang: value}
         else:
             return {lang: value, requested_lang: None, '_default': lang}
 
     def fetch_single_translation(self, obj, field, requested_language):
         return self._format_single_translation_response(
-            str(field) if field else field,
-            to_language(field.locale),
-            to_language(requested_language),
+            str(field) if field else field, field.locale, requested_language
         )
 
     def get_source_field(self, obj):
