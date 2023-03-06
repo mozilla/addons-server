@@ -12,18 +12,50 @@ import waffle
 
 import olympia.core.logger
 
+from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch
 from olympia.devhub.tasks import validation_task
-from olympia.files.models import FileUpload
+from olympia.files.models import File, FileUpload, WebextPermission
 from olympia.files.utils import (
     ManifestJSONExtractor,
     extract_zip,
     get_sha256,
     parse_xpi,
 )
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.files.task')
+
+
+@task
+@use_primary_db
+def extract_host_permissions(ids, **kw):
+    log.info(
+        '[%s@%s] Extracting host permissions from Files, from id: %s to id: %s...'
+        % (len(ids), extract_host_permissions.rate_limit, ids[0], ids[-1])
+    )
+    files = File.objects.filter(pk__in=ids).no_transforms()
+
+    # A user needs to be passed down to parse_xpi(), so we use the task user.
+    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+
+    for file_ in files:
+        try:
+            log.info('Parsing File.id: %s @ %s' % (file_.pk, file_.file.path))
+            parsed_data = parse_xpi(file_.file.path, addon=file_.addon, user=user)
+            host_permissions = parsed_data.get('host_permissions', [])
+            if host_permissions:
+                log.info(
+                    'Found %s host permissions for: %s'
+                    % (len(host_permissions), file_.pk)
+                )
+                WebextPermission.objects.update_or_create(
+                    defaults={'host_permissions': host_permissions}, file=file_
+                )
+        except Exception as err:
+            log.error('Failed to extract: %s, error: %s' % (file_.pk, err))
 
 
 @validation_task
