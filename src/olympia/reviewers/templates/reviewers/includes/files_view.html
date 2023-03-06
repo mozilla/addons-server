@@ -28,4 +28,7 @@
   {% if file.optional_permissions %}
     <div class="file-permissions"><h5>Optional permissions:</h5> {{ ', '.join(file.optional_permissions) }}</div>
   {% endif %}
+  {% if file.host_permissions %}
+    <div class="file-permissions"><h5>Host permissions:</h5> {{ ', '.join(file.host_permissions) }}</div>
+  {% endif %}
 </div>

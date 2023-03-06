@@ -329,6 +329,29 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             'laststring!',
         ]
 
+    def test_host_permissions_list_string_only(self):
+        file_ = File.objects.get(pk=67442)
+        host_permissions = [
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
+            13,
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+            None,
+        ]
+        WebextPermission.objects.create(host_permissions=host_permissions, file=file_)
+
+        # Strings only please.No duplicates.
+        assert file_.host_permissions == [
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+        ]
+
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated
@@ -500,6 +523,15 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         print(parsed)
         assert len(parsed['optional_permissions'])
         assert parsed['optional_permissions'] == ['cookies', 'https://optional.com/']
+
+    def test_parse_host_permissions(self):
+        parsed = self.parse(filename='webextension_mv3.xpi')
+        print(parsed)
+        assert len(parsed['host_permissions'])
+        assert parsed['host_permissions'] == [
+            'https://example.com/',
+            'https://mozilla.com/',
+        ]
 
     def test_parse_apps(self):
         expected = [
@@ -1321,6 +1353,16 @@ class TestFileFromUpload(UploadMixin, TestCase):
         permissions_list = file_.optional_permissions
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
+
+    def test_host_permissions(self):
+        upload = self.upload('webextension_mv3.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        permissions_list = file_.host_permissions
+        assert len(permissions_list) == 2
+        assert permissions_list == parsed_data['host_permissions']
 
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension.xpi')

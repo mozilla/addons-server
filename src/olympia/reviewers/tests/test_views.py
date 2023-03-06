@@ -4804,9 +4804,11 @@ class TestReview(ReviewBase):
         assert not doc('.auto_approval')
 
     def test_permissions_display(self):
+        host_permissions = ['https://example.com', 'https://mozilla.com']
         permissions = ['bookmarks', 'high', 'voltage']
         optional_permissions = ['optional', 'high', 'voltage']
         WebextPermission.objects.create(
+            host_permissions=host_permissions,
             optional_permissions=optional_permissions,
             permissions=permissions,
             file=self.file,
@@ -4819,6 +4821,7 @@ class TestReview(ReviewBase):
         assert info.eq(1).text() == 'Optional permissions:\n' + ', '.join(
             optional_permissions
         )
+        assert info.eq(2).text() == 'Host permissions:\n' + ', '.join(host_permissions)
 
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
