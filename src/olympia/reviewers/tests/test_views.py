@@ -462,6 +462,42 @@ class TestReviewLog(ReviewerTest):
             'Version 2.1.072 content approved.'
         )
 
+    def test_approval_multiple_versions(self):
+        addon = Addon.objects.get(pk=3615)
+        self.make_addon_unlisted(addon)
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED, version='3.0')
+        ActivityLog.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            addon,
+            *list(addon.versions.all()),
+            user=self.user,
+            details={'comments': 'I like this'},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-unlisted/3615">Delicious Bookmarks</a> '
+            'Versions 3.0, 2.1.072 auto-approval confirmed.'
+        )
+
+    def test_rejection_multiple_versions(self):
+        addon = Addon.objects.get(pk=3615)
+        version_factory(addon=addon, version='3.2.1')
+        ActivityLog.create(
+            amo.LOG.REJECT_VERSION,
+            addon,
+            *list(addon.versions.all()),
+            user=self.user,
+            details={'comments': 'I do not like this'},
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review/3615">Delicious Bookmarks</a> '
+            'Versions 3.2.1, 2.1.072 rejected.'
+        )
+
     def test_content_rejection(self):
         self.make_an_approval(amo.LOG.REJECT_CONTENT)
         response = self.client.get(self.url)
