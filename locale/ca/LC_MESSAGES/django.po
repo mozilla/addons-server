@@ -710,7 +710,7 @@ msgid "{addon} unlisted."
 msgstr "El complement {addon} s'ha eliminat de la llista."
 
 msgid "{file} was signed."
-msgstr "S'ha signat {fitxer}."
+msgstr "S'ha signat {file}."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
