@@ -858,7 +858,7 @@ class ReviewBase:
         elif versions is not None:
             details['versions'] = [v.version for v in versions]
             details['files'] = [v.file.id for v in versions]
-            args = (self.addon,) + tuple(versions)
+            args = (self.addon, *versions)
         else:
             args = (self.addon,)
         if timestamp is None:
