@@ -600,13 +600,11 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def check_is_promoted_prereview(cls, version):
         """Check whether the add-on is a promoted addon group that requires
-        pre-review.
-
-        Only applies to listed versions."""
-        if not version.channel == amo.CHANNEL_LISTED:
-            return False
-        promo_group = version.addon.promoted_group(currently_approved=False)
-        return bool(promo_group and promo_group.pre_review)
+        pre-review."""
+        return bool(
+            version.channel == amo.CHANNEL_LISTED
+            and version.addon.promoted_group(currently_approved=False).pre_review
+        )
 
     @classmethod
     def check_should_be_delayed(cls, version):

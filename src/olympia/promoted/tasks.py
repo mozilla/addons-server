@@ -26,15 +26,12 @@ def add_high_adu_extensions_to_notable():
         return
     adu_limit = int(adu_limit)
 
-    addons_ids_and_slugs = (
-        Addon.objects.public()
-        .filter(
-            Q(promotedaddon=None) | Q(promotedaddon__group_id=NOT_PROMOTED.id),
-            average_daily_users__gte=adu_limit,
-            type=amo.ADDON_EXTENSION,
-        )
-        .values_list('id', 'slug', 'average_daily_users')
-    )
+    addons_ids_and_slugs = Addon.unfiltered.filter(
+        ~Q(status=amo.STATUS_DISABLED),
+        Q(promotedaddon=None) | Q(promotedaddon__group_id=NOT_PROMOTED.id),
+        average_daily_users__gte=adu_limit,
+        type=amo.ADDON_EXTENSION,
+    ).values_list('id', 'slug', 'average_daily_users')
     count = len(addons_ids_and_slugs)
     log.info('Starting adding %s addons to %s', count, NOTABLE.name)
     for addon_id, addon_slug, adu in addons_ids_and_slugs:
