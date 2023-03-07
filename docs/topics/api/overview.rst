@@ -193,6 +193,11 @@ For example, for a request ``?lang=de``:
         }
     }
 
+
+.. warning::
+    ``lang`` must only contains alphanumeric characters (plus ``-`` and ``_``).
+
+
 For ``POST``, ``PATCH`` and ``PUT`` requests you submit an object containing
 translations for any languages needing to be updated/saved.  Any language not
 in the object is not updated, but is not removed.
@@ -452,7 +457,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-03-02: added specific HTTP 409 status code for add-on/version submissions that already exist
 * 2023-03-02: added support for calling the version detail endpoint using a version number instead of an ``id``.
 * 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
-
+* 2023-03-08: restricted ``lang`` parameter to only alphanumeric, ``_``, ``-``. https://bugzilla.mozilla.org/show_bug.cgi?id=1820308
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
