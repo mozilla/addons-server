@@ -747,7 +747,7 @@ msgid "Source code uploaded"
 msgstr "Código-fonte enviado"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr "Confirmada aprovação automática de {addon} {versão}."
+msgstr "Confirmada aprovação automática de {addon} {version}."
 
 msgid "Auto-Approval confirmed"
 msgstr "Aprovação automática confirmada"
