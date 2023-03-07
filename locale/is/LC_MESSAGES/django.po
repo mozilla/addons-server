@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-01-04 15:01+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,11 @@ msgstr "Umsagnarteymi fyrir viðbætur"
 msgid "Review"
 msgstr "Yfirfara"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Útgáfa {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Útgáfa {0}"
+msgstr[1] "Útgáfa {0}"
 
 msgid "Review note"
 msgstr "Athugasemd yfirferðar"
@@ -136,6 +139,13 @@ msgstr "Ekki er hægt að uppfæra innbyggð notkunarleyfi."
 msgid "Upload is not valid."
 msgstr "Innsending er ekki gild."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -201,10 +211,6 @@ msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Þessi tegund af viðbót leyfir ekki sérsniðna samhæfni."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
 
 msgid "My Add-ons"
 msgstr "Viðbæturnar mínar"
@@ -575,9 +581,6 @@ msgstr "Beðið um ofur-yfirferð fyrir {addon} {version}."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Viðbótin hefur verið merkt fyrir yfirferð stjórnenda. Það er enn í yfirferðarröðinni okkar, en einn af stjórnendum okkar þarf að yfirfara hana. Yfirferðin gæti tekið lengri tíma en venjulega."
 
-msgid "Comment on {addon} {version}."
-msgstr "Athugasemd um {addon} {version}."
-
 msgid "Commented"
 msgstr "Setti inn athugasemd"
 
@@ -724,8 +727,8 @@ msgstr "Grunnkóða hlaðið inn fyrir {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Grunnkóði sendur inn"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Sjálfvirkt samþykki staðfest fyrir {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Sjálfvirkt samþykki staðfest"
@@ -840,6 +843,12 @@ msgstr ""
 
 msgid "Un-rejected"
 msgstr "Höfnun afturkölluð"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

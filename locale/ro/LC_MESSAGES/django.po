@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -66,8 +66,12 @@ msgstr "Ghid de recenzare pentru suplimente"
 msgid "Review"
 msgstr "Scrie o recenzie"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Versiunea {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Versiunea {0}"
+msgstr[1] "Versiunea {0}"
+msgstr[2] "Versiunea {0}"
 
 msgid "Review note"
 msgstr "Notă de recenzie"
@@ -136,6 +140,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
 
@@ -200,10 +211,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -578,9 +585,6 @@ msgstr "S-a solicitat o suprarecenzie pentru {addon}{version}."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "Comentariu la {addon} {version}."
-
 msgid "Commented"
 msgstr "Cu comentarii"
 
@@ -730,8 +734,8 @@ msgstr "Cod sursă încărcat pentru {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Cod sursă încărcat"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Aprobare automată confirmată pentru {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Aprobare automată confirmată"
@@ -847,6 +851,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -74,8 +74,15 @@ msgstr "دليل مراجعة الإضافات"
 msgid "Review"
 msgstr "راجِع"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "الإصدارة {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "الإصدارة {0}"
+msgstr[1] "الإصدارة {0}"
+msgstr[2] "الإصدارة {0}"
+msgstr[3] "الإصدارة {0}"
+msgstr[4] "الإصدارة {0}"
+msgstr[5] "الإصدارة {0}"
 
 msgid "Review note"
 msgstr "مراجعة الملاحظة"
@@ -145,6 +152,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -209,10 +223,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -576,9 +586,6 @@ msgstr ""
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "تعليق على {addon} {version}."
-
 msgid "Commented"
 msgstr "علّق"
 
@@ -728,8 +735,8 @@ msgstr "رُفع الكود المصدري للإصدارة {version} من {addo
 msgid "Source code uploaded"
 msgstr "رُفع الكود المصدري"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "تأكّدت الموافقة التلقائية للإصدارة {version} من {addon}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "تأكّدت الموافقة الآلية"
@@ -855,6 +862,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

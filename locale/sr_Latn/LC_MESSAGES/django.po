@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -66,8 +66,11 @@ msgstr "Puna recenzija dodatka"
 msgid "Review"
 msgstr "Pregled"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Verzija {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Verzija {0}"
+msgstr[1] "Verzija {0}"
 
 #, fuzzy
 msgid "Review note"
@@ -138,6 +141,16 @@ msgid "Built in licenses can not be updated."
 msgstr ""
 
 msgid "Upload is not valid."
+msgstr ""
+
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid ""
+"The latest approved version of this %s add-on cannot be deleted because the "
+"previous version was not approved for %s promotion. Please contact AMO "
+"Admins if you need help with this."
 msgstr ""
 
 msgid ""
@@ -212,13 +225,6 @@ msgid ""
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid ""
-"The latest approved version of this %s add-on cannot be deleted because the "
-"previous version was not approved for %s promotion. Please contact AMO "
-"Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -661,9 +667,6 @@ msgid ""
 "review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "Komentar na {addon} {version}."
-
 #, fuzzy
 msgid "Commented"
 msgstr "Komentariši"
@@ -829,9 +832,8 @@ msgstr "Komentar na {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Izvorni kod"
 
-#, fuzzy
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Komentar na {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 #, fuzzy
 msgid "Auto-Approval confirmed"
@@ -974,6 +976,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

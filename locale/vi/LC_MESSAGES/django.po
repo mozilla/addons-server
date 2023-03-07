@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-17 06:53+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -65,8 +65,10 @@ msgstr "Đội ngũ đánh giá tiện tích"
 msgid "Review"
 msgstr "Đánh giá"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Phiên bản {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Phiên bản {0}"
 
 msgid "Review note"
 msgstr "Ghi chú đánh giá"
@@ -136,6 +138,13 @@ msgstr "Giấy phép tích hợp không thể được cập nhật."
 msgid "Upload is not valid."
 msgstr "Tải lên không hợp lệ."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Phiên bản {version} khớp với {block_link} cho tiện ích này. Bạn có thể liên hệ với {amo_admins} để biết thêm thông tin."
 
@@ -201,10 +210,6 @@ msgstr "Không thể thay đổi nguồn vì phiên bản này đã được xem
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Loại tiện ích này không cho phép khả năng tương thích tùy chỉnh."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
 
 msgid "My Add-ons"
 msgstr "Tiện ích của tôi"
@@ -580,9 +585,6 @@ msgstr ""
 "Tiện ích đã được gắn cờ để quản trị viên xem xét. Nó vẫn nằm trong hàng đợi xem xét, nhưng sẽ cần được kiểm tra bởi một trong các quản trị viên của chúng tôi. Quá trình xem xét có thể mất nhiều "
 "thời gian hơn bình thường."
 
-msgid "Comment on {addon} {version}."
-msgstr "Nhận xét về {addon} {version}."
-
 msgid "Commented"
 msgstr "Đã nhận xét"
 
@@ -729,8 +731,8 @@ msgstr "Mã nguồn được tải lên cho {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Đã tải lên mã nguồn"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Đã xác nhận phê duyệt tự động cho {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Đã xác nhận phê duyệt tự động"
@@ -846,6 +848,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2022-12-07 07:22+0000\n"
 "Last-Translator: JiYoon Kim <efff1654@gmail.com>\n"
 "Language-Team: none\n"
@@ -68,8 +68,10 @@ msgstr "부가 기능 검토 팀"
 msgid "Review"
 msgstr "검토"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "버전 {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "버전 {0}"
 
 msgid "Review note"
 msgstr "검토 노트"
@@ -139,6 +141,13 @@ msgstr "내장 라이선스는 업데이트할 수 없습니다."
 msgid "Upload is not valid."
 msgstr "업로드가 유효하지 않습니다."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "{version} 버전은 이 부가 기능의 {block_link}와 일치합니다. 추가 정보는 {amo_admins}에 문의 할 수 있습니다."
 
@@ -205,10 +214,6 @@ msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "이 유형의 부가 기능은 사용자 지정 호환성을 허용하지 않습니다."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
 
 msgid "My Add-ons"
 msgstr "내 부가 기능"
@@ -580,9 +585,6 @@ msgstr "{addon} {version}의 상급 검토가 요청되었습니다."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "{addon} {version}에 코멘트가 달렸습니다."
-
 msgid "Commented"
 msgstr "코멘트됨"
 
@@ -730,8 +732,8 @@ msgstr "{addon} {version} 버전에 대한 소스 코드가 업로드 되었습�
 msgid "Source code uploaded"
 msgstr "소스 코드가 업로드 됨"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version}의 자동 승인이 확인되었습니다."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "자동 승인 확인"
@@ -847,6 +849,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

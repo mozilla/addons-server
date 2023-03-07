@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-08 09:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,8 +69,11 @@ msgstr "Add-on-beoardielingsteam"
 msgid "Review"
 msgstr "Beoardieling"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Ferzje {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Ferzje {0}"
+msgstr[1] "Ferzje {0}"
 
 msgid "Review note"
 msgstr "Opmerking by beoardieling"
@@ -140,6 +143,15 @@ msgstr "Ynboude lisinsjes kinne net bywurke wurde."
 msgid "Upload is not valid."
 msgstr "Oplaad is net jildich."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
+"help by nedich hawwe."
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Ferzje {version} komt oerien mei {block_link} foar dizze add-on. Jo kinne kontakt opnimme mei {amo_admins} foar oanfoljende ynformaasje."
 
@@ -205,12 +217,6 @@ msgstr "De boarne kin net wizige wurde, omdat dizze ferzje beoardiele is troch M
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Dit type add-on stiet gjin oanpaste kompatibiliteit ta."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-"De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
-"help by nedich hawwe."
 
 msgid "My Add-ons"
 msgstr "Myn add-ons"
@@ -585,9 +591,6 @@ msgstr ""
 "De add-on is markearre foar beoardieling troch in behearder. De add-on stiet noch yn ús beoardielingswachtrige, mar moat troch ien fan ús behearders kontrolearre wurde. De beoardieling soe langer "
 "as gebrûklik duorje kinne."
 
-msgid "Comment on {addon} {version}."
-msgstr "Opmerking oer {addon} {version}."
-
 msgid "Commented"
 msgstr "Mei opmerking"
 
@@ -734,8 +737,8 @@ msgstr "Boarnekoade foar {addon} {version} opladen."
 msgid "Source code uploaded"
 msgstr "Boarnekoade opladen"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Automatyske goedkarring befêstige foar {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatyske goedkarring befêstige"
@@ -850,6 +853,12 @@ msgstr "Ofwizing {addon} {version} ûngedien makke."
 
 msgid "Un-rejected"
 msgstr "Ofwizing ûngedien makke"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

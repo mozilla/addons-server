@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -73,8 +73,11 @@ msgstr "Guía de revisión de complementos"
 msgid "Review"
 msgstr "Revisión"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Versión {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Versión {0}"
+msgstr[1] "Versión {0}"
 
 msgid "Review note"
 msgstr "Nota de revisión"
@@ -144,6 +147,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "La versión {version} coincide con {block_link} para este complemento. Puede comunicarse con {amo_admins} para obtener información adicional."
 
@@ -208,10 +218,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -587,9 +593,6 @@ msgstr "Se ha solicitado la superrevisión de {addon} {version}."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "Comentario en {addon} {version}."
-
 msgid "Commented"
 msgstr "Comentado"
 
@@ -737,8 +740,8 @@ msgstr "Se ha actualizado el código fuente para {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Se ha actualizado el código fuente"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Autoaprobación confirmada para {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Autoaprobración confirmada"
@@ -854,6 +857,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

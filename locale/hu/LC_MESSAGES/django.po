@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-09 11:04+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -73,8 +73,11 @@ msgstr "Kiegészítők értékelési csapata"
 msgid "Review"
 msgstr "Értékelés"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "{0} verzió"
+msgid_plural "Versions {0}"
+msgstr[0] "{0} verzió"
+msgstr[1] "{0} verzió"
 
 msgid "Review note"
 msgstr "Értékelési megjegyzés"
@@ -144,6 +147,15 @@ msgstr "A beépített licencek nem frissíthetők."
 msgid "Upload is not valid."
 msgstr "A feltöltés nem érvényes."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
+"segítségre van szüksége."
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
@@ -209,12 +221,6 @@ msgstr "A forrás nem módosítható, mert ezt a verziót a Mozilla már megvizs
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Az ilyen típusú kiegészítők nem teszik lehetővé az egyéni kompatibilitást."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-"A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
-"segítségre van szüksége."
 
 msgid "My Add-ons"
 msgstr "Saját kiegészítők"
@@ -585,9 +591,6 @@ msgstr ""
 "A kiegészítő adminisztrátori értékelésre lett megjelölve. Még mindig benne van az értékelési sorban, de le kell majd ellenőriznie az egyik adminisztrátori értékelőnknek. Az értékelés tovább tarthat "
 "a megszokottnál."
 
-msgid "Comment on {addon} {version}."
-msgstr "Hozzászólás ehhez: {addon} {version}."
-
 msgid "Commented"
 msgstr "Hozzászólva"
 
@@ -734,8 +737,8 @@ msgstr "Forráskód feltöltve ehhez: {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Forráskód feltöltve"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Az automatikus jóváhagyás megerősítve ennél: {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatikus jóváhagyás megerősítve"
@@ -850,6 +853,12 @@ msgstr "{addon} {version} elutasítása visszavonva."
 
 msgid "Un-rejected"
 msgstr "Elutasítás visszavonva"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

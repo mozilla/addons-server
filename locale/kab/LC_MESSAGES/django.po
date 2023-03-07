@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-19 20:31+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,11 @@ msgstr "Tarbaεt n usenqed n yizegrar"
 msgid "Review"
 msgstr "Acegger"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Lqem {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Lqem {0}"
+msgstr[1] "Lqem {0}"
 
 msgid "Review note"
 msgstr "Tazmilt n uɛawed n tmuɣli"
@@ -136,6 +139,13 @@ msgstr "Turagen tuslien ur zmirent ara ad d-ttwasalint."
 msgid "Upload is not valid."
 msgstr "Asali d arameɣtu."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Lqem {version} yemṣada {block_link} i uzegrir-a. Tzemreḍ ad tremseḍ {amo_admins} i wugar n talɣut."
 
@@ -201,10 +211,6 @@ msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Anaw-a n uzegrir ur issirig ara amṣada udmawan."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -573,9 +579,6 @@ msgstr "{addon} {version} acegger leqqayen yettusuter."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Azegrir-agi yettwammel am akken yessefk ad ittucegger sɣur anedbal. Hatan yezga deg udras, acukan yessefk ad ittwasenqed sɣuṛ imsekyaden inedbalen. Acegger-agi yezmer ad isuter ugar n wakud."
 
-msgid "Comment on {addon} {version}."
-msgstr "Awennit ɣef {addon} {version}."
-
 msgid "Commented"
 msgstr "yettuwennet"
 
@@ -722,8 +725,8 @@ msgstr "Tangalt aɣbalu tuli i {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Tangalt aɣbalu tuli"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Aqbal awurman yentem i {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Aqbal awurman yentem"
@@ -838,6 +841,12 @@ msgstr "{addon} {version} ur yettwagi ara."
 
 msgid "Un-rejected"
 msgstr "Ur yettwagi ara"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
