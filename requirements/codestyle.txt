@@ -67,9 +67,9 @@ mypy-extensions==1.0.0 \
     --hash=sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d \
     --hash=sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782
 # platformdirs is required by black
-platformdirs==3.0.0 \
-    --hash=sha256:8a1228abb1ef82d788f74139988b137e78692984ec7b08eaa6c65f1723af28f9 \
-    --hash=sha256:b1d5eb14f221506f50d6604a561f4c5786d9e80355219694a1b244bcd96f4567    
+platformdirs==3.1.0 \
+    --hash=sha256:13b08a53ed71021350c9e300d4ea8668438fb0046ab3937ac9a29913a1a1350a \
+    --hash=sha256:accc3665857288317f32c7bebb5a8e482ba717b474f3fc1d18ca7f9214be0cef    
 flake8-quotes==3.3.2 \
     --hash=sha256:6e26892b632dacba517bf27219c459a8396dcfac0f5e8204904c5a4ba9b480e1
 tomli==2.0.1 \
