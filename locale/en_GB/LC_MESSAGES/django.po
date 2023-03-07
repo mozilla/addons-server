@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-07 17:41+0000\n"
-"PO-Revision-Date: 2023-03-07 18:07+0000\n"
+"PO-Revision-Date: 2023-03-07 20:24+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -138,7 +138,7 @@ msgid "Upload is not valid."
 msgstr "Upload is not valid."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "File is already disabled."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -724,7 +724,7 @@ msgid "Source code uploaded"
 msgstr "Source code uploaded"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "{addon} {version} auto-approval confirmed."
 
 msgid "Auto-Approval confirmed"
 msgstr "Auto-Approval confirmed"
@@ -841,10 +841,10 @@ msgid "Un-rejected"
 msgstr "Un-rejected"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "{addon} needs_human_review flag cleared."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "Needs Human Review cleared"
 
 msgid "Firefox"
 msgstr "Firefox"
