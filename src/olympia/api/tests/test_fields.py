@@ -380,6 +380,17 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
         result = field.run_validation(data['fr'])
         assert result == data['fr']
 
+    def test_lang_value_escaped(self):
+        # The flat API response doesn't return the lang value at all, so doesn't raise
+        request = Request(
+            self.factory.get('/', {'lang': 'en-USf<script>alert(1)</script>'})
+        )
+        mock_serializer = serializers.Serializer(context={'request': request})
+        field = self.field_class()
+        field.bind('name', mock_serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert 'script' not in result
+
 
 class TestESTranslationSerializerField(TestTranslationSerializerField):
     field_class = ESTranslationSerializerField
