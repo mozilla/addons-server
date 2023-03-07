@@ -554,7 +554,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'unreject_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -607,6 +606,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # unlisted shouldn't be affected by promoted group status either
         self.make_addon_promoted(self.addon, LINE)
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW
+                ).keys()
+            )
+            == expected
+        )
+
+        # with admin permission you should be able to unreject too
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = [
+            'public',
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
         assert (
             list(
                 self.get_review_actions(
@@ -719,7 +740,6 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'unreject_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -743,7 +763,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'confirm_auto_approved',
             'reject_multiple_versions',
-            'unreject_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -773,6 +792,21 @@ class TestReviewHelper(TestReviewHelperBase):
                 file_status=amo.STATUS_AWAITING_REVIEW,
             ).keys()
         )
+        assert expected == actions
+
+    def test_actions_rejected_version(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.file.version.update(human_review_date=datetime.now())
+        self.addon.update(status=amo.STATUS_NULL)
+        actions = list(self.get_helper().actions.keys())
+        assert expected == actions
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = ['unreject_latest_version', 'reply', 'super', 'comment']
+        actions = list(self.get_helper().actions.keys())
         assert expected == actions
 
     def test_actions_non_human_reviewer(self):
@@ -2193,12 +2227,13 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon, user=self.user, channel=self.review_version.channel
         ).exists()
 
-    def test_unreject_multiple_versions_approved_addon(self):
+    def test_unreject_latest_version_approved_addon(self):
         first_version = self.review_version
         self.review_version = version_factory(
             addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
         )
         self.file = self.review_version.file
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
@@ -2208,10 +2243,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.is_public()
         assert self.addon.current_version == first_version
 
-        data = self.get_data().copy()
-        data['versions'] = [self.review_version]
-        self.helper.set_data(data)
-        self.helper.handler.unreject_multiple_versions()
+        self.helper.handler.unreject_latest_version()
 
         self.addon.reload()
         self.file.reload()
@@ -2257,7 +2289,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
-    def test_unreject_multiple_versions_incomplete_addon(self):
+    def test_unreject_latest_version_incomplete_addon(self):
         old_version = self.review_version
         old_version.file.update(status=amo.STATUS_DISABLED)
         self.review_version = version_factory(
@@ -2273,10 +2305,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_DISABLED
         assert self.addon.current_version is None
 
-        data = self.get_data().copy()
-        data['versions'] = [self.review_version]
-        self.helper.set_data(data)
-        self.helper.handler.unreject_multiple_versions()
+        self.helper.handler.unreject_latest_version()
 
         self.addon.reload()
         self.file.reload()

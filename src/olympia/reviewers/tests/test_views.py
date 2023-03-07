@@ -2417,7 +2417,6 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
-            'unreject_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -4550,55 +4549,47 @@ class TestReview(ReviewBase):
             assert version.pending_rejection
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
 
-    def test_unreject_multiple_versions(self):
+    def test_unreject_latest_version(self):
         old_version = self.version
         version_factory(addon=self.addon, version='2.99')
         old_version.file.update(status=amo.STATUS_DISABLED)
         self.version = version_factory(
-            addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
+            addon=self.addon,
+            version='3.0',
+            human_review_date=datetime.now(),
+            file_kw={'status': amo.STATUS_DISABLED},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:Review')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         assert self.addon.status == amo.STATUS_APPROVED
 
-        response = self.client.post(
-            self.url,
-            {
-                'action': 'unreject_multiple_versions',
-                'versions': [old_version.pk, self.version.pk],
-            },
-        )
+        response = self.client.post(self.url, {'action': 'unreject_latest_version'})
 
         assert response.status_code == 302
-        for version in [old_version, self.version]:
-            file_ = version.file.reload()
-            assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert old_version.file.reload().status == amo.STATUS_DISABLED
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.reload().status == amo.STATUS_APPROVED
 
-    def test_unreject_multiple_versions_to_nominated(self):
+    def test_unreject_latest_version_to_nominated(self):
         old_version = self.version
         old_version.file.update(status=amo.STATUS_DISABLED)
         self.version = version_factory(
-            addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
+            addon=self.addon,
+            version='3.0',
+            human_review_date=datetime.now(),
+            file_kw={'status': amo.STATUS_DISABLED},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:Review')
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         assert self.addon.status == amo.STATUS_NULL
 
-        response = self.client.post(
-            self.url,
-            {
-                'action': 'unreject_multiple_versions',
-                'versions': [old_version.pk, self.version.pk],
-            },
-        )
+        response = self.client.post(self.url, {'action': 'unreject_latest_version'})
 
         assert response.status_code == 302
-        for version in [old_version, self.version]:
-            file_ = version.file.reload()
-            assert file_.status == amo.STATUS_AWAITING_REVIEW
+        assert old_version.file.reload().status == amo.STATUS_DISABLED
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.reload().status == amo.STATUS_NOMINATED
 
     def test_unreject_multiple_versions_with_unlisted(self):

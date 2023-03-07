@@ -480,6 +480,11 @@ class ReviewHelper:
             addon_is_not_disabled_or_deleted and self.addon.status != amo.STATUS_NULL
         ) or addon_is_incomplete_and_version_is_unlisted
         version_is_unreviewed = self.version and self.version.is_unreviewed
+        version_was_rejected = bool(
+            self.version
+            and self.version.file.status == amo.STATUS_DISABLED
+            and self.version.human_review_date
+        )
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
         addon_is_valid_and_version_is_listed = (
             addon_is_valid
@@ -637,6 +642,22 @@ class ReviewHelper:
             'requires_reasons': not is_static_theme,
             'boilerplate_text': boilerplate_for_reject,
         }
+        actions['unreject_latest_version'] = {
+            'method': self.handler.unreject_latest_version,
+            'label': 'Un-reject',
+            'minimal': True,
+            'details': (
+                'This will un-reject the latest version without notifying the '
+                'developer.'
+            ),
+            'comments': False,
+            'available': (
+                not version_is_unlisted
+                and addon_is_not_disabled_or_deleted
+                and version_was_rejected
+                and is_appropriate_admin_reviewer
+            ),
+        }
         actions['unreject_multiple_versions'] = {
             'method': self.handler.unreject_multiple_versions,
             'label': 'Un-reject Versions',
@@ -648,7 +669,9 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
+                version_is_unlisted
+                and addon_is_not_disabled_or_deleted
+                and is_appropriate_admin_reviewer
             ),
         }
         actions['block_multiple_versions'] = {
@@ -1284,35 +1307,19 @@ class ReviewBase:
                 user=self.user, addon=self.addon, channel=latest_version.channel
             )
 
-    def unreject_multiple_versions(self):
-        """Un-reject a list of versions."""
-        # self.version and self.file won't point to the versions we want to
-        # modify in this action, so set them to None before finding the right
-        # versions.
-        self.version = None
-        self.file = None
-        now = datetime.now()
+    def unreject_latest_version(self):
+        """Un-reject the latest version."""
         # we're only supporting non-automated reviews right now:
         assert self.human_review
 
         log.info(
             'Making %s versions %s awaiting review (not disabled)'
-            % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+            % (self.addon, self.version.pk)
         )
 
-        for version in self.data['versions']:
-            self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
-
-        self.log_action(
-            action=amo.LOG.UNREJECT_VERSION,
-            versions=self.data['versions'],
-            timestamp=now,
-            user=self.user,
-        )
-
-        if self.data['versions']:
-            # if these are listed versions then the addon status may need updating
-            self.addon.update_status(self.user)
+        self.set_file(amo.STATUS_AWAITING_REVIEW, self.version.file)
+        self.log_action(action=amo.LOG.UNREJECT_VERSION)
+        self.addon.update_status(self.user)
 
     def confirm_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
@@ -1321,6 +1328,9 @@ class ReviewBase:
         raise NotImplementedError  # only implemented for unlisted below.
 
     def block_multiple_versions(self):
+        raise NotImplementedError  # only implemented for unlisted below.
+
+    def unreject_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
     def clear_needs_human_review(self):
@@ -1484,3 +1494,33 @@ class ReviewUnlisted(ReviewBase):
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
+
+    def unreject_multiple_versions(self):
+        """Un-reject a list of versions."""
+        # self.version and self.file won't point to the versions we want to
+        # modify in this action, so set them to None before finding the right
+        # versions.
+        self.version = None
+        self.file = None
+        now = datetime.now()
+        # we're only supporting non-automated reviews right now:
+        assert self.human_review
+
+        log.info(
+            'Making %s versions %s awaiting review (not disabled)'
+            % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
+        )
+
+        for version in self.data['versions']:
+            self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
+
+        self.log_action(
+            action=amo.LOG.UNREJECT_VERSION,
+            versions=self.data['versions'],
+            timestamp=now,
+            user=self.user,
+        )
+
+        if self.data['versions']:
+            # if these are listed versions then the addon status may need updating
+            self.addon.update_status(self.user)
