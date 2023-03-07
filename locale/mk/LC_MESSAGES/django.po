@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,9 @@ msgid "Review"
 msgstr ""
 
 msgid "Version {0}"
-msgstr ""
+msgid_plural "Versions {0}"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Review note"
 msgstr ""
@@ -134,6 +136,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -198,10 +207,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -563,9 +568,6 @@ msgstr ""
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr ""
-
 msgid "Commented"
 msgstr ""
 
@@ -712,7 +714,7 @@ msgstr ""
 msgid "Source code uploaded"
 msgstr ""
 
-msgid "Auto-Approval confirmed for {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
 msgstr ""
 
 msgid "Auto-Approval confirmed"
@@ -828,6 +830,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

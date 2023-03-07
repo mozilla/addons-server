@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-07 22:00+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,13 @@ msgstr "Team za přepruwowanje přidatkow"
 msgid "Review"
 msgstr "Pohódnoćenje"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Wersija {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Wersija {0}"
+msgstr[1] "Wersija {0}"
+msgstr[2] "Wersija {0}"
+msgstr[3] "Wersija {0}"
 
 msgid "Review note"
 msgstr "Přepruwowanska přispomnjenka"
@@ -136,6 +141,15 @@ msgstr "Zatwarjene licency njedadźa so aktualizować."
 msgid "Upload is not valid."
 msgstr "Nahraće płaćiwe njeje."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"Najnowša schwalena wersija tutoho rozšěrjenja %s njeda so zhašeć, dokelž předchadna wersija njeje so za doporučenje %s schwaliła. Prošu stajće so z administratorami AMO do zwiska, jeli pomoc wo tym "
+"trjebaće."
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Wersija {version} {block_link} za tutón přidatk wotpowěduje. Móžeće so z {amo_admins} za přidatne informacije do zwiska stajić."
 
@@ -201,12 +215,6 @@ msgstr "Žórło njeda so změnić, dokelž tuta wersija je so wot Mozilla přep
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Tutón přidatkowy typ swójsku kompatibelnosć njedowoluje."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-"Najnowša schwalena wersija tutoho rozšěrjenja %s njeda so zhašeć, dokelž předchadna wersija njeje so za doporučenje %s schwaliła. Prošu stajće so z administratorami AMO do zwiska, jeli pomoc wo tym "
-"trjebaće."
 
 msgid "My Add-ons"
 msgstr "Moje přidatki"
@@ -576,9 +584,6 @@ msgstr ""
 "Tutón přidatk je so za přepruwowanje přez adminhistratora markěrował. Je hižo w našim pruwowanskim čakanskim rynku, ale dyrbi so hišće přez našich administratorowych přepruwowarjow kontrolować. "
 "Přepruwowanje móhło dlěje trać hač je z wašnjom."
 
-msgid "Comment on {addon} {version}."
-msgstr "Komentar k přidatkej {addon} {version}."
-
 msgid "Commented"
 msgstr "Komentowany"
 
@@ -725,8 +730,8 @@ msgstr "Žórłowy kod nahraty za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Žórłowy kod nahraty"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Awtomatiske schwalenje je za přidatk {addon} {version} wobkrućene."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske schwalenje je wokrućene"
@@ -841,6 +846,12 @@ msgstr "Wotpokazanje přidatka {addon} {version} je zběhnjene."
 
 msgid "Un-rejected"
 msgstr "Wotpokazanje zběhnjene"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

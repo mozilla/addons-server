@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-19 21:44+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -70,8 +70,11 @@ msgstr "מדריך סקירת תוספות"
 msgid "Review"
 msgstr "סקירה"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "גרסה {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "גרסה {0}"
+msgstr[1] "גרסה {0}"
 
 msgid "Review note"
 msgstr "סקירה"
@@ -141,6 +144,13 @@ msgstr "לא ניתן לעדכן רישיונות מובנים."
 msgid "Upload is not valid."
 msgstr "ההעלאה אינה תקינה."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "הגרסה {version} תואמת ל־{block_link} עבור תוספת זו. באפשרותך ליצור קשר עם {amo_admins} לקבלת מידע נוסף."
 
@@ -205,10 +215,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr "לא ניתן לשנות את המקור מכיוון שגרסה זו עברה סקירה על־ידי Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -574,9 +580,6 @@ msgstr "נשלחה בקשה לסקירת־על עבור {addon} {version}."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "התוספת סומנה בדגל לסקירת מנהל. היא עדיין נמצאת בתור שלנו לסקירה, אבל תצטרך להיבדק על־ידי אחד מהסוקרים המנהלים. הסקירה עשויה לקחת יותר זמן מהרגיל."
 
-msgid "Comment on {addon} {version}."
-msgstr "תגובה על {addon} {version}."
-
 msgid "Commented"
 msgstr "התקבלה תגובה"
 
@@ -725,8 +728,8 @@ msgstr "קוד מקור הועלה עבור {addon} {version}."
 msgid "Source code uploaded"
 msgstr "קוד מקור הועלה"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "אומת אישור אוטומטי עבור {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "אומת אישור אוטומטי"
@@ -845,6 +848,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

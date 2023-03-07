@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,11 @@ msgstr "ऐड-ऑन रिव्यू गाइड"
 msgid "Review"
 msgstr "समीक्षा"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "संस्करण {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "संस्करण {0}"
+msgstr[1] "संस्करण {0}"
 
 msgid "Review note"
 msgstr "समीक्षा नोट"
@@ -137,6 +140,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -201,10 +211,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -575,9 +581,6 @@ msgstr "{addon} {version} सुपर समीक्षा का अनुर
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "{addon} {version} पर टिप्पणी की गई."
-
 msgid "Commented"
 msgstr "टिप्पणी की गई"
 
@@ -727,8 +730,8 @@ msgstr "{addon}{version} के लिए स्रोत कोड अपलो
 msgid "Source code uploaded"
 msgstr "स्रोत कोड अपलोड किया गया"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version} के लिए स्वचालित रूप से स्वीकृति की पुष्टि की गई।"
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "ऑटो स्वीकृति की पुष्टि की"
@@ -850,6 +853,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

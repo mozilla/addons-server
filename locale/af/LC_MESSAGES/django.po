@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -68,8 +68,11 @@ msgstr "Nog geen resensies oor byvoegings nie."
 msgid "Review"
 msgstr "Resensie"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Weergawe {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Weergawe {0}"
+msgstr[1] "Weergawe {0}"
 
 #, fuzzy
 msgid "Review note"
@@ -140,6 +143,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -204,10 +214,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -582,9 +588,6 @@ msgstr ""
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr ""
-
 msgid "Commented"
 msgstr ""
 
@@ -736,9 +739,8 @@ msgstr "Bronkodelisensie vir {addon}"
 msgid "Source code uploaded"
 msgstr "Bronkodelisensie"
 
-#, fuzzy
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Bronkodelisensie vir {addon}"
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 #, fuzzy
 msgid "Auto-Approval confirmed"
@@ -870,6 +872,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,10 @@ msgstr "Panduan Ulasan Add-on"
 msgid "Review"
 msgstr "Ulasan"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Versi {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Versi {0}"
 
 msgid "Review note"
 msgstr "Nota ulasan"
@@ -137,6 +139,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -202,10 +211,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -581,9 +586,6 @@ msgstr "{addon} {version} perlukan semakan teliti."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "Komen untuk {addon} {version}."
-
 msgid "Commented"
 msgstr "Komen"
 
@@ -733,8 +735,8 @@ msgstr "Kod sumber dimuat naik untuk {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Kod sumber dimuat naik"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Auto-kelulusan disahkan untuk {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Auto-kelulusan disahkan"
@@ -859,6 +861,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

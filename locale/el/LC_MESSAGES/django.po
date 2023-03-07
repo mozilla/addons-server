@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-22 09:38+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -65,8 +65,11 @@ msgstr "Ομάδα αξιολόγησης προσθέτων"
 msgid "Review"
 msgstr "Αξιολόγηση"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Έκδοση {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Έκδοση {0}"
+msgstr[1] "Έκδοση {0}"
 
 msgid "Review note"
 msgstr "Σημείωση αξιολόγησης"
@@ -136,6 +139,15 @@ msgstr "Οι ενσωματωμένες άδειες δεν μπορούν να 
 msgid "Upload is not valid."
 msgstr "Η μεταφόρτωση δεν είναι έγκυρη."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν "
+"χρειάζεστε βοήθεια."
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Η έκδοση {version} ταιριάζει με το {block_link} για αυτό το πρόσθετο. Μπορείτε να επικοινωνήσετε με τους {amo_admins} για περισσότερες πληροφορίες."
 
@@ -201,12 +213,6 @@ msgstr "Η πηγή δεν μπορεί να αλλάξει, επειδή αυτ
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Αυτός ο τύπος πρόσθετου δεν επιτρέπει προσαρμοσμένη συμβατότητα."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-"Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν "
-"χρειάζεστε βοήθεια."
 
 msgid "My Add-ons"
 msgstr "Τα πρόσθετά μου"
@@ -585,9 +591,6 @@ msgstr ""
 "Το πρόσθετο έχει επισημανθεί για αξιολόγηση από διαχειριστή. Βρίσκεται ακόμη στη σειρά αξιολόγησής μας, αλλά θα πρέπει να ελεγχθεί από έναν από τους διαχειριστές ελεγκτές. Η αξιολόγηση ίσως "
 "διαρκέσει περισσότερο χρόνο από το συνηθισμένο."
 
-msgid "Comment on {addon} {version}."
-msgstr "Σχόλιο στο {addon} {version}."
-
 msgid "Commented"
 msgstr "Σχολίασε"
 
@@ -734,8 +737,8 @@ msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας για το 
 msgid "Source code uploaded"
 msgstr "Μεταφορτώθηκε ο πηγαίος κώδικας"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε για το {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Η αυτόματη έγκριση επιβεβαιώθηκε"
@@ -850,6 +853,12 @@ msgstr "Αναιρέθηκε η απόρριψη του {addon} {version}."
 
 msgid "Un-rejected"
 msgstr "Αναιρέθηκε η απόρριψη"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-01-20 13:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -70,8 +70,11 @@ msgstr "Ei vielä lisäosa-arvioita."
 msgid "Review"
 msgstr "Arvio"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Versio {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Versio {0}"
+msgstr[1] "Versio {0}"
 
 # 85%
 msgid "Review note"
@@ -142,6 +145,13 @@ msgstr ""
 msgid "Upload is not valid."
 msgstr ""
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
@@ -206,10 +216,6 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr ""
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "My Add-ons"
@@ -575,9 +581,6 @@ msgstr ""
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr ""
-
 # 87%
 # 100%
 msgid "Commented"
@@ -728,8 +731,8 @@ msgstr "Lisäosan {addon} {version} lähdekoodi on ladattu."
 msgid "Source code uploaded"
 msgstr "Lähdekoodi ladattu"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Automaattinen hyväksyminen vahvistettu lisäosalle {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Automaattinen hyväksyminen vahvistettu"
@@ -855,6 +858,12 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"

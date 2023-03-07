@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-27 20:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,13 @@ msgstr "Team za pśeglědowanje dodankow"
 msgid "Review"
 msgstr "Pógódnośenje"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Wersija {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Wersija {0}"
+msgstr[1] "Wersija {0}"
+msgstr[2] "Wersija {0}"
+msgstr[3] "Wersija {0}"
 
 msgid "Review note"
 msgstr "Pśeglědański pśipisk"
@@ -136,6 +141,15 @@ msgstr "Zatwarjone licence njedaju se aktualizěrowaś."
 msgid "Upload is not valid."
 msgstr "Nagraśe njejo płaśiwe."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom "
+"trjebaśo."
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Wersija {version} {block_link} za toś ten dodank wótpowědujo. Móžośo se z {amo_admins} za pśidatne informacije do zwiska stajiś."
 
@@ -201,12 +215,6 @@ msgstr "Žrědło njedajo se změniś, dokulaž toś ta wersija jo se pśeglěda
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Toś ten dodankowy typ swójsku kompatibelnosć njedowólujo."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-"Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom "
-"trjebaśo."
 
 msgid "My Add-ons"
 msgstr "Móje dodanki"
@@ -578,9 +586,6 @@ msgstr ""
 "Toś ten dodank jo se za pśeglědowanje pśez adminhistratora markěrował. Jo južo w našom pśeglědowańskem cakańskem rěźe, ale musy se hyšći pśez naše administratorow pśeglědowarje kontrolěrowaś. "
 "Pśeglědowanje mógło dlej traś ako jo nałog."
 
-msgid "Comment on {addon} {version}."
-msgstr "Komentar wó {addon} {version}."
-
 msgid "Commented"
 msgstr "Komentěrowany"
 
@@ -727,8 +732,8 @@ msgstr "Žrědłowy kod nagraty za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Žrědłowy kod nagraty"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Awtomatiske pśizwólenje jo za dodank {addon} {version} wobkšuśone."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske pśizwólenje jo wobkšuśone"
@@ -843,6 +848,12 @@ msgstr "Wótpokazanje dodanka {addon} {version} jo wótpórane."
 
 msgid "Un-rejected"
 msgstr "Wótpokazanje jo wótpórane"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"

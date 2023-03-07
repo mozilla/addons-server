@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-02-28 17:06+0000\n"
+"POT-Creation-Date: 2023-03-07 17:41+0000\n"
 "PO-Revision-Date: 2023-02-11 19:17+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -65,8 +65,13 @@ msgstr "Ekipa za pregledovanje dodatkov"
 msgid "Review"
 msgstr "Pregled"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Različica {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Različica {0}"
+msgstr[1] "Različica {0}"
+msgstr[2] "Različica {0}"
+msgstr[3] "Različica {0}"
 
 msgid "Review note"
 msgstr "Opomba pregleda"
@@ -136,6 +141,13 @@ msgstr "Vgrajenih licenc ni mogoče posodobiti."
 msgid "Upload is not valid."
 msgstr "Nalaganje je neveljavno."
 
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Različica {version} se ujema z {block_link} za to razširitev. Za več informacij se obrnite na {amo_admins}."
 
@@ -201,10 +213,6 @@ msgstr "Vira ni mogoče spremeniti, ker je to različico pregledala Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr "Ta vrsta dodatkov ne omogoča združljivosti po meri."
-
-#, python-format
-msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
 
 msgid "My Add-ons"
 msgstr "Moji dodatki"
@@ -581,9 +589,6 @@ msgstr "{addon} {version} - zahtevan superpregled."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "Dodatek je bil označen za skrbniški pregled.  Še vedno je v čakalni vrsti, vendar ga bo moral pregledati eden od naših skrbnikov. Pregled bo morda trajal dlje kot običajno."
 
-msgid "Comment on {addon} {version}."
-msgstr "Komentar o {addon} {version}."
-
 msgid "Commented"
 msgstr "Komentirano"
 
@@ -731,8 +736,8 @@ msgstr "Izvorna koda naložena za {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Izvorna koda naložena"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Samodejna odobritev potrjena za {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "Samodejna odobritev potrjena"
@@ -849,6 +854,12 @@ msgstr "Zavrnitev dodatka {addon} {version} razveljavljena."
 
 msgid "Un-rejected"
 msgstr "Zavrnitev razveljavljena"
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
