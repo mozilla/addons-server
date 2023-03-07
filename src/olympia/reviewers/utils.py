@@ -1,5 +1,5 @@
 import random
-from collections import OrderedDict
+from collections import defaultdict, OrderedDict
 from datetime import datetime, timedelta
 
 import django_tables2 as tables
@@ -831,7 +831,9 @@ class ReviewBase:
     def log_action(
         self,
         action,
+        *,
         version=None,
+        versions=None,
         file=None,
         timestamp=None,
         user=None,
@@ -842,22 +844,27 @@ class ReviewBase:
             'reviewtype': self.review_type.split('_')[1],
             **(extra_details or {}),
         }
-        if file is None and self.file:
-            file = self.file
-        if file is not None:
-            details['files'] = [file.id]
         if version is None and self.version:
             version = self.version
+
+        if file is not None:
+            details['files'] = [file.id]
+        elif self.file:
+            details['files'] = [self.file.id]
+
         if version is not None:
             details['version'] = version.version
             args = (self.addon, version)
+        elif versions is not None:
+            details['versions'] = [v.version for v in versions]
+            details['files'] = [v.file.id for v in versions]
+            args = (self.addon, *versions)
         else:
             args = (self.addon,)
         if timestamp is None:
             timestamp = datetime.now()
 
         args = (*args, *self.data.get('reasons', []))
-
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         self.log_entry = ActivityLog.create(action, *args, **kwargs)
 
@@ -1168,7 +1175,10 @@ class ReviewBase:
                 'Making %s versions %s disabled'
                 % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
             )
-
+        # For a human review we record a single action, but for automated
+        # stuff, we need to split by type (content review or not) and by
+        # original user to match the original user(s) and action(s).
+        actions_to_record = defaultdict(lambda: defaultdict(list))
         for version in self.data['versions']:
             file = version.file
             if not pending_rejection_deadline:
@@ -1203,16 +1213,19 @@ class ReviewBase:
                     },
                 )
                 self.set_human_review_date(version)
-                user_to_attribute_action_to = self.user
+                actions_to_record[action_id][self.user].append(version)
             else:
-                user_to_attribute_action_to = version.pending_rejection_by
-            self.log_action(
-                action_id,
-                version=version,
-                file=file,
-                timestamp=now,
-                user=user_to_attribute_action_to,
-            )
+                actions_to_record[action_id][version.pending_rejection_by].append(
+                    version
+                )
+        for action_id, user_and_versions in actions_to_record.items():
+            for user, versions in user_and_versions.items():
+                self.log_action(
+                    action_id,
+                    versions=versions,
+                    timestamp=now,
+                    user=user,
+                )
 
         # A rejection (delayed or not) implies the next version should be
         # manually reviewed.
@@ -1290,13 +1303,12 @@ class ReviewBase:
         for version in self.data['versions']:
             self.set_file(amo.STATUS_AWAITING_REVIEW, version.file)
 
-            self.log_action(
-                action=amo.LOG.UNREJECT_VERSION,
-                version=version,
-                file=version.file,
-                timestamp=now,
-                user=self.user,
-            )
+        self.log_action(
+            action=amo.LOG.UNREJECT_VERSION,
+            versions=self.data['versions'],
+            timestamp=now,
+            user=self.user,
+        )
 
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
@@ -1401,12 +1413,14 @@ class ReviewUnlisted(ReviewBase):
         """Confirm approval on a list of versions."""
         # There shouldn't be any comments for this action.
         self.data['comments'] = ''
+        # self.version and self.file won't point to the versions we want to
+        # modify in this action, so set them to None so that the action is
+        # recorded against the specific versions we are confirming approval of.
+        self.version = None
+        self.file = None
 
         timestamp = datetime.now()
         for version in self.data['versions']:
-            self.log_action(
-                amo.LOG.CONFIRM_AUTO_APPROVED, version=version, timestamp=timestamp
-            )
             if self.human_review:
                 # Mark summary as confirmed if it exists.
                 try:
@@ -1418,10 +1432,19 @@ class ReviewUnlisted(ReviewBase):
                 self.clear_specific_needs_human_review_flags(version)
                 self.set_human_review_date(version)
 
+        self.log_action(
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            versions=self.data['versions'],
+            timestamp=timestamp,
+        )
+
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
         assert self.version.channel == amo.CHANNEL_UNLISTED
         latest_version = self.version
+        # self.version and self.file won't point to the versions we want to
+        # modify in this action, so set them to None so that the action is
+        # recorded against the specific versions we are approving.
         self.version = None
         self.file = None
 
@@ -1436,13 +1459,13 @@ class ReviewUnlisted(ReviewBase):
                 sign_file(version.file)
             ActivityLog.create(amo.LOG.UNLISTED_SIGNED, version.file, user=self.user)
             self.set_file(amo.STATUS_APPROVED, version.file)
-            self.log_action(
-                amo.LOG.APPROVE_VERSION, version, version.file, timestamp=timestamp
-            )
             if self.human_review:
                 self.clear_specific_needs_human_review_flags(version)
-
             log.info('Making %s files %s public' % (self.addon, version.file.file.name))
+
+        self.log_action(
+            amo.LOG.APPROVE_VERSION, versions=self.data['versions'], timestamp=timestamp
+        )
 
         if self.human_review:
             template = 'approve_multiple_versions'

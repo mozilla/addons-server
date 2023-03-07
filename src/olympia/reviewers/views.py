@@ -862,36 +862,32 @@ def reviewlog(request):
 
     form = ReviewLogForm(data)
 
-    approvals = ActivityLog.objects.review_log()
+    qs = ActivityLog.objects.review_log()
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        approvals = approvals.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
+        qs = qs.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
     if not acl.is_listed_addons_reviewer(request.user):
-        approvals = approvals.exclude(
-            versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
-        )
+        qs = qs.exclude(versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
     if not acl.is_static_theme_reviewer(request.user):
-        approvals = approvals.exclude(
-            versionlog__version__addon__type=amo.ADDON_STATICTHEME
-        )
+        qs = qs.exclude(versionlog__version__addon__type=amo.ADDON_STATICTHEME)
 
     if form.is_valid():
         data = form.cleaned_data
         if data['start']:
-            approvals = approvals.filter(created__gte=data['start'])
+            qs = qs.filter(created__gte=data['start'])
         if data['end']:
-            approvals = approvals.filter(created__lt=data['end'])
+            qs = qs.filter(created__lt=data['end'])
         if data['search']:
             term = data['search']
-            approvals = approvals.filter(
+            qs = qs.filter(
                 Q(commentlog__comments__icontains=term)
                 | Q(addonlog__addon__name__localized_string__icontains=term)
                 | Q(user__display_name__icontains=term)
                 | Q(user__username__icontains=term)
             ).distinct()
 
-    pager = amo.utils.paginate(request, approvals, 50)
+    pager = amo.utils.paginate(request, qs, 50)
     data = context(form=form, pager=pager)
     return TemplateResponse(request, 'reviewers/reviewlog.html', context=data)
 

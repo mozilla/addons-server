@@ -7,10 +7,11 @@ from copy import copy
 from django.apps import apps
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.html import format_html
-from django.utils.translation import gettext
+from django.utils.html import format_html, mark_safe
+from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
 
@@ -307,18 +308,12 @@ class ActivityLogManager(ManagerBase):
         return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
 
     def review_log(self):
-        qs = self._by_type()
-        return qs.filter(
-            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        ).exclude(user__id=settings.TASK_USER_ID)
-
-    def _by_type(self):
-        qs = self.get_queryset()
-        table = 'log_activity_addon'
-        return qs.extra(
-            tables=[table],
-            where=['{}.activity_log_id={}.id'.format(table, 'log_activity')],
+        qs = (
+            self.get_queryset()
+            .filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
+            .exclude(user__id=settings.TASK_USER_ID)
         )
+        return qs
 
 
 class ActivityLog(ModelBase):
@@ -510,6 +505,8 @@ class ActivityLog(ModelBase):
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
         addon = None
+        addon_name = None
+        addon_pk = None
         rating = None
         version = None
         collection = None
@@ -518,12 +515,18 @@ class ActivityLog(ModelBase):
         file_ = None
         status = None
         user = None
+        channel = None
+        _versions = []
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                if type_ == 'admin' or arg.has_listed_versions():
+                addon_pk = arg.pk
+                addon_name = arg.name
+                # _current_version_id as an approximation to see if the add-on
+                # has listed versions without doing extra queries.
+                if type_ == 'admin' or arg._current_version_id:
                     addon = format_html(
-                        '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
+                        '<a href="{0}">{1}</a>', get_absolute_url(arg), addon_name
                     )
                 else:
                     addon = format_html('{0}', arg.name)
@@ -533,16 +536,23 @@ class ActivityLog(ModelBase):
                     '<a href="{0}">{1}</a>', get_absolute_url(arg), gettext('Review')
                 )
                 arguments.remove(arg)
-            if isinstance(arg, Version) and not version:
-                text = gettext('Version {0}')
-                if type_ == 'admin' or arg.channel == amo.CHANNEL_LISTED:
-                    version = format_html(
-                        '<a href="{1}">%s</a>' % text,
-                        arg.version,
-                        get_absolute_url(arg),
+            if isinstance(arg, Version):
+                # Versions can appear multiple time. Append to an intermediary
+                # _versions list, and use that later to build the final
+                # 'version' argument used for formatting.
+                channel = arg.channel
+                if type_ == 'admin' or (
+                    type_ != 'reviewlog' and arg.channel == amo.CHANNEL_LISTED
+                ):
+                    _versions.append(
+                        format_html(
+                            '<a href="{0}">{1}</a>',
+                            get_absolute_url(arg),
+                            arg.version,
+                        )
                     )
                 else:
-                    version = format_html(text, arg.version)
+                    _versions.append(arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
                 collection = format_html(
@@ -594,6 +604,32 @@ class ActivityLog(ModelBase):
         user_responsible = format_html(
             '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
         )
+
+        if _versions:
+            # Now that all arguments have been processed we can build a string
+            # for all the versions and build a string for addon that is
+            # specific to the reviewlog, with the correct channel for the
+            # review page link.
+            version = format_html(
+                ngettext('Version {0}', 'Versions {0}', len(_versions)),
+                # We're only joining already escaped/safe content.
+                mark_safe(', '.join(_versions)),
+            )
+
+        if channel is None and self.details and 'channel' in self.details:
+            channel = self.details['channel']
+
+        if type_ == 'reviewlog' and addon and addon_pk and addon_name:
+            reverse_args = [addon_pk]
+            if self.action in (amo.LOG.REJECT_CONTENT.id, amo.LOG.APPROVE_CONTENT.id):
+                reverse_args.insert(0, 'content')
+            elif channel and channel == amo.CHANNEL_UNLISTED:
+                reverse_args.insert(0, 'unlisted')
+            addon = format_html(
+                '<a href="{0}">{1}</a>',
+                reverse('reviewers.review', args=reverse_args),
+                addon_name,
+            )
 
         try:
             kw = {

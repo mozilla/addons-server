@@ -110,10 +110,9 @@ class TestActivityLogAdmin(TestCase):
             'logged in.'
         ) in content
         assert (
-            '<a href="http://testserver/en-US/admin/models/versions/version/'
-            f'{addon.current_version.pk}/change/">Version '
-            f'{addon.current_version.version}</a> added to '
-            f'<a href="http://testserver/en-US/admin/models/addons/addon/'
+            'Version <a href="http://testserver/en-US/admin/models/versions/version/'
+            f'{addon.current_version.pk}/change/">{addon.current_version.version}</a>'
+            f' added to <a href="http://testserver/en-US/admin/models/addons/addon/'
             f'{addon.pk}/change/">&lt;script&gt;alert(41)&lt;/script&gt;</a>'
         ) in content
 
