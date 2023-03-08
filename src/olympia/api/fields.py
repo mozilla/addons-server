@@ -4,7 +4,6 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.validators import RegexValidator
 from django.utils.encoding import smart_str
-from django.utils.html import escape
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
 from rest_framework import exceptions, fields, serializers
@@ -114,7 +113,7 @@ class TranslationSerializerField(fields.CharField):
         request = self.context.get('request', None)
         if request and request.method == 'GET' and (lang := request.GET.get('lang')):
             if not self.flat and not re.fullmatch(LANGUAGE_CODE_REGEX, lang):
-                self.fail('unknown_locale', lang_code=escape(lang))
+                self.fail('unknown_locale', lang_code=lang)
             return lang
         else:
             return None
