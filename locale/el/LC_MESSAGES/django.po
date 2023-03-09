@@ -4367,15 +4367,15 @@ msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Βασικό πακέτο επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Επεκτάσεις διαχείρισης λήψεων"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
-msgstr ""
+msgstr "Επεκτάσεις παιχνιδιών και ψυχαγωγίας"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
