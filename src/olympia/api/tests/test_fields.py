@@ -341,6 +341,16 @@ class TestTranslationSerializerField(TestCase):
         result = field.to_representation(field.get_attribute(self.addon))
         assert result is None
 
+    def test_invalid_lang_value_raises_valiation_error(self):
+        bad_lang = 'en-US<foo>;'
+        request = Request(self.factory.get('/', {'lang': bad_lang}))
+        mock_serializer = serializers.Serializer(context={'request': request})
+        field = self.field_class()
+        field.bind('name', mock_serializer)
+        with self.assertRaises(serializers.ValidationError) as exc:
+            field.to_representation(field.get_attribute(self.addon))
+        assert exc.exception.detail == [f'The language code "{bad_lang}" is invalid.']
+
 
 @override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})
 class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
@@ -365,6 +375,17 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
         # Single translation
         result = field.run_validation(data['fr'])
         assert result == data['fr']
+
+    def test_invalid_lang_value_raises_valiation_error(self):
+        # The flat API response doesn't return the lang value at all, so doesn't raise
+        request = Request(
+            self.factory.get('/', {'lang': 'en-USf<script>alert(1)</script>'})
+        )
+        mock_serializer = serializers.Serializer(context={'request': request})
+        field = self.field_class()
+        field.bind('name', mock_serializer)
+        result = field.to_representation(field.get_attribute(self.addon))
+        assert 'script' not in result
 
 
 class TestESTranslationSerializerField(TestTranslationSerializerField):
