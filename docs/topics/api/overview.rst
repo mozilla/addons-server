@@ -458,6 +458,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-03-02: added support for calling the version detail endpoint using a version number instead of an ``id``.
 * 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
 * 2023-03-08: restricted ``lang`` parameter to only alphanumeric, ``_``, ``-``. https://github.com/mozilla/addons-server/issues/20452
+* 2023-03-09: added ``host_permissions`` to the response of the version detail endpoint. https://github.com/mozilla/addons-server/issues/20418
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

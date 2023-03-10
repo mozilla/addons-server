@@ -529,8 +529,8 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         print(parsed)
         assert len(parsed['host_permissions'])
         assert parsed['host_permissions'] == [
-            'https://example.com/',
-            'https://mozilla.com/',
+            '*://example.com/*',
+            '*://mozilla.com/*',
         ]
 
     def test_parse_apps(self):
