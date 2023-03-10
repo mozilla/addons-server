@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-07 17:41+0000\n"
-"PO-Revision-Date: 2023-03-10 09:55+0000\n"
+"PO-Revision-Date: 2023-03-10 09:56+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -854,7 +854,7 @@ msgid "Un-rejected"
 msgstr "Αναιρέθηκε η απόρριψη"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "Η επισήμανση «needs_human_review» του {addon} απαλείφθηκε."
 
 msgid "Needs Human Review cleared"
 msgstr ""
@@ -4519,7 +4519,7 @@ msgid "See more creativity staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για δημιουργικότητα"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Δεν έχει ελεγχθεί"
 
 #, python-format
 msgid "[status:%s]"
