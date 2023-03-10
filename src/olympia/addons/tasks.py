@@ -2,7 +2,7 @@ import hashlib
 import os
 
 from django.db import transaction
-from django.db.models import Value
+from django.db.models import Count, Value
 from django.db.models.functions import Collate
 
 
@@ -261,10 +261,15 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     if with_deleted:
         with transaction.atomic():
             # Stop any of these guids from being reused
-            addon_guids = list(addons.exclude(guid=None).values_list('guid', flat=True))
+            guids_to_block_qs = (
+                addons.annotate(version_count=Count('versions__id'))
+                .filter(version_count__gt=0)
+                .exclude(guid=None)
+                .values_list('guid', flat=True)
+            )
             denied = [
                 DeniedGuid(guid=guid, comments='Hard deleted with delete_addons task')
-                for guid in addon_guids
+                for guid in list(guids_to_block_qs)
             ]
             DeniedGuid.objects.bulk_create(denied, ignore_conflicts=True)
             # Call QuerySet.delete rather than Addon.delete.

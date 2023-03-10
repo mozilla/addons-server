@@ -7,16 +7,16 @@ from django.core import mail
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import Addon, DeniedGuid
 from olympia.amo.cron import gc, write_sitemaps
+from olympia.amo.models import FakeEmail
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.activity import RETENTION_DAYS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import YARA
-from olympia.addons.models import Addon
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
-from olympia.amo.models import FakeEmail
 
 
 @mock.patch('olympia.amo.cron.storage')
@@ -217,6 +217,9 @@ class TestGC(TestCase):
             assert not Addon.unfiltered.filter(pk=addon.pk).exists()
         for addon in to_keep:
             assert Addon.unfiltered.filter(pk=addon.pk).exists()
+
+        # None of these add-ons had any versions, so no DeniedGUIDs.
+        assert not DeniedGuid.objects.exists()
 
         # Make sure no email was sent.
         assert len(mail.outbox) == 0
