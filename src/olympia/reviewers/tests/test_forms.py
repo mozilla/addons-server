@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
@@ -57,15 +59,49 @@ class TestReviewForm(TestCase):
         # If the add-on is null we only show reply, comment and super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_NULL
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
+        self.version.update(human_review_date=datetime.now())
         assert list(actions.keys()) == ['reply', 'super', 'comment']
+
+        # If an admin reviewer we also show unreject_latest_version
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        actions = self.get_form().helper.get_actions()
+        assert list(actions.keys()) == [
+            'unreject_latest_version',
+            'reply',
+            'super',
+            'comment',
+        ]
+
+    def test_actions_addon_status_null_unlisted(self):
+        self.make_addon_unlisted(self.addon)
+        self.version.reload()
+        self.version.update(human_review_date=datetime.now())
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
+        )
+        assert list(actions.keys()) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
 
         # If an admin reviewer we also show unreject_multiple_versions
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
             'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -76,7 +112,7 @@ class TestReviewForm(TestCase):
         # super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_NULL
+            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
@@ -94,19 +130,8 @@ class TestReviewForm(TestCase):
             'comment',
         ]
 
-        # If an admin reviewer we also show unreject_multiple_versions
-        self.grant_permission(self.request.user, 'Reviews:Admin')
-        actions = self.get_form().helper.get_actions()
-        assert list(actions.keys()) == [
-            'reject_multiple_versions',
-            'unreject_multiple_versions',
-            'reply',
-            'super',
-            'comment',
-        ]
-
-        # The add-on is already disabled so we don't show unreject_multiple_versions or
-        # reject_multiple_versions, but reply/super/comment are still present.
+        # The add-on is already disabled so we don't show reject_multiple_versions, but
+        # reply/super/comment are still present.
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
@@ -314,9 +339,7 @@ class TestReviewForm(TestCase):
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == [self.addon.current_version]
 
-    def test_versions_queryset_contains_pending_files_for_listed(
-        self, select_data_value='reject_multiple_versions'
-    ):
+    def test_versions_queryset_contains_pending_files_for_listed(self):
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
         # The queryset should contain both pending, rejected, and approved versions.
@@ -363,7 +386,7 @@ class TestReviewForm(TestCase):
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
         select.attrib.get('class') == 'data-toggle'
-        assert select.attrib.get('data-value') == select_data_value
+        assert select.attrib.get('data-value') == 'reject_multiple_versions'
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
@@ -402,9 +425,8 @@ class TestReviewForm(TestCase):
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
-        self.test_versions_queryset_contains_pending_files_for_listed(
-            select_data_value='reject_multiple_versions unreject_multiple_versions'
-        )
+        # No change
+        self.test_versions_queryset_contains_pending_files_for_listed()
 
     def test_versions_queryset_contains_pending_files_for_unlisted(
         self,
