@@ -442,13 +442,13 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.unfiltered.get(id=self.dictionary.id)
 
         # check the guids have been added to DeniedGuid
-        assert DeniedGuid.objects.all().count() == 4
+        assert DeniedGuid.objects.all().count() == 5
         assert DeniedGuid.objects.get(guid=self.xul_theme.guid)
         assert DeniedGuid.objects.get(guid=self.lpaddon.guid)
         assert DeniedGuid.objects.get(guid=self.plugin.guid)
         # no self.lwt as it didn't have a guid
         assert DeniedGuid.objects.get(guid=self.webapp.guid)
-        assert not DeniedGuid.objects.filter(guid=self.no_versions.guid).exists()
+        assert DeniedGuid.objects.filter(guid=self.no_versions.guid)
 
     def test_hard_with_already_deleted(self):
         Addon.unfiltered.update(status=amo.STATUS_DELETED)
@@ -462,6 +462,7 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.static_theme.id)
         assert Addon.objects.get(id=self.dictionary.id)
+        # Addon.delete will hard delete this add-on because it's got no versions.
         assert not Addon.unfiltered.filter(guid=self.no_versions.guid).exists()
 
 

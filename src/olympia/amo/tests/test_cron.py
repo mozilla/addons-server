@@ -218,7 +218,7 @@ class TestGC(TestCase):
         for addon in to_keep:
             assert Addon.unfiltered.filter(pk=addon.pk).exists()
 
-        # None of these add-ons had any versions, so no DeniedGUIDs.
+        # We pass deny_guids=False.
         assert not DeniedGuid.objects.exists()
 
         # Make sure no email was sent.
