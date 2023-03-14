@@ -183,7 +183,7 @@ class File(OnChangeMixin, ModelBase):
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
-        if file_.manifest_version == 3:
+        if file_.manifest_version > 2:
             permissions = [
                 perm
                 for perm in permissions
