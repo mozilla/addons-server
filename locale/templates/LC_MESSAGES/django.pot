@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-07 17:41+0000\n"
+"POT-Creation-Date: 2023-03-14 16:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:68 src/olympia/addons/serializers.py:1156
+#: src/olympia/addons/fields.py:68 src/olympia/addons/serializers.py:1164
 msgid "Invalid category name."
 msgstr ""
 
@@ -162,32 +162,32 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2034 src/olympia/addons/models.py:2094
+#: src/olympia/addons/models.py:2033 src/olympia/addons/models.py:2093
 #: src/olympia/constants/base.py:66
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2277
+#: src/olympia/addons/models.py:2276
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:212
+#: src/olympia/addons/serializers.py:220
 msgid "Previews cannot be created for themes."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:299
+#: src/olympia/addons/serializers.py:307
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:491
+#: src/olympia/addons/serializers.py:499
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:507
+#: src/olympia/addons/serializers.py:515
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:510 src/olympia/addons/views.py:704
+#: src/olympia/addons/serializers.py:518 src/olympia/addons/views.py:704
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -195,47 +195,47 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:522 src/olympia/devhub/forms.py:1043
+#: src/olympia/addons/serializers.py:530 src/olympia/devhub/forms.py:1043
 #: src/olympia/signing/views.py:193
 msgid ""
 "Version {version} matches {block_link} for this add-on. You can contact "
 "{amo_admins} for additional information."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:541
+#: src/olympia/addons/serializers.py:549
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:545
+#: src/olympia/addons/serializers.py:553
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:566
+#: src/olympia/addons/serializers.py:574
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:820
+#: src/olympia/addons/serializers.py:828
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:835
+#: src/olympia/addons/serializers.py:843
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:855
+#: src/olympia/addons/serializers.py:863
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:868 src/olympia/devhub/forms.py:436
+#: src/olympia/addons/serializers.py:876 src/olympia/devhub/forms.py:436
 #: src/olympia/devhub/forms.py:506
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:878 src/olympia/devhub/forms.py:447
+#: src/olympia/addons/serializers.py:886 src/olympia/devhub/forms.py:447
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1136
+#: src/olympia/addons/serializers.py:1144
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -369,7 +369,7 @@ msgstr ""
 msgid "Positive integer"
 msgstr ""
 
-#: src/olympia/amo/fields.py:77 src/olympia/api/fields.py:390
+#: src/olympia/amo/fields.py:77 src/olympia/api/fields.py:395
 #, python-format
 msgid ""
 "This field can only be used to link to external websites. URLs on %(domain)s "
@@ -606,25 +606,25 @@ msgstr ""
 msgid "Unavailable for legal reasons."
 msgstr ""
 
-#: src/olympia/api/fields.py:87
+#: src/olympia/api/fields.py:90
 msgid "The language code \"{lang_code}\" is invalid."
 msgstr ""
 
-#: src/olympia/api/fields.py:88
+#: src/olympia/api/fields.py:91
 msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
 
-#: src/olympia/api/fields.py:89
+#: src/olympia/api/fields.py:92
 msgid "A value in the default locale of \"{lang_code}\" is required."
 msgstr ""
 
-#: src/olympia/api/fields.py:92
+#: src/olympia/api/fields.py:95
 msgid ""
 "A value in the default locale of \"{lang_code}\" is required if other "
 "translations are set."
 msgstr ""
 
-#: src/olympia/api/fields.py:372
+#: src/olympia/api/fields.py:377
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
