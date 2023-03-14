@@ -1364,6 +1364,32 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['host_permissions']
 
+    def test_mv3_invalid_host_permissions(self):
+        upload = self.upload('webextension_mv3_invalid_permissions.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        assert len(parsed_data['permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        host_permissions_list = file_.host_permissions
+        assert len(host_permissions_list) == 2
+        assert host_permissions_list == parsed_data['host_permissions']
+        permissions_list = file_.permissions
+        assert len(permissions_list) == 1
+        assert permissions_list == ['bookmarks']
+
+    def test_mv2_invalid_host_permissions(self):
+        upload = self.upload('webextension_mv2_invalid_permissions.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        assert len(parsed_data['permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        assert len(file_.host_permissions) == 0
+        permissions_list = file_.permissions
+        assert len(permissions_list) == 2
+        assert permissions_list == parsed_data['permissions']
+
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
