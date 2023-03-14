@@ -1395,6 +1395,13 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             self.set_human_review_date()
+        elif (
+            not self.version.needs_human_review
+            and (delay := self.addon.auto_approval_delayed_until_unlisted)
+            and delay < datetime.now()
+        ):
+            # if we're auto-approving because its past the approval delay, flag it.
+            self.version.update(needs_human_review=True)
 
         self.notify_email(template, subject, perm_setting=None)
 

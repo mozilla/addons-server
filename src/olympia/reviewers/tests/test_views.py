@@ -3203,8 +3203,8 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        # Still not present because it's in the past.
-        assert not doc('#clear_auto_approval_delayed_until_unlisted')
+        # Present even though it is in the past.
+        assert doc('#clear_auto_approval_delayed_until_unlisted')
         # Listed flag should still be there however, that delay has changed.
         assert doc('#clear_auto_approval_delayed_until')
 
@@ -3215,7 +3215,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#clear_auto_approval_delayed_until')  # Is still there.
-        assert doc('#clear_auto_approval_delayed_until_unlisted')  # Was added.
+        assert doc('#clear_auto_approval_delayed_until_unlisted')  # Is still there.
 
     def test_no_resubmission_buttons_when_addon_is_not_deleted(self):
         self.login_as_admin()

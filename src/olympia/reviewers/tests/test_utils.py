@@ -1132,6 +1132,32 @@ class TestReviewHelper(TestReviewHelperBase):
         # Not changed this this is not a human approval.
         assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
 
+    def _unlisted_approve_flag_if_passed_auto_approval_delayed_setup(self, delay):
+        self.setup_data(
+            amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=False
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_delayed_until_unlisted=delay
+        )
+        assert not self.review_version.needs_human_review
+
+        self.helper.handler.approve_latest_version()
+        self.addon.reload()
+        self.review_version.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_APPROVED
+
+    def test_unlisted_approve_flag_if_passed_auto_approval_delayed(self):
+        yesterday = datetime.now() - timedelta(days=1)
+        self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(yesterday)
+        assert self.review_version.needs_human_review
+
+    def test_unlisted_approve_dont_flag_if_not_past_auto_approval_delayed(self):
+        tomorrow = datetime.now() + timedelta(days=1)
+        self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(tomorrow)
+        assert not self.review_version.needs_human_review
+
     def test_nomination_to_public_with_version_reviewer_flags(self):
         flags = version_review_flags_factory(
             version=self.addon.current_version,
