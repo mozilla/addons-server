@@ -1642,7 +1642,7 @@ class TestAddonModels(TestCase):
         # Flag present, value is a date.
         in_the_past = self.days_ago(1)
         flags.update(auto_approval_delayed_until_unlisted=in_the_past)
-        assert addon.auto_approval_delayed_temporarily_unlisted is False
+        assert addon.auto_approval_delayed_temporarily_unlisted is True
         # Flag present, now properly in the future.
         in_the_future = datetime.now() + timedelta(hours=24)
         flags.update(auto_approval_delayed_until_unlisted=in_the_future)

@@ -1695,7 +1695,6 @@ class Addon(OnChangeMixin, ModelBase):
         return (
             bool(self.auto_approval_delayed_until_unlisted)
             and self.auto_approval_delayed_until_unlisted != datetime.max
-            and self.auto_approval_delayed_until_unlisted > datetime.now()
         )
 
     def set_auto_approval_delay_if_higher_than_existing(
