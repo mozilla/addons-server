@@ -48,7 +48,7 @@ def gc(test_result=True):
         versions__pk=None, created__lte=two_weeks_ago
     ).values_list('pk', flat=True)
     for chunk in chunked(versionless_addons, 100):
-        delete_addons.delay(chunk, with_deleted=True)
+        delete_addons.delay(chunk, with_deleted=True, deny_guids=False)
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(created__lte=two_weeks_ago).order_by('id')
