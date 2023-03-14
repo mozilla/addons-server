@@ -192,7 +192,7 @@ class File(OnChangeMixin, ModelBase):
         optional_permissions = list(parsed_data.get('optional_permissions', []))
         host_permissions = (
             list(parsed_data.get('host_permissions', []))
-            if file_.manifest_version == 3
+            if file_.manifest_version > 2
             else []
         )
 
