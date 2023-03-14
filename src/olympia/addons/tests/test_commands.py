@@ -424,7 +424,7 @@ class TestDeleteObsoleteAddons(TestCase):
         self.lwt = addon_factory(type=9, guid=None)  # _ADDON_PERSONA
         self.webapp = addon_factory()
         self.webapp.update(type=11)  # webapp
-        self.no_versions = addon_factory(type=6)  # _ADDON_PLUGIN
+        self.no_versions = addon_factory(type=6)  # _ADDON_LPADDON
         self.no_versions.current_version.delete(hard=True)
 
         assert Addon.unfiltered.count() == 9
