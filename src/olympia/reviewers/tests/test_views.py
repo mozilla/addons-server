@@ -3379,9 +3379,34 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
 
+    def test_enable_auto_approve_button_disabled_for_promoted(self):
+        self.login_as_admin()
+        # Recommended is prereview=True so auto approval is disabled
+        self.make_addon_promoted(self.addon, group=RECOMMENDED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#auto_approval_disabled')
+        elem = doc('#auto_approval_disabled')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+        assert elem.text == 'Listed Auto-Approval Disabled by Promoted group'
+        assert elem.attrib.get('class', '') == 'disabled'
+        assert not doc('#enable_auto_approval')
+        assert not doc('#disable_auto_approval')
+
+        # Strategic is prereview=False so auto approval isn't disabled
+        self.make_addon_promoted(self.addon, group=STRATEGIC)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#auto_approval_disabled')
+        assert doc('#enable_auto_approval')
+        assert doc('#disable_auto_approval')
+
     def test_disable_auto_approval_unlisted_as_admin(self):
         self.login_as_admin()
-        response = self.client.get(self.url)
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3394,7 +3419,7 @@ class TestReview(ReviewBase):
 
         # Still present for dictionaries
         self.addon.update(type=amo.ADDON_DICT)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3402,7 +3427,7 @@ class TestReview(ReviewBase):
 
         # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
@@ -3435,7 +3460,8 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_disabled_unlisted=True
         )
-        response = self.client.get(self.url)
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3448,7 +3474,7 @@ class TestReview(ReviewBase):
 
         # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
