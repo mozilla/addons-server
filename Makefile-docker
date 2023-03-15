@@ -86,7 +86,6 @@ install_python_test_dependencies:
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 .PHONY: install_python_dev_dependencies
@@ -196,7 +195,7 @@ initialize: update_deps initialize_db update_assets populate_data ## init the de
 
 .PHONY: reload
 reload: ## force django code reload
-	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+	uwsgi --reload ${HOME}/docker/artifacts/addons-server-uwsgi-master.pid
 
 reload-uwsgi: reload
 

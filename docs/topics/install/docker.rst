@@ -68,16 +68,22 @@ on your host machine::
     cd addons-server
     # Download the containers
     docker-compose pull  # Can take a while depending on your internet bandwidth.
-    # Start up the containers
-    docker-compose up -d
     make initialize  # Answer yes, and create your superuser when asked.
-    # On Windows you can substitute `make initialize` for the command:
+    # On Windows you can substitute `make initialize` by the following commands:
+    docker-compose up -d
     docker-compose exec web make initialize
 
 .. note::
 
    Docker requires the code checkout to exist within your home directory so
    that Docker can mount the source-code into the container.
+
+   Because the containers need to match the user/group permissions from your
+   host machine, on non-windows machines make sure to run ``make initialize``
+   once before running ``docker-compose up -d`` for the first time. That will
+   create a ``.env`` file containing the user and group id the container needs
+   to use to match your host permissions.
+
 
 Accessing the web server
 ~~~~~~~~~~~~~~~~~~~~~~~~

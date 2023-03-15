@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
 try:
-    # If we have a build id (it should be generated in Dockerfile.deploy),
+    # If we have a build id (it should be generated when building the image),
     # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
     # not have to flush memcache during updates and it will let us preload
     # data into it before a production push.
@@ -75,13 +75,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = env('CLEANCSS_BIN', default='node_modules/clean-css-cli/bin/cleancss')
+CLEANCSS_BIN = env(
+    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+)
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -91,7 +93,7 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
 )
 
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.com'

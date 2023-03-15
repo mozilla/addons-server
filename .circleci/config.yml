@@ -350,9 +350,6 @@ commands:
   make_release:
     description: "Builds and pushes a Docker image"
     parameters:
-      dockerfile:
-        type: string
-        default: "Dockerfile.deploy"
       image_tag:
         type: string
         default: "latest"
@@ -370,7 +367,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
+            docker build -t app:build --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
@@ -632,7 +629,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: latest
-          dockerfile: "Dockerfile.deploy"
 
   release-tag:
     <<: *defaults-release
@@ -640,7 +636,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: "${CIRCLE_TAG}"
-          dockerfile: "Dockerfile.deploy"
 
 workflows:
   version: 2

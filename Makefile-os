@@ -1,3 +1,8 @@
+UID := $(shell id -u)
+GID := $(shell id -g)
+export UID
+export GID
+
 .PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
@@ -18,11 +23,23 @@ update_docker: ## update all the docker images
 
 .PHONY: shell
 shell: ## connect to a running addons-server docker shell
-	docker-compose exec web bash
+	docker-compose exec --user olympia web bash
 
-.PHONY: shell
+.PHONY: rootshell
 rootshell: ## connect to a running addons-server docker shell with root user
 	docker-compose exec --user root web bash
+
+.PHONY: up
+up: create_env_file
+	docker-compose up -d
+
+.PHONY: create_env_file
+create_env_file:
+	echo "UID=${UID}\nGID=${GID}" > .env
+
+.PHONY: initialize
+initialize: up
+	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
