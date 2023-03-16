@@ -500,11 +500,19 @@ commands:
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
-            - run: make install_python_test_dependencies
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_test_dependencies
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
-            - run: NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
+            - run:
+                name: Install Node dependencies
+                command: |
+                  sudo mkdir /deps
+                  sudo chown $USER /deps
+                  NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
       - when:
           condition: << parameters.update_deps >>
           steps:
