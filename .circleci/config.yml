@@ -512,6 +512,9 @@ commands:
                 command: |
                   sudo mkdir /deps
                   sudo chown circleci /deps
+                  ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
                   NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
       - when:
           condition: << parameters.update_deps >>
