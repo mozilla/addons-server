@@ -316,7 +316,10 @@ def addon_search(request):
         if q.isdigit():
             qs = Addon.objects.filter(id=int(q))
         else:
-            qs = Addon.search().query(name__text=q.lower())[:100]
+            # Try guid lookup first, and fallback to partial name search if we don't find anything
+            qs = Addon.objects.filter(guid=q)
+            if len(qs) == 0:
+                qs = Addon.search().query(name__text=q.lower())[:100]
         if len(qs) == 1:
             return redirect('zadmin.addon_manage', qs[0].id)
         ctx['addons'] = qs
