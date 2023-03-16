@@ -511,7 +511,7 @@ commands:
                 name: Install Node dependencies
                 command: |
                   sudo mkdir /deps
-                  sudo chown $USER /deps
+                  sudo chown circleci /deps
                   NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
       - when:
           condition: << parameters.update_deps >>
