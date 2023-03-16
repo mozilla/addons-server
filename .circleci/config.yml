@@ -456,7 +456,7 @@ commands:
       install_node_dependencies:
         type: boolean
         default: false
-      update_deps:
+      install_python_dev_dependencies:
         type: boolean
         default: false
     steps:
@@ -505,6 +505,13 @@ commands:
                 command: |
                   make install_python_test_dependencies
       - when:
+          condition: << parameters.install_python_dev_dependencies >>
+          steps:
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_dev_dependencies
+      - when:
           condition: << parameters.install_node_dependencies >>
           steps:
             - run:
@@ -549,7 +556,8 @@ jobs:
     <<: *defaults-with-services
     steps:
       - setup_container:
-          install_python_test_dependencies: true
+          install_python_test_dependencies: false
+          install_python_dev_dependencies: true
           install_node_dependencies: true
       - run: make update_assets
       - run:
@@ -562,7 +570,7 @@ jobs:
       - setup_container:
           wait_services: false
           install_node_dependencies: true
-      - run: make setup-codestyle
+      - run: make install_python_codestyle_dependencies
       - run: pyenv rehash
       - run: make lint-codestyle
 
