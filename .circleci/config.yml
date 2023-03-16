@@ -516,10 +516,6 @@ commands:
                   ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
                   ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
                   NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
-      - when:
-          condition: << parameters.update_deps >>
-          steps:
-            - run: make update_deps
       # should be executed after all python install commands
       - run: pyenv rehash
 
@@ -553,8 +549,8 @@ jobs:
     <<: *defaults-with-services
     steps:
       - setup_container:
-          install_python_test_dependencies: false
-          update_deps: true
+          install_python_test_dependencies: true
+          install_node_dependencies: true
       - run: make update_assets
       - run:
           command: pytest -m "static_assets" -v src/olympia/
