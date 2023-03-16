@@ -504,7 +504,7 @@ commands:
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
-            - run: make install_node_dependencies
+            - run: NPM_CONFIG_PREFIX=/deps/ make install_node_dependencies
       - when:
           condition: << parameters.update_deps >>
           steps:
