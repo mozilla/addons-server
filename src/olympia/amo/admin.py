@@ -589,8 +589,8 @@ class HTML5DateInput(forms.DateInput):
     input_type = 'date'
 
 
-class HTML5DateTimeInput(forms.DateInput):
-    format_key = 'DATE_INPUT_FORMATS'
+class HTML5DateTimeInput(forms.DateTimeInput):
+    format_key = 'DATETIME_INPUT_FORMATS'
     input_type = 'datetime-local'
 
 

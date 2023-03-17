@@ -1427,6 +1427,7 @@ CRON_JOBS = {
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'write_sitemaps': 'olympia.amo.cron',
+    'process_blocklistsubmissions': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',

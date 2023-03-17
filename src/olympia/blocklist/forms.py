@@ -1,7 +1,10 @@
+from datetime import datetime, timedelta
+
 from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
 
 from .models import Block, BlocklistSubmission
@@ -78,6 +81,16 @@ class BlocklistSubmissionForm(AMOModelForm):
     existing_max_version = forms.fields.CharField(
         widget=forms.widgets.HiddenInput, required=False
     )
+    delay_days = forms.fields.IntegerField(
+        widget=forms.widgets.NumberInput,
+        initial=0,
+        label='Delay Block by days',
+        required=False,
+        min_value=0,
+    )
+    delayed_until = forms.fields.DateTimeField(
+        widget=HTML5DateTimeInput, required=False
+    )
 
     def _check_if_existing_blocks_changed(
         self, all_guids, v_min, v_max, existing_v_min, existing_v_max
@@ -133,5 +146,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                         )
                     )
                 )
+        if delay_days := data.get('delay_days', 0):
+            data['delayed_until'] = datetime.now() + timedelta(days=delay_days)
         if errors:
             raise ValidationError(errors)

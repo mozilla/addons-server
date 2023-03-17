@@ -95,6 +95,13 @@
       {{ form.reason }}
       <p class="help">{{ form.reason.help_text }}</p>
     </div>
+    <div class="form-row">
+      {{ form.delay_days.errors }}
+      {{ form.delayed_until.errors }}
+      {{ form.delay_days.label_tag }}
+      {{ form.delay_days }}
+      <p class="help">{{ form.delay_days.help_text }}</p>
+    </div>
     {% block submit_buttons_bottom %}
     <div class="submit-row">
       <input type="submit" value="Save" class="default" name="_save">
