@@ -1528,19 +1528,12 @@ class Addon(OnChangeMixin, ModelBase):
         if not version or not version.all_files[0]:
             return False
 
-        # Default to the addon's flag
-        sensitive_data_access = self.requires_sensitive_data_access
-        # If we can skip review for sensitive data access
-        can_skip_review = False
-
         permissions = version.all_files[0].webext_permissions_list
-        for permission in permissions:
-            # We're looking for two cases here, if the permission contains a skip permission, then we can skip.
-            # But we're also looking to see if they use permissions relating to sensitive user data.
-            if permission in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS:
-                can_skip_review = True
-            if permission in SENSITIVE_DATA_ACCESS_PERMISSIONS:
-                sensitive_data_access = True
+
+        # Look for skip permissions
+        can_skip_review = any(i in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS for i in permissions)
+        # Look for any sensitive data access permissions, fallback to the addon's stored value if not found.
+        sensitive_data_access = any(i in SENSITIVE_DATA_ACCESS_PERMISSIONS for i in permissions) or self.requires_sensitive_data_access
 
         # We can only update the value to True
         if sensitive_data_access == True and sensitive_data_access != self.requires_sensitive_data_access:

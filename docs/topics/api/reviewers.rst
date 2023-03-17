@@ -81,4 +81,4 @@ add-on.
     :>json string|null pending_info_request: Deadline date for the pending info request as a string, or ``null``.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
-    :>json boolean needs_sensitive_access_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not. This is related to the `Addon.require_sensitive_data_access` property.
+    :>json boolean needs_sensitive_access_review: Boolean indicating whether the add-on needs its content to be reviewed or not. This is related to the `Addon.require_sensitive_data_access` property.

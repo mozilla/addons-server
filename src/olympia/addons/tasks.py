@@ -766,15 +766,12 @@ def migrate_addons_that_require_sensitive_data_access(addon):
 
         permissions = version.all_files[0].webext_permissions_list
 
-        # Only valid for the top most version
-        can_skip_review = False
+        # For the current version only, look for the skip flag
+        if index == 0:
+            can_skip_review = any(i in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS for i in permissions)
 
-        for permission in permissions:
-            if index == 0 and permission in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS:
-                can_skip_review = True
-            if permission in SENSITIVE_DATA_ACCESS_PERMISSIONS:
-                # Delay returning True until after we've checked for any skip permissions...
-                sensitive_data_access = True
+        # Look for any sensitive data access permissions
+        sensitive_data_access = any(i in SENSITIVE_DATA_ACCESS_PERMISSIONS for i in permissions)
 
         # We found our sensitive data access, so break!
         if sensitive_data_access:

@@ -338,7 +338,7 @@ class TestMigrateAddonsThatRequireSensitiveDataAccess(TestCase):
 
 
     def test_addon_with_sda(self):
-        """Test addon with sensitive permissions. This should cause both the Admin and AdminReviewer Flags to be True"""
+        """Test addon with sensitive permissions. This should cause both the Addon and AddonReviewer Flags to be True"""
         addon_with_sda = addon_factory(
             version_kw={'application': amo.THUNDERBIRD.id},
             file_kw={
@@ -376,7 +376,7 @@ class TestMigrateAddonsThatRequireSensitiveDataAccess(TestCase):
         assert not addon_without_sda.needs_sensitive_data_access_review
 
     def test_addon_with_sda_and_exfiltrate(self):
-        """Test addon with sensitive permissions, but also an explicitly set `exfiltrate` permission. The Addon Flag should be True, but the AdminReviewer Flag should not"""
+        """Test addon with sensitive permissions, but also an explicitly set `exfiltrate` permission. The Addon Flag should be True, but the AddonReviewer Flag should not"""
         addon_with_sda_and_exfiltrate = addon_factory(
             version_kw={'application': amo.THUNDERBIRD.id},
             file_kw={
