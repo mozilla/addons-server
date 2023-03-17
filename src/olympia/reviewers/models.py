@@ -108,6 +108,7 @@ class ViewQueue(RawSQLModel):
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
+    needs_sensitive_data_access_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
@@ -133,6 +134,8 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
+                ('needs_sensitive_data_access_review',
+                    'addons_addonreviewerflags.needs_sensitive_data_access_review'),
                 ('latest_version', 'versions.version'),
                 ('pending_info_request',
                     'addons_addonreviewerflags.pending_info_request'),
@@ -211,6 +214,8 @@ class ViewUnlistedAllList(RawSQLModel):
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
+    needs_sensitive_data_access_review = models.NullBooleanField()
+
     is_deleted = models.BooleanField()
 
     def base_query(self):
@@ -231,6 +236,8 @@ class ViewUnlistedAllList(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
+                ('needs_sensitive_data_access_review',
+                    'addons_addonreviewerflags.needs_sensitive_data_access_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
