@@ -500,3 +500,10 @@ DOWNLOAD_SOURCES_FULL = (
 
 DOWNLOAD_SOURCES_PREFIX = (
     'external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-dl-')
+
+SENSITIVE_DATA_ACCESS_PERMISSIONS = (
+    'addressBooks', 'messagesRead', 'messagesModify'
+)
+SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS = (
+    'exfiltrate'
+)

@@ -18,7 +18,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
     IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
-    attach_translations)
+    attach_translations, AddonReviewerFlags)
 from olympia.addons.utils import (
     build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
 from olympia.amo.celery import task
@@ -747,3 +747,42 @@ def migrate_legacy_dictionary_to_webextension(addon):
     file_ = version.all_files[0]
     sign_file(file_)
     file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
+
+@task
+@use_primary_db
+def migrate_addons_that_require_sensitive_data_access(addon):
+    """
+    Adds requires sensitive data access to addons that use/used sensitive data permissions
+    """
+    from olympia.constants.base import SENSITIVE_DATA_ACCESS_PERMISSIONS, SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS
+
+    sensitive_data_access = False
+    can_skip_review = False
+
+    for index, version in enumerate(addon.versions.all()):
+        # We ignore versions without files
+        if not version or not version.all_files[0]:
+            continue
+
+        permissions = version.all_files[0].webext_permissions_list
+
+        # For the current version only, look for the skip flag
+        if index == 0:
+            can_skip_review = any(i in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS for i in permissions)
+
+        # Look for any sensitive data access permissions
+        sensitive_data_access = any(i in SENSITIVE_DATA_ACCESS_PERMISSIONS for i in permissions)
+
+        # We found our sensitive data access, so break!
+        if sensitive_data_access:
+            break
+
+    if sensitive_data_access:
+        addon.update(requires_sensitive_data_access=True)
+
+        # If we can't skip review, then create a reviewer flag
+        if not can_skip_review:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=addon,
+                needs_sensitive_data_access_review=True
+            )

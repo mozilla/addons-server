@@ -51,7 +51,7 @@ from olympia.addons.tasks import unindex_addons
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.files.models import File
+from olympia.files.models import File, WebextPermission
 from olympia.lib.es.utils import timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -741,8 +741,15 @@ def file_factory(**kw):
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
 
+    is_webextension = kw.pop('is_webextension', False)
+    permissions = kw.pop('permissions', [])
+
     file_ = File.objects.create(
-        filename=filename, platform=platform, status=status, **kw)
+        filename=filename, platform=platform, status=status, is_webextension=is_webextension, **kw)
+
+    if is_webextension:
+        WebextPermission.objects.create(permissions=permissions,
+                                        file=file_)
 
     fixture_path = os.path.join(
         settings.ROOT, 'src/olympia/files/fixtures/files',

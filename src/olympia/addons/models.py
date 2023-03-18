@@ -365,6 +365,8 @@ class Addon(OnChangeMixin, ModelBase):
                   'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
+    requires_sensitive_data_access = models.BooleanField(default=False, help_text='This Addon uses or used permissions that contain sensitive user data. If this flag is True, it will disable auto approvals for any subsequent version submissions, unless the `Exfiltrate` permission is used.')
+
     unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
 
@@ -1499,9 +1501,45 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def needs_sensitive_data_access_review(self):
+        """This is the reviewer flag"""
+        try:
+            return self.addonreviewerflags.needs_sensitive_data_access_review
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def expired_info_request(self):
         info_request = self.pending_info_request
         return info_request and info_request < datetime.now()
+
+    def check_and_update_sensitive_permissions(self):
+        """
+        Does two things, updates the required flag on the addon (if needed),
+        and returns whether we should require a manual review.
+        """
+        from olympia.constants.base import SENSITIVE_DATA_ACCESS_PERMISSIONS, SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS
+
+        if self.type != amo.ADDON_EXTENSION:
+            return False
+
+        version = self.versions.latest()
+
+        if not version or not version.all_files[0]:
+            return False
+
+        permissions = version.all_files[0].webext_permissions_list
+
+        # Look for skip permissions
+        can_skip_review = any(i in SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS for i in permissions)
+        # Look for any sensitive data access permissions, fallback to the addon's stored value if not found.
+        sensitive_data_access = any(i in SENSITIVE_DATA_ACCESS_PERMISSIONS for i in permissions) or self.requires_sensitive_data_access
+
+        # We can only update the value to True
+        if sensitive_data_access == True and sensitive_data_access != self.requires_sensitive_data_access:
+            self.update(requires_sensitive_data_access=True)
+
+        return sensitive_data_access and not can_skip_review
 
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
@@ -1601,7 +1639,7 @@ class AddonReviewerFlags(ModelBase):
     auto_approval_disabled = models.BooleanField(default=False)
     pending_info_request = models.DateTimeField(default=None, null=True)
     notified_about_expiring_info_request = models.BooleanField(default=False)
-
+    needs_sensitive_data_access_review = models.BooleanField(default=False)
 
 class Persona(models.Model):
     """Personas-specific additions to the add-on model."""

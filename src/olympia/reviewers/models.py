@@ -46,6 +46,7 @@ VIEW_QUEUE_FLAGS = (
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
+    ('needs_sensitive_data_access_review', 'needs-sensitive-data-access-review', _('Needs Sensitive Data Access Review')),
 )
 
 
@@ -107,6 +108,7 @@ class ViewQueue(RawSQLModel):
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
+    needs_sensitive_data_access_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
     is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
@@ -132,6 +134,8 @@ class ViewQueue(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
+                ('needs_sensitive_data_access_review',
+                    'addons_addonreviewerflags.needs_sensitive_data_access_review'),
                 ('latest_version', 'versions.version'),
                 ('pending_info_request',
                     'addons_addonreviewerflags.pending_info_request'),
@@ -210,6 +214,8 @@ class ViewUnlistedAllList(RawSQLModel):
     needs_admin_code_review = models.NullBooleanField()
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
+    needs_sensitive_data_access_review = models.NullBooleanField()
+
     is_deleted = models.BooleanField()
 
     def base_query(self):
@@ -230,6 +236,8 @@ class ViewUnlistedAllList(RawSQLModel):
                     'addons_addonreviewerflags.needs_admin_content_review'),
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
+                ('needs_sensitive_data_access_review',
+                    'addons_addonreviewerflags.needs_sensitive_data_access_review'),
                 ('is_deleted', 'IF (addons.status=11, true, false)'),
                 ('version_date', 'versions.nomination'),
                 ('review_date', 'reviewed_versions.created'),
@@ -753,6 +761,7 @@ class AutoApprovalSummary(ModelBase):
         Version, on_delete=models.CASCADE, primary_key=True)
     is_locked = models.BooleanField(default=False)
     has_auto_approval_disabled = models.BooleanField(default=False)
+    has_sensitive_data_access = models.BooleanField(default=False)
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
@@ -929,6 +938,7 @@ class AutoApprovalSummary(ModelBase):
         verdict_info = {
             'is_locked': self.is_locked,
             'has_auto_approval_disabled': self.has_auto_approval_disabled,
+            'has_sensitive_data_access': self.has_sensitive_data_access
         }
         if any(verdict_info.values()):
             self.verdict = failure_verdict
@@ -947,7 +957,8 @@ class AutoApprovalSummary(ModelBase):
         mapping = {
             'is_locked': ugettext('Is locked by a reviewer.'),
             'has_auto_approval_disabled': ugettext(
-                'Has auto-approval disabled flag set.')
+                'Has auto-approval disabled flag set.'),
+            'has_sensitive_data_access': ugettext('Has sensitive data access flag set.')
         }
         return (mapping[key] for key, value in sorted(verdict_info.items())
                 if value)
@@ -1023,6 +1034,10 @@ class AutoApprovalSummary(ModelBase):
         return bool(version.addon.auto_approval_disabled)
 
     @classmethod
+    def check_has_sensitive_data_access(cls, version):
+        return bool(version.addon.needs_sensitive_data_access_review)
+
+    @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
@@ -1045,7 +1060,8 @@ class AutoApprovalSummary(ModelBase):
             'version': version,
             'is_locked': cls.check_is_locked(version),
             'has_auto_approval_disabled': cls.check_has_auto_approval_disabled(
-                version)
+                version),
+            'has_sensitive_data_access': cls.check_has_sensitive_data_access(version)
         }
         instance = cls(**data)
         verdict_info = instance.calculate_verdict(dry_run=dry_run)

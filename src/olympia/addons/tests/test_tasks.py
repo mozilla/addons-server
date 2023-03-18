@@ -16,7 +16,7 @@ from olympia.addons.models import AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
     migrate_legacy_dictionary_to_webextension, migrate_lwts_to_static_themes,
-    save_persona_image)
+    save_persona_image, migrate_addons_that_require_sensitive_data_access)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
@@ -315,3 +315,82 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
 
         self.call_signing_mock.assert_called_with(current_file)
         assert current_file.cert_serial_num == 'abcdefg1234'
+
+
+# migrate_addons_that_require_sensitive_data_access
+class TestMigrateAddonsThatRequireSensitiveDataAccess(TestCase):
+
+    def setUp(self):
+        self.user = user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
+
+        # Commented out until test fixes are merged
+        #create_default_webext_appversion()
+        # Inlined until test fixes are merged
+        from olympia.applications.models import AppVersion
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='60.0')  # Default Min Version
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='102.0') # Targeted Max Version
+        AppVersion.objects.get_or_create(
+            application=amo.THUNDERBIRD.id, version='*')
+
+
+    def test_addon_with_sda(self):
+        """Test addon with sensitive permissions. This should cause both the Addon and AddonReviewer Flags to be True"""
+        addon_with_sda = addon_factory(
+            version_kw={'application': amo.THUNDERBIRD.id},
+            file_kw={
+                'is_webextension': True,
+                'permissions': [
+                    'messagesRead'
+                ]
+        })
+
+        assert addon_with_sda.requires_sensitive_data_access == False
+        assert not addon_with_sda.needs_sensitive_data_access_review
+
+        migrate_addons_that_require_sensitive_data_access(addon_with_sda)
+
+        assert addon_with_sda.requires_sensitive_data_access == True
+        assert addon_with_sda.needs_sensitive_data_access_review == True
+
+    def test_addon_without_sda(self):
+        """Test addon without sensitive permissions. No flags should be set to True"""
+        addon_without_sda = addon_factory(
+            version_kw={'application': amo.THUNDERBIRD.id},
+            file_kw={
+                'is_webextension': True,
+                'permissions': [
+                    'tabs'
+                ]
+        })
+
+        assert addon_without_sda.requires_sensitive_data_access == False
+        assert not addon_without_sda.needs_sensitive_data_access_review
+
+        migrate_addons_that_require_sensitive_data_access(addon_without_sda)
+
+        assert addon_without_sda.requires_sensitive_data_access == False
+        assert not addon_without_sda.needs_sensitive_data_access_review
+
+    def test_addon_with_sda_and_exfiltrate(self):
+        """Test addon with sensitive permissions, but also an explicitly set `exfiltrate` permission. The Addon Flag should be True, but the AddonReviewer Flag should not"""
+        addon_with_sda_and_exfiltrate = addon_factory(
+            version_kw={'application': amo.THUNDERBIRD.id},
+            file_kw={
+                'is_webextension': True,
+                'permissions': [
+                    'messagesRead',
+                    'exfiltrate'
+                ]
+        })
+
+        assert addon_with_sda_and_exfiltrate.requires_sensitive_data_access == False
+        assert not addon_with_sda_and_exfiltrate.needs_sensitive_data_access_review
+
+        migrate_addons_that_require_sensitive_data_access(addon_with_sda_and_exfiltrate)
+
+        assert addon_with_sda_and_exfiltrate.requires_sensitive_data_access == True
+        assert not addon_with_sda_and_exfiltrate.needs_sensitive_data_access_review
