@@ -48,8 +48,9 @@ initialize: create_env_file
 # would be uid 9500 regardless of host at this point (this is only fixed when
 # the container is up, through the command defined in docker-compose.yml),
 # which is wrong for local development.
-	docker-compose run --rm --user ${UID}:${GID} web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose run --rm --user ${UID}:${GID} web make update_deps
 	docker-compose up -d
+	docker-compose exec --user olympia web $(MAKECMDGOALS) ARGS=$(ARGS)
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
