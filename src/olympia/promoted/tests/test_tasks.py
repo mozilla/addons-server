@@ -15,17 +15,27 @@ def test_add_high_adu_extensions_to_notable():
     adu_limit = 1234
     set_config(ADU_LIMIT_CONFIG_KEY, adu_limit)
 
-    extension_with_low_adu = addon_factory(average_daily_users=adu_limit - 1)
-    extension_with_high_adu = addon_factory(average_daily_users=adu_limit)
+    extension_with_low_adu = addon_factory(
+        average_daily_users=adu_limit - 1, file_kw={'is_signed': True}
+    )
+    extension_with_high_adu = addon_factory(
+        average_daily_users=adu_limit, file_kw={'is_signed': True}
+    )
     ignored_theme = addon_factory(
         average_daily_users=adu_limit + 1, type=amo.ADDON_STATICTHEME
     )
-    already_promoted = addon_factory(average_daily_users=adu_limit + 1)
+    already_promoted = addon_factory(
+        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+    )
     PromotedAddon.objects.create(addon=already_promoted, group_id=LINE.id)
-    promoted_record_exists = addon_factory(average_daily_users=adu_limit + 1)
+    promoted_record_exists = addon_factory(
+        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+    )
     PromotedAddon.objects.create(addon=promoted_record_exists, group_id=NOT_PROMOTED.id)
     unlisted_only_extension = addon_factory(
-        average_daily_users=adu_limit + 1, version_kw={'channel': amo.CHANNEL_UNLISTED}
+        average_daily_users=adu_limit + 1,
+        version_kw={'channel': amo.CHANNEL_UNLISTED},
+        file_kw={'is_signed': True},
     )
     mixed_extension = addon_factory(
         average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
