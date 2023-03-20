@@ -93,6 +93,8 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 ADDONS_LINTER_BIN = env(
     'ADDONS_LINTER_BIN', default='node_modules/addons-linter/bin/addons-linter'
 )
+# --enable-background-service-worker linter flag value
+ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
 
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.com'
 

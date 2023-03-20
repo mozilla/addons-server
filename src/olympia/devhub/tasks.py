@@ -453,6 +453,9 @@ def run_addons_linter(path, channel):
     else:
         args.append('--max-manifest-version=2')
 
+    if settings.ADDONS_LINTER_ENABLE_SERVICE_WORKER:
+        args.append('--enable-background-service-worker')
+
     if not os.path.exists(path):
         raise ValueError(f'Path "{path}" is not a file or directory or does not exist.')
 
