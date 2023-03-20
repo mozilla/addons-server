@@ -43,14 +43,16 @@ initialize: create_env_file
 # by root. They don't matter: the ones at the root directory are mounted
 # instead.
 	touch deps/package.json
-	touch deps/package-lock.json
+	touch deps/package.json
 # Note that this is running with --user ${UID}:${GID} because the user olympia
-# would be uid 9500 regardless of host, which is wrong for local development.
+# would be uid 9500 regardless of host at this point (this is only fixed when
+# the container is up, through the command defined in docker-compose.yml),
+# which is wrong for local development.
 	docker-compose run --rm --user ${UID}:${GID} web make $(MAKECMDGOALS) ARGS=$(ARGS)
 	docker-compose up -d
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker-compose exec web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose exec web --user olympia make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.
