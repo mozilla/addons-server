@@ -52,7 +52,7 @@ initialize: create_env_file
 	docker-compose up -d
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker-compose exec web --user olympia make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.
