@@ -188,6 +188,7 @@ class AddonIndexer(BaseSearchIndexer):
                     },
                     'slug': {'type': 'keyword'},
                     'requires_payment': {'type': 'boolean', 'index': False},
+                    'requires_sensitive_data_access': {'type': 'boolean', 'index': False},
                     'status': {'type': 'byte'},
                     'summary': {'type': 'text', 'analyzer': 'snowball'},
                     'tags': {'type': 'keyword'},
@@ -275,7 +276,7 @@ class AddonIndexer(BaseSearchIndexer):
                  'contributions', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
                  'is_disabled', 'is_experimental', 'last_updated',
-                 'modified', 'public_stats', 'requires_payment', 'slug',
+                 'modified', 'public_stats', 'requires_payment', 'requires_sensitive_data_access', 'slug',
                  'status', 'type', 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 

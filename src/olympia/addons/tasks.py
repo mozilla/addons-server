@@ -760,6 +760,7 @@ def migrate_addons_that_require_sensitive_data_access(ids):
     can_skip_review = False
 
     addons = list(Addon.objects.filter(id__in=ids))
+    sda_addons = []
 
     for addon in addons:
         for index, version in enumerate(addon.versions.all()):
@@ -782,6 +783,7 @@ def migrate_addons_that_require_sensitive_data_access(ids):
 
         if sensitive_data_access:
             addon.update(requires_sensitive_data_access=True)
+            sda_addons.append(addon.pk)
 
             # If we can't skip review, then create a reviewer flag
             if not can_skip_review:
@@ -789,3 +791,7 @@ def migrate_addons_that_require_sensitive_data_access(ids):
                     addon=addon,
                     needs_sensitive_data_access_review=True
                 )
+
+    # Update the indexes for addons that were updated
+    if sda_addons:
+        index_addons.delay(sda_addons)
