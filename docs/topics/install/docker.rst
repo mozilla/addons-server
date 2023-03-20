@@ -70,8 +70,8 @@ on your host machine::
     docker-compose pull  # Can take a while depending on your internet bandwidth.
     make initialize  # Answer yes, and create your superuser when asked.
     # On Windows you can substitute `make initialize` by the following commands:
+    docker-compose run --rm --user olympia web make initialize
     docker-compose up -d
-    docker-compose exec web make initialize
 
 .. note::
 
@@ -82,7 +82,8 @@ on your host machine::
    host machine, on non-windows machines make sure to run ``make initialize``
    once before running ``docker-compose up -d`` for the first time. That will
    create a ``.env`` file containing the user and group id the container needs
-   to use to match your host permissions.
+   to use to match your host permissions, and ensure dependencies are set up
+   properly.
 
 
 Accessing the web server

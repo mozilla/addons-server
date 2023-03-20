@@ -1,6 +1,8 @@
+.env
 .git
 .cache
 .tox
+deps/
 node_modules/
 storage/
 logs/*

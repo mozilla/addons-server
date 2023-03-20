@@ -31,6 +31,10 @@ services:
   worker: &worker
     <<: *env
     image: mozilla/addons-server:latest
+    # We drop down to a different user through supervisord, but starting as
+    # root allows us to fix the ownership of files generated at image build
+    # time through the ./docker/fix_olympia_user.sh script.
+    user: root
     platform: linux/amd64
     command:
       - /bin/sh
@@ -40,6 +44,9 @@ services:
         supervisord -n -c /data/olympia/docker/supervisor-celery.conf
     volumes:
       - .:/data/olympia
+      - ./deps:/deps
+      - ./package.json:/deps/package.json
+      - ./package-lock.json:/deps/package-lock.json
     extra_hosts:
      - "olympia.test:127.0.0.1"
 

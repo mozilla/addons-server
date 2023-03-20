@@ -47,9 +47,6 @@ RUN touch /addons-server-docker-container \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
-        # We use sudo for local development to update dependencies installed
-        # as root.
-        sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Add our custom mime types (required for for ts/json/md files)
@@ -66,8 +63,22 @@ ENV HOME /data/olympia
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
 COPY version.json /app/version.json
-COPY . ${HOME}
+COPY --chown=olympia:olympia . ${HOME}
 WORKDIR ${HOME}
+
+# Set up directories and links that we'll need later, before switching to the
+# olympia user.
+RUN mkdir /deps \
+    && chown olympia:olympia /deps \
+    && rm -rf ${HOME}/src/olympia.egg-info \
+    && mkdir ${HOME}/src/olympia.egg-info \
+    && chown olympia:olympia ${HOME}/src/olympia.egg-info \
+    # For backwards-compatibility purposes, set up links to uwsgi. Note that
+    # the target doesn't exist yet at this point, but it will later.
+    && ln -s /deps/bin/uwsgi /usr/bin/uwsgi \
+    && ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+USER olympia:olympia
 
 # Install all dependencies, and add symlink for old uwsgi binary paths
 ENV PIP_USER=true
@@ -77,12 +88,9 @@ ENV PIP_SRC=/deps/src/
 ENV PYTHONUSERBASE=/deps
 ENV PATH $PYTHONUSERBASE/bin:$PATH
 ENV NPM_CONFIG_PREFIX=/deps/
-RUN mkdir /deps \
-    && ln -s ${HOME}/package.json /deps/package.json \
+RUN ln -s ${HOME}/package.json /deps/package.json \
     && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
-    && make update_deps \
-    && ln -s /deps/bin/uwsgi /usr/bin/uwsgi \
-    && ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+    && make update_deps
 
 WORKDIR ${HOME}
 

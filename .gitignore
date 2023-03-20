@@ -48,6 +48,7 @@ storage/shared_storage/*
 storage/sitemaps/*
 supervisord.pid
 tmp/*
+deps/*
 
 # private projects
 private/
@@ -55,3 +56,4 @@ private/
 # do not ignore the following files
 !docker-compose.private.yml
 !private/README.md
+!deps/.keep
