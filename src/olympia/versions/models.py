@@ -936,15 +936,9 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def was_auto_approved(self):
         """Return whether or not this version was auto-approved."""
-        from olympia.reviewers.models import AutoApprovalSummary
-
         try:
-            return (
-                self.is_public()
-                and AutoApprovalSummary.objects.filter(version=self).get().verdict
-                == amo.AUTO_APPROVED
-            )
-        except AutoApprovalSummary.DoesNotExist:
+            return self.autoapprovalsummary.verdict == amo.AUTO_APPROVED
+        except Version.autoapprovalsummary.RelatedObjectDoesNotExist:
             pass
         return False
 
