@@ -111,5 +111,4 @@ def process_blocklistsubmissions():
         delayed_until__lte=datetime.now(),
     )
     for sub in qs:
-        assert sub.is_submission_ready
         process_blocklistsubmission.delay(sub.id)

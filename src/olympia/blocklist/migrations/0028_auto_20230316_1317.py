@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             name='delayed_until',
             field=models.DateTimeField(help_text='The submission will not be published into blocks before this time.', null=True),
         ),
-        migrations.AlterField(
-            model_name='blocklistsubmission',
-            name='signoff_state',
-            field=models.SmallIntegerField(choices=[(0, 'Pending'), (1, 'Approved'), (2, 'Rejected'), (3, 'No Sign-off'), (4, 'Published to Blocks')], default=0),
-        ),
     ]
