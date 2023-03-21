@@ -412,6 +412,7 @@ class ReviewHelper:
         version_is_unlisted = (
             self.version and self.version.channel == amo.CHANNEL_UNLISTED
         )
+        version_is_listed = self.version and self.version.channel == amo.CHANNEL_LISTED
         promoted_group = self.addon.promoted_group(currently_approved=False)
         is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
 
@@ -486,16 +487,13 @@ class ReviewHelper:
             and self.version.human_review_date
         )
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
-        addon_is_valid_and_version_is_listed = (
-            addon_is_valid
-            and self.version
-            and self.version.channel == amo.CHANNEL_LISTED
-        )
-        current_version_is_listed_and_auto_approved = (
-            self.version
-            and self.version.channel == amo.CHANNEL_LISTED
-            and self.addon.current_version
-            and self.addon.current_version.was_auto_approved
+        addon_is_valid_and_version_is_listed = addon_is_valid and version_is_listed
+        current_or_latest_listed_version_was_auto_approved = version_is_listed and (
+            (
+                self.addon.current_version
+                and self.addon.current_version.was_auto_approved
+            )
+            or self.version.was_auto_approved
         )
         version_is_blocked = self.version and self.version.is_blocked
 
@@ -604,8 +602,7 @@ class ReviewHelper:
             'comments': False,
             'available': (
                 not self.content_review
-                and addon_is_valid_and_version_is_listed
-                and current_version_is_listed_and_auto_approved
+                and current_or_latest_listed_version_was_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
         }
@@ -1113,11 +1110,14 @@ class ReviewBase:
 
         channel = self.version.channel
         if channel == amo.CHANNEL_LISTED:
-            # When doing an approval in listed channel, the version we care
-            # about is always current_version and *not* self.version.
-            # This allows reviewers to confirm approval of a public add-on even
-            # when their latest version is disabled.
-            version = self.addon.current_version
+            # When confirming an approval in listed channel, the version we
+            # care about is generally the current_version, because this allows
+            # reviewers to confirm approval of a public add-on even when their
+            # latest version is disabled.
+            # However, if there is no current_version, because the entire
+            # add-on is deleted or invisible for instance, we still want to
+            # allow confirming approval, so we use self.version in that case.
+            version = self.addon.current_version or self.version
         else:
             # For unlisted, we just use self.version.
             version = self.version

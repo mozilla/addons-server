@@ -819,8 +819,8 @@ class TestVersion(TestCase):
         AutoApprovalSummary.objects.create(version=version, verdict=amo.AUTO_APPROVED)
         assert version.was_auto_approved
 
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        assert not version.was_auto_approved
+        version.file.update(status=amo.STATUS_DISABLED)
+        assert version.was_auto_approved  # Still was originally auto-approved.
 
     def test_should_have_due_date_listed(self):
         addon = Addon.objects.get(id=3615)

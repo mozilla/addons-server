@@ -940,8 +940,7 @@ class Version(OnChangeMixin, ModelBase):
 
         try:
             return (
-                self.is_public()
-                and AutoApprovalSummary.objects.filter(version=self).get().verdict
+                AutoApprovalSummary.objects.filter(version=self).get().verdict
                 == amo.AUTO_APPROVED
             )
         except AutoApprovalSummary.DoesNotExist:

@@ -1625,6 +1625,52 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
 
+    def test_deleted_addon_confirm_auto_approval(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = self.addon.current_version
+        self.addon.delete()
+        self.review_version.reload()
+        self.file = self.review_version.file
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' in self.helper.actions
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+
+    def test_disabled_by_user_addon_confirm_auto_approval(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = self.addon.current_version
+        self.addon.update(disabled_by_user=True)
+        self.review_version.reload()
+        self.file = self.review_version.file
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' in self.helper.actions
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+
     def test_confirm_multiple_versions_with_version_scanner_flags(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
