@@ -131,10 +131,29 @@ class TestPromotedAddon(TestCase):
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert not listed_ver.reload().needs_human_review
+        assert not listed_ver.due_date
         assert not unlisted_ver.reload().needs_human_review
+        assert not unlisted_ver.due_date
 
         # then with a group thats flag_for_human_review == True without the
-        # version having been reviewed by a human (it should be flagged).
+        # version having been reviewed by a human but not signed: also not
+        # flagged.
+        promo.addon.current_version.update(human_review_date=None)
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not listed_ver.reload().needs_human_review
+        assert not listed_ver.due_date
+        assert not unlisted_ver.reload().needs_human_review
+        assert not unlisted_ver.due_date
+
+        # then with a group thats flag_for_human_review == True without the
+        # version having been reviewed by a human but signed: this time we
+        # should flag it.
+        promo.addon.current_version.file.update(is_signed=True)
         promo.addon.current_version.update(human_review_date=None)
         promo.group_id = promoted.NOTABLE.id
         promo.save()

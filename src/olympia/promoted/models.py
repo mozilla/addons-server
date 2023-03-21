@@ -129,11 +129,15 @@ class PromotedAddon(ModelBase):
         elif (
             self.group.flag_for_human_review
             and (
+                # Find the latest listed signed version, and mark it as
+                # needing human review if necessary. It could be deleted or
+                # disabled, we only care that it has been signed already.
                 version := (
-                    self.addon.current_version
-                    or self.addon.find_latest_version(
-                        amo.CHANNEL_LISTED, exclude=(), deleted=True
-                    )
+                    self.addon.versions(manager='unfiltered_for_relations')
+                    .filter(file__is_signed=True, channel=amo.CHANNEL_LISTED)
+                    .only_translations()
+                    .order_by('created')
+                    .last()
                 )
             )
             and not version.needs_human_review
