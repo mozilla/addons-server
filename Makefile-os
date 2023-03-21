@@ -50,7 +50,7 @@ initialize: create_env_file
 # which is wrong for local development.
 	docker-compose run --rm --user ${UID}:${GID} web make update_deps
 	docker-compose up -d
-	docker-compose exec --user olympia web $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
