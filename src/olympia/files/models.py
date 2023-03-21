@@ -187,6 +187,8 @@ class File(OnChangeMixin, ModelBase):
             permissions = [
                 perm
                 for perm in permissions
+                # This is the same regex that addons-frontend uses.
+                # See /src/amo/components/PermissionsCard/permissions.js#L93
                 if re.match(r'^(\w+)(?:\.(\w+)(?:\.\w+)*)?$', perm)
             ]
         optional_permissions = list(parsed_data.get('optional_permissions', []))
