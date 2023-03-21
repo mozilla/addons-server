@@ -1671,6 +1671,24 @@ class TestReviewHelper(TestReviewHelperBase):
         self.assertCloseToNow(approvals_counter.last_human_review)
         assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
 
+    def test_current_version_not_auto_approved_confirm_auto_approval_not_present(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = version_factory(
+            # Prevent new version from becoming the current_version...
+            addon=self.addon,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        # ... But pretend it was auto-approved initially.
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=666
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' not in self.helper.actions
+
     def test_confirm_multiple_versions_with_version_scanner_flags(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)

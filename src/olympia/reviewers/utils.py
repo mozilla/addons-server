@@ -493,7 +493,7 @@ class ReviewHelper:
                 self.addon.current_version
                 and self.addon.current_version.was_auto_approved
             )
-            or self.version.was_auto_approved
+            or (not self.addon.current_version and self.version.was_auto_approved)
         )
         version_is_blocked = self.version and self.version.is_blocked
 
