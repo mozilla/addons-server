@@ -1413,13 +1413,12 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_public_addon_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')
-        self.setup_data(
-            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, human_review=True
-        )
         summary = AutoApprovalSummary.objects.create(
             version=self.review_version, verdict=amo.AUTO_APPROVED, weight=151
         )
-        assert summary.confirmed is None
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, human_review=True
+        )
         self.create_paths()
 
         # Safeguards.
@@ -1427,6 +1426,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
         assert not self.review_version.human_review_date
+        assert summary.confirmed is None
 
         self.helper.handler.confirm_auto_approved()
 
