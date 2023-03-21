@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import re
 import uuid
 
 from urllib.parse import urljoin
@@ -182,8 +183,20 @@ class File(OnChangeMixin, ModelBase):
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
+        if file_.manifest_version > 2:
+            permissions = [
+                perm
+                for perm in permissions
+                # This is the same regex that addons-frontend uses.
+                # See /src/amo/components/PermissionsCard/permissions.js#L93
+                if re.match(r'^(\w+)(?:\.(\w+)(?:\.\w+)*)?$', perm)
+            ]
         optional_permissions = list(parsed_data.get('optional_permissions', []))
-        host_permissions = list(parsed_data.get('host_permissions', []))
+        host_permissions = (
+            list(parsed_data.get('host_permissions', []))
+            if file_.manifest_version > 2
+            else []
+        )
 
         # devtools_page isn't in permissions block but treated as one
         # if a custom devtools page is added by an addon
