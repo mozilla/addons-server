@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2023-03-07 18:38+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -4247,8 +4247,8 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Tutto ciò di cui hai bisogno per le emoji, sempre a portata di clic."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Smetti di dare ai siti il tuo indirizzo email. Firefox Relay protegge la tua identità e previene la posta indesiderata."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4220,7 +4220,7 @@ msgid "All your emoji needs—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the discovery pane.

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2022-06-25 13:33+0000\n"
 "Last-Translator: snow <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -4215,7 +4215,7 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Excelează în jocul emojiurilor. Zeci de emojiuri pentru orice ocazie—mereu la un clic distanță."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the discovery pane.
