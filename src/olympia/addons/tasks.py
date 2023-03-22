@@ -290,11 +290,7 @@ def update_addon_hotness(averages):
     log.info('[%s] Updating add-ons hotness scores.', (len(averages)))
 
     averages = dict(averages)
-    addons = (
-        Addon.objects.filter(guid__in=averages.keys())
-        .filter(status__in=amo.APPROVED_STATUSES)
-        .no_transforms()
-    )
+    addons = Addon.unfiltered.filter(guid__in=averages.keys()).no_transforms()
 
     for addon in addons:
         average = averages.get(addon.guid)
@@ -310,17 +306,15 @@ def update_addon_hotness(averages):
 
         this = average['avg_this_week']
         three = average['avg_three_weeks_before']
-
-        # Update the hotness score but only update hotness if necessary. We
-        # don't want to cause unnecessary re-indexes.
         threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
         if this > threshold and three > 1:
             hotness = (this - three) / float(three)
-            if addon.hotness != hotness:
-                addon.update(hotness=hotness)
         else:
-            if addon.hotness != 0:
-                addon.update(hotness=0)
+            hotness = 0
+        # Update the hotness score but only update hotness if necessary. We
+        # don't want to cause unnecessary re-indexes.
+        if addon.hotness != hotness:
+            addon.update(hotness=hotness)
 
 
 @task

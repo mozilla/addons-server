@@ -208,6 +208,7 @@ def test_update_addon_hotness():
     addon1 = addon_factory(hotness=0, status=amo.STATUS_APPROVED)
     addon2 = addon_factory(hotness=123, status=amo.STATUS_APPROVED)
     addon3 = addon_factory(hotness=123, status=amo.STATUS_AWAITING_REVIEW)
+    addon4 = addon_factory(hotness=123, status=amo.STATUS_AWAITING_REVIEW)
     averages = {
         addon1.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
         addon2.guid: {
@@ -215,6 +216,7 @@ def test_update_addon_hotness():
             'avg_three_weeks_before': 1,
         },
         addon3.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
+        addon4.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
     }
 
     update_addon_hotness(averages=averages.items())
@@ -223,10 +225,10 @@ def test_update_addon_hotness():
     addon3.refresh_from_db()
 
     assert addon1.hotness > 0
+    assert addon3.hotness > 0
+    assert addon4.hotness > 0
     # Too low averages so we set the hotness to 0.
     assert addon2.hotness == 0
-    # We shouldn't have processed this add-on.
-    assert addon3.hotness == 123
 
 
 @pytest.mark.django_db
