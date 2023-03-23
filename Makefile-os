@@ -33,8 +33,8 @@ rootshell: ## connect to a running addons-server docker shell with root user
 create_env_file:
 	echo "UID=${UID}\nGID=${GID}" > .env
 
-.PHONY: initialize
-initialize: create_env_file
+.PHONY: initialize_docker
+initialize_docker: create_env_file
 # Run a fresh container from the base image to install deps. Since /deps is
 # shared via a volume in docker-compose.yml, this installs deps for both web
 # and worker containers, and does so without requiring the containers to be up.
@@ -50,7 +50,7 @@ initialize: create_env_file
 # which is wrong for local development.
 	docker-compose run --rm --user ${UID}:${GID} web make update_deps
 	docker-compose up -d
-	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
+	docker-compose exec --user olympia web make initialize
 
 %: ## This directs any other recipe (command) to the web container's make.
 	docker-compose exec --user olympia web make $(MAKECMDGOALS) ARGS=$(ARGS)
