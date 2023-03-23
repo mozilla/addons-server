@@ -52,7 +52,7 @@ Setting up the containers
 
     For more information see `switching docker containers`_.
 
-    Failure to do so will result in errors in later steps like ``make initialize``::
+    Failure to do so will result in errors in later steps like::
 
         ValueError: Unable to configure handler 'statsd': [Errno -2] Name or service not known
         Makefile-docker:71: recipe for target 'initialize_db' failed
@@ -68,16 +68,24 @@ on your host machine::
     cd addons-server
     # Download the containers
     docker-compose pull  # Can take a while depending on your internet bandwidth.
-    # Start up the containers
+    make initialize_docker  # Answer yes, and create your superuser when asked.
+    # On Windows you can substitute `make initialize_docker` by the following commands:
+    docker-compose run --rm --user olympia web make update_deps
     docker-compose up -d
-    make initialize  # Answer yes, and create your superuser when asked.
-    # On Windows you can substitute `make initialize` for the command:
-    docker-compose exec web make initialize
+    docker-compose exec --user olympia web make initialize
 
 .. note::
 
    Docker requires the code checkout to exist within your home directory so
    that Docker can mount the source-code into the container.
+
+   Because the containers need to match the user/group permissions from your
+   host machine, on Mac and Linux machines make sure to run ``make initialize_docker``
+   once before running ``docker-compose up -d`` for the first time. That will
+   create a ``.env`` file containing the user and group id the container needs
+   to use to match your host permissions, and ensure dependencies are set up
+   properly.
+
 
 Accessing the web server
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,23 +120,20 @@ Run the tests using ``make``, *outside* of the Docker container::
 
     make test
     # or
-    docker-compose exec web pytest src/olympia/
+    docker-compose exec --user olympia web pytest src/olympia/
 
 You can run commands inside the Docker container by ``ssh``\ing into it using::
 
     make shell
     # or
-    docker-compose exec web bash
+    docker-compose exec --user olympia web bash
 
 Then to run the tests inside the Docker container you can run::
 
     pytest
 
 You can also run single commands from your host machine without opening a shell
-on each container. Here is an example of running the ``pytest`` command on the
-``web`` container::
-
-    docker-compose run web pytest
+on each container as described above.
 
 If you'd like to use a python debugger to interactively
 debug Django view code, check out the :ref:`debugging` section.
@@ -143,7 +148,7 @@ debug Django view code, check out the :ref:`debugging` section.
 Updating your containers
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Any time you update Olympia (e.g., by running ``git pull``), you should make
+Any time you update addons-server (e.g., by running ``git pull``), you should make
 sure to update your Docker image and database with any new requirements or
 migrations::
 
@@ -151,9 +156,11 @@ migrations::
     docker-compose pull
     docker-compose up -d
     make update_docker  # Runs database migrations and rebuilds assets.
-    # On Windows you can substitute `make update_docker` for the following two commands:
-    docker-compose exec worker make update_deps
-    docker-compose exec web make update
+    # On Windows you can substitute `make update_docker` for the following commands:
+    docker-compose exec --user olympia worker make update_deps
+    docker-compose exec --user olympia web make update
+    docker-compose restart web
+    docker-compose restart worker
 
 Gotchas!
 ~~~~~~~~
@@ -174,13 +181,13 @@ Another way to find out what's wrong is to run ``docker-compose logs``.
 Getting "Programming error [table] doesn't exist"?
 --------------------------------------------------
 
-Make sure you've run the ``make initialize`` step as detailed in
+Make sure you've run the ``make initialize_docker`` step as detailed in
 the initial setup instructions.
 
 
 ConnectionError during initialize (elasticsearch container fails to start)
 ---------------------------------------------------------------------------------
-When running ``make initialize`` without a working elasticsearch container,
+When running ``make initialize_docker`` without a working elasticsearch container,
 you'll get a ConnectionError. Check the logs with ``docker-compose logs``.
 If elasticsearch is complaining about ``vm.max_map_count``, run this command on your computer
 or your docker-machine VM:
@@ -194,7 +201,7 @@ Connection to elasticsearch timed out (elasticsearch container exits with code 1
 ------------------------------------------------------------------------------------
 
 ``docker-compose up -d`` brings up all containers, but running
-``make initialize`` causes the elasticsearch container to go down. Running
+``make initialize_docker`` causes the elasticsearch container to go down. Running
 ``docker-compose ps`` shows ``Exited (137)`` against it.
 
 Update default settings in Docker Desktop - we suggest increasing RAM limit to at least 4 GB in the Resources/Advanced section and click on "Apply and Restart".

@@ -80,17 +80,20 @@ cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
 
+.PHONY: install_python_codestyle_dependencies
+install_python_codestyle_dependencies:
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
+
 .PHONY: install_python_test_dependencies
 install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 .PHONY: install_python_dev_dependencies
-install_python_dev_dependencies: install_python_test_dependencies setup-codestyle
+install_python_dev_dependencies: install_python_test_dependencies install_python_codestyle_dependencies
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
 	# pep 517 mode (the default) breaks editable install in our project. https://github.com/mozilla/addons-server/issues/16144
@@ -162,10 +165,6 @@ perf-tests: setup-ui-tests
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/perftests.txt
 	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
-.PHONY: setup-codestyle
-setup-codestyle:
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
-
 .PHONY: lint
 lint: ## lint the code
 	black --check src/ tests/
@@ -196,7 +195,7 @@ initialize: update_deps initialize_db update_assets populate_data ## init the de
 
 .PHONY: reload
 reload: ## force django code reload
-	uwsgi --reload /code/docker/artifacts/addons-server-uwsgi-master.pid
+	uwsgi --reload ${HOME}/docker/artifacts/addons-server-uwsgi-master.pid
 
 reload-uwsgi: reload
 

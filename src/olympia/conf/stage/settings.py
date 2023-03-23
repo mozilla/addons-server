@@ -60,8 +60,6 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
-
 ALLOW_SELF_REVIEWS = True
 
 FXA_CONFIG = {

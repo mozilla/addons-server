@@ -350,9 +350,6 @@ commands:
   make_release:
     description: "Builds and pushes a Docker image"
     parameters:
-      dockerfile:
-        type: string
-        default: "Dockerfile.deploy"
       image_tag:
         type: string
         default: "latest"
@@ -370,7 +367,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
+            docker build -t app:build --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
@@ -459,7 +456,7 @@ commands:
       install_node_dependencies:
         type: boolean
         default: false
-      update_deps:
+      install_python_dev_dependencies:
         type: boolean
         default: false
     steps:
@@ -498,20 +495,35 @@ commands:
           command: |
             echo export PYTHONPATH=src >> $BASH_ENV
             echo export CPUCOUNT=2 >> $BASH_ENV
+            echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
-            - run: make install_python_test_dependencies
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_test_dependencies
+      - when:
+          condition: << parameters.install_python_dev_dependencies >>
+          steps:
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_dev_dependencies
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
-            - run: make install_node_dependencies
-      - when:
-          condition: << parameters.update_deps >>
-          steps:
-            - run: make update_deps
+            - run:
+                name: Install Node dependencies
+                command: |
+                  sudo mkdir /deps
+                  sudo chown circleci /deps
+                  ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
+                  make install_node_dependencies
       # should be executed after all python install commands
       - run: pyenv rehash
 
@@ -546,7 +558,8 @@ jobs:
     steps:
       - setup_container:
           install_python_test_dependencies: false
-          update_deps: true
+          install_python_dev_dependencies: true
+          install_node_dependencies: true
       - run: make update_assets
       - run:
           command: pytest -m "static_assets" -v src/olympia/
@@ -558,7 +571,7 @@ jobs:
       - setup_container:
           wait_services: false
           install_node_dependencies: true
-      - run: make setup-codestyle
+      - run: make install_python_codestyle_dependencies
       - run: pyenv rehash
       - run: make lint-codestyle
 
@@ -632,7 +645,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: latest
-          dockerfile: "Dockerfile.deploy"
 
   release-tag:
     <<: *defaults-release
@@ -640,7 +652,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: "${CIRCLE_TAG}"
-          dockerfile: "Dockerfile.deploy"
 
 workflows:
   version: 2
