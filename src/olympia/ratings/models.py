@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.dispatch import receiver
@@ -308,12 +309,17 @@ class RatingFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
+    AUTO = 'review_flag_reason_auto_match'
     OTHER = 'review_flag_reason_other'
-    FLAGS = (
+    USER_FLAGS = (
         (SPAM, _('Spam or otherwise non-review content')),
         (LANGUAGE, _('Inappropriate language/dialog')),
         (SUPPORT, _('Misplaced bug report or support request')),
         (OTHER, _('Other (please specify)')),
+    )
+    FLAGS = (
+        *USER_FLAGS,
+        (AUTO, _('Auto-flagged due to word match')),
     )
 
     rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)
@@ -344,3 +350,35 @@ class RatingAggregate(ModelBase):
     count_3 = models.IntegerField(default=0, null=False)
     count_4 = models.IntegerField(default=0, null=False)
     count_5 = models.IntegerField(default=0, null=False)
+
+
+class DeniedRatingWord(ModelBase):
+    """Denied words in a rating body."""
+
+    word = models.CharField(max_length=255, unique=True)
+    flag = models.BooleanField(
+        help_text='Flag for moderation rather than immediately deny.', default=True
+    )
+
+    class Meta:
+        db_table = 'reviews_denied_word'
+
+    def __str__(self):
+        return self.word
+
+    @classmethod
+    def blocked(cls, content, flag=True):
+        """
+        Check to see if the content contains any of the (cached) list of denied words.
+        Return the list of denied words (or an empty list if none are found).
+
+        """
+        qs = cls.objects.filter(flag=flag)
+
+        def fetch_names():
+            return [word.lower() for word in qs.values_list('word', flat=True)]
+
+        blocked_list = cache.get_or_set(
+            f'denied-rating-word:blocked-{"flag" if flag else "deny"}', fetch_names
+        )
+        return [word for word in blocked_list if word in content.lower()]

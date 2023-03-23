@@ -264,7 +264,7 @@ class RatingFlagSerializer(AMOModelSerializer):
         self.request = kwargs.get('context', {}).get('request')
 
     def validate_flag(self, flag):
-        flags = dict(RatingFlag.FLAGS)
+        flags = dict(RatingFlag.USER_FLAGS)
         if flag not in flags:
             raise serializers.ValidationError(
                 gettext(
