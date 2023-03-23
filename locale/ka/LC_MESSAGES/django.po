@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-23 16:06+0000\n"
+"PO-Revision-Date: 2023-03-23 16:09+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -845,10 +845,10 @@ msgid "Un-rejected"
 msgstr "უარყოფის გაუქმება"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "{addon} „needs_human_review“ (ადამიანის მიერ განხილვის) მონიშვნა მოცილებულია."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "საჭიროებს ადამიანის მონაწილეობით განხილვას"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4165,7 +4165,7 @@ msgstr "ყველა საჭირო სიცილაკი — მუ�
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "შენიღბეთ თქვენი ელფოსტის მისამართები. Firefox Relay დაიცავს თქვენს პირადულობასა და აგარიდებთ უსარგებლო წერილებს."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
