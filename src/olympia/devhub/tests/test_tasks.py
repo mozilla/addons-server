@@ -9,6 +9,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
@@ -453,6 +454,23 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         # double check v2 manifests still work
         result = tasks.run_addons_linter(self.valid_path, channel=amo.CHANNEL_LISTED)
         assert result.get('errors') == 0
+
+    def test_enable_background_service_worker_setting(self):
+        flag = '--enable-background-service-worker'
+        with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
+            subprocess_mock.Popen = self.FakePopen
+
+            with override_settings(ADDONS_LINTER_ENABLE_SERVICE_WORKER=False):
+                tasks.run_addons_linter(
+                    path=self.valid_path, channel=amo.CHANNEL_LISTED
+                )
+                assert flag not in self.FakePopen.get_args()
+
+            with override_settings(ADDONS_LINTER_ENABLE_SERVICE_WORKER=True):
+                tasks.run_addons_linter(
+                    path=self.valid_path, channel=amo.CHANNEL_LISTED
+                )
+                assert flag in self.FakePopen.get_args()
 
 
 class TestValidateFilePath(ValidatorTestCase):

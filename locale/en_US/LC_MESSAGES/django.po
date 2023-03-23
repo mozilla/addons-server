@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4512,8 +4512,8 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Dozens of amazing emojis—always a click away."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."

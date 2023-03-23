@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
-"PO-Revision-Date: 2023-03-05 11:53+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"PO-Revision-Date: 2023-03-16 20:20+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -166,7 +166,7 @@ msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "Fann ikkje kontoen."
 
 msgid "An author can only be present once."
 msgstr "Ein opphavsmann kan berre vere oppførd ein gong."
@@ -498,11 +498,11 @@ msgstr "Kategoriar redigert for {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) er lagt til i {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) er fjerna frå {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Bidrag til {addon}."
@@ -528,7 +528,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Versjon {0} sletta frå {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Fila {file} er lagt til i {version} av {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Fila {0} sletta {version} av {addon}."
@@ -892,7 +892,7 @@ msgid "Unlisted"
 msgstr "Ikkje oppført"
 
 msgid "Signing API"
-msgstr ""
+msgstr "Signerings-API"
 
 msgid "Add-on API"
 msgstr ""
@@ -1987,7 +1987,7 @@ msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Onl
 msgstr ""
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Avgrens til {0} taggar."
 
 msgid "Contributions URL"
 msgstr "Bidrags-URL"
@@ -4122,7 +4122,7 @@ msgid "All your emoji needs—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the discovery pane.

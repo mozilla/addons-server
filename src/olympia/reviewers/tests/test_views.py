@@ -2634,7 +2634,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(55):
+        with self.assertNumQueries(54):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2654,50 +2654,49 @@ class TestReview(ReviewBase):
             # 9. current version applications versions
             # 10. authors
             # 11. previews
-            # 12. autoapprovalsummary for current version
-            # 13. promoted info for the add-on
-            # 14. needs_human_review status for all versions in channel
-            # 15. latest version + file
-            # 16. latest version translations
-            # 17. latest version (repeated because different status filter)
-            # 18. latest version translations (repeated because different qs)
-            # 19. addon reviewer flags
-            # 20. version reviewer flags
-            # 21. version reviewer flags (repeated)
-            # 22. autoapprovalsummary (repeated)
-            # 23. addonreusedguid
-            # 24. blocklist
-            # 25. abuse reports count against user or addon
-            # 26. low ratings count
-            # 27. base version pk for comparison
-            # 28. count of all versions in channel
-            # 29. paginated list of versions in channel
-            # 30. scanner results for paginated list of versions
-            # 31. translations for  paginated list of versions
-            # 32. applications versions for  paginated list of versions
+            # 12. promoted info for the add-on
+            # 13. latest version in channel + file
+            # 14. latest versions translations
+            # 15. latest version in channel not disabled + file
+            # 16. latest version in channel not disabled translations
+            # 17. addon reviewer flags
+            # 18. version reviewer flags
+            # 19. version reviewer flags (repeated)
+            # 20. version autoapprovalsummary
+            # 21. addonreusedguid
+            # 22. blocklist
+            # 23. versions needing human review in channel
+            # 24. abuse reports count against user or addon
+            # 25. low ratings count
+            # 26. base version pk for comparison
+            # 27. count of all versions in channel
+            # 28. paginated list of versions in channel
+            # 29. scanner results for paginated list of versions
+            # 30. translations for paginated list of versions
+            # 31. applications versions for  paginated list of versions
+            # 32. activity log for  paginated list of versions
             # 33. files for  paginated list of versions
-            # 34. activity log for  paginated list of versions
-            # 35. ready for auto-approval info for  paginated list of versions
-            # 36. versionreviewer flags exists to find out if pending rejection
-            # 37. count versions needing human review on other pages
-            # 38. count versions needing human review by mad on other pages
-            # 39. count versions pending rejection on other pages
-            # 40. whiteboard
-            # 41. reviewer subscriptions for listed
-            # 42. reviewer subscriptions for unlisted
-            # 43. release savepoint (?)
-            # 44. config for motd
-            # 45. count add-ons the user is a developer of
-            # 46. config for site notice
-            # 47. translations for... (?! id=1)
-            # 48. important activity log about the add-on
-            # 49. user for the activity (from the ActivityLog foreignkey)
-            # 50. user for the activity (from the ActivityLog arguments)
-            # 51. add-on for the activity
-            # 52. translation for the add-on for the activity
-            # 53. select all versions in channel for versions dropdown widget
-            # 54. reviewer reasons for the reason dropdown
-            # 55. select users by role for this add-on (?)
+            # 34. versionreviewer flags exists to find out if pending rejection
+            # 35. count versions needing human review on other pages
+            # 36. count versions needing human review by mad on other pages
+            # 37. count versions pending rejection on other pages
+            # 38. whiteboard
+            # 39. reviewer subscriptions for listed
+            # 40. reviewer subscriptions for unlisted
+            # 41. config for motd
+            # 42. release savepoint (?)
+            # 43. count add-ons the user is a developer of
+            # 44. config for site notice
+            # 45. other add-ons with same guid
+            # 46. translations for... (?! id=1)
+            # 47. important activity log about the add-on
+            # 48. user for the activity (from the ActivityLog foreignkey)
+            # 49. user for the activity (from the ActivityLog arguments)
+            # 50. add-on for the activity
+            # 51. translation for the add-on for the activity
+            # 52. select all versions in channel for versions dropdown widget
+            # 53. reviewer reasons for the reason dropdown
+            # 54. select users by role for this add-on (?)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3379,9 +3378,34 @@ class TestReview(ReviewBase):
         assert not doc('#disable_auto_approval')
         assert not doc('#enable_auto_approval')
 
+    def test_enable_auto_approve_button_disabled_for_promoted(self):
+        self.login_as_admin()
+        # Recommended is prereview=True so auto approval is disabled
+        self.make_addon_promoted(self.addon, group=RECOMMENDED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#auto_approval_disabled')
+        elem = doc('#auto_approval_disabled')[0]
+        assert 'hidden' not in elem.getparent().attrib.get('class', '')
+        assert elem.text == 'Listed Auto-Approval Disabled by Promoted group'
+        assert elem.attrib.get('class', '') == 'disabled'
+        assert not doc('#enable_auto_approval')
+        assert not doc('#disable_auto_approval')
+
+        # Strategic is prereview=False so auto approval isn't disabled
+        self.make_addon_promoted(self.addon, group=STRATEGIC)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#auto_approval_disabled')
+        assert doc('#enable_auto_approval')
+        assert doc('#disable_auto_approval')
+
     def test_disable_auto_approval_unlisted_as_admin(self):
         self.login_as_admin()
-        response = self.client.get(self.url)
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3394,7 +3418,7 @@ class TestReview(ReviewBase):
 
         # Still present for dictionaries
         self.addon.update(type=amo.ADDON_DICT)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3402,7 +3426,7 @@ class TestReview(ReviewBase):
 
         # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
@@ -3435,7 +3459,8 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_disabled_unlisted=True
         )
-        response = self.client.get(self.url)
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#disable_auto_approval_unlisted')
@@ -3448,7 +3473,7 @@ class TestReview(ReviewBase):
 
         # They should be absent on static themes, which are not auto-approved.
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
+        response = self.client.get(unlisted_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_unlisted')
@@ -5376,7 +5401,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(52):
+        with self.assertNumQueries(51):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

@@ -177,19 +177,19 @@ def test_encode_header():
 
 
 def test_get_review_due_date():
-    # it's a Monday, so due on Friday
-    assert get_review_due_date(datetime(2022, 12, 5, 6)) == datetime(2022, 12, 9, 6)
-    # it's a Tuesday, but weekend in between so due on Monday
-    assert get_review_due_date(datetime(2022, 12, 6, 10)) == datetime(2022, 12, 12, 10)
-    # it's a Wednesday, but weekend in between so due on Tuesday
-    assert get_review_due_date(datetime(2022, 12, 7, 15)) == datetime(2022, 12, 13, 15)
-    # it's a Thursday, but weekend in between so due on Wednesday
-    assert get_review_due_date(datetime(2022, 12, 8, 8)) == datetime(2022, 12, 14, 8)
-    # it's a Friday, but weekend in between so due on Thursday
-    assert get_review_due_date(datetime(2022, 12, 9, 13)) == datetime(2022, 12, 15, 13)
-    # it's a Saturday, but its not a working day so treat as Monday 9am, due on Friday
-    assert get_review_due_date(datetime(2022, 12, 10, 0)) == datetime(2022, 12, 16, 9)
-    # it's a Sunday, but its not a working day so treat as Monday 0am, due on Friday
-    assert get_review_due_date(datetime(2022, 12, 11, 23)) == datetime(2022, 12, 16, 9)
+    # it's a Monday, so due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 5, 6)) == datetime(2022, 12, 8, 6)
+    # it's a Tuesday, so due on Friday
+    assert get_review_due_date(datetime(2022, 12, 6, 10)) == datetime(2022, 12, 9, 10)
+    # it's a Wednesday, but weekend in between so due on Monday
+    assert get_review_due_date(datetime(2022, 12, 7, 15)) == datetime(2022, 12, 12, 15)
+    # it's a Thursday, but weekend in between so due on Tuesday
+    assert get_review_due_date(datetime(2022, 12, 8, 8)) == datetime(2022, 12, 13, 8)
+    # it's a Friday, but weekend in between so due on Wednesday
+    assert get_review_due_date(datetime(2022, 12, 9, 13)) == datetime(2022, 12, 14, 13)
+    # it's a Saturday, but its not a working day so treat as Monday 9am, due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 10, 0)) == datetime(2022, 12, 15, 9)
+    # it's a Sunday, but its not a working day so treat as Monday 0am, due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 11, 23)) == datetime(2022, 12, 15, 9)
     # for completeness check a Monday again
-    assert get_review_due_date(datetime(2022, 12, 12)) == datetime(2022, 12, 16)
+    assert get_review_due_date(datetime(2022, 12, 12)) == datetime(2022, 12, 15)

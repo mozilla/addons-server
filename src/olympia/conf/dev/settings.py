@@ -63,6 +63,9 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
+# --enable-background-service-worker linter flag value
+ADDONS_LINTER_ENABLE_SERVICE_WORKER = True
+
 ALLOW_SELF_REVIEWS = True
 
 FXA_CONFIG = {

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2023-03-13 12:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -4199,8 +4199,8 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Az összes emodzsi, amelyre szüksége lehet – mindig csak egy kattintásnyira."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."

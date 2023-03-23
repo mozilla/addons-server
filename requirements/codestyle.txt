@@ -28,9 +28,9 @@ parsy==2.1 \
     --hash=sha256:8f18e7b11985e7802e7e3ecbd8291c6ca243d29820b1186e4c84605db4efffa0 \
     --hash=sha256:fd5dd18d7b0b61f8275ee88665f430a20c02cf5a82d88557f35330530186d7ac
 # pathspec is required by curlylint
-pathspec==0.11.0 \
-    --hash=sha256:3a66eb970cbac598f9e5ccb5b2cf58930cd8e3ed86d393d541eaf2d8b1705229 \
-    --hash=sha256:64d338d4e0914e91c1792321e6907b5a593f1ab1851de7fc269557a21b30ebbc
+pathspec==0.11.1 \
+    --hash=sha256:2798de800fa92780e33acca925945e9a19a133b715067cf165b8866c15a31687 \
+    --hash=sha256:d8af70af76652554bd134c22b3e8a1cc46ed7d91edcdd721ef1a0c51a84a5293
 curlylint==0.13.1 \
     --hash=sha256:008b9d160f3920404ac12efb05c0a39e209cb972f9aafd956b79c5f4e2162752 \
     --hash=sha256:9546ea82cdfc9292fd6fe49dca28587164bd315782a209c0a46e013d7f38d2fa
@@ -67,9 +67,9 @@ mypy-extensions==1.0.0 \
     --hash=sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d \
     --hash=sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782
 # platformdirs is required by black
-platformdirs==3.0.0 \
-    --hash=sha256:8a1228abb1ef82d788f74139988b137e78692984ec7b08eaa6c65f1723af28f9 \
-    --hash=sha256:b1d5eb14f221506f50d6604a561f4c5786d9e80355219694a1b244bcd96f4567    
+platformdirs==3.1.1 \
+    --hash=sha256:024996549ee88ec1a9aa99ff7f8fc819bb59e2c3477b410d90a16d32d6e707aa \
+    --hash=sha256:e5986afb596e4bb5bde29a79ac9061aa955b94fca2399b7aaac4090860920dd8    
 flake8-quotes==3.3.2 \
     --hash=sha256:6e26892b632dacba517bf27219c459a8396dcfac0f5e8204904c5a4ba9b480e1
 tomli==2.0.1 \

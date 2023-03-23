@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -778,7 +778,7 @@ msgstr ""
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:166 src/olympia/files/models.py:286
+#: src/olympia/constants/activity.py:166 src/olympia/files/models.py:299
 msgid "Rejected"
 msgstr ""
 
@@ -2257,7 +2257,7 @@ msgid ""
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:649
+#: src/olympia/devhub/tasks.py:652
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -6018,8 +6018,8 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:657
 msgid ""
-"Stop giving sites your email address. Firefox Relay protects your identity & "
-"prevents junk mail."
+"Mask your email address. Firefox Relay protects your identity & prevents junk"
+" mail."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6404,11 +6404,11 @@ msgstr ""
 msgid "See more creativity staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:288
+#: src/olympia/files/models.py:301
 msgid "Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:291
+#: src/olympia/files/models.py:304
 #, python-format
 msgid "[status:%s]"
 msgstr ""

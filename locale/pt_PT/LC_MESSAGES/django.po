@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-14 16:20+0000\n"
-"PO-Revision-Date: 2022-11-29 14:58+0000\n"
-"Last-Translator: Pedro Coelho <pedrozc99@gmail.com>\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"PO-Revision-Date: 2023-03-18 00:22+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgid "Upload is not valid."
 msgstr "O carregamento não é válido."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "O ficheiro já está desativado."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -490,10 +490,10 @@ msgid "{addon} was created."
 msgstr "{addon} foi criado."
 
 msgid "{addon} properties edited."
-msgstr "{addon} propriedades editadas."
+msgstr "Propriedades de {addon} editadas."
 
 msgid "{addon} description edited."
-msgstr "{addon} descrição editada."
+msgstr "Descrição de {addon} editada."
 
 msgid "Categories edited for {addon}."
 msgstr "Categorias editadas para {addon}."
@@ -2579,7 +2579,7 @@ msgstr "Os ficheiros de código fonte (exceto bibliotecas de código aberto de t
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr "Para obter mais informações, consulte <a %(a_attrs)s>envio do código-fonte</a> no Firefox Extension Workshop."
+msgstr "Para obter mais informação, por favor, leia <a %(a_attrs)s>Submissão do Código-fonte</a> no Firefox Extension Workshop."
 
 msgid "Upload source code:"
 msgstr "Enviar código fonte:"
@@ -3195,7 +3195,7 @@ msgid "Loading Review History..."
 msgstr "A carregar o histórico de revisões..."
 
 msgid "We had a problem retrieving review notes"
-msgstr "Tivemos um problema a obter as notas da revisão"
+msgstr "Nós tivemos um problema ao obter as notas da revisão"
 
 msgid "Load older..."
 msgstr "Carregar mais antigas..."
@@ -4187,8 +4187,8 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Todas as suas necessidades de emoji - apenas a um clique de distância."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Deixe de facultar o seu endereço de e-mail a sites. O Firefox Relay protege a sua identidade e evita lixo eletrónico."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
