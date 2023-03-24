@@ -380,6 +380,8 @@ RESERVED_ADDON_GUIDS = (
     'aboutsync@mhammond.github.com',
     # Temporary add-ons as defined in Firefox. Should not be submitted to AMO.
     '@temporary-addon',
+    # Android Components/Fenix built-in extensions.
+    '@mozac.org',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')
