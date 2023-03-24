@@ -208,7 +208,8 @@ def test_update_addon_hotness():
     addon1 = addon_factory(hotness=0, status=amo.STATUS_APPROVED)
     addon2 = addon_factory(hotness=123, status=amo.STATUS_APPROVED)
     addon3 = addon_factory(hotness=123, status=amo.STATUS_AWAITING_REVIEW)
-    addon4 = addon_factory(hotness=123, status=amo.STATUS_AWAITING_REVIEW)
+    addon4 = addon_factory(hotness=123)
+    addon4.delete()
     averages = {
         addon1.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
         addon2.guid: {
