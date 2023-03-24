@@ -2,6 +2,8 @@ import json
 import io
 from unittest import mock
 
+from datetime import datetime, timedelta
+
 from django.test.utils import override_settings
 
 from rest_framework.exceptions import ErrorDetail
@@ -12,7 +14,11 @@ from olympia.activity.models import ActivityLog, ActivityLogToken, GENERIC_USER_
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
 from olympia.activity.views import inbound_email, InboundEmailIPPermission
-from olympia.addons.models import AddonUser, AddonRegionalRestrictions
+from olympia.addons.models import (
+    AddonUser,
+    AddonRegionalRestrictions,
+    AddonReviewerFlags,
+)
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClientSessionID,
@@ -22,7 +28,9 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
 from olympia.users.models import UserProfile
+from olympia.versions.utils import get_review_due_date
 
 
 class ReviewNotesViewSetDetailMixin(LogMixin):
@@ -390,7 +398,7 @@ class TestReviewNotesViewSetCreate(TestCase):
             ]
         }
 
-    def test_developer_reply(self):
+    def _test_developer_reply(self):
         self.user = user_factory()
         self.user.addonuser_set.create(addon=self.addon)
         self.client.login_api(self.user)
@@ -412,9 +420,33 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert reply.action == amo.LOG.DEVELOPER_REPLY_VERSION.id
         assert not rdata['highlight']  # developer replies aren't highlighted.
 
+        # Version was set as needing human review for a developer reply.
+        self.version.reload()
+        assert self.version.needs_human_review
+
+    def test_developer_reply_listed(self):
+        self._test_developer_reply()
+        self.assertCloseToNow(
+            self.version.due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
+        )
+
     def test_developer_reply_unlisted(self):
         self.make_addon_unlisted(self.addon)
-        self.test_developer_reply()
+        self._test_developer_reply()
+        self.assertCloseToNow(
+            self.version.due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
+        )
+
+    def test_developer_reply_due_date_already_set(self):
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        expected_due_date = datetime.now() + timedelta(days=1)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.update(due_date=expected_due_date)
+        self._test_developer_reply()
+        self.version.reload()
+        assert self.version.due_date == expected_due_date
 
     def _test_reviewer_reply(self, perm):
         self.user = user_factory()
@@ -437,6 +469,11 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id
         assert rdata['highlight']  # reviewer replies are highlighted.
+
+        # Version wasn't set as needing human review for a reviewer reply.
+        self.version.reload()
+        assert not self.version.needs_human_review
+        assert not self.version.due_date
 
     def test_reviewer_reply_listed(self):
         self._test_reviewer_reply('Addons:Review')
@@ -495,7 +532,7 @@ class TestReviewNotesViewSetCreate(TestCase):
 
     def test_developer_can_reply_to_disabled_version(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
-        self.test_developer_reply()
+        self._test_developer_reply()
 
     def test_reviewer_can_reply_to_disabled_version_listed(self):
         self.version.file.update(status=amo.STATUS_DISABLED)

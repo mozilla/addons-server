@@ -1,7 +1,7 @@
 import os.path
 import zipfile
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.files import temp
@@ -29,7 +29,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, Version, VersionReviewerFlags
 
 
 class TestVersion(TestCase):
@@ -860,6 +860,38 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert version.addon.needs_admin_code_review
+        assert not version.needs_human_review
+
+        # Check that the corresponding automatic activity log has been created.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        ).exists()
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, self.version]
+
+    def test_source_uploaded_pending_rejection_sets_needs_human_review_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=2),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2**21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        version = Version.objects.get(pk=self.version.pk)
+        assert version.source
+        assert version.addon.needs_admin_code_review
+        assert not version.needs_human_review
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(
