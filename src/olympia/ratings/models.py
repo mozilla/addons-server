@@ -356,8 +356,8 @@ class DeniedRatingWord(ModelBase):
     """Denied words in a rating body."""
 
     word = models.CharField(max_length=255, unique=True)
-    flag = models.BooleanField(
-        help_text='Flag for moderation rather than immediately deny.', default=True
+    moderation = models.BooleanField(
+        help_text='Flag for moderation rather than immediately deny.', default=False
     )
 
     class Meta:
@@ -367,18 +367,19 @@ class DeniedRatingWord(ModelBase):
         return self.word
 
     @classmethod
-    def blocked(cls, content, flag=True):
+    def blocked(cls, content, moderation=False):
         """
         Check to see if the content contains any of the (cached) list of denied words.
         Return the list of denied words (or an empty list if none are found).
 
         """
-        qs = cls.objects.filter(flag=flag)
+        qs = cls.objects.filter(moderation=moderation)
 
         def fetch_names():
             return [word.lower() for word in qs.values_list('word', flat=True)]
 
         blocked_list = cache.get_or_set(
-            f'denied-rating-word:blocked-{"flag" if flag else "deny"}', fetch_names
+            f'denied-rating-word:blocked-{"moderate" if moderation else "deny"}',
+            fetch_names,
         )
         return [word for word in blocked_list if word in content.lower()]

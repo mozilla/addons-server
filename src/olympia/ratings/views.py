@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db.models import Prefetch, Q
 from django.utils.encoding import force_str
 
@@ -27,7 +26,7 @@ from olympia.api.permissions import (
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
-from .models import Rating, DeniedRatingWord, RatingFlag
+from .models import Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
 from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
 from .utils import get_grouped_ratings
@@ -463,24 +462,3 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
-
-    def auto_flag(self, serializer):
-        if matches := DeniedRatingWord.blocked(serializer.data.get('body')):
-            rating = serializer.instance
-            RatingFlag.objects.update_or_create(
-                rating=rating,
-                user_id=settings.TASK_USER_ID,
-                defaults={
-                    'flag': RatingFlag.AUTO,
-                    'note': f'Words matched: [{", ".join(matches)}]',
-                },
-            )
-            rating.update(editorreview=True)
-
-    def perform_create(self, serializer):
-        super().perform_create(serializer)
-        self.auto_flag(serializer)
-
-    def perform_update(self, serializer):
-        super().perform_update(serializer)
-        self.auto_flag(serializer)

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('word', models.CharField(max_length=255, unique=True)),
-                ('flag', models.BooleanField(default=True, help_text='Flag for moderation rather than immediately deny.')),
+                ('moderation', models.BooleanField(default=False, help_text='Flag for moderation rather than immediately deny.')),
             ],
             options={
                 'db_table': 'reviews_denied_word',
@@ -29,6 +29,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='ratingflag',
             name='flag',
-            field=models.CharField(choices=[('review_flag_reason_spam', 'Spam or otherwise non-review content'), ('review_flag_reason_language', 'Inappropriate language/dialog'), ('review_flag_reason_bug_support', 'Misplaced bug report or support request'), ('review_flag_reason_auto_match', 'Auto-flagged due to word match'), ('review_flag_reason_other', 'Other (please specify)')], db_column='flag_name', default='review_flag_reason_other', max_length=64),
+            field=models.CharField(choices=[('review_flag_reason_spam', 'Spam or otherwise non-review content'), ('review_flag_reason_language', 'Inappropriate language/dialog'), ('review_flag_reason_bug_support', 'Misplaced bug report or support request'), ('review_flag_reason_other', 'Other (please specify)'), ('review_flag_reason_auto_match', 'Auto-flagged due to word match')], db_column='flag_name', default='review_flag_reason_other', max_length=64),
         ),
     ]
