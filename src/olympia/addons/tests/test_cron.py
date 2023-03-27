@@ -145,6 +145,8 @@ class TestUpdateAddonHotness(TestCase):
         self.unpopular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.barely_popular_theme = addon_factory(type=amo.ADDON_STATICTHEME)
         self.awaiting_review = addon_factory(status=amo.STATUS_NOMINATED)
+        self.deleted_extension = addon_factory()
+        self.deleted_extension.delete()
 
         self.frozen_extension = addon_factory()
         FrozenAddon.objects.create(addon=self.frozen_extension)
@@ -152,6 +154,8 @@ class TestUpdateAddonHotness(TestCase):
         FrozenAddon.objects.create(addon=addon_factory(guid=None))
 
         self.not_in_bigquery = addon_factory(hotness=123)
+        self.deleted_not_in_bigquery = addon_factory(hotness=666)
+        self.deleted_not_in_bigquery.delete()
 
     @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
     def test_basic(self, get_averages_mock):
@@ -188,6 +192,10 @@ class TestUpdateAddonHotness(TestCase):
                 'avg_this_week': 827080,
                 'avg_three_weeks_before': 787930,
             },
+            self.deleted_extension.guid: {
+                'avg_this_week': 1040,
+                'avg_three_weeks_before': 1000,
+            },
         }
 
         cron.update_addon_hotness()
@@ -205,8 +213,9 @@ class TestUpdateAddonHotness(TestCase):
         assert self.barely_popular_theme.reload().hotness == 0.3333333333333333
         assert self.barely_popular_extension.reload().hotness == 0
 
-        # Only public add-ons get hotness calculated.
-        assert self.awaiting_review.reload().hotness == 0
+        # Deleted or awaiting review add-ons get a hotness too.
+        assert self.awaiting_review.reload().hotness == 0.049687154950312847
+        assert self.deleted_extension.reload().hotness == 0.04
 
         # Exclude frozen add-ons too.
         assert self.frozen_extension.reload().hotness == 0
@@ -215,6 +224,7 @@ class TestUpdateAddonHotness(TestCase):
         )
 
         assert self.not_in_bigquery.reload().hotness == 0
+        assert self.deleted_not_in_bigquery.reload().hotness == 0
 
 
 class TestUpdateAddonWeeklyDownloads(TestCase):
