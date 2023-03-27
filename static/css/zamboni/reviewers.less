@@ -1,5 +1,7 @@
-@flagged-by-scanners-color: orange;
-@flagged-for-human-review-color: green;
+@risk-low-color: #000000;
+@risk-medium-color: #FFB400;
+@risk-high-color: #FF5500;
+@risk-highest-color: #FF0505;
 
 .section .amo-header-wrapper, .section {
     max-width: 120em;
@@ -223,16 +225,16 @@ table.data-grid .locked .addon-locked {
     background-position: 0 -176px;
 }
 .risk-highest {
-    color: red;
+    color: @risk-highest-color;
 }
 .risk-high {
-    color: orange;
+    color: @risk-high-color;
 }
 .risk-medium {
-    color: green;
+    color: @risk-medium-color;
 }
 .risk-low {
-    color: black;
+    color: @risk-low-color;
 }
 
 /* Incentive point breakdown */
@@ -762,12 +764,17 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     border-top: 1px solid #A5BFCE;
 }
 
-.review-files tr.listing-header.flagged-by-scanners {
-    background-color: lighten(@flagged-by-scanners-color, 20%);
-    border-top: 1px solid lighten(@flagged-by-scanners-color, 5%);
+.review-files td.due_date {
+    text-align: right;
+}
+
+
+.review-files tr.listing-header.needs-human-review {
+    background-color: lighten(@risk-high-color, 10%);
+    border-top: 1px solid lighten(@risk-high-color, 5%);
 
     &:hover {
-        background-color: @flagged-by-scanners-color;
+        background-color: @risk-high-color;
     }
 
     &:active {
@@ -775,12 +782,12 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     }
 }
 
-.review-files tr.listing-header.flagged-for-human-review {
-    background-color: lighten(@flagged-for-human-review-color, 20%);
-    border-top: 1px solid lighten(@flagged-for-human-review-color, 5%);
+.review-files tr.listing-header.flagged-by-mad {
+    background-color: lighten(@risk-medium-color, 10%);
+    border-top: 1px solid lighten(@risk-medium-color, 5%);
 
     &:hover {
-        background-color: @flagged-for-human-review-color;
+        background-color: @risk-medium-color;
     }
 
     &:active {

@@ -1,5 +1,5 @@
-<tr class="listing-header{% if version.needs_human_review %} flagged-by-scanners{% elif version.needs_human_review_by_mad %} flagged-for-human-review{%endif %}">
-  <th colspan="2">
+<tr class="listing-header{% if version.needs_human_review %} needs-human-review{% elif version.needs_human_review_by_mad %} flagged-by-mad{%endif %}">
+  <th>
     {% trans version = version.version, created = version.created|date, version_status = version.get_review_status_display() %}
     Version {{ version }} &middot; {{ created }} <span class="light">&middot; {{ version_status }}</span>
     {% endtrans %}
@@ -22,6 +22,9 @@
     <span class="blocked-version">Blocked</span>
     {% endif %}
   </th>
+  <td class="due_date">
+    {% if version.due_date %}Review due by {{ version.due_date|datetime }}{% endif %}
+  </td>
 </tr>
 <tr class="listing-body">
   <td class="files">
@@ -54,6 +57,9 @@
       <div class="maliciousness-score">
         <h5>Maliciousness Score:</h5> {{ version.maliciousness_score|format_score }}
         <span class="tip tooltip" title="The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.">?</span>
+        {% if version.needs_human_review_by_mad %}
+          <strong class="risk-medium">Flagged by MAD scanner</strong>
+        {% endif %}
       </div>
 
       <div class="scanners-results">
@@ -66,9 +72,6 @@
         {% endif %}
       {% endfor %}
       </div>
-      {% if version.needs_human_review_by_mad %}
-        <div><h5 class="risk-medium">Flagged for human review</h5></div>
-      {% endif %}
     {% else %}
       <ul>
         <li class="file-info light">
