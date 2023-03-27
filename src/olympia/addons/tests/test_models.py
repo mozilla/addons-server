@@ -757,11 +757,19 @@ class TestAddonModels(TestCase):
     def test_force_disable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
+        version1 = version_factory(addon=addon, needs_human_review=True)
+        version2 = version_factory(
+            addon=addon,
+            needs_human_review=True,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         assert addon.status != amo.STATUS_DISABLED
         files = File.objects.filter(version__addon=addon)
         assert files
         for file_ in files:
             assert file_.status != amo.STATUS_DISABLED
+        assert version1.due_date
+        assert version2.due_date
 
         addon.force_disable()
 
@@ -773,6 +781,8 @@ class TestAddonModels(TestCase):
         assert files
         for file_ in files:
             assert file_.status == amo.STATUS_DISABLED
+            assert not file_.version.due_date
+            assert not file_.version.needs_human_review
 
     def test_force_enable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))

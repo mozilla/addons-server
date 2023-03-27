@@ -631,7 +631,11 @@ class Addon(OnChangeMixin, ModelBase):
         )
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
-        # See: https://github.com/mozilla/addons-server/issues/13194
+        # https://github.com/mozilla/addons-server/issues/20507
+        self.versions(manager='unfiltered_for_relations').update(
+            due_date=None, needs_human_review=False
+        )
+        # https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
     def force_enable(self):
