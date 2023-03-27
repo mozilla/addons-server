@@ -10,6 +10,7 @@ REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT = 14
 
 REVIEWER_STANDARD_REVIEW_TIME = 3  # How many (week)days we expect to review within
+REVIEWER_STANDARD_REPLY_TIME = 2  # How many (week)days we expect to reply within
 
 # Risk tiers for post-review weight.
 POST_REVIEW_WEIGHT_HIGHEST_RISK = 275

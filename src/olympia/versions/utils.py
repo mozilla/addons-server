@@ -138,13 +138,13 @@ def process_color_value(prop, value):
     return prop, str(value).replace(' ', '')
 
 
-def get_review_due_date(starting=None):
+def get_review_due_date(starting=None, default_days=REVIEWER_STANDARD_REVIEW_TIME):
     starting = starting or datetime.now()
     # if starting falls on the weekend, move it to Monday morning
     if starting.weekday() in (5, 6):
         starting = starting.replace(hour=9) + timedelta(days=(7 - starting.weekday()))
 
-    due = starting + timedelta(days=REVIEWER_STANDARD_REVIEW_TIME)
+    due = starting + timedelta(days=default_days)
     # if due falls on a weekend, or passes over a weekend, add on 2 days
     if due.weekday() in (5, 6) or due.weekday() < starting.weekday():
         due += timedelta(days=2)

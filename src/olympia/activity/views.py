@@ -27,6 +27,8 @@ from olympia.activity.utils import (
     action_from_user,
     filter_queryset_to_pending_replies,
     log_and_notify,
+    type_of_user,
+    USER_TYPE_ADDON_AUTHOR,
 )
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (
@@ -35,6 +37,8 @@ from olympia.api.permissions import (
     AllowUnlistedViewerOrReviewer,
     AnyOf,
 )
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.versions.utils import get_review_due_date
 
 
 class VersionReviewNotesViewSet(
@@ -97,6 +101,13 @@ class VersionReviewNotesViewSet(
             )
         serializer = ActivityLogSerializerForComments(data=request.data)
         serializer.is_valid(raise_exception=True)
+        if type_of_user(request.user, version) == USER_TYPE_ADDON_AUTHOR:
+            fields = {'needs_human_review': True}
+            if not version.due_date:
+                fields['due_date'] = get_review_due_date(
+                    default_days=REVIEWER_STANDARD_REPLY_TIME
+                )
+            version.update(**fields)
         activity_object = log_and_notify(
             action_from_user(request.user, version),
             serializer.data['comments'],

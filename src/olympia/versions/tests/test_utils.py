@@ -193,3 +193,13 @@ def test_get_review_due_date():
     assert get_review_due_date(datetime(2022, 12, 11, 23)) == datetime(2022, 12, 15, 9)
     # for completeness check a Monday again
     assert get_review_due_date(datetime(2022, 12, 12)) == datetime(2022, 12, 15)
+
+    # Pass different default
+    # it's a Monday, so due on Friday
+    assert get_review_due_date(datetime(2022, 12, 5, 6), default_days=4) == datetime(
+        2022, 12, 9, 6
+    )
+    # it's a Tuesday, so due on Monday because of week-end.
+    assert get_review_due_date(datetime(2022, 12, 6, 10), default_days=4) == datetime(
+        2022, 12, 12, 10
+    )

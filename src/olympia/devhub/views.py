@@ -1603,6 +1603,10 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 },
             )
             VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
+            if version.pending_rejection:
+                # The `version` instance will be saved by the `source_form.save()` call
+                # below.
+                version.needs_human_review = True
             source_form.save()
             log.info(
                 '_submit_source, form saved, addon.slug: %s, version.pk: %s',
