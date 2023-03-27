@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
@@ -85,6 +87,22 @@ class TestBlocklistSubmission(TestCase):
         # Except when that's not enforced locally
         with override_settings(DEBUG=True):
             assert block.is_submission_ready
+
+    def test_is_delayed_submission_ready(self):
+        now = datetime.now()
+        submission = BlocklistSubmission.objects.create(
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        )
+        # auto approved submissions with no delay are ready
+        assert submission.is_submission_ready
+
+        # not when the submission is delayed though
+        submission.update(delayed_until=now + timedelta(days=1))
+        assert not submission.is_submission_ready
+
+        # it's ready when the delay date has passed though
+        submission.update(delayed_until=now)
+        assert submission.is_submission_ready
 
     def test_get_submissions_from_guid(self):
         addon = addon_factory(guid='guid@')

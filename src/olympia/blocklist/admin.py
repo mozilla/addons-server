@@ -211,8 +211,14 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         # https://github.com/mozilla/addons-server/issues/13278
         return False
 
-    def is_pending_signoff(self, obj):
+    def is_approvable(self, obj):
         return obj and obj.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+
+    def is_changeable(self, obj):
+        return obj and obj.signoff_state in (
+            BlocklistSubmission.SIGNOFF_PENDING,
+            BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        )
 
     def get_value(self, name, request, obj=None, default=None):
         """Gets the named property from the obj if provided, or POST or GET."""
@@ -234,9 +240,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         we need to return true if the user has sign-off permission instead.
         We can override that permissive behavior with `strict=True`."""
         change_perm = super().has_change_permission(request, obj=obj)
-        approve_perm = self.has_signoff_approve_permission(request, obj=obj)
-        either_perm = change_perm or (approve_perm and not strict)
-        return either_perm and (not obj or self.is_pending_signoff(obj))
+        reject_perm = self.has_signoff_reject_permission(request, obj=obj)
+        either_perm = change_perm or (reject_perm and not strict)
+        return either_perm and (not obj or self.is_changeable(obj))
 
     def has_view_permission(self, request, obj=None):
         return (
@@ -301,6 +307,20 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             },
         )
 
+        delay_new = (
+            'Delay',
+            {
+                'fields': ('delay_days', 'delayed_until'),
+            },
+        )
+
+        delay_change = (
+            'Delay',
+            {
+                'fields': ('delayed_until',),
+            },
+        )
+
         delete = (
             'Delete Blocks',
             {
@@ -315,9 +335,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         if self.is_add_change_submission(request, obj):
             return (
-                (input_guids, add_change)
+                (input_guids, add_change, delay_change)
                 if obj
-                else (input_guids, block_history, add_change)
+                else (input_guids, block_history, add_change, delay_new)
             )
         else:
             return (
@@ -340,6 +360,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 'max_version',
                 'existing_min_version',
                 'existing_max_version',
+                'delay_days',
             ]
             if not self.has_change_permission(request, obj, strict=True):
                 ro_fields += admin.utils.flatten_fieldsets(
@@ -376,6 +397,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                     )
             form.base_fields['input_guids'].widget = HiddenInput()
             form.base_fields['action'].widget = HiddenInput()
+            if 'delayed_until' in form.base_fields:
+                form.base_fields['delayed_until'].widget = HiddenInput()
         return form
 
     def add_view(self, request, **kwargs):
@@ -461,17 +484,16 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             return self._get_obj_does_not_exist_redirect(
                 request, self.model._meta, object_id
             )
-        extra_context[
-            'has_signoff_approve_permission'
-        ] = self.has_signoff_approve_permission(request, obj)
-        extra_context[
-            'has_signoff_reject_permission'
-        ] = self.has_signoff_reject_permission(request, obj)
         extra_context['can_change_object'] = (
             obj.action == BlocklistSubmission.ACTION_ADDCHANGE
             and self.has_change_permission(request, obj, strict=True)
         )
-        extra_context['is_pending_signoff'] = self.is_pending_signoff(obj)
+        extra_context['can_approve'] = self.is_approvable(
+            obj
+        ) and self.has_signoff_approve_permission(request, obj)
+        extra_context['can_reject'] = self.is_changeable(
+            obj
+        ) and self.has_signoff_reject_permission(request, obj)
         if obj.signoff_state != BlocklistSubmission.SIGNOFF_PUBLISHED:
             extra_context.update(
                 **self._get_enhanced_guid_context(request, obj.input_guids, obj)
@@ -500,10 +522,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         )
 
     def save_model(self, request, obj, form, change):
-        if change and self.is_pending_signoff(obj):
+        if change and self.is_changeable(obj):
             is_approve = '_approve' in request.POST
             is_reject = '_reject' in request.POST
-            if is_approve:
+            if is_approve and self.is_approvable(obj):
                 if not self.has_signoff_approve_permission(request, obj):
                     raise PermissionDenied
                 obj.signoff_state = BlocklistSubmission.SIGNOFF_APPROVED
@@ -518,7 +540,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-        obj.update_if_signoff_not_needed()
+        obj.update_signoff_for_auto_approval()
 
         if obj.is_submission_ready:
             # Then launch a task to async save the individual blocks
