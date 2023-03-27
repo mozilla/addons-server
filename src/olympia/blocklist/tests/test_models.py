@@ -57,6 +57,18 @@ class TestBlock(TestCase):
             block.full_clean(exclude=non_user_writeable_fields)
 
 
+class TestBlocklistSubmissionManager(TestCase):
+    def test_delayed(self):
+        now = datetime.now()
+        BlocklistSubmission.objects.create(delayed_until=None)
+        BlocklistSubmission.objects.create(delayed_until=now - timedelta(days=1))
+        future = BlocklistSubmission.objects.create(
+            input_guids='future@', delayed_until=now + timedelta(days=1)
+        )
+
+        assert list(BlocklistSubmission.objects.delayed()) == [future]
+
+
 class TestBlocklistSubmission(TestCase):
     def test_is_submission_ready(self):
         submitter = user_factory()
@@ -199,3 +211,14 @@ class TestBlocklistSubmission(TestCase):
         submission.min_version = '123.*'
         with self.assertRaises(ValidationError):
             submission.full_clean(exclude=non_user_writeable_fields)
+
+    def test_is_delayed(self):
+        now = datetime.now()
+        submission = BlocklistSubmission.objects.create(
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        )
+        assert not submission.is_delayed
+        submission.update(delayed_until=now + timedelta(minutes=1))
+        assert submission.is_delayed
+        submission.update(delayed_until=now - timedelta(minutes=1))
+        assert not submission.is_delayed

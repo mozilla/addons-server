@@ -13,7 +13,7 @@ from multidb import get_replica
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
@@ -185,6 +185,18 @@ class Block(ModelBase):
         return list(existing_blocks.values())
 
 
+class BlocklistSubmissionQuerySet(BaseQuerySet):
+    def delayed(self):
+        return self.filter(delayed_until__gt=datetime.now())
+
+
+class BlocklistSubmissionManager(ManagerBase):
+    _queryset_class = BlocklistSubmissionQuerySet
+
+    def delayed(self):
+        return self.get_queryset().delayed()
+
+
 class BlocklistSubmission(ModelBase):
     SIGNOFF_PENDING = 0
     SIGNOFF_APPROVED = 1
@@ -192,10 +204,10 @@ class BlocklistSubmission(ModelBase):
     SIGNOFF_AUTOAPPROVED = 3
     SIGNOFF_PUBLISHED = 4
     SIGNOFF_STATES = {
-        SIGNOFF_PENDING: 'Pending',
+        SIGNOFF_PENDING: 'Pending Sign-off',
         SIGNOFF_APPROVED: 'Approved',
         SIGNOFF_REJECTED: 'Rejected',
-        SIGNOFF_AUTOAPPROVED: 'No Sign-off',
+        SIGNOFF_AUTOAPPROVED: 'Auto Sign-off',
         SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
     SIGNOFF_STATES_APPROVED = (
@@ -253,6 +265,8 @@ class BlocklistSubmission(ModelBase):
         blank=True,
         help_text='The submission will not be published into blocks before this time.',
     )
+
+    objects = BlocklistSubmissionManager()
 
     class Meta:
         db_table = 'blocklist_blocklistsubmission'
@@ -341,13 +355,16 @@ class BlocklistSubmission(ModelBase):
     @property
     def is_submission_ready(self):
         """Has this submission been signed off, or sign-off isn't required."""
-        is_delayed = self.delayed_until and self.delayed_until > datetime.now()
         is_auto_approved = self.signoff_state == self.SIGNOFF_AUTOAPPROVED
         is_signed_off = (
             self.signoff_state == self.SIGNOFF_APPROVED
             and self.can_user_signoff(self.signoff_by)
         )
-        return not is_delayed and (is_auto_approved or is_signed_off)
+        return not self.is_delayed and (is_auto_approved or is_signed_off)
+
+    @property
+    def is_delayed(self):
+        return bool(self.delayed_until and self.delayed_until > datetime.now())
 
     def _serialize_blocks(self):
         def serialize_block(block):
