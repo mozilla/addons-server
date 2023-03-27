@@ -189,10 +189,12 @@ class DeniedRatingWordAdmin(AMOModelAdmin):
         'created',
         'modified',
         'word',
+        'moderation',
     )
     list_display = (
         'created',
         'word',
+        'moderation',
     )
     ordering = ('word',)
     actions = ('delete_selected',)
