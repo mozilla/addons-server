@@ -1611,8 +1611,8 @@ class TestRatingViewSetEdit(TestCase):
 
     def test_auto_flag(self):
         user_factory(id=settings.TASK_USER_ID)
-        DeniedRatingWord.objects.create(word='body')
-        DeniedRatingWord.objects.create(word='wOrld')
+        DeniedRatingWord.objects.create(word='body', moderation=True)
+        DeniedRatingWord.objects.create(word='wOrld', moderation=True)
         assert not self.rating.editorreview
         assert not self.rating.ratingflag_set.exists()
         self.client.login_api(self.user)
@@ -1862,7 +1862,7 @@ class TestRatingViewSetPost(TestCase):
 
     def test_post_rating_has_body(self):
         # add a denied word that won't match
-        DeniedRatingWord.objects.create(word='something')
+        DeniedRatingWord.objects.create(word='something', moderation=True)
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
@@ -2452,7 +2452,7 @@ class TestRatingViewSetPost(TestCase):
 
     def test_auto_flag(self):
         user_factory(id=settings.TASK_USER_ID)
-        DeniedRatingWord.objects.create(word='body')
+        DeniedRatingWord.objects.create(word='body', moderation=True)
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
