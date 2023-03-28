@@ -249,7 +249,9 @@ function initExtraReviewActions() {
       var $input = $(this).prop('disabled', true); // Prevent double-send.
       var apiUrl = $input.data('api-url');
       var data = { due_date: $input.val(), version: $input.data('api-data') };
-      callReviewersAPI(apiUrl, 'post', data);
+      callReviewersAPI(apiUrl, 'post', data, function (response) {
+        $input.prop('disabled', false);
+      });
     }),
   );
 

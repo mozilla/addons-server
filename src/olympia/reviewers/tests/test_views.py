@@ -12,6 +12,7 @@ from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.db import connection, reset_queries
+from django.template import defaultfilters
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -5375,6 +5376,7 @@ class TestReview(ReviewBase):
         self.addon.current_version.update(created=self.days_ago(366))
         customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
+        now = datetime.now()
         for i in range(0, 10):
             # Add versions 1.0 to 1.9. Some of them will have yara matching
             # rules, some of them customs matching rules, and some also have
@@ -5382,11 +5384,13 @@ class TestReview(ReviewBase):
             matched_yara_rule = not bool(i % 3)
             matched_customs_rule = not bool(i % 3) and not bool(i % 2)
             needs_human_review = not bool(i % 5)
+            due_date = now + timedelta(days=i) if needs_human_review else None
             version = version_factory(
                 addon=self.addon,
                 version=f'1.{i}',
                 needs_human_review=needs_human_review,
                 created=self.days_ago(365 - i),
+                due_date=due_date,
             )
             if matched_yara_rule:
                 ScannerResult.objects.create(
@@ -5426,20 +5430,33 @@ class TestReview(ReviewBase):
                 'admin:scanners_scannerresult_change', args=(result.pk,)
             )
 
+        # A due date should be shown on the 2 versions that have needs_human_review set.
+        tds = doc('#versions-history .review-files tr.listing-header td.due_date')
+        for j in [0, 5]:
+            due_date = defaultfilters.date(
+                self.addon.versions.get(version=f'1.{j}').due_date,
+                settings.DATETIME_FORMAT,
+            )
+            assert tds.eq(j).text() == f'Review due by {due_date}'
+        # Rest don't have one.
+        for k in [1, 2, 3, 4, 6, 7, 8, 9]:
+            assert tds.eq(k).text() == ''
+
         # There are no other flagged versions in the other page.
         span = doc('#review-files-header .risk-high')
         assert span.length == 0
 
         # Load the second page. This time there should be a message indicating
-        # there are flagged versions in other pages.
+        # there are versions with a due date on other pages, since
+        # needs_human_review forces a due date to be set.
         response = self.client.get(self.url, {'page': 2})
         assert response.status_code == 200
         doc = pq(response.content)
         span = doc('#review-files-header .risk-high')
         assert span.length == 1
-        assert span.text() == '2 versions flagged by scanners on other pages.'
+        assert span.text() == '2 versions with a due date on other pages.'
 
-    def test_versions_that_needs_human_review_are_highlighted(self):
+    def test_versions_that_are_flagged_by_mad_are_highlighted(self):
         self.addon.current_version.update(created=self.days_ago(366))
         for i in range(0, 10):
             # Add versions 1.0 to 1.9. Flag a few of them as needing human
@@ -5458,24 +5475,24 @@ class TestReview(ReviewBase):
         assert tds.length == 10
         # Original version should not be there any more, it's on the second
         # page. Versions on the page should be displayed in chronological order
-        # Versions 1.0, 1.3, 1.6, 1.9 are flagged for human review.
-        assert 'Flagged for human review' in tds.eq(0).text()
-        assert 'Flagged for human review' in tds.eq(3).text()
-        assert 'Flagged for human review' in tds.eq(6).text()
-        assert 'Flagged for human review' in tds.eq(9).text()
+        # Versions 1.0, 1.3, 1.6, 1.9 are flagged by mad for human review.
+        assert 'Flagged by MAD scanner' in tds.eq(0).text()
+        assert 'Flagged by MAD scanner' in tds.eq(3).text()
+        assert 'Flagged by MAD scanner' in tds.eq(6).text()
+        assert 'Flagged by MAD scanner' in tds.eq(9).text()
 
         # There are no other flagged versions in the other page.
         span = doc('#review-files-header .risk-medium')
         assert span.length == 0
 
         # Load the second page. This time there should be a message indicating
-        # there are flagged versions in other pages.
+        # there are versions flagged by MAD on other pages.
         response = self.client.get(self.url, {'page': 2})
         assert response.status_code == 200
         doc = pq(response.content)
         span = doc('#review-files-header .risk-medium')
         assert span.length == 1
-        assert span.text() == '4 versions flagged for human review on other pages.'
+        assert span.text() == '4 versions flagged by MAD scanner on other pages.'
 
     def test_blocked_versions(self):
         response = self.client.get(self.url)

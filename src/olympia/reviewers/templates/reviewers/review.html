@@ -264,7 +264,7 @@
         </li>
       {% endif %}
       <li {% if not version.due_date %}class="hidden"{% endif %}>
-        <label for="due_date_update">Change Version Review Due Date</label>
+        <label for="due_date_update">Change latest version review due date</label>
         <input type="datetime-local" id="due_date_update"
                 {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
                 data-api-data="{{ version.pk }}"

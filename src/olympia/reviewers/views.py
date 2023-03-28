@@ -654,10 +654,10 @@ def review(request, addon, channel=None):
     # We want to notify the reviewer if there are versions needing extra
     # attention that are not present in the versions history (which is
     # paginated).
-    versions_flagged_by_scanners_other = (
-        versions_qs.filter(needs_human_review=True).exclude(pk__in=version_ids).count()
+    versions_with_a_due_date_other = (
+        versions_qs.filter(due_date__isnull=False).exclude(pk__in=version_ids).count()
     )
-    versions_flagged_for_human_review_other = (
+    versions_flagged_by_mad_other = (
         versions_qs.filter(reviewerflags__needs_human_review_by_mad=True)
         .exclude(pk__in=version_ids)
         .count()
@@ -752,8 +752,8 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.CHANNEL_UNLISTED),
         user_ratings=user_ratings,
         version=version,
-        versions_flagged_by_scanners_other=versions_flagged_by_scanners_other,
-        versions_flagged_for_human_review_other=versions_flagged_for_human_review_other,  # noqa
+        versions_with_a_due_date_other=versions_with_a_due_date_other,
+        versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,
         whiteboard_form=whiteboard_form,
         whiteboard_url=whiteboard_url,
