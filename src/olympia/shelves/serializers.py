@@ -13,6 +13,7 @@ from olympia.api.fields import (
     GetTextTranslationSerializerField,
     ReverseChoiceField,
 )
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.views import CollectionAddonViewSet
 
@@ -75,7 +76,7 @@ class ShelfFooterField(serializers.Serializer):
             }
 
 
-class ShelfSerializer(serializers.ModelSerializer):
+class ShelfSerializer(AMOModelSerializer):
     title = GetTextTranslationSerializerField()
     url = serializers.SerializerMethodField()
     footer = ShelfFooterField(source='*')
@@ -157,7 +158,7 @@ class ShelfSerializer(serializers.ModelSerializer):
         return addons
 
 
-class ShelfEditorialSerializer(serializers.ModelSerializer):
+class ShelfEditorialSerializer(AMOModelSerializer):
     title = serializers.CharField()
     footer_text = serializers.CharField()
 

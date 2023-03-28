@@ -86,10 +86,10 @@ class TestAbuse(TestCase):
         assert response.status_code == 403
 
     def test_list(self):
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             # - 2 queries to get the user and their permissions
-            # - 2 queries for a count of the total number of items
-            #   (duplicated by django itself)
+            # - 1 query for a count of the total number of items
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 2 savepoints
             # - 1 to get the abuse reports
             # - 2 for the date hierarchy
@@ -136,17 +136,7 @@ class TestAbuse(TestCase):
 
         user = AbuseReport.objects.get(message='Ehehehehe').user
         response = self.client.get(
-            self.list_url, {'q': user.username[:4], 'type': 'user'}, follow=True
-        )
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#changelist-search')
-        assert doc('#result_list tbody tr').length == 1
-        assert 'Ehehehehe' in doc('#result_list').text()
-
-        user = AbuseReport.objects.get(message='Ehehehehe').user
-        response = self.client.get(
-            self.list_url, {'q': user.email[:3], 'type': 'user'}, follow=True
+            self.list_url, {'q': f'{user.email[:3]}*', 'type': 'user'}, follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -532,7 +522,7 @@ class TestAbuse(TestCase):
         assert 'Neo' in doc('.addon-info-and-previews h2').text()
         assert doc('.addon-info-and-previews .meta-abuse td').text() == '2'
         assert doc('.addon-info-and-previews .meta-rating td').text() == (
-            'Rated 2 out of 5 stars 1 review'
+            'Rated 2 out of 5 stars 1 review(s)'
         )
         assert doc('.addon-info-and-previews .last-approval-date td').text()
         assert doc('.reports-and-ratings')

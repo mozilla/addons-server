@@ -17,14 +17,12 @@ from olympia.amo.tests import (
     addon_factory,
     formset,
     initial,
-    req_factory_factory,
     SQUOTE_ESCAPED,
     TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
-from olympia.devhub.forms import DescribeForm
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -138,25 +136,6 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.post(self.describe_edit_url, data)
         doc = pq(response.content)
         assert doc('form').attr('action') != old_edit
-
-    def test_edit_summary_escaping(self):
-        data = self.get_dict()
-        data['summary'] = '<b>oh my</b>'
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-
-        addon = self.get_addon()
-
-        # Fetch the page so the LinkifiedTranslation gets in cache.
-        response = self.client.get(reverse('devhub.addons.edit', args=[addon.slug]))
-        assert pq(response.content)('[data-name=summary]').html().strip() == (
-            '<span lang="en-us">&lt;b&gt;oh my&lt;/b&gt;</span>'
-        )
-
-        # Now make sure we don't have escaped content in the rendered form.
-        form = DescribeForm(instance=addon, request=req_factory_factory('/'))
-        html = pq('<body>%s</body>' % form['summary'])('[lang="en-us"]').html()
-        assert html.strip() == '<b>oh my</b>'
 
     def test_edit_as_developer(self):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
@@ -746,14 +725,6 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
     __test__ = True
-
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        response = self.client.post(self.describe_edit_url, self.get_dict())
-        assert response.status_code == 403
 
 
 class TestEditMedia(BaseTestEdit):
@@ -1476,14 +1447,6 @@ class TestEditAdditionalDetailsUnlisted(TagTestsMixin, BaseTestEditAdditionalDet
     listed = False
     __test__ = True
 
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.get(self.details_url)
-        assert response.status_code == 200
-
-        response = self.client.post(self.details_edit_url, {})
-        assert response.status_code == 403
-
 
 class TestEditTechnical(BaseTestEdit):
     __test__ = True
@@ -1528,6 +1491,17 @@ class TestEditTechnical(BaseTestEdit):
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
+    def test_whiteboard_too_long(self):
+        data = {
+            'whiteboard-public': 'ê' * 100001,
+        }
+        response = self.client.post(self.technical_edit_url, data)
+        assert response.context['whiteboard_form'].errors == {
+            'public': [
+                'Ensure this value has at most 100000 characters (it has 100001).'
+            ]
+        }
+
 
 class TestEditTechnicalUnlisted(BaseTestEdit):
     __test__ = True
@@ -1556,14 +1530,6 @@ class TestEditTechnicalUnlisted(BaseTestEdit):
         assert response.context['main_form'].errors == {}
         addon = self.get_addon()
         assert addon.whiteboard.public == ''
-
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.get(self.technical_url)
-        assert response.status_code == 200
-
-        response = self.client.post(self.technical_edit_url, {})
-        assert response.status_code == 403
 
 
 class StaticMixin:

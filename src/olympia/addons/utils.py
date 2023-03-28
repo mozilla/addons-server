@@ -1,17 +1,10 @@
+import re
 import uuid
-import json
-import zipfile
-
-from io import BytesIO
-from urllib.parse import urlparse
 
 from django import forms
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.core.files.base import File
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
-from django.db.transaction import atomic
-from django.utils import translation
 from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
@@ -19,7 +12,6 @@ from django_statsd.clients import statsd
 from olympia import activity, amo, core
 from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import normalize_string
-from olympia.constants.site_permissions import SITE_PERMISSION_MIN_VERSION
 from olympia.discovery.utils import call_recommendation_server
 from olympia.translations.fields import LocaleErrorMessage
 from olympia.translations.models import Translation
@@ -27,7 +19,6 @@ from olympia.users.models import (
     DeveloperAgreementRestriction,
     UserRestrictionHistory,
 )
-from olympia.users.utils import get_task_user
 
 
 log = core.logger.getLogger('z.addons')
@@ -276,147 +267,6 @@ class RestrictionChecker:
         return msg
 
 
-class SitePermissionVersionCreator:
-    """Helper class to create new site permission add-ons and versions.
-
-    Assumes parameters have already been validated beforehand."""
-
-    def __init__(self, *, user, remote_addr, install_origins, site_permissions):
-        self.user = user
-        self.remote_addr = remote_addr
-        self.install_origins = sorted(install_origins or [])
-        self.site_permissions = site_permissions
-
-    def _create_manifest(self, version_number, guid=None):
-
-        hostnames = ', '.join(
-            [urlparse(origin).netloc for origin in self.install_origins]
-        )
-        if guid is None:
-            guid = generate_addon_guid()
-        # FIXME: https://github.com/mozilla/addons-server/issues/18421 to
-        # generate translations for the name (we'll need __MSG_extensionName__
-        # and _locales/ folder etc). At the moment the gettext() call is just
-        # here to prepare for the future and allow translators to work on
-        # translations, but we're always generating in english.
-        with translation.override('en-US'):
-            manifest_data = {
-                'manifest_version': 2,
-                'version': version_number,
-                'name': gettext('Site permissions for {hostnames}').format(
-                    hostnames=hostnames
-                ),
-                'install_origins': self.install_origins,
-                'site_permissions': self.site_permissions,
-                'browser_specific_settings': {
-                    'gecko': {
-                        'id': guid,
-                        'strict_min_version': SITE_PERMISSION_MIN_VERSION,
-                    }
-                },
-            }
-        return manifest_data
-
-    def _create_zipfile(self, manifest_data):
-        # Create the xpi containing the manifest, in memory.
-        raw_buffer = BytesIO()
-        with zipfile.ZipFile(raw_buffer, 'w') as zip_file:
-            zip_file.writestr('manifest.json', json.dumps(manifest_data, indent=2))
-        raw_buffer.seek(0)
-        filename = 'automatic.xpi'
-        file_obj = File(raw_buffer, filename)
-
-        return file_obj
-
-    @atomic
-    def create_version(self, addon=None):
-        from olympia.addons.models import Addon
-        from olympia.files.models import FileUpload
-        from olympia.files.utils import parse_addon
-        from olympia.versions.models import Version
-        from olympia.versions.utils import get_next_version_number
-
-        version_number = '1.0'
-        guid = None
-
-        # If passing an existing add-on, we need to bump the version number
-        # to avoid clashes, and also perform a few checks.
-        if addon is not None:
-            # Obviously we want an add-on with the right type.
-            if addon.type != amo.ADDON_SITE_PERMISSION:
-                raise ImproperlyConfigured(
-                    'SitePermissionVersionCreator was instantiated with non '
-                    'site-permission add-on'
-                )
-            # If the user isn't an author, something is wrong.
-            if not addon.authors.filter(pk=self.user.pk).exists():
-                raise ImproperlyConfigured(
-                    'SitePermissionVersionCreator was instantiated with a '
-                    'bogus addon/user'
-                )
-            # Changing the origins isn't supported at the moment.
-            latest_version = addon.find_latest_version(
-                exclude=(), channel=amo.CHANNEL_UNLISTED
-            )
-            previous_origins = sorted(
-                latest_version.installorigin_set.all().values_list('origin', flat=True)
-            )
-            if previous_origins != self.install_origins:
-                raise ImproperlyConfigured(
-                    'SitePermissionVersionCreator was instantiated with an '
-                    'addon that has different origins'
-                )
-
-            version_number = get_next_version_number(addon)
-            guid = addon.guid
-
-        # Create the manifest, with more user-friendly name & description built
-        # from install_origins/site_permissions, and then the zipfile with that
-        # manifest inside.
-        manifest_data = self._create_manifest(version_number, guid=guid)
-        file_obj = self._create_zipfile(manifest_data)
-
-        # Parse the zip we just created. The user needs to be the Mozilla User
-        # because regular submissions of this type of add-on is forbidden to
-        # normal users.
-        parsed_data = parse_addon(
-            file_obj,
-            addon=addon,
-            user=get_task_user(),
-        )
-
-        with core.override_remote_addr(self.remote_addr):
-            if addon is None:
-                # Create the Addon instance (without a Version/File at this point).
-                addon = Addon.initialize_addon_from_upload(
-                    data=parsed_data,
-                    upload=file_obj,
-                    channel=amo.CHANNEL_UNLISTED,
-                    user=self.user,
-                )
-
-            # Create the FileUpload that will become the File+Version.
-            upload = FileUpload.from_post(
-                file_obj,
-                filename=file_obj.name,
-                size=file_obj.size,
-                addon=addon,
-                version=version_number,
-                channel=amo.CHANNEL_UNLISTED,
-                user=self.user,
-                source=amo.UPLOAD_SOURCE_GENERATED,
-            )
-
-        # And finally create the Version instance from the FileUpload.
-        return Version.from_upload(
-            upload,
-            addon,
-            amo.CHANNEL_UNLISTED,
-            selected_apps=[x[0] for x in amo.APPS_CHOICES],
-            parsed_data=parsed_data,
-        )
-
-
 def fetch_translations_from_addon(addon, properties):
     translation_ids_gen = (getattr(addon, prop + '_id', None) for prop in properties)
     translation_ids = [id_ for id_ in translation_ids_gen if id_]
@@ -438,3 +288,40 @@ class DeleteTokenSigner(TimestampSigner):
             log.debug(exc)
             return False
         return token_payload['addon_id'] == addon_id
+
+
+def webext_version_stats(request, source):
+    log.info(f'webext_version_stats header: {request.META.get("HTTP_USER_AGENT")}')
+    webext_version_match = re.match(
+        r'web-ext/([\d\.]+)$', request.META.get('HTTP_USER_AGENT') or ''
+    )
+    if webext_version_match:
+        webext_version = webext_version_match[1].replace('.', '_')
+        log.info(f'webext_version_stats webext_version: {webext_version}')
+        statsd.incr(f'{source}.webext_version.{webext_version}')
+    log.info('webext_version_stats no match')
+
+
+def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
+    """Returns an error string if `version_string` isn't greater than the current
+    approved listed version. Doesn't apply to langpacks."""
+    if (
+        addon
+        and addon.type != amo.ADDON_LPAPP
+        and (
+            latest_version_string := addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=amo.CHANNEL_LISTED, file__is_signed=True)
+            .order_by('created')
+            .values_list('version', flat=True)
+            .last()
+        )
+        and latest_version_string >= version_string
+    ):
+        msg = gettext(
+            'Version {version_string} must be greater than the previous approved '
+            'version {previous_version_string}.'
+        )
+        return msg.format(
+            version_string=version_string,
+            previous_version_string=latest_version_string,
+        )

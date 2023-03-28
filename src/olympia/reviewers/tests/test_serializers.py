@@ -7,7 +7,6 @@ from rest_framework.exceptions import NotFound
 from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
-from olympia import amo
 from olympia.activity.models import DraftComment
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -20,13 +19,11 @@ from olympia.amo.tests import (
 from olympia.files.models import FileValidation
 from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
-from olympia.reviewers.models import CannedResponse
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer,
     AddonBrowseVersionSerializerFileOnly,
     AddonCompareVersionSerializerFileOnly,
     AddonCompareVersionSerializer,
-    CannedResponseSerializer,
     DraftCommentSerializer,
     FileInfoDiffSerializer,
     FileInfoSerializer,
@@ -403,7 +400,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
                     'en-US': 'Release notes in english',
                     'fr': 'Notes de version en français',
                 },
-                'reviewed': self.days_ago(0),
+                'human_review_date': self.days_ago(0),
             },
         )
 
@@ -433,7 +430,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
         assert data['channel'] == 'listed'
         assert data['reviewed'] == (
-            self.version.reviewed.replace(microsecond=0).isoformat() + 'Z'
+            self.version.human_review_date.replace(microsecond=0).isoformat() + 'Z'
         )
 
         # Custom fields
@@ -802,25 +799,6 @@ class TestAddonCompareVersionSerializer(TestCase):
         assert parent['mime_category'] == 'directory'
         assert parent['path'] == grandparent_dir
         assert parent['depth'] == 0
-
-
-class TestCannedResponseSerializer(TestCase):
-    def test_basic(self):
-        response = CannedResponse.objects.create(
-            name='Terms of services',
-            response='test',
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        data = CannedResponseSerializer(instance=response).data
-
-        assert data == {
-            'id': response.id,
-            'title': 'Terms of services',
-            'response': 'test',
-            'category': 'Other',
-        }
 
 
 class TestDraftCommentSerializer(TestCase):

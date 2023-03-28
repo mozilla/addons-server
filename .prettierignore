@@ -20,6 +20,7 @@ __pycache__/
 i18n/
 img/
 node_lib/
+deps/
 
 # safe-list files we want to process
 !*.js

@@ -1,25 +1,40 @@
+from django.core.exceptions import BadRequest
 from django.core.management.base import BaseCommand
 
-from pyquery import PyQuery
+import requests
 
+from olympia import amo
 from olympia.applications.models import AppVersion
-from olympia.constants.applications import APP_GUIDS
 
 
 class Command(BaseCommand):
     help = 'Import the application versions created on addons.mozilla.org.'
+    url = 'https://addons.mozilla.org/api/v5/applications/{}/'
 
     def handle(self, *args, **options):
         log = self.stdout.write
-        doc = PyQuery(url='https://addons.mozilla.org/en-US/firefox/pages/appversions/')
-        codes = doc('.prose ul li code')
-        for i in range(0, len(codes), 2):
+
+        for app in amo.APP_USAGE:
+            log(f'Starting to import versions for {app.short}')
+            response = requests.get(self.url.format(app.short))
+            if (status := response.status_code) != 200:
+                raise BadRequest(f'Importing versions from AMO prod failed: {status}.')
             try:
-                app = APP_GUIDS[codes[i].text]
-            except KeyError:
-                # Unknown app, ignore.
-                continue
-            log(f'Import versions for {app.short}')
-            versions = codes[i + 1].text.split(', ')
+                data = response.json() or {}
+                if (guid := data.get('guid')) != app.guid:
+                    raise BadRequest(
+                        'Importing versions from AMO prod failed: '
+                        f'guid mistmatch - expected={app.guid}; got={guid}.'
+                    )
+                versions = data.get('versions')
+
+            except requests.exceptions.JSONDecodeError:
+                versions = None
+            if not versions or len(versions) == 0:
+                raise BadRequest(
+                    'Importing versions from AMO prod failed: no versions.'
+                )
+
             for version in versions:
                 AppVersion.objects.get_or_create(application=app.id, version=version)
+            log(f'Added {len(versions)} versions for {app.short}.')

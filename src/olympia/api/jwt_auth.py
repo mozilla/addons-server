@@ -96,7 +96,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             '{e.__class__.__name__}: {e}'.format(e=exc)
         )
         raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.')
-    except jwt.InvalidIssuedAtError as exc:
+    except (jwt.exceptions.ImmatureSignatureError, jwt.InvalidIssuedAtError) as exc:
         log.info(
             'Invalid iat during JWT authentication: '
             '{e.__class__.__name__}: {e}'.format(e=exc)

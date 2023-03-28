@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2020-07-08 09:27+0000\n"
-"Last-Translator: alamanda <dian.ina@gmail.com>\n"
+"POT-Creation-Date: 2023-03-21 18:07+0000\n"
+"PO-Revision-Date: 2022-11-26 05:10+0000\n"
+"Last-Translator: srifqi <muhammadrifqipriyosusanto@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -21,14 +21,13 @@ msgstr "Ada masalah menghubungi server."
 msgid "Select a file..."
 msgstr "Pilih berkas..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
-msgstr "Pengaya Anda harus diakhiri dengan .zip, .xpi, .crx, atau .xml"
+msgstr "Pengaya Anda harus diakhiri dengan .zip, .xpi, atau .crx"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% komplet"
+msgstr "{0}% selesai"
 
 msgid "{0} of {1}"
 msgstr "{0} dari {1}"

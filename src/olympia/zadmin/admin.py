@@ -40,7 +40,7 @@ def related_single_content_link(obj, related_field):
             related_class._meta.app_label, related_class._meta.model_name
         )
         return format_html(
-            '<a href="{}">{}</a>', reverse(url, args=(instance.pk,)), repr(instance)
+            '<a href="{}">{}</a>', reverse(url, args=(instance.pk,)), str(instance)
         )
     else:
         return ''

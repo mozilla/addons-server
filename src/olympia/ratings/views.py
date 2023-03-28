@@ -32,7 +32,7 @@ from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerialize
 from .utils import get_grouped_ratings
 
 
-class RatingUserThrottle(GranularUserRateThrottle):
+class RatingBurstUserThrottle(GranularUserRateThrottle):
     rate = '1/minute'
     scope = 'user_rating'
 
@@ -43,7 +43,7 @@ class RatingUserThrottle(GranularUserRateThrottle):
             return True
 
 
-class RatingIPThrottle(GranularIPRateThrottle):
+class RatingBurstIPThrottle(GranularIPRateThrottle):
     rate = '1/minute'
     scope = 'ip_rating'
 
@@ -54,7 +54,17 @@ class RatingIPThrottle(GranularIPRateThrottle):
             return True
 
 
-class RatingEditDeleteUserThrottle(GranularUserRateThrottle):
+class RatingDailyUserThrottle(RatingBurstUserThrottle):
+    rate = '24/day'
+    scope = 'user_daily_rating'
+
+
+class RatingDailyIPThrottle(RatingBurstIPThrottle):
+    rate = '36/day'
+    scope = 'ip_daily_rating'
+
+
+class RatingBurstEditDeleteUserThrottle(GranularUserRateThrottle):
     rate = '5/minute'
     scope = 'user_rating_edit_delete'
 
@@ -65,7 +75,12 @@ class RatingEditDeleteUserThrottle(GranularUserRateThrottle):
             return True
 
 
-class RatingEditDeleteIPThrottle(GranularIPRateThrottle):
+class RatingDailyEditDeleteUserThrottle(RatingBurstEditDeleteUserThrottle):
+    rate = '50/day'
+    scope = 'user_daily_rating_edit_delete'
+
+
+class RatingBurstEditDeleteIPThrottle(GranularIPRateThrottle):
     rate = '5/minute'
     scope = 'ip_rating_edit_delete'
 
@@ -76,7 +91,12 @@ class RatingEditDeleteIPThrottle(GranularIPRateThrottle):
             return True
 
 
-class RatingReplyThrottle(RatingUserThrottle):
+class RatingDailyEditDeleteUserIPThrottle(RatingBurstEditDeleteIPThrottle):
+    rate = '100/day'
+    scope = 'ip_daily_rating_edit_delete'
+
+
+class RatingReplyThrottle(RatingBurstUserThrottle):
     rate = '1/5second'
     scope = 'user_rating_reply'
 
@@ -117,10 +137,14 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
     reply_serializer_class = RatingSerializerReply
     flag_permission_classes = [AllowNotOwner]
     throttle_classes = (
-        RatingUserThrottle,
-        RatingIPThrottle,
-        RatingEditDeleteIPThrottle,
-        RatingEditDeleteUserThrottle,
+        RatingBurstUserThrottle,
+        RatingBurstIPThrottle,
+        RatingBurstEditDeleteIPThrottle,
+        RatingBurstEditDeleteUserThrottle,
+        RatingDailyUserThrottle,
+        RatingDailyIPThrottle,
+        RatingDailyEditDeleteUserThrottle,
+        RatingDailyEditDeleteUserIPThrottle,
     )
 
     def set_addon_object_from_rating(self, rating):
@@ -438,6 +462,3 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         serializer.save()
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
-
-    def perform_destroy(self, instance):
-        instance.delete(user_responsible=self.request.user)

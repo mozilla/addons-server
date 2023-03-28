@@ -16,7 +16,6 @@ from django.core.cache import cache
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.encoding import force_bytes, force_str
-from django.utils.translation import gettext
 
 from olympia import amo
 from olympia.activity.models import DraftComment
@@ -29,20 +28,21 @@ from olympia.addons.serializers import (
 )
 from olympia.addons.models import AddonReviewerFlags
 from olympia.api.fields import ReverseChoiceField, SplitField
+from olympia.api.serializers import AMOModelSerializer
 from olympia.users.models import UserProfile
 from olympia.files.utils import get_sha256
 from olympia.files.models import File, FileValidation
-from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
 
 
-class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
+class AddonReviewerFlagsSerializer(AMOModelSerializer):
     class Meta:
         model = AddonReviewerFlags
         fields = (
             'auto_approval_delayed_until',
+            'auto_approval_delayed_until_unlisted',
             'auto_approval_disabled',
             'auto_approval_disabled_unlisted',
             'auto_approval_disabled_until_next_approval',
@@ -51,6 +51,17 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
             'needs_admin_content_review',
             'needs_admin_theme_review',
         )
+
+    def update(self, instance, validated_data):
+        # Only update fields that changed. Note that this only supports basic
+        # fields.
+        if self.partial and instance:
+            for attr, value in validated_data.items():
+                setattr(instance, attr, value)
+            instance.save(update_fields=validated_data.keys())
+        else:
+            instance = super().update(instance, validated_data)
+        return instance
 
 
 class FileEntriesMixin:
@@ -275,7 +286,7 @@ class FileEntriesDiffMixin(FileEntriesMixin):
 
 # NOTE: Because of caching, this serializer cannot be reused and must be
 # created for each file. It cannot be used with DRF's many=True option.
-class FileInfoSerializer(serializers.ModelSerializer, FileEntriesMixin):
+class FileInfoSerializer(AMOModelSerializer, FileEntriesMixin):
     content = serializers.SerializerMethodField()
     uses_unknown_minified_code = serializers.SerializerMethodField()
     download_url = serializers.SerializerMethodField()
@@ -446,6 +457,11 @@ class AddonBrowseVersionSerializer(
     def get_has_been_validated(self, obj):
         return obj.file.has_been_validated
 
+    def get_reviewed(self, obj):
+        return serializers.DateTimeField().to_representation(
+            obj.file.approval_date or obj.human_review_date
+        )
+
 
 class DiffableVersionSerializer(MinimalVersionSerializerWithChannel):
     pass
@@ -535,34 +551,13 @@ class AddonCompareVersionSerializer(
         pass
 
 
-class CannedResponseSerializer(serializers.ModelSerializer):
-    # Title is actually more fitting than the internal "name"
-    title = serializers.CharField(source='name')
-    category = serializers.SerializerMethodField()
-
-    class Meta:
-        model = CannedResponse
-        fields = ('id', 'title', 'response', 'category')
-
-    def get_category(self, obj):
-        return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]
-
-
-class DraftCommentSerializer(serializers.ModelSerializer):
+class DraftCommentSerializer(AMOModelSerializer):
     user = SplitField(
         serializers.PrimaryKeyRelatedField(queryset=UserProfile.objects.all()),
         BaseUserSerializer(),
     )
     version_id = serializers.PrimaryKeyRelatedField(
         queryset=Version.unfiltered.all(), source='version'
-    )
-    canned_response = SplitField(
-        serializers.PrimaryKeyRelatedField(
-            queryset=CannedResponse.objects.all(), required=False
-        ),
-        CannedResponseSerializer(),
-        allow_null=True,
-        required=False,
     )
 
     class Meta:
@@ -574,7 +569,6 @@ class DraftCommentSerializer(serializers.ModelSerializer):
             'comment',
             'version_id',
             'user',
-            'canned_response',
         )
 
     def get_or_default(self, key, data, default=''):
@@ -593,21 +587,11 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         return retval or default
 
     def validate(self, data):
-        canned_response = self.get_or_default('canned_response', data)
         comment = self.get_or_default('comment', data)
 
-        if comment and canned_response:
+        if not comment:
             raise serializers.ValidationError(
-                {
-                    'comment': gettext(
-                        "You can't submit a comment if `canned_response` is " 'defined.'
-                    )
-                }
-            )
-
-        if not canned_response and not comment:
-            raise serializers.ValidationError(
-                {'comment': gettext("You can't submit an empty comment.")}
+                {'comment': "You can't submit an empty comment."}
             )
 
         lineno = self.get_or_default('lineno', data)
@@ -616,7 +600,7 @@ class DraftCommentSerializer(serializers.ModelSerializer):
         if lineno and not filename:
             raise serializers.ValidationError(
                 {
-                    'comment': gettext(
+                    'comment': (
                         "You can't submit a line number without associating "
                         'it to a filename.'
                     )

@@ -1,6 +1,7 @@
 import hashlib
 import json
 import os
+import re
 import uuid
 
 from urllib.parse import urljoin
@@ -25,11 +26,9 @@ from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.utils import SafeStorage
-from olympia.files.fields import FilenameFileField
+from olympia.amo.utils import id_to_path, SafeStorage
 from olympia.files.utils import (
     get_sha256,
-    id_to_path,
     InvalidOrUnsupportedCrx,
     write_crx_as_xpi,
 )
@@ -51,12 +50,6 @@ def files_upload_to_callback(instance, filename):
     {addon_id last 2 digits}/{addon_id last 4 digits}/{addon_id}. We drop all
     non-ascii chars from the slug, and if the result is empty, fall back on the
     addon id.
-
-    For older uploads, the returned path used to be in the format of
-    {addon_id}/{addon_name}-{version}.{extension} (and even used to contain
-    compatible apps associated with the file before), and our custom
-    FilenameFileField ensured we only stored the filename without the leading
-    directory to the database for backwards-compatibility.
 
     By convention, newly signed files after 2022-03-31 get a .xpi extension,
     unsigned get .zip. This helps ensure CDN cache is busted when we sign
@@ -88,7 +81,7 @@ class File(OnChangeMixin, ModelBase):
     SUPPORTED_MANIFEST_VERSIONS = ((2, 'Manifest V2'), (3, 'Manifest V3'))
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
-    file = FilenameFileField(
+    file = models.FileField(
         max_length=255,
         default='',
         db_column='filename',
@@ -105,7 +98,7 @@ class File(OnChangeMixin, ModelBase):
     )
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     strict_compatibility = models.BooleanField(default=False)
-    reviewed = models.DateTimeField(null=True, blank=True)
+    approval_date = models.DateTimeField(null=True)
     # Serial number of the certificate use for the signature.
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
@@ -190,7 +183,20 @@ class File(OnChangeMixin, ModelBase):
             file_.save()  # This also saves the file to the filesystem.
 
         permissions = list(parsed_data.get('permissions', []))
+        if file_.manifest_version > 2:
+            permissions = [
+                perm
+                for perm in permissions
+                # This is the same regex that addons-frontend uses.
+                # See /src/amo/components/PermissionsCard/permissions.js#L93
+                if re.match(r'^(\w+)(?:\.(\w+)(?:\.\w+)*)?$', perm)
+            ]
         optional_permissions = list(parsed_data.get('optional_permissions', []))
+        host_permissions = (
+            list(parsed_data.get('host_permissions', []))
+            if file_.manifest_version > 2
+            else []
+        )
 
         # devtools_page isn't in permissions block but treated as one
         # if a custom devtools page is added by an addon
@@ -200,19 +206,11 @@ class File(OnChangeMixin, ModelBase):
         # Add content_scripts host matches too.
         for script in parsed_data.get('content_scripts', []):
             permissions.extend(script.get('matches', []))
-        if permissions or optional_permissions:
+        if permissions or optional_permissions or host_permissions:
             WebextPermission.objects.create(
                 permissions=permissions,
                 optional_permissions=optional_permissions,
-                file=file_,
-            )
-        # site_permissions are not related to webext permissions (they are
-        # Web APIs a particular site can enable with a specially generated
-        # add-on) and thefore are stored separately.
-        if parsed_data.get('type') == amo.ADDON_SITE_PERMISSION:
-            site_permissions = list(parsed_data.get('site_permissions', []))
-            FileSitePermission.objects.create(
-                permissions=site_permissions,
+                host_permissions=host_permissions,
                 file=file_,
             )
 
@@ -278,14 +276,29 @@ class File(OnChangeMixin, ModelBase):
         except WebextPermission.DoesNotExist:
             return []
 
+    @cached_property
+    def host_permissions(self):
+        try:
+            # Filter out any errant non-strings included in the manifest JSON.
+            # Remove any duplicate host permissions.
+            permissions = set()
+            permissions = [
+                p
+                for p in self._webext_permissions.host_permissions
+                if isinstance(p, str) and not (p in permissions or permissions.add(p))
+            ]
+            return permissions
+
+        except WebextPermission.DoesNotExist:
+            return []
+
     def get_review_status_display(self):
         # Like .get_file_status_display but with logic to make the status more accurate
         if self.status == amo.STATUS_DISABLED:
             return (
                 gettext('Rejected')
-                if self.reviewed is not None
-                # We can't assume that a missing reviewed date means it is unreviewed.
-                else gettext('Rejected or Unreviewed')
+                if getattr(self, 'version', None) and self.version.human_review_date
+                else gettext('Unreviewed')
             )
         return self.STATUS_CHOICES.get(
             self.status, gettext('[status:%s]') % self.status
@@ -301,6 +314,7 @@ def update_status(sender, instance, **kw):
                 addon.update_status(ignore_version=instance.version)
             else:
                 addon.update_status()
+            instance.version.reset_due_date()
         except models.ObjectDoesNotExist:
             pass
 
@@ -615,19 +629,10 @@ class WebextPermission(ModelBase):
     NATIVE_MESSAGING_NAME = 'nativeMessaging'
     permissions = models.JSONField(default=dict)
     optional_permissions = models.JSONField(default=dict)
+    host_permissions = models.JSONField(default=dict)
     file = models.OneToOneField(
         'File', related_name='_webext_permissions', on_delete=models.CASCADE
     )
 
     class Meta:
         db_table = 'webext_permissions'
-
-
-class FileSitePermission(ModelBase):
-    permissions = models.JSONField(default=list)
-    file = models.OneToOneField(
-        'File', related_name='_site_permissions', on_delete=models.CASCADE
-    )
-
-    class Meta:
-        db_table = 'site_permissions'

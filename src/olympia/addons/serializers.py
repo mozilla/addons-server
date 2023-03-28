@@ -20,6 +20,7 @@ from olympia.amo.validators import (
     OneOrMoreLetterOrNumberCharacterValidator,
     PreventPartialUpdateValidator,
 )
+from olympia.api.exceptions import Conflict
 from olympia.api.fields import (
     EmailTranslationField,
     LazyChoiceField,
@@ -28,7 +29,7 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
-from olympia.api.serializers import BaseESSerializer
+from olympia.api.serializers import BaseESSerializer, AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -39,7 +40,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
 from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedAddon
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
@@ -73,7 +74,10 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
-from .utils import fetch_translations_from_addon
+from .utils import (
+    fetch_translations_from_addon,
+    validate_version_number_is_gt_latest_signed_listed_version,
+)
 from .validators import (
     AddonMetadataValidator,
     AddonDefaultLocaleValidator,
@@ -87,12 +91,13 @@ from .validators import (
 )
 
 
-class FileSerializer(serializers.ModelSerializer):
+class FileSerializer(AMOModelSerializer):
     url = serializers.SerializerMethodField()
     platform = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
+    host_permissions = serializers.ListField(child=serializers.CharField())
     is_restart_required = serializers.SerializerMethodField()
     is_webextension = serializers.SerializerMethodField()
 
@@ -111,6 +116,7 @@ class FileSerializer(serializers.ModelSerializer):
             'url',
             'permissions',
             'optional_permissions',
+            'host_permissions',
         )
 
     def get_url(self, obj):
@@ -146,6 +152,7 @@ class FileSerializer(serializers.ModelSerializer):
 class LanguageToolFileSerializer(FileSerializer):
     permissions = serializers.SerializerMethodField()
     optional_permissions = serializers.SerializerMethodField()
+    host_permissions = serializers.SerializerMethodField()
 
     def get_permissions(self, obj):
         # Language tools are not "real" webextensions, they don't have
@@ -157,6 +164,11 @@ class LanguageToolFileSerializer(FileSerializer):
         # optional permissions.
         return []
 
+    def get_host_permissions(self, obj):
+        # Language tools are not "real" webextensions, they don't have
+        # host permissions.
+        return []
+
 
 class ThisAddonDefault:
     requires_context = True
@@ -165,7 +177,7 @@ class ThisAddonDefault:
         return serializer_field.context['view'].get_addon_object()
 
 
-class PreviewSerializer(serializers.ModelSerializer):
+class PreviewSerializer(AMOModelSerializer):
     caption = TranslationSerializerField(required=False)
     image_url = serializers.SerializerMethodField()
     thumbnail_url = serializers.SerializerMethodField()
@@ -248,7 +260,7 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
         return data
 
 
-class LicenseSerializer(serializers.ModelSerializer):
+class LicenseSerializer(AMOModelSerializer):
     is_custom = serializers.SerializerMethodField()
     name = LicenseNameSerializerField(allow_null=True)
     text = TranslationSerializerField(allow_null=True)
@@ -303,8 +315,9 @@ class CompactLicenseSerializer(LicenseSerializer):
         fields = ('id', 'is_custom', 'name', 'slug', 'url')
 
 
-class MinimalVersionSerializer(serializers.ModelSerializer):
+class MinimalVersionSerializer(AMOModelSerializer):
     file = FileSerializer(read_only=True)
+    reviewed = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
@@ -318,6 +331,11 @@ class MinimalVersionSerializer(serializers.ModelSerializer):
             # In v3/v4 files is expected to be a list but now we only have one file.
             repr['files'] = [repr.pop('file')]
         return repr
+
+    def get_reviewed(self, instance):
+        return serializers.DateTimeField().to_representation(
+            instance.file.approval_date or instance.human_review_date
+        )
 
 
 class LanguageToolVersionSerializer(MinimalVersionSerializer):
@@ -402,12 +420,12 @@ class VersionSerializer(SimpleVersionSerializer):
 
 
 class DeveloperVersionSerializer(VersionSerializer):
-    approval_notes = serializers.CharField(allow_blank=True, required=False)
     custom_license = LicenseSerializer(
         write_only=True,
         required=False,
         source='license',
     )
+    is_disabled = serializers.BooleanField(source='is_user_disabled', required=False)
     source = SourceFileField(
         required=False, allow_null=True, validators=(ReviewedSourceFileValidator(),)
     )
@@ -433,6 +451,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'custom_license',
             'edit_url',
             'file',
+            'is_disabled',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',
@@ -445,6 +464,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'approval_notes',
             'compatibility',
             'custom_license',
+            'is_disabled',
             'license',
             'release_notes',
             'source',
@@ -478,8 +498,30 @@ class DeveloperVersionSerializer(VersionSerializer):
         if not own_upload or not value.valid or value.validation_timeout:
             raise exceptions.ValidationError(gettext('Upload is not valid.'))
         # Parse the file to get and validate package data with the addon.
-        self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
+        try:
+            self.parsed_data = parse_addon(value, addon=self.addon, user=request.user)
+        except DuplicateAddonID as exc:
+            raise Conflict({self.field_name: exc.messages})
         return value
+
+    def validate_is_disabled(self, disable):
+        # The Version.is_user_disabled setter just ignores any change it doesn't like,
+        # but we'd like to raise instead if the value wouldn't be accepted.
+        if disable and (version := self.instance):
+            if (
+                not version.is_user_disabled
+                and version.file.status == amo.STATUS_DISABLED
+            ):
+                raise exceptions.ValidationError(gettext('File is already disabled.'))
+            if not version.can_be_disabled_and_deleted():
+                group = version.addon.promoted_group()
+                msg = gettext(
+                    'The latest approved version of this %s add-on cannot be deleted '
+                    'because the previous version was not approved for %s promotion. '
+                    'Please contact AMO Admins if you need help with this.'
+                ) % (group.name, group.name)
+                raise exceptions.ValidationError(msg)
+        return disable
 
     def _check_blocklist(self, guid, version_string):
         # check the guid/version isn't in the addon blocklist
@@ -509,28 +551,31 @@ class DeveloperVersionSerializer(VersionSerializer):
                 )
             else:
                 msg = gettext('Version {version_string} already exists.')
-            raise exceptions.ValidationError(
-                {'version': msg.format(version_string=version_string)}
-            )
+            raise Conflict({'version': [msg.format(version_string=version_string)]})
 
     def validate(self, data):
         if not self.instance:
             guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
-            self._check_blocklist(guid, self.parsed_data.get('version'))
+            version_string = self.parsed_data.get('version')
+            self._check_blocklist(guid, version_string)
             if self.addon:
-                self._check_for_existing_versions(self.parsed_data.get('version'))
+                self._check_for_existing_versions(version_string)
 
-                # Also check for submitting listed versions when disabled.
-                if (
-                    data['upload'].channel == amo.CHANNEL_LISTED
-                    and self.addon.disabled_by_user
-                ):
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'Listed versions cannot be submitted while add-on is '
-                            'disabled.'
+                if data['upload'].channel == amo.CHANNEL_LISTED:
+                    if error_message := (
+                        validate_version_number_is_gt_latest_signed_listed_version(
+                            self.addon, version_string
                         )
-                    )
+                    ):
+                        raise exceptions.ValidationError({'version': error_message})
+                    # Also check for submitting listed versions when disabled.
+                    if self.addon.disabled_by_user:
+                        raise exceptions.ValidationError(
+                            gettext(
+                                'Listed versions cannot be submitted while add-on is '
+                                'disabled.'
+                            )
+                        )
         elif 'source' in data:
             # We need to manually trigger this as null/empty values aren't validated.
             try:
@@ -579,12 +624,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         if self.addon:
             # self.addon is None when creating a new add-on
             statsd.incr(f'addons.submission.version.{channel_text}')
-            if (
-                self.addon.status == amo.STATUS_NULL
-                and self.addon.has_complete_metadata()
-                and upload.channel == amo.CHANNEL_LISTED
-            ):
-                self.addon.update(status=amo.STATUS_NOMINATED)
+            self.addon.update_status()
         else:
             statsd.incr(f'addons.submission.addon.{channel_text}')
 
@@ -664,6 +704,7 @@ class SimpleDeveloperVersionSerializer(DeveloperVersionSerializer):
             'compatibility',
             'edit_url',
             'file',
+            'is_disabled',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',
@@ -739,7 +780,7 @@ class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
         return data
 
 
-class AddonEulaPolicySerializer(serializers.ModelSerializer):
+class AddonEulaPolicySerializer(AMOModelSerializer):
     eula = TranslationSerializerField()
     privacy_policy = TranslationSerializerField()
 
@@ -759,7 +800,7 @@ class UserSerializerWithPictureUrl(BaseUserSerializer):
         read_only_fields = fields
 
 
-class AddonAuthorSerializer(serializers.ModelSerializer):
+class AddonAuthorSerializer(AMOModelSerializer):
     name = serializers.CharField(source='user.name', read_only=True)
     email = serializers.CharField(source='user.email', read_only=True)
     role = ReverseChoiceField(
@@ -851,7 +892,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
         return value
 
 
-class PromotedAddonSerializer(serializers.ModelSerializer):
+class PromotedAddonSerializer(AMOModelSerializer):
     GROUP_CHOICES = [(group.id, group.api_name) for group in PROMOTED_GROUPS]
     apps = serializers.SerializerMethodField()
     category = ReverseChoiceField(choices=GROUP_CHOICES, source='group_id')
@@ -867,7 +908,7 @@ class PromotedAddonSerializer(serializers.ModelSerializer):
         return [app.short for app in obj.approved_applications]
 
 
-class AddonSerializer(serializers.ModelSerializer):
+class AddonSerializer(AMOModelSerializer):
     authors = UserSerializerWithPictureUrl(
         many=True, source='listed_authors', read_only=True
     )
@@ -884,7 +925,9 @@ class AddonSerializer(serializers.ModelSerializer):
     edit_url = serializers.SerializerMethodField()
     has_eula = serializers.SerializerMethodField()
     has_privacy_policy = serializers.SerializerMethodField()
-    homepage = OutgoingURLTranslationField(required=False)
+    homepage = OutgoingURLTranslationField(
+        required=False,
+    )
     icon_url = serializers.SerializerMethodField()
     icons = serializers.SerializerMethodField()
     icon = ImageField(
@@ -901,12 +944,11 @@ class AddonSerializer(serializers.ModelSerializer):
     is_source_public = serializers.SerializerMethodField()
     is_featured = serializers.SerializerMethodField()
     name = TranslationSerializerField(
-        max_length=50,
         required=False,
-        validators=(
+        validators=[
             VerifyMozillaTrademark(),
             OneOrMoreLetterOrNumberCharacterValidator(),
-        ),
+        ],
     )
     previews = PreviewSerializer(many=True, source='current_previews', read_only=True)
     promoted = PromotedAddonSerializer(read_only=True)
@@ -918,8 +960,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     summary = TranslationSerializerField(
         required=False,
-        max_length=250,
-        validators=(OneOrMoreLetterOrNumberCharacterValidator(),),
+        validators=[OneOrMoreLetterOrNumberCharacterValidator()],
     )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)
@@ -934,7 +975,7 @@ class AddonSerializer(serializers.ModelSerializer):
     )
     url = serializers.SerializerMethodField()
     version = DeveloperVersionSerializer(
-        write_only=True,
+        write_only=True,  # Overridden in create/update to expose the version submitted.
         validators=(
             PreventPartialUpdateValidator(),
             MatchingGuidValidator(),
@@ -1188,17 +1229,13 @@ class AddonSerializer(serializers.ModelSerializer):
         # Add categories
         addon.set_categories(validated_data.get('all_categories', []))
         addon.set_tag_list(validated_data.get('tag_list', []))
-
-        self.fields['version'].create(
+        addon.version = self.fields['version'].create(
             {**validated_data.get('version', {}), 'addon': addon}
         )
-
-        if (
-            addon.status == amo.STATUS_NULL
-            and addon.has_complete_metadata()
-            and upload.channel == amo.CHANNEL_LISTED
-        ):
-            addon.update(status=amo.STATUS_NOMINATED)
+        # When creating, always return the version we just created in the
+        # representation. It uses <instance>.version.
+        self.fields['version'].write_only = False
+        addon.update_status()
 
         return addon
 
@@ -1225,9 +1262,12 @@ class AddonSerializer(serializers.ModelSerializer):
             del instance.tag_list  # super.update will have set it.
             instance.set_tag_list(validated_data['tag_list'])
         if 'version' in validated_data:
-            self.fields['version'].create(
+            instance.version = self.fields['version'].create(
                 {**validated_data.get('version', {}), 'addon': instance}
             )
+            # When updating, always return the version we just created in the
+            # representation if there was one.
+            self.fields['version'].write_only = False
 
         self.log(instance, validated_data)
         return instance
@@ -1283,7 +1323,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # We might not have position in ES; if not fake it with the list position.
         position = data.get('position', idx)
         preview = model_class(
-            id=data['id'], sizes=data.get('sizes', {}), position=position
+            id=data['id'], created=None, sizes=data.get('sizes', {}), position=position
         )
         preview.addon = obj
         preview.version = obj.current_version
@@ -1315,14 +1355,17 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             'permissions', data.get('webext_permissions_list', [])
         )
         file_.optional_permissions = data.get('optional_permissions', [])
+        file_.host_permissions = data.get('host_permissions', [])
         return file_
 
     def fake_version_object(self, obj, data, channel):
         if data:
             version = Version(
                 addon=obj,
+                created=self.handle_date(data['files'][0]['created']),
                 id=data['id'],
-                reviewed=self.handle_date(data['reviewed']),
+                # This isn't the same thing, but for our purposes it'll do.
+                human_review_date=self.handle_date(data['reviewed']),
                 version=data['version'],
                 channel=channel,
             )
@@ -1334,8 +1377,12 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             for app_id, compat_dict in data.get('compatible_apps', {}).items():
                 app_name = APPS_ALL[int(app_id)]
                 compatible_apps[app_name] = ApplicationsVersions(
-                    min=AppVersion(version=compat_dict.get('min_human', '')),
-                    max=AppVersion(version=compat_dict.get('max_human', '')),
+                    min=AppVersion(
+                        created=None, version=compat_dict.get('min_human', '')
+                    ),
+                    max=AppVersion(
+                        created=None, version=compat_dict.get('max_human', '')
+                    ),
                 )
             version.compatible_apps = compatible_apps
             version_serializer = self.fields.get('current_version') or None
@@ -1345,7 +1392,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                 )
             if 'license' in data and version_serializer:
                 license_serializer = version_serializer.fields['license']
-                version.license = License(id=data['license']['id'])
+                version.license = License(created=None, id=data['license']['id'])
                 license_serializer._attach_fields(
                     version.license, data['license'], ('builtin',)
                 )
@@ -1360,7 +1407,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
     def fake_object(self, data):
         """Create a fake instance of Addon and related models from ES data."""
-        obj = Addon(id=data['id'], slug=data['slug'])
+        obj = Addon(id=data['id'], created=None, slug=data['slug'])
 
         # Attach base attributes that have the same name/format in ES and in
         # the model.
@@ -1414,7 +1461,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [
             UserProfile(
+                auth_id=None,
                 id=data_author['id'],
+                created=None,
                 display_name=data_author['name'],
                 username=data_author['username'],
                 is_public=data_author.get('is_public', False),
@@ -1439,6 +1488,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             obj.promoted = PromotedAddon(
                 addon=obj,
                 approved_application_ids=approved_for_apps,
+                created=None,
                 group_id=promoted['group_id'],
             )
             # we can safely regenerate these tuples because
@@ -1484,7 +1534,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'name', 'promoted', 'type', 'url')
+        fields = ('id', 'icon_url', 'icons', 'name', 'promoted', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):
@@ -1565,7 +1615,7 @@ class LanguageToolsSerializer(AddonSerializer):
         return data
 
 
-class ReplacementAddonSerializer(serializers.ModelSerializer):
+class ReplacementAddonSerializer(AMOModelSerializer):
     replacement = serializers.SerializerMethodField()
     ADDON_PATH_REGEX = r"""/addon/(?P<addon_id>[^/<>"']+)/$"""
     COLLECTION_PATH_REGEX = (

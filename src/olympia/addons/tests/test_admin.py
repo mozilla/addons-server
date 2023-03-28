@@ -1,12 +1,14 @@
-from django.test.client import RequestFactory
-from olympia.git.models import GitExtractionEntry
+from datetime import datetime, timedelta
+
 from pyquery import PyQuery as pq
 
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.core import mail
+from django.test.client import RequestFactory
 from django.urls import reverse
+from django.utils import formats, timezone
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -21,6 +23,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.reverse import django_reverse
 from olympia.blocklist.models import Block
+from olympia.git.models import GitExtractionEntry
 
 
 class TestReplacementAddonForm(TestCase):
@@ -131,8 +134,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' not in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' not in response.content
 
     def test_list_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.CHANNEL_UNLISTED}
@@ -141,8 +144,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' not in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' not in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_show_link_to_reviewer_tools_with_both_channels(self):
         addon = addon_factory()
@@ -152,8 +155,8 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
-        assert b'Reviewer Tools (listed)' in response.content
-        assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Review (listed)' in response.content
+        assert b'Review (unlisted)' in response.content
 
     def test_list_queries(self):
         addon_factory(guid='@foo')
@@ -163,15 +166,144 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.client.force_login(user)
 
-        with self.assertNumQueries(9):
+        with self.assertNumQueries(8):
             # - 2 savepoints
             # - 2 user and groups
-            # - 2 count (repeated, django admin limitation)
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
             # - 1 main query
             # - 1 translations
             # - 1 all authors in one query
             response = self.client.get(self.list_url, follow=True)
             assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 3
+
+    def test_list_show_reviewerflags(self):
+        delay = datetime.now() + timedelta(days=1)
+        delay_unlisted = datetime.now() + timedelta(days=2)
+        addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+                'needs_admin_content_review': False,
+                'auto_approval_delayed_until': delay,
+                'auto_approval_delayed_until_unlisted': delay_unlisted,
+            },
+        )
+        addon_factory(guid='@bar')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list > tbody > tr').length == 2
+        # First add-on (default order is id DESC) has no flags.
+        assert (
+            doc('#result_list > tbody > tr:nth-child(1) .field-reviewer_flags').text()
+            == '-'
+        )
+        # Second should have a bunch.
+        assert doc(
+            '#result_list > tbody > tr:nth-child(2) .field-reviewer_flags'
+        ).text() == '\n'.join(
+            [
+                'needs admin code review',
+                'auto approval delayed until',
+                formats.localize(timezone.template_localtime(delay)),
+                'auto approval delayed until unlisted',
+                formats.localize(timezone.template_localtime(delay_unlisted)),
+            ]
+        )
+
+    def test_search_by_guid(self):
+        addon_factory(guid='@foo')
+        addon_factory(guid='@bar')
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+
+        with self.assertNumQueries(8):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # - 1 main query
+            # - 1 translations
+            # - 1 all authors in one query
+            response = self.client.get(self.list_url, data={'q': '@fo'})
+            assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+
+    def test_search_tooltip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert doc('#searchbar-wrapper p').eq(0).text() == (
+            'By default, search will be performed against id, guid__startswith, '
+            'slug__startswith.'
+        )
+        assert doc('#searchbar-wrapper li').eq(0).text() == (
+            'If the query contains only numeric terms, and there are 2 or more terms, '
+            'search will be performed against pk instead.'
+        )
+        assert doc('#searchbar-wrapper li').eq(1).text() == (
+            'If the query contains only IP addresses or networks, separated by commas, '
+            'search will be performed against IP addresses recorded for ADD_VERSION.'
+        )
+
+    def test_search_by_ip(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='@foo')
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
+            )
+        version_factory(addon=addon)
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
+            )
+        second_addon = addon_factory(guid='@bar')
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                second_addon.current_version,
+                second_addon,
+                user=user,
+            )
+        third_addon = addon_factory(guid='@xyz')
+        with core.override_remote_addr('127.0.0.1'):
+            ActivityLog.create(
+                amo.LOG.ADD_VERSION,
+                third_addon.current_version,
+                third_addon,
+                user=user,
+            )
+
+        with self.assertNumQueries(8):
+            # - 2 savepoints
+            # - 2 user and groups
+            # - 1 count
+            #    (show_full_result_count=False so we avoid the duplicate)
+            # - 1 main query
+            # - 1 translations
+            # - 1 all authors in one query
+            response = self.client.get(self.list_url, data={'q': '4.8.15.16'})
+            assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 2
+        result_list_text = doc('#result_list tbody tr').text()
+        assert addon.guid in result_list_text
+        assert second_addon.guid in result_list_text
+        assert third_addon.guid not in result_list_text
 
     def test_can_edit_with_addons_edit_permission(self):
         addon = addon_factory(guid='@foo')
@@ -194,7 +326,7 @@ class TestAddonAdmin(TestCase):
             'bayesian_rating': addon.bayesian_rating,
             'reputation': addon.reputation,
             'type': addon.type,
-            'slug': addon.slug,
+            'slug': 'something-new',
             'status': addon.status,
         }
         post_data['guid'] = '@bar'  # it's readonly
@@ -202,6 +334,41 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         addon.reload()
         assert addon.guid == '@foo'  # no change
+        assert addon.slug == 'something-new'
+
+    def test_can_edit_deleted_addon_with_addons_edit_permission(self):
+        addon = addon_factory(guid='@foo')
+        addon.delete()
+        assert addon.slug is None
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'total_ratings': addon.total_ratings,
+            'text_ratings_count': addon.text_ratings_count,
+            'default_locale': 'fr',  # Changed.
+            'weekly_downloads': addon.weekly_downloads,
+            'average_rating': addon.average_rating,
+            'average_daily_users': addon.average_daily_users,
+            'bayesian_rating': addon.bayesian_rating,
+            'reputation': addon.reputation,
+            'type': addon.type,
+            'slug': '',
+            'status': addon.status,
+        }
+        post_data['guid'] = '@bar'  # it's readonly
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reload()
+        assert addon.guid == '@foo'  # no change
+        assert addon.slug is None  # no change
+        assert addon.default_locale == 'fr'
 
     def test_show_link_to_reviewer_tools_listed(self):
         addon = addon_factory(guid='@foo')
@@ -348,6 +515,11 @@ class TestAddonAdmin(TestCase):
             'files-MAX_NUM_FORMS': 0,
             'files-0-id': addon.current_version.file.pk,
             'files-0-status': addon.current_version.file.status,
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '1',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-addon': str(addon.pk),
         }
 
     def test_can_edit_addonuser_and_files_if_has_admin_advanced(self):
@@ -378,6 +550,64 @@ class TestAddonAdmin(TestCase):
         assert addonuser.user == user
         file.reload()
         assert file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_can_edit_reviewerflags_if_has_admin_advanced(self):
+        addon = addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+            },
+            users=[user_factory()],
+        )
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        doc = pq(response.content)
+        assert doc('#id_reviewerflags-0-needs_admin_code_review')[0].value == 'on'
+        post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
+        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
+        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reviewerflags.reload()
+        assert not addon.reviewerflags.needs_admin_code_review
+        assert addon.reviewerflags.needs_admin_content_review
+
+    def test_cannot_edit_reviewerflags_if_doesnt_have_admin_advanced(self):
+        addon = addon_factory(
+            guid='@foo',
+            reviewer_flags={
+                'needs_admin_code_review': True,
+            },
+            users=[user_factory()],
+        )
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
+        self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+        doc = pq(response.content)
+        assert not doc('#id_reviewerflags-0-needs_admin_code_review')
+        post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
+        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
+        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        response = self.client.post(self.detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        addon.reviewerflags.reload()
+        # Unchanged.
+        assert addon.reviewerflags.needs_admin_code_review
+        assert not addon.reviewerflags.needs_admin_content_review
 
     def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
@@ -424,6 +654,16 @@ class TestAddonAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#id_files-0-id').attr('value') == str(unlisted_version.file.id)
         assert doc('#id_files-1-id').attr('value') == str(addon.current_version.file.id)
+        link = doc('.field-version__version a')[0]
+        assert link.text == unlisted_version.version
+        assert link.attrib['href'] == reverse(
+            'admin:versions_version_change', args=(unlisted_version.id,)
+        )
+        link = doc('.field-version__version a')[1]
+        assert link.text == addon.current_version.version
+        assert link.attrib['href'] == reverse(
+            'admin:versions_version_change', args=(addon.current_version.id,)
+        )
 
         # pagination links aren't shown for less than page size (30) files.
         next_url = self.detail_url + '?page=2'
@@ -469,8 +709,9 @@ class TestAddonAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert f'{file.version} - Deleted' in response.content.decode('utf-8')
-        assert 'disabled' in (pq(response.content)('#id_files-0-status')[0].attrib)
+        doc = pq(response.content)
+        assert doc('.field-version__deleted img')[0].attrib['alt'] == 'True'
+        assert 'disabled' in doc('#id_files-0-status')[0].attrib
         post_data.update(
             **{
                 'files-0-status': amo.STATUS_AWAITING_REVIEW,  # Different status.
@@ -512,7 +753,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(22):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -521,7 +762,7 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(21):
+        with self.assertNumQueries(22):
             # Confirm it scales
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)
@@ -634,8 +875,9 @@ class TestReplacementAddonList(TestCase):
 
     def test_fields(self):
         model_admin = ReplacementAddonAdmin(ReplacementAddon, admin.site)
+        request = RequestFactory().get('/')
         self.assertEqual(
-            list(model_admin.get_list_display(None)),
+            list(model_admin.get_list_display(request)),
             ['guid', 'path', 'guid_slug', '_url'],
         )
 

@@ -1,18 +1,20 @@
-import json
-import uuid
 import io
-from datetime import datetime
+import json
+import os
+import re
+import uuid
 from ipaddress import IPv4Address
 
+from django.core.files.base import ContentFile
 from django.core.management import call_command
 
-import pytest
 from unittest.mock import ANY, patch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, days_ago, TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.utils import SafeStorage
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import UserProfile, UserRestrictionHistory
 
@@ -373,77 +375,80 @@ class TestClearOldUserData(TestCase):
         assert not Addon.unfiltered.filter(id=no_longer_owner_addon.id).exists()
 
 
-@pytest.mark.django_db
-def test_backfill_activity_and_iplog():
-    yesterday = days_ago(1)
-    recently = days_ago(42)
-    a_long_time_ago = datetime(2018, 12, 31)
+class TestMigrateUserPhotos(TestCase):
+    def setUp(self):
+        self.storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+        self.user = user_factory()
+        self.deleted_user = user_factory(deleted=True)
 
-    # last login too old to be considered. has a restriction, but it should
-    # be ignored too.
-    UserRestrictionHistory.objects.create(
-        user=user_factory(last_login_ip='127.0.41.1', last_login=a_long_time_ago),
-        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
-        ip_address='127.0.41.2',
-    )
-
-    # recent last login but somehow no last login ip.
-    user_factory(last_login_ip='', last_login=recently)
-
-    # recent enough last login, with restrictions
-    user = user_factory(last_login_ip='127.0.42.1', last_login=recently)
-    UserRestrictionHistory.objects.create(
-        user=user,
-        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
-        ip_address='127.0.42.2',
-        created=yesterday,
-    )
-
-    # same, but deleted.
-    user_deleted = user_factory(last_login_ip='127.0.43.1', last_login=recently)
-    user_deleted.delete()
-    UserRestrictionHistory.objects.create(
-        user=user_deleted,
-        restriction=UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][0],
-        ip_address='127.0.43.2',
-        created=yesterday,
-    )
-
-    call_command('process_users', task='backfill_activity_and_iplog')
-
-    # We should have 4 ActivityLog, 2 for each user.
-    assert ActivityLog.objects.count() == 4
-
-    activity = ActivityLog.objects.get(user=user, action=amo.LOG.LOG_IN.id)
-    assert activity.created == recently
-    assert activity.iplog_set.count() == 1
-    ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address_binary == IPv4Address('127.0.42.1')
-
-    activity = ActivityLog.objects.get(user=user, action=amo.LOG.RESTRICTED.id)
-    assert activity.created == yesterday
-    assert activity.details == {
-        'restriction': str(
-            UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][1].__name__
+        self.old_picture_path = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}.png'
         )
-    }
-    assert activity.iplog_set.count() == 1
-    ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address_binary == IPv4Address('127.0.42.2')
-
-    activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.LOG_IN.id)
-    assert activity.created == recently
-    assert activity.iplog_set.count() == 1
-    ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address_binary == IPv4Address('127.0.43.1')
-
-    activity = ActivityLog.objects.get(user=user_deleted, action=amo.LOG.RESTRICTED.id)
-    assert activity.created == yesterday
-    assert activity.details == {
-        'restriction': str(
-            UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES[1][1].__name__
+        self.old_picture_path_original = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_original.png'
         )
-    }
-    assert activity.iplog_set.count() == 1
-    ipl = activity.iplog_set.all().get()
-    assert ipl.ip_address_binary == IPv4Address('127.0.43.2')
+
+        self.old_deleted_picture_path = (
+            f'{self.get_old_picture_dir(self.deleted_user)}/{self.deleted_user.pk}.png'
+        )
+        self.old_deleted_picture_path_original = (
+            f'{self.get_old_picture_dir(self.deleted_user)}/'
+            f'{self.deleted_user.pk}_original.png'
+        )
+
+        self.garbage_path = 'somewhere/deep/whatever.png'
+        self.other_garbage_path = f'{self.get_old_picture_dir(self.user)}/føøøøø.png'
+        self.yet_another_garbage_path = (
+            f'{self.get_old_picture_dir(self.user)}/{self.user.pk}_nopé.bin'
+        )
+
+        # Files that need to be migrated.
+        self.storage.save(self.old_picture_path, ContentFile('xxx'))
+        self.storage.save(self.old_picture_path_original, ContentFile('yyy'))
+
+        # Orphaned/garbage files that should be removed.
+        self.storage.save(self.garbage_path, ContentFile('ggg'))
+        self.storage.save(self.other_garbage_path, ContentFile('ŋŋŋ'))
+        self.storage.save(self.yet_another_garbage_path, ContentFile('nnn'))
+        self.storage.save(self.old_deleted_picture_path, ContentFile('aaa'))
+        self.storage.save(self.old_deleted_picture_path_original, ContentFile('bbb'))
+
+    def get_old_picture_dir(self, user):
+        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(user.pk))
+        return os.path.join(split_id.group(2) or '0', split_id.group(1) or '0')
+
+    def test_migrate(self):
+        old_paths = (
+            self.old_picture_path,
+            self.old_picture_path_original,
+            self.old_deleted_picture_path,
+            self.old_deleted_picture_path_original,
+            self.garbage_path,
+            self.other_garbage_path,
+            self.yet_another_garbage_path,
+        )
+        for path in old_paths:
+            assert self.storage.exists(path)
+        # These should not exist since we haven't ran the migration yet.
+        assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
+
+        call_command('migrate_user_photos')
+
+        # Now, every old paths should be gone and only the non-deleted user
+        # photo should have been migrated.
+        for path in old_paths:
+            assert not self.storage.exists(path)
+        assert self.storage.exists(self.user.picture_path)
+        assert self.storage.exists(self.user.picture_path_original)
+        assert self.storage.open(self.user.picture_path).read() == b'xxx'
+        assert self.storage.open(self.user.picture_path_original).read() == b'yyy'
+        assert set(self.storage.listdir(self.user.picture_dir)[1]) == {
+            f'{self.user.pk}.png',
+            f'{self.user.pk}_original.png',
+        }
+
+    def test_migrate_twice(self):
+        self.test_migrate()
+        # Running the migration command again shouldn't do anything.
+        call_command('migrate_user_photos')

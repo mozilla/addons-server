@@ -1,6 +1,7 @@
-import datetime
 import json
+from datetime import datetime, timedelta
 
+from freezegun import freeze_time
 from unittest import mock
 
 from django.conf import settings
@@ -282,14 +283,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # Multiple versions rejection somehow forces us to go through multiple
         # add-on status updates, it all turns out to be ok in the end though...
         logs = ActivityLog.objects.for_addons(addon)
-        assert len(logs) == 5
+        assert len(logs) == 4
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[1].action == amo.LOG.CHANGE_STATUS.id
-        reject_log1 = logs[2]
-        assert reject_log1.action == amo.LOG.REJECT_VERSION.id
-        reject_log2 = logs[3]
-        assert reject_log2.action == amo.LOG.REJECT_VERSION.id
-        block_log = logs[4]
+        reject_log = logs[2]
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        block_log = logs[3]
         assert block_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert block_log.arguments == [addon, addon.guid, block]
         assert block_log.details['min_version'] == '0'
@@ -303,19 +302,26 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .filter(action=block_log.action)
             .get()
         )
-        assert [reject_log1, block_log] == list(
+        # The Reject and block activities are recorded once for all affected
+        # versions, but attached separately to each of them through VersionLog.
+        assert [reject_log, block_log] == list(
             ActivityLog.objects.for_versions(first_version)
         )
-        assert [reject_log2, block_log] == list(
+        assert [reject_log, block_log] == list(
             ActivityLog.objects.for_versions(second_version)
         )
         assert [block_log] == list(
             ActivityLog.objects.for_versions(deleted_addon_version)
         )
         assert not ActivityLog.objects.for_versions(pending_version).exists()
+        change_url = reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(BlocklistSubmission.objects.last().id,),
+        )
         assert [msg.message for msg in response.context['messages']] == [
-            f'The blocklist submission {FANCY_QUOTE_OPEN}No Sign-off: guid@; '
-            f'dfd; some reason{FANCY_QUOTE_CLOSE} was added successfully.'
+            f'The blocklist submission {FANCY_QUOTE_OPEN}'
+            f'<a href="{change_url}">No Sign-off: guid@; dfd; some reason</a>'
+            f'{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
         # The disabled and deleted versions should only have the block activity,
         # not a reject activity
@@ -326,7 +332,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             reverse('admin:blocklist_block_change', args=(block.pk,))
         )
         content = response.content.decode('utf-8')
-        todaysdate = datetime.datetime.now().date()
+        todaysdate = datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
         assert f'versions 0 - {addon.current_version.version}' in content
@@ -346,7 +352,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert disabled_version.file.status == amo.STATUS_DISABLED  # no change
         assert deleted_version.file.status == amo.STATUS_DISABLED  # no change
 
-    def _test_add_multiple_submit(self, addon_adu):
+    def _test_add_multiple_submit(self, addon_adu, delay=0):
         """addon_adu is important because whether dual signoff is needed is
         based on what the average_daily_users is."""
         user = user_factory(email='someone@mozilla.com')
@@ -421,6 +427,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'existing_max_version': '*',
                 'url': 'dfd',
                 'reason': 'some reason',
+                'delay_days': delay,
                 '_save': 'Save',
             },
             follow=True,
@@ -445,13 +452,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert new_block.addon == new_addon
         assert new_block.average_daily_users_snapshot == new_block.current_adu
         logs = list(
-            ActivityLog.objects.for_addons(new_addon).exclude(
-                action=amo.LOG.BLOCKLIST_SIGNOFF.id
-            )
+            ActivityLog.objects.for_addons(new_addon)
+            .exclude(action=amo.LOG.BLOCKLIST_SIGNOFF.id)
+            .order_by('pk')
         )
-        change_status_log = logs[0]
-        reject_log = logs[1]
-        add_log = logs[2]
+        add_log = logs[0]
+        change_status_log = logs[1]
+        reject_log = logs[2]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
         assert add_log.details['min_version'] == '0'
@@ -471,14 +478,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block_log == add_log
         assert (
             add_log
-            == ActivityLog.objects.for_versions(new_addon.current_version).last()
+            == ActivityLog.objects.for_versions(new_addon.current_version).order_by(
+                'pk'
+            )[0]
         )
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
         assert reject_log.arguments == [new_addon, new_addon.current_version]
         assert reject_log.user == self.task_user
         assert (
             reject_log
-            == ActivityLog.objects.for_versions(new_addon.current_version).first()
+            == ActivityLog.objects.for_versions(new_addon.current_version).order_by(
+                'pk'
+            )[1]
         )
         assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
@@ -493,13 +504,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
             existing_and_partial.current_adu
         )
         logs = list(
-            ActivityLog.objects.for_addons(partial_addon).exclude(
-                action=amo.LOG.BLOCKLIST_SIGNOFF.id
-            )
+            ActivityLog.objects.for_addons(partial_addon)
+            .exclude(action=amo.LOG.BLOCKLIST_SIGNOFF.id)
+            .order_by('pk')
         )
-        change_status_log = logs[0]
-        reject_log = logs[1]
-        edit_log = logs[2]
+        edit_log = logs[0]
+        change_status_log = logs[1]
+        reject_log = logs[2]
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert edit_log.arguments == [
             partial_addon,
@@ -523,14 +534,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert block_log == edit_log
         assert (
             edit_log
-            == ActivityLog.objects.for_versions(partial_addon.current_version).last()
+            == ActivityLog.objects.for_versions(partial_addon.current_version).order_by(
+                'pk'
+            )[0]
         )
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
         assert reject_log.arguments == [partial_addon, partial_addon.current_version]
         assert reject_log.user == self.task_user
         assert (
             reject_log
-            == ActivityLog.objects.for_versions(partial_addon.current_version).first()
+            == ActivityLog.objects.for_versions(partial_addon.current_version).order_by(
+                'pk'
+            )[1]
         )
         assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
@@ -708,11 +723,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
             follow=True,
         )
 
+        change_url = reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(BlocklistSubmission.objects.last().id,),
+        )
         assert [msg.message for msg in response.context['messages']] == [
-            'The blocklist submission '
-            f'{FANCY_QUOTE_OPEN}No Sign-off: any@new, partial@existing, '
-            f'full@exist...; dfd; some reason{FANCY_QUOTE_CLOSE} was added '
-            'successfully.'
+            f'The blocklist submission {FANCY_QUOTE_OPEN}'
+            f'<a href="{change_url}">No Sign-off: '
+            f'any@new, partial@existing, full@exist...; dfd; some reason</a>'
+            f'{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
 
         # This time the blocks are updated
@@ -1699,6 +1718,203 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert deleted_addon.status == amo.STATUS_DELETED  # Should stay deleted
         assert DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
 
+    @freeze_time('2023-01-01 12:34:56', as_arg=True)
+    def test_add_with_delayed(frozen_time, self):
+        delay_days = 2
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1
+        (
+            new_addon,
+            existing_and_full,
+            partial_addon,
+            existing_and_partial,
+        ) = self._test_add_multiple_submit(addon_adu=addon_adu, delay=delay_days)
+        # no new Block objects yet even though under the threshold
+        assert Block.objects.count() == 2
+        multi = BlocklistSubmission.objects.get()
+        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        assert not multi.is_submission_ready
+
+        frozen_time.tick(delta=timedelta(days=delay_days, seconds=1))
+        # Now we're past, the submission is ready
+        assert multi.is_submission_ready
+        assert multi.signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+
+        multi.save_to_block_objects()
+        self._test_add_multiple_verify_blocks(
+            new_addon,
+            existing_and_full,
+            partial_addon,
+            existing_and_partial,
+            has_signoff=False,
+        )
+        assert multi.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+
+    def test_approve_delayed(self):
+        now = datetime.now()
+        addon = addon_factory(
+            guid='guid@',
+            average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1,
+        )
+        mbs = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            updated_by=user_factory(),
+            delayed_until=now + timedelta(days=2),
+        )
+        assert mbs.to_block[0]['guid'] == addon.guid
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Signoff')
+        self.client.force_login(user)
+        multi_url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,)
+        )
+        response = self.client.post(
+            multi_url,
+            {
+                '_approve': 'Approve Submission',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mbs = mbs.reload()
+        assert mbs.signoff_by == user
+
+        # Approved but not published
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_APPROVED
+        # And no blocks have been created
+        assert not Block.objects.exists()
+
+        response = self.client.get(multi_url, follow=True)
+        assert (
+            f'Changed {FANCY_QUOTE_OPEN}Approved: {addon.guid}{FANCY_QUOTE_CLOSE} '
+            f'{LONG_DASH} Sign-off Approval' in response.content.decode('utf-8')
+        )
+
+    def test_reject_delayed(self):
+        addon = addon_factory(guid='guid@', name='Danger Danger')
+        version = addon.current_version
+        mbs = BlocklistSubmission.objects.create(
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory(),
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+            delayed_until=datetime.now() + timedelta(days=1),
+        )
+        assert mbs.to_block[0]['guid'] == 'guid@'
+
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Signoff')
+        self.client.force_login(user)
+        multi_url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,)
+        )
+        response = self.client.post(
+            multi_url,
+            {
+                'input_guids': 'guid2@\nfoo@baa',  # should be ignored
+                'min_version': '1',  # should be ignored
+                'max_version': '99',  # should be ignored
+                'url': 'new.url',  # should be ignored
+                'reason': 'a reason',  # should be ignored
+                '_reject': 'Reject Submission',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mbs = mbs.reload()
+
+        # the read-only values above weren't changed.
+        assert mbs.input_guids == 'guid@\ninvalid@'
+        assert mbs.min_version == '0'
+        assert mbs.max_version == '*'
+        assert mbs.url != 'new.url'
+        assert mbs.reason != 'a reason'
+
+        # And the blocklistsubmission was rejected, so no Blocks created
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_REJECTED
+        assert Block.objects.count() == 0
+        assert not mbs.is_submission_ready
+
+        response = self.client.get(multi_url, follow=True)
+        content = response.content.decode('utf-8')
+        assert (
+            f'Changed {FANCY_QUOTE_OPEN}Rejected: guid@, invalid@'
+            f'{FANCY_QUOTE_CLOSE} {LONG_DASH} Sign-off Rejection' in content
+        )
+
+        # statuses didn't change
+        addon.reload()
+        version.reload()
+        assert addon.status != amo.STATUS_DISABLED
+        assert version.file.status != amo.STATUS_DISABLED
+
+    def test_edit_delay(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        addon = addon_factory(guid='guid@', average_daily_users=threshold + 1)
+        now = datetime.now()
+        mbs = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            updated_by=user_factory(),
+            signoff_state=BlocklistSubmission.SIGNOFF_PENDING,
+            delayed_until=now + timedelta(days=1),
+        )
+        assert mbs.to_block[0]['guid'] == addon.guid
+        multi_url = reverse(
+            'admin:blocklist_blocklistsubmission_change', args=(mbs.id,)
+        )
+
+        # First a change to a date in the future
+        response = self.client.post(
+            multi_url,
+            {'delayed_until': now + timedelta(days=5), '_save': 'Update'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        mbs = mbs.reload()
+        # new delayed date
+        assert mbs.delayed_until == now + timedelta(days=5)
+        # The blocklistsubmission wasn't approved or rejected though
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert Block.objects.count() == 0
+
+        # Then to a date that is already past
+        response = self.client.post(
+            multi_url,
+            {'delayed_until': now, '_save': 'Update'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        mbs = mbs.reload()
+        # new delayed date
+        assert mbs.delayed_until == now
+        # No change in state because it still needs signoff
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert Block.objects.count() == 0
+
+        # But if the submission didn't need dual signoff then it will be auto approved
+        # reset the submission state first
+        mbs.signoff_state = BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        mbs.delayed_until = now + timedelta(days=5)
+        mbs.to_block[0]['average_daily_users'] = threshold - 1
+        mbs.save()
+        assert mbs.all_adu_safe()
+        response = self.client.post(
+            multi_url,
+            {'delayed_until': now, '_save': 'Update'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        mbs = mbs.reload()
+        # new delayed date
+        assert mbs.delayed_until == now
+        # The submission is auto approved
+        assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert Block.objects.count() == 1
+
 
 class TestBlockAdminEdit(TestCase):
     def setUp(self):
@@ -1796,7 +2012,7 @@ class TestBlockAdminEdit(TestCase):
         # Check the block history contains the edit just made.
         response = self.client.get(self.change_url, follow=True)
         content = response.content.decode('utf-8')
-        todaysdate = datetime.datetime.now().date()
+        todaysdate = datetime.now().date()
         assert f'<a href="https://foo.baa">{todaysdate}</a>' in content
         assert f'Block edited by {user.name}:\n        {self.block.guid}' in (content)
         assert f'versions 0 - {self.addon.current_version.version}' in content

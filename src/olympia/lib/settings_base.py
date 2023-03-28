@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
 INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
 
 try:
-    # If we have a build id (it should be generated in Dockerfile.deploy),
+    # If we have a build id (it should be generated when building the image),
     # we'll grab it here and add it to our CACHE_KEY_PREFIX. This will let us
     # not have to flush memcache during updates and it will let us preload
     # data into it before a production push.
@@ -75,13 +75,15 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = env('LESS_BIN', default='node_modules/less/bin/lessc')
+LESS_BIN = env('LESS_BIN', default='/deps/node_modules/less/bin/lessc')
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = env('CLEANCSS_BIN', default='node_modules/clean-css-cli/bin/cleancss')
+CLEANCSS_BIN = env(
+    'CLEANCSS_BIN', default='/deps/node_modules/clean-css-cli/bin/cleancss'
+)
 
 # Path to our JS minifier.
-JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='node_modules/terser/bin/terser')
+JS_MINIFIER_BIN = env('JS_MINIFIER_BIN', default='/deps/node_modules/terser/bin/terser')
 
 # rsvg-convert is used to save our svg static theme previews to png
 RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
@@ -91,8 +93,10 @@ PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
 
 # Path to our addons-linter binary
 ADDONS_LINTER_BIN = env(
-    'ADDONS_LINTER_BIN', default='node_modules/addons-linter/bin/addons-linter'
+    'ADDONS_LINTER_BIN', default='/deps/node_modules/addons-linter/bin/addons-linter'
 )
+# --enable-background-service-worker linter flag value
+ADDONS_LINTER_ENABLE_SERVICE_WORKER = False
 
 DELETION_EMAIL = 'amo-notifications+deletion@mozilla.com'
 
@@ -138,12 +142,6 @@ def get_db_config(environ_var, atomic_requests=True):
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
-
-# A database to be used by the services scripts, which does not use Django.
-# Please note that this is not a full Django database connection
-# so the amount of values supported are limited. By default we are using
-# the same connection as 'default' but that changes in prod/dev/stage.
-SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
 DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 
@@ -710,7 +708,9 @@ CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.PyMemcacheC
 CACHES['default']['KEY_PREFIX'] = 'amo:%s:' % BUILD_ID
 
 # Outgoing URL bouncer
-REDIRECT_URL = env('REDIRECT_URL', default='https://outgoing.prod.mozaws.net/v1/')
+REDIRECT_URL = env(
+    'REDIRECT_URL', default='https://prod.outgoing.prod.webservices.mozgcp.net/v1/'
+)
 REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 
 # Allow URLs from these servers. Use full domain names.
@@ -833,10 +833,11 @@ CELERY_TASK_ROUTES = {
     'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.unflag_database': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
-    'olympia.translations.tasks.reclean_collection_descriptions': {'queue': 'adhoc'},
+    'olympia.translations.tasks.update_outgoing_url': {'queue': 'adhoc'},
     'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
     'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
-    'olympia.users.tasks.backfill_activity_and_iplog': {'queue': 'adhoc'},
+    'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
+    'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
@@ -854,8 +855,6 @@ CELERY_TASK_ROUTES = {
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'amo'},
     'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
-    'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'amo'},
-    'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'amo'},
     'olympia.devhub.tasks.recreate_previews': {'queue': 'amo'},
     'olympia.git.tasks.continue_git_extraction': {'queue': 'amo'},
     'olympia.git.tasks.extract_versions_to_git': {'queue': 'amo'},
@@ -884,13 +883,14 @@ CELERY_TASK_ROUTES = {
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
-    'olympia.devhub.tasks.create_site_permission_version': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_upload_validation_result': {'queue': 'devhub'},
     'olympia.devhub.tasks.revoke_api_key': {'queue': 'devhub'},
-    'olympia.devhub.tasks.send_welcome_email': {'queue': 'devhub'},
+    'olympia.devhub.tasks.send_initial_submission_acknowledgement_email': {
+        'queue': 'devhub'
+    },
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
@@ -902,6 +902,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
+    'olympia.promoted.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
     # Reviewers.
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'reviewers'},
@@ -1017,8 +1018,8 @@ LOGGING = {
 }
 
 # CSP Settings
-
-ANALYTICS_HOST = 'https://www.google-analytics.com'
+# See https://github.com/mozilla/bedrock/issues/11768
+ANALYTICS_HOST = 'https://*.google-analytics.com'
 
 CSP_REPORT_URI = '/__cspreport__'
 CSP_REPORT_ONLY = False
@@ -1050,6 +1051,7 @@ CSP_OBJECT_SRC = ("'none'",)
 
 CSP_SCRIPT_SRC = (
     'https://www.google-analytics.com/analytics.js',
+    'https://www.googletagmanager.com/gtag/js',
     'https://www.recaptcha.net/recaptcha/',
     'https://www.gstatic.com/recaptcha/',
     'https://www.gstatic.cn/recaptcha/',
@@ -1154,8 +1156,8 @@ ES_DEFAULT_NUM_SHARDS = 5
 # paginating through all results.
 # NOTE: This setting is being set during reindex, if this needs changing
 # we need to trigger a reindex. It's also hard-coded in amo/pagination.py
-# and there's a test verifying it's value is 25000 in amo/test_pagination.py
-ES_MAX_RESULT_WINDOW = 25000
+# and there's a test verifying it's value is 30000 in amo/test_pagination.py
+ES_MAX_RESULT_WINDOW = 30000
 
 # Default AMO user id to use for tasks.
 TASK_USER_ID = 4757633
@@ -1429,6 +1431,7 @@ CRON_JOBS = {
     'update_addon_hotness': 'olympia.addons.cron',
     'gc': 'olympia.amo.cron',
     'write_sitemaps': 'olympia.amo.cron',
+    'process_blocklistsubmissions': 'olympia.blocklist.cron',
     'upload_mlbf_to_remote_settings': 'olympia.blocklist.cron',
     'update_blog_posts': 'olympia.devhub.cron',
     'update_user_ratings': 'olympia.users.cron',

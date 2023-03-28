@@ -283,7 +283,7 @@ class ReviewedSourceFileValidator:
     def __call__(self, value, serializer_field):
         if (
             (instance := serializer_field.parent.instance)
-            and instance.has_been_human_reviewed
+            and instance.human_review_date
             and not instance.pending_rejection
         ):
             raise exceptions.ValidationError(

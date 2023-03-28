@@ -350,7 +350,6 @@ class LoginStartView(FxAConfigMixin, APIView):
 
 
 class AuthenticateView(FxAConfigMixin, APIView):
-
     authentication_classes = (SessionAuthentication,)
 
     @method_decorator(never_cache)
@@ -761,8 +760,12 @@ class FxaNotificationView(FxAConfigMixin, APIView):
             )
 
         if not cls.fxa_verifying_keys:
+            log.error(
+                'FxA webhook: verifying keys are not available (response was %s).',
+                response.status_code,
+            )
             raise exceptions.AuthenticationFailed(
-                'FXA verifying keys are not available.'
+                'FxA verifying keys are not available.'
             )
 
         return cls.fxa_verifying_keys
@@ -784,15 +787,18 @@ class FxaNotificationView(FxAConfigMixin, APIView):
                         request_jwt,
                         algorithm,
                         audience=client_id,
+                        leeway=1,
                         algorithms=[verifying_key['alg']],
                     )
-                except (ValueError, TypeError, jwt.exceptions.PyJWTError):
-                    pass  # We raise when `not authenticated_jwt` below
+                except (ValueError, TypeError, jwt.exceptions.PyJWTError) as e:
+                    # We raise when `not authenticated_jwt` below, but log the
+                    # error anyway
+                    log.exception('FxA webhook: uncaught exception', exc_info=e)
                 break
 
         if not authenticated_jwt:
             raise exceptions.AuthenticationFailed(
-                'Could not authenticate JWT with FXA key.'
+                'Could not authenticate JWT with FxA key.'
             )
 
         return authenticated_jwt

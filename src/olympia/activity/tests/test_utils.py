@@ -154,6 +154,18 @@ class TestEmailBouncing(TestCase):
         # No From or Reply means no bounce, alas.
         assert len(mail.outbox) == 0
 
+    def test_exception_parser_because_malformed_from(self):
+        message = copy.deepcopy(self.email_text)
+        message['From'] = {'EmailAddress': '@nowhere.com'}
+        assert not add_email_to_activity_log_wrapper(message, 0)
+        assert len(mail.outbox) == 0
+
+    def test_exception_parser_because_malformed_from_encoding(self):
+        message = copy.deepcopy(self.email_text)
+        message['From'] = {'EmailAddress': 'abc@d���.com'}
+        assert not add_email_to_activity_log_wrapper(message, 0)
+        assert len(mail.outbox) == 0
+
     def _test_exception_in_parser_but_can_send_email(self, message):
         assert not add_email_to_activity_log_wrapper(message, 0)
         assert len(mail.outbox) == 1

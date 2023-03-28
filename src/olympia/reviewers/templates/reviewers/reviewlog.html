@@ -1,6 +1,6 @@
 {% extends "reviewers/base.html" %}
 
-{% block title %} {{ _('Add-on Review Log – Add-ons for Firefox') }} {% endblock %}
+{% block title %} Add-on Review Log – Add-ons for Firefox {% endblock %}
 
 {% block content %}
 
@@ -14,24 +14,21 @@
         {{ form.search.label_tag() }}
         {{ form.search }}
 
-        {# L10n: "Filter" is a button label (verb) #}
-        <button type="submit">
-          {{ _('Filter') }}
-        </button>
+        <button type="submit">Filter</button>
       </div>
     </form>
   </div><!-- #log-filter -->
 
-  <h2>{{ _('Add-on Review Log') }}</h2>
+  <h2>Add-on Review Log</h2>
 
   <div class="listing results"><div class="results-inner controls">
     {% if pager.object_list %}
       <table id="log-listing" class="data-grid">
         <thead>
           <tr class="listing-header">
-            <th>{{ _('Date') }}</th>
-            <th>{{ _('Event') }}</th>
-            <th>{{ _('Reviewer') }}</th>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Reviewer</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -41,31 +38,15 @@
               <td>{{ item.created|datetime }}</td>
               <td>
                 {% if item.arguments.0 %}
-                  <a href="{{ item.arguments.0.get_url_path() }}">{{ item.arguments.0.name }}</a>
-                  {% if item.arguments|count >= 2 %}
-                    {{ item.arguments[1] }}
-                    {% set channel = item.arguments[1].channel %}
-                  {% else %}
-                    {% set channel = 0 %}
-                  {% endif %}
-                  {% if item.action == amo.LOG.REJECT_CONTENT.id or item.action == amo.LOG.APPROVE_CONTENT.id %}
-                    {% set review_url = url('reviewers.review', 'content', item.arguments[0].pk ) %}
-                  {% elif channel == amo.CHANNEL_UNLISTED %}
-                    {% set review_url = url('reviewers.review', 'unlisted', item.arguments[0].pk) %}
-                  {% else %}
-                    {% set review_url = url('reviewers.review', item.arguments[0].pk) %}
-                  {% endif %}
-                  <a href="{{ review_url }}">
-                    {{ item.log.short }}
-                  </a>
+                  {{ item.to_string('reviewlog') }}
                 {% else %}
-                    {{ _('Add-on has been deleted.') }}
+                    Add-on has been deleted.
                 {% endif %}
               </td>
               <td>{{ item.user.name }}</td>
               <td>
-                <a class="comments show" href="#">{{ _('Show Comments') }}</a>
-                <a class="comments hide" href="#">{{ _('Hide Comments') }}</a>
+                <a class="comments show" href="#">Show Comments</a>
+                <a class="comments hide" href="#">Hide Comments</a>
               </td>
             </tr>
             <tr class="comments hide">
@@ -77,7 +58,7 @@
         </tbody>
       </table>
     {% else %}
-      <p class="no-results">{{ _('No reviews found for this period.') }}</p>
+      <p class="no-results">No reviews found for this period.</p>
     {% endif %}
 
     {% if pager.has_other_pages() %}

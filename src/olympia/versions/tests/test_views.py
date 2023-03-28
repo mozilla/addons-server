@@ -381,6 +381,10 @@ class TestDownloads(TestDownloadsBase):
         self.addon.delete()
         assert self.client.get(self.file_url).status_code == 404
 
+    def test_file_path_empty(self):
+        self.file.update(file='')
+        assert self.client.get(self.file_url).status_code == 404
+
     def test_georestricted(self):
         AddonRegionalRestrictions.objects.create(
             addon=self.addon, excluded_regions=['FR', 'US']
@@ -577,56 +581,6 @@ class TestUnlistedFileDownloadsJWTAPIAuth(APILoginMixin, TestUnlistedFileDownloa
     client_class = APITestClientJWT
 
 
-class TestUnlistedSitePermissionFileDownloads(
-    DownloadsNonDisabledMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
-):
-    def setUp(self):
-        super().setUp()
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        self.make_addon_unlisted(self.addon)
-        self.grant_permission(
-            UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted',
-        )
-
-
-class TestUnlistedSitePermissionFileDownloadsSessionAPIAuth(
-    APILoginMixin, TestUnlistedSitePermissionFileDownloads
-):
-    client_class = APITestClientSessionID
-
-
-class TestUnlistedSitePermissionFileDownloadsJWTAPIAuth(
-    APILoginMixin, TestUnlistedSitePermissionFileDownloads
-):
-    client_class = APITestClientJWT
-
-
-class TestUnlistedDisabledSitePermissionFileDownloads(
-    NonPublicFileDownloadsMixin, TestDownloadsBase
-):
-    def setUp(self):
-        super().setUp()
-        self.addon.update(status=amo.STATUS_DISABLED, type=amo.ADDON_SITE_PERMISSION)
-        self.make_addon_unlisted(self.addon)
-        self.grant_permission(
-            UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted',
-        )
-
-
-class TestUnlistedDisabledSitePermissionFileDownloadsSessionAPIAuth(
-    APILoginMixin, TestUnlistedDisabledSitePermissionFileDownloads
-):
-    client_class = APITestClientSessionID
-
-
-class TestUnlistedDisabledSitePermissionFileDownloadsJWTAPIAuth(
-    APILoginMixin, TestUnlistedDisabledSitePermissionFileDownloads
-):
-    client_class = APITestClientJWT
-
-
 class TestUnlistedDisabledAndDeletedFileDownloads(TestDisabledFileDownloads):
     # Like TestDownloadsUnlistedAddonDeleted above, nothing should change for
     # reviewers and admins if the add-on is deleted in addition to being
@@ -659,26 +613,6 @@ class TestUnlistedDisabledAndDeletedFileDownloadsSessionAPIAuth(
 
 class TestUnlistedDisabledAndDeletedFileDownloadsJWTAPIAuth(
     APILoginMixin, TestUnlistedDisabledAndDeletedFileDownloads
-):
-    client_class = APITestClientJWT
-
-
-class TestUnlistedDisabledAndDeletedSitePermissionFileDownloads(
-    TestUnlistedDisabledAndDeletedFileDownloads
-):
-    def setUp(self):
-        super().setUp()
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-
-
-class TestUnlistedDisabledAndDeletedSitePermissionFileDownloadsSessionAPIAuth(
-    APILoginMixin, TestUnlistedDisabledAndDeletedSitePermissionFileDownloads
-):
-    client_class = APITestClientSessionID
-
-
-class TestUnlistedDisabledAndDeletedSitePermissionFileDownloadsJWTAPIAuth(
-    APILoginMixin, TestUnlistedDisabledAndDeletedSitePermissionFileDownloads
 ):
     client_class = APITestClientJWT
 

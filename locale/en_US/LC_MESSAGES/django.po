@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,62 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "type"
-
-#, fuzzy
-msgid "Users"
-msgstr "Username"
-
-msgid "Add-ons"
-msgstr "Add-ons"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "minimum reports count (grouped by guid)"
-
-#, fuzzy
-msgid "creation date"
-msgstr "Moderation actions:"
-
-#, fuzzy
-msgid "User / Add-on"
-msgstr "All Unlisted Add-ons"
-
-#, fuzzy
-msgid "Distribution"
-msgstr "Description"
-
-msgid "Reporter's country"
-msgstr "Reporter's country"
-
-msgid "Message excerpt"
-msgstr "Message excerpt"
-
-#, fuzzy, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "The text entered has been flagged as spam."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "The %d selected reports have been marked as suspicious."
-
-#, fuzzy
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Misplaced bug report or support request"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Please ensure this field has no more than {max_length} characters."
 
-msgid "Modified on:"
-msgstr "Modified on:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "By %(filter_title)s"
-
-msgid "All"
-msgstr "All"
+msgid "Invalid value"
+msgstr "Invalid value"
 
 msgid "No links are allowed."
 msgstr "No links are allowed."
@@ -121,8 +70,11 @@ msgstr "Full Add-on Review"
 msgid "Review"
 msgstr "Review"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "Version {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Version {0}"
+msgstr[1] "Version {0}"
 
 #, fuzzy
 msgid "Review note"
@@ -131,34 +83,8 @@ msgstr "Review Date"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Only latest versions of addons can have notes added."
 
-msgid "Authors"
-msgstr "Authors"
-
-msgid "Ratings"
-msgstr "Ratings"
-
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Reviewers"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Reviewers"
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "Reviewers"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Git extraction triggered for \"%(addons)s\"."
-
-#, fuzzy
-msgid "Activity Logs"
-msgstr "Activity"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Add-on not on AMO -"
+msgid "Request content length is too large."
+msgstr "Request content length is too large."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -191,9 +117,6 @@ msgstr "Unsupported file type, please upload an archive file ({extensions})."
 msgid "Invalid or broken archive."
 msgstr "Invalid archive."
 
-msgid "Invalid value"
-msgstr "Invalid value"
-
 msgid "Invalid app specified"
 msgstr "Invalid app specified"
 
@@ -222,6 +145,13 @@ msgstr "Built in licenses can not be updated."
 
 msgid "Upload is not valid."
 msgstr "Upload is not valid."
+
+msgid "File is already disabled."
+msgstr "File is already disabled."
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
@@ -257,8 +187,8 @@ msgstr "This slug cannot be used. Please choose another."
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Add-on names cannot contain the Mozilla or Firefox trademarks."
 
-msgid "Site permissions for {hostnames}"
-msgstr "Site permissions for {hostnames}"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Both `license` and `custom_license` cannot be provided together."
@@ -295,9 +225,6 @@ msgstr "My Add-ons"
 
 msgid "My Themes"
 msgstr "My Themes"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Tools"
@@ -527,34 +454,6 @@ msgstr "Invalid pk or slug \"%s\" - object does not exist."
 msgid "Confirmation for developer API keys"
 msgstr "More information requested"
 
-msgid "Application Versions"
-msgstr "Application Versions"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Acceptable versions for all applications on AMO."
-
-msgid "Valid Application Versions"
-msgstr "Valid Application Versions"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-
-#, fuzzy, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Please be aware that WebExtensions will not accept a \"*\" in <a href=\"%(version_url)s\">strict_min_version</a>."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versions"
-
-#, fuzzy, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr "If your supported application does not require a manifest file, you still must include one with the required properties as specified <a href=\"%(url)s\">here</a>."
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "This url is already in use by another collection"
@@ -573,9 +472,6 @@ msgstr "This username cannot be used."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "This url is already in use by another collection"
-
-msgid "Signoff State"
-msgstr "Signoff State"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -611,64 +507,6 @@ msgstr "Review requested"
 msgid "Review Unlisted"
 msgstr "Review Date"
 
-#, fuzzy, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Re-enable Version"
-
-#, fuzzy
-msgid "Home"
-msgstr "Homepage"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s Add-on GUIDs were not found"
-
-msgid "Save"
-msgstr "Save"
-
-msgid "Save and add more"
-msgstr "Save and add more"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Update"
-msgstr "Update"
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "My Submissions"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "My Submissions"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Add %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "Add-on GUIDs (one per line)"
-
-#, fuzzy
-msgid "Submit"
-msgstr "Submit a New Add-on"
-
-#, fuzzy, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s Add-on GUIDs"
-
-msgid "Edit Block"
-msgstr "Edit Block"
-
-#, fuzzy
-msgid "versions"
-msgstr "Versions"
-
 msgid "{addon} was created."
 msgstr "{addon} was created."
 
@@ -681,12 +519,13 @@ msgstr "{addon} description edited."
 msgid "Categories edited for {addon}."
 msgstr "Categories edited for {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) added to {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr "{user} ({0}) added to {addon}."
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) removed from {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr "{user} ({0}) removed from {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Contributions for {addon}."
@@ -712,8 +551,8 @@ msgstr "{version} edited for {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} deleted from {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "File {0.name} added to {version} of {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr "File {file} added to {version} of {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "File {0} deleted from {version} of {addon}."
@@ -766,9 +605,6 @@ msgstr "{addon} {version} super review requested."
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 
-msgid "Comment on {addon} {version}."
-msgstr "Comment on {addon} {version}."
-
 #, fuzzy
 msgid "Commented"
 msgstr "commented"
@@ -807,9 +643,9 @@ msgstr "{addon} is no longer featured."
 msgid "{0} {1} added."
 msgstr "{0} {1} added."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} role changed to {1} for {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr "{user} role changed to {0} for {addon}."
 
 #, fuzzy
 msgid "{addon} is now licensed under {0}."
@@ -827,16 +663,8 @@ msgid "{rating} for {addon} approved."
 msgstr "{review} for {addon} approved."
 
 #, fuzzy
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} approved {review} for {addon}."
-
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
 msgstr "Review {review} for {addon} deleted."
-
-#, fuzzy
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} deleted {review} for {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Application max version for {version} updated."
@@ -876,18 +704,6 @@ msgstr "Edited field: {2} set to: {0}."
 msgid "Deleted: {1}."
 msgstr "Deleted: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "User {user} edited, reason: {1}"
-
-msgid "User {user} anonymized."
-msgstr "User {user} anonymized."
-
-msgid "User {user} restricted."
-msgstr "User {user} restricted."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Admin {0} viewed activity log for {user}."
-
 #, fuzzy
 msgid "{rating} for {addon} updated."
 msgstr "{review} for {addon} updated."
@@ -903,11 +719,11 @@ msgstr "User {user} anonymized."
 msgid "User {user} picture deleted."
 msgstr "User {user} restricted."
 
-msgid "User {0.name} added to {group}."
-msgstr "User {0.name} added to {group}."
+msgid "User {user} added to {group}."
+msgstr "User {user} added to {group}."
 
-msgid "User {0.name} removed from {group}."
-msgstr "User {0.name} removed from {group}."
+msgid "User {user} removed from {group}."
+msgstr "User {user} removed from {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} unlisted."
@@ -954,9 +770,8 @@ msgstr "Comment on {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Source code"
 
-#, fuzzy
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Comment on {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr "{addon} {version} auto-approval confirmed."
 
 #, fuzzy
 msgid "Auto-Approval confirmed"
@@ -1072,10 +887,6 @@ msgid "User {user} session(s) reset."
 msgstr "User {user} restricted."
 
 #, fuzzy
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "User {user} edited, reason: {1}"
-
-#, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} rejected."
 
@@ -1099,27 +910,17 @@ msgstr "{addon} {version} review requested."
 msgid "Version re-signed"
 msgstr "Version %s re-enabled."
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Force-disable add-on"
+msgid "{addon} {version} un-rejected."
+msgstr "{addon} {version} un-rejected."
 
-#, fuzzy
-msgid "Force disabled"
-msgstr "Force-disable add-on"
+msgid "Un-rejected"
+msgstr "Un-rejected"
 
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Re-enable Version"
+msgid "{addon} needs_human_review flag cleared."
+msgstr "{addon} needs_human_review flag cleared."
 
-#, fuzzy
-msgid "Force enabled"
-msgstr "Re-enable Version"
-
-msgid "{user} logged in."
-msgstr "{user} logged in."
-
-msgid "{user} restricted."
-msgstr "{user} restricted."
+msgid "Needs Human Review cleared"
+msgstr "Needs Human Review cleared"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1613,27 +1414,8 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategic"
 
-msgid "Add-on"
-msgstr "Add-on"
-
-#, fuzzy
-msgid "Static Theme"
-msgstr "Submit Theme"
-
-msgid "Persona"
-msgstr "Persona"
-
-#, fuzzy
-msgid "Security"
-msgstr "Security Tests"
-
-#, fuzzy
-msgid "Privacy"
-msgstr "Privacy Policy"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "See Best Practices"
+msgid "Notable"
+msgstr "Notable"
 
 #, fuzzy
 msgid "No Reputation"
@@ -1647,122 +1429,6 @@ msgstr "Very Good (2)"
 
 msgid "Excellent (3)"
 msgstr "Excellent (3)"
-
-msgid "Manual Reviewer Points"
-msgstr "Manual Reviewer Points"
-
-#, fuzzy
-msgid "New Legacy Add-on Review"
-msgstr "Full Add-on Review"
-
-msgid "Preliminary Add-on Review"
-msgstr "Preliminary Add-on Review"
-
-#, fuzzy
-msgid "Updated Legacy Add-on Review"
-msgstr "Updated Add-on Review"
-
-#, fuzzy
-msgid "New Dictionary Review"
-msgstr "Full Dictionary Review"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Preliminary Dictionary Review"
-
-msgid "Updated Dictionary Review"
-msgstr "Updated Dictionary Review"
-
-#, fuzzy
-msgid "New Language Pack Review"
-msgstr "Full Language Pack Review"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Preliminary Language Pack Review"
-
-msgid "Updated Language Pack Review"
-msgstr "Updated Language Pack Review"
-
-msgid "Theme Review"
-msgstr "Theme Review"
-
-#, fuzzy
-msgid "Theme (Static) Review"
-msgstr "Theme Details"
-
-#, fuzzy
-msgid "New Search Provider Review"
-msgstr "Full Search Provider Review"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Preliminary Search Provider Review"
-
-msgid "Updated Search Provider Review"
-msgstr "Updated Search Provider Review"
-
-#, fuzzy
-msgid "New Complete Theme Review"
-msgstr "Complete Theme Review"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Preliminary Complete Theme Review"
-
-msgid "Updated Complete Theme Review"
-msgstr "Updated Complete Theme Review"
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Moderated Addon Review"
-
-#, fuzzy
-msgid "Add-on Review Moderation Reverted"
-msgstr "Addon Review Moderation Reverted"
-
-#, fuzzy
-msgid "Add-on Content Review"
-msgstr "Commit Review"
-
-#, fuzzy
-msgid "Add-on Review (Highest Risk)"
-msgstr "Post-Approval Add-on Review (Highest Risk)"
-
-#, fuzzy
-msgid "Add-on Review (High Risk)"
-msgstr "Post-Approval Add-on Review (High Risk)"
-
-#, fuzzy
-msgid "Add-on Review (Medium Risk)"
-msgstr "Post-Approval Add-on Review (Medium Risk)"
-
-#, fuzzy
-msgid "Add-on Review (Low Risk)"
-msgstr "Add-on Review Log"
-
-msgid "Level 1"
-msgstr "Level 1"
-
-msgid "Level 2"
-msgstr "Level 2"
-
-msgid "Level 3"
-msgstr "Level 3"
-
-msgid "Level 4"
-msgstr "Level 4"
-
-msgid "Level 5"
-msgstr "Level 5"
-
-msgid "Level 6"
-msgstr "Level 6"
-
-msgid "Level 7"
-msgstr "Level 7"
-
-msgid "Level 8"
-msgstr "Level 8"
-
-msgid "Level 9"
-msgstr "Level 9"
 
 msgid "Request More Info"
 msgstr "Request More Info"
@@ -1779,32 +1445,11 @@ msgstr "Reject"
 msgid "Approve"
 msgstr "Approve"
 
-msgid "Sexual or pornographic content"
-msgstr "Sexual or pornographic content"
+msgid "All"
+msgstr "All"
 
-msgid "Inappropriate or offensive content"
-msgstr "Inappropriate or offensive content"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Violence, war, or weaponry images"
-
-msgid "Nazi or other hate content"
-msgstr "Nazi or other hate content"
-
-msgid "Defamatory content"
-msgstr "Defamatory content"
-
-msgid "Online gambling"
-msgstr "Online gambling"
-
-msgid "Spam content"
-msgstr "Spam content"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Low-quality, stretched, or blank image"
-
-msgid "Header image alignment problem"
-msgstr "Header image alignment problem"
+msgid "Theme"
+msgstr "Theme"
 
 #, fuzzy
 msgid "No action"
@@ -1873,6 +1518,23 @@ msgstr "Recent Changes for My Add-ons"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
+
+#, fuzzy
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
+
+msgid "Manifest V3 compatibility warning"
+msgstr "Manifest V3 compatibility warning"
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "This slug is already in use. Please choose another."
@@ -2012,20 +1674,6 @@ msgid "Display Name"
 msgstr "Display Name"
 
 #, fuzzy
-msgid "Origin"
-msgstr "Origin:"
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Versions"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "You have generated a site permission add-on for the same origin and permissions."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
 msgstr "Invalid archive."
 
@@ -2043,10 +1691,6 @@ msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-
-#, fuzzy
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest v3 is currently not supported for upload. You can read more about the support timeline [{start_href}here{end_href}]."
 
 msgid "Updated"
 msgstr "Updated"
@@ -2289,16 +1933,6 @@ msgstr "Search Developer Docs"
 msgid "Search"
 msgstr "Search"
 
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "Versions"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "The permission(s) the generated add-on will grant on the origin."
-
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
 
@@ -2334,6 +1968,9 @@ msgstr "No results found."
 
 msgid "Refine Activity"
 msgstr "Refine Activity"
+
+msgid "Add-on"
+msgstr "Add-on"
 
 msgid "Activity"
 msgstr "Activity"
@@ -2455,6 +2092,9 @@ msgstr "Decline"
 
 msgid "Manage Authors & License"
 msgstr "Manage Authors & License"
+
+msgid "Authors"
+msgstr "Authors"
 
 msgid "About author roles"
 msgstr "About author roles"
@@ -2824,6 +2464,9 @@ msgstr "Resume"
 
 msgid "Delete this add-on."
 msgstr "Delete this add-on."
+
+msgid "Delete"
+msgstr "Delete"
 
 #, fuzzy
 msgid "Edit details on this add-on's product page"
@@ -4357,10 +4000,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Get expert German translations between English, French, Spanish, and other languages."
-
-#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Restrict Firefox from accessing websites you define."
@@ -4873,12 +4512,16 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Dozens of amazing emojis—always a click away."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr "Time--based theme changer. Make Firefox change colors as the time of day changes."
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr "Declutter your Twitter experience."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -5008,6 +4651,10 @@ msgstr "Fingerprinting privacy protection."
 msgid "Enhance your gaming experience on Steam."
 msgstr "Enhance your gaming experience on Steam."
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr "Thumbs-up to bringing back thumbs-down."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -5023,18 +4670,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Elite ad blockers"
-msgstr "Update add-on block"
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Anti-tracking extensions"
+msgid "Download Managers"
+msgstr "Download Managers"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
-msgstr "Extensions for writers"
+msgid "Games & Entertainment extensions"
+msgstr "Games & Entertainment extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -5139,6 +4784,11 @@ msgstr "Browse all add-ons"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
+msgid "Elite ad blockers"
+msgstr "Update add-on block"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Recommended Extensions program"
 
@@ -5200,12 +4850,15 @@ msgstr "Recommended ({0})"
 msgid "See more creativity staff picks"
 msgstr "by Add-on Version"
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejected or Unreviewed"
+msgid "Unreviewed"
+msgstr "Unreviewed"
 
 #, fuzzy, python-format
 msgid "[status:%s]"
 msgstr "Status:"
+
+msgid "This upload has already been submitted."
+msgstr "This upload has already been submitted."
 
 msgid "Could not parse the manifest file."
 msgstr "Could not parse the manifest file."
@@ -5224,6 +4877,9 @@ msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unknown \"strict_min_version\" {appver} for {app}"
 
+msgid "Unsupported compression method in archive."
+msgstr "Unsupported compression method in archive."
+
 msgid "Unsupported archive type."
 msgstr "Unsupported archive type."
 
@@ -5238,11 +4894,20 @@ msgstr "Invalid file name in archive: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "File exceeding size limit in archive: {0}"
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+
 msgid "Uncompressed size is too large"
 msgstr "Uncompressed size is too large"
 
 msgid "Invalid archive."
 msgstr "Invalid archive."
+
+msgid "No manifest.json found"
+msgstr "No manifest.json found"
+
+msgid "Invalid or corrupted file."
+msgstr "Invalid or corrupted file."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -5251,8 +4916,8 @@ msgstr "The add-on ID in your manifest.json or install.rdf (%s) does not match t
 msgid "Duplicate add-on ID found."
 msgstr "Duplicate add-on ID found."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Version numbers should have fewer than 32 characters."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr "Version numbers should have at most {max_length} characters."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -5274,6 +4939,9 @@ msgstr "You cannot submit a Mozilla Signed Extension"
 msgid "You cannot submit a language pack"
 msgstr "You cannot submit a Mozilla Signed Extension"
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr "The locale of an existing dictionary/language pack cannot be changed"
+
 #, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Unsupported file type, please upload an archive file {extensions}."
@@ -5290,14 +4958,6 @@ msgstr "Missing \"upload\" key in multipart file data."
 
 msgid "Missing \"channel\" arg."
 msgstr "Missing \"channel\" arg."
-
-#, fuzzy
-msgid "User"
-msgstr "Username"
-
-#, fuzzy
-msgid "IP Address"
-msgstr "Email Address"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam or otherwise non-review content"
@@ -5362,564 +5022,9 @@ msgstr "Rated {0} out of 5 stars"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Rated %(rating)s out of 5 stars"
 
-msgid "Approved reviews"
-msgstr "Approved reviews"
-
-msgid "Deleted reviews"
-msgstr "Deleted reviews"
-
-msgid "View entries between"
-msgstr "View entries between"
-
-msgid "and"
-msgstr "and"
-
-msgid "Filter by type/action"
-msgstr "Filter by type/action"
-
-msgid "containing"
-msgstr "containing"
-
-msgid "start"
-msgstr "start"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "end"
-
-#. L10n: Description of what can be searched for
-#, fuzzy
-msgid "add-on, reviewer or comment"
-msgstr "add-on, editor or comment"
-
-msgid "Comments:"
-msgstr "Comments:"
-
-msgid "Operating systems:"
-msgstr "Operating systems:"
-
-msgid "Applications:"
-msgstr "Applications:"
-
-#, fuzzy
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Require developer to respond in less than…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Reject immediately. Only use in case of serious security issues."
-
-#, fuzzy
-msgid "days"
-msgstr "7 days"
-
-msgid "Choose one or more reasons:"
-msgstr "Choose one or more reasons:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Version mismatch - the latest version has changed!"
-
-msgid "Choose a canned response..."
-msgstr "Choose a canned response..."
-
-#, fuzzy
-msgid "Private Whiteboard"
-msgstr "Whiteboard"
-
-msgid "Keep review; remove flags"
-msgstr "Keep review; remove flags"
-
-msgid "Skip for now"
-msgstr "Skip for now"
-
-msgid "Delete review"
-msgstr "Delete review"
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Admin Review"
-
-#, fuzzy
-msgid "Needs Admin Content Review"
-msgstr "Commit Review"
-
-#, fuzzy
-msgid "Needs Admin Static Theme Review"
-msgstr "Admin Review"
-
-msgid "Sources provided"
-msgstr "Sources provided"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Auto-approval delayed temporarily"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Auto-approval delayed indefinitely"
-
-#, fuzzy
-msgid "Is locked by a reviewer"
-msgstr "my add-on is reviewed by an editor"
-
-#, fuzzy
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Has auto-approval disabled flag set."
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Is in a promoted add-on group that requires pre-review"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Delayed because it's the first listed version"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "Version string and guid match a blocklist Block"
-
-#, fuzzy
-msgid "Weight breakdown not available."
-msgstr "Risk breakdown not available."
-
-msgid "Is available to be used in reviews"
-msgstr "Is available to be used in reviews"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "You can't submit a comment if `canned_response` is defined."
-
-#, fuzzy
-msgid "You can't submit an empty comment."
-msgstr "You cannot submit a Mozilla Signed Extension"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "You can't submit a line number without associating it to a filename."
-
-#, fuzzy
-msgid "ID"
-msgstr "CIDR"
-
-msgid "Flags"
-msgstr "Flags"
-
-msgid "Last Review"
-msgstr "Last Review"
-
-#, fuzzy
-msgid "Code Weight"
-msgstr "Weight"
-
-msgid "Metadata Weight"
-msgstr "Metadata Weight"
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "Weight"
-
-msgid "Maliciousness Score"
-msgstr "Maliciousness Score"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Waiting Time"
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "More Information Requested"
-
-#, fuzzy
-msgid "Last Updated"
-msgstr "Last Updated:"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Moderated Review ({0})"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Moderated Review ({0})"
-
-#, fuzzy
-msgid "Listed version"
-msgstr "View other versions"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "View other versions"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
-
-#, fuzzy
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "This will reject the add-on and remove it from the review queue."
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Approve / Reject"
-
-#, fuzzy
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "This records your approbation of the content of this version, without notifying the developer."
-
-#, fuzzy
-msgid "Confirm Approval"
-msgstr "Pending approval"
-
-#, fuzzy
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "The latest public version of this add-on was automatically approved. This records your confirmation of the approval, without notifying the developer."
-
-msgid "Approve Multiple Versions"
-msgstr "Approve Multiple Versions"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "This will approve the selected versions. The comments will be sent to the developer."
-
-#, fuzzy
-msgid "Reject Multiple Versions"
-msgstr "Re-enable Version"
-
-#, fuzzy
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "This will approve, sign, and publish this version. The comments will be sent to the developer."
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Re-enable Version"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "This will disable the selected approved versions silently, and open up the block creation admin page."
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Re-enable Version"
-
-#, fuzzy
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "This records your approbation of the content of this version, without notifying the developer."
-
-#, fuzzy
-msgid "Reviewer reply"
-msgstr "Developer News"
-
-#, fuzzy
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Use this form to request more information from the author. They will receive an email and be able to answer here. You will be notified by email when they reply."
-
-msgid "Request super-review"
-msgstr "Request super-review"
-
-#, fuzzy
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-"If you have concerns about this add-on's security, copyright issues, or other concerns that an administrator should look into, enter your comments in the area below. They will be sent to "
-"administrators, not the author."
-
-msgid "Comment"
-msgstr "Comment"
-
-#, fuzzy
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Make a comment on this version.  The author won't be able to see this."
-
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Review This Add-on"
-
-msgid "Recommended ({0})"
-msgstr "Recommended ({0})"
-
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Moderated Review ({0})"
-
-#, fuzzy
-msgid "Review Log"
-msgstr "Review Date"
-
-#, fuzzy
-msgid "Add-on Review Guide"
-msgstr "Full Add-on Review"
-
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Security Tests"
-
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Flagged by automated scanners"
-
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "flag for human review"
-
-#, fuzzy
-msgid "Auto-Approved Add-ons"
-msgstr "Android Add-ons"
-
-#, fuzzy
-msgid "Auto Approved Add-ons ({0})"
-msgstr "All Unlisted Add-ons ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Add-on Review Log"
-
-#, fuzzy
-msgid "Review Guide"
-msgstr "Reviewers' Guide"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Commit Review"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgstr "Moderated Review ({0})"
-
-#, fuzzy
-msgid "New ({0})"
-msgstr "All Unlisted Add-ons ({0})"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "Updated {0}"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Theme Review Queue"
-
-msgid "User Ratings Moderation"
-msgstr "User Ratings Moderation"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Ratings Awaiting Moderation ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Moderated Review Log"
-
-#, fuzzy
-msgid "Moderation Guide"
-msgstr "Moderation actions:"
-
-#, fuzzy
-msgid "Unlisted Add-ons"
-msgstr "All Unlisted Add-ons"
-
-msgid "All Unlisted Add-ons"
-msgstr "All Unlisted Add-ons"
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Disable Auto-Approval"
-
-msgid "Announcement"
-msgstr "Announcement"
-
-msgid "Update message of the day"
-msgstr "Update message of the day"
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Moderated Review ({0})"
-
-msgid "An unknown error occurred"
-msgstr "An unknown error occurred"
-
-msgid "Self-reviews are not allowed."
-msgstr "Self-reviews are not allowed."
-
-msgid "Review successfully processed."
-msgstr "Review successfully processed."
-
-msgid "Review lock limit reached"
-msgstr "Review lock limit reached"
-
-#, fuzzy
-msgid "{addon} – EULA"
-msgstr "{addon} :: Abuse Reports"
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "This add-on has a Privacy Policy"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr " Abuse Reports – {addon} – Add-ons for Firefox"
-
-#, fuzzy
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Abuse Reports for {addon} ({num})"
-
-msgid "Abuse Reports"
-msgstr "Abuse Reports"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Add-on Information for {0}"
-
-#, fuzzy
-msgid "Add-on ID"
-msgstr "Add-on"
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Submit Add-on"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Add-on(s) sharing same ID"
-
-msgid "Internal AMO ID"
-msgstr "Internal AMO ID"
-
-#, fuzzy
-msgid "Support Website"
-msgstr "Support site"
-
-msgid "Visibility"
-msgstr "Visibility"
-
-#, fuzzy
-msgid "Visible"
-msgstr "Visibility"
-
-#, fuzzy
-msgid "Weekly Downloads"
-msgstr "Downloads"
-
-msgid "Average Daily Users"
-msgstr "Average Daily Users"
-
-msgid "View Privacy Policy"
-msgstr "View Privacy Policy"
-
-#, fuzzy
-msgid "Requires Payment"
-msgstr "Required fields"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "View End-User License Agreement"
-
-#, fuzzy
-msgid "Last Approval Date"
-msgstr "Approval Status"
-
-#, fuzzy
-msgid "Abuse Reports ({num})"
-msgstr "Abuse Reports for {addon} ({num})"
-
-#, fuzzy
-msgid "Bad User Ratings ({num})"
-msgstr "Moderated Review ({num})"
-
-#, fuzzy
-msgid "Theme Images"
-msgstr "theme name"
-
-#, fuzzy
-msgid "Rendered Preview"
-msgstr "Deleted reviews"
-
-msgid "More about this add-on"
-msgstr "More about this add-on"
-
-msgid "Image Gallery"
-msgstr "Image Gallery"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Nothing to see here!  The developer did not include any details."
-
-#, fuzzy
-msgid "Add-on name translations"
-msgstr "by Add-on Version"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Reviewer Tools – Add-ons for Firefox"
-
-#, fuzzy
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Return to the Editor Tools homepage"
-
-msgid "Reviewer Leaderboard"
-msgstr "Reviewer Leaderboard"
-
-msgid "No review points awarded yet."
-msgstr "No review points awarded yet."
-
-msgid "Rank"
-msgstr "Rank"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Reviewer Moderation Log – Add-ons for Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filter"
-
-msgid "Date"
-msgstr "Date"
-
-msgid "Event"
-msgstr "Event"
-
-msgid "More details."
-msgstr "More details."
-
-msgid "No events found for this period."
-msgstr "No events found for this period."
-
-msgid "Log details"
-msgstr "Log details"
-
-#, fuzzy
-msgid "Review Author"
-msgstr "Review History"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Add-on Title"
-
-msgid "Review Text"
-msgstr "Review Text"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Review was flagged prior to deletion."
-
-msgid "Undelete"
-msgstr "Undelete"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr " – Reviewer Tools – Add-ons for Firefox"
-
-msgid "Back to review"
-msgstr "Back to review"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Content Review – Add-ons for Firefox"
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Android Add-ons"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Review Moderation – Add-ons for Firefox"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Unlisted Add-ons – Add-ons for Firefox"
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Review Moderation – Add-ons for Firefox"
-
-msgid "Process Reviews"
-msgstr "Process Reviews"
-
-msgid "Moderation actions:"
-msgstr "Moderation actions:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5929,288 +5034,12 @@ msgstr "by %(user)s on %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "All reviews have been moderated.  Good work!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "There are currently no add-ons of this type to review."
-
-msgid "Helpful Links:"
-msgstr "Helpful Links:"
-
-msgid "Add-on Policy"
-msgstr "Add-on Policy"
-
-#, fuzzy
-msgid "Reviewer's Guide"
-msgstr "Reviewers' Guide"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Add-ons for Firefox"
-
-#. "Content Review [add-on name]"
-#, fuzzy
-msgid "Content Review {0}"
-msgstr "Review {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Review {0}"
-
-#, fuzzy
-msgid "Add-on important changes history"
-msgstr "Add-on user change history"
-
-msgid "Add-on History"
-msgstr "Add-on History"
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "You don't have any API credentials."
-
-#, fuzzy
-msgid "Please select one or more versions in the list below."
-msgstr "Please select one or more versions in the list above."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "You can still submit this form, however only do so if you know it won't conflict."
-
-msgid "Insert canned response..."
-msgstr "Insert canned response..."
-
-msgid "Files:"
-msgstr "Files:"
-
-msgid "Tested on:"
-msgstr "Tested on:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warning!</strong> Another user was viewing this page before you."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-
-#, fuzzy
-msgid "Update whiteboards"
-msgstr "Update the whiteboard"
-
-#, fuzzy
-msgid "More Actions"
-msgstr "More Actions:"
-
-msgid "Notify me about new listed versions"
-msgstr "Notify me about new listed versions"
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Notify me about new listed versions"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "View All Versions"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Manage My Submissions"
-
-msgid "Force-disable add-on"
-msgstr "Force-disable add-on"
-
-#, fuzzy
-msgid "Force-enable add-on"
-msgstr "Re-enable Version"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "Disable Auto-Approval"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "Approval Status"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Disable Auto-Approval"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Approval Status"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Disable Auto-Approval"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Approval Status"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Disable Auto-Approval"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Approval Status"
-
-#, fuzzy
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Has auto-approval disabled flag set."
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Approval Status"
-
-msgid "Clear pending rejections"
-msgstr "Clear pending rejections"
-
-#, fuzzy
-msgid "Clear Admin Code Review Flag"
-msgstr "Clear Admin Review Flag"
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Clear Admin Review Flag"
-
-#, fuzzy
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Clear Admin Review Flag"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "View All Versions"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Back to addon"
-
-msgid "Update add-on block"
-msgstr "Update add-on block"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Admin Page"
-
-msgid "Review This Add-on"
-msgstr "Review This Add-on"
-
-msgid "More Information"
-msgstr "More Information"
-
-msgid "Resolution"
-msgstr "Resolution"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Add-on Review Log – Add-ons for Firefox"
-
-msgid "Reviewer"
-msgstr "Reviewer"
-
-msgid "Add-on has been deleted."
-msgstr "Add-on has been deleted."
-
-msgid "Show Comments"
-msgstr "Show Comments"
-
-msgid "Hide Comments"
-msgstr "Hide Comments"
-
-msgid "No reviews found for this period."
-msgstr "No reviews found for this period."
-
-msgid "Origin:"
-msgstr "Origin:"
-
-msgid "Method:"
-msgstr "Method:"
-
-#, fuzzy
-msgid "Source:"
-msgstr "by Source"
-
-#, fuzzy
-msgid "Source URL:"
-msgstr "by Source"
-
-msgid "Dismiss this announcement"
-msgstr "Dismiss this announcement"
-
-msgid "Files in this version:"
-msgstr "Files in this version:"
-
-msgid "All Platforms"
-msgstr "All Platforms"
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "Files in this version:"
-
-msgid "Contents"
-msgstr "Contents"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "Compare this version to the last reviewed version"
-
-msgid "Compare"
-msgstr "Compare"
-
-#, fuzzy
-msgid "Permissions:"
-msgstr "Versions"
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "Versions"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>By %(user)s on %(date)s</div>"
-
-msgid "Older"
-msgstr "Older"
-
-msgid "Newer"
-msgstr "Newer"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} versions flagged by scanners on other pages."
-
-#, fuzzy
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versions flagged by scanners on other pages."
-
-#, fuzzy
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versions flagged by scanners on other pages."
-
-msgid "Recent Points"
-msgstr "Recent Points"
-
-msgid "No points awarded yet."
-msgstr "No points awarded yet."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Top Reviewers (past 7 days)"
-
-msgid "No top reviewers yet."
-msgstr "No top reviewers yet."
-
-msgid "All Time"
-msgstr "All Time"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "You have <span>{0}</span> points."
-
-msgid "Theme"
-msgstr "Theme"
-
-msgid "No results found"
-msgstr "No results found"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -6220,121 +5049,17 @@ msgstr "%(user)s on %(date)s [%(ip_address)s]"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-msgid "(Confirmed)"
-msgstr "(Confirmed)"
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "More Information Requested"
-
-msgid "Compatibility:"
-msgstr "Compatibility:"
-
-msgid "Additional sources:"
-msgstr "Additional sources:"
-
-msgid "Download files"
-msgstr "Download files"
-
-msgid "The developer has provided source code."
-msgstr "The developer has provided source code."
-
-msgid "Maliciousness Score:"
-msgstr "Maliciousness Score:"
-
-#, fuzzy
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "The Scanners score represents the likelihood of this version being malicious, based on the scanners findings."
-
-#, fuzzy
-msgid "Code Weight:"
-msgstr "Weight"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "Weight"
-
-#, fuzzy
-msgid "Flagged by scanners"
-msgstr "Flagged by automated scanners"
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "flag for human review"
-
-msgid "Download"
-msgstr "Download"
-
-#, fuzzy
-msgid "Not Auto Approved Because"
-msgstr "Android Add-ons"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Auto-Approval script has not run yet on this version."
-
-msgid "This version has not been reviewed."
-msgstr "This version has not been reviewed."
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Moderated Review ({0})"
-
-#, fuzzy
-msgid "Updates"
-msgstr "Update"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Awaiting Review"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "All Unlisted Add-ons ({0})"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Moderated Review ({0})"
-
-msgid "presence of matched rules"
-msgstr "presence of matched rules"
-
-#, fuzzy
-msgid "result state"
-msgstr "Getting Started"
-
-#, fuzzy
-msgid "Excluding results solely matching these rules"
-msgstr "all but this rule"
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "View other versions"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Version Notes"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Add-on Status"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Addon visibility"
-
-#, fuzzy
-msgid "file status"
-msgstr "Site Status "
-
-#, fuzzy
-msgid "file signature"
-msgstr "{file} was signed."
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "This is the exact name of the rule used by a scanner."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgid "Human-readable name for the scanner rule"
+msgstr "Human-readable name for the scanner rule"
+
+msgid "Human-readable name"
+msgstr "Human-readable name"
+
+msgid "Human readable description for the scanner rule"
+msgstr "Human readable description for the scanner rule"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara rules should have a definition"
@@ -6352,14 +5077,11 @@ msgstr "The definition is not valid: %(error)s"
 msgid "An error occurred when compiling the definition"
 msgstr "An error occurred when compiling the definition"
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Run this rule on add-ons that have been force-disabled as well."
-
-msgid "Abort"
-msgstr "Abort"
-
-msgid "Run"
-msgstr "Run"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6395,10 +5117,6 @@ msgstr "You cannot add versions to an add-on that has status: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Version does not match the manifest file."
-
-#, fuzzy, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Version already exists."
 
 #, fuzzy
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
@@ -6462,6 +5180,9 @@ msgstr "From"
 
 msgid "To"
 msgstr "To"
+
+msgid "Update"
+msgstr "Update"
 
 msgid "Export"
 msgstr "Export"
@@ -6633,9 +5354,6 @@ msgstr "Legal Notices"
 msgid "Report Trademark Abuse"
 msgstr "Report Abuse"
 
-msgid "Site Status"
-msgstr "Site Status "
-
 #, fuzzy
 msgid "Report a bug"
 msgstr "Report Abuse"
@@ -6687,6 +5405,9 @@ msgstr "Go"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Return to the {0} Add-ons homepage"
 
+msgid "Add-ons"
+msgstr "Add-ons"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -6726,42 +5447,9 @@ msgstr "Are you sure you want to remove all <b>{0}</b> translations? This cannot
 msgid "Delete Locale"
 msgstr "Delete Locale"
 
-#, fuzzy, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "The user \"%(user)s\" has been banned.user"
-
-#, fuzzy, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "The picture belonging to user \"%(user)s\" has been deleted.user"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "The users \"%(users)s\" have been banned.users, "
-
-msgid "Ban selected users"
-msgstr "Ban selected users"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "The users \"%(users)s\" have been banned.users, "
-
 #, fuzzy
-msgid "Reset session"
-msgstr "Delete Version"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "The users \"%(users)s\" have been banned.users, "
-
-#, fuzzy
-msgid "Reset API Key"
-msgstr "Manage API Keys"
-
-msgid "Profile Photo"
-msgstr "Profile Photo"
-
-msgid "Collections"
-msgstr "Collections"
+msgid "IP Address"
+msgstr "Email Address"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
@@ -6853,18 +5541,6 @@ msgstr "An author has a role changed on your add-on"
 msgid "An author has been removed from your add-on"
 msgstr "An author has been removed from your add-on"
 
-#, fuzzy
-msgid "Ban"
-msgstr "and"
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "Delete Version"
-
-#, fuzzy
-msgid "Delete picture"
-msgstr "Delete my user picture now"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6947,10 +5623,6 @@ msgstr ""
 "Regards,\n"
 "\n"
 "The Firefox Add-ons Team"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "others"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

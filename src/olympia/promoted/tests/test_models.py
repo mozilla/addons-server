@@ -4,12 +4,13 @@ from django.conf import settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
 )
+from olympia.versions.utils import get_review_due_date
 
 
 class TestPromotedAddon(TestCase):
@@ -80,7 +81,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
-        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
 
         # then with a group thats immediate_approval == True
         promo.group_id = promoted.SPOTLIGHT.id
@@ -88,7 +89,7 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX]
         assert PromotedApproval.objects.count() == 1
-        promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.promoted_group() == promoted.SPOTLIGHT
 
         # test the edge case where the application was changed afterwards
         promo.application_id = 0
@@ -96,6 +97,108 @@ class TestPromotedAddon(TestCase):
         promo.addon.reload()
         assert promo.approved_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 2
+
+    def test_addon_flagged_for_human_review_when_saved(self):
+        # empty case with no group set
+        promo = PromotedAddon.objects.create(
+            addon=addon_factory(), application_id=amo.FIREFOX.id
+        )
+        listed_ver = promo.addon.current_version
+        # throw in an unlisted version too
+        unlisted_ver = version_factory(addon=promo.addon, channel=amo.CHANNEL_UNLISTED)
+        assert promo.group == promoted.NOT_PROMOTED
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+
+        # first test with a group.flag_for_human_review == False
+        promo.group_id = promoted.RECOMMENDED.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not listed_ver.reload().needs_human_review
+        assert not unlisted_ver.reload().needs_human_review
+
+        # then with a group thats flag_for_human_review == True but pretend
+        # the version has already been reviewed by a human (so it's not
+        # necessary to flag it as needing human review again).
+        promo.addon.current_version.update(human_review_date=self.days_ago(1))
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not listed_ver.reload().needs_human_review
+        assert not listed_ver.due_date
+        assert not unlisted_ver.reload().needs_human_review
+        assert not unlisted_ver.due_date
+
+        # then with a group thats flag_for_human_review == True without the
+        # version having been reviewed by a human but not signed: also not
+        # flagged.
+        promo.addon.current_version.update(human_review_date=None)
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert not listed_ver.reload().needs_human_review
+        assert not listed_ver.due_date
+        assert not unlisted_ver.reload().needs_human_review
+        assert not unlisted_ver.due_date
+
+        # then with a group thats flag_for_human_review == True without the
+        # version having been reviewed by a human but signed: this time we
+        # should flag it.
+        promo.addon.current_version.file.update(is_signed=True)
+        promo.addon.current_version.update(human_review_date=None)
+        promo.group_id = promoted.NOTABLE.id
+        promo.save()
+        promo.addon.reload()
+        assert promo.approved_applications == []  # doesn't approve immediately
+        assert not PromotedApproval.objects.exists()
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert listed_ver.reload().needs_human_review
+        assert not unlisted_ver.reload().needs_human_review
+        self.assertCloseToNow(listed_ver.due_date, now=get_review_due_date())
+        assert not unlisted_ver.due_date
+
+        # But we should only flag before the add-on is approved for Promoted
+        promo.addon.current_version.update(needs_human_review=False)
+        promo.approve_for_version(listed_ver)
+        assert promo.addon.reload().promoted_group() == promoted.NOTABLE
+        promo.save()
+        promo.addon.reload()
+        assert not listed_ver.reload().needs_human_review
+
+    def test_disabled_and_deleted_versions_flagged_for_human_review(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
+        )
+        version = addon.find_latest_version(None, exclude=(), deleted=True)
+        promo = PromotedAddon.objects.create(
+            addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
+        )
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+
+        # And if deleted too
+        version.update(needs_human_review=False, due_date=None)
+        version.delete()
+        promo.save()
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+
+        # even if the add-on is deleted
+        version.update(needs_human_review=False, due_date=None)
+        addon.delete()
+        promo.save()
+        assert version.reload().needs_human_review
+        self.assertCloseToNow(version.due_date, now=get_review_due_date())
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):
@@ -159,15 +262,24 @@ class TestPromotedAddon(TestCase):
         assert addon.current_version is None
         assert promo.get_resigned_version_number() is None
 
-    def test_has_approvals(self):
-        addon = addon_factory()
-        promoted_addon = PromotedAddon.objects.create(
-            addon=addon, group_id=promoted.SPONSORED.id
+    def test_signal(self):
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        unlisted = version_factory(
+            addon=addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        assert not addon.current_version.due_date
+        assert not unlisted.due_date
 
-        assert not promoted_addon.has_approvals
+        # If add-on is added to a pre-review promoted group it should get a due date
+        promo = PromotedAddon.objects.create(
+            addon=addon, group_id=promoted.RECOMMENDED.id
+        )
+        assert addon.current_version.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted
 
-        promoted_addon.approve_for_version(addon.current_version)
-        promoted_addon.reload()
-
-        assert promoted_addon.has_approvals
+        # but not if the group isn't prereview
+        promo.update(group_id=promoted.STRATEGIC.id)
+        assert not addon.current_version.reload().due_date
+        assert not unlisted.reload().due_date  # not unlisted

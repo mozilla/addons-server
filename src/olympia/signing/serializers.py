@@ -7,10 +7,11 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.api.serializers import AMOModelSerializer
 from olympia.files.models import FileUpload
 
 
-class SigningFileUploadSerializer(serializers.ModelSerializer):
+class SigningFileUploadSerializer(AMOModelSerializer):
     guid = serializers.CharField(source='addon.guid')
     active = serializers.SerializerMethodField()
     url = serializers.SerializerMethodField()
@@ -87,16 +88,18 @@ class SigningFileUploadSerializer(serializers.ModelSerializer):
             return None
 
     def get_reviewed(self, instance):
-        return self.version is not None and self.version.file.reviewed
+        return self.get_active(instance) or (
+            self.version is not None and bool(self.version.human_review_date)
+        )
 
     def get_active(self, instance):
         return (
             self.version is not None
-            and self.version.file.status in amo.REVIEWED_STATUSES
+            and self.version.file.status in amo.APPROVED_STATUSES
         )
 
     def get_passed_review(self, instance):
-        return self.get_reviewed(instance) and self.get_active(instance)
+        return self.get_active(instance)
 
     def get_automated_signing(self, instance):
         return instance.channel == amo.CHANNEL_UNLISTED

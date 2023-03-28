@@ -1,15 +1,17 @@
+from datetime import datetime
+
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonReviewerFlags
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.blocklist.models import Block
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    CannedResponse,
     ReviewActionReason,
 )
 from olympia.reviewers.utils import ReviewHelper
@@ -57,16 +59,60 @@ class TestReviewForm(TestCase):
         # If the add-on is null we only show reply, comment and super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_NULL
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
+        self.version.update(human_review_date=datetime.now())
         assert list(actions.keys()) == ['reply', 'super', 'comment']
+
+        # If an admin reviewer we also show unreject_latest_version
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        actions = self.get_form().helper.get_actions()
+        assert list(actions.keys()) == [
+            'unreject_latest_version',
+            'reply',
+            'super',
+            'comment',
+        ]
+
+    def test_actions_addon_status_null_unlisted(self):
+        self.make_addon_unlisted(self.addon)
+        self.version.reload()
+        self.version.update(human_review_date=datetime.now())
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
+        )
+        assert list(actions.keys()) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
+
+        # If an admin reviewer we also show unreject_multiple_versions
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        actions = self.get_form().helper.get_actions()
+        assert list(actions.keys()) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
 
     def test_actions_addon_status_deleted(self):
         # If the add-on is deleted we only show reply, comment and
         # super review.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_NULL
+            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
@@ -84,8 +130,8 @@ class TestReviewForm(TestCase):
             'comment',
         ]
 
-        # The add-on is already disabled so we don't show
-        # reject_multiple_versions, but reply/super/comment are still present.
+        # The add-on is already disabled so we don't show reject_multiple_versions, but
+        # reply/super/comment are still present.
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
@@ -109,45 +155,11 @@ class TestReviewForm(TestCase):
         )
         assert 'public' not in actions.keys()
 
-    def test_canned_responses(self):
-        self.cr_addon = CannedResponse.objects.create(
-            name='addon reason',
-            response='addon reason body',
-            sort_group='public',
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-        self.cr_theme = CannedResponse.objects.create(
-            name='theme reason',
-            response='theme reason body',
-            sort_group='public',
-            type=amo.CANNED_RESPONSE_TYPE_THEME,
-        )
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
-        )
-        form = self.get_form()
-        choices = form.fields['canned_response'].choices[1][1]
-        # choices is grouped by the sort_group, where choices[0] is the
-        # default "Choose a response..." option.
-        # Within that, it's paired by [group, [[response, name],...]].
-        # So above, choices[1][1] gets the first real group's list of
-        # responses.
-        assert len(choices) == 1  # No theme response
-        assert self.cr_addon.response in choices[0]
-
-        # Check we get different canned responses for static themes.
-        self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        form = self.get_form()
-        choices = form.fields['canned_response'].choices[1][1]
-        assert self.cr_theme.response in choices[0]
-        assert len(choices) == 1  # No addon response
-
     def test_reasons(self):
         self.reason_a = ReviewActionReason.objects.create(
             name='a reason',
             is_active=True,
+            canned_response='Canned response for A',
         )
         self.inactive_reason = ReviewActionReason.objects.create(
             name='b inactive reason',
@@ -156,6 +168,7 @@ class TestReviewForm(TestCase):
         self.reason_c = ReviewActionReason.objects.create(
             name='c reason',
             is_active=True,
+            canned_response='Canned response for C',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
@@ -164,7 +177,45 @@ class TestReviewForm(TestCase):
         assert list(choices.queryset)[0] == self.reason_a
         assert list(choices.queryset)[1] == self.reason_c
 
-    def test_reasons_required(self):
+        # Assert that the canned_response is written to data-value of the
+        # checkboxes.
+        doc = pq(str(form['reasons']))
+        assert doc('input')[0].attrib.get('data-value') == self.reason_a.canned_response
+        assert doc('input')[1].attrib.get('data-value') == self.reason_c.canned_response
+
+    def test_reasons_by_type(self):
+        self.reason_all = ReviewActionReason.objects.create(
+            name='A reason for all add-on types',
+            is_active=True,
+            addon_type=amo.ADDON_ANY,
+        )
+        self.reason_extension = ReviewActionReason.objects.create(
+            name='An extension only reason',
+            is_active=True,
+            addon_type=amo.ADDON_EXTENSION,
+        )
+        self.reason_theme = ReviewActionReason.objects.create(
+            name='A theme only reason',
+            is_active=True,
+            addon_type=amo.ADDON_STATICTHEME,
+        )
+        form = self.get_form()
+        choices = form.fields['reasons'].choices
+        # By default the addon is an extension.
+        assert self.addon.type == amo.ADDON_EXTENSION
+        assert len(choices) == 2
+        assert list(choices.queryset)[0] == self.reason_all
+        assert list(choices.queryset)[1] == self.reason_extension
+
+        # Change the addon to a theme.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        form = self.get_form()
+        choices = form.fields['reasons'].choices
+        assert len(choices) == 2
+        assert list(choices.queryset)[0] == self.reason_all
+        assert list(choices.queryset)[1] == self.reason_theme
+
+    def test_reasons_not_required_for_reply(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
@@ -174,25 +225,25 @@ class TestReviewForm(TestCase):
                 'comments': 'lol',
             }
         )
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {
-            'reasons': ['This field is required.'],
-        }
-
-        # Alter the action to make it not require reasons to be sent
-        # regardless of what the action actually is, what we want to test is
-        # the form behaviour.
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'comments': 'lol',
-            }
-        )
-        form.helper.actions['reply']['requires_reasons'] = False
+        assert form.helper.actions['reply']['requires_reasons'] is False
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
+
+    def test_reasons_required_for_reject_multiple_versions(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
+        assert not form.is_bound
+        form = self.get_form(
+            data={
+                'action': 'reject_multiple_versions',
+                'comments': 'lol',
+                'versions': self.addon.versions.all(),
+            }
+        )
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {'reasons': ['This field is required.']}
 
     def test_reasons_optional_for_public(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -209,6 +260,28 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid()
         assert not form.errors
+
+    def test_boilerplate(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        form = self.get_form()
+        doc = pq(str(form['action']))
+        assert (
+            doc('input')[0].attrib.get('data-value')
+            == 'Thank you for your contribution.'
+        )
+        assert doc('input')[1].attrib.get('data-value') == (
+            "This add-on didn't pass review because of the following "
+            'problems:\n\n1) '
+        )
+        assert doc('input')[2].attrib.get('data-value') == (
+            "This add-on didn't pass review because of the following "
+            'problems:\n\n1) '
+        )
+        assert doc('input')[3].attrib.get('data-value') is None
+        assert doc('input')[4].attrib.get('data-value') is None
+        assert doc('input')[5].attrib.get('data-value') is None
 
     def test_comments_and_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -267,12 +340,31 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == [self.addon.current_version]
 
     def test_versions_queryset_contains_pending_files_for_listed(self):
+        # We hide some of the versions using JavaScript + some data attributes on each
+        # <option>.
+        # The queryset should contain both pending, rejected, and approved versions.
         self.grant_permission(self.request.user, 'Addons:Review')
         addon_factory()  # Extra add-on, shouldn't be included.
-        version_factory(
+        pending_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        rejected_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        blocked_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
+            updated_by=user_factory(),
         )
         # auto-approve everything (including self.addon.current_version)
         for version in Version.unfiltered.all():
@@ -285,34 +377,88 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == list(
             self.addon.versions.all().order_by('pk')
         )
-        assert form.fields['versions'].queryset.count() == 2
+        assert form.fields['versions'].queryset.count() == 4
 
         content = str(form['versions'])
         doc = pq(content)
+
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
         select.attrib.get('class') == 'data-toggle'
-        assert select.attrib.get('data-value') == 'reject_multiple_versions|'
+        assert select.attrib.get('data-value') == 'reject_multiple_versions'
 
-        # <option>s shouldn't, because for listed review they will all be
-        # shown. They should still have a value attribute however.
-        options = doc('option')
-        assert len(options) == 2
-        for option in options:
-            assert option.attrib.get('class') is None
-            assert option.attrib.get('data-value') is None
-            assert option.attrib.get('value')
+        # <option>s should as well, and the value depends on which version:
+        # the approved one and the pending one should have different values.
+        assert len(doc('option')) == 4
+        option1 = doc('option[value="%s"]' % self.version.pk)[0]
+        assert option1.attrib.get('class') == 'data-toggle'
+        assert option1.attrib.get('data-value') == (
+            # That version is approved.
+            'block_multiple_versions reject_multiple_versions'
+        )
+        assert option1.attrib.get('value') == str(self.version.pk)
 
-    def test_versions_queryset_contains_pending_files_for_unlisted(self):
-        # We also return pending versions for unlisted, but hide some of the
-        # versions using JavaScript + some data attributes on each <option>.
-        # The queryset should contain both pending and approved versions.
+        option2 = doc('option[value="%s"]' % pending_version.pk)[0]
+        assert option2.attrib.get('class') == 'data-toggle'
+        assert option2.attrib.get('data-value') == (
+            # That version is pending.
+            'approve_multiple_versions reject_multiple_versions'
+        )
+        assert option2.attrib.get('value') == str(pending_version.pk)
+
+        option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
+        assert option3.attrib.get('class') == 'data-toggle'
+        assert option3.attrib.get('data-value') == (
+            # That version is rejected.
+            'unreject_multiple_versions'
+        )
+        assert option3.attrib.get('value') == str(rejected_version.pk)
+
+        option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
+        assert option4.attrib.get('class') == 'data-toggle'
+        assert option4.attrib.get('data-value') == (
+            # That version is blocked, so unreject_multiple_versions is unavailable.
+            ''
+        )
+        assert option4.attrib.get('value') == str(blocked_version.pk)
+
+    def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        # No change
+        self.test_versions_queryset_contains_pending_files_for_listed()
+
+    def test_versions_queryset_contains_pending_files_for_unlisted(
+        self,
+        select_data_value=(
+            'approve_multiple_versions reject_multiple_versions '
+            'block_multiple_versions confirm_multiple_versions'
+        ),
+    ):
+        # We hide some of the versions using JavaScript + some data attributes on each
+        # <option>.
+        # The queryset should contain both pending, rejected, and approved versions.
         addon_factory()  # Extra add-on, shouldn't be included.
         pending_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        rejected_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        blocked_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
+            updated_by=user_factory(),
         )
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         # auto-approve everything
@@ -334,27 +480,25 @@ class TestReviewForm(TestCase):
         assert list(form.fields['versions'].queryset) == list(
             self.addon.versions.all().order_by('pk')
         )
-        assert form.fields['versions'].queryset.count() == 2
+        assert form.fields['versions'].queryset.count() == 4
 
         content = str(form['versions'])
         doc = pq(content)
+
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
         select.attrib.get('class') == 'data-toggle'
-        assert select.attrib.get('data-value') == (
-            'approve_multiple_versions|reject_multiple_versions|'
-            'block_multiple_versions|confirm_multiple_versions|'
-        )
+        assert select.attrib.get('data-value') == select_data_value
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
-        assert len(doc('option')) == 2
+        assert len(doc('option')) == 4
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value') == (
             # That version is approved.
-            'confirm_multiple_versions|block_multiple_versions|'
+            'block_multiple_versions confirm_multiple_versions'
         )
         assert option1.attrib.get('value') == str(self.version.pk)
 
@@ -362,9 +506,35 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value') == (
             # That version is pending.
-            'reject_multiple_versions|approve_multiple_versions|'
+            'approve_multiple_versions reject_multiple_versions'
         )
         assert option2.attrib.get('value') == str(pending_version.pk)
+
+        option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
+        assert option3.attrib.get('class') == 'data-toggle'
+        assert option3.attrib.get('data-value') == (
+            # That version is rejected.
+            'unreject_multiple_versions'
+        )
+        assert option3.attrib.get('value') == str(rejected_version.pk)
+
+        option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
+        assert option4.attrib.get('class') == 'data-toggle'
+        assert option4.attrib.get('data-value') == (
+            # That version is blocked, so unreject_multiple_versions is unavailable.
+            ''
+        )
+        assert option4.attrib.get('value') == str(blocked_version.pk)
+
+    def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.test_versions_queryset_contains_pending_files_for_unlisted(
+            select_data_value=(
+                'approve_multiple_versions reject_multiple_versions '
+                'unreject_multiple_versions block_multiple_versions '
+                'confirm_multiple_versions'
+            )
+        )
 
     def test_versions_required(self):
         # auto-approve everything (including self.addon.current_version)

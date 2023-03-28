@@ -3,16 +3,11 @@ FROM python:3.10-slim-buster
 ARG DJANGO_VERSION=django32
 ENV DJANGO_VERSION=$DJANGO_VERSION
 
-ENV PYTHONDONTWRITEBYTECODE=1
-
-ARG GROUP_ID=1000
-ARG USER_ID=1000
-
-# Run all initial setup with root user. This is the default but mentioned here
-# for documentation.
-# We won't switch to the `olympia` user inside the dockerfile
-# but rather use the `user` option in docker-compose.yml instead
-USER root
+# Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
+# once the jenkins server is upgraded to support docker >= v1.9.0
+ENV OLYMPIA_UID=9500 \
+    OLYMPIA_GID=9500
+RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
 
 # Add support for https apt repos and gpg signed repos
 RUN apt-get update && apt-get install -y \
@@ -27,8 +22,6 @@ RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/mysql.gpg.key
 COPY docker/*.list /etc/apt/sources.list.d/
 
-# IMPORTANT: When editing this list below, make sure to also update
-# `Dockerfile.deploy`.
 # Allow scripts to detect we're running in our own container and install
 # packages.
 RUN touch /addons-server-docker-container \
@@ -37,9 +30,7 @@ RUN touch /addons-server-docker-container \
         bash-completion \
         build-essential \
         curl \
-        libcap-dev \
         libjpeg-dev \
-        libpcre3-dev \
         libsasl2-dev \
         libxml2-dev \
         libxslt-dev \
@@ -47,7 +38,6 @@ RUN touch /addons-server-docker-container \
         zlib1g-dev \
         libffi-dev \
         libssl-dev \
-        libpcre3-dev \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
@@ -62,66 +52,57 @@ RUN touch /addons-server-docker-container \
         pngcrush \
     && rm -rf /var/lib/apt/lists/*
 
-# IMPORTANT: When editing one of these lists below, make sure to also update
-# `Dockerfile.deploy`.
+# Add our custom mime types (required for for ts/json/md files)
 ADD docker/etc/mime.types /etc/mime.types
 
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
-
-# Set the locale. This is mainly so that tests can write non-ascii files to
-# disk.
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-COPY . /code
-WORKDIR /code
+ENV HOME /data/olympia
 
-RUN groupadd -g ${GROUP_ID} olympia
-RUN useradd -g ${GROUP_ID} -u ${USER_ID} -Md /deps/ olympia
+# version.json is overwritten by CircleCI (see circle.yml).
+# The pipeline v2 standard requires the existence of /app/version.json
+# inside the docker image, thus it's copied there.
+COPY version.json /app/version.json
+COPY --chown=olympia:olympia . ${HOME}
+WORKDIR ${HOME}
 
-# Create /deps/ and move ownership over to `olympia` user so that
-# we can install things there
-# Also run `chown` on `/code/` which technically doesn't change permissions
-# on the host but ensures that the image knows about correct permissions.
-RUN mkdir /deps/ && chown -R olympia:olympia /deps/ /code/
+# Set up directories and links that we'll need later, before switching to the
+# olympia user.
+RUN mkdir /deps \
+    && chown olympia:olympia /deps \
+    && rm -rf ${HOME}/src/olympia.egg-info \
+    && mkdir ${HOME}/src/olympia.egg-info \
+    && chown olympia:olympia ${HOME}/src/olympia.egg-info \
+    # For backwards-compatibility purposes, set up links to uwsgi. Note that
+    # the target doesn't exist yet at this point, but it will later.
+    && ln -s /deps/bin/uwsgi /usr/bin/uwsgi \
+    && ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 
+USER olympia:olympia
+
+# Install all dependencies, and add symlink for old uwsgi binary paths
+ENV PIP_USER=true
 ENV PIP_BUILD=/deps/build/
 ENV PIP_CACHE_DIR=/deps/cache/
 ENV PIP_SRC=/deps/src/
-
-# Allow us to install all dependencies to the `olympia` users
-# home directory (which is `/deps/`)
-ENV PIP_USER=true
 ENV PYTHONUSERBASE=/deps
-
-# Make sure that installed binaries are accessible
 ENV PATH $PYTHONUSERBASE/bin:$PATH
-
 ENV NPM_CONFIG_PREFIX=/deps/
-ENV SWIG_FEATURES="-D__x86_64__"
+RUN ln -s ${HOME}/package.json /deps/package.json \
+    && ln -s ${HOME}/package-lock.json /deps/package-lock.json \
+    && make update_deps
 
-# From now on run everything with the `olympia` user by default.
-USER olympia
+WORKDIR ${HOME}
 
-RUN ln -s /code/package.json /deps/package.json && \
-    ln -s /code/package-lock.json /deps/package-lock.json && \
-    make update_deps && \
-    rm -rf /deps/build/ /deps/cache/
-
-# Preserve bash history across image updates.
-# This works best when you link your local source code
-# as a volume.
-ENV HISTFILE /code/docker/artifacts/bash_history
-
-# Configure bash history.
-ENV HISTSIZE 50000
-ENV HISTIGNORE ls:exit:"cd .."
-
-# This prevents dupes but only in memory for the current session.
-ENV HISTCONTROL erasedups
-
-ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
-ENV LESS_BIN /deps/node_modules/.bin/lessc
-ENV JS_MINIFIER_BIN /deps/node_modules/.bin/terser
-ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
+# Build locales, assets, build id.
+RUN echo "from olympia.lib.settings_base import *\n" \
+> settings_local.py && DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput \
+    && npm prune --production \
+    && ./scripts/generate_build.py > build.py \
+    && rm -f settings_local.py settings_local.pyc

@@ -25,11 +25,7 @@ from olympia.files.models import FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.ratings.models import Rating
-from olympia.reviewers.management.commands import (
-    auto_approve,
-    auto_reject,
-    notify_about_auto_approve_delay,
-)
+from olympia.reviewers.management.commands import auto_approve, auto_reject
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
@@ -74,9 +70,8 @@ class AutoApproveTestsMixin:
 
     def create_candidates(self):
         # We already have an add-on with a version awaiting review that should
-        # be considered. Make sure its nomination and creation date is in the
-        # past to test ordering.
-        self.version.update(created=self.days_ago(1), nomination=self.days_ago(1))
+        # be considered. Make sure its creation date is in the past to test ordering.
+        self.version.update(created=self.days_ago(1), due_date=self.days_ago(-2))
         # Add reviewer flags disabling auto-approval for this add-on. It would
         # still be fetched as a candidate, just rejected later on when
         # calculating the verdict.
@@ -89,7 +84,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         new_addon_version = new_addon.versions.all()[0]
-        new_addon_version.update(created=self.days_ago(2), nomination=self.days_ago(2))
+        new_addon_version.update(created=self.days_ago(2), due_date=self.days_ago(-1))
         # Even add an empty reviewer flags instance, that should not matter.
         AddonReviewerFlags.objects.create(addon=new_addon)
 
@@ -101,7 +96,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         langpack_version = langpack.versions.all()[0]
-        langpack_version.update(created=self.days_ago(3), nomination=self.days_ago(3))
+        langpack_version.update(created=self.days_ago(3), due_date=self.days_ago(0))
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
@@ -111,7 +106,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         dictionary_version = dictionary.versions.all()[0]
-        dictionary_version.update(created=self.days_ago(4), nomination=self.days_ago(4))
+        dictionary_version.update(created=self.days_ago(4), due_date=self.days_ago(1))
 
         # Some recommended add-ons - one nominated and one update.
         # They should be considered by fetch_candidates(), so that they get a
@@ -122,7 +117,7 @@ class AutoApproveTestsMixin:
             status=amo.STATUS_NOMINATED,
             promoted=RECOMMENDED,
             version_kw={
-                'nomination': self.days_ago(6),
+                'due_date': self.days_ago(3),
                 'created': self.days_ago(6),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -136,7 +131,7 @@ class AutoApproveTestsMixin:
         recommended_addon_version = version_factory(
             addon=recommended_addon,
             promotion_approved=True,
-            nomination=self.days_ago(7),
+            due_date=self.days_ago(4),
             created=self.days_ago(7),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -146,7 +141,7 @@ class AutoApproveTestsMixin:
         # - one non-listed version awaiting review.
         complex_addon = addon_factory(name='Complex Addon')
         complex_addon_version = version_factory(
-            nomination=self.days_ago(8),
+            due_date=self.days_ago(5),
             created=self.days_ago(8),
             addon=complex_addon,
             channel=amo.CHANNEL_UNLISTED,
@@ -160,7 +155,7 @@ class AutoApproveTestsMixin:
             name='Disabled by user waiting review', disabled_by_user=True
         )
         user_disabled_addon_version = version_factory(
-            nomination=self.days_ago(11),
+            due_date=self.days_ago(8),
             created=self.days_ago(11),
             channel=amo.CHANNEL_UNLISTED,
             addon=user_disabled_addon,
@@ -174,7 +169,7 @@ class AutoApproveTestsMixin:
             name='Pure unlisted',
             version_kw={
                 'channel': amo.CHANNEL_UNLISTED,
-                'nomination': self.days_ago(12),
+                'due_date': self.days_ago(9),
                 'created': self.days_ago(12),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -187,7 +182,7 @@ class AutoApproveTestsMixin:
             name='Unlisted theme',
             version_kw={
                 'channel': amo.CHANNEL_UNLISTED,
-                'nomination': self.days_ago(13),
+                'due_date': self.days_ago(10),
                 'created': self.days_ago(13),
             },
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
@@ -310,17 +305,17 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_full(self, sign_file_mock):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
-        assert not self.file.reviewed
+        assert not self.file.approval_date
         ActivityLog.objects.all().delete()
         self.author = user_factory()
         self.addon.addonuser_set.create(user=self.author)
 
         # Delete the add-on current version and approval info, leaving it
-        # nominated. Set its nomination date in the past and it should be
+        # nominated. Set its creation date in the past and it should be
         # picked up and auto-approved.
         AddonApprovalsCounter.objects.filter(addon=self.addon).get().delete()
         self.addon.current_version.delete()
-        self.version.update(nomination=self.days_ago(2))
+        self.version.update(created=self.days_ago(2))
         self.addon.update_status()
 
         call_command('auto_approve', '--dry-run')
@@ -334,7 +329,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert get_reviewing_cache(self.addon.pk) is None
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.file.reviewed
+        assert self.file.approval_date
         assert ActivityLog.objects.count()
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.APPROVE_VERSION.id
@@ -536,6 +531,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             aps = self.version.autoapprovalsummary
             assert aps.has_auto_approval_disabled
 
+            self.addon.refresh_from_db()
             flags = self.addon.reviewerflags
             assert flags.auto_approval_delayed_until
 
@@ -583,7 +579,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
             self.versions[0].file,
             self.versions[1].file,
         ]
-        self.versions[0].update(nomination=days_ago(1))
+        self.versions[0].update(created=days_ago(1))
         FileValidation.objects.create(file=self.versions[0].file, validation='{}')
         FileValidation.objects.create(file=self.versions[1].file, validation='{}')
         super().setUp()
@@ -605,12 +601,12 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
         assert not AutoApprovalSummary.objects.filter(version=self.versions[0]).exists()
         assert self.addons[0].status == amo.STATUS_APPROVED  # It already was.
         assert self.files[0].status == amo.STATUS_AWAITING_REVIEW
-        assert not self.files[0].reviewed
+        assert not self.files[0].approval_date
 
         assert AutoApprovalSummary.objects.get(version=self.versions[1])
         assert self.addons[1].status == amo.STATUS_APPROVED
         assert self.files[1].status == amo.STATUS_APPROVED
-        assert self.files[1].reviewed
+        assert self.files[1].approval_date
 
         assert len(mail.outbox) == 1
         msg = mail.outbox[0]
@@ -1062,143 +1058,6 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         assert set(message1.to + message2.to) == {author1.email, author2.email}
 
 
-class TestNotifyAboutAutoApproveDelay(AutoApproveTestsMixin, TestCase):
-    def test_fetch_versions_waiting_for_approval_for_too_long(self):
-        self.create_base_test_addon()
-        expected = self.create_candidates()
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-
-        # Test that they are all present (all created date created by
-        # create_candidates() are far enough in the past)
-        assert [(version.addon, version) for version in qs] == expected
-
-        # Reset created for a few selected add-ons to be more recent and
-        # they should no longer be present (remove them from expected and
-        # re-test)
-        addon, version = expected.pop(0)
-        version.update(created=datetime.now())
-        addon, version = expected.pop(0)
-        version.update(
-            created=datetime.now()
-            - timedelta(hours=command.WAITING_PERIOD_HOURS)
-            + timedelta(seconds=30)
-        )
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert [(version.addon, version) for version in qs] == expected
-
-        # Set notified_about_auto_approval_delay=True for an add-on and
-        # it should no longer be present (remove it from expected and re-test)
-        addon, version = expected.pop(0)
-        AddonReviewerFlags.objects.create(
-            addon=addon, notified_about_auto_approval_delay=True
-        )
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert [(version.addon, version) for version in qs] == expected
-
-    def test_fetch_versions_waiting_for_approval_for_too_long_reset(self):
-        """Ensure we only consider the latest auto-approvable version for each
-        add-on."""
-        self.create_base_test_addon()
-        old_version = self.version
-        old_version.update(
-            channel=amo.CHANNEL_UNLISTED,
-            created=self.days_ago(2),
-            nomination=self.days_ago(2),
-        )
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert qs.count() == 1
-        assert qs[0] == self.version
-
-        # When we submit a new version, if it's waiting for approval as well,
-        # it "resets" the waiting period.
-        new_version = version_factory(
-            addon=self.addon,
-            channel=amo.CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert qs.count() == 0
-
-        # If the new version is old enough, then it's returned (and only this
-        # version).
-        new_version.update(created=self.days_ago(1))
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert qs.count() == 1
-        assert qs[0] == new_version
-
-        # If the new version is approved but not the old one, then the old one
-        # is returned, the new version no longer prevents the old one from
-        # being considered.
-        new_version.file.update(status=amo.STATUS_APPROVED)
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert qs.count() == 1
-        assert qs[0] == old_version
-
-    def test_notify_nothing(self):
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert not qs.exists()
-
-        call_command('notify_about_auto_approve_delay')
-        assert len(mail.outbox) == 0
-
-    def test_notify_authors(self):
-        # Not awaiting review.
-        addon_factory(version_kw={'created': self.days_ago(1)}).authors.add(
-            user_factory()
-        )
-        # Not awaiting review for long enough.
-        addon_factory(
-            file_kw={
-                'status': amo.STATUS_AWAITING_REVIEW,
-            }
-        ).authors.add(user_factory())
-        # Valid.
-        addon = addon_factory(
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            version_kw={'created': self.days_ago(1)},
-        )
-        users = [user_factory(), user_factory()]
-        [addon.authors.add(user) for user in users]
-
-        command = notify_about_auto_approve_delay.Command()
-        qs = command.fetch_versions_waiting_for_approval_for_too_long()
-        assert qs.exists()
-
-        assert not AddonReviewerFlags.objects.filter(addon=addon).exists()
-
-        # Set up is done, let's call the command!
-        call_command('notify_about_auto_approve_delay')
-
-        addon.reload()
-
-        assert len(mail.outbox) == 2
-        assert mail.outbox[0].body == mail.outbox[1].body
-        assert mail.outbox[0].subject == mail.outbox[1].subject
-        subject = mail.outbox[0].subject
-        assert subject == (
-            'Mozilla Add-ons: %s %s is pending review'
-            % (addon.name, addon.current_version.version)
-        )
-        body = mail.outbox[0].body
-        assert 'Thank you for submitting your add-on' in body
-        assert str(addon.name) in body
-        assert str(addon.current_version.version) in body
-        for message in mail.outbox:
-            assert len(message.to) == 1
-        assert {message.to[0] for message in mail.outbox} == {
-            user.email for user in users
-        }
-
-        assert addon.reviewerflags.notified_about_auto_approval_delay
-
-
 class TestAutoReject(TestCase):
     def setUp(self):
         self.task_user = user_factory(
@@ -1330,6 +1189,132 @@ class TestAutoReject(TestCase):
             version=another_pending_rejection,
             pending_rejection=self.yesterday,
             pending_rejection_by=self.user,
+            pending_content_rejection=True,
+        )
+        ActivityLog.objects.for_addons(self.addon).delete()
+
+        command = auto_reject.Command()
+        command.dry_run = False
+        command.reject_versions(
+            addon=self.addon,
+            versions=[self.version, another_pending_rejection],
+            latest_version=another_pending_rejection,
+        )
+
+        # The versions should be rejected now.
+        self.version.refresh_from_db()
+        assert not self.version.is_public()
+        another_pending_rejection.refresh_from_db()
+        assert not self.version.is_public()
+
+        # There should be a single activity log for the rejection
+        # and one because the add-on is changing status as a result.
+        logs = ActivityLog.objects.for_addons(self.addon)
+        assert len(logs) == 2
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
+        assert logs[0].user == self.task_user
+        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+            another_pending_rejection,
+        ]
+        assert logs[1].user == self.user
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied (there are no other pending rejections
+        # in this test).
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
+        ).exists()
+        # And pending_content_rejection too
+        assert not VersionReviewerFlags.objects.filter(
+            pending_content_rejection__isnull=False
+        ).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
+
+    def test_reject_versions_different_user(self):
+        # Add another version pending rejection, but this one was rejected by
+        # another reviewer, so it should be processed separately, resulting in
+        # 2 rejections.
+        another_pending_rejection = version_factory(addon=self.addon, version='2.0')
+        other_reviewer = user_factory()
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=other_reviewer,
+            pending_content_rejection=True,
+        )
+        ActivityLog.objects.for_addons(self.addon).delete()
+
+        command = auto_reject.Command()
+        command.dry_run = False
+        command.reject_versions(
+            addon=self.addon,
+            versions=[self.version, another_pending_rejection],
+            latest_version=another_pending_rejection,
+        )
+
+        # The versions should be rejected now.
+        self.version.refresh_from_db()
+        assert not self.version.is_public()
+        another_pending_rejection.refresh_from_db()
+        assert not self.version.is_public()
+
+        # There should be a single activity log for the rejection
+        # and one because the add-on is changing status as a result.
+        logs = ActivityLog.objects.for_addons(self.addon)
+        assert len(logs) == 3
+        assert logs[0].action == amo.LOG.CHANGE_STATUS.id
+        assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
+        assert logs[0].user == self.task_user
+        assert logs[1].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+        ]
+        assert logs[1].user == self.user
+        assert logs[2].action == amo.LOG.REJECT_CONTENT.id
+        assert logs[2].arguments == [
+            self.addon,
+            another_pending_rejection,
+        ]
+        assert logs[2].user == other_reviewer
+
+        # All pending rejections flags in the past should have been dropped
+        # when the rejection was applied (there are no other pending rejections
+        # in this test).
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection__isnull=False
+        ).exists()
+        # The pending_rejection_by should also have been cleared.
+        assert not VersionReviewerFlags.objects.filter(
+            pending_rejection_by__isnull=False
+        ).exists()
+        # And pending_content_rejection too
+        assert not VersionReviewerFlags.objects.filter(
+            pending_content_rejection__isnull=False
+        ).exists()
+
+        # No mail should have gone out.
+        assert len(mail.outbox) == 0
+
+    def test_reject_versions_different_action(self):
+        # Add another version pending rejection, but for this one it's not a
+        # content rejection, so it should be processed separately, resulting in
+        # 2 rejections.
+        another_pending_rejection = version_factory(addon=self.addon, version='2.0')
+        version_review_flags_factory(
+            version=another_pending_rejection,
+            pending_rejection=self.yesterday,
+            pending_rejection_by=self.user,
             pending_content_rejection=False,
         )
         ActivityLog.objects.for_addons(self.addon).delete()
@@ -1348,7 +1333,7 @@ class TestAutoReject(TestCase):
         another_pending_rejection.refresh_from_db()
         assert not self.version.is_public()
 
-        # There should be an activity log for each version with the rejection
+        # There should be a single activity log for the rejection
         # and one because the add-on is changing status as a result.
         logs = ActivityLog.objects.for_addons(self.addon)
         assert len(logs) == 3
@@ -1356,9 +1341,17 @@ class TestAutoReject(TestCase):
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.REJECT_CONTENT.id
-        assert logs[1].arguments == [self.addon, self.version]
+        assert logs[1].arguments == [
+            self.addon,
+            self.version,
+        ]
+        assert logs[1].user == self.user
         assert logs[2].action == amo.LOG.REJECT_VERSION.id
-        assert logs[2].arguments == [self.addon, another_pending_rejection]
+        assert logs[2].arguments == [
+            self.addon,
+            another_pending_rejection,
+        ]
+        assert logs[2].user == self.user
 
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections

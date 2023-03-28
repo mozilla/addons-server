@@ -1,0 +1,108 @@
+#searchbar-wrapper {
+    padding-bottom: 15px;
+    position: relative;
+}
+
+#searchbar-wrapper #toolbar {
+    margin-bottom: 0;
+}
+
+#searchbar-explainer {
+    display: none;
+    margin-top: 5px;
+    position: absolute;
+    width: 60em;
+    height: auto;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    background: var(--message-warning-bg);
+    color: var(--body-quiet-color);
+    opacity: 0.95;
+    z-index: 42;
+}
+
+#searchbar-wrapper:hover #searchbar-explainer,
+#searchbar-explainer:hover {
+    display: block;
+}
+
+#searchbar-explainer, #searchbar-explainer li {
+    font-size: 13px;
+}
+
+#changelist #searchbar-explainer li {
+    margin-left: 1.5em;
+}
+
+#changelist #searchbar-explainer li {
+    list-style-type: square;
+}
+
+#searchbar-explainer code {
+    background: var(--selected-bg);
+    color: var(--body-loud-color);
+    outline: 1px dotted var(--accent);
+}
+
+.hasaddremoveip .deletelink {
+    position: relative;
+    top: -1px;
+}
+
+.hasaddremoveip .addlink, .hasaddremoveip .deletelink {
+    cursor: pointer;
+}
+
+.hasaddremoveip .addlink, .hasaddremoveip .deletelink {
+    visibility: hidden
+}
+
+.hasaddremoveip:hover .addlink, .hasaddremoveip:hover .deletelink {
+    visibility: visible;
+}
+
+.hasaddremoveip.notinsearch .deletelink, .hasaddremoveip:not(.notinsearch) .addlink {
+    display: none;
+}
+
+.hasaddremoveip .addlink:hover, .hasaddremoveip .deletelink:hover {
+    outline: 1px dotted black;
+}
+
+.notinsearch {
+    color: deeppink;
+    font-weight: bold;
+}
+
+#changelist-search > div {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+#toolbar #searchbar {
+    font-size: 16px;
+    height: auto;
+    width: 46em;
+}
+
+#toolbar #searchbar.dirty {
+    border-color: orange;
+}
+
+.change-list .field-known_ip_adresses ul {
+    margin: 0;
+    padding: 0;
+}
+
+.change-list .field-known_ip_adresses li {
+    list-style-type: none;
+}
+
+#changelist-filter form {
+    border-bottom: 1px solid var(--hairline-color);
+}
+
+#changelist-filter select {
+    width: 100%;
+}

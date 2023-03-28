@@ -1,21 +1,21 @@
 # Translations template for addons-server.
-# Copyright (C) 2022 Mozilla
+# Copyright (C) 2023 Mozilla
 # This file is distributed under the same license as the addons-server project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:44+0000\n"
+"POT-Creation-Date: 2023-03-21 18:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.10.3\n"
+"Generated-By: Babel 2.11.0\n"
 
 #: static/js/common/upload-addon.js:51 static/js/common/upload-image.js:133
 msgid "There was a problem contacting the server."
@@ -67,7 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:629
+#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:659
 msgid "See full validation report"
 msgstr ""
 
@@ -111,28 +111,28 @@ msgstr[1] ""
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:548
+#: static/js/common/upload-addon.js:605
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:551
+#: static/js/common/upload-addon.js:608
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:575
+#: static/js/common/upload-addon.js:614
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:579
+#: static/js/common/upload-addon.js:618
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:586
+#: static/js/common/upload-addon.js:625
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -140,7 +140,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:609
+#: static/js/common/upload-addon.js:638
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
@@ -818,35 +818,35 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:135
+#: static/js/zamboni/reviewers.js:140
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:384
+#: static/js/zamboni/reviewers.js:412
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:397 static/js/zamboni/reviewers.js:423
+#: static/js/zamboni/reviewers.js:425 static/js/zamboni/reviewers.js:451
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:402
+#: static/js/zamboni/reviewers.js:430
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:409
+#: static/js/zamboni/reviewers.js:437
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:416
+#: static/js/zamboni/reviewers.js:444
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:428
+#: static/js/zamboni/reviewers.js:456
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:435
+#: static/js/zamboni/reviewers.js:463
 msgid "Review notes found"
 msgstr ""
 

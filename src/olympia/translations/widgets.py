@@ -95,6 +95,18 @@ class TransMulti(forms.widgets.MultiWidget):
                 final_attrs = dict(final_attrs, id=f'{id_}_{i}')
             output.append(widget.render(name + '_%s' % i, widget_value, final_attrs))
 
+        # Add a widget that'll be cloned for when we want to add a new
+        # translation. Hide it by default, it's only used in devhub, not the
+        # admin (which doesn't need to add new translations).
+        final_attrs = self.build_attrs(attrs)
+        final_attrs['class'] = 'trans-init hidden'
+        output.append(
+            self.widget(attrs=self.attrs).render(
+                self.name + '_',
+                Translation(locale='init', localized_string=''),
+                final_attrs,
+            )
+        )
         return mark_safe(self.format_output(output))
 
     def decompress(self, value):
@@ -132,23 +144,13 @@ class TransMulti(forms.widgets.MultiWidget):
                     rv[locale(key)] = data[key]
         return rv
 
-    def format_output(self, widgets):
+    def format_output(self, rendered_widgets):
         # Gather output for all widgets as normal...
-        formatted = ''.join(widgets)
-        # ...But also add a widget that'll be cloned for when we want to add
-        # a new translation. Hide it by default, it's only used in devhub, not
-        # the admin (which doesn't need to add new translations).
-        init_widget = self.widget().render(
-            self.name + '_',
-            Translation(locale='init', localized_string=''),
-            {'class': 'trans-init hidden'},
-        )
-        # Wrap it all inside a div that the javascript will look for.
-        return '<div id="trans-{}" class="trans" data-name="{}">{}{}</div>'.format(
-            self.name,
-            self.name,
-            formatted,
-            init_widget,
+        formatted = ''.join(rendered_widgets)
+        # But wrap it all inside a div that the javascript will look for.
+        return (
+            f'<div id="trans-{self.name}" class="trans" data-name="{self.name}">'
+            f'{formatted}</div>'
         )
 
 

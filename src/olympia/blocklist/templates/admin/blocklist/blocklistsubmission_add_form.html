@@ -1,5 +1,5 @@
 {% extends "admin/base_site.html" %}
-{% load i18n admin_urls static admin_modify %}
+{% load admin_urls static admin_modify %}
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% static 'js/i18n/en-US.js' %}"></script>
@@ -17,7 +17,7 @@
 
 {% block breadcrumbs %}
 <div class="breadcrumbs">
-<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+<a href="{% url 'admin:index' %}">Home</a>
 &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
 &rsaquo; {% if has_view_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
 &rsaquo; {{ original|truncatewords:"18" }}
@@ -33,7 +33,7 @@
   <div>
     <div class="form-row horizontal-grid">
       <div>
-        <h3>{% blocktrans with count=existing_guids|length v_min=form.min_version.value v_max=form.max_version.value %}{{ count }} Add-on GUIDs are already blocked for {{ v_min }} to {{ v_max }}{% endblocktrans %}:</h3>
+        <h3>{{ existing_guids|length }} Add-on GUIDs are already blocked for {{ form.min_version.value }} to {{ form.max_version.value }}:</h3>
         <ul class="guid_list field-existing-guids">
           {% for guid in existing_guids %}
           <li>{{ guid }}</li>
@@ -41,7 +41,7 @@
         </ul>
       </div>
       <div>
-        <h3>{% blocktrans with count=invalid_guids|length %}{{ count }} Add-on GUIDs were not found{% endblocktrans %}:</h3>
+        <h3>{{ invalid_guids|length }} Add-on GUIDs were not found:</h3>
         <ul class="guid_list">
           {% for guid in invalid_guids %}
           <li>{{ guid }}</li>
@@ -95,10 +95,17 @@
       {{ form.reason }}
       <p class="help">{{ form.reason.help_text }}</p>
     </div>
+    <div class="form-row">
+      {{ form.delay_days.errors }}
+      {{ form.delayed_until.errors }}
+      {{ form.delay_days.label_tag }}
+      {{ form.delay_days }}
+      <p class="help">{{ form.delay_days.help_text }}</p>
+    </div>
     {% block submit_buttons_bottom %}
     <div class="submit-row">
-      <input type="submit" value="{% trans 'Save' %}" class="default" name="_save">
-      <input type="submit" value="{% trans 'Save and add more' %}" name="_addanother">
+      <input type="submit" value="Save" class="default" name="_save">
+      <input type="submit" value="Save and add more" name="_addanother">
     </div>
     {% endblock %}
   </fieldset>

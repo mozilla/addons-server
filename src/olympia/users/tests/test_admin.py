@@ -25,7 +25,6 @@ from olympia.amo.tests import (
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import ReviewerScore
 from olympia.users.admin import UserAdmin
 from olympia.users.models import (
     EmailUserRestriction,
@@ -47,20 +46,83 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_delete', args=(self.user.pk,)
         )
 
-    def test_search_for_multiple_users(self):
+    def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         another_user = user_factory()
         response = self.client.get(
             self.list_url,
-            {'q': f'{self.user.pk},{another_user.pk},foobaa'},
+            {'q': self.user.email},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) not in doc('#result_list').text()
+
+    def test_search_by_id_simple(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory()
+        response = self.client.get(
+            self.list_url,
+            {'q': self.user.id},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_like(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory(email='someone@notzilla.org')
+        response = self.client.get(
+            self.list_url,
+            {'q': 'some*@notzilla.org'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(another_user.pk) in doc('#result_list').text()
+        assert str(self.user.pk) not in doc('#result_list').text()
+        assert str(user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_multiple(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory()
+        response = self.client.get(
+            self.list_url,
+            {'q': f'{self.user.email},{another_user.email},foobaa'},
             follow=True,
         )
         assert response.status_code == 200
         doc = pq(response.content)
         assert str(self.user.pk) in doc('#result_list').text()
         assert str(another_user.pk) in doc('#result_list').text()
+        assert str(user.pk) not in doc('#result_list').text()
+
+    def test_search_by_email_multiple_like(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.force_login(user)
+        another_user = user_factory(email='someone@notzilla.com')
+        response = self.client.get(
+            self.list_url,
+            {'q': 'some*@mozilla.com,*@notzilla.*,foobaa'},
+            follow=True,
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) in doc('#result_list').text()
+        assert str(self.user.pk) not in doc('#result_list').text()
 
     def test_search_for_multiple_user_ids(self):
         """Test the optimization when just searching for matching ids."""
@@ -127,7 +189,11 @@ class TestUserAdmin(TestCase):
             self.user.update(email='foo@bar.com')
             # That will make self.user match our query.
             ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
-        with core.override_remote_addr('127.0.0.3'):
+        # 127.0.0.44 packed is b'\x7f\x00\x00,' - it's useful to test since it
+        # contains a comma character, which would trip the split(',') we do on
+        # the result of the GROUP_CONCAT if the binary value wasn't translated
+        # to an IP address string representation before being grouped.
+        with core.override_remote_addr('127.0.0.44'):
             # Add another login from a different IP to make sure we show it.
             ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
         with core.override_remote_addr('127.0.0.1'):
@@ -145,7 +211,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure login ip is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.3'
+        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.44'
 
     def test_search_for_single_ip_multiple_results_for_different_reasons(self):
         user = user_factory(email='someone@mozilla.com')
@@ -464,7 +530,6 @@ class TestUserAdmin(TestCase):
             AbuseReport.objects.create(reporter=self.user, guid='@foo'),
             AbuseReport.objects.create(user=self.user),
             ActivityLog.create(user=self.user, action=amo.LOG.USER_EDITED),
-            ReviewerScore.objects.create(user=self.user, score=42),
             addon_with_other_authors,  # Has other authors, should be kept.
             # Bit of a weird case, but because the user was the only author of
             # this add-on, the addonuser relation is kept, and both the add-on
@@ -787,40 +852,41 @@ class TestUserAdmin(TestCase):
         )
 
     def test_known_ip_adresses(self):
-        self.user.update(last_login_ip='127.1.2.3')
-        Rating.objects.create(
-            addon=addon_factory(), user=self.user, ip_address='127.1.2.3'
-        )
         dummy_addon = addon_factory()
-        Rating.objects.create(
-            addon=dummy_addon,
-            version=dummy_addon.current_version,
-            user=self.user,
-            ip_address='128.1.2.3',
-        )
-        Rating.objects.create(
-            addon=dummy_addon,
-            version=version_factory(addon=dummy_addon),
-            user=self.user,
-            ip_address='129.1.2.4',
-        )
-        Rating.objects.create(
-            addon=addon_factory(), user=self.user, ip_address='130.1.2.4'
-        )
-        Rating.objects.create(
-            addon=addon_factory(), user=self.user, ip_address='130.1.2.4'
-        )
-        Rating.objects.create(
-            addon=dummy_addon, user=user_factory(), ip_address='255.255.0.0'
-        )
+        another_user = user_factory()
+        core.set_user(another_user)
+        with core.override_remote_addr('255.255.0.0'):
+            Rating.objects.create(addon=dummy_addon, user=another_user)
+        core.set_user(self.user)
+        with core.override_remote_addr('127.1.2.3'):
+            ActivityLog.create(amo.LOG.LOG_IN, user=self.user)
+        with core.override_remote_addr('129.1.2.4'):
+            Rating.objects.create(addon=addon_factory(), user=self.user)
+        with core.override_remote_addr('128.1.2.3'):
+            Rating.objects.create(
+                addon=dummy_addon,
+                version=dummy_addon.current_version,
+                user=self.user,
+            )
+        with core.override_remote_addr('129.1.2.4'):
+            Rating.objects.create(
+                addon=dummy_addon,
+                version=version_factory(addon=dummy_addon),
+                user=self.user,
+            )
+        with core.override_remote_addr('130.1.2.4'):
+            Rating.objects.create(addon=addon_factory(), user=self.user)
+        with core.override_remote_addr('130.1.2.4'):
+            Rating.objects.create(addon=addon_factory(), user=self.user)
         with core.override_remote_addr('15.16.23.42'):
             ActivityLog.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
-        UserRestrictionHistory.objects.create(user=self.user, last_login_ip='4.8.15.16')
-        UserRestrictionHistory.objects.create(user=self.user, ip_address='172.0.0.2')
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=self.user)
+        with core.override_remote_addr('172.0.0.2'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=self.user)
         model_admin = UserAdmin(UserProfile, admin.site)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
-        assert len(result) == 7
         assert set(result) == {
             '130.1.2.4',
             '128.1.2.3',
@@ -830,23 +896,23 @@ class TestUserAdmin(TestCase):
             '172.0.0.2',
             '4.8.15.16',
         }
+        assert len(result) == 7
 
         # Duplicates are ignored
-        Rating.objects.create(
-            addon=dummy_addon,
-            version=version_factory(addon=dummy_addon),
-            user=self.user,
-            ip_address='127.1.2.3',
-        )
+        with core.override_remote_addr('127.1.2.3'):
+            Rating.objects.create(
+                addon=dummy_addon,
+                version=version_factory(addon=dummy_addon),
+                user=self.user,
+            )
         with core.override_remote_addr('172.0.0.2'):
             ActivityLog.create(amo.LOG.ADD_VERSION, dummy_addon, user=self.user)
-        UserRestrictionHistory.objects.create(
-            user=self.user, last_login_ip='15.16.23.42'
-        )
-        UserRestrictionHistory.objects.create(user=self.user, ip_address='4.8.15.16')
+        with core.override_remote_addr('15.16.23.42'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=self.user)
+        with core.override_remote_addr('4.8.15.16'):
+            ActivityLog.create(amo.LOG.RESTRICTED, user=self.user)
         doc = pq(model_admin.known_ip_adresses(self.user))
         result = doc('ul li').text().split()
-        assert len(result) == 7
         assert set(result) == {
             '130.1.2.4',
             '128.1.2.3',
@@ -856,6 +922,7 @@ class TestUserAdmin(TestCase):
             '172.0.0.2',
             '4.8.15.16',
         }
+        assert len(result) == 7
 
     def test_last_known_activity_time(self):
         someone_else = user_factory(username='someone_else')

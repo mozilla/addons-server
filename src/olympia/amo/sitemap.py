@@ -7,6 +7,7 @@ from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap as DjangoSitemap
+from django.core.paginator import PageNotAnInteger
 from django.db.models import Count, Max, Q
 from django.template import loader
 from django.utils.functional import cached_property
@@ -16,10 +17,10 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.utils import id_to_path
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
 from olympia.bandwagon.models import Collection
-from olympia.files.utils import id_to_path
 from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -42,6 +43,10 @@ FRONTEND_LANGUAGES = [
     'ru',
     'zh-CN',
 ]
+
+
+class InvalidSection(Exception):
+    pass
 
 
 class LazyTupleList:
@@ -205,8 +210,6 @@ class AMOSitemap(Sitemap):
         ('browse.language-tools', amo.FIREFOX),
         # server pages
         ('devhub.index', None),
-        ('apps.appversions', amo.FIREFOX),
-        ('apps.appversions', amo.ANDROID),
     ]
 
     def location(self, item):
@@ -244,7 +247,7 @@ class CategoriesSitemap(Sitemap):
                 addon___current_version__isnull=False,
                 addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
-                addon__status__in=amo.REVIEWED_STATUSES,
+                addon__status__in=amo.APPROVED_STATUSES,
             )
             .values('category_id')
             .annotate(count=Count('addon_id'))
@@ -292,7 +295,7 @@ class AccountSitemap(Sitemap):
             addons___current_version__isnull=False,
             addons___current_version__apps__application=current_app.id,
             addons__disabled_by_user=False,
-            addons__status__in=amo.REVIEWED_STATUSES,
+            addons__status__in=amo.APPROVED_STATUSES,
             addonuser__listed=True,
             addonuser__role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER),
         )
@@ -380,7 +383,7 @@ class TagPagesSitemap(Sitemap):
                 addon___current_version__isnull=False,
                 addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
-                addon__status__in=amo.REVIEWED_STATUSES,
+                addon__status__in=amo.APPROVED_STATUSES,
             )
             .values('tag_id')
             .annotate(count=Count('addon_id'))
@@ -469,16 +472,23 @@ def render_index_xml(sitemaps):
 
 
 def get_sitemap_path(section, app, page=1):
-    if section is None or app is None:
-        # If we don't have a section or app, we don't need a complex directory
-        # structure and we can call the first page 'sitemap' for convenience
-        # (it's likely going to be the only page).
-        endpath = str(page) if page != 1 else 'sitemap'
+    if section is None:
+        sitemap_path = 'sitemap.xml'
     else:
-        endpath = id_to_path(page)
-    return os.path.join(
-        settings.SITEMAP_STORAGE_PATH,
-        section or '',
-        app or '',
-        f'{endpath}.xml',
-    )
+        if (section, amo.APPS.get(app, '') if app else app) not in get_sitemaps():
+            raise InvalidSection
+        try:
+            page = int(page)
+        except ValueError:
+            raise PageNotAnInteger
+        if app is None:
+            # If we don't have a section or app, we don't need a complex directory
+            # structure and we can call the first page 'sitemap' for convenience
+            # (it's likely going to be the only page).
+            sitemap_path = os.path.join(
+                section, f'{"sitemap" if page == 1 else page}.xml'
+            )
+        else:
+            sitemap_path = os.path.join(section, app, f'{id_to_path(page)}.xml')
+
+    return os.path.join(settings.SITEMAP_STORAGE_PATH, sitemap_path)

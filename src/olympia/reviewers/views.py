@@ -6,13 +6,11 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Prefetch, Q
-from django.db.transaction import non_atomic_requests
+from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
-from django.utils.translation import gettext
 from django.views.decorators.cache import never_cache
 
 import pygit2
@@ -23,7 +21,6 @@ from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
 from rest_framework.exceptions import NotFound
-from rest_framework.generics import ListAPIView
 from rest_framework.mixins import (
     CreateModelMixin,
     DestroyModelMixin,
@@ -44,6 +41,7 @@ from olympia.addons.models import (
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
+    AddonUser,
 )
 from olympia.amo.decorators import (
     json_view,
@@ -74,8 +72,6 @@ from olympia.reviewers.forms import (
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    CannedResponse,
-    ReviewerScore,
     ReviewerSubscription,
     Whiteboard,
     clear_reviewing_cache,
@@ -90,26 +86,20 @@ from olympia.reviewers.serializers import (
     AddonCompareVersionSerializer,
     AddonCompareVersionSerializerFileOnly,
     AddonReviewerFlagsSerializer,
-    CannedResponseSerializer,
     DiffableVersionSerializer,
     DraftCommentSerializer,
     FileInfoSerializer,
 )
 from olympia.reviewers.utils import (
-    AutoApprovedTable,
     ContentReviewTable,
     MadReviewTable,
     NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
-    RecommendedPendingManualApprovalQueueTable,
     ReviewHelper,
-    ScannersReviewTable,
-    UnlistedPendingManualApprovalQueueTable,
     UpdatedThemesQueueTable,
-    ViewUnlistedAllListTable,
 )
-from olympia.scanners.models import ScannerResult
+from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -118,7 +108,6 @@ from .decorators import (
     any_reviewer_or_moderator_required,
     any_reviewer_required,
     permission_or_tools_listed_view_required,
-    permission_or_tools_unlisted_view_required,
     reviewer_addon_view_factory,
 )
 
@@ -171,9 +160,6 @@ def ratings_moderation_log_detail(request, id):
             if not can_undelete:
                 raise PermissionDenied
 
-            ReviewerScore.award_moderation_points(
-                log.user, review.addon, review.id, undo=True
-            )
             review.undelete()
         return redirect('reviewers.ratings_moderation_log.detail', id)
 
@@ -197,129 +183,86 @@ def dashboard(request):
     view_all = any(
         acl.action_allowed_for(request.user, perm) for perm in view_all_permissions
     )
-    admin_reviewer = is_admin_reviewer(request)
-    queue_counts = fetch_queue_counts(admin_reviewer=admin_reviewer)
+    queue_counts = fetch_queue_counts(request)
 
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-        sections[gettext('Pre-Review Add-ons')] = []
-        if view_all or acl.action_allowed_for(
-            request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW
-        ):
-            sections[gettext('Pre-Review Add-ons')].append(
-                (
-                    gettext('Recommended ({0})').format(queue_counts['recommended']),
-                    reverse('reviewers.queue_recommended'),
-                )
-            )
-        sections[gettext('Pre-Review Add-ons')].extend(
+        sections['Manual Review'] = [
             (
-                (
-                    gettext('Other Pending Review ({0})').format(
-                        queue_counts['extension']
-                    ),
-                    reverse('reviewers.queue_extension'),
-                ),
-                (gettext('Review Log'), reverse('reviewers.reviewlog')),
-                (
-                    gettext('Add-on Review Guide'),
-                    'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
-                ),
-            )
-        )
-        sections[gettext('Security Scanners')] = [
-            (
-                gettext('Flagged By Scanners'),
-                reverse('reviewers.queue_scanners'),
+                'Manual Review ({0})'.format(queue_counts['extension']),
+                reverse('reviewers.queue_extension'),
             ),
+            ('Review Log', reverse('reviewers.reviewlog')),
             (
-                gettext('Flagged for Human Review'),
-                reverse('reviewers.queue_mad'),
+                'Add-on Review Guide',
+                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
-
-        sections[gettext('Auto-Approved Add-ons')] = [
+        sections['Human Review Needed'] = [
             (
-                gettext('Auto Approved Add-ons ({0})').format(
-                    queue_counts['auto_approved']
-                ),
-                reverse('reviewers.queue_auto_approved'),
-            ),
-            (gettext('Add-on Review Log'), reverse('reviewers.reviewlog')),
-            (
-                gettext('Review Guide'),
-                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
+                'Flagged by MAD for Human Review',
+                reverse('reviewers.queue_mad'),
             ),
         ]
     if view_all or acl.action_allowed_for(
         request.user, amo.permissions.ADDONS_CONTENT_REVIEW
     ):
-        sections[gettext('Content Review')] = [
+        sections['Content Review'] = [
             (
-                gettext('Content Review ({0})').format(queue_counts['content_review']),
+                'Content Review ({0})'.format(queue_counts['content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
         ]
     if view_all or acl.action_allowed_for(
         request.user, amo.permissions.STATIC_THEMES_REVIEW
     ):
-        sections[gettext('Themes')] = [
+        sections['Themes'] = [
             (
-                gettext('New ({0})').format(queue_counts['theme_nominated']),
+                'New ({0})'.format(queue_counts['theme_nominated']),
                 reverse('reviewers.queue_theme_nominated'),
             ),
             (
-                gettext('Updates ({0})').format(queue_counts['theme_pending']),
+                'Updates ({0})'.format(queue_counts['theme_pending']),
                 reverse('reviewers.queue_theme_pending'),
             ),
-            (gettext('Review Log'), reverse('reviewers.reviewlog')),
             (
-                gettext('Theme Review Guide'),
+                'Review Log',
+                reverse('reviewers.reviewlog'),
+            ),
+            (
+                'Theme Review Guide',
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             ),
         ]
     if view_all or acl.action_allowed_for(
         request.user, amo.permissions.RATINGS_MODERATE
     ):
-        sections[gettext('User Ratings Moderation')] = [
+        sections['User Ratings Moderation'] = [
             (
-                gettext('Ratings Awaiting Moderation ({0})').format(
-                    queue_counts['moderated']
-                ),
+                'Ratings Awaiting Moderation ({0})'.format(queue_counts['moderated']),
                 reverse('reviewers.queue_moderated'),
             ),
             (
-                gettext('Moderated Review Log'),
+                'Moderated Review Log',
                 reverse('reviewers.ratings_moderation_log'),
             ),
             (
-                gettext('Moderation Guide'),
+                'Moderation Guide',
                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
-            ),
-        ]
-    if view_all or acl.action_allowed_for(
-        request.user, amo.permissions.ADDONS_REVIEW_UNLISTED
-    ):
-        sections[gettext('Unlisted Add-ons')] = [
-            (gettext('All Unlisted Add-ons'), reverse('reviewers.unlisted_queue_all')),
-            (
-                gettext('Unlisted Add-ons Pending Manual Approval'),
-                reverse('reviewers.unlisted_queue_pending_manual_approval'),
-            ),
-            (
-                gettext('Review Guide'),
-                'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             ),
         ]
     if view_all or acl.action_allowed_for(
         request.user, amo.permissions.ADDON_REVIEWER_MOTD_EDIT
     ):
-        sections[gettext('Announcement')] = [
-            (gettext('Update message of the day'), reverse('reviewers.motd'))
+        sections['Announcement'] = [
+            (
+                'Update message of the day',
+                reverse('reviewers.motd'),
+            ),
         ]
     if view_all or acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
-        sections[gettext('Admin Tools')] = [
+        sections['Admin Tools'] = [
             (
-                gettext('Add-ons Pending Rejection ({0})').format(
+                'Add-ons Pending Rejection ({0})'.format(
                     queue_counts['pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
@@ -356,30 +299,9 @@ def save_motd(request):
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
-def is_admin_reviewer(request):
-    return acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
-
-
-def filter_admin_review_for_legacy_queue(qs):
-    return qs.filter(
-        Q(needs_admin_code_review=None) | Q(needs_admin_code_review=False),
-        Q(needs_admin_theme_review=None) | Q(needs_admin_theme_review=False),
-    )
-
-
 def _queue(request, tab, unlisted=False):
-    admin_reviewer = is_admin_reviewer(request)
     TableObj = reviewer_tables_registry[tab]
-    qs = TableObj.get_queryset(admin_reviewer=admin_reviewer)
-
-    admin_reviewer = is_admin_reviewer(request)
-
-    # Those restrictions will only work with our RawSQLModel, so we need to
-    # make sure we're not dealing with a regular Django ORM queryset first.
-    if hasattr(qs, 'sql_model'):
-        if not admin_reviewer:
-            qs = filter_admin_review_for_legacy_queue(qs)
-
+    qs = TableObj.get_queryset(request=request)
     params = {}
     order_by = request.GET.get('sort')
     if order_by is None and hasattr(TableObj, 'default_order_by'):
@@ -396,7 +318,6 @@ def _queue(request, tab, unlisted=False):
         per_page = REVIEWS_PER_PAGE
     count = construct_count_queryset_from_queryset(qs)()
     page = paginate(request, table.rows, per_page=per_page, count=count)
-    table.set_page(page)
 
     return TemplateResponse(
         request,
@@ -405,7 +326,6 @@ def _queue(request, tab, unlisted=False):
             table=table,
             page=page,
             tab=tab,
-            point_types=amo.REVIEWED_AMO,
             unlisted=unlisted,
         ),
     )
@@ -413,16 +333,11 @@ def _queue(request, tab, unlisted=False):
 
 reviewer_tables_registry = {
     'extension': PendingManualApprovalQueueTable,
-    'recommended': RecommendedPendingManualApprovalQueueTable,
     'theme_pending': UpdatedThemesQueueTable,
     'theme_nominated': NewThemesQueueTable,
-    'auto_approved': AutoApprovedTable,
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
-    'scanners': ScannersReviewTable,
     'pending_rejection': PendingRejectionTable,
-    'unlisted_pending_manual_approval': UnlistedPendingManualApprovalQueueTable,
-    'unlisted': ViewUnlistedAllListTable,
 }
 
 
@@ -435,14 +350,12 @@ def construct_count_queryset_from_queryset(qs):
     return qs.values('pk').order_by().count
 
 
-def fetch_queue_counts(admin_reviewer):
-    def count_from_registered_table(table, *, admin_reviewer):
-        return construct_count_queryset_from_queryset(
-            table.get_queryset(admin_reviewer=admin_reviewer)
-        )
+def fetch_queue_counts(request):
+    def count_from_registered_table(table, *, request):
+        return construct_count_queryset_from_queryset(table.get_queryset(request))
 
     counts = {
-        key: count_from_registered_table(table, admin_reviewer=admin_reviewer)
+        key: count_from_registered_table(table, request=request)
         for key, table in reviewer_tables_registry.items()
         if table.show_count_in_dashboard
     }
@@ -456,11 +369,6 @@ def fetch_queue_counts(admin_reviewer):
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension(request):
     return _queue(request, 'extension')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_RECOMMENDED_REVIEW)
-def queue_recommended(request):
-    return _queue(request, 'recommended')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
@@ -491,7 +399,7 @@ def queue_moderated(request):
             amo.messages.error(
                 request,
                 ' '.join(
-                    e.as_text() or gettext('An unknown error occurred')
+                    e.as_text() or 'An unknown error occurred'
                     for e in reviews_formset.errors
                 ),
             )
@@ -505,7 +413,6 @@ def queue_moderated(request):
             tab='moderated',
             page=page,
             flags=flags,
-            point_types=amo.REVIEWED_AMO,
         ),
     )
 
@@ -513,16 +420,6 @@ def queue_moderated(request):
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     return _queue(request, 'content_review')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_auto_approved(request):
-    return _queue(request, 'auto_approved')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_scanners(request):
-    return _queue(request, 'scanners')
 
 
 @permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
@@ -583,12 +480,12 @@ def review(request, addon, channel=None):
 
     # Other cases are handled in ReviewHelper by limiting what actions are
     # available depending on user permissions and add-on/version state.
-
-    version = addon.find_latest_version(channel=channel, exclude=())
+    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    version = addon.find_latest_version(channel=channel, exclude=(), deleted=is_admin)
     latest_not_disabled_version = addon.find_latest_version(channel=channel)
 
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
-        amo.messages.warning(request, gettext('Self-reviews are not allowed.'))
+        amo.messages.warning(request, 'Self-reviews are not allowed.')
         return redirect(reverse('reviewers.dashboard'))
 
     # Queryset to be paginated for versions. We use the default ordering to get
@@ -603,14 +500,9 @@ def review(request, addon, channel=None):
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
-        # Prefetch scanner results... but without the results json as we don't
-        # need it.
-        .prefetch_related(
-            Prefetch(
-                'scannerresults',
-                queryset=ScannerResult.objects.defer('results'),
-            )
-        )
+        # Prefetch scanner results and related rules...
+        .prefetch_related('scannerresults')
+        .prefetch_related('scannerresults__matched_rules')
         # Add activity transformer to prefetch all related activity logs on
         # top of the regular transformers.
         .transform(Version.transformer_activity)
@@ -629,7 +521,6 @@ def review(request, addon, channel=None):
     form = ReviewForm(
         request.POST if request.method == 'POST' else None, helper=form_helper
     )
-    is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
 
     reports = Paginator(AbuseReport.objects.for_addon(addon), 5).page(1)
     user_ratings = Paginator(
@@ -653,7 +544,7 @@ def review(request, addon, channel=None):
         # reviewer)
         form.helper.process()
 
-        amo.messages.success(request, gettext('Review successfully processed.'))
+        amo.messages.success(request, 'Review successfully processed.')
         clear_reviewing_cache(addon.id)
         return redirect(form.helper.redirect_url or redirect_url)
 
@@ -833,6 +724,7 @@ def review(request, addon, channel=None):
         count=count,
         flags=flags,
         form=form,
+        format_matched_rules=formatted_matched_rules_with_files_and_data,
         has_versions_pending_rejection=has_versions_pending_rejection,
         important_changes_log=important_changes_log,
         is_admin=is_admin,
@@ -908,7 +800,7 @@ def review_viewing(request):
             is_user = 1
         else:
             currently_viewing = settings.TASK_USER_ID
-            current_name = gettext('Review lock limit reached')
+            current_name = 'Review lock limit reached'
             is_user = 2
     else:
         current_name = UserProfile.objects.get(pk=currently_viewing).name
@@ -970,36 +862,32 @@ def reviewlog(request):
 
     form = ReviewLogForm(data)
 
-    approvals = ActivityLog.objects.review_log()
+    qs = ActivityLog.objects.review_log()
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        approvals = approvals.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
+        qs = qs.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
     if not acl.is_listed_addons_reviewer(request.user):
-        approvals = approvals.exclude(
-            versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON
-        )
+        qs = qs.exclude(versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
     if not acl.is_static_theme_reviewer(request.user):
-        approvals = approvals.exclude(
-            versionlog__version__addon__type=amo.ADDON_STATICTHEME
-        )
+        qs = qs.exclude(versionlog__version__addon__type=amo.ADDON_STATICTHEME)
 
     if form.is_valid():
         data = form.cleaned_data
         if data['start']:
-            approvals = approvals.filter(created__gte=data['start'])
+            qs = qs.filter(created__gte=data['start'])
         if data['end']:
-            approvals = approvals.filter(created__lt=data['end'])
+            qs = qs.filter(created__lt=data['end'])
         if data['search']:
             term = data['search']
-            approvals = approvals.filter(
+            qs = qs.filter(
                 Q(commentlog__comments__icontains=term)
                 | Q(addonlog__addon__name__localized_string__icontains=term)
                 | Q(user__display_name__icontains=term)
                 | Q(user__username__icontains=term)
             ).distinct()
 
-    pager = amo.utils.paginate(request, approvals, 50)
+    pager = amo.utils.paginate(request, qs, 50)
     data = context(form=form, pager=pager)
     return TemplateResponse(request, 'reviewers/reviewlog.html', context=data)
 
@@ -1010,15 +898,6 @@ def abuse_reports(request, addon):
     reports = amo.utils.paginate(request, AbuseReport.objects.for_addon(addon))
     data = context(addon=addon, reports=reports, version=addon.current_version)
     return TemplateResponse(request, 'reviewers/abuse_reports.html', context=data)
-
-
-@any_reviewer_required
-def leaderboard(request):
-    return TemplateResponse(
-        request,
-        'reviewers/leaderboard.html',
-        context=context(scores=ReviewerScore.all_users_by_score()),
-    )
 
 
 @any_reviewer_required
@@ -1046,24 +925,6 @@ def whiteboard(request, addon, channel):
 
         return redirect('reviewers.review', channel_as_text, addon.pk)
     raise PermissionDenied
-
-
-@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
-def unlisted_list(request):
-    return _queue(
-        request,
-        'unlisted',
-        unlisted=True,
-    )
-
-
-@permission_or_tools_unlisted_view_required(amo.permissions.ADDONS_REVIEW_UNLISTED)
-def unlisted_pending_manual_approval(request):
-    return _queue(
-        request,
-        'unlisted_pending_manual_approval',
-        unlisted=True,
-    )
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
@@ -1100,8 +961,8 @@ def eula(request, addon):
         request,
         addon,
         addon.eula,
-        page_title=gettext('{addon} – EULA'),
-        long_title=gettext('End-User License Agreement'),
+        page_title='{addon} – EULA',
+        long_title='End-User License Agreement',
     )
 
 
@@ -1112,8 +973,8 @@ def privacy(request, addon):
         request,
         addon,
         addon.privacy_policy,
-        page_title=gettext('{addon} – Privacy Policy'),
-        long_title=gettext('Privacy Policy'),
+        page_title='{addon} – Privacy Policy',
+        long_title='Privacy Policy',
     )
 
 
@@ -1179,6 +1040,21 @@ def download_git_stored_file(request, version_id, filename):
     response['Content-Length'] = actual_blob.size
 
     return response
+
+
+@any_reviewer_required
+def developer_profile(request, user_id):
+    developer = get_object_or_404(UserProfile, id=user_id)
+    qs = AddonUser.unfiltered.filter(user=developer).order_by('addon_id')
+    addonusers_pager = paginate(request, qs, 100)
+    return TemplateResponse(
+        request,
+        'reviewers/developer_profile.html',
+        context={
+            'developer': developer,
+            'addonusers_pager': addonusers_pager,
+        },
+    )
 
 
 class AddonReviewerViewSet(GenericViewSet):
@@ -1317,6 +1193,10 @@ class AddonReviewerViewSet(GenericViewSet):
             pending_rejection_by=None,
             pending_content_rejection=None,
         )
+        # Since we're clearing pending rejection on multiple versions through
+        # a queryset .update(), we are not going through post_save callbacks,
+        # so we might be missing due dates on affected versions.
+        addon.update_all_due_dates()
         return Response(status=status_code)
 
     @drf_action(
@@ -1342,6 +1222,38 @@ class AddonReviewerViewSet(GenericViewSet):
                 'validation': result.processed_validation,
             }
         )
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
+    )
+    def due_date(self, request, **kwargs):
+        version = get_object_or_404(
+            Version, pk=request.data.get('version'), addon_id=kwargs['pk']
+        )
+        status_code = status.HTTP_202_ACCEPTED
+        try:
+            due_date = datetime.fromisoformat(request.data.get('due_date'))
+            version.update(due_date=due_date)
+        except TypeError:
+            status_code = status.HTTP_400_BAD_REQUEST
+        return Response(status=status_code)
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
+    )
+    def set_needs_human_review(self, request, **kwargs):
+        version = get_object_or_404(
+            Version, pk=request.data.get('version'), addon_id=kwargs['pk']
+        )
+        status_code = status.HTTP_202_ACCEPTED
+        version.update(needs_human_review=True)
+        due_date = version.reload().due_date
+        due_date_string = due_date.isoformat(timespec='seconds') if due_date else None
+        return Response(status=status_code, data={'due_date': due_date_string})
 
 
 class ReviewAddonVersionMixin:
@@ -1455,7 +1367,6 @@ class ReviewAddonVersionDraftCommentViewSet(
     UpdateModelMixin,
     GenericViewSet,
 ):
-
     permission_classes = [
         AnyOf(AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer)
     ]
@@ -1487,13 +1398,9 @@ class ReviewAddonVersionDraftCommentViewSet(
         super().check_object_permissions(self.request, version.addon)
 
     def get_queryset(self):
-        # Preload version once for all drafts returned, and join with user and
-        # canned response to avoid extra queries for those.
-        return (
-            self.get_version_object()
-            .draftcomment_set.all()
-            .select_related('user', 'canned_response')
-        )
+        # Preload version once for all drafts returned, and join with user to
+        # avoid extra queries for those.
+        return self.get_version_object().draftcomment_set.all().select_related('user')
 
     def get_object(self, **kwargs):
         qset = self.filter_queryset(self.get_queryset())
@@ -1610,18 +1517,3 @@ class ReviewAddonVersionCompareViewSet(
             instance=version, data={'parent_version': objs['parent_version']}
         )
         return Response(serializer.data)
-
-
-class CannedResponseViewSet(ListAPIView):
-    permission_classes = [AllowAnyKindOfReviewer]
-
-    queryset = CannedResponse.objects.all()
-    serializer_class = CannedResponseSerializer
-    # The amount of data will be small so that paginating will be
-    # overkill and result in unnecessary additional requests
-    pagination_class = None
-
-    @classmethod
-    def as_view(cls, **initkwargs):
-        """The API is read-only so we can turn off atomic requests."""
-        return non_atomic_requests(super().as_view(**initkwargs))

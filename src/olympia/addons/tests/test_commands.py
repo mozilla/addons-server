@@ -424,8 +424,10 @@ class TestDeleteObsoleteAddons(TestCase):
         self.lwt = addon_factory(type=9, guid=None)  # _ADDON_PERSONA
         self.webapp = addon_factory()
         self.webapp.update(type=11)  # webapp
+        self.no_versions = addon_factory(type=6)  # _ADDON_LPADDON
+        self.no_versions.current_version.delete(hard=True)
 
-        assert Addon.unfiltered.count() == 8
+        assert Addon.unfiltered.count() == 9
 
     def test_hard(self):
         # add it already to check that the conflict is ignored
@@ -440,12 +442,13 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.unfiltered.get(id=self.dictionary.id)
 
         # check the guids have been added to DeniedGuid
-        DeniedGuid.objects.all().count() == 4
+        assert DeniedGuid.objects.all().count() == 5
         assert DeniedGuid.objects.get(guid=self.xul_theme.guid)
         assert DeniedGuid.objects.get(guid=self.lpaddon.guid)
         assert DeniedGuid.objects.get(guid=self.plugin.guid)
         # no self.lwt as it didn't have a guid
         assert DeniedGuid.objects.get(guid=self.webapp.guid)
+        assert DeniedGuid.objects.filter(guid=self.no_versions.guid)
 
     def test_hard_with_already_deleted(self):
         Addon.unfiltered.update(status=amo.STATUS_DELETED)
@@ -459,6 +462,8 @@ class TestDeleteObsoleteAddons(TestCase):
         assert Addon.objects.get(id=self.extension.id)
         assert Addon.objects.get(id=self.static_theme.id)
         assert Addon.objects.get(id=self.dictionary.id)
+        # Addon.delete will hard delete this add-on because it's got no versions.
+        assert not Addon.unfiltered.filter(guid=self.no_versions.guid).exists()
 
 
 class TestFixLangpacksWithMaxVersionStar(TestCase):
@@ -522,6 +527,7 @@ class TestFixLangpacksWithMaxVersionStar(TestCase):
                 assert version.compatible_apps[app].max.version == '77.*'
 
 
+@pytest.mark.django_db
 def test_update_rating_aggregates():
     addon = addon_factory()
     Rating.objects.create(addon=addon, user=user_factory(), rating=4)

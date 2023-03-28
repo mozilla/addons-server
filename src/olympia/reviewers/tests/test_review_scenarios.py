@@ -12,6 +12,7 @@ from olympia.reviewers.utils import ReviewAddon, ReviewFiles, ReviewHelper
 
 
 @mock.patch('olympia.reviewers.utils.sign_file', lambda f: None)
+@pytest.mark.django_db
 @pytest.mark.parametrize(
     'review_action,addon_status,file_status,review_class,review_type,'
     'final_addon_status,final_file_status',

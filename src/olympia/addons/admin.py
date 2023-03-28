@@ -4,7 +4,9 @@ from urllib.parse import urlencode, urljoin
 from django import http, forms
 from django.conf import settings
 from django.contrib import admin
+from django.contrib.admin.utils import display_for_field
 from django.core import validators
+from django.db.models import Exists, OuterRef
 from django.forms.models import modelformset_factory
 from django.http.response import (
     HttpResponseForbidden,
@@ -15,25 +17,33 @@ from django.shortcuts import get_object_or_404
 from django.urls import re_path, resolve, reverse
 from django.utils.encoding import force_str
 from django.utils.html import format_html, format_html_join
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
+from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
+from olympia.amo.forms import AMOModelForm
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
 from olympia.versions.models import Version
-from olympia.zadmin.admin import related_content_link
+from olympia.zadmin.admin import related_content_link, related_single_content_link
 
 from . import models
 from .forms import AdminBaseFileFormSet, FileStatusForm
 
 
 log = olympia.core.logger.getLogger('z.addons.admin')
+
+
+class AddonReviewerFlagsInline(admin.TabularInline):
+    model = AddonReviewerFlags
+    verbose_name_plural = 'Reviewer Flags'
+    can_delete = False
+    view_on_site = False
 
 
 class AddonUserInline(admin.TabularInline):
@@ -69,11 +79,13 @@ class FileInline(admin.TabularInline):
     max_num = 0
     fields = (
         'created',
+        'version__id',
         'version__version',
         'version__channel',
+        'version__deleted',
         'status',
         'version__is_blocked',
-        'hash_link',
+        'version__needs_human_review',
     )
     editable_fields = ('status',)
     readonly_fields = tuple(set(fields) - set(editable_fields))
@@ -81,9 +93,15 @@ class FileInline(admin.TabularInline):
     view_on_site = False
     template = 'admin/addons/file_inline.html'
     checks_class = FileInlineChecks
+    show_change_link = True
+
+    def version__id(self, obj):
+        return obj.version_id
+
+    version__id.short_description = 'Version ID'
 
     def version__version(self, obj):
-        return obj.version.version + (' - Deleted' if obj.version.deleted else '')
+        return related_single_content_link(obj, 'version')
 
     version__version.short_description = 'Version'
 
@@ -91,6 +109,12 @@ class FileInline(admin.TabularInline):
         return obj.version.get_channel_display()
 
     version__channel.short_description = 'Channel'
+
+    def version__deleted(self, obj):
+        return obj.version.deleted
+
+    version__deleted.short_description = 'Deleted'
+    version__deleted.boolean = True
 
     def version__is_blocked(self, obj):
         block = self.instance.block
@@ -102,12 +126,11 @@ class FileInline(admin.TabularInline):
 
     version__is_blocked.short_description = 'Block status'
 
-    def hash_link(self, obj):
-        url = reverse('zadmin.recalc_hash', args=(obj.id,))
-        template = '<a href="{}" class="recalc" title="{}">Recalc Hash</a>'
-        return format_html(template, url, obj.hash)
+    def version__needs_human_review(self, obj):
+        return obj.version.needs_human_review
 
-    hash_link.short_description = 'Hash'
+    version__needs_human_review.short_description = 'Needs human review'
+    version__needs_human_review.boolean = True
 
     def get_formset(self, request, obj=None, **kwargs):
         self.instance = obj
@@ -142,16 +165,20 @@ class FileInline(admin.TabularInline):
         return qs.select_related('version')
 
 
-class AddonAdmin(admin.ModelAdmin):
-    class Media:
+class AddonAdmin(AMOModelAdmin):
+    class Media(AMOModelAdmin.Media):
         css = {
             'all': (
+                'css/admin/amoadmin.css',
                 'css/admin/l10n.css',
                 'css/admin/pagination.css',
                 'css/admin/addons.css',
             )
         }
-        js = ('admin/js/jquery.init.js', 'js/admin/l10n.js', 'js/admin/recalc_hash.js')
+        js = AMOModelAdmin.Media.js + (
+            'admin/js/jquery.init.js',
+            'js/admin/l10n.js',
+        )
 
     list_display = (
         '__str__',
@@ -162,10 +189,58 @@ class AddonAdmin(admin.ModelAdmin):
         'average_rating',
         'authors_links',
         'reviewer_links',
+        'reviewer_flags',
     )
-    list_filter = ('type', 'status')
-    search_fields = ('id', '^guid', '^slug')
-    inlines = (AddonUserInline, FileInline)
+    list_filter = (
+        (
+            'created',
+            DateRangeFilter,
+        ),
+        'type',
+        'status',
+        (
+            'addonuser__user__created',
+            DateRangeFilter,
+        ),
+        (
+            'addonuser__user__banned',
+            admin.EmptyFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_unlisted',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_until_next_approval',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_disabled_until_next_approval_unlisted',
+            admin.BooleanFieldListFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_delayed_until',
+            DateRangeFilter,
+        ),
+        (
+            'reviewerflags__auto_approval_delayed_until_unlisted',
+            DateRangeFilter,
+        ),
+    )
+    list_select_related = ('reviewerflags',)
+    search_fields = ('id', 'guid__startswith', 'slug__startswith')
+    search_by_ip_actions = (amo.LOG.ADD_VERSION.id,)
+    search_by_ip_activity_accessor = 'addonlog__activity_log'
+    search_by_ip_activity_reverse_accessor = 'activity_log__addonlog__addon'
+    inlines = (
+        AddonReviewerFlagsInline,
+        AddonUserInline,
+        FileInline,
+    )
     readonly_fields = (
         'id',
         'created',
@@ -249,44 +324,25 @@ class AddonAdmin(admin.ModelAdmin):
     )
     actions = ['git_extract_action']
 
-    def get_queryset(self, request):
-        # We want to _unlisted_versions_exists/_listed_versions_exists to avoid
-        # repeating that query for each add-on in the list. A cleaner way to do this
-        # would be to use annotate like this:
-        # sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
-        # (...).annotate(
-        #     _unlisted_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.CHANNEL_UNLISTED)
-        #     ),
-        #     _listed_versions_exists=Exists(
-        #         sub_qs.filter(channel=amo.CHANNEL_LISTED)
-        #     ),
-        # )
-        # But while this works, the subquery is a lot less optimized (it does a full
-        # query instead of the SELECT 1 ... LIMIT 1) and to make things worse django
-        # admin doesn't know it's only for displayed data (it doesn't realize we aren't
-        # filtering on it, and even if it did can't remove the annotations from the
-        # queryset anyway) so it uses it for the count() queries as well, making them a
-        # lot slower.
-        subquery = (
-            'SELECT 1 FROM `versions` WHERE `channel` = %s'
-            ' AND `addon_id` = `addons`.`id` LIMIT 1'
-        )
-        extra = {
-            'select': {
-                '_unlisted_versions_exists': subquery,
-                '_listed_versions_exists': subquery,
-            },
-            'select_params': (
-                amo.CHANNEL_UNLISTED,
-                amo.CHANNEL_LISTED,
+    def get_queryset_annotations(self):
+        # Add annotation for _unlisted_versions_exists/_listed_versions_exists
+        # to avoid repeating those queries for each add-on in the list.
+        sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
+        annotations = {
+            '_unlisted_versions_exists': Exists(
+                sub_qs.filter(channel=amo.CHANNEL_UNLISTED)
+            ),
+            '_listed_versions_exists': Exists(
+                sub_qs.filter(channel=amo.CHANNEL_LISTED)
             ),
         }
+        return annotations
+
+    def get_queryset(self, request):
         return (
             Addon.unfiltered.all()
             .only_translations()
             .transform(Addon.attach_all_authors)
-            .extra(**extra)
         )
 
     def get_urls(self):
@@ -305,6 +361,9 @@ class AddonAdmin(admin.ModelAdmin):
             ),
         ]
         return custom_urlpatterns + urlpatterns
+
+    def get_rangefilter_addonuser__user__created_title(self, request, field_path):
+        return 'author created'
 
     def authors_links(self, obj):
         # Note: requires .transform(Addon.attach_all_authors) to have been
@@ -336,7 +395,7 @@ class AddonAdmin(admin.ModelAdmin):
             else '-'
         )
 
-    authors_links.short_description = _('Authors')
+    authors_links.short_description = 'Authors'
 
     def total_ratings_link(self, obj):
         return related_content_link(
@@ -347,7 +406,7 @@ class AddonAdmin(admin.ModelAdmin):
             text=obj.total_ratings,
         )
 
-    total_ratings_link.short_description = _('Ratings')
+    total_ratings_link.short_description = 'Ratings'
 
     def reviewer_links(self, obj):
         links = []
@@ -355,27 +414,29 @@ class AddonAdmin(admin.ModelAdmin):
         # provided by annotations made in get_queryset()
         if obj._listed_versions_exists:
             links.append(
-                '<a href="{}">{}</a>'.format(
+                (
                     urljoin(
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['listed', obj.id]),
                     ),
-                    _('Reviewer Tools (listed)'),
+                    'Review (listed)',
                 )
             )
         if obj._unlisted_versions_exists:
             links.append(
-                '<a href="{}">{}</a>'.format(
+                (
                     urljoin(
                         settings.EXTERNAL_SITE_URL,
                         reverse('reviewers.review', args=['unlisted', obj.id]),
                     ),
-                    _('Reviewer Tools (unlisted)'),
+                    'Review (unlisted)',
                 )
             )
-        return format_html('&nbsp;|&nbsp;'.join(links))
+        return format_html(
+            '<ul>{}</ul>', format_html_join('', '<li><a href="{}">{}</a></li>', links)
+        )
 
-    reviewer_links.short_description = _('Reviewer links')
+    reviewer_links.short_description = 'Reviewer links'
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         lookup_field = Addon.get_lookup_field(object_id)
@@ -436,9 +497,7 @@ class AddonAdmin(admin.ModelAdmin):
             GitExtractionEntry.objects.create(addon=addon)
             addon_ids.append(force_str(addon))
         kw = {'addons': ', '.join(addon_ids)}
-        self.message_user(
-            request, gettext('Git extraction triggered for "%(addons)s".' % kw)
-        )
+        self.message_user(request, 'Git extraction triggered for "%(addons)s".' % kw)
 
     git_extract_action.short_description = 'Git-Extract'
 
@@ -457,17 +516,46 @@ class AddonAdmin(admin.ModelAdmin):
             reverse('admin:addons_addon_change', args=(obj.pk,))
         )
 
+    @admin.display(description='Activity Logs')
     def activity(self, obj):
         return related_content_link(obj, ActivityLog, 'addonlog__addon')
 
-    activity.short_description = _('Activity Logs')
+    @admin.display(description='Flags')
+    def reviewer_flags(self, obj):
+        fields = (
+            field
+            for field in AddonReviewerFlags._meta.get_fields()
+            if field.name not in ('created', 'modified', 'addon')
+        )
+        try:
+            contents = (
+                (
+                    field.verbose_name,
+                    display_for_field(
+                        getattr(obj.reviewerflags, field.name), field, False
+                    ),
+                )
+                for field in fields
+                if getattr(obj.reviewerflags, field.name)
+            )
+            if contents:
+                return format_html(
+                    '<table>{}</table>',
+                    format_html_join(
+                        '',
+                        '<tr class="alt"><th>{}</th><td>{}</td></tr>',
+                        contents,
+                    ),
+                )
+        except AddonReviewerFlags.DoesNotExist:
+            pass
 
 
-class FrozenAddonAdmin(admin.ModelAdmin):
+class FrozenAddonAdmin(AMOModelAdmin):
     raw_id_fields = ('addon',)
 
 
-class ReplacementAddonForm(forms.ModelForm):
+class ReplacementAddonForm(AMOModelForm):
     def clean_path(self):
         path = None
         try:
@@ -491,7 +579,7 @@ class ReplacementAddonForm(forms.ModelForm):
         return path
 
 
-class ReplacementAddonAdmin(admin.ModelAdmin):
+class ReplacementAddonAdmin(AMOModelAdmin):
     list_display = ('guid', 'path', 'guid_slug', '_url')
     form = ReplacementAddonForm
 
@@ -506,7 +594,7 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
         try:
             slug = models.Addon.objects.get(guid=obj.guid).slug
         except models.Addon.DoesNotExist:
-            slug = gettext('- Add-on not on AMO -')
+            slug = '- Add-on not on AMO -'
         return slug
 
     def has_module_permission(self, request):
@@ -527,8 +615,8 @@ class ReplacementAddonAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.AddonRegionalRestrictions)
-class AddonRegionalRestrictionsAdmin(admin.ModelAdmin):
-    list_display = ('addon__name', 'excluded_regions')
+class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
+    list_display = ('created', 'modified', 'addon__name', 'excluded_regions')
     fields = ('created', 'modified', 'addon', 'excluded_regions')
     raw_id_fields = ('addon',)
     readonly_fields = ('created', 'modified')

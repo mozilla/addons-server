@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-07 07:08+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"PO-Revision-Date: 2023-03-22 13:53+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -19,57 +19,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "type"
-
-msgid "Users"
-msgstr "Brûkers"
-
-msgid "Add-ons"
-msgstr "Add-ons"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "minimum oantal rapporten (groepearre op guid)"
-
-msgid "creation date"
-msgstr "oanmaakdatum"
-
-msgid "User / Add-on"
-msgstr "Brûker / add-on"
-
-msgid "Distribution"
-msgstr "Sprieding"
-
-msgid "Reporter's country"
-msgstr "Lân fan melder"
-
-msgid "Message excerpt"
-msgstr "Uttreksel berjocht"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "De %d selektearre rapporten binne as jildich markearre."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "De %d selektearre rapporten binne as fertocht markearre."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Selektearre misbrûkrapporten as fertocht markearje"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Soargje derfoar dat dit fjild net mear as {max_length} tekens befettet."
 
-msgid "Modified on:"
-msgstr "Wizige:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Per %(filter_title)s"
-
-msgid "All"
-msgstr "Alle"
+msgid "Invalid value"
+msgstr "Net jildige wearde"
 
 msgid "No links are allowed."
 msgstr "Keppelingen binne net tastien."
@@ -116,7 +70,9 @@ msgid "Review"
 msgstr "Beoardieling"
 
 msgid "Version {0}"
-msgstr "Ferzje {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Ferzje {0}"
+msgstr[1] "Ferzje {0}"
 
 msgid "Review note"
 msgstr "Opmerking by beoardieling"
@@ -124,30 +80,8 @@ msgstr "Opmerking by beoardieling"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Allinnich by de lêste ferzjes fan add-ons kinne opmerkingen tafoege wurde."
 
-msgid "Authors"
-msgstr "Skriuwers"
-
-msgid "Ratings"
-msgstr "Wurdearring"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Ark foar beoardielers (fermeld)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Ark foar beoardielers (net fermeld)"
-
-msgid "Reviewer links"
-msgstr "Keppelingen foar beoardielers"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Git-ekstraksje aktivearre foar ‘%(addons)s’."
-
-msgid "Activity Logs"
-msgstr "Aktiviteitenlochboek"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Add-on net op AMO -"
+msgid "Request content length is too large."
+msgstr "Lingte fan fersykynhâld is te grut."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Oer it maksimaal oantal kategoryen per tapassing ({MAX_CATEGORIES})"
@@ -179,9 +113,6 @@ msgstr "Net-stipe bestânstype, laad in argyfbestân ({extensions}) op."
 msgid "Invalid or broken archive."
 msgstr "Unjildich of skansearre argyf."
 
-msgid "Invalid value"
-msgstr "Net jildige wearde"
-
 msgid "Invalid app specified"
 msgstr "Unjildige app opjûn"
 
@@ -210,6 +141,15 @@ msgstr "Ynboude lisinsjes kinne net bywurke wurde."
 
 msgid "Upload is not valid."
 msgstr "Oplaad is net jildich."
+
+msgid "File is already disabled."
+msgstr "Bestân is al útskeakele."
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
+"help by nedich hawwe."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Ferzje {version} komt oerien mei {block_link} foar dizze add-on. Jo kinne kontakt opnimme mei {amo_admins} foar oanfoljende ynformaasje."
@@ -244,8 +184,8 @@ msgstr "Dizze identifikator kin net brûkt wurde. Kies in oare."
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nammen fan add-ons meie de Mozilla- of Firefox-hannelsmerken net befetsje."
 
-msgid "Site permissions for {hostnames}"
-msgstr "Websitemachtigingen foar {hostnames}"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr "Ferzje {version_string} moat heger wêze as de foarige goedkarte ferzje {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Sawol ‘license’ as ‘custom_license’ kinne net tegearre opjûn wurde."
@@ -282,9 +222,6 @@ msgstr "Myn add-ons"
 
 msgid "My Themes"
 msgstr "Myn tema’s"
-
-msgid "Git-Extract"
-msgstr "Git-ekstrakt"
 
 msgid "Tools"
 msgstr "Ark"
@@ -508,38 +445,6 @@ msgstr "Unjildige pk of identifikator ‘%s’ - objekt bestiet net."
 msgid "Confirmation for developer API keys"
 msgstr "Befêstiging foar API-kaaien foar ûntwikkelers"
 
-msgid "Application Versions"
-msgstr "Tapassingsferzjes"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Akseptabele ferzjes foar alle tapassingen op AMO."
-
-msgid "Valid Application Versions"
-msgstr "Jildige tapassingsferzjes"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"By Mozilla Add-ons yntsjinne add-ons moatte in manifest-bestân befetsje dat op syn minst ien fan de ûndersteande tapassingen stipet. Allinnich de hjiroûder fermelde ferzjes binne foar dizze "
-"tapassingen tastien."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Hâld der rekkening mei dat WebExtensions gjin ‘*’ yn %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s akseptearret."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Ferzjes"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas "
-"%(amo_manifests_mdn_link_open)shjir%(amo_manifests_mdn_link_close)s spesifisearre."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
 
@@ -554,9 +459,6 @@ msgstr "Dizze oanpaste URL kin net brûkt wurde."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dizze add-on heart al by de kolleksje"
-
-msgid "Signoff State"
-msgstr "Ofmeldingssteat"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -589,59 +491,6 @@ msgstr "Fermeldingen beoardiele"
 msgid "Review Unlisted"
 msgstr "Net-fermelde items beoardiele"
 
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Mear %(name)s fuortsmite"
-
-msgid "Home"
-msgstr "Startside"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s add-on-GUID’s binne al blokkearre foar %(v_min)s oant %(v_max)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s add-on-GUID’s binne net fûn"
-
-msgid "Save"
-msgstr "Bewarje"
-
-msgid "Save and add more"
-msgstr "Bewarje en mear tafoegje"
-
-msgid "Delete"
-msgstr "Fuortsmite"
-
-msgid "Update"
-msgstr "Bywurkje"
-
-msgid "Reject Submission"
-msgstr "Bydrage ôfwize"
-
-msgid "Approve Submission"
-msgstr "Bydrage goedkarre"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s tafoegje"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "Add-on-GUID’s (ien per rigel)"
-
-msgid "Submit"
-msgstr "Yntsjinje"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s add-on-GUID’s mei %(adu)s brûkers"
-
-msgid "Edit Block"
-msgstr "Blokkearring bewurkje"
-
-msgid "versions"
-msgstr "ferzjes"
-
 msgid "{addon} was created."
 msgstr "{addon} is makke."
 
@@ -654,12 +503,13 @@ msgstr "Beskriuwing fan {addon} bewurke."
 msgid "Categories edited for {addon}."
 msgstr "Kategoryen foar {addon} bewurke."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) tafoege oan {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr "{user} ({0}) tafoege oan {addon}."
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) fuortsmiten fan {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr "{user} ({0}) fuortsmiten fan {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Bydragen foar {addon}."
@@ -684,8 +534,8 @@ msgstr "{version} foar {addon} bewurke."
 msgid "Version {0} deleted from {addon}."
 msgstr "Ferzje {0} út {addon} fuortsmiten."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Bestân {0.name} oan {version} fan {addon} tafoege."
+msgid "File {file} added to {version} of {addon}."
+msgstr "Bestân {file} oan {version} fan {addon} tafoege."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Bestân {0} út {version} fan {addon} fuortsmiten."
@@ -740,9 +590,6 @@ msgstr ""
 "De add-on is markearre foar beoardieling troch in behearder. De add-on stiet noch yn ús beoardielingswachtrige, mar moat troch ien fan ús behearders kontrolearre wurde. De beoardieling soe langer as"
 " gebrûklik duorje kinne."
 
-msgid "Comment on {addon} {version}."
-msgstr "Opmerking oer {addon} {version}."
-
 msgid "Commented"
 msgstr "Mei opmerking"
 
@@ -779,9 +626,9 @@ msgstr "{addon} is net mear oanrekkommandearre."
 msgid "{0} {1} added."
 msgstr "{0} {1} tafoege."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "rol fan {0.name} wizige yn {1} foar {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr "Rol fan {user} wizige nei {0} foar {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} falt no ûnder de lisinsje {0}."
@@ -795,14 +642,8 @@ msgstr "{addon}-piktogram of foarbylden wizige."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} foar {addon} goedkard."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} hat {rating} foar {addon} goedkard."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Beoardieling {rating} foar {addon} fuortsmiten."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} hat {rating} foar {addon} fuortsmiten."
 
 msgid "Application max version for {version} updated."
 msgstr "Maksimumferzje tapassing foar {version} bywurke."
@@ -840,18 +681,6 @@ msgstr "Fjild bewurke: {2} ynsteld op: {0}."
 msgid "Deleted: {1}."
 msgstr "Fuortsmiten: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Brûker {user} bywurke, reden: {1}"
-
-msgid "User {user} anonymized."
-msgstr "Brûker {user} anonimisearre."
-
-msgid "User {user} restricted."
-msgstr "Brûker {user} beheint."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "Behearder {0} hat aktiviteitenlochboek foar {user} besjoen."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} foar {addon} bywurke."
 
@@ -864,11 +693,11 @@ msgstr "Brûker {user} ferballe."
 msgid "User {user} picture deleted."
 msgstr "Ofbylding brûker {user} fuortsmiten."
 
-msgid "User {0.name} added to {group}."
-msgstr "Brûker {0.name} tafoege oan {group}."
+msgid "User {user} added to {group}."
+msgstr "Brûker {user} tafoege oan {group}."
 
-msgid "User {0.name} removed from {group}."
-msgstr "Brûker {0.name} fuortsmiten út {group}."
+msgid "User {user} removed from {group}."
+msgstr "Brûker {user} fuortsmiten út {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} net fermeld."
@@ -907,8 +736,8 @@ msgstr "Boarnekoade foar {addon} {version} opladen."
 msgid "Source code uploaded"
 msgstr "Boarnekoade opladen"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Automatyske goedkarring befêstige foar {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr "Automatyske goedkarring fan {addon} {version} befêstige."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatyske goedkarring befêstige"
@@ -1000,9 +829,6 @@ msgstr "Oftekenje blokkearringsaksje"
 msgid "User {user} session(s) reset."
 msgstr "Sesje(s) fan brûker {user} opnij inisjalisearre."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Brûker {user} beheind foar berik ‘{0}’"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Ofwizen ynhâld fan {addon} {version} ynpland."
 
@@ -1021,23 +847,17 @@ msgstr "{addon} {version} opnij ûndertekene (earder {0})."
 msgid "Version re-signed"
 msgstr "Ferzje opnij ûndertekene"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} hat {addon} forsearre útskeakele."
+msgid "{addon} {version} un-rejected."
+msgstr "Ofwizing {addon} {version} ûngedien makke."
 
-msgid "Force disabled"
-msgstr "Add-on twongen útskeakelje"
+msgid "Un-rejected"
+msgstr "Ofwizing ûngedien makke"
 
-msgid "{user} force-enabled {addon}."
-msgstr "{user} hat {addon} forsearre ynskeakele."
+msgid "{addon} needs_human_review flag cleared."
+msgstr "needs_human_review-markering fan {addon} wiske."
 
-msgid "Force enabled"
-msgstr "Twongen ynskeakele"
-
-msgid "{user} logged in."
-msgstr "{user} oanmeld."
-
-msgid "{user} restricted."
-msgstr "{user} beheind."
+msgid "Needs Human Review cleared"
+msgstr "Markearring ‘Persoanlike beoardieling nedich’ wiske"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1506,23 +1326,8 @@ msgstr "Spotlight"
 msgid "Strategic"
 msgstr "Strategysk"
 
-msgid "Add-on"
-msgstr "Add-on"
-
-msgid "Static Theme"
-msgstr "Statysk tema"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Befeiliging"
-
-msgid "Privacy"
-msgstr "Privacy"
-
-msgid "Development Practices"
-msgstr "Untwikkelpraktiken"
+msgid "Notable"
+msgstr "Opmerklik"
 
 msgid "No Reputation"
 msgstr "Gjin reputaasje"
@@ -1535,109 +1340,6 @@ msgstr "Hiel goed (2)"
 
 msgid "Excellent (3)"
 msgstr "Poerbêst (3)"
-
-msgid "Manual Reviewer Points"
-msgstr "Hânmjittige beoardielerspunten"
-
-msgid "New Legacy Add-on Review"
-msgstr "Nije beoardieling fan ferâldere add-on"
-
-msgid "Preliminary Add-on Review"
-msgstr "Foarriedige add-on-beoardieling"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Beoardieling fan bywurke ferâldere add-on"
-
-# Plural in this context means many of the add-on type
-msgid "New Dictionary Review"
-msgstr "Nije wurdboek-beoardieling"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Foarriedige wurdboek-beoardieling"
-
-msgid "Updated Dictionary Review"
-msgstr "Bywurke wurdboek-beoardieling"
-
-msgid "New Language Pack Review"
-msgstr "Nije taalpakket-beoardieling"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Foarriedige taalpakket-beoardieling"
-
-msgid "Updated Language Pack Review"
-msgstr "Bywurke taalpakket-beoardieling"
-
-msgid "Theme Review"
-msgstr "Temabeoardieling"
-
-msgid "Theme (Static) Review"
-msgstr "Beoardieling tema (statysk)"
-
-msgid "New Search Provider Review"
-msgstr "Nije sykprovider-beoardieling"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Foarriedige sykprovider-beoardieling"
-
-msgid "Updated Search Provider Review"
-msgstr "Bywurke sykprovider-beoardieling"
-
-msgid "New Complete Theme Review"
-msgstr "Nije folslein-temabeoardieling"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Foarriedige folslein-temabeoardieling"
-
-msgid "Updated Complete Theme Review"
-msgstr "Bywurke folslein-temabeoardieling"
-
-msgid "Moderated Add-on Review"
-msgstr "Moderearre add-on-beoardieling"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Evaluaasje fan add-on-beoardieling ûngedien makke"
-
-msgid "Add-on Content Review"
-msgstr "Beoardieling fan add-on-ynhâld"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Add-on-beoardieling (Heechste risiko)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Add-on-beoardieling (Heech risiko)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Add-on-beoardieling (Middelgrut risiko)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Add-on-beoardieling (Leech risiko)"
-
-msgid "Level 1"
-msgstr "Nivo 1"
-
-msgid "Level 2"
-msgstr "Nivo 2"
-
-msgid "Level 3"
-msgstr "Nivo 3"
-
-msgid "Level 4"
-msgstr "Nivo 4"
-
-msgid "Level 5"
-msgstr "Nivo 5"
-
-msgid "Level 6"
-msgstr "Nivo 6"
-
-msgid "Level 7"
-msgstr "Nivo 7"
-
-msgid "Level 8"
-msgstr "Nivo 8"
-
-msgid "Level 9"
-msgstr "Nivo 9"
 
 msgid "Request More Info"
 msgstr "Mear ynformaasje freegje"
@@ -1654,32 +1356,11 @@ msgstr "Ofwize"
 msgid "Approve"
 msgstr "Goedkarre"
 
-msgid "Sexual or pornographic content"
-msgstr "Seksuele of pornografyske ynhâld"
+msgid "All"
+msgstr "Alle"
 
-msgid "Inappropriate or offensive content"
-msgstr "Unpaslik of oanstjitjaande ynhâld"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Ofbyldingen fan geweld, oarloch of wapens"
-
-msgid "Nazi or other hate content"
-msgstr "Nazystyske of oare haatdragende ynhâld"
-
-msgid "Defamatory content"
-msgstr "Lasterlike ynhâld"
-
-msgid "Online gambling"
-msgstr "Online gokke"
-
-msgid "Spam content"
-msgstr "Spam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Ofbylding fan lege kwaliteit, oprekt of leech"
-
-msgid "Header image alignment problem"
-msgstr "Probleem mei útrjochtsjen headerôfbylding"
+msgid "Theme"
+msgstr "Tema"
 
 msgid "No action"
 msgstr "Gjin aksje"
@@ -1741,6 +1422,22 @@ msgstr "Resinte wizigingen foar myn add-ons"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-add-ons wurde {blog_link_open}net mear stipe op AMO{blog_link_close}. Jo kinne yn stee dêrfan in {doc_link_open}sykútwreiding meitsje{doc_link_close}."
+
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "Opladen fan Manifest v3 wurdt op dit stuit net stipe. {start_href}Mear ynfo oer de stipetiidsline{end_href}."
+
+msgid "Manifest V3 compatibility warning"
+msgstr "Manifest V3-kompatibiliteitswarskôging"
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+"Firefox foeget stipe ta foar manifestferzje 3 (MV3)-útwreidingen yn Firefox {version}, mar âldere ferzjes fan Firefox binne lykwols allinnich kompatibel mei manifestferzje 2 (MV2)-útwreidingen . Wy "
+"riede oan Manifest V3-útwreidingen foar no oan op te laden as sels-hosted om de komptabiliteit foar jo brûkers net te ferbrekken."
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr "Besykje foar mear ynformaasje oer de útjefte fan de MV3-útwreidingen of sels-hosten fan MV3-útwreidingen https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
@@ -1874,18 +1571,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Werjeftenamme"
 
-msgid "Origin"
-msgstr "Oarsprong"
-
-msgid "Permissions"
-msgstr "Tastimmingen"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Jo hawwe in websitemachtigingen-add-on makke foar deselde oarsprong en tastimmingen."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "De oarsprong moat allinnich in skema (protokol), in hostnamme (domein) en in opsjonele poarte befetsje"
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Unjildich of skansearre add-onbestân."
 
@@ -1901,9 +1586,6 @@ msgstr "Mozilla-befeiligingsmelding: jo API-referinsjes foar AMO binne ynlutsen"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "De falidaasje levere te folle flaters/warskôgingen op, dus %s berjochten binne ynkoarte. Neidat de sichtbere berjochten adressearre binne kinne jo de oare lêze."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Opladen fan Manifest v3 wurdt op dit stuit net stipe. {start_href}Mear ynfo oer de stipetiidsline{end_href}."
 
 msgid "Updated"
 msgstr "Bywurke"
@@ -2128,15 +1810,6 @@ msgstr "Untwikkelersdokumintaasje trochsykje"
 msgid "Search"
 msgstr "Sykje"
 
-msgid "Generate Site Permission Add-on"
-msgstr "Websitemachtigings-add-on meitsje"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "De oarsprong (skema+hostnamme+opsjonele poarte) wêrfoar jo de tastimming ynskeakele hawwe wolle. Dit is ek wêr’t jo de add-on hoste moatte."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "De machtiging(en) dy’t de makke add-on oan de oarsprong takenne sil."
-
 msgid "Use the field below to upload your add-on package."
 msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
 
@@ -2172,6 +1845,9 @@ msgstr "Gjin resultaten fûn."
 
 msgid "Refine Activity"
 msgstr "Aktiviteit ferfynje"
+
+msgid "Add-on"
+msgstr "Add-on"
 
 msgid "Activity"
 msgstr "Aktiviteit"
@@ -2288,6 +1964,9 @@ msgstr "Wegerje"
 
 msgid "Manage Authors & License"
 msgstr "Skriuwers en lisinsje beheare"
+
+msgid "Authors"
+msgstr "Skriuwers"
 
 msgid "About author roles"
 msgstr "Oer ûntwikkelersfunksjes"
@@ -2628,6 +2307,9 @@ msgstr "Ferfetsje"
 
 msgid "Delete this add-on."
 msgstr "Dizze add-on fuortsmite."
+
+msgid "Delete"
+msgstr "Fuortsmite"
 
 msgid "Edit details on this add-on's product page"
 msgstr "Details op de produktside fan dizze add-on bewurkje"
@@ -4020,10 +3702,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp op it web. Benaderje WhatsApp fan de arkbalke fan Firefox út om meldingen fan net lêzen konversaasjes te krijen."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Krij profesjonele Dútsk oersettingen fan it Ingelsk, Frânsk, Spaansk en oare talen út."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Behein de tagong fan Firefox ta websites dy’t jo definiearje. In geweldich helpmiddel om online-seldisipline te trainen."
 
@@ -4498,12 +4176,16 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Al jo emoji-behoeften – altyd mar ien klik fuort."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Stopje mei it jaan fan jo e-mailadres oan websites. Firefox Relay beskermet jo identiteit en foarkomt net-winske berjochten."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Maskearje jo e-mailadres. Firefox Relay beskermet jo identiteit en foarkomt net-winske berjochten."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr "Tiidbasearre temawikseler. Lit Firefox ôfhinklik fan de tiid fan de dei fan kleur feroarje."
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr "Romje jo Twitter-ûnderfining op."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4623,6 +4305,10 @@ msgstr "Privacybeskerming tsjin fingerprinting."
 msgid "Enhance your gaming experience on Steam."
 msgstr "Ferbetterje jo game-ûnderfining op Steam."
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr "Tomme omheech foar it werombringen fan de tomme omleech."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utwreidingen binne as apps foar Firefox."
@@ -4636,17 +4322,16 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "De bêste advertinsjeblokkearders"
+msgid "Extension starter pack"
+msgstr "Utwreiding-startpakket"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Anti-trackingútwreidingen"
+msgid "Download Managers"
+msgstr "Downloadbehearders"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
-msgstr "Utwreidingen foar skriuwers"
+msgid "Games & Entertainment extensions"
+msgstr "Game & Ferdivedaasje-útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4734,6 +4419,10 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Mear mei ‘{tag}’ labele útwreidingen besjen"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "De bêste advertinsjeblokkearders"
+
+#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Mear stêfkarren foar advertinsjeblokkearring besjen"
 
@@ -4785,12 +4474,15 @@ msgstr "Kreativiteitsútwreidingen"
 msgid "See more creativity staff picks"
 msgstr "Mear stêfkarren foar kreativiteit besjen"
 
-msgid "Rejected or Unreviewed"
-msgstr "Ofwezen of net beoardield"
+msgid "Unreviewed"
+msgstr "Net beoardiele"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[steat:%s]"
+
+msgid "This upload has already been submitted."
+msgstr "Dizze oplaad is al yntsjinne."
 
 msgid "Could not parse the manifest file."
 msgstr "Kin it manifest-bestân net ferwurkje."
@@ -4807,6 +4499,9 @@ msgstr "Unbekende ‘strict_min_version’ {appver} foar {app}"
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Unbekende ‘strict_max_version’ {appver} foar {app}"
 
+msgid "Unsupported compression method in archive."
+msgstr "Net-stipe kompresjemetoade yn argyf."
+
 msgid "Unsupported archive type."
 msgstr "Net-stipe argyftype."
 
@@ -4821,11 +4516,20 @@ msgstr "Unjildige bestânsnamme yn argyf: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Te grut bestân yn argyf: {0}"
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr "Dit argyf befettet in ferbeane spesjaal bestân (symboalyske / hurde keppeling of apparaat / blokbestân)"
+
 msgid "Uncompressed size is too large"
 msgstr "Net-komprimearre omfang is te grut"
 
 msgid "Invalid archive."
 msgstr "Unjildich argyf."
+
+msgid "No manifest.json found"
+msgstr "Gjin manifest.json fûn"
+
+msgid "Invalid or corrupted file."
+msgstr "Unjildich of skansearre bestân."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4834,8 +4538,8 @@ msgstr "De add-on-ID yn jo manifest.json (%s) komt net oerien mei de ID fan jo a
 msgid "Duplicate add-on ID found."
 msgstr "Dûbele add-on-ID fûn."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr "Ferzjenûmers meie út net mear as {max_length} tekens befetsje."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
@@ -4855,6 +4559,9 @@ msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 msgid "You cannot submit a language pack"
 msgstr "Jo kinne gjin taalpakket yntsjinje"
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr "De locale fan in besteand wurdboek/taalpakket kin net wizige wurde"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Net-stipe bestânstype, laad in stipe bestân {extensions} op."
 
@@ -4870,12 +4577,6 @@ msgstr "‘oplaad’-kaai yn multipart-bestânsgegevens ûntbrekt."
 
 msgid "Missing \"channel\" arg."
 msgstr "Untbrekkend argumint ‘channel’."
-
-msgid "User"
-msgstr "Brûker"
-
-msgid "IP Address"
-msgstr "IP-adres"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam of oare tekst dy’t net in beoardieling is"
@@ -4934,492 +4635,9 @@ msgstr "Wurdearring: {0} fan de 5 stjerren"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Wurdearring %(rating)s fan 5 stjerren"
 
-msgid "Approved reviews"
-msgstr "Goedkarre beoardielingen"
-
-msgid "Deleted reviews"
-msgstr "Fuortsmiten beoardielingen"
-
-msgid "View entries between"
-msgstr "Ynjeftes besjen tusken"
-
-msgid "and"
-msgstr "en"
-
-msgid "Filter by type/action"
-msgstr "Filterje op type/aksje"
-
-msgid "containing"
-msgstr "befettet"
-
-msgid "start"
-msgstr "start"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "ein"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "add-on, editor of opmerking"
-
-msgid "Comments:"
-msgstr "Opmerkingen:"
-
-msgid "Operating systems:"
-msgstr "Bestjoeringssysteem:"
-
-msgid "Applications:"
-msgstr "Tapassingen:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Ofwizing útstelle, korreksje fan ûntwikkeler freegje binnen…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Daliks wegerje. Brûk dit allinnich yn gefal fan earnstige befeiligingsproblemen."
-
-msgid "days"
-msgstr "dagen"
-
-msgid "Choose one or more reasons:"
-msgstr "Kies ien of mear redenen:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Ferzje komt net oerien – de nijste ferzje is wizige!"
-
-msgid "Choose a canned response..."
-msgstr "Kies in yn it foar definiearre antwurd…"
-
-msgid "Private Whiteboard"
-msgstr "Priveenotysjeboerd"
-
-msgid "Keep review; remove flags"
-msgstr "Beoardieling bewarje; labels fuortsmite"
-
-msgid "Skip for now"
-msgstr "Foarearst oerslaan"
-
-msgid "Delete review"
-msgstr "Beoardieling fuortsmite"
-
-msgid "Needs Admin Code Review"
-msgstr "Koadebeoardieling troch behearder fereaske"
-
-msgid "Needs Admin Content Review"
-msgstr "Ynhâldsbeoardieling troch behearder fereaske"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Beoardieling statysk tema troch behearder fereaske"
-
-msgid "Sources provided"
-msgstr "Boarnen levere"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Automatyske goedkarring is tydlik útsteld"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Automatyske goedkarring is foar ûnbepaalde tiid útsteld"
-
-msgid "Is locked by a reviewer"
-msgstr "Is beskoattele troch in beoardieler"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Hat markearring ‘automatysk goedkarre útskeakele/útsteld’"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Stiet yn in groep fan promoate add-ons dy’t yn it foar beoardiele moatte wurde"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Fertrage omdat it de earste ferzje yn de list is"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "De ferzjestring en guid komme oerien mei in blokkearring op de blokkearringslist"
-
-msgid "Weight breakdown not available."
-msgstr "Gewichtsútwurking net beskikber."
-
-msgid "Is available to be used in reviews"
-msgstr "Is beskikber foar gebrûk yn beoardielingen"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "Jo kinne gjin kommentaar yntsjinje as ‘canned_response’ definiearre is."
-
-msgid "You can't submit an empty comment."
-msgstr "Jo kinne gjin lege opmerking yntsjinje."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "Jo kinne gjin rigelnûmer yntsjinje sûnder it oan in bestânsnamme te keppeljen."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "Flags"
-msgstr "Labels"
-
-msgid "Last Review"
-msgstr "Lêste beoardieling"
-
-msgid "Code Weight"
-msgstr "Koadegewicht"
-
-msgid "Metadata Weight"
-msgstr "Gewicht metagegevens"
-
-msgid "Total Weight"
-msgstr "Totaal gewicht"
-
-msgid "Maliciousness Score"
-msgstr "Skealikheidsskoare"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Wachttiid"
-
-msgid "Pending Rejection Deadline"
-msgstr "Deadline foar wachtrige foar ôfwizing"
-
-msgid "Last Updated"
-msgstr "Lêst bywurke"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "Fermelde ferzjes dy’t hânmjittich beoardiele wurde moatte ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Net fermelde ferzjes dy’t hânmjittich beoardiele wurde moatte ({0})"
-
-msgid "Listed version"
-msgstr "Fermelde ferzje"
-
-msgid "Unlisted versions ({0})"
-msgstr "Net-fermelde ferzjes ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Hjirtroch wurdt dizze ferzje goedkard, ûndertekene en publisearre. De opmerkingen wurde nei de ûntwikkeler stjoerd."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Dit wiist dizze ferzje ôf en smyt dizze út de wachtrige fuort. De opmerkingen wurde nei de ûntwikkeler stjoerd."
-
-msgid "Approve Content"
-msgstr "Ynhâld goedkarre"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Dit leit jo goedkarring fan de ynhâld fan de lêste publike ferzje fêst, sûnder de ûntwikkeler te ynformearjen."
-
-msgid "Confirm Approval"
-msgstr "Goedkarring befêstigje"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "De lêste publike ferzje fan dizze add-on is automatysk goedkard. Dit hâldt jo befêstiging fan de goedkarring fan de ferzje by, sûnder de ûntwikkeler te ynformearjen."
-
-msgid "Approve Multiple Versions"
-msgstr "Meardere ferzjes goedkarre"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "Hjirtroch wurde de selektearre ferzjes goedkard. De opmerkingen wurde nei de ûntwikkeler stjoerd."
-
-msgid "Reject Multiple Versions"
-msgstr "Mear ferzjes ôfwize"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Hjirtroch wurde de selektearre ferzjes ôfwêzen. De opmerkingen wurde nei de ûntwikkeler stjoerd."
-
-msgid "Block Multiple Versions"
-msgstr "Mear ferzjes blokkearje"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "Hjirtroch wurde de selektearre goedkarre ferzjes stiloan útskeakele en wurdt de behearside foar it meitsjen fan blokkearringen iepene."
-
-msgid "Confirm Multiple Versions"
-msgstr "Mear ferzjes befêstigje"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Dit befêstiget jo goedkarring fan de selektearre ferzjes, sûnder de ûntwikkeler te ynformearjen."
-
-msgid "Reviewer reply"
-msgstr "Antwurd fan beoardieler"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Dit stjoert in berjocht nei de ûntwikkeler. Jo ûntfange in berjocht as der antwurd jûn is."
-
-msgid "Request super-review"
-msgstr "Superbeoardieling oanfreegje"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "As jo fraachtekens by dizze add-on hawwe wêr in behearder nei sjen moatte soe, fier dan hjirûnder jo opmerkingen yn. Dizze wurde net nei de ûntwikkeler stjoerd."
-
-msgid "Comment"
-msgstr "Opmerking"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Meitsje in opmerking by dizze ferzje. De skriuwer kin dit net sjen."
-
-msgid "Pre-Review Add-ons"
-msgstr "Add-ons yn it foar beoardiele"
-
-msgid "Recommended ({0})"
-msgstr "Oanrekommandearre ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "Oare wachtsjend op beoardieling ({0})"
-
-msgid "Review Log"
-msgstr "Beoardielingslochboek"
-
-msgid "Add-on Review Guide"
-msgstr "Add-on-beoardielingsgids"
-
-msgid "Security Scanners"
-msgstr "Befeiligingscanners"
-
-msgid "Flagged By Scanners"
-msgstr "Troch scanners markearre"
-
-msgid "Flagged for Human Review"
-msgstr "Markearre foar persoanlike beoardieling"
-
-msgid "Auto-Approved Add-ons"
-msgstr "Automatysk goedkarre add-ons"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatysk goedkarre add-ons ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Add-on-beoardielingslochboek"
-
-msgid "Review Guide"
-msgstr "Gids foar beoardielers"
-
-msgid "Content Review"
-msgstr "Ynhâldsbeoardieling"
-
-msgid "Content Review ({0})"
-msgstr "Ynhâldsbeoardieling ({0})"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "New ({0})"
-msgstr "Nij ({0})"
-
-msgid "Updates ({0})"
-msgstr "Fernijingen ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Tema-beoardielingsgids"
-
-msgid "User Ratings Moderation"
-msgstr "Moderaasje fan brûkerswurdearringen"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Op moderaasje wachtsjende wurdearringen ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Moderearre beoardielingslochboek"
-
-msgid "Moderation Guide"
-msgstr "Gids foar moderatoren"
-
-msgid "Unlisted Add-ons"
-msgstr "Net-fermelde add-ons"
-
-msgid "All Unlisted Add-ons"
-msgstr "Alle net-fermelde add-ons"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Net-fermelde add-ons yn ôfwachting fan hânmjittige goedkarring"
-
-msgid "Announcement"
-msgstr "Meidieling"
-
-msgid "Update message of the day"
-msgstr "Berjocht fan de dei bywurkje"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Add-ons wachtsjend op ôfwizing ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Der is in ûnbekende flater bard"
-
-msgid "Self-reviews are not allowed."
-msgstr "Selsbeoardielingen binne net tastien."
-
-msgid "Review successfully processed."
-msgstr "Beoardieling mei sukses ferwurke."
-
-msgid "Review lock limit reached"
-msgstr "Limyt foar beoardielingsbeskoattelingen berikt"
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Privacybelied"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Misbrûkrapporten – {addon} – Add-ons foar Firefox"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Misbrûkmeldingen foar {addon} en de ûntwikkelers derfan ({num})"
-
-msgid "Abuse Reports"
-msgstr "Misbrûkmeldingen"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Add-on-ynformaasje foar {0}"
-
-msgid "Add-on ID"
-msgstr "Add-on-ID"
-
-msgid "Original Add-on ID"
-msgstr "Oarspronklike add-on-ID"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Add-on(s) mei itselde ID"
-
-msgid "Internal AMO ID"
-msgstr "Ynterne AMO-ID"
-
-msgid "Support Website"
-msgstr "Stipewebsite"
-
-msgid "Visibility"
-msgstr "Sichtberheid"
-
-msgid "Visible"
-msgstr "Sichtber"
-
-msgid "Weekly Downloads"
-msgstr "Wyklikse downloads"
-
-msgid "Average Daily Users"
-msgstr "Gemiddeld oantal deistige brûkers"
-
-msgid "View Privacy Policy"
-msgstr "Privacybelied besjen"
-
-msgid "Requires Payment"
-msgstr "Fereasket betelling"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Brûksrjochtoerienkomst besjen"
-
-msgid "Last Approval Date"
-msgstr "Datum fan lêste goedkarring"
-
-msgid "Abuse Reports ({num})"
-msgstr "Misbrûkmeldingen ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Slimme brûkerswurdearringen ({num})"
-
-msgid "Theme Images"
-msgstr "Temaôfbylding"
-
-msgid "Rendered Preview"
-msgstr "Ferwurke foarbyld"
-
-msgid "More about this add-on"
-msgstr "Mear oer dizze add-on"
-
-msgid "Image Gallery"
-msgstr "Ofbyldingengalery"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Neat te sjen hjirre! De ûntwikkeler hat gjin details jûn."
-
-msgid "Add-on name translations"
-msgstr "Oersettingen fan add-on-namme"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Beoardielershelpmiddelen – Add-ons foar Firefox"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Tebek nei it dashboerd fan it Beoardielersark"
-
-msgid "Reviewer Leaderboard"
-msgstr "Beoardielers-skoareboerd"
-
-msgid "No review points awarded yet."
-msgstr "Noch gjin beoardielingspunten takend."
-
-msgid "Rank"
-msgstr "Rang"
-
-msgid "Score"
-msgstr "Skoare"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Moderaasjelochboek foar beoardielers – Add-ons foar Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filterje"
-
-msgid "Date"
-msgstr "Datum"
-
-msgid "Event"
-msgstr "Barren"
-
-msgid "More details."
-msgstr "Mear details."
-
-msgid "No events found for this period."
-msgstr "Gjin barrens fûn yn dizze perioade."
-
-msgid "Log details"
-msgstr "Details logge"
-
-msgid "Review Author"
-msgstr "Auteur fan beoardieling"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Add-ontitel"
-
-msgid "Review Text"
-msgstr "Beoardielingstekst"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Beoardieling is foar fuortsmiten labele."
-
-msgid "Undelete"
-msgstr "Fuortsmiten ûngedien meitsje"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– Helpmiddelen foar beoardielers – Add-ons foar Firefox"
-
-msgid "Back to review"
-msgstr "Tebek nei beoardieling"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Ynhâldsbeoardieling – Add-ons foar Firefox"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Automatysk goedkarre add-ons – Add-ons foar Firefox"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Beoardielingsmoderaasje – Add-ons foar Firefox"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Net-fermelde add-ons – Add-ons foar Firefox"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Wachtsjend op ôfwizing – Add-ons foar Firefox"
-
-msgid "Process Reviews"
-msgstr "Beoardielingen ferwurkje"
-
-msgid "Moderation actions:"
-msgstr "Evaluaasje-aksjes:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5429,257 +4647,12 @@ msgstr "troch %(user)s op %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markearre troch %(user)s op %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Alle beoardielingen binne ferwurke. Goed wurk!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Der binne op dit stuit gjin add-ons fan dit type te beoardielen."
-
-msgid "Helpful Links:"
-msgstr "Nuttige keppelingen:"
-
-msgid "Add-on Policy"
-msgstr "Add-onbelied"
-
-msgid "Reviewer's Guide"
-msgstr "Beoardielingsrjochtlinen"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Add-ons foar Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Ynhâldsbeoardieling {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Beoardieling {0}"
-
-msgid "Add-on important changes history"
-msgstr "Skiednis fan wichtige wizigingen fan de add-on"
-
-msgid "Add-on History"
-msgstr "Add-onskiednis"
-
-msgid "You don't have permission to review it."
-msgstr "Jo hawwe gjin rjochten om dit te beoardielen."
-
-msgid "Please select one or more versions in the list below."
-msgstr "Selektearje ien of mear ferzjes yn de ûndersteande list."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Jo kinne dit formulier noch hieltyd yntsjinje, mar doch dit allinnich as jo witte dat der gjin konflikten barre sille."
-
-msgid "Insert canned response..."
-msgstr "Yn it foar definiearre antwurd ynfoegje…"
-
-msgid "Files:"
-msgstr "Bestannen:"
-
-msgid "Tested on:"
-msgstr "Test op:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as jo besjoen."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-"It notysjeboerd is it plak wêr’t foar dizze add-on relevante ynformaasje (likefolle de ferzje) tusken de ûntwikkeler en de beoardieler útwiksele wurde kin. Dit is foar beiden sichtber en te "
-"bewurkjen."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "It priveenotysjeboerd wurdt brûkt foar de útwikseling fan ferzjeûnôfhinklike ynformaasje tusken beoardielers. Hâld it taalgebrûk objektyf. Dit is allinnich sichtber foar beoardielers."
-
-msgid "Update whiteboards"
-msgstr "Notysjeboerden bywurkje"
-
-msgid "More Actions"
-msgstr "Mear aksjes"
-
-msgid "Notify me about new listed versions"
-msgstr "My berjochtsje oer nije ferzjes yn de list"
-
-msgid "Notify me about new unlisted versions"
-msgstr "My berjochtsje oer nije ferzjes net yn de list"
-
-msgid "Allow resubmission"
-msgstr "Opnij yntsjinjen tastean"
-
-msgid "Deny resubmission"
-msgstr "Opnij yntsjinjen ôfwize"
-
-msgid "Force-disable add-on"
-msgstr "Add-on twongen útskeakelje"
-
-msgid "Force-enable add-on"
-msgstr "Add-on forsearre ynskeakelje"
-
-msgid "Disable Listed Auto-Approval"
-msgstr "Automatysk goedkarre fan fermeldingen útskeakelje"
-
-msgid "Enable Listed Auto-Approval"
-msgstr "Automatysk goedkarre fan fermeldingen ynskeakelje"
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Automatysk goedkarre fan net-fermeldingen útskeakelje"
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Automatysk goedkarre fan net-fermeldingen ynskeakelje"
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Automatysk goedkarre fan fermeldingen útskeakelje oant folgjende hânmjittige goedkarring"
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Automatysk goedkarre fan fermeldingen ynskeakelje oant folgjende hânmjittige goedkarring"
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Automatyske goedkarring fan net-fermelde items útskeakelje oant folgjende hânmjittige goedkarring"
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Automatyske goedkarring fan net-fermelde items ynskeakelje foar folgjende hânmjittige goedkarring"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Automatyske goedkarring is op dit stuit oant {date} útskeakele"
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Ekstra fertraging fan automatyske goedkarring opheffe"
-
-msgid "Clear pending rejections"
-msgstr "Ofwizingen yn de wachtrige wiskje"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Markearring foar koadebeoardieling troch behearder wiskje"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Markearring foar ynhâldsbeoardieling troch behearder wiskje"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Markearring foar beoardieling fan statysk tema troch behearder wiskje"
-
-msgid "View Blocklist Submission"
-msgstr "Ynstjoering foar blokkearringslist besjen"
-
-msgid "Block add-on"
-msgstr "Add-on blokkearje"
-
-msgid "Update add-on block"
-msgstr "Add-on-blokkearring bywurkje"
-
-msgid "(admin)"
-msgstr "(behear)"
-
-msgid "Admin Page"
-msgstr "Beheardersside"
-
-msgid "Review This Add-on"
-msgstr "Dizze add-on beoardiele"
-
-msgid "More Information"
-msgstr "Mear ynformaasje"
-
-msgid "Resolution"
-msgstr "Resolúsje"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Add-on-beoardielingslochboek – Add-ons foar Firefox"
-
-msgid "Reviewer"
-msgstr "Beoardieler"
-
-msgid "Add-on has been deleted."
-msgstr "Add-on is fuortsmiten."
-
-msgid "Show Comments"
-msgstr "Opmerkingen toane"
-
-msgid "Hide Comments"
-msgstr "Opmerkingen ferstopje"
-
-msgid "No reviews found for this period."
-msgstr "Gjin beoardielingen yn dizze perioade fûn."
-
-msgid "Origin:"
-msgstr "Oarsprong:"
-
-msgid "Method:"
-msgstr "Metoade:"
-
-msgid "Source:"
-msgstr "Boarne:"
-
-msgid "Source URL:"
-msgstr "Boarne-URL:"
-
-msgid "Dismiss this announcement"
-msgstr "Dizze oankundiging fuortsmite"
-
-msgid "Files in this version:"
-msgstr "Bestannen yn dizze ferzje:"
-
-msgid "All Platforms"
-msgstr "Alle platfoarms"
-
-msgid "Browse all files in this version"
-msgstr "Troch alle bestannen yn dizze ferzje blêdzje"
-
-msgid "Contents"
-msgstr "Ynhâld"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "Dizze ferzje mei de lêst beoardiele ferzje fergelykje"
-
-msgid "Compare"
-msgstr "Fergelykje"
-
-msgid "Permissions:"
-msgstr "Tastimmingen:"
-
-msgid "Optional permissions:"
-msgstr "Opsjonele tastimmingen:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Troch %(user)s op %(date)s</div>"
-
-msgid "Older"
-msgstr "Alder"
-
-msgid "Newer"
-msgstr "Nijer"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} ferzjes troch scanners op oare siden markearre."
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} ferzjes op oare siden markearre foar persoanlike beoardieling."
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} ferzjes wachtsje op oare siden op ôfwizing."
-
-msgid "Recent Points"
-msgstr "Resinte punten"
-
-msgid "No points awarded yet."
-msgstr "Noch gjin punten tawezen."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Topbeoardielers (lêste 7 dagen)"
-
-msgid "No top reviewers yet."
-msgstr "Noch gjin topbeoardielers."
-
-msgid "All Time"
-msgstr "Altyd"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Jo hawwe <span>{0}</span> punten."
-
-msgid "Theme"
-msgstr "Tema"
-
-msgid "No results found"
-msgstr "Gjin resultaten fûn"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5689,101 +4662,17 @@ msgstr "%(user)s op %(date)s [%(ip_address)s]"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Ferzje %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-msgid "(Confirmed)"
-msgstr "(Befêstige)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "Ofwizing wachtet op beoardieling fan nije ferzje"
-
-msgid "Compatibility:"
-msgstr "Komptabiliteit:"
-
-msgid "Additional sources:"
-msgstr "Oanfoljende boarnen:"
-
-msgid "Download files"
-msgstr "Bestannen downloade"
-
-msgid "The developer has provided source code."
-msgstr "De ûntwikkeler hat in boarnekoade opjûn."
-
-msgid "Maliciousness Score:"
-msgstr "Skealikheidsskoare:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "De Skealikheid skoare jout oan hoe wierskynlik it is dat dizze ferzje skeadlik is, basearre op de befiningen fan de scanner."
-
-msgid "Code Weight:"
-msgstr "Koadegewicht:"
-
-msgid "Metadata Weight:"
-msgstr "Gewicht metagegevens:"
-
-msgid "Flagged by scanners"
-msgstr "Troch scanners markearre"
-
-msgid "Flagged for human review"
-msgstr "Markearre foar persoanlike beoardieling"
-
-msgid "Download"
-msgstr "Downloade"
-
-msgid "Not Auto Approved Because"
-msgstr "Net automatysk goedkard fanwegen"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Script foar automatyske goedkarring is noch net op dizze ferzje útfierd."
-
-msgid "This version has not been reviewed."
-msgstr "Dizze ferzje is net beoardiele."
-
-msgid "Other Pending Review"
-msgstr "Oare wachtsjend op beoardieling"
-
-msgid "Updates"
-msgstr "Fernijingen"
-
-msgid "Rating Reviews"
-msgstr "Wurdearringsbeoardielingen"
-
-msgid "Auto Approved"
-msgstr "Automatysk goedkard"
-
-msgid "Pending Rejection"
-msgstr "Wachtsjend op ôfwizing"
-
-msgid "presence of matched rules"
-msgstr "oanwêzichheid fan oerienkommende rigels"
-
-msgid "result state"
-msgstr "resultearjende steat"
-
-msgid "Excluding results solely matching these rules"
-msgstr "Eksklusyf resultaten dy’t allinnich mei dizze rigel oerienkomme"
-
-msgid "presence of a version"
-msgstr "oanwêzichheid fan in ferzje"
-
-msgid "version channel"
-msgstr "ferzjekanaal"
-
-msgid "add-on status"
-msgstr "add-on-steat"
-
-msgid "add-on listing visibility"
-msgstr "sichtberheid fan add-on-fermelding"
-
-msgid "file status"
-msgstr "bestânssteat"
-
-msgid "file signature"
-msgstr "bestânsûndertekening"
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Dit is de eksakte namme fan de rigel dy’t troch in scanner brûkt is."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Wannear net oanfinkt, binne de scannerresultaten net bûn oan dizze rigel en wurdt de aksje net útfierd."
+msgid "Human-readable name for the scanner rule"
+msgstr "Foar minsken lêsbere namme foar de scannerrigel"
+
+msgid "Human-readable name"
+msgstr "Foar minsken lêsbere namme"
+
+msgid "Human readable description for the scanner rule"
+msgstr "Foar minsken lêsbere beskriuwing foar de scannerrigel"
 
 msgid "Yara rules should have a definition"
 msgstr "Yara-rigels moatte in definysje hawwe"
@@ -5801,14 +4690,11 @@ msgstr "De definysje is net jildich: %(error)s"
 msgid "An error occurred when compiling the definition"
 msgstr "Der is in flater bard by it kompilearjen fan de definysje"
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Wannear net oanfinkt, binne de scannerresultaten net bûn oan dizze rigel en wurdt de aksje net útfierd."
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Dizze rigel ek útfiere op add-ons dy’t forsearre útskeakele binne."
-
-msgid "Abort"
-msgstr "Ofbrekke"
-
-msgid "Run"
-msgstr "Utfiere"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5843,10 +4729,6 @@ msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 
 msgid "Version does not match the manifest file."
 msgstr "Ferzje komt net oerien mei it manifest-bestân."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Ferzje bestiet al. De nijste ferzje is %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Fier de add-on-ID fan jo add-on yn, yn it manifest as dizze langer is as 64 tekens."
@@ -5907,6 +4789,9 @@ msgstr "Fan"
 
 msgid "To"
 msgstr "Oant"
+
+msgid "Update"
+msgstr "Bywurkje"
 
 msgid "Export"
 msgstr "Eksportearje"
@@ -6070,9 +4955,6 @@ msgstr "Juridyske betingsten"
 msgid "Report Trademark Abuse"
 msgstr "Misbrûk fan hannelsmerk melde"
 
-msgid "Site Status"
-msgstr "Websitesteat"
-
 msgid "Report a bug"
 msgstr "In bug melde"
 
@@ -6120,6 +5002,9 @@ msgstr "Start"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Tebek nei de {0}-add-ons-startside"
 
+msgid "Add-ons"
+msgstr "Add-ons"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrearje</a> of <a href=\"%(login)s\">oanmelde</a>"
@@ -6159,40 +5044,8 @@ msgstr "Binne jo wis dat jo alle <b>{0}</b> oersettingen fuortsmite wolle? Dit k
 msgid "Delete Locale"
 msgstr "Taal fuortsmite"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "De brûker ‘%(user)s’ is ferballe."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "De ôfbylding fan brûker ‘%(user)s’ is fuortsmiten."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "De brûkers ‘%(users)s’ binne ferballe."
-
-msgid "Ban selected users"
-msgstr "Selektearre brûkers ferbalje"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "De sesje(s) fan de brûkers ‘%(users)s’ binne opnij inisjalisearre."
-
-msgid "Reset session"
-msgstr "Sesje opnij inisjalisearje"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "De API-kaaien fan de brûkers ‘%(users)s’ binne opnij inisjalisearre."
-
-msgid "Reset API Key"
-msgstr "API-kaai opnij inisjalisearje"
-
-msgid "Profile Photo"
-msgstr "Profylfoto"
-
-msgid "Collections"
-msgstr "Kolleksjes"
+msgid "IP Address"
+msgstr "IP-adres"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Fier in jildich IPv4- of IPv6-adres yn, byg. 127.0.0.1. Wurdt konvertearre nei in /32-netwurk."
@@ -6279,15 +5132,6 @@ msgstr "In skriuwer hat in wizige rol foar jo add-on"
 msgid "An author has been removed from your add-on"
 msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 
-msgid "Ban"
-msgstr "Ferbalje"
-
-msgid "Reset session(s)"
-msgstr "Sesje(s) opnij inisjalisearje"
-
-msgid "Delete picture"
-msgstr "Brûkersôfbylding fuortsmite"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6367,10 +5211,6 @@ msgstr ""
 "Mei freonlike groet,\n"
 "\n"
 "It Firefox Add-ons-team"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "oaren"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

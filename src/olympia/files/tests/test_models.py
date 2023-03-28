@@ -37,7 +37,12 @@ from olympia.files.models import (
     WebextPermission,
     track_file_status_change,
 )
-from olympia.files.utils import check_xpi_info, ManifestJSONExtractor, parse_addon
+from olympia.files.utils import (
+    check_xpi_info,
+    DuplicateAddonID,
+    ManifestJSONExtractor,
+    parse_addon,
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -324,6 +329,29 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             'laststring!',
         ]
 
+    def test_host_permissions_list_string_only(self):
+        file_ = File.objects.get(pk=67442)
+        host_permissions = [
+            'iamstring',
+            'iamnutherstring',
+            {'iamadict': 'hmm'},
+            ['iamalistinalist', 'indeedy'],
+            13,
+            'laststring!',
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+            None,
+        ]
+        WebextPermission.objects.create(host_permissions=host_permissions, file=file_)
+
+        # Strings only please.No duplicates.
+        assert file_.host_permissions == [
+            'iamstring',
+            'iamnutherstring',
+            'laststring!',
+        ]
+
     def test_has_been_validated_returns_false_when_no_validation(self):
         file = File()
         assert not file.has_been_validated
@@ -336,11 +364,22 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file = File(status=amo.STATUS_NULL)
         assert file.get_review_status_display() == '[status:0]'
         file.update(status=amo.STATUS_DISABLED)
-        assert file.get_review_status_display() == 'Rejected or Unreviewed'
-        file.update(reviewed=datetime.now())
+        assert file.get_review_status_display() == 'Unreviewed'
+        file.version = Version(human_review_date=datetime.now())
         assert file.get_review_status_display() == 'Rejected'
         file.update(status=amo.STATUS_APPROVED)
         assert file.get_review_status_display() == 'Approved'
+
+    def test_file_status_signal(self):
+        addon = addon_factory(reviewer_flags={'auto_approval_disabled': True})
+        version = addon.current_version
+        assert not version.due_date
+
+        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        assert version.reload().due_date
+
+        version.file.update(status=amo.STATUS_APPROVED)
+        assert not version.reload().due_date
 
 
 class TestTrackFileStatusChange(TestCase):
@@ -485,6 +524,15 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         assert len(parsed['optional_permissions'])
         assert parsed['optional_permissions'] == ['cookies', 'https://optional.com/']
 
+    def test_parse_host_permissions(self):
+        parsed = self.parse(filename='webextension_mv3.xpi')
+        print(parsed)
+        assert len(parsed['host_permissions'])
+        assert parsed['host_permissions'] == [
+            '*://example.com/*',
+            '*://mozilla.com/*',
+        ]
+
     def test_parse_apps(self):
         expected = [
             ManifestJSONExtractor.App(
@@ -523,8 +571,9 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_guid_dupe(self):
         Addon.objects.create(guid='@webextension-guid', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse()
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_no_dupe_webextension_no_id(self):
@@ -533,15 +582,17 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_guid_dupe_webextension_guid_given(self):
         Addon.objects.create(guid='@webextension-guid', type=1)
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse(filename='webextension.xpi')
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_dupe_deleted_addon_not_allowed_if_same_author_and_switch_is_off(self):
         addon = addon_factory(guid='@webextension-guid', users=[self.user])
         addon.delete()
-        with self.assertRaises(forms.ValidationError) as e:
+        with self.assertRaises(DuplicateAddonID) as e:
             self.parse(filename='webextension.xpi')
+        assert isinstance(e.exception, forms.ValidationError)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
     def test_guid_nomatch_webextension(self):
@@ -634,9 +685,9 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_long_version_number(self):
         with self.assertRaises(forms.ValidationError) as e:
-            check_xpi_info({'guid': 'guid', 'version': '1' * 33})
+            check_xpi_info({'guid': 'guid', 'version': '1' * 256})
         msg = e.exception.messages[0]
-        assert msg == 'Version numbers should have fewer than 32 characters.'
+        assert msg == 'Version numbers should have at most 255 characters.'
 
     def test_manifest_version(self):
         parsed = self.parse(filename='webextension_mv3.xpi')
@@ -1303,6 +1354,42 @@ class TestFileFromUpload(UploadMixin, TestCase):
         assert len(permissions_list) == 2
         assert permissions_list == parsed_data['optional_permissions']
 
+    def test_host_permissions(self):
+        upload = self.upload('webextension_mv3.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        permissions_list = file_.host_permissions
+        assert len(permissions_list) == 2
+        assert permissions_list == parsed_data['host_permissions']
+
+    def test_mv3_invalid_host_permissions(self):
+        upload = self.upload('webextension_mv3_invalid_permissions.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        assert len(parsed_data['permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        host_permissions_list = file_.host_permissions
+        assert len(host_permissions_list) == 2
+        assert host_permissions_list == parsed_data['host_permissions']
+        permissions_list = file_.permissions
+        assert len(permissions_list) == 1
+        assert permissions_list == ['bookmarks']
+
+    def test_mv2_invalid_host_permissions(self):
+        upload = self.upload('webextension_mv2_invalid_permissions.xpi')
+        with self.root_storage.open(upload.path, 'rb') as upload_file:
+            parsed_data = parse_addon(upload_file, user=user_factory())
+        assert len(parsed_data['host_permissions']) == 2
+        assert len(parsed_data['permissions']) == 2
+        file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
+        assert len(file_.host_permissions) == 0
+        permissions_list = file_.permissions
+        assert len(permissions_list) == 2
+        assert permissions_list == parsed_data['permissions']
+
     def test_file_is_copied_to_file_path_at_upload(self):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
@@ -1313,21 +1400,6 @@ class TestFileFromUpload(UploadMixin, TestCase):
         upload = self.upload('webextension.xpi')
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert os.path.exists(file_.file.path)
-
-    def test_permission_enabler_site_permissions(self):
-        upload = self.upload('webextension.xpi')
-        file_ = File.from_upload(
-            upload,
-            self.version,
-            parsed_data={
-                **self.parsed_data,
-                'type': amo.ADDON_SITE_PERMISSION,
-                'site_permissions': ['one', 'two'],
-            },
-        )
-        site_permissions = file_._site_permissions
-        assert site_permissions.pk
-        assert site_permissions.permissions == ['one', 'two']
 
 
 class TestZip(TestCase, amo.tests.AMOPaths):

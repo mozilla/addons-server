@@ -26,6 +26,7 @@ from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import (
     LINE,
+    NOTABLE,
     RECOMMENDED,
     SPOTLIGHT,
     STRATEGIC,
@@ -36,11 +37,10 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data,
     _get_signature_details,
 )
-from olympia.promoted.models import PromotedApproval
+from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     ReviewActionReason,
-    ReviewerScore,
     ReviewerSubscription,
 )
 from olympia.reviewers.utils import (
@@ -50,6 +50,7 @@ from olympia.reviewers.utils import (
     ReviewUnlisted,
 )
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
 
 
@@ -73,17 +74,11 @@ class TestReviewHelperBase(TestCase):
 
         self.user = UserProfile.objects.get(pk=10482)
         self.addon = Addon.objects.get(pk=3615)
-        self.version = self.addon.versions.all()[0]
+        self.review_version = self.addon.versions.all()[0]
         self.helper = self.get_helper()
-        self.file = self.version.file
+        self.file = self.review_version.file
 
         self.create_paths()
-
-    def _check_score(self, reviewed_type, bonus=0):
-        scores = ReviewerScore.objects.all()
-        assert len(scores) > 0
-        assert scores[0].score == amo.REVIEWED_SCORES[reviewed_type] + bonus
-        assert scores[0].note_key == reviewed_type
 
     def remove_paths(self):
         if self.file.file and not storage.exists(self.file.file.path):
@@ -105,16 +100,17 @@ class TestReviewHelperBase(TestCase):
         human_review=True,
     ):
         mail.outbox = []
-        ActivityLog.objects.for_addons(self.helper.addon).delete()
-        self.addon.update(status=status, type=type)
         self.file.update(status=file_status)
         if channel == amo.CHANNEL_UNLISTED:
             self.make_addon_unlisted(self.addon)
-            self.version.reload()
+            if self.review_version:
+                self.review_version.reload()
             self.file.reload()
         self.helper = self.get_helper(
             content_review=content_review, human_review=human_review
         )
+        self.addon.update(status=status, type=type)
+        ActivityLog.objects.for_addons(self.helper.addon).delete()
         data = self.get_data().copy()
         self.helper.set_data(data)
 
@@ -129,7 +125,7 @@ class TestReviewHelperBase(TestCase):
     def get_helper(self, content_review=False, human_review=True):
         return ReviewHelper(
             addon=self.addon,
-            version=self.version,
+            version=self.review_version,
             user=self.user,
             human_review=human_review,
             content_review=content_review,
@@ -139,9 +135,12 @@ class TestReviewHelperBase(TestCase):
         self.addon.update(status=status)
         return self.get_helper().handler.review_type
 
-    def check_log_count(self, id):
+    def check_log_count(self, id, user=None):
+        user = user or self.user
         return (
-            ActivityLog.objects.for_addons(self.helper.addon).filter(action=id).count()
+            ActivityLog.objects.for_addons(self.helper.addon)
+            .filter(action=id, user=user)
+            .count()
         )
 
 
@@ -173,7 +172,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_review_files(self):
         version_factory(
             addon=self.addon,
-            created=self.version.created - timedelta(days=1),
+            created=self.review_version.created - timedelta(days=1),
             file_kw={'status': amo.STATUS_APPROVED},
         )
         for status in REVIEW_FILES_STATUSES:
@@ -393,10 +392,9 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     def test_actions_no_version(self):
-        """Deleted addons and addons with no versions in that channel have no
-        version set."""
+        """Addons with no versions in that channel have no version set."""
         expected = []
-        self.version = None
+        self.review_version = None
         assert (
             list(
                 self.get_review_actions(
@@ -573,7 +571,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_unlisted(self):
         # Just regular review permissions don't let you do much on an unlisted
         # review page.
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
+        self.review_version.update(channel=amo.CHANNEL_UNLISTED)
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['reply', 'super', 'comment']
         assert (
@@ -608,6 +606,28 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # unlisted shouldn't be affected by promoted group status either
         self.make_addon_promoted(self.addon, LINE)
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW
+                ).keys()
+            )
+            == expected
+        )
+
+        # with admin permission you should be able to unreject too
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = [
+            'public',
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'unreject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
         assert (
             list(
                 self.get_review_actions(
@@ -653,7 +673,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # it's okay if the version is outside the blocked range though
-        block.update(min_version=self.version.version + '.1')
+        block.update(min_version=self.review_version.version + '.1')
         expected = [
             'public',
             'reject',
@@ -672,7 +692,7 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         version_review_flags_factory(
-            version=self.version, pending_rejection=datetime.now()
+            version=self.review_version, pending_rejection=datetime.now()
         )
         expected = ['reply', 'super', 'comment']
         assert (
@@ -693,8 +713,8 @@ class TestReviewHelper(TestReviewHelperBase):
             'super',
             'comment',
         ]
-        self.version = version_factory(addon=self.addon)
-        self.file = self.version.file
+        self.review_version = version_factory(addon=self.addon)
+        self.file = self.review_version.file
 
         assert (
             list(
@@ -715,7 +735,7 @@ class TestReviewHelper(TestReviewHelperBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         version_review_flags_factory(
-            version=self.version, pending_rejection=datetime.now()
+            version=self.review_version, pending_rejection=datetime.now()
         )
         expected = [
             'confirm_auto_approved',
@@ -747,8 +767,8 @@ class TestReviewHelper(TestReviewHelperBase):
             'super',
             'comment',
         ]
-        self.version = version_factory(addon=self.addon)
-        self.file = self.version.file
+        self.review_version = version_factory(addon=self.addon)
+        self.file = self.review_version.file
         assert (
             list(
                 self.get_review_actions(
@@ -774,6 +794,21 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
+    def test_actions_rejected_version(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+
+        self.file.update(status=amo.STATUS_DISABLED)
+        self.file.version.update(human_review_date=datetime.now())
+        self.addon.update(status=amo.STATUS_NULL)
+        actions = list(self.get_helper().actions.keys())
+        assert expected == actions
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = ['unreject_latest_version', 'reply', 'super', 'comment']
+        actions = list(self.get_helper().actions.keys())
+        assert expected == actions
+
     def test_actions_non_human_reviewer(self):
         # Note that we aren't granting permissions to our user.
         assert not self.user.groups.all()
@@ -787,13 +822,54 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
+    def test_actions_deleted_addon(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
+            ).keys()
+        )
+        assert expected == actions
+
+    def test_actions_versions_needing_human_review(self):
+        self.review_version.update(needs_human_review=True)
+        self.grant_permission(self.user, 'Addons:Review')
+        expected = ['reply', 'super', 'comment']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
+            ).keys()
+        )
+        assert expected == actions
+
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = ['reply', 'super', 'comment', 'clear_needs_human_review']
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DELETED,
+                file_status=amo.STATUS_DISABLED,
+            ).keys()
+        )
+        assert expected == actions
+
     def test_set_file(self):
         self.file.update(datestatuschanged=yesterday)
-        self.helper.handler.set_file(amo.STATUS_APPROVED, self.version.file)
+        self.helper.handler.set_file(amo.STATUS_APPROVED, self.review_version.file)
 
-        self.file = self.version.file
+        self.file = self.review_version.file
         assert self.file.status == amo.STATUS_APPROVED
         assert self.file.datestatuschanged.date() > yesterday.date()
+        assert self.file.approval_date > yesterday
+
+    def test_set_file_not_approved(self):
+        self.file.update(datestatuschanged=yesterday)
+        self.helper.handler.set_file(amo.STATUS_DISABLED, self.review_version.file)
+
+        assert self.review_version.file.status == amo.STATUS_DISABLED
+        assert not self.review_version.file.approval_date
 
     def test_logs(self):
         self.helper.set_data({'comments': 'something'})
@@ -835,8 +911,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.set_data(self.get_data())
         base_fragment = 'To respond, please reply to this email or visit'
         user = self.addon.listed_authors[0]
-        ActivityLogToken.objects.create(version=self.version, user=user)
-        uuid = self.version.token.get(user=user).uuid.hex
+        ActivityLogToken.objects.create(version=self.review_version, user=user)
+        uuid = self.review_version.token.get(user=user).uuid.hex
         reply_email = f'reviewreply+{uuid}@{settings.INBOUND_EMAIL_DOMAIN}'
 
         templates = (
@@ -951,7 +1027,7 @@ class TestReviewHelper(TestReviewHelperBase):
         status = amo.STATUS_NOMINATED
         self.setup_data(status)
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
 
         # Make sure we have no public files
@@ -981,35 +1057,37 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
-
     def test_nomination_to_public_need_human_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
-        self.version.update(needs_human_review=True)
+        self.review_version.update(needs_human_review=True)
         self.helper.handler.approve_latest_version()
         self.addon.reload()
-        self.version.reload()
+        self.review_version.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.version.needs_human_review
+        assert not self.review_version.needs_human_review
+        assert self.review_version.human_review_date
 
     def test_nomination_to_public_need_human_review_not_human(self):
         self.setup_data(amo.STATUS_NOMINATED, human_review=False)
-        self.version.update(needs_human_review=True)
+        self.review_version.update(needs_human_review=True)
         self.helper.handler.approve_latest_version()
         self.addon.reload()
-        self.version.reload()
+        self.review_version.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.version.needs_human_review
+        assert self.review_version.needs_human_review
+        assert not self.review_version.human_review_date
 
     def test_unlisted_approve_latest_version_need_human_review(self):
-        self.setup_data(amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED)
-        self.version.update(needs_human_review=True)
+        self.setup_data(
+            amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
+        )
+        self.review_version.update(needs_human_review=True)
         flags = version_review_flags_factory(
-            version=self.version,
+            version=self.review_version,
             needs_human_review_by_mad=True,
         )
         AddonReviewerFlags.objects.create(
@@ -1017,40 +1095,68 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         self.helper.handler.approve_latest_version()
         self.addon.reload()
-        self.version.reload()
+        self.review_version.reload()
         self.file.reload()
         flags.reload()
         addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.version.needs_human_review
+        assert not self.review_version.needs_human_review
         assert not flags.needs_human_review_by_mad
         assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
+        assert self.review_version.human_review_date
 
     def test_unlisted_approve_latest_version_need_human_review_not_human(self):
         self.setup_data(
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=False
         )
-        self.version.update(needs_human_review=True)
+        self.review_version.update(needs_human_review=True)
         flags = version_review_flags_factory(
-            version=self.version, needs_human_review_by_mad=True
+            version=self.review_version, needs_human_review_by_mad=True
         )
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_disabled_until_next_approval_unlisted=True
         )
         self.helper.handler.approve_latest_version()
         self.addon.reload()
-        self.version.reload()
+        self.review_version.reload()
         self.file.reload()
         flags.reload()
         addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.version.needs_human_review
+        assert self.review_version.needs_human_review
         assert flags.needs_human_review_by_mad
+        assert not self.review_version.human_review_date
 
         # Not changed this this is not a human approval.
         assert addon_flags.auto_approval_disabled_until_next_approval_unlisted
+
+    def _unlisted_approve_flag_if_passed_auto_approval_delayed_setup(self, delay):
+        self.setup_data(
+            amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=False
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, auto_approval_delayed_until_unlisted=delay
+        )
+        assert not self.review_version.needs_human_review
+
+        self.helper.handler.approve_latest_version()
+        self.addon.reload()
+        self.review_version.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.file.status == amo.STATUS_APPROVED
+
+    def test_unlisted_approve_flag_if_passed_auto_approval_delayed(self):
+        yesterday = datetime.now() - timedelta(days=1)
+        self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(yesterday)
+        assert self.review_version.needs_human_review
+
+    def test_unlisted_approve_dont_flag_if_not_past_auto_approval_delayed(self):
+        tomorrow = datetime.now() + timedelta(days=1)
+        self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(tomorrow)
+        assert not self.review_version.needs_human_review
 
     def test_nomination_to_public_with_version_reviewer_flags(self):
         flags = version_review_flags_factory(
@@ -1075,7 +1181,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
         AutoApprovalSummary.objects.update_or_create(
-            version=self.version, defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101}
+            version=self.review_version,
+            defaults={'verdict': amo.AUTO_APPROVED, 'weight': 101},
         )
 
         self.helper.handler.approve_latest_version()
@@ -1096,36 +1203,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert storage.exists(self.file.file.path)
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
-
-    def test_old_nomination_to_public_bonus_score(self):
-        self.sign_file_mock.reset()
-        self.setup_data(amo.STATUS_NOMINATED, type=amo.ADDON_STATICTHEME)
-        self.version.update(nomination=self.days_ago(9))
-
-        self.helper.handler.approve_latest_version()
-
-        assert self.addon.status == amo.STATUS_APPROVED
-        assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
-
-        assert len(mail.outbox) == 1
-        message = mail.outbox[0]
-        assert message.subject == ('%s Approved' % self.preamble)
-        assert 'has been approved' in message.body
-
-        # AddonApprovalsCounter counter is now at 1 for this addon.
-        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert approval_counter.counter == 1
-
-        self.sign_file_mock.assert_called_with(self.file)
-        assert storage.exists(self.file.file.path)
-
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
-
-        # Score has bonus points added for reviewing an old add-on.
-        # 2 days over the limit = 4 points
-        self._check_score(amo.REVIEWED_STATICTHEME, bonus=4)
 
     def test_nomination_to_public_not_human(self):
         self.sign_file_mock.reset()
@@ -1152,15 +1229,14 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock.assert_called_with(self.file)
         assert storage.exists(self.file.file.path)
 
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id, get_task_user()) == 1
 
-        # No request, no user, therefore no score.
-        assert ReviewerScore.objects.count() == 0
+        assert not self.review_version.human_review_date
 
     def test_public_addon_with_version_awaiting_review_to_public(self):
         self.sign_file_mock.reset()
         self.addon.current_version.update(created=self.days_ago(1))
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
@@ -1170,10 +1246,10 @@ class TestReviewHelper(TestReviewHelperBase):
             },
         )
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.setup_data(amo.STATUS_APPROVED)
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         self.create_paths()
         AddonApprovalsCounter.objects.create(
@@ -1210,21 +1286,20 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
         self.addon.reviewerflags.reload()
         assert not self.addon.reviewerflags.auto_approval_disabled_until_next_approval
 
     def test_public_addon_with_version_need_human_review_to_public(self):
         self.old_version = self.addon.current_version
         self.old_version.update(created=self.days_ago(1), needs_human_review=True)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.file = self.version.file
-        self.setup_data(amo.STATUS_APPROVED)
+        self.file = self.review_version.file
+        self.setup_data(amo.STATUS_APPROVED, human_review=True)
 
         self.helper.handler.approve_latest_version()
 
@@ -1234,18 +1309,19 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
         self.old_version.reload()
         assert not self.old_version.needs_human_review
+        assert self.review_version.human_review_date
 
     def test_public_addon_with_auto_approval_temporarily_disabled_to_public(self):
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_disabled_until_next_approval=True
         )
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.setup_data(amo.STATUS_APPROVED)
 
         self.helper.handler.approve_latest_version()
@@ -1260,7 +1336,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_public_addon_with_version_awaiting_review_to_sandbox(self):
         self.sign_file_mock.reset()
         self.addon.current_version.update(created=self.days_ago(1))
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
@@ -1270,10 +1346,10 @@ class TestReviewHelper(TestReviewHelperBase):
             },
         )
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.setup_data(amo.STATUS_APPROVED)
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
@@ -1303,20 +1379,18 @@ class TestReviewHelper(TestReviewHelperBase):
         assert storage.exists(self.file.file.path)
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
 
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
-
     def test_public_addon_with_version_need_human_review_to_sandbox(self):
         self.old_version = self.addon.current_version
         self.old_version.update(created=self.days_ago(1), needs_human_review=True)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
             needs_human_review=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.file = self.version.file
-        self.setup_data(amo.STATUS_APPROVED)
+        self.file = self.review_version.file
+        self.setup_data(amo.STATUS_APPROVED, human_review=True)
 
         self.helper.handler.reject_latest_version()
 
@@ -1331,23 +1405,28 @@ class TestReviewHelper(TestReviewHelperBase):
         # approvals, we can't be sure the current version is safe now).
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review
+        assert not self.addon.current_version.human_review_date
 
-        self.version.reload()
-        assert not self.version.needs_human_review
+        self.review_version.reload()
+        assert not self.review_version.needs_human_review
+        assert self.review_version.human_review_date
 
     def test_public_addon_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=151
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=151
         )
-        assert summary.confirmed is None
+        self.setup_data(
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, human_review=True
+        )
         self.create_paths()
 
         # Safeguards.
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+        assert not self.review_version.human_review_date
+        assert summary.confirmed is None
 
         self.helper.handler.confirm_auto_approved()
 
@@ -1362,25 +1441,23 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.version]
+        assert activity.arguments == [self.addon, self.review_version]
         assert activity.details['comments'] == ''
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+        assert self.review_version.reload().human_review_date
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.current_version = self.version
+        self.current_version = self.review_version
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=152
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=152
         )
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             version='3.0',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
@@ -1403,21 +1480,18 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.arguments == [self.addon, self.current_version]
         assert activity.details['comments'] == ''
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_public_with_disabled_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.current_version = self.version
+        self.current_version = self.review_version
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=153
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=153
         )
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
         )
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.helper = self.get_helper()  # To make it pick up the new version.
         self.helper.set_data(self.get_data())
 
@@ -1440,20 +1514,17 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.arguments == [self.addon, self.current_version]
         assert activity.details['comments'] == ''
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
 
     def test_addon_with_versions_pending_rejection_confirm_auto_approval(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_APPROVED}
         )
-        self.file = self.version.file
+        self.file = self.review_version.file
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=153
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=153
         )
 
         for version in self.addon.versions.all():
@@ -1483,7 +1554,7 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.version]
+        assert activity.arguments == [self.addon, self.review_version]
         assert activity.details['comments'] == ''
 
         # None of the versions should be pending rejection anymore.
@@ -1499,14 +1570,48 @@ class TestReviewHelper(TestReviewHelperBase):
             version__addon=self.addon, pending_content_rejection__isnull=False
         ).exists()
 
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+    def test_confirm_auto_approved_approves_for_promoted(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        PromotedAddon.objects.create(addon=self.addon, group_id=NOTABLE.id)
+        self.create_paths()
+
+        # Safeguards.
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
+
+        self.helper.handler.confirm_auto_approved()
+
+        self.addon.reload()
+        self.addon.promotedaddon.reload()
+        assert self.addon.promoted_group() == NOTABLE, self.addon.promotedaddon
+        assert self.review_version.reload().approved_for_groups == [
+            (NOTABLE, amo.FIREFOX),
+            (NOTABLE, amo.ANDROID),
+        ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         self.addon.current_version.update(needs_human_review=True)
+        assert self.addon.current_version.due_date
         self.test_public_addon_confirm_auto_approval()
         self.addon.current_version.reload()
         assert self.addon.current_version.needs_human_review is False
+        assert not self.addon.current_version.due_date
+        assert self.addon.current_version.human_review_date
+
+    def test_addon_with_old_versions_needing_human_review_confirm_auto_approval(self):
+        previous_version = self.addon.current_version
+        self.addon.current_version.update(needs_human_review=True)
+        assert self.addon.current_version.due_date
+        self.review_version = version_factory(addon=self.addon)
+        self.test_public_addon_confirm_auto_approval()
+        self.review_version.reload()
+        previous_version.reload()
+        assert not self.review_version.needs_human_review
+        assert not self.review_version.due_date
+        assert not previous_version.needs_human_review
+        assert not previous_version.due_date
 
     def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
         flags = version_review_flags_factory(
@@ -1520,12 +1625,76 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.refresh_from_db()
         assert not flags.needs_human_review_by_mad
 
+    def test_deleted_addon_confirm_auto_approval(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = self.addon.current_version
+        self.addon.delete()
+        self.review_version.reload()
+        self.file = self.review_version.file
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' in self.helper.actions
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+
+    def test_disabled_by_user_addon_confirm_auto_approval(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = self.addon.current_version
+        self.addon.update(disabled_by_user=True)
+        self.review_version.reload()
+        self.file = self.review_version.file
+        summary = AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' in self.helper.actions
+        self.helper.handler.confirm_auto_approved()
+
+        summary.reload()
+        assert summary.confirmed
+        approvals_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        self.assertCloseToNow(approvals_counter.last_human_review)
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+
+    def test_current_version_not_auto_approved_confirm_auto_approval_not_present(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version = version_factory(
+            # Prevent new version from becoming the current_version...
+            addon=self.addon,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        # ... But pretend it was auto-approved initially.
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=666
+        )
+        self.helper = self.get_helper()
+        self.helper.set_data(self.get_data())
+
+        assert 'confirm_auto_approved' not in self.helper.actions
+
     def test_confirm_multiple_versions_with_version_scanner_flags(self):
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
+        self.review_version.update(channel=amo.CHANNEL_UNLISTED)
         flags = version_review_flags_factory(
-            version=self.version,
+            version=self.review_version,
             needs_human_review_by_mad=True,
         )
         assert flags.needs_human_review_by_mad
@@ -1565,14 +1734,14 @@ class TestReviewHelper(TestReviewHelperBase):
             needs_human_review=True,
             created=self.days_ago(6),
         )
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             version='5.0',
             channel=amo.CHANNEL_UNLISTED,
             needs_human_review=True,
             created=self.days_ago(5),
         )
-        self.file = self.version.file
+        self.file = self.review_version.file
         self.helper = self.get_helper()  # To make it pick up the new version.
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.filter(
@@ -1589,26 +1758,25 @@ class TestReviewHelper(TestReviewHelperBase):
         summary.reload()
         assert summary.confirmed is True
 
-        self.version.reload()
-        assert self.version.needs_human_review  # Untouched.
+        self.review_version.reload()
+        assert self.review_version.needs_human_review  # Untouched.
+        assert not self.review_version.human_review_date  # Not set.
 
         second_unlisted.reload()
         assert not second_unlisted.needs_human_review  # Cleared.
+        assert second_unlisted.human_review_date  # Set.
 
         assert (
             AddonApprovalsCounter.objects.filter(addon=self.addon).count() == 0
         )  # Not incremented since it was unlisted.
 
-        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 2
-        activities = (
+        assert self.check_log_count(amo.LOG.CONFIRM_AUTO_APPROVED.id) == 1
+        activity = (
             ActivityLog.objects.for_addons(self.addon)
             .filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id)
-            .order_by('-pk')
+            .get()
         )
-        activity = activities[0]
-        assert activity.arguments == [self.addon, first_unlisted]
-        activity = activities[1]
-        assert activity.arguments == [self.addon, second_unlisted]
+        assert activity.arguments == [self.addon, second_unlisted, first_unlisted]
 
     def test_null_to_public_unlisted(self):
         self.sign_file_mock.reset()
@@ -1627,7 +1795,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.subject == ('%s signed and ready to download' % self.preamble)
         assert (
-            '%s is now signed and ready for you to download' % self.version.version
+            '%s is now signed and ready for you to download'
+            % self.review_version.version
             in message.body
         )
         assert 'You received this email because' not in message.body
@@ -1780,33 +1949,33 @@ class TestReviewHelper(TestReviewHelperBase):
 
             assert self.addon.needs_admin_code_review
 
-    def test_nominated_review_time_set_version_approve_latest_version(self):
-        self.version.update(reviewed=None)
+    def test_nominated_human_review_date_set_version_approve_latest_version(self):
+        self.review_version.update(human_review_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
-        assert self.version.reload().reviewed
+        assert self.review_version.reload().human_review_date
 
-    def test_nominated_review_time_set_version_reject_latest_version(self):
-        self.version.update(reviewed=None)
+    def test_nominated_human_review_date_set_version_reject_latest_version(self):
+        self.review_version.update(human_review_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
-        assert self.version.reload().reviewed
+        assert self.review_version.reload().human_review_date
 
-    def test_nominated_review_time_set_file_approve_latest_version(self):
-        self.file.update(reviewed=None)
+    def test_nominated_approval_date_set_file_approve_latest_version(self):
+        self.file.update(approval_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.approve_latest_version()
-        assert File.objects.get(pk=self.file.pk).reviewed
+        assert File.objects.get(pk=self.file.pk).approval_date
 
-    def test_nominated_review_time_set_file_reject_latest_version(self):
-        self.file.update(reviewed=None)
+    def test_nominated_approval_date_set_file_reject_latest_version(self):
+        self.file.update(approval_date=None)
         self.setup_data(amo.STATUS_NOMINATED)
         self.helper.handler.reject_latest_version()
-        assert File.objects.get(pk=self.file.pk).reviewed
+        assert not File.objects.get(pk=self.file.pk).approval_date
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
         self.make_addon_unlisted(self.addon)
-        self.version.reload()
+        self.review_version.reload()
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -1816,10 +1985,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.get_helper()
 
     def test_reject_multiple_versions(self):
-        old_version = self.version
-        self.version = version_factory(addon=self.addon, version='3.0')
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
@@ -1838,7 +2007,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
 
         # The versions are not pending rejection.
@@ -1846,6 +2015,7 @@ class TestReviewHelper(TestReviewHelperBase):
             assert version.pending_rejection is None
             assert version.pending_rejection_by is None
             assert version.reviewerflags.pending_content_rejection is None
+            assert version.reload().human_review_date
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -1858,16 +2028,15 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # listed auto approvals should be disabled until the next manual approval.
         flags = self.addon.reviewerflags
@@ -1878,14 +2047,14 @@ class TestReviewHelper(TestReviewHelperBase):
         # The reviewer should have been automatically subscribed to new listed
         # versions.
         assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.version.channel
+            addon=self.addon, user=self.user, channel=self.review_version.channel
         ).exists()
 
     def test_reject_multiple_versions_with_delay(self):
-        old_version = self.version
-        self.version = version_factory(addon=self.addon, version='3.0')
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
@@ -1912,8 +2081,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
-        assert self.addon.current_version == self.version
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.addon.current_version == self.review_version
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_APPROVED
 
         # The versions are now pending rejection.
@@ -1922,6 +2091,7 @@ class TestReviewHelper(TestReviewHelperBase):
             self.assertCloseToNow(version.pending_rejection, now=in_the_future)
             assert version.pending_rejection_by == self.user
             assert version.reviewerflags.pending_content_rejection is False
+            assert version.reload().human_review_date
 
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
@@ -1937,15 +2107,14 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 1
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION_DELAYED.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION_DELAYED.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # The flag to prevent the authors from being notified several times
         # about pending rejections should have been reset, and auto approvals
@@ -1958,16 +2127,16 @@ class TestReviewHelper(TestReviewHelperBase):
         # The reviewer should have been automatically subscribed to new listed
         # versions.
         assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.version.channel
+            addon=self.addon, user=self.user, channel=self.review_version.channel
         ).exists()
 
     def test_reject_multiple_versions_except_latest(self):
-        old_version = self.version
+        old_version = self.review_version
         extra_version = version_factory(addon=self.addon, version='3.1')
         # Add yet another version we don't want to reject.
-        self.version = version_factory(addon=self.addon, version='42.0')
+        self.review_version = version_factory(addon=self.addon, version='42.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=91
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=91
         )
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
@@ -1978,7 +2147,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.current_version.is_public()
 
         data = self.get_data().copy()
-        data['versions'] = self.addon.versions.all().exclude(pk=self.version.pk)
+        data['versions'] = self.addon.versions.all().exclude(pk=self.review_version.pk)
         self.helper.set_data(data)
         self.helper.handler.reject_multiple_versions()
 
@@ -1986,9 +2155,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         # latest_version is still public so the add-on is still public.
         assert self.addon.status == amo.STATUS_APPROVED
-        assert self.addon.current_version == self.version
+        assert self.addon.current_version == self.review_version
         assert list(self.addon.versions.all().order_by('-pk')) == [
-            self.version,
+            self.review_version,
             extra_version,
             old_version,
         ]
@@ -2001,19 +2170,20 @@ class TestReviewHelper(TestReviewHelperBase):
             'Mozilla Add-ons: Versions disabled for Delicious Bookmarks'
         )
         assert 'Version(s) affected and disabled:\n3.1, 2.1.072' in message.body
-        log_token = ActivityLogToken.objects.filter(version=self.version).get()
+        log_token = ActivityLogToken.objects.filter(version=self.review_version).get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
+        assert old_version.reload().human_review_date
+        assert extra_version.reload().human_review_date
+        assert not self.review_version.reload().human_review_date
 
     def test_reject_multiple_versions_need_human_review(self):
-        old_version = self.version
+        old_version = self.review_version
         old_version.update(needs_human_review=True)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon, version='3.0', needs_human_review=True
         )
 
@@ -2026,7 +2196,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         # We rejected all versions so there aren't any left that need human
         # review.
         assert not self.addon.versions.filter(needs_human_review=True).exists()
@@ -2034,8 +2204,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_reject_multiple_versions_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
-        old_version = self.version
-        self.version = version_factory(addon=self.addon, version='3.0')
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
@@ -2055,7 +2225,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
 
         assert len(mail.outbox) == 1
@@ -2070,15 +2240,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert log_token.uuid.hex in message.reply_to[0]
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 2
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 1
 
     def test_reject_multiple_versions_content_review_with_delay(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
-        old_version = self.version
-        self.version = version_factory(addon=self.addon, version='3.0')
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
@@ -2086,7 +2253,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # Pre-subscribe the user to new listed versions of this add-on, it
         # shouldn't matter.
         ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user, channel=self.version.channel
+            addon=self.addon, user=self.user, channel=self.review_version.channel
         )
 
         in_the_future = datetime.now() + timedelta(days=14)
@@ -2112,8 +2279,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
-        assert self.addon.current_version == self.version
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert self.addon.current_version == self.review_version
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_APPROVED
 
         # The versions are now pending rejection.
@@ -2134,27 +2301,117 @@ class TestReviewHelper(TestReviewHelperBase):
 
         assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 0
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
-        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_CONTENT_DELAYED.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_VERSION_DELAYED.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_CONTENT_DELAYED.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_CONTENT_DELAYED.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
         # The reviewer was already subscribed to new listed versions for this
         # addon, nothing has changed.
         assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.version.channel
+            addon=self.addon, user=self.user, channel=self.review_version.channel
         ).exists()
 
+    def test_unreject_latest_version_approved_addon(self):
+        first_version = self.review_version
+        self.review_version = version_factory(
+            addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        self.file = self.review_version.file
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_DISABLED)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert first_version.file.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_DISABLED
+        assert self.addon.current_version.is_public()
+        assert self.addon.current_version == first_version
+
+        self.helper.handler.unreject_latest_version()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.current_version == first_version
+        assert list(self.addon.versions.all()) == [self.review_version, first_version]
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        assert len(mail.outbox) == 0
+
+        assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
+
+    def test_unreject_multiple_versions_with_unlisted(self):
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
+        self.file = self.review_version.file
+        self.setup_data(
+            amo.STATUS_NULL,
+            file_status=amo.STATUS_DISABLED,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewUnlisted)
+        assert self.addon.status == amo.STATUS_NULL
+        assert old_version.file.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_DISABLED
+        assert self.addon.current_version is None
+
+        data = self.get_data().copy()
+        data['versions'] = [self.review_version]
+        self.helper.set_data(data)
+        self.helper.handler.unreject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert self.addon.current_version is None
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        assert len(mail.outbox) == 0
+
+        assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
+
+    def test_unreject_latest_version_incomplete_addon(self):
+        old_version = self.review_version
+        old_version.file.update(status=amo.STATUS_DISABLED)
+        self.review_version = version_factory(
+            addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
+        )
+        self.file = self.review_version.file
+        self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_DISABLED)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_NULL
+        assert old_version.file.status == amo.STATUS_DISABLED
+        assert self.file.status == amo.STATUS_DISABLED
+        assert self.addon.current_version is None
+
+        self.helper.handler.unreject_latest_version()
+
+        self.addon.reload()
+        self.file.reload()
+        assert self.addon.status == amo.STATUS_NOMINATED
+        assert self.addon.current_version == self.review_version
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
+        assert self.file.status == amo.STATUS_AWAITING_REVIEW
+
+        assert len(mail.outbox) == 0
+
+        assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
+
     def test_approve_multiple_versions_unlisted(self):
-        old_version = self.version
+        old_version = self.review_version
         self.make_addon_unlisted(self.addon)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             version='3.0',
             channel=amo.CHANNEL_UNLISTED,
@@ -2181,7 +2438,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_APPROVED
 
         # unlisted auto approvals should be enabled again
@@ -2203,25 +2460,27 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.APPROVE_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.APPROVE_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
     def test_reject_multiple_versions_unlisted(self):
-        old_version = self.version
+        old_version = self.review_version
         self.make_addon_unlisted(self.addon)
-        self.version = version_factory(
+        self.review_version = version_factory(
             addon=self.addon,
             version='3.0',
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_AWAITING_REVIEW)
 
@@ -2239,7 +2498,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.file.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.current_version is None
-        assert list(self.addon.versions.all()) == [self.version, old_version]
+        assert list(self.addon.versions.all()) == [self.review_version, old_version]
         assert self.file.status == amo.STATUS_DISABLED
 
         # unlisted auto approvals should be disabled until the next manual approval.
@@ -2261,23 +2520,23 @@ class TestReviewHelper(TestReviewHelperBase):
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
-        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 2
+        assert self.check_log_count(amo.LOG.REJECT_VERSION.id) == 1
         assert self.check_log_count(amo.LOG.REJECT_CONTENT.id) == 0
 
-        logs = ActivityLog.objects.for_addons(self.addon).filter(
-            action=amo.LOG.REJECT_VERSION.id
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.REJECT_VERSION.id)
+            .get()
         )
-        assert logs[0].created == logs[1].created
+        assert log.arguments == [self.addon, self.review_version, old_version]
 
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_EXTENSION_MEDIUM_RISK)
-
-    def _test_reject_multiple_versions_delayed(self, content_review):
+    def _setup_reject_multiple_versions_delayed(self, content_review):
         # Do a rejection with delay.
         original_user = self.user
-        self.version = version_factory(addon=self.addon, version='3.0')
+        old_version = self.review_version
+        self.review_version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED, weight=101
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=101
         )
         self.setup_data(
             amo.STATUS_APPROVED,
@@ -2313,18 +2572,21 @@ class TestReviewHelper(TestReviewHelperBase):
             if not content_review
             else amo.LOG.REJECT_CONTENT_DELAYED
         )
-        assert self.check_log_count(delayed_action.id) == 2
-
-        action = (
-            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        assert self.check_log_count(delayed_action.id) == 1
+        log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=delayed_action.id)
+            .get()
         )
+        assert log.arguments == [self.addon, self.review_version, old_version]
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
-            assert log.user == original_user
+        assert log.user == original_user
 
+    def _test_reject_multiple_versions_delayed(self, content_review):
+        self._setup_reject_multiple_versions_delayed(content_review)
+        original_user = self.user
         # Now reject without delay, running as the task user.
-        task_user = UserProfile.objects.get(id=settings.TASK_USER_ID)
-        self.user = task_user
+        self.user = get_task_user()
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
         self.helper = self.get_helper(human_review=False)
@@ -2338,11 +2600,11 @@ class TestReviewHelper(TestReviewHelperBase):
         self.addon.reload()
         assert self.addon.status == amo.STATUS_NULL
 
-        assert self.check_log_count(action.id) == 2
-
+        action = (
+            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        )
         # The request user is recorded as scheduling the rejection.
-        for log in ActivityLog.objects.for_addons(self.addon).filter(action=action.id):
-            assert log.user == original_user
+        assert self.check_log_count(action.id, original_user) == 1
 
     def test_reject_multiple_versions_delayed_code_review(self):
         self._test_reject_multiple_versions_delayed(content_review=False)
@@ -2350,13 +2612,42 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_reject_multiple_versions_delayed_content_review(self):
         self._test_reject_multiple_versions_delayed(content_review=True)
 
+    def _test_reject_multiple_versions_delayed_with_human(self, content_review):
+        self._setup_reject_multiple_versions_delayed(content_review)
+        # Now reject without delay, as a different reviewer
+        self.user = user_factory()
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        self.helper = self.get_helper(human_review=True, content_review=content_review)
+        self.helper.set_data(data)
+
+        # Clear our the ActivityLogs.
+        ActivityLog.objects.all().delete()
+
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
+
+        action = (
+            amo.LOG.REJECT_VERSION if not content_review else amo.LOG.REJECT_CONTENT
+        )
+        # The new user is recorded as scheduling the rejection.
+        assert self.check_log_count(action.id, self.user) == 1
+
+    def test_reject_multiple_versions_delayed_with_human_code_review(self):
+        self._test_reject_multiple_versions_delayed_with_human(content_review=False)
+
+    def test_reject_multiple_versions_delayed_with_human_content_review(self):
+        self._test_reject_multiple_versions_delayed_with_human(content_review=True)
+
     def test_approve_content_content_review(self):
         self.grant_permission(self.user, 'Addons:ContentReview')
         self.setup_data(
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
         summary = AutoApprovalSummary.objects.create(
-            version=self.version, verdict=amo.AUTO_APPROVED
+            version=self.review_version, verdict=amo.AUTO_APPROVED
         )
         self.create_paths()
 
@@ -2380,11 +2671,9 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.APPROVE_CONTENT.id)
             .get()
         )
-        assert activity.arguments == [self.addon, self.version]
+        assert activity.arguments == [self.addon, self.review_version]
         assert activity.details['comments'] == ''
-
-        # Check points awarded.
-        self._check_score(amo.REVIEWED_CONTENT_REVIEW)
+        assert not self.review_version.human_review_date
 
     def test_dev_versions_url_in_context(self):
         self.helper.set_data(self.get_data())
@@ -2393,7 +2682,7 @@ class TestReviewHelper(TestReviewHelperBase):
             self.addon.get_dev_url('versions')
         )
 
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
+        self.review_version.update(channel=amo.CHANNEL_UNLISTED)
         context_data = self.helper.handler.get_context_data()
         assert context_data['dev_versions_url'] == absolutify(
             reverse('devhub.addons.versions', args=[self.addon.id])
@@ -2467,8 +2756,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.promoted_group() == STRATEGIC
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
-        old_version = self.version
-        self.version = version_factory(
+        old_version = self.review_version
+        self.review_version = version_factory(
             addon=self.addon, version='3.0', needs_human_review=True
         )
         self.setup_data(
@@ -2478,7 +2767,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         # Add a needs_human_review_by_mad flag that should be cleared later.
         version_review_flags_factory(
-            version=self.version, needs_human_review_by_mad=True
+            version=self.review_version, needs_human_review_by_mad=True
         )
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewUnlisted)
@@ -2506,7 +2795,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         # We should have set redirect_url to point to the Block admin page
         if '%s' in redirect_url:
-            redirect_url = redirect_url % (old_version.pk, self.version.pk)
+            redirect_url = redirect_url % (old_version.pk, self.review_version.pk)
         assert self.helper.redirect_url == redirect_url
 
     def test_pending_blocklistsubmission_multiple_unlisted_versions(self):
@@ -2544,6 +2833,56 @@ class TestReviewHelper(TestReviewHelperBase):
         with self.assertRaises(AssertionError):
             self.helper.handler.approve_latest_version()
 
+    def test_clear_needs_human_review(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.review_version.update(needs_human_review=True)
+        # set needs_human_review_by_mad - it shouldn't be cleared
+        flags = VersionReviewerFlags.objects.create(
+            version=self.review_version, needs_human_review_by_mad=True
+        )
+        # some other versions that are also needs_human_review
+        disabled = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        deleted = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+        )
+        deleted.delete()
+        # This is in a different channel so shouldn't be cleared
+        unlisted = version_factory(
+            addon=self.review_version.addon,
+            needs_human_review=True,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+
+        self.helper.handler.clear_needs_human_review()
+
+        log_type_id = amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS.id
+        assert self.check_log_count(log_type_id) == 1
+        assert (
+            ActivityLog.objects.for_addons(self.helper.addon)
+            .get(action=log_type_id)
+            .details.get('channel')
+            == 'listed'
+        )
+        assert len(mail.outbox) == 0
+        assert not self.review_version.human_review_date  # its not been reviewed
+        assert not self.review_version.reload().needs_human_review
+        assert not disabled.reload().needs_human_review
+        assert not deleted.reload().needs_human_review
+        assert not self.review_version.due_date
+        assert not disabled.due_date
+        assert not deleted.due_date
+        assert unlisted.reload().needs_human_review  # not cleared
+        assert unlisted.due_date
+
+        # mad flag hasn't changed
+        assert flags.reload().needs_human_review_by_mad
+        assert self.review_version.needs_human_review_by_mad
+
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestReviewHelperSigning(TestReviewHelperBase):
@@ -2564,9 +2903,9 @@ class TestReviewHelperSigning(TestReviewHelperBase):
             file_kw={'filename': 'webextension.xpi'},
             users=[self.user],
         )
-        self.version = self.addon.versions.all()[0]
+        self.review_version = self.addon.versions.all()[0]
         self.helper = self.get_helper()
-        self.file = self.version.file
+        self.file = self.review_version.file
 
     def test_nomination_to_public(self):
         self.setup_data(amo.STATUS_NOMINATED)

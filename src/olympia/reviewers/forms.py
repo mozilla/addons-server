@@ -8,16 +8,16 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
 from olympia import amo, ratings
 from olympia.access import acl
+from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason, Whiteboard
+from olympia.reviewers.models import ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
 import markupsafe
@@ -27,18 +27,18 @@ log = olympia.core.logger.getLogger('z.reviewers.forms')
 
 ACTION_FILTERS = (
     ('', ''),
-    ('approved', _('Approved reviews')),
-    ('deleted', _('Deleted reviews')),
+    ('approved', 'Approved reviews'),
+    ('deleted', 'Deleted reviews'),
 )
 
 ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
 
 
 class RatingModerationLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_('View entries between'))
-    end = forms.DateField(required=False, label=_('and'))
+    start = forms.DateField(required=False, label='View entries between')
+    end = forms.DateField(required=False, label='and')
     filter = forms.ChoiceField(
-        required=False, choices=ACTION_FILTERS, label=_('Filter by type/action')
+        required=False, choices=ACTION_FILTERS, label='Filter by type/action'
     )
 
     def clean(self):
@@ -53,24 +53,21 @@ class RatingModerationLogForm(forms.Form):
 
 
 class ReviewLogForm(forms.Form):
-    start = forms.DateField(required=False, label=_('View entries between'))
-    end = forms.DateField(required=False, label=_('and'))
-    search = forms.CharField(required=False, label=_('containing'))
+    start = forms.DateField(required=False, label='View entries between')
+    end = forms.DateField(required=False, label='and')
+    search = forms.CharField(required=False, label='containing')
 
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
 
-        # L10n: start, as in "start date"
         self.fields['start'].widget.attrs = {
-            'placeholder': gettext('start'),
+            'placeholder': 'start',
             'size': 10,
         }
 
-        # L10n: end, as in "end date"
-        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': gettext('end')}
+        self.fields['end'].widget.attrs = {'size': 10, 'placeholder': 'end'}
 
-        # L10n: Description of what can be searched for
-        search_ph = gettext('add-on, reviewer or comment')
+        search_ph = 'add-on, reviewer or comment'
         self.fields['search'].widget.attrs = {'placeholder': search_ph, 'size': 30}
 
     def clean(self):
@@ -112,11 +109,28 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     """
 
     actions_filters = {
-        amo.STATUS_APPROVED: ('confirm_multiple_versions', 'block_multiple_versions'),
-        amo.STATUS_AWAITING_REVIEW: (
-            'reject_multiple_versions',
-            'approve_multiple_versions',
-        ),
+        amo.CHANNEL_UNLISTED: {
+            amo.STATUS_APPROVED: (
+                'block_multiple_versions',
+                'confirm_multiple_versions',
+            ),
+            amo.STATUS_AWAITING_REVIEW: (
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+        },
+        amo.CHANNEL_LISTED: {
+            amo.STATUS_APPROVED: (
+                'block_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_AWAITING_REVIEW: (
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+            ),
+            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+        },
     }
 
     def create_option(self, *args, **kwargs):
@@ -124,21 +138,67 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         # label_from_instance() on VersionsChoiceField returns the full object,
         # not a label, this is what makes this work.
         obj = option['label']
-        status = obj.file.status if obj.file else None
-        versions_actions = getattr(self, 'versions_actions', None)
-        if versions_actions and obj.channel == amo.CHANNEL_UNLISTED:
-            # For unlisted, some actions should only apply to approved/pending
-            # versions, so we add our special `data-toggle` class and the
-            # right `data-value` depending on status.
+        if getattr(self, 'versions_actions', None):
+            status = obj.file.status if obj.file else None
+            if status == amo.STATUS_DISABLED and obj.is_blocked:
+                # Override status for blocked versions: we don't want them unrejected.
+                status = None
+            # Add our special `data-toggle` class and the right `data-value` depending
+            # on status.
             option['attrs']['class'] = 'data-toggle'
-            option['attrs']['data-value'] = '|'.join(
-                self.actions_filters.get(status, ()) + ('',)
+            option['attrs']['data-value'] = ' '.join(
+                self.actions_filters[obj.channel].get(status, ())
             )
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
         option['label'] = str(obj) + markupsafe.Markup(
             f' - {obj.get_review_status_display(True)}' if obj else ''
         )
+        return option
+
+
+class ReasonsChoiceField(ModelMultipleChoiceField):
+    """
+    Widget to use together with ReasonsChoiceWidget to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def label_from_instance(self, obj):
+        """Return the object instead of transforming into a label at this stage
+        so that it's available in the widget."""
+        return obj
+
+
+class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
+    """
+    Widget to use together with ReasonsChoiceField to display checkboxes
+    with extra data for the canned responses.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        # label_from_instance() on ReasonsChoiceField returns the full object,
+        # not a label, this is what makes this work.
+        obj = option['label']
+        option['attrs']['data-value'] = obj.canned_response
+        option['label'] = str(obj)
+        return option
+
+
+class ActionChoiceWidget(forms.RadioSelect):
+    """
+    Widget to add boilerplate_text to action options.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        actions = getattr(self, 'actions', {})
+        action = actions.get(option['value'], None)
+        if action:
+            boilerplate_text = action.get('boilerplate_text', None)
+            if boilerplate_text:
+                option['attrs']['data-value'] = boilerplate_text
+
         return option
 
 
@@ -151,10 +211,9 @@ class ReviewForm(forms.Form):
     use_required_attribute = False
 
     comments = forms.CharField(
-        required=True, widget=forms.Textarea(), label=_('Comments:')
+        required=True, widget=forms.Textarea(), label='Comments:'
     )
-    canned_response = NonValidatingChoiceField(required=False)
-    action = forms.ChoiceField(required=True, widget=forms.RadioSelect())
+    action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
     versions = VersionsChoiceField(
         # The <select> is displayed/hidden dynamically depending on the action
         # so it needs the data-toggle class (data-value attribute is set later
@@ -167,8 +226,8 @@ class ReviewForm(forms.Form):
         queryset=Version.objects.none(),
     )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False, label=_('Operating systems:'))
-    applications = forms.CharField(required=False, label=_('Applications:'))
+    operating_systems = forms.CharField(required=False, label='Operating systems:')
+    applications = forms.CharField(required=False, label='Applications:')
     delayed_rejection = forms.BooleanField(
         # For the moment we default to immediate rejections, but in the future
         # this will have to be dynamically set in __init__() to default to
@@ -182,17 +241,12 @@ class ReviewForm(forms.Form):
             choices=(
                 (
                     True,
-                    _(
-                        'Delay rejection, requiring developer to correct in '
-                        'less than…'
-                    ),
+                    'Delay rejection, requiring developer to correct in ' 'less than…',
                 ),
                 (
                     False,
-                    _(
-                        'Reject immediately. Only use in case of serious '
-                        'security issues.'
-                    ),
+                    'Reject immediately. Only use in case of serious '
+                    'security issues.',
                 ),
             )
         ),
@@ -201,14 +255,16 @@ class ReviewForm(forms.Form):
         required=False,
         widget=NumberInput,
         initial=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
-        label=_('days'),
+        label='days',
         min_value=1,
         max_value=99,
     )
-    reasons = forms.ModelMultipleChoiceField(
-        label=_('Choose one or more reasons:'),
-        queryset=ReviewActionReason.objects.filter(is_active__exact=True),
+    reasons = ReasonsChoiceField(
+        label='Choose one or more reasons:',
+        # queryset is set later in __init__.
+        queryset=ReviewActionReason.objects.none(),
         required=True,
+        widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
 
@@ -218,7 +274,7 @@ class ReviewForm(forms.Form):
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
-            if action.get('versions', False):
+            if action.get('multiple_versions', False):
                 self.fields['versions'].required = True
             if not action.get('requires_reasons', False):
                 self.fields['reasons'].required = False
@@ -230,9 +286,7 @@ class ReviewForm(forms.Form):
     def clean_version_pk(self):
         version_pk = self.cleaned_data.get('version_pk')
         if version_pk and version_pk != self.helper.version.pk:
-            raise ValidationError(
-                gettext('Version mismatch - the latest version has changed!')
-            )
+            raise ValidationError('Version mismatch - the latest version has changed!')
 
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
@@ -255,63 +309,50 @@ class ReviewForm(forms.Form):
         # if the relevant actions are available, otherwise we don't really care
         # about this field.
         versions_actions = [
-            k for k in self.helper.actions if self.helper.actions[k].get('versions')
+            k
+            for k in self.helper.actions
+            if self.helper.actions[k].get('multiple_versions')
         ]
         if versions_actions:
             if self.helper.version:
                 channel = self.helper.version.channel
             else:
                 channel = amo.CHANNEL_LISTED
-            statuses = (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
                 self.helper.addon.versions(manager='unfiltered_for_relations')
-                .filter(channel=channel, file__status__in=statuses)
+                .filter(channel=channel)
                 .no_transforms()
                 .select_related('file')
                 .select_related('autoapprovalsummary')
                 .select_related('reviewerflags')
                 .order_by('created')
             )
-            # Reset data-value depending on widget depending on actions
-            # available ([''] added to get an extra '|' at the end).
-            self.fields['versions'].widget.attrs['data-value'] = '|'.join(
-                versions_actions + ['']
+            # Reset data-value depending on widget depending on actions available.
+            self.fields['versions'].widget.attrs['data-value'] = ' '.join(
+                versions_actions
             )
-        # For the canned responses, we're starting with an empty one, which
-        # will be hidden via CSS.
-        canned_choices = [['', [('', gettext('Choose a canned response...'))]]]
-
-        canned_type = (
-            amo.CANNED_RESPONSE_TYPE_THEME
-            if self.helper.addon.type == amo.ADDON_STATICTHEME
-            else amo.CANNED_RESPONSE_TYPE_ADDON
-        )
-        responses = CannedResponse.objects.filter(type=canned_type)
-
-        # Loop through the actions (public, etc).
-        for k, action in self.helper.actions.items():
-            action_choices = [
-                [c.response, c.name]
-                for c in responses
-                if c.sort_group and k in c.sort_group.split(',')
-            ]
-
-            # Add the group of responses to the canned_choices array.
-            if action_choices:
-                canned_choices.append([action['label'], action_choices])
-
-        # Now, add everything not in a group.
-        for canned_response in responses:
-            if not canned_response.sort_group:
-                canned_choices.append([canned_response.response, canned_response.name])
-        self.fields['canned_response'].choices = canned_choices
 
         # Set choices on the action field dynamically to raise an error when
         # someone tries to use an action they don't have access to.
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()
         ]
+
+        # Set the queryset for reasons based on the add-on type.
+        self.fields['reasons'].queryset = ReviewActionReason.objects.filter(
+            is_active=True,
+            addon_type__in=[
+                amo.ADDON_ANY,
+                amo.ADDON_STATICTHEME
+                if self.helper.addon.type == amo.ADDON_STATICTHEME
+                else amo.ADDON_EXTENSION,
+            ],
+        )
+
+        # Add actions from the helper into the action widget so we can access
+        # them in create_option.
+        self.fields['action'].widget.actions = self.helper.actions
 
     @property
     def unreviewed_files(self):
@@ -327,26 +368,25 @@ class MOTDForm(forms.Form):
     motd = forms.CharField(required=True, widget=widgets.Textarea())
 
 
-class WhiteboardForm(forms.ModelForm):
+class WhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['private', 'public']
-        labels = {'private': _('Private Whiteboard'), 'public': _('Whiteboard')}
+        labels = {'private': 'Private Whiteboard', 'public': 'Whiteboard'}
 
 
-class PublicWhiteboardForm(forms.ModelForm):
+class PublicWhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
         fields = ['public']
-        labels = {'public': _('Whiteboard')}
+        labels = {'public': 'Whiteboard'}
 
 
-class ModerateRatingFlagForm(forms.ModelForm):
-
+class ModerateRatingFlagForm(AMOModelForm):
     action_choices = [
-        (ratings.REVIEW_MODERATE_KEEP, _('Keep review; remove flags')),
-        (ratings.REVIEW_MODERATE_SKIP, _('Skip for now')),
-        (ratings.REVIEW_MODERATE_DELETE, _('Delete review')),
+        (ratings.REVIEW_MODERATE_KEEP, 'Keep review; remove flags'),
+        (ratings.REVIEW_MODERATE_SKIP, 'Skip for now'),
+        (ratings.REVIEW_MODERATE_DELETE, 'Delete review'),
     ]
     action = forms.ChoiceField(
         choices=action_choices, required=False, initial=0, widget=forms.RadioSelect()
@@ -370,9 +410,9 @@ class BaseRatingFlagFormSet(BaseModelFormSet):
                 action = int(form.cleaned_data['action'])
 
                 if action == ratings.REVIEW_MODERATE_DELETE:
-                    form.instance.delete(user_responsible=self.request.user)
+                    form.instance.delete()
                 elif action == ratings.REVIEW_MODERATE_KEEP:
-                    form.instance.approve(user=self.request.user)
+                    form.instance.approve()
 
 
 RatingFlagFormSet = modelformset_factory(

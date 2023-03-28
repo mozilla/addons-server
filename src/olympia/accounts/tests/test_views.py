@@ -213,6 +213,12 @@ class TestLoginUserAndRegisterUser(TestCase):
             ActivityLog.objects.filter(user=self.user, action=amo.LOG.LOG_IN.id).count()
             == 1
         )
+        assert (
+            ActivityLog.objects.filter(
+                user=self.user, action=amo.LOG.LOG_IN_API_TOKEN.id
+            ).count()
+            == 0
+        )
         assert IPLog.objects.all().count() == 1
         assert IPLog.objects.get().ip_address_binary == IPv4Address('8.8.8.8')
 
@@ -1409,6 +1415,14 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 400
         assert json.loads(force_str(response.content)) == {
             'biography': ['No links are allowed.']
+        }
+
+    def test_biography_too_long(self):
+        self.client.login_api(self.user)
+        response = self.patch(data={'biography': 'ä' * 256})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'biography': ['Ensure this field has no more than 255 characters.']
         }
 
     def test_display_name_validation(self):

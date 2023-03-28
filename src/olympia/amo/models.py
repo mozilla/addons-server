@@ -7,6 +7,9 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.db.models import Lookup
+from django.db.models.expressions import Func
+from django.db.models.fields import CharField, Field
 from django.db.models.fields.related_descriptors import ManyToManyDescriptor
 from django.db.models.query import ModelIterable
 from django.urls import resolve, reverse
@@ -22,6 +25,21 @@ from olympia.translations.hold import save_translations
 
 
 log = olympia.core.logger.getLogger('z.addons')
+
+
+@Field.register_lookup
+class Like(Lookup):
+    lookup_name = 'like'
+
+    def as_sql(self, compiler, connection):
+        lhs_sql, params = self.process_lhs(compiler, connection)
+        rhs_sql, rhs_params = self.process_rhs(compiler, connection)
+        params.extend(rhs_params)
+        # This looks scarier than it is: rhs_sql should to resolve to '%s',
+        # lhs_sql to the query before this part. The params are isolated and
+        # will be passed to the database client code separately, ensuring
+        # everything is escaped correctly.
+        return '%s LIKE %s' % (lhs_sql, rhs_sql), params
 
 
 @contextlib.contextmanager
@@ -114,15 +132,15 @@ class ManagerBase(models.Manager):
 
     def _with_translations(self, qs):
         from olympia.translations import transformer
+        from django.db.models import Value
 
-        # Since we're attaching translations to the object, we need to stick
-        # the locale in the query so objects aren't shared across locales.
         if hasattr(self.model._meta, 'translated_fields'):
-            # We just add lang=lang in the query. We want to avoid NULL=NULL
-            # though, so if lang is null we just add use dummy value instead.
-            lang = translation.get_language() or '0'
             qs = qs.transform(transformer.get_trans)
-            qs = qs.extra(where=['%s=%s'], params=[lang, lang])
+            # Annotate the queryset with the current language to prevent any
+            # caching of the query to share results across languages.
+            qs = qs.annotate(
+                __lang=Value(translation.get_language() or '', output_field=CharField())
+            )
         return qs
 
     def transform(self, fn):
@@ -633,3 +651,8 @@ class FilterableManyToManyField(models.fields.related.ManyToManyField):
 class GroupConcat(models.Aggregate):
     function = 'GROUP_CONCAT'
     allow_distinct = True
+
+
+class Inet6Ntoa(Func):
+    function = 'INET6_NTOA'
+    output_field = CharField()

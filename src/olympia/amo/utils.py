@@ -26,10 +26,10 @@ from urllib.parse import (
 import django.core.mail
 
 from django.conf import settings
-from django.core.cache import cache
+from django.core.exceptions import FieldDoesNotExist
 from django.core.files.storage import FileSystemStorage, default_storage as storage
 from django.core.paginator import EmptyPage, InvalidPage, Paginator as DjangoPaginator
-from django.core.validators import ValidationError, validate_slug
+from django.core.validators import MaxLengthValidator, ValidationError, validate_slug
 from django.forms.fields import Field
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirectBase
@@ -56,6 +56,7 @@ from django_statsd.clients import statsd
 from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
+from rest_framework.utils.formatting import lazy_format
 
 from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES
@@ -792,32 +793,6 @@ class HttpResponseXSendFile(HttpResponse):
         return iter([])
 
 
-def cache_ns_key(namespace, increment=False):
-    """
-    Returns a key with namespace value appended. If increment is True, the
-    namespace will be incremented effectively invalidating the cache.
-
-    Memcache doesn't have namespaces, but we can simulate them by storing a
-    "%(key)s_namespace" value. Invalidating the namespace simply requires
-    editing that key. Your application will no longer request the old keys,
-    and they will eventually fall off the end of the LRU and be reclaimed.
-    """
-    ns_key = 'ns:%s' % namespace
-    if increment:
-        try:
-            ns_val = cache.incr(ns_key)
-        except ValueError:
-            log.info('Cache increment failed for key: %s. Resetting.' % ns_key)
-            ns_val = utc_millesecs_from_epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
-    else:
-        ns_val = cache.get(ns_key)
-        if ns_val is None:
-            ns_val = utc_millesecs_from_epoch(datetime.datetime.now())
-            cache.set(ns_key, ns_val, None)
-    return f'{ns_val}:{ns_key}'
-
-
 def get_email_backend(real_email=False):
     """Get a connection to an email backend.
 
@@ -1100,6 +1075,7 @@ def find_language(locale):
 
 def has_links(html):
     """Return True if links (text or markup) are found in the given html."""
+
     # Call bleach.linkify to transform text links to real links, and add some
     # content to the ``href`` attribute. If the result is different from the
     # initial string, links were found.
@@ -1215,3 +1191,95 @@ def is_safe_url(url, request, allowed_hosts=None):
     return url_has_allowed_host_and_scheme(
         url, allowed_hosts=allowed_hosts, require_https=require_https
     )
+
+
+def id_to_path(pk, breadth=1):
+    """
+    Generate a path from a pk, to distribute folders in the file system. There
+    are 2 sublevels made from the last digits of the pk.
+
+    The breadth argument (defaults to 1) controls the number of digits used at
+    each sublevel. Zero-padding is applied to always have a fixed number of
+    directories for each sublevel.
+
+    At breadth=1, there should be 10 * 10 * x directories, resulting in:
+    1 => 1/01/1
+    12 => 2/12/12
+    123456 => 6/56/123456
+
+
+    At breadth=2, there should be 100 * 100 * x directories, resulting in:
+    1 => 01/0001/1
+    12 => 12/0012/12
+    123 => 23/0123/0123
+    1234 => 34/1234/1234
+    123456 => 56/3456/123456
+    123456789 => 89/6789/123456789
+    """
+    pk = str(pk)
+    padded_pk = pk.zfill(2 * breadth)
+    path = [padded_pk[-breadth:], padded_pk[-breadth * 2 :]]
+    # We always append the unpadded pk as the final directory.
+    path.append(pk)
+    return os.path.join(*path)
+
+
+class BaseModelSerializerAndFormMixin:
+    """
+    Base mixin to apply custom behavior to our ModelForms and ModelSerializers.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.set_max_length_on_fields_where_necessary()
+
+    def set_max_length_on_fields_where_necessary(self):
+        """
+        Automatically set max_length and associated validator on fields that
+        map to a model field where it's already set.
+
+        Allow declaring custom fields without having to re-declare the same
+        max_length for those fields.
+
+        Should be called at __init__() time."""
+        for field_name, field in self.fields.items():
+            if getattr(field, 'read_only', False):
+                continue
+            source = getattr(field, 'source', field_name)
+            if getattr(field, 'max_length', None) is None and self.Meta.model:
+                try:
+                    model_field = self.Meta.model._meta.get_field(source)
+                except FieldDoesNotExist:
+                    continue
+                if (max_length := getattr(model_field, 'max_length', None)) is not None:
+                    field.max_length = max_length
+                    # Normally setting max_length on the field would be enough,
+                    # but because we're late, after the field's __init__(), we
+                    # also need to:
+                    # - Update the widget attributes again, for form fields
+                    if hasattr(field, 'widget'):
+                        field.widget.attrs.update(field.widget_attrs(field.widget))
+                        # - Update the sub-widgets too if there are any (our
+                        #   translations widgets work like that)
+                        if hasattr(field.widget, 'widgets'):
+                            for widget in field.widget.widgets:
+                                widget.attrs.update(field.widget_attrs(widget))
+                    # - Convert that max_length into a validator ourselves if
+                    #   the field requires it. Unfortunately some fields
+                    #   (FileField) do not work like that and instead deal with
+                    #   max_length dynamically, with a custom error message
+                    #   that is generated dynamically, so we need to avoid
+                    #   those. If a compatible error message for max_length is
+                    #   set, or no message at all, we're good.
+                    message = getattr(field, 'error_messages', {}).get('max_length')
+                    if message is None or re.findall(r'\{.*?\}', str(message)) == [
+                        '{max_length}'
+                    ]:
+                        if message:
+                            message = lazy_format(
+                                field.error_messages['max_length'],
+                                max_length=field.max_length,
+                            )
+                        field.validators.append(
+                            MaxLengthValidator(field.max_length, message=message)
+                        )

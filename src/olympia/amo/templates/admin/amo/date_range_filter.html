@@ -1,0 +1,26 @@
+<h3>By {{ title }}</h3>
+{% with choices.0 as all_choice %}
+<form method="GET" action=".">
+    <div>
+        {# Use .params.lists to properly support multiple values - so that if a filter using this template is present multiple times on the page, its current values are all passed to the new page when submitting this form #}
+        {% for key, values in all_choice.params.lists %}
+            {% for value in values %}
+                <input type="hidden" name="{{ key }}" value="{{ value }}" />
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <ul>
+        <li {% if all_choice.selected %}class="selected"{% endif %}>
+            <a href="{{ all_choice.query_string }}">All</a>
+        </li>
+        {% for field in spec.form %}
+        <li {% if field.data %}class="selected"{% endif %}>
+            {{ field.label_tag }} {{ field }}
+        </li>
+        {% endfor %}
+        <li>
+            <input type="submit" value="Submit" />
+        </li>
+    </ul>
+</form>
+{% endwith %}

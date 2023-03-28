@@ -113,19 +113,16 @@ def disable_addon_for_block(block):
         review_type='pending',
         human_review=False,
     )
-    review.set_data(
-        {
-            'versions': [
-                ver
-                for ver in block.addon_versions
-                # We don't need to reject versions from older deleted instances
-                # and already disabled files
-                if ver.addon == block.addon
-                and block.is_version_blocked(ver.version)
-                and ver.file.status != amo.STATUS_DISABLED
-            ]
-        }
-    )
+    versions_to_reject = [
+        ver
+        for ver in block.addon_versions
+        # We don't need to reject versions from older deleted instances
+        # and already disabled files
+        if ver.addon == block.addon
+        and block.is_version_blocked(ver.version)
+        and ver.file.status != amo.STATUS_DISABLED
+    ]
+    review.set_data({'versions': versions_to_reject})
     review.reject_multiple_versions()
 
     for version in review.data['versions']:

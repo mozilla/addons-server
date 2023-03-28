@@ -176,6 +176,19 @@ class TestEditLicense(TestOwnership):
         assert license_two.builtin == License.OTHER
         assert license_two.id == license_one.id
 
+    def test_license_name_and_text_too_long(self):
+        data = self.build_form_data(
+            {'builtin': License.OTHER, 'text': 'ŧ' * 75001, 'name': 'ŋ' * 201}
+        )
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        form = response.context['license_form']
+        assert not form.is_valid()
+        assert form.errors == {
+            'name': ['Ensure this value has at most 200 characters (it has 201).'],
+            'text': ['Ensure this value has at most 75000 characters (it has 75001).'],
+        }
+
     def test_success_switch_license(self):
         data = self.build_form_data({'builtin': 7})
         response = self.client.post(self.url, data)
@@ -809,12 +822,6 @@ class TestEditAuthorStaticTheme(TestEditAuthor):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.cc_license = License.objects.create(builtin=11)
         self.version.update(license=self.cc_license)
-
-
-class TestEditAuthorSitePermission(TestEditAuthor):
-    def setUp(self):
-        super().setUp()
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
 
 
 class TestAuthorInvitation(TestCase):

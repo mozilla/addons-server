@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,60 +15,10 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr ""
-
-#, fuzzy
-msgid "Users"
-msgstr "Kasdienių naudotojų"
-
-msgid "Add-ons"
-msgstr "Priedai"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr ""
-
-#, fuzzy
-msgid "creation date"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "User / Add-on"
-msgstr "Daugiau priedų"
-
-#, fuzzy
-msgid "Distribution"
-msgstr "Daugiau priedų"
-
-msgid "Reporter's country"
-msgstr ""
-
-msgid "Message excerpt"
-msgstr ""
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr ""
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr ""
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr ""
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-msgid "Modified on:"
-msgstr ""
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr ""
-
-msgid "All"
+msgid "Invalid value"
 msgstr ""
 
 msgid "No links are allowed."
@@ -117,7 +67,10 @@ msgid "Review"
 msgstr ""
 
 msgid "Version {0}"
-msgstr ""
+msgid_plural "Versions {0}"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, fuzzy
 msgid "Review note"
@@ -126,32 +79,7 @@ msgstr "Apžvalgų žurnalas"
 msgid "Only latest versions of addons can have notes added."
 msgstr ""
 
-msgid "Authors"
-msgstr ""
-
-msgid "Ratings"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer Tools (listed)"
-msgstr "Plėtojimo kanalas"
-
-#, fuzzy
-msgid "Reviewer Tools (unlisted)"
-msgstr "Plėtojimo kanalas"
-
-#, fuzzy
-msgid "Reviewer links"
-msgstr "Plėtojimo kanalas"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr ""
-
-msgid "Activity Logs"
-msgstr ""
-
-msgid "- Add-on not on AMO -"
+msgid "Request content length is too large."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
@@ -184,9 +112,6 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr ""
 
-msgid "Invalid value"
-msgstr ""
-
 msgid "Invalid app specified"
 msgstr ""
 
@@ -213,6 +138,13 @@ msgid "Built in licenses can not be updated."
 msgstr ""
 
 msgid "Upload is not valid."
+msgstr ""
+
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
@@ -248,7 +180,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-msgid "Site permissions for {hostnames}"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -285,9 +217,6 @@ msgid "My Add-ons"
 msgstr ""
 
 msgid "My Themes"
-msgstr ""
-
-msgid "Git-Extract"
 msgstr ""
 
 msgid "Tools"
@@ -498,34 +427,6 @@ msgstr ""
 msgid "Confirmation for developer API keys"
 msgstr ""
 
-msgid "Application Versions"
-msgstr ""
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr ""
-
-msgid "Valid Application Versions"
-msgstr ""
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
-
-msgid "GUID"
-msgstr ""
-
-msgid "Versions"
-msgstr "Versijos"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
@@ -540,9 +441,6 @@ msgid "This custom URL cannot be used."
 msgstr "„{0}“ yra rezervuota gairė ir negali būti naudojama."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
-
-msgid "Signoff State"
 msgstr ""
 
 #, python-format
@@ -579,63 +477,6 @@ msgstr "Apžvalgų žurnalas"
 msgid "Review Unlisted"
 msgstr "Apžvalgų žurnalas"
 
-#, fuzzy, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Daugiau priedų"
-
-msgid "Home"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr ""
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "Save and add more"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
-msgid "Update"
-msgstr ""
-
-#, fuzzy
-msgid "Reject Submission"
-msgstr "Rodyti visas versijas"
-
-#, fuzzy
-msgid "Approve Submission"
-msgstr "Rodyti visas versijas"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr ""
-
-msgid "Add-on GUIDs (one per line)"
-msgstr ""
-
-#, fuzzy
-msgid "Submit"
-msgstr "Neperžiūrėtas"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr ""
-
-msgid "Edit Block"
-msgstr ""
-
-#, fuzzy
-msgid "versions"
-msgstr "Versijos"
-
 msgid "{addon} was created."
 msgstr "Priedas „{addon}“ sukurtas."
 
@@ -648,11 +489,12 @@ msgstr "Priedo „{addon}“ aprašymas pakeistas."
 msgid "Categories edited for {addon}."
 msgstr ""
 
-msgid "{0.name} ({1}) added to {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
 msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
 msgstr ""
 
 msgid "Contributions for {addon}."
@@ -678,7 +520,7 @@ msgstr ""
 msgid "Version {0} deleted from {addon}."
 msgstr ""
 
-msgid "File {0.name} added to {version} of {addon}."
+msgid "File {file} added to {version} of {addon}."
 msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
@@ -732,9 +574,6 @@ msgstr ""
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr ""
-
 #, fuzzy
 msgid "Commented"
 msgstr "Komentuoti"
@@ -772,8 +611,8 @@ msgstr ""
 msgid "{0} {1} added."
 msgstr ""
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
 msgstr ""
 
 msgid "{addon} is now licensed under {0}."
@@ -789,13 +628,7 @@ msgstr "Priedas „{addon}“ sukurtas."
 msgid "{rating} for {addon} approved."
 msgstr ""
 
-msgid "{user} approved {rating} for {addon}."
-msgstr ""
-
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
-
-msgid "{user} deleted {rating} for {addon}."
 msgstr ""
 
 msgid "Application max version for {version} updated."
@@ -834,18 +667,6 @@ msgstr ""
 msgid "Deleted: {1}."
 msgstr ""
 
-msgid "User {user} edited, reason: {1}"
-msgstr ""
-
-msgid "User {user} anonymized."
-msgstr ""
-
-msgid "User {user} restricted."
-msgstr ""
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr ""
-
 msgid "{rating} for {addon} updated."
 msgstr ""
 
@@ -858,10 +679,10 @@ msgstr ""
 msgid "User {user} picture deleted."
 msgstr ""
 
-msgid "User {0.name} added to {group}."
+msgid "User {user} added to {group}."
 msgstr ""
 
-msgid "User {0.name} removed from {group}."
+msgid "User {user} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
@@ -903,7 +724,7 @@ msgstr ""
 msgid "Source code uploaded"
 msgstr ""
 
-msgid "Auto-Approval confirmed for {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
 msgstr ""
 
 msgid "Auto-Approval confirmed"
@@ -1009,9 +830,6 @@ msgstr ""
 msgid "User {user} session(s) reset."
 msgstr ""
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr ""
-
 #, fuzzy
 msgid "{addon} {version} content reject scheduled."
 msgstr "Priedas „{addon}“ sukurtas."
@@ -1034,24 +852,16 @@ msgstr "Priedas „{addon}“ sukurtas."
 msgid "Version re-signed"
 msgstr "Versijos pastabos"
 
-#, fuzzy
-msgid "{user} force-disabled {addon}."
-msgstr "Priedas „{addon}“ sukurtas."
-
-msgid "Force disabled"
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-#, fuzzy
-msgid "{user} force-enabled {addon}."
-msgstr "Priedas „{addon}“ sukurtas."
-
-msgid "Force enabled"
+msgid "Un-rejected"
 msgstr ""
 
-msgid "{user} logged in."
+msgid "{addon} needs_human_review flag cleared."
 msgstr ""
 
-msgid "{user} restricted."
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1522,27 +1332,8 @@ msgstr ""
 msgid "Strategic"
 msgstr ""
 
-msgid "Add-on"
+msgid "Notable"
 msgstr ""
-
-#, fuzzy
-msgid "Static Theme"
-msgstr "Keisti grafinį apvalkalą"
-
-msgid "Persona"
-msgstr ""
-
-#, fuzzy
-msgid "Security"
-msgstr "Privatumo politika"
-
-#, fuzzy
-msgid "Privacy"
-msgstr "Privatumo politika"
-
-#, fuzzy
-msgid "Development Practices"
-msgstr "Plėtojimo kanalas"
 
 msgid "No Reputation"
 msgstr ""
@@ -1554,117 +1345,6 @@ msgid "Very Good (2)"
 msgstr ""
 
 msgid "Excellent (3)"
-msgstr ""
-
-msgid "Manual Reviewer Points"
-msgstr ""
-
-#, fuzzy
-msgid "New Legacy Add-on Review"
-msgstr "Neperžiūrėtas"
-
-msgid "Preliminary Add-on Review"
-msgstr ""
-
-#, fuzzy
-msgid "Updated Legacy Add-on Review"
-msgstr "Neperžiūrėtas"
-
-msgid "New Dictionary Review"
-msgstr ""
-
-msgid "Preliminary Dictionary Review"
-msgstr ""
-
-msgid "Updated Dictionary Review"
-msgstr ""
-
-msgid "New Language Pack Review"
-msgstr ""
-
-msgid "Preliminary Language Pack Review"
-msgstr ""
-
-msgid "Updated Language Pack Review"
-msgstr ""
-
-msgid "Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Theme (Static) Review"
-msgstr "Neperžiūrėtas"
-
-msgid "New Search Provider Review"
-msgstr ""
-
-msgid "Preliminary Search Provider Review"
-msgstr ""
-
-msgid "Updated Search Provider Review"
-msgstr ""
-
-msgid "New Complete Theme Review"
-msgstr ""
-
-msgid "Preliminary Complete Theme Review"
-msgstr ""
-
-msgid "Updated Complete Theme Review"
-msgstr ""
-
-#, fuzzy
-msgid "Moderated Add-on Review"
-msgstr "Neperžiūrėtas"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr ""
-
-#, fuzzy
-msgid "Add-on Content Review"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Add-on Review (Highest Risk)"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Add-on Review (High Risk)"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Add-on Review (Medium Risk)"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Add-on Review (Low Risk)"
-msgstr "Neperžiūrėtas"
-
-msgid "Level 1"
-msgstr ""
-
-msgid "Level 2"
-msgstr ""
-
-msgid "Level 3"
-msgstr ""
-
-msgid "Level 4"
-msgstr ""
-
-msgid "Level 5"
-msgstr ""
-
-msgid "Level 6"
-msgstr ""
-
-msgid "Level 7"
-msgstr ""
-
-msgid "Level 8"
-msgstr ""
-
-msgid "Level 9"
 msgstr ""
 
 msgid "Request More Info"
@@ -1682,31 +1362,10 @@ msgstr ""
 msgid "Approve"
 msgstr ""
 
-msgid "Sexual or pornographic content"
+msgid "All"
 msgstr ""
 
-msgid "Inappropriate or offensive content"
-msgstr ""
-
-msgid "Violence, war, or weaponry images"
-msgstr ""
-
-msgid "Nazi or other hate content"
-msgstr ""
-
-msgid "Defamatory content"
-msgstr ""
-
-msgid "Online gambling"
-msgstr ""
-
-msgid "Spam content"
-msgstr ""
-
-msgid "Low-quality, stretched, or blank image"
-msgstr ""
-
-msgid "Header image alignment problem"
+msgid "Theme"
 msgstr ""
 
 #, fuzzy
@@ -1770,6 +1429,20 @@ msgid "Recent Changes for My Add-ons"
 msgstr ""
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
+msgstr ""
+
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
@@ -1904,19 +1577,6 @@ msgstr ""
 msgid "Display Name"
 msgstr ""
 
-msgid "Origin"
-msgstr ""
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Versijos"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr ""
 
@@ -1931,9 +1591,6 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
 msgstr ""
 
 msgid "Updated"
@@ -2159,16 +1816,6 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "Versijos"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
-
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -2203,6 +1850,9 @@ msgid "No results found."
 msgstr ""
 
 msgid "Refine Activity"
+msgstr ""
+
+msgid "Add-on"
 msgstr ""
 
 msgid "Activity"
@@ -2318,6 +1968,9 @@ msgid "Decline"
 msgstr ""
 
 msgid "Manage Authors & License"
+msgstr ""
+
+msgid "Authors"
 msgstr ""
 
 msgid "About author roles"
@@ -2647,6 +2300,9 @@ msgid "Resume"
 msgstr ""
 
 msgid "Delete this add-on."
+msgstr ""
+
+msgid "Delete"
 msgstr ""
 
 msgid "Edit details on this add-on's product page"
@@ -4014,10 +3670,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr ""
 
@@ -4490,11 +4142,15 @@ msgid "All your emoji needs—always just a click away."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4613,6 +4269,10 @@ msgstr ""
 msgid "Enhance your gaming experience on Steam."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4627,16 +4287,15 @@ msgid "See all extensions"
 msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4736,6 +4395,10 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Populiarūs plėtiniai"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Populiarūs plėtiniai"
@@ -4798,11 +4461,14 @@ msgstr "Komentuoti"
 msgid "See more creativity staff picks"
 msgstr "Populiarūs plėtiniai"
 
-msgid "Rejected or Unreviewed"
+msgid "Unreviewed"
 msgstr ""
 
 #, python-format
 msgid "[status:%s]"
+msgstr ""
+
+msgid "This upload has already been submitted."
 msgstr ""
 
 msgid "Could not parse the manifest file."
@@ -4820,6 +4486,9 @@ msgstr ""
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
+msgid "Unsupported compression method in archive."
+msgstr ""
+
 msgid "Unsupported archive type."
 msgstr ""
 
@@ -4834,10 +4503,19 @@ msgstr ""
 msgid "File exceeding size limit in archive: {0}"
 msgstr ""
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr ""
 
 msgid "Invalid archive."
+msgstr ""
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
 msgstr ""
 
 #, python-format
@@ -4847,7 +4525,7 @@ msgstr ""
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-msgid "Version numbers should have fewer than 32 characters."
+msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
@@ -4868,6 +4546,9 @@ msgstr ""
 msgid "You cannot submit a language pack"
 msgstr ""
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
@@ -4882,12 +4563,6 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 msgid "Missing \"channel\" arg."
-msgstr ""
-
-msgid "User"
-msgstr ""
-
-msgid "IP Address"
 msgstr ""
 
 msgid "Spam or otherwise non-review content"
@@ -4948,532 +4623,8 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-msgid "Approved reviews"
-msgstr ""
-
-msgid "Deleted reviews"
-msgstr ""
-
-msgid "View entries between"
-msgstr ""
-
-msgid "and"
-msgstr ""
-
-msgid "Filter by type/action"
-msgstr ""
-
-msgid "containing"
-msgstr ""
-
-msgid "start"
-msgstr ""
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr ""
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr ""
-
-msgid "Comments:"
-msgstr ""
-
-msgid "Operating systems:"
-msgstr ""
-
-msgid "Applications:"
-msgstr ""
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr ""
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr ""
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr ""
-
-msgid "Private Whiteboard"
-msgstr ""
-
-msgid "Keep review; remove flags"
-msgstr ""
-
-msgid "Skip for now"
-msgstr ""
-
-msgid "Delete review"
-msgstr ""
-
-#, fuzzy
-msgid "Needs Admin Code Review"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Needs Admin Content Review"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Needs Admin Static Theme Review"
-msgstr "Neperžiūrėtas"
-
-msgid "Sources provided"
-msgstr ""
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr ""
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr ""
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-msgid "You can't submit an empty comment."
-msgstr ""
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-msgid "ID"
-msgstr ""
-
-msgid "Flags"
-msgstr ""
-
-msgid "Last Review"
-msgstr ""
-
-msgid "Code Weight"
-msgstr ""
-
-msgid "Metadata Weight"
-msgstr ""
-
-msgid "Total Weight"
-msgstr ""
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr ""
-
-msgid "Waiting Time"
-msgstr ""
-
-msgid "Pending Rejection Deadline"
-msgstr ""
-
-#, fuzzy
-msgid "Last Updated"
-msgstr "Atnaujinta"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Listed version"
-msgstr "Peržiūrėti kitas versijas"
-
-#, fuzzy
-msgid "Unlisted versions ({0})"
-msgstr "Peržiūrėti kitas versijas"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Approve Content"
-msgstr "Patvirtinti / atmesti"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
-
-msgid "Confirm Approval"
-msgstr ""
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Reject Multiple Versions"
-msgstr "Daugiau priedų"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Block Multiple Versions"
-msgstr "Daugiau priedų"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-#, fuzzy
-msgid "Confirm Multiple Versions"
-msgstr "Daugiau priedų"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer reply"
-msgstr "Plėtojimo kanalas"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
-
-msgid "Request super-review"
-msgstr ""
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
-
-msgid "Comment"
-msgstr "Komentuoti"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
-
-#, fuzzy
-msgid "Pre-Review Add-ons"
-msgstr "Daugiau priedų"
-
-msgid "Recommended ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review ({0})"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Review Log"
-msgstr "Apžvalgų žurnalas"
-
-#, fuzzy
-msgid "Add-on Review Guide"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Security Scanners"
-msgstr "Privatumo politika"
-
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "Privatumo politika"
-
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Auto-Approved Add-ons"
-msgstr "Daugiau priedų"
-
-#, fuzzy
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Priedai, skirti {0}"
-
-msgid "Add-on Review Log"
-msgstr ""
-
-#, fuzzy
-msgid "Review Guide"
-msgstr "Plėtojimo kanalas"
-
-#, fuzzy
-msgid "Content Review"
-msgstr "Neperžiūrėtas"
-
-msgid "Content Review ({0})"
-msgstr ""
-
-#, fuzzy
-msgid "New ({0})"
-msgstr "Priedai, skirti {0}"
-
-#, fuzzy
-msgid "Updates ({0})"
-msgstr "Atnaujinta {0}"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Plėtojimo kanalas"
-
-msgid "User Ratings Moderation"
-msgstr ""
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
-
-msgid "Moderated Review Log"
-msgstr ""
-
-#, fuzzy
-msgid "Moderation Guide"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Unlisted Add-ons"
-msgstr "Daugiau priedų"
-
-msgid "All Unlisted Add-ons"
-msgstr ""
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr ""
-
-msgid "Announcement"
-msgstr ""
-
-msgid "Update message of the day"
-msgstr ""
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Neperžiūrėtas"
-
-msgid "An unknown error occurred"
-msgstr ""
-
-msgid "Self-reviews are not allowed."
-msgstr ""
-
-msgid "Review successfully processed."
-msgstr ""
-
-msgid "Review lock limit reached"
-msgstr ""
-
-msgid "{addon} – EULA"
-msgstr ""
-
-#, fuzzy
-msgid "{addon} – Privacy Policy"
-msgstr "Privatumo politika"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
-
-msgid "Abuse Reports"
-msgstr "Pranešimai apie piktnaudžiavimą"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr " Priedo {0} indormacija"
-
-#, fuzzy
-msgid "Add-on ID"
-msgstr "Priedai"
-
-#, fuzzy
-msgid "Original Add-on ID"
-msgstr "Priedai"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr ""
-
-#, fuzzy
-msgid "Support Website"
-msgstr "Svetainė"
-
-msgid "Visibility"
-msgstr "Matomumas"
-
-#, fuzzy
-msgid "Visible"
-msgstr "Matomumas"
-
-#, fuzzy
-msgid "Weekly Downloads"
-msgstr "Siųstis"
-
-msgid "Average Daily Users"
-msgstr "Vidutiniškai kasdienių naudotojų"
-
-msgid "View Privacy Policy"
-msgstr "Peržiūrėti privatumo politiką"
-
-msgid "Requires Payment"
-msgstr ""
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr ""
-
-msgid "Last Approval Date"
-msgstr ""
-
-#, fuzzy
-msgid "Abuse Reports ({num})"
-msgstr "Pranešimai apie piktnaudžiavimą"
-
-#, fuzzy
-msgid "Bad User Ratings ({num})"
-msgstr "Pranešimai apie piktnaudžiavimą"
-
-#, fuzzy
-msgid "Theme Images"
-msgstr "Temos"
-
-#, fuzzy
-msgid "Rendered Preview"
-msgstr "Užveskite pelę peržiūrai"
-
-msgid "More about this add-on"
-msgstr "Daugiau apie šį priedą"
-
-msgid "Image Gallery"
-msgstr "Paveikslėlių galerija"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
-
-msgid "Add-on name translations"
-msgstr ""
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
-
-msgid "Reviewer Leaderboard"
-msgstr ""
-
-msgid "No review points awarded yet."
-msgstr ""
-
-msgid "Rank"
-msgstr ""
-
-msgid "Score"
-msgstr ""
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Event"
-msgstr ""
-
-msgid "More details."
-msgstr ""
-
-msgid "No events found for this period."
-msgstr ""
-
-msgid "Log details"
-msgstr ""
-
-#, fuzzy
-msgid "Review Author"
-msgstr "Apžvalgų žurnalas"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
-
-msgid "Add-on Title"
-msgstr ""
-
-msgid "Review Text"
-msgstr ""
-
-msgid "Review was flagged prior to deletion."
-msgstr ""
-
-msgid "Undelete"
-msgstr ""
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr ""
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Daugiau priedų"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr " Priedo {0} indormacija"
-
-msgid "Process Reviews"
-msgstr ""
-
-msgid "Moderation actions:"
 msgstr ""
 
 #, python-format
@@ -5484,267 +4635,11 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "All reviews have been moderated. Good work!"
-msgstr ""
-
-msgid "There are currently no add-ons of this type to review."
-msgstr ""
-
-msgid "Helpful Links:"
-msgstr ""
-
-msgid "Add-on Policy"
-msgstr ""
-
-#, fuzzy
-msgid "Reviewer's Guide"
-msgstr "Plėtojimo kanalas"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-#, fuzzy
-msgid "Content Review {0}"
-msgstr "Neperžiūrėtas"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr ""
-
-msgid "Add-on important changes history"
-msgstr ""
-
-msgid "Add-on History"
-msgstr ""
-
-msgid "You don't have permission to review it."
-msgstr ""
-
-msgid "Please select one or more versions in the list below."
-msgstr ""
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
-
-msgid "Insert canned response..."
-msgstr ""
-
-msgid "Files:"
-msgstr ""
-
-msgid "Tested on:"
-msgstr ""
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr ""
 
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-
-msgid "Update whiteboards"
-msgstr ""
-
-#, fuzzy
-msgid "More Actions"
-msgstr "Rinkiniai"
-
-msgid "Notify me about new listed versions"
-msgstr ""
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "Peržiūrėti kitas versijas"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "Rodyti visas versijas"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "Versijos"
-
-msgid "Force-disable add-on"
-msgstr ""
-
-msgid "Force-enable add-on"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr ""
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr ""
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr ""
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr ""
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr ""
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr ""
-
-#, fuzzy
-msgid "Clear Admin Content Review Flag"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "Rodyti visas versijas"
-
-#, fuzzy
-msgid "Block add-on"
-msgstr "Priedo QR kodas"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr ""
-
-msgid "Admin Page"
-msgstr ""
-
-msgid "Review This Add-on"
-msgstr ""
-
-msgid "More Information"
-msgstr ""
-
-msgid "Resolution"
-msgstr ""
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr ""
-
-msgid "Add-on has been deleted."
-msgstr ""
-
-msgid "Show Comments"
-msgstr ""
-
-msgid "Hide Comments"
-msgstr ""
-
-msgid "No reviews found for this period."
-msgstr ""
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr ""
-
-msgid "Source:"
-msgstr ""
-
-msgid "Source URL:"
-msgstr ""
-
-msgid "Dismiss this announcement"
-msgstr ""
-
-msgid "Files in this version:"
-msgstr ""
-
-msgid "All Platforms"
-msgstr ""
-
-#, fuzzy
-msgid "Browse all files in this version"
-msgstr "Populiarūs plėtiniai"
-
-msgid "Contents"
-msgstr ""
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare"
-msgstr ""
-
-#, fuzzy
-msgid "Permissions:"
-msgstr "Versijos"
-
-#, fuzzy
-msgid "Optional permissions:"
-msgstr "Versijos"
-
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
-
-msgid "Older"
-msgstr ""
-
-msgid "Newer"
-msgstr ""
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr ""
-
-msgid "No points awarded yet."
-msgstr ""
-
-msgid "Top Reviewers (past 7 days)"
-msgstr ""
-
-msgid "No top reviewers yet."
-msgstr ""
-
-msgid "All Time"
-msgstr ""
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr ""
-
-msgid "Theme"
-msgstr ""
-
-msgid "No results found"
 msgstr ""
 
 #, python-format
@@ -5755,112 +4650,16 @@ msgstr ""
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr ""
 
-msgid "(Confirmed)"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr " Priedo {0} indormacija"
-
-msgid "Compatibility:"
-msgstr ""
-
-msgid "Additional sources:"
-msgstr ""
-
-msgid "Download files"
-msgstr ""
-
-msgid "The developer has provided source code."
-msgstr ""
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-msgid "Code Weight:"
-msgstr ""
-
-msgid "Metadata Weight:"
-msgstr ""
-
-msgid "Flagged by scanners"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "Neperžiūrėtas"
-
-msgid "Download"
-msgstr "Siųstis"
-
-#, fuzzy
-msgid "Not Auto Approved Because"
-msgstr "Daugiau priedų"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
-
-msgid "This version has not been reviewed."
-msgstr ""
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Updates"
-msgstr "Atnaujinta"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "Priedai, skirti {0}"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "Neperžiūrėtas"
-
-msgid "presence of matched rules"
-msgstr ""
-
-msgid "result state"
-msgstr ""
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "Peržiūrėti kitas versijas"
-
-#, fuzzy
-msgid "version channel"
-msgstr "Versijos pastabos"
-
-#, fuzzy
-msgid "add-on status"
-msgstr "Priedai"
-
-#, fuzzy
-msgid "add-on listing visibility"
-msgstr "Matomumas"
-
-msgid "file status"
-msgstr ""
-
-msgid "file signature"
-msgstr ""
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"
@@ -5879,13 +4678,10 @@ msgstr ""
 msgid "An error occurred when compiling the definition"
 msgstr ""
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr ""
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, python-format
@@ -5920,10 +4716,6 @@ msgid "You cannot add versions to an add-on that has status: %s."
 msgstr ""
 
 msgid "Version does not match the manifest file."
-msgstr ""
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
@@ -5985,6 +4777,9 @@ msgid "From"
 msgstr ""
 
 msgid "To"
+msgstr ""
+
+msgid "Update"
 msgstr ""
 
 msgid "Export"
@@ -6148,9 +4943,6 @@ msgstr ""
 msgid "Report Trademark Abuse"
 msgstr "Pranešti apie piktnaudžiavimą"
 
-msgid "Site Status"
-msgstr ""
-
 #, fuzzy
 msgid "Report a bug"
 msgstr "Pranešti apie piktnaudžiavimą"
@@ -6197,6 +4989,9 @@ msgstr ""
 msgid "Return to the {0} Add-ons homepage"
 msgstr ""
 
+msgid "Add-ons"
+msgstr "Priedai"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr ""
@@ -6236,41 +5031,8 @@ msgstr ""
 msgid "Delete Locale"
 msgstr ""
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
+msgid "IP Address"
 msgstr ""
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr ""
-
-msgid "Ban selected users"
-msgstr ""
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr ""
-
-#, fuzzy
-msgid "Reset session"
-msgstr "Daugiau priedų"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr ""
-
-msgid "Reset API Key"
-msgstr ""
-
-msgid "Profile Photo"
-msgstr ""
-
-msgid "Collections"
-msgstr "Rinkiniai"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr ""
@@ -6352,15 +5114,6 @@ msgstr ""
 msgid "An author has been removed from your add-on"
 msgstr ""
 
-msgid "Ban"
-msgstr ""
-
-msgid "Reset session(s)"
-msgstr ""
-
-msgid "Delete picture"
-msgstr ""
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6410,10 +5163,6 @@ msgid ""
 "Regards,\n"
 "\n"
 "The Firefox Add-ons Team"
-msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
 msgstr ""
 
 #, python-format

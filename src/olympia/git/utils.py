@@ -21,8 +21,9 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
+from olympia.amo.utils import id_to_path
 from olympia.versions.models import Version
-from olympia.files.utils import id_to_path, extract_extension_to_dest, get_all_files
+from olympia.files.utils import extract_extension_to_dest, get_all_files
 
 from .models import GitExtractionEntry
 
@@ -164,7 +165,6 @@ class TemporaryWorktree:
 
 
 class AddonGitRepository:
-
     GIT_DESCRIPTION = '.git/description'
 
     def __init__(self, addon_or_id, package_type='addon'):

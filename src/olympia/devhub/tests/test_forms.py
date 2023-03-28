@@ -1,7 +1,7 @@
 import os
 import shutil
 import tempfile
-from datetime import timedelta
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -27,10 +27,10 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
-from olympia.files.models import FileSitePermission, FileUpload
+from olympia.files.models import FileUpload
 from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
-from olympia.versions.models import ApplicationsVersions, DeniedInstallOrigin
+from olympia.versions.models import ApplicationsVersions
 
 
 class TestNewUploadForm(TestCase):
@@ -376,6 +376,18 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         assert update_mock.called
 
+    def test_caption_too_long(self):
+        name = 'transparent.png'
+        form = forms.PreviewForm(
+            {'caption': 'û' * 281, 'upload_hash': name, 'position': 1}
+        )
+        assert form.fields['caption'].max_length == 280
+        assert form.fields['caption'].widget.attrs['maxlength'] == '280'
+        assert not form.is_valid()
+        assert form.errors == {
+            'caption': ['Ensure this value has at most 280 characters (it has 281).']
+        }
+
     def test_preview_transparency(self):
         addon = Addon.objects.get(pk=3615)
         name = 'transparent-cotton'
@@ -589,6 +601,57 @@ class TestDescribeForm(TestCase):
         )
         assert form.is_valid(), form.errors
 
+    def test_support_url_too_long(self):
+        form = forms.DescribeForm(
+            {'support_url': f'https://{"s" * 244}.com'},
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        assert form.fields['support_url'].max_length == 255
+        assert form.fields['support_url'].widget.attrs['maxlength'] == '255'
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [
+            'Enter a valid URL.',
+            'Ensure this value has at most 255 characters (it has 256).',
+        ]
+
+    def test_support_email_too_long(self):
+        form = forms.DescribeForm(
+            {'support_email': f'{"u" * 89}@support.com'},
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        assert form.fields['support_email'].max_length == 100
+        assert form.fields['support_email'].widget.attrs['maxlength'] == '100'
+        assert not form.is_valid()
+        assert form.errors['support_email'] == [
+            'Ensure this value has at most 100 characters (it has 101).',
+        ]
+
+    def test_render_maxlength(self):
+        def _check_output(form):
+            output = str(form.as_p())
+            doc = pq(output)
+            assert doc('input#id_name_0').attr('maxlength') == '50'
+            assert doc('input#id_name.trans-init').attr('maxlength') == '50'
+            assert doc('input#id_support_email_0').attr('maxlength') == '100'
+            assert doc('input#id_support_email.trans-init').attr('maxlength') == '100'
+            assert doc('input#id_support_url_0').attr('maxlength') == '255'
+            assert doc('input#id_support_url.trans-init').attr('maxlength') == '255'
+
+        form = forms.DescribeForm(
+            request=self.request,
+            instance=Addon.objects.get(),
+        )
+        _check_output(form)
+
+        # Check again with an empty instance (no existing translations).
+        form = forms.DescribeForm(
+            request=self.request,
+            instance=Addon(),
+        )
+        _check_output(form)
+
     def test_description_optional(self):
         delicious = Addon.objects.get()
         assert delicious.type == amo.ADDON_EXTENSION
@@ -689,6 +752,27 @@ class TestDescribeForm(TestCase):
                 instance=delicious,
             )
             assert form.is_valid(), form.errors
+
+    def test_description_too_long(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {
+                'name': 'name me',
+                'summary': 'summary me',
+                'slug': 'slugme',
+                'description': 'a' * 15001,
+            },
+            request=self.request,
+            instance=delicious,
+        )
+        assert form.fields['description'].max_length == 15000
+        assert form.fields['description'].widget.attrs['maxlength'] == '15000'
+        assert not form.is_valid()
+        assert form.errors == {
+            'description': [
+                'Ensure this value has at most 15000 characters (it has 15001).'
+            ]
+        }
 
     def test_name_summary_lengths(self):
         delicious = Addon.objects.get()
@@ -924,6 +1008,20 @@ class TestAdditionalDetailsForm(TestCase):
         )
         assert form.is_valid()
 
+    def test_homepage_too_long(self):
+        form = forms.AdditionalDetailsForm(
+            {'homepage': f'https://{"a" * 244}.com'},
+            request=self.request,
+            instance=self.addon,
+        )
+        assert form.fields['homepage'].max_length == 255
+        assert form.fields['homepage'].widget.attrs['maxlength'] == '255'
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [
+            'Enter a valid URL.',
+            'Ensure this value has at most 255 characters (it has 256).',
+        ]
+
 
 class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
@@ -985,244 +1083,39 @@ class TestCategoryForm(TestCase):
         assert apps == [amo.FIREFOX]
 
 
-_DEFAULT_SITE_PERMISSIONS = [
-    forms.SitePermissionGeneratorForm.declared_fields['site_permissions'].choices[0][0]
-]
-
-
-@pytest.mark.parametrize(
-    'origin',
-    [
-        'https://foo.com/testing',  # path
-        'file:/foo/bar',  # invalid scheme
-        'file:///foo/bar',  # invalid scheme
-        'ftp://somewhere.com',  # invalid scheme
-        'https://foo.bar.栃木.jp/',  # trailing slash
-        '',  # empty string
-        [],  # array (doh!)
-        {},  # dict (doh!)
-        'https://*.wildcard.com',  # wildcard
-        'example.com',  # no scheme
-        'https://',  # no hostname
-        None,  # null
-        42,  # int
-    ],
-)
-@pytest.mark.django_db
-def test_site_permission_generator_origin_invalid(origin):
-    request = req_factory_factory('/', user=user_factory())
-    form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
-        request=request,
-    )
-    assert not form.is_valid()
-
-
-@pytest.mark.parametrize(
-    'origin',
-    [
-        'https://example.com',
-        'https://foo.example.com',
-        'https://xn--fo-9ja.com',
-        'https://foo.bar.栃木.jp',
-        'https://example.com:8888',
-    ],
-)
-@pytest.mark.django_db
-def test_site_permission_generator_origin_valid(origin):
-    request = req_factory_factory('/', user=user_factory())
-    form = forms.SitePermissionGeneratorForm(
-        {'site_permissions': _DEFAULT_SITE_PERMISSIONS, 'origin': origin},
-        request=request,
-    )
-    assert form.is_valid()
-    assert form.cleaned_data['origin'] == origin
-
-
-class SitePermissionGeneratorTests(TestCase):
-    def setUp(self):
-        self.request = req_factory_factory('/', post=True, user=user_factory())
-
-    def test_site_permission_generator_origin_denied(self):
-
-        DeniedInstallOrigin.objects.create(hostname_pattern='*.tld')
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.tld',
-            },
-            request=self.request,
-        )
-        assert not form.is_valid()
-        assert form.errors['origin'] == [
-            'The install origin https://foo.tld is not permitted.'
-        ]
-
-    def test_site_permission_generator_duplicates(self):
-        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
-        version = addon.versions.get()
-        FileSitePermission.objects.create(file=version.file, permissions=['something'])
-        version.installorigin_set.create(origin='https://example.com')
-
-        # User already has a site permission, but for a different origin/permissions.
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-
-        # User already has a site permission, but for different permissions
-        version.installorigin_set.get().update(origin='https://foo.com')
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-
-        # Duplicate.
-        version.file._site_permissions.update(permissions=_DEFAULT_SITE_PERMISSIONS)
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert not form.is_valid()
-
-    def test_site_permission_generator_deleted_duplicates(self):
-        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
-        version = addon.versions.get()
-        FileSitePermission.objects.create(
-            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
-        )
-        version.installorigin_set.create(origin='https://foo.com')
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert not form.is_valid()
-
-        # Deleting the duplicate should make submission possible again.
-        addon.delete()
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-
-    def test_site_permission_generator_duplicates_same_permission(self):
-        addon = addon_factory(type=amo.ADDON_SITE_PERMISSION, users=[self.request.user])
-        version = addon.versions.get()
-        FileSitePermission.objects.create(
-            file=version.file, permissions=_DEFAULT_SITE_PERMISSIONS
-        )
-        version.installorigin_set.create(origin='https://example.com')
-
-        # User already has a site permission, for the same set of permissions, but
-        # for a different origin.
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-
-        # Duplicate.
-        version.installorigin_set.create(origin='https://foo.com')
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert not form.is_valid()
-
-        # Deleting the duplicate should make submission possible again.
-        addon.delete()
-        form = forms.SitePermissionGeneratorForm(
-            {
-                'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                'origin': 'https://foo.com',
-            },
-            request=self.request,
-        )
-        assert form.is_valid()
-
-    def test_rate_limiting(self):
-        self.request.META['REMOTE_ADDR'] = '5.6.7.8'
-        with freeze_time('2021-01-08 15:16:23.42') as frozen_time:
-            for x in range(0, 6):
-                self._add_fake_throttling_action(
-                    view_class=VersionView,
-                    url='/',
-                    user=self.request.user,
-                    remote_addr=get_random_ip(),
-                )
-
-            form = forms.SitePermissionGeneratorForm(
-                {
-                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                    'origin': 'https://foo.com',
-                },
-                request=self.request,
-            )
-            assert not form.is_valid()
-            assert form.errors.get('__all__') == [
-                'You have submitted too many uploads recently. '
-                'Please try again after some time.'
-            ]
-
-            frozen_time.tick(delta=timedelta(seconds=61))
-            form = forms.SitePermissionGeneratorForm(
-                {
-                    'site_permissions': _DEFAULT_SITE_PERMISSIONS,
-                    'origin': 'https://foo.com',
-                },
-                request=self.request,
-            )
-            assert form.is_valid()
-
-
 class TestVersionForm(TestCase):
     def test_source_field(self):
         version = addon_factory().current_version
         mock_point = 'olympia.versions.models.Version.'
         form = forms.VersionForm
         with mock.patch(
-            f'{mock_point}has_been_human_reviewed', new_callable=mock.PropertyMock
-        ) as reviewed_mock, mock.patch(
             f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
         ) as pending_mock:
-            reviewed_mock.return_value = False
+            assert version.human_review_date is None
             pending_mock.return_value = False
             assert form(instance=version).fields['source'].disabled is False
 
-            reviewed_mock.return_value = True
+            version.update(human_review_date=datetime.now())
             assert form(instance=version).fields['source'].disabled is True
 
             pending_mock.return_value = True
             assert form(instance=version).fields['source'].disabled is False
+
+
+class TestAddonFormTechnical(TestCase):
+    def test_developer_comments_too_long(self):
+        addon = addon_factory()
+        request = req_factory_factory('/')
+        form = forms.AddonFormTechnical(
+            {'developer_comments': 'a' * 3001},
+            instance=addon,
+            request=request,
+        )
+        assert form.fields['developer_comments'].max_length == 3000
+        assert form.fields['developer_comments'].widget.attrs['maxlength'] == '3000'
+        assert not form.is_valid()
+        assert form.errors == {
+            'developer_comments': [
+                'Ensure this value has at most 3000 characters (it has 3001).'
+            ]
+        }

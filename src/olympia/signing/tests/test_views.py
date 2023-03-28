@@ -114,6 +114,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
                 url,
                 data,
                 HTTP_AUTHORIZATION=self.authorization(),
+                HTTP_USER_AGENT='web-ext/12.34',
                 format='multipart',
                 **(extra_kwargs or {}),
             )
@@ -133,7 +134,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         guid = '@create-version'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
-        response = self.request('PUT', guid=guid, version='1.0')
+        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+            response = self.request('PUT', guid=guid, version='1.0')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -149,6 +151,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             .count()
             == 1
         )
+        statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_new_addon_random_slug_unlisted_channel(self):
         guid = '@create-webextension'
@@ -211,9 +214,12 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert existing.count() == 1
         assert existing[0].channel == amo.CHANNEL_LISTED
 
-        response = self.request(
-            'PUT', self.url(self.guid, '3.0'), extra_kwargs={'REMOTE_ADDR': '127.0.2.1'}
-        )
+        with mock.patch('olympia.addons.utils.statsd.incr') as statsd_incr_mock:
+            response = self.request(
+                'PUT',
+                self.url(self.guid, '3.0'),
+                extra_kwargs={'REMOTE_ADDR': '127.0.2.1'},
+            )
         assert response.status_code == 202
         assert 'processed' in response.data
 
@@ -229,6 +235,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.CHANNEL_LISTED
         assert not version.file.is_mozilla_signed_extension
+
+        statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
@@ -254,8 +262,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def test_version_failed_review(self):
         self.create_version('3.0')
         version = Version.objects.get(addon__guid=self.guid, version='3.0')
-        version.update(reviewed=datetime.today())
-        version.file.update(reviewed=datetime.today(), status=amo.STATUS_DISABLED)
+        version.update(human_review_date=datetime.today())
+        version.file.update(status=amo.STATUS_DISABLED)
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
@@ -265,6 +273,28 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
         assert 'processed' in response.data
+
+    def test_version_num_must_be_greater(self):
+        version = Version.objects.filter(addon__guid=self.guid, version='2.1.072')[0]
+        version.update(version='3.1')
+        version.file.update(is_signed=True)
+
+        response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
+        assert response.status_code == 409
+        assert response.data['error'] == (
+            'Version 3.0 must be greater than the previous approved version 3.1.'
+        )
+
+    def test_version_num_must_be_numerically_greater(self):
+        version = Version.objects.filter(addon__guid=self.guid, version='2.1.072')[0]
+        version.update(version='3.0.0')
+        version.file.update(is_signed=True)
+
+        response = self.request('PUT', self.url(self.guid, '3.0'), channel='listed')
+        assert response.status_code == 409
+        assert response.data['error'] == (
+            'Version 3.0 must be greater than the previous approved version 3.0.0.'
+        )
 
     def test_version_added_is_experiment(self):
         self.grant_permission(self.user, 'Experiments:submit')
@@ -555,7 +585,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '63.245.208.194',
                     'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
@@ -570,7 +599,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '63.245.208.194',
                     'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
@@ -604,7 +632,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '63.245.208.194',
                     'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
@@ -619,7 +646,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '63.245.208.194',
                     'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
@@ -634,7 +660,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '63.245.208.194',
                     'HTTP_X_FORWARDED_FOR': f'63.245.208.194, {get_random_ip()}',
@@ -660,7 +685,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -675,7 +699,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -702,7 +725,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -717,7 +739,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -731,13 +752,12 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
                 },
             )
-            assert response.status_code == expected_status
+            assert response.status_code == expected_status, response.json()
 
     def _test_throttling_verb_user_daily(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
@@ -757,7 +777,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -772,7 +791,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -786,7 +804,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -800,7 +817,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 verb,
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': get_random_ip(),
                     'HTTP_X_FORWARDED_FOR': f'{get_random_ip()}, {get_random_ip()}',
@@ -829,30 +845,30 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self._test_throttling_verb_user_daily('POST', url)
 
     def test_throttling_put_ip_burst(self):
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         self._test_throttling_verb_ip_burst('PUT', url, expected_status=202)
 
     def test_throttling_put_ip_hourly(self):
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         self._test_throttling_verb_ip_hourly('PUT', url, expected_status=202)
 
     def test_throttling_put_user_burst(self):
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         self._test_throttling_verb_user_burst('PUT', url, expected_status=202)
 
     def test_throttling_put_user_hourly(self):
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         self._test_throttling_verb_user_hourly('PUT', url, expected_status=202)
 
     def test_throttling_put_user_daily(self):
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         self._test_throttling_verb_user_daily('PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
         self.grant_permission(
             self.user, ':'.join(amo.permissions.API_BYPASS_THROTTLING)
         )
-        url = self.url(self.guid, '1.0')
+        url = self.url(self.guid, '3.0')
         with freeze_time('2019-04-08 15:16:23.42'):
             for x in range(0, 60):
                 # With that many actions all throttling classes should prevent
@@ -870,7 +886,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 'PUT',
                 url=url,
                 guid='@create-webextension',
-                version='1.0',
                 extra_kwargs={
                     'REMOTE_ADDR': '1.2.3.4',
                     'HTTP_X_FORWARDED_FOR': f'1.2.3.4, {get_random_ip()}',

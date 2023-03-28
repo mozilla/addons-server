@@ -235,7 +235,7 @@ def recreate_theme_previews(addon_ids, **kw):
 
 @task
 @use_primary_db
-def delete_addons(addon_ids, with_deleted=False, **kw):
+def delete_addons(addon_ids, with_deleted=False, deny_guids=True, **kw):
     """Delete the given addon ids.
 
     If `with_deleted=True` the delete is a hard delete - i.e. the addon record
@@ -247,6 +247,11 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     records in the database persist, and the Addon.status is set to
     STATUS_DELETED.  *Addon.delete() only does a hard-delete where the Addon
     has no versions or files - and has never had any versions or files.
+
+    If `deny_guids=True` the guid will be blocked from re-use.  If `deny_guids=False`
+    a DeniedGuid instance won't be created so the guid could be re-used.  Note: this
+    only applies when `with_deleted=True` - for `with_deleted=False` see Addon.delete
+    for logic around when a DeniedGuid is created otherwise.
     """
     log.info(
         '[%s@%s] %sDeleting addons starting at id: %s...'
@@ -260,13 +265,18 @@ def delete_addons(addon_ids, with_deleted=False, **kw):
     addons = Addon.unfiltered.filter(pk__in=addon_ids).no_transforms()
     if with_deleted:
         with transaction.atomic():
-            # Stop any of these guids from being reused
-            addon_guids = list(addons.exclude(guid=None).values_list('guid', flat=True))
-            denied = [
-                DeniedGuid(guid=guid, comments='Hard deleted with delete_addons task')
-                for guid in addon_guids
-            ]
-            DeniedGuid.objects.bulk_create(denied, ignore_conflicts=True)
+            if deny_guids:
+                # Stop any of these guids from being reused
+                guids_to_block_qs = addons.exclude(guid=None).values_list(
+                    'guid', flat=True
+                )
+                denied = [
+                    DeniedGuid(
+                        guid=guid, comments='Hard deleted with delete_addons task'
+                    )
+                    for guid in list(guids_to_block_qs)
+                ]
+                DeniedGuid.objects.bulk_create(denied, ignore_conflicts=True)
             # Call QuerySet.delete rather than Addon.delete.
             addons.delete()
     else:
@@ -280,11 +290,7 @@ def update_addon_hotness(averages):
     log.info('[%s] Updating add-ons hotness scores.', (len(averages)))
 
     averages = dict(averages)
-    addons = (
-        Addon.objects.filter(guid__in=averages.keys())
-        .filter(status__in=amo.REVIEWED_STATUSES)
-        .no_transforms()
-    )
+    addons = Addon.unfiltered.filter(guid__in=averages.keys()).no_transforms()
 
     for addon in addons:
         average = averages.get(addon.guid)
@@ -300,17 +306,15 @@ def update_addon_hotness(averages):
 
         this = average['avg_this_week']
         three = average['avg_three_weeks_before']
-
-        # Update the hotness score but only update hotness if necessary. We
-        # don't want to cause unnecessary re-indexes.
         threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
         if this > threshold and three > 1:
             hotness = (this - three) / float(three)
-            if addon.hotness != hotness:
-                addon.update(hotness=hotness)
         else:
-            if addon.hotness != 0:
-                addon.update(hotness=0)
+            hotness = 0
+        # Update the hotness score but only update hotness if necessary. We
+        # don't want to cause unnecessary re-indexes.
+        if addon.hotness != hotness:
+            addon.update(hotness=hotness)
 
 
 @task

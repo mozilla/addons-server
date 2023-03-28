@@ -4,6 +4,7 @@ import shutil
 import tempfile
 
 from base64 import b64encode
+from datetime import datetime
 
 from django.conf import settings
 from django.utils.encoding import force_str
@@ -14,9 +15,11 @@ from PIL import Image, ImageChops
 
 from olympia import amo
 from olympia.amo.tests import root_storage
-from olympia.versions.utils import (
+
+from ..utils import (
     AdditionalBackground,
     encode_header,
+    get_review_due_date,
     process_color_value,
     write_svg_to_png,
 )
@@ -171,3 +174,32 @@ def test_encode_header():
 
     svg_blob_missing_width = b'<svg id="preview-svg-root" height="92" xmlns="'
     assert encode_header(svg_blob_missing_width, '.svg') == (None, 0, 0)
+
+
+def test_get_review_due_date():
+    # it's a Monday, so due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 5, 6)) == datetime(2022, 12, 8, 6)
+    # it's a Tuesday, so due on Friday
+    assert get_review_due_date(datetime(2022, 12, 6, 10)) == datetime(2022, 12, 9, 10)
+    # it's a Wednesday, but weekend in between so due on Monday
+    assert get_review_due_date(datetime(2022, 12, 7, 15)) == datetime(2022, 12, 12, 15)
+    # it's a Thursday, but weekend in between so due on Tuesday
+    assert get_review_due_date(datetime(2022, 12, 8, 8)) == datetime(2022, 12, 13, 8)
+    # it's a Friday, but weekend in between so due on Wednesday
+    assert get_review_due_date(datetime(2022, 12, 9, 13)) == datetime(2022, 12, 14, 13)
+    # it's a Saturday, but its not a working day so treat as Monday 9am, due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 10, 0)) == datetime(2022, 12, 15, 9)
+    # it's a Sunday, but its not a working day so treat as Monday 0am, due on Thursday
+    assert get_review_due_date(datetime(2022, 12, 11, 23)) == datetime(2022, 12, 15, 9)
+    # for completeness check a Monday again
+    assert get_review_due_date(datetime(2022, 12, 12)) == datetime(2022, 12, 15)
+
+    # Pass different default
+    # it's a Monday, so due on Friday
+    assert get_review_due_date(datetime(2022, 12, 5, 6), default_days=4) == datetime(
+        2022, 12, 9, 6
+    )
+    # it's a Tuesday, so due on Monday because of week-end.
+    assert get_review_due_date(datetime(2022, 12, 6, 10), default_days=4) == datetime(
+        2022, 12, 12, 10
+    )

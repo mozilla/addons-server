@@ -30,7 +30,6 @@ from django.utils.encoding import force_str
 from django.utils.html import escape
 
 import pytest
-from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -44,6 +43,7 @@ from olympia.addons.models import (
     Addon,
     AddonCategory,
     AddonGUID,
+    AddonReviewerFlags,
     update_search_index as addon_update_search_index,
 )
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
@@ -490,15 +490,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         """
         Make sure the datetime is within a minute from `now`.
         """
-
-        # Try parsing the string if it's not a datetime.
-        if isinstance(dt, str):
-            try:
-                dt = dateutil_parser(dt)
-            except ValueError as e:
-                raise AssertionError(f'Expected valid date; got {dt}\n{e}')
-
-        if not dt:
+        if not dt or not isinstance(dt, datetime):
             raise AssertionError('Expected datetime; got %s' % dt)
 
         dt_later_ts = time.mktime((dt + timedelta(minutes=1)).timetuple())
@@ -653,6 +645,7 @@ def _get_created(created):
 
 def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
+    file_kw = file_kw or {}
 
     # Disconnect signals until the last save.
     post_save.disconnect(
@@ -682,6 +675,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         slug = name.replace(' ', '-').lower()[:30]
 
     promoted_group = kw.pop('promoted', None)
+    reviewer_flags = kw.pop('reviewer_flags', None)
 
     kwargs = {
         # Set artificially the status to STATUS_APPROVED for now, the real
@@ -713,8 +707,24 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
 
+    if reviewer_flags:
+        AddonReviewerFlags.objects.create(addon=addon, **reviewer_flags)
+
+    if 'status' not in file_kw and version_kw.get('channel') != amo.CHANNEL_UNLISTED:
+        match status:
+            case amo.STATUS_APPROVED:
+                file_kw['status'] = amo.STATUS_APPROVED
+            case amo.STATUS_NOMINATED:
+                file_kw['status'] = amo.STATUS_AWAITING_REVIEW
+            case _:
+                file_kw['status'] = amo.STATUS_DISABLED
+
     version = version_factory(file_kw, addon=addon, **version_kw)
     addon.update_version()
+    if addon.current_version:
+        # Override local version with fresh one fetched by update_version()
+        # so that everything is in sync.
+        version = addon.current_version
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
@@ -761,11 +771,10 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     # Potentially update is_public on authors
     [user.update_is_public() for user in users]
 
-    if 'nomination' in version_kw:
-        # If a nomination date was set on the version, then it might have been
+    if 'due_date' in version_kw:
+        # If a due date was set on the version, then it might have been
         # erased at post_save by addons.models.watch_status()
-        version.save()
-
+        version.update(due_date=version_kw['due_date'], _signal=False)
     return addon
 
 
@@ -847,6 +856,8 @@ def user_factory(**kw):
     email = kw.pop('email', '%s@mozîlla.com' % identifier)
     if 'last_login_ip' not in kw:
         kw['last_login_ip'] = '127.0.0.1'
+    if 'auth_id' not in kw:
+        kw['auth_id'] = random.randint(1, 42)  # Cheaper default.
     user = UserProfile.objects.create(username=username, email=email, **kw)
     return user
 
@@ -923,9 +934,8 @@ def version_factory(file_kw=None, **kw):
         else:
             kw['license'] = license_factory(**{'builtin': 99, **license_kw})
     promotion_approved = kw.pop('promotion_approved', False)
+    kw['created'] = _get_created(kw.pop('created', 'now'))
     ver = Version.objects.create(version=version_str, **kw)
-    ver.created = _get_created(kw.pop('created', 'now'))
-    ver.save()
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )
@@ -940,6 +950,12 @@ def version_factory(file_kw=None, **kw):
         file_factory(version=ver, **file_kw)
     if promotion_approved:
         kw['addon'].promotedaddon.approve_for_version(version=ver)
+    if 'due_date' not in kw:
+        ver.inherit_due_date()
+    elif ver.due_date != kw['due_date']:
+        # It got overridden after initial save, but we want it set to what we
+        # intended, even if that's not consistent with should_have_due_date().
+        ver.update(due_date=kw['due_date'], _signal=False)
     return ver
 
 

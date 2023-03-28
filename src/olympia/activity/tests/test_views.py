@@ -2,25 +2,35 @@ import json
 import io
 from unittest import mock
 
+from datetime import datetime, timedelta
+
 from django.test.utils import override_settings
+
+from rest_framework.exceptions import ErrorDetail
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken, GENERIC_USER_NAME
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
-from olympia.activity.views import EmailCreationPermission, inbound_email
-from olympia.addons.models import AddonUser, AddonRegionalRestrictions
+from olympia.activity.views import inbound_email, InboundEmailIPPermission
+from olympia.addons.models import (
+    AddonUser,
+    AddonRegionalRestrictions,
+    AddonReviewerFlags,
+)
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
-    req_factory_factory,
     reverse_ns,
     user_factory,
     version_factory,
 )
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
 from olympia.users.models import UserProfile
+from olympia.versions.utils import get_review_due_date
 
 
 class ReviewNotesViewSetDetailMixin(LogMixin):
@@ -363,7 +373,32 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert response.status_code == 403
         assert not self.get_review_activity_queryset().exists()
 
-    def test_developer_reply(self):
+    def test_comments_required(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {})
+        assert response.status_code == 400
+        assert response.data == {
+            'comments': [ErrorDetail(string='This field is required.', code='required')]
+        }
+
+    def test_comments_too_long(self):
+        self.user = user_factory()
+        self.user.addonuser_set.create(addon=self.addon)
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, {'comments': 'â' * 100001})
+        assert response.status_code == 400
+        assert response.data == {
+            'comments': [
+                ErrorDetail(
+                    string='Ensure this field has no more than 100000 characters.',
+                    code='max_length',
+                )
+            ]
+        }
+
+    def _test_developer_reply(self):
         self.user = user_factory()
         self.user.addonuser_set.create(addon=self.addon)
         self.client.login_api(self.user)
@@ -385,9 +420,33 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert reply.action == amo.LOG.DEVELOPER_REPLY_VERSION.id
         assert not rdata['highlight']  # developer replies aren't highlighted.
 
+        # Version was set as needing human review for a developer reply.
+        self.version.reload()
+        assert self.version.needs_human_review
+
+    def test_developer_reply_listed(self):
+        self._test_developer_reply()
+        self.assertCloseToNow(
+            self.version.due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
+        )
+
     def test_developer_reply_unlisted(self):
         self.make_addon_unlisted(self.addon)
-        self.test_developer_reply()
+        self._test_developer_reply()
+        self.assertCloseToNow(
+            self.version.due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
+        )
+
+    def test_developer_reply_due_date_already_set(self):
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        expected_due_date = datetime.now() + timedelta(days=1)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.version.update(due_date=expected_due_date)
+        self._test_developer_reply()
+        self.version.reload()
+        assert self.version.due_date == expected_due_date
 
     def _test_reviewer_reply(self, perm):
         self.user = user_factory()
@@ -410,6 +469,11 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id
         assert rdata['highlight']  # reviewer replies are highlighted.
+
+        # Version wasn't set as needing human review for a reviewer reply.
+        self.version.reload()
+        assert not self.version.needs_human_review
+        assert not self.version.due_date
 
     def test_reviewer_reply_listed(self):
         self._test_reviewer_reply('Addons:Review')
@@ -468,7 +532,7 @@ class TestReviewNotesViewSetCreate(TestCase):
 
     def test_developer_can_reply_to_disabled_version(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
-        self.test_developer_reply()
+        self._test_developer_reply()
 
     def test_reviewer_can_reply_to_disabled_version_listed(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
@@ -489,7 +553,7 @@ class TestEmailApi(TestCase):
         # after having built the json representation of it, then fed into
         # BytesIO().
         datastr = json.dumps(data).encode('utf-8')
-        req = req_factory_factory(reverse_ns('inbound-email-api'), post=True)
+        req = APIRequestFactory().post(reverse_ns('inbound-email-api'))
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
@@ -497,9 +561,7 @@ class TestEmailApi(TestCase):
         return req
 
     def get_validation_request(self, data):
-        req = req_factory_factory(
-            url=reverse_ns('inbound-email-api'), post=True, data=data
-        )
+        req = APIRequestFactory().post(reverse_ns('inbound-email-api'), data=data)
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         return req
 
@@ -522,23 +584,41 @@ class TestEmailApi(TestCase):
         assert logs.count() == 1
         assert logs.get(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
 
-    def test_allowed(self):
-        assert EmailCreationPermission().has_permission(
-            self.get_request({'SecretKey': 'SOME SECRET KEY'}), None
-        )
+    def test_ip_allowed(self):
+        assert InboundEmailIPPermission().has_permission(self.get_request({}), None)
 
     def test_ip_denied(self):
-        req = self.get_request({'SecretKey': 'SOME SECRET KEY'})
-        req.META['REMOTE_ADDR'] = '10.10.10.1'
-        assert not EmailCreationPermission().has_permission(req, None)
-
-    def test_no_postfix_token(self):
         req = self.get_request({})
-        assert not EmailCreationPermission().has_permission(req, None)
+        req.META['REMOTE_ADDR'] = '10.10.10.1'
+        assert not InboundEmailIPPermission().has_permission(req, None)
 
-    def test_postfix_token_denied(self):
-        req = self.get_request({'SecretKey': 'WRONG SECRET'})
-        assert not EmailCreationPermission().has_permission(req, None)
+    @override_settings(DATA_UPLOAD_MAX_MEMORY_SIZE=42)
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_content_too_long(self, _mock):
+        data = {'Message': 'something', 'SpamScore': 4.56}
+        assert len(json.dumps(data)) == 43
+        req = self.get_request(data)
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 413
+        res.render()
+        assert b'Request content length exceeds 42.' in res.content
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_no_secret_key(self, _mock):
+        req = self.get_request({'Message': 'something', 'SpamScore': 4.56})
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403
+
+    @mock.patch('olympia.activity.tasks.process_email.apply_async')
+    def test_wrong_secret_key(self, _mock):
+        req = self.get_request(
+            {'SecretKey': 'WRONG SECRET', 'Message': 'something', 'SpamScore': 4.56}
+        )
+        res = inbound_email(req)
+        assert not _mock.called
+        assert res.status_code == 403
 
     @mock.patch('olympia.activity.tasks.process_email.apply_async')
     def test_successful(self, _mock):

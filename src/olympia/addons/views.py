@@ -5,8 +5,7 @@ from django.db.models import Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
+from django.utils.translation import gettext
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers, status
@@ -42,7 +41,6 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
     AllowIfNotMozillaDisabled,
-    AllowIfNotSitePermission,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
     AllowListedViewerOrReviewer,
@@ -101,6 +99,7 @@ from .utils import (
     get_addon_recommendations,
     get_addon_recommendations_invalid,
     is_outcome_recommended,
+    webext_version_stats,
 )
 
 
@@ -216,7 +215,6 @@ class AddonViewSet(
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthor,
         AllowIfNotMozillaDisabled,
-        AllowIfNotSitePermission,
         IsSubmissionAllowedFor,
     ]
     delete_permission_classes = [
@@ -241,7 +239,7 @@ class AddonViewSet(
     ]
     serializer_class = AddonSerializer
     serializer_class_for_developers = DeveloperAddonSerializer
-    lookup_value_regex = '[^/]+'  # Allow '.' for email-like guids.
+    lookup_value_regex = r'[^/]+'  # Allow '.' for email-like guids.
     throttle_classes = addon_submission_throttles
 
     def get_queryset(self):
@@ -387,6 +385,11 @@ class AddonViewSet(
             self.action = 'create'
             return self.create(request, *args, **kwargs)
 
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        webext_version_stats(request, 'addons.submission')
+        return response
+
 
 class AddonChildMixin:
     """Mixin containing method to retrieve the parent add-on object."""
@@ -430,6 +433,7 @@ class AddonChildMixin:
 class AddonVersionViewSet(
     AddonChildMixin,
     CreateModelMixin,
+    DestroyModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
     ListModelMixin,
@@ -446,6 +450,18 @@ class AddonVersionViewSet(
         SessionIDAuthentication,
     ]
     throttle_classes = addon_submission_throttles
+
+    lookup_value_regex = r'[^/]+'  # Allow '.' for version number lookups.
+
+    def get_object(self):
+        if identifier := self.kwargs.get('pk'):
+            if identifier.startswith('v'):
+                identifier = identifier[1:]
+                self.lookup_field = 'version'
+            elif '.' in identifier:
+                self.lookup_field = 'version'
+            self.kwargs[self.lookup_field] = identifier
+        return super().get_object()
 
     def get_serializer_class(self):
         use_developer_serializer = getattr(
@@ -627,6 +643,7 @@ class AddonVersionViewSet(
             timer.log_interval('4.data_saved')
 
         headers = self.get_success_headers(serializer.data)
+        webext_version_stats(request, 'addons.submission')
         return Response(
             serializer.data, status=status.HTTP_201_CREATED, headers=headers
         )
@@ -679,6 +696,19 @@ class AddonVersionViewSet(
             instance._prefetched_objects_cache = {}
 
         return Response(serializer.data)
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if not instance.can_be_disabled_and_deleted():
+            group = self.get_addon_object().promoted_group()
+            msg = gettext(
+                'The latest approved version of this %s add-on cannot be deleted '
+                'because the previous version was not approved for %s promotion. '
+                'Please contact AMO Admins if you need help with this.'
+            ) % (group.name, group.name)
+            raise exceptions.ValidationError(msg)
+
+        return super().destroy(request, *args, **kwargs)
 
 
 class AddonPreviewViewSet(
@@ -1122,17 +1152,16 @@ class LanguageToolsView(ListAPIView):
             .distinct()
         )
 
-    @method_decorator(cache_page(60 * 60 * 24))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
     def list(self, request, *args, **kwargs):
         # Ignore pagination (return everything) but do wrap the data in a
         # 'results' property to mimic what the default implementation of list()
         # does in DRF.
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
-        return Response({'results': serializer.data})
+        response = Response({'results': serializer.data})
+        # Cache on the CDN/clients for 24 hours.
+        patch_cache_control(response, max_age=60 * 60 * 24)
+        return response
 
 
 class ReplacementAddonView(ListAPIView):

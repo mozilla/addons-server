@@ -1,5 +1,5 @@
-import datetime
 import os
+from datetime import datetime, timedelta
 
 from base64 import b64encode
 from urllib.parse import urlparse
@@ -11,6 +11,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
 from django.db.models import Case, F, Q, When
+from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
@@ -35,10 +36,15 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import sorted_groupby, SafeStorage, utc_millesecs_from_epoch
+from olympia.amo.utils import (
+    id_to_path,
+    sorted_groupby,
+    SafeStorage,
+    utc_millesecs_from_epoch,
+)
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import PRE_REVIEW_GROUPS, PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -50,8 +56,10 @@ from olympia.translations.fields import (
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
+from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
+from .utils import get_review_due_date
 
 
 log = olympia.core.logger.getLogger('z.versions')
@@ -85,8 +93,8 @@ class VersionManager(ManagerBase):
     def valid(self):
         return self.filter(file__status__in=amo.VALID_FILE_STATUSES)
 
-    def reviewed(self):
-        return self.filter(file__status__in=amo.REVIEWED_STATUSES)
+    def approved(self):
+        return self.filter(file__status__in=amo.APPROVED_STATUSES)
 
     def latest_public_compatible_with(
         self, application, appversions, *, strict_compat_mode=False
@@ -162,6 +170,45 @@ class VersionManager(ManagerBase):
         )
         return qs
 
+    def should_have_due_date(self, negate=False):
+        """Returns a queryset filtered to versions that should have a due date set.
+        If `negate=True` the queryset will contain versions that should not have a
+        due date instead."""
+        method = getattr(self, 'exclude' if negate else 'filter')
+        is_theme = Q(addon__type__in=amo.GROUP_TYPE_THEME)
+        requires_manual_listed_approval_and_is_listed = Q(
+            Q(addon__reviewerflags__auto_approval_disabled=True)
+            | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
+            | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
+            | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
+            addon__status__in=(amo.VALID_ADDON_STATUSES),
+            channel=amo.CHANNEL_LISTED,
+        )
+        requires_manual_unlisted_approval_and_is_unlisted = Q(
+            Q(addon__reviewerflags__auto_approval_disabled_unlisted=True)
+            | Q(
+                addon__reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True  # noqa
+            )
+            | Q(
+                addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
+            ),
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        is_pre_review_version = Q(
+            Q(file__status=amo.STATUS_AWAITING_REVIEW)
+            & ~Q(addon__status=amo.STATUS_DELETED)
+            & Q(reviewerflags__pending_rejection__isnull=True)
+            & Q(
+                is_theme
+                | requires_manual_listed_approval_and_is_listed
+                | requires_manual_unlisted_approval_and_is_unlisted
+            )
+        )
+        is_needs_human_review = Q(
+            Q(deleted=False) | Q(file__is_signed=True), needs_human_review=True
+        )
+        return method(is_needs_human_review | is_pre_review_version).using('default')
+
 
 class UnfilteredVersionManagerForRelations(VersionManager):
     """Like VersionManager, but defaults to include deleted objects.
@@ -189,7 +236,7 @@ def source_upload_path(instance, filename):
 
     return os.path.join(
         'version_source',
-        utils.id_to_path(instance.pk),
+        id_to_path(instance.pk),
         f'{instance.addon.slug}-{instance.version}-src{ext}',
     )
 
@@ -210,12 +257,18 @@ class Version(OnChangeMixin, ModelBase):
     license = models.ForeignKey(
         'License', null=True, blank=True, on_delete=models.SET_NULL
     )
-    release_notes = PurifiedField(db_column='releasenotes', short=False)
-    approval_notes = models.TextField(db_column='approvalnotes', default='', blank=True)
+    release_notes = PurifiedField(
+        db_column='releasenotes', short=False, max_length=3000
+    )
+    # Note that max_length isn't enforced at the database level for TextFields,
+    # but the API serializer & form are set to obey it.
+    approval_notes = models.TextField(
+        db_column='approvalnotes', default='', blank=True, max_length=3000
+    )
     version = VersionStringField(max_length=255, default='0.1')
 
-    nomination = models.DateTimeField(null=True)
-    reviewed = models.DateTimeField(null=True)
+    due_date = models.DateTimeField(null=True, blank=True)
+    human_review_date = models.DateTimeField(null=True)
 
     deleted = models.BooleanField(default=False)
 
@@ -253,6 +306,7 @@ class Version(OnChangeMixin, ModelBase):
         indexes = [
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('license',), name='license_id'),
+            models.Index(fields=('due_date',), name='versions_due_date_b9c73ed7'),
         ]
         constraints = [
             models.UniqueConstraint(
@@ -293,6 +347,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.addons.utils import RestrictionChecker
+        from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -407,7 +462,7 @@ class Version(OnChangeMixin, ModelBase):
             parsed_data=parsed_data,
         )
 
-        version.inherit_nomination()
+        version.inherit_due_date()
         version.disable_old_files()
 
         # After the upload has been copied to its permanent location, delete it
@@ -462,14 +517,54 @@ class Version(OnChangeMixin, ModelBase):
                 addon=addon, defaults=reviewer_flags_defaults
             )
 
-        # Authors need to be notified about auto-approval delay again since
-        # they are submitting a new version.
-        addon.reset_notified_about_auto_approval_delay()
+        # First submission of every add-on should trigger an initial
+        # submission acknowledgement email regardless of channel.
+        if (
+            not addon.versions(manager='unfiltered_for_relations')
+            .exclude(pk=version.pk)
+            .exists()
+        ):
+            send_initial_submission_acknowledgement_email.delay(
+                addon.pk, version.channel, upload.user.email
+            )
+
+        # Unlisted versions approval is delayed depending on how far we are
+        # from creation of the add-on. This is applied only once, during the
+        # first unlisted version creation of an extension (so the flag can be
+        # dropped by admins or reviewers, not affecting subsequent versions).
+        if (
+            channel == amo.CHANNEL_UNLISTED
+            and addon.type == amo.ADDON_EXTENSION
+            and not addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=amo.CHANNEL_UNLISTED)
+            .exclude(pk=version.pk)
+            .exists()
+        ):
+            try:
+                INITIAL_DELAY_FOR_UNLISTED = int(
+                    get_config('INITIAL_DELAY_FOR_UNLISTED')
+                )
+            except (ValueError, TypeError):
+                INITIAL_DELAY_FOR_UNLISTED = 0
+            auto_approval_delay_for_unlisted = addon.created + timedelta(
+                seconds=INITIAL_DELAY_FOR_UNLISTED
+            )
+            if datetime.now() < auto_approval_delay_for_unlisted:
+                addon.set_auto_approval_delay_if_higher_than_existing(
+                    auto_approval_delay_for_unlisted, unlisted_only=True
+                )
+
+        # Reload the flags for the add-on in case some code is using it after
+        # creating the version - the related field could be out of date.
+        try:
+            version.addon.reviewerflags.reload()
+        except AddonReviewerFlags.DoesNotExist:
+            pass
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
         upload_start = utc_millesecs_from_epoch(upload.created)
-        now = datetime.datetime.now()
+        now = datetime.now()
         now_ts = utc_millesecs_from_epoch(now)
         upload_time = now_ts - upload_start
 
@@ -480,6 +575,10 @@ class Version(OnChangeMixin, ModelBase):
             )
         )
         statsd.timing('devhub.version_created_from_upload', upload_time)
+        statsd.incr(
+            'devhub.version_created_from_upload.'
+            f'{amo.ADDON_TYPE_CHOICES_API.get(addon.type, "")}'
+        )
 
         return version
 
@@ -779,26 +878,43 @@ class Version(OnChangeMixin, ModelBase):
             for f in qs:
                 f.update(status=amo.STATUS_DISABLED)
 
-    def reset_nomination_time(self, nomination=None):
-        if not self.nomination or nomination:
-            nomination = nomination or datetime.datetime.now()
-            # We need signal=False not to call update_status (which calls us).
-            self.update(nomination=nomination, _signal=False)
+    def reset_due_date(self, due_date=None):
+        """Sets a due date on this version, if it is eligible for one, or clears it if
+        the version should not have a due date (see VersionManager.should_have_due_date
+        for logic).
 
-    def inherit_nomination(self):
+        If due_date is None then a new due date will only be set if the version doesn't
+        already have one; otherwise the provided due_date will be be used to overwrite
+        any value."""
+        if self.should_have_due_date:
+            # if the version should have a due date and it doesn't, set one
+            if not self.due_date or due_date:
+                due_date = due_date or get_review_due_date()
+                # We need signal=False not to call update_status (which calls us).
+                log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
+                self.update(due_date=due_date, _signal=False)
+        elif self.due_date:
+            # otherwise it shouldn't have a due_date so clear it.
+            log.info(
+                'Version %r (%s) due_date of %s cleared', self, self.id, self.due_date
+            )
+            self.update(due_date=None, _signal=False)
+
+    @use_primary_db
+    def inherit_due_date(self):
         qs = (
-            Version.objects.filter(addon=self.addon, channel=amo.CHANNEL_LISTED)
-            .exclude(nomination=None)
+            Version.objects.filter(addon=self.addon, channel=self.channel)
+            .exclude(due_date=None)
             .exclude(id=self.pk)
             .filter(file__status=amo.STATUS_AWAITING_REVIEW)
             .exclude(reviewerflags__pending_rejection__isnull=False)
-            .values_list('nomination', flat=True)
-            .order_by('-nomination')
+            .values_list('due_date', flat=True)
+            .order_by('-due_date')
         )
-        # If no matching version is found, we end up passing nomination=None
-        # which will update the nomination to datetime.now() if it wasn't
-        # already set on the instance.
-        self.reset_nomination_time(nomination=qs.first())
+        # If no matching version is found, we end up passing due_date=None which will
+        # set the due date to standard review time if it wasn't already set on the
+        # instance.
+        self.reset_due_date(due_date=qs.first())
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -811,35 +927,20 @@ class Version(OnChangeMixin, ModelBase):
         return Version.objects.auto_approvable().filter(id=self.id).exists()
 
     @property
-    def was_auto_approved(self):
-        """Return whether or not this version was auto-approved."""
-        from olympia.reviewers.models import AutoApprovalSummary
+    def should_have_due_date(self):
+        """Should this version have a due_date set, meaning it needs a manual review.
 
-        try:
-            return (
-                self.is_public()
-                and AutoApprovalSummary.objects.filter(version=self).get().verdict
-                == amo.AUTO_APPROVED
-            )
-        except AutoApprovalSummary.DoesNotExist:
-            pass
-        return False
+        See VersionManager.should_have_due_date for logic."""
+        return Version.unfiltered.should_have_due_date().filter(id=self.id).exists()
 
     @property
-    def has_been_human_reviewed(self):
-        """Return whether or not this version was reviewed by a human."""
-        from olympia.reviewers.models import AutoApprovalSummary
-
-        autoapproval = AutoApprovalSummary.objects.filter(version=self).first()
-
-        return (
-            self.file.status == amo.STATUS_APPROVED
-            and (
-                not autoapproval
-                or autoapproval.verdict == amo.NOT_AUTO_APPROVED
-                or autoapproval.confirmed is True
-            )
-        ) or (self.file.status == amo.STATUS_DISABLED and self.file.reviewed)
+    def was_auto_approved(self):
+        """Return whether or not this version was auto-approved."""
+        try:
+            return self.autoapprovalsummary.verdict == amo.AUTO_APPROVED
+        except Version.autoapprovalsummary.RelatedObjectDoesNotExist:
+            pass
+        return False
 
     def get_background_images_encoded(self, header_only=False):
         file_obj = self.file
@@ -966,6 +1067,18 @@ class Version(OnChangeMixin, ModelBase):
         )
 
 
+@receiver(
+    models.signals.post_save,
+    sender=Version,
+    dispatch_uid='version',
+)
+def update_due_date_for_needs_human_review_change(
+    sender, instance=None, update_fields=None, **kwargs
+):
+    if update_fields is None or 'needs_human_review' in update_fields:
+        instance.reset_due_date()
+
+
 class VersionReviewerFlags(ModelBase):
     version = models.OneToOneField(
         Version,
@@ -1013,6 +1126,15 @@ models.signals.pre_save.connect(
     sender=VersionReviewerFlags,
     dispatch_uid='version_review_flags',
 )
+
+
+@receiver(
+    models.signals.post_save,
+    sender=VersionReviewerFlags,
+    dispatch_uid='version_review_flags',
+)
+def update_due_date_for_pending_rejection_changes(sender, instance=None, **kwargs):
+    instance.version.reset_due_date()
 
 
 def generate_static_theme_preview(theme_data, version_pk):
@@ -1074,16 +1196,16 @@ def update_status(sender, instance, **kw):
             pass
 
 
-def inherit_nomination(sender, instance, **kw):
+def inherit_due_date(sender, instance, **kw):
     """
-    For new versions pending review, ensure nomination date
-    is inherited from last nominated version.
+    For new versions pending review, ensure the due date is inherited from last
+    nominated version.
     """
     if kw.get('raw'):
         return
     addon = instance.addon
-    if instance.nomination is None and addon.status == amo.STATUS_NOMINATED:
-        instance.inherit_nomination()
+    if instance.due_date is None and addon.status == amo.STATUS_NOMINATED:
+        instance.inherit_due_date()
 
 
 def cleanup_version(sender, instance, **kw):
@@ -1102,7 +1224,7 @@ models.signals.post_save.connect(
     update_status, sender=Version, dispatch_uid='version_update_status'
 )
 models.signals.post_save.connect(
-    inherit_nomination, sender=Version, dispatch_uid='version_inherit_nomination'
+    inherit_due_date, sender=Version, dispatch_uid='version_inherit_due_date'
 )
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version'
@@ -1125,9 +1247,9 @@ class License(ModelBase):
     OTHER = 0
 
     id = PositiveAutoField(primary_key=True)
-    name = TranslatedField()
+    name = TranslatedField(max_length=200)
     builtin = models.PositiveIntegerField(default=OTHER)
-    text = LinkifiedField()
+    text = LinkifiedField(max_length=75000)
 
     objects = LicenseManager()
 

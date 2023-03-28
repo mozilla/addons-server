@@ -44,8 +44,6 @@ DATABASES = {
     'replica': get_db_config('DATABASES_REPLICA_URL', atomic_requests=False),
 }
 
-SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
-
 REPLICA_DATABASES = ['replica']
 
 # Celery
@@ -65,9 +63,8 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-REDIRECT_URL = env('REDIRECT_URL', default='https://outgoing.stage.mozaws.net/v1/')
-
-ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
+# --enable-background-service-worker linter flag value
+ADDONS_LINTER_ENABLE_SERVICE_WORKER = True
 
 ALLOW_SELF_REVIEWS = True
 

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import waffle
 from django_statsd.clients import statsd
 
@@ -6,8 +8,8 @@ from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFI
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
-from .models import Block
-from .tasks import cleanup_old_files, upload_filter
+from .models import Block, BlocklistSubmission
+from .tasks import cleanup_old_files, process_blocklistsubmission, upload_filter
 from .utils import datetime_to_ts
 
 
@@ -101,3 +103,12 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
     if base_filter_id:
         cleanup_old_files.delay(base_filter_id=base_filter_id)
+
+
+def process_blocklistsubmissions():
+    qs = BlocklistSubmission.objects.filter(
+        signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_APPROVED,
+        delayed_until__lte=datetime.now(),
+    )
+    for sub in qs:
+        process_blocklistsubmission.delay(sub.id)

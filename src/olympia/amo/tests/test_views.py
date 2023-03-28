@@ -28,6 +28,7 @@ from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     WithDynamicEndpointsAndTransactions,
+    addon_factory,
     check_links,
     reverse_ns,
     user_factory,
@@ -145,7 +146,7 @@ class TestCommon(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.url = reverse('apps.appversions')
+        self.url = reverse('devhub.addons')
 
     def test_tools_regular_user(self):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
@@ -274,49 +275,47 @@ class TestCommon(TestCase):
 
 class TestOtherStuff(TestCase):
     # Tests that don't need fixtures.
+    def setUp(self):
+        addon_factory(slug='foo')
+        self.url = '/en-US/firefox/addon/foo/statistics/'
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
-        response = self.client.get('/en-US/firefox/pages/appversions/')
+        response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('#site-notice').length == 0
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
-        response = self.client.get('/en-US/firefox/pages/appversions/')
+        response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
 
     def test_heading(self):
-        def title_eq(url, alt, text):
-            response = self.client.get(url + 'pages/appversions/', follow=True)
-            doc = pq(response.content)
-            assert alt == doc('.site-title img').attr('alt')
-            assert text == doc('.site-title').text()
-
-        title_eq('/firefox/', 'Firefox', 'Add-ons')
+        response = self.client.get(self.url, follow=True)
+        doc = pq(response.content)
+        assert 'Firefox' == doc('.site-title img').attr('alt')
+        assert 'Add-ons' == doc('.site-title').text()
 
     def test_login_link(self):
-        response = self.client.get(reverse('apps.appversions'), follow=True)
+        response = self.client.get(self.url, follow=True)
         doc = pq(response.content)
         expected_link = (
             'http://testserver/api/v5/accounts/login/start/'
-            '?to=%2Fen-US%2Ffirefox%2Fpages%2Fappversions%2F'
+            '?to=%2Fen-US%2Ffirefox%2Faddon%2Ffoo%2Fstatistics%2F'
         )
         assert doc('.account.anonymous a')[1].attrib['href'] == expected_link
 
     def test_tools_loggedout(self):
-        response = self.client.get(reverse('apps.appversions'), follow=True)
+        response = self.client.get(self.url, follow=True)
         assert pq(response.content)('#aux-nav .tools').length == 0
 
     def test_language_selector(self):
-        doc = pq(test.Client().get('/en-US/firefox/pages/appversions/').content)
+        doc = pq(test.Client().get(self.url).content)
         assert doc('form.languages option[selected]').attr('value') == 'en-us'
 
     def test_language_selector_variables(self):
-        response = self.client.get(
-            '/en-US/firefox/pages/appversions/?foo=fooval&bar=barval'
-        )
+        response = self.client.get(f'{self.url}?foo=fooval&bar=barval')
         doc = pq(response.content)('form.languages')
 
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
@@ -449,6 +448,7 @@ class TestRobots(TestCase):
         assert f'Disallow: {username_url}$' in content
 
 
+@pytest.mark.django_db
 def test_fake_fxa_authorization_correct_values_passed():
     with override_settings(DEBUG=True):  # USE_FAKE_FXA_AUTH is already True
         url = reverse('fake-fxa-authorization')
@@ -465,6 +465,7 @@ def test_fake_fxa_authorization_correct_values_passed():
         assert elm  # No value yet, should just be present.
 
 
+@pytest.mark.django_db
 def test_fake_fxa_authorization_deactivated():
     url = reverse('fake-fxa-authorization')
     with override_settings(DEBUG=False, USE_FAKE_FXA_AUTH=False):
@@ -583,6 +584,7 @@ def test_multipart_error():
     )
 
 
+@pytest.mark.django_db
 def test_client_info():
     response = Client().get(reverse('amo.client_info'))
     assert response.status_code == 403
@@ -708,7 +710,7 @@ class TestSitemap(TestCase):
         assert result[settings.XSENDFILE_HEADER]
 
     @override_settings(SITEMAP_DEBUG_AVAILABLE=True)
-    def test_exceptions(self):
+    def test_debug_exceptions(self):
         # check that requesting an out of bounds page number 404s
         assert self.client.get('/sitemap.xml?debug&p=10').status_code == 404
         assert self.client.get('/sitemap.xml?debug&section=amo&p=10').status_code == 404
@@ -717,3 +719,20 @@ class TestSitemap(TestCase):
         assert self.client.get('/sitemap.xml?debug&p=1.3').status_code == 404
         # invalid sections should also fail nicely
         assert self.client.get('/sitemap.xml?debug&section=foo').status_code == 404
+        assert (
+            self.client.get(
+                '/sitemap.xml?debug&section=amo&app_name=firefox'
+            ).status_code
+            == 404
+        )
+
+    def test_exceptions(self):
+        # check a non-integer page number
+        assert self.client.get('/sitemap.xml?section=amo&p=a').status_code == 404
+        assert self.client.get('/sitemap.xml?section=amo&p=1.3').status_code == 404
+        # invalid sections should also fail nicely
+        assert self.client.get('/sitemap.xml?section=foo').status_code == 404
+        assert (
+            self.client.get('/sitemap.xml?section=amo&app_name=firefox').status_code
+            == 404
+        )

@@ -31,7 +31,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import logout_user
-from olympia.activity.models import ActivityLog, VersionLog
+from olympia.activity.models import ActivityLog, CommentLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons.models import (
     Addon,
@@ -56,7 +56,6 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_manifest_version_error,
     extract_theme_properties,
     wizard_unsupported_properties,
 )
@@ -169,32 +168,6 @@ def dashboard(request, theme=False):
         data['sort_opts'] = data['filter'].opts
 
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
-
-
-@login_required
-def site_permission_generator(request):
-    if not RestrictionChecker(request=request).is_submission_allowed():
-        return redirect(
-            '%s%s%s'
-            % (reverse('devhub.developer_agreement'), '?to=', quote(request.path))
-        )
-    form = forms.SitePermissionGeneratorForm(
-        request.POST if request.method == 'POST' else None, request=request
-    )
-    success = None
-    if request.method == 'POST' and form.is_valid():
-        tasks.create_site_permission_version.delay(
-            user_pk=request.user.pk,
-            remote_addr=request.META.get('REMOTE_ADDR', ''),
-            install_origins=[form.cleaned_data['origin']],
-            site_permissions=form.cleaned_data['site_permissions'],
-        )
-        success = True
-    return TemplateResponse(
-        request,
-        'devhub/site_permission_generator.html',
-        context={'form': form, 'success': success},
-    )
 
 
 @dev_required
@@ -365,7 +338,6 @@ def feed(request, addon_id=None):
                 addon,
                 allow_developer=True,
                 allow_mozilla_disabled_addon=True,
-                allow_site_permission=True,
             ):
                 raise PermissionDenied
             addons = [addon]
@@ -421,7 +393,7 @@ def edit(request, addon_id, addon):
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
 
 
-@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
+@dev_required(owner_for_post=True)
 @post_required
 def delete(request, addon_id, addon):
     # Database deletes only allowed for free or incomplete addons.
@@ -464,24 +436,15 @@ def cancel(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     latest_version = addon.find_latest_version(channel=channel)
     if latest_version:
-        if addon.status == amo.STATUS_NOMINATED and channel == amo.CHANNEL_LISTED:
-            addon.update(status=amo.STATUS_NULL)
-            ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
         if latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
             latest_version.file.update(status=amo.STATUS_DISABLED)
+        addon.update_status()
     return redirect(addon.get_dev_url('versions'))
 
 
 @dev_required
 @post_required
 def disable(request, addon_id, addon):
-    # Also set the latest listed version to STATUS_DISABLED if it was
-    # AWAITING_REVIEW, to not waste reviewers time.
-    latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-    if latest_version and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
-        latest_version.file.update(status=amo.STATUS_DISABLED)
-    addon.update_version()
-    addon.update_status()
     addon.update(disabled_by_user=True)
     ActivityLog.create(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
@@ -542,7 +505,7 @@ def invitation(request, addon_id):
     return TemplateResponse(request, 'devhub/addons/invitation.html', context=ctx)
 
 
-@dev_required(owner_for_post=True, allow_site_permission_for_post=True)
+@dev_required(owner_for_post=True)
 def ownership(request, addon_id, addon):
     fs = []
     ctx = {
@@ -551,9 +514,7 @@ def ownership(request, addon_id, addon):
         # regular developers, but can be edited by owners even if it's a site
         # permission add-on.
         'editable_body_class': 'no-edit'
-        if not acl.check_addon_ownership(
-            request.user, addon, allow_site_permission=True
-        )
+        if not acl.check_addon_ownership(request.user, addon)
         else '',
     }
     post_data = request.POST if request.method == 'POST' else None
@@ -584,7 +545,7 @@ def ownership(request, addon_id, addon):
     if ctx['license_form']:  # if addon has a version
         fs.append(ctx['license_form'])
     # Policy.
-    if addon.type not in (amo.ADDON_STATICTHEME, amo.ADDON_SITE_PERMISSION):
+    if addon.type != amo.ADDON_STATICTHEME:
         policy_form = forms.PolicyForm(post_data, addon=addon)
         ctx['policy_form'] = policy_form
         fs.append(policy_form)
@@ -786,6 +747,10 @@ def json_upload_detail(request, upload, addon_slug=None):
                     i,
                     {
                         'type': 'error',
+                        # Actual validation messages coming from the linter are
+                        # already escaped because they are coming from
+                        # `processed_validation`, but we need to do that for
+                        # those coming from ValidationError exceptions as well.
                         'message': escape_all(msg),
                         'tier': 1,
                         'fatal': True,
@@ -797,7 +762,6 @@ def json_upload_detail(request, upload, addon_slug=None):
             return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
-            add_manifest_version_error(result['validation'])
     return result
 
 
@@ -1254,8 +1218,12 @@ def version_reenable(request, addon_id, addon):
 
 
 def check_validation_override(request, form, addon, version):
-    if version and form.cleaned_data.get('admin_override_validation'):
-        helper = ReviewHelper(request=request, addon=addon, version=version)
+    if (
+        version
+        and form.cleaned_data.get('admin_override_validation')
+        and acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
+    ):
+        helper = ReviewHelper(addon=addon, version=version, user=request.user)
         helper.set_data(
             {
                 'operating_systems': '',
@@ -1267,7 +1235,7 @@ def check_validation_override(request, form, addon, version):
                 ),
             }
         )
-        helper.actions['super']['method']()
+        helper.handler.process_super_review()
 
 
 @dev_required
@@ -1281,6 +1249,7 @@ def version_list(request, addon_id, addon):
         'versions': versions,
         'session_id': request.session.session_key,
         'is_admin': is_admin,
+        'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
     }
     return TemplateResponse(request, 'devhub/versions/list.html', context=data)
 
@@ -1481,12 +1450,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             statsd.incr(f'devhub.submission.addon.{channel_text}')
 
         check_validation_override(request, form, addon, version)
-        if (
-            addon.status == amo.STATUS_NULL
-            and addon.has_complete_metadata()
-            and channel == amo.CHANNEL_LISTED
-        ):
-            addon.update(status=amo.STATUS_NOMINATED)
+        addon.update_status()
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
     if addon:
@@ -1639,6 +1603,10 @@ def _submit_source(request, addon, version, submit_page, next_view):
                 },
             )
             VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
+            if version.pending_rejection:
+                # The `version` instance will be saved by the `source_form.save()` call
+                # below.
+                version.needs_human_review = True
             source_form.save()
             log.info(
                 '_submit_source, form saved, addon.slug: %s, version.pk: %s',
@@ -1766,8 +1734,7 @@ def _submit_details(request, addon, version):
             license_form.save(log=False)
             if not static_theme:
                 reviewer_form.save()
-            if addon.status == amo.STATUS_NULL:
-                addon.update(status=amo.STATUS_NOMINATED)
+            addon.update_status()
             signals.submission_done.send(sender=addon)
         elif not static_theme:
             reviewer_form.save()
@@ -1795,35 +1762,6 @@ def submit_version_details(request, addon_id, addon, version_id):
 
 def _submit_finish(request, addon, version):
     uploaded_version = version or addon.versions.latest()
-
-    try:
-        author = addon.authors.all()[0]
-    except IndexError:
-        # This should never happen.
-        author = None
-
-    if (
-        not version
-        and author
-        and uploaded_version.channel == amo.CHANNEL_LISTED
-        and not Version.objects.exclude(pk=uploaded_version.pk)
-        .filter(addon__authors=author, channel=amo.CHANNEL_LISTED)
-        .exclude(addon__status=amo.STATUS_NULL)
-        .exists()
-    ):
-        # If that's the first time this developer has submitted an listed addon
-        # (no other listed Version by this author exists) send them a welcome
-        # email.
-        # We can use locale-prefixed URLs because the submitter probably
-        # speaks the same language by the time he/she reads the email.
-        context = {
-            'addon_name': str(addon.name),
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': absolutify(addon.get_url_path()),
-            'version_url': absolutify(addon.get_dev_url('versions')),
-            'edit_url': absolutify(addon.get_dev_url('edit')),
-        }
-        tasks.send_welcome_email.delay(addon.id, [author.email], context)
 
     submit_page = 'version' if version else 'addon'
     return TemplateResponse(
@@ -1877,10 +1815,10 @@ def request_review(request, addon_id, addon):
     if latest_version:
         if latest_version.file.status == amo.STATUS_DISABLED:
             latest_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        # Clear the nomination date so it gets set again in Addon.watch_status.
-        latest_version.update(nomination=None)
+        # Clear the due date so it gets set again in Addon.watch_status if nessecary.
+        latest_version.update(due_date=None)
     if addon.has_complete_metadata():
-        addon.update(status=amo.STATUS_NOMINATED)
+        addon.update_status()
         messages.success(request, gettext('Review requested.'))
     else:
         messages.success(request, _('You must provide further details to proceed.'))

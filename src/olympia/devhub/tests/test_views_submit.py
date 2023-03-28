@@ -23,7 +23,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonCategory
+from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -40,6 +40,7 @@ from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.versions.models import AppVersion, License, VersionPreview
+from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import Config, set_config
 
 
@@ -103,19 +104,6 @@ class TestSubmitBase(TestCase):
         source.write(data)
         source.seek(0)
         return source
-
-
-class AddonSubmitSitePermissionMixin:
-    # Site permissions add-ons are automatically generated so it shouldn't be
-    # possible to submit new versions of them. This mixin contains a test
-    # verifying that self.url 403s, to be added to the classes testing the
-    # various version submission steps below - self.url is different in each.
-    def test_site_permission_not_allowed(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        response = self.client.get(self.url)
-        assert response.status_code == 403
-        response = self.client.post(self.url)
-        assert response.status_code == 403
 
 
 class TestAddonSubmitAgreement(TestSubmitBase):
@@ -654,7 +642,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
-            f'{addon.pk}/weta_fade-1.0.zip'
+            f'{addon.pk}/weta_fade-2.9.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -673,7 +661,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.file.name.endswith(
-            f'{addon.pk}/{addon.slug}-1.0.zip'
+            f'{addon.pk}/{addon.slug}-2.9.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -701,7 +689,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
-            f'{addon.pk}/weta_fade-1.0.zip'
+            f'{addon.pk}/weta_fade-2.9.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
@@ -732,7 +720,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Next step is same as non-wizard flow too.
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
         assert latest_version.file.file.name.endswith(
-            f'{addon.pk}/{addon.slug}-1.0.zip'
+            f'{addon.pk}/{addon.slug}-2.9.zip'
         )
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
@@ -1127,18 +1115,21 @@ class DetailsPageMixin:
         error = 'Ensure this value has at most 250 characters (it has 251).'
         self.assertFormError(response, 'describe_form', 'summary', error)
 
-    def test_nomination_date_set_only_once(self):
-        self.get_version().update(nomination=None)
+    def test_due_date_set_only_once(self):
+        AddonReviewerFlags.objects.create(
+            addon=self.get_addon(), auto_approval_disabled=True
+        )
+        self.get_version().update(due_date=None, _signal=False)
         self.is_success(self.get_dict())
-        self.assertCloseToNow(self.get_version().nomination)
+        self.assertCloseToNow(self.get_version().due_date, now=get_review_due_date())
 
-        # Check nomination date is only set once, see bug 632191.
-        nomdate = datetime.now() - timedelta(days=5)
-        self.get_version().update(nomination=nomdate, _signal=False)
+        # Check due date is only set once, see bug 632191.
+        duedate = datetime.now() - timedelta(days=5)
+        self.get_version().update(due_date=duedate, _signal=False)
         # Update something else in the addon:
         self.get_addon().update(slug='foobar')
-        assert self.get_version().nomination.timetuple()[0:5] == (
-            nomdate.timetuple()[0:5]
+        assert self.get_version().due_date.timetuple()[0:5] == (
+            duedate.timetuple()[0:5]
         )
 
     def test_submit_details_unlisted_should_redirect(self):
@@ -1274,14 +1265,18 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
+        addon = self.get_addon()
+        AddonCategory.objects.filter(addon=addon, category_id=1).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=71).delete()
 
         ctx = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(ctx.initial_forms[0])
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=3)
-        self.get_addon().update(status=amo.STATUS_NULL)
+
+        addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.update(status=amo.STATUS_NULL)
+        assert self.get_addon().status == amo.STATUS_NULL
 
     def get_dict(self, minimal=True, **kw):
         result = {}
@@ -1536,13 +1531,17 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=1).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=22).delete()
-        AddonCategory.objects.filter(addon=self.get_addon(), category_id=71).delete()
+        addon = self.get_addon()
+        AddonCategory.objects.filter(addon=addon, category_id=1).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=22).delete()
+        AddonCategory.objects.filter(addon=addon, category_id=71).delete()
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11)
-        self.get_addon().update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+
+        addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        addon.update(status=amo.STATUS_NULL, type=amo.ADDON_STATICTHEME)
+        assert self.get_addon().status == amo.STATUS_NULL
 
     def get_dict(self, minimal=True, **kw):
         result = {}
@@ -1659,74 +1658,6 @@ class TestAddonSubmitFinish(TestSubmitBase):
         super().setUp()
         self.url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_for_newbies(self, send_welcome_email_mock):
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_first_listed_addon(self, send_welcome_email_mock):
-        new_addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch.object(settings, 'EXTERNAL_SITE_URL', 'http://b.ro')
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_welcome_email_if_previous_addon_is_incomplete(
-        self, send_welcome_email_mock
-    ):
-        # If the developer already submitted an addon but didn't finish or was
-        # rejected, we send the email anyway, it might be a dupe depending on
-        # how far they got but it's better than not sending any.
-        new_addon = addon_factory(status=amo.STATUS_NULL)
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        context = {
-            'addon_name': 'Delicious Bookmarks',
-            'app': str(amo.FIREFOX.pretty),
-            'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
-            'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
-            'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
-        }
-        send_welcome_email_mock.assert_called_with(
-            self.addon.id, ['del@icio.us'], context
-        )
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email(self, send_welcome_email_mock):
-        """You already submitted an add-on? We won't spam again."""
-        new_addon = addon_factory(status=amo.STATUS_NOMINATED)
-        new_addon.addonuser_set.create(user=self.addon.authors.all()[0])
-        self.client.get(self.url)
-        assert not send_welcome_email_mock.called
-
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email_if_unlisted(self, send_welcome_email_mock):
-        self.make_addon_unlisted(self.addon)
-        self.client.get(self.url)
-        assert not send_welcome_email_mock.called
-
     def test_finish_submitting_listed_addon(self):
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
 
@@ -1834,7 +1765,7 @@ class TestAddonSubmitResume(TestSubmitBase):
         self.assert3xx(response, reverse('devhub.submit.details', args=['a3615']))
 
 
-class TestVersionSubmitDistribution(AddonSubmitSitePermissionMixin, TestSubmitBase):
+class TestVersionSubmitDistribution(TestSubmitBase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.submit.version.distribution', args=[self.addon.slug])
@@ -1930,7 +1861,7 @@ class TestVersionSubmitDistribution(AddonSubmitSitePermissionMixin, TestSubmitBa
         )
 
 
-class TestVersionSubmitAutoChannel(AddonSubmitSitePermissionMixin, TestSubmitBase):
+class TestVersionSubmitAutoChannel(TestSubmitBase):
     """Just check we chose the right upload channel.  The upload tests
     themselves are in other tests."""
 
@@ -1994,7 +1925,7 @@ class VersionSubmitUploadMixin:
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.client.force_login(self.user)
         self.user.update(last_login_ip='192.168.1.1')
-        self.addon.versions.update(channel=self.channel)
+        self.addon.versions.update(channel=self.channel, version='0.0.0.99')
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.url = reverse(
             'devhub.submit.version.upload', args=[self.addon.slug, channel]
@@ -2138,6 +2069,7 @@ class VersionSubmitUploadMixin:
     def test_static_theme_wizard(self):
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.version.update(version='2.1')
         # Get the correct template.
         self.url = reverse(
             'devhub.submit.version.wizard', args=[self.addon.slug, channel]
@@ -2192,6 +2124,7 @@ class VersionSubmitUploadMixin:
     def test_static_theme_wizard_unsupported_properties(self):
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.version.update(version='2.1')
         # Get the correct template.
         self.url = reverse(
             'devhub.submit.version.wizard', args=[self.addon.slug, channel]
@@ -2248,10 +2181,26 @@ class VersionSubmitUploadMixin:
         else:
             assert version.previews.all().count() == 0
 
+    def test_admin_override(self):
+        self.grant_permission(self.user, ':'.join(amo.permissions.REVIEWS_ADMIN))
+        assert not AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
+        response = self.post(override_validation=True)
+        assert response.status_code == 302
+        assert AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
 
-class TestVersionSubmitUploadListed(
-    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
-):
+    def test_admin_override_no_permission(self):
+        response = self.post(override_validation=True)
+        assert response.status_code == 302
+        assert not AddonReviewerFlags.objects.filter(
+            addon=self.addon, needs_admin_code_review=True
+        ).exists()
+
+
+class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_LISTED
 
     def test_success(self):
@@ -2265,10 +2214,7 @@ class TestVersionSubmitUploadListed(
         )
         assert logs_qs.count() == 1
         log = logs_qs.get()
-        assert log.iplog_set.count() == 1
-        assert log.iplog_set.get().ip_address_binary == IPv4Address(
-            self.upload.ip_address
-        )
+        assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
 
     def test_experiment_inside_webext_upload_without_permission(self):
@@ -2383,10 +2329,24 @@ class TestVersionSubmitUploadListed(
             302,
         )
 
+    def test_version_num_must_be_greater(self):
+        self.version.update(version='0.0.2')
+        self.version.file.update(is_signed=True)
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'Version 0.0.1 must be greater than the previous approved version 0.0.2.'
+        )
 
-class TestVersionSubmitUploadUnlisted(
-    AddonSubmitSitePermissionMixin, VersionSubmitUploadMixin, UploadMixin, TestCase
-):
+    def test_version_num_must_be_numerically_greater(self):
+        self.version.update(version='0.0.1.0')
+        self.version.file.update(is_signed=True)
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'Version 0.0.1 must be greater than the previous approved version 0.0.1.0.'
+        )
+
+
+class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_UNLISTED
 
     def test_success(self):
@@ -2580,8 +2540,13 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
     def setUp(self):
         super().setUp()
         self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
-        self.version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
+        self.version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
         self.version.update(license=None)  # Addon needs to be missing data.
+        self.addon.update(status=amo.STATUS_NULL)
         self.url = reverse(
             'devhub.submit.version.details', args=['a3615', self.version.pk]
         )
@@ -2604,11 +2569,13 @@ class TestVersionSubmitFinish(TestAddonSubmitFinish):
             'devhub.submit.version.finish', args=[addon.slug, self.version.pk]
         )
 
-    @mock.patch('olympia.devhub.tasks.send_welcome_email.delay')
-    def test_no_welcome_email(self, send_welcome_email_mock):
+    @mock.patch(
+        'olympia.devhub.tasks.send_initial_submission_acknowledgement_email.delay'
+    )
+    def test_no_welcome_email(self, send_initial_submission_acknowledgement_email_mock):
         """No emails for version finish."""
         self.client.get(self.url)
-        assert not send_welcome_email_mock.called
+        assert not send_initial_submission_acknowledgement_email_mock.called
 
     def test_finish_submitting_listed_addon(self):
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)

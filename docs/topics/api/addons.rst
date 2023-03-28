@@ -115,7 +115,7 @@ for autocomplete though, there are a couple key differences:
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned. See :ref:`available tags <tag-list>`
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``icons``, ``name``, ``promoted``, ``type`` and ``url`` fields are supported though.
 
 
 ------
@@ -208,23 +208,23 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json array tags: List containing the tag names set on the add-on.
     :>json string type: The :ref:`add-on type <addon-detail-type>`.
     :>json string url: The (absolute) add-on detail URL.
+    :>json object version: For create or update requests that included a :ref:`version <version-create-request>` only. Object holding the :ref:`version <version-detail-object>` that was submitted.
     :>json string versions_url: The URL to the version history page for the add-on.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
 
 
 .. _addon-detail-status:
 
-    Possible values for the ``status`` field / parameter:
+    Possible values for the add-on ``status`` field / parameter:
 
     ==============  ==========================================================
              Value  Description
     ==============  ==========================================================
-            public  Fully Reviewed
+            public  Approved
            deleted  Deleted
           disabled  Disabled by Mozilla
-         nominated  Awaiting Full Review
-        incomplete  Incomplete
-        unreviewed  Awaiting Preliminary Review
+         nominated  Awaiting Review
+        incomplete  Incomplete - no approved listed versions
     ==============  ==========================================================
 
 
@@ -241,8 +241,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
 
     .. note::
-        For possible version values per application, see
-        `valid application versions`_.
+        See the :ref:`supported versions <applications-version-list>`.
 
 
 .. _addon-detail-type:
@@ -276,6 +275,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
              Value  Description
     ==============  ==========================================================
               line  "By Firefox" category
+           notable  Notable category
        recommended  Recommended category
          sponsored  Sponsored category
          spotlight  Spotlight category
@@ -324,6 +324,10 @@ is compatible with.
     :<json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :<json array tags: List containing the tag names to set on the add-on - see :ref:`available tags <tag-list>`.
     :<json object version: Object containing the :ref:`version <version-create-request>` to create this addon with.
+
+    **Response:**
+    See :ref:`add-on <addon-detail-object>`
+
 
 ----
 Edit
@@ -499,7 +503,10 @@ Version Detail
 
 This endpoint allows you to fetch a single version belonging to a specific add-on.
 
-.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:get:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-detail-object:
 
@@ -509,8 +516,8 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json object compatibility:
         Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
-        The exact min/max version numbers in the object correspond to
-        `valid application versions`_. Example:
+        The exact min/max version numbers in the object correspond to the :ref:`supported versions<applications-version-list>`.
+        Example:
 
             .. code-block:: json
 
@@ -535,10 +542,12 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string file.hash: The hash for the file.
     :>json boolean file.is_mozilla_signed_extension: Whether the file was signed with a Mozilla internal certificate or not.
     :>json array file.optional_permissions[]: Array of the optional webextension permissions for this File, as strings. Empty for non-webextensions.
+    :>json array file.host_permissions[]: Array of the host permissions for this File, as strings. Empty for non-webextensions.
     :>json array file.permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json int file.size: The size for the file, in bytes.
-    :>json int file.status: The :ref:`status <addon-detail-status>` for the file.
+    :>json int file.status: The :ref:`status <version-detail-status>` for the file.
     :>json string file.url: The (absolute) URL to download the file.
+    :>json boolean is_disabled: If this version has been disabled by the developer. This field is only present for authenticated users, for their own add-ons.
     :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
@@ -550,6 +559,19 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.
+
+
+.. _version-detail-status:
+
+    Possible values for the version/file ``status`` field / parameter:
+
+    ==============  ==========================================================
+             Value  Description
+    ==============  ==========================================================
+            public  Approved
+          disabled  Rejected, disabled, or not reviewed
+         nominated  Awaiting Review
+    ==============  ==========================================================
 
 
 --------------
@@ -669,7 +691,7 @@ Note: as form-data can not be nested as objects it's not possible to set ``sourc
     :reqheader Content-Type: multipart/form-data
 
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-sources-request-edit:
 
@@ -688,7 +710,10 @@ This endpoint allows the metadata for an existing version to be edited.
     .. note::
         This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
 
-.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:patch:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
     .. _version-edit-request:
 
@@ -696,11 +721,29 @@ This endpoint allows the metadata for an existing version to be edited.
     :<json object|array compatibility: Either an object detailing which :ref:`applications <addon-detail-application>` and versions the version is compatible with; or an array of :ref:`applications <addon-detail-application>`, where default min/max versions will be used if not already defined.  See :ref:`examples <version-compatibility-examples>`.
     :<json string compatibility[app_name].max: Maximum version of the corresponding app the version is compatible with. Should only be enforced by clients if ``is_strict_compatibility_enabled`` is ``true``.
     :<json string compatibility[app_name].min: Minimum version of the corresponding app the version is compatible with.
+    :<json boolean is_disabled: If this version has been disabled by the developer. Note: a version with an already disabled file (``file.status`` is ``disabled``) cannot be changed to ``true``.
     :<json string license: The :ref:`slug of a non-custom license <license-list>`. The license must match the add-on type. Either provide ``license`` or ``custom_license``, not both.
     :<json object|null custom_license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null custom_license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). Custom licenses are not supported for themes.
     :<json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :<json string|null source: The submitted source for this version. As JSON this field can only be set to null, to clear it - see :ref:`uploading source <version-sources>` to set/update the source file.
+
+
+--------------
+Version Delete
+--------------
+
+.. _version-delete:
+
+This endpoint allows a version to be deleted.
+
+    .. note::
+        This API requires :doc:`authentication <auth>`, and for the user to be an author of the add-on.
+
+    .. note::
+        This API accepts both version ids and version numbers in the URL. If the version number passed does not contain any dot characters (``.``) it would be considered an ``id``. To avoid this and force a lookup by version number, add a ``v`` prefix to it.
+
+.. http:delete:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id|string:version_number)/
 
 
 --------------
@@ -887,8 +930,6 @@ on AMO.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
-
-.. _`valid application versions`: https://addons.mozilla.org/en-US/firefox/pages/appversions/
 
 
 -------------------

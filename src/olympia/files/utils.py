@@ -43,7 +43,8 @@ class ParseError(forms.ValidationError):
     pass
 
 
-VERSION_RE = re.compile(r'^[-+*.\w]{,32}$')
+# Note: Long strings are a DOS risk, so always check the length of input to this regex.
+VERSION_RE = re.compile(r'^[-+*.\w]*$', re.ASCII)
 SIGNED_RE = re.compile(r'^META\-INF/(\w+)\.(rsa|sf)$')
 
 # This is essentially what Firefox matches
@@ -70,37 +71,6 @@ def get_filepath(fileorpath):
     elif hasattr(fileorpath, 'name'):  # file-like object
         return fileorpath.name
     return fileorpath
-
-
-def id_to_path(pk, breadth=1):
-    """
-    Generate a path from a pk, to distribute folders in the file system. There
-    are 2 sublevels made from the last digits of the pk.
-
-    The breadth argument (defaults to 1) controls the number of digits used at
-    each sublevel. Zero-padding is applied to always have a fixed number of
-    directories for each sublevel.
-
-    At breadth=1, there should be 10 * 10 * x directories, resulting in:
-    1 => 1/01/1
-    12 => 2/12/12
-    123456 => 6/56/123456
-
-
-    At breadth=2, there should be 100 * 100 * x directories, resulting in:
-    1 => 01/0001/1
-    12 => 12/0012/12
-    123 => 23/0123/0123
-    1234 => 34/1234/1234
-    123456 => 56/3456/123456
-    123456789 => 89/6789/123456789
-    """
-    pk = str(pk)
-    padded_pk = pk.zfill(2 * breadth)
-    path = [padded_pk[-breadth:], padded_pk[-breadth * 2 :]]
-    # We always append the unpadded pk as the final directory.
-    path.append(pk)
-    return os.path.join(*path)
 
 
 def get_file(fileorpath):
@@ -151,6 +121,10 @@ class AlreadyUsedUpload(forms.ValidationError):
     """Error raised when trying to use a FileUpload that has already been used
     to make a Version+File, its path will be empty."""
 
+    pass
+
+
+class DuplicateAddonID(forms.ValidationError):
     pass
 
 
@@ -207,6 +181,8 @@ class ManifestJSONExtractor:
 
         try:
             self.data = json.loads(json_string)
+            if not isinstance(self.data, dict):
+                raise TypeError()
         except Exception:
             raise InvalidManifest(gettext('Could not parse the manifest file.'))
 
@@ -251,8 +227,6 @@ class ManifestJSONExtractor:
             if 'theme' in self.data
             else amo.ADDON_DICT
             if 'dictionaries' in self.data
-            else amo.ADDON_SITE_PERMISSION
-            if 'site_permissions' in self.data
             else amo.ADDON_EXTENSION
         )
 
@@ -440,6 +414,7 @@ class ManifestJSONExtractor:
                     {
                         'optional_permissions': self.get('optional_permissions', []),
                         'permissions': self.get('permissions', []),
+                        'host_permissions': self.get('host_permissions', []),
                         'content_scripts': self.get('content_scripts', []),
                     }
                 )
@@ -448,8 +423,6 @@ class ManifestJSONExtractor:
                     data.update({'devtools_page': self.get('devtools_page')})
             elif self.type in (amo.ADDON_DICT, amo.ADDON_LPAPP):
                 data['target_locale'] = self.target_locale()
-            elif self.type == amo.ADDON_SITE_PERMISSION:
-                data['site_permissions'] = self.get('site_permissions', [])
         return data
 
 
@@ -531,16 +504,18 @@ class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
     pass
 
 
-def archive_member_validator(archive, member, ignore_filename_errors=False):
+def archive_member_validator(member, ignore_filename_errors=False):
     """Validate a member of an archive member (TarInfo or ZipInfo)."""
     filename = getattr(member, 'filename', getattr(member, 'name', None))
     filesize = getattr(member, 'file_size', getattr(member, 'size', None))
-    _validate_archive_member_name_and_size(filename, filesize, ignore_filename_errors)
+    compress_type = getattr(member, 'compress_type', None)
 
+    if compress_type is not None and compress_type not in (
+        zipfile.ZIP_STORED,
+        zipfile.ZIP_DEFLATED,
+    ):
+        raise InvalidArchiveFile(gettext('Unsupported compression method in archive.'))
 
-def _validate_archive_member_name_and_size(
-    filename, filesize, ignore_filename_errors=False
-):
     if filename is None or filesize is None:
         raise InvalidArchiveFile(gettext('Unsupported archive type.'))
 
@@ -586,7 +561,7 @@ class SafeTar:
             cls = tarfile.TarFile
         archive = cls.open(*args, **kwargs)
         for member in archive.getmembers():
-            archive_member_validator(archive, member)
+            archive_member_validator(member)
             # In addition to the generic archive member validator, tar files
             # can contain special files we don't want...
             for method in ('isblk', 'ischr', 'isdev', 'isfifo', 'islnk', 'issym'):
@@ -594,7 +569,7 @@ class SafeTar:
                     raise InvalidArchiveFile(
                         gettext(
                             'This archive contains a forbidden special file '
-                            '(symbolink / hard link or device / block file)'
+                            '(symbolic / hard link or device / block file)'
                         )
                     )
         return archive
@@ -625,7 +600,7 @@ class SafeZip:
         total_file_size = 0
         for info in info_list:
             total_file_size += info.file_size
-            archive_member_validator(self.source, info, self.ignore_filename_errors)
+            archive_member_validator(info, self.ignore_filename_errors)
 
         if total_file_size >= settings.MAX_ZIP_UNCOMPRESSED_SIZE:
             raise InvalidArchiveFile(gettext('Uncompressed size is too large'))
@@ -878,6 +853,7 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
 
 def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
     from olympia.addons.models import Addon, DeniedGuid
+    from olympia.versions.models import Version
 
     guid = xpi_info['guid']
 
@@ -900,10 +876,14 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
             Addon.unfiltered.filter(guid=guid).exists()
             or DeniedGuid.objects.filter(guid=guid).exists()
         ):
-            raise forms.ValidationError(gettext('Duplicate add-on ID found.'))
-    if len(xpi_info['version']) > 32:
+            raise DuplicateAddonID(gettext('Duplicate add-on ID found.'))
+
+    version_field_max_length = Version.version.field.max_length
+    if len(xpi_info['version']) > version_field_max_length:
         raise forms.ValidationError(
-            gettext('Version numbers should have fewer than 32 characters.')
+            gettext(
+                'Version numbers should have at most {max_length} characters.'
+            ).format(max_length=version_field_max_length)
         )
     if not VERSION_RE.match(xpi_info['version']):
         raise forms.ValidationError(
@@ -955,9 +935,6 @@ def check_xpi_info(xpi_info, addon=None, xpi_file=None, user=None):
                 'The locale of an existing dictionary/language pack cannot be changed'
             )
         )
-
-    if not acl.site_permission_addons_submission_allowed(user, xpi_info):
-        raise forms.ValidationError(gettext('You cannot submit this type of add-on'))
 
     return xpi_info
 

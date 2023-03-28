@@ -1,6 +1,7 @@
-import datetime
 import os.path
 import zipfile
+
+from datetime import datetime, timedelta
 
 from django.core import mail
 from django.core.files import temp
@@ -28,7 +29,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
-from olympia.versions.models import ApplicationsVersions, Version
+from olympia.versions.models import ApplicationsVersions, Version, VersionReviewerFlags
 
 
 class TestVersion(TestCase):
@@ -341,7 +342,7 @@ class TestVersion(TestCase):
         assert str(self.addon.name) in msg, 'Unexpected: %r' % msg
 
     def test_disabling_addon_awaiting_review_disables_version(self):
-        self.addon.update(status=amo.STATUS_AWAITING_REVIEW, disabled_by_user=False)
+        self.addon.update(status=amo.STATUS_NOMINATED, disabled_by_user=False)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
 
         res = self.client.post(self.disable_url)
@@ -463,17 +464,26 @@ class TestVersion(TestCase):
 
     def test_cancel_wrong_status(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
+        file = self.addon.current_version.file
         for status in Addon.STATUS_CHOICES:
             if status in (amo.STATUS_NOMINATED, amo.STATUS_DELETED):
                 continue
+            file_status = (
+                amo.STATUS_APPROVED
+                if status == amo.STATUS_APPROVED
+                else amo.STATUS_DISABLED
+            )
+            file.update(status=file_status)
+            self.addon.update_status()
+            if status == amo.STATUS_DISABLED:
+                self.addon.update(status=status)
 
-            self.addon.update(status=status)
             self.client.post(cancel_url)
             assert Addon.objects.get(id=3615).status == status
 
     def test_cancel(self):
         cancel_url = reverse('devhub.addons.cancel', args=['a3615', 'listed'])
-        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.client.post(cancel_url)
         assert Addon.objects.get(id=3615).status == amo.STATUS_NULL
 
@@ -566,14 +576,12 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_NULL)
         latest_version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         latest_version.file.update(
-            reviewed=datetime.datetime.now(), status=amo.STATUS_DISABLED
+            approval_date=datetime.now(), status=amo.STATUS_DISABLED
         )
         version_factory(
             addon=self.addon,
-            file_kw={
-                'reviewed': datetime.datetime.now(),
-                'status': amo.STATUS_DISABLED,
-            },
+            human_review_date=datetime.now(),
+            file_kw={'status': amo.STATUS_DISABLED},
         )
         doc = pq(self.client.get(self.url).content)
         buttons = doc('.version-status-actions form button')
@@ -623,6 +631,8 @@ class TestVersion(TestCase):
         review_form.attrib['action'] == api_url
         review_form.attrib['data-session-id'] == self.client.session.session_key
         review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+        textarea = doc('.dev-review-reply-form textarea')[0]
+        assert textarea.attrib['maxlength'] == '100000'
 
     def test_version_history_mixed_channels(self):
         v1 = self.version
@@ -698,21 +708,6 @@ class TestVersion(TestCase):
         # Extra tags in the headers too
         assert doc('h3 span.distribution-tag-listed').length == 2
 
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-
-        # Authors can see the versions page of a site permission add-on.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # They can't delete/disable/enable versions though.
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 403
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 403
-        response = self.client.post(self.delete_url, self.delete_data)
-        assert response.status_code == 403
-
 
 class TestVersionEditBase(TestCase):
     fixtures = ['base/users', 'base/addon_3615']
@@ -761,6 +756,37 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = self.get_version()
         assert str(version.release_notes) == 'xx'
         assert str(version.approval_notes) == 'yy'
+
+    def test_approval_notes_and_approval_notes_too_long(self):
+        data = self.formset(approval_notes='ü' * 3001, release_notes='è' * 3002)
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        assert (
+            response.context['version_form'].fields['approval_notes'].max_length == 3000
+        )
+        assert (
+            response.context['version_form'].fields['approval_notes'].max_length == 3000
+        )
+        assert (
+            response.context['version_form']
+            .fields['release_notes']
+            .widget.attrs['maxlength']
+            == '3000'
+        )
+        assert (
+            response.context['version_form']
+            .fields['release_notes']
+            .widget.attrs['maxlength']
+            == '3000'
+        )
+        assert response.context['version_form'].errors == {
+            'approval_notes': [
+                'Ensure this value has at most 3000 characters (it has 3001).'
+            ],
+            'release_notes': [
+                'Ensure this value has at most 3000 characters (it has 3002).'
+            ],
+        }
 
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
@@ -834,6 +860,38 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert version.addon.needs_admin_code_review
+        assert not version.needs_human_review
+
+        # Check that the corresponding automatic activity log has been created.
+        assert ActivityLog.objects.filter(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        ).exists()
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, self.version]
+
+    def test_source_uploaded_pending_rejection_sets_needs_human_review_flag(self):
+        version = Version.objects.get(pk=self.version.pk)
+        VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=2),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        with temp.NamedTemporaryFile(
+            suffix='.zip', dir=temp.gettempdir()
+        ) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2**21))
+            source_file.seek(0)
+            data = self.formset(source=source_file)
+            response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        version = Version.objects.get(pk=self.version.pk)
+        assert version.source
+        assert version.addon.needs_admin_code_review
+        assert not version.needs_human_review
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(
@@ -845,7 +903,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.arguments == [self.addon, self.version]
 
     def test_source_field_disabled_after_human_review_no_source(self):
-        self.version.autoapprovalsummary.update(confirmed=True)
+        self.version.update(human_review_date=datetime.now())
         response = self.client.get(self.url)
         assert b'You cannot change attached sources' in response.content
         doc = pq(response.content)
@@ -866,7 +924,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert not version.source
 
     def test_source_field_disabled_after_human_review_has_source(self):
-        self.version.autoapprovalsummary.update(confirmed=True)
+        self.version.update(human_review_date=datetime.now())
         # This test sets source and checks the link is present
         self.test_existing_source_link()
 
@@ -1029,16 +1087,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert not version.addon.needs_admin_code_review
-
-    def test_site_permission(self):
-        self.addon.update(type=amo.ADDON_SITE_PERMISSION)
-        # Authors can see a version page of a site permission add-on.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-        # They can't edit it though.
-        response = self.client.post(self.url, self.formset())
-        assert response.status_code == 403
 
 
 class TestVersionEditStaticTheme(TestVersionEditBase):

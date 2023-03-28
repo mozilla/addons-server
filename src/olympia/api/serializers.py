@@ -6,10 +6,15 @@ from django.conf import settings
 from elasticsearch_dsl.response.hit import Hit
 from rest_framework import serializers
 
+from olympia.amo.utils import BaseModelSerializerAndFormMixin
 from olympia.zadmin.models import get_config
 
 
-class BaseESSerializer(serializers.ModelSerializer):
+class AMOModelSerializer(BaseModelSerializerAndFormMixin, serializers.ModelSerializer):
+    pass
+
+
+class BaseESSerializer(AMOModelSerializer):
     """
     A base deserializer that handles ElasticSearch data for a specific model.
 
@@ -63,8 +68,7 @@ class BaseESSerializer(serializers.ModelSerializer):
         # Don't be picky about microseconds here. We get them some time
         # so we have to support them. So let's strip microseconds and handle
         # the datetime in a unified way.
-        value = value.partition('.')[0]
-        return datetime.strptime(value, '%Y-%m-%dT%H:%M:%S')
+        return datetime.fromisoformat(value.partition('.')[0])
 
     def _attach_fields(self, obj, data, field_names):
         """Attach fields to fake instance."""

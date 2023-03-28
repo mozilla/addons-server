@@ -36,8 +36,6 @@ DATABASES = {
     'replica': get_db_config('DATABASES_REPLICA_URL', atomic_requests=False),
 }
 
-SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
-
 REPLICA_DATABASES = ['replica']
 
 # Celery
@@ -51,8 +49,6 @@ ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
 CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
-
-ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 ES_DEFAULT_NUM_SHARDS = 10
 

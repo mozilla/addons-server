@@ -5,6 +5,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.constants.activity import RETENTION_DAYS
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
 from olympia.amo.utils import chunked
@@ -33,7 +34,7 @@ def gc(test_result=True):
     log.info('Collecting data to delete')
 
     logs = (
-        ActivityLog.objects.filter(created__lt=days_ago(180))
+        ActivityLog.objects.filter(created__lt=days_ago(RETENTION_DAYS))
         .exclude(action__in=amo.LOG_KEEP)
         .values_list('id', flat=True)
     )
@@ -47,7 +48,7 @@ def gc(test_result=True):
         versions__pk=None, created__lte=two_weeks_ago
     ).values_list('pk', flat=True)
     for chunk in chunked(versionless_addons, 100):
-        delete_addons.delay(chunk, with_deleted=True)
+        delete_addons.delay(chunk, with_deleted=True, deny_guids=False)
 
     # Delete stale FileUploads.
     stale_uploads = FileUpload.objects.filter(created__lte=two_weeks_ago).order_by('id')

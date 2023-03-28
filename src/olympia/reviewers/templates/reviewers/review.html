@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block title %}
-  {{ _('{addon} – Add-ons for Firefox')|format_html(addon=addon.name) }}
+  {{ addon.name }} – Add-ons for Firefox
 {% endblock %}
 
 {% block bodyclass %}{{ super() }} inverse{{ " content-review" if content_review else ""}}{% endblock %}
@@ -13,27 +13,81 @@
 {% block content %}
 
 <hgroup>
-  <h2 class="addon"{{ addon.name|locale_html }}>
+  <h2 class="addon"{{ addon.name|locale_html }} id="addon-name">
     <img src="{{ addon.get_icon_url(32) }}" class="icon" alt="" />
     {% if content_review %}
-      {# L10n: "Content Review [add-on name]" #}
-      <span>
-        {{ _('Content Review {0}')|format_html(addon.name) }}
-      </span>
+      <span>Content Review <em>{{ addon.name }}</em></span>
     {% else %}
-      {# L10n: "Review [add-on name]" #}
-      <span>
-        {{ _('Review {0}')|format_html(addon.name) }}
-      </span>
+      <span>Review <em>{{ addon.name }}</em></span>
     {% endif %}
     {% if version %}
       <span class="version">{{ version.version }} ({{ version.get_channel_display() }})</span>
     {% endif %}
   </h2>
-  <h4 class="author">{{ _('by') }} {{ users_list(addon.listed_authors) }}</h4>
+  <h4 class="author">by
+    {% for author in addon.listed_authors %}
+    <a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a>{% if not loop.last %},{% endif %}
+    {% endfor %}
+  </h4>
+
 </hgroup>
 
+{% if promoted_group %}
+{# Technically could be just pending approval, but that doesn't matter for this message. #}
+<p class="is_promoted">
+  This is a {{ promoted_group.name }} add-on.
+  {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
+        (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
+    You don't have permission to review it.
+  {% endif %}
+</p>
+{% endif %}
+
 <div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+
+  {% include 'reviewers/addon_details_box.html' %}
+
+{% if important_changes_log %}
+<div id="important-changes-history">
+  <h3>
+    Add-on important changes history
+  </h3>
+  <ul>
+    {% for activity in important_changes_log %}
+      <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+{% if whiteboard_form %}
+<form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
+  {% csrf_token %}
+  <h3>
+    Whiteboard
+  </h3>
+  <div class="whiteboard">
+    <div class="whiteboard-inner">
+      <label for="{{ whiteboard_form.public.auto_id }}">{{ whiteboard_form.public.label }}</label>
+      {{ whiteboard_form.public }}
+      <p>The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both.</p>
+    </div>
+  </div>
+  {% if 'private' in whiteboard_form.fields %}
+  <div class="whiteboard private">
+    <div class="whiteboard-inner">
+      <label for="{{ whiteboard_form.private.auto_id }}">{{ whiteboard_form.private.label }}</label>
+      {{ whiteboard_form.private }}
+      <p>The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers.</p>
+    </div>
+  </div>
+  {% endif %}
+  <div class="whiteboard-actions">
+    {{ whiteboard_form.errors }}
+    <input type="submit" value="Update whiteboards" />
+  </div>
+</form>
+{% endif %}
 
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
@@ -41,23 +95,9 @@
   <input type="hidden" name="version_pk" value="{{ version.pk }}"/>
   {{ form.version_pk.errors }}
 
-  {% include 'reviewers/addon_details_box.html' %}
-
-  {% if important_changes_log %}
-  <div id="important-changes-history">
-    <h3>
-      {{ _('Add-on important changes history') }}
-    </h3>
-    <ul>
-      {% for activity in important_changes_log %}
-        <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
-      {% endfor %}
-    </ul>
-  </div>
-  {% endif %}
   <div id="review-files-header">
     <h3 id="history">
-      {{ _('Add-on History') }}
+      Add-on History
     </h3>
     <div class="review-files-paginate">
       {% include "reviewers/includes/paginator_history.html" %}
@@ -77,10 +117,10 @@
   {% if promoted_group %}
     {# Technically could be just pending approval, but that doesn't matter for this message. #}
     <p class="is_promoted">
-      {{ _('This is a %s add-on.' % promoted_group.name) }}
+      This is a {{ promoted_group.name }} add-on.
       {% if (promoted_group == amo.promoted.RECOMMENDED and not action_allowed_for(request.user, amo.permissions.ADDONS_RECOMMENDED_REVIEW)) or
             (promoted_group.admin_review and not action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)) %}
-        {{ _("You don't have permission to review it.") }}
+        You don't have permission to review it.
       {% endif %}
     </p>
   {% endif %}
@@ -93,27 +133,27 @@
     <div id="review-actions-form">
 
       {% for (setting, action) in actions %}
-      <div class="data-toggle review-actions-desc" data-value="{{ setting }}|">
+      <div class="data-toggle review-actions-desc" data-value="{{ setting }}">
         {{ action['details'] }}
 
         {# We don't have a better place to display versions error messages, so let's do it here.
            We display a generic error message instead of the one django generates for us since
            the default ones are not going to be very helpful. #}
         {% if form.versions.errors %}
-          <ul class="errorlist"><li>{{ _('Please select one or more versions in the list below.') }}</li></ul>
+          <ul class="errorlist"><li>Please select one or more versions in the list below.</li></ul>
         {% endif %}
       </div>
       {% endfor %}
 
       <div class="currently_viewing_warning">
-        {{ _("You can still submit this form, however only do so if you know it won't conflict.") }}
+        You can still submit this form, however only do so if you know it won't conflict.
       </div>
 
       {{ form.versions }}
       {{ form.versions.errors }}
 
       <div class="review-actions-section data-toggle review-comments"
-           data-value="{{ actions_comments|join('|') }}|">
+           data-value="{{ actions_comments|join(' ') }}">
         <div class="review-actions-comments-reasons">
           <div class="review-actions-comments">
             <label for="id_comments">{{ form.comments.label }}</label>
@@ -121,23 +161,21 @@
             {{ form.comments.errors }}
           </div>
           <div class="data-toggle review-actions-reasons"
-            data-value="{{ actions_reasons|join('|') }}|">
+            data-value="{{ actions_reasons|join(' ') }}">
             <label for="id_reasons">{{ form.reasons.label }}</label>
             <div class="review-actions-reasons-select">
               {{ form.reasons }}
+            </div>
+            <div class="review-actions-reasons-error">
               {{ form.reasons.errors }}
             </div>
           </div>
         </div>
-        <div class="review-actions-canned">
-          {{ _('Insert canned response...') }}
-          {{ form.canned_response }}
-        </div>
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_full|join('|') }}|">
-        <label><strong>{{ _('Files:') }}</strong></label>
+           data-value="{{ actions_full|join(' ') }}">
+        <label><strong>Files:</strong></label>
         <ul>
           {% for file in form.unreviewed_files %}
           <li>
@@ -149,8 +187,8 @@
       </div>
 
       <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_full|join('|') }}|">
-        <strong>{{ _('Tested on:') }}</strong>
+           data-value="{{ actions_full|join(' ') }}">
+        <strong>Tested on:</strong>
         <label>
           {{ form.operating_systems.label }}
         </label>
@@ -163,7 +201,7 @@
         {{ form.applications.errors }}
       </div>
       <div class="review-actions-section data-toggle review-delayed-rejection"
-           data-value="{{ actions_delayable|join('|') }}|">
+           data-value="{{ actions_delayable|join(' ') }}">
         <div class="review-delayed-rejection-inner">
           {{ form.delayed_rejection }}
           {{ form.delayed_rejection.errors }}
@@ -183,45 +221,15 @@
           <strong>Warning!</strong> Another user was viewing this page before you.
           {% endtrans %}
         </span>
-        <input type="submit" value="{{ _('Save') }}" />
+        <input type="submit" value="Save" />
       </div>
     </div>
   </div>
 </form>
 
-{% if whiteboard_form %}
-<form method="POST" action="{{ whiteboard_url }}" id="whiteboard_form">
-  {% csrf_token %}
-  <div class="whiteboard">
-    <div class="whiteboard-inner">
-      <label for="{{ whiteboard_form.public.auto_id }}">{{ whiteboard_form.public.label }}</label>
-      {{ whiteboard_form.public }}
-      <p>{{ _('The whiteboard is the place to exchange information relevant to '
-              'this add-on (whatever the version), between the developer and the '
-              'reviewer. This is visible and editable by both.') }}</p>
-    </div>
-  </div>
-  {% if 'private' in whiteboard_form.fields %}
-  <div class="whiteboard private">
-    <div class="whiteboard-inner">
-      <label for="{{ whiteboard_form.private.auto_id }}">{{ whiteboard_form.private.label }}</label>
-      {{ whiteboard_form.private }}
-      <p>{{ _('The private whiteboard is used for exchanging information '
-              'between reviewers that is independent of the version. Please '
-              'keep the language objective. It is visible only to reviewers.') }}</p>
-    </div>
-  </div>
-  {% endif %}
-  <div class="whiteboard-actions">
-    {{ whiteboard_form.errors }}
-    <input type="submit" value="{{ _('Update whiteboards') }}" />
-  </div>
-</form>
-{% endif %}
-
 {% if not addon.is_deleted or is_admin %}
 <form class="more-actions" id="extra-review-actions" data-session-id="{{ session_id }}">
-  <p><strong>{{ _('More Actions') }}</strong></p>
+  <p><strong>More Actions</strong></p>
   <div class="more-actions-inner">
     <ul>
       {% if not addon.is_deleted %}
@@ -231,7 +239,7 @@
                 data-api-url-subscribe-listed="{{ drf_url('reviewers-addon-subscribe-listed', addon.pk) }}"
                 data-api-url-unsubscribe-listed="{{ drf_url('reviewers-addon-unsubscribe-listed', addon.pk) }}"
                 {% if subscribed_listed %}checked="checked"{% endif %} autocomplete="off" />
-            <label for="notify_new_listed_versions">{{ _('Notify me about new listed versions') }}</label>
+            <label for="notify_new_listed_versions">Notify me about new listed versions</label>
         </li>
         {% endif %}
         {% if acl_is_unlisted_addons_viewer_or_reviewer %}
@@ -240,7 +248,7 @@
             data-api-url-subscribe-unlisted="{{ drf_url('reviewers-addon-subscribe-unlisted', addon.pk) }}"
             data-api-url-unsubscribe-unlisted="{{ drf_url('reviewers-addon-unsubscribe-unlisted', addon.pk) }}"
             {% if subscribed_unlisted %}checked="checked"{% endif %} autocomplete="off" />
-            <label for="notify_new_unlisted_versions">{{ _('Notify me about new unlisted versions') }}</label>
+            <label for="notify_new_unlisted_versions">Notify me about new unlisted versions</label>
         </li>
         {% endif %}
       {% endif %}
@@ -248,87 +256,106 @@
 
     {% if is_admin %}
     <ul class="admin_only">
+      {% if not addon.is_deleted and version and not version.needs_human_review %}
+        <li>
+          <button data-api-url="{{ drf_url('reviewers-addon-set-needs-human-review', addon.pk) }}"
+                  data-api-data="{&quot;version&quot;: {{ version.pk }}}"
+                  id="set_needs_human_review" type="button">Set "Needs Human Review"</button>
+        </li>
+      {% endif %}
+      <li {% if not version.due_date %}class="hidden"{% endif %}>
+        <label for="due_date_update">Change Version Review Due Date</label>
+        <input type="datetime-local" id="due_date_update"
+                {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
+                data-api-data="{{ version.pk }}"
+                data-api-url="{{ drf_url('reviewers-addon-due-date', addon.pk) }}"
+        />
+      </li>
       {% if addon.is_deleted %}
         <li {% if not addon.is_guid_denied %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-allow-resubmission', addon.pk) }}"
                   data-toggle-button-selector="#deny_resubmission"
-                  id="allow_resubmission" class="toggle" type="button">{{ _('Allow resubmission') }}</button>
+                  id="allow_resubmission" class="toggle" type="button">Allow resubmission</button>
         </li>
         <li {% if addon.is_guid_denied %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-deny-resubmission', addon.pk) }}"
                   data-toggle-button-selector="#allow_resubmission"
-                  id="deny_resubmission" class="toggle" type="button">{{ _('Deny resubmission') }}</button>
+                  id="deny_resubmission" class="toggle" type="button">Deny resubmission</button>
         </li>
       {% else %}
         <li {% if addon.status == amo.STATUS_DISABLED %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-disable', addon.pk) }}"
                   data-toggle-button-selector="#force_enable_addon"
-                  id="force_disable_addon" class="toggle" type="button">{{ _('Force-disable add-on') }}</button>
+                  id="force_disable_addon" class="toggle" type="button">Force-disable add-on</button>
         </li>
         <li {% if addon.status != amo.STATUS_DISABLED %}class="hidden"{% endif %}>
           <button data-api-url="{{ drf_url('reviewers-addon-enable', addon.pk) }}"
                   data-toggle-button-selector="#force_disable_addon"
-                  id="force_enable_addon" class="toggle" type="button">{{ _('Force-enable add-on') }}</button>
+                  id="force_enable_addon" class="toggle" type="button">Force-enable add-on</button>
         </li>
 
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
+          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).pre_review %}
+          <li>
+            <button id="auto_approval_disabled" class="disabled" disabled type="button">Listed Auto-Approval Disabled by Promoted group</button>
+          </li>
+          {% elif channel == amo.CHANNEL_LISTED %}
           <li {% if addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: true}"
                     data-toggle-button-selector="#enable_auto_approval"
-                    id="disable_auto_approval" class="toggle" type="button">{{ _('Disable Listed Auto-Approval') }}</button>
+                    id="disable_auto_approval" class="toggle" type="button">Disable Listed Auto-Approval</button>
           </li>
           <li {% if not addon.auto_approval_disabled %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval"
-                    id="enable_auto_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval') }}</button>
+                    id="enable_auto_approval" class="toggle" type="button">Enable Listed Auto-Approval</button>
           </li>
-          <li {% if addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: true}"
-                    data-toggle-button-selector="#enable_auto_approval_unlisted"
-                    id="disable_auto_approval_unlisted" class="toggle" type="button">{{ _('Disable Unlisted Auto-Approval') }}</button>
-          </li>
-          <li {% if not addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
-            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
-                    data-api-method="patch"
-                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: false}"
-                    data-toggle-button-selector="#disable_auto_approval_unlisted"
-                    id="enable_auto_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval') }}</button>
-          </li>
-          {% if channel == amo.CHANNEL_LISTED %}
           <li {% if addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled_until_next_approval&quot;: true}"
                     data-toggle-button-selector="#enable_auto_approval_until_next_approval"
-                    id="disable_auto_approval_until_next_approval" class="toggle" type="button">{{ _('Disable Listed Auto-Approval Until Next Manual Approval') }}</button>
+                    id="disable_auto_approval_until_next_approval" class="toggle" type="button">Disable Listed Auto-Approval Until Next Manual Approval</button>
           </li>
           <li {% if not addon.auto_approval_disabled_until_next_approval %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled_until_next_approval&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
-                    id="enable_auto_approval_until_next_approval" class="toggle" type="button">{{ _('Enable Listed Auto-Approval Before Next Manual Approval') }}</button>
+                    id="enable_auto_approval_until_next_approval" class="toggle" type="button">Enable Listed Auto-Approval Before Next Manual Approval</button>
           </li>
-          {% else %}
+          {% elif channel == amo.CHANNEL_UNLISTED %}
+          <li {% if addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: true}"
+                    data-toggle-button-selector="#enable_auto_approval_unlisted"
+                    id="disable_auto_approval_unlisted" class="toggle" type="button">Disable Unlisted Auto-Approval</button>
+          </li>
+          <li {% if not addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>
+            <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                    data-api-method="patch"
+                    data-api-data="{&quot;auto_approval_disabled_unlisted&quot;: false}"
+                    data-toggle-button-selector="#disable_auto_approval_unlisted"
+                    id="enable_auto_approval_unlisted" class="toggle" type="button">Enable Unlisted Auto-Approval</button>
+          </li>
           <li {% if addon.auto_approval_disabled_until_next_approval_unlisted %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled_until_next_approval_unlisted&quot;: true}"
                     data-toggle-button-selector="#enable_auto_approval_until_next_approval_unlisted"
-                    id="disable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">{{ _('Disable Unlisted Auto-Approval Until Next Manual Approval') }}</button>
+                    id="disable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">Disable Unlisted Auto-Approval Until Next Manual Approval</button>
           </li>
           <li {% if not addon.auto_approval_disabled_until_next_approval_unlisted %}class="hidden"{% endif %}>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;auto_approval_disabled_until_next_approval_unlisted&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval_unlisted"
-                    id="enable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">{{ _('Enable Unlisted Auto-Approval Before Next Manual Approval') }}</button>
+                    id="enable_auto_approval_until_next_approval_unlisted" class="toggle" type="button">Enable Unlisted Auto-Approval Before Next Manual Approval</button>
           </li>
           {% endif %}
           {% if addon.auto_approval_delayed_until and addon.auto_approval_delayed_until > now %}
@@ -337,8 +364,18 @@
               <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                       data-api-method="patch"
                       data-api-data="{&quot;auto_approval_delayed_until&quot;: null}"
-                      title="{{ _('Auto-Approval currently disabled until {date}')|format_html(date=addon.auto_approval_delayed_until|datetime) }}"
-                      id="clear_auto_approval_delayed_until" class="oneoff" type="button">{{ _('Clear Auto-Approval Extra Delay') }}</button>
+                      title="Auto-Approval currently disabled until {{ addon.auto_approval_delayed_until|datetime }}"
+                      id="clear_auto_approval_delayed_until" class="oneoff" type="button">Clear Auto-Approval Extra Delay</button>
+            </li>
+          {% endif %}
+          {% if addon.auto_approval_delayed_until_unlisted %}
+            {# This flag is only meant to be enabled by scanners/new submissions automatically, but admins can still unset it. #}
+            <li>
+              <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
+                      data-api-method="patch"
+                      data-api-data="{&quot;auto_approval_delayed_until_unlisted&quot;: null}"
+                      title="Unlisted Auto-Approval currently disabled until {{ addon.auto_approval_delayed_until_unlisted|datetime }}"
+                      id="clear_auto_approval_delayed_until_unlisted" class="oneoff" type="button">Clear Unlisted Auto-Approval Extra Delay</button>
             </li>
           {% endif %}
         {% endif %}
@@ -346,7 +383,7 @@
         {% if has_versions_pending_rejection %}
           <li>
               <button data-api-url="{{ drf_url('reviewers-addon-clear-pending-rejections', addon.pk) }}"
-                      id="clear_pending_rejections" class="oneoff" type="button">{{ _('Clear pending rejections') }}</button>
+                      id="clear_pending_rejections" class="oneoff" type="button">Clear pending rejections</button>
           </li>
         {% endif %}
 
@@ -355,7 +392,7 @@
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_code_review&quot;: false}"
-                    id="clear_admin_code_review" class="oneoff" type="button">{{ _('Clear Admin Code Review Flag') }}</button>
+                    id="clear_admin_code_review" class="oneoff" type="button">Clear Admin Code Review Flag</button>
           </li>
         {% endif %}
 
@@ -364,7 +401,7 @@
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_content_review&quot;: false}"
-                    id="clear_admin_content_review" class="oneoff" type="button">{{ _('Clear Admin Content Review Flag') }}</button>
+                    id="clear_admin_content_review" class="oneoff" type="button">Clear Admin Content Review Flag</button>
           </li>
         {% endif %}
 
@@ -373,7 +410,7 @@
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
                     data-api-method="patch"
                     data-api-data="{&quot;needs_admin_theme_review&quot;: false}"
-                    id="clear_admin_theme_review" class="oneoff" type="button">{{ _('Clear Admin Static Theme Review Flag') }}</button>
+                    id="clear_admin_theme_review" class="oneoff" type="button">Clear Admin Static Theme Review Flag</button>
           </li>
         {% endif %}
       {% endif %}
@@ -381,13 +418,13 @@
       <li>
         {% if addon.blocklistsubmission %}
           <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission.id) }}" class="button"
-                  id="edit_addon_blocklistsubmission" type="button">{{ _('View Blocklist Submission') }}</a>
+                  id="edit_addon_blocklistsubmission" type="button">View Blocklist Submission</a>
         {% elif not addon.block %}
           <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
-                  id="block_addon" type="button">{{ _('Block add-on') }}</a>
+                  id="block_addon" type="button">Block add-on</a>
         {% else %}
           <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
-                  id="edit_addon_block" type="button">{{ _('Update add-on block') }}</a>
+                  id="edit_addon_block" type="button">Update add-on block</a>
         {% endif %}
       </li>
     </ul>
@@ -402,52 +439,55 @@
   <div id="scroll_sidebar">
   <div class="currently_viewing_warning"></div>
 
-  <strong>{{ _('Actions') }}</strong>
+  <strong>Actions</strong>
   <ul id="actions-addon">
     {% if not addon.is_deleted and addon.has_listed_versions() %}
-      <li><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></li>
+      <li><a href="{{ addon.get_url_path() }}">View Product Page</a></li>
     {% endif %}
     {# If we are on the unlisted review page, show the link to the listed review page #}
     {% if unlisted and addon.has_listed_versions(include_deleted=True) %}
-      <li><a href="{{ url('reviewers.review', addon.id) }}">{{ _('Listed Review Page') }}</a></li>
+      <li><a href="{{ url('reviewers.review', addon.id) }}">Listed Review Page</a></li>
     {# On the listed review page, show link to unlisted version review if necessary and allowed #}
     {% elif not unlisted and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
-      <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">{{ _('Unlisted Review Page') }}</a></li>
+      <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">Unlisted Review Page</a></li>
     {% endif %}
 
     {% if is_admin %}
       {% if not addon.is_deleted %}
-        <li><a href="{{ addon.get_dev_url() }}">{{ _('Edit') }}</a> <em>{{ _('(admin)') }}</em></li>
+        <li><a href="{{ addon.get_dev_url() }}">Edit</a> <em>(admin)</em></li>
       {% endif %}
 
-      <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">{{ _('Admin Page') }}</a> <em>{{ _('(admin)') }}</em></li>
-      <li><a href="{{ url('stats.overview', addon.id) }}">{{ _('Statistics') }}</a></li>
+      <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">Admin Page</a> <em>(admin)</em></li>
+      <li><a href="{{ url('stats.overview', addon.id) }}">Statistics</a></li>
     {% endif %}
   </ul>
 
-  <strong>{{ _('Review This Add-on') }}</strong>
+  <strong>Review This Add-on</strong>
   <ul>
-    <li><a href="#more-about">{{ _('More Information') }}</a></li>
-    <li><a href="#history">{{ _('Add-on History') }}</a></li>
-    <li><a href="#review-actions">{{ _('Resolution') }}</a></li>
+    <li><a href="#addon-name">Overview</a></li>
+    <li><a href="#more-about">More Information</a></li>
+    <li><a href="#important-changes-history">Important Changes</a></li>
+    <li><a href="#whiteboard_form">Whiteboard</a></li>
+    <li><a href="#history">Add-on History</a></li>
+    <li><a href="#review-actions">Resolution</a></li>
   </ul>
 
-  <strong>{{ _('Authors') }}</strong>
+  <strong>Authors</strong>
   <ul>
     {% for author in addon.authors.all() %}
-    <li><a href="{{ author.get_url_path() }}">{{ author.name }}</a></li>
+    <li><a href="{{ url('reviewers.developer_profile', author.id) }}">{{ author.name }}</a></li>
     {% endfor %}
   </ul>
 
-  <strong>{{ _('Categories') }}</strong>
+  <strong>Categories</strong>
   <ul>
     {% for category in addon.all_categories %}
     <li>{{ category.name }}</li>
     {% endfor %}
   </ul>
 
-  {% if flags: %}
-  <strong>{{ _('Flags') }}</strong>
+  {% if flags %}
+  <strong>Flags</strong>
   <ul>
     {% for cls, title in flags %}
       <li class="{{ cls }}">{{ title }}</li>

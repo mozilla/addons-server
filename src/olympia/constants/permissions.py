@@ -45,10 +45,8 @@ ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 # Can review recommend(ed|able) add-ons
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
-# Can submit Site Permission add-ons - typically used to submit add-ons needed
-# for Firefox testing, the automatic creation is handled by the task user which
-# is special cased to not require the permission.
-ADDONS_SUBMIT_SITE_PERMISSION = AclPermission('Addons', 'SubmitSitePermission')
+# Can triage (and therefore see in the queues) add-ons with a temporary delay
+ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
@@ -138,6 +136,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'addons.add_addonuser': ADMIN_ADVANCED,
         'addons.change_addonuser': ADMIN_ADVANCED,
         'addons.delete_addonuser': ADMIN_ADVANCED,
+        'addons.change_addonreviewerflags': ADMIN_ADVANCED,
         # Users with Admin:Curation can do anything to ReplacementAddon.
         # In addition, the modeladmin will also check for Addons:Edit and give them
         # read-only access to the changelist (obj=None passed to the
@@ -192,6 +191,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.change_scannerqueryrule': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.delete_scannerqueryrule': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.change_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
+        'scanners.delete_scannerqueryresult': ADMIN_SCANNERS_QUERY_EDIT,
         'scanners.view_scannerqueryrule': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
         'tags.add_tag': DISCOVERY_EDIT,
@@ -213,5 +213,6 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'ratings.change_rating': RATINGS_MODERATE,
         'ratings.delete_rating': ADMIN_ADVANCED,
         'versions.change_version': ADMIN_ADVANCED,
+        'versions.change_versionreviewerflags': ADMIN_ADVANCED,
     }
 )

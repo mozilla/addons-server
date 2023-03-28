@@ -34,6 +34,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.utils import id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -158,7 +159,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     averagerating = models.FloatField(null=True)
     # biography can (and does) contain html and other unsanitized content.
     # It must be cleaned before display.
-    biography = models.TextField(blank=True, null=True)
+    biography = models.CharField(blank=True, null=True, max_length=255)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
     homepage = models.URLField(max_length=255, blank=True, default='')
@@ -336,34 +337,28 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def picture_dir(self):
-        split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
         return os.path.join(
-            settings.MEDIA_ROOT,
-            'userpics',
-            split_id.group(2) or '0',
-            split_id.group(1) or '0',
+            settings.MEDIA_ROOT, 'userpics', id_to_path(self.pk, breadth=2)
         )
 
     @property
     def picture_path(self):
-        return os.path.join(self.picture_dir, str(self.id) + '.png')
+        return os.path.join(self.picture_dir, str(self.pk) + '.png')
 
     @property
     def picture_path_original(self):
-        return os.path.join(self.picture_dir, str(self.id) + '_original.png')
+        return os.path.join(self.picture_dir, str(self.pk) + '_original.png')
 
     @property
     def picture_url(self):
         if not self.picture_type:
             return static('img/zamboni/anon_user.png')
         else:
-            split_id = re.match(r'((\d*?)(\d{0,3}?))\d{1,3}$', str(self.id))
             modified = int(time.mktime(self.modified.timetuple()))
             path = '/'.join(
                 [
-                    split_id.group(2) or '0',
-                    split_id.group(1) or '0',
-                    f'{self.id}.png?modified={modified}',
+                    id_to_path(self.pk, breadth=2),
+                    f'{self.pk}.png?modified={modified}',
                 ]
             )
             return f'{settings.MEDIA_URL}userpics/{path}'
@@ -446,8 +441,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                 addon.delete(msg=addon_msg)
             else:
                 addon.addonuser_set.get(user=self).delete()
-        user_responsible = core.get_user()
-        self._ratings_all.all().delete(user_responsible=user_responsible)
+        self._ratings_all.all().delete()
 
     def delete_picture(self):
         """Delete picture of this user."""
@@ -519,7 +513,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # delete the other content associated with the user
         Collection.objects.filter(author__in=users).delete()
-        Rating.objects.filter(user__in=users).delete(user_responsible=core.get_user())
+        Rating.objects.filter(user__in=users).delete()
         # And then delete the users.
         ids = []
         for user in users:
@@ -584,7 +578,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # The following log statement is used by foxsec-pipeline.
         log.info('User (%s) logged in successfully', user, extra={'email': user.email})
         user.update(last_login_ip=core.get_remote_addr() or '')
-        activity.log_create(amo.LOG.LOG_IN, user=user)
+        action = (
+            amo.LOG.LOG_IN_API_TOKEN
+            if kwargs.get('using_api_token')
+            else amo.LOG.LOG_IN
+        )
+        activity.log_create(action, user=user)
 
 
 class UserNotification(ModelBase):
@@ -675,6 +674,12 @@ class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
 
     restriction_type = models.PositiveSmallIntegerField(
         default=RESTRICTION_TYPES.SUBMISSION, choices=RESTRICTION_TYPES.choices
+    )
+    reason = models.CharField(
+        blank=True,
+        null=True,
+        max_length=255,
+        help_text='Private description of why this restriction was added.',
     )
 
     class Meta:

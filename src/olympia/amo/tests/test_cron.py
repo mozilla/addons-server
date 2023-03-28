@@ -7,15 +7,16 @@ from django.core import mail
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import Addon, DeniedGuid
 from olympia.amo.cron import gc, write_sitemaps
+from olympia.amo.models import FakeEmail
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.constants.activity import RETENTION_DAYS
 from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.scanners import YARA
-from olympia.addons.models import Addon
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
-from olympia.amo.models import FakeEmail
 
 
 @mock.patch('olympia.amo.cron.storage')
@@ -31,7 +32,9 @@ class TestGC(TestCase):
             ActivityLog.objects.create(action=amo.LOG.THROTTLED.id, user=user),
             # Old activity from action that should always be kept.
             ActivityLog.objects.create(
-                action=amo.LOG.LOG_IN.id, user=user, created=self.days_ago(181)
+                action=amo.LOG.LOG_IN.id,
+                user=user,
+                created=self.days_ago(RETENTION_DAYS + 1),
             ),
             # Newer activity that should not be deleted and that should be kept
             # anyway regardless of age because of the action.
@@ -41,7 +44,9 @@ class TestGC(TestCase):
         to_delete = [
             # Old activity that should be deleted
             ActivityLog.objects.create(
-                action=amo.LOG.THROTTLED.id, user=user, created=self.days_ago(181)
+                action=amo.LOG.THROTTLED.id,
+                user=user,
+                created=self.days_ago(RETENTION_DAYS + 1),
             ),
         ]
 
@@ -212,6 +217,9 @@ class TestGC(TestCase):
             assert not Addon.unfiltered.filter(pk=addon.pk).exists()
         for addon in to_keep:
             assert Addon.unfiltered.filter(pk=addon.pk).exists()
+
+        # We pass deny_guids=False.
+        assert not DeniedGuid.objects.exists()
 
         # Make sure no email was sent.
         assert len(mail.outbox) == 0

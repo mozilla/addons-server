@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-05 17:22+0000\n"
-"Last-Translator: ppaiva11144 <ppaiva11144@gmail.com>\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"PO-Revision-Date: 2023-03-22 10:19+0000\n"
+"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -22,57 +22,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "type"
-
-msgid "Users"
-msgstr "Utilisateurs"
-
-msgid "Add-ons"
-msgstr "Modules"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "nombre de rapports minimum (groupés par guid)"
-
-msgid "creation date"
-msgstr "date de création"
-
-msgid "User / Add-on"
-msgstr "Utilisateur / Module complémentaire"
-
-msgid "Distribution"
-msgstr "Distribution"
-
-msgid "Reporter's country"
-msgstr "Pays de la personne qui signale un problème"
-
-msgid "Message excerpt"
-msgstr "Extrait du message"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "Les %d rapports sélectionnés ont été marqués comme valides."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "Les %d rapports sélectionnés ont été marqués comme suspects."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "Marquer les rapports d’abus sélectionnés comme suspects"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Assurez-vous que ce champ ne comporte pas plus de {max_length} caractères."
 
-msgid "Modified on:"
-msgstr "Dernière modification le :"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "Par %(filter_title)s"
-
-msgid "All"
-msgstr "Tous"
+msgid "Invalid value"
+msgstr "Valeur invalide"
 
 msgid "No links are allowed."
 msgstr "Les liens ne sont pas autorisés."
@@ -119,7 +73,9 @@ msgid "Review"
 msgstr "Critique"
 
 msgid "Version {0}"
-msgstr "Version {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "Version {0}"
+msgstr[1] "Versions {0}"
 
 msgid "Review note"
 msgstr "Note de revue"
@@ -127,30 +83,8 @@ msgstr "Note de revue"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Seules les versions les plus récentes des modules peuvent être notées."
 
-msgid "Authors"
-msgstr "Auteurs"
-
-msgid "Ratings"
-msgstr "Notes"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Outils de révision (répertoriés)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Outils de révision (non répertoriés)"
-
-msgid "Reviewer links"
-msgstr "Liens pour la révision"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "Extraction Git déclenchée pour « %(addons)s »."
-
-msgid "Activity Logs"
-msgstr "Journaux d’activité"
-
-msgid "- Add-on not on AMO -"
-msgstr "- Module complémentaire non présent sur AMO -"
+msgid "Request content length is too large."
+msgstr "La taille du contenu de la requête est trop grande."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Nombre maximal de catégories par application ({MAX_CATEGORIES}) dépassé"
@@ -182,9 +116,6 @@ msgstr "Ce type de fichier n’est pas pris en charge, veuillez envoyer une arch
 msgid "Invalid or broken archive."
 msgstr "Archive invalide ou corrompue."
 
-msgid "Invalid value"
-msgstr "Valeur invalide"
-
 msgid "Invalid app specified"
 msgstr "Application invalide spécifiée"
 
@@ -213,6 +144,15 @@ msgstr "Les licences intégrées ne peuvent pas être mises à jour."
 
 msgid "Upload is not valid."
 msgstr "L’envoi n’est pas valide."
+
+msgid "File is already disabled."
+msgstr "Le fichier est déjà désactivé."
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"La dernière version approuvée de ce module complémentaire %s ne peut pas être supprimée, car la version précédente n’a pas été approuvée pour la promotion %s. Si vous avez besoin d’aide à ce sujet, "
+"veuillez contacter les administrateurs d’AMO."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "La version {version} correspond à {block_link} pour ce module complémentaire. Vous pouvez contacter {amo_admins} pour plus d’informations."
@@ -247,8 +187,8 @@ msgstr "Ce raccourci ne peut pas être utilisé. Veuillez en choisir un autre."
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Les noms des modules ne peuvent contenir les marques déposées Mozilla ou Firefox."
 
-msgid "Site permissions for {hostnames}"
-msgstr "Autorisations de site pour {hostnames}"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr "La version {version_string} doit être supérieure à la précédente version approuvée {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "Il n’est pas possible de préciser à la fois `license` et `custom_license`."
@@ -285,9 +225,6 @@ msgstr "Mes modules"
 
 msgid "My Themes"
 msgstr "Mes thèmes"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Outils"
@@ -393,11 +330,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nous sommes désolés, mais nous ne pouvons pas trouver ce que vous cherchez.</h1> <p> La page ou le fichier que vous vouliez n’a pas été trouvé sur notre site. Il est possible que vous ayez "
-"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">renseigner un bogue</a>. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger"
-" le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-"
-"ce que vous voulez <a href=\"%(search)s\">rechercher des modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. "
-"</li> <li> Si vous préférez recommencer, rendez-vous sur <a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
+"cliqué sur un lien mort, ou que l’adresse entrée soit erronée. </p> <ul> <li>Si vous avez saisi l’adresse, vérifiez-la.</li> <li> Si vous avez suivi un lien, merci de %(open_bug_link)ssignaler un "
+"bug%(close_bug_link)s. Dites-nous d’où vous veniez et ce que vous cherchiez, nous ferons notre maximum pour faire en sorte de corriger le problème. </li> </ul> <p>Vous pouvez aussi faire un tour sur"
+" nos pages populaires.</p> <ul> <li>Est-ce qu’une <a href=\"%(rec)s\">liste de modules en vedette</a> vous intéresse ?</li> <li> Est-ce que vous voulez <a href=\"%(search)s\">rechercher des "
+"modules</a> ? Vous pouvez aller sur la <a href=\"%(search)s\">page de recherche</a> ou simplement utiliser le champ de recherche ci-dessus. </li> <li> Si vous préférez recommencer, rendez-vous sur "
+"<a href=\"%(home)s\">la page d’accueil des modules</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oups"
@@ -415,7 +352,7 @@ msgid "Register or Log in"
 msgstr "S’inscrire ou se connecter"
 
 msgid "Email:"
-msgstr "Adresse électronique :"
+msgstr "Adresse e-mail :"
 
 msgid "OK"
 msgstr "OK"
@@ -492,7 +429,7 @@ msgid "Invalid token or hash."
 msgstr "Jeton ou hash invalide."
 
 msgid "Email address not found."
-msgstr "Adresse électronique introuvable."
+msgstr "Adresse e-mail introuvable."
 
 msgid "Unavailable for legal reasons."
 msgstr "Indisponible pour raisons juridiques."
@@ -516,38 +453,6 @@ msgstr "Clé primaire ou identifiant généré « %s » invalide. L’objet n�
 msgid "Confirmation for developer API keys"
 msgstr "Confirmation pour les clés d’API de développeur"
 
-msgid "Application Versions"
-msgstr "Versions des logiciels"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Versions acceptables pour toutes les applications sur AMO."
-
-msgid "Valid Application Versions"
-msgstr "Versions valides de l’application"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Les modules soumis au site Mozilla Add-ons doivent être accompagnés d’un fichier manifeste qui contient au moins un des logiciels listés ci-dessous. Seules les versions listées ci-dessous sont "
-"autorisées."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Veuillez noter que les WebExtensions n’acceptent pas d’astérisque (« * ») dans %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Versions"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"Même si votre logiciel ne requiert pas un fichier manifeste, vous devez toujours en inclure un avec les propriétés idoines comme spécifié "
-"%(amo_manifests_mdn_link_open)sici%(amo_manifests_mdn_link_close)s."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Cette adresse personnalisée est déjà utilisée par une autre de vos collections."
 
@@ -562,9 +467,6 @@ msgstr "Cette adresse personnalisée ne peut pas être utilisée."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
-
-msgid "Signoff State"
-msgstr "État d’approbation"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -597,59 +499,6 @@ msgstr "Revue listée"
 msgid "Review Unlisted"
 msgstr "Revue non listée"
 
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Supprimer plusieurs %(name)s"
-
-msgid "Home"
-msgstr "Accueil"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s GUID de modules sont déjà bloqués pour les versions %(v_min)s à %(v_max)s"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s GUID de modules sont introuvables"
-
-msgid "Save"
-msgstr "Sauvegarder"
-
-msgid "Save and add more"
-msgstr "Enregistrer et ajouter plus"
-
-msgid "Delete"
-msgstr "Supprimer"
-
-msgid "Update"
-msgstr "Actualiser"
-
-msgid "Reject Submission"
-msgstr "Rejeter la soumission"
-
-msgid "Approve Submission"
-msgstr "Approuver la soumission"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "Ajouter %(name)s"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "GUID de modules (un par ligne)"
-
-msgid "Submit"
-msgstr "Envoyer"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s GUID de modules avec %(adu)s utilisateurs"
-
-msgid "Edit Block"
-msgstr "Modifier le blocage"
-
-msgid "versions"
-msgstr "versions"
-
 msgid "{addon} was created."
 msgstr "{addon} a été créé."
 
@@ -662,12 +511,13 @@ msgstr "{addon} description modifiée."
 msgid "Categories edited for {addon}."
 msgstr "Catégories modifiées pour {addon}."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) ajouté à {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr "{user} ({0}) ajouté à {addon}."
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) retiré de {addon}."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr "{user} ({0}) retiré de {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Contributions pour {addon}."
@@ -692,8 +542,8 @@ msgstr "{version} modifiée pour {addon}."
 msgid "Version {0} deleted from {addon}."
 msgstr "Version {0} supprimée du module {addon}."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "Fichier {0.name} ajouté à la version {version} de {addon}."
+msgid "File {file} added to {version} of {addon}."
+msgstr "Fichier {file} ajouté à la version {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Fichier {0} supprimé de la version {version} de {addon}."
@@ -748,9 +598,6 @@ msgstr ""
 "Ce module a été signalé comme devant être revu par un administrateur. Il se trouve toujours dans notre file d’attente, mais il devra être vérifié par nos testeurs administrateurs. Cette revue peut "
 "demander plus de temps que d’habitude."
 
-msgid "Comment on {addon} {version}."
-msgstr "Commentaire sur {addon} {version}."
-
 msgid "Commented"
 msgstr "Commenté"
 
@@ -787,9 +634,9 @@ msgstr "{addon} n’est plus mis en vedette."
 msgid "{0} {1} added."
 msgstr "{0} {1} ajouté."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} est maintenant {1} pour le module {addon}."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr "{user} est maintenant {0} pour le module {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} est maintenant sous licence {0}."
@@ -803,23 +650,17 @@ msgstr "L’icône ou les aperçus de {addon} ont changé."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} pour {addon} approuvée."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} a approuvé {rating} pour {addon}."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "Critique {rating} pour {addon} supprimée."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} a supprimé {rating} pour {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Version maximale d’application mise à jour en {version}."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Auteurs informés par courriel à propos de la compatibilité de {version}."
+msgstr "Auteurs informés par e-mail à propos de la compatibilité de {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Courriel envoyé à l’auteur sur la compatibilité des modules complémentaires."
+msgstr "E-mail envoyé à l’auteur sur la compatibilité des modules complémentaires."
 
 msgid "Password changed."
 msgstr "Mot de passe changé"
@@ -848,18 +689,6 @@ msgstr "Champ modifié : {2} changé en : {0}."
 msgid "Deleted: {1}."
 msgstr "Supprimé : {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "Utilisateur {user} modifié, raison : {1}"
-
-msgid "User {user} anonymized."
-msgstr "Utilisateur {user} anonymisé."
-
-msgid "User {user} restricted."
-msgstr "Utilisateur {user} restreint."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "L’administrateur {0} a lu le journal d’activité de {user}."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} pour {addon} mise à jour."
 
@@ -872,11 +701,11 @@ msgstr "Utilisateur ou utilisatrice {user} banni·e."
 msgid "User {user} picture deleted."
 msgstr "L’image de {user} a été supprimée."
 
-msgid "User {0.name} added to {group}."
-msgstr "Utilisateur {0.name} ajouté dans {group}."
+msgid "User {user} added to {group}."
+msgstr "Utilisateur {user} ajouté dans {group}."
 
-msgid "User {0.name} removed from {group}."
-msgstr "Utilisateur {0.name} retiré de {group}."
+msgid "User {user} removed from {group}."
+msgstr "Utilisateur {user} retiré de {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} non répertorié."
@@ -915,7 +744,7 @@ msgstr "Code source mis en ligne pour {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Code source envoyé"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
 msgstr "Approbation automatique confirmée pour {addon} {version}."
 
 msgid "Auto-Approval confirmed"
@@ -1008,9 +837,6 @@ msgstr "Validation de l’action de blocage"
 msgid "User {user} session(s) reset."
 msgstr "Réinitialisation des sessions de l’utilisateur {user}."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "Utilisateur {user} limité pour le scope « {0} »"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "Rejet de contenu programmé pour {addon} {version}."
 
@@ -1029,23 +855,17 @@ msgstr "{addon} {version} re-signé (précédemment {0})."
 msgid "Version re-signed"
 msgstr "Version re-signée"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} a désactivé de force {addon}."
+msgid "{addon} {version} un-rejected."
+msgstr "{addon} {version} non rejeté."
 
-msgid "Force disabled"
-msgstr "Désactivé de force"
+msgid "Un-rejected"
+msgstr "Non rejeté"
 
-msgid "{user} force-enabled {addon}."
-msgstr "{user} a activé de force {addon}."
+msgid "{addon} needs_human_review flag cleared."
+msgstr "Indicateur needs_human_review pour {addon} effacé."
 
-msgid "Force enabled"
-msgstr "Activé de force"
-
-msgid "{user} logged in."
-msgstr "{user} connecté·e."
-
-msgid "{user} restricted."
-msgstr "{user} restreint·e."
+msgid "Needs Human Review cleared"
+msgstr "« Nécessite une évaluation humaine » retiré"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1539,23 +1359,8 @@ msgstr "À la une"
 msgid "Strategic"
 msgstr "Stratégique"
 
-msgid "Add-on"
-msgstr "Module"
-
-msgid "Static Theme"
-msgstr "Thème statique"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Sécurité"
-
-msgid "Privacy"
-msgstr "Confidentialité"
-
-msgid "Development Practices"
-msgstr "Pratiques de développement"
+msgid "Notable"
+msgstr "Notable"
 
 msgid "No Reputation"
 msgstr "Aucune évaluation"
@@ -1568,108 +1373,6 @@ msgstr "Très bien (2)"
 
 msgid "Excellent (3)"
 msgstr "Excellent (3)"
-
-msgid "Manual Reviewer Points"
-msgstr "Points de vérification manuel"
-
-msgid "New Legacy Add-on Review"
-msgstr "Nouvelle révision des modules obsolètes"
-
-msgid "Preliminary Add-on Review"
-msgstr "Vérification préliminaire de module"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Révision des modules obsolètes qui ont été mis à jour"
-
-msgid "New Dictionary Review"
-msgstr "Nouvelle revue du dictionnaire"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Revue préliminaire du dictionnaire"
-
-msgid "Updated Dictionary Review"
-msgstr "Mise à jour de la revue du dictionnaire"
-
-msgid "New Language Pack Review"
-msgstr "Revue de nouveau paquetage de langue"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Revue préliminaire du paquetage de langue"
-
-msgid "Updated Language Pack Review"
-msgstr "Mise à jour de la revue du paquetage de langue"
-
-msgid "Theme Review"
-msgstr "Revue de thème"
-
-msgid "Theme (Static) Review"
-msgstr "Revue du thème (statique)"
-
-msgid "New Search Provider Review"
-msgstr "Revue de nouveau moteur de recherche"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Revue préliminaire du fournisseur de recherche"
-
-msgid "Updated Search Provider Review"
-msgstr "Mise à jour de la revue du fournisseur de recherche"
-
-msgid "New Complete Theme Review"
-msgstr "Revue de nouveau thème complet"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Revue préliminaire de thème complet"
-
-msgid "Updated Complete Theme Review"
-msgstr "Mise à jour de la revue de thème complet"
-
-msgid "Moderated Add-on Review"
-msgstr "Commentaire du module modéré"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Revue du module annulée lors de la modération"
-
-msgid "Add-on Content Review"
-msgstr "Validation du contenu du module"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Révision des modules (risque le plus élevé)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Révision des modules (risque élevé)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Révision des modules (risque moyen)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Révision des modules (risque peu élevé)"
-
-msgid "Level 1"
-msgstr "Niveau 1"
-
-msgid "Level 2"
-msgstr "Niveau 2"
-
-msgid "Level 3"
-msgstr "Niveau 3"
-
-msgid "Level 4"
-msgstr "Niveau 4"
-
-msgid "Level 5"
-msgstr "Niveau 5"
-
-msgid "Level 6"
-msgstr "Niveau 6"
-
-msgid "Level 7"
-msgstr "Niveau 7"
-
-msgid "Level 8"
-msgstr "Niveau 8"
-
-msgid "Level 9"
-msgstr "Niveau 9"
 
 msgid "Request More Info"
 msgstr "Demander plus d’informations"
@@ -1686,32 +1389,11 @@ msgstr "Rejeter"
 msgid "Approve"
 msgstr "Approuver"
 
-msgid "Sexual or pornographic content"
-msgstr "Contenu sexuel ou pornographique"
+msgid "All"
+msgstr "Tous"
 
-msgid "Inappropriate or offensive content"
-msgstr "Contenu inapproprié ou choquant"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Violence, guerre, ou images d’armes"
-
-msgid "Nazi or other hate content"
-msgstr "Contenu haineux"
-
-msgid "Defamatory content"
-msgstr "Contenu diffamatoire"
-
-msgid "Online gambling"
-msgstr "Jeux de hasard en ligne"
-
-msgid "Spam content"
-msgstr "Spam"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Image vide, de mauvaise qualité ou inadaptée"
-
-msgid "Header image alignment problem"
-msgstr "Problème d’alignement de l’image d’en-tête"
+msgid "Theme"
+msgstr "Thème"
 
 msgid "No action"
 msgstr "Aucune action"
@@ -1774,6 +1456,23 @@ msgstr "Changements récents pour mes modules"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 "Les modules complémentaires Open Search {blog_link_open}ne sont plus pris en charge sur AMO{blog_link_close}. Vous pouvez créer une {doc_link_open}extension de recherche{doc_link_close} à la place."
+
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
+
+msgid "Manifest V3 compatibility warning"
+msgstr "Avertissement de compatibilité avec le manifeste V3"
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+"Firefox ajoute la prise en charge des extensions reposant sur le manifeste version 3 (MV3) dans Firefox {version}, cependant, les anciennes versions de Firefox ne sont compatibles qu’avec les "
+"extensions reposant sur le manifeste version 2 (MV2). Nous vous recommandons d’héberger vous-même les extensions Manifest V3 pour le moment afin de ne pas rompre la compatibilité pour vos "
+"utilisateurs."
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr "Pour plus d’informations sur le déploiement des extensions MV3 ou des extensions MV3 auto-hébergées, consultez https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."
@@ -1908,18 +1607,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Nom à afficher"
 
-msgid "Origin"
-msgstr "Origine"
-
-msgid "Permissions"
-msgstr "Permissions"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Vous avez généré un module complémentaire d’autorisation de site pour la même origine et les mêmes autorisations."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "L’origine ne devrait inclure qu’un schéma (protocole), un nom d’hôte (domaine) et un port facultatif"
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Fichier du module complémentaire invalide ou corrompu."
 
@@ -1935,9 +1622,6 @@ msgstr "Avis de sécurité Mozilla : vos identifiants d’API AMO ont été ré
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "La validation a généré trop d’erreurs ou d’avertissements, et %s messages ont été tronqués. Après avoir corrigé les messages visibles, vous pourrez voir les autres."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
 
 msgid "Updated"
 msgstr "Mis à jour"
@@ -1994,7 +1678,7 @@ msgid "Invitation declined."
 msgstr "Invitation refusée."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr "Un courriel de confirmation a été envoyé à {email}"
+msgstr "Un e-mail de confirmation a été envoyé à {email}"
 
 msgid "Changes successfully saved."
 msgstr "Modifications enregistrées avec succès."
@@ -2164,15 +1848,6 @@ msgstr "Chercher dans les documentations développeur"
 msgid "Search"
 msgstr "Recherche"
 
-msgid "Generate Site Permission Add-on"
-msgstr "Générer un module complémentaire d’autorisation de site"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "L’origine (schéma + nom d’hôte + port facultatif) pour laquelle vous avez besoin d’activer l’autorisation. Ce sera également là où vous devrez héberger le module complémentaire."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "La ou les autorisations que le module complémentaire généré accordera sur l’origine."
-
 msgid "Use the field below to upload your add-on package."
 msgstr "Utilisez le champ ci-dessous pour envoyer votre paquet de module."
 
@@ -2208,6 +1883,9 @@ msgstr "Aucun résultat."
 
 msgid "Refine Activity"
 msgstr "Affiner les activités"
+
+msgid "Add-on"
+msgstr "Module"
 
 msgid "Activity"
 msgstr "Activité"
@@ -2324,6 +2002,9 @@ msgstr "Refuser"
 
 msgid "Manage Authors & License"
 msgstr "Gérer les auteurs et la licence"
+
+msgid "Authors"
+msgstr "Auteurs"
 
 msgid "About author roles"
 msgstr "À propos des rôles des auteurs"
@@ -2457,14 +2138,14 @@ msgstr ""
 "visibilité maximale."
 
 msgid "Email"
-msgstr "Courriel"
+msgstr "Adresse e-mail"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Si vous souhaitez afficher une adresse électronique pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes "
-"traductions de ce champ. Ce champ n’est utile que pour les modules répertoriés."
+"Si vous souhaitez afficher une adresse e-mail pour les demandes d’assistance, saisissez-la ici. Si vous avez différentes adresses pour chaque langue, vous pouvez ajouter les différentes traductions "
+"de ce champ. Ce champ n’est utile que pour les modules répertoriés."
 
 msgid "Website"
 msgstr "Site Web"
@@ -2493,7 +2174,7 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Un utilisateur final de ces informations devrait pouvoir savoir qu’elles ne s’appliquent pas forcément au résumé ou à la description du module. On fournit habituellement la liste des bogues connus, "
+"Un utilisateur final de ces informations devrait pouvoir savoir qu’elles ne s’appliquent pas forcément au résumé ou à la description du module. On fournit habituellement la liste des bugs connus, "
 "des informations sur la façon de faire remonter les problèmes, les prévisions de publication pour les futures versions, etc. Ceci ne s’applique qu’aux modules répertoriés."
 
 msgid "Universally unique identifier"
@@ -2672,6 +2353,9 @@ msgstr "Reprendre"
 msgid "Delete this add-on."
 msgstr "Supprimer ce module."
 
+msgid "Delete"
+msgstr "Supprimer"
+
 msgid "Edit details on this add-on's product page"
 msgstr "Modifiez les détails de la page produit de ce module complémentaire"
 
@@ -2773,7 +2457,7 @@ msgid "Select a category for this add-on:"
 msgstr "Sélectionnez une catégorie pour ce module :"
 
 msgid "Support email:"
-msgstr "Courriel d’assistance :"
+msgstr "E-mail d’assistance :"
 
 msgid "Support website:"
 msgstr "Site d’assistance :"
@@ -3051,7 +2735,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Cliquez sur le bouton de confirmation pour générer une clé d’API pour l’utilisateur <strong>%(name)s</strong>"
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Un lien de confirmation vous sera envoyé par courrier électronique. Après confirmation, vous trouverez vos clés d’API sur cette page."
+msgstr "Un lien de confirmation vous sera envoyé par e-mail. Après confirmation, vous trouverez vos clés d’API sur cette page."
 
 msgid "You don't have any API credentials."
 msgstr "Vous n’avez aucune information permettant de vous authentifier avec l’API."
@@ -3163,14 +2847,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Complétez votre module en ajoutant une version ou les métadonnées manquantes."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Vous recevrez un courriel quand la revue sera finie. En attendant, votre module ne sera pas accessible via la galerie mais vous pourrez y accéder directement depuis la page des détails. "
+msgstr "Vous recevrez un e-mail quand la revue sera finie. En attendant, votre module ne sera pas accessible via la galerie mais vous pourrez y accéder directement depuis la page des détails. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Votre module est affiché dans notre galerie et les utilisateurs reçoivent les mises à jour automatiques."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr ""
-"Votre module a été désactivé par un administrateur du site, il n’apparaît plus dans notre galerie. Si vous avez des questions, veuillez envoyer un courrier électronique à amo-admins@mozilla.com."
+msgstr "Votre module a été désactivé par un administrateur du site, il n’apparaît plus dans notre galerie. Si vous avez des questions, veuillez envoyer un e-mail à amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3348,7 +3031,7 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Restez à jour sur les nouveautés et les évènements pour les développeurs d’extensions Firefox."
 
 msgid "Email Address"
-msgstr "Adresse électronique"
+msgstr "Adresse e-mail"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -3780,7 +3463,7 @@ msgstr "Empêchez les sites web malveillants d’utiliser la puissance de votre 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, courriels, documents, etc."
+msgstr "Bénéficiez d’une assistance grammaticale chaque fois que vous écrivez sur le Web : réseaux sociaux, e-mails, documents, etc."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4058,7 +3741,7 @@ msgstr "Ouvrez un nouvel onglet immédiatement à droite de l’onglet actif et 
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Repoussez le spam. Utilisez d’astucieuses adresses électroniques temporaires pour rester anonyme et éviter les spams."
+msgstr "Repoussez le spam. Utilisez d’astucieuses adresses e-mail temporaires pour rester anonyme et éviter les spams."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -4075,10 +3758,6 @@ msgstr "Accédez directement (sans redirection) au site web qui vous intéresse.
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
 msgstr "WhatsApp sur le Web. Connectez-vous à WhatsApp à partir du panneau de la barre d’outils de Firefox et recevez des notifications par badge pour les conversations non lues."
-
-#. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Obtenez des traductions expertes en allemand à partir de l’anglais, du français, de l’espagnol et d’autres langues encore."
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
@@ -4557,12 +4236,16 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Tous les émojis dont vous avez besoin — toujours à portée de clic."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Arrêtez de donner votre adresse e-mail aux sites. Firefox Relay protège votre identité et empêche le courrier indésirable."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Masquez votre adresse e-mail. Firefox Relay protège votre identité et empêche le courrier indésirable."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr "Changement du thème selon l’heure. Faites en sorte que Firefox change ses couleurs en fonction de l’avancée du jour."
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr "Allégez votre expérience Twitter."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4619,8 +4302,8 @@ msgstr "Revenez à une époque plus simple — lorsque les meilleurs résultats 
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
-"Arrêtez de donner aux sites votre adresse électronique. Firefox Relay protège votre identité et empêche les messages indésirables. Passez à Relay Premium pour bénéficier d’avantages supplémentaires,"
-" comme le blocage d’e-mails publicitaires mieux ciblé."
+"Arrêtez de donner aux sites votre adresse e-mail. Firefox Relay protège votre identité et empêche les messages indésirables. Passez à Relay Premium pour bénéficier d’avantages supplémentaires, comme"
+" le blocage d’e-mails publicitaires mieux ciblé."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4682,6 +4365,10 @@ msgstr "Protection de la vie privée contre la détection d’empreinte numériq
 msgid "Enhance your gaming experience on Steam."
 msgstr "Améliorez votre expérience de jeu sur Steam."
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr "Un pouce levé pour faire revenir les pouces vers le bas."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Les extensions sont comme des applications pour Firefox."
@@ -4695,17 +4382,16 @@ msgid "See all extensions"
 msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Bloqueurs de publicité surpuissants"
+msgid "Extension starter pack"
+msgstr "Extensions pour démarrer"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Extensions contre le pistage"
+msgid "Download Managers"
+msgstr "Gestionnaire de téléchargements"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
-msgstr "Extensions pour les autrices et auteurs"
+msgid "Games & Entertainment extensions"
+msgstr "Extensions de jeux et de divertissement"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4793,6 +4479,10 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "Voir plus d’extensions marquées « {tag} »"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Bloqueurs de publicité surpuissants"
+
+#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Voir plus d’extensions pour le blocage des publicités choisies par l’équipe"
 
@@ -4844,12 +4534,15 @@ msgstr "Extensions pour la créativité"
 msgid "See more creativity staff picks"
 msgstr "Voir davantage d’extensions pour la créativité choisies par l’équipe"
 
-msgid "Rejected or Unreviewed"
-msgstr "Rejeté ou non validé"
+msgid "Unreviewed"
+msgstr "Non vérifié"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[état :%s]"
+
+msgid "This upload has already been submitted."
+msgstr "Cet envoi a déjà été soumis."
 
 msgid "Could not parse the manifest file."
 msgstr "Impossible d’analyser le fichier manifeste."
@@ -4866,6 +4559,9 @@ msgstr "{app} : « strict_min_version » {appver} inconnu"
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} : « strict_max_version » {appver} inconnu"
 
+msgid "Unsupported compression method in archive."
+msgstr "Méthode de compression non prise en charge dans l’archive."
+
 msgid "Unsupported archive type."
 msgstr "Type d’archive non pris en charge."
 
@@ -4880,11 +4576,20 @@ msgstr "Nom de fichier invalide dans l’archive : {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fichier dépassant la taille limite dans l’archive : {0}"
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr "Cette archive contient un fichier spécial interdit (lien symbolique ou physique, fichier de périphérique ou de bloc)"
+
 msgid "Uncompressed size is too large"
 msgstr "La taille non compressée est trop grande"
 
 msgid "Invalid archive."
 msgstr "Archive invalide."
+
+msgid "No manifest.json found"
+msgstr "Aucun fichier manifest.json trouvé"
+
+msgid "Invalid or corrupted file."
+msgstr "Fichier invalide ou corrompu."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4893,8 +4598,8 @@ msgstr "L’identifiant du module dans votre manifest.json (%s) ne correspond pa
 msgid "Duplicate add-on ID found."
 msgstr "Un identifiant identique a été trouvé."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "Les numéros de versions doivent comprendre moins de 32 caractères."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr "Les numéros de versions doivent comprendre {max_length} caractères au maximum."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Les numéros de versions doivent uniquement contenir des lettres, des chiffres, et les caractères suivants : +*.-_."
@@ -4914,6 +4619,9 @@ msgstr "Vous ne pouvez pas soumettre une extension signée par Mozilla"
 msgid "You cannot submit a language pack"
 msgstr "Vous ne pouvez pas soumettre de paquetage linguistique"
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr "La langue d’un paquetage linguistique ou d’un dictionnaire ne peut pas être modifiée"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Ce type de fichier n’est pas pris en charge, veuillez envoyer un fichier {extensions}."
 
@@ -4930,12 +4638,6 @@ msgstr "La clé « upload » est absente du fichier de données multipart."
 msgid "Missing \"channel\" arg."
 msgstr "Argument « canal » manquant"
 
-msgid "User"
-msgstr "Utilisateur"
-
-msgid "IP Address"
-msgstr "Adresse IP"
-
 msgid "Spam or otherwise non-review content"
 msgstr "Spam ou contenu qui n’est pas une critique du module"
 
@@ -4943,7 +4645,7 @@ msgid "Inappropriate language/dialog"
 msgstr "Langage inapproprié"
 
 msgid "Misplaced bug report or support request"
-msgstr "Rapport de bogue ou demande d’assistance inadéquate dans ce contexte"
+msgstr "Rapport de bug ou demande d’assistance inadéquate dans ce contexte"
 
 msgid "Other (please specify)"
 msgstr "Autre (veuillez préciser)"
@@ -4993,490 +4695,9 @@ msgstr "Noté {0} sur 5 étoiles"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "Noté %(rating)s sur 5 étoiles"
 
-msgid "Approved reviews"
-msgstr "Revues approuvées"
-
-msgid "Deleted reviews"
-msgstr "Revues supprimées"
-
-msgid "View entries between"
-msgstr "Voir les entrées entre"
-
-msgid "and"
-msgstr "et"
-
-msgid "Filter by type/action"
-msgstr "Filtrer par type/action"
-
-msgid "containing"
-msgstr "contenant"
-
-msgid "start"
-msgstr "début"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "fin"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "module, évaluateur ou commentaire"
-
-msgid "Comments:"
-msgstr "Commentaires :"
-
-msgid "Operating systems:"
-msgstr "Systèmes d’exploitation :"
-
-msgid "Applications:"
-msgstr "Applications :"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Retarder le rejet, demandant au développeur de corriger en moins de…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Rejeter immédiatement. À n’utiliser qu’en cas de graves problèmes de sécurité."
-
-msgid "days"
-msgstr "jours"
-
-msgid "Choose one or more reasons:"
-msgstr "Choisissez une ou plusieurs raisons :"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Incompatibilité de version — la version la plus récente a changé"
-
-msgid "Choose a canned response..."
-msgstr "Choisissez une réponse enregistrée…"
-
-msgid "Private Whiteboard"
-msgstr "Tableau blanc privé"
-
-msgid "Keep review; remove flags"
-msgstr "Conserver la revue ; retirer les signalements"
-
-msgid "Skip for now"
-msgstr "Passer pour le moment"
-
-msgid "Delete review"
-msgstr "Supprimer la critique"
-
-msgid "Needs Admin Code Review"
-msgstr "Nécessite une revue du code par un administrateur"
-
-msgid "Needs Admin Content Review"
-msgstr "Nécessite une revue du contenu par un administrateur"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Nécessite la revue du thème statique par un administrateur"
-
-msgid "Sources provided"
-msgstr "Sources fournies"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Approbation automatique temporairement retardée"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Approbation automatique retardée indéfiniment"
-
-msgid "Is locked by a reviewer"
-msgstr "Verrouillée par un évaluateur"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Le marqueur d’approbation automatique est désactivé/retardé"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Fait partie d’un groupe de modules complémentaires promus qui nécessite un examen préalable"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Retardé parce que c’est la première version listée"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "La chaîne de version et le GUID correspondent à un blocage de la liste de blocage."
-
-msgid "Weight breakdown not available."
-msgstr "Répartition des poids non disponible."
-
-msgid "Is available to be used in reviews"
-msgstr "Est disponible pour être utilisé dans les critiques"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "Vous ne pouvez pas soumettre de commentaire si « canned_response » est défini."
-
-msgid "You can't submit an empty comment."
-msgstr "Vous ne pouvez pas soumettre de commentaire vide."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "Vous ne pouvez pas soumettre un numéro de ligne sans l’associer à un nom de fichier."
-
-msgid "ID"
-msgstr "Identifiant"
-
-msgid "Flags"
-msgstr "Signalements"
-
-msgid "Last Review"
-msgstr "Dernière revue"
-
-msgid "Code Weight"
-msgstr "Poids du code"
-
-msgid "Metadata Weight"
-msgstr "Poids des métadonnées"
-
-msgid "Total Weight"
-msgstr "Poids total"
-
-msgid "Maliciousness Score"
-msgstr "Score de malveillance"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Waiting Time"
-msgstr "Temps d’attente"
-
-msgid "Pending Rejection Deadline"
-msgstr "En attente de date limite de rejet"
-
-msgid "Last Updated"
-msgstr "Dernière mise à jour"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "Versions publiées nécessitant un examen manuel ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Versions non publiées nécessitant un examen manuel ({0})"
-
-msgid "Listed version"
-msgstr "Versions publiée"
-
-msgid "Unlisted versions ({0})"
-msgstr "Versions non publiées ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Cette action approuvera, signera et publiera cette version. Les commentaires seront envoyés au développeur."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Cette action rejettera le module et le supprimera de la file d’attente. Les commentaires seront envoyés au développeur."
-
-msgid "Approve Content"
-msgstr "Approuver le contenu"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Cela enregistre votre approbation du contenu de la dernière version publique, sans en informer le développeur."
-
-msgid "Confirm Approval"
-msgstr "Confirmer l’approbation"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "La dernière version publique de ce module a été automatiquement approuvée. Ce message confirme votre approbation de cette version, sans en informer le développeur."
-
-msgid "Approve Multiple Versions"
-msgstr "Approuver plusieurs versions"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "Cette action approuvera les versions sélectionnées. Les commentaires seront envoyés au développeur."
-
-msgid "Reject Multiple Versions"
-msgstr "Rejeter plusieurs versions"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Cette action rejettera les versions sélectionnées. Les commentaires seront envoyés au développeur."
-
-msgid "Block Multiple Versions"
-msgstr "Bloquer plusieurs versions"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "Cela désactivera silencieusement les versions approuvées sélectionnées et ouvrira la page d’administration de création de bloc."
-
-msgid "Confirm Multiple Versions"
-msgstr "Confirmer plusieurs versions"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Cela confirmera l’approbation des versions sélectionnées sans en informer le développeur."
-
-msgid "Reviewer reply"
-msgstr "Réponse d’un évaluateur"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Cette action enverra un message au développeur. Vous serez notifié lorsqu’il vous répondra."
-
-msgid "Request super-review"
-msgstr "Demander une super-revue"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Si vous pensez que ce module devrait être revu par un administrateur, saisissez vos commentaires dans la zone ci-dessous. Ils ne seront pas envoyés au développeur."
-
-msgid "Comment"
-msgstr "Commentaire"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Faire un commentaire sur cette version. Le développeur ne pourra pas le voir."
-
-msgid "Pre-Review Add-ons"
-msgstr "Revue préliminaire des modules"
-
-msgid "Recommended ({0})"
-msgstr "Recommandés ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "Autres modules en phase de révision ({0})"
-
-msgid "Review Log"
-msgstr "Journal des revues"
-
-msgid "Add-on Review Guide"
-msgstr "Guide de revue des modules complémentaires"
-
-msgid "Security Scanners"
-msgstr "Scanners de sécurité"
-
-msgid "Flagged By Scanners"
-msgstr "Signalé par des scanners"
-
-msgid "Flagged for Human Review"
-msgstr "Marqué pour examen manuel"
-
-msgid "Auto-Approved Add-ons"
-msgstr "Modules approuvés automatiquement"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Modules approuvés automatiquement ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Historique de revue du module"
-
-msgid "Review Guide"
-msgstr "Guide de revue"
-
-msgid "Content Review"
-msgstr "Revue du contenu"
-
-msgid "Content Review ({0})"
-msgstr "Revue du contenu ({0})"
-
-msgid "New ({0})"
-msgstr "Nouveau ({0})"
-
-msgid "Updates ({0})"
-msgstr "Mises à jour ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Guide de revue des thèmes"
-
-msgid "User Ratings Moderation"
-msgstr "Modération des notes d’utilisateurs"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Notes en attente de modération ({0})"
-
-msgid "Moderated Review Log"
-msgstr "Historique de revue modéré"
-
-msgid "Moderation Guide"
-msgstr "Guide de modération"
-
-msgid "Unlisted Add-ons"
-msgstr "Modules non répertoriés"
-
-msgid "All Unlisted Add-ons"
-msgstr "Tous les modules non répertoriés"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Modules complémentaires non répertoriés en attente d’approbation manuelle"
-
-msgid "Announcement"
-msgstr "Annonce"
-
-msgid "Update message of the day"
-msgstr "Mettre à jour le message du jour"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Modules complémentaires en attente de rejet ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Une erreur inconnue est survenue"
-
-msgid "Self-reviews are not allowed."
-msgstr "Les auto-revues ne sont pas autorisées."
-
-msgid "Review successfully processed."
-msgstr "Revue complétée avec succès."
-
-msgid "Review lock limit reached"
-msgstr "Limite atteinte pour les revues"
-
-msgid "{addon} – EULA"
-msgstr "{addon} — accord de licence"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} — Politique de confidentialité"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Rapports d’abus – {addon} – Modules complémentaires pour Firefox"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Rapports d’abus pour {addon} et ses développeurs ({num})"
-
-msgid "Abuse Reports"
-msgstr "Rapporter un abus"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Information pour le module {0}"
-
-msgid "Add-on ID"
-msgstr "Identifiant du module"
-
-msgid "Original Add-on ID"
-msgstr "Identifiant de l’extension d’origine"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Modules qui partagent le même identifiant"
-
-msgid "Internal AMO ID"
-msgstr "Identifiant interne AMO"
-
-msgid "Support Website"
-msgstr "Site d’assistance"
-
-msgid "Visibility"
-msgstr "Visibilité"
-
-msgid "Visible"
-msgstr "Visible"
-
-msgid "Weekly Downloads"
-msgstr "Téléchargements hebdomadaires"
-
-msgid "Average Daily Users"
-msgstr "Moyenne des utilisateurs quotidiens"
-
-msgid "View Privacy Policy"
-msgstr "Voir la politique de vie privée"
-
-msgid "Requires Payment"
-msgstr "Nécessite un paiement"
-
-msgid "EULA"
-msgstr "CLUF"
-
-msgid "View End-User License Agreement"
-msgstr "Voir les conditions générales d’utilisation"
-
-msgid "Last Approval Date"
-msgstr "Dernière date d’approbation"
-
-msgid "Abuse Reports ({num})"
-msgstr "Signalements d’abus ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "Avis négatifs d’utilisateurs ({num})"
-
-msgid "Theme Images"
-msgstr "Images du thème"
-
-msgid "Rendered Preview"
-msgstr "Aperçu du rendu"
-
-msgid "More about this add-on"
-msgstr "En savoir plus sur ce module"
-
-msgid "Image Gallery"
-msgstr "Galerie d’images"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Pas d’autres précisions disponibles. Le développeur n’a pas donné de détails."
-
-msgid "Add-on name translations"
-msgstr "Traductions du nom du module"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Outils de vérification – Modules complémentaires pour Firefox"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Retourner au tableau de bord des outils pour les testeurs"
-
-msgid "Reviewer Leaderboard"
-msgstr "Récapitulatif de l’éditeur"
-
-msgid "No review points awarded yet."
-msgstr "Pas encore de point de vérification gagné."
-
-msgid "Rank"
-msgstr "Rang"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Journal de modération de vérification – Modules complémentaires pour Firefox"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Filtrer"
-
-msgid "Date"
-msgstr "Date"
-
-msgid "Event"
-msgstr "Évènement"
-
-msgid "More details."
-msgstr "Plus de détails."
-
-msgid "No events found for this period."
-msgstr "Pas d’évènement trouvé pour cette période."
-
-msgid "Log details"
-msgstr "Enregistrer les détails"
-
-msgid "Review Author"
-msgstr "Auteur du commentaire"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Titre du module"
-
-msgid "Review Text"
-msgstr "Texte de la revue"
-
-msgid "Review was flagged prior to deletion."
-msgstr "La revue a été marquée avant sa suppression."
-
-msgid "Undelete"
-msgstr "Annuler la suppression"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– Outils de vérification – Modules complémentaires pour Firefox"
-
-msgid "Back to review"
-msgstr "Retour à la revue"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Examen du contenu – Modules complémentaires pour Firefox"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Modules complémentaires approuvés automatiquement – Modules complémentaires pour Firefox"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Modération de vérification – Modules complémentaires pour Firefox"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Modules complémentaires non publiés – Modules complémentaires pour Firefox"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "En attente de rejet – modules complémentaires pour Firefox"
-
-msgid "Process Reviews"
-msgstr "Procéder aux revues"
-
-msgid "Moderation actions:"
-msgstr "Actions de modération :"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5486,257 +4707,12 @@ msgstr "par %(user)s le %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Noté par %(user)s le %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Toutes les revues ont été modérées. Bon travail !"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Il n’y a actuellement aucun module de ce type à vérifier."
-
-msgid "Helpful Links:"
-msgstr "Liens utiles :"
-
-msgid "Add-on Policy"
-msgstr "Politique du module"
-
-msgid "Reviewer's Guide"
-msgstr "Guide de revue"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – modules complémentaires pour Firefox"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "Revue de contenu pour {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "Revue {0}"
-
-msgid "Add-on important changes history"
-msgstr "Historique des modifications importantes du module"
-
-msgid "Add-on History"
-msgstr "Historique du module"
-
-msgid "You don't have permission to review it."
-msgstr "Vous n’avez pas la permission de faire cette revue."
-
-msgid "Please select one or more versions in the list below."
-msgstr "Veuillez sélectionner une ou plusieurs versions dans la liste ci-dessous."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Vous pouvez toujours envoyer ce formulaire, cependant ne le faites que si vous savez que cela n’entrera pas en conflit."
-
-msgid "Insert canned response..."
-msgstr "Insérez une réponse enregistrée…"
-
-msgid "Files:"
-msgstr "Fichiers :"
-
-msgid "Tested on:"
-msgstr "Testé sur :"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Attention !</strong> Un autre utilisateur regardait cette page avant vous."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-"Le tableau blanc est un endroit pour échanger des informations relatives au module (quelle que soit la version) entre le développeur et l’éditeur. Le tableau peut être vu et édité par les deux."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
-"Ce tableau blanc privé est utilisé au sein des relecteurs pour partager des informations qui sont indépendantes de la version. Veillez à rester objectif. Il n’est visible que par les relecteurs."
-
-msgid "Update whiteboards"
-msgstr "Mettre à jour les tableaux blancs"
-
-msgid "More Actions"
-msgstr "Plus d’actions"
-
-msgid "Notify me about new listed versions"
-msgstr "M’informer des nouvelles versions listées"
-
-msgid "Notify me about new unlisted versions"
-msgstr "M’informer des nouvelles versions non répertoriées"
-
-msgid "Allow resubmission"
-msgstr "Autoriser une nouvelle soumission"
-
-msgid "Deny resubmission"
-msgstr "Interdire une nouvelle soumission"
-
-msgid "Force-disable add-on"
-msgstr "Forcer la désactivation du module"
-
-msgid "Force-enable add-on"
-msgstr "Forcer l’activation du module"
-
-msgid "Disable Listed Auto-Approval"
-msgstr "Désactiver l’approbation automatique de module publié"
-
-msgid "Enable Listed Auto-Approval"
-msgstr "Activer l’approbation automatique de module publié"
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Désactiver l’approbation automatique non répertoriée"
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Activer l’approbation automatique non répertoriée"
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Désactiver l’approbation automatique répertoriée jusqu’à la prochaine approbation manuelle"
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Activer l’approbation automatique répertoriée avant la prochaine approbation manuelle"
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Désactiver l’approbation automatique des modules non répertoriés jusqu’à la prochaine approbation manuelle"
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Activer l’approbation automatique des modules non répertoriés avant la prochaine approbation manuelle"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "L’approbation automatique est actuellement désactivée jusqu’au {date}"
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Effacer le délai supplémentaire d’approbation automatique"
-
-msgid "Clear pending rejections"
-msgstr "Effacer les refus en attente"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Enlever le signalement de revue de code par un administrateur"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Enlever le signalement de revue de contenu par un administrateur"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Enlever le signalement de revue de thème statique par un administrateur"
-
-msgid "View Blocklist Submission"
-msgstr "Afficher la soumission de la liste de blocage"
-
-msgid "Block add-on"
-msgstr "Bloquer le module"
-
-msgid "Update add-on block"
-msgstr "Mettre à jour le blocage de module complémentaire"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Page d’administration"
-
-msgid "Review This Add-on"
-msgstr "Vérifier ce module"
-
-msgid "More Information"
-msgstr "Plus d’informations"
-
-msgid "Resolution"
-msgstr "Résolution"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Journal de vérification des modules complémentaires – Modules complémentaires pour Firefox"
-
-msgid "Reviewer"
-msgstr "Testeur"
-
-msgid "Add-on has been deleted."
-msgstr "Le module a été supprimé."
-
-msgid "Show Comments"
-msgstr "Voir les commentaires"
-
-msgid "Hide Comments"
-msgstr "Cacher les commentaires"
-
-msgid "No reviews found for this period."
-msgstr "Pas de revue trouvée pour cette période."
-
-msgid "Origin:"
-msgstr "Origine :"
-
-msgid "Method:"
-msgstr "Méthode :"
-
-msgid "Source:"
-msgstr "Source :"
-
-msgid "Source URL:"
-msgstr "URL source :"
-
-msgid "Dismiss this announcement"
-msgstr "Rejeter cette annonce"
-
-msgid "Files in this version:"
-msgstr "Fichiers dans cette version :"
-
-msgid "All Platforms"
-msgstr "Toutes les plateformes"
-
-msgid "Browse all files in this version"
-msgstr "Parcourir tous les fichiers de cette version"
-
-msgid "Contents"
-msgstr "Contenu"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "Comparer cette version à la dernière version vérifiée"
-
-msgid "Compare"
-msgstr "Comparer"
-
-msgid "Permissions:"
-msgstr "Permissions :"
-
-msgid "Optional permissions:"
-msgstr "Autorisations facultatives :"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Par %(user)s le %(date)s</div>"
-
-msgid "Older"
-msgstr "Plus ancien"
-
-msgid "Newer"
-msgstr "Plus récent"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} versions signalées par des scanners sur d’autres pages."
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} versions signalées pour un examen manuel sur d’autres pages."
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} versions sont en attente de rejet sur d’autres pages."
-
-msgid "Recent Points"
-msgstr "Points récents"
-
-msgid "No points awarded yet."
-msgstr "Pas encore de point gagné."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Top des testeurs (7 derniers jours)"
-
-msgid "No top reviewers yet."
-msgstr "Pas encore de meilleur éditeur."
-
-msgid "All Time"
-msgstr "Toujours"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Vous avez <span>{0}</span> points."
-
-msgid "Theme"
-msgstr "Thème"
-
-msgid "No results found"
-msgstr "Aucun résultat trouvé"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5746,101 +4722,17 @@ msgstr "%(user)s le %(date)s [%(ip_address)s]"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-msgid "(Confirmed)"
-msgstr "(Confirmé)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "Rejet en attente de la revue de la nouvelle version"
-
-msgid "Compatibility:"
-msgstr "Compatibilité :"
-
-msgid "Additional sources:"
-msgstr "Sources supplémentaires :"
-
-msgid "Download files"
-msgstr "Télécharger les fichiers"
-
-msgid "The developer has provided source code."
-msgstr "Le développeur a fourni le code source."
-
-msgid "Maliciousness Score:"
-msgstr "Score de malveillance :"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "Le score de malveillance représente la probabilité que cette version soit malveillante, sur la base des résultats des scanners."
-
-msgid "Code Weight:"
-msgstr "Poids du code :"
-
-msgid "Metadata Weight:"
-msgstr "Poids des métadonnées :"
-
-msgid "Flagged by scanners"
-msgstr "Signalé par des scanners"
-
-msgid "Flagged for human review"
-msgstr "Marqué pour examen manuel"
-
-msgid "Download"
-msgstr "Téléchargement"
-
-msgid "Not Auto Approved Because"
-msgstr "Non approuvés automatiquement à cause de"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Le script d’approbation automatique n’a pas encore été exécuté pour cette version."
-
-msgid "This version has not been reviewed."
-msgstr "Cette version n’a pas été revue."
-
-msgid "Other Pending Review"
-msgstr "Autres révisions en attente"
-
-msgid "Updates"
-msgstr "Mises à jour"
-
-msgid "Rating Reviews"
-msgstr "Évaluations"
-
-msgid "Auto Approved"
-msgstr "Approuvé automatiquement"
-
-msgid "Pending Rejection"
-msgstr "En attente de rejet"
-
-msgid "presence of matched rules"
-msgstr "présence de règles de correspondance"
-
-msgid "result state"
-msgstr "état du résultat"
-
-msgid "Excluding results solely matching these rules"
-msgstr "Exclure les résultats correspondant uniquement à ces règles"
-
-msgid "presence of a version"
-msgstr "Présence d’une version"
-
-msgid "version channel"
-msgstr "canal de version"
-
-msgid "add-on status"
-msgstr "État du module"
-
-msgid "add-on listing visibility"
-msgstr "visibilité de la liste des modules complémentaires"
-
-msgid "file status"
-msgstr "État du fichier"
-
-msgid "file signature"
-msgstr "Signature du fichier"
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Ceci est le nom exact de la règle utilisée par un scanner."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Si non sélectionné, les résultats du scanner ne seront pas liés à cette règle et l’action ne sera pas exécutée."
+msgid "Human-readable name for the scanner rule"
+msgstr "Nom lisible par un humain pour la règle du scanner"
+
+msgid "Human-readable name"
+msgstr "Nom lisible par un humain"
+
+msgid "Human readable description for the scanner rule"
+msgstr "Description lisible par un humain pour la règle du scanner"
 
 msgid "Yara rules should have a definition"
 msgstr "Les règles Yara doivent avoir une définition"
@@ -5858,14 +4750,11 @@ msgstr "La définition n’est pas valide : %(error)s"
 msgid "An error occurred when compiling the definition"
 msgstr "Une erreur est survenue pendant la compilation de la définition"
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Si non sélectionné, les résultats du scanner ne seront pas liés à cette règle et l’action ne sera pas exécutée."
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Exécuter cette règle également sur les modules complémentaires qui ont été désactivés de force."
-
-msgid "Abort"
-msgstr "Annuler"
-
-msgid "Run"
-msgstr "Exécuter"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5900,10 +4789,6 @@ msgstr "Vous ne pouvez pas ajouter de version à un module dont l’état est :
 
 msgid "Version does not match the manifest file."
 msgstr "La version ne correspond pas au fichier manifeste."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "Cette version existe déjà. La dernière version est : %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "Veuillez spécifier l’identifiant de votre module dans le manifeste s’il est plus long que 64 caractères."
@@ -5964,6 +4849,9 @@ msgstr "De"
 
 msgid "To"
 msgstr "À"
+
+msgid "Update"
+msgstr "Actualiser"
 
 msgid "Export"
 msgstr "Exporter"
@@ -6128,9 +5016,6 @@ msgstr "Avertissement légal"
 msgid "Report Trademark Abuse"
 msgstr "Signaler un abus de marque déposée"
 
-msgid "Site Status"
-msgstr "État du site"
-
 msgid "Report a bug"
 msgstr "Signaler un problème"
 
@@ -6178,6 +5063,9 @@ msgstr "Ok !"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Revenir à la page d’accueil des modules {0}"
 
+msgid "Add-ons"
+msgstr "Modules"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">S’inscrire</a> ou <a href=\"%(login)s\">Se connecter</a>"
@@ -6217,40 +5105,8 @@ msgstr "Voulez-vous vraiment retirer toutes les traductions de <b>{0}</b> ? Cet
 msgid "Delete Locale"
 msgstr "Supprimer la traduction"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "L’utilisateur ou utilisatrice « %(user)s » a été banni·e."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "L’image de l’utilisateur « %(user)s » a été supprimée."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "Les personnes qui utilisent le compte « %(users)s » ont été bannies."
-
-msgid "Ban selected users"
-msgstr "Bannir les utilisateurs sélectionnés"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "Les sessions des utilisateurs « %(users)s » ont été réinitialisées."
-
-msgid "Reset session"
-msgstr "Réinitialiser la session"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "Les clés d’API des utilisateurs « %(users)s » ont été réinitialisées."
-
-msgid "Reset API Key"
-msgstr "Réinitialiser la clé d’API"
-
-msgid "Profile Photo"
-msgstr "Photo de profil"
-
-msgid "Collections"
-msgstr "Collections"
+msgid "IP Address"
+msgstr "Adresse IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Saisissez une adresse IPv4 ou IPv6 valide, par ex. 127.0.0.1. Elle sera convertie en adresse réseau /32."
@@ -6259,7 +5115,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr "Vous ne pouvez saisir qu’une adresse IP ou un réseau."
 
 msgid "No user with that email."
-msgstr "Pas d’utilisateur ayant cette adresse courriel."
+msgstr "Pas d’utilisateur ayant cette adresse e-mail."
 
 msgid "Firefox user {id}"
 msgstr "Utilisateur ou utilisatrice {id} de Firefox"
@@ -6271,7 +5127,7 @@ msgid "Multiple add-ons violating our policies have been submitted from your loc
 msgstr "Plusieurs modules complémentaires contrevenant à nos politiques ont été signalés depuis votre emplacement. Cette adresse IP a été bloquée."
 
 msgid "Email Pattern"
-msgstr "Modèle d’adresse électronique"
+msgstr "Modèle d’adresse e-mail"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
@@ -6279,14 +5135,14 @@ msgstr ""
 "ajoutez une deuxième entrée, par ex. « *@*.example.com »."
 
 msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "L’adresse électronique utilisée pour votre compte n’est pas autorisée pour le dépôt de modules complémentaires."
+msgstr "L’adresse e-mail utilisée pour votre compte n’est pas autorisée pour le dépôt de modules complémentaires."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
 "Saisissez le domaine de messagerie jetable complet qui doit être bloqué. Les caractères génériques ne sont pas pris en charge : si vous en avez besoin, ou si vous souhaitez faire correspondre "
-"l’adresse électronique entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
+"l’adresse e-mail entière et pas seulement la partie de domaine, utilisez plutôt « Restrictions relatives aux usages du courrier électronique »."
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -6338,15 +5194,6 @@ msgstr "Le rôle d’un auteur a été modifié sur votre module"
 msgid "An author has been removed from your add-on"
 msgstr "Un auteur a été retiré de votre module"
 
-msgid "Ban"
-msgstr "Exclure"
-
-msgid "Reset session(s)"
-msgstr "Réinitialiser les sessions"
-
-msgid "Delete picture"
-msgstr "Supprimer l’image"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6380,7 +5227,7 @@ msgstr ""
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
-"Si vous ne vous attendiez pas à recevoir cette invitation, veuillez envoyer un courriel à amo-admins@mozilla.com.\n"
+"Si vous ne vous attendiez pas à recevoir cette invitation, veuillez envoyer un e-mail à amo-admins@mozilla.com.\n"
 "\n"
 "Bien à vous,\n"
 "L’équipe des modules complémentaires de Mozilla"
@@ -6421,15 +5268,11 @@ msgstr ""
 "\n"
 "Vous recevez ce message parce que votre compte utilisateur %(name)s sur %(site_url)s a été supprimé. Cela peut avoir été fait automatiquement si vous avez récemment supprimé votre compte Firefox.\n"
 "\n"
-"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à ce courriel. Sinon, il n’y a pas d’autres mesures à prendre.\n"
+"Si vous n’êtes pas à l’origine de cette suppression ou si vous pensez qu’une personne non autorisée a accédé à votre compte, veuillez répondre à cet e-mail. Sinon, il n’y a pas d’autres mesures à prendre.\n"
 "\n"
 "Cordialement,\n"
 "\n"
 "L’équipe des modules complémentaires de Firefox"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "autres"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

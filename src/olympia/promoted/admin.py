@@ -3,6 +3,7 @@ from django.db.models import Prefetch
 from django.forms.models import modelformset_factory
 
 from olympia.addons.models import Addon
+from olympia.amo.admin import AMOModelAdmin
 from olympia.hero.admin import PrimaryHeroInline
 from olympia.versions.models import Version
 
@@ -57,7 +58,7 @@ class PromotedApprovalInline(admin.TabularInline):
         return qs
 
 
-class PromotedAddonAdmin(admin.ModelAdmin):
+class PromotedAddonAdmin(AMOModelAdmin):
     list_display = (
         'addon__name',
         'group_id',
@@ -70,6 +71,7 @@ class PromotedAddonAdmin(admin.ModelAdmin):
     fields = ('addon', 'group_id', 'application_id')
     list_filter = ('group_id', 'application_id')
     inlines = (PromotedApprovalInline, PrimaryHeroInline)
+    list_select_related = ('primaryhero',)
 
     @classmethod
     def _transformer(self, objs):
@@ -87,7 +89,6 @@ class PromotedAddonAdmin(admin.ModelAdmin):
         # are being run, though, we only care about translations
         qset = (
             self.model.objects.all()
-            .select_related('primaryhero')
             .prefetch_related(
                 Prefetch(
                     'addon',

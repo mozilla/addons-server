@@ -68,9 +68,7 @@ class IPAddressBinaryField(VarBinaryField):
 
 class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-        self.validators = [
+        self.default_validators = [
             URLValidator(schemes=('http', 'https')),
             # Reject AMO URLs, see:
             # https://github.com/mozilla/addons-server/issues/9012
@@ -85,6 +83,7 @@ class HttpHttpsOnlyURLField(fields.URLField):
                 inverse_match=True,
             ),
         ]
+        super().__init__(*args, **kwargs)
 
 
 class ReCaptchaField(UpstreamReCaptchaField):

@@ -5,12 +5,6 @@
 # DOCKER_PASS - Login password for docker hub user
 version: 2.1
 
-orbs:
-  # This is needed to be able to install Node.js 14 in the primary container,
-  # which provides python only (the convenience cimg/python:3.9-node provides
-  # node 16).
-  node: circleci/node@5.0.0
-
 references:
   # We declare the autograph configuration here to be able to fully leverage
   # Docker executors. This configuration should be kept in sync with the
@@ -283,7 +277,9 @@ references:
 
   docker-images:
     # These versions should try to match what we run in production.
-    - &python "cimg/python:3.10"
+    # Note that the cimg/python:3.10-node convenience image provides
+    # nodejs 16.x, which we need to build assets and run the linter.
+    - &python "cimg/python:3.10-node"
     - &redis "redis:6.2"
     - &memcached "memcached:1.4"
     - &mysql "mysql:8.0.28"
@@ -360,9 +356,6 @@ commands:
   make_release:
     description: "Builds and pushes a Docker image"
     parameters:
-      dockerfile:
-        type: string
-        default: "Dockerfile.deploy"
       image_tag:
         type: string
         default: "latest"
@@ -380,7 +373,7 @@ commands:
           command: |
             docker version
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
-            docker build -t app:build --build-arg DJANGO_VERSION -f << parameters.dockerfile >> --label git.commit="$CIRCLE_SHA1" .
+            docker build -t app:build --build-arg DJANGO_VERSION --label git.commit="$CIRCLE_SHA1" .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 
@@ -415,7 +408,7 @@ commands:
 
             mkdir -p "$SSH_CONFIG_DIR"
 
-            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> "$SSH_CONFIG_DIR/known_hosts"
+            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCj7ndNxQowgcQnjshcLrqPEiiphnt+VTTvDP6mHBL9j1aNUkY4Ue1gvwnGLVlOhGeYrnZaMgRK6+PKCUXaDbC7qtbW8gIkhL7aGCsOr/C56SJMy/BCZfxd1nWzAOxSDPgVsmerOBYfNqltV9/hWCqBywINIR+5dIg6JTJ72pcEpEjcYgXkE2YEFXV1JHnsKgbLWNlhScqb2UmyRkQyytRLtL+38TGxkxCflmO+5Z8CSSNY7GidjMIZ7Q4zMjA2n1nGrlTDkzwDCsw+wqFPGQA179cnfGWOWRVruj16z6XyvxvjJwbz0wQZ75XK5tKSb7FNyeIEs4TT4jk+S4dhPeAUC5y+bDYirYgM4GC7uEnztnZyaVWQ7B381AK4Qdrwt51ZqExKbQpTUNn+EjqoTwvqNj4kqx5QUCI0ThS/YkOxJCXmPUWZbhjpCg56i+2aB6CmK2JGhn57K5mj0MNdBXA4/WnwH6XoPWJzK5Nyu2zB3nAZp+S5hpQs+p1vN1/wsjk=' >> "$SSH_CONFIG_DIR/known_hosts"
 
             (umask 077; touch "$SSH_CONFIG_DIR/id_rsa")
             chmod 0600 "$SSH_CONFIG_DIR/id_rsa"
@@ -469,7 +462,7 @@ commands:
       install_node_dependencies:
         type: boolean
         default: false
-      update_deps:
+      install_python_dev_dependencies:
         type: boolean
         default: false
     steps:
@@ -483,8 +476,6 @@ commands:
             sudo apt-get install -y gettext pngcrush librsvg2-bin libmysqlclient-dev
             sudo cp ./docker/etc/mime.types /etc/mime.types
             sudo touch /addons-server-docker-container
-      - node/install:
-          node-version: '14'
       - run:
           name: Install dockerize
           command: |
@@ -510,20 +501,35 @@ commands:
           command: |
             echo export PYTHONPATH=src >> $BASH_ENV
             echo export CPUCOUNT=2 >> $BASH_ENV
+            echo export NPM_CONFIG_PREFIX=/deps/ >> $BASH_ENV
             echo export CC=\"`python -c 'import sysconfig; print(sysconfig.get_config_var("CC"))'`\" >> $BASH_ENV
             cat $BASH_ENV
       - when:
           condition: << parameters.install_python_test_dependencies >>
           steps:
-            - run: make install_python_test_dependencies
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_test_dependencies
+      - when:
+          condition: << parameters.install_python_dev_dependencies >>
+          steps:
+            - run:
+                name: Install Python dependencies
+                command: |
+                  make install_python_dev_dependencies
       - when:
           condition: << parameters.install_node_dependencies >>
           steps:
-            - run: make install_node_dependencies
-      - when:
-          condition: << parameters.update_deps >>
-          steps:
-            - run: make update_deps
+            - run:
+                name: Install Node dependencies
+                command: |
+                  sudo mkdir /deps
+                  sudo chown circleci /deps
+                  ACTUAL_CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package.json /deps/package.json
+                  ln -s ${ACTUAL_CIRCLE_WORKING_DIRECTORY}/package-lock.json /deps/package-lock.json
+                  make install_node_dependencies
       # should be executed after all python install commands
       - run: pyenv rehash
 
@@ -558,7 +564,8 @@ jobs:
     steps:
       - setup_container:
           install_python_test_dependencies: false
-          update_deps: true
+          install_python_dev_dependencies: true
+          install_node_dependencies: true
       - run: make update_assets
       - run:
           command: pytest -m "static_assets" -v src/olympia/
@@ -570,7 +577,7 @@ jobs:
       - setup_container:
           wait_services: false
           install_node_dependencies: true
-      - run: make setup-codestyle
+      - run: make install_python_codestyle_dependencies
       - run: pyenv rehash
       - run: make lint-codestyle
 
@@ -646,7 +653,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: latest
-          dockerfile: "Dockerfile.deploy"
 
   release-tag:
     <<: *defaults-release
@@ -654,7 +660,6 @@ jobs:
       - checkout
       - make_release:
           image_tag: "${CIRCLE_TAG}"
-          dockerfile: "Dockerfile.deploy"
 
 workflows:
   version: 2

@@ -127,7 +127,8 @@
             <div class="dev-review-reply">
               <form class="dev-review-reply-form" action="{{ drf_url('version-reviewnotes-list', addon.id, version.id) }}"
                     data-session-id="{{ session_id }}" data-history="#{{ version.id }}-review-history" data-no-csrf>
-                  <textarea name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
+                  {# This is not a django form, an XHR goes through to the form action on submit #}
+                  <textarea maxlength="{{ comments_maxlength }}" name="comments" placeholder="{{ _('Leave a reply') }}"></textarea>
                   <button type="submit" class="submit" >{{ _('Reply') }}</button>
               </form>
             </div>
@@ -242,7 +243,7 @@
       </div>
     {% endif %}
   </div>
-  {% if check_addon_ownership(request.user, addon, allow_site_permission=True) and addon.can_be_deleted() %}
+  {% if check_addon_ownership(request.user, addon) and addon.can_be_deleted() %}
   <h3>{{ _('Delete Add-on') }}</h3>
   <div class="item" id="addon-delete-listing">
     <div class="item_wrapper">

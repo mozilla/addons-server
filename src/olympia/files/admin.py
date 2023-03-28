@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
+from olympia.amo.admin import AMOModelAdmin
+
 from .models import File
 
 
 @admin.register(File)
-class FileAdmin(admin.ModelAdmin):
+class FileAdmin(AMOModelAdmin):
     view_on_site = False
 
     raw_id_fields = ('version',)

@@ -5,20 +5,20 @@
     {% endtrans %}
 
     {% if version.autoapprovalsummary and version.autoapprovalsummary.confirmed %}
-    <span class="light">{{ _("(Confirmed)") }}</span>
+    <span class="light">(Confirmed)</span>
     {% endif %}
 
     {% if version.pending_rejection %}
     <span class="pending-rejection" title="{{ version.pending_rejection|datetime }}">&middot;
       {% if latest_version_is_unreviewed_and_not_pending_rejection %}
-        {{ _("Pending Rejection on review of new version") }}
+        Pending Rejection on review of new version
       {% else %}
-        {{ _("Scheduled for rejection in {0} "|format_html(version.pending_rejection|timeuntil)) }}
+        Scheduled for rejection in {{ version.pending_rejection|timeuntil }}
       {% endif %}
     </span>
     {% endif %}
 
-    {% if addon.block and addon.block.is_version_blocked(version.version) %}
+    {% if version.is_blocked %}
     <span class="blocked-version">Blocked</span>
     {% endif %}
   </th>
@@ -28,7 +28,7 @@
     {% if addon.type != amo.ADDON_STATICTHEME %}
       {{ file_view(version) }}
       {% if version.compatible_apps %}
-        <div><strong>{{ _('Compatibility:') }}</strong></div>
+        <div class="compatibility"><h5>Compatibility:</h5>
         <ul>
           {% for app, compat in version.compatible_apps.items()|sort(attribute="0.short") %}
           <li>
@@ -37,55 +37,46 @@
           </li>
           {% endfor %}
         </ul>
+        </div>
       {% endif %}
 
       {% if version.source %}
-          <div><strong>{{ _('Additional sources:') }}</strong></div>
+          <div><h5>Additional sources:</h5></div>
           <div>
               {% if is_admin %}
-                  <a href="{{ url('downloads.source', version.pk) }}">{{ _('Download files') }}</a>
+                  <a href="{{ url('downloads.source', version.pk) }}">Download files</a>
               {% else %}
-                  {{ _('The developer has provided source code.')}}
+                  The developer has provided source code.
               {% endif %}
           </div>
       {% endif %}
 
       <div class="maliciousness-score">
-        <strong>{{ _('Maliciousness Score:') }}</strong> {{ version.maliciousness_score|format_score }}
-        <span class="tip tooltip" title="{{ _('The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.') }}">?</span>
+        <h5>Maliciousness Score:</h5> {{ version.maliciousness_score|format_score }}
+        <span class="tip tooltip" title="The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings.">?</span>
       </div>
 
-      {% if version.autoapprovalsummary %}
-        <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}">
-          <strong>{{ _('Code Weight:') }}</strong> {{ version.autoapprovalsummary.code_weight }}<br>
-          <strong>{{ _('Metadata Weight:') }}</strong> {{ version.autoapprovalsummary.metadata_weight }}
-        </div>
-      {% endif %}
-
-      {% if version.needs_human_review %}
-        <div><strong class="risk-high">
-          {{ _('Flagged by scanners') }}
-          {%- if request.user.is_staff and action_allowed_for(request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW) %}
-            {% for result in version.scannerresults.all() -%}
-              {%- if loop.first %}({% endif -%}
-              <a href="{{ url('admin:scanners_scannerresult_change', result.pk ) }}">{{ result.get_scanner_display() }}</a>
-              {%- if loop.last %}){% else %}, {% endif -%}
-            {%- endfor %}
-          {%- endif %}
-        </strong></div>
-      {% elif version.needs_human_review_by_mad %}
-        <div><strong class="risk-medium">{{ _('Flagged for human review') }}</strong></div>
+      <div class="scanners-results">
+      {% for result in version.scannerresults.all() %}
+        {% if result.has_matches %}
+          {% if loop.changed() %}  {# Only display header once #}
+            <h5>Scanners results:</h5>
+          {% endif %}
+          {{ format_matched_rules(result, display_scanner=True, display_data=True, limit_to=5) }}
+        {% endif %}
+      {% endfor %}
+      </div>
+      {% if version.needs_human_review_by_mad %}
+        <div><h5 class="risk-medium">Flagged for human review</h5></div>
       {% endif %}
     {% else %}
       <ul>
-        <li class="file-info">
-          <span class="light">
-            <strong><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
-              data-type="{{ amo.ADDON_SLUGS[addon.type] }}">{{ _('Download') }}</a></strong>
+        <li class="file-info light">
+            <h5><a href="{{ version.file.get_url_path() }}" class="reviewers-install"
+              data-type="{{ amo.ADDON_SLUGS[addon.type] }}">Download</a></h5>
             <div>
               {{ version.file.get_review_status_display() }}
             </div>
-          </span>
         </li>
       </ul>
     {% endif %}
@@ -94,7 +85,7 @@
     <table class="activity">
       {% if version.release_notes %}
       <tr>
-        <th>{{ _('Version Notes') }}</th>
+        <th>Version Notes</th>
         <td class="activity_version">
           <div class="history-notes">
             {{ version.release_notes|nl2br }}
@@ -104,7 +95,7 @@
       {% endif %}
       {% if version.approval_notes %}
       <tr>
-        <th>{{ _('Notes for Reviewers') }}</th>
+        <th>Notes for Reviewers</th>
         <td class="activity_approval">
           <div class="history-notes">
             {{ version.approval_notes|urlize(100)|nl2br }}
@@ -119,7 +110,7 @@
       {% endfor %}
       {% if version.pk in auto_approval_info %}
         <tr>
-          <th>{{ _('Not Auto Approved Because') }} </th>
+          <th>Not Auto Approved Because </th>
           <td class="auto_approval">
             {% if auto_approval_info[version.pk] %}
               <ul>
@@ -128,7 +119,7 @@
               {% endfor %}
               </ul>
             {% else %}
-              {{ _('Auto-Approval script has not run yet on this version.') }}
+              Auto-Approval script has not run yet on this version.
             {% endif %}
           </td>
         </tr>
@@ -136,7 +127,7 @@
       {% if not version.release_notes and not version.approval_notes and not records %}
       <tr>
         <td class="no-activity">
-          {{ _('This version has not been reviewed.') }}
+          This version has not been reviewed.
         </td>
       </tr>
       {% endif %}

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
 "PO-Revision-Date: 2022-06-19 06:16+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -18,57 +18,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "種類"
-
-msgid "Users"
-msgstr "ユーザー"
-
-msgid "Add-ons"
-msgstr "アドオン"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "最低レポート数 (guid でグループ化)"
-
-msgid "creation date"
-msgstr "作成日"
-
-msgid "User / Add-on"
-msgstr "ユーザー / アドオン"
-
-msgid "Distribution"
-msgstr "ディストリビューション"
-
-msgid "Reporter's country"
-msgstr "報告者の国名"
-
-msgid "Message excerpt"
-msgstr "メッセージの抜粋"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "選択された %d 件のレポートは有効としてマークされています。"
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "選択された %d 件のレポートは疑わしいものとしてマークされています。"
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "選択された悪用レポートを疑わしいものとしてマーク"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "このフィールドは {max_length} 文字以下まで入力できます。"
 
-msgid "Modified on:"
-msgstr "変更日時:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "%(filter_title)s で絞り込み"
-
-msgid "All"
-msgstr "すべて"
+msgid "Invalid value"
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "リンクの使用は許可されていません。"
@@ -114,8 +68,10 @@ msgstr "アドオン審査チーム"
 msgid "Review"
 msgstr "レビュー"
 
+#, fuzzy
 msgid "Version {0}"
-msgstr "バージョン {0}"
+msgid_plural "Versions {0}"
+msgstr[0] "バージョン {0}"
 
 msgid "Review note"
 msgstr "審査担当者へのメモ"
@@ -123,30 +79,8 @@ msgstr "審査担当者へのメモ"
 msgid "Only latest versions of addons can have notes added."
 msgstr "ノートを追加できるのはアドオンの最新版のみです。"
 
-msgid "Authors"
-msgstr "作者"
-
-msgid "Ratings"
-msgstr "レーティング"
-
-msgid "Reviewer Tools (listed)"
-msgstr "審査担当者用ツール (リスト公開)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "審査担当者用ツール (リスト非公開)"
-
-msgid "Reviewer links"
-msgstr "審査担当者用リンク"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
+msgid "Request content length is too large."
 msgstr ""
-
-msgid "Activity Logs"
-msgstr "アクティビティログ"
-
-msgid "- Add-on not on AMO -"
-msgstr "- AMO 非掲載アドオン -"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "アプリケーションあたりのカテゴリーの最大数 ({MAX_CATEGORIES}) を超えました"
@@ -178,9 +112,6 @@ msgstr ""
 msgid "Invalid or broken archive."
 msgstr "不正または壊れたアーカイブです。"
 
-msgid "Invalid value"
-msgstr ""
-
 msgid "Invalid app specified"
 msgstr ""
 
@@ -208,6 +139,13 @@ msgid "Built in licenses can not be updated."
 msgstr ""
 
 msgid "Upload is not valid."
+msgstr ""
+
+msgid "File is already disabled."
+msgstr ""
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
@@ -243,7 +181,7 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "アドオン名には Mozilla または Firefox の商標を含めることはできません。"
 
-msgid "Site permissions for {hostnames}"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -281,9 +219,6 @@ msgstr "自分のアドオン"
 
 msgid "My Themes"
 msgstr "自分のテーマ"
-
-msgid "Git-Extract"
-msgstr "Git-抽出"
 
 msgid "Tools"
 msgstr "ツール"
@@ -506,38 +441,6 @@ msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが
 msgid "Confirmation for developer API keys"
 msgstr "開発者 API キーを確認する"
 
-msgid "Application Versions"
-msgstr "アプリケーションのバージョン"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "AMO のすべての対応アプリケーションにおける利用可能なバージョンです。"
-
-msgid "Valid Application Versions"
-msgstr "アプリケーションの有効バージョン"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla のアドオンサイトに提出されるアドオンは、以下のアプリケーションのうち少なくとも 1 つ以上をサポートしたマニフェストファイルが必要です。以下に表示されているバージョンのみ、これらのアプリケー"
-"ションで使用できます。"
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "WebExtensions では %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s に「*」を設定できないことに注意してください。"
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "バージョン"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
-msgstr ""
-"対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
-"れています。"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
 
@@ -552,9 +455,6 @@ msgstr "このカスタム URL は使用できません。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
-
-msgid "Signoff State"
-msgstr "ログオフ状態"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -587,59 +487,6 @@ msgstr ""
 msgid "Review Unlisted"
 msgstr ""
 
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "重複した %(name)s を削除"
-
-msgid "Home"
-msgstr "ホーム"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s 件のアドオン GUID は %(v_min)s から %(v_max)s まで既にブロックされています"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s 件の アドオン GUID が見つかりませんでした"
-
-msgid "Save"
-msgstr "保存"
-
-msgid "Save and add more"
-msgstr "保存してさらに追加"
-
-msgid "Delete"
-msgstr "削除"
-
-msgid "Update"
-msgstr "更新"
-
-msgid "Reject Submission"
-msgstr "登録を却下"
-
-msgid "Approve Submission"
-msgstr "登録を承認"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s を追加"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "アドオン GUID (1 行に 1 件)"
-
-msgid "Submit"
-msgstr "登録"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(adu)s ユーザーを持つ %(count)s 件のアドオン GUID"
-
-msgid "Edit Block"
-msgstr "ブロックを編集"
-
-msgid "versions"
-msgstr "バージョン"
-
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
 
@@ -652,12 +499,13 @@ msgstr "{addon} の説明が編集されました。"
 msgid "Categories edited for {addon}."
 msgstr "{addon} のカテゴリーが編集されました。"
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) が {addon} へ追加されました。"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr ""
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) が {addon} から削除されました。"
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr ""
 
 msgid "Contributions for {addon}."
 msgstr "{addon} への寄付。"
@@ -682,8 +530,8 @@ msgstr "{addon} の {version} が編集されました。"
 msgid "Version {0} deleted from {addon}."
 msgstr "{addon} のバージョン {0}が削除されました。"
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{addon} のバージョン {version} にファイル {0.name} が追加されました。"
+msgid "File {file} added to {version} of {addon}."
+msgstr ""
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "{addon} のバージョン {version} からファイル {0}が削除されました。"
@@ -736,9 +584,6 @@ msgstr "{addon} {version} の上級審査が申請されました。"
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
 
-msgid "Comment on {addon} {version}."
-msgstr "{addon} {version} についてのコメントが追加されました。"
-
 msgid "Commented"
 msgstr "コメント付き"
 
@@ -775,9 +620,9 @@ msgstr "{addon} がおすすめのアドオンから外されました。"
 msgid "{0} {1} added."
 msgstr "{0}{1} が追加されました。"
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{addon} における {0.name} の役割が {1}へ変更されました。"
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr ""
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} のライセンスが {0}へ変更されました。"
@@ -792,14 +637,8 @@ msgstr "{addon} のアイコンが変更されました。"
 msgid "{rating} for {addon} approved."
 msgstr "{addon} の {rating} が承認されました。"
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} が {addon} の {rating} を承認しました。"
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} のレビュー {rating} が削除されました。"
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} が {addon} の {rating} を削除しました。"
 
 msgid "Application max version for {version} updated."
 msgstr "{version} のアプリケーション最高バージョンが更新されました。"
@@ -837,18 +676,6 @@ msgstr "フィールド編集: {2}が {0} へ変更されました。"
 msgid "Deleted: {1}."
 msgstr "{1}が削除されました。"
 
-msgid "User {user} edited, reason: {1}"
-msgstr "ユーザー {user} が編集されました。理由: {1}"
-
-msgid "User {user} anonymized."
-msgstr "ユーザー {user} が匿名化されました。"
-
-msgid "User {user} restricted."
-msgstr "ユーザー {user} が制限されました。"
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "管理者 {0}が {user} の活動記録を見ました。"
-
 msgid "{rating} for {addon} updated."
 msgstr "{addon} の {rating} が更新されました。"
 
@@ -861,11 +688,11 @@ msgstr "ユーザー {user} のアカウントが停止されました。"
 msgid "User {user} picture deleted."
 msgstr "ユーザー {user} の写真が削除されました。"
 
-msgid "User {0.name} added to {group}."
-msgstr "ユーザー {0.name} が {group} へ追加されました。"
+msgid "User {user} added to {group}."
+msgstr ""
 
-msgid "User {0.name} removed from {group}."
-msgstr "ユーザー {0.name} が {group} から削除されました。"
+msgid "User {user} removed from {group}."
+msgstr ""
 
 msgid "{addon} unlisted."
 msgstr "{addon} のリスト掲載が中止されました。"
@@ -904,8 +731,8 @@ msgstr "{addon} {version} のソースコードがアップロードされまし
 msgid "Source code uploaded"
 msgstr "ソースコードがアップロードされました"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "{addon} {version} の自動承認が確認されました。"
+msgid "{addon} {version} auto-approval confirmed."
+msgstr ""
 
 msgid "Auto-Approval confirmed"
 msgstr "自動承認が確認されました"
@@ -997,9 +824,6 @@ msgstr "ログオフ操作をブロック"
 msgid "User {user} session(s) reset."
 msgstr "ユーザー {user} のセッションをリセットしました。"
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "ユーザー {user} がスコープ \"{0}\" について抑制されました"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} のコンテンツ却下が予定されています。"
 
@@ -1018,22 +842,16 @@ msgstr "{addon} {version} が再署名されました (以前は {0})。"
 msgid "Version re-signed"
 msgstr "バージョンが再署名されました"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} が {addon} を強制的に無効化しました。"
-
-msgid "Force disabled"
-msgstr "強制無効化"
-
-msgid "{user} force-enabled {addon}."
-msgstr "{user} が {addon} を強制的に有効化しました。"
-
-msgid "Force enabled"
-msgstr "強制有効化"
-
-msgid "{user} logged in."
+msgid "{addon} {version} un-rejected."
 msgstr ""
 
-msgid "{user} restricted."
+msgid "Un-rejected"
+msgstr ""
+
+msgid "{addon} needs_human_review flag cleared."
+msgstr ""
+
+msgid "Needs Human Review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1497,23 +1315,8 @@ msgstr "スポットライト"
 msgid "Strategic"
 msgstr "戦略的"
 
-msgid "Add-on"
-msgstr "アドオン"
-
-msgid "Static Theme"
-msgstr "静的テーマ"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "セキュリティ"
-
-msgid "Privacy"
-msgstr "プライバシー"
-
-msgid "Development Practices"
-msgstr "開発プラクティス"
+msgid "Notable"
+msgstr ""
 
 msgid "No Reputation"
 msgstr "評判がありません"
@@ -1526,108 +1329,6 @@ msgstr "とても良い (2)"
 
 msgid "Excellent (3)"
 msgstr "非常に良い (3)"
-
-msgid "Manual Reviewer Points"
-msgstr "審査担当者の手作業確認による指摘"
-
-msgid "New Legacy Add-on Review"
-msgstr "新たな旧式アドオンの審査"
-
-msgid "Preliminary Add-on Review"
-msgstr "アドオンの事前審査"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "更新された旧式アドオンの審査"
-
-msgid "New Dictionary Review"
-msgstr "新しいスペルチェック辞書の審査"
-
-msgid "Preliminary Dictionary Review"
-msgstr "スペルチェック事前の事前審査"
-
-msgid "Updated Dictionary Review"
-msgstr "スペルチェック事前の更新審査"
-
-msgid "New Language Pack Review"
-msgstr "新しい言語パックの審査"
-
-msgid "Preliminary Language Pack Review"
-msgstr "言語パックの事前審査"
-
-msgid "Updated Language Pack Review"
-msgstr "言語パックの更新審査"
-
-msgid "Theme Review"
-msgstr "テーマの審査"
-
-msgid "Theme (Static) Review"
-msgstr "テーマ (静的) の審査"
-
-msgid "New Search Provider Review"
-msgstr "新しい検索プロバイダーの審査"
-
-msgid "Preliminary Search Provider Review"
-msgstr "検索プロバイダーの事前審査"
-
-msgid "Updated Search Provider Review"
-msgstr "検索プロバイダーの更新審査"
-
-msgid "New Complete Theme Review"
-msgstr "新しい完全テーマの審査"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "完全テーマの事前審査"
-
-msgid "Updated Complete Theme Review"
-msgstr "完全テーマの更新審査"
-
-msgid "Moderated Add-on Review"
-msgstr "アドオンの管理者審査"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "アドオンの管理者審査が取り消されました"
-
-msgid "Add-on Content Review"
-msgstr "アドオンコンテンツ審査"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "アドオン審査 (最高リスク)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "アドオン審査 (高リスク)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "アドオン審査 (中リスク)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "アドオン審査 (低リスク)"
-
-msgid "Level 1"
-msgstr "レベル 1"
-
-msgid "Level 2"
-msgstr "レベル 2"
-
-msgid "Level 3"
-msgstr "レベル 3"
-
-msgid "Level 4"
-msgstr "レベル 4"
-
-msgid "Level 5"
-msgstr "レベル 5"
-
-msgid "Level 6"
-msgstr "レベル 6"
-
-msgid "Level 7"
-msgstr "レベル 7"
-
-msgid "Level 8"
-msgstr "レベル 8"
-
-msgid "Level 9"
-msgstr "レベル 9"
 
 msgid "Request More Info"
 msgstr "詳しい情報を求める"
@@ -1644,32 +1345,11 @@ msgstr "却下"
 msgid "Approve"
 msgstr "承認"
 
-msgid "Sexual or pornographic content"
-msgstr "性的もしくはわいせつな内容"
+msgid "All"
+msgstr "すべて"
 
-msgid "Inappropriate or offensive content"
-msgstr "不適切もしくは侮辱的な内容"
-
-msgid "Violence, war, or weaponry images"
-msgstr "暴力、戦争もしくは兵器の画像"
-
-msgid "Nazi or other hate content"
-msgstr "ナチスもしくはその他扇動的な内容"
-
-msgid "Defamatory content"
-msgstr "中傷的な内容"
-
-msgid "Online gambling"
-msgstr "オンラインギャンブル"
-
-msgid "Spam content"
-msgstr "スパム的な内容"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "低画質、引き延ばしもしくは空白の画像"
-
-msgid "Header image alignment problem"
-msgstr "ヘッダー画像の整列問題"
+msgid "Theme"
+msgstr "テーマ"
 
 msgid "No action"
 msgstr "アクションなし"
@@ -1731,6 +1411,20 @@ msgstr "自分のアドオンの最近の変更"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを終了しました{blog_link_close}。代わりに、{doc_link_open}検索の拡張機能{doc_link_close} を作成できます。"
+
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr ""
+
+msgid "Manifest V3 compatibility warning"
+msgstr ""
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr ""
 
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -1860,18 +1554,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "表示名"
 
-msgid "Origin"
-msgstr ""
-
-msgid "Permissions"
-msgstr "許可設定"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr ""
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr ""
-
 msgid "Invalid or corrupt add-on file."
 msgstr "不正なアドオンファイルです。"
 
@@ -1887,9 +1569,6 @@ msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消され
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "検証の結果、多数のエラーや警告が見つかったため、%s個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 msgid "Updated"
 msgstr "更新日"
@@ -2112,16 +1791,6 @@ msgstr "開発者向けドキュメントを検索"
 msgid "Search"
 msgstr "検索"
 
-#, fuzzy
-msgid "Generate Site Permission Add-on"
-msgstr "許可設定:"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr ""
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr ""
-
 msgid "Use the field below to upload your add-on package."
 msgstr "下のフォームからアドオンのパッケージをアップロードしてください。"
 
@@ -2157,6 +1826,9 @@ msgstr "該当するアドオンはありません。"
 
 msgid "Refine Activity"
 msgstr "アクティビティを整理"
+
+msgid "Add-on"
+msgstr "アドオン"
 
 msgid "Activity"
 msgstr "アクティビティ"
@@ -2271,6 +1943,9 @@ msgstr "拒否"
 
 msgid "Manage Authors & License"
 msgstr "作者とライセンスを管理"
+
+msgid "Authors"
+msgstr "作者"
 
 msgid "About author roles"
 msgstr "作者の役割について"
@@ -2606,6 +2281,9 @@ msgstr "再開"
 
 msgid "Delete this add-on."
 msgstr "このアドオンを削除します。"
+
+msgid "Delete"
+msgstr "削除"
 
 msgid "Edit details on this add-on's product page"
 msgstr "このアドオンの公開情報を編集します。"
@@ -3976,10 +3654,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "Firefox のツールバーパネルから WhatsApp にアクセスして、未読スレッドのバッジ通知を取得。"
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "プロによるドイツ語翻訳。英語、フランス語、スペイン語、その他の言語間に対応します。"
-
-#. editorial content for the discovery pane.
 #, fuzzy
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "定義したウェブサイトへの Firefox のアクセスを制限。"
@@ -4478,11 +4152,15 @@ msgid "All your emoji needs—always just a click away."
 msgstr "あらゆるシーンにぴったりの豊富な絵文字が、いつでもワンクリックで。"
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4604,6 +4282,10 @@ msgstr ""
 msgid "Enhance your gaming experience on Steam."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "拡張機能は Firefox 向けのアプリのようなものです。"
@@ -4617,16 +4299,15 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
+msgid "Download Managers"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
+msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4722,6 +4403,10 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "“{tag}” のタグが付いた拡張機能をもっと見る"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
@@ -4778,12 +4463,15 @@ msgstr "流行の拡張機能"
 msgid "See more creativity staff picks"
 msgstr "翻訳ツールをもっと見る"
 
-msgid "Rejected or Unreviewed"
-msgstr "却下もしくは未審査"
+msgid "Unreviewed"
+msgstr ""
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[状態:%s]"
+
+msgid "This upload has already been submitted."
+msgstr ""
 
 msgid "Could not parse the manifest file."
 msgstr "マニフェストファイルを解析できませんでした。"
@@ -4800,6 +4488,9 @@ msgstr ""
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
+msgid "Unsupported compression method in archive."
+msgstr ""
+
 msgid "Unsupported archive type."
 msgstr "サポートされていないアーカイブ形式です。"
 
@@ -4814,11 +4505,20 @@ msgstr "アーカイブ内のファイル名が不正です: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "アーカイブ内のファイルがサイズ制限を超えています: {0}"
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr ""
+
 msgid "Uncompressed size is too large"
 msgstr "展開後のサイズが大きすぎます"
 
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
+
+msgid "No manifest.json found"
+msgstr ""
+
+msgid "Invalid or corrupted file."
+msgstr ""
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4827,8 +4527,8 @@ msgstr "manifest.json 内のアドオン ID (%s) が AMO 上のあなたのア�
 msgid "Duplicate add-on ID found."
 msgstr "重複したアドオンの ID が見つかりました。"
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "バージョン番号は 32 文字以内でなければなりません。"
+msgid "Version numbers should have at most {max_length} characters."
+msgstr ""
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "バージョン番号に英数字もしくは記号「+*.-_.」以外の文字を含めることはできません。"
@@ -4848,6 +4548,9 @@ msgstr "あなたは Mozilla Signed Extension を登録できません"
 msgid "You cannot submit a language pack"
 msgstr "あなたは言語パックを登録できません"
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr ""
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "非対応のファイル形式です。サポートされた {extensions} ファイルをアップロードしてください。"
 
@@ -4863,12 +4566,6 @@ msgstr "マルチパートファイルデータに「upload」キーが含まれ
 
 msgid "Missing \"channel\" arg."
 msgstr ""
-
-msgid "User"
-msgstr "ユーザー"
-
-msgid "IP Address"
-msgstr "IP アドレス"
 
 msgid "Spam or otherwise non-review content"
 msgstr "スパムあるいはその他レビューと無関係の内容"
@@ -4926,504 +4623,9 @@ msgstr "5 つ星中 {0}つの評価を受けています"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "5 つ星中 %(rating)s つの評価を受けています"
 
-msgid "Approved reviews"
-msgstr "承認されたレビュー"
-
-msgid "Deleted reviews"
-msgstr "削除されたレビュー"
-
-msgid "View entries between"
-msgstr "この期間のエントリーを表示"
-
-msgid "and"
-msgstr "と"
-
-msgid "Filter by type/action"
-msgstr "種類・アクションによる絞り込み"
-
-msgid "containing"
-msgstr "含む"
-
-msgid "start"
-msgstr "開始日"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "終了日"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "アドオン、審査担当者、またはコメント"
-
-msgid "Comments:"
-msgstr "コメント:"
-
-msgid "Operating systems:"
-msgstr "OS:"
-
-msgid "Applications:"
-msgstr "アプリケーション:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "拒否を遅らせるには、次の期限内に開発者の応答が必要です..."
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr ""
-
-msgid "days"
-msgstr "日"
-
-msgid "Choose one or more reasons:"
-msgstr ""
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr ""
-
-msgid "Choose a canned response..."
-msgstr "返信の定型文を選んでください..."
-
-msgid "Private Whiteboard"
-msgstr "個人用ホワイトボード"
-
-msgid "Keep review; remove flags"
-msgstr "レビューを残し、フラグを削除"
-
-msgid "Skip for now"
-msgstr "今はスキップ"
-
-msgid "Delete review"
-msgstr "レビューを削除"
-
-msgid "Needs Admin Code Review"
-msgstr "管理者コード審査が必要"
-
-msgid "Needs Admin Content Review"
-msgstr "管理者コンテンツ審査が必要"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "管理者静的テーマ審査が必要"
-
-msgid "Sources provided"
-msgstr "ソース提供あり"
-
-msgid "Auto-approval delayed temporarily"
-msgstr ""
-
-msgid "Auto-approval delayed indefinitely"
-msgstr ""
-
-msgid "Is locked by a reviewer"
-msgstr "審査担当者によってロックされています"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "自動承認無効または遅延フラグが設定されています"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr ""
-
-msgid "Delayed because it's the first listed version"
-msgstr ""
-
-msgid "Version string and guid match a blocklist Block"
-msgstr ""
-
-msgid "Weight breakdown not available."
-msgstr ""
-
-msgid "Is available to be used in reviews"
-msgstr ""
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr ""
-
-msgid "You can't submit an empty comment."
-msgstr "コメントを空にして送信することはできません。"
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr ""
-
-msgid "ID"
-msgstr "ID"
-
-msgid "Flags"
-msgstr "フラグ"
-
-msgid "Last Review"
-msgstr "最後のレビュー"
-
-#, fuzzy
-msgid "Code Weight"
-msgstr "重み"
-
-msgid "Metadata Weight"
-msgstr ""
-
-#, fuzzy
-msgid "Total Weight"
-msgstr "重み"
-
-msgid "Maliciousness Score"
-msgstr ""
-
-msgid "Type"
-msgstr "種類"
-
-msgid "Waiting Time"
-msgstr "待ち時間"
-
-#, fuzzy
-msgid "Pending Rejection Deadline"
-msgstr "情報請求期限"
-
-msgid "Last Updated"
-msgstr "最終更新日"
-
-#, fuzzy
-msgid "Listed versions needing human review ({0})"
-msgstr "その他の保留中のレビュー ({0})"
-
-#, fuzzy
-msgid "Unlisted versions needing human review ({0})"
-msgstr "その他の保留中のレビュー ({0})"
-
-msgid "Listed version"
-msgstr "掲載バージョン"
-
-msgid "Unlisted versions ({0})"
-msgstr "非掲載バージョン ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "これにより、このバージョンを承認、署名、公開します。コメントは開発者へ送られます。"
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "これにより、このバージョンを却下し、待ち行列から削除します。コメントは開発者へ送られます。"
-
-msgid "Approve Content"
-msgstr "コンテンツを承認"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "これによって、開発者に通知することなく、最新の公開バージョンの内容を承認したことが記録されます。"
-
-msgid "Confirm Approval"
-msgstr "承認を確認"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "このアドオンの最新公開バージョンは自動承認されました。これにより、開発者に通知することなく、あなたによるこのバージョンの承認確認が記録されます。"
-
-msgid "Approve Multiple Versions"
-msgstr ""
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr ""
-
-msgid "Reject Multiple Versions"
-msgstr "複数のバージョンを却下"
-
-#, fuzzy
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "これにより、選択された公開バージョンを却下します。コメントは開発者へ送られます。"
-
-msgid "Block Multiple Versions"
-msgstr "複数のバージョンをブロック"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr ""
-
-msgid "Confirm Multiple Versions"
-msgstr "複数のバージョンを確認"
-
-#, fuzzy
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "これによって、開発者に通知することなく、最新の公開バージョンの内容を承認したことが記録されます。"
-
-msgid "Reviewer reply"
-msgstr "審査担当者の返信"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "これにより、開発者へメッセージを送ります。返信があったときはメールで通知します。"
-
-msgid "Request super-review"
-msgstr "スーパーレビューを求める"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "このアドオンについて、管理者権限を持った審査担当者が調査すべき懸念がある場合は、以下の欄にあなたのコメントを記入してください。この内容は開発者には送られません。"
-
-msgid "Comment"
-msgstr "コメント"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "このバージョンに関するコメントを残してください。開発者がこれを見ることはありません。"
-
-msgid "Pre-Review Add-ons"
-msgstr "レビュー前のアドオン"
-
-msgid "Recommended ({0})"
-msgstr "おすすめ ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "その他の保留中のレビュー ({0})"
-
-msgid "Review Log"
-msgstr "審査ログ"
-
-msgid "Add-on Review Guide"
-msgstr "アドオン審査ガイド"
-
-#, fuzzy
-msgid "Security Scanners"
-msgstr "セキュリティテスト"
-
-#, fuzzy
-msgid "Flagged By Scanners"
-msgstr "セキュリティテスト"
-
-#, fuzzy
-msgid "Flagged for Human Review"
-msgstr "レーティング審査 ({0})"
-
-msgid "Auto-Approved Add-ons"
-msgstr "自動承認されたアドオン"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "自動承認されたアドオン ({0})"
-
-msgid "Add-on Review Log"
-msgstr "アドオンの審査履歴"
-
-msgid "Review Guide"
-msgstr "審査ガイド"
-
-msgid "Content Review"
-msgstr "コンテンツ審査"
-
-#, fuzzy
-msgid "Content Review ({0})"
-msgstr "コンテンツ審査 ({0})"
-
-msgid "New ({0})"
-msgstr "新規 ({0})"
-
-msgid "Updates ({0})"
-msgstr "更新 ({0})"
-
-msgid "Theme Review Guide"
-msgstr "テーマ審査ガイド"
-
-msgid "User Ratings Moderation"
-msgstr "ユーザー評価管理"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "管理待ち評価 ({0})"
-
-msgid "Moderated Review Log"
-msgstr "管理者審査履歴"
-
-msgid "Moderation Guide"
-msgstr "管理者ガイド"
-
-msgid "Unlisted Add-ons"
-msgstr "非掲載アドオン"
-
-msgid "All Unlisted Add-ons"
-msgstr "すべての未掲載のアドオン"
-
-#, fuzzy
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "自動承認を無効化"
-
-msgid "Announcement"
-msgstr "お知らせ"
-
-msgid "Update message of the day"
-msgstr "今日のメッセージを更新"
-
-#, fuzzy
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "その他の保留中のレビュー ({0})"
-
-msgid "An unknown error occurred"
-msgstr "不明なエラーが発生しました"
-
-msgid "Self-reviews are not allowed."
-msgstr "自己審査は認められません。"
-
-msgid "Review successfully processed."
-msgstr "審査処理が完了しました。"
-
-msgid "Review lock limit reached"
-msgstr "審査ロックの限度に達しました"
-
-msgid "{addon} – EULA"
-msgstr "{addon} – EULA"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – プライバシーポリシー"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr ""
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "{addon} とその開発者に関する不正報告 ({num})"
-
-msgid "Abuse Reports"
-msgstr "不正報告"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "{0}のアドオン情報"
-
-msgid "Add-on ID"
-msgstr "アドオン ID"
-
-msgid "Original Add-on ID"
-msgstr "元のアドオン ID"
-
-msgid "Add-on(s) sharing same ID"
-msgstr ""
-
-msgid "Internal AMO ID"
-msgstr "内部 AMO ID"
-
-msgid "Support Website"
-msgstr "サポートサイト"
-
-msgid "Visibility"
-msgstr "公開状態"
-
-msgid "Visible"
-msgstr "公開"
-
-msgid "Weekly Downloads"
-msgstr "週間ダウンロード数"
-
-msgid "Average Daily Users"
-msgstr "平均日別ユーザー数"
-
-msgid "View Privacy Policy"
-msgstr "プライバシーポリシーを表示"
-
-msgid "Requires Payment"
-msgstr "課金あり"
-
-msgid "EULA"
-msgstr "エンドユーザー使用許諾契約書 (EULA)"
-
-msgid "View End-User License Agreement"
-msgstr "エンドユーザー使用許諾契約書を表示"
-
-msgid "Last Approval Date"
-msgstr "最終承認日"
-
-msgid "Abuse Reports ({num})"
-msgstr "不正報告 ({num})"
-
-msgid "Bad User Ratings ({num})"
-msgstr "低いユーザー評価 ({num})"
-
-msgid "Theme Images"
-msgstr "テーマの画像"
-
-msgid "Rendered Preview"
-msgstr "描画プレビュー"
-
-msgid "More about this add-on"
-msgstr "このアドオンの詳細"
-
-msgid "Image Gallery"
-msgstr "イメージギャラリー"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "表示できる情報が何もありません。開発者が詳細情報を提供していません。"
-
-msgid "Add-on name translations"
-msgstr "アドオン名の翻訳"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "審査担当者用ツールダッシュボードへ戻る"
-
-msgid "Reviewer Leaderboard"
-msgstr "審査担当者用ダッシュボード"
-
-msgid "No review points awarded yet."
-msgstr "レビューポイントはまだ付与されていません。"
-
-msgid "Rank"
-msgstr "ランク"
-
-msgid "Score"
-msgstr "スコア"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr ""
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "フィルター"
-
-msgid "Date"
-msgstr "日付"
-
-msgid "Event"
-msgstr "イベント"
-
-msgid "More details."
-msgstr "詳細"
-
-msgid "No events found for this period."
-msgstr "この期間のイベントは見つかりませんでした。"
-
-msgid "Log details"
-msgstr "履歴の詳細"
-
-msgid "Review Author"
-msgstr "レビュー投稿者"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "アドオンのタイトル"
-
-msgid "Review Text"
-msgstr "レビューの本文"
-
-msgid "Review was flagged prior to deletion."
-msgstr "レビューは削除前にフラグが立てられました。"
-
-msgid "Undelete"
-msgstr "削除を取り消し"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr ""
-
-msgid "Back to review"
-msgstr "レビューのページへ戻る"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr ""
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "自動承認されたアドオン – Firefox 用のアドオン"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr ""
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr ""
-
-#, fuzzy
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "期限切れとなった情報請求"
-
-msgid "Process Reviews"
-msgstr "審査を処理"
-
-msgid "Moderation actions:"
-msgstr "管理アクション:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5433,272 +4635,12 @@ msgstr "%(user)s、%(date)s、%(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">フラグを付けたユーザー: %(user)s、%(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "すべてのレビューが審査されました。お疲れ様です！"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "現在審査待ちのこの種類のアドオンはありません。"
-
-msgid "Helpful Links:"
-msgstr "参考になるリンク:"
-
-msgid "Add-on Policy"
-msgstr "アドオンポリシー"
-
-msgid "Reviewer's Guide"
-msgstr "審査担当者用ガイド"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr ""
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "コンテンツ審査 {0}"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "{0}を審査"
-
-#, fuzzy
-msgid "Add-on important changes history"
-msgstr "アドオンユーザー変更履歴"
-
-msgid "Add-on History"
-msgstr "アドオンの履歴"
-
-#, fuzzy
-msgid "You don't have permission to review it."
-msgstr "あなたは API 認証情報を持っていません。"
-
-#, fuzzy
-msgid "Please select one or more versions in the list below."
-msgstr "上のリストからひとつあるいはそれ以上のバージョンを選択してください。"
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "このフォームを送信することはできますが、競合しないと分かっている場合のみ送信してください。"
-
-msgid "Insert canned response..."
-msgstr "定型文の返信を挿入..."
-
-msgid "Files:"
-msgstr "ファイル:"
-
-msgid "Tested on:"
-msgstr "テスト環境:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>警告！</strong> あなたの前に、別のユーザーがこのページを見ていました。"
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "非公開ホワイトボードは、バージョンに依存せず、審査担当者間で情報を交換するために使用します。客観的な表現を守ってください。審査担当者のみに表示されます。"
-
-msgid "Update whiteboards"
-msgstr "ホワイトボードを更新"
-
-msgid "More Actions"
-msgstr "その他のアクション"
-
-msgid "Notify me about new listed versions"
-msgstr "新しく表示されたバージョンについて通知する"
-
-#, fuzzy
-msgid "Notify me about new unlisted versions"
-msgstr "新しく表示されたバージョンについて通知する"
-
-#, fuzzy
-msgid "Allow resubmission"
-msgstr "すべての登録アイテムを表示"
-
-#, fuzzy
-msgid "Deny resubmission"
-msgstr "自分の登録アイテムを管理"
-
-msgid "Force-disable add-on"
-msgstr "アドオンを強制無効化"
-
-msgid "Force-enable add-on"
-msgstr "アドオンを強制有効化"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval"
-msgstr "自動承認を無効化"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval"
-msgstr "自動承認を有効化"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval"
-msgstr "自動承認を無効化"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval"
-msgstr "自動承認を有効化"
-
-#, fuzzy
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "自動承認を無効化"
-
-#, fuzzy
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "自動承認を有効化"
-
-#, fuzzy
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "自動承認を無効化"
-
-#, fuzzy
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "自動承認を有効化"
-
-#, fuzzy
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "自動承認無効フラグが設定されています"
-
-#, fuzzy
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "自動承認を有効化"
-
-msgid "Clear pending rejections"
-msgstr ""
-
-msgid "Clear Admin Code Review Flag"
-msgstr "管理者コード審査フラグをクリア"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "管理者コンテンツ審査フラグをクリア"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "管理者静的テーマ審査フラグをクリア"
-
-#, fuzzy
-msgid "View Blocklist Submission"
-msgstr "すべての登録アイテムを表示"
-
-msgid "Block add-on"
-msgstr "アドオンをブロック"
-
-msgid "Update add-on block"
-msgstr ""
-
-msgid "(admin)"
-msgstr "(管理者)"
-
-msgid "Admin Page"
-msgstr "管理者ページ"
-
-msgid "Review This Add-on"
-msgstr "このアドオンを審査"
-
-msgid "More Information"
-msgstr "詳しい情報"
-
-msgid "Resolution"
-msgstr "審査結果"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr ""
-
-msgid "Reviewer"
-msgstr "審査担当者"
-
-msgid "Add-on has been deleted."
-msgstr "アドオンは削除されました。"
-
-msgid "Show Comments"
-msgstr "コメントを表示"
-
-msgid "Hide Comments"
-msgstr "コメントを隠す"
-
-msgid "No reviews found for this period."
-msgstr "この期間に審査が行われたアドオンはありません。"
-
-msgid "Origin:"
-msgstr ""
-
-msgid "Method:"
-msgstr "メソッド:"
-
-msgid "Source:"
-msgstr "ソース:"
-
-msgid "Source URL:"
-msgstr "ソース URL:"
-
-msgid "Dismiss this announcement"
-msgstr "このお知らせを削除"
-
-msgid "Files in this version:"
-msgstr "このバージョンのファイル:"
-
-msgid "All Platforms"
-msgstr "すべての OS"
-
-msgid "Browse all files in this version"
-msgstr "このバージョンのすべてのファイルを見る"
-
-msgid "Contents"
-msgstr "内容"
-
-msgid "Compare this version to the last reviewed version"
-msgstr ""
-
-msgid "Compare"
-msgstr "比較"
-
-msgid "Permissions:"
-msgstr "許可設定:"
-
-msgid "Optional permissions:"
-msgstr "任意の許可設定:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>ユーザー: %(user)s、%(date)s</div>"
-
-msgid "Older"
-msgstr "前へ"
-
-msgid "Newer"
-msgstr "次へ"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr ""
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr ""
-
-msgid "{num} versions pending rejection on other pages."
-msgstr ""
-
-msgid "Recent Points"
-msgstr "最近のポイント"
-
-msgid "No points awarded yet."
-msgstr "まだポイントは与えられていません。"
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "上位の審査担当者 (過去 7 日間)"
-
-msgid "No top reviewers yet."
-msgstr "まだ上位の審査担当者はいません。"
-
-msgid "All Time"
-msgstr "全期間"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
-
-msgid "Theme"
-msgstr "テーマ"
-
-msgid "No results found"
-msgstr "該当するアイテムはありません"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5708,111 +4650,16 @@ msgstr "%(user)s、%(date)s [%(ip_address)s]"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "バージョン %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-msgid "(Confirmed)"
-msgstr "(確認済み)"
-
-#, fuzzy
-msgid "Pending Rejection on review of new version"
-msgstr "情報請求期限"
-
-msgid "Compatibility:"
-msgstr "互換性:"
-
-msgid "Additional sources:"
-msgstr "追加のソース:"
-
-msgid "Download files"
-msgstr "ファイルをダウンロード"
-
-msgid "The developer has provided source code."
-msgstr "開発者がソースコードを提供しています。"
-
-msgid "Maliciousness Score:"
-msgstr ""
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr ""
-
-#, fuzzy
-msgid "Code Weight:"
-msgstr "重み:"
-
-#, fuzzy
-msgid "Metadata Weight:"
-msgstr "重み:"
-
-msgid "Flagged by scanners"
-msgstr ""
-
-#, fuzzy
-msgid "Flagged for human review"
-msgstr "レーティング審査 ({0})"
-
-msgid "Download"
-msgstr "ダウンロード"
-
-msgid "Not Auto Approved Because"
-msgstr "自動承認されなかった理由"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "このバージョンに対してまだ自動承認スクリプトが実行されていません。"
-
-msgid "This version has not been reviewed."
-msgstr "このバージョンはまだ審査を受けていません。"
-
-#, fuzzy
-msgid "Other Pending Review"
-msgstr "その他の保留中のレビュー ({0})"
-
-#, fuzzy
-msgid "Updates"
-msgstr "更新"
-
-#, fuzzy
-msgid "Rating Reviews"
-msgstr "審査待ち"
-
-#, fuzzy
-msgid "Auto Approved"
-msgstr "自動承認済み ({0})"
-
-#, fuzzy
-msgid "Pending Rejection"
-msgstr "その他の保留中のレビュー ({0})"
-
-msgid "presence of matched rules"
-msgstr ""
-
-#, fuzzy
-msgid "result state"
-msgstr "ここからスタート"
-
-msgid "Excluding results solely matching these rules"
-msgstr ""
-
-#, fuzzy
-msgid "presence of a version"
-msgstr "公開バージョンのプレビュー"
-
-msgid "version channel"
-msgstr "バージョンチャネル"
-
-msgid "add-on status"
-msgstr "アドオンの状態"
-
-msgid "add-on listing visibility"
-msgstr "アドオン掲載の可視性"
-
-msgid "file status"
-msgstr "ファイルの状態"
-
-msgid "file signature"
-msgstr "ファイル署名"
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr ""
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgid "Human-readable name for the scanner rule"
+msgstr ""
+
+msgid "Human-readable name"
+msgstr ""
+
+msgid "Human readable description for the scanner rule"
 msgstr ""
 
 msgid "Yara rules should have a definition"
@@ -5831,13 +4678,10 @@ msgstr ""
 msgid "An error occurred when compiling the definition"
 msgstr ""
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr ""
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
-
-msgid "Abort"
-msgstr ""
-
-msgid "Run"
 msgstr ""
 
 #, python-format
@@ -5873,10 +4717,6 @@ msgstr ""
 
 msgid "Version does not match the manifest file."
 msgstr "バージョンがマニフェストファイルと一致しません。"
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "このバージョンは既に存在します。最新バージョンは %s です。"
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "64 文字を超える場合は、マニフェストでアドオン ID を指定してください。"
@@ -5938,6 +4778,9 @@ msgstr "開始日"
 
 msgid "To"
 msgstr "終了日"
+
+msgid "Update"
+msgstr "更新"
 
 msgid "Export"
 msgstr "エクスポート"
@@ -6106,9 +4949,6 @@ msgstr "法的通知"
 msgid "Report Trademark Abuse"
 msgstr "商標の不正利用を報告"
 
-msgid "Site Status"
-msgstr "サイトステータス"
-
 msgid "Report a bug"
 msgstr "バグを報告"
 
@@ -6157,6 +4997,9 @@ msgstr "移動"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0}アドオンのホームページへ戻る"
 
+msgid "Add-ons"
+msgstr "アドオン"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ユーザー登録</a> / <a href=\"%(login)s\">ログイン</a>"
@@ -6196,40 +5039,8 @@ msgstr "<b>{0}</b> の翻訳をすべて削除してもよろしいですか？ 
 msgid "Delete Locale"
 msgstr "ロケールを削除"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "ユーザー「%(user)s」のアカウントが停止されました。"
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "ユーザー「%(user)s」に属する写真が削除されました。"
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
-
-msgid "Ban selected users"
-msgstr "選択したユーザーのアカウントを停止"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
-
-msgid "Reset session"
-msgstr "セッションをリセット"
-
-#, fuzzy, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "ユーザー「%(users)s」のアカウントが停止されました。"
-
-msgid "Reset API Key"
-msgstr "API キーをリセット"
-
-msgid "Profile Photo"
-msgstr "プロファイル写真"
-
-msgid "Collections"
-msgstr "コレクション"
+msgid "IP Address"
+msgstr "IP アドレス"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "有効な IPv4 または IPv6 アドレスを入力してください (例: 127.0.0.1)。これは、/32 ネットワークに変換されます。"
@@ -6314,16 +5125,6 @@ msgstr "あなたのアドオンの作者の役割が変更されました"
 msgid "An author has been removed from your add-on"
 msgstr "このアドオンの作者が削除されました"
 
-msgid "Ban"
-msgstr "アカウントを停止"
-
-#, fuzzy
-msgid "Reset session(s)"
-msgstr "バージョンを削除"
-
-msgid "Delete picture"
-msgstr "写真を削除"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6374,10 +5175,6 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "その他"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

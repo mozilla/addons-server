@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2021-06-25 10:04+0000\n"
+"POT-Creation-Date: 2023-03-21 18:07+0000\n"
+"PO-Revision-Date: 2023-02-04 18:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -89,24 +89,28 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "El vostre complement s'ha validat sense cap error ni avís."
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Incloeu les notes de la versió detallades (podeu fer-ho en el pas següent)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Si el vostre complement requereix un compte en un lloc web per poder-lo provar completament, incloeu un nom d'usuari i una contrasenya de prova a les Notes per al revisor (això es pot fer en el pas "
+"següent)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Llista de comprovació per a l'enviament de complements"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Verifiqueu els següents punts abans de finalitzar el vostre enviament. Això minimitzarà demores o malentesos durant el procés de revisió:"
+msgstr "Verifiqueu els següents punts abans de finalitzar l'enviament. Això minimitzarà demores o malentesos durant el procés de revisió:"
 
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Els scripts reduïts, concatenats o generats per màquina (excepte les biblioteques conegudes) han d'enviar el corresponent codi font per separat per a revisar-lo. Assegureu-vos que feu servir el "
+"camp de càrrega del codi font per evitar que es rebutgi l'enviament."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "El procés de validació ha detectat aquests problemes que poden provocar que es rebutgi:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "El tipus de fitxer que heu pujat no es pot reconèixer."
@@ -654,22 +658,22 @@ msgid "Review notes found"
 msgstr ""
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "La mida màxima de càrrega és {0}: trieu una imatge de fons més petita."
 
 msgid "Requested Info"
-msgstr ""
+msgstr "Informació sol·licitada"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Marcat"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Duplicat"
 
 msgid "Rejected"
-msgstr ""
+msgstr "Rebutjat"
 
 msgid "Approved"
-msgstr ""
+msgstr "Aprovat"
 
 msgid "No results found"
 msgstr "No s'ha trobat cap resultat"
@@ -678,7 +682,7 @@ msgid "Theme"
 msgstr "Tema"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Revisor"
 
 msgid "Status"
 msgstr "Estat"
@@ -722,8 +726,8 @@ msgstr[1] "{0} avisos"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} avís"
+msgstr[1] "{0} avisos"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr "El procés de validació no s'ha pogut completar o s'ha completat amb errors"

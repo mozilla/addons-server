@@ -1,4 +1,8 @@
+from contextlib import ExitStack
+from unittest import mock
+
 from django.conf import settings
+from django.core.exceptions import FieldDoesNotExist
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.translation import override
@@ -52,13 +56,16 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
+from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
     License,
+    Version,
     VersionPreview,
 )
+from olympia.users.models import UserProfile
 
 
 class AddonSerializerOutputTestMixin:
@@ -128,11 +135,12 @@ class AddonSerializerOutputTestMixin:
         assert result_file['url'].endswith('.xpi')
         assert result_file['permissions'] == file_.permissions
         assert result_file['optional_permissions'] == file_.optional_permissions
+        assert result_file['host_permissions'] == file_.host_permissions
 
         assert data['edit_url'] == absolutify(
             self.addon.get_dev_url('versions.edit', args=[version.pk], prefix_only=True)
         )
-        assert data['reviewed'] == version.reviewed
+        assert data['reviewed'] == version.human_review_date
         assert data['version'] == version.version
 
     def test_basic(self):
@@ -626,11 +634,14 @@ class AddonSerializerOutputTestMixin:
         )
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
+        host_permissions = ['*://example.com/*', '*://mozilla.com/*']
+
         # Give one of the versions some webext permissions to test that.
         WebextPermission.objects.create(
             file=self.addon.current_version.file,
             permissions=permissions,
             optional_permissions=optional_permissions,
+            host_permissions=host_permissions,
         )
 
         result = self.serialize()
@@ -642,6 +653,7 @@ class AddonSerializerOutputTestMixin:
             result['current_version']['file']['optional_permissions']
             == optional_permissions
         )
+        assert result['current_version']['file']['host_permissions'] == host_permissions
 
     def test_is_restart_required(self):
         self.addon = addon_factory()
@@ -1030,6 +1042,41 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             result = self.serializer.to_representation(obj)
         return result
 
+    def test_no_expensive_defaults(self):
+        auth_id_field = UserProfile._meta.get_field('auth_id')
+        # Ensure mocking default is working before proceeding with this test.
+        with mock.patch.object(auth_id_field, 'get_default') as default_auth_id:
+            UserProfile()
+        assert default_auth_id.call_count == 1
+
+        self.addon = addon_factory(users=[user_factory()])
+
+        fields_with_default_to_mock = ('auth_id', 'created')
+        models_with_defaults_to_mock = (
+            Addon,
+            AppVersion,
+            License,
+            Preview,
+            PromotedAddon,
+            UserProfile,
+            Version,
+        )
+        mocks = {}
+        with ExitStack() as stack:
+            for model in models_with_defaults_to_mock:
+                for field in fields_with_default_to_mock:
+                    try:
+                        field = model._meta.get_field(field)
+                        mocks[field] = stack.enter_context(
+                            mock.patch.object(field, 'get_default')
+                        )
+                    except FieldDoesNotExist:
+                        pass
+            self.serialize()
+        assert len(mocks) == 8  # created on all models + auth_id.
+        for mocked_default in mocks.values():
+            assert mocked_default.call_count == 0
+
     def _test_author(self, author, data):
         """Override because the ES serializer doesn't include picture_url."""
         assert data == {
@@ -1114,7 +1161,7 @@ class TestVersionSerializerOutput(TestCase):
                     'en-US': 'Release notes in english',
                     'fr': 'Notes de version en français',
                 },
-                'reviewed': now,
+                'human_review_date': now,
             },
         )
 
@@ -1323,6 +1370,20 @@ class TestVersionSerializerOutput(TestCase):
         result = self.serialize()
         assert result['file']['optional_permissions'] == (optional_permissions)
 
+    def test_file_host_permissions(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        # No permissions.
+        assert result['file']['host_permissions'] == []
+
+        self.version = addon_factory().current_version
+        host_permissions = ['*://example.com/*', '*://mozilla.com/*']
+        WebextPermission.objects.create(
+            host_permissions=host_permissions, file=self.version.file
+        )
+        result = self.serialize()
+        assert result['file']['host_permissions'] == (host_permissions)
+
     def test_version_files_or_file(self):
         self.version = addon_factory().current_version
         result = self.serialize()
@@ -1368,6 +1429,15 @@ class TestDeveloperVersionSerializerOutput(TestVersionSerializerOutput):
         result = self.serialize()
         assert result['approval_notes'] == 'Plz approve!'
 
+    def test_is_disabled(self):
+        self.version = addon_factory().current_version
+        result = self.serialize()
+        assert result['is_disabled'] is False
+
+        self.version.is_user_disabled = True
+        result = self.serialize()
+        assert result['is_disabled'] is True
+
 
 class TestListVersionSerializerOutput(TestCase):
     serializer_class = ListVersionSerializer
@@ -1411,7 +1481,7 @@ class TestSimpleVersionSerializerOutput(TestCase):
         addon = addon_factory(
             version_kw={
                 'license': license,
-                'reviewed': now,
+                'human_review_date': now,
             }
         )
 
@@ -1545,6 +1615,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
             'id',
             'name',
             'icon_url',
+            'icons',
             'type',
             'url',
             'promoted',
@@ -1552,6 +1623,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': str(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['icons'] == {
+            '32': absolutify(self.addon.get_icon_url(32)),
+            '64': absolutify(self.addon.get_icon_url(64)),
+            '128': absolutify(self.addon.get_icon_url(128)),
+        }
         assert result['type'] == 'extension'
         assert result['url'] == self.addon.get_absolute_url()
         assert result['promoted'] == self.addon.promoted is None
@@ -1641,7 +1717,7 @@ class TestReplacementAddonSerializer(TestCase):
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
-        addon.update(status=amo.STATUS_APPROVED)
+        addon.versions.get().file.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == ['newstuff@mozilla']
 
@@ -1697,7 +1773,7 @@ class TestReplacementAddonSerializer(TestCase):
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
-        addon.update(status=amo.STATUS_APPROVED)
+        addon.versions.get().file.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == ['newstuff@mozilla']
 

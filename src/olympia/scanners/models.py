@@ -9,6 +9,7 @@ import yara
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils.functional import classproperty
 from django.utils.translation import gettext_lazy as _
 
 import olympia.core.logger
@@ -56,10 +57,6 @@ class AbstractScannerResult(ModelBase):
     # Store the "raw" results of a scanner.
     results = models.JSONField(default=list)
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
-    has_matches = models.BooleanField(null=True)
-    state = models.PositiveSmallIntegerField(
-        choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
-    )
     version = models.ForeignKey(
         'versions.Version',
         related_name='%(class)ss',
@@ -69,10 +66,6 @@ class AbstractScannerResult(ModelBase):
 
     class Meta(ModelBase.Meta):
         abstract = True
-        indexes = [
-            models.Index(fields=('has_matches',)),
-            models.Index(fields=('state',)),
-        ]
 
     def add_yara_result(self, rule, tags=None, meta=None):
         """This method is used to store a Yara result."""
@@ -88,20 +81,18 @@ class AbstractScannerResult(ModelBase):
         # We do not have support for the remaining scanners (yet).
         return []
 
-    def save(self, *args, **kwargs):
-        rule_model = self._meta.get_field('matched_rules').related_model
-        matched_rules = rule_model.objects.filter(
+    def get_rules_queryset(self):
+        """Helper to return the rule(s) queryset matching the rule name and
+        scanner for this result."""
+        return self.rule_model.objects.filter(
             scanner=self.scanner,
             name__in=self.extract_rule_names(),
-            # See: https://github.com/mozilla/addons-server/issues/13143
-            is_active=True,
         )
-        self.has_matches = bool(matched_rules)
-        # Save the instance first...
-        super().save(*args, **kwargs)
-        # ...then add the associated rules.
-        for scanner_rule in matched_rules:
-            self.matched_rules.add(scanner_rule)
+
+    @classproperty
+    def rule_model(self):
+        # Implement in concrete models.
+        raise NotImplementedError
 
     def get_scanner_name(self):
         return SCANNERS.get(self.scanner)
@@ -109,112 +100,28 @@ class AbstractScannerResult(ModelBase):
     def get_pretty_results(self):
         return json.dumps(self.results, indent=2)
 
-    def get_files_by_matched_rules(self):
+    def get_files_and_data_by_matched_rules(self):
         res = defaultdict(list)
-        if self.scanner is YARA:
+        if self.scanner == YARA:
             for item in self.results:
-                res[item['rule']].append(item['meta'].get('filename', '???'))
-        elif self.scanner is CUSTOMS:
-            scanMap = self.results.get('scanMap', {})
+                res[item['rule']].append(
+                    {'filename': item.get('meta', {}).get('filename', '???')}
+                )
+        elif self.scanner == CUSTOMS:
+            scanMap = self.results.get('scanMap', {}).copy()
             for filename, rules in scanMap.items():
                 for ruleId, data in rules.items():
-                    if data.get('RULE_HAS_MATCHED', False):
-                        res[ruleId].append(filename)
+                    data = data.copy()
+                    if data.pop('RULE_HAS_MATCHED', False):
+                        if filename == '__GLOBAL__':
+                            filename = ''
+                        res[ruleId].append({'filename': filename, 'data': data})
         return res
-
-    def can_report_feedback(self):
-        return self.state == UNKNOWN and self.scanner not in [MAD]
-
-    def can_revert_feedback(self):
-        return self.state != UNKNOWN and self.scanner not in [MAD]
 
     def get_git_repository(self):
         return {
             CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
         }.get(self.scanner)
-
-    @classmethod
-    def run_action(cls, version):
-        """Try to find and execute an action for a given version, based on the
-        scanner results and associated rules.
-
-        If an action is found, it is run synchronously from this method, not in
-        a task.
-        """
-        log.info('Checking rules and actions for version %s.', version.pk)
-
-        if version.addon.type != ADDON_EXTENSION:
-            log.info(
-                'Not running action(s) on version %s which belongs to a non-extension.',
-                version.pk,
-            )
-            return
-
-        try:
-            mad_result = cls.objects.filter(version=version, scanner=MAD).get()
-            customs = mad_result.results.get('scanners', {}).get('customs', {})
-            customs_score = customs.get('score', 0.5)
-            customs_models_agree = customs.get('result_details', {}).get(
-                'models_agree', True
-            )
-
-            if (
-                customs_score <= 0.01
-                or customs_score >= 0.99
-                or not customs_models_agree
-            ):
-                log.info('Flagging version %s for human review by MAD.', version.pk)
-                _flag_for_human_review_by_scanner(version, MAD)
-        except cls.DoesNotExist:
-            log.info('No MAD scanner result for version %s.', version.pk)
-            pass
-
-        rule_model = cls.matched_rules.rel.model
-        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
-
-        rule = (
-            rule_model.objects.filter(
-                **{f'{result_query_name}__version': version, 'is_active': True}
-            )
-            .order_by(
-                # The `-` sign means descending order.
-                '-action'
-            )
-            .first()
-        )
-
-        if not rule:
-            log.info('No action to execute for version %s.', version.pk)
-            return
-
-        action_id = rule.action
-        action_name = ACTIONS.get(action_id, None)
-
-        if not action_name:
-            raise Exception('invalid action %s' % action_id)
-
-        ACTION_FUNCTIONS = {
-            NO_ACTION: _no_action,
-            FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
-            DELAY_AUTO_APPROVAL: _delay_auto_approval,
-            DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
-            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: (
-                _delay_auto_approval_indefinitely_and_restrict
-            ),
-            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: (
-                _delay_auto_approval_indefinitely_and_restrict_future_approvals
-            ),
-        }
-
-        action_function = ACTION_FUNCTIONS.get(action_id, None)
-
-        if not action_function:
-            raise Exception('no implementation for action %s' % action_id)
-
-        # We have a valid action to execute, so let's do it!
-        log.info('Starting action "%s" for version %s.', action_name, version.pk)
-        action_function(version)
-        log.info('Ending action "%s" for version %s.', action_name, version.pk)
 
 
 class AbstractScannerRule(ModelBase):
@@ -222,17 +129,20 @@ class AbstractScannerRule(ModelBase):
         max_length=200,
         help_text=_('This is the exact name of the rule used by a scanner.'),
     )
+    pretty_name = models.CharField(
+        default='',
+        help_text=_('Human-readable name for the scanner rule'),
+        max_length=255,
+        blank=True,
+        verbose_name=_('Human-readable name'),
+    )
+    description = models.CharField(
+        default='',
+        help_text=_('Human readable description for the scanner rule'),
+        max_length=255,
+        blank=True,
+    )
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
-    action = models.PositiveSmallIntegerField(
-        choices=ACTIONS.items(), default=NO_ACTION
-    )
-    is_active = models.BooleanField(
-        default=True,
-        help_text=_(
-            'When unchecked, the scanner results will not be bound to this '
-            'rule and the action will not be executed.'
-        ),
-    )
     definition = models.TextField(null=True, blank=True)
 
     class Meta(ModelBase.Meta):
@@ -252,7 +162,7 @@ class AbstractScannerRule(ModelBase):
         }
 
     def __str__(self):
-        return self.name
+        return self.pretty_name or self.name
 
     def clean(self):
         if self.scanner == YARA:
@@ -295,6 +205,17 @@ class AbstractScannerRule(ModelBase):
 
 
 class ScannerRule(AbstractScannerRule):
+    action = models.PositiveSmallIntegerField(
+        choices=ACTIONS.items(), default=NO_ACTION
+    )
+    is_active = models.BooleanField(
+        default=True,
+        help_text=_(
+            'When unchecked, the scanner results will not be bound to this '
+            'rule and the action will not be executed.'
+        ),
+    )
+
     class Meta(AbstractScannerRule.Meta):
         db_table = 'scanners_rules'
 
@@ -315,6 +236,10 @@ class ScannerResult(AbstractScannerResult):
         null=True, blank=True, max_digits=6, decimal_places=5, default=-1
     )
     model_version = models.CharField(max_length=30, null=True)
+    has_matches = models.BooleanField(null=True)
+    state = models.PositiveSmallIntegerField(
+        choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
+    )
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'
@@ -324,6 +249,117 @@ class ScannerResult(AbstractScannerResult):
                 name='scanners_results_upload_id_scanner_version_id_ad9eb8a6_uniq',
             )
         ]
+        indexes = [
+            models.Index(fields=('state',)),
+            models.Index(fields=('has_matches',)),
+        ]
+
+    @classproperty
+    def rule_model(self):
+        return self.matched_rules.rel.model
+
+    def get_rules_queryset(self):
+        # See: https://github.com/mozilla/addons-server/issues/13143
+        return super().get_rules_queryset().filter(is_active=True)
+
+    def save(self, *args, **kwargs):
+        matched_rules = self.get_rules_queryset()
+        self.has_matches = bool(matched_rules)
+        # Save the instance first...
+        super().save(*args, **kwargs)
+        # ...then add the associated rules.
+        for scanner_rule in matched_rules:
+            self.matched_rules.add(scanner_rule)
+
+    def can_report_feedback(self):
+        return self.state == UNKNOWN and self.scanner not in [MAD]
+
+    def can_revert_feedback(self):
+        return self.state != UNKNOWN and self.scanner not in [MAD]
+
+    @classmethod
+    def run_action(cls, version):
+        """Try to find and execute an action for a given version, based on the
+        scanner results and associated rules.
+
+        If an action is found, it is run synchronously from this method, not in
+        a task.
+        """
+        log.info('Checking rules and actions for version %s.', version.pk)
+
+        if version.addon.type != ADDON_EXTENSION:
+            log.info(
+                'Not running action(s) on version %s which belongs to a non-extension.',
+                version.pk,
+            )
+            return
+
+        try:
+            mad_result = cls.objects.filter(version=version, scanner=MAD).get()
+            customs = mad_result.results.get('scanners', {}).get('customs', {})
+            customs_score = customs.get('score', 0.5)
+            customs_models_agree = customs.get('result_details', {}).get(
+                'models_agree', True
+            )
+
+            if (
+                customs_score <= 0.01
+                or customs_score >= 0.99
+                or not customs_models_agree
+            ):
+                log.info('Flagging version %s for human review by MAD.', version.pk)
+                _flag_for_human_review_by_scanner(
+                    version=version, rule=None, scanner=MAD
+                )
+        except cls.DoesNotExist:
+            log.info('No MAD scanner result for version %s.', version.pk)
+            pass
+
+        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
+
+        rule = (
+            cls.rule_model.objects.filter(
+                **{f'{result_query_name}__version': version, 'is_active': True}
+            )
+            .order_by(
+                # The `-` sign means descending order.
+                '-action'
+            )
+            .first()
+        )
+
+        if not rule:
+            log.info('No action to execute for version %s.', version.pk)
+            return
+
+        action_id = rule.action
+        action_name = ACTIONS.get(action_id, None)
+
+        if not action_name:
+            raise Exception('invalid action %s' % action_id)
+
+        ACTION_FUNCTIONS = {
+            NO_ACTION: _no_action,
+            FLAG_FOR_HUMAN_REVIEW: _flag_for_human_review,
+            DELAY_AUTO_APPROVAL: _delay_auto_approval,
+            DELAY_AUTO_APPROVAL_INDEFINITELY: _delay_auto_approval_indefinitely,
+            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT: (
+                _delay_auto_approval_indefinitely_and_restrict
+            ),
+            DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS: (
+                _delay_auto_approval_indefinitely_and_restrict_future_approvals
+            ),
+        }
+
+        action_function = ACTION_FUNCTIONS.get(action_id, None)
+
+        if not action_function:
+            raise Exception('no implementation for action %s' % action_id)
+
+        # We have a valid action to execute, so let's do it!
+        log.info('Starting action "%s" for version %s.', action_name, version.pk)
+        action_function(version=version, rule=rule)
+        log.info('Ending action "%s" for version %s.', action_name, version.pk)
 
 
 class ScannerMatch(ModelBase):
@@ -402,17 +438,25 @@ class ScannerQueryRule(AbstractScannerRule):
 
 
 class ScannerQueryResult(AbstractScannerResult):
-    # Has to be overridden, because the parent refers to ScannerMatch.
-    matched_rules = models.ManyToManyField(
-        'ScannerQueryRule', through='ScannerQueryMatch', related_name='results'
+    # Note: ScannerResult uses a M2M called 'matched_rules', but here we don't
+    # need a M2M because there will always be a single rule for each result, so
+    # we have a single FK called 'matched_rule' (singular).
+    matched_rule = models.ForeignKey(
+        ScannerQueryRule, on_delete=models.CASCADE, related_name='results'
     )
     was_blocked = models.BooleanField(null=True, default=None)
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_query_results'
-        # FIXME indexes, unique constraints ?
+        indexes = [
+            models.Index(fields=('was_blocked',)),
+        ]
 
+    @classproperty
+    def rule_model(cls):
+        return cls.matched_rule.field.related_model
 
-class ScannerQueryMatch(ModelBase):
-    result = models.ForeignKey(ScannerQueryResult, on_delete=models.CASCADE)
-    rule = models.ForeignKey(ScannerQueryRule, on_delete=models.CASCADE)
+    def save(self, *args, **kwargs):
+        if self.results:
+            self.matched_rule = self.get_rules_queryset().get()
+        super().save(*args, **kwargs)

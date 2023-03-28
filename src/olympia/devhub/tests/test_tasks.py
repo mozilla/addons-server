@@ -9,6 +9,7 @@ from decimal import Decimal
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 from unittest import mock
 import pytest
@@ -17,6 +18,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory, root_storage
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import utc_millesecs_from_epoch
@@ -453,6 +455,23 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
         result = tasks.run_addons_linter(self.valid_path, channel=amo.CHANNEL_LISTED)
         assert result.get('errors') == 0
 
+    def test_enable_background_service_worker_setting(self):
+        flag = '--enable-background-service-worker'
+        with mock.patch('olympia.devhub.tasks.subprocess') as subprocess_mock:
+            subprocess_mock.Popen = self.FakePopen
+
+            with override_settings(ADDONS_LINTER_ENABLE_SERVICE_WORKER=False):
+                tasks.run_addons_linter(
+                    path=self.valid_path, channel=amo.CHANNEL_LISTED
+                )
+                assert flag not in self.FakePopen.get_args()
+
+            with override_settings(ADDONS_LINTER_ENABLE_SERVICE_WORKER=True):
+                tasks.run_addons_linter(
+                    path=self.valid_path, channel=amo.CHANNEL_LISTED
+                )
+                assert flag in self.FakePopen.get_args()
+
 
 class TestValidateFilePath(ValidatorTestCase):
     def copy_addon_file(self, name):
@@ -540,23 +559,103 @@ class TestValidateFilePath(ValidatorTestCase):
         assert run_addons_linter_mock.call_count == 1
         assert annotate_validation_results_mock.call_count == 1
         annotate_validation_results_mock.assert_called_with(
-            run_addons_linter_mock.return_value, parse_addon_mock.return_value
+            results=run_addons_linter_mock.return_value,
+            parsed_data=parse_addon_mock.return_value,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
 
-@mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
-def test_send_welcome_email(send_html_mail_jinja_mock):
-    tasks.send_welcome_email(3615, ['del@icio.us'], {'omg': 'yes'})
-    send_html_mail_jinja_mock.assert_called_with(
-        ('Mozilla Add-ons: Your add-on has been submitted to addons.mozilla.org!'),
-        'devhub/emails/submission.html',
-        'devhub/emails/submission.txt',
-        {'omg': 'yes'},
-        recipient_list=['del@icio.us'],
-        from_email=settings.ADDONS_EMAIL,
-        use_deny_list=False,
-        perm_setting='individual_contact',
-    )
+class TestInitialSubmissionAcknoledgementEmail(TestCase):
+    @mock.patch('olympia.devhub.tasks.send_html_mail_jinja')
+    def test_send_with_mock(self, send_html_mail_jinja_mock):
+        addon = addon_factory()
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'del@icio.us'
+        )
+        send_html_mail_jinja_mock.assert_called_with(
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!',
+            'devhub/emails/submission.html',
+            'devhub/emails/submission.txt',
+            {
+                'addon_name': str(addon.name),
+                'app': str(amo.FIREFOX.pretty),
+                'listed': True,
+                'detail_url': absolutify(addon.get_url_path()),
+            },
+            recipient_list=['del@icio.us'],
+            from_email=settings.ADDONS_EMAIL,
+            use_deny_list=False,
+            perm_setting='individual_contact',
+        )
+
+    def test_send_email(self):
+        addon = addon_factory()
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert 'your add-on listing will appear on our website' in text_body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'http://testserver/en-US/firefox/addon/' in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' in html_body
+        assert 'http://testserver/en-US/firefox/addon/' in html_body
+
+    def test_send_email_unlisted(self):
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_UNLISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'your add-on listing will appear on our website' not in text_body
+        assert 'http://testserver/en-US/firefox/addon/' not in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' not in html_body
+        assert 'http://testserver/en-US/firefox/addon/' not in html_body
+
+    def test_dont_send_addon_doesnotexist(self):
+        tasks.send_initial_submission_acknowledgement_email(
+            424242, amo.CHANNEL_UNLISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 0
+
+    def test_urls_locale_prefix(self):
+        addon = addon_factory(default_locale='pt-BR')
+        tasks.send_initial_submission_acknowledgement_email(
+            addon.pk, amo.CHANNEL_LISTED, 'someone@somewhere.com'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to[0] == 'someone@somewhere.com'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        text_body = mail.outbox[0].body
+        assert 'your add-on listing will appear on our website' in text_body
+        assert f'Thanks for submitting your {addon.name} add-on' in text_body
+        assert 'http://testserver/pt-BR/firefox/addon/' in text_body
+        assert mail.outbox[0].alternatives
+        html_body, content_type = mail.outbox[0].alternatives[0]
+        assert content_type == 'text/html'
+        assert f'Thanks for submitting your {addon.name} add-on' in html_body
+        assert 'your add-on listing will appear on our website' in html_body
+        assert 'http://testserver/pt-BR/firefox/addon/' in html_body
 
 
 class TestSubmitFile(UploadMixin, TestCase):
@@ -799,27 +898,3 @@ class TestForwardLinterResults(TestCase):
         results = {'errors': 1}
         returned_results = tasks.forward_linter_results(results, 123)
         assert results == returned_results
-
-
-class TestCreateSitePermissionVersion(TestCase):
-    @mock.patch('olympia.devhub.tasks.SitePermissionVersionCreator')
-    def test_pass_down_to_creator_util(self, SitePermissionVersionCreator_mock):
-        user = user_factory()
-        tasks.create_site_permission_version(
-            user_pk=user.pk,
-            remote_addr='127.0.0.42',
-            install_origins=['https://example.com'],
-            site_permissions=['foo'],
-        )
-        assert SitePermissionVersionCreator_mock.call_count == 1
-        assert SitePermissionVersionCreator_mock.call_args[0] == ()
-        assert SitePermissionVersionCreator_mock.call_args[1] == {
-            'user': user,
-            'remote_addr': '127.0.0.42',
-            'install_origins': ['https://example.com'],
-            'site_permissions': ['foo'],
-        }
-        assert (
-            SitePermissionVersionCreator_mock.return_value.create_version.call_count
-            == 1
-        )

@@ -12,12 +12,12 @@ onlyLabels: []
 
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
 exemptLabels:
-  - "contrib: maybe good first bug"
-  - "contrib: good first bug"
-  - "component: security"
-  - "state: blocked"
-  - "state: blocked by upstream"
-  - "state: pull request ready"
+  - "contrib:maybe_good_first_bug"
+  - "contrib:good_first_bug"
+  - "component:security"
+  - "state:blocked"
+  - "state:blocked_by_upstream"
+  - "state:pull_request_ready"
   - "neverstale"
 
 # Set to true to ignore issues in a project (defaults to false)
@@ -30,7 +30,7 @@ exemptMilestones: true
 exemptAssignees: true
 
 # Label to use when marking as stale
-staleLabel: "state: stale"
+staleLabel: "state:stale"
 
 # Comment to post when marking as stale. Set to `false` to disable
 markComment: >

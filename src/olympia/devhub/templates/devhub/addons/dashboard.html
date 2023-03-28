@@ -62,7 +62,9 @@
       <div class="items">
         {{ dev_addon_listing_items(addons.object_list) }}
       </div>
-      {{ addons|paginator }}
+      {% if addons.paginator.num_pages > 1 %}
+        {{ addons|paginator }}
+      {% endif %}
     </div>
   </section>
 {% endif %}
@@ -80,7 +82,9 @@
       <div class="items">
         {{ dev_addon_listing_items(themes.object_list) }}
       </div>
-      {{ themes|paginator }}
+      {% if themes.paginator.num_pages > 1 %}
+        {{ themes|paginator }}
+      {% endif %}
     </div>
   </section>
 {% endif %}

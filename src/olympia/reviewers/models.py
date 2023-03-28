@@ -1,14 +1,13 @@
 import json
 
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
-from django.db.models import Q, Sum
+from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
-from django.utils.translation import gettext, gettext_lazy as _
 
 import olympia.core.logger
 
@@ -16,11 +15,9 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import cache_ns_key, send_mail
-from olympia.constants.base import _ADDON_SEARCH
+from olympia.amo.utils import send_mail
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -34,30 +31,45 @@ log = olympia.core.logger.getLogger('z.reviewers')
 
 VIEW_QUEUE_FLAGS = (
     (
+        'needs_human_review',
+        'Needs Human Review',
+    ),
+    (
         'needs_admin_code_review',
-        'needs-admin-code-review',
-        _('Needs Admin Code Review'),
+        'Needs Admin Code Review',
     ),
     (
         'needs_admin_content_review',
-        'needs-admin-content-review',
-        _('Needs Admin Content Review'),
+        'Needs Admin Content Review',
     ),
     (
         'needs_admin_theme_review',
-        'needs-admin-theme-review',
-        _('Needs Admin Static Theme Review'),
+        'Needs Admin Static Theme Review',
     ),
-    ('sources_provided', 'sources-provided', _('Sources provided')),
+    ('sources_provided', 'Source Code Provided'),
+    (
+        'auto_approval_disabled',
+        'Auto-approval disabled',
+    ),
     (
         'auto_approval_delayed_temporarily',
-        'auto-approval-delayed-temporarily',
-        _('Auto-approval delayed temporarily'),
+        'Auto-approval delayed temporarily',
     ),
     (
         'auto_approval_delayed_indefinitely',
-        'auto-approval-delayed-indefinitely',
-        _('Auto-approval delayed indefinitely'),
+        'Auto-approval delayed indefinitely',
+    ),
+    (
+        'auto_approval_disabled_unlisted',
+        'Unlisted Auto-approval disabled',
+    ),
+    (
+        'auto_approval_delayed_temporarily_unlisted',
+        'Unlisted Auto-approval delayed temporarily',
+    ),
+    (
+        'auto_approval_delayed_indefinitely_unlisted',
+        'Unlisted Auto-approval delayed indefinitely',
     ),
 )
 
@@ -82,35 +94,27 @@ def set_reviewing_cache(addon_id, user_id):
     )
 
 
-class CannedResponse(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    response = models.TextField()
-    sort_group = models.CharField(max_length=255)
-    type = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_TYPE_CHOICES.items(), db_index=True, default=0
-    )
-
-    # Category is used only by code-manager
-    category = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_CATEGORY_CHOICES.items(),
-        default=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-    )
-
-    class Meta:
-        db_table = 'cannedresponses'
-
-    def __str__(self):
-        return str(self.name)
-
-
 def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
+    flag_filters_by_channel = {
+        amo.CHANNEL_UNLISTED: (
+            'auto_approval_disabled',
+            'auto_approval_delayed_temporarily',
+            'auto_approval_delayed_indefinitely',
+        ),
+        amo.CHANNEL_LISTED: (
+            'auto_approval_disabled_unlisted',
+            'auto_approval_delayed_temporarily_unlisted',
+            'auto_approval_delayed_indefinitely_unlisted',
+        ),
+    }
     flags = [
-        (cls, title)
-        for (prop, cls, title) in VIEW_QUEUE_FLAGS
+        (prop.replace('_', '-'), title)
+        for (prop, title) in VIEW_QUEUE_FLAGS
         if getattr(version, prop, getattr(addon, prop, None))
+        and prop
+        not in flag_filters_by_channel.get(getattr(version, 'channel', None), ())
     ]
     # add in the promoted group flag and return
     if promoted := addon.promoted_group(currently_approved=False):
@@ -210,440 +214,6 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
 version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 
-class ReviewerScore(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    user = models.ForeignKey(
-        UserProfile, related_name='_reviewer_scores', on_delete=models.CASCADE
-    )
-    addon = models.ForeignKey(
-        Addon, blank=True, null=True, related_name='+', on_delete=models.CASCADE
-    )
-    version = models.ForeignKey(
-        Version, blank=True, null=True, related_name='+', on_delete=models.CASCADE
-    )
-    score = models.IntegerField()
-    # For automated point rewards.
-    note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(), default=0)
-    # For manual point rewards with a note.
-    note = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'reviewer_scores'
-        ordering = ('-created',)
-        indexes = [
-            models.Index(fields=('addon',), name='reviewer_scores_addon_id_fk'),
-            models.Index(fields=('created',), name='reviewer_scores_created_idx'),
-            models.Index(fields=('user',), name='reviewer_scores_user_id_idx'),
-            models.Index(fields=('version',), name='reviewer_scores_version_id'),
-        ]
-
-    @classmethod
-    def get_key(cls, key=None, invalidate=False):
-        namespace = 'riscore'
-        if not key:  # Assuming we're invalidating the namespace.
-            cache_ns_key(namespace, invalidate)
-            return
-        else:
-            # Using cache_ns_key so each cache val is invalidated together.
-            ns_key = cache_ns_key(namespace, invalidate)
-            return f'{ns_key}:{key}'
-
-    @classmethod
-    def get_event(
-        cls, addon, status, version=None, post_review=False, content_review=False
-    ):
-        """Return the review event type constant.
-
-        This is determined by the addon.type and the queue the addon is
-        currently in (which is determined from the various parameters sent
-        down from award_points()).
-
-        Note: We're not using addon.status or addon.current_version because
-        this is called after the status/current_version might have been updated
-        by the reviewer action.
-
-        """
-        reviewed_score_name = None
-        if content_review:
-            # Content review always gives the same amount of points.
-            reviewed_score_name = 'REVIEWED_CONTENT_REVIEW'
-        elif post_review:
-            # There are 4 tiers of post-review scores depending on the addon
-            # weight.
-            try:
-                if version is None:
-                    raise AutoApprovalSummary.DoesNotExist
-                weight = version.autoapprovalsummary.weight
-            except AutoApprovalSummary.DoesNotExist as exception:
-                log.exception(
-                    'No such version/auto approval summary when determining '
-                    'event type to award points: %r',
-                    exception,
-                )
-                weight = 0
-
-            if addon.type == amo.ADDON_DICT:
-                reviewed_score_name = 'REVIEWED_DICT_FULL'
-            elif addon.type == amo.ADDON_LPAPP:
-                reviewed_score_name = 'REVIEWED_LP_FULL'
-            elif addon.type == _ADDON_SEARCH:
-                reviewed_score_name = 'REVIEWED_SEARCH_FULL'
-            elif weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
-                reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
-            elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
-                reviewed_score_name = 'REVIEWED_EXTENSION_HIGH_RISK'
-            elif weight > amo.POST_REVIEW_WEIGHT_MEDIUM_RISK:
-                reviewed_score_name = 'REVIEWED_EXTENSION_MEDIUM_RISK'
-            else:
-                reviewed_score_name = 'REVIEWED_EXTENSION_LOW_RISK'
-        else:
-            if status == amo.STATUS_NOMINATED:
-                queue = 'FULL'
-            elif status == amo.STATUS_APPROVED:
-                queue = 'UPDATE'
-            else:
-                queue = ''
-
-            if addon.type in [amo.ADDON_EXTENSION, amo.ADDON_API] and queue:
-                reviewed_score_name = 'REVIEWED_ADDON_%s' % queue
-            elif addon.type == amo.ADDON_DICT and queue:
-                reviewed_score_name = 'REVIEWED_DICT_%s' % queue
-            elif addon.type == amo.ADDON_LPAPP and queue:
-                reviewed_score_name = 'REVIEWED_LP_%s' % queue
-            elif addon.type == amo.ADDON_STATICTHEME:
-                reviewed_score_name = 'REVIEWED_STATICTHEME'
-            elif addon.type == _ADDON_SEARCH and queue:
-                reviewed_score_name = 'REVIEWED_SEARCH_%s' % queue
-
-        if reviewed_score_name:
-            return getattr(amo, reviewed_score_name)
-        return None
-
-    @classmethod
-    def award_points(
-        cls,
-        user,
-        addon,
-        status,
-        version=None,
-        post_review=False,
-        content_review=False,
-        extra_note='',
-    ):
-        """Awards points to user based on an event and the queue.
-
-        `event` is one of the `REVIEWED_` keys in constants.
-        `status` is one of the `STATUS_` keys in constants.
-        `version` is the `Version` object that was affected by the review.
-        `post_review` is set to True if the add-on was auto-approved and the
-                      reviewer is confirming/rejecting post-approval.
-        `content_review` is set to True if it's a content-only review of an
-                         auto-approved add-on.
-
-        """
-
-        # If a webextension file gets approved manually (e.g. because
-        # auto-approval is disabled), 'post-review' is set to False, treating
-        # the file as a legacy file which is not what we want. The file is
-        # still a webextension and should treated as such, regardless of
-        # auto-approval being disabled or not.
-        # As a hack, we set 'post_review' to True.
-        if addon.type in amo.GROUP_TYPE_ADDON:
-            post_review = True
-
-        user_log.info(
-            (
-                'Determining award points for user %s for version %s of addon %s'
-                % (user, version, addon.id)
-            ).encode('utf-8')
-        )
-
-        event = cls.get_event(
-            addon,
-            status,
-            version=version,
-            post_review=post_review,
-            content_review=content_review,
-        )
-        score = amo.REVIEWED_SCORES.get(event)
-
-        user_log.info(
-            (
-                'Determined %s award points (event: %s) for user %s for version '
-                '%s of addon %s' % (score, event, user, version, addon.id)
-            ).encode('utf-8')
-        )
-
-        # Add bonus to reviews greater than our limit to encourage fixing
-        # old reviews. Does not apply to content-review/post-review at the
-        # moment, because it would need to be calculated differently.
-        award_overdue_bonus = (
-            version and version.nomination and not post_review and not content_review
-        )
-        if award_overdue_bonus:
-            waiting_time_days = (datetime.now() - version.nomination).days
-            days_over = waiting_time_days - amo.REVIEWED_OVERDUE_LIMIT
-            if days_over > 0:
-                bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
-                score = score + bonus
-
-        if score is not None:
-            cls.objects.create(
-                user=user,
-                addon=addon,
-                score=score,
-                note_key=event,
-                note=extra_note,
-                version=version,
-            )
-            cls.get_key(invalidate=True)
-            user_log.info(
-                (
-                    'Awarding %s points to user %s for "%s" for addon %s'
-                    % (score, user, amo.REVIEWED_CHOICES[event], addon.id)
-                ).encode('utf-8')
-            )
-        return score
-
-    @classmethod
-    def award_moderation_points(cls, user, addon, review_id, undo=False):
-        """Awards points to user based on moderated review."""
-        event = (
-            amo.REVIEWED_ADDON_REVIEW if not undo else amo.REVIEWED_ADDON_REVIEW_POORLY
-        )
-        score = amo.REVIEWED_SCORES.get(event)
-
-        cls.objects.create(user=user, addon=addon, score=score, note_key=event)
-        cls.get_key(invalidate=True)
-        user_log.info(
-            'Awarding %s points to user %s for "%s" for review %s'
-            % (score, user, amo.REVIEWED_CHOICES[event], review_id)
-        )
-
-    @classmethod
-    def get_total(cls, user):
-        """Returns total points by user."""
-        key = cls.get_key('get_total:%s' % user.id)
-        val = cache.get(key)
-        if val is not None:
-            return val
-
-        val = list(
-            ReviewerScore.objects.filter(user=user)
-            .aggregate(total=Sum('score'))
-            .values()
-        )[0]
-        if val is None:
-            val = 0
-
-        cache.set(key, val, None)
-        return val
-
-    @classmethod
-    def get_recent(cls, user, limit=5, addon_type=None):
-        """Returns most recent ReviewerScore records."""
-        key = cls.get_key('get_recent:%s' % user.id)
-        val = cache.get(key)
-        if val is not None:
-            return val
-
-        val = ReviewerScore.objects.filter(user=user)
-        if addon_type is not None:
-            val.filter(addon__type=addon_type)
-
-        val = list(val[:limit])
-        cache.set(key, val, None)
-        return val
-
-    @classmethod
-    def get_breakdown(cls, user):
-        """Returns points broken down by addon type."""
-        key = cls.get_key('get_breakdown:%s' % user.id)
-        val = cache.get(key)
-        if val is not None:
-            return val
-
-        sql = """
-             SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
-             FROM `reviewer_scores`
-             LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
-             WHERE `reviewer_scores`.`user_id` = %s
-             GROUP BY `addons`.`addontype_id`
-             ORDER BY `total` DESC
-        """
-        val = list(ReviewerScore.objects.raw(sql, [user.id]))
-        cache.set(key, val, None)
-        return val
-
-    @classmethod
-    def get_breakdown_since(cls, user, since):
-        """
-        Returns points broken down by addon type since the given datetime.
-        """
-        key = cls.get_key(f'get_breakdown:{user.id}:{since.isoformat()}')
-        val = cache.get(key)
-        if val is not None:
-            return val
-
-        sql = """
-             SELECT `reviewer_scores`.*,
-                    SUM(`reviewer_scores`.`score`) AS `total`,
-                    `addons`.`addontype_id` AS `atype`
-             FROM `reviewer_scores`
-             LEFT JOIN `addons` ON (`reviewer_scores`.`addon_id`=`addons`.`id`)
-             WHERE `reviewer_scores`.`user_id` = %s AND
-                   `reviewer_scores`.`created` >= %s
-             GROUP BY `addons`.`addontype_id`
-             ORDER BY `total` DESC
-        """
-        val = list(ReviewerScore.objects.raw(sql, [user.id, since]))
-        cache.set(key, val, 3600)
-        return val
-
-    @classmethod
-    def _leaderboard_list(cls, since=None, types=None, addon_type=None):
-        """
-        Returns base leaderboard list. Each item will be a tuple containing
-        (user_id, name, total).
-        """
-
-        reviewers = (
-            UserProfile.objects.filter(groups__name__startswith='Reviewers: ')
-            .exclude(groups__name__in=('Admins', 'No Reviewer Incentives'))
-            .distinct()
-        )
-        qs = (
-            cls.objects.values_list('user__id')
-            .filter(user__in=reviewers)
-            .annotate(total=Sum('score'))
-            .order_by('-total')
-        )
-
-        if since is not None:
-            qs = qs.filter(created__gte=since)
-
-        if types is not None:
-            qs = qs.filter(note_key__in=types)
-
-        if addon_type is not None:
-            qs = qs.filter(addon__type=addon_type)
-
-        users = {reviewer.pk: reviewer for reviewer in reviewers}
-        return [
-            (item[0], users.get(item[0], UserProfile()).name, item[1]) for item in qs
-        ]
-
-    @classmethod
-    def get_leaderboards(cls, user, days=7, types=None, addon_type=None):
-        """Returns leaderboards with ranking for the past given days.
-
-        This will return a dict of 3 items::
-
-            {'leader_top': [...],
-             'leader_near: [...],
-             'user_rank': (int)}
-
-        If the user is not in the leaderboard, or if the user is in the top 5,
-        'leader_near' will be an empty list and 'leader_top' will contain 5
-        elements instead of the normal 3.
-
-        """
-        key = cls.get_key('get_leaderboards:%s' % user.id)
-        val = cache.get(key)
-        if val is not None:
-            return val
-
-        week_ago = date.today() - timedelta(days=days)
-
-        leader_top = []
-        leader_near = []
-
-        leaderboard = cls._leaderboard_list(
-            since=week_ago, types=types, addon_type=addon_type
-        )
-
-        scores = []
-
-        user_rank = 0
-        in_leaderboard = False
-        for rank, row in enumerate(leaderboard, 1):
-            user_id, name, total = row
-            scores.append(
-                {
-                    'user_id': user_id,
-                    'name': name,
-                    'rank': rank,
-                    'total': int(total),
-                }
-            )
-            if user_id == user.id:
-                user_rank = rank
-                in_leaderboard = True
-
-        if not in_leaderboard:
-            leader_top = scores[:5]
-        else:
-            if user_rank <= 5:  # User is in top 5, show top 5.
-                leader_top = scores[:5]
-            else:
-                leader_top = scores[:3]
-                leader_near = [scores[user_rank - 2], scores[user_rank - 1]]
-                try:
-                    leader_near.append(scores[user_rank])
-                except IndexError:
-                    pass  # User is last on the leaderboard.
-
-        val = {
-            'leader_top': leader_top,
-            'leader_near': leader_near,
-            'user_rank': user_rank,
-        }
-        cache.set(key, val, None)
-        return val
-
-    @classmethod
-    def all_users_by_score(cls):
-        """
-        Returns reviewers ordered by highest total points first.
-        """
-        leaderboard = cls._leaderboard_list()
-        scores = []
-
-        for row in leaderboard:
-            user_id, name, total = row
-            user_level = len(amo.REVIEWED_LEVELS) - 1
-            for i, level in enumerate(amo.REVIEWED_LEVELS):
-                if total < level['points']:
-                    user_level = i - 1
-                    break
-
-            # Only show level if it changes.
-            if user_level < 0:
-                level = ''
-            else:
-                level = str(amo.REVIEWED_LEVELS[user_level]['name'])
-
-            scores.append(
-                {
-                    'user_id': user_id,
-                    'name': name,
-                    'total': int(total),
-                    'level': level,
-                }
-            )
-
-        prev = None
-        for score in reversed(scores):
-            if score['level'] == prev:
-                score['level'] = ''
-            else:
-                prev = score['level']
-
-        return scores
-
-
 class AutoApprovalNoValidationResultError(Exception):
     pass
 
@@ -652,22 +222,20 @@ class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
 
     version = models.OneToOneField(Version, on_delete=models.CASCADE, primary_key=True)
-    is_locked = models.BooleanField(
-        default=False, help_text=_('Is locked by a reviewer')
-    )
+    is_locked = models.BooleanField(default=False, help_text='Is locked by a reviewer')
     has_auto_approval_disabled = models.BooleanField(
-        default=False, help_text=_('Has auto-approval disabled/delayed flag set')
+        default=False, help_text='Has auto-approval disabled/delayed flag set'
     )
     is_promoted_prereview = models.BooleanField(
         default=False,
         null=True,  # TODO: remove this once code has deployed to prod.
-        help_text=_('Is in a promoted add-on group that requires pre-review'),
+        help_text='Is in a promoted add-on group that requires pre-review',
     )
     should_be_delayed = models.BooleanField(
-        default=False, help_text=_("Delayed because it's the first listed version")
+        default=False, help_text="Delayed because it's the first listed version"
     )
     is_blocked = models.BooleanField(
-        default=False, help_text=_('Version string and guid match a blocklist Block')
+        default=False, help_text='Version string and guid match a blocklist Block'
     )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
@@ -764,7 +332,7 @@ class AutoApprovalSummary(ModelBase):
             'past_rejection_history': min(
                 Version.objects.filter(
                     addon=addon,
-                    file__reviewed__gte=one_year_ago,
+                    human_review_date__gte=one_year_ago,
                     file__original_status=amo.STATUS_NULL,
                     file__status=amo.STATUS_DISABLED,
                 ).count()
@@ -853,7 +421,7 @@ class AutoApprovalSummary(ModelBase):
                 '%s: %d' % (k, v) for k, v in self.weight_info.items() if v
             )
         else:
-            weight_info = [gettext('Weight breakdown not available.')]
+            weight_info = ['Weight breakdown not available.']
         return weight_info
 
     def find_previous_confirmed_version(self):
@@ -1003,44 +571,44 @@ class AutoApprovalSummary(ModelBase):
         """Check whether the add-on has auto approval disabled or delayed.
 
         It could be:
-        - Disabled by a reviewer (different flag for listed or unlisted)
-        - Disabled until next manual approval (only applies to listed, typically
-          set when a previous version is on a delayed rejection)
-        - Delayed until a future date by scanners (applies to both listed and
-          unlisted)
+        - Disabled
+        - Disabled until next manual approval
+        - Delayed until a future date
+
+        Those flags are set by scanners or reviewers for a specific channel.
         """
         addon = version.addon
-        is_listed = version.channel == amo.CHANNEL_LISTED
-        if is_listed:
-            auto_approval_disabled = bool(
-                addon.auto_approval_disabled
-                or addon.auto_approval_disabled_until_next_approval
-            )
-        else:
-            auto_approval_disabled = bool(
-                addon.auto_approval_disabled_unlisted
-                or addon.auto_approval_disabled_until_next_approval_unlisted
-            )
-        auto_approval_delayed = bool(
-            addon.auto_approval_delayed_until
-            and datetime.now() < addon.auto_approval_delayed_until
+        flag_suffix = '_unlisted' if version.channel == amo.CHANNEL_UNLISTED else ''
+        auto_approval_disabled = bool(
+            getattr(addon, f'auto_approval_disabled{flag_suffix}')
         )
-        return auto_approval_disabled or auto_approval_delayed
+        auto_approval_disabled_until_next_approval = bool(
+            getattr(addon, f'auto_approval_disabled_until_next_approval{flag_suffix}')
+        )
+        auto_approval_delayed_until = getattr(
+            addon, f'auto_approval_delayed_until{flag_suffix}'
+        )
+        return bool(
+            auto_approval_disabled
+            or auto_approval_disabled_until_next_approval
+            or (
+                auto_approval_delayed_until
+                and datetime.now() < auto_approval_delayed_until
+            )
+        )
 
     @classmethod
     def check_is_promoted_prereview(cls, version):
         """Check whether the add-on is a promoted addon group that requires
-        pre-review.
-
-        Only applies to listed versions."""
-        if not version.channel == amo.CHANNEL_LISTED:
-            return False
-        promo_group = version.addon.promoted_group(currently_approved=False)
-        return bool(promo_group and promo_group.pre_review)
+        pre-review."""
+        return bool(
+            version.channel == amo.CHANNEL_LISTED
+            and version.addon.promoted_group(currently_approved=False).pre_review
+        )
 
     @classmethod
     def check_should_be_delayed(cls, version):
-        """Check whether the add-on new enough that the auto-approval of the
+        """Check whether the add-on is new enough that the auto-approval of the
         version should be delayed for 24 hours to catch spam.
 
         Doesn't apply to langpacks, which are submitted as part of Firefox
@@ -1050,7 +618,6 @@ class AutoApprovalSummary(ModelBase):
         addon = version.addon
         is_langpack = addon.type == amo.ADDON_LPAPP
         now = datetime.now()
-        nomination = version.nomination or addon.created
         try:
             content_review = addon.addonapprovalscounter.last_content_review
         except AddonApprovalsCounter.DoesNotExist:
@@ -1059,7 +626,7 @@ class AutoApprovalSummary(ModelBase):
             not is_langpack
             and version.channel == amo.CHANNEL_LISTED
             and version.addon.status == amo.STATUS_NOMINATED
-            and now - nomination < timedelta(hours=24)
+            and now - version.created < timedelta(hours=24)
             and content_review is None
         )
 
@@ -1109,8 +676,8 @@ class AutoApprovalSummary(ModelBase):
 
 class Whiteboard(ModelBase):
     addon = models.OneToOneField(Addon, on_delete=models.CASCADE, primary_key=True)
-    private = models.TextField(blank=True)
-    public = models.TextField(blank=True)
+    private = models.TextField(blank=True, max_length=100000)
+    public = models.TextField(blank=True, max_length=100000)
 
     class Meta:
         db_table = 'review_whiteboard'
@@ -1125,9 +692,14 @@ class Whiteboard(ModelBase):
 
 class ReviewActionReason(ModelBase):
     is_active = models.BooleanField(
-        default=True, help_text=_('Is available to be used in reviews')
+        default=True, help_text='Is available to be used in reviews'
     )
     name = models.CharField(max_length=255)
+    canned_response = models.TextField(blank=True)
+    addon_type = models.PositiveIntegerField(
+        choices=amo.REASON_ADDON_TYPE_CHOICES.items(),
+        default=amo.ADDON_ANY,
+    )
 
     def labelled_name(self):
         return '(** inactive **) ' + self.name if not self.is_active else self.name

@@ -14,7 +14,6 @@ pytestmark = pytest.mark.django_db
 
 
 def test_xss():
-
     title = '<script>alert(1)</script>'
     message = '<script>alert(2)</script>'
 

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:43+0000\n"
-"PO-Revision-Date: 2022-09-08 08:26+0000\n"
+"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"PO-Revision-Date: 2023-03-23 11:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -23,57 +23,11 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
-#. L10n: label for the list of abuse report types: addons, users
-msgid "type"
-msgstr "típus"
-
-msgid "Users"
-msgstr "Felhasználók"
-
-msgid "Add-ons"
-msgstr "Kiegészítők"
-
-msgid "minimum reports count (grouped by guid)"
-msgstr "jelentések minimális száma (guid szerint csoportosítva)"
-
-msgid "creation date"
-msgstr "létrehozás dátuma"
-
-msgid "User / Add-on"
-msgstr "Felhasználó / Kiegészítő"
-
-msgid "Distribution"
-msgstr "Terjesztés"
-
-msgid "Reporter's country"
-msgstr "Bejelentő országa"
-
-msgid "Message excerpt"
-msgstr "Üzenetkivonat"
-
-#, python-format
-msgid "The %d selected reports have been marked as valid."
-msgstr "A(z) %d kiválasztott jelentés érvényesnek lett jelölve."
-
-#, python-format
-msgid "The %d selected reports have been marked as suspicious."
-msgstr "A(z) %d kiválasztott jelentés gyanúsnak lett jelölve."
-
-msgid "Mark selected abuse reports as suspicious"
-msgstr "A kiválasztott visszaélési jelentések gyanúsnak jelölése"
-
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Ellenőrizze, hogy a mező legfeljebb {max_length} karaktert tartalmaz."
 
-msgid "Modified on:"
-msgstr "Módosítva:"
-
-#, python-format
-msgid "By %(filter_title)s"
-msgstr "%(filter_title)s szerint"
-
-msgid "All"
-msgstr "Összes"
+msgid "Invalid value"
+msgstr "Érvénytelen érték"
 
 msgid "No links are allowed."
 msgstr "Hivatkozások nem engedélyezettek."
@@ -120,7 +74,9 @@ msgid "Review"
 msgstr "Értékelés"
 
 msgid "Version {0}"
-msgstr "{0} verzió"
+msgid_plural "Versions {0}"
+msgstr[0] "{0} verzió"
+msgstr[1] "{0} verzió"
 
 msgid "Review note"
 msgstr "Értékelési megjegyzés"
@@ -128,30 +84,8 @@ msgstr "Értékelési megjegyzés"
 msgid "Only latest versions of addons can have notes added."
 msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
 
-msgid "Authors"
-msgstr "Szerzők"
-
-msgid "Ratings"
-msgstr "Értékelések"
-
-msgid "Reviewer Tools (listed)"
-msgstr "Szerkesztői eszközök (listázott)"
-
-msgid "Reviewer Tools (unlisted)"
-msgstr "Szerkesztői eszközök (nem listázott)"
-
-msgid "Reviewer links"
-msgstr "Szerkesztői hivatkozások"
-
-#, python-format
-msgid "Git extraction triggered for \"%(addons)s\"."
-msgstr "A(z) „%(addons)s” gitből kinyerése elindult."
-
-msgid "Activity Logs"
-msgstr "Tevékenységnaplók"
-
-msgid "- Add-on not on AMO -"
-msgstr "- A kiegészítő nincs az AMO-n -"
+msgid "Request content length is too large."
+msgstr "A kérés tartalmának hossza túl nagy."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Az alkalmazásonkénti kategóriák legnagyobb száma ({MAX_CATEGORIES}) túllépve"
@@ -183,9 +117,6 @@ msgstr "Nem támogatott fájlformátum, töltsön fel egy archívumfájlt ({exte
 msgid "Invalid or broken archive."
 msgstr "Érvénytelen vagy hibás archívum."
 
-msgid "Invalid value"
-msgstr "Érvénytelen érték"
-
 msgid "Invalid app specified"
 msgstr "Érvénytelen alkalmazás van megadva"
 
@@ -214,6 +145,15 @@ msgstr "A beépített licencek nem frissíthetők."
 
 msgid "Upload is not valid."
 msgstr "A feltöltés nem érvényes."
+
+msgid "File is already disabled."
+msgstr "A fájl már le van tiltva."
+
+#, python-format
+msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
+msgstr ""
+"A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
+"segítségre van szüksége."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
@@ -248,8 +188,8 @@ msgstr "Ez a SEO URL nem használható. Válasszon egy másikat."
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "A kiegészítőnevek nem tartalmazhatják a Mozilla vagy a Firefox védjegyeket."
 
-msgid "Site permissions for {hostnames}"
-msgstr "A(z) {hostnames} webhelyengedélyei"
+msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
+msgstr "Az új, {version_string} verziónak nagyobbnak kell lennie, mint a korábban jóváhagyott {previous_version_string} verzió."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "A „license” és a „custom_license” együtt nem adható meg."
@@ -286,9 +226,6 @@ msgstr "Saját kiegészítők"
 
 msgid "My Themes"
 msgstr "Saját témák"
-
-msgid "Git-Extract"
-msgstr "Git-Extract"
 
 msgid "Tools"
 msgstr "Eszközök"
@@ -508,36 +445,6 @@ msgstr "Érvénytelen pk vagy SEO URL: „%s” – az objektum nem létezik."
 msgid "Confirmation for developer API keys"
 msgstr "Megerősítés a fejlesztői API kulcsokhoz"
 
-msgid "Application Versions"
-msgstr "Alkalmazásverziók"
-
-msgid "Acceptable versions for all applications on AMO."
-msgstr "Az összes alkalmazásnak megfelelő verziók az AMO-n."
-
-msgid "Valid Application Versions"
-msgstr "Érvényes alkalmazásverziók"
-
-msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
-msgstr ""
-"Mozilla Kiegészítők közé benyújtott kiegészítőnek kell legyen egy jegyzékfájlja, mely legalább egyet támogat az alábbi alkalmazások közül. Ezeknek az alkalmazásoknak csak az alább felsorolt verziói "
-"engedélyezettek."
-
-#, python-format
-msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Vegye figyelembe, hogy a WebExtensionök nem fogadják el a „*” karaktert a %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s értékeként."
-
-msgid "GUID"
-msgstr "GUID"
-
-msgid "Versions"
-msgstr "Verziók"
-
-#, python-format
-msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
-msgstr "Ha a támogatott alkalmazás nem igényli a jegyzékfájlt, akkor is mellékelni kell egyet az %(amo_manifests_mdn_link_open)sitt%(amo_manifests_mdn_link_close)s meghatározott tartalommal."
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
 
@@ -552,9 +459,6 @@ msgstr "Ez az egyéni URL nem használható."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
-
-msgid "Signoff State"
-msgstr "Jóváhagyási állapot"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
@@ -587,59 +491,6 @@ msgstr "Listázottak értékelése"
 msgid "Review Unlisted"
 msgstr "Nem listázottak értékelése"
 
-#, python-format
-msgid "Delete Multiple %(name)s"
-msgstr "Több %(name)s törlése"
-
-msgid "Home"
-msgstr "Kezdőlap"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs are already blocked for %(v_min)s to %(v_max)s"
-msgstr "%(count)s kiegészítő GUID-ja van már blokkolva %(v_min)s és %(v_max)s között"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs were not found"
-msgstr "%(count)s kiegészítő GUID-ja nem található"
-
-msgid "Save"
-msgstr "Mentés"
-
-msgid "Save and add more"
-msgstr "Mentés és továbbiak hozzáadása"
-
-msgid "Delete"
-msgstr "Törlés"
-
-msgid "Update"
-msgstr "Frissítés"
-
-msgid "Reject Submission"
-msgstr "Beküldés elutasítása"
-
-msgid "Approve Submission"
-msgstr "Beküldés jóváhagyása"
-
-#, python-format
-msgid "Add %(name)s"
-msgstr "%(name)s hozzáadása"
-
-msgid "Add-on GUIDs (one per line)"
-msgstr "Kiegészítő GUID-ok (soronként egy)"
-
-msgid "Submit"
-msgstr "Beküldés"
-
-#, python-format
-msgid "%(count)s Add-on GUIDs with %(adu)s users"
-msgstr "%(count)s kiegészítő GUID %(adu)s felhasználóval"
-
-msgid "Edit Block"
-msgstr "Blokkolás szerkesztése"
-
-msgid "versions"
-msgstr "verzió"
-
 msgid "{addon} was created."
 msgstr "{addon} létrehozva."
 
@@ -652,12 +503,13 @@ msgstr "{addon} leírás szerkesztve."
 msgid "Categories edited for {addon}."
 msgstr "{addon} kategóriái szerkesztve."
 
-msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) hozzáadva a(z) {addon} kiegészítőhöz."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) added to {addon}."
+msgstr "{user} ({0}) hozzáadva a következőhöz: {addon}."
 
-#. L10n: {0} is the user being removed, {1} is their role.
-msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1})eltávolítva a(z) {addon} kiegészítőből."
+#. L10n: {0} is the user role.
+msgid "{user} ({0}) removed from {addon}."
+msgstr "{user} ({0}) eltávolítva a következőtől: {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Támogatás a(z) {addon} kiegészítőhöz."
@@ -682,8 +534,8 @@ msgstr "A(z) {addon} kiegészítő {version} verziójának szerkesztése."
 msgid "Version {0} deleted from {addon}."
 msgstr "{0} verzió törlése a(z) {addon} kiegészítőtől."
 
-msgid "File {0.name} added to {version} of {addon}."
-msgstr "{0.name} fájl hozzáadva a(z) {addon} kiegészítő {version} változatához."
+msgid "File {file} added to {version} of {addon}."
+msgstr "A(z) {file} fájl hozzáadva a(z) {addon} kiegészítő {version} verziójához."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "A(z) {0} fájl törölve a(z) {addon} kiegészítő {version} verziójából."
@@ -738,9 +590,6 @@ msgstr ""
 "A kiegészítő adminisztrátori értékelésre lett megjelölve. Még mindig benne van az értékelési sorban, de le kell majd ellenőriznie az egyik adminisztrátori értékelőnknek. Az értékelés tovább tarthat "
 "a megszokottnál."
 
-msgid "Comment on {addon} {version}."
-msgstr "Hozzászólás ehhez: {addon} {version}."
-
 msgid "Commented"
 msgstr "Hozzászólva"
 
@@ -777,9 +626,9 @@ msgstr "A(z) {addon} kiegészítő már nem kiemelt."
 msgid "{0} {1} added."
 msgstr "{0} {1} hozzáadva."
 
-#. L10n: {0} is a user, {1} is their role
-msgid "{0.name} role changed to {1} for {addon}."
-msgstr "A(z) {0.name} felhasználó szerepe megváltozott erre: {1} a(z) {addon} kiegészítőhöz."
+#. L10n: {0} is the user role
+msgid "{user} role changed to {0} for {addon}."
+msgstr "A(z) {user} felhasználó szerepe a következőre változott a(z) {addon} kiegészítőnél: {0}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "A(z) {addon} kiegészítőre mostantól {0} licenc vonatkozik."
@@ -793,14 +642,8 @@ msgstr "A(z) {addon} ikonja vagy előnézetei megváltoztak."
 msgid "{rating} for {addon} approved."
 msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
-msgid "{user} approved {rating} for {addon}."
-msgstr "{user} jóváhagyta a(z) {addon} kiegészítő {rating} értékelését."
-
 msgid "Review {rating} for {addon} deleted."
 msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törlésre került."
-
-msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} törölte a(z) {addon} kiegészítőhöz tartozó {rating} értékelést."
 
 msgid "Application max version for {version} updated."
 msgstr "Az alkalmazás legmagasabb verziószáma frissítve lett erre: {version}."
@@ -838,18 +681,6 @@ msgstr "Szerkesztett mező: {2} módosítva erre: {0}."
 msgid "Deleted: {1}."
 msgstr "Törölve: {1}."
 
-msgid "User {user} edited, reason: {1}"
-msgstr "{user} felhasználó szerkesztette a következő okból: {1}"
-
-msgid "User {user} anonymized."
-msgstr "A(z) {user} felhasználó elrejtett."
-
-msgid "User {user} restricted."
-msgstr "{user} felhasználó korlátozva."
-
-msgid "Admin {0} viewed activity log for {user}."
-msgstr "{0} admin megjelenítette {user} felhasználó tevékenységnaplóját."
-
 msgid "{rating} for {addon} updated."
 msgstr "{rating} frissítve a(z) {addon} kiegészítőnél."
 
@@ -862,11 +693,11 @@ msgstr "{user} felhasználó kitiltva."
 msgid "User {user} picture deleted."
 msgstr "{user} felhasználó képe törölve."
 
-msgid "User {0.name} added to {group}."
-msgstr "{0.name} felhasználó hozzáadva ehhez: {group}."
+msgid "User {user} added to {group}."
+msgstr "{user} felhasználó hozzáadva a következőhöz: {group}."
 
-msgid "User {0.name} removed from {group}."
-msgstr "{0.name} felhasználó eltávolítva ebből: {group}."
+msgid "User {user} removed from {group}."
+msgstr "{user} felhasználó eltávolítva ebből: {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} titkos."
@@ -905,8 +736,8 @@ msgstr "Forráskód feltöltve ehhez: {addon} {version}."
 msgid "Source code uploaded"
 msgstr "Forráskód feltöltve"
 
-msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr "Az automatikus jóváhagyás megerősítve ennél: {addon} {version}."
+msgid "{addon} {version} auto-approval confirmed."
+msgstr "A(z) {addon} {version} automatikus jóváhagyása megerősítve."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatikus jóváhagyás megerősítve"
@@ -998,9 +829,6 @@ msgstr "Blokkolási művelet aláírása"
 msgid "User {user} session(s) reset."
 msgstr "{user} felhasználó munkamenetei helyreállítva."
 
-msgid "User {user} throttled for scope \"{0}\""
-msgstr "{user} felhasználót lekorlátozták „{0}” hatókörre"
-
 msgid "{addon} {version} content reject scheduled."
 msgstr "{addon} {version} tartalmának elutasítása beütemezve."
 
@@ -1019,23 +847,17 @@ msgstr "{addon} {version} újra aláírva (korábban {0})."
 msgid "Version re-signed"
 msgstr "Verzió újra aláírva"
 
-msgid "{user} force-disabled {addon}."
-msgstr "{user} erőltetetten letiltotta a(z) {addon} kiegészítőt."
+msgid "{addon} {version} un-rejected."
+msgstr "{addon} {version} elutasítása visszavonva."
 
-msgid "Force disabled"
-msgstr "Erőltetetten letiltva"
+msgid "Un-rejected"
+msgstr "Elutasítás visszavonva"
 
-msgid "{user} force-enabled {addon}."
-msgstr "{user} erőltetetten engedélyezte a(z) {addon} kiegészítőt."
+msgid "{addon} needs_human_review flag cleared."
+msgstr "A(z) {addon} „needs_human_review” jelzője törölve."
 
-msgid "Force enabled"
-msgstr "Erőltetetten engedélyezve"
-
-msgid "{user} logged in."
-msgstr "{user} bejelentkezett."
-
-msgid "{user} restricted."
-msgstr "{user} korlátozva."
+msgid "Needs Human Review cleared"
+msgstr "Az „emberi felülvizsgálat szükséges” jelző törölve"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1518,23 +1340,8 @@ msgstr "Reflektorfény"
 msgid "Strategic"
 msgstr "Stratégiai"
 
-msgid "Add-on"
-msgstr "Kiegészítő"
-
-msgid "Static Theme"
-msgstr "Statikus téma"
-
-msgid "Persona"
-msgstr "Persona"
-
-msgid "Security"
-msgstr "Biztonság"
-
-msgid "Privacy"
-msgstr "Adatvédelem"
-
-msgid "Development Practices"
-msgstr "Fejlesztői gyakorlatokat"
+msgid "Notable"
+msgstr "Jelentős"
 
 msgid "No Reputation"
 msgstr "Nincs hírneve"
@@ -1547,108 +1354,6 @@ msgstr "Nagyon jó (2)"
 
 msgid "Excellent (3)"
 msgstr "Kiváló (3)"
-
-msgid "Manual Reviewer Points"
-msgstr "Kézi értékelői pontok"
-
-msgid "New Legacy Add-on Review"
-msgstr "Új örökölt kiegészítő értékelése"
-
-msgid "Preliminary Add-on Review"
-msgstr "Előzetes kiegészítőértékelés"
-
-msgid "Updated Legacy Add-on Review"
-msgstr "Frissített örökölt kiegészítő értékelése"
-
-msgid "New Dictionary Review"
-msgstr "Új szótárértékelés"
-
-msgid "Preliminary Dictionary Review"
-msgstr "Előzetes szótárértékelés"
-
-msgid "Updated Dictionary Review"
-msgstr "Frissített szótárértékelés"
-
-msgid "New Language Pack Review"
-msgstr "Új nyelvicsomag-értékelés"
-
-msgid "Preliminary Language Pack Review"
-msgstr "Előzetes nyelvicsomag-értékelés"
-
-msgid "Updated Language Pack Review"
-msgstr "Frissített nyelvicsomag-értékelés"
-
-msgid "Theme Review"
-msgstr "Témaértékelés"
-
-msgid "Theme (Static) Review"
-msgstr "Téma (statikus) előnézete"
-
-msgid "New Search Provider Review"
-msgstr "Új keresőszolgáltatás-értékelés"
-
-msgid "Preliminary Search Provider Review"
-msgstr "Előzetes keresőszolgáltatás-értékelés"
-
-msgid "Updated Search Provider Review"
-msgstr "Frissített keresőszolgáltatás-értékelés"
-
-msgid "New Complete Theme Review"
-msgstr "Új teljes témaértékelés"
-
-msgid "Preliminary Complete Theme Review"
-msgstr "Előzetes témaértékelés"
-
-msgid "Updated Complete Theme Review"
-msgstr "Frissített teljes témaértékelés"
-
-msgid "Moderated Add-on Review"
-msgstr "Kiegészítőértékelés moderálva"
-
-msgid "Add-on Review Moderation Reverted"
-msgstr "Kiegészítő értékelés moderálás visszaállítva"
-
-msgid "Add-on Content Review"
-msgstr "Kiegészítő tartalmának értékelése"
-
-msgid "Add-on Review (Highest Risk)"
-msgstr "Kiegészítőértékelés (legmagasabb kockázat)"
-
-msgid "Add-on Review (High Risk)"
-msgstr "Kiegészítőértékelés (magas kockázat)"
-
-msgid "Add-on Review (Medium Risk)"
-msgstr "Kiegészítőértékelés (közepes kockázat)"
-
-msgid "Add-on Review (Low Risk)"
-msgstr "Kiegészítőértékelés (alacsony kockázat)"
-
-msgid "Level 1"
-msgstr "1. szint"
-
-msgid "Level 2"
-msgstr "2. szint"
-
-msgid "Level 3"
-msgstr "3. szint"
-
-msgid "Level 4"
-msgstr "4. szint"
-
-msgid "Level 5"
-msgstr "5. szint"
-
-msgid "Level 6"
-msgstr "6. szint"
-
-msgid "Level 7"
-msgstr "7. szint"
-
-msgid "Level 8"
-msgstr "8. szint"
-
-msgid "Level 9"
-msgstr "9. szint"
 
 msgid "Request More Info"
 msgstr "További információ kérése"
@@ -1665,32 +1370,11 @@ msgstr "Visszautasítás"
 msgid "Approve"
 msgstr "Jóváhagyás"
 
-msgid "Sexual or pornographic content"
-msgstr "Szexuális vagy pornográf tartalom"
+msgid "All"
+msgstr "Összes"
 
-msgid "Inappropriate or offensive content"
-msgstr "Nem megfelelő vagy sértő tartalom"
-
-msgid "Violence, war, or weaponry images"
-msgstr "Erőszak, háború vagy fegyverek képe"
-
-msgid "Nazi or other hate content"
-msgstr "Náci vagy egyéb gyűlölettartalom"
-
-msgid "Defamatory content"
-msgstr "Becsületsértő tartalom"
-
-msgid "Online gambling"
-msgstr "Online szerencsejáték"
-
-msgid "Spam content"
-msgstr "Kéretlen reklám"
-
-msgid "Low-quality, stretched, or blank image"
-msgstr "Alacsony minőségű, nyújtott vagy üres kép"
-
-msgid "Header image alignment problem"
-msgstr "Fejléckép-igazítási probléma"
+msgid "Theme"
+msgstr "Téma"
 
 msgid "No action"
 msgstr "Nincs művelet"
@@ -1752,6 +1436,22 @@ msgstr "Saját kiegészítők legutóbbi változásai"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Az Open Search kiegészítők {blog_link_open}már nem támogatott az AMO-n{blog_link_close}. Helyette létrehozhat {doc_link_open}egy keresési kiegészítőt{doc_link_close}."
+
+msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
+msgstr "A Manifest V3 jelenleg nem támogatott a feltöltésnél. {start_href}Itt olvashat többet a támogatási ütemtervről{end_href}."
+
+msgid "Manifest V3 compatibility warning"
+msgstr "Manifest V3 kompatibilitási figyelmeztetés"
+
+msgid ""
+"Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
+"uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
+msgstr ""
+"A Firefox hozzáadja a 3-as verziójú leírófájlt használó (MV3) kiegészítők támogatását a Firefox {version} verzióban, azonban a Firefox régebbi verziói csak a 2-es verziójú leírófájlt használó (MV2) "
+"kiegészítőkkel kompatibilisek. Azt javasoljuk, hogy egyelőre csak saját kiszolgálóra töltse fel a V3-as leírófájlt használó kiegészítőket, hogy ne okozzon kompatibilitási hibákat a felhasználóknál."
+
+msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
+msgstr "Az MV3-as kiegészítők bevezetésével vagy a saját kiszolgálású MV3-as kiegészítőkkel kapcsolatos további információkért látogasson el a https://mzl.la/3hIwQXX oldalra."
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Ezt a SEO URL-t már használja valaki. Válasszon másikat."
@@ -1885,18 +1585,6 @@ msgstr ""
 msgid "Display Name"
 msgstr "Megjelenő név"
 
-msgid "Origin"
-msgstr "Eredet"
-
-msgid "Permissions"
-msgstr "Engedélyek"
-
-msgid "You have generated a site permission add-on for the same origin and permissions."
-msgstr "Azonos eredettel és engedélyekkel állított elő egy oldalengedély-kiegészítőt."
-
-msgid "Origin should include only a scheme (protocol), a hostname (domain) and an optional port"
-msgstr "Az eredet csak egy sémát (protokollt), egy gazdagépnevet (domaint) és opcionálisan egy portot tartalmazhat"
-
 msgid "Invalid or corrupt add-on file."
 msgstr "Érvénytelen vagy sérült kiegészítőfájl."
 
@@ -1912,9 +1600,6 @@ msgstr "Mozilla biztonsági közlemény: Az AMO API engedélyei vissza lettek vo
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Az ellenőrzés túl sok hibát/figyelmeztetést generált, így %s üzenet csonkítva lett. A látható üzenetek megoldása után láthatja a többit is."
-
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "A Manifest V3 jelenleg nem támogatott a feltöltésnél. {start_href}Itt olvashat többet a támogatási ütemtervről{end_href}."
 
 msgid "Updated"
 msgstr "Frissítve"
@@ -2139,15 +1824,6 @@ msgstr "Keresés fejlesztői doksiban"
 msgid "Search"
 msgstr "Keresés"
 
-msgid "Generate Site Permission Add-on"
-msgstr "Oldalengedély-kiegészítő előállítása"
-
-msgid "The origin (scheme + hostname + optional port) you need the permission to be enabled on. This will also be where you need to host the add-on."
-msgstr "Az eredet (séma + gazdagépnév + opcionális port), amelyen be kell kapcsolni az engedélyt. Innen kell kiszolgálnia a kiegészítőt is."
-
-msgid "The permission(s) the generated add-on will grant on the origin."
-msgstr "Azon engedélyek, amelyeket az előállított kiegészítő nyújt az eredeten."
-
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
 
@@ -2183,6 +1859,9 @@ msgstr "A keresés eredménytelen."
 
 msgid "Refine Activity"
 msgstr "Tevékenység pontosítása"
+
+msgid "Add-on"
+msgstr "Kiegészítő"
 
 msgid "Activity"
 msgstr "Tevékenység"
@@ -2301,6 +1980,9 @@ msgstr "Elutasítás"
 
 msgid "Manage Authors & License"
 msgstr "Szerzők és licencek kezelése"
+
+msgid "Authors"
+msgstr "Szerzők"
 
 msgid "About author roles"
 msgstr "Szerző feladatai"
@@ -2643,6 +2325,9 @@ msgstr "Folytatás"
 
 msgid "Delete this add-on."
 msgstr "Kiegészítő törlése-"
+
+msgid "Delete"
+msgstr "Törlés"
 
 msgid "Edit details on this add-on's product page"
 msgstr "A kiegészítő termékoldalának részleteinek szerkesztése"
@@ -4036,10 +3721,6 @@ msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel 
 msgstr "WhatsApp a weben. Érje el a WhatsAppot a Firefox eszköztár paneljéről, és kapjon értesítéseket az olvasatlan szálakról."
 
 #. editorial content for the discovery pane.
-msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr "Kapjon szakértő német fordítást angol, francia, spanyol és más nyelvekről."
-
-#. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
 msgstr "Korlátozza a Firefoxot, hogy ne érje el a megadott oldalakat. Nagyszerű eszköz az online önfegyelemhez."
 
@@ -4512,12 +4193,16 @@ msgid "All your emoji needs—always just a click away."
 msgstr "Az összes emodzsi, amelyre szüksége lehet – mindig csak egy kattintásnyira."
 
 #. editorial content for the discovery pane.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
+msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
+msgstr "Maszkolja az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
 msgstr "Idő alapú témaváltó. Módosítsa a Firefox színeit a napszak változásával."
+
+#. editorial content for the discovery pane.
+msgid "Declutter your Twitter experience."
+msgstr "Távolítsa el a zavaró tényezőket a Twitter-élményéből."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4637,6 +4322,10 @@ msgstr "Ujjlenyomat-készítés elleni védelem."
 msgid "Enhance your gaming experience on Steam."
 msgstr "Emelje a következő szintre a játékélményét a Steamen."
 
+#. editorial content for the primary hero shelves.
+msgid "Thumbs-up to bringing back thumbs-down."
+msgstr "Mondjon igent arra, hogy visszahozzuk a leszavazás gombot."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "A kiegészítők olyanok, mintha alkalmazások lennének a Firefoxhoz."
@@ -4650,17 +4339,16 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Elite ad blockers"
-msgstr "Elit reklámblokkolók"
+msgid "Extension starter pack"
+msgstr "Kiegészítő kezdőcsomag"
 
 #. editorial content for the secondary hero shelves.
-msgid "Anti-tracking extensions"
-msgstr "Követés elleni kiegészítők"
+msgid "Download Managers"
+msgstr "Letöltéskezelők"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extensions for writers"
-msgstr "Kiegészítők íróknak"
+msgid "Games & Entertainment extensions"
+msgstr "Játékok és szórakoztatási bővítmények"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4748,6 +4436,10 @@ msgid "See more extensions tagged \"{tag}\""
 msgstr "További „{tag}” címkéjű kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
+msgid "Elite ad blockers"
+msgstr "Elit reklámblokkolók"
+
+#. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
 
@@ -4799,12 +4491,15 @@ msgstr "Kreatív kiegészítők"
 msgid "See more creativity staff picks"
 msgstr "További, stáb által javasolt kreatív eszközök megtekintése"
 
-msgid "Rejected or Unreviewed"
-msgstr "Visszautasított vagy nem értékelt"
+msgid "Unreviewed"
+msgstr "Ellenőrizetlen"
 
 #, python-format
 msgid "[status:%s]"
 msgstr "[állapot: %s]"
+
+msgid "This upload has already been submitted."
+msgstr "Ezt a feltöltést már beküldték."
 
 msgid "Could not parse the manifest file."
 msgstr "Nem sikerült feldolgozni a jegyzékfájlt."
@@ -4821,6 +4516,9 @@ msgstr "Ismeretlen „strict_min_version” érték: {appver} a(z) {app} alkalma
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Ismeretlen „strict_max_version” érték: {appver} a(z) {app} alkalmazásnál"
 
+msgid "Unsupported compression method in archive."
+msgstr "Nem támogatott tömörítési mód az archívumban."
+
 msgid "Unsupported archive type."
 msgstr "Nem támogatott archívumtípus."
 
@@ -4835,11 +4533,20 @@ msgstr "Érvénytelen fájlnév az archívumban: {0}"
 msgid "File exceeding size limit in archive: {0}"
 msgstr "A méretkorlátnál nagyobb fájl archívumban: {0}"
 
+msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
+msgstr "Ez az archívum tiltott speciális fájlt tartalmaz (szimbolikus vagy hard link, eszköz- vagy blokkfájl)"
+
 msgid "Uncompressed size is too large"
 msgstr "A tömörítetlen méret túl nagy"
 
 msgid "Invalid archive."
 msgstr "Érvénytelen archívum."
+
+msgid "No manifest.json found"
+msgstr "Nem található manifest.json fájl"
+
+msgid "Invalid or corrupted file."
+msgstr "Érvénytelen vagy sérült fájl."
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4848,8 +4555,8 @@ msgstr "A kiegészítő azonosítója a manifest.json fájlban (%s) nem egyezik 
 msgid "Duplicate add-on ID found."
 msgstr "Kettőzött kiegészítő azonosító található."
 
-msgid "Version numbers should have fewer than 32 characters."
-msgstr "A verziószámnak 32 karakternél rövidebbnek kell lennie."
+msgid "Version numbers should have at most {max_length} characters."
+msgstr "A verziószám legfeljebb {max_length} karakteres lehet."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "A verziószámok kizárólag betűket, számokat és a következő karaktereket tartalmazhatja: +*.-_."
@@ -4869,6 +4576,9 @@ msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 msgid "You cannot submit a language pack"
 msgstr "Nem küldhet be nyelvi csomagot"
 
+msgid "The locale of an existing dictionary/language pack cannot be changed"
+msgstr "Egy meglévő szótár/nyelvi csomag területi beállítása nem módosítható"
+
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nem támogatott fájltípus, töltsön fel egy támogatott fájlt: {extensions}."
 
@@ -4884,12 +4594,6 @@ msgstr "Hiányzó „feltöltés” kulcs a többrészes fájl adataiban."
 
 msgid "Missing \"channel\" arg."
 msgstr "A „channel” argumentum hiányzik."
-
-msgid "User"
-msgstr "Felhasználó"
-
-msgid "IP Address"
-msgstr "IP-cím"
 
 msgid "Spam or otherwise non-review content"
 msgstr "Hirdetés vagy nem értékeléssel kapcsolatos tartalom"
@@ -4948,494 +4652,9 @@ msgstr "{0} csillagra értékelve az 5-ből"
 msgid "Rated %(rating)s out of 5 stars"
 msgstr "%(rating)s csillagra értékelve az 5-ből"
 
-msgid "Approved reviews"
-msgstr "Jóváhagyott értékelések"
-
-msgid "Deleted reviews"
-msgstr "Törölt értékelések"
-
-msgid "View entries between"
-msgstr "Ezen intervallum közötti bejegyzések megtekintése:"
-
-msgid "and"
-msgstr "és"
-
-msgid "Filter by type/action"
-msgstr "Szűrés típus/művelet szerint"
-
-msgid "containing"
-msgstr "tartalmazza"
-
-msgid "start"
-msgstr "kezdet"
-
-#. L10n: end, as in "end date"
-msgid "end"
-msgstr "vége"
-
-#. L10n: Description of what can be searched for
-msgid "add-on, reviewer or comment"
-msgstr "kiegészítő, étékelő vagy megjegyzés"
-
-msgid "Comments:"
-msgstr "Hozzászólások:"
-
-msgid "Operating systems:"
-msgstr "Operációs rendszerek:"
-
-msgid "Applications:"
-msgstr "Alkalmazások:"
-
-msgid "Delay rejection, requiring developer to correct in less than…"
-msgstr "Elutasítás késleltetése, a fejlesztőnek ennyi ideje lesz reagálnia: kevesebb mint…"
-
-msgid "Reject immediately. Only use in case of serious security issues."
-msgstr "Azonnali elutasítás. Csak komoly biztonsági problémák esetén használja."
-
-msgid "days"
-msgstr "nap"
-
-msgid "Choose one or more reasons:"
-msgstr "Válasszon egy vagy több okot:"
-
-msgid "Version mismatch - the latest version has changed!"
-msgstr "Nem egyezik a verzió – a legújabb verzió megváltozott!"
-
-msgid "Choose a canned response..."
-msgstr "Válasszon egy konzervválaszt…"
-
-msgid "Private Whiteboard"
-msgstr "Privát faliújság"
-
-msgid "Keep review; remove flags"
-msgstr "Értékelés megtartása; jelzők eltávolítása"
-
-msgid "Skip for now"
-msgstr "Kihagyás"
-
-msgid "Delete review"
-msgstr "Értékelés törlése"
-
-msgid "Needs Admin Code Review"
-msgstr "Adminisztrátori kódértékelés szükséges"
-
-msgid "Needs Admin Content Review"
-msgstr "Adminisztrátori tartalomértékelés szükséges"
-
-msgid "Needs Admin Static Theme Review"
-msgstr "Adminisztrátori statikus téma értékelés szükséges"
-
-msgid "Sources provided"
-msgstr "Megadott források"
-
-msgid "Auto-approval delayed temporarily"
-msgstr "Automatikus jóváhagyás ideiglenes késleltetése"
-
-msgid "Auto-approval delayed indefinitely"
-msgstr "Automatikus jóváhagyás határozatlan idejű késleltetése"
-
-msgid "Is locked by a reviewer"
-msgstr "Egy szerkesztő zárolta"
-
-msgid "Has auto-approval disabled/delayed flag set"
-msgstr "Az automatikus értékelés letiltottnak/késleltetettnek van jelölve"
-
-msgid "Is in a promoted add-on group that requires pre-review"
-msgstr "Előzetes értékelést igénylő támogatott kiegészítőcsoportban van"
-
-msgid "Delayed because it's the first listed version"
-msgstr "Késleltetetve, mert ez az első listázott verzió"
-
-msgid "Version string and guid match a blocklist Block"
-msgstr "A verziószám és a GUID megegyezik egy blokkolási listán található blokkolással"
-
-msgid "Weight breakdown not available."
-msgstr "A súly szerinti lebontás nem áll rendelkezésre."
-
-msgid "Is available to be used in reviews"
-msgstr "Elérhető az értékelésekben történő használathoz"
-
-msgid "You can't submit a comment if `canned_response` is defined."
-msgstr "Nem küldhet megjegyzést, ha a „canned_response” be van állítva."
-
-msgid "You can't submit an empty comment."
-msgstr "Nem küldhet be üres hozzászólást."
-
-msgid "You can't submit a line number without associating it to a filename."
-msgstr "Nem küldhet be sorszámot anélkül, hogy fájlnévhez rendelné azt."
-
-msgid "ID"
-msgstr "Azonosító"
-
-msgid "Flags"
-msgstr "Jelzők"
-
-msgid "Last Review"
-msgstr "Legutóbbi értékelés"
-
-msgid "Code Weight"
-msgstr "Kód súlya"
-
-msgid "Metadata Weight"
-msgstr "Metaadatok súlya"
-
-msgid "Total Weight"
-msgstr "Teljes súly"
-
-msgid "Maliciousness Score"
-msgstr "Rosszindulat pontszáma"
-
-msgid "Type"
-msgstr "Típus"
-
-msgid "Waiting Time"
-msgstr "Várakozási idő"
-
-msgid "Pending Rejection Deadline"
-msgstr "Függőben lévő elutasítás határideje"
-
-msgid "Last Updated"
-msgstr "Utoljára frissítve"
-
-msgid "Listed versions needing human review ({0})"
-msgstr "Emberi értékelést igénylő listázott verziók ({0})"
-
-msgid "Unlisted versions needing human review ({0})"
-msgstr "Emberi értékelést igénylő nem listázott verziók ({0})"
-
-msgid "Listed version"
-msgstr "Listázott verzió"
-
-msgid "Unlisted versions ({0})"
-msgstr "Nem listázott verziók ({0})"
-
-msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr "Ez jóváhagyja, aláírja és közzéteszi ezt a verziót. A megjegyzések elküldésre kerülnek a fejlesztőnek."
-
-msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr "Ez elutasítja ezt a verziót, és eltávolítja a sorból. A megjegyzések elküldésre kerülnek a fejlesztőnek."
-
-msgid "Approve Content"
-msgstr "Tartalom jóváhagyása"
-
-msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr "Ez rögzíti, hogy jóváhagyta a legutóbbi nyilvános verzió tartalmát, anélkül hogy értesítené a fejlesztőt."
-
-msgid "Confirm Approval"
-msgstr "Jóváhagyás megerősítése"
-
-msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr "A kiegészítő legutóbbi nyilvános verziója automatikusan lett jóváhagyva. Ez rögzíti a verzió jóváhagyásának megerősítését, anélkül hogy értesítené a fejlesztőt."
-
-msgid "Approve Multiple Versions"
-msgstr "Több verzió jóváhagyása"
-
-msgid "This will approve the selected versions. The comments will be sent to the developer."
-msgstr "Ez jóváhagyja a kiválasztott verziókat. A megjegyzések elküldésre kerülnek a fejlesztőnek."
-
-msgid "Reject Multiple Versions"
-msgstr "Több verzió elutasítása"
-
-msgid "This will reject the selected versions. The comments will be sent to the developer."
-msgstr "Ez elutasítja a kiválasztott verziókat. A megjegyzések elküldésre kerülnek a fejlesztőnek."
-
-msgid "Block Multiple Versions"
-msgstr "Több verzió blokkolása"
-
-msgid "This will disable the selected approved versions silently, and open up the block creation admin page."
-msgstr "Ez némán letiltja a kiválasztott jóváhagyott verziókat, és megnyitja a blokkolás létrehozási adminisztrációs oldalt."
-
-msgid "Confirm Multiple Versions"
-msgstr "Több verzió megerősítése"
-
-msgid "This will confirm approval of the selected versions without notifying the developer."
-msgstr "Ez megerősíti a kiválasztott verziók jóváhagyását, a fejlesztő értesítése nélkül."
-
-msgid "Reviewer reply"
-msgstr "Értékelői válasz"
-
-msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr "Ez üzenetet fog küldeni a fejlesztőnek. Értesítést fog kapni ha válaszol."
-
-msgid "Request super-review"
-msgstr "Teljes értékelés kérése"
-
-msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr "Amennyiben aggályai vannak a kiegészítővel, amit jó lenne egy adminisztrátornak ellenőriznie, akkor írja a megjegyzéseit az alábbi részbe. Ez nem kerül elküldésre a fejlesztőnek."
-
-msgid "Comment"
-msgstr "Megjegyzés"
-
-msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "Tegyen egy megjegyzést erről a verzióról. A szerző nem fogja ezt látni."
-
-msgid "Pre-Review Add-ons"
-msgstr "Kiegészítők előzetes értékelése"
-
-msgid "Recommended ({0})"
-msgstr "Ajánlott ({0})"
-
-msgid "Other Pending Review ({0})"
-msgstr "Egyéb értékelésre várók ({0})"
-
-msgid "Review Log"
-msgstr "Értékelési napló"
-
-msgid "Add-on Review Guide"
-msgstr "Kiegészítő értékelési útmutató"
-
-msgid "Security Scanners"
-msgstr "Biztonsági átvizsgálók"
-
-msgid "Flagged By Scanners"
-msgstr "Átvizsgálók által megjelölt"
-
-msgid "Flagged for Human Review"
-msgstr "Emberi felülvizsgálatra jelölt"
-
-msgid "Auto-Approved Add-ons"
-msgstr "Automatikusan jóváhagyott kiegészítők"
-
-msgid "Auto Approved Add-ons ({0})"
-msgstr "Automatikusan jóváhagyott kiegészítők ({0})"
-
-msgid "Add-on Review Log"
-msgstr "Kiegészítő értékelési naplója"
-
-msgid "Review Guide"
-msgstr "Értékelési útmutató"
-
-msgid "Content Review"
-msgstr "Tartalom értékelése"
-
-msgid "Content Review ({0})"
-msgstr "Tartalom értékelés ({0})"
-
-msgid "New ({0})"
-msgstr "Új ({0})"
-
-msgid "Updates ({0})"
-msgstr "Frissítések ({0})"
-
-msgid "Theme Review Guide"
-msgstr "Téma értékelési útmutató"
-
-msgid "User Ratings Moderation"
-msgstr "Felhasználói értékelések moderálása"
-
-msgid "Ratings Awaiting Moderation ({0})"
-msgstr "Moderálásra váró értékelések ({0})"
-
-# 80%
-# 100%
-msgid "Moderated Review Log"
-msgstr "Moderált értékelések naplója"
-
-msgid "Moderation Guide"
-msgstr "Moderációs útmutató"
-
-msgid "Unlisted Add-ons"
-msgstr "Nem listázott kiegészítők"
-
-msgid "All Unlisted Add-ons"
-msgstr "Minden nem listázott kiegészítő"
-
-msgid "Unlisted Add-ons Pending Manual Approval"
-msgstr "Nem listázott kiegészítők kézi jóváhagyásra várva"
-
-msgid "Announcement"
-msgstr "Bejelentés"
-
-msgid "Update message of the day"
-msgstr "A nap üzenetének frissítése"
-
-msgid "Add-ons Pending Rejection ({0})"
-msgstr "Elutasításra váró kiegészítők ({0})"
-
-msgid "An unknown error occurred"
-msgstr "Ismeretlen hiba történt"
-
-msgid "Self-reviews are not allowed."
-msgstr "Az önértékelés nem engedélyezett."
-
-msgid "Review successfully processed."
-msgstr "Az értékelés sikeresen megtörtént."
-
-msgid "Review lock limit reached"
-msgstr "Értékelések zárolási korlátja elérve"
-
-msgid "{addon} – EULA"
-msgstr "{addon} – Végfelhasználói licencszerződés"
-
-msgid "{addon} – Privacy Policy"
-msgstr "{addon} – Adatvédelmi irányelvek"
-
-msgid " Abuse Reports – {addon} – Add-ons for Firefox"
-msgstr "Visszaélési jelentések – {addon} – Firefox-kiegészítők"
-
-msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz és a fejlesztőknek ({num})"
-
-msgid "Abuse Reports"
-msgstr "Visszaélés-jelentések"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "{0} kiegészítő információ"
-
-msgid "Add-on ID"
-msgstr "Kiegészítő-azonosító"
-
-msgid "Original Add-on ID"
-msgstr "Eredeti kiegészítőazonosító"
-
-msgid "Add-on(s) sharing same ID"
-msgstr "Kiegészítők, melyek ugyanazt az azonosítót használják"
-
-msgid "Internal AMO ID"
-msgstr "Belső AMO azonosító"
-
-msgid "Support Website"
-msgstr "Támogatás webhelye"
-
-msgid "Visibility"
-msgstr "Láthatóság"
-
-msgid "Visible"
-msgstr "Látható"
-
-msgid "Weekly Downloads"
-msgstr "Heti letöltések"
-
-msgid "Average Daily Users"
-msgstr "Átlagos felhasználók naponta"
-
-msgid "View Privacy Policy"
-msgstr "Adatvédelmi irányelvek megtekintése"
-
-msgid "Requires Payment"
-msgstr "Fizetést igényel"
-
-msgid "EULA"
-msgstr "EULA"
-
-msgid "View End-User License Agreement"
-msgstr "Végfelhasználói licencszerződés megjelenítése"
-
-msgid "Last Approval Date"
-msgstr "Legutóbbi jóváhagyás dátuma"
-
-msgid "Abuse Reports ({num})"
-msgstr "Visszaélési jelentések ({num})"
-
-# 87%
-# 100%
-msgid "Bad User Ratings ({num})"
-msgstr "Rossz felhasználói értékelések ({num})"
-
-msgid "Theme Images"
-msgstr "Téma képek"
-
-msgid "Rendered Preview"
-msgstr "Renderelt előnézet"
-
-msgid "More about this add-on"
-msgstr "További tudnivalók a kiegészítőről"
-
-msgid "Image Gallery"
-msgstr "Képgaléria"
-
-msgid "Nothing to see here!  The developer did not include any details."
-msgstr "Nincs itt semmi látnivaló! A fejlesztő nem adott meg részleteket."
-
-msgid "Add-on name translations"
-msgstr "Kiegészítőnév-fordítások"
-
-msgid "Reviewer Tools – Add-ons for Firefox"
-msgstr "Értékelési eszközök – Firefox-kiegészítők"
-
-msgid "Return to the Reviewer Tools dashboard"
-msgstr "Visszatérés a Szerkesztői eszközök vezérlőpultra"
-
-msgid "Reviewer Leaderboard"
-msgstr "Értékelő ranglista"
-
-msgid "No review points awarded yet."
-msgstr "Nincsenek még értékelési pontok."
-
-msgid "Rank"
-msgstr "Helyezés"
-
-msgid "Score"
-msgstr "Pontszám"
-
-msgid "Reviewer Moderation Log – Add-ons for Firefox"
-msgstr "Értékelési moderátori napló – Firefox-kiegészítők"
-
-#. "Filter" is a button label (verb)
-msgid "Filter"
-msgstr "Szűrő"
-
-msgid "Date"
-msgstr "Dátum"
-
-msgid "Event"
-msgstr "Esemény"
-
-msgid "More details."
-msgstr "További részletek."
-
-msgid "No events found for this period."
-msgstr "A megadott időtartamban nem található esemény."
-
-msgid "Log details"
-msgstr "Naplórészletek"
-
-msgid "Review Author"
-msgstr "Értékelés szerzője"
-
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
-
-msgid "Add-on Title"
-msgstr "Kiegészítő címe"
-
-msgid "Review Text"
-msgstr "Értékelés szövege"
-
-msgid "Review was flagged prior to deletion."
-msgstr "Az értékelés meg lett jelölve törlés előtt."
-
-msgid "Undelete"
-msgstr "Törlés visszavonása"
-
-msgid " – Reviewer Tools – Add-ons for Firefox"
-msgstr "– Értékelési eszközök – Firefox-kiegészítők"
-
-msgid "Back to review"
-msgstr "Vissza az értékeléshez"
-
-msgid "Content Review – Add-ons for Firefox"
-msgstr "Tartalmi értékelés – Firefox-kiegészítők"
-
-msgid "Auto-approved Add-ons – Add-ons for Firefox"
-msgstr "Automatikusan jóváhagyott kiegészítők – Firefox kiegészítők"
-
-msgid "Review Moderation – Add-ons for Firefox"
-msgstr "Értékelési moderálás – Firefox-kiegészítők"
-
-msgid "Unlisted Add-ons – Add-ons for Firefox"
-msgstr "Nem listázott kiegészítők – Firefox-kiegészítők"
-
-msgid "Pending Rejection – Add-ons for Firefox"
-msgstr "Elutasításra vár – Firefox-kiegészítők"
-
-msgid "Process Reviews"
-msgstr "Értékelések feldolgozása"
-
-msgid "Moderation actions:"
-msgstr "Moderációs műveletek:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
@@ -5445,257 +4664,12 @@ msgstr "készítette: %(user)s, %(date)s %(stars)s (%(locale)s)"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s jelölte meg, %(date)s</span>"
 
-msgid "All reviews have been moderated. Good work!"
-msgstr "Minden értékelés moderálva. Szép munka!"
-
-msgid "There are currently no add-ons of this type to review."
-msgstr "Jelenleg nincsenek értékelendő kiegészítők ebből a típusból."
-
-msgid "Helpful Links:"
-msgstr "Hasznos hivatkozások:"
-
-msgid "Add-on Policy"
-msgstr "Irányelvek a kiegészítőkhöz"
-
-msgid "Reviewer's Guide"
-msgstr "Értékelők útmutatója"
-
-msgid "{addon} – Add-ons for Firefox"
-msgstr "{addon} – Firefox-kiegészítők"
-
-#. "Content Review [add-on name]"
-msgid "Content Review {0}"
-msgstr "{0} tartalmának értékelése"
-
-#. "Review [add-on name]"
-msgid "Review {0}"
-msgstr "{0} értékelése"
-
-msgid "Add-on important changes history"
-msgstr "Kiegészítő fontos változásának előzményei"
-
-msgid "Add-on History"
-msgstr "Kiegészítő előzményei"
-
-msgid "You don't have permission to review it."
-msgstr "Nincs engedélye az értékeléshez."
-
-msgid "Please select one or more versions in the list below."
-msgstr "Válasszon ki egy vagy több verziót a lenti listából."
-
-msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr "Beküldheti az űrlap tartalmát, de csak akkor tegye meg, ha tudja, hogy nem okoz ütközést."
-
-msgid "Insert canned response..."
-msgstr "Konzervválasz beszúrása…"
-
-msgid "Files:"
-msgstr "Fájlok:"
-
-msgid "Tested on:"
-msgstr "Tesztelve:"
-
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Figyelem!</strong> Egy másik felhasználó korábban már megtekintette ezt az oldalt."
-
-msgid "The whiteboard is the place to exchange information relevant to this add-on (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr "A faliújság a kiegészítőhöz kapcsolódó releváns információk, fejlesztő és értékelő közti megosztásának helye (bármely verzióról is legyen szó). Ezt mindketten látják és szerkeszthetik."
-
-msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr "A privát faliújságot az értékelők az egymás közti információcserére használják, és független a verziótól. Fogalmazzon objektíven. Ez csak az értékelők számára látható."
-
-msgid "Update whiteboards"
-msgstr "Faliújság frissítése"
-
-msgid "More Actions"
-msgstr "További műveletek"
-
-msgid "Notify me about new listed versions"
-msgstr "Értesítsen az új listázott verziókról"
-
-msgid "Notify me about new unlisted versions"
-msgstr "Értesítsen az új nem listázott verziókról"
-
-msgid "Allow resubmission"
-msgstr "Ismételt beküldés engedélyezése"
-
-msgid "Deny resubmission"
-msgstr "Ismételt beküldés megtagadása"
-
-msgid "Force-disable add-on"
-msgstr "Kiegészítő erőltetett letiltása"
-
-msgid "Force-enable add-on"
-msgstr "Kiegészítő erőltetett engedélyezése"
-
-msgid "Disable Listed Auto-Approval"
-msgstr "Listázottak automatikus jóváhagyásának letiltása"
-
-msgid "Enable Listed Auto-Approval"
-msgstr "Listázottak automatikus jóváhagyásának engedélyezése"
-
-msgid "Disable Unlisted Auto-Approval"
-msgstr "Nem listázottak automatikus jóváhagyásának letiltása"
-
-msgid "Enable Unlisted Auto-Approval"
-msgstr "Nem listázottak automatikus jóváhagyásának engedélyezése"
-
-msgid "Disable Listed Auto-Approval Until Next Manual Approval"
-msgstr "Automatikus jóváhagyás letiltása a következő kézi jóváhagyásig"
-
-msgid "Enable Listed Auto-Approval Before Next Manual Approval"
-msgstr "Automatikus jóváhagyás engedélyezése a következő kézi jóváhagyás előtt"
-
-msgid "Disable Unlisted Auto-Approval Until Next Manual Approval"
-msgstr "Nem listázott kiegészítők automatikus jóváhagyásának letiltása a következő kézi jóváhagyásig"
-
-msgid "Enable Unlisted Auto-Approval Before Next Manual Approval"
-msgstr "Nem listázott kiegészítők automatikus jóváhagyásának engedélyezése a következő kézi jóváhagyás előtt"
-
-msgid "Auto-Approval currently disabled until {date}"
-msgstr "Az automatikus jóváhagyás eddig tiltott: {date}"
-
-msgid "Clear Auto-Approval Extra Delay"
-msgstr "Automatikus jóváhagyás további késleltetésének eltörlése"
-
-msgid "Clear pending rejections"
-msgstr "A függő értékelések törlése"
-
-msgid "Clear Admin Code Review Flag"
-msgstr "Adminisztrátori kódértékelés jelző törlése"
-
-msgid "Clear Admin Content Review Flag"
-msgstr "Adminisztrátori tartalomértékelés jelző törlése"
-
-msgid "Clear Admin Static Theme Review Flag"
-msgstr "Adminisztrátori statikus téma értékelés jelző törlése"
-
-msgid "View Blocklist Submission"
-msgstr "Összes blokkolási lista beküldése"
-
-# 80%
-# 100%
-msgid "Block add-on"
-msgstr "Kiegészítő blokkolása"
-
-msgid "Update add-on block"
-msgstr "Kiegészítő blokkolásának frissítése"
-
-msgid "(admin)"
-msgstr "(admin)"
-
-msgid "Admin Page"
-msgstr "Admin oldal"
-
-msgid "Review This Add-on"
-msgstr "Kiegészítő értékelése"
-
-msgid "More Information"
-msgstr "További információ"
-
-msgid "Resolution"
-msgstr "Felbontás"
-
-msgid "Add-on Review Log – Add-ons for Firefox"
-msgstr "Kiegészítő-értékelési napló – Firefox-kiegészítők"
-
-msgid "Reviewer"
-msgstr "Értékelő"
-
-msgid "Add-on has been deleted."
-msgstr "A kiegészítő le lett törölve."
-
-msgid "Show Comments"
-msgstr "Hozzászólások megjelenítése"
-
-msgid "Hide Comments"
-msgstr "Hozzászólások elrejtése"
-
-msgid "No reviews found for this period."
-msgstr "Nincsenek értékelések ebben az időszakban."
-
-msgid "Origin:"
-msgstr "Eredet:"
-
-msgid "Method:"
-msgstr "Módszer:"
-
-msgid "Source:"
-msgstr "Forrás:"
-
-msgid "Source URL:"
-msgstr "Forrás URL:"
-
-msgid "Dismiss this announcement"
-msgstr "Bejelentés elvetése"
-
-msgid "Files in this version:"
-msgstr "Fájlok ebben a verzióban:"
-
-msgid "All Platforms"
-msgstr "Összes platform"
-
-msgid "Browse all files in this version"
-msgstr "Az összes fájl tallózása ebben a verzióban"
-
-msgid "Contents"
-msgstr "Tartalom"
-
-msgid "Compare this version to the last reviewed version"
-msgstr "E verzió összehasonlítása az utolsó felülvizsgált verzióval"
-
-msgid "Compare"
-msgstr "Összehasonlítás"
-
-msgid "Permissions:"
-msgstr "Engedélyek:"
-
-msgid "Optional permissions:"
-msgstr "Nem kötelező engedélyek:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>Készítette %(user)s, %(date)s</div>"
-
-msgid "Older"
-msgstr "Régebbi"
-
-msgid "Newer"
-msgstr "Újabb"
-
-msgid "{num} versions flagged by scanners on other pages."
-msgstr "{num} verziót jelöltek meg az átvizsgálók más lapokon."
-
-msgid "{num} versions flagged for human review on other pages."
-msgstr "{num} verziót jelöltek emberi elemzésre más oldalakon."
-
-msgid "{num} versions pending rejection on other pages."
-msgstr "{num} verzió vár elutasításra más oldalakon."
-
-msgid "Recent Points"
-msgstr "Legutóbbi pontok"
-
-msgid "No points awarded yet."
-msgstr "Nincsenek még pontok."
-
-msgid "Top Reviewers (past 7 days)"
-msgstr "Legjobb értékelők (elmúlt 7 nap)"
-
-msgid "No top reviewers yet."
-msgstr "Nincsenek még legjobb értékelők."
-
-msgid "All Time"
-msgstr "Bármikor"
-
-#. {0} is a number, like "480".
-msgid "You have <span>{0}</span> points."
-msgstr "Önnek <span>{0}</span> pontja van."
-
-msgid "Theme"
-msgstr "Téma"
-
-msgid "No results found"
-msgstr "Nincs találat"
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
@@ -5705,101 +4679,17 @@ msgstr "%(user)s ekkor: %(date)s [%(ip_address)s]"
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 msgstr "%(version)s verzió &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
-msgid "(Confirmed)"
-msgstr "(Megerősített)"
-
-msgid "Pending Rejection on review of new version"
-msgstr "Új verzió függőben lévő elutasítása"
-
-msgid "Compatibility:"
-msgstr "Kompatibilitás:"
-
-msgid "Additional sources:"
-msgstr "További források:"
-
-msgid "Download files"
-msgstr "Fájlok letöltése"
-
-msgid "The developer has provided source code."
-msgstr "A fejlesztő biztosított forráskódot."
-
-msgid "Maliciousness Score:"
-msgstr "Rosszindulat pontszáma:"
-
-msgid "The Maliciousness Score represents the likelihood of this version being malicious, based on the scanners findings."
-msgstr "A rosszindulat pontszáma annak a valószínűségét jelenti, hogy az átvizsgáló megállapításai alapján ez a verzió rosszindulatú-e."
-
-msgid "Code Weight:"
-msgstr "Kód súlya:"
-
-msgid "Metadata Weight:"
-msgstr "Metaadatok súlya:"
-
-msgid "Flagged by scanners"
-msgstr "Átvizsgálók által megjelölve"
-
-msgid "Flagged for human review"
-msgstr "Emberi felülvizsgálatra jelölve"
-
-msgid "Download"
-msgstr "Letöltés"
-
-msgid "Not Auto Approved Because"
-msgstr "Nem automatikus jóváhagyás oka"
-
-msgid "Auto-Approval script has not run yet on this version."
-msgstr "Az automatikus jóváhagyási parancsfájl még nem futott ezen a verzión."
-
-msgid "This version has not been reviewed."
-msgstr "Ezt a verziót még nem értékelte senki."
-
-msgid "Other Pending Review"
-msgstr "Egyéb értékelésre várók"
-
-msgid "Updates"
-msgstr "Frissítések"
-
-msgid "Rating Reviews"
-msgstr "Értékelések átvizsgálása"
-
-msgid "Auto Approved"
-msgstr "Automatikusan jóváhagyott"
-
-msgid "Pending Rejection"
-msgstr "Elutasításra vár"
-
-msgid "presence of matched rules"
-msgstr "megfelelő szabályok jelenléte"
-
-msgid "result state"
-msgstr "eredmény állapota"
-
-msgid "Excluding results solely matching these rules"
-msgstr "A kizárólag ezeknek a szabályoknak megfelelő találatok kizárása"
-
-msgid "presence of a version"
-msgstr "verzió jelenléte"
-
-msgid "version channel"
-msgstr "verzió csatorna"
-
-msgid "add-on status"
-msgstr "kiegészítő állapota"
-
-msgid "add-on listing visibility"
-msgstr "kiegészítő listázásának láthatósága"
-
-msgid "file status"
-msgstr "fájl állapota"
-
-msgid "file signature"
-msgstr "fájl aláírása"
-
 msgid "This is the exact name of the rule used by a scanner."
 msgstr "Ez az átvizsgáló által használt szabály pontos neve."
 
-msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr "Ha nincs bejelölve, akkor az átvizsgáló találatait nem köti ez a szabály, és a művelet nem kerül végrehajtásra."
+msgid "Human-readable name for the scanner rule"
+msgstr "Az átvizsgálószabály ember által olvasható neve"
+
+msgid "Human-readable name"
+msgstr "Ember által olvasható név"
+
+msgid "Human readable description for the scanner rule"
+msgstr "Az átvizsgálószabály ember által olvasható leírása"
 
 msgid "Yara rules should have a definition"
 msgstr "A Yara szabályoknak definícióval kell rendelkezniük"
@@ -5817,14 +4707,11 @@ msgstr "A definíció érvénytelen: %(error)s"
 msgid "An error occurred when compiling the definition"
 msgstr "Hiba történt a definíció összeállításakor"
 
+msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
+msgstr "Ha nincs bejelölve, akkor az átvizsgáló találatait nem köti ez a szabály, és a művelet nem kerül végrehajtásra."
+
 msgid "Run this rule on add-ons that have been force-disabled as well."
 msgstr "Futtassa ezt a szabályt azokon a kiegészítőkön is, amelyek kényszerítetten is le lettek tiltva."
-
-msgid "Abort"
-msgstr "Megszakítás"
-
-msgid "Run"
-msgstr "Futtatás"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -5859,10 +4746,6 @@ msgstr "Nem adhat hozzá verziókat olyan kiegészítőkhöz, melyek állapota: 
 
 msgid "Version does not match the manifest file."
 msgstr "A verzió nem egyezik meg a jegyzékfájllal."
-
-#, python-format
-msgid "Version already exists. Latest version is: %s."
-msgstr "A verzió már létezik. A legfrissebb verzió: %s."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "A leírófájlban adja meg a kiegészítő ID-ját, ha 64 karakternél hosszabb."
@@ -5923,6 +4806,9 @@ msgstr "Kezdet"
 
 msgid "To"
 msgstr "Vég"
+
+msgid "Update"
+msgstr "Frissítés"
 
 msgid "Export"
 msgstr "Exportálás"
@@ -6086,9 +4972,6 @@ msgstr "Jogi nyilatkozatok"
 msgid "Report Trademark Abuse"
 msgstr "Védjeggyel való visszaélés jelentése"
 
-msgid "Site Status"
-msgstr "Oldal állapota"
-
 msgid "Report a bug"
 msgstr "Hiba jelentése"
 
@@ -6136,6 +5019,9 @@ msgstr "Ugrás"
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Visszatérés a {0}-kiegészítők honlapjára"
 
+msgid "Add-ons"
+msgstr "Kiegészítők"
+
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Regisztráció</a> vagy <a href=\"%(login)s\">Bejelentkezés</a>"
@@ -6175,40 +5061,8 @@ msgstr "Biztosan el akarja távolítani az összes <b>{0}</b> fordítást? Az m�
 msgid "Delete Locale"
 msgstr "Területi beállítás törlése"
 
-#, python-format
-msgid "The user \"%(user)s\" has been banned."
-msgstr "„%(user)s” felhasználó ki lett tiltva."
-
-#, python-format
-msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr "„%(user)s” felhasználó képe törölve lett."
-
-#, python-format
-msgid "The users \"%(users)s\" have been banned."
-msgstr "„%(users)s” felhasználók ki lettek tiltva."
-
-msgid "Ban selected users"
-msgstr "Kiválasztott felhasználók kitiltása"
-
-#, python-format
-msgid "The users \"%(users)s\" had their session(s) reset."
-msgstr "„%(users)s” felhasználók munkamenete visszaállítva."
-
-msgid "Reset session"
-msgstr "Munkamenet visszaállítása"
-
-#, python-format
-msgid "The users \"%(users)s\" had their API Key reset."
-msgstr "„%(users)s” felhasználók API-kulcsa helyreállítva."
-
-msgid "Reset API Key"
-msgstr "API-kulcs helyreállítása"
-
-msgid "Profile Photo"
-msgstr "Profilkép"
-
-msgid "Collections"
-msgstr "Gyűjtemények"
+msgid "IP Address"
+msgstr "IP-cím"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
 msgstr "Adjon meg egy érvényes IPv4 vagy IPv6-címet, például 127.0.0.1. Ez egy /32 hálózatra lesz átalakítva."
@@ -6295,15 +5149,6 @@ msgstr "Egy szerző szerepe megváltozott a kiegészítőjénél"
 msgid "An author has been removed from your add-on"
 msgstr "A kiegészítő egy szerzője eltávolításra került"
 
-msgid "Ban"
-msgstr "Kitiltás"
-
-msgid "Reset session(s)"
-msgstr "Munkamenetek visszaállítása"
-
-msgid "Delete picture"
-msgstr "Kép törlése"
-
 #, python-format
 msgid ""
 "The following author has been added to your add-on %(addon_name)s ( %(addon_url)s ):\n"
@@ -6383,10 +5228,6 @@ msgstr ""
 "Üdvözlettel,\n"
 "\n"
 "A Firefox kiegészítők csapata"
-
-msgctxt "user_list_others"
-msgid "others"
-msgstr "mások"
 
 #, python-format
 msgid "Delay-rejected, scheduled for %s"

@@ -45,35 +45,234 @@ from olympia.versions.models import VersionReviewerFlags
 class TestActions(TestCase):
     def test_action_does_nothing(self):
         version = version_factory(addon=addon_factory())
-        _no_action(version)
+        _no_action(version=version, rule=None)
 
     def test_flags_a_version_for_human_review(self):
         version = version_factory(addon=addon_factory())
         assert not version.needs_human_review
-        _flag_for_human_review(version)
+        _flag_for_human_review(version=version, rule=None)
         assert version.needs_human_review
         version.reload()
         assert version.needs_human_review
 
     def test_delay_auto_approval(self):
-        addon = addon_factory()
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval(version)
+        _delay_auto_approval(version=version, rule=None)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_null(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'needs_admin_content_review': True},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version=version, rule=None)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_existing_lower_delay_on_right_channels(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_delayed_until': datetime.now() + timedelta(days=2),
+                'auto_approval_delayed_until_unlisted': datetime.now()
+                - timedelta(days=2),
+            },
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() - timedelta(days=2),
+        )
+        _delay_auto_approval(version=version, rule=None)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_dont_overwrite_existing_higher_delay(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={
+                'auto_approval_delayed_until': datetime.now() + timedelta(days=2),
+                'auto_approval_delayed_until_unlisted': datetime.now()
+                + timedelta(days=2),
+            },
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(days=2),
+        )
+        _delay_auto_approval(version=version, rule=None)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(days=2),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_overwrite_existing_lower_delay(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(addon.auto_approval_delayed_until, now=datetime.now())
+        assert addon.auto_approval_delayed_until_unlisted is None
+        _delay_auto_approval(version=version, rule=None)
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until, now=datetime.now() + timedelta(hours=24)
+        )
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until_unlisted,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        # due date _was_ set to in 24 hours no matter what since it's per-version.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
+
+    def test_delay_auto_approval_existing_due_date_older(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+            version_kw={'due_date': self.days_ago(1)},
+        )
+        version = addon.current_version
+        self.assertCloseToNow(version.due_date, now=self.days_ago(1))
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version=version, rule=None)
+        addon.reviewerflags.reload()
         self.assertCloseToNow(
             addon.auto_approval_delayed_until,
             now=datetime.now() + timedelta(hours=24),
         )
         assert version.needs_human_review
+        # We kept the original due date as it's shorter.
+        self.assertCloseToNow(version.due_date, now=self.days_ago(1))
+
+    def test_delay_auto_approval_existing_due_date_newer(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_disabled': True},
+            version_kw={'due_date': datetime.now() + timedelta(hours=72)},
+        )
+        version = addon.current_version
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=72),
+        )
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        _delay_auto_approval(version=version, rule=None)
+        addon.reviewerflags.reload()
+        self.assertCloseToNow(
+            addon.auto_approval_delayed_until,
+            now=datetime.now() + timedelta(hours=24),
+        )
+        assert version.needs_human_review
+        # We overrode the due date with 24 hours so that it goes back to the
+        # top of the queue.
+        self.assertCloseToNow(
+            version.due_date,
+            now=datetime.now() + timedelta(hours=24),
+        )
 
     def test_delay_auto_approval_indefinitely(self):
-        addon = addon_factory()
+        addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely(version)
+        _delay_auto_approval_indefinitely(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needs_human_review
+
+    def test_delay_auto_approval_indefinitely_overwrite_existing(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        self.assertCloseToNow(addon.auto_approval_delayed_until)
+        assert addon.auto_approval_delayed_until_unlisted is None
+        _delay_auto_approval_indefinitely(version=version, rule=None)
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
+        assert version.needs_human_review
+
+    def test_delay_auto_approval_indefinitely_overwrite_existing_unlisted(self):
+        addon = addon_factory(
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            reviewer_flags={'auto_approval_delayed_until_unlisted': datetime.now()},
+        )
+        version = addon.current_version
+        assert not version.needs_human_review
+        assert addon.auto_approval_delayed_until is None
+        self.assertCloseToNow(addon.auto_approval_delayed_until_unlisted)
+        _delay_auto_approval_indefinitely(version=version, rule=None)
+        addon.reviewerflags.reload()
+        assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
 
     def test_delay_auto_approval_indefinitely_and_restrict(self):
@@ -93,8 +292,9 @@ class TestActions(TestCase):
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely_and_restrict(version)
+        _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -108,6 +308,11 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
         ).exists()
+        for restriction in EmailUserRestriction.objects.all():
+            assert restriction.reason == (
+                'Automatically added because of a match by rule "None" on '
+                f'Addon {addon.pk} Version {addon.current_version.pk}.'
+            )
 
         assert IPNetworkUserRestriction.objects.filter(
             network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -123,15 +328,26 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.filter(
             restriction_type=RESTRICTION_TYPES.APPROVAL
         ).exists()
+        for restriction in IPNetworkUserRestriction.objects.all():
+            assert restriction.reason == (
+                'Automatically added because of a match by rule "None" on '
+                f'Addon {addon.pk} Version {addon.current_version.pk}.'
+            )
 
     def test_delay_auto_approval_indefinitely_and_restrict_already_restricted(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
         user2 = user_factory(last_login_ip='')
         user3 = user_factory()
         user4 = user_factory(last_login_ip='4.8.15.16')
-        EmailUserRestriction.objects.create(email_pattern=user1.email)
-        EmailUserRestriction.objects.create(email_pattern=user3.email)
-        IPNetworkUserRestriction.objects.create(network='5.6.7.8/32')
+        existing_restriction1 = EmailUserRestriction.objects.create(
+            email_pattern=user1.email
+        )
+        existing_restriction2 = EmailUserRestriction.objects.create(
+            email_pattern=user3.email
+        )
+        existing_restriction3 = IPNetworkUserRestriction.objects.create(
+            network='5.6.7.8/32'
+        )
         addon = addon_factory(users=[user1, user2])
         FileUpload.objects.create(
             addon=addon,
@@ -144,8 +360,9 @@ class TestActions(TestCase):
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely_and_restrict(version)
+        _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -159,6 +376,14 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
         ).exists()
+        for restriction in EmailUserRestriction.objects.all():
+            if restriction.pk in (existing_restriction1.pk, existing_restriction2.pk):
+                assert restriction.reason is None
+            else:
+                assert restriction.reason == (
+                    'Automatically added because of a match by rule "None" on '
+                    f'Addon {addon.pk} Version {addon.current_version.pk}.'
+                )
 
         assert IPNetworkUserRestriction.objects.filter(
             network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
@@ -168,21 +393,37 @@ class TestActions(TestCase):
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+        for restriction in IPNetworkUserRestriction.objects.all():
+            if restriction.pk in (existing_restriction3.pk,):
+                assert restriction.reason is None
+            else:
+                assert restriction.reason == (
+                    'Automatically added because of a match by rule "None" on '
+                    f'Addon {addon.pk} Version {addon.current_version.pk}.'
+                )
 
     def test_delay_auto_approval_indefinitely_and_restrict_already_restricted_other(
         self,
     ):
+        rule = ScannerRule.objects.create(
+            scanner=YARA,
+            name=(
+                'This is a very long rule name that goes over 100 characters, which is '
+                'quite a lot but we need to test this scenario to make sure this works '
+                'properly even in this case.'
+            ),
+        )
         user1 = user_factory(last_login_ip='5.6.7.8')
         user2 = user_factory(last_login_ip='')
         user3 = user_factory()
         user4 = user_factory(last_login_ip='4.8.15.16')
-        EmailUserRestriction.objects.create(
+        existing_restriction1 = EmailUserRestriction.objects.create(
             email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
         )
-        EmailUserRestriction.objects.create(
+        existing_restriction2 = EmailUserRestriction.objects.create(
             email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
         )
-        IPNetworkUserRestriction.objects.create(
+        existing_restriction3 = IPNetworkUserRestriction.objects.create(
             network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
         )
         addon = addon_factory(users=[user1, user2])
@@ -197,8 +438,9 @@ class TestActions(TestCase):
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely_and_restrict(version)
+        _delay_auto_approval_indefinitely_and_restrict(version=version, rule=rule)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         # We added a new restriction for submission without touching the existing one
         # for approval for user1 and user3
@@ -220,6 +462,17 @@ class TestActions(TestCase):
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
         ).exists()
+        for restriction in EmailUserRestriction.objects.all():
+            if restriction.pk in (existing_restriction1.pk, existing_restriction2.pk):
+                assert restriction.reason is None
+            else:
+                assert restriction.reason == (
+                    'Automatically added because of a match by rule "This is a very '
+                    'long rule name that goes over 100 characters, which is quite a '
+                    'lot but we need to test this scenario to make sure this works '
+                    'properly e" on '
+                    f'Addon {addon.pk} Version {addon.current_version.pk}.'
+                )
 
         # Like above, we added a new restriction for submission, this time for the ip,
         # but we left the one for approval.
@@ -234,6 +487,17 @@ class TestActions(TestCase):
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
+        for restriction in IPNetworkUserRestriction.objects.all():
+            if restriction.pk in (existing_restriction3.pk,):
+                assert restriction.reason is None
+            else:
+                assert restriction.reason == (
+                    'Automatically added because of a match by rule "This is a very '
+                    'long rule name that goes over 100 characters, which is quite a '
+                    'lot but we need to test this scenario to make sure this works '
+                    'properly e" on '
+                    f'Addon {addon.pk} Version {addon.current_version.pk}.'
+                )
 
     def test_delay_auto_approval_indefinitely_and_restrict_future_approvals(self):
         user1 = user_factory(last_login_ip='5.6.7.8')
@@ -261,8 +525,11 @@ class TestActions(TestCase):
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely_and_restrict_future_approvals(version)
+        _delay_auto_approval_indefinitely_and_restrict_future_approvals(
+            version=version, rule=None
+        )
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         # We added a new restriction for approval without touching the existing one
         # for submission for user1 and user3
@@ -304,8 +571,9 @@ class TestActions(TestCase):
         version = addon.current_version
         assert not version.needs_human_review
         assert addon.auto_approval_delayed_until is None
-        _delay_auto_approval_indefinitely(version)
+        _delay_auto_approval_indefinitely(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
+        assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
 
     def test_flag_for_human_review_by_scanner(self):
@@ -313,7 +581,7 @@ class TestActions(TestCase):
         with self.assertRaises(VersionReviewerFlags.DoesNotExist):
             version.reviewerflags
 
-        _flag_for_human_review_by_scanner(version, MAD)
+        _flag_for_human_review_by_scanner(version=version, rule=None, scanner=MAD)
 
         assert version.reviewerflags.needs_human_review_by_mad
 
@@ -323,7 +591,7 @@ class TestActions(TestCase):
 
         assert not version.reviewerflags.needs_human_review_by_mad
 
-        _flag_for_human_review_by_scanner(version, MAD)
+        _flag_for_human_review_by_scanner(version=version, rule=None, scanner=MAD)
         version.refresh_from_db()
 
         assert version.reviewerflags.needs_human_review_by_mad
@@ -332,7 +600,9 @@ class TestActions(TestCase):
         version = version_factory(addon=addon_factory())
 
         with self.assertRaises(ValueError):
-            assert _flag_for_human_review_by_scanner(version, CUSTOMS)
+            assert _flag_for_human_review_by_scanner(
+                version=version, rule=None, scanner=CUSTOMS
+            )
 
 
 class TestRunAction(TestCase):
@@ -356,7 +626,7 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(self.version)
 
         assert no_action_mock.called
-        no_action_mock.assert_called_with(self.version)
+        no_action_mock.assert_called_with(version=self.version, rule=self.scanner_rule)
 
     @mock.patch('olympia.scanners.models._flag_for_human_review')
     def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
@@ -365,7 +635,9 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(self.version)
 
         assert flag_for_human_review_mock.called
-        flag_for_human_review_mock.assert_called_with(self.version)
+        flag_for_human_review_mock.assert_called_with(
+            version=self.version, rule=self.scanner_rule
+        )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval')
     def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
@@ -374,7 +646,9 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(self.version)
 
         assert _delay_auto_approval_mock.called
-        _delay_auto_approval_mock.assert_called_with(self.version)
+        _delay_auto_approval_mock.assert_called_with(
+            version=self.version, rule=self.scanner_rule
+        )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
     def test_runs_delay_auto_approval_indefinitely(
@@ -385,7 +659,9 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(self.version)
 
         assert _delay_auto_approval_indefinitely_mock.called
-        _delay_auto_approval_indefinitely_mock.assert_called_with(self.version)
+        _delay_auto_approval_indefinitely_mock.assert_called_with(
+            version=self.version, rule=self.scanner_rule
+        )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
     def test_returns_for_non_extension_addons(

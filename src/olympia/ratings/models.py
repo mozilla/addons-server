@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 
 import olympia.core.logger
 
-from olympia import activity, amo
+from olympia import activity, amo, core
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.templatetags import jinja_helpers
@@ -34,12 +34,12 @@ class RatingQuerySet(models.QuerySet):
             | Q(ratingflag__isnull=True)
         ).filter(editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
-    def delete(self, user_responsible=None, hard_delete=False):
+    def delete(self, hard_delete=False):
         if hard_delete:
             return super().delete()
         else:
             for rating in self:
-                rating.delete(user_responsible=user_responsible)
+                rating.delete()
 
 
 class RatingManager(ManagerBase):
@@ -99,7 +99,11 @@ class Rating(ModelBase):
     )
 
     rating = models.PositiveSmallIntegerField(null=True, choices=RATING_CHOICES)
-    body = models.TextField(db_column='text_body', null=True)
+    # Note that max_length isn't enforced at the database level for TextFields,
+    # but the API serializer is set to obey it.
+    body = models.TextField(
+        blank=True, db_column='text_body', null=True, max_length=4000
+    )
     ip_address = models.CharField(max_length=45, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
@@ -148,38 +152,14 @@ class Rating(ModelBase):
     def __str__(self):
         return truncate(str(self.body), 10)
 
-    def __init__(self, *args, **kwargs):
-        user_responsible = kwargs.pop('user_responsible', None)
-        super().__init__(*args, **kwargs)
-        if user_responsible is not None:
-            self.user_responsible = user_responsible
-
-    @property
-    def user_responsible(self):
-        """Return user responsible for the current changes being made on this
-        model. Only set by the views when they are about to save a Review
-        instance, to track if the original author or an admin was responsible
-        for the change.
-
-        Having this as a @property with a setter makes update_or_create() work,
-        otherwise it rejects the property, causing an error."""
-        return self._user_responsible
-
-    @user_responsible.setter
-    def user_responsible(self, value):
-        self._user_responsible = value
-
     def get_url_path(self):
         return jinja_helpers.url('addons.ratings.detail', self.addon.slug, self.id)
 
-    def approve(self, user):
-        from olympia.reviewers.models import ReviewerScore
-
+    def approve(self):
         activity.log_create(
             amo.LOG.APPROVE_RATING,
             self.addon,
             self,
-            user=user,
             details=dict(
                 body=str(self.body),
                 addon_id=self.addon.pk,
@@ -189,29 +169,17 @@ class Rating(ModelBase):
         )
         for flag in self.ratingflag_set.all():
             flag.delete()
-        self.editorreview = False
-        # We've already logged what we want to log, no need to pass
-        # user_responsible=user.
-        self.save()
-        ReviewerScore.award_moderation_points(user, self.addon, self.pk)
+        self.update(editorreview=False, _signal=False)
 
-    def delete(self, user_responsible=None, send_post_save_signal=True):
-        if user_responsible is None:
-            user_responsible = self.user
-
-        rating_was_moderated = False
-        # Log deleting ratings to moderation log,
-        # except if the author deletes it
-        if user_responsible != self.user:
-            # Remember moderation state
-            rating_was_moderated = True
-            from olympia.reviewers.models import ReviewerScore
-
+    def delete(self):
+        # Log deleting ratings to moderation log, except if the author deletes
+        # it.
+        current_user = core.get_user()
+        if current_user != self.user:
             activity.log_create(
                 amo.LOG.DELETE_RATING,
                 self.addon,
                 self,
-                user=user_responsible,
                 details={
                     'body': str(self.body),
                     'addon_id': self.addon.pk,
@@ -224,24 +192,21 @@ class Rating(ModelBase):
 
         log.info(
             'Rating deleted: %s deleted id:%s by %s ("%s")',
-            user_responsible.name,
+            str(current_user),
             self.pk,
-            self.user.name,
+            str(self.user),
             str(self.body),
         )
-        self.update(deleted=True, _signal=send_post_save_signal)
+        self.update(deleted=True)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
-
-        if rating_was_moderated:
-            ReviewerScore.award_moderation_points(user_responsible, self.addon, self.pk)
 
     def undelete(self):
-        self.update(deleted=False)
-        # Force refreshing of denormalized data (it wouldn't happen otherwise
-        # because we're not dealing with a creation).
-        self.update_denormalized_fields()
+        self.update(deleted=False, _signal=False)
+        # We're avoiding triggering post_save signal normally because we don't
+        # want to record an edit. We trigger the callback manually instead.
+        rating_post_save(self.__class__, self, False, **{'undeleted': True})
 
     @classmethod
     def get_replies(cls, ratings):
@@ -302,11 +267,9 @@ class Rating(ModelBase):
         if kwargs.get('raw'):
             return
 
-        if getattr(instance, 'user_responsible', None):
-            # user_responsible is not a field on the model, so it's not
-            # persistent: it's just something the views will set temporarily
-            # when manipulating a Rating that indicates a real user made that
-            # change.
+        undeleted = kwargs.get('undeleted')
+
+        if not undeleted and not instance.deleted:
             action = 'New' if created else 'Edited'
             if instance.reply_to:
                 log.info(f'{action} reply to {instance.reply_to_id}: {instance.pk}')
@@ -318,15 +281,13 @@ class Rating(ModelBase):
             new_rating_or_edit = not instance.reply_to or not created
             if new_rating_or_edit:
                 action = amo.LOG.ADD_RATING if created else amo.LOG.EDIT_RATING
-                activity.log_create(
-                    action, instance.addon, instance, user=instance.user_responsible
-                )
+                activity.log_create(action, instance.addon, instance)
 
             # For new ratings and new replies we want to send an email.
             if created:
                 instance.send_notification_email()
 
-        if created:
+        if created or undeleted:
             # Do this immediately synchronously so is_latest is correct before
             # we fire the aggregates task.
             instance.update_denormalized_fields()

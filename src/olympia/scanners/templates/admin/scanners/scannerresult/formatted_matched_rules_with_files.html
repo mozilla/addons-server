@@ -1,28 +1,50 @@
 {% load admin_urls %}
 {% load code_manager %}
-{# This template can be used for both scanner results and scanner query results. Keep it generic. #}
+{% load scanners %}
+
+{# This template can be used for scanner results and scanner query results, #}
+{# in the admin or in reviewer tools. Keep it generic.                      #}
+{# Note that this is a django template and not jinja2!                      #}
 
 <table>
+  {% if display_scanner %}
+  <caption>
+    <a class="result-link" href="{% url 'admin:scanners_scannerresult_change' obj.pk %}">{{ obj.get_scanner_display }}</a>
+  </caption>
+  {% endif %}
   <thead>
     <tr>
-      <th>Rule name</th>
-      <th>Files</th>
+      <th class="rule_name">Rule name</th>
+      <th class="files_and_data">Files{% if display_data %} &amp; data{% endif %}</th>
     </tr>
   </thead>
   {% for rule in matched_rules %}
   <tr>
-    <td><a href="{% url rule_change_urlname rule.pk %}">{{ rule.name }}</a></td>
     <td>
-      {% for file in rule.files %}
-        {% if file_id %}
-          <a href="{% code_manager_url 'browse' addon_id version_id file=file %}">
-            {{ file }}
+      <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a>
+    </td>
+    <td>
+      <ul>
+      {% for item in rule.files_and_data %}
+        <li>
+        {% if file_id and item.filename %}
+          <a href="{% code_manager_url 'browse' addon_id version_id file=item.filename %}">
+            {{ item.filename }}
           </a>
         {% else %}
-          {{ file }}
+          {{ item.filename }}
         {% endif %}
-        <br>
+        </li>
+        {% if display_data and item.data %}
+          <li class="extra_data">
+            {{ item.data|format_scanners_data }}
+          </li>
+        {% endif %}
       {% endfor %}
+      {% if rule.files_not_shown > 0 %}
+        <li>…and {{ rule.files_not_shown }} more files</li>
+      {% endif %}
+      </ul>
     </td>
   </tr>
   {% endfor %}

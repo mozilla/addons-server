@@ -16,6 +16,9 @@ from olympia.translations.models import Translation
 from olympia.translations.utils import default_locale
 
 
+LANGUAGE_CODE_REGEX = r'[\w-]+'
+
+
 class ReverseChoiceField(fields.ChoiceField):
     """
     A ChoiceField that exposes the "human-readable" values of its choices,
@@ -108,8 +111,10 @@ class TranslationSerializerField(fields.CharField):
 
     def get_requested_language(self):
         request = self.context.get('request', None)
-        if request and request.method == 'GET' and 'lang' in request.GET:
-            return request.GET['lang']
+        if request and request.method == 'GET' and (lang := request.GET.get('lang')):
+            if not self.flat and not re.fullmatch(LANGUAGE_CODE_REGEX, lang):
+                self.fail('unknown_locale', lang_code=lang)
+            return lang
         else:
             return None
 

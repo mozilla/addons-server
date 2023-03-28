@@ -1,4 +1,5 @@
 from collections import defaultdict, namedtuple
+from datetime import datetime
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -197,6 +198,10 @@ class BlocklistSubmission(ModelBase):
         SIGNOFF_AUTOAPPROVED: 'No Sign-off',
         SIGNOFF_PUBLISHED: 'Published to Blocks',
     }
+    SIGNOFF_STATES_APPROVED = (
+        SIGNOFF_APPROVED,
+        SIGNOFF_AUTOAPPROVED,
+    )
     SIGNOFF_STATES_FINISHED = (
         SIGNOFF_REJECTED,
         SIGNOFF_PUBLISHED,
@@ -242,6 +247,11 @@ class BlocklistSubmission(ModelBase):
     )
     signoff_state = models.SmallIntegerField(
         choices=SIGNOFF_STATES.items(), default=SIGNOFF_PENDING
+    )
+    delayed_until = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text='The submission will not be published into blocks before this time.',
     )
 
     class Meta:
@@ -320,21 +330,24 @@ class BlocklistSubmission(ModelBase):
 
         return has_new_blocks or blocks_with_version_changes_qs.exists()
 
-    def update_if_signoff_not_needed(self):
+    def update_signoff_for_auto_approval(self):
         is_pending = self.signoff_state == self.SIGNOFF_PENDING
         add_action = self.action == self.ACTION_ADDCHANGE
-        if (is_pending and self.all_adu_safe()) or (
-            is_pending and add_action and not self.has_version_changes()
+        if is_pending and (
+            self.all_adu_safe() or add_action and not self.has_version_changes()
         ):
             self.update(signoff_state=self.SIGNOFF_AUTOAPPROVED)
 
     @property
     def is_submission_ready(self):
         """Has this submission been signed off, or sign-off isn't required."""
-        return self.signoff_state == self.SIGNOFF_AUTOAPPROVED or (
+        is_delayed = self.delayed_until and self.delayed_until > datetime.now()
+        is_auto_approved = self.signoff_state == self.SIGNOFF_AUTOAPPROVED
+        is_signed_off = (
             self.signoff_state == self.SIGNOFF_APPROVED
             and self.can_user_signoff(self.signoff_by)
         )
+        return not is_delayed and (is_auto_approved or is_signed_off)
 
     def _serialize_blocks(self):
         def serialize_block(block):

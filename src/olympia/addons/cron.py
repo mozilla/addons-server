@@ -13,6 +13,7 @@ from olympia.addons.tasks import (
 )
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.decorators import use_primary_db
+from olympia.promoted.tasks import add_high_adu_extensions_to_notable
 from olympia.stats.utils import (
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
@@ -46,8 +47,11 @@ def update_addon_average_daily_users(chunk_size=250):
 
     log.info('Preparing update of `average_daily_users` for %s add-ons.', len(counts))
 
-    create_chunked_tasks_signatures(
-        _update_addon_average_daily_users, counts, chunk_size
+    (
+        create_chunked_tasks_signatures(
+            _update_addon_average_daily_users, counts, chunk_size
+        )
+        | add_high_adu_extensions_to_notable.si()
     ).apply_async()
 
 
@@ -102,8 +106,12 @@ def update_addon_hotness(chunk_size=300):
     )
     log.info('Found %s frozen add-on GUIDs.', len(frozen_guids))
 
+    # Base list of add-ons that should get their hotness reset to 0 if they
+    # don't have anything in BigQuery. We don't reset the guid-less ones (BQ
+    # won't have data on them, so it'd be innacurate) and the ones that already
+    # have hotness set to 0 (it's pointless to reset it).
     amo_guids = (
-        Addon.objects.exclude(guid__in=frozen_guids)
+        Addon.unfiltered.exclude(guid__in=frozen_guids)
         .exclude(guid__isnull=True)
         .exclude(guid__exact='')
         .exclude(hotness=0)
@@ -114,6 +122,7 @@ def update_addon_hotness(chunk_size=300):
     }
     log.info('Found %s add-on GUIDs in AMO DB.', len(averages))
 
+    # Gather stats about all add-ons from BigQuery.
     bq_averages = get_averages_by_addon_from_bigquery(
         today=date.today(), exclude=frozen_guids
     )

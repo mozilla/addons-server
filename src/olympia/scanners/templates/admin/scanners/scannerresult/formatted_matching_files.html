@@ -4,12 +4,12 @@
 
 <ul>
   {% for rule in matched_rules %}
-    {% for file in rule.files %}
+    {% for file in rule.files_and_data %}
       <li>
         {% if file_id %}
-          <a href="{% code_manager_url 'browse' addon_id version_id file=file %}">{{ file }}</a>
+          <a href="{% code_manager_url 'browse' addon_id version_id file=file.filename %}">{{ file.filename }}</a>
         {% else %}
-          {{ file }}
+          {{ file.filename }}
         {% endif %}
       </li>
     {% endfor %}

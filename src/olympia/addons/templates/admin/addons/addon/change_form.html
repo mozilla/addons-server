@@ -1,11 +1,10 @@
 {% extends "admin/change_form.html" %}
-{% load i18n %}
 
 {% block object-tools-items %}
   {% if has_listed_versions %}
   <li>
     <a href="{{ external_site_url }}{% url 'reviewers.review' 'listed' object_id %}">
-      {% trans 'Reviewer Tools (listed)' %}
+      Reviewer Tools (listed)
     </a>
   </li>
   {% endif %}
@@ -13,7 +12,7 @@
   {% if has_unlisted_versions %}
   <li>
     <a href="{{ external_site_url }}{% url 'reviewers.review' 'unlisted' object_id %}">
-      {% trans 'Reviewer Tools (unlisted)' %}
+      Reviewer Tools (unlisted)
     </a>
   </li>
   {% endif %}
@@ -31,7 +30,7 @@
               could become the default submit button of the page
             {% endcomment %}
             <input formaction="{% url 'admin:addons_git_extract' original.pk %}"
-                   type="submit" value="{% trans 'Git-Extract' %}" />
+                   type="submit" value="Git-Extract" />
         </div>
     </div>
 {% endblock %}

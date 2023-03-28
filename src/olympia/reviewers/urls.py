@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
+from olympia.users.urls import USER_ID
 
 
 # All URLs under /reviewers/
@@ -10,11 +11,6 @@ urlpatterns = (
     re_path(r'^$', views.dashboard, name='reviewers.dashboard'),
     re_path(
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
-    ),
-    re_path(
-        r'^queue/recommended$',
-        views.queue_recommended,
-        name='reviewers.queue_recommended',
     ),
     re_path(
         r'^queue/extension$', views.queue_extension, name='reviewers.queue_extension'
@@ -33,31 +29,15 @@ urlpatterns = (
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
     ),
     re_path(
-        r'^queue/auto_approved',
-        views.queue_auto_approved,
-        name='reviewers.queue_auto_approved',
-    ),
-    re_path(
         r'^queue/content_review',
         views.queue_content_review,
         name='reviewers.queue_content_review',
     ),
     re_path(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
-    re_path(r'^queue/scanners', views.queue_scanners, name='reviewers.queue_scanners'),
     re_path(
         r'queue/pending_rejection',
         views.queue_pending_rejection,
         name='reviewers.queue_pending_rejection',
-    ),
-    re_path(
-        r'^unlisted_queue/all$',
-        views.unlisted_list,
-        name='reviewers.unlisted_queue_all',
-    ),
-    re_path(
-        r'^unlisted_queue/pending_manual_approval$',
-        views.unlisted_pending_manual_approval,
-        name='reviewers.unlisted_queue_pending_manual_approval',
     ),
     re_path(
         r'^moderationlog$',
@@ -103,7 +83,6 @@ urlpatterns = (
         views.abuse_reports,
         name='reviewers.abuse_reports',
     ),
-    re_path(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
     re_path(
         r'^theme_background_images/(?P<version_id>[^ /]+)?$',
         views.theme_background_images,
@@ -113,5 +92,10 @@ urlpatterns = (
         r'^download-git-file/(?P<version_id>\d+)/(?P<filename>.*)/',
         views.download_git_stored_file,
         name='reviewers.download_git_file',
+    ),
+    re_path(
+        r'^developer_profile/%s$' % USER_ID,
+        views.developer_profile,
+        name='reviewers.developer_profile',
     ),
 )

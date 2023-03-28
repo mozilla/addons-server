@@ -1,18 +1,12 @@
-from collections import OrderedDict
-
-from django import forms
 from django.contrib import admin
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.template import loader
-from django.utils.translation import gettext
-
-from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
 
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
-from olympia.amo.admin import CommaSearchInAdminMixin
+from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
@@ -21,8 +15,7 @@ from .models import AbuseReport
 
 class AbuseReportTypeFilter(admin.SimpleListFilter):
     # Human-readable title to be displayed in the sidebar just above the filter options.
-    # L10n: label for the list of abuse report types: addons, users
-    title = gettext('type')
+    title = 'type'
 
     # Parameter for the filter that will be used in the URL query.
     parameter_name = 'type'
@@ -36,8 +29,8 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         in the right sidebar.
         """
         return (
-            ('user', gettext('Users')),
-            ('addon', gettext('Add-ons')),
+            ('user', 'Users'),
+            ('addon', 'Add-ons'),
         )
 
     def queryset(self, request, queryset):
@@ -51,34 +44,6 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         elif self.value() == 'addon':
             return queryset.filter(guid__isnull=False)
         return queryset
-
-
-class FakeChoicesMixin:
-    def choices(self, changelist):
-        """
-        Fake choices method (we don't need one, we don't really have choices
-        for this filter, it's an input widget) that fetches the params and the
-        current values for other filters, so that we can feed that into
-        the form that our template displays.
-
-        (We don't control the data passed down to the template, so re-using
-        this one is our only option)
-        """
-        # Grab search query parts and filter query parts as tuples of tuples.
-        search_query_parts = (
-            (((admin.views.main.SEARCH_VAR, changelist.query),))
-            if changelist.query
-            else ()
-        )
-        filters_query_parts = tuple(
-            (k, v)
-            for k, v in changelist.get_filters_params().items()
-            if k not in self.expected_parameters()
-        )
-        # Assemble them into a `query_parts` property on a unique fake choice.
-        all_choice = next(super().choices(changelist))
-        all_choice['query_parts'] = search_query_parts + filters_query_parts
-        yield all_choice
 
 
 class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
@@ -96,7 +61,7 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
     """
 
     template = 'admin/abuse/abusereport/minimum_reports_count_filter.html'
-    title = gettext('minimum reports count (grouped by guid)')
+    title = 'minimum reports count (grouped by guid)'
     parameter_name = 'minimum_reports_count'
 
     def lookups(self, request, model_admin):
@@ -109,59 +74,14 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
         return queryset
 
 
-class HTML5DateInput(forms.DateInput):
-    format_key = 'DATE_INPUT_FORMATS'
-    input_type = 'date'
-
-
-class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
-    """
-    Custom rangefilter.filters.DateTimeRangeFilter class that uses HTML5
-    widgets and a template without the need for inline CSS/JavaScript.
-
-    Needs FakeChoicesMixin for the fake choices the template will be using (the
-    upstream implementation depends on JavaScript for this).
-    """
-
-    template = 'admin/abuse/abusereport/date_range_filter.html'
-    title = gettext('creation date')
-
-    def _get_form_fields(self):
-        return OrderedDict(
-            (
-                (
-                    self.lookup_kwarg_gte,
-                    forms.DateField(
-                        label='From',
-                        widget=HTML5DateInput(),
-                        localize=True,
-                        required=False,
-                    ),
-                ),
-                (
-                    self.lookup_kwarg_lte,
-                    forms.DateField(
-                        label='To',
-                        widget=HTML5DateInput(),
-                        localize=True,
-                        required=False,
-                    ),
-                ),
+class AbuseReportAdmin(AMOModelAdmin):
+    class Media(AMOModelAdmin.Media):
+        css = {
+            'all': (
+                'css/admin/amoadmin.css',
+                'css/admin/abuse_reports.css',
             )
-        )
-
-    def choices(self, changelist):
-        # We want a fake 'All' choice as per FakeChoicesMixin, but as of 0.3.15
-        # rangefilter's implementation doesn't bother setting the selected
-        # property, and our mixin calls super(), so we have to do it here.
-        all_choice = next(super().choices(changelist))
-        all_choice['selected'] = not any(self.used_parameters)
-        yield all_choice
-
-
-class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
-    class Media:
-        css = {'all': ('css/admin/abuse_reports.css',)}
+        }
 
     actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
@@ -296,15 +216,14 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if type_ == 'addon':
             search_fields = (
                 'addon_name',
-                '=guid',
+                'guid__startswith',
                 'message',
             )
         elif type_ == 'user':
             search_fields = (
                 'message',
-                '=user__id',
-                '^user__username',
-                '^user__email',
+                'user__id',
+                'user__email__like',
             )
         else:
             search_fields = ()
@@ -315,12 +234,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         Return the field to use when all search terms are numeric, according to
         the type filter.
         """
-        type_ = request.GET.get('type')
-        if type_ == 'user':
-            search_field = 'user_id'
-        else:
-            search_field = super().get_search_id_field(request)
-        return search_field
+        return 'user_id' if request and request.GET.get('type') == 'user' else None
 
     def get_search_results(self, request, qs, search_term):
         """
@@ -354,7 +268,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         name = obj.user.name if obj.user else obj.addon_name
         return '{} {}'.format(name, obj.addon_version or '')
 
-    target_name.short_description = gettext('User / Add-on')
+    target_name.short_description = 'User / Add-on'
 
     def addon_card(self, obj):
         # Note: this assumes we don't allow guids to be reused by developers
@@ -400,26 +314,24 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''
 
-    distribution.short_description = gettext('Distribution')
+    distribution.short_description = 'Distribution'
 
     def reporter_country(self, obj):
         return obj.country_code
 
-    reporter_country.short_description = gettext("Reporter's country")
+    reporter_country.short_description = "Reporter's country"
 
     def message_excerpt(self, obj):
         return truncate_text(obj.message, 140)[0] if obj.message else ''
 
-    message_excerpt.short_description = gettext('Message excerpt')
+    message_excerpt.short_description = 'Message excerpt'
 
     def mark_as_valid(self, request, qs):
         for obj in qs:
             obj.update(state=AbuseReport.STATES.VALID)
         self.message_user(
             request,
-            gettext(
-                'The %d selected reports have been marked as valid.' % (qs.count())
-            ),
+            'The %d selected reports have been marked as valid.' % (qs.count()),
         )
 
     mark_as_valid.short_description = 'Mark selected abuse reports as valid'
@@ -429,14 +341,10 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
             obj.update(state=AbuseReport.STATES.SUSPICIOUS)
         self.message_user(
             request,
-            gettext(
-                'The %d selected reports have been marked as suspicious.' % (qs.count())
-            ),
+            'The %d selected reports have been marked as suspicious.' % (qs.count()),
         )
 
-    mark_as_suspicious.short_description = gettext(
-        'Mark selected abuse reports as suspicious'
-    )
+    mark_as_suspicious.short_description = 'Mark selected abuse reports as suspicious'
 
 
 admin.site.register(AbuseReport, AbuseReportAdmin)

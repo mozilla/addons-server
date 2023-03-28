@@ -12,10 +12,10 @@ HOME=/tmp
 
 # Once per hour
 1 * * * * %(django)s auto_reject
-5 * * * * %(django)s notify_about_auto_approve_delay
 10 * * * * %(z_cron)s update_blog_posts
 15 * * * * %(django)s send_pending_rejection_last_warning_notifications
 20 * * * * %(z_cron)s addon_last_updated
+30 * * * * %(z_cron)s process_blocklistsubmissions
 
 # Four times per day
 35 18,12,6,0 * * * %(z_cron)s upload_mlbf_to_remote_settings

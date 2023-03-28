@@ -7,7 +7,6 @@ from .views import (
     AddonReviewerViewSet,
     ReviewAddonVersionViewSet,
     ReviewAddonVersionCompareViewSet,
-    CannedResponseViewSet,
     ReviewAddonVersionDraftCommentViewSet,
 )
 
@@ -37,9 +36,4 @@ urlpatterns = [
     re_path(r'', include(versions.urls)),
     re_path(r'', include(compare.urls)),
     re_path(r'', include(draft_comments.urls)),
-    re_path(
-        r'^canned-responses/$',
-        CannedResponseViewSet.as_view(),
-        name='reviewers-canned-response-list',
-    ),
 ]

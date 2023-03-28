@@ -27,13 +27,12 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, Preview
-from olympia.addons.utils import SitePermissionVersionCreator
+from olympia.addons.models import Addon
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.decorators import use_primary_db
+from olympia.amo.reverse import override_url_prefix
 from olympia.amo.utils import (
     image_size,
-    pngcrush_image,
     resize_image,
     send_html_mail_jinja,
     send_mail,
@@ -50,7 +49,6 @@ from olympia.files.utils import (
     UnsupportedFileType,
     InvalidArchiveFile,
 )
-from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -258,7 +256,9 @@ def validate_file_path(path, channel):
 
     log.info('Running linter on %s', path)
     results = run_addons_linter(path, channel=channel)
-    annotations.annotate_validation_results(results, parsed_data)
+    annotations.annotate_validation_results(
+        results=results, parsed_data=parsed_data, channel=channel
+    )
     return json.dumps(results)
 
 
@@ -453,6 +453,9 @@ def run_addons_linter(path, channel):
     else:
         args.append('--max-manifest-version=2')
 
+    if settings.ADDONS_LINTER_ENABLE_SERVICE_WORKER:
+        args.append('--enable-background-service-worker')
+
     if not os.path.exists(path):
         raise ValueError(f'Path "{path}" is not a file or directory or does not exist.')
 
@@ -501,45 +504,6 @@ def track_validation_stats(results):
 
     # Track listed/unlisted success/fail.
     statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
-
-
-@task
-@use_primary_db
-@set_modified_on
-def pngcrush_existing_icons(addon_id):
-    """
-    Call pngcrush_image() on the icons of a given add-on.
-    """
-    log.info('Crushing icons for add-on %s', addon_id)
-    addon = Addon.objects.get(pk=addon_id)
-    if addon.icon_type != 'image/png':
-        log.info('Aborting icon crush for add-on %s, icon type is not a PNG.', addon_id)
-        return
-    icon_dir = addon.get_icon_dir()
-    pngcrush_image(os.path.join(icon_dir, '%s-64.png' % addon_id))
-    pngcrush_image(os.path.join(icon_dir, '%s-32.png' % addon_id))
-    # Return an icon hash that set_modified_on decorator will set on the add-on
-    # after a small delay. This is normally done with the true md5 hash of the
-    # original icon, but we don't necessarily have it here. We could read one
-    # of the icons we modified but it does not matter just fake a hash to
-    # indicate it was "manually" crushed.
-    return {'icon_hash': 'mcrushed'}
-
-
-@task
-@use_primary_db
-@set_modified_on
-def pngcrush_existing_preview(preview_id):
-    """
-    Call pngcrush_image() on the images of a given add-on Preview object.
-    """
-    log.info('Crushing images for Preview %s', preview_id)
-    preview = Preview.objects.get(pk=preview_id)
-    pngcrush_image(preview.thumbnail_path)
-    pngcrush_image(preview.image_path)
-    # We don't need a hash, previews are cachebusted with their modified date,
-    # which does not change often. @set_modified_on will do that for us
-    # automatically if the task was called with set_modified_on_obj=[preview].
 
 
 def _recreate_images_for_preview(preview):
@@ -647,24 +611,40 @@ def get_content_and_check_size(response, max_size, error_message):
 
 
 @task
-def send_welcome_email(addon_pk, emails, context, **kw):
-    log.info(f'[1@None] Sending welcome email for {addon_pk} to {emails}.')
-    subject = (
-        'Mozilla Add-ons: %s has been submitted to addons.mozilla.org!'
-        % context.get('addon_name', 'Your add-on')
+@use_primary_db
+def send_initial_submission_acknowledgement_email(addon_pk, channel, email, **kw):
+    log.info(
+        '[1@None] Sending initial_submission acknowledgement email for %s to %s',
+        addon_pk,
+        email,
     )
-    html_template = 'devhub/emails/submission.html'
-    text_template = 'devhub/emails/submission.txt'
-    return send_html_mail_jinja(
-        subject,
-        html_template,
-        text_template,
-        context,
-        recipient_list=emails,
-        from_email=settings.ADDONS_EMAIL,
-        use_deny_list=False,
-        perm_setting='individual_contact',
-    )
+    try:
+        addon = Addon.objects.get(pk=addon_pk)
+    except Addon.DoesNotExist:
+        # Add-on already deleted ? Ignore.
+        return
+    with override_url_prefix(locale=addon.default_locale):
+        context = {
+            'addon_name': str(addon.name),
+            'app': str(amo.FIREFOX.pretty),
+            'listed': channel == amo.CHANNEL_LISTED,
+            'detail_url': addon.get_absolute_url(),
+        }
+        subject = (
+            f'Mozilla Add-ons: {addon.name} has been submitted to addons.mozilla.org!'
+        )
+        html_template = 'devhub/emails/submission.html'
+        text_template = 'devhub/emails/submission.txt'
+        return send_html_mail_jinja(
+            subject,
+            html_template,
+            text_template,
+            context,
+            recipient_list=[email],
+            from_email=settings.ADDONS_EMAIL,
+            use_deny_list=False,
+            perm_setting='individual_contact',
+        )
 
 
 def send_api_key_revocation_email(emails):
@@ -682,20 +662,3 @@ def send_api_key_revocation_email(emails):
         use_deny_list=False,
         perm_setting='individual_contact',
     )
-
-
-@task
-@use_primary_db
-def create_site_permission_version(
-    *, user_pk, remote_addr, install_origins, site_permissions, **kwargs
-):
-    # Can raise if the user does not exist, but that's ok, we don't want to go
-    # any further if that's the case.
-    user = UserProfile.objects.filter(deleted=False).get(pk=user_pk)
-    generator = SitePermissionVersionCreator(
-        user=user,
-        remote_addr=remote_addr,
-        install_origins=install_origins,
-        site_permissions=site_permissions,
-    )
-    generator.create_version()

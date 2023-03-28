@@ -91,9 +91,12 @@ add-on.
 
 .. http:patch:: /api/v5/reviewers/addon/(int:addon_id)/flags/
 
-    :>json boolean auto_approval_disabled: Boolean indicating whether auto approval are disabled on an add-on or not. When it's ``true``, new versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
-    :>json boolean auto_approval_disabled_until_next_approval: Boolean indicating whether auto approval are disabled on an add-on until the next version is approved or not. Has the same effect as ``auto_approval_disabled`` but is automatically reset to ``false`` when the latest version of the add-on is manually approved by a human reviewer.
-    :>json string|null auto_approval_delayed_until: Date until the add-on auto-approval is delayed.
+    :>json boolean auto_approval_disabled: Boolean indicating whether auto approval of listed versions is disabled on an add-on or not. When it's ``true``, new listed versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
+    :>json boolean auto_approval_disabled_until_next_approval: Boolean indicating whether auto approval of listed versions is disabled on an add-on until the next listed version is approved or not. Has the same effect as ``auto_approval_disabled`` but is automatically reset to ``false`` when the latest listed version of the add-on is manually approved by a human reviewer.
+    :>json string|null auto_approval_delayed_until: Date until the add-on auto-approval is delayed for listed versions.
+    :>json boolean auto_approval_disabled_unlisted: Boolean indicating whether auto approval of unlisted versions is disabled on an add-on or not. When it's ``true``, new unlisted versions for this add-on will make it appear in the regular reviewer queues instead of being auto-approved.
+    :>json boolean auto_approval_disabled_until_next_approval_unlisted: Boolean indicating whether auto approval of unlisted versions is disabled on an add-on until the next unlisted version is approved or not. Has the same effect as ``auto_approval_disabled_unlisted`` but is automatically reset to ``false`` when the latest unlisted version of the add-on is manually approved by a human reviewer.
+    :>json string|null auto_approval_delayed_until_unlisted: Date until the add-on auto-approval is delayed for unlisted versions.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
     :>json boolean needs_admin_theme_review: Boolean indicating whether the theme needs to be reviewed by an admin or not.
@@ -327,33 +330,6 @@ This endpoint allows you to compare two Add-on versions with each other.
         }
 
 
-----------------
-Canned Responses
-----------------
-
-This endpoint allows you to retrieve a list of canned responses.
-
-    .. note::
-        Requires authentication and the current user to have any
-        reviewer-related permission.
-
-.. http:get:: /api/v5/reviewers/canned-responses/
-
-    .. _reviewers-canned-response-detail:
-
-    Retrieve canned responses
-
-    .. note::
-        Because this endpoint is not returning too much data it is not
-        paginated as normal, and instead will return all results without
-        obeying regular pagination parameters.
-
-    :>json int id: The canned response id.
-    :>json string title: The title of the canned response.
-    :>json string response: The text that will be filled in as the response.
-    :>json string category: The category of the canned response. For example, "Other", "Privacy reasons" etc.
-
-
 -----------------
 Drafting Comments
 -----------------
@@ -390,7 +366,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :>json string user.name: The name for an author.
     :>json string user.username: The username for an author.
     :>json string|null user.url: The link to the profile page for an author, if the author's profile is public.
-    :>json object|null canned_response: Object holding the :ref:`canned response <reviewers-canned-response-detail>` if set.
 
 .. http:post:: /api/v5/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
@@ -399,7 +374,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to (optional). Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
 
     :statuscode 201: New comment has been created.
     :statuscode 400: An error occurred, check the `error` value in the JSON.
@@ -423,7 +397,6 @@ These endpoints allow you to draft comments that can be submitted through the re
     :<json string comment: The comment that is being drafted as part of a review.
     :<json string filename: The full file path this comment is related to. This must represent the full path, including sub-folders and relative to the root. E.g ``lib/scripts/background.js``
     :<json int lineno: The line number this comment is related to. Please make sure that in case of comments for git diffs, that the `lineno` used here belongs to the file in the version that belongs to `version_id` and not it's parent.
-    :<json int canned_response: The id of the :ref:`canned response <reviewers-canned-response-detail>` (optional).
 
     :statuscode 200: The comment has been updated.
     :statuscode 400: An error occurred, check the `error` value in the JSON.

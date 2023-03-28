@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-09-06 16:44+0000\n"
-"PO-Revision-Date: 2022-09-20 19:54+0000\n"
+"POT-Creation-Date: 2023-03-21 18:07+0000\n"
+"PO-Revision-Date: 2023-01-29 18:34+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -75,7 +75,7 @@ msgid "Finished validating {0}"
 msgstr "Ukončené overovanie {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Časový limit overenia vášho doplnku vypršal, doplnok bude skontrolovaný manuálne."
+msgstr "Časový limit pre overenie vášho doplnku vypršal, doplnok bude skontrolovaný manuálne."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -96,7 +96,7 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Zahrnúť podrobné poznámky k verzii (možno nastaviť v ďalšom kroku)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poznámky pre redaktora (možno vykonať v ďalšom kroku)."
+msgstr "Ak váš doplnok vyžaduje účet na webovom serveri pre možnosť plnej kontroly, zadajte prosím používateľské meno a heslo do poľa Poznámky ku kontrole (možno vykonať v ďalšom kroku)."
 
 msgid "Add-on submission checklist"
 msgstr "Zoznam doplnkov odoslaných na kontrolu"
@@ -108,6 +108,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"Minifikované, zreťazené alebo inak strojovo generované skripty (okrem známych knižníc) musia mať svoje zdroje odoslané na kontrolu oddelene. Uistite sa, že používate pole na nahranie zdrojového "
+"kódu, aby ste sa vyhli odmietnutiu vášho doplnku."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Proces kontroly zistil tieto možné nedostatky, ktoré môžu viesť k zamietnutiu kontroly:"
@@ -132,9 +134,9 @@ msgstr "Týždeň {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} prevzatie"
-msgstr[1] "{0} prevzatia"
-msgstr[2] "{0} prevzatí"
+msgstr[0] "{0} stiahnutie"
+msgstr[1] "{0} stiahnutia"
+msgstr[2] "{0} stiahnutí"
 
 msgid "{0} user"
 msgid_plural "{0} users"
@@ -179,7 +181,7 @@ msgstr[1] "{0} inštalácie"
 msgstr[2] "{0} inštalácií"
 
 msgid "Downloads"
-msgstr "Prevzatí"
+msgstr "Stiahnutia"
 
 msgid "Daily Users"
 msgstr "Denní používatelia"
@@ -207,7 +209,7 @@ msgid "Add-ons Created"
 msgstr "Vytvorené doplnky"
 
 msgid "Add-ons Downloaded"
-msgstr "Prevzaté doplnky"
+msgstr "Stiahnuté doplnky"
 
 msgid "Add-ons Updated"
 msgstr "Aktualizované doplnky"
@@ -370,11 +372,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Prevzatia a denní používatelia, posledných {0} dní"
+msgstr "Stiahnutia a denní používatelia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Prevzatia a denní používatelia od {0} do {1}"
+msgstr "Stiahnutia a denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -386,11 +388,11 @@ msgstr "Inštalácie a denní používatelia od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Prevzatia, posledných {0} dní"
+msgstr "Stiahnutia za posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Prevzatí od {0} do {1}"
+msgstr "Stiahnutia od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -450,41 +452,35 @@ msgstr "Stav doplnku od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Zdroje prevzatí, posledných {0} dní"
+msgstr "Zdroje stiahnutí, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Zdroje preberania od {0} do {1}"
+msgstr "Zdroje stiahnutí od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Prevzatia, posledných {0} dní"
+msgstr "Spôsob stiahnutia, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Prevzatí od {0} do {1}"
+msgstr "Spôsob stiahnutia od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Contents, last {0} days"
-msgstr "Zdroje prevzatí, posledných {0} dní"
+msgstr "Stiahnutia obsahu, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Contents from {0} to {1}"
-msgstr "Prevzatí od {0} do {1}"
+msgstr "Stiahnutia obsahu od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Prevzatia, posledných {0} dní"
+msgstr "Stiahnutia v kampaniach, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Prevzatí od {0} do {1}"
+msgstr "Stiahnutia v kampaniach od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -512,11 +508,11 @@ msgstr "Používané doplnky od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Prevzaté doplnky, posledných {0} dní"
+msgstr "Stiahnuté doplnky, posledných {0} dní"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "Prevzaté doplnky od {0} do {1}"
+msgstr "Stiahnuté doplnky od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -603,13 +599,13 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> priemerne za posledných {1} dní"
 
 msgid "No data available."
-msgstr "Údaje sú nedostupné."
+msgstr "K dispozícii nie sú žiadne údaje."
 
 msgid "Date"
 msgstr "Dátum"
 
 msgid "Other"
-msgstr "Iný"
+msgstr "Iné"
 
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"
@@ -640,9 +636,9 @@ msgstr[2] "<b>{0}</b> znakov"
 
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "Zostáva <b>{0}</b> znak."
-msgstr[1] "Zostávajú <b>{0}</b> znaky."
-msgstr[2] "Zostáva <b>{0}</b> znakov."
+msgstr[0] "Zostáva <b>{0}</b> znak"
+msgstr[1] "Zostávajú <b>{0}</b> znaky"
+msgstr[2] "Zostáva <b>{0}</b> znakov"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Táto funkcia je dočasne nedostupná kvôli prebiehajúcej údržbe servera. Prosím, skúste to neskôr."

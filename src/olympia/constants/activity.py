@@ -3,6 +3,7 @@ from inspect import isclass
 
 from django.utils.translation import gettext_lazy as _
 
+RETENTION_DAYS = 365
 
 __all__ = (
     'LOG',
@@ -49,7 +50,8 @@ class EDIT_CATEGORIES(_LOG):
 class ADD_USER_WITH_ROLE(_LOG):
     id = 5
     action_class = 'add'
-    format = _('{0.name} ({1}) added to {addon}.')
+    # L10n: {0} is the user role.
+    format = _('{user} ({0}) added to {addon}.')
     keep = True
     show_user_to_developer = True
 
@@ -57,8 +59,8 @@ class ADD_USER_WITH_ROLE(_LOG):
 class REMOVE_USER_WITH_ROLE(_LOG):
     id = 6
     action_class = 'delete'
-    # L10n: {0} is the user being removed, {1} is their role.
-    format = _('{0.name} ({1}) removed from {addon}.')
+    # L10n: {0} is the user role.
+    format = _('{user} ({0}) removed from {addon}.')
     keep = True
     show_user_to_developer = True
 
@@ -119,7 +121,7 @@ class DELETE_VERSION(_LOG):
 class ADD_FILE_TO_VERSION(_LOG):
     id = 19
     action_class = 'add'
-    format = _('File {0.name} added to {version} of {addon}.')
+    format = _('File {file} added to {version} of {addon}.')
 
 
 class DELETE_FILE_FROM_VERSION(_LOG):
@@ -231,7 +233,7 @@ class REQUEST_SUPER_REVIEW(_LOG):
 
 class COMMENT_VERSION(_LOG):
     id = 49
-    format = _('Comment on {addon} {version}.')
+    format = '{addon} {version} reviewer comment.'
     short = _('Commented')
     keep = True
     review_queue = True
@@ -312,8 +314,8 @@ class CHANGE_USER_WITH_ROLE(_LOG):
     """Expects: author.user, role, addon"""
 
     id = 36
-    # L10n: {0} is a user, {1} is their role
-    format = _('{0.name} role changed to {1} for {addon}.')
+    # L10n: {0} is the user role
+    format = _('{user} role changed to {0} for {addon}.')
     keep = True
     show_user_to_developer = True
 
@@ -345,7 +347,7 @@ class APPROVE_RATING(_LOG):
     id = 40
     action_class = 'approve'
     format = _('{rating} for {addon} approved.')
-    reviewer_format = _('{user} approved {rating} for {addon}.')
+    reviewer_format = '{user_responsible} approved {rating} for {addon}.'
     keep = True
     reviewer_event = True
 
@@ -356,7 +358,7 @@ class DELETE_RATING(_LOG):
     id = 41
     action_class = 'review'
     format = _('Review {rating} for {addon} deleted.')
-    reviewer_format = _('{user} deleted {rating} for {addon}.')
+    reviewer_format = '{user_responsible} deleted {rating} for {addon}.'
     keep = True
     reviewer_event = True
 
@@ -437,27 +439,27 @@ class OBJECT_DELETED(_LOG):
 
 class ADMIN_USER_EDITED(_LOG):
     id = 103
-    format = _('User {user} edited, reason: {1}')
+    format = 'User {user} edited by {user_responsible}'
     admin_event = True
 
 
 class ADMIN_USER_ANONYMIZED(_LOG):
     id = 104
-    format = _('User {user} anonymized.')
+    format = 'User {user} anonymized by {user_responsible}.'
     keep = True
     admin_event = True
 
 
 class ADMIN_USER_RESTRICTED(_LOG):
     id = 105
-    format = _('User {user} restricted.')
+    format = 'User {user} restricted by {user_responsible}.'
     keep = True
     admin_event = True
 
 
 class ADMIN_VIEWED_LOG(_LOG):
     id = 106
-    format = _('Admin {0} viewed activity log for {user}.')
+    format = 'Admin {user_responsible} viewed activity log for {user}.'
     admin_event = True
 
 
@@ -466,6 +468,7 @@ class EDIT_RATING(_LOG):
     action_class = 'review'
     format = _('{rating} for {addon} updated.')
     show_user_to_developer = True
+    store_ip = True
 
 
 class THEME_REVIEW(_LOG):
@@ -491,7 +494,7 @@ class ADMIN_USER_PICTURE_DELETED(_LOG):
 class GROUP_USER_ADDED(_LOG):
     id = 120
     action_class = 'access'
-    format = _('User {0.name} added to {group}.')
+    format = _('User {user} added to {group}.')
     keep = True
     admin_event = True
 
@@ -499,7 +502,7 @@ class GROUP_USER_ADDED(_LOG):
 class GROUP_USER_REMOVED(_LOG):
     id = 121
     action_class = 'access'
-    format = _('User {0.name} removed from {group}.')
+    format = _('User {user} removed from {group}.')
     keep = True
     admin_event = True
 
@@ -611,7 +614,7 @@ class SOURCE_CODE_UPLOADED(_LOG):
 
 class CONFIRM_AUTO_APPROVED(_LOG):
     id = 144
-    format = _('Auto-Approval confirmed for {addon} {version}.')
+    format = _('{addon} {version} auto-approval confirmed.')
     short = _('Auto-Approval confirmed')
     keep = True
     reviewer_review_action = True
@@ -771,7 +774,7 @@ class ADMIN_USER_SESSION_RESET(_LOG):
 
 class THROTTLED(_LOG):
     id = 163
-    format = _('User {user} throttled for scope "{0}"')
+    format = 'User {user_responsible} throttled for scope "{0}"'
     admin_event = True
 
 
@@ -813,8 +816,8 @@ class FORCE_DISABLE(_LOG):
     # add-on is likely malicious.
     hide_developer = True
     reviewer_review_action = True
-    format = _('{user} force-disabled {addon}.')
-    short = _('Force disabled')
+    format = '{addon} force-disabled by {user_responsible}.'
+    short = 'Force disabled'
 
 
 class FORCE_ENABLE(_LOG):
@@ -822,8 +825,8 @@ class FORCE_ENABLE(_LOG):
     keep = True
     hide_developer = True
     reviewer_review_action = True
-    format = _('{user} force-enabled {addon}.')
-    short = _('Force enabled')
+    format = '{addon} force-enabled by {user_responsible}.'
+    short = 'Force enabled'
 
 
 class LOG_IN(_LOG):
@@ -833,7 +836,7 @@ class LOG_IN(_LOG):
     keep = True
     admin_event = True
     store_ip = True
-    format = _('{user} logged in.')
+    format = '{user_responsible} logged in.'
 
 
 class RESTRICTED(_LOG):
@@ -841,7 +844,37 @@ class RESTRICTED(_LOG):
     keep = True
     admin_event = True
     store_ip = True
-    format = _('{user} restricted.')
+    format = '{user_responsible} restricted.'
+
+
+class UNREJECT_VERSION(_LOG):
+    # takes add-on, version
+    id = 171
+    action_class = 'reject'
+    format = _('{addon} {version} un-rejected.')
+    short = _('Un-rejected')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
+class LOG_IN_API_TOKEN(_LOG):
+    id = 172
+    # Note: clear_old_user_data cron would delete the IPLog when needed, so we
+    # can keep the activity log, it just won't have any IP associated with it.
+    keep = True
+    admin_event = True
+    store_ip = True
+    format = '{user_responsible} authenticated through an API token.'
+
+
+class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
+    id = 173
+    format = _('{addon} needs_human_review flag cleared.')
+    short = _('Needs Human Review cleared')
+    admin_event = True
+    review_queue = True
+    reviewer_review_action = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
@@ -875,3 +908,6 @@ LOG_REVIEW_QUEUE_DEVELOPER = list(set(LOG_REVIEW_QUEUE) - set(LOG_HIDE_DEVELOPER
 LOG_SHOW_USER_TO_DEVELOPER = [
     log.id for log in LOGS if hasattr(log, 'show_user_to_developer')
 ]
+
+# Actions that store IP
+LOG_STORE_IPS = [log.id for log in LOGS if getattr(log, 'store_ip', False)]

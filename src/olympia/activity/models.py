@@ -1,19 +1,17 @@
 import json
-import string
 import uuid
 
 from collections import defaultdict
 from copy import copy
-from datetime import datetime
 
 from django.apps import apps
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
-from django.utils.translation import gettext
-
-import markupsafe
+from django.utils.html import format_html, mark_safe
+from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
 
@@ -26,11 +24,10 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason
+from olympia.reviewers.models import ReviewActionReason
 
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.users.templatetags.jinja_helpers import user_link
 from olympia.versions.models import Version
 
 
@@ -142,7 +139,7 @@ class CommentLog(ModelBase):
     """
 
     activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
-    comments = models.TextField()
+    comments = models.TextField(max_length=100000)
 
     class Meta:
         db_table = 'log_activity_comment'
@@ -210,7 +207,7 @@ class IPLog(ModelBase):
     actions).
     """
 
-    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
     _ip_address = models.CharField(max_length=45, db_column='ip_address', null=True)
     ip_address_binary = IPAddressBinaryField(null=True)
 
@@ -228,11 +225,28 @@ class IPLog(ModelBase):
             ),
         ]
 
+    def __str__(self):
+        return str(self.ip_address_binary)
+
     def save(self, *args, **kwargs):
         # ip_address_binary fulfils our needs, but we're keeping filling ip_address for
         # now, until any existing manual queries are updated.
         self._ip_address = str(self.ip_address_binary)
         return super().save(*args, **kwargs)
+
+
+class RatingLog(ModelBase):
+    """
+    This table is for indexing the activity log by Ratings (user reviews).
+    """
+
+    id = PositiveAutoField(primary_key=True)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    rating = models.ForeignKey(Rating, on_delete=models.SET_NULL, null=True)
+
+    class Meta:
+        db_table = 'log_activity_rating'
+        ordering = ('-created',)
 
 
 class DraftComment(ModelBase):
@@ -247,9 +261,6 @@ class DraftComment(ModelBase):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     filename = models.CharField(max_length=255, null=True, blank=True)
     lineno = models.PositiveIntegerField(null=True)
-    canned_response = models.ForeignKey(
-        CannedResponse, null=True, default=None, on_delete=models.SET_DEFAULT
-    )
     comment = models.TextField(blank=True)
 
     class Meta:
@@ -293,123 +304,29 @@ class ActivityLogManager(ManagerBase):
     def for_guidblock(self, guid):
         return self.filter(blocklog__guid=guid)
 
-    def for_developer(self):
-        return self.exclude(
-            action__in=constants.activity.LOG_ADMINS
-            + constants.activity.LOG_HIDE_DEVELOPER
-        )
-
-    def admin_events(self):
-        return self.filter(action__in=constants.activity.LOG_ADMINS)
-
     def moderation_events(self):
         return self.filter(action__in=constants.activity.LOG_RATING_MODERATION)
 
-    def review_queue(self):
-        qs = self._by_type()
-        return qs.filter(action__in=constants.activity.LOG_REVIEW_QUEUE).exclude(
-            user__id=settings.TASK_USER_ID
-        )
-
     def review_log(self):
-        qs = self._by_type()
-        return qs.filter(
-            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        ).exclude(user__id=settings.TASK_USER_ID)
-
-    def total_ratings(self, theme=False):
-        """Return the top users, and their # of reviews."""
-        qs = self._by_type()
-        action_ids = (
-            [amo.LOG.THEME_REVIEW.id]
-            if theme
-            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        )
-        return (
-            qs.values('user', 'user__display_name', 'user__username')
-            .filter(action__in=action_ids)
+        qs = (
+            self.get_queryset()
+            .filter(action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION)
             .exclude(user__id=settings.TASK_USER_ID)
-            .annotate(approval_count=models.Count('id'))
-            .order_by('-approval_count')
         )
-
-    def monthly_reviews(self, theme=False):
-        """Return the top users for the month, and their # of reviews."""
-        qs = self._by_type()
-        now = datetime.now()
-        created_date = datetime(now.year, now.month, 1)
-        actions = (
-            [constants.activity.LOG.THEME_REVIEW.id]
-            if theme
-            else constants.activity.LOG_REVIEWER_REVIEW_ACTION
-        )
-        return (
-            qs.values('user', 'user__display_name', 'user__username')
-            .filter(created__gte=created_date, action__in=actions)
-            .exclude(user__id=settings.TASK_USER_ID)
-            .annotate(approval_count=models.Count('id'))
-            .order_by('-approval_count')
-        )
-
-    def user_approve_reviews(self, user):
-        qs = self._by_type()
-        return qs.filter(
-            action__in=constants.activity.LOG_REVIEWER_REVIEW_ACTION, user__id=user.id
-        )
-
-    def current_month_user_approve_reviews(self, user):
-        now = datetime.now()
-        ago = datetime(now.year, now.month, 1)
-        return self.user_approve_reviews(user).filter(created__gte=ago)
-
-    def user_position(self, values_qs, user):
-        try:
-            return (
-                next(
-                    i
-                    for (i, d) in enumerate(list(values_qs))
-                    if d.get('user') == user.id
-                )
-                + 1
-            )
-        except StopIteration:
-            return None
-
-    def total_ratings_user_position(self, user, theme=False):
-        return self.user_position(self.total_ratings(theme), user)
-
-    def monthly_reviews_user_position(self, user, theme=False):
-        return self.user_position(self.monthly_reviews(theme), user)
-
-    def _by_type(self):
-        qs = self.get_queryset()
-        table = 'log_activity_addon'
-        return qs.extra(
-            tables=[table],
-            where=['{}.activity_log_id={}.id'.format(table, 'log_activity')],
-        )
-
-
-class SafeFormatter(string.Formatter):
-    """A replacement for str.format that escapes interpolated values."""
-
-    def get_field(self, *args, **kw):
-        # obj is the value getting interpolated into the string.
-        obj, used_key = super().get_field(*args, **kw)
-        return markupsafe.escape(obj), used_key
+        return qs
 
 
 class ActivityLog(ModelBase):
     TYPES = sorted(
         (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
     )
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.SET_NULL)
+    # We should never hard-delete users, so the on_delete can be set to DO_NOTHING,
+    # if somehow a hard-delete still occurs, it will raise an IntegrityError.
+    user = models.ForeignKey('users.UserProfile', on_delete=models.DO_NOTHING)
     action = models.SmallIntegerField(choices=TYPES)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')
     objects = ActivityLogManager()
-
-    formatter = SafeFormatter()
 
     class Meta:
         db_table = 'log_activity'
@@ -418,11 +335,6 @@ class ActivityLog(ModelBase):
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
             models.Index(fields=('created',), name='log_activity_created_idx'),
         ]
-
-    def f(self, *args, **kw):
-        """Calls SafeFormatter.format and returns a Markup string."""
-        # SafeFormatter escapes everything so this is safe.
-        return markupsafe.Markup(self.formatter.format(*args, **kw))
 
     @classmethod
     def transformer_anonymize_user_for_developer(cls, logs):
@@ -582,11 +494,19 @@ class ActivityLog(ModelBase):
             format = getattr(log_type, '%s_format' % type_)
         else:
             format = log_type.format
+        absolute_url_method = (
+            'get_admin_absolute_url' if type_ == 'admin' else 'get_absolute_url'
+        )
+
+        def get_absolute_url(obj):
+            return getattr(obj, absolute_url_method)() if obj is not None else ''
 
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.
         arguments = copy(self.arguments)
         addon = None
+        addon_name = None
+        addon_pk = None
         rating = None
         version = None
         collection = None
@@ -594,44 +514,58 @@ class ActivityLog(ModelBase):
         group = None
         file_ = None
         status = None
+        user = None
+        channel = None
+        _versions = []
 
         for arg in self.arguments:
             if isinstance(arg, Addon) and not addon:
-                if arg.has_listed_versions():
-                    addon = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
+                addon_pk = arg.pk
+                addon_name = arg.name
+                # _current_version_id as an approximation to see if the add-on
+                # has listed versions without doing extra queries.
+                if type_ == 'admin' or arg._current_version_id:
+                    addon = format_html(
+                        '<a href="{0}">{1}</a>', get_absolute_url(arg), addon_name
                     )
                 else:
-                    addon = self.f('{0}', arg.name)
+                    addon = format_html('{0}', arg.name)
                 arguments.remove(arg)
             if isinstance(arg, Rating) and not rating:
-                rating = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), gettext('Review')
+                rating = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), gettext('Review')
                 )
                 arguments.remove(arg)
-            if isinstance(arg, Version) and not version:
-                text = gettext('Version {0}')
-                if arg.channel == amo.CHANNEL_LISTED:
-                    version = self.f(
-                        '<a href="{1}">%s</a>' % text,
-                        arg.version,
-                        arg.get_absolute_url(),
+            if isinstance(arg, Version):
+                # Versions can appear multiple time. Append to an intermediary
+                # _versions list, and use that later to build the final
+                # 'version' argument used for formatting.
+                channel = arg.channel
+                if type_ == 'admin' or (
+                    type_ != 'reviewlog' and arg.channel == amo.CHANNEL_LISTED
+                ):
+                    _versions.append(
+                        format_html(
+                            '<a href="{0}">{1}</a>',
+                            get_absolute_url(arg),
+                            arg.version,
+                        )
                     )
                 else:
-                    version = self.f(text, arg.version)
+                    _versions.append(arg.version)
                 arguments.remove(arg)
             if isinstance(arg, Collection) and not collection:
-                collection = self.f(
-                    '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.name
+                collection = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if isinstance(arg, Tag) and not tag:
                 if arg.can_reverse():
-                    tag = self.f(
-                        '<a href="{0}">{1}</a>', arg.get_absolute_url(), arg.tag_text
+                    tag = format_html(
+                        '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.tag_text
                     )
                 else:
-                    tag = self.f('{0}', arg.tag_text)
+                    tag = format_html('{0}', arg.tag_text)
             if isinstance(arg, Group) and not group:
                 group = arg.name
                 arguments.remove(arg)
@@ -643,11 +577,16 @@ class ActivityLog(ModelBase):
                 ):
                     validation = 'ignored'
 
-                file_ = self.f(
+                file_ = format_html(
                     '<a href="{0}">{1}</a> (validation {2})',
-                    arg.get_absolute_url(),
+                    get_absolute_url(arg),
                     arg.pretty_filename,
                     validation,
+                )
+                arguments.remove(arg)
+            if isinstance(arg, UserProfile) and not user:
+                user = format_html(
+                    '<a href="{0}">{1}</a>', get_absolute_url(arg), arg.name
                 )
                 arguments.remove(arg)
             if self.action == amo.LOG.CHANGE_STATUS.id and not isinstance(arg, Addon):
@@ -662,7 +601,35 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user = user_link(self.user)
+        user_responsible = format_html(
+            '<a href="{0}">{1}</a>', get_absolute_url(self.user), self.user.name
+        )
+
+        if _versions:
+            # Now that all arguments have been processed we can build a string
+            # for all the versions and build a string for addon that is
+            # specific to the reviewlog, with the correct channel for the
+            # review page link.
+            version = format_html(
+                ngettext('Version {0}', 'Versions {0}', len(_versions)),
+                # We're only joining already escaped/safe content.
+                mark_safe(', '.join(_versions)),
+            )
+
+        if channel is None and self.details and 'channel' in self.details:
+            channel = self.details['channel']
+
+        if type_ == 'reviewlog' and addon and addon_pk and addon_name:
+            reverse_args = [addon_pk]
+            if self.action in (amo.LOG.REJECT_CONTENT.id, amo.LOG.APPROVE_CONTENT.id):
+                reverse_args.insert(0, 'content')
+            elif channel and channel == amo.CHANNEL_UNLISTED:
+                reverse_args.insert(0, 'unlisted')
+            addon = format_html(
+                '<a href="{0}">{1}</a>',
+                reverse('reviewers.review', args=reverse_args),
+                addon_name,
+            )
 
         try:
             kw = {
@@ -672,11 +639,12 @@ class ActivityLog(ModelBase):
                 'collection': collection,
                 'tag': tag,
                 'user': user,
+                'user_responsible': user_responsible,
                 'group': group,
                 'file': file_,
                 'status': status,
             }
-            return self.f(str(format), *arguments, **kw)
+            return format_html(str(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
@@ -742,6 +710,8 @@ class ActivityLog(ModelBase):
                 BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
             elif class_ == ReviewActionReason:
                 ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
+            elif class_ == Rating:
+                RatingLog.objects.create(rating_id=id_, **create_kwargs)
 
         if getattr(action, 'store_ip', False) and (
             ip_address := core.get_remote_addr()

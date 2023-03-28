@@ -170,6 +170,7 @@ class TestAddonIndexer(TestCase):
             'strict_compatibility',
             'permissions',
             'optional_permissions',
+            'host_permissions',
         )
         assert set(files_mapping.keys()) == set(expected_file_keys)
 
@@ -266,6 +267,7 @@ class TestAddonIndexer(TestCase):
     def test_extract_version_and_files(self):
         permissions = ['bookmarks', 'random permission']
         optional_permissions = ['cookies', 'optional permission']
+        host_permissions = ['https://example.com', 'https://mozilla.com']
         version = self.addon.current_version
         # Add a bunch of things to it to test different scenarios.
         version.license = License.objects.create(name='My licensé', builtin=3)
@@ -274,6 +276,7 @@ class TestAddonIndexer(TestCase):
                 file=version.file,
                 permissions=permissions,
                 optional_permissions=optional_permissions,
+                host_permissions=host_permissions,
             )
         ]
         version.save()
@@ -306,7 +309,7 @@ class TestAddonIndexer(TestCase):
                 'string': "Quelque chose en fran\xe7ais.\n\nQuelque chose d'autre.",
             },
         ]
-        assert extracted['current_version']['reviewed'] == version.reviewed
+        assert extracted['current_version']['reviewed'] == version.human_review_date
         assert extracted['current_version']['version'] == version.version
         extracted_file = extracted['current_version']['files'][0]
         assert extracted_file['id'] == version.file.pk
@@ -320,6 +323,7 @@ class TestAddonIndexer(TestCase):
         assert extracted_file['status'] == version.file.status
         assert extracted_file['permissions'] == permissions
         assert extracted_file['optional_permissions'] == optional_permissions
+        assert extracted_file['host_permissions'] == host_permissions
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version

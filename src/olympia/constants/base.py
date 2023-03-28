@@ -52,7 +52,7 @@ STATUS_CHOICES_API_LOOKUP = {
     'deleted': STATUS_DELETED,
 }
 
-REVIEWED_STATUSES = (STATUS_APPROVED,)
+APPROVED_STATUSES = (STATUS_APPROVED,)
 UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW,)
 VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_APPROVED)
 VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
@@ -107,17 +107,17 @@ AUTHOR_CHOICES_UNFILTERED = AUTHOR_CHOICES + ((AUTHOR_ROLE_DELETED, _('(Deleted)
 # Addon types
 ADDON_ANY = 0
 ADDON_EXTENSION = 1
-_ADDON_THEME = 2  # Deprecated.  XUL Theme.
+_ADDON_THEME = 2  # Obsolete.  XUL Theme.
 ADDON_DICT = 3
-_ADDON_SEARCH = 4  # Deprecated.  Opensearch.
+_ADDON_SEARCH = 4  # Obsolete.  Opensearch.
 ADDON_LPAPP = 5
-_ADDON_LPADDON = 6  # Deprecated.  A langpack for a specific extension.
-_ADDON_PLUGIN = 7  # Deprecated.  Binary plugin, e.g. Flash.
+_ADDON_LPADDON = 6  # Obsolete.  A langpack for a specific extension.
+_ADDON_PLUGIN = 7  # Obsolete.  Binary plugin, e.g. Flash.
 ADDON_API = 8  # not actually a type but used to identify extensions + themes
-_ADDON_PERSONA = 9  # Deprecated.  Aka Lightweight Themes.
+_ADDON_PERSONA = 9  # Obsolete.  Aka Lightweight Themes.
 ADDON_STATICTHEME = 10
-_ADDON_WEBAPP = 11  # Deprecated.  Marketplace cruft.
-ADDON_SITE_PERMISSION = 12
+_ADDON_WEBAPP = 11  # Obsolete.  Marketplace cruft.
+_ADDON_SITE_PERMISSION = 12  # Obsolete.  Never used in production.
 
 # Addon type groupings
 
@@ -135,7 +135,7 @@ ADDON_TYPE = {
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
-    ADDON_SITE_PERMISSION: _('Site Permission'),
+    _ADDON_SITE_PERMISSION: _('Site Permission'),
 }
 
 # Plural
@@ -149,7 +149,7 @@ ADDON_TYPES = {
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
-    ADDON_SITE_PERMISSION: _('Site Permissions'),
+    _ADDON_SITE_PERMISSION: _('Site Permissions'),
 }
 
 # Searchable Add-on Types
@@ -171,7 +171,6 @@ ADDON_SLUGS = {
     ADDON_LPAPP: 'language-tools',
     _ADDON_SEARCH: 'search-tools',
     ADDON_STATICTHEME: 'themes',
-    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 # A slug to ID map for the search API. Included are all ADDON_TYPES that are
@@ -185,7 +184,6 @@ ADDON_SEARCH_SLUGS = {
     'language': ADDON_LPAPP,
     'persona': _ADDON_PERSONA,
     'statictheme': ADDON_STATICTHEME,
-    'sitepermission': ADDON_SITE_PERMISSION,
 }
 
 ADDON_TYPE_CHOICES_API = {
@@ -196,7 +194,6 @@ ADDON_TYPE_CHOICES_API = {
     ADDON_LPAPP: 'language',
     _ADDON_PERSONA: 'persona',
     ADDON_STATICTHEME: 'statictheme',
-    ADDON_SITE_PERMISSION: 'sitepermission',
 }
 
 ADDON_TYPES_WITH_STATS = (
@@ -204,7 +201,6 @@ ADDON_TYPES_WITH_STATS = (
     ADDON_STATICTHEME,
     ADDON_DICT,
     ADDON_LPAPP,
-    ADDON_SITE_PERMISSION,
 )
 
 # Edit addon information
@@ -354,9 +350,8 @@ DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
-# The default version of Firefox that (is planned to) support manifest version 3 (MV3)
-# This will probably have to be adjusted later.
-DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '100.0'
+# The version of Firefox that first supported manifest version 3 (MV3)
+DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '109.0a1'
 # We don't know if the Android min version will be different, but assume it might be.
 DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX
 
@@ -385,6 +380,8 @@ RESERVED_ADDON_GUIDS = (
     'aboutsync@mhammond.github.com',
     # Temporary add-ons as defined in Firefox. Should not be submitted to AMO.
     '@temporary-addon',
+    # Android Components/Fenix built-in extensions.
+    '@mozac.org',
 )
 
 MOZILLA_TRADEMARK_SYMBOLS = ('mozilla', 'firefox')

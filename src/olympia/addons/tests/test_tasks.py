@@ -1,11 +1,11 @@
 import os
-import pytest
 import shutil
 import tempfile
 from unittest import mock
 
 from django.conf import settings
 
+import pytest
 from PIL import Image
 from waffle.testutils import override_switch
 
@@ -78,7 +78,6 @@ PATCH_PATH = 'olympia.addons.tasks'
 @pytest.mark.django_db
 @mock.patch(f'{PATCH_PATH}.parse_addon')
 def test_create_missing_theme_previews(parse_addon_mock):
-
     parse_addon_mock.return_value = {}
     theme = addon_factory(type=amo.ADDON_STATICTHEME)
     amo_preview = VersionPreview.objects.create(
@@ -209,6 +208,8 @@ def test_update_addon_hotness():
     addon1 = addon_factory(hotness=0, status=amo.STATUS_APPROVED)
     addon2 = addon_factory(hotness=123, status=amo.STATUS_APPROVED)
     addon3 = addon_factory(hotness=123, status=amo.STATUS_AWAITING_REVIEW)
+    addon4 = addon_factory(hotness=123)
+    addon4.delete()
     averages = {
         addon1.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
         addon2.guid: {
@@ -216,6 +217,7 @@ def test_update_addon_hotness():
             'avg_three_weeks_before': 1,
         },
         addon3.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
+        addon4.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
     }
 
     update_addon_hotness(averages=averages.items())
@@ -224,12 +226,13 @@ def test_update_addon_hotness():
     addon3.refresh_from_db()
 
     assert addon1.hotness > 0
+    assert addon3.hotness > 0
+    assert addon4.hotness > 0
     # Too low averages so we set the hotness to 0.
     assert addon2.hotness == 0
-    # We shouldn't have processed this add-on.
-    assert addon3.hotness == 123
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads():
     addon = addon_factory(weekly_downloads=0)
     count = 123
@@ -242,6 +245,7 @@ def test_update_addon_weekly_downloads():
     assert addon.weekly_downloads == count
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads_ignores_deleted_addons():
     guid = 'some@guid'
     deleted_addon = addon_factory(guid=guid)
@@ -258,6 +262,7 @@ def test_update_addon_weekly_downloads_ignores_deleted_addons():
     assert addon.weekly_downloads == count
 
 
+@pytest.mark.django_db
 def test_update_addon_weekly_downloads_skips_non_existent_addons():
     addon = addon_factory(weekly_downloads=0)
     count = 123
@@ -351,6 +356,7 @@ class TestResizeIcon(TestCase):
         self._uploader(resize_size, final_size)
 
 
+@pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.index_addons.delay')
 def test_disable_addons(index_addons_mock):
     UserProfile.objects.create(pk=settings.TASK_USER_ID)
@@ -368,6 +374,7 @@ def test_disable_addons(index_addons_mock):
     index_addons_mock.assert_called_with([addon.id])
 
 
+@pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.unindex_objects')
 @mock.patch('olympia.addons.tasks.index_objects')
 def test_index_addons(index_objects_mock, unindex_objects_mock):

@@ -35,24 +35,6 @@ def permission_or_tools_listed_view_required(permission):
     return decorator
 
 
-def permission_or_tools_unlisted_view_required(permission):
-    def decorator(f):
-        @functools.wraps(f)
-        @login_required
-        def wrapper(request, *args, **kw):
-            view_on_get = _view_on_get(
-                request, permissions.REVIEWER_TOOLS_UNLISTED_VIEW
-            )
-            if view_on_get or acl.action_allowed_for(request.user, permission):
-                return f(request, *args, **kw)
-            else:
-                raise PermissionDenied
-
-        return wrapper
-
-    return decorator
-
-
 def any_reviewer_required(f):
     """Require any kind of reviewer. Use only for views that don't alter data
     but just provide a generic reviewer-related page, such as the reviewer

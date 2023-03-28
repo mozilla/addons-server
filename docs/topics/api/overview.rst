@@ -193,6 +193,11 @@ For example, for a request ``?lang=de``:
         }
     }
 
+
+.. warning::
+    ``lang`` must only contains alphanumeric characters (plus ``-`` and ``_``).
+
+
 For ``POST``, ``PATCH`` and ``PUT`` requests you submit an object containing
 translations for any languages needing to be updated/saved.  Any language not
 in the object is not updated, but is not removed.
@@ -445,6 +450,15 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2022-06-02: enabled setting ``default_locale`` via addon submission and edit endpoints. https://github.com/mozilla/addons-server/issues/18235
 * 2022-06-16: added the ability to "PUT" an add-on upload to either create or update an add-on. https://github.com/mozilla/addons-server/issues/15353
 * 2022-08-25: added ``approval_notes`` for version create or edit, and exposed via the version detail response for authorized developers of the add-on and reviewers. https://github.com/mozilla/addons-server/issues/19554
+* 2023-01-05: added ``applications/<application>/`` API endpoint to list all valid appversions for a given application. https://github.com/mozilla/addons-server/issues/20066
+* 2023-01-12: added the ability to delete add-on versions. https://github.com/mozilla/addons-server/issues/19784
+* 2023-02-23: removed the /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/20354
+* 2023-02-23: removed ``canned-response`` from the /draft_comments/ endpoint. https://github.com/mozilla/addons-server/issues/20353
+* 2023-03-02: added specific HTTP 409 status code for add-on/version submissions that already exist
+* 2023-03-02: added support for calling the version detail endpoint using a version number instead of an ``id``.
+* 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
+* 2023-03-08: restricted ``lang`` parameter to only alphanumeric, ``_``, ``-``. https://github.com/mozilla/addons-server/issues/20452
+* 2023-03-09: added ``host_permissions`` to the response of the version detail endpoint. https://github.com/mozilla/addons-server/issues/20418
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

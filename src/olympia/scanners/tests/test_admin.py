@@ -39,6 +39,7 @@ from olympia.constants.scanners import (
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
+    formatted_matched_rules_with_files_and_data,
     ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
@@ -53,6 +54,7 @@ from olympia.scanners.models import (
     ScannerResult,
     ScannerRule,
 )
+from olympia.scanners.templatetags.scanners import format_scanners_data
 from olympia.versions.models import Version
 
 
@@ -220,7 +222,7 @@ class TestScannerResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        assert expect_file_item in self.admin.formatted_matched_rules_with_files(result)
+        assert expect_file_item in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_matched_rules_with_files_without_version(self):
         result = ScannerResult.objects.create(scanner=YARA)
@@ -230,10 +232,10 @@ class TestScannerResultAdmin(TestCase):
         result.save()
 
         # We list the file related to the matched rule...
-        assert filename in self.admin.formatted_matched_rules_with_files(result)
+        assert filename in formatted_matched_rules_with_files_and_data(result)
         # ...but we do not add a link to it because there is no associated
         # version.
-        assert '/browse/' not in self.admin.formatted_matched_rules_with_files(result)
+        assert '/browse/' not in formatted_matched_rules_with_files_and_data(result)
 
     def test_formatted_score_for_customs(self):
         result = ScannerResult(score=0.123, scanner=CUSTOMS)
@@ -260,11 +262,12 @@ class TestScannerResultAdmin(TestCase):
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(14):
-            # 14 queries:
+        with self.assertNumQueries(13):
+            # 13 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
-            # - 2 COUNT(*) on scanners results for pagination and total display
+            # - 1 COUNT(*) on scanners results for pagination
+            #     (show_full_result_count=False so we avoid the duplicate)
             # - 2 get all available rules for filtering
             # - 1 scanners results and versions in one query
             # - 1 all add-ons in one query
@@ -296,7 +299,9 @@ class TestScannerResultAdmin(TestCase):
 
     def test_list_filters(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
-        rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
+        rule_hello = ScannerRule.objects.create(
+            name='hello', scanner=YARA, pretty_name='Pretty Hello'
+        )
         rule_foo = ScannerRule.objects.create(name='foo', scanner=CUSTOMS)
 
         response = self.client.get(self.list_url)
@@ -318,7 +323,7 @@ class TestScannerResultAdmin(TestCase):
             ('All', '?'),
             ('foo (customs)', f'?matched_rules__id__exact={rule_foo.pk}'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
-            ('hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+            ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
             ('All', '?has_version=all'),
             (' With version only', '?'),
         ]
@@ -329,7 +334,7 @@ class TestScannerResultAdmin(TestCase):
         expected = [
             ('foo (customs)', str(rule_foo.pk)),
             ('bar (yara)', str(rule_bar.pk)),
-            ('hello (yara)', str(rule_hello.pk)),
+            ('Pretty Hello (yara)', str(rule_hello.pk)),
         ]
         filters = [
             (option.text, option.attrib['value'])
@@ -1161,7 +1166,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         link = doc('.field-matched_results_link a')
         assert link
         results_list_url = reverse('admin:scanners_scannerqueryresult_changelist')
-        expected_href = f'{results_list_url}?matched_rules__id__exact={rule.pk}'
+        expected_href = f'{results_list_url}?matched_rule__id__exact={rule.pk}'
         assert link.attr('href') == expected_href
         assert link.text() == '3 (2 add-ons)'
 
@@ -1418,6 +1423,46 @@ class TestScannerQueryRuleAdmin(TestCase):
         doc = pq(response.content)
         assert doc('.field-formatted_definition .readonly')
 
+    def test_delete_rule_that_has_results(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerQueryResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#content h1').text() == 'Are you sure?'
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+        response = self.client.post(url, {'post': 'yes'})
+        self.assert3xx(response, self.list_url)
+
+        assert not ScannerQueryRule.objects.filter(pk=rule.pk).exists()
+        assert not ScannerQueryResult.objects.filter(pk=result.pk).exists()
+
+    def test_cant_delete_rule_if_insufficient_permissions(self):
+        rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        result = ScannerQueryResult(scanner=YARA)
+        result.add_yara_result(rule=rule.name)
+        result.save()
+
+        url = reverse('admin:scanners_scannerqueryrule_delete', args=(rule.pk,))
+
+        user = user_factory(email='somebodyelse@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url, {'post': 'yes'})
+        assert response.status_code == 403
+
+        self.grant_permission(user, 'Admin:ScannersQueryView')
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url, {'post': 'yes'})
+        assert response.status_code == 403
+
 
 class TestScannerQueryResultAdmin(TestCase):
     def setUp(self):
@@ -1432,17 +1477,22 @@ class TestScannerQueryResultAdmin(TestCase):
             model=ScannerQueryResult, admin_site=AdminSite()
         )
 
+        self.rule = ScannerQueryRule.objects.create(name='myrule', scanner=YARA)
+
+    def scanner_query_result_factory(self, *args, **kwargs):
+        kwargs.setdefault('scanner', YARA)
+        result = ScannerQueryResult(*args, **kwargs)
+        if 'rule' not in kwargs and 'results' not in kwargs:
+            result.add_yara_result(rule=self.rule.name)
+        result.save()
+        return result
+
     def test_list_view(self):
         addon = addon_factory()
         addon.update(average_daily_users=999)
         addon.authors.add(user_factory(email='foo@bar.com'))
         addon.authors.add(user_factory(email='bar@foo.com'))
-        rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
-        result = ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon.current_version
-        )
-        result.add_yara_result(rule=rule.name)
-        result.save()
+        result = self.scanner_query_result_factory(version=addon.current_version)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         html = pq(response.content)
@@ -1483,12 +1533,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
 
     def test_list_view_no_query_permissions(self):
-        rule = ScannerQueryRule.objects.create(name='rule', scanner=YARA)
-        result = ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon_factory().current_version
-        )
-        result.add_yara_result(rule=rule.name)
-        result.save()
+        self.scanner_query_result_factory(version=addon_factory().current_version)
 
         self.user = user_factory(email='somebodyelse@mozilla.com')
         # Give the user permission to edit ScannersResults, but not
@@ -1506,15 +1551,18 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filters(self):
         rule_foo = ScannerQueryRule.objects.create(name='foo', scanner=YARA)
-        rule_bar = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
+        rule_bar = ScannerQueryRule.objects.create(
+            name='bar', scanner=YARA, pretty_name='A rule walks into a'
+        )
 
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
             ('All', '?'),
-            ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
-            ('foo (yara)', f'?matched_rules__id__exact={rule_foo.pk}'),
+            ('foo (yara)', f'?matched_rule__id__exact={rule_foo.pk}'),
+            ('myrule (yara)', f'?matched_rule__id__exact={self.rule.pk}'),
+            ('A rule walks into a (yara)', f'?matched_rule__id__exact={rule_bar.pk}'),
             ('All', '?'),
             ('Unlisted', '?version__channel__exact=1'),
             ('Listed', '?version__channel__exact=2'),
@@ -1555,7 +1603,7 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(
             self.list_url,
             {
-                'matched_rules__id__exact': rule_bar.pk,
+                'matched_rule__id__exact': rule_bar.pk,
             },
         )
         assert response.status_code == 200
@@ -1565,13 +1613,11 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_channel(self):
         addon = addon_factory()
-        ScannerQueryResult.objects.create(scanner=YARA, version=addon.versions.all()[0])
+        self.scanner_query_result_factory(version=addon.versions.get())
         unlisted_addon = addon_factory(
             version_kw={'channel': amo.CHANNEL_UNLISTED}, status=amo.STATUS_NULL
         )
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=unlisted_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=unlisted_addon.versions.get())
 
         response = self.client.get(
             self.list_url,
@@ -1597,13 +1643,9 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_addon_status(self):
         incomplete_addon = addon_factory(status=amo.STATUS_NULL)
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=incomplete_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=incomplete_addon.versions.get())
         deleted_addon = addon_factory(status=amo.STATUS_DELETED)
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=deleted_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=deleted_addon.versions.get())
 
         response = self.client.get(
             self.list_url,
@@ -1629,13 +1671,9 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_addon_visibility(self):
         visible_addon = addon_factory()
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=visible_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=visible_addon.versions.get())
         invisible_addon = addon_factory(disabled_by_user=True)
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=invisible_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=invisible_addon.versions.get())
 
         response = self.client.get(
             self.list_url,
@@ -1664,11 +1702,9 @@ class TestScannerQueryResultAdmin(TestCase):
         disabled_file_version = version_factory(
             addon=addon_disabled_file, file_kw={'status': amo.STATUS_DISABLED}
         )
-        ScannerQueryResult.objects.create(scanner=YARA, version=disabled_file_version)
+        self.scanner_query_result_factory(version=disabled_file_version)
         addon_approved_file = addon_factory()
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon_approved_file.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=addon_approved_file.versions.get())
 
         response = self.client.get(
             self.list_url,
@@ -1694,13 +1730,9 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_file_is_signed(self):
         signed_addon = addon_factory(file_kw={'is_signed': True})
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=signed_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=signed_addon.versions.get())
         unsigned_addon = addon_factory(file_kw={'is_signed': False})
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=unsigned_addon.versions.all()[0]
-        )
+        self.scanner_query_result_factory(version=unsigned_addon.versions.get())
 
         response = self.client.get(
             self.list_url,
@@ -1726,20 +1758,16 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_list_filter_was_blocked(self):
         was_blocked_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_blocked_addon.versions.get(), was_blocked=True
+        )
         was_blocked_unknown_addon = addon_factory()
+        self.scanner_query_result_factory(
+            version=was_blocked_unknown_addon.versions.get(), was_blocked=None
+        )
         was_blocked_false_addon = addon_factory()
-        ScannerQueryResult.objects.create(
-            scanner=YARA, version=was_blocked_addon.current_version, was_blocked=True
-        )
-        ScannerQueryResult.objects.create(
-            scanner=YARA,
-            version=was_blocked_unknown_addon.current_version,
-            was_blocked=None,
-        )
-        ScannerQueryResult.objects.create(
-            scanner=YARA,
-            version=was_blocked_false_addon.current_version,
-            was_blocked=False,
+        self.scanner_query_result_factory(
+            version=was_blocked_false_addon.versions.get(), was_blocked=False
         )
 
         response = self.client.get(
@@ -1776,20 +1804,19 @@ class TestScannerQueryResultAdmin(TestCase):
         assert doc('.field-guid').text() == was_blocked_unknown_addon.guid
 
     def test_change_page(self):
-        rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
-        result = ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon_factory().current_version
+        result = self.scanner_query_result_factory(
+            version=addon_factory().current_version
         )
-        result.add_yara_result(rule=rule.name)
-        result.save()
         url = reverse('admin:scanners_scannerqueryresult_change', args=(result.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
 
-        rule_url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+        rule_url = reverse(
+            'admin:scanners_scannerqueryrule_change', args=(self.rule.pk,)
+        )
         doc = pq(response.content)
-        link = doc('.field-formatted_matched_rules_with_files td a')
-        assert link.text() == 'darule ???'
+        link = doc('.field-formatted_matched_rules_with_files_and_data td a')
+        assert link.text() == 'myrule ???'
         assert link.attr('href') == rule_url
 
         link_response = self.client.get(rule_url)
@@ -1801,12 +1828,9 @@ class TestScannerQueryResultAdmin(TestCase):
         # ScannerQueryResults.
         self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
         self.client.force_login(self.user)
-        rule = ScannerQueryRule.objects.create(name='darule', scanner=YARA)
-        result = ScannerQueryResult.objects.create(
-            scanner=YARA, version=addon_factory().current_version
+        result = self.scanner_query_result_factory(
+            version=addon_factory().current_version
         )
-        result.add_yara_result(rule=rule.name)
-        result.save()
         url = reverse('admin:scanners_scannerqueryresult_change', args=(result.pk,))
         response = self.client.get(url)
         assert response.status_code == 403
@@ -1819,7 +1843,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_formatted_matched_rules_with_files(self):
         version = addon_factory().current_version
-        result = ScannerQueryResult.objects.create(scanner=YARA, version=version)
+        result = ScannerQueryResult(scanner=YARA, version=version)
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
         filename = 'some/file.js'
         result.add_yara_result(rule=rule.name, meta={'filename': filename})
@@ -1832,7 +1856,7 @@ class TestScannerQueryResultAdmin(TestCase):
         expect_file_item = code_manager_url(
             'browse', version.addon.pk, version.pk, file=filename
         )
-        content = self.admin.formatted_matched_rules_with_files(result)
+        content = formatted_matched_rules_with_files_and_data(result)
         assert expect_file_item in content
         assert rule_url in content
 
@@ -1840,7 +1864,7 @@ class TestScannerQueryResultAdmin(TestCase):
         rule = ScannerQueryRule.objects.create(
             name='foo', scanner=YARA, created=self.days_ago(2)
         )
-        result1 = ScannerQueryResult.objects.create(
+        result1 = ScannerQueryResult(
             scanner=YARA, version=addon_factory().current_version
         )
         result1.add_yara_result(
@@ -1850,7 +1874,7 @@ class TestScannerQueryResultAdmin(TestCase):
             rule=rule.name, meta={'filename': 'another/file/somewhereelse.js'}
         )
         result1.save()
-        result2 = ScannerQueryResult.objects.create(
+        result2 = ScannerQueryResult(
             scanner=YARA,
             version=addon_factory().current_version,
             created=self.days_ago(1),
@@ -1885,3 +1909,71 @@ class TestScannerQueryResultAdmin(TestCase):
             ),
         ]
         assert [link.attrib['href'] for link in links] == expected
+
+
+class FormattedMatchedRulesWithFilesAndData(TestCase):
+    def test_display_data(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=CUSTOMS)
+        data = {
+            'scanMap': {
+                '__GLOBAL__': {
+                    rule.name: {
+                        'RULE_HAS_MATCHED': True,
+                        'BLAH': [
+                            {'ratio': 0.566346, 'thisisfun': ['a', 'b']},
+                            {'extensionId': '@flop', 'xaxaxa': False},
+                        ],
+                    }
+                }
+            },
+            'matchedRules': [rule.name],
+        }
+        result = ScannerResult.objects.create(pk=42, scanner=CUSTOMS, results=data)
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert len(doc('td > ul > li')) == 1
+        assert doc('td > ul > li').eq(0).text() == ''
+
+        content = formatted_matched_rules_with_files_and_data(result, display_data=True)
+        doc = pq(content)
+        assert len(doc('td > ul > li')) == 2
+        assert doc('td > ul > li').eq(0).text() == ''
+        li = doc('td > ul > li').eq(1)
+        assert li.attr('class') == 'extra_data'
+        assert li.html().strip() == format_scanners_data(
+            result.get_files_and_data_by_matched_rules()[rule.name][0]['data']
+        )
+
+    def test_display_scanner(self):
+        result = ScannerResult(pk=42, scanner=YARA)
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert not doc('caption')
+
+        content = formatted_matched_rules_with_files_and_data(
+            result, display_scanner=True
+        )
+        doc = pq(content)
+        assert doc('caption').text() == 'yara'
+        assert doc('caption a')[0].attrib['href'] == (
+            '/en-US/admin/models/scanners/scannerresult/42/change/'
+        )
+
+    def test_limit_to(self):
+        result = ScannerResult.objects.create(pk=42, scanner=YARA)
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        for i in range(0, 5):
+            result.add_yara_result(
+                rule=rule.name, meta={'filename': f'somefilename{i}'}
+            )
+        result.save()
+        content = formatted_matched_rules_with_files_and_data(result)
+        doc = pq(content)
+        assert len(doc('li')) == 5
+        assert doc('li')[1].text.strip() == 'somefilename1'
+
+        content = formatted_matched_rules_with_files_and_data(result, limit_to=2)
+        doc = pq(content)
+        assert len(doc('li')) == 3  # 2 + 1 for the "…and and more 3 files"
+        assert doc('li')[1].text.strip() == 'somefilename1'
+        assert doc('li')[2].text == '…and 3 more files'

@@ -56,8 +56,7 @@ class TestUserProfile(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 1
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
-        ip_log = log.iplog_set.get()
-        assert ip_log.ip_address_binary == IPv4Address('4.8.15.16')
+        assert log.iplog.ip_address_binary == IPv4Address('4.8.15.16')
 
         with core.override_remote_addr('23.42.42.42'):
             self.client.force_login(user)
@@ -65,8 +64,7 @@ class TestUserProfile(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).count() == 2
         log = ActivityLog.objects.filter(action=amo.LOG.LOG_IN.id).latest('pk')
         assert log.user == user
-        ip_log = log.iplog_set.get()
-        assert ip_log.ip_address_binary == IPv4Address('23.42.42.42')
+        assert log.iplog.ip_address_binary == IPv4Address('23.42.42.42')
 
     def test_is_addon_developer(self):
         user = user_factory()
@@ -495,12 +493,12 @@ class TestUserProfile(TestCase):
         u = UserProfile.objects.create(
             id=1234, picture_type='image/png', modified=date.today(), username='a'
         )
-        u.picture_url.index('/userpics/0/1/1234.png?modified=')
+        u.picture_url.index('/userpics/34/1234/1234/1234.png?modified=')
 
         u = UserProfile.objects.create(
             id=1234567890, picture_type='image/png', modified=date.today(), username='b'
         )
-        u.picture_url.index('/userpics/1234/1234567/1234567890.png?modified=')
+        u.picture_url.index('/userpics/90/7890/1234567890/1234567890.png?modified=')
 
         u = UserProfile.objects.create(id=123456, picture_type=None, username='c')
         assert u.picture_url.endswith('/anon_user.png')

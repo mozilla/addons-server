@@ -10,10 +10,18 @@ from urllib.parse import urlsplit
 
 from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models, transaction
-from django.db.models import F, Max, Min, Q, signals as dbsignals
-from django.db.models.expressions import Func
+from django.db.models import (
+    F,
+    Max,
+    Min,
+    OuterRef,
+    Q,
+    Subquery,
+    signals as dbsignals,
+)
+from django.db.models.functions import Coalesce, Greatest
 from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
@@ -50,7 +58,7 @@ from olympia.amo.utils import (
     to_language,
 )
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import NOT_PROMOTED, PRE_REVIEW_GROUPS, RECOMMENDED
+from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -70,8 +78,9 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
     VersionReviewerFlags,
-    inherit_nomination,
+    inherit_due_date,
 )
+from olympia.versions.utils import get_review_due_date
 
 from . import signals
 
@@ -172,6 +181,20 @@ def clean_slug(instance, slug_field='slug'):
     return instance
 
 
+def first_pending_version_transformer(addons):
+    """Transformer used to attach the special first_pending_version field on
+    addons, used in reviewer queues."""
+    version_ids = {addon.first_version_id for addon in addons}
+    versions = {
+        version.id: version
+        for version in Version.unfiltered.filter(id__in=version_ids)
+        .no_transforms()
+        .select_related('autoapprovalsummary')
+    }
+    for addon in addons:
+        addon.first_pending_version = versions.get(addon.first_version_id)
+
+
 class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
@@ -180,8 +203,8 @@ class AddonQuerySet(BaseQuerySet):
         return self.filter(id=val)
 
     def public(self):
-        """Get reviewed add-ons only"""
-        return self.filter(self.valid_q(amo.REVIEWED_STATUSES))
+        """Get approved add-ons only"""
+        return self.filter(self.valid_q(amo.APPROVED_STATUSES))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -239,7 +262,6 @@ class AddonManager(ManagerBase):
         admin_reviewer=False,
         content_review=False,
         theme_review=False,
-        exclude_listed_pending_rejection=True,
         select_related_fields_for_listed=True,
     ):
         qs = (
@@ -257,6 +279,7 @@ class AddonManager(ManagerBase):
         select_related_fields = [
             'reviewerflags',
             'addonapprovalscounter',
+            'promotedaddon',
         ]
         if select_related_fields_for_listed:
             # Most listed queues need these to avoid extra queries because
@@ -268,15 +291,10 @@ class AddonManager(ManagerBase):
                     '_current_version__autoapprovalsummary',
                     '_current_version__file',
                     '_current_version__reviewerflags',
-                    'promotedaddon',
                 )
             )
         qs = qs.select_related(*select_related_fields)
 
-        if exclude_listed_pending_rejection:
-            qs = qs.filter(
-                _current_version__reviewerflags__pending_rejection__isnull=True
-            )
         if not admin_reviewer:
             if content_review:
                 qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
@@ -286,124 +304,67 @@ class AddonManager(ManagerBase):
                 qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
         return qs
 
-    def get_listed_pending_manual_approval_queue(
-        self,
-        admin_reviewer=False,
-        recommendable=False,
-        statuses=amo.VALID_ADDON_STATUSES,
-        types=amo.GROUP_TYPE_ADDON,
+    def get_queryset_for_pending_queues(
+        self, *, admin_reviewer=False, theme_review=False, show_temporarily_delayed=True
     ):
-        if types not in (amo.GROUP_TYPE_ADDON, amo.GROUP_TYPE_THEME):
-            raise ImproperlyConfigured(
-                'types needs to be either GROUP_TYPE_ADDON or GROUP_TYPE_THEME'
-            )
-        theme_review = types == amo.GROUP_TYPE_THEME
+        if theme_review:
+            filters = {
+                'type__in': amo.GROUP_TYPE_THEME,
+            }
+        else:
+            filters = {
+                'type__in': amo.GROUP_TYPE_ADDON,
+            }
+        excludes = {
+            'status': amo.STATUS_DISABLED,
+        }
+        filters['versions__due_date__isnull'] = False
         qs = self.get_base_queryset_for_queue(
             admin_reviewer=admin_reviewer,
-            # The select related needed to avoid extra queries in other queues
-            # typically depend on current_version, but we don't care here, as
-            # it's a pre-review queue. We'll make the select_related() calls we
-            # need ourselves.
-            select_related_fields_for_listed=False,
-            # We'll filter on pending_rejection below without limiting
-            # ourselves to the current_version.
-            exclude_listed_pending_rejection=False,
             theme_review=theme_review,
+            # These queues merge unlisted and listed together, so the
+            # select_related() for listed fields don't make sense.
+            select_related_fields_for_listed=False,
         )
-        filters = Q(
-            status__in=statuses,
-            type__in=types,
-            versions__channel=amo.CHANNEL_LISTED,
-            versions__file__status=amo.STATUS_AWAITING_REVIEW,
-            versions__reviewerflags__pending_rejection=None,
-        ) & ~Q(disabled_by_user=True)
-        if recommendable:
-            filters &= Q(promotedaddon__group_id=RECOMMENDED.id)
-        elif not theme_review:
-            filters &= ~Q(promotedaddon__group_id=RECOMMENDED.id) & (
-                Q(reviewerflags__auto_approval_disabled=True)
-                | Q(reviewerflags__auto_approval_disabled_until_next_approval=True)
-                | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
+        versions_due_qs = (
+            Version.unfiltered.filter(due_date__isnull=False)
+            .no_transforms()
+            .order_by('due_date')
+        )
+        if not show_temporarily_delayed:
+            # If we were asked not to show temporarily delayed, we need to
+            # exclude versions from the channel of the corresponding addon auto
+            # approval delay flag.This way, we keep showing the add-on if it
+            # has other versions that would not be in that channel.
+            unlisted_delay_flag_field = (
+                'addon__reviewerflags__auto_approval_delayed_until_unlisted'
+            )
+            listed_delay_flag_field = (
+                'addon__reviewerflags__auto_approval_delayed_until'
+            )
+            versions_due_qs = versions_due_qs.exclude(
+                Q(
+                    Q(channel=amo.CHANNEL_UNLISTED)
+                    & Q(**{f'{unlisted_delay_flag_field}__isnull': False})
+                    & ~Q(**{unlisted_delay_flag_field: datetime.max})
+                )
                 | Q(
-                    promotedaddon__group_id__in=(
-                        group.id for group in PRE_REVIEW_GROUPS
-                    )
+                    Q(channel=amo.CHANNEL_LISTED)
+                    & Q(**{f'{listed_delay_flag_field}__isnull': False})
+                    & ~Q(**{listed_delay_flag_field: datetime.max})
                 )
             )
-
-        return (
-            # We passed select_related_fields_for_listed=False but there are
-            # still base select_related() fields in that queryset that are
-            # applied in all cases that we don't want, so reset them away.
-            qs.select_related(None)
-            .filter(filters)
-            .select_related('reviewerflags')
-            .annotate(
-                first_version_nominated=Min('versions__nomination'),
-                # Because of the Min(), a GROUP BY addon.id is created.
-                # Unfortunately if we were to annotate with just
-                # F('versions__version') Django would add version.version to
-                # the GROUP BY, ruining it. To prevent that, we wrap it into
-                # a harmless Func() - we need a no-op function to do that,
-                # hence the LOWER().
-                latest_version=Func(F('versions__version'), function='LOWER'),
-            )
-        )
-
-    def get_addons_with_unlisted_versions_queue(self, admin_reviewer=False):
-        qs = self.get_base_queryset_for_queue(
-            select_related_fields_for_listed=False,
-            exclude_listed_pending_rejection=False,
-            admin_reviewer=admin_reviewer,
-        )
-        return (
-            qs.filter(versions__channel=amo.CHANNEL_UNLISTED).exclude(
-                status=amo.STATUS_DISABLED
-            )
-            # Reset select_related() made by get_base_queryset_for_queue(), we
-            # don't want them for the unlisted queue.
-            .select_related(None)
-        )
-
-    def get_unlisted_pending_manual_approval_queue(self, admin_reviewer=False):
-        qs = self.get_base_queryset_for_queue(
-            select_related_fields_for_listed=False,
-            exclude_listed_pending_rejection=False,
-            admin_reviewer=admin_reviewer,
-        )
-        filters = Q(
-            versions__channel=amo.CHANNEL_UNLISTED,
-            versions__file__status=amo.STATUS_AWAITING_REVIEW,
-            type__in=amo.GROUP_TYPE_ADDON,
-            versions__reviewerflags__pending_rejection__isnull=True,
-        ) & (
-            Q(reviewerflags__auto_approval_disabled_unlisted=True)
-            | Q(reviewerflags__auto_approval_disabled_until_next_approval_unlisted=True)
-            | Q(reviewerflags__auto_approval_delayed_until__gt=datetime.now())
-        )
-        return qs.filter(filters).annotate(
-            # These annotations should be applied to versions that match the
-            # filters above. They'll be used to sort the results or just
-            # display the data to reviewers in the queue.
-            first_version_created=Min('versions__created'),
-            worst_score=Max('versions__autoapprovalsummary__score'),
-        )
-
-    def get_auto_approved_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that have been auto-approved but
-        not confirmed by a human yet."""
-        success_verdict = amo.AUTO_APPROVED
         qs = (
-            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
-            .public()
-            .filter(_current_version__autoapprovalsummary__verdict=success_verdict)
-            .exclude(_current_version__autoapprovalsummary__confirmed=True)
-            .order_by(
-                '-_current_version__autoapprovalsummary__score',
-                '-_current_version__autoapprovalsummary__weight',
-                'addonapprovalscounter__last_human_review',
-                'created',
+            qs.filter(**filters)
+            .exclude(**excludes)
+            .annotate(
+                first_version_due_date=Min('versions__due_date'),
+                first_version_id=Subquery(
+                    versions_due_qs.filter(addon=OuterRef('pk')).values('pk')[:1]
+                ),
             )
+            .filter(first_version_id__isnull=False)
+            .transform(first_pending_version_transformer)
         )
         return qs
 
@@ -415,6 +376,7 @@ class AddonManager(ManagerBase):
             )
             .valid()
             .filter(
+                _current_version__reviewerflags__pending_rejection__isnull=True,
                 addonapprovalscounter__last_content_review=None,
                 # Only content review extensions and dictionaries. See
                 # https://github.com/mozilla/addons-server/issues/11796 &
@@ -432,12 +394,7 @@ class AddonManager(ManagerBase):
         disabled versions - typically scanners queues, where anything could be
         flagged, approved or waiting for review."""
         return (
-            self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer,
-                # We'll filter on pending_rejection below without limiting
-                # ourselves to the current_version.
-                exclude_listed_pending_rejection=False,
-            )
+            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
             .filter(
                 # Only extensions to avoid looking at themes etc, which slows
                 # the query down.
@@ -470,14 +427,6 @@ class AddonManager(ManagerBase):
             .distinct()
         )
 
-    def get_scanners_queue(self, admin_reviewer=False):
-        """Return a queryset of Addon objects that contain versions that were
-        automatically flagged as needing human review (regardless of channel).
-        """
-        return self.get_base_extensions_queue_with_non_disabled_versions(
-            Q(versions__needs_human_review=True), admin_reviewer=admin_reviewer
-        )
-
     def get_mad_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that contain unlisted versions or
         had their current listed version flagged by MAD.
@@ -494,15 +443,28 @@ class AddonManager(ManagerBase):
         )
 
     def get_pending_rejection_queue(self, admin_reviewer=False):
-        filter_kwargs = {'versions__reviewerflags__pending_rejection__isnull': False}
+        versions_pending_rejection_qs = (
+            Version.unfiltered.filter(reviewerflags__pending_rejection__isnull=False)
+            .no_transforms()
+            .order_by('reviewerflags__pending_rejection')
+        )
         return (
             self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer,
-                exclude_listed_pending_rejection=False,
+                select_related_fields_for_listed=False, admin_reviewer=admin_reviewer
             )
-            .filter(**filter_kwargs)
-            .order_by('_current_version__reviewerflags__pending_rejection')
-            .distinct()
+            .filter(versions__reviewerflags__pending_rejection__isnull=False)
+            .annotate(
+                first_version_pending_rejection_date=Min(
+                    'versions__reviewerflags__pending_rejection'
+                ),
+                first_version_id=Subquery(
+                    versions_pending_rejection_qs.filter(addon=OuterRef('pk')).values(
+                        'pk'
+                    )[:1]
+                ),
+            )
+            .filter(first_version_id__isnull=False)
+            .transform(first_pending_version_transformer)
         )
 
 
@@ -511,8 +473,8 @@ class Addon(OnChangeMixin, ModelBase):
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
 
     guid = models.CharField(max_length=255, unique=True, null=True)
-    slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField()
+    slug = models.CharField(max_length=30, unique=True, null=True, blank=True)
+    name = TranslatedField(max_length=50)
     default_locale = models.CharField(
         max_length=10, default=settings.LANGUAGE_CODE, db_column='defaultlocale'
     )
@@ -527,15 +489,15 @@ class Addon(OnChangeMixin, ModelBase):
     )
     icon_type = models.CharField(max_length=25, blank=True, db_column='icontype')
     icon_hash = models.CharField(max_length=8, blank=True, null=True)
-    homepage = TranslatedField()
-    support_email = TranslatedField(db_column='supportemail')
-    support_url = TranslatedField(db_column='supporturl')
-    description = PurifiedField(short=False)
+    homepage = TranslatedField(max_length=255)
+    support_email = TranslatedField(db_column='supportemail', max_length=100)
+    support_url = TranslatedField(db_column='supporturl', max_length=255)
+    description = PurifiedField(short=False, max_length=15000)
 
-    summary = LinkifiedField()
-    developer_comments = PurifiedField(db_column='developercomments')
-    eula = PurifiedField()
-    privacy_policy = PurifiedField(db_column='privacypolicy')
+    summary = LinkifiedField(max_length=250)
+    developer_comments = PurifiedField(db_column='developercomments', max_length=3000)
+    eula = PurifiedField(max_length=350000)
+    privacy_policy = PurifiedField(db_column='privacypolicy', max_length=150000)
 
     average_rating = models.FloatField(
         max_length=255, default=0, null=True, db_column='averagerating'
@@ -669,7 +631,11 @@ class Addon(OnChangeMixin, ModelBase):
         )
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
-        # See: https://github.com/mozilla/addons-server/issues/13194
+        # https://github.com/mozilla/addons-server/issues/20507
+        self.versions(manager='unfiltered_for_relations').update(
+            due_date=None, needs_human_review=False
+        )
+        # https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
     def force_enable(self):
@@ -1030,18 +996,22 @@ class Addon(OnChangeMixin, ModelBase):
             .last()
         )
 
-    def find_latest_version(self, channel, exclude=((amo.STATUS_DISABLED,))):
+    def find_latest_version(
+        self, channel, exclude=((amo.STATUS_DISABLED,)), deleted=False
+    ):
         """Retrieve the latest version of an add-on for the specified channel.
 
         If channel is None either channel is returned.
 
         Keyword arguments:
-        exclude -- exclude versions for which all files have one
-                   of those statuses (default STATUS_DISABLED)."""
+        exclude -- exclude versions for which all files have one of those statuses
+                   (default STATUS_DISABLED).  `exclude=()` to include all statuses.
+        deleted -- include deleted addons and versions. You probably want `exclude=()`
+                   too as files are typically set to STATUS_DISABLED on delete."""
 
-        # If the add-on is deleted or hasn't been saved yet, it should not
-        # have a latest version.
-        if not self.id or self.status == amo.STATUS_DELETED:
+        # If the add-on hasn't been saved yet, it should not have a latest version.
+        # Nor if it's deleted, unless specified.
+        if not self.id or (self.status == amo.STATUS_DELETED and not deleted):
             return None
 
         # Avoid most transformers - keep translations because they don't
@@ -1049,8 +1019,10 @@ class Addon(OnChangeMixin, ModelBase):
         # having made the query beforehand, and we don't know what callers
         # will want ; but for the rest of them, since it's a single
         # instance there is no reason to call the default transformers.
+        manager = 'objects' if not deleted else 'unfiltered_for_relations'
         return (
-            self.versions.exclude(file__status__in=exclude)
+            self.versions(manager=manager)
+            .exclude(file__status__in=exclude)
             .filter(
                 **{'channel': channel} if channel is not None else {},
                 file__isnull=False,
@@ -1183,47 +1155,43 @@ class Addon(OnChangeMixin, ModelBase):
     def update_status(self, ignore_version=None):
         self.reload()
 
-        if self.status in [amo.STATUS_NULL, amo.STATUS_DELETED] or self.is_disabled:
+        # We don't auto-update the status of deleted or force disabled add-ons.
+        if self.status in (amo.STATUS_DELETED, amo.STATUS_DISABLED):
             self.update_version(ignore=ignore_version)
             return
 
-        versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
-        status = None
-        reason = ''
-        if not versions.exists():
-            status = amo.STATUS_NULL
-            reason = 'no listed versions'
-        elif not versions.filter(file__status__in=amo.VALID_FILE_STATUSES).exists():
-            status = amo.STATUS_NULL
-            reason = 'no listed version with valid file'
-        elif (
-            self.status == amo.STATUS_APPROVED
-            and not versions.filter(file__status=amo.STATUS_APPROVED).exists()
-        ):
-            if versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
-                status = amo.STATUS_NOMINATED
-                reason = 'only an unreviewed file'
-            else:
-                status = amo.STATUS_NULL
-                reason = 'no reviewed files'
-        elif self.status == amo.STATUS_APPROVED:
-            latest_version = self.find_latest_version(channel=amo.CHANNEL_LISTED)
+        listed_versions = self.versions.filter(channel=amo.CHANNEL_LISTED)
+        correct_status = self.status
+        force_update = False
+        if listed_versions.filter(file__status=amo.STATUS_APPROVED).exists():
+            correct_status = amo.STATUS_APPROVED
+            reason = 'unapproved add-on with approved listed version'
+
             if (
-                latest_version
-                and latest_version.file.status == amo.STATUS_AWAITING_REVIEW
+                self.status == amo.STATUS_APPROVED
+                and self.find_latest_version(channel=amo.CHANNEL_LISTED).file.status
+                == amo.STATUS_AWAITING_REVIEW
             ):
                 # Addon is public, but its latest file is not (it's the case on
-                # a new file upload). So, call update, to trigger watch_status,
-                # which takes care of setting nomination time when needed.
-                status = self.status
+                # a new file upload). So, force the update, to trigger watch_status,
+                # which takes care of setting due date for the review when needed.
+                force_update = True
                 reason = 'triggering watch_status'
 
-        if status is not None:
+        elif listed_versions.filter(file__status=amo.STATUS_AWAITING_REVIEW).exists():
+            if self.status != amo.STATUS_NULL or self.has_complete_metadata():
+                correct_status = amo.STATUS_NOMINATED
+                reason = 'complete metadata and/or listed version awaiting review'
+        else:
+            correct_status = amo.STATUS_NULL
+            reason = 'no listed versions that are approved or awaiting review'
+
+        if correct_status != self.status or force_update:
             log.info(
                 'Changing add-on status [%s]: %s => %s (%s).'
-                % (self.id, self.status, status, reason)
+                % (self.id, self.status, correct_status, reason)
             )
-            self.update(status=status)
+            self.update(status=correct_status)
             # If task_user doesn't exist that's no big issue (i.e. in tests)
             try:
                 task_user = get_task_user()
@@ -1385,7 +1353,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         latest_version = self.find_latest_version(amo.CHANNEL_LISTED, exclude=())
 
-        return latest_version is not None and not latest_version.file.reviewed
+        return (
+            latest_version is not None
+            and not latest_version.file.approval_date
+            and not latest_version.human_review_date
+        )
 
     @property
     def is_disabled(self):
@@ -1636,15 +1608,6 @@ class Addon(OnChangeMixin, ModelBase):
         for o in itertools.chain([self], self.versions.all()):
             Translation.objects.remove_for(o, locale)
 
-    def should_show_permissions(self, version=None):
-        version = version or self.current_version
-        return (
-            self.type == amo.ADDON_EXTENSION
-            and version
-            and version.file
-            and (version.file.permissions or version.file.optional_permissions)
-        )
-
     # Aliases for reviewerflags below are not just useful in case
     # AddonReviewerFlags does not exist for this add-on: they are also used
     # by reviewer tools get_flags() function to return flags shown to reviewers
@@ -1709,6 +1672,13 @@ class Addon(OnChangeMixin, ModelBase):
             return None
 
     @property
+    def auto_approval_delayed_until_unlisted(self):
+        try:
+            return self.reviewerflags.auto_approval_delayed_until_unlisted
+        except AddonReviewerFlags.DoesNotExist:
+            return None
+
+    @property
     def auto_approval_delayed_indefinitely(self):
         return self.auto_approval_delayed_until == datetime.max
 
@@ -1720,17 +1690,54 @@ class Addon(OnChangeMixin, ModelBase):
             and self.auto_approval_delayed_until > datetime.now()
         )
 
-    def reset_notified_about_auto_approval_delay(self):
-        """
-        Reset notified_about_auto_approval_delay reviewer flag for this addon.
+    @property
+    def auto_approval_delayed_indefinitely_unlisted(self):
+        return self.auto_approval_delayed_until_unlisted == datetime.max
 
-        This doesn't create an AddonReviewerFlags if there wasn't one, just
-        resets notified_about_auto_approval_delay to False if there were flags
-        for this add-on.
-        """
-        AddonReviewerFlags.objects.filter(addon=self).update(
-            notified_about_auto_approval_delay=False
+    @property
+    def auto_approval_delayed_temporarily_unlisted(self):
+        return (
+            bool(self.auto_approval_delayed_until_unlisted)
+            and self.auto_approval_delayed_until_unlisted != datetime.max
         )
+
+    def set_auto_approval_delay_if_higher_than_existing(
+        self, delay, unlisted_only=False
+    ):
+        """
+        Set auto_approval_delayed_until/auto_approval_delayed_until_unlisted on
+        the add-on to a new value if the new value is further in the future
+        than the existing one.
+        """
+        # There are 4 cases to handle:
+        # - flag object is non-existent
+        # - flag object exists, but current delay is NULL
+        # - flag object exists, but current delay is higher than new one
+        # - flag object exists, but current delay is lower than new one
+        # Django doesn't support F()/Coalesce() in update_or_create() calls
+        # (https://code.djangoproject.com/ticket/25195) so we have to create
+        # the flag first if it doesn't exist. On top of that, with MySQL,
+        # Greatest() returns NULL if either value is NULL, so we need to
+        # Coalesce the existing value to avoid that.
+        defaults = {
+            'auto_approval_delayed_until_unlisted': delay,
+        }
+        update_defaults = {
+            'auto_approval_delayed_until_unlisted': Greatest(
+                Coalesce('auto_approval_delayed_until_unlisted', delay),
+                delay,
+            ),
+        }
+        if not unlisted_only:
+            defaults['auto_approval_delayed_until'] = delay
+            update_defaults['auto_approval_delayed_until'] = Greatest(
+                Coalesce('auto_approval_delayed_until', delay),
+                delay,
+            )
+        AddonReviewerFlags.objects.get_or_create(addon=self, defaults=defaults)
+        AddonReviewerFlags.objects.filter(addon=self).update(**update_defaults)
+        # Make sure the cached related field is up to date.
+        self.reviewerflags.reload()
 
     @classmethod
     def get_lookup_field(cls, identifier):
@@ -1794,6 +1801,28 @@ class Addon(OnChangeMixin, ModelBase):
                 tag.remove_tag(self)
         self.tag_list = new_tag_list
 
+    def update_all_due_dates(self):
+        """
+        Update all due dates on versions of this add-on.
+        """
+        versions = self.versions(manager='unfiltered_for_relations')
+        for version in versions.should_have_due_date().filter(due_date__isnull=True):
+            due_date = get_review_due_date()
+            log.info(
+                'Version %r (%s) due_date set to %s', version, version.id, due_date
+            )
+            version.update(due_date=due_date, _signal=False)
+        for version in versions.should_have_due_date(negate=True).filter(
+            due_date__isnull=False
+        ):
+            log.info(
+                'Version %r (%s) due_date of %s cleared',
+                version,
+                version.id,
+                version.due_date,
+            )
+            version.update(due_date=None, _signal=False)
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 
@@ -1816,42 +1845,52 @@ def update_search_index(sender, instance, **kw):
 @Addon.on_change
 def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwargs):
     """
-    Set nomination date if the addon is new in queue or updating.
+    Watch add-on status changes and react accordingly, updating author profile
+    visibility, disabling versions when disabled_by_user is set, and setting
+    due date on versions if the addon is new in queue or updating.
 
-    The nomination date cannot be reset, say, when a developer cancels
-    their request for review and re-requests review.
+    The due date cannot be reset, say, when a developer cancels their request
+    for review and re-requests review.
 
-    If a version is rejected after nomination, the developer has
-    to upload a new version.
-
+    If a version is rejected after nomination, the developer has to upload a
+    new version.
     """
-    if old_attr is None:
-        old_attr = {}
-    if new_attr is None:
-        new_attr = {}
-    new_status = new_attr.get('status')
-    old_status = old_attr.get('status')
-    latest_version = instance.find_latest_version(channel=amo.CHANNEL_LISTED)
+    new_status = new_attr.get('status') if new_attr else None
+    old_status = old_attr.get('status') if old_attr else None
+    disabled_by_user = new_attr.get('disabled_by_user') if new_attr else None
 
     # Update the author's account profile visibility
     if new_status != old_status:
         [author.update_is_public() for author in instance.authors.all()]
 
-    if (
-        new_status not in amo.VALID_ADDON_STATUSES
-        or not new_status
-        or not latest_version
+    if new_status not in amo.VALID_ADDON_STATUSES or not (
+        latest_version := instance.find_latest_version(channel=amo.CHANNEL_LISTED)
     ):
         return
-
-    if old_status != amo.STATUS_NOMINATED:
-        # New: will (re)set nomination only if it's None.
-        latest_version.reset_nomination_time()
-    else:
-        # Updating: inherit nomination from last nominated version.
-        # Calls `inherit_nomination` manually given that signals are
+    if disabled_by_user and latest_version.file.status == amo.STATUS_AWAITING_REVIEW:
+        # If a developer disables their add-on, the listed version waiting for
+        # review should be disabled right away, we don't want reviewers to look
+        # at it. That might in turn change the add-on status from NOMINATED
+        # back to NULL, through update_status().
+        latest_version.file.update(status=amo.STATUS_DISABLED)
+        instance.update_status()
+    elif old_status == amo.STATUS_NOMINATED:
+        # Updating: inherit due date from last nominated version.
+        # Calls `inherit_due_date` manually given that signals are
         # deactivated to avoid circular calls.
-        inherit_nomination(None, latest_version)
+        inherit_due_date(None, latest_version)
+    else:
+        # New: will (re)set due date only if it's None.
+        latest_version.reset_due_date()
+
+
+@receiver(
+    models.signals.post_delete,
+    sender=Addon,
+    dispatch_uid='addon-delete',
+)
+def update_due_date_for_addon_delete(sender, instance, **kw):
+    instance.update_all_due_dates()
 
 
 def attach_translations_dict(addons):
@@ -1883,11 +1922,22 @@ class AddonReviewerFlags(ModelBase):
     auto_approval_disabled_until_next_approval_unlisted = models.BooleanField(
         default=None, null=True
     )
-    auto_approval_delayed_until = models.DateTimeField(default=None, null=True)
-    notified_about_auto_approval_delay = models.BooleanField(default=None, null=True)
+    auto_approval_delayed_until = models.DateTimeField(
+        blank=True, default=None, null=True
+    )
+    auto_approval_delayed_until_unlisted = models.DateTimeField(
+        blank=True, default=None, null=True
+    )
     notified_about_expiring_delayed_rejections = models.BooleanField(
         default=None, null=True
     )
+
+
+@receiver(
+    dbsignals.post_save, sender=AddonReviewerFlags, dispatch_uid='addon_review_flags'
+)
+def update_due_date_for_auto_approval_changes(sender, instance=None, **kwargs):
+    instance.addon.update_all_due_dates()
 
 
 class AddonRegionalRestrictions(ModelBase):
@@ -2152,7 +2202,7 @@ class DeniedGuid(ModelBase):
 class Preview(BasePreview, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, related_name='previews', on_delete=models.CASCADE)
-    caption = TranslatedField()
+    caption = TranslatedField(max_length=280)
     position = models.IntegerField(default=0)
     sizes = models.JSONField(default=dict)
 

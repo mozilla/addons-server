@@ -55,18 +55,22 @@
 })();
 
 function initReviewActions() {
-  var groups = $('#id_canned_response').find('optgroup');
-
   function showForm(element, pageload) {
     var $element = $(element),
       value = $element.find('input').val(),
-      $data_toggle = $('form.review-form').find('.data-toggle');
+      $data_toggle = $('form.review-form').find('.data-toggle'),
+      $comments = $('#id_comments'),
+      boilerplate_text = $element.find('input').attr('data-value');
 
     pageload = pageload || false;
     $element.closest('.review-actions').addClass('on');
     $('.review-actions .action_nav ul li').removeClass('on-tab');
     $element.find('input').prop('checked', true);
 
+    // Input message into empty comments textbox.
+    if ($comments.val().length === 0 && boilerplate_text) {
+      insertAtCursor($comments, boilerplate_text);
+    }
     $element.addClass('on-tab');
 
     if (pageload) {
@@ -76,33 +80,34 @@ function initReviewActions() {
       $('#review-actions').find('.errorlist').remove();
     }
 
-    // Hide everything, then show the ones containing the value we're
-    // interested in. An extra | (the separator used) is added at the end
-    // to make sure we don't match things with a common prefix (i.e. don't
-    // show elements with data-value="reject_multiple_versions" when the
-    // value is "reject".)
+    // Hide everything, then show the ones containing the value we're interested in.
     $data_toggle.hide();
-    $data_toggle.filter('[data-value*="' + value + '|"]').show();
-
-    /* Fade out canned responses */
-    var label = $element.text().trim();
-    groups.css('color', '#AAA');
-    groups.filter("[label='" + label + "']").css('color', '#444');
+    $data_toggle.filter('[data-value~="' + value + '"]').show();
   }
 
   $('#review-actions .action_nav ul li:not(.disabled)').click(function () {
     showForm(this);
   });
 
-  /* Canned Response stuff */
-  $('.review-actions-canned select').change(function () {
-    insertAtCursor($('#id_comments'), $(this).val());
-  });
-
   var review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
     showForm(review_checked.closest('li'), true);
   }
+
+  /* Review action reason stuff */
+  $('.review-actions-reasons-select input').change(function () {
+    const cannedResponse = this.dataset.value;
+    if (cannedResponse.length) {
+      if (this.checked) {
+        insertAtCursor($('#id_comments'), cannedResponse);
+      } else {
+        // Attempt to remove the canned response related to the reason.
+        $('#id_comments').val(
+          $('#id_comments').val().replace(cannedResponse, ''),
+        );
+      }
+    }
+  });
 
   /* Install Triggers */
 
@@ -239,6 +244,29 @@ function initExtraReviewActions() {
     }),
   );
 
+  $('#due_date_update').change(
+    _pd(function () {
+      var $input = $(this).prop('disabled', true); // Prevent double-send.
+      var apiUrl = $input.data('api-url');
+      var data = { due_date: $input.val(), version: $input.data('api-data') };
+      callReviewersAPI(apiUrl, 'post', data);
+    }),
+  );
+
+  $('#set_needs_human_review').click(
+    _pd(function () {
+      var $button = $(this).prop('disabled', true); // Prevent double-send.
+      var apiUrl = $button.data('api-url');
+      var data = $button.data('api-data') || null;
+      var $due_date_update_input = $('#due_date_update');
+      callReviewersAPI(apiUrl, 'post', data, function (response) {
+        $button.remove();
+        $due_date_update_input.parents('li').removeClass('hidden').show();
+        $due_date_update_input.val(response.due_date);
+      });
+    }),
+  );
+
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
     _pd(function () {
@@ -246,7 +274,7 @@ function initExtraReviewActions() {
       var apiUrl = $button.data('api-url');
       var data = $button.data('api-data') || null;
       var method = $button.data('api-method') || 'post';
-      callReviewersAPI(apiUrl, method, data, function () {
+      callReviewersAPI(apiUrl, method, data, function (response) {
         $button.remove();
       });
     }),

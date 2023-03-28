@@ -13,12 +13,13 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
+from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
 
 
-class CollectionSerializer(serializers.ModelSerializer):
+class CollectionSerializer(AMOModelSerializer):
     name = TranslationSerializerField()
     description = TranslationSerializerField(allow_blank=True, required=False)
     url = serializers.SerializerMethodField()
@@ -113,7 +114,7 @@ class ThisCollectionDefault:
         return viewset.get_collection()
 
 
-class CollectionAddonSerializer(serializers.ModelSerializer):
+class CollectionAddonSerializer(AMOModelSerializer):
     addon = SplitField(
         # Only used for writes (this is input field), so there are no perf
         # concerns and we don't use any special caching.

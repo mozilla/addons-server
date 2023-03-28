@@ -2,7 +2,7 @@ import os
 import tarfile
 import zipfile
 
-from urllib.parse import urlparse, urlsplit
+from urllib.parse import urlsplit
 
 from django import forms
 from django.conf import settings
@@ -37,6 +37,7 @@ from olympia.addons.models import (
 from olympia.addons.utils import (
     fetch_translations_from_addon,
     RestrictionChecker,
+    validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
@@ -65,7 +66,6 @@ from olympia.users.models import (
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
-    DeniedInstallOrigin,
     License,
     Version,
 )
@@ -89,7 +89,7 @@ def clean_addon_slug(slug, instance):
     return slug
 
 
-class AddonFormBase(TranslationFormMixin, forms.ModelForm):
+class AddonFormBase(TranslationFormMixin, AMOModelForm):
     fields_to_trigger_content_review = ('name', 'summary')
 
     def __init__(self, *args, **kw):
@@ -271,7 +271,7 @@ class AdditionalDetailsForm(AddonFormBase):
     tags = forms.MultipleChoiceField(
         choices=(), widget=forms.CheckboxSelectMultiple, required=False
     )
-    contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
+    contributions = HttpHttpsOnlyURLField(required=False)
 
     class Meta:
         model = Addon
@@ -379,7 +379,7 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
         fields = ()
 
 
-class AuthorForm(forms.ModelForm):
+class AuthorForm(AMOModelForm):
     user = UserEmailField(required=True, queryset=UserProfile.objects.all())
     role = forms.TypedChoiceField(
         required=True,
@@ -794,10 +794,11 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
         return context
 
 
-class VersionForm(WithSourceMixin, forms.ModelForm):
+class VersionForm(TranslationFormMixin, WithSourceMixin, AMOModelForm):
     release_notes = TransField(widget=TransTextarea(), required=False)
     approval_notes = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 4}), required=False
+        widget=forms.Textarea(attrs={'rows': 4}),
+        required=False,
     )
     source = forms.FileField(required=False, widget=SourceFileInput)
 
@@ -811,10 +812,7 @@ class VersionForm(WithSourceMixin, forms.ModelForm):
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
-        if (
-            self.instance.has_been_human_reviewed
-            and not self.instance.pending_rejection
-        ):
+        if self.instance.human_review_date and not self.instance.pending_rejection:
             self.fields['source'].disabled = True
 
 
@@ -823,7 +821,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
         return obj.version
 
 
-class CompatForm(forms.ModelForm):
+class CompatForm(AMOModelForm):
     application = forms.TypedChoiceField(
         choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput
     )
@@ -1063,31 +1061,30 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
             raise forms.ValidationError(formatted_msg)
 
     def check_for_existing_versions(self, version_string):
-        if self.addon:
-            # Make sure we don't already have this version.
-            existing_versions = Version.unfiltered.filter(
-                addon=self.addon, version=version_string
-            )
-            if existing_versions.exists():
-                version = existing_versions[0]
-                if version.deleted:
-                    msg = gettext('Version {version} was uploaded before and deleted.')
-                elif version.file.status == amo.STATUS_AWAITING_REVIEW:
-                    next_url = reverse(
-                        'devhub.submit.version.details',
-                        args=[self.addon.slug, version.pk],
+        # Make sure we don't already have this version.
+        existing_versions = Version.unfiltered.filter(
+            addon=self.addon, version=version_string
+        )
+        if existing_versions.exists():
+            version = existing_versions[0]
+            if version.deleted:
+                msg = gettext('Version {version} was uploaded before and deleted.')
+            elif version.file.status == amo.STATUS_AWAITING_REVIEW:
+                next_url = reverse(
+                    'devhub.submit.version.details',
+                    args=[self.addon.slug, version.pk],
+                )
+                msg = DoubleSafe(
+                    '%s <a href="%s">%s</a>'
+                    % (
+                        gettext('Version {version} already exists.'),
+                        next_url,
+                        gettext('Continue with existing upload instead?'),
                     )
-                    msg = DoubleSafe(
-                        '%s <a href="%s">%s</a>'
-                        % (
-                            gettext('Version {version} already exists.'),
-                            next_url,
-                            gettext('Continue with existing upload instead?'),
-                        )
-                    )
-                else:
-                    msg = gettext('Version {version} already exists.')
-                raise forms.ValidationError(msg.format(version=version_string))
+                )
+            else:
+                msg = gettext('Version {version} already exists.')
+            raise forms.ValidationError(msg.format(version=version))
 
     def clean(self):
         self.check_throttles(self.request)
@@ -1102,13 +1099,21 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
                 self.addon.guid if self.addon else parsed_data.get('guid'),
                 parsed_data.get('version'),
             )
-            self.check_for_existing_versions(parsed_data.get('version'))
+            if self.addon:
+                self.check_for_existing_versions(parsed_data.get('version'))
+                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
+                    if error_message := (
+                        validate_version_number_is_gt_latest_signed_listed_version(
+                            self.addon, parsed_data.get('version')
+                        )
+                    ):
+                        raise forms.ValidationError(error_message)
 
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
 
 
-class SourceForm(WithSourceMixin, forms.ModelForm):
+class SourceForm(WithSourceMixin, AMOModelForm):
     source = forms.FileField(required=False, widget=SourceFileInput)
     has_source = forms.ChoiceField(
         choices=(('yes', _('Yes')), ('no', _('No'))), required=True, widget=RadioSelect
@@ -1137,10 +1142,13 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
 
 
 class DescribeForm(AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}), max_length=250)
-    description = TransField(widget=TransTextarea(attrs={'rows': 6}), min_length=10)
+    name = TransField()
+    slug = forms.CharField()
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}))
+    description = TransField(
+        widget=TransTextarea(attrs={'rows': 6}),
+        min_length=10,
+    )
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
@@ -1241,14 +1249,14 @@ class CombinedNameSummaryCleanMixin:
 
 
 class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin, DescribeForm):
-    name = TransField(min_length=2)
-    summary = TransField(min_length=2)
+    name = TransField(min_length=2, max_length=255)
+    summary = TransField(min_length=2, max_length=255)
 
 
 class DescribeFormUnlisted(AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}), max_length=250)
+    name = TransField()
+    slug = forms.CharField()
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}))
     description = TransField(widget=TransTextarea(attrs={'rows': 4}), required=False)
 
     class Meta:
@@ -1263,7 +1271,7 @@ class DescribeFormUnlistedContentOptimization(
     summary = TransField(max_length=68, min_length=2)
 
 
-class PreviewForm(forms.ModelForm):
+class PreviewForm(TranslationFormMixin, AMOModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
@@ -1410,70 +1418,3 @@ class SingleCategoryForm(forms.Form):
                 AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
-
-
-class SitePermissionGeneratorForm(CheckThrottlesMixin, forms.Form):
-    origin = forms.URLField(
-        label=_('Origin'),
-        widget=forms.TextInput(attrs={'placeholder': 'https://example.com'}),
-    )
-    site_permissions = forms.MultipleChoiceField(
-        label=_('Permissions'), choices=(('midi-sysex', 'WebMIDI'),)
-    )
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request', None)
-        super().__init__(*args, **kwargs)
-
-    def clean(self):
-        self.check_throttles(self.request)
-        origin = self.cleaned_data.get('origin')
-        site_permissions = self.cleaned_data.get('site_permissions')
-        already_exists = (
-            self.request.user.addons.all()
-            .filter(
-                type=amo.ADDON_SITE_PERMISSION,
-                versions__installorigin__origin=origin,
-                versions__file___site_permissions__permissions=site_permissions,
-            )
-            .exists()
-        )
-        if already_exists:
-            raise forms.ValidationError(
-                _(
-                    'You have generated a site permission add-on for the same origin '
-                    'and permissions.'
-                )
-            )
-
-    def clean_origin(self):
-        actual_value = str(self.data.get('origin'))
-        value = self.cleaned_data.get('origin')
-        # Note that URLField should already ensure it's an URL.
-        error_message = _(
-            'Origin should include only a scheme (protocol), a hostname (domain) and '
-            'an optional port'
-        )
-        try:
-            parsed = urlparse(value)
-        except ValueError:
-            raise forms.ValidationError(error_message)
-        if (
-            not parsed.scheme
-            or parsed.scheme not in ('https', 'http')
-            or not parsed.netloc
-            # Django's URLField adds a scheme if there wasn't one, translating
-            # "foo" into "http://foo". We want to make sure the scheme was
-            # explicitly present in the submitted value.
-            or not actual_value.startswith(parsed.scheme)
-            or parsed.path
-            or parsed.params
-            or parsed.query
-            or parsed.fragment
-        ):
-            raise forms.ValidationError(error_message)
-        if DeniedInstallOrigin.find_denied_origins([value]):
-            raise forms.ValidationError(
-                DeniedInstallOrigin.ERROR_MESSAGE.format(origin=value)
-            )
-        return value

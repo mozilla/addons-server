@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta
 from ipaddress import IPv4Address
 from uuid import UUID
 
@@ -26,7 +25,7 @@ from olympia.amo.tests import (
 )
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import CannedResponse, ReviewActionReason
+from olympia.reviewers.models import ReviewActionReason
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -163,8 +162,10 @@ class TestActivityLog(TestCase):
 
     def test_fancy_rendering(self):
         """HTML for Rating, and Collection."""
-        activity_log = ActivityLog.objects.create(action=amo.LOG.ADD_RATING.id)
         user = UserProfile.objects.create()
+        activity_log = ActivityLog.objects.create(
+            action=amo.LOG.ADD_RATING.id, user=user
+        )
         rating = Rating.objects.create(user=user, addon_id=3615)
         activity_log.arguments = [activity_log, rating]
         assert '>Review</a> for None written.' in activity_log.to_string()
@@ -173,7 +174,7 @@ class TestActivityLog(TestCase):
         assert 'None added to <a href="http://testserver/' in activity_log.to_string()
 
     def test_bad_arguments(self):
-        activity_log = ActivityLog()
+        activity_log = ActivityLog(user=UserProfile.objects.create())
         activity_log.arguments = []
         activity_log.action = amo.LOG.ADD_USER_WITH_ROLE.id
         assert activity_log.to_string() == 'Something magical happened.'
@@ -189,9 +190,7 @@ class TestActivityLog(TestCase):
 
     def test_arguments_old_reviews_app_to_ratings(self):
         addon = Addon.objects.get()
-        rating = Rating.objects.create(
-            addon=addon, user=self.user, user_responsible=self.user, rating=5
-        )
+        rating = Rating.objects.create(addon=addon, user=self.user, rating=5)
         activity = ActivityLog.objects.latest('pk')
         # Override _arguments to use reviews.review instead of ratings.rating,
         # as old data already present in the db would use.
@@ -215,9 +214,7 @@ class TestActivityLog(TestCase):
         # without the old-style arguments.
         addon2 = addon_factory(slug='foo')
         user2 = user_factory()
-        rating2 = Rating.objects.create(
-            addon=addon2, user=user2, user_responsible=user2, rating=2
-        )
+        rating2 = Rating.objects.create(addon=addon2, user=user2, rating=2)
         with self.assertNumQueries(5):
             # - 1 for all activities
             # - 1 for all users
@@ -274,7 +271,7 @@ class TestActivityLog(TestCase):
             assert len(activities) == 2
             addon_url = 'http://testserver/en-US/firefox/addon/a3615/'
             assert activities[0].to_string() == (
-                f'<a href="{addon_url}versions/">Version 2.1.072</a> added to '
+                f'Version <a href="{addon_url}versions/">2.1.072</a> added to '
                 f'<a href="{addon_url}">Delicious Bookmarks</a>.'
             )
             assert activities[1].to_string()
@@ -433,9 +430,10 @@ class TestActivityLog(TestCase):
         log = ActivityLog.objects.get()
 
         log_expected = (
-            'Yolo role changed to Owner for <a href="http://testserver/en-US/'
+            f'<a href="http://testserver/en-US/firefox/user/{self.user.pk}/">Yolo</a> '
+            'role changed to Owner for <a href="http://testserver/en-US/'
             'firefox/addon/a3615/">Delicious &lt;script src='
-            '&#34;x.js&#34;&gt;Bookmarks</a>.'
+            '&quot;x.js&quot;&gt;Bookmarks</a>.'
         )
         assert log.to_string() == log_expected
 
@@ -500,110 +498,6 @@ class TestActivityLog(TestCase):
         )
 
 
-class TestActivityLogCount(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def setUp(self):
-        super().setUp()
-        now = datetime.now()
-        bom = datetime(now.year, now.month, 1)
-        self.lm = bom - timedelta(days=1)
-        self.user = UserProfile.objects.get()
-        core.set_user(self.user)
-
-    def add_approve_logs(self, count):
-        for x in range(0, count):
-            ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
-
-    def test_not_review_count(self):
-        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
-        assert len(ActivityLog.objects.monthly_reviews()) == 0
-
-    def test_review_count(self):
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
-        result = ActivityLog.objects.monthly_reviews()
-        assert len(result) == 1
-        assert result[0]['approval_count'] == 1
-        assert result[0]['user'] == self.user.pk
-
-    def test_review_count_few(self):
-        self.add_approve_logs(5)
-        result = ActivityLog.objects.monthly_reviews()
-        assert len(result) == 1
-        assert result[0]['approval_count'] == 5
-
-    def test_review_last_month(self):
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
-        log.update(created=self.lm)
-        assert len(ActivityLog.objects.monthly_reviews()) == 0
-
-    def test_not_total(self):
-        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
-        assert len(ActivityLog.objects.total_ratings()) == 0
-
-    def test_total_few(self):
-        self.add_approve_logs(5)
-        result = ActivityLog.objects.total_ratings()
-        assert len(result) == 1
-        assert result[0]['approval_count'] == 5
-
-    def test_total_last_month(self):
-        log = ActivityLog.create(amo.LOG.APPROVE_VERSION, Addon.objects.get())
-        log.update(created=self.lm)
-        result = ActivityLog.objects.total_ratings()
-        assert len(result) == 1
-        assert result[0]['approval_count'] == 1
-        assert result[0]['user'] == self.user.pk
-
-    def test_total_ratings_user_position(self):
-        self.add_approve_logs(5)
-        result = ActivityLog.objects.total_ratings_user_position(self.user)
-        assert result == 1
-        user = UserProfile.objects.create(email='no@mozil.la')
-        result = ActivityLog.objects.total_ratings_user_position(user)
-        assert result is None
-
-    def test_monthly_reviews_user_position(self):
-        self.add_approve_logs(5)
-        result = ActivityLog.objects.monthly_reviews_user_position(self.user)
-        assert result == 1
-        user = UserProfile.objects.create(email='no@mozil.la')
-        result = ActivityLog.objects.monthly_reviews_user_position(user)
-        assert result is None
-
-    def test_user_approve_reviews(self):
-        self.add_approve_logs(3)
-        other = UserProfile.objects.create(email='no@mozil.la', username='o')
-        core.set_user(other)
-        self.add_approve_logs(2)
-        result = ActivityLog.objects.user_approve_reviews(self.user).count()
-        assert result == 3
-        result = ActivityLog.objects.user_approve_reviews(other).count()
-        assert result == 2
-        another = UserProfile.objects.create(email='no@mtrala.la', username='a')
-        result = ActivityLog.objects.user_approve_reviews(another).count()
-        assert result == 0
-
-    def test_current_month_user_approve_reviews(self):
-        self.add_approve_logs(3)
-        ActivityLog.objects.update(created=self.days_ago(40))
-        self.add_approve_logs(2)
-        result = ActivityLog.objects.current_month_user_approve_reviews(
-            self.user
-        ).count()
-        assert result == 2
-
-    def test_log_admin(self):
-        ActivityLog.create(amo.LOG.OBJECT_EDITED, Addon.objects.get())
-        assert len(ActivityLog.objects.admin_events()) == 1
-        assert len(ActivityLog.objects.for_developer()) == 0
-
-    def test_log_not_admin(self):
-        ActivityLog.create(amo.LOG.EDIT_VERSION, Addon.objects.get())
-        assert len(ActivityLog.objects.admin_events()) == 0
-        assert len(ActivityLog.objects.for_developer()) == 1
-
-
 class TestDraftComment(TestCase):
     def test_default_requirements(self):
         addon = addon_factory()
@@ -616,24 +510,4 @@ class TestDraftComment(TestCase):
         assert comment.version == addon.current_version
         assert comment.filename is None
         assert comment.lineno is None
-        assert comment.canned_response is None
         assert comment.comment == ''
-
-    def test_canned_response_on_delete(self):
-        addon = addon_factory()
-        user = user_factory()
-
-        canned_response = CannedResponse.objects.create(
-            name='Terms of services',
-            response='test',
-            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
-            type=amo.CANNED_RESPONSE_TYPE_ADDON,
-        )
-
-        DraftComment.objects.create(
-            user=user, version=addon.current_version, canned_response=canned_response
-        )
-
-        canned_response.delete()
-
-        assert DraftComment.objects.get().canned_response is None

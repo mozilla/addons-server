@@ -43,11 +43,14 @@ class FakeYaraMatch:
 class TestScannerResultMixin:
     __test__ = False
 
+    def create_result(self, *args, **kwargs):
+        return self.model.objects.create(*args, **kwargs)
+
     def create_customs_result(self):
-        return self.model.objects.create(scanner=CUSTOMS)
+        return self.create_result(scanner=CUSTOMS)
 
     def create_mad_result(self):
-        return self.model.objects.create(scanner=MAD)
+        return self.create_result(scanner=MAD)
 
     def create_fake_yara_match(
         self,
@@ -66,7 +69,7 @@ class TestScannerResultMixin:
         )
 
     def create_yara_result(self):
-        return self.model.objects.create(scanner=YARA)
+        return self.create_result(scanner=YARA)
 
     def test_add_yara_result(self):
         result = self.create_yara_result()
@@ -77,32 +80,6 @@ class TestScannerResultMixin:
         assert result.results == [
             {'rule': match.rule, 'tags': match.tags, 'meta': match.meta}
         ]
-
-    def test_save_set_has_matches(self):
-        result = self.create_yara_result()
-        rule = self.rule_model.objects.create(
-            name='some rule name', scanner=result.scanner
-        )
-
-        result.has_matches = None
-        result.save()
-        assert result.has_matches is False
-
-        result.has_matches = None
-        result.results = [{'rule': rule.name}]  # Fake match
-        result.save()
-        assert result.has_matches is True
-
-    def test_save_ignores_disabled_rules(self):
-        result = self.create_yara_result()
-        rule = self.rule_model.objects.create(
-            name='some rule name', scanner=result.scanner, is_active=False
-        )
-
-        result.has_matches = None
-        result.results = [{'rule': rule.name}]  # Fake match
-        result.save()
-        assert result.has_matches is False
 
     def test_extract_rule_names_with_no_yara_results(self):
         result = self.create_yara_result()
@@ -166,34 +143,11 @@ class TestScannerResultMixin:
         result = self.create_customs_result()
         assert result.get_git_repository() is None
 
-    def test_can_report_feedback(self):
-        result = self.create_customs_result()
-        assert result.can_report_feedback()
-
-    def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
-        result = self.create_customs_result()
-        result.state = FALSE_POSITIVE
-        assert not result.can_report_feedback()
-
-    def test_can_report_feedback_is_false_when_scanner_is_mad(self):
-        result = self.create_mad_result()
-        assert not result.can_report_feedback()
-
-    def test_can_revert_feedback_for_triaged_result(self):
+    def test_get_files_and_data_by_matched_rules_with_no_yara_results(self):
         result = self.create_yara_result()
-        result.state = FALSE_POSITIVE
-        assert result.can_revert_feedback()
+        assert result.get_files_and_data_by_matched_rules() == {}
 
-    def test_cannot_revert_feedback_for_untriaged_result(self):
-        result = self.create_yara_result()
-        assert result.state == UNKNOWN
-        assert not result.can_revert_feedback()
-
-    def test_get_files_by_matched_rules_with_no_yara_results(self):
-        result = self.create_yara_result()
-        assert result.get_files_by_matched_rules() == {}
-
-    def test_get_files_by_matched_rules_for_yara(self):
+    def test_get_files_and_data_by_matched_rules_for_yara(self):
         result = self.create_yara_result()
         rule1 = 'rule-1'
         file1 = 'file/1.js'
@@ -206,26 +160,26 @@ class TestScannerResultMixin:
         # rule1 with file2
         match3 = self.create_fake_yara_match(rule=rule1, filename=file2)
         result.add_yara_result(rule=match3.rule, tags=match3.tags, meta=match3.meta)
-        assert result.get_files_by_matched_rules() == {
-            rule1: [file1, file2],
-            rule2: [file2],
+        assert result.get_files_and_data_by_matched_rules() == {
+            rule1: [{'filename': file1}, {'filename': file2}],
+            rule2: [{'filename': file2}],
         }
 
-    def test_get_files_by_matched_rules_no_file_somehow(self):
+    def test_get_files_and_data_by_matched_rules_no_file_somehow(self):
         result = self.create_yara_result()
         rule = self.rule_model.objects.create(name='foobar', scanner=YARA)
         result.add_yara_result(rule=rule.name)
         result.save()
-        assert result.get_files_by_matched_rules() == {
-            'foobar': ['???'],
+        assert result.get_files_and_data_by_matched_rules() == {
+            'foobar': [{'filename': '???'}],
         }
 
-    def test_get_files_by_matched_rules_with_no_customs_results(self):
+    def test_get_files_and_data_by_matched_rules_with_no_customs_results(self):
         result = self.create_customs_result()
         result.results = {'matchedRules': []}
-        assert result.get_files_by_matched_rules() == {}
+        assert result.get_files_and_data_by_matched_rules() == {}
 
-    def test_get_files_by_matched_rules_for_customs(self):
+    def test_get_files_and_data_by_matched_rules_for_customs(self):
         result = self.create_customs_result()
         file1 = 'file/1.js'
         rule1 = 'rule1'
@@ -255,6 +209,10 @@ class TestScannerResultMixin:
                     rule2: {},
                     rule3: {
                         'RULE_HAS_MATCHED': True,
+                        'EXTRA': [
+                            'some',
+                            'thing',
+                        ],
                     },
                 },
                 file4: {
@@ -263,11 +221,26 @@ class TestScannerResultMixin:
                         'RULE_HAS_MATCHED': True,
                     },
                 },
+                '__GLOBAL__': {
+                    rule1: {
+                        'RULE_HAS_MATCHED': True,
+                        'MAWR_DATA': [
+                            'foo',
+                            'bar',
+                        ],
+                    }
+                },
             }
         }
-        assert result.get_files_by_matched_rules() == {
-            rule1: [file1],
-            rule3: [file3, file4],
+        assert result.get_files_and_data_by_matched_rules() == {
+            rule1: [
+                {'data': {}, 'filename': file1},
+                {'data': {'MAWR_DATA': ['foo', 'bar']}, 'filename': ''},
+            ],
+            rule3: [
+                {'data': {'EXTRA': ['some', 'thing']}, 'filename': file3},
+                {'data': {}, 'filename': file4},
+            ],
         }
 
 
@@ -286,13 +259,9 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
             channel=amo.CHANNEL_LISTED,
         )
 
-    def create_customs_result(self):
-        upload = self.create_file_upload()
-        return self.model.objects.create(upload=upload, scanner=CUSTOMS)
-
-    def create_yara_result(self):
-        upload = self.create_file_upload()
-        return self.model.objects.create(upload=upload, scanner=YARA)
+    def create_result(self, *args, **kwargs):
+        kwargs['upload'] = self.create_file_upload()
+        return super().create_result(*args, **kwargs)
 
     def test_create(self):
         upload = self.create_file_upload()
@@ -324,15 +293,76 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
 
         assert result.upload is None
 
+    def test_can_report_feedback(self):
+        result = self.create_customs_result()
+        assert result.can_report_feedback()
+
+    def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
+        result = self.create_customs_result()
+        result.state = FALSE_POSITIVE
+        assert not result.can_report_feedback()
+
+    def test_can_report_feedback_is_false_when_scanner_is_mad(self):
+        result = self.create_mad_result()
+        assert not result.can_report_feedback()
+
+    def test_can_revert_feedback_for_triaged_result(self):
+        result = self.create_yara_result()
+        result.state = FALSE_POSITIVE
+        assert result.can_revert_feedback()
+
+    def test_cannot_revert_feedback_for_untriaged_result(self):
+        result = self.create_yara_result()
+        assert result.state == UNKNOWN
+        assert not result.can_revert_feedback()
+
+    def test_save_set_has_matches(self):
+        result = self.create_yara_result()
+        rule = self.rule_model.objects.create(
+            name='some rule name', scanner=result.scanner
+        )
+
+        result.has_matches = None
+        result.save()
+        assert result.has_matches is False
+
+        result.has_matches = None
+        result.results = [{'rule': rule.name}]  # Fake match
+        result.save()
+        assert result.has_matches is True
+
+    def test_save_ignores_disabled_rules(self):
+        result = self.create_yara_result()
+        rule = self.rule_model.objects.create(
+            name='some rule name', scanner=result.scanner, is_active=False
+        )
+
+        result.has_matches = None
+        result.results = [{'rule': rule.name}]  # Fake match
+        result.save()
+        assert result.has_matches is False
+
 
 class TestScannerQueryResult(TestScannerResultMixin, TestCase):
     __test__ = True
     model = ScannerQueryResult
     rule_model = ScannerQueryRule
 
+    def create_result(self, *args, **kwargs):
+        # We can't save ScannerQueryResults in database without a rule, so for
+        # this test class create_result() is overridden to not save the result
+        # initially - it will be saved later when adding the result data.
+        return self.model(*args, **kwargs)
+
 
 class TestScannerRuleMixin:
     __test__ = False
+
+    def test_str(self):
+        result = self.model(name='Fôo')
+        assert str(result) == 'Fôo'
+        result.pretty_name = 'Bär'
+        assert str(result) == 'Bär'
 
     def test_clean_raises_for_yara_rule_without_a_definition(self):
         rule = self.model(name='some_rule', scanner=YARA)

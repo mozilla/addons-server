@@ -1,6 +1,7 @@
 from django.db import models
 from django.dispatch import receiver
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
@@ -58,22 +59,22 @@ class PromotedAddon(ModelBase):
 
     @property
     def approved_applications(self):
-        """The applications that the current promoted group is approved for."""
+        """The applications that the current promoted group is approved for.
+        Only listed versions are considered."""
+        if self.group == NOT_PROMOTED or not self.addon.current_version:
+            return []
+        return self._get_approved_applications_for_version(self.addon.current_version)
+
+    def _get_approved_applications_for_version(self, version):
         group = self.group
         all_apps = self.all_applications
-        if group == NOT_PROMOTED or not self.addon.current_version:
-            return []
         if not group.pre_review:
             return all_apps
         return [
             app
-            for group_, app in self.addon.current_version.approved_for_groups
+            for group_, app in version.approved_for_groups
             if group_ == group and app in all_apps
         ]
-
-    @property
-    def has_approvals(self):
-        return bool(self.approved_applications)
 
     def _get_application_id_from_applications(self, apps):
         """Return the application_id the instance would have for the specified
@@ -125,6 +126,25 @@ class PromotedAddon(ModelBase):
             and self.approved_applications != self.all_applications
         ):
             self.approve_for_addon()
+        elif (
+            self.group.flag_for_human_review
+            and (
+                # Find the latest listed signed version, and mark it as
+                # needing human review if necessary. It could be deleted or
+                # disabled, we only care that it has been signed already.
+                version := (
+                    self.addon.versions(manager='unfiltered_for_relations')
+                    .filter(file__is_signed=True, channel=amo.CHANNEL_LISTED)
+                    .only_translations()
+                    .order_by('created')
+                    .last()
+                )
+            )
+            and not version.needs_human_review
+            and not version.human_review_date
+            and not self._get_approved_applications_for_version(version)
+        ):
+            version.update(needs_human_review=True)
 
 
 class PromotedTheme(PromotedAddon):
@@ -182,6 +202,13 @@ def update_es_for_promoted(sender, instance, **kw):
 
     # Update ES because Addon.promoted depends on it.
     update_search_index(sender=sender, instance=instance.addon, **kw)
+
+
+@receiver(
+    models.signals.post_save, sender=PromotedAddon, dispatch_uid='promoted_prereview'
+)
+def update_due_date_for_pre_review(sender, instance, **kw):
+    instance.addon.update_all_due_dates()
 
 
 @receiver(
