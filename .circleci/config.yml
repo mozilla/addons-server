@@ -670,45 +670,45 @@ workflows:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - amo-lib-locales-and-signing:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - assets:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - codestyle
       - devhub:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - docs
       - main:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - reviewers-and-zadmin:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - es-tests:
           matrix:
             parameters:
               djangoversion:
                 - django32
-                - django41
+                - django42
       - release-master:
           filters:
             branches:
