@@ -5433,11 +5433,11 @@ class TestReview(ReviewBase):
         # A due date should be shown on the 2 versions that have needs_human_review set.
         tds = doc('#versions-history .review-files tr.listing-header td.due_date')
         for j in [0, 5]:
-            due_date = self.addon.versions.get(version=f'1.{j}').due_date
-            assert (
-                tds.eq(j).text()
-                == f'Review due by {defaultfilters.date(due_date, settings.DATETIME_FORMAT)}'
+            due_date = defaultfilters.date(
+                self.addon.versions.get(version=f'1.{j}').due_date,
+                settings.DATETIME_FORMAT,
             )
+            assert tds.eq(j).text() == f'Review due by {due_date}'
         # Rest don't have one.
         for k in [1, 2, 3, 4, 6, 7, 8, 9]:
             assert tds.eq(k).text() == ''
