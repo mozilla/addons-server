@@ -320,7 +320,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         assert [msg.message for msg in response.context['messages']] == [
             f'The blocklist submission {FANCY_QUOTE_OPEN}'
-            f'<a href="{change_url}">No Sign-off: guid@; dfd; some reason</a>'
+            f'<a href="{change_url}">Auto Sign-off: guid@; dfd; some reason</a>'
             f'{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
         # The disabled and deleted versions should only have the block activity,
@@ -468,7 +468,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             assert add_log.details['signoff_state'] == 'Approved'
             assert add_log.details['signoff_by'] == submission.signoff_by.id
         else:
-            assert add_log.details['signoff_state'] == 'No Sign-off'
+            assert add_log.details['signoff_state'] == 'Auto Sign-off'
             assert 'signoff_by' not in add_log.details
         block_log = (
             ActivityLog.objects.for_block(new_block)
@@ -524,7 +524,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             assert edit_log.details['signoff_state'] == 'Approved'
             assert edit_log.details['signoff_by'] == submission.signoff_by.id
         else:
-            assert edit_log.details['signoff_state'] == 'No Sign-off'
+            assert edit_log.details['signoff_state'] == 'Auto Sign-off'
             assert 'signoff_by' not in edit_log.details
         block_log = (
             ActivityLog.objects.for_block(existing_and_partial)
@@ -729,7 +729,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         assert [msg.message for msg in response.context['messages']] == [
             f'The blocklist submission {FANCY_QUOTE_OPEN}'
-            f'<a href="{change_url}">No Sign-off: '
+            f'<a href="{change_url}">Auto Sign-off: '
             f'any@new, partial@existing, full@exist...; dfd; some reason</a>'
             f'{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
@@ -1073,7 +1073,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content)
         assert doc('th.field-blocks_count').text() == '1 add-ons 2 add-ons'
         assert doc('.field-action').text() == ('Delete Add/Change')
-        assert doc('.field-signoff_state').text() == 'Pending Pending'
+        assert doc('.field-state').text() == 'Pending Sign-off Pending Sign-off'
 
     def test_can_list_with_blocklist_create(self):
         self._test_can_list_with_permission('Blocklist:Create')
@@ -1162,7 +1162,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         response = self.client.get(multi_url, follow=True)
         assert (
-            f'Changed {FANCY_QUOTE_OPEN}Pending: guid@, invalid@, '
+            f'Changed {FANCY_QUOTE_OPEN}Pending Sign-off: guid@, invalid@, '
             'second@invalid; new.url; a new reason thats longer than 40 cha...'
             in response.content.decode('utf-8')
         )
@@ -1576,6 +1576,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
 
     def test_list_filters(self):
+        now = datetime.now()
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Blocklist:Signoff')
         self.client.force_login(user)
@@ -1587,46 +1588,57 @@ class TestBlocklistSubmissionAdmin(TestCase):
             signoff_state=BlocklistSubmission.SIGNOFF_PENDING,
         )
         BlocklistSubmission.objects.create(
-            input_guids='missing@', signoff_state=BlocklistSubmission.SIGNOFF_APPROVED
+            input_guids='missing@',
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            delayed_until=now + timedelta(days=1),
         )
         BlocklistSubmission.objects.create(
             input_guids='published@',
             signoff_state=BlocklistSubmission.SIGNOFF_PUBLISHED,
+            delayed_until=now - timedelta(days=1),
         )
 
         response = self.client.get(self.submission_list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
 
-        # default is to only show Pending (signoff_state=0)
+        # default is to only show Pending Sign-off (signoff_state=0)
         assert doc('#result_list tbody tr').length == 1
         assert doc('.field-blocks_count').text() == '2 add-ons'
 
         expected_filters = [
             ('All', '?signoff_state=all'),
-            ('Pending', '?signoff_state=0'),
+            ('Delayed', '?signoff_state=delayed'),
+            ('Pending Sign-off', '?signoff_state=0'),
             ('Approved', '?signoff_state=1'),
             ('Rejected', '?signoff_state=2'),
-            ('No Sign-off', '?signoff_state=3'),
+            ('Auto Sign-off', '?signoff_state=3'),
             ('Published to Blocks', '?signoff_state=4'),
         ]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
         assert filters == expected_filters
         # Should be shown as selected too
-        assert doc('#changelist-filter li.selected a').text() == 'Pending'
+        assert doc('#changelist-filter li.selected a').text() == 'Pending Sign-off'
 
         # Repeat with the Pending filter explictly selected
-        response = self.client.get(
-            self.submission_list_url,
-            {
-                'signoff_state': 0,
-            },
-        )
+        response = self.client.get(self.submission_list_url, {'signoff_state': 0})
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
         assert doc('.field-blocks_count').text() == '2 add-ons'
-        assert doc('#changelist-filter li.selected a').text() == 'Pending'
+        assert doc('#changelist-filter li.selected a').text() == 'Pending Sign-off'
+        assert doc('#changelist-form td.field-state').text() == 'Pending Sign-off'
+
+        # The delayed filter should show a different selection of submissions
+        response = self.client.get(
+            self.submission_list_url, {'signoff_state': 'delayed'}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert doc('.field-blocks_count').text() == '0 add-ons'
+        assert doc('#changelist-filter li.selected a').text() == 'Delayed'
+        assert doc('#changelist-form td.field-state').text() == 'Approved:Delayed'
 
         # And then lastly with all submissions showing
         response = self.client.get(self.submission_list_url, {'signoff_state': 'all'})
@@ -1634,6 +1646,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 3
         assert doc('#changelist-filter li.selected a').text() == 'All'
+        assert doc('#changelist-form td.field-state').text() == (
+            'Published to Blocks Approved:Delayed Pending Sign-off'
+        )
 
     def test_blocked_deleted_keeps_addon_status(self):
         user = user_factory(email='someone@mozilla.com')
@@ -2359,7 +2374,7 @@ class TestBlockAdminDelete(TestCase):
             assert add_log.details['signoff_state'] == 'Approved'
             assert add_log.details['signoff_by'] == submission.signoff_by.id
         else:
-            assert add_log.details['signoff_state'] == 'No Sign-off'
+            assert add_log.details['signoff_state'] == 'Auto Sign-off'
             assert 'signoff_by' not in add_log.details
         vlog = ActivityLog.objects.for_versions(block_from_addon.current_version).last()
         assert vlog == add_log

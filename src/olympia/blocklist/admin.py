@@ -47,9 +47,11 @@ class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
     parameter_name = 'signoff_state'
     default_value = BlocklistSubmission.SIGNOFF_PENDING
     field_choices = BlocklistSubmission.SIGNOFF_STATES.items()
+    ALL = 'all'
+    DELAYED = 'delayed'
 
     def lookups(self, request, model_admin):
-        return (('all', 'All'), *self.field_choices)
+        return ((self.ALL, 'All'), (self.DELAYED, 'Delayed'), *self.field_choices)
 
     def choices(self, cl):
         value = self.value()
@@ -65,8 +67,10 @@ class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
 
     def queryset(self, request, queryset):
         value = self.value()
-        if value == 'all':
+        if value == self.ALL:
             return queryset
+        elif value == self.DELAYED:
+            return queryset.delayed()
         real_value = self.default_value if value is None else value
         return queryset.filter(**{self.parameter_name: real_value})
 
@@ -190,7 +194,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     list_display = (
         'blocks_count',
         'action',
-        'signoff_state',
+        'state',
+        'delayed_until',
         'updated_by',
         'modified',
     )
@@ -204,6 +209,13 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     class Media:
         css = {'all': ('css/admin/blocklist_blocklistsubmission.css',)}
         js = ('js/i18n/en-US.js',)
+
+    def state(self, obj):
+        return f'{obj.get_signoff_state_display()}' + (
+            ':Delayed' if obj.is_delayed else ''
+        )
+
+    state.admin_order_field = '-signoff_state'
 
     def has_delete_permission(self, request, obj=None):
         # For now, keep all BlocklistSubmission records.
