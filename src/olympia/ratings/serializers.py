@@ -4,7 +4,7 @@ from collections import OrderedDict
 from urllib.parse import unquote
 
 from django.conf import settings
-from django.utils.translation import gettext
+from django.utils.translation import gettext, ngettext
 
 from bleach.linkifier import TLDS
 from rest_framework import serializers
@@ -72,6 +72,15 @@ class BaseRatingSerializer(AMOModelSerializer):
         # Clean up body.
         if body and '<br>' in body:
             body = re.sub('<br>', '\n', body)
+        if word_matches := DeniedRatingWord.blocked(body, moderation=False):
+            # if we have a match, raise a validation error immediately
+            raise serializers.ValidationError(
+                ngettext(
+                    'The review text cannot contain the word: "{0}"',
+                    'The review text cannot contain any of the words: "{0}"',
+                    len(word_matches),
+                ).format('", "'.join(word_matches))
+            )
 
         if word_matches := DeniedRatingWord.blocked(body, moderation=True):
             # if we have a match, create a RatingFlag we will save after the instance.
