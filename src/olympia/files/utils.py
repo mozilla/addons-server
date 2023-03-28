@@ -17,7 +17,8 @@ import fcntl
 
 from django import forms
 from django.conf import settings
-from django.core.files.storage import File as DjangoFile, default_storage as storage
+from django.core.files import File as DjangoFile
+from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
 from django.utils.encoding import force_str
 from django.utils.jslex import JsLexer
