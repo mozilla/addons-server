@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -4705,6 +4705,9 @@ msgstr "Tuairisc ar fhabht nó iarratas ar thacaíocht as áit"
 
 msgid "Other (please specify)"
 msgstr "Cúis eile (sonraigh, le do thoil)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 #, fuzzy
 msgid "This field is required."

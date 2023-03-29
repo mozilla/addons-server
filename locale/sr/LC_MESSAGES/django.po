@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4755,6 +4755,9 @@ msgstr "Погрешно постављен извештај о грешци и�
 
 msgid "Other (please specify)"
 msgstr "Друго (молимо наведите)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 #, fuzzy
 msgid "This field is required."

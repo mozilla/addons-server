@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2022-12-30 03:39+0000\n"
 "Last-Translator: Sahithi <sahithi@swecha.net>\n"
 "Language-Team: none\n"
@@ -4469,6 +4469,9 @@ msgstr "తప్పు స్థానంలో ఉంచిన దోష న�
 
 msgid "Other (please specify)"
 msgstr "ఇతర (దయచేసి పేర్కొనండి)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "ఈ ఖాళీని తప్పనిసరిగా పూరించాలి."
