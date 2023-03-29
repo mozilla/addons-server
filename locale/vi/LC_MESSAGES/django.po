@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2023-02-17 06:53+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -4584,6 +4584,9 @@ msgstr "Yêu cầu hỗ trợ hoặc báo cáo lỗi bị đặt nhầm"
 
 msgid "Other (please specify)"
 msgstr "Khác (vui lòng chỉ ra)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "Trường này là bắt buộc."

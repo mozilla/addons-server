@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2023-02-27 20:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4590,6 +4590,9 @@ msgstr "Deplacěrowana zmólkowa rozpšawa abo pšosba wó pomoc"
 
 msgid "Other (please specify)"
 msgstr "Druge (pšosym pódaś)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "Toś to pólo jo trěbne."

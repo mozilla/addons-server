@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2023-02-19 20:31+0000\n"
 "Last-Translator: KAHINA <kahinamessaoudi03@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4540,6 +4540,9 @@ msgstr "Aneqqis n yibugen neɣ yir asuter n tallelt deg tegnit-a"
 
 msgid "Other (please specify)"
 msgstr "Ayen nniḍen (ini-d)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "Urti-agi yettwasra."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2023-01-21 20:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -4632,6 +4632,9 @@ msgstr "Laporan bug atau permintaan dukungan yang tidak pada tempatnya"
 
 msgid "Other (please specify)"
 msgstr "Lainnya (isi sendiri)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "Bidang ini wajib diisi."

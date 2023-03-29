@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-03-29 13:42+0000\n"
 "PO-Revision-Date: 2023-03-11 09:48+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -4586,6 +4586,9 @@ msgstr "Založeno poročilo o napaki ali zahteva za podporo"
 
 msgid "Other (please specify)"
 msgstr "Drugo (navedite)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
 
 msgid "This field is required."
 msgstr "To polje je obvezno."
