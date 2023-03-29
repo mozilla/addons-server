@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-29 11:42+0000\n"
+"PO-Revision-Date: 2023-03-29 11:43+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -857,7 +857,7 @@ msgid "{addon} needs_human_review flag cleared."
 msgstr "Etiketa needs_human_review për {addon} u hoq."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "“Lyp Shqyrtim Nga Dikush” u hoq"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4180,7 +4180,7 @@ msgstr "Krejt nevojat tuaja për emoji—përherë vetëm një klik larg."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Maskoni adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon postë hedhurinë."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4330,11 +4330,11 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Përgjegjës Shkarkimesh"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
-msgstr ""
+msgstr "Zgjerim Lojëra & Argëtim"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4478,7 +4478,7 @@ msgid "See more creativity staff picks"
 msgstr "Shihni më tepër mjete krijimtarie të zgjedhura nga stafi"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Të pashqyrtuara"
 
 #, python-format
 msgid "[status:%s]"
