@@ -27,6 +27,7 @@ from publicsuffix2 import get_sld
 import olympia.core.logger
 
 from olympia import activity, amo, core
+from olympia.activity.utils import log_and_notify
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import (
@@ -733,6 +734,23 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def sources_provided(self):
         return bool(self.source)
+
+    def flag_if_sources_were_provided(self, user):
+        from olympia.addons.models import AddonReviewerFlags
+
+        if self.source:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_code_review': True}
+            )
+
+            # Add Activity Log, notifying staff, relevant reviewers and
+            # other authors of the add-on.
+            log_and_notify(
+                amo.LOG.SOURCE_CODE_UPLOADED, None, user, self
+            )
+
+            if self.pending_rejection:
+                self.update(needs_human_review=True)
 
     @classmethod
     def transformer(cls, versions):
