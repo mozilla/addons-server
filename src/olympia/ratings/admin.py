@@ -196,7 +196,6 @@ class DeniedRatingWordAdmin(AMOModelAdmin):
         'word',
         'moderation',
     )
-    ordering = ('word',)
     actions = ('delete_selected',)
 
 

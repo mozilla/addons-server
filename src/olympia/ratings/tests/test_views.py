@@ -1609,7 +1609,40 @@ class TestRatingViewSetEdit(TestCase):
             assert str(new_rating.body) == 'I did it'
             assert new_rating.rating == 1
 
-    def test_auto_flag(self):
+    @freeze_time(as_arg=True)
+    def test_body_contains_banned_word_deny(frozen_time, self):
+        DeniedRatingWord.objects.create(word='body', moderation=False)
+        DeniedRatingWord.objects.create(word='foo', moderation=False)
+        # This wouldn't be matched, because it's a moderate word instead.
+        DeniedRatingWord.objects.create(word='test', moderation=True)
+        self.client.login_api(self.user)
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain the word: "body"']
+        }
+
+        frozen_time.tick(delta=timedelta(minutes=1))
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé FOO',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain any of the words: "body", "foo"']
+        }
+        assert not RatingFlag.objects.exists()
+
+    def test_body_contains_banned_word_flag(self):
         user_factory(id=settings.TASK_USER_ID)
         DeniedRatingWord.objects.create(word='body', moderation=True)
         DeniedRatingWord.objects.create(word='wOrld', moderation=True)
@@ -2450,7 +2483,46 @@ class TestRatingViewSetPost(TestCase):
             )
             assert response.status_code == 201, response.content
 
-    def test_auto_flag(self):
+    @freeze_time(as_arg=True)
+    def test_body_contains_banned_word_deny(frozen_time, self):
+        DeniedRatingWord.objects.create(word='body', moderation=False)
+        DeniedRatingWord.objects.create(word='foo', moderation=False)
+        # This wouldn't be matched, because it's a moderate word instead.
+        DeniedRatingWord.objects.create(word='test', moderation=True)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain the word: "body"']
+        }
+
+        frozen_time.tick(delta=timedelta(minutes=1))
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé FOO',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain any of the words: "body", "foo"']
+        }
+        assert not Rating.objects.exists()
+
+    def test_body_contains_banned_word_flag(self):
         user_factory(id=settings.TASK_USER_ID)
         DeniedRatingWord.objects.create(word='body', moderation=True)
         self.user = user_factory()

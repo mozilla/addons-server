@@ -360,11 +360,18 @@ class DeniedRatingWord(ModelBase):
         help_text='Flag for moderation rather than immediately deny.', default=False
     )
 
+    CACHE_KEY = 'denied-rating-word:blocked'
+
     class Meta:
         db_table = 'reviews_denied_word'
+        ordering = ('word', 'moderation')
 
     def __str__(self):
         return self.word
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(self.CACHE_KEY)
 
     @classmethod
     def blocked(cls, content, moderation=False):
@@ -373,13 +380,14 @@ class DeniedRatingWord(ModelBase):
         Return the list of denied words (or an empty list if none are found).
 
         """
-        qs = cls.objects.filter(moderation=moderation)
+        values = cls.objects.all().values_list('word', 'moderation')
 
         def fetch_names():
-            return [word.lower() for word in qs.values_list('word', flat=True)]
+            return [(word.lower(), mod) for word, mod in values]
 
-        blocked_list = cache.get_or_set(
-            f'denied-rating-word:blocked-{"moderate" if moderation else "deny"}',
-            fetch_names,
-        )
-        return [word for word in blocked_list if word in content.lower()]
+        blocked_list = cache.get_or_set(cls.CACHE_KEY, fetch_names)
+        return [
+            word
+            for word, mod in blocked_list
+            if mod == moderation and word in content.lower()
+        ]
