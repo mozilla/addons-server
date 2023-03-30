@@ -194,6 +194,8 @@ class VersionManager(ManagerBase):
             ),
             channel=amo.CHANNEL_UNLISTED,
         )
+        # Versions not yet reviewed but that won't get auto-approved should
+        # have a due date.
         is_pre_review_version = Q(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
             & ~Q(addon__status=amo.STATUS_DELETED)
@@ -204,8 +206,12 @@ class VersionManager(ManagerBase):
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
         )
+        # Versions that haven't been disabled or have ever been signed and have
+        # the explicit needs human review flag should have a due date (it gets
+        # dropped on various reviewer actions).
         is_needs_human_review = Q(
-            Q(deleted=False) | Q(file__is_signed=True), needs_human_review=True
+            ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
+            needs_human_review=True,
         )
         return method(is_needs_human_review | is_pre_review_version).using('default')
 
