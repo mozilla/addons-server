@@ -734,6 +734,22 @@ class Version(OnChangeMixin, ModelBase):
     def sources_provided(self):
         return bool(self.source)
 
+    def flag_if_sources_were_provided(self, user):
+        from olympia.activity.utils import log_and_notify
+        from olympia.addons.models import AddonReviewerFlags
+
+        if self.source:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_code_review': True}
+            )
+
+            # Add Activity Log, notifying staff, relevant reviewers and
+            # other authors of the add-on.
+            log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
+
+            if self.pending_rejection:
+                self.update(needs_human_review=True)
+
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and the file to the versions."""

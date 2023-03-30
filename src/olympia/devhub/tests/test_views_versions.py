@@ -872,9 +872,9 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log.arguments == [self.addon, self.version]
 
     def test_source_uploaded_pending_rejection_sets_needs_human_review_flag(self):
-        version = Version.objects.get(pk=self.version.pk)
+        self.version = Version.objects.get(pk=self.version.pk)
         VersionReviewerFlags.objects.create(
-            version=version,
+            version=self.version,
             pending_rejection=datetime.now() + timedelta(days=2),
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
@@ -888,16 +888,18 @@ class TestVersionEditDetails(TestVersionEditBase):
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
         assert response.status_code == 302
-        version = Version.objects.get(pk=self.version.pk)
-        assert version.source
-        assert version.addon.needs_admin_code_review
-        assert not version.needs_human_review
+        self.version = Version.objects.get(pk=self.version.pk)
+        assert self.version.source
+        assert self.version.addon.needs_admin_code_review
+        assert self.version.needs_human_review
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
-        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        log = ActivityLog.objects.for_versions(self.version).get(
+            action=amo.LOG.SOURCE_CODE_UPLOADED.id
+        )
         assert log.user == self.user
         assert log.details is None
         assert log.arguments == [self.addon, self.version]

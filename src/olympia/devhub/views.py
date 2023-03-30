@@ -31,11 +31,9 @@ from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import logout_user
-from olympia.activity.models import ActivityLog, CommentLog, VersionLog
-from olympia.activity.utils import log_and_notify
+from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
     Addon,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
 )
@@ -1125,15 +1123,7 @@ def version_edit(request, addon_id, addon, version_id):
                 'source' in version_form.changed_data
                 and version_form.cleaned_data['source']
             ):
-                AddonReviewerFlags.objects.update_or_create(
-                    addon=addon, defaults={'needs_admin_code_review': True}
-                )
-
-                # Add Activity Log, notifying staff, relevant reviewers and
-                # other authors of the add-on.
-                log_and_notify(
-                    amo.LOG.SOURCE_CODE_UPLOADED, None, request.user, version
-                )
+                version.flag_if_sources_were_provided(request.user)
 
         messages.success(request, gettext('Changes successfully saved.'))
         result = redirect('devhub.versions.edit', addon.slug, version_id)
@@ -1587,27 +1577,8 @@ def _submit_source(request, addon, version, submit_page, next_view):
             )
             timer.log_interval('2.form_validated')
         if source_form.cleaned_data.get('source'):
-            AddonReviewerFlags.objects.update_or_create(
-                addon=addon, defaults={'needs_admin_code_review': True}
-            )
-
-            activity_log = ActivityLog.objects.create(
-                action=amo.LOG.SOURCE_CODE_UPLOADED.id,
-                user=request.user,
-                details={
-                    'comments': (
-                        'This version has been automatically '
-                        'flagged for admin review, as it had source '
-                        'files attached when submitted.'
-                    )
-                },
-            )
-            VersionLog.objects.create(version_id=version.id, activity_log=activity_log)
-            if version.pending_rejection:
-                # The `version` instance will be saved by the `source_form.save()` call
-                # below.
-                version.needs_human_review = True
             source_form.save()
+            version.flag_if_sources_were_provided(request.user)
             log.info(
                 '_submit_source, form saved, addon.slug: %s, version.pk: %s',
                 addon.slug,
