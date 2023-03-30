@@ -31,11 +31,9 @@ from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import logout_user
-from olympia.activity.models import ActivityLog, CommentLog, VersionLog
-from olympia.activity.utils import log_and_notify
+from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
     Addon,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
 )

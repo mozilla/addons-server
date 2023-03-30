@@ -65,7 +65,6 @@ from .fields import (
 from .models import (
     Addon,
     AddonApprovalsCounter,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
