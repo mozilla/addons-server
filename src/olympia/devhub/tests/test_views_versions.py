@@ -891,7 +891,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert version.addon.needs_admin_code_review
-        assert not version.needs_human_review
+        assert version.needs_human_review
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(

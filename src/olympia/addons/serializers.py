@@ -662,7 +662,7 @@ class DeveloperVersionSerializer(VersionSerializer):
                 amo.LOG.CHANGE_LICENSE, instance.license, instance.addon, user=user
             )
         if 'source' in validated_data:
-            instance.flag_version_with_source_code(user)
+            instance.flag_if_sources_were_provided(user)
         return instance
 
 
