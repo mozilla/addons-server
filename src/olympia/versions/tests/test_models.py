@@ -16,6 +16,7 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import (
+    AMOPaths,
     TestCase,
     addon_factory,
     license_factory,
@@ -391,7 +392,7 @@ class TestVersionManager(TestCase):
         assert version_preview.version == version
 
 
-class TestVersion(TestCase):
+class TestVersion(AMOPaths, TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
@@ -420,6 +421,63 @@ class TestVersion(TestCase):
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
         assert not self._get_version(amo.STATUS_APPROVED).is_unreviewed
+
+    def test_sources_provided(self):
+        version = Version()
+        assert not version.sources_provided
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+    def test_flag_if_sources_were_provided(self):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        assert not version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert not AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        assert not ActivityLog.objects.exists()
+        assert not version.needs_human_review
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        activity = ActivityLog.objects.for_versions(version).get()
+        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert activity.user == user
+        assert not version.needs_human_review
+
+    def test_flag_if_sources_were_provided_pending_rejection(self):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_content_rejection=False,
+            pending_rejection_by=user,
+        )
+        assert not version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert not AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        assert not ActivityLog.objects.exists()
+        assert not version.needs_human_review
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        activity = ActivityLog.objects.for_versions(version).get()
+        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert activity.user == user
+        assert version.needs_human_review
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_version_delete(self, delete_preview_files_mock):
