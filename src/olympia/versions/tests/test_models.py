@@ -953,38 +953,39 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert version.should_have_due_date
 
-    def _test_should_have_due_date_deleted(self, channel):
+    def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=channel)
-        # set up
-        AddonReviewerFlags.objects.create(
-            addon=addon,
-            auto_approval_disabled=True,
-            auto_approval_disabled_unlisted=True,
-        )
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.needs_human_review
-        assert version.should_have_due_date
-
-        # Then delete - the version shouldn't have a due date
-        version.delete()
         assert not version.should_have_due_date
 
-        # except if the reason was needs human review
+        # Any non-disabled status with needs_human_review is enough to get a
+        # due date, even if not signed.
         version.update(needs_human_review=True)
+        version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
+        assert version.should_have_due_date
+
+        # If disabled and not signed, it should lose the due date even if it
+        # was needing human review: there is no threat, reviewers don't need to
+        # review it anymore.
+        version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
+        assert not version.should_have_due_date
+
+        # If it was signed however, it should get a due date.
         version.file.update(is_signed=True)
         assert version.should_have_due_date
 
-        # but only if the file is signed
-        version.file.update(is_signed=False)
-        assert not version.should_have_due_date
+        # Even if deleted (which internally disables the file), as long as it
+        # was signed and needs human review, it should keep the due date.
+        version.delete()
+        assert version.should_have_due_date
 
-    def test_should_have_due_date_deleted_listed(self):
-        self._test_should_have_due_date_deleted(amo.CHANNEL_LISTED)
+    def test_should_have_due_date_disabled_listed(self):
+        self._test_should_have_due_date_disabled(amo.CHANNEL_LISTED)
 
-    def test_should_have_due_date_deleted_unlisted(self):
-        self._test_should_have_due_date_deleted(amo.CHANNEL_UNLISTED)
+    def test_should_have_due_date_disabled_unlisted(self):
+        self._test_should_have_due_date_disabled(amo.CHANNEL_UNLISTED)
 
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
