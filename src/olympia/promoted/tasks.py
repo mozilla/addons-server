@@ -15,8 +15,8 @@ from .models import PromotedAddon
 
 log = olympia.core.logger.getLogger('z.promoted.tasks')
 
-ADU_LIMIT_CONFIG_KEY = 'notable-adu-threshold'
-TARGET_PER_DAY_CONFIG_KEY = 'review-target-per-day'
+NOTABLE_ADU_LIMIT_CONFIG_KEY = 'notable-adu-threshold'
+NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY = 'notable-review-target-per-day'
 
 
 @task
@@ -31,8 +31,8 @@ def add_high_adu_extensions_to_notable():
             return
         return int(value)
 
-    adu_limit = config(ADU_LIMIT_CONFIG_KEY)
-    target_per_day = config(TARGET_PER_DAY_CONFIG_KEY)
+    adu_limit = config(NOTABLE_ADU_LIMIT_CONFIG_KEY)
+    target_per_day = config(NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY)
     if not adu_limit or not target_per_day:
         return
     stagger = 24 / target_per_day

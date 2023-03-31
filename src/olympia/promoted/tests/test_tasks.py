@@ -13,8 +13,8 @@ from olympia.zadmin.models import set_config
 
 from ..tasks import (
     add_high_adu_extensions_to_notable,
-    ADU_LIMIT_CONFIG_KEY,
-    TARGET_PER_DAY_CONFIG_KEY,
+    NOTABLE_ADU_LIMIT_CONFIG_KEY,
+    NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY,
 )
 
 
@@ -22,10 +22,10 @@ from ..tasks import (
 def test_add_high_adu_extensions_to_notable():
     # Arbitrary_adu_limit
     adu_limit = 1234
-    set_config(ADU_LIMIT_CONFIG_KEY, adu_limit)
+    set_config(NOTABLE_ADU_LIMIT_CONFIG_KEY, adu_limit)
     # arbitrary target per day
     target_per_day = 12
-    set_config(TARGET_PER_DAY_CONFIG_KEY, target_per_day)
+    set_config(NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY, target_per_day)
 
     extension_with_low_adu = addon_factory(
         average_daily_users=adu_limit - 1, file_kw={'is_signed': True}
