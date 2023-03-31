@@ -78,7 +78,7 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
     VersionReviewerFlags,
-    inherit_due_date,
+    inherit_due_date_if_nominated,
 )
 from olympia.versions.utils import get_review_due_date
 
@@ -1875,10 +1875,8 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         latest_version.file.update(status=amo.STATUS_DISABLED)
         instance.update_status()
     elif old_status == amo.STATUS_NOMINATED:
-        # Updating: inherit due date from last nominated version.
-        # Calls `inherit_due_date` manually given that signals are
-        # deactivated to avoid circular calls.
-        inherit_due_date(None, latest_version)
+        # Update latest version due date if necessary for nominated add-ons.
+        inherit_due_date_if_nominated(None, latest_version)
     else:
         # New: will (re)set due date only if it's None.
         latest_version.reset_due_date()

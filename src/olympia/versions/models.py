@@ -403,6 +403,13 @@ class Version(OnChangeMixin, ModelBase):
             approval_notes = (
                 'This version has been signed with Mozilla internal certificate.'
             )
+
+        previous_version_had_needs_human_review = (
+            Version.unfiltered.filter(channel=channel)
+            .filter(needs_human_review=True)
+            .exists()
+        )
+
         version = cls.objects.create(
             addon=addon,
             approval_notes=approval_notes,
@@ -410,6 +417,7 @@ class Version(OnChangeMixin, ModelBase):
             license_id=license_id,
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
+            needs_human_review=previous_version_had_needs_human_review,
         )
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
@@ -925,17 +933,15 @@ class Version(OnChangeMixin, ModelBase):
     @use_primary_db
     def inherit_due_date(self):
         qs = (
-            Version.objects.filter(addon=self.addon, channel=self.channel)
+            Version.unfiltered.filter(addon=self.addon, channel=self.channel)
             .exclude(due_date=None)
             .exclude(id=self.pk)
-            .filter(file__status=amo.STATUS_AWAITING_REVIEW)
-            .exclude(reviewerflags__pending_rejection__isnull=False)
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        # If no matching version is found, we end up passing due_date=None which will
-        # set the due date to standard review time if it wasn't already set on the
-        # instance.
+        # If no matching due_date is found, we end up passing due_date=None
+        # which will set the due date to standard review time if it wasn't
+        # already set on the instance.
         self.reset_due_date(due_date=qs.first())
 
     @cached_property
@@ -1218,10 +1224,10 @@ def update_status(sender, instance, **kw):
             pass
 
 
-def inherit_due_date(sender, instance, **kw):
+def inherit_due_date_if_nominated(sender, instance, **kw):
     """
-    For new versions pending review, ensure the due date is inherited from last
-    nominated version.
+    Ensure due date is inherited when the add-on is nominated for initial
+    listed review.
     """
     if kw.get('raw'):
         return
@@ -1246,7 +1252,9 @@ models.signals.post_save.connect(
     update_status, sender=Version, dispatch_uid='version_update_status'
 )
 models.signals.post_save.connect(
-    inherit_due_date, sender=Version, dispatch_uid='version_inherit_due_date'
+    inherit_due_date_if_nominated,
+    sender=Version,
+    dispatch_uid='inherit_due_date_if_nominated',
 )
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version'
