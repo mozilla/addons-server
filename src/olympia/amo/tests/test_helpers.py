@@ -399,7 +399,7 @@ def test_timesince():
 
 
 def test_timeuntil():
-    a_month_in_the_future = datetime.now() + timedelta(days=31)
+    a_month_in_the_future = datetime.now() + timedelta(days=31, seconds=0.001)
     assert jinja_helpers.timeuntil(a_month_in_the_future) == '1 month'
     a_week_in_the_future = datetime.now() + timedelta(days=14, hours=1)
     assert jinja_helpers.timeuntil(a_week_in_the_future) == '2 weeks'
