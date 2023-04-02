@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-03-29 13:42+0000\n"
-"PO-Revision-Date: 2023-04-02 20:25+0000\n"
+"PO-Revision-Date: 2023-04-02 20:30+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -68,7 +68,7 @@ msgstr "Yfirfara"
 
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] ""
+msgstr[0] "Útgáfa {0}"
 msgstr[1] "Útgáfur {0}"
 
 msgid "Review note"
@@ -3204,7 +3204,7 @@ msgstr "Framkvæmdu leit út frá myndum á fjöldanum öllum af leitarvélum."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
-msgstr "Útilokun auglýsinga og verndun á friðhelgi einkalífs. Einföld uppsetning gerir þér kleift að stýra hvaða auglýsingar þú sér og hvernig sé fylgst með þér á internetinu."
+msgstr "Útilokun auglýsinga og verndun á friðhelgi einkalífs. Einföld uppsetning gerir þér kleift að stýra hvaða auglýsingar þú sérð og hvernig sé fylgst með þér á internetinu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4206,7 +4206,7 @@ msgstr "Byrjunarpakki forritsauka"
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Umsýsla niðurhals"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
@@ -4353,7 +4353,7 @@ msgid "See more creativity staff picks"
 msgstr "Skoðaðu fleiri sköpunartól sem starfsfólk hefur valið"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Óyfirfarið"
 
 #, python-format
 msgid "[status:%s]"
@@ -4602,7 +4602,7 @@ msgid "Could not find Add-on with ID \"{}\"."
 msgstr "Gat ekki fundið viðbót með auðkennið \"{}\"."
 
 msgid "You do not own this add-on."
-msgstr ""
+msgstr "Þú átt ekki þessa viðbót."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
@@ -4835,7 +4835,7 @@ msgid "Report Trademark Abuse"
 msgstr "Tilkynna misnotkun á vörumerki"
 
 msgid "Report a bug"
-msgstr "Tilkynna um villu"
+msgstr "Tilkynna villu"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
