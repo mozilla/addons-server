@@ -568,18 +568,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Disa shtesa kërkojnë leje të kryejnë disa funksione (për shembull: një shtesë për administrim skedash do të kërkojë leje të hyjë në sistemin e skedave të shfletuesit)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Meqë kontrollin e Firefox-it tuaj e keni ju, zgjedhja e akordimit apo e mohimit të këtyre lejeve bie mbi ju. Pranimi i lejeve nuk do të thotë në vetvete komprometim të punës apo sigurisë së "
+"Meqë kontrollin e Thunderbird-it tuaj e keni ju, zgjedhja e akordimit apo e mohimit të këtyre lejeve bie mbi ju. Pranimi i lejeve nuk do të thotë në vetvete komprometim të punës apo sigurisë së "
 "shfletuesit tuaj, por në disa raste ky rrezik mund të jetë real."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Kjo shtesë mund:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Disa shtesa kërkojnë leje të kryejnë disa funksione. Meqë kontrollin e Firefox-it tuaj e keni ju, zgjedhja për të akorduar apo mohuar leje të tilla është e juaja."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Disa shtesa kërkojnë leje të kryejnë disa funksione. Meqë kontrollin e Thunderbird-it tuaj e keni ju, zgjedhja për të akorduar apo mohuar leje të tilla është e juaja."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ju lutemi, kini parasysh se kjko shtesë përdor teknologji të dikurshme, çka i jep hyrje te krejt funksionet dhe të dhënat e shfletuesit pa kërkuar lejen tuaj."

@@ -574,18 +574,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches (par exemple, un module de gestion des onglets vous demandera d’accéder à la liste de vos onglets)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Puisque vous avez le contrôle de votre navigateur Firefox, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra les performances ou la sécurité de "
+"Puisque vous avez le contrôle de votre navigateur Thunderbird, vous avez le choix d’accepter ou d’annuler ces requêtes. Accepter les autorisations ne compromettra les performances ou la sécurité de "
 "votre navigateur que dans de rares cas."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ce module peut :"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Firefox, c’est vous qui accordez ou non ces permissions."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Certains modules demanderont votre permission pour effectuer certaines tâches. Puisque vous gardez le contrôle de Thunderbird, c’est vous qui accordez ou non ces permissions."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ce module complémentaire utilise une technologie obsolète ce qui lui donne accès à l’ensemble des fonctionnalités et des données de votre navigateur sans que cela nécessite votre permission."

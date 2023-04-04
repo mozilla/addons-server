@@ -547,15 +547,15 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "部分附加组件需要某些权限才能执行特定功能（例如：管理标签页的附加组件需要访问浏览器标签页系统的权限）。"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
-msgstr "作为 Firefox 使用者，您可以选择接受或者拒绝这些请求。接受权限本身并不会影响您的浏览器性能或者安全性，但在极少数情况下可能有风险。"
+msgstr "作为 Thunderbird 使用者，您可以选择接受或者拒绝这些请求。接受权限本身并不会影响您的浏览器性能或者安全性，但在极少数情况下可能有风险。"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "这个附加组件可以："
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
 msgstr "部分附加组件需要某些权限才能执行特定功能。您需要决定是否授权其执行特定功能。"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."

@@ -575,18 +575,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. (Örneğin, sekme yönetimi yapan bir eklenti, tarayıcınızın sekme sistemine erişmek için izin isteyecektir.)"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Firefox’unuzu siz kontrol ettiğiniz için, bu istekleri kabul veya reddetmek sizin seçiminizdir. İzinleri kabul etmek, tarayıcınızın performansını veya güvenliğini normal koşullarda tehlikeye atmaz "
+"Thunderbird’unuzu siz kontrol ettiğiniz için, bu istekleri kabul veya reddetmek sizin seçiminizdir. İzinleri kabul etmek, tarayıcınızın performansını veya güvenliğini normal koşullarda tehlikeye atmaz "
 "ama bazı ender durumlarda risk olabilir."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Bu eklenti şunları yapabilir:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. Firefox’un kontrolü tamamen sizde olduğu için bu istekleri kabul veya reddetme kararı size aittir."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. Thunderbird’un kontrolü tamamen sizde olduğu için bu istekleri kabul veya reddetme kararı size aittir."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""

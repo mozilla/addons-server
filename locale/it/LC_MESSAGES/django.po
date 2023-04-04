@@ -572,10 +572,10 @@ msgstr ""
 "e ai dati interni del browser adibiti alle schede)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Sei tu ad avere il controllo di Firefox, pertanto la scelta di accordare o negare i permessi spetta solo a te. Accordare un permesso in genere non compromette le prestazioni o la sicurezza del "
+"Sei tu ad avere il controllo di Thunderbird, pertanto la scelta di accordare o negare i permessi spetta solo a te. Accordare un permesso in genere non compromette le prestazioni o la sicurezza del "
 "browser, ma in rari casi potresti andare incontro a dei rischi."
 
 #. This is a header of a list of things the add-on can do.

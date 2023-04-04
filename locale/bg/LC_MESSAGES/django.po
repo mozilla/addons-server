@@ -567,18 +567,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Някои добавки искат разрешение, за да извършат определени действия (например, добавка която управлява раздели би поискала права за достъп до системата от раздели на четеца)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в "
+"Тъй като държите контрола над вашия Thunderbird, изборът да дадете разрешение или не е изцяло ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в "
 "редки случаи може да бъде замесен и риск."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Добавката иска следните права:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Thunderbird, изборът да дадете разрешение или не е изцяло ваш."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Обърнете внимание, че тази добавка използва остаряла технология, която дава достъп до пълната функционалност и данни на четеца без да пита за разрешение за това."

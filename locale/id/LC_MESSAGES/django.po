@@ -556,18 +556,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Beberapa pengaya meminta izin untuk melakukan fungsi tertentu (contoh: pengaya manajemen tab akan meminta izin untuk mengakses sistem tab peramban anda)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Karena Firefox dalam kendali Anda, pilihan untuk memberikan atau menolak permintaan ini adalah hak Anda. Menerima izin tidak secara langsung membahayakan kinerja atau keamanan peramban Anda, namun "
+"Karena Thunderbird dalam kendali Anda, pilihan untuk memberikan atau menolak permintaan ini adalah hak Anda. Menerima izin tidak secara langsung membahayakan kinerja atau keamanan peramban Anda, namun "
 "dalam beberapa kasus yang jarang terjadi, mungkin ada risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Pengaya ini dapat:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Beberapa pengaya meminta izin untuk melakukan fungsi tertentu. Karena Anda pemegang kendali penuh Firefox Anda, pilihan untuk mengizinkan atau menolak permintaan ini di tangan Anda."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Beberapa pengaya meminta izin untuk melakukan fungsi tertentu. Karena Anda pemegang kendali penuh Thunderbird Anda, pilihan untuk mengizinkan atau menolak permintaan ini di tangan Anda."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Catat bahwa pengaya ini menggunakan teknologi warisan, yang akan memberikan akses kepada seluruh fungsi dan data peramban tanpa meminta izin Anda."

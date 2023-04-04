@@ -558,18 +558,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Eftersom du har kontroll över Firefox, är valet att bevilja eller neka dessa önskemål ditt. Att acceptera behörigheter äventyrar inte webbläsarens prestanda eller säkerhet, men i vissa sällsynta "
+"Eftersom du har kontroll över Thunderbird, är valet att bevilja eller neka dessa önskemål ditt. Att acceptera behörigheter äventyrar inte webbläsarens prestanda eller säkerhet, men i vissa sällsynta "
 "fall kan det vara en risk."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Detta tillägg kan:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Vissa tillägg kräver tillstånd att utföra vissa funktioner. Eftersom du har kontroll över Firefox är valet att bevilja eller neka dessa förfrågningar ditt."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Vissa tillägg kräver tillstånd att utföra vissa funktioner. Eftersom du har kontroll över Thunderbird är valet att bevilja eller neka dessa förfrågningar ditt."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Observera att den här tillägget använder äldre teknik, vilket ger den tillgång till alla webbläsarfunktioner och data utan att begära ditt tillstånd."

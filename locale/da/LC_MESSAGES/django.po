@@ -568,18 +568,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner (Fx: En tilføjelse, der håndterer faneblade, vil bede om lov til at tilgå din browsers fanebladssystem)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
 " rare cases risk may be involved."
 msgstr ""
-"Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse over"
+"Eftersom det er dig, der bestemmer over din Thunderbird, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse over"
 " styr, men i sjældne tilfælde kan der være en risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Denne tilføjelse kan:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Thunderbird, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Bemærk at denne tilføjelse bruger forældet teknologi, hvilket giver den adgang til alle browserens funktioner og data, uden at bede om din tilladelse."

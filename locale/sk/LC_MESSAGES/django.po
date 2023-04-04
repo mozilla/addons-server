@@ -583,18 +583,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie (napríklad doplnok na správu kariet požiada o povolenie na prístup k systému kariet prehliadača)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Keďže kontrola nad vašim Firefoxom patrí vám, je len na vás či doplnkom tieto povolenia udelíte alebo nie. Udelenie týchto povolení nemusí nevyhnutne ovplyvniť výkon alebo bezpečnosť vášho "
+"Keďže kontrola nad vašim Thunderbirdom patrí vám, je len na vás či doplnkom tieto povolenia udelíte alebo nie. Udelenie týchto povolení nemusí nevyhnutne ovplyvniť výkon alebo bezpečnosť vášho "
 "prehliadača, aj keď toto nemožno vylúčiť."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Tento doplnok môže:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie. Keďže kontrolu nad svojim Firefoxom máte vy, je len na vás či tieto povolenia doplnku udelíte alebo nie."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Niektoré doplnky žiadajú o povolenia, aby mohli vykonávať určité funkcie. Keďže kontrolu nad svojim Thunderbirdom máte vy, je len na vás či tieto povolenia doplnku udelíte alebo nie."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Vezmite, prosím, na vedomie, že tento doplnok využíva zastaranú technológiu, ktorá mu dáva prístup ku všetkým funkciám a údajom prehliadača bez nutnosti žiadať vás o povolenie."

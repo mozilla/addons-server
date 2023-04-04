@@ -568,18 +568,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Sommige add-ons vragen toestemming om bepaalde functies uit te voeren (voorbeeld: een tabblad-add-on vraagt toestemming voor toegang tot het tabbladensysteem van uw browser)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Aangezien u de controle over uw Firefox hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties "
+"Aangezien u de controle over uw Thunderbird hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties "
 "of beveiliging van uw browser, maar in zeldzame gevallen kan er sprake zijn van een risico."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Deze add-on kan:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Sommige add-ons vragen toestemming om bepaalde functies uit te voeren. Aangezien u de controle over uw Firefox hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Sommige add-ons vragen toestemming om bepaalde functies uit te voeren. Aangezien u de controle over uw Thunderbird hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Houd er rekening mee dat deze add-on verouderde technologie gebruikt, die de add-on toegang tot alle browserfuncties geeft zonder om uw toestemming te vragen."

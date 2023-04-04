@@ -571,18 +571,18 @@ msgstr ""
 "περιήγησής σας)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Επειδή έχετε τον απόλυτο έλεγχο του Firefox σας, η επιλογή για αποδοχή ή άρνηση αυτών των αιτημάτων είναι δική σας. Η παραχώρηση δικαιωμάτων δεν επηρεάζει εγγενώς τις επιδόσεις ή την ασφάλεια του "
+"Επειδή έχετε τον απόλυτο έλεγχο του Thunderbird σας, η επιλογή για αποδοχή ή άρνηση αυτών των αιτημάτων είναι δική σας. Η παραχώρηση δικαιωμάτων δεν επηρεάζει εγγενώς τις επιδόσεις ή την ασφάλεια του "
 "προγράμματος περιήγησης, αλλά σε μερικές, σπάνιες περιπτώσεις υπάρχει κίνδυνος."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Αυτό το πρόσθετο μπορεί να:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Μερικά πρόσθετα ζητούν το δικαίωμα για την εκτέλεση ορισμένων λειτουργιών. Επειδή εσείς ελέγχετε το Firefox σας, η επιλογή για να αποδεχθείτε ή να απορρίψετε αυτά τα αιτήματα είναι δική σας."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Μερικά πρόσθετα ζητούν το δικαίωμα για την εκτέλεση ορισμένων λειτουργιών. Επειδή εσείς ελέγχετε το Thunderbird σας, η επιλογή για να αποδεχθείτε ή να απορρίψετε αυτά τα αιτήματα είναι δική σας."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr ""

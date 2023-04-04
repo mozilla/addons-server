@@ -576,17 +576,17 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות (לדוגמה: תוספת לניהול לשוניות תבקש הרשאה לגישה למערכת הלשוניות של הדפדפן שלך)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"כיוון שלך יש את השליטה ב־Firefox שלך, הבחירה לאפשר או לדחות את הבקשות האלה היא בידיך. קבלת ההרשאות אינה משבשת לצמיתות את הביצועים או האבטחה של הדפדפן שלך, אך במספר מקרים נדירים יתכן כי מדובר בסכנה."
+"כיוון שלך יש את השליטה ב־Thunderbird שלך, הבחירה לאפשר או לדחות את הבקשות האלה היא בידיך. קבלת ההרשאות אינה משבשת לצמיתות את הביצועים או האבטחה של הדפדפן שלך, אך במספר מקרים נדירים יתכן כי מדובר בסכנה."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "תוספת זו יכולה:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות. מכיוון שיש בבעלותך שליטה מלאה על ה־Firefox שלך, יש לך האפשרות לאשר או לדחות את הבקשות האלו."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "ישנן תוספות המבקשות הרשאה לביצוע פונקציות מסוימות. מכיוון שיש בבעלותך שליטה מלאה על ה־Thunderbird שלך, יש לך האפשרות לאשר או לדחות את הבקשות האלו."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "לתשומת לבך: תוספת זו משתמשת בטכנולוגיה מיושנת שמעניקה לה גישה לכל תכונות הדפדפן והנתונים מבלי לבקש את רשותך."

@@ -561,18 +561,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Jujun taq tz'aqat nikik'utuj q'ij richin nikib'än jujun taq samaj (achi'el jun kitz'aqat kisamajixik ruwi' xtuk'utuj q'ij richin nok pa kiq'inoj ruwi' okik'amaya'l)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Achi'el rat k'o pan aq'a' ri Firefox, ri nana'ojij naya' q'ij o man naya' ta q'ij re taq k'utuj re'. Nak'ül re ya'oj taq q'ij re' man nuq'ajuj ta chi man napeyoj ta ri rub'eyal nisamäj o rujikomal "
+"Achi'el rat k'o pan aq'a' ri Thunderbird, ri nana'ojij naya' q'ij o man naya' ta q'ij re taq k'utuj re'. Nak'ül re ya'oj taq q'ij re' man nuq'ajuj ta chi man napeyoj ta ri rub'eyal nisamäj o rujikomal "
 "awokik'amaya'l, xa xe chi k'o b'ey re' yetuk'ulun pe taq k'ayewal."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Re tz'aqat re' nitikïr:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Jujun taq tz'aqat nikik'utuj q'ij richin nikib'än jujun taq samaj. Rat yasamajin ri Firefox, xa xe rat ri yana'ojin."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Jujun taq tz'aqat nikik'utuj q'ij richin nikib'än jujun taq samaj. Rat yasamajin ri Thunderbird, xa xe rat ri yana'ojin."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Tanataj chi re tz'aqt re nrokisaj ichinan na'ob'äl, akuchi' nuya' q'ij chi nok pa ronojel ri taq rusamaj okik'amaya'l chuqa' etamab'äl, man xtuk'utuj ta q'ij."

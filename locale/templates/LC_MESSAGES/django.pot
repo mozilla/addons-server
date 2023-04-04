@@ -929,7 +929,7 @@ msgstr ""
 
 #: src/olympia/addons/templates/addons/impala/details.html:290
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these "
 "requests is yours. Accepting permissions does not inherently compromise your "
 "browser’s performance or security, but in some rare cases risk may be "
 "involved."
@@ -943,7 +943,7 @@ msgstr ""
 #: src/olympia/addons/templates/addons/impala/details.html:308
 msgid ""
 "Some add-ons ask for permission to perform certain functions. Since you’re in"
-" control of your Firefox, the choice to grant or deny these requests is "
+" control of your Thunderbird, the choice to grant or deny these requests is "
 "yours."
 msgstr ""
 

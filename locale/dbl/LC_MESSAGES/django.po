@@ -557,7 +557,7 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Şǿḿḗ ȧḓḓ-ǿƞş ȧşķ ƒǿř ƥḗřḿīşşīǿƞ ŧǿ ƥḗřƒǿřḿ ƈḗřŧȧīƞ ƒŭƞƈŧīǿƞş (ḗẋȧḿƥŀḗ: ȧ ŧȧƀ ḿȧƞȧɠḗḿḗƞŧ ȧḓḓ-ǿƞ ẇīŀŀ ȧşķ ƥḗřḿīşşīǿƞ ŧǿ ȧƈƈḗşş ẏǿŭř ƀřǿẇşḗř’ş ŧȧƀ şẏşŧḗḿ)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
 "Şīƞƈḗ ẏǿŭ’řḗ īƞ ƈǿƞŧřǿŀ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ, ŧħḗ ƈħǿīƈḗ ŧǿ ɠřȧƞŧ ǿř ḓḗƞẏ ŧħḗşḗ řḗɋŭḗşŧş īş ẏǿŭřş. Aƈƈḗƥŧīƞɠ ƥḗřḿīşşīǿƞş ḓǿḗş ƞǿŧ īƞħḗřḗƞŧŀẏ ƈǿḿƥřǿḿīşḗ ẏǿŭř ƀřǿẇşḗř’ş ƥḗřƒǿřḿȧƞƈḗ ǿř şḗƈŭřīŧẏ, ƀŭŧ īƞ "
@@ -567,7 +567,7 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Ŧħīş ȧḓḓ-ǿƞ ƈȧƞ:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
 msgstr "Şǿḿḗ ȧḓḓ-ǿƞş ȧşķ ƒǿř ƥḗřḿīşşīǿƞ ŧǿ ƥḗřƒǿřḿ ƈḗřŧȧīƞ ƒŭƞƈŧīǿƞş. Şīƞƈḗ ẏǿŭ’řḗ īƞ ƈǿƞŧřǿŀ ǿƒ ẏǿŭř Ƒīřḗƒǿẋ, ŧħḗ ƈħǿīƈḗ ŧǿ ɠřȧƞŧ ǿř ḓḗƞẏ ŧħḗşḗ řḗɋŭḗşŧş īş ẏǿŭřş."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."

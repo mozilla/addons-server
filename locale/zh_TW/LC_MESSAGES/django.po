@@ -548,16 +548,16 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "某些附加元件會向您詢問是否要授權進行某些行為（例如: 分頁管理附加元件，會請您授權存取瀏覽器的分頁系統）。"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
-msgstr "由於您對 Firefox 有完整的控制權，您可以自行決定是否要允許這些請求。同意這些權限不一定會降低您瀏覽器的效能或安全性，但在少數情況下，可能會有所關聯。"
+msgstr "由於您對 Thunderbird 有完整的控制權，您可以自行決定是否要允許這些請求。同意這些權限不一定會降低您瀏覽器的效能或安全性，但在少數情況下，可能會有所關聯。"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "此附加元件可以:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "某些附加元件會向您詢問是否要授權進行某些行為。您可自行控制 Firefox，可自行決定要授予，或拒絕授予這些權限。"
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "某些附加元件會向您詢問是否要授權進行某些行為。您可自行控制 Thunderbird，可自行決定要授予，或拒絕授予這些權限。"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "請注意，此附加元件使用傳統技術，可不經您同意就存取瀏覽器的所有功能與資料。"

@@ -585,19 +585,19 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Niektóre dodatki proszą o uprawnienie do wykonywania określonych funkcji (przykład: dodatek do zarządzania kartami poprosi o dostęp do systemu kart przeglądarki)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Ponieważ kontrolujesz swoją przeglądarkę Firefox, decyzja o zaakceptowaniu lub odrzuceniu takich próśb należy do Ciebie. Akceptacja uprawnień nie musi stanowić zagrożenia dla wydajności lub "
+"Ponieważ kontrolujesz swoją przeglądarkę Thunderbird, decyzja o zaakceptowaniu lub odrzuceniu takich próśb należy do Ciebie. Akceptacja uprawnień nie musi stanowić zagrożenia dla wydajności lub "
 "bezpieczeństwa przeglądarki, ale w pewnych rzadkich przypadkach może to być związane z pewnym ryzykiem."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Ten dodatek zapewnia następujące możliwości:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
 msgstr ""
-"Niektóre dodatki proszą o uprawnienie do wykonywania określonych funkcji. Ponieważ kontrolujesz swoją przeglądarkę Firefox, decyzja o zaakceptowaniu lub odrzuceniu takich próśb należy do Ciebie."
+"Niektóre dodatki proszą o uprawnienie do wykonywania określonych funkcji. Ponieważ kontrolujesz swoją przeglądarkę Thunderbird, decyzja o zaakceptowaniu lub odrzuceniu takich próśb należy do Ciebie."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Należy zwrócić uwagę, że ten dodatek używa przestarzałej technologii, która przyznaje dostęp do wszystkich funkcji przeglądarki i danych bez prośby o zgodę."

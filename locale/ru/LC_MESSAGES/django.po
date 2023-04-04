@@ -585,18 +585,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций (например, дополнение управления вкладками может запросить доступ к системе вкладок вашего браузера)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"В связи с тем, что вы контролируете Firefox, выбор предоставления или запрета разрешения всецело принадлежит вам. Предоставление разрешений как правило не влияет на быстродействие и безопасность "
+"В связи с тем, что вы контролируете Thunderbird, выбор предоставления или запрета разрешения всецело принадлежит вам. Предоставление разрешений как правило не влияет на быстродействие и безопасность "
 "браузера, но в отдельных редких случаях есть определенный риск."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Это дополнение может:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций. Так как именно вы контролируете свой Firefox, выбор предоставления или отклонения этих запросов остаётся за вами."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций. Так как именно вы контролируете свой Thunderbird, выбор предоставления или отклонения этих запросов остаётся за вами."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Обратите внимание, что это дополнение использует устаревшую технологию, которая дает ему доступ ко всем функциям и данным браузера без запроса у вас разрешения."

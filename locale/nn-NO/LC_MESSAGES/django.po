@@ -559,18 +559,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Visse tillegg kan be om løyve til å utføre visse funksjonar (Døme: Eit tillegg som handsamar faner, kan be om å få tilgang til fanesystemet i nettlesaren din)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Sidan du har kontroll over Firefox, er valet å godta eller avslå desse løyveførespurnadane. Å godta løyveførespurnadar tyder ikkje at du kompromitterer yting eller sikkerheit, men i enkelte sjeldne "
+"Sidan du har kontroll over Thunderbird, er valet å godta eller avslå desse løyveførespurnadane. Å godta løyveførespurnadar tyder ikkje at du kompromitterer yting eller sikkerheit, men i enkelte sjeldne "
 "høve kan det vere ein risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Denne utvidinga kan:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Visse tillegg kan be om løyve til å utføre visse funksjonar. Sidan du har kontrollen over Firefox, vil vala om å godta, eller avvise, desse førespurnadane vere dine."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Visse tillegg kan be om løyve til å utføre visse funksjonar. Sidan du har kontrollen over Thunderbird, vil vala om å godta, eller avvise, desse førespurnadane vere dine."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Legg merke til at denne utvidinga brukar forelda teknologi, noko som gjev henne tilgang til alle nettlesarfunksjonar og data, utan å be deg om løyve."

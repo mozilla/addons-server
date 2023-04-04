@@ -574,18 +574,18 @@ msgstr ""
 "Algunos complementos piden permiso para realizar determinadas funciones (por ejemplo, un complemento de gestión de pestañas pedirá permiso para acceder al sistema de pestañas de tu navegador)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Como tú tienes el control de tu Firefox, la decisión de autorizar o denegar estas peticiones es tuya. Aceptar estos permisos no implica comprometer el rendimiento o seguridad de tu navegador, pero "
+"Como tú tienes el control de tu Thunderbird, la decisión de autorizar o denegar estas peticiones es tuya. Aceptar estos permisos no implica comprometer el rendimiento o seguridad de tu navegador, pero "
 "en algunos casos raros puede implicar riesgos."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Este complemento puede:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Algunos complementos solicitan permiso para realizar determinadas funciones. Como tú controlas tu propio Firefox, la decisión es solo tuya."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Algunos complementos solicitan permiso para realizar determinadas funciones. Como tú controlas tu propio Thunderbird, la decisión es solo tuya."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Ten en cuenta que este complemento utiliza tecnología heredada, permitiendo el acceso a todas las funciones del navegador y a la información sin solicitar permiso."

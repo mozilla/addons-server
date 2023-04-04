@@ -572,7 +572,7 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz (például: egy lapkezelő kiegészítő engedélyt fog kérni, hogy hozzáférjen a böngésző lapkezelő rendszeréhez)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
 "Mivel Ön irányítja a saját Firefoxát, ezért ezen kérések engedélyezése vagy megtagadása Önre bízott. A jogosultságok elfogadása nem feltétlenül csökkenti a böngészője teljesítményét vagy "
@@ -582,8 +582,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Ez a kiegészítő ezeket teheti:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz. Mivel Öné a Firefox irányítása, így az Ön döntése ezen kérések engedélyezése vagy elutasítása."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Néhány kiegészítő engedélyt kér bizonyos funkciókhoz. Mivel Öné a Thunderbird irányítása, így az Ön döntése ezen kérések engedélyezése vagy elutasítása."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Vegye figyelembe, hogy ez a kiegészítő örökölt technológiát használ, amely engedély kérése nélkül ad hozzáférést a böngésző funkcióihoz."

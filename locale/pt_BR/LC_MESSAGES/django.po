@@ -586,18 +586,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Algumas extensões pedem permissão para desempenhar certas funções (exemplo: uma extensão de gerenciamento de abas irá pedir permissão para acessar o sistema de abas do seu navegador)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Como você está em controle do seu Firefox, a escolha de conceder ou negar estes pedidos é sua. Aceitar permissões não compromete inerentemente o desempenho ou segurança do seu navegador, mas em "
+"Como você está em controle do seu Thunderbird, a escolha de conceder ou negar estes pedidos é sua. Aceitar permissões não compromete inerentemente o desempenho ou segurança do seu navegador, mas em "
 "alguns casos raros o risco pode estar envolvido."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Esta extensão pode:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Algumas extensões pedem permissão para desempenhar certas funções. Como está no controle do seu Firefox, a escolha de conceder ou negar estes pedidos é sua."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Algumas extensões pedem permissão para desempenhar certas funções. Como está no controle do seu Thunderbird, a escolha de conceder ou negar estes pedidos é sua."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Observe que esta extensão usa uma tecnologia legada, que dá acesso a todas as funções e informações do navegador sem precisar de sua permissão."

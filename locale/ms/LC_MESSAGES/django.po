@@ -545,7 +545,7 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Beberapa add-ons meminta izin untuk melaksanakan fungsi tertentu (contoh: add-on pengurusan tab akan meminta izin mengakses sistem pelayar tab anda)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
 "Oleh kerana anda yang mengawal dalam Mozilla, pilihan untuk memberi izin atau tidak ini bergantung pada anda. Memberi izin tidak semestinya akan menjejaskan prestasi atau keselamatan pelayar anda, "
@@ -555,8 +555,8 @@ msgstr ""
 msgid "This add-on can:"
 msgstr "Add-on ini boleh:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Sesetengah add-ons meminta izin untuk melaksanakan fungsi tertentu. Oleh kerana anda yang mengawal Firefox, anda yang membuat keputusan samada mahu mengizinkan atau tidak."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "Sesetengah add-ons meminta izin untuk melaksanakan fungsi tertentu. Oleh kerana anda yang mengawal Thunderbird, anda yang membuat keputusan samada mahu mengizinkan atau tidak."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Sila ambil perhatian bahawa add-on ini menggunakan teknologi legasi, yang memberikannya akses kepada semua fungsi dan data pelayar tanpa meminta kebenaran anda."

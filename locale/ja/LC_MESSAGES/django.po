@@ -556,18 +556,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "特定の機能を実行するため、許可を要求するアドオンがあります (例: タブを管理するアドオンは、ブラウザーのタブシステムへのアクセス許可を要求します)。"
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Firefox を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することでは"
+"Thunderbird を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することでは"
 "ありません。しかし、リスクを伴う場合もあります。"
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "このアドオンの許可設定:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "一部のアドオンは特定の機能を実行するための許可設定を求めます。Firefox はあなた自身が管理者なので、そうしたリクエストを受け入れるかどうかはあなたが決められます。"
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgstr "一部のアドオンは特定の機能を実行するための許可設定を求めます。Thunderbird はあなた自身が管理者なので、そうしたリクエストを受け入れるかどうかはあなたが決められます。"
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "このアドオンは従来の技術を使用しているため、あなたに許可設定を求めることなくブラウザーのすべての機能やデータにアクセスできることに注意してください。"
