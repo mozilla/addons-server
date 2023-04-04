@@ -44,6 +44,7 @@ class CollectionAdmin(AMOModelAdmin):
     fields = (
         'name',
         'slug',
+        'description',
         'uuid',
         'listed',
         'default_locale',
