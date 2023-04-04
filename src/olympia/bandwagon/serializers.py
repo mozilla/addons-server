@@ -3,6 +3,8 @@ from django.utils.translation import gettext, gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
+from olympia import amo
+from olympia.access.acl import action_allowed_for
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import AddonSerializer
@@ -17,6 +19,14 @@ from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
 from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.users.models import DeniedName
+
+
+def can_use_denied_names(request):
+    return (
+        request
+        and request.user
+        and action_allowed_for(request.user, amo.permissions.COLLECTIONS_EDIT)
+    )
 
 
 class CollectionSerializer(AMOModelSerializer):
@@ -76,7 +86,9 @@ class CollectionSerializer(AMOModelSerializer):
                 locale: self.validate_name(sub_value)
                 for locale, sub_value in value.items()
             }
-        if DeniedName.blocked(value):
+        if DeniedName.blocked(value) and not can_use_denied_names(
+            self.context.get('request')
+        ):
             raise serializers.ValidationError(gettext('This name cannot be used.'))
         return value
 
@@ -94,7 +106,9 @@ class CollectionSerializer(AMOModelSerializer):
                 'numbers, underscores or hyphens.'
             ),
         )
-        if DeniedName.blocked(value):
+        if DeniedName.blocked(value) and not can_use_denied_names(
+            self.context.get('request')
+        ):
             raise serializers.ValidationError(
                 gettext('This custom URL cannot be used.')
             )

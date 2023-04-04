@@ -19,6 +19,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection, CollectionAddon
+from olympia.users.models import DeniedName
 
 
 class TestCollectionViewSetList(TestCase):
@@ -456,6 +457,36 @@ class CollectionViewSetDataMixin:
         assert 'This custom URL is already in use' in (
             ','.join(json.loads(response.content)['non_field_errors'])
         )
+
+    def test_name_denied_name(self):
+        DeniedName.objects.create(name='foo')
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(name={'en-US': 'foo_thing'})
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'name': ['This name cannot be used.']}
+        # But you can if you have the correct permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code in (200, 201)
+
+    def test_slug_denied_name(self):
+        DeniedName.objects.create(name='foo')
+        self.client.login_api(self.user)
+        data = dict(self.data)
+        data.update(slug='foo_thing')
+        response = self.send(data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'slug': ['This custom URL cannot be used.']
+        }
+        # But you can if you have the correct permission
+        self.grant_permission(self.user, 'Collections:Edit')
+        self.client.login_api(self.user)
+        response = self.send(data=data)
+        assert response.status_code in (200, 201)
 
 
 class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
