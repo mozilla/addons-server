@@ -2029,6 +2029,47 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
+    def test_inherit_needs_human_review_with_due_date(self):
+        due_date = datetime.now() + timedelta(days=15)
+        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=due_date)
+        upload_version.reload()
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=due_date)
+
+    def test_dont_inherit_needs_human_review_from_different_channel(self):
+        old_version = self.addon.current_version
+        self.make_addon_unlisted(self.addon)
+        old_version.update(needs_human_review=True)
+        assert old_version.due_date
+
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+        upload_version.reload()
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
