@@ -30,6 +30,7 @@ from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
     LINE,
+    NOTABLE,
     NOT_PROMOTED,
     RECOMMENDED,
     SPOTLIGHT,
@@ -1002,8 +1003,13 @@ class TestVersion(AMOPaths, TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # Promoted groups are ignored for unlisted, even pre-review groups.
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        # Promoted groups that are pre-review for unlisted get a due date.
+        promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        version.update(needs_human_review=False)  # adding Notable sets this, so clear.
+        assert version.should_have_due_date
+
+        # Not if it's a group that is only pre-review for listed though.
+        promo.update(group_id=RECOMMENDED.id)
         assert not version.should_have_due_date
 
         # But yes if auto approval is disabled

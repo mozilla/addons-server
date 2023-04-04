@@ -17,6 +17,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
     LINE,
+    NOTABLE,
     RECOMMENDED,
     STRATEGIC,
 )
@@ -1211,6 +1212,12 @@ class TestAutoApprovalSummary(TestCase):
 
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
+
+        promoted.update(group_id=NOTABLE.id)  # NOTABLE is
+        assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
+
+        self.version.update(channel=amo.CHANNEL_LISTED)  # and for listed too
+        assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
     def test_check_should_be_delayed(self):
         assert AutoApprovalSummary.check_should_be_delayed(self.version) is False

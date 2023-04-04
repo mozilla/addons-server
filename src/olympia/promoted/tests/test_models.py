@@ -1,9 +1,11 @@
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import AddonReviewerFlags
 from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
@@ -123,7 +125,11 @@ class TestPromotedAddon(TestCase):
         # then with a group thats flag_for_human_review == True but pretend
         # the version has already been reviewed by a human (so it's not
         # necessary to flag it as needing human review again).
-        promo.addon.current_version.update(human_review_date=self.days_ago(1))
+        listed_ver.update(human_review_date=self.days_ago(1))
+        unlisted_ver.update(human_review_date=self.days_ago(1))
+        listed_ver.file.update(is_signed=True)
+        unlisted_ver.file.update(is_signed=True)
+        promo.addon.reload()
         promo.group_id = promoted.NOTABLE.id
         promo.save()
         promo.addon.reload()
@@ -138,7 +144,11 @@ class TestPromotedAddon(TestCase):
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human but not signed: also not
         # flagged.
-        promo.addon.current_version.update(human_review_date=None)
+        listed_ver.update(human_review_date=None)
+        unlisted_ver.update(human_review_date=None)
+        listed_ver.file.update(is_signed=False)
+        unlisted_ver.file.update(is_signed=False)
+        promo.addon.reload()
         promo.group_id = promoted.NOTABLE.id
         promo.save()
         promo.addon.reload()
@@ -153,8 +163,9 @@ class TestPromotedAddon(TestCase):
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human but signed: this time we
         # should flag it.
-        promo.addon.current_version.file.update(is_signed=True)
-        promo.addon.current_version.update(human_review_date=None)
+        listed_ver.file.update(is_signed=True)
+        unlisted_ver.file.update(is_signed=True)
+        promo.addon.reload()
         promo.group_id = promoted.NOTABLE.id
         promo.save()
         promo.addon.reload()
@@ -162,17 +173,22 @@ class TestPromotedAddon(TestCase):
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert listed_ver.reload().needs_human_review
-        assert not unlisted_ver.reload().needs_human_review
+        assert unlisted_ver.reload().needs_human_review
         self.assertCloseToNow(listed_ver.due_date, now=get_review_due_date())
-        assert not unlisted_ver.due_date
+        self.assertCloseToNow(unlisted_ver.due_date, now=get_review_due_date())
 
         # But we should only flag before the add-on is approved for Promoted
-        promo.addon.current_version.update(needs_human_review=False)
+        listed_ver.update(needs_human_review=False)
+        unlisted_ver.update(needs_human_review=False)
+        promo.addon.reload()
         promo.approve_for_version(listed_ver)
+        promo.approve_for_version(unlisted_ver)
+
         assert promo.addon.reload().promoted_group() == promoted.NOTABLE
         promo.save()
         promo.addon.reload()
         assert not listed_ver.reload().needs_human_review
+        assert not unlisted_ver.reload().needs_human_review
 
     def test_disabled_and_deleted_versions_flagged_for_human_review(self):
         addon = addon_factory(
@@ -199,6 +215,47 @@ class TestPromotedAddon(TestCase):
         promo.save()
         assert version.reload().needs_human_review
         self.assertCloseToNow(version.due_date, now=get_review_due_date())
+
+    def test_addon_sets_due_date_on_save_if_specified(self):
+        specified_due_date = datetime(2022, 2, 2, 2, 2, 2)
+        promo = PromotedAddon.objects.create(
+            addon=addon_factory(file_kw={'is_signed': True}),
+            application_id=amo.FIREFOX.id,
+        )
+        listed_ver = promo.addon.current_version
+        # throw in an unlisted version too
+        unlisted_ver = version_factory(
+            addon=promo.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
+        )
+        promo.group_id = promoted.NOTABLE.id
+        promo.save(_due_date=specified_due_date)
+        promo.addon.reload()
+        assert listed_ver.reload().needs_human_review
+        assert unlisted_ver.reload().needs_human_review
+        assert listed_ver.due_date == specified_due_date
+        assert unlisted_ver.due_date == specified_due_date
+
+        # (just setting up a situation where the version would already have a due date)
+        listed_ver.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        unlisted_ver.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        AddonReviewerFlags.objects.create(
+            addon=promo.addon,
+            auto_approval_disabled=True,
+            auto_approval_disabled_unlisted=True,
+        )
+        listed_ver.update(needs_human_review=False)
+        unlisted_ver.update(needs_human_review=False)
+        assert listed_ver.due_date == specified_due_date
+        assert unlisted_ver.due_date == specified_due_date
+        promo.addon.reload()
+
+        # but not if the version already had a due date
+        promo.save(_due_date=datetime.now())
+        promo.addon.reload()
+        assert listed_ver.reload().needs_human_review
+        assert unlisted_ver.reload().needs_human_review
+        assert listed_ver.due_date == specified_due_date
+        assert unlisted_ver.due_date == specified_due_date
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):

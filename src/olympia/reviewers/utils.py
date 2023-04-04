@@ -501,7 +501,7 @@ class ReviewHelper:
         if version_is_unlisted:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
-        elif self.content_review or promoted_group.pre_review or is_static_theme:
+        elif self.content_review or promoted_group.listed_pre_review or is_static_theme:
             can_reject_multiple = (
                 addon_is_valid_and_version_is_listed and is_appropriate_reviewer
             )
@@ -807,13 +807,22 @@ class ReviewBase:
         file.status = status
         file.save()
 
-    def set_promoted(self):
+    def set_promoted(self, versions=None):
         group = self.addon.promoted_group(currently_approved=False)
-        if self.version.channel == amo.CHANNEL_LISTED and group.pre_review:
+        if versions is None:
+            versions = [self.version]
+        elif not versions:
+            return
+        channel = versions[0].channel
+        if group and (
+            (channel == amo.CHANNEL_LISTED and group.listed_pre_review)
+            or (channel == amo.CHANNEL_UNLISTED and group.unlisted_pre_review)
+        ):
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
-            self.addon.promotedaddon.approve_for_version(self.version)
+            for version in versions:
+                self.addon.promotedaddon.approve_for_version(version)
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
@@ -1485,6 +1494,7 @@ class ReviewUnlisted(ReviewBase):
         )
 
         if self.human_review:
+            self.set_promoted(versions=self.data['versions'])
             template = 'approve_multiple_versions'
             subject = 'Mozilla Add-ons: %s%s signed and ready to download'
             self.data['version_numbers'] = ', '.join(

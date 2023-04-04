@@ -44,7 +44,7 @@ from olympia.amo.utils import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PRE_REVIEW_GROUPS, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -180,7 +180,11 @@ class VersionManager(ManagerBase):
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
             | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
-            | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
+            | Q(
+                addon__promotedaddon__group_id__in=(
+                    g.id for g in PROMOTED_GROUPS if g.listed_pre_review
+                )
+            ),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
             channel=amo.CHANNEL_LISTED,
         )
@@ -191,6 +195,11 @@ class VersionManager(ManagerBase):
             )
             | Q(
                 addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
+            )
+            | Q(
+                addon__promotedaddon__group_id__in=(
+                    g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
+                )
             ),
             channel=amo.CHANNEL_UNLISTED,
         )
@@ -986,7 +995,7 @@ class Version(OnChangeMixin, ModelBase):
 
         if self != self.addon.current_version or (
             not (group := self.addon.promoted_group())
-            or not (group.badged and group.pre_review)
+            or not (group.badged and group.listed_pre_review)
         ):
             return True
 
