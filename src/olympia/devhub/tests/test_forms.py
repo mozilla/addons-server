@@ -16,6 +16,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.addons.models import Addon
+from olympia.addons.views import AddonViewSet
 from olympia.amo.tests import (
     addon_factory,
     get_random_ip,
@@ -28,7 +29,6 @@ from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
-from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
 from olympia.versions.models import ApplicationsVersions
 
@@ -221,7 +221,7 @@ class TestNewUploadForm(TestCase):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             for x in range(0, 6):
                 self._add_fake_throttling_action(
-                    view_class=VersionView,
+                    view_class=AddonViewSet,
                     url='/',
                     user=request.user,
                     remote_addr=get_random_ip(),

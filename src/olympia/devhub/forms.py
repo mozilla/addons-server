@@ -40,6 +40,7 @@ from olympia.addons.utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
+from olympia.addons.views import AddonViewSet
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
@@ -966,9 +967,7 @@ class CheckThrottlesMixin:
 
         Raises ValidationError if the request is throttled.
         """
-        from olympia.signing.views import VersionView  # circular import
-
-        view = VersionView()
+        view = AddonViewSet()
         try:
             view.check_throttles(request)
         except Throttled:
