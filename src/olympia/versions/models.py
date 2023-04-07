@@ -414,8 +414,8 @@ class Version(OnChangeMixin, ModelBase):
             )
 
         previous_version_had_needs_human_review = (
-            Version.unfiltered.filter(channel=channel)
-            .filter(needs_human_review=True)
+            addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=channel, needs_human_review=True)
             .exists()
         )
 
