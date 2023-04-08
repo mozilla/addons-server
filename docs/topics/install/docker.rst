@@ -64,7 +64,7 @@ Next once you have Docker up and running follow these steps
 on your host machine::
 
     # Checkout the addons-server sourcecode.
-    git clone git://github.com/mozilla/addons-server.git
+    git clone https://github.com/mozilla/addons-server.git
     cd addons-server
     # Download the containers
     docker-compose pull  # Can take a while depending on your internet bandwidth.
