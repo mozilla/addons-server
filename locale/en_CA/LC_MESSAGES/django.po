@@ -4542,7 +4542,7 @@ msgstr "Auto-flagged due to word match"
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "The review text cannot contain the word: \"{0}\""
-msgstr[1] ""
+msgstr[1] "The review text cannot contain any of the words: \"{0}\""
 
 msgid "This field is required."
 msgstr "This field is required."
