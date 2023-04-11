@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-11 06:29+0000\n"
+"PO-Revision-Date: 2023-04-11 08:05+0000\n"
 "Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4047,11 +4047,11 @@ msgstr "Elige, ordina e exeque tu discargamentos plus rapidemente."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr "Informationes meteorologic  justo in le navigator."
+msgstr "Previsiones meteorologic directemente in le navigator."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "Dele cookies, chronologia de exploration e le files in cache con justo un sol clic."
+msgstr "Dele cookies, chronologia de navigation e files in cache con un sol clic."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4192,7 +4192,7 @@ msgstr "Remove ille longe parametros de traciamento del URL resultato del recerc
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr "Recipe informationes meteorologic  justo de Firefox."
+msgstr "Recipe previsiones meteorologic directemente de Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
