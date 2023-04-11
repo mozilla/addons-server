@@ -174,11 +174,8 @@ class RestrictionChecker:
     def _is_action_allowed(self, action_type, *, restriction_choices=None):
         if restriction_choices is None:
             restriction_choices = self.restriction_choices
-        argument = None
-        if action_type == 'submission':
-            argument = self.request
-        elif action_type == 'auto_approval':
-            argument = self.upload
+        # Default to self.request because most action_types expect it
+        argument = self.upload if action_type == 'auto_approval' else self.request
         for restriction_number, cls in restriction_choices:
             if not hasattr(cls, f'allow_{action_type}'):
                 continue
@@ -250,6 +247,22 @@ class RestrictionChecker:
             )
 
         return self._is_action_allowed('auto_approval')
+
+    def is_rating_allowed(self):
+        """
+        Check whether the `request` passed to the instance is allowed to submit a
+        rating. Will check all classes declared in self.restriction_classes, but ignore
+        those that don't have a allow_rating() method.
+        """
+        return self._is_action_allowed('rating')
+
+    def should_moderate_rating(self):
+        """
+        Check whether the `request` passed to the instance should have ratings
+        moderated. Will check all classes declared in self.restriction_classes, but
+        ignore those that don't have a allow_rating_without_moderation() method.
+        """
+        return not self._is_action_allowed('rating_without_moderation')
 
     def get_error_message(self):
         """

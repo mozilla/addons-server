@@ -642,6 +642,8 @@ class DeniedName(ModelBase):
 RESTRICTION_TYPES = Choices(
     ('SUBMISSION', 1, 'Submission'),
     ('APPROVAL', 2, 'Approval'),
+    ('RATING', 3, 'Rating'),
+    ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
 )
 
 
@@ -661,6 +663,21 @@ class RestrictionAbstractBase:
         """
         Return whether the specified version should be allowed to be proceed
         through auto-approval process.
+        """
+        return True
+
+    @classmethod
+    def allow_rating(cls, request):
+        """
+        Return whether the specified request should be allowed to submit ratings.
+        """
+        return True
+
+    @classmethod
+    def allow_rating_without_moderation(cls, request):
+        """
+        Return whether ratings from the specified request should not be flagged for
+        moderation.
         """
         return True
 
@@ -695,9 +712,8 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     )
 
     error_message = _(
-        'Multiple add-ons violating our policies have been'
-        ' submitted from your location. The IP address has been'
-        ' blocked.'
+        'Multiple submissions violating our policies have been sent from your '
+        'location. The IP address has been blocked.'
     )
 
     class Meta:
@@ -709,25 +725,9 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     @classmethod
     def allow_submission(cls, request):
         """
-        Return whether the specified request should be allowed to submit
-        add-ons.
+        Return whether the specified request should be allowed to submit add-ons.
         """
-        try:
-            remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
-            user_last_login_ip = (
-                ipaddress.ip_address(request.user.last_login_ip)
-                if request.user
-                else None
-            )
-        except ValueError:
-            # If we don't have a valid ip address, let's deny
-            return False
-
-        return cls.allow_ips(
-            remote_addr,
-            user_last_login_ip,
-            restriction_type=RESTRICTION_TYPES.SUBMISSION,
-        )
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -743,6 +743,33 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
         return cls.allow_ips(
             remote_addr, user_last_login_ip, restriction_type=RESTRICTION_TYPES.APPROVAL
+        )
+
+    @classmethod
+    def allow_rating(cls, request):
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
+
+    @classmethod
+    def allow_rating_without_moderation(cls, request):
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        try:
+            remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+            user_last_login_ip = (
+                ipaddress.ip_address(request.user.last_login_ip)
+                if request.user
+                else None
+            )
+        except ValueError:
+            # If we don't have a valid ip address, let's deny
+            return False
+
+        return cls.allow_ips(
+            remote_addr, user_last_login_ip, restriction_type=restriction_type
         )
 
     @classmethod
@@ -803,7 +830,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
     )
 
     error_message = _(
-        'The email address used for your account is not allowed for add-on submission.'
+        'The email address used for your account is not allowed for submissions.'
     )
 
     class Meta:
@@ -823,12 +850,7 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        if not request.user.is_authenticated:
-            return False
-
-        return cls.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
-        )
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -837,6 +859,23 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
         )
+
+    @classmethod
+    def allow_rating(cls, request):
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
+
+    @classmethod
+    def allow_rating_without_moderation(cls, request):
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        if not request.user.is_authenticated:
+            return False
+
+        return cls.allow_email(request.user.email, restriction_type=restriction_type)
 
     @classmethod
     def allow_email(cls, email, *, restriction_type):
@@ -889,12 +928,7 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        if not request.user.is_authenticated:
-            return False
-
-        return cls.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
-        )
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -903,6 +937,23 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         return cls.allow_email(
             upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
         )
+
+    @classmethod
+    def allow_rating(cls, request):
+        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.RATING)
+
+    @classmethod
+    def allow_rating_without_moderation(cls, request):
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.RATING_MODERATE
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        if not request.user.is_authenticated:
+            return False
+
+        return cls.allow_email(request.user.email, restriction_type=restriction_type)
 
     @classmethod
     def allow_email(cls, email, *, restriction_type):

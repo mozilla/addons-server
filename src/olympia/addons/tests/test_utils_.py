@@ -241,7 +241,7 @@ class TestRestrictionChecker(TestCase):
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
-            'Multiple add-ons violating our policies have been submitted '
+            'Multiple submissions violating our policies have been sent '
             'from your location. The IP address has been blocked.'
         )
         assert incr_mock.call_count == 2
@@ -267,8 +267,7 @@ class TestRestrictionChecker(TestCase):
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
-            'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'The email address used for your account is not allowed for submissions.'
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (
@@ -300,8 +299,7 @@ class TestRestrictionChecker(TestCase):
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed(check_dev_agreement=False)
         assert checker.get_error_message() == (
-            'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'The email address used for your account is not allowed for submissions.'
         )
         assert incr_mock.call_count == 2
         assert incr_mock.call_args_list[0][0] == (

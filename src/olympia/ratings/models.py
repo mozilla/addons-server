@@ -319,7 +319,7 @@ class RatingFlag(ModelBase):
     )
     FLAGS = (
         *USER_FLAGS,
-        (AUTO, _('Auto-flagged due to word match')),
+        (AUTO, _('Auto-flagged due to word match or user restriction')),
     )
 
     rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)

@@ -1022,7 +1022,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
             'detail': 'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'allowed for submissions.'
         }
         EmailUserRestriction.objects.all().delete()
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
@@ -1034,9 +1034,8 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
-            'detail': 'Multiple add-ons violating our policies have been '
-            'submitted from your location. The IP address has been '
-            'blocked.'
+            'detail': 'Multiple submissions violating our policies have been sent from '
+            'your location. The IP address has been blocked.'
         }
         assert Addon.objects.count() == 0
 
@@ -1067,9 +1066,8 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         )
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
-            'detail': 'Multiple add-ons violating our policies have been '
-            'submitted from your location. The IP address has been '
-            'blocked.'
+            'detail': 'Multiple submissions violating our policies have been sent from '
+            'your location. The IP address has been blocked.'
         }
         assert len(responses.calls) == 2
         assert Addon.objects.count() == 0
@@ -1102,7 +1100,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 403
         assert json.loads(response.content.decode('utf-8')) == {
             'detail': 'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'allowed for submissions.'
         }
         assert len(responses.calls) == 2
         assert Addon.objects.count() == 0

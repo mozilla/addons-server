@@ -302,17 +302,27 @@ class ByHttpMethod(BasePermission):
             perm = self.method_permissions[request.method.lower()]
         except KeyError:
             raise MethodNotAllowed(request.method)
-        return perm.has_permission(request, view)
+        result = perm.has_permission(request, view)
+        if not result and hasattr(perm, 'message'):
+            self.message = perm.message
+        return result
 
     def has_object_permission(self, request, view, obj):
         try:
             perm = self.method_permissions[request.method.lower()]
         except KeyError:
             raise MethodNotAllowed(request.method)
-        return perm.has_object_permission(request, view, obj)
+        result = perm.has_object_permission(request, view, obj)
+        if not result and hasattr(perm, 'message'):
+            self.message = perm.message
+        return result
 
     def __call__(self):
         return self
+
+    @property
+    def default_detail(self):
+        return getattr(self, 'message', super.default_detail)
 
 
 class AllowRelatedObjectPermissions(BasePermission):

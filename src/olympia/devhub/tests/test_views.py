@@ -901,7 +901,7 @@ class TestDeveloperAgreement(TestCase):
         assert response.context['agreement_form'].is_valid() is False
         doc = pq(response.content)
         assert doc('.addon-submission-process').text() == (
-            'Multiple add-ons violating our policies have been submitted '
+            'Multiple submissions violating our policies have been sent '
             'from your location. The IP address has been blocked.\n'
             'More information on Developer Accounts'
         )
