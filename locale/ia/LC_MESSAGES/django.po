@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-05 10:18+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2023-04-11 06:29+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -3483,7 +3483,7 @@ msgstr "Reguarda le videos YouTube sempre in le melior qualitate, disactiva anno
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Tracia le traciatores. Da un oculata a qui te spia per justo un clic."
+msgstr "Tracia le traciatores. Vide qui te spia con un sol clic."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3699,7 +3699,7 @@ msgstr "Un maniera plus efficiente de salvar marcapaginas si tu los organisa in 
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr "Spolia le spatios e le formattation non necessari e copia justo le texto simple."
+msgstr "Elimina le formatation innecessari e copia solmente le texto simple."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
