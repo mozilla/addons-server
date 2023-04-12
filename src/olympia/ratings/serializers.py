@@ -12,9 +12,9 @@ from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleAddonSerializer, SimpleVersionSerializer
-from olympia.addons.utils import RestrictionChecker
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.users.utils import RestrictionChecker
 from olympia.versions.models import Version
 
 from .models import DeniedRatingWord, Rating, RatingFlag

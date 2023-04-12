@@ -361,9 +361,9 @@ class Version(OnChangeMixin, ModelBase):
         validation results.
         """
         from olympia.addons.models import AddonReviewerFlags
-        from olympia.addons.utils import RestrictionChecker
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
+        from olympia.users.utils import RestrictionChecker
 
         assert parsed_data is not None
 

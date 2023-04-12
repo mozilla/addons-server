@@ -1,6 +1,6 @@
 from rest_framework.permissions import BasePermission
 
-from olympia.addons.utils import RestrictionChecker
+from olympia.users.utils import RestrictionChecker
 
 
 class IsSubmissionAllowedFor(BasePermission):

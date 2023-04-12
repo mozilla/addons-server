@@ -2,7 +2,7 @@ from rest_framework.permissions import BasePermission
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.utils import RestrictionChecker
+from olympia.users.utils import RestrictionChecker
 
 
 def user_can_delete_rating(request, rating):
