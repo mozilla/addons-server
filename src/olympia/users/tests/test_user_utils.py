@@ -210,7 +210,7 @@ class TestRestrictionChecker(TestCase):
     def test_is_auto_approval_allowed_email_restricted(self, incr_mock):
         EmailUserRestriction.objects.create(
             email_pattern=self.request.user.email,
-            restriction_type=RESTRICTION_TYPES.APPROVAL,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         upload = FileUpload.objects.create(
             user=self.request.user,

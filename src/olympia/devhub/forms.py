@@ -427,7 +427,7 @@ class AuthorWaitingConfirmationForm(AuthorForm):
         user = self.cleaned_data.get('user')
         if user:
             if not EmailUserRestriction.allow_email(
-                user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+                user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
             ):
                 raise forms.ValidationError(EmailUserRestriction.error_message)
 

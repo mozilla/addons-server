@@ -137,6 +137,7 @@ class RestrictionChecker:
     After this method has been called, the error message to show the user if
     needed will be available through get_error_message()
     """
+
     def __init__(self, *, request=None, upload=None):
         self.request = request
         self.upload = upload
@@ -203,7 +204,8 @@ class RestrictionChecker:
         the agreement yet but we want to do the other checks anyway.
         """
         from olympia.users.models import (
-            DeveloperAgreementRestriction, UserRestrictionHistory
+            DeveloperAgreementRestriction,
+            UserRestrictionHistory,
         )
 
         if not self.request:

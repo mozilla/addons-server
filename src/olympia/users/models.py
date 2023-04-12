@@ -640,8 +640,8 @@ class DeniedName(ModelBase):
 
 
 RESTRICTION_TYPES = Choices(
-    ('SUBMISSION', 1, 'Submission'),
-    ('APPROVAL', 2, 'Approval'),
+    ('ADDON_SUBMISSION', 1, 'Add-on Submission'),
+    ('ADDON_APPROVAL', 2, 'Add-on Approval'),
     ('RATING', 3, 'Rating'),
     ('RATING_MODERATE', 4, 'Rating Flag for Moderation'),
 )
@@ -690,7 +690,7 @@ class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
     """Base class for restrictions that are backed by the database."""
 
     restriction_type = models.PositiveSmallIntegerField(
-        default=RESTRICTION_TYPES.SUBMISSION, choices=RESTRICTION_TYPES.choices
+        default=RESTRICTION_TYPES.ADDON_SUBMISSION, choices=RESTRICTION_TYPES.choices
     )
     reason = models.CharField(
         blank=True,
@@ -727,7 +727,9 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
         """
         Return whether the specified request should be allowed to submit add-ons.
         """
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        )
 
     @classmethod
     def allow_auto_approval(cls, upload):
@@ -742,7 +744,9 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
             return False
 
         return cls.allow_ips(
-            remote_addr, user_last_login_ip, restriction_type=RESTRICTION_TYPES.APPROVAL
+            remote_addr,
+            user_last_login_ip,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
 
     @classmethod
@@ -850,14 +854,16 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        )
 
     @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
-            upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
 
     @classmethod
@@ -928,14 +934,16 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
         Return whether the specified request should be allowed to submit
         add-ons.
         """
-        return cls.allow_request(request, restriction_type=RESTRICTION_TYPES.SUBMISSION)
+        return cls.allow_request(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        )
 
     @classmethod
     def allow_auto_approval(cls, upload):
         if not upload.user:
             return False
         return cls.allow_email(
-            upload.user.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            upload.user.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
 
     @classmethod

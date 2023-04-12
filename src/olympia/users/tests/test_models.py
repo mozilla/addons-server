@@ -754,7 +754,7 @@ class TestIPNetworkUserRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = user_factory(last_login_ip='192.168.0.1')
         IPNetworkUserRestriction.objects.create(
-            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         # Submission remains allowed.
         assert IPNetworkUserRestriction.allow_submission(request)
@@ -772,7 +772,7 @@ class TestIPNetworkUserRestriction(TestCase):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         request.user = user_factory(last_login_ip='10.0.0.1')
         IPNetworkUserRestriction.objects.create(
-            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='192.168.0.0/28', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         # Submission remains allowed.
         assert IPNetworkUserRestriction.allow_submission(request)
@@ -808,7 +808,7 @@ class TestDisposableEmailDomainRestriction(TestCase):
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@bar.com')
         DisposableEmailDomainRestriction.objects.create(
-            domain='bar.com', restriction_type=RESTRICTION_TYPES.APPROVAL
+            domain='bar.com', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         # Submission remains allowed.
         assert DisposableEmailDomainRestriction.allow_submission(request)
@@ -848,7 +848,7 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='bar@foo.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
     def test_blocked_email(self):
@@ -857,25 +857,25 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@bar.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         request.user.update(email='foo+something@bar.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         request.user.update(email='f.oo+else@bar.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         request.user.update(email='foo.different+something@bar.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
     def test_user_somehow_not_authenticated(self):
@@ -891,13 +891,13 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@faz.bar.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         request.user = user_factory(email='foo@raz.bar.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
     def test_blocked_subdomain_but_allow_parent(self):
@@ -907,21 +907,21 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@faz.mail.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         # We only block a subdomain pattern
         request.user = user_factory(email='foo@mail.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
         # Which also allows similar domains to work
         request.user = user_factory(email='foo@gmail.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
 
     def test_normalize_email_pattern_on_save(self):
@@ -931,13 +931,14 @@ class TestEmailUserRestriction(TestCase):
 
     def test_blocked_approval(self):
         EmailUserRestriction.objects.create(
-            email_pattern='*.mail.com', restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern='*.mail.com',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         request = RequestFactory().get('/')
         request.user = user_factory(email='foo@faz.mail.com')
         assert EmailUserRestriction.allow_submission(request)
         assert EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
         upload = FileUpload.objects.create(
             ip_address='192.168.0.1',
@@ -953,7 +954,7 @@ class TestEmailUserRestriction(TestCase):
         request.user = user_factory(email='foo@faz.mail.com')
         assert not EmailUserRestriction.allow_submission(request)
         assert not EmailUserRestriction.allow_email(
-            request.user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            request.user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
         upload = FileUpload.objects.create(
             ip_address='192.168.0.1',
