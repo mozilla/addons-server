@@ -47,5 +47,4 @@ using the API.
    reviewers
    scanners
    shelves
-   signing
    tags

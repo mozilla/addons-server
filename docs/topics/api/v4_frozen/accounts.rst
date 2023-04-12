@@ -17,10 +17,10 @@ Account
 .. _v4-account:
 
 This endpoint returns information about a user's account, by the account id.
-Only :ref:`developer <developer_account>` accounts are publicly viewable - other user's accounts will return a 404 not found response code.
+Only :ref:`developer <v4-developer_account>` accounts are publicly viewable - other user's accounts will return a 404 not found response code.
 Most of the information is optional and provided by the user so may be missing or inaccurate.
 
-.. _`developer_account`:
+.. _`v4-developer_account`:
 
 A developer is defined as a user who is listed as a developer or owner of one or more approved add-ons.
 
@@ -227,7 +227,7 @@ Any number of notifications can be changed; only non-mandatory notifications can
 
     .. _v4-notification-update-request:
 
-    :<json boolean <name>: Is the notification enabled?
+    :<json boolean name: Is the notification enabled?
 
 
 ------------------------

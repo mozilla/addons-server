@@ -154,7 +154,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string edit_url: The URL to the developer edit page for the add-on.
     :>json string guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json boolean has_eula: The add-on has an End-User License Agreement that the user needs to agree with before installing (See :ref:`add-on EULA and privacy policy <v4-addon-eula-policy>`).
-    :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`v4-add-on EULA and privacy policy <addon-eula-policy>`).
+    :>json boolean has_privacy_policy: The add-on has a Privacy Policy (See :ref:`add-on EULA and privacy policy <v4-addon-eula-policy>`).
     :>json string|object|null homepage: The add-on homepage (See :ref:`translated fields <v4-api-overview-translations>` and :ref:`Outgoing Links <v4-api-overview-outgoing>`).
     :>json string icon_url: The URL to icon for the add-on (including a cachebusting query string).
     :>json object icons: An object holding the URLs to an add-ons icon including a cachebusting query string as values and their size as properties. Currently exposes 32, 64, 128 pixels wide icons.
@@ -449,7 +449,7 @@ on AMO.
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json string results[].slug: The add-on slug.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
-    :>json string results[].type: The :ref:`v4-add-on type <addon-detail-type>`.
+    :>json string results[].type: The :ref:`add-on type <v4-addon-detail-type>`.
     :>json string results[].url: The (absolute) add-on detail URL.
 
 

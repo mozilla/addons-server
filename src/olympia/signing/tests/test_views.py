@@ -12,6 +12,7 @@ from django.utils import translation
 
 import responses
 from freezegun import freeze_time
+from rest_framework.response import Response
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -31,7 +32,6 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.blocklist.models import Block
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import get_sha256
-from olympia.signing.views import VersionView
 from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
@@ -39,7 +39,8 @@ from olympia.users.models import (
     UserRestrictionHistory,
 )
 from olympia.versions.models import Version
-from rest_framework.response import Response
+
+from ..views import VersionView
 
 
 class SigningAPITestMixin(APIKeyAuthTestMixin):
@@ -73,7 +74,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             args = [guid, version]
         if pk is not None:
             args.append(pk)
-        return reverse_ns('signing.version', args=args)
+        return reverse_ns('signing.version', api_version='v4', args=args)
 
     def create_version(self, version):
         response = self.request('PUT', self.url(self.guid, version), version)
@@ -552,7 +553,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             version='1.0',
             filename='src/olympia/files/fixtures/files/invalid_guid.xpi',
         )
@@ -825,23 +826,23 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             assert response.status_code == expected_status
 
     def test_throttling_post_ip_burst(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         self._test_throttling_verb_ip_burst('POST', url)
 
     def test_throttling_post_ip_hourly(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         self._test_throttling_verb_ip_hourly('POST', url)
 
     def test_throttling_post_user_burst(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         self._test_throttling_verb_user_burst('POST', url)
 
     def test_throttling_post_user_hourly(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         self._test_throttling_verb_user_hourly('POST', url)
 
     def test_throttling_post_user_daily(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         self._test_throttling_verb_user_daily('POST', url)
 
     def test_throttling_put_ip_burst(self):
@@ -943,7 +944,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         filename = self.xpi_filepath('@create-webextension-with-guid', '1.0')
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
 
         response = self.request(
             'POST', guid=guid, version='1.0', filename=filename, url=url
@@ -974,7 +975,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             guid=guid,
             version='1.0',
             filename=self.xpi_filepath('@create-webextension-with-guid', '1.0'),
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
         )
         assert response.status_code == 400
         assert response.data['error'] == 'Duplicate add-on ID found.'
@@ -984,7 +985,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension',
             version='1.0',
             extra_kwargs={'REMOTE_ADDR': '127.0.3.1'},
@@ -1015,7 +1016,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         EmailUserRestriction.objects.create(email_pattern=self.user.email)
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension',
             version='1.0',
         )
@@ -1028,7 +1029,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension',
             version='1.0',
         )
@@ -1061,7 +1062,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         )
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension',
             version='1.0',
         )
@@ -1095,7 +1096,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         )
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension',
             version='1.0',
         )
@@ -1162,7 +1163,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def test_webextension_reuse_guid(self):
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension-with-guid',
             version='1.0',
         )
@@ -1178,7 +1179,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension-with-guid',
             version='1.0',
         )
@@ -1186,7 +1187,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension-with-guid',
             version='1.0',
         )
@@ -1198,7 +1199,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         # have to use the regular `PUT` endpoint for that.
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@create-webextension-with-guid-and-version',
             version='99.0',
         )
@@ -1211,7 +1212,7 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request(
             'POST',
-            url=reverse_ns('signing.version'),
+            url=reverse_ns('signing.version', api_version='v4'),
             guid='@notify-link-clicks-i18n',
             version='1.0',
             filename=fname,
@@ -1273,7 +1274,7 @@ class TestTestUploadVersionWebextensionTransactions(
     # ActivityLog/UserRestrictionHistory objects to be saved.
 
     def test_activity_log_saved_on_throttling(self):
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         with freeze_time('2019-04-08 15:16:23.42'):
             for x in range(0, 3):
                 self._add_fake_throttling_action(
@@ -1303,7 +1304,7 @@ class TestTestUploadVersionWebextensionTransactions(
 
     def test_user_restriction_history_saved_on_permission_denied(self):
         EmailUserRestriction.objects.create(email_pattern=self.user.email)
-        url = reverse_ns('signing.version')
+        url = reverse_ns('signing.version', api_version='v4')
         response = self.request(
             'POST',
             url=url,
@@ -1422,7 +1423,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 200
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
-            reverse_ns('signing.file', kwargs={'file_id': file_.id})
+            reverse_ns('signing.file', api_version='v4', kwargs={'file_id': file_.id})
             + f'/{file_.pretty_filename}'
         )
 
@@ -1491,7 +1492,7 @@ class TestSignedFile(SigningAPITestMixin, TestCase):
         self.file_ = self.create_file()
 
     def url(self):
-        return reverse_ns('signing.file', args=[self.file_.pk])
+        return reverse_ns('signing.file', api_version='v4', args=[self.file_.pk])
 
     def create_file(self):
         addon = addon_factory(
