@@ -1667,7 +1667,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert self.rating.editorreview
         flag = self.rating.ratingflag_set.get()
-        assert flag.flag == RatingFlag.AUTO
+        assert flag.flag == RatingFlag.AUTO_MATCH
         assert flag.note == 'Words matched: [body]'
 
         # And repeat with a different word
@@ -1682,7 +1682,7 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert self.rating.editorreview
         flag = self.rating.ratingflag_set.get()  # still only one
-        assert flag.flag == RatingFlag.AUTO
+        assert flag.flag == RatingFlag.AUTO_MATCH
         assert flag.note == 'Words matched: [body, world]'
 
 
@@ -2548,7 +2548,7 @@ class TestRatingViewSetPost(TestCase):
         rating = Rating.objects.get()
         assert rating.editorreview
         flag = rating.ratingflag_set.get()
-        assert flag.flag == RatingFlag.AUTO
+        assert flag.flag == RatingFlag.AUTO_MATCH
         assert flag.note == 'Words matched: [body]'
 
     def test_user_restriction_deny_by_email(self):
@@ -2637,8 +2637,10 @@ class TestRatingViewSetPost(TestCase):
         rating = Rating.objects.get()
         assert rating.editorreview
         flag = rating.ratingflag_set.get()
-        assert flag.flag == RatingFlag.AUTO
-        assert flag.note == 'Email or IP address matched a UserRestriction'
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == (
+            f'{self.user.email} or {{127.0.0.1}} matched a UserRestriction'
+        )
 
     def test_user_restriction_flag_by_disposable_email(self):
         user_factory(id=settings.TASK_USER_ID)
@@ -2663,8 +2665,10 @@ class TestRatingViewSetPost(TestCase):
         rating = Rating.objects.get()
         assert rating.editorreview
         flag = rating.ratingflag_set.get()
-        assert flag.flag == RatingFlag.AUTO
-        assert flag.note == 'Email or IP address matched a UserRestriction'
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == (
+            f'{self.user.email} or {{127.0.0.1}} matched a UserRestriction'
+        )
 
     def test_user_restriction_flag_by_ip(self):
         user_factory(id=settings.TASK_USER_ID)
@@ -2692,8 +2696,8 @@ class TestRatingViewSetPost(TestCase):
         rating = Rating.objects.get()
         assert rating.editorreview
         flag = rating.ratingflag_set.get()
-        assert flag.flag == RatingFlag.AUTO
-        assert flag.note == 'Email or IP address matched a UserRestriction'
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == f'{self.user.email} or {{{ip}}} matched a UserRestriction'
 
 
 class TestRatingViewSetFlag(TestCase):
