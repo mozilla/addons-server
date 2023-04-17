@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-17 22:35+0000\n"
+"PO-Revision-Date: 2023-04-17 22:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -141,7 +141,7 @@ msgid "Upload is not valid."
 msgstr "Nagraśe njejo płaśiwe."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Dataja jo južo znjemóžnjona."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -732,7 +732,7 @@ msgid "Source code uploaded"
 msgstr "Žrědłowy kod nagraty"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "{addon} {version} awtomatiske pśizwólenje wobkšuśone."
 
 msgid "Auto-Approval confirmed"
 msgstr "Awtomatiske pśizwólenje jo wobkšuśone"
@@ -849,10 +849,10 @@ msgid "Un-rejected"
 msgstr "Wótpokazanje jo wótpórane"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "Marka needs_human_review jo se wulašowała za dodank {addon}."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "„Cłowjeske pśeglědowanje trjebne“ jo se wulašowało"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4172,7 +4172,7 @@ msgstr "Wšykne emoźije, kótarež trjebaśo – pśecej jano jadno kliknjenje 
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Markěrujśo swóju e-mailowu adresu. Firefox Relay wašu identitu šćita a spamowym mejlkam zajźujo."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4318,15 +4318,15 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Zachopny pakśik rozšyrjenjow"
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Zastojniki ześěgnjenjow"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
-msgstr ""
+msgstr "Rozšyrjenja za graśa a rozdrosćenje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4585,11 +4585,11 @@ msgid "Other (please specify)"
 msgstr "Druge (pšosym pódaś)"
 
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Awtomatiski wóznamjenjone wótpowědowanja słowa dla"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
+msgstr[0] "Pógódnośeński tekst njesmějo slědujuce słowo wopśimowaś: „{0}“"
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
