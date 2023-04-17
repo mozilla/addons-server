@@ -179,8 +179,10 @@ def get_averages_by_addon_from_bigquery(today, exclude=None):
     values."""
     client = create_client()
 
+    # Hotness is the growth between the last 7 days and 7 days before that,
+    # with week-ends ignored to smooth things out and reduce noise.
     one_week_date = today - timedelta(days=7)
-    four_weeks_date = today - timedelta(days=28)
+    two_weeks_date = today - timedelta(days=14)
 
     query = f"""
 WITH
@@ -192,16 +194,24 @@ WITH
     `{get_amo_stats_dau_view_name()}`
   WHERE
     submission_date >= @one_week_date
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 1
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id),
-  three_weeks_before_this_week AS (
+  last_week AS (
   SELECT
     addon_id,
-    AVG(dau) AS avg_three_weeks_before
+    AVG(dau) AS avg_last_week
   FROM
     `{get_amo_stats_dau_view_name()}`
   WHERE
-    submission_date BETWEEN @four_weeks_date AND @one_week_date
+    submission_date BETWEEN @two_weeks_date AND @one_week_date
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 1
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id)
 SELECT
@@ -209,13 +219,13 @@ SELECT
 FROM
   this_week
 JOIN
-  three_weeks_before_this_week
+  last_week
 USING
   (addon_id)
 """
     query_parameters = [
         bigquery.ScalarQueryParameter('one_week_date', 'DATE', one_week_date),
-        bigquery.ScalarQueryParameter('four_weeks_date', 'DATE', four_weeks_date),
+        bigquery.ScalarQueryParameter('two_weeks_date', 'DATE', two_weeks_date),
     ]
 
     if exclude and len(exclude) > 0:
@@ -232,7 +242,7 @@ USING
     return {
         row['addon_id']: {
             'avg_this_week': row['avg_this_week'],
-            'avg_three_weeks_before': row['avg_three_weeks_before'],
+            'avg_last_week': row['avg_last_week'],
         }
         for row in rows
         if row['addon_id']
