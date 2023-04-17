@@ -348,9 +348,9 @@ Deprecated==1.2.13 \
 django-aesfield==4.0.0 \
     --hash=sha256:2c88e7dc063919c4fa2fba6d7c65eb7be05838323ca3adcce76fb687d30d630b \
     --hash=sha256:425b5c0ed6d96045af8b47230dd5870a12cf3feb7a9c601878c82ebaf409cdce
-django-admin-rangefilter==0.9.0 \
-    --hash=sha256:d028cea6a1ec8f8ac98c34cf79950c03641ab4942a5cd5b285ef35ccef0595b6 \
-    --hash=sha256:e6aea6d6e9882b716beca7350a2a14db35c4cec204682b5a94dfd8110628e8ac
+django-admin-rangefilter==0.10.0 \
+    --hash=sha256:43fb3ea287e37bb786751f0e869d040e1cb75b867ff3886e3e40c80d8d040a0f \
+    --hash=sha256:6f5b84308b9aa673b47b7626b65bf3a0c5ac08ee20e06983225f748d61689d36
 django-cors-headers==3.14.0 \
     --hash=sha256:5fbd58a6fb4119d975754b2bc090f35ec160a8373f276612c675b00e8a138739 \
     --hash=sha256:684180013cc7277bdd8702b80a3c5a4b3fcae4abb2bf134dceb9f5dfe300228e
