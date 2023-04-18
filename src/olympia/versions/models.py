@@ -56,6 +56,7 @@ from olympia.translations.fields import (
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
+from olympia.users.utils import RestrictionChecker
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -363,7 +364,6 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.addons.models import AddonReviewerFlags
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
-        from olympia.users.utils import RestrictionChecker
 
         assert parsed_data is not None
 
