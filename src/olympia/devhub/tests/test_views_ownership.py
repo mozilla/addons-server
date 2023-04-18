@@ -514,7 +514,7 @@ class TestEditAuthor(TestOwnership):
             {
                 'user': [
                     'The email address used for your account is not '
-                    'allowed for add-on submission.'
+                    'allowed for submissions.'
                 ]
             }
         ]

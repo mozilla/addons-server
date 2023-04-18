@@ -50,8 +50,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         DisposableEmailDomainRestriction.objects.create(domain='example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'The email address used for your account is not allowed for submissions.'
         )
 
     def test_has_permission_user_ip_restricted(self):
@@ -59,7 +58,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'Multiple add-ons violating our policies have been submitted '
+            'Multiple submissions violating our policies have been sent '
             'from your location. The IP address has been blocked.'
         )
 
@@ -67,8 +66,7 @@ class TestIsSubmissionAllowedFor(TestCase):
         EmailUserRestriction.objects.create(email_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'The email address used for your account is not allowed for submissions.'
         )
 
     def test_has_permission_both_user_ip_and_email_restricted(self):
@@ -77,6 +75,5 @@ class TestIsSubmissionAllowedFor(TestCase):
         EmailUserRestriction.objects.create(email_pattern='test@example.com')
         assert not self.permission.has_permission(self.request, self.view)
         assert self.permission.message == (
-            'The email address used for your account is not '
-            'allowed for add-on submission.'
+            'The email address used for your account is not allowed for submissions.'
         )

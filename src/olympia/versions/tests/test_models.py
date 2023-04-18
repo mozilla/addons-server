@@ -2163,7 +2163,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_if_restricted_by_email(self):
         EmailUserRestriction.objects.create(
             email_pattern=self.upload.user.email,
-            restriction_type=RESTRICTION_TYPES.APPROVAL,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(
@@ -2178,7 +2178,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
         IPNetworkUserRestriction.objects.create(
-            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(
@@ -2194,7 +2194,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
         IPNetworkUserRestriction.objects.create(
-            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(

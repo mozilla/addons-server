@@ -36,7 +36,6 @@ from olympia.addons.models import (
 )
 from olympia.addons.utils import (
     fetch_translations_from_addon,
-    RestrictionChecker,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
@@ -64,6 +63,7 @@ from olympia.users.models import (
     UserEmailField,
     UserProfile,
 )
+from olympia.users.utils import RestrictionChecker
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
@@ -428,7 +428,7 @@ class AuthorWaitingConfirmationForm(AuthorForm):
         user = self.cleaned_data.get('user')
         if user:
             if not EmailUserRestriction.allow_email(
-                user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+                user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
             ):
                 raise forms.ValidationError(EmailUserRestriction.error_message)
 

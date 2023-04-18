@@ -848,7 +848,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
             raise exceptions.ValidationError(gettext('Account not found.'))
 
         if not EmailUserRestriction.allow_email(
-            user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ):
             raise exceptions.ValidationError(EmailUserRestriction.error_message)
 

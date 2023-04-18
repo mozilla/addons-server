@@ -7041,8 +7041,8 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 400, response.content
         assert response.data == {
             'user_id': [
-                'The email address used for your account is not allowed for add-on '
-                'submission.'
+                'The email address used for your account is not allowed for '
+                'submissions.'
             ]
         }
 

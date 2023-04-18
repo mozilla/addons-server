@@ -297,13 +297,16 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user1.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user2.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user3.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
@@ -315,18 +318,18 @@ class TestActions(TestCase):
             )
 
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
         assert not IPNetworkUserRestriction.objects.filter(
-            restriction_type=RESTRICTION_TYPES.APPROVAL
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert not EmailUserRestriction.objects.filter(
-            restriction_type=RESTRICTION_TYPES.APPROVAL
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         for restriction in IPNetworkUserRestriction.objects.all():
             assert restriction.reason == (
@@ -365,13 +368,16 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user1.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user2.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user3.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
@@ -386,10 +392,10 @@ class TestActions(TestCase):
                 )
 
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
@@ -418,13 +424,13 @@ class TestActions(TestCase):
         user3 = user_factory()
         user4 = user_factory(last_login_ip='4.8.15.16')
         existing_restriction1 = EmailUserRestriction.objects.create(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         existing_restriction2 = EmailUserRestriction.objects.create(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         existing_restriction3 = IPNetworkUserRestriction.objects.create(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         addon = addon_factory(users=[user1, user2])
         FileUpload.objects.create(
@@ -445,19 +451,22 @@ class TestActions(TestCase):
         # We added a new restriction for submission without touching the existing one
         # for approval for user1 and user3
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user1.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user2.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user3.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
@@ -477,13 +486,13 @@ class TestActions(TestCase):
         # Like above, we added a new restriction for submission, this time for the ip,
         # but we left the one for approval.
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()
@@ -505,13 +514,15 @@ class TestActions(TestCase):
         user3 = user_factory()
         user4 = user_factory(last_login_ip='4.8.15.16')
         EmailUserRestriction.objects.create(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user1.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
         EmailUserRestriction.objects.create(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user3.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
         IPNetworkUserRestriction.objects.create(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         )
         addon = addon_factory(users=[user1, user2])
         FileUpload.objects.create(
@@ -534,19 +545,21 @@ class TestActions(TestCase):
         # We added a new restriction for approval without touching the existing one
         # for submission for user1 and user3
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user1.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user1.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user2.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.APPROVAL
+            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert EmailUserRestriction.objects.filter(
-            email_pattern=user3.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            email_pattern=user3.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         ).exists()
         assert not EmailUserRestriction.objects.filter(
             email_pattern=user4.email
@@ -555,13 +568,13 @@ class TestActions(TestCase):
         # Like above, we added a new restriction for approval, this time for the ip,
         # but we left the one for submission.
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.SUBMISSION
+            network='5.6.7.8/32', restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ).exists()
         assert IPNetworkUserRestriction.objects.filter(
-            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='1.2.3.4/32', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         ).exists()
         assert not IPNetworkUserRestriction.objects.filter(network=None).exists()
         assert not IPNetworkUserRestriction.objects.filter(network='').exists()

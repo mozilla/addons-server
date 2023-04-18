@@ -309,7 +309,8 @@ class RatingFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
-    AUTO = 'review_flag_reason_auto_match'
+    AUTO_MATCH = 'review_flag_reason_auto_match'
+    AUTO_RESTRICTION = 'review_flag_reason_auto_user_restriction'
     OTHER = 'review_flag_reason_other'
     USER_FLAGS = (
         (SPAM, _('Spam or otherwise non-review content')),
@@ -319,7 +320,8 @@ class RatingFlag(ModelBase):
     )
     FLAGS = (
         *USER_FLAGS,
-        (AUTO, _('Auto-flagged due to word match')),
+        (AUTO_MATCH, _('Auto-flagged due to word match')),
+        (AUTO_RESTRICTION, _('Auto-flagged due to user restriction')),
     )
 
     rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)

@@ -51,7 +51,7 @@ def _delay_auto_approval_indefinitely(*, version, rule):
 
 
 def _delay_auto_approval_indefinitely_and_restrict(
-    *, version, rule, restriction_type=RESTRICTION_TYPES.SUBMISSION
+    *, version, rule, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
 ):
     """Delay auto-approval for the whole add-on indefinitely, and restricts the
     user(s) and their IP(s)."""
@@ -97,7 +97,7 @@ def _delay_auto_approval_indefinitely_and_restrict_future_approvals(*, version, 
     """Delay auto-approval for the whole add-on indefinitely, and restricts future
     approvals posted by the same user(s) and their IP(s)."""
     _delay_auto_approval_indefinitely_and_restrict(
-        version=version, rule=rule, restriction_type=RESTRICTION_TYPES.APPROVAL
+        version=version, rule=rule, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
     )
 
 

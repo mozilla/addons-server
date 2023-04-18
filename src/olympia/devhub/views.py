@@ -38,7 +38,6 @@ from olympia.addons.models import (
     AddonUserPendingConfirmation,
 )
 from olympia.addons.views import BaseFilter
-from olympia.addons.utils import RestrictionChecker
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
@@ -65,6 +64,7 @@ from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import DeveloperAgreementRestriction
 from olympia.users.utils import (
+    RestrictionChecker,
     send_addon_author_add_mail,
     send_addon_author_change_mail,
     send_addon_author_remove_mail,
