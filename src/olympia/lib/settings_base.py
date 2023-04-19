@@ -1476,8 +1476,8 @@ CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-REMOTE_SETTINGS_API_URL = 'https://kinto.dev.mozaws.net/v1/'
-REMOTE_SETTINGS_WRITER_URL = 'https://kinto.dev.mozaws.net/v1/'
+REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
+REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
 
 # The remote settings test server needs accounts and setting up before using.
