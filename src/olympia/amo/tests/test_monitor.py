@@ -1,3 +1,5 @@
+import json
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -77,3 +79,51 @@ class TestMonitor(TestCase):
             status, result = monitors.database()
         assert status == ''
         assert result is None
+
+    def test_remotesettings_success(self):
+        responses.add(
+            responses.GET,
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}__heartbeat__',
+            status=200,
+            body=json.dumps({'check': True}),
+        )
+        responses.add(
+            responses.GET,
+            settings.REMOTE_SETTINGS_WRITER_URL,
+            status=200,
+            body=json.dumps({'user': {'id': 'account:amo'}}),
+        )
+        obtained, _ = monitors.remotesettings()
+        assert obtained == ''
+
+    def test_remotesettings_bad_credentials(self):
+        responses.add(
+            responses.GET,
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}__heartbeat__',
+            status=200,
+            body=json.dumps({'check': True}),
+        )
+        responses.add(
+            responses.GET,
+            settings.REMOTE_SETTINGS_WRITER_URL,
+            status=200,
+            body=json.dumps({}),
+        )
+        obtained, _ = monitors.remotesettings()
+        assert 'Invalid credentials' in obtained
+
+    def test_remotesettings_fail(self):
+        responses.add(
+            responses.GET,
+            f'{settings.REMOTE_SETTINGS_WRITER_URL}__heartbeat__',
+            status=503,
+            body=json.dumps({'check': False}),
+        )
+        responses.add(
+            responses.GET,
+            settings.REMOTE_SETTINGS_WRITER_URL,
+            status=200,
+            body=json.dumps({}),
+        )
+        obtained, _ = monitors.remotesettings()
+        assert '503 Server Error: Service Unavailable' in obtained

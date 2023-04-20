@@ -197,3 +197,26 @@ def database():
                 monitor_log.critical(status)
 
     return status, None
+
+
+def remotesettings():
+    # check Remote Settings connection
+
+    from olympia.lib.remote_settings import RemoteSettings
+    from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_MLBF
+
+    client = RemoteSettings(
+        settings.REMOTE_SETTINGS_WRITER_BUCKET,
+        REMOTE_SETTINGS_COLLECTION_MLBF,
+    )
+
+    status = ''
+    try:
+        client.heartbeat()
+    except Exception as e:
+        status = f'Failed to contact Remote Settings server: {e}'
+    if not status and not client.authenticated():
+        status = 'Invalid credentials for Remote Settings server'
+    if status:
+        monitor_log.critical(status)
+    return status, None

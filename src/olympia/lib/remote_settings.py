@@ -42,6 +42,19 @@ class RemoteSettings:
         b64 = b64encode(f'{self.username}:{self.password}'.encode()).decode()
         return {'Content-Type': 'application/json', 'Authorization': f'Basic {b64}'}
 
+    def heartbeat(self):
+        url = f'{settings.REMOTE_SETTINGS_WRITER_URL}__heartbeat__'
+        response = requests.get(url, headers=self.headers)
+        response.raise_for_status()
+        return response.json()
+
+    def authenticated(self):
+        # Return True if configured credentials can authenticate.
+        response = requests.get(
+            settings.REMOTE_SETTINGS_WRITER_URL, headers=self.headers
+        )
+        return 'id' in response.json().get('user', {})
+
     def setup_test_server_auth(self):
         # check if the user already exists in remote setting's accounts
         host = settings.REMOTE_SETTINGS_WRITER_URL

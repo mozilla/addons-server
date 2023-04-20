@@ -44,6 +44,7 @@ def heartbeat(request):
         'rabbitmq',
         'signer',
         'database',
+        'remotesettings',
     ]
 
     for check in checks:
