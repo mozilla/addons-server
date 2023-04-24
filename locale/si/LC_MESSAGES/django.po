@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
 "PO-Revision-Date: 2022-11-10 23:20+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4453,6 +4453,14 @@ msgstr ""
 
 msgid "Other (please specify)"
 msgstr "වෙනත් (සඳහන් කරන්න)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This field is required."
 msgstr "මෙම ක්‍ෂේත්‍රය අවශ්‍යයි."

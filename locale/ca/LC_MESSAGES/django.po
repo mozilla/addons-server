@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
 "PO-Revision-Date: 2023-03-04 22:32+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -4690,6 +4690,14 @@ msgstr "És una petició o un problema que no hauria de ser aquí"
 
 msgid "Other (please specify)"
 msgstr "Un altre motiu (especifica)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This field is required."
 msgstr ""

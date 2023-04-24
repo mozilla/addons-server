@@ -44,7 +44,7 @@ from olympia.amo.utils import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PRE_REVIEW_GROUPS, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -56,6 +56,7 @@ from olympia.translations.fields import (
 )
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
+from olympia.users.utils import RestrictionChecker
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -180,7 +181,11 @@ class VersionManager(ManagerBase):
             Q(addon__reviewerflags__auto_approval_disabled=True)
             | Q(addon__reviewerflags__auto_approval_disabled_until_next_approval=True)
             | Q(addon__reviewerflags__auto_approval_delayed_until__isnull=False)
-            | Q(addon__promotedaddon__group_id__in=(g.id for g in PRE_REVIEW_GROUPS)),
+            | Q(
+                addon__promotedaddon__group_id__in=(
+                    g.id for g in PROMOTED_GROUPS if g.listed_pre_review
+                )
+            ),
             addon__status__in=(amo.VALID_ADDON_STATUSES),
             channel=amo.CHANNEL_LISTED,
         )
@@ -191,9 +196,16 @@ class VersionManager(ManagerBase):
             )
             | Q(
                 addon__reviewerflags__auto_approval_delayed_until_unlisted__isnull=False
+            )
+            | Q(
+                addon__promotedaddon__group_id__in=(
+                    g.id for g in PROMOTED_GROUPS if g.unlisted_pre_review
+                )
             ),
             channel=amo.CHANNEL_UNLISTED,
         )
+        # Versions not yet reviewed but that won't get auto-approved should
+        # have a due date.
         is_pre_review_version = Q(
             Q(file__status=amo.STATUS_AWAITING_REVIEW)
             & ~Q(addon__status=amo.STATUS_DELETED)
@@ -204,8 +216,12 @@ class VersionManager(ManagerBase):
                 | requires_manual_unlisted_approval_and_is_unlisted
             )
         )
+        # Versions that haven't been disabled or have ever been signed and have
+        # the explicit needs human review flag should have a due date (it gets
+        # dropped on various reviewer actions).
         is_needs_human_review = Q(
-            Q(deleted=False) | Q(file__is_signed=True), needs_human_review=True
+            ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
+            needs_human_review=True,
         )
         return method(is_needs_human_review | is_pre_review_version).using('default')
 
@@ -346,7 +362,6 @@ class Version(OnChangeMixin, ModelBase):
         validation results.
         """
         from olympia.addons.models import AddonReviewerFlags
-        from olympia.addons.utils import RestrictionChecker
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
 
@@ -397,6 +412,13 @@ class Version(OnChangeMixin, ModelBase):
             approval_notes = (
                 'This version has been signed with Mozilla internal certificate.'
             )
+
+        previous_version_had_needs_human_review = (
+            addon.versions(manager='unfiltered_for_relations')
+            .filter(channel=channel, needs_human_review=True)
+            .exists()
+        )
+
         version = cls.objects.create(
             addon=addon,
             approval_notes=approval_notes,
@@ -404,6 +426,7 @@ class Version(OnChangeMixin, ModelBase):
             license_id=license_id,
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
+            needs_human_review=previous_version_had_needs_human_review,
         )
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
@@ -734,6 +757,22 @@ class Version(OnChangeMixin, ModelBase):
     def sources_provided(self):
         return bool(self.source)
 
+    def flag_if_sources_were_provided(self, user):
+        from olympia.activity.utils import log_and_notify
+        from olympia.addons.models import AddonReviewerFlags
+
+        if self.source:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_code_review': True}
+            )
+
+            # Add Activity Log, notifying staff, relevant reviewers and
+            # other authors of the add-on.
+            log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
+
+            if self.pending_rejection:
+                self.update(needs_human_review=True)
+
     @classmethod
     def transformer(cls, versions):
         """Attach all the compatible apps and the file to the versions."""
@@ -903,17 +942,15 @@ class Version(OnChangeMixin, ModelBase):
     @use_primary_db
     def inherit_due_date(self):
         qs = (
-            Version.objects.filter(addon=self.addon, channel=self.channel)
+            Version.unfiltered.filter(addon=self.addon, channel=self.channel)
             .exclude(due_date=None)
             .exclude(id=self.pk)
-            .filter(file__status=amo.STATUS_AWAITING_REVIEW)
-            .exclude(reviewerflags__pending_rejection__isnull=False)
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        # If no matching version is found, we end up passing due_date=None which will
-        # set the due date to standard review time if it wasn't already set on the
-        # instance.
+        # If no matching due_date is found, we end up passing due_date=None
+        # which will set the due date to standard review time if it wasn't
+        # already set on the instance.
         self.reset_due_date(due_date=qs.first())
 
     @cached_property
@@ -958,7 +995,7 @@ class Version(OnChangeMixin, ModelBase):
 
         if self != self.addon.current_version or (
             not (group := self.addon.promoted_group())
-            or not (group.badged and group.pre_review)
+            or not (group.badged and group.listed_pre_review)
         ):
             return True
 
@@ -1196,10 +1233,10 @@ def update_status(sender, instance, **kw):
             pass
 
 
-def inherit_due_date(sender, instance, **kw):
+def inherit_due_date_if_nominated(sender, instance, **kw):
     """
-    For new versions pending review, ensure the due date is inherited from last
-    nominated version.
+    Ensure due date is inherited when the add-on is nominated for initial
+    listed review.
     """
     if kw.get('raw'):
         return
@@ -1224,7 +1261,9 @@ models.signals.post_save.connect(
     update_status, sender=Version, dispatch_uid='version_update_status'
 )
 models.signals.post_save.connect(
-    inherit_due_date, sender=Version, dispatch_uid='version_inherit_due_date'
+    inherit_due_date_if_nominated,
+    sender=Version,
+    dispatch_uid='inherit_due_date_if_nominated',
 )
 models.signals.pre_delete.connect(
     cleanup_version, sender=Version, dispatch_uid='cleanup_version'

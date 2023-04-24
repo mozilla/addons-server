@@ -23,9 +23,16 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.ratings.models import Rating, RatingFlag
-from olympia.ratings.tasks import addon_rating_aggregates
-from olympia.ratings.views import RatingViewSet
+from olympia.users.models import (
+    DisposableEmailDomainRestriction,
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+    RESTRICTION_TYPES,
+)
+
+from ..models import DeniedRatingWord, Rating, RatingFlag
+from ..tasks import addon_rating_aggregates
+from ..views import RatingViewSet
 
 
 locmem_cache = settings.CACHES.copy()
@@ -1608,6 +1615,76 @@ class TestRatingViewSetEdit(TestCase):
             assert str(new_rating.body) == 'I did it'
             assert new_rating.rating == 1
 
+    @freeze_time(as_arg=True)
+    def test_body_contains_banned_word_deny(frozen_time, self):
+        DeniedRatingWord.objects.create(word='body', moderation=False)
+        DeniedRatingWord.objects.create(word='foo', moderation=False)
+        # This wouldn't be matched, because it's a moderate word instead.
+        DeniedRatingWord.objects.create(word='test', moderation=True)
+        self.client.login_api(self.user)
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain the word: "body"']
+        }
+
+        frozen_time.tick(delta=timedelta(minutes=1))
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé FOO',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain any of the words: "body", "foo"']
+        }
+        assert not RatingFlag.objects.exists()
+
+    def test_body_contains_banned_word_flag(self):
+        user_factory(id=settings.TASK_USER_ID)
+        DeniedRatingWord.objects.create(word='body', moderation=True)
+        DeniedRatingWord.objects.create(word='wOrld', moderation=True)
+        assert not self.rating.editorreview
+        assert not self.rating.ratingflag_set.exists()
+        self.client.login_api(self.user)
+
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 200, response.json()
+        self.rating.reload()
+        assert self.rating.editorreview
+        flag = self.rating.ratingflag_set.get()
+        assert flag.flag == RatingFlag.AUTO_MATCH
+        assert flag.note == 'Words matched: [body]'
+
+        # And repeat with a different word
+        response = self.client.patch(
+            self.url,
+            {
+                'body': 'test bOdyé WORld',
+                'score': 5,
+            },
+        )
+        assert response.status_code == 200, response.json()
+        self.rating.reload()
+        assert self.rating.editorreview
+        flag = self.rating.ratingflag_set.get()  # still only one
+        assert flag.flag == RatingFlag.AUTO_MATCH
+        assert flag.note == 'Words matched: [body, world]'
+
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClientSessionID
@@ -1823,6 +1900,8 @@ class TestRatingViewSetPost(TestCase):
         ]
 
     def test_post_rating_has_body(self):
+        # add a denied word that won't match
+        DeniedRatingWord.objects.create(word='something', moderation=True)
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
@@ -1848,6 +1927,9 @@ class TestRatingViewSetPost(TestCase):
             'id': review.version.id,
             'version': review.version.version,
         }
+        # and check it's not been auto flagged for moderation
+        assert not review.editorreview
+        assert not review.ratingflag_set.exists()
 
     def test_no_body_just_rating(self):
         self.user = user_factory()
@@ -2406,6 +2488,216 @@ class TestRatingViewSetPost(TestCase):
                 },
             )
             assert response.status_code == 201, response.content
+
+    @freeze_time(as_arg=True)
+    def test_body_contains_banned_word_deny(frozen_time, self):
+        DeniedRatingWord.objects.create(word='body', moderation=False)
+        DeniedRatingWord.objects.create(word='foo', moderation=False)
+        # This wouldn't be matched, because it's a moderate word instead.
+        DeniedRatingWord.objects.create(word='test', moderation=True)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain the word: "body"']
+        }
+
+        frozen_time.tick(delta=timedelta(minutes=1))
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé FOO',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'body': ['The review text cannot contain any of the words: "body", "foo"']
+        }
+        assert not Rating.objects.exists()
+
+    def test_body_contains_banned_word_flag(self):
+        user_factory(id=settings.TASK_USER_ID)
+        DeniedRatingWord.objects.create(word='body', moderation=True)
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 201
+        assert Rating.objects.exists()
+        rating = Rating.objects.get()
+        assert rating.editorreview
+        flag = rating.ratingflag_set.get()
+        assert flag.flag == RatingFlag.AUTO_MATCH
+        assert flag.note == 'Words matched: [body]'
+
+    def test_user_restriction_deny_by_email(self):
+        self.user = user_factory()
+        EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.RATING,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 403
+        assert response.data == {'detail': str(EmailUserRestriction.error_message)}
+        assert not Rating.objects.exists()
+
+    def test_user_restriction_deny_by_disposable_email(self):
+        self.user = user_factory(email='foo@baa.com')
+        DisposableEmailDomainRestriction.objects.create(
+            domain='baa.com',
+            restriction_type=RESTRICTION_TYPES.RATING,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 403
+        assert response.data == {
+            'detail': str(DisposableEmailDomainRestriction.error_message)
+        }
+        assert not Rating.objects.exists()
+
+    def test_user_restriction_deny_by_ip(self):
+        self.user = user_factory()
+        ip = '123.45.67.89'
+        IPNetworkUserRestriction.objects.create(
+            network=ip,
+            restriction_type=RESTRICTION_TYPES.RATING,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            data={'addon': str(self.addon.pk), 'message': 'again!'},
+            REMOTE_ADDR=ip,
+            HTTP_X_FORWARDED_FOR=f'{ip}, {get_random_ip()}',
+        )
+        assert response.status_code == 403
+        assert response.data == {'detail': str(IPNetworkUserRestriction.error_message)}
+        assert not Rating.objects.exists()
+
+    def test_user_restriction_flag_by_email(self):
+        user_factory(id=settings.TASK_USER_ID)
+        self.user = user_factory()
+        EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.RATING_MODERATE,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 201
+        assert Rating.objects.exists()
+        rating = Rating.objects.get()
+        assert rating.editorreview
+        flag = rating.ratingflag_set.get()
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == (
+            f'{self.user.email} or {{127.0.0.1}} matched a UserRestriction'
+        )
+
+    def test_user_restriction_flag_by_disposable_email(self):
+        user_factory(id=settings.TASK_USER_ID)
+        self.user = user_factory(email='foo@baa.com')
+        DisposableEmailDomainRestriction.objects.create(
+            domain='baa.com',
+            restriction_type=RESTRICTION_TYPES.RATING_MODERATE,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 201
+        assert Rating.objects.exists()
+        rating = Rating.objects.get()
+        assert rating.editorreview
+        flag = rating.ratingflag_set.get()
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == (
+            f'{self.user.email} or {{127.0.0.1}} matched a UserRestriction'
+        )
+
+    def test_user_restriction_flag_by_ip(self):
+        user_factory(id=settings.TASK_USER_ID)
+        self.user = user_factory()
+        ip = '123.45.67.89'
+        IPNetworkUserRestriction.objects.create(
+            network=ip,
+            restriction_type=RESTRICTION_TYPES.RATING_MODERATE,
+        )
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': 'test bOdyé',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+            REMOTE_ADDR=ip,
+            HTTP_X_FORWARDED_FOR=f'{ip}, {get_random_ip()}',
+        )
+        assert response.status_code == 201
+        assert Rating.objects.exists()
+        rating = Rating.objects.get()
+        assert rating.editorreview
+        flag = rating.ratingflag_set.get()
+        assert flag.flag == RatingFlag.AUTO_RESTRICTION
+        assert flag.note == f'{self.user.email} or {{{ip}}} matched a UserRestriction'
 
 
 class TestRatingViewSetFlag(TestCase):

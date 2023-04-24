@@ -12,7 +12,6 @@ from rest_framework import exceptions, serializers
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
-from olympia.activity.utils import log_and_notify
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
 from olympia.amo.validators import (
@@ -66,7 +65,6 @@ from .fields import (
 from .models import (
     Addon,
     AddonApprovalsCounter,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -585,21 +583,8 @@ class DeveloperVersionSerializer(VersionSerializer):
 
         return data
 
-    def _update_admin_review_flag_and_logging(self, version):
-        if version.source:
-            AddonReviewerFlags.objects.update_or_create(
-                addon=version.addon, defaults={'needs_admin_code_review': True}
-            )
-            # Add Activity Log, notifying staff, relevant reviewers and other authors of
-            # the add-on.
-            log_and_notify(
-                amo.LOG.SOURCE_CODE_UPLOADED,
-                None,
-                self.context['request'].user,
-                version,
-            )
-
     def create(self, validated_data):
+        user = self.context['request'].user
         upload = validated_data.get('upload')
         parsed_and_validated_data = {
             **self.parsed_data,
@@ -631,7 +616,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         if 'source' in validated_data:
             version.source = validated_data['source']
             version.save()
-            self._update_admin_review_flag_and_logging(version)
+            version.flag_if_sources_were_provided(user)
 
         return version
 
@@ -676,7 +661,7 @@ class DeveloperVersionSerializer(VersionSerializer):
                 amo.LOG.CHANGE_LICENSE, instance.license, instance.addon, user=user
             )
         if 'source' in validated_data:
-            self._update_admin_review_flag_and_logging(instance)
+            instance.flag_if_sources_were_provided(user)
         return instance
 
 
@@ -863,7 +848,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
             raise exceptions.ValidationError(gettext('Account not found.'))
 
         if not EmailUserRestriction.allow_email(
-            user.email, restriction_type=RESTRICTION_TYPES.SUBMISSION
+            user.email, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
         ):
             raise exceptions.ValidationError(EmailUserRestriction.error_message)
 

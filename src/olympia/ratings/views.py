@@ -4,7 +4,7 @@ from django.utils.encoding import force_str
 from rest_framework import serializers
 from rest_framework.decorators import action
 from rest_framework.exceptions import NotAuthenticated, ParseError, PermissionDenied
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.status import HTTP_202_ACCEPTED
 from rest_framework.viewsets import ModelViewSet
@@ -27,7 +27,7 @@ from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrot
 from olympia.api.utils import is_gate_active
 
 from .models import Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission
+from .permissions import CanDeleteRatingPermission, CanCreateRatingPermission
 from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
 from .utils import get_grouped_ratings
 
@@ -117,7 +117,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 # Deletion requires a specific permission check.
                 'delete': CanDeleteRatingPermission,
                 # To post a rating you just need to be authenticated.
-                'post': IsAuthenticated,
+                'post': CanCreateRatingPermission,
                 # To edit a rating you need to be the author or be an admin.
                 'patch': AnyOf(
                     AllowOwner, GroupPermission(amo.permissions.ADDONS_EDIT)

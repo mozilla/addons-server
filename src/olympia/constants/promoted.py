@@ -14,7 +14,8 @@ _PromotedSuperClass = namedtuple(
         'api_name',
         'search_ranking_bump',
         'warning',  # See EXCLUDE_WARNING_CATEGORIES in frontend: there's no effect here
-        'pre_review',
+        'listed_pre_review',
+        'unlisted_pre_review',
         'admin_review',
         'badged',  # See BADGE_CATEGORIES in frontend too: both need changing
         'autograph_signing_states',
@@ -28,7 +29,8 @@ _PromotedSuperClass = namedtuple(
         # No defaults for: id, name, api_name.
         0.0,  # search_ranking_bump
         True,  # warning
-        False,  # pre_review
+        False,  # listed_pre_review
+        False,  # unlisted_pre_review
         False,  # admin_review
         False,  # badged
         {},  # autograph_signing_states - should be a dict of App.short: state
@@ -58,7 +60,7 @@ RECOMMENDED = PromotedClass(
     api_name='recommended',
     search_ranking_bump=5.0,
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'recommended',
@@ -72,7 +74,7 @@ SPONSORED = PromotedClass(
     name=_('Sponsored'),
     api_name='sponsored',
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
@@ -86,7 +88,7 @@ VERIFIED = PromotedClass(
     name=_('Verified'),
     api_name='verified',
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
     badged=True,
     autograph_signing_states={
         applications.FIREFOX.short: 'verified',
@@ -100,7 +102,7 @@ LINE = PromotedClass(
     api_name='line',
     search_ranking_bump=5.0,
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
     admin_review=True,
     badged=True,
     autograph_signing_states={
@@ -115,7 +117,7 @@ SPOTLIGHT = PromotedClass(
     name=_('Spotlight'),
     api_name='spotlight',
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
     admin_review=True,
     can_primary_hero=True,
     immediate_approval=True,
@@ -133,7 +135,8 @@ NOTABLE = PromotedClass(
     name=_('Notable'),
     api_name='notable',
     warning=False,
-    pre_review=True,
+    listed_pre_review=True,
+    unlisted_pre_review=True,
     can_primary_hero=True,
     flag_for_human_review=True,
 )
@@ -149,7 +152,6 @@ PROMOTED_GROUPS = [
     NOTABLE,
 ]
 
-PRE_REVIEW_GROUPS = [group for group in PROMOTED_GROUPS if group.pre_review]
 BADGED_GROUPS = [group for group in PROMOTED_GROUPS if group.badged]
 BADGED_API_NAME = 'badged'  # Special alias for all badged groups
 

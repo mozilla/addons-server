@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-08 03:45+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-10 04:26+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1016,13 +1016,13 @@ msgid "Photos, Music & Videos"
 msgstr "相片、音樂、影片"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "下載能夠加強看照片、欣賞影音體驗的 Firefox 擴充套件。此分類包含能夠修改影音內容、以圖找圖等更多功能的擴充套件。"
 
 msgid "Privacy & Security"
 msgstr "隱私權與安全性"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "下載能夠保護隱私且安全地上網的 Firefox 擴充套件。此分類包含能夠封鎖煩人的廣告、防止追蹤、管理重新導向等功能的擴充套件。"
 
 msgid "Search Tools"
 msgstr "搜尋工具"
@@ -1058,7 +1058,7 @@ msgid "Other"
 msgstr "其它"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "下載無可預料，又富有創意，更能完成許多奇怪任務的 Firefox 擴充套件。"
 
 msgid "Device Features & Location"
 msgstr "裝置功能與地理位置"
@@ -4514,6 +4514,13 @@ msgstr "誤置的臭蟲回報或是技術支援要求"
 
 msgid "Other (please specify)"
 msgstr "其他（請詳述）"
+
+msgid "Auto-flagged due to word match"
+msgstr "由於文字符合而自動標記"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
 
 msgid "This field is required."
 msgstr "此欄位必填。"

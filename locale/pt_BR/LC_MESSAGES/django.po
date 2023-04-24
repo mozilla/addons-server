@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 18:59+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-04 18:13+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1374,7 +1374,7 @@ msgid "No action"
 msgstr "Nenhuma ação"
 
 msgid "Flag for human review"
-msgstr "Sinalizar para revisão humana"
+msgstr "Marcar para revisão humana"
 
 msgid "Delay auto-approval"
 msgstr "Adiar aprovação automática"
@@ -4639,6 +4639,14 @@ msgstr "Solicitação de ajuda ou bug reportado no local errado"
 msgid "Other (please specify)"
 msgstr "Outro (especifique)"
 
+msgid "Auto-flagged due to word match"
+msgstr "Marcada automaticamente devido a correspondência de palavras"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "O texto da análise não pode conter esta palavra: \"{0}\""
+msgstr[1] "O texto da análise não pode conter nenhuma dessas palavras: \"{0}\""
+
 msgid "This field is required."
 msgstr "Este campo é obrigatório."
 
@@ -4667,7 +4675,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Esta avaliação não pode ser marcada porque ela não possui texto de análise."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr "Uma breve explicação deve ser fornecida ao selecionar \"Outros\" como motivo da sinalização."
+msgstr "Uma breve explicação deve ser fornecida ao selecionar \"Outros\" como motivo de marcar."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -4694,7 +4702,7 @@ msgstr "por %(user)s em %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr "<strong>%(reason)s</strong> <span class=\"light\">Denunciado por %(user)s em %(date)s</span>"
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcada por %(user)s em %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Aviso!</strong> Outro usuário estava visualizando essa página antes de você."

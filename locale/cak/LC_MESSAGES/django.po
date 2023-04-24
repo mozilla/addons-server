@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
 "PO-Revision-Date: 2023-02-22 23:58+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4649,6 +4649,14 @@ msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
 
 msgid "Other (please specify)"
 msgstr "Jun chik (tatzijoj)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This field is required."
 msgstr "K'atzinel re k'ojlib'äl re'."

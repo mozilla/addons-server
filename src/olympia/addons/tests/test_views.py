@@ -8,7 +8,7 @@ import tempfile
 import zipfile
 
 from collections import Counter, OrderedDict
-from datetime import datetime
+from datetime import datetime, timedelta
 from unittest import mock
 from unittest.mock import patch
 from urllib.parse import unquote
@@ -71,6 +71,7 @@ from olympia.versions.models import (
     AppVersion,
     License,
     VersionPreview,
+    VersionReviewerFlags,
 )
 
 from ..models import (
@@ -4098,6 +4099,25 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             assert self._submit_source(new_source, error=False)[0].data != error
             assert self.version.source
 
+    def test_submit_source_pending_rejection_triggers_needs_human_review(self):
+        assert not self.version.source
+        new_source = self.file_path('webextension_with_image.zip')
+        VersionReviewerFlags.objects.create(
+            version=self.version,
+            pending_rejection=datetime.now() + timedelta(days=2),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        response, self.version = self._submit_source(new_source)
+        self.addon.reload()
+        assert self.version.source
+        assert self.addon.needs_admin_code_review
+        assert self.version.needs_human_review
+        log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+        assert log.user == self.user
+        assert log.details is None
+        assert log.arguments == [self.addon, self.version]
+
     def test_disable_enabled_version(self):
         # first test the case where the file is disabled by rejection or obsolescence
         self.version.file.update(status=amo.STATUS_DISABLED)
@@ -7021,8 +7041,8 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 400, response.content
         assert response.data == {
             'user_id': [
-                'The email address used for your account is not allowed for add-on '
-                'submission.'
+                'The email address used for your account is not allowed for '
+                'submissions.'
             ]
         }
 

@@ -9,7 +9,7 @@ Applications Versions
 .. _v4-applications-version:
 
 This internal endpoint allows you to create applications versions to be
-referenced in add-ons manifests. It requires :ref:`v4-authentication<api-auth>`
+referenced in add-ons manifests. It requires :doc:`authentication<auth>`
 and a special permission.
 
 The currently available applications versions are :ref:`available to list<applications-version-list>`.

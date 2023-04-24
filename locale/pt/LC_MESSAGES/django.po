@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4753,6 +4753,14 @@ msgstr "Relatório de erro fora do sítio apropriado ou pedido de ajuda"
 
 msgid "Other (please specify)"
 msgstr "Outro (por favor especifique)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy
 msgid "This field is required."

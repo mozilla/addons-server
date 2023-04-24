@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-18 00:22+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-04 00:47+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -65,11 +65,10 @@ msgstr "Equipa de Revisão de Extensões"
 msgid "Review"
 msgstr "Revisão"
 
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Versão {0}"
-msgstr[1] "Versão {0}"
+msgstr[1] "Versões {0}"
 
 msgid "Review note"
 msgstr "Nota da revisão"
@@ -1331,7 +1330,7 @@ msgid "Strategic"
 msgstr "Estratégico"
 
 msgid "Notable"
-msgstr ""
+msgstr "Notável"
 
 msgid "No Reputation"
 msgstr "Sem reputação"
@@ -1432,7 +1431,7 @@ msgid "Manifest V3 is currently not supported for upload. {start_href}Read more 
 msgstr "Atualmente, o envio da V3 do manifesto ainda não é suportada. {start_href}Leia mais sobre o cronograma de suporte{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Aviso de compatibilidade do manifesto V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
@@ -4284,7 +4283,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize YouTube to taste."
-msgstr ""
+msgstr "Personalize o YouTube a seu gosto."
 
 #. editorial content for the primary hero shelves.
 msgid "Delete browsing data directly from the browser toolbar."
@@ -4338,15 +4337,15 @@ msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Pacote inicial de extensão"
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Gestores de transferências"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
-msgstr ""
+msgstr "Extensões de jogos e entretenimento"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4611,6 +4610,14 @@ msgstr "Relatório de erro mal colocado ou pedido de apoio"
 
 msgid "Other (please specify)"
 msgstr "Outro (por favor específique)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This field is required."
 msgstr "Este campo é requerido."

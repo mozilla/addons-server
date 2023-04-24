@@ -11,7 +11,7 @@ from olympia.amo.admin import (
 from olympia.translations.utils import truncate_text
 from olympia.zadmin.admin import related_single_content_link
 
-from .models import Rating
+from .models import Rating, DeniedRatingWord
 
 
 class RatingTypeFilter(admin.SimpleListFilter):
@@ -180,4 +180,24 @@ class RatingAdmin(AMOModelAdmin):
     user_link.short_description = 'User'
 
 
+class DeniedRatingWordAdmin(AMOModelAdmin):
+    readonly_fields = (
+        'created',
+        'modified',
+    )
+    fields = (
+        'created',
+        'modified',
+        'word',
+        'moderation',
+    )
+    list_display = (
+        'created',
+        'word',
+        'moderation',
+    )
+    actions = ('delete_selected',)
+
+
 admin.site.register(Rating, RatingAdmin)
+admin.site.register(DeniedRatingWord, DeniedRatingWordAdmin)

@@ -47,7 +47,7 @@ class TestIPNetworkUserRestrictionForm(UserFormBase):
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.32',
-            'restriction_type': str(RESTRICTION_TYPES.SUBMISSION),
+            'restriction_type': str(RESTRICTION_TYPES.ADDON_SUBMISSION),
         }
         response = self.client.post(url, data)
 
@@ -61,7 +61,7 @@ class TestIPNetworkUserRestrictionForm(UserFormBase):
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.0/28',
-            'restriction_type': str(RESTRICTION_TYPES.SUBMISSION),
+            'restriction_type': str(RESTRICTION_TYPES.ADDON_SUBMISSION),
         }
         response = self.client.post(url, data)
 
@@ -71,7 +71,7 @@ class TestIPNetworkUserRestrictionForm(UserFormBase):
 
         data = {
             'ip_address': '192.168.1.1',
-            'restriction_type': str(RESTRICTION_TYPES.SUBMISSION),
+            'restriction_type': str(RESTRICTION_TYPES.ADDON_SUBMISSION),
         }
         response = self.client.post(url, data)
 

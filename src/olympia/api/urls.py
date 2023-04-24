@@ -44,7 +44,6 @@ v5_api_urls = [
     re_path(r'^hero/', include('olympia.hero.urls')),
     re_path(r'^ratings/', include(ratings_v4.urls)),
     re_path(r'^reviewers/', include('olympia.reviewers.api_urls')),
-    re_path(r'^', include('olympia.signing.urls')),
     re_path(r'^', include(amo_api_patterns)),
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
     re_path(r'^shelves/', include('olympia.shelves.urls')),

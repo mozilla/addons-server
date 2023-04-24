@@ -91,6 +91,7 @@ class TestCollectionAdmin(TestCase):
             # Django wants the whole form to be submitted, unfortunately.
             'default_locale': collection.default_locale,
             'author': user.pk,
+            'description_en-us': '',
         }
         post_data['slug'] = 'bar'
         post_data.update(
@@ -137,6 +138,7 @@ class TestCollectionAdmin(TestCase):
             # Django wants the whole form to be submitted, unfortunately.
             'default_locale': collection.default_locale,
             'author': user.pk,
+            'description_en-us': '',
         }
         post_data['slug'] = 'bar'
         response = self.client.post(self.detail_url, post_data, follow=True)
@@ -165,6 +167,7 @@ class TestCollectionAdmin(TestCase):
             # Django wants the whole form to be submitted, unfortunately.
             'default_locale': collection.default_locale,
             'author': user.pk,
+            'description_en-us': '',
         }
         post_data['slug'] = 'bar'
         post_data.update(
@@ -198,6 +201,7 @@ class TestCollectionAdmin(TestCase):
             # Django wants the whole form to be submitted, unfortunately.
             'default_locale': collection.default_locale,
             'author': mozilla.pk,
+            'description_en-us': '',
         }
         post_data['slug'] = 'bar'
         post_data.update(
@@ -233,6 +237,7 @@ class TestCollectionAdmin(TestCase):
             # Django wants the whole form to be submitted, unfortunately.
             'default_locale': collection.default_locale,
             'author': mozilla.pk,
+            'description_en-us': '',
         }
         post_data['slug'] = 'fox'
         post_data.update(

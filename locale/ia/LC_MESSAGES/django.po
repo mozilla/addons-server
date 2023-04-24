@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 20:45+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-11 08:05+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -3483,7 +3483,7 @@ msgstr "Reguarda le videos YouTube sempre in le melior qualitate, disactiva anno
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers. Get a glimpse into who's tracking you with just a click."
-msgstr "Tracia le traciatores. Da un oculata a qui te spia per justo un clic."
+msgstr "Tracia le traciatores. Vide qui te spia con un sol clic."
 
 #. editorial content for the discovery pane.
 msgid "Change your proxy server and surf the web through self-defined proxy settings."
@@ -3699,7 +3699,7 @@ msgstr "Un maniera plus efficiente de salvar marcapaginas si tu los organisa in 
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr "Spolia le spatios e le formattation non necessari e copia justo le texto simple."
+msgstr "Elimina le formatation innecessari e copia solmente le texto simple."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4047,11 +4047,11 @@ msgstr "Elige, ordina e exeque tu discargamentos plus rapidemente."
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr "Informationes meteorologic  justo in le navigator."
+msgstr "Previsiones meteorologic directemente in le navigator."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "Dele cookies, chronologia de exploration e le files in cache con justo un sol clic."
+msgstr "Dele cookies, chronologia de navigation e files in cache con un sol clic."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4192,7 +4192,7 @@ msgstr "Remove ille longe parametros de traciamento del URL resultato del recerc
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr "Recipe informationes meteorologic  justo de Firefox."
+msgstr "Recipe previsiones meteorologic directemente de Firefox."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4559,6 +4559,14 @@ msgstr "Reporto de defecto o requesta de supporto mal ponite"
 
 msgid "Other (please specify)"
 msgstr "Altere (specificar)"
+
+msgid "Auto-flagged due to word match"
+msgstr "Auto-etiquettate per concordantia de parolas"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "Le texto del recension non pote continer le parola: \"{0}\""
+msgstr[1] "Le texto del recension non pote continer ulle del parolas: \"{0}\""
 
 msgid "This field is required."
 msgstr "Campo obligatori."

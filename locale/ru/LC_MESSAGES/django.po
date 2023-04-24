@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 13:15+0000\n"
-"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-08 21:07+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4614,6 +4614,15 @@ msgstr "Отправленное не по назначению сообщени
 
 msgid "Other (please specify)"
 msgstr "Другая (пожалуйста укажите)"
+
+msgid "Auto-flagged due to word match"
+msgstr "Автоматически помечен из-за совпадения слов"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "Текст отзыва не может содержать это слово: «{0}»"
+msgstr[1] "Текст отзыва не может содержать эти слова: «{0}»"
+msgstr[2] "Текст отзыва не может содержать эти слова: «{0}»"
 
 msgid "This field is required."
 msgstr "Обязательное поле."

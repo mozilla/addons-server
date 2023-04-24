@@ -264,7 +264,7 @@
         </li>
       {% endif %}
       <li {% if not version.due_date %}class="hidden"{% endif %}>
-        <label for="due_date_update">Change Version Review Due Date</label>
+        <label for="due_date_update">Change latest version review due date</label>
         <input type="datetime-local" id="due_date_update"
                 {% if version.due_date %} value="{{ version.due_date.isoformat(timespec='seconds') }}" {% endif %}
                 data-api-data="{{ version.pk }}"
@@ -295,7 +295,7 @@
         </li>
 
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
-          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).pre_review %}
+          {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).listed_pre_review %}
           <li>
             <button id="auto_approval_disabled" class="disabled" disabled type="button">Listed Auto-Approval Disabled by Promoted group</button>
           </li>
@@ -327,6 +327,10 @@
                     data-api-data="{&quot;auto_approval_disabled_until_next_approval&quot;: false}"
                     data-toggle-button-selector="#disable_auto_approval_until_next_approval"
                     id="enable_auto_approval_until_next_approval" class="toggle" type="button">Enable Listed Auto-Approval Before Next Manual Approval</button>
+          </li>
+          {% elif channel == amo.CHANNEL_UNLISTED and addon.promoted_group(currently_approved=False).unlisted_pre_review %}
+          <li>
+            <button id="auto_approval_disabled_unlisted" class="disabled" disabled type="button">Unlisted Auto-Approval Disabled by Promoted group</button>
           </li>
           {% elif channel == amo.CHANNEL_UNLISTED %}
           <li {% if addon.auto_approval_disabled_unlisted %}class="hidden"{% endif %}>

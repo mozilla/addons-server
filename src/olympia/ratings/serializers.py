@@ -3,7 +3,8 @@ import re
 from collections import OrderedDict
 from urllib.parse import unquote
 
-from django.utils.translation import gettext
+from django.conf import settings
+from django.utils.translation import gettext, ngettext
 
 from bleach.linkifier import TLDS
 from rest_framework import serializers
@@ -13,8 +14,10 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import SimpleAddonSerializer, SimpleVersionSerializer
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
-from olympia.ratings.models import Rating, RatingFlag
+from olympia.users.utils import RestrictionChecker
 from olympia.versions.models import Version
+
+from .models import DeniedRatingWord, Rating, RatingFlag
 
 
 # This matches the following three types of patterns:
@@ -66,9 +69,50 @@ class BaseRatingSerializer(AMOModelSerializer):
     def get_is_developer_reply(self, obj):
         return obj.reply_to_id is not None
 
+    def _create_rating_flag(self, flag, note):
+        # We will save the RatingFlag after the instance is saved.
+        self._rating_flag_to_save = None
+        if self.instance:
+            try:
+                self._rating_flag_to_save = RatingFlag.objects.get(
+                    rating=self.instance, user_id=settings.TASK_USER_ID
+                )
+            except RatingFlag.DoesNotExist:
+                pass
+        if not self._rating_flag_to_save:
+            self._rating_flag_to_save = RatingFlag(
+                rating=self.instance, user_id=settings.TASK_USER_ID
+            )
+        self._rating_flag_to_save.flag = flag
+        self._rating_flag_to_save.note = note[:100]
+
+    def validate_body(self, body):
+        # Clean up body.
+        if body and '<br>' in body:
+            body = re.sub('<br>', '\n', body)
+        if word_matches := DeniedRatingWord.blocked(body, moderation=False):
+            # if we have a match, raise a validation error immediately
+            raise serializers.ValidationError(
+                ngettext(
+                    'The review text cannot contain the word: "{0}"',
+                    'The review text cannot contain any of the words: "{0}"',
+                    len(word_matches),
+                ).format('", "'.join(word_matches))
+            )
+
+        if word_matches := DeniedRatingWord.blocked(body, moderation=True):
+            self._create_rating_flag(
+                RatingFlag.AUTO_MATCH, f'Words matched: [{", ".join(word_matches)}]'
+            )
+
+        return body
+
     def validate(self, data):
         data = super().validate(data)
         request = self.context['request']
+        # Get the user from the request, don't allow clients to pick one themselves.
+        user = request.user
+        ip_address = request.META.get('REMOTE_ADDR', '')
 
         # There are a few fields that need to be set at creation time and never
         # modified afterwards:
@@ -82,12 +126,9 @@ class BaseRatingSerializer(AMOModelSerializer):
                     {'addon': gettext('This field is required.')}
                 )
 
-            # Get the user from the request, don't allow clients to pick one
-            # themselves.
-            data['user'] = request.user
-
+            data['user'] = user
             # Also include the user ip adress.
-            data['ip_address'] = request.META.get('REMOTE_ADDR', '')
+            data['ip_address'] = ip_address
         else:
             # When editing, you can't change the add-on.
             if self.context['request'].data.get('addon'):
@@ -100,16 +141,23 @@ class BaseRatingSerializer(AMOModelSerializer):
                     }
                 )
 
-        # Clean up body and automatically flag the review if an URL was in it.
-        body = data.get('body', '')
-        if body:
-            if '<br>' in body:
-                data['body'] = re.sub('<br>', '\n', body)
-            # Unquote the body when searching for links, in case someone tries
-            # 'example%2ecom'.
-            if link_pattern.search(unquote(body)) is not None:
-                data['flag'] = True
-                data['editorreview'] = True
+        if (
+            not hasattr(self, '_rating_flag_to_save')
+            and RestrictionChecker(request=request).should_moderate_rating()
+        ):
+            self._create_rating_flag(
+                RatingFlag.AUTO_RESTRICTION,
+                f'{user.email} or {{{ip_address}}} matched a UserRestriction',
+            )
+
+        # Flag the review if there was a word match or a URL was in it.
+        # Unquote when searching for links, in case someone tries 'example%2ecom'.
+        if (
+            hasattr(self, '_rating_flag_to_save')
+            or link_pattern.search(unquote(data.get('body') or '')) is not None
+        ):
+            data['flag'] = True
+            data['editorreview'] = True
 
         return data
 
@@ -129,6 +177,13 @@ class BaseRatingSerializer(AMOModelSerializer):
         if not self.context['view'].should_include_flags():
             out.pop('flags', None)
         return out
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        if hasattr(self, '_rating_flag_to_save'):
+            self._rating_flag_to_save.rating = instance  # might be a new Rating
+            self._rating_flag_to_save.save()
+        return instance
 
 
 class RatingSerializerReply(BaseRatingSerializer):
@@ -264,7 +319,7 @@ class RatingFlagSerializer(AMOModelSerializer):
         self.request = kwargs.get('context', {}).get('request')
 
     def validate_flag(self, flag):
-        flags = dict(RatingFlag.FLAGS)
+        flags = dict(RatingFlag.USER_FLAGS)
         if flag not in flags:
             raise serializers.ValidationError(
                 gettext(

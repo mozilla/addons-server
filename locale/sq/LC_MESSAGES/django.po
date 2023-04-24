@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-01-04 19:05+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-03-29 11:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -68,11 +68,10 @@ msgstr "Ekip Shqyrtimi Shtesash"
 msgid "Review"
 msgstr "Shqyrtim"
 
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Version {0}"
-msgstr[1] "Version {0}"
+msgstr[1] "Versione {0}"
 
 msgid "Review note"
 msgstr "Shënim shqyrtimi"
@@ -143,11 +142,13 @@ msgid "Upload is not valid."
 msgstr "Ngarkimi s’është i vlefshëm."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Kartela është e çaktivizuar tashmë."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Versioni më i ri i miratuar i kësaj shtese %s s’mund të fshihet, ngaqë versioni i mëparshëm s’qe miratuar për promovim në %s. Nëse ju duhet ndihmë për këtë, ju lutemi, lidhuni me Përgjegjësit e AMO-"
+"s."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
@@ -503,11 +504,11 @@ msgstr "Kategori të përpunuara për {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) u shtua te {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) u hoq nga {addon}."
 
 # %1 is an add-on name.
 msgid "Contributions for {addon}."
@@ -534,7 +535,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Versioni {0} u fshi prej {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Kartela {file} u shtua te {version} i {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Kartela {0} u fshi nga {version} i {addon}."
@@ -627,7 +628,7 @@ msgstr "U shtua {0} {1}."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Roli për {user} u ndryshua në {0} për {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} tani qarkullon nën licencën {0}."
@@ -693,10 +694,10 @@ msgid "User {user} picture deleted."
 msgstr "Fotoja e përdoruesit {user} u fshi."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Përdoruesi {user} u shtua te {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Përdoruesi {user} u hoq nga {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} u hoq nga lista."
@@ -736,7 +737,7 @@ msgid "Source code uploaded"
 msgstr "U ngarkua kod burim"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "Miratimi i automatizuar për {addon} {version} u ripohua."
 
 msgid "Auto-Approval confirmed"
 msgstr "I është ripohuar vetëmiratimi"
@@ -853,10 +854,10 @@ msgid "Un-rejected"
 msgstr "Iu hoq hedhja poshtë"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "Etiketa needs_human_review për {addon} u hoq."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "“Lyp Shqyrtim Nga Dikush” u hoq"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4184,7 +4185,7 @@ msgstr "Krejt nevojat tuaja për emoji—përherë vetëm një klik larg."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Maskoni adresën tuaj email. Firefox Relay mbron identitetin tuaj & parandalon postë hedhurinë."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4334,11 +4335,11 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Download Managers"
-msgstr ""
+msgstr "Përgjegjës Shkarkimesh"
 
 #. editorial content for the secondary hero shelves.
 msgid "Games & Entertainment extensions"
-msgstr ""
+msgstr "Zgjerim Lojëra & Argëtim"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4482,7 +4483,7 @@ msgid "See more creativity staff picks"
 msgstr "Shihni më tepër mjete krijimtarie të zgjedhura nga stafi"
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Të pashqyrtuara"
 
 #, python-format
 msgid "[status:%s]"
@@ -4596,6 +4597,14 @@ msgstr "Njoftim të metash apo kërkesë për asistencë jo në vendin e duhur"
 
 msgid "Other (please specify)"
 msgstr "Tjetër (ju lutemi, jepeni hollësisht)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "This field is required."
 msgstr "Kjo fushë është e domosdoshme."

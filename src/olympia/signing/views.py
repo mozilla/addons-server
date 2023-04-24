@@ -27,10 +27,10 @@ from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
-from olympia.signing.serializers import SigningFileUploadSerializer
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
+from .serializers import SigningFileUploadSerializer
 
 log = olympia.core.logger.getLogger('signing')
 

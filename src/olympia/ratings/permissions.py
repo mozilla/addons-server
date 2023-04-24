@@ -2,6 +2,7 @@ from rest_framework.permissions import BasePermission
 
 from olympia import amo
 from olympia.access import acl
+from olympia.users.utils import RestrictionChecker
 
 
 def user_can_delete_rating(request, rating):
@@ -39,3 +40,18 @@ class CanDeleteRatingPermission(BasePermission):
 
     def has_object_permission(self, request, view, obj):
         return user_can_delete_rating(request, obj)
+
+
+class CanCreateRatingPermission(BasePermission):
+    def has_permission(self, request, view):
+        if not request.user.is_authenticated:
+            return False
+        checker = RestrictionChecker(request=request)
+        if not checker.is_rating_allowed():
+            self.message = checker.get_error_message()
+            self.code = 'permission_denied_restriction'
+            return False
+        return True
+
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request)

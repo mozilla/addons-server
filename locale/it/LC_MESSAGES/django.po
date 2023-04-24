@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 11:18+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-04 17:48+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4655,6 +4655,14 @@ msgstr "segnalazione bug o richiesta di supporto inserita nella sezione non corr
 
 msgid "Other (please specify)"
 msgstr "Altro (specificare)"
+
+msgid "Auto-flagged due to word match"
+msgstr "Contrassegnato automaticamente per corrispondenza con parole"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "Il testo della recensione non può contenere la parola: “{0}”"
+msgstr[1] "Il testo della recensione non può contenere le parole: “{0}”"
 
 msgid "This field is required."
 msgstr "Campo obbligatorio"

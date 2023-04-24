@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 19:10+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-04 17:47+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -4581,6 +4581,15 @@ msgstr "Неправильно розміщений звіт про ваду ч�
 
 msgid "Other (please specify)"
 msgstr "Інше (будь ласка, уточніть)"
+
+msgid "Auto-flagged due to word match"
+msgstr "Позначено автоматично у зв'язку зі збігом слів"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "Текст відгуку не може містити слово: \"{0}\""
+msgstr[1] "Текст відгуку не може містити слова: \"{0}\""
+msgstr[2] "Текст відгуку не може містити слова: \"{0}\""
 
 msgid "This field is required."
 msgstr "Це обов'язкове поле."

@@ -107,7 +107,7 @@ Uploading without an ID
 
     **Response:**
 
-    The response body will be the same as the :ref:`version-status` response.
+    The response body will be the same as the :ref:`v4-version-status` response.
 
     :statuscode 201: new add-on and version created.
     :statuscode 202: new version created.
@@ -188,7 +188,7 @@ set and you can check the results with the ``passed_review`` property.
         If true, the version will be signed automatically. If false it will end
         up in the manual review queue when valid.
     :>json files[].download_url:
-        URL to :ref:`download the add-on file <download-signed-file>`.
+        URL to :ref:`download the add-on file <v4-download-signed-file>`.
     :>json files[].hash:
         Hash of the file contents, prefixed by the hashing algorithm used.
         Example: ``sha256:1bb945266bf3701...`` . In the case of signed files,
@@ -216,7 +216,7 @@ set and you can check the results with the ``passed_review`` property.
 Downloading signed files
 ------------------------
 
-When checking on your :ref:`request to sign a version <version-status>`,
+When checking on your :ref:`request to sign a version <v4-version-status>`,
 a successful response will give you an API URL to download the signed files.
 This endpoint returns the actual file data for download.
 

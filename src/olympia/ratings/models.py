@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
 from django.dispatch import receiver
@@ -308,12 +309,19 @@ class RatingFlag(ModelBase):
     SPAM = 'review_flag_reason_spam'
     LANGUAGE = 'review_flag_reason_language'
     SUPPORT = 'review_flag_reason_bug_support'
+    AUTO_MATCH = 'review_flag_reason_auto_match'
+    AUTO_RESTRICTION = 'review_flag_reason_auto_user_restriction'
     OTHER = 'review_flag_reason_other'
-    FLAGS = (
+    USER_FLAGS = (
         (SPAM, _('Spam or otherwise non-review content')),
         (LANGUAGE, _('Inappropriate language/dialog')),
         (SUPPORT, _('Misplaced bug report or support request')),
         (OTHER, _('Other (please specify)')),
+    )
+    FLAGS = (
+        *USER_FLAGS,
+        (AUTO_MATCH, _('Auto-flagged due to word match')),
+        (AUTO_RESTRICTION, _('Auto-flagged due to user restriction')),
     )
 
     rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)
@@ -344,3 +352,44 @@ class RatingAggregate(ModelBase):
     count_3 = models.IntegerField(default=0, null=False)
     count_4 = models.IntegerField(default=0, null=False)
     count_5 = models.IntegerField(default=0, null=False)
+
+
+class DeniedRatingWord(ModelBase):
+    """Denied words in a rating body."""
+
+    word = models.CharField(max_length=255, unique=True)
+    moderation = models.BooleanField(
+        help_text='Flag for moderation rather than immediately deny.', default=False
+    )
+
+    CACHE_KEY = 'denied-rating-word:blocked'
+
+    class Meta:
+        db_table = 'reviews_denied_word'
+        ordering = ('word', 'moderation')
+
+    def __str__(self):
+        return self.word
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(self.CACHE_KEY)
+
+    @classmethod
+    def blocked(cls, content, moderation=False):
+        """
+        Check to see if the content contains any of the (cached) list of denied words.
+        Return the list of denied words (or an empty list if none are found).
+
+        """
+        values = cls.objects.all().values_list('word', 'moderation')
+
+        def fetch_names():
+            return [(word.lower(), mod) for word, mod in values]
+
+        blocked_list = cache.get_or_set(cls.CACHE_KEY, fetch_names)
+        return [
+            word
+            for word, mod in blocked_list
+            if mod == moderation and word in content.lower()
+        ]

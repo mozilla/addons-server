@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -4657,6 +4657,18 @@ msgstr "تبليغ عن علّة أو طلب دعم في غير مكانه"
 
 msgid "Other (please specify)"
 msgstr "سبب آخر (يُرجى التحديد)"
+
+msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #, fuzzy
 msgid "This field is required."

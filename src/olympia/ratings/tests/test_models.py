@@ -10,9 +10,10 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import ESTestCase, TestCase, addon_factory, user_factory
-from olympia.ratings.models import Rating, RatingFlag
 from olympia.search.utils import get_es
 from olympia.users.models import UserProfile
+
+from ..models import DeniedRatingWord, Rating, RatingFlag
 
 
 class TestRatingModel(TestCase):
@@ -328,3 +329,38 @@ class TestRefreshTest(ESTestCase):
         self.refresh()
 
         assert self.get_bayesian_rating() == 0.0
+
+
+class TestDeniedRatingWord(TestCase):
+    def test_blocked(self):
+        DeniedRatingWord.objects.create(word='FOO', moderation=False)
+        DeniedRatingWord.objects.create(word='baa', moderation=False)
+        DeniedRatingWord.objects.create(word='hMm', moderation=True)
+        DeniedRatingWord.objects.create(word='mmm', moderation=True)
+
+        with self.assertNumQueries(1):
+            assert (
+                DeniedRatingWord.blocked('text with fooinside', moderation=True) == []
+            )
+            assert DeniedRatingWord.blocked(
+                'text with fooinside', moderation=False
+            ) == ['foo']
+
+        with self.assertNumQueries(0):
+            assert DeniedRatingWord.blocked('BAA with Hmmm', moderation=True) == [
+                'hmm',
+                'mmm',
+            ]
+            assert DeniedRatingWord.blocked('BAA with Hmmm', moderation=False) == [
+                'baa'
+            ]
+
+    def test_cache_clears_on_save(self):
+        DeniedRatingWord.objects.create(word='FOO')
+        with self.assertNumQueries(1):
+            DeniedRatingWord.blocked('dfdfdf')
+            DeniedRatingWord.blocked('45goih')
+        DeniedRatingWord.objects.create(word='baa')
+        with self.assertNumQueries(1):
+            DeniedRatingWord.blocked('446kjsd')
+            DeniedRatingWord.blocked('ddv 989')

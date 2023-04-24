@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-03-21 18:06+0000\n"
-"PO-Revision-Date: 2023-03-22 19:23+0000\n"
+"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"PO-Revision-Date: 2023-04-07 12:51+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -40,7 +40,7 @@ msgstr "Obrázky nesmú byť animované."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Použite obrázky menšie ako %dMB."
+msgstr "Použite obrázky menšie ako %d MB."
 
 msgid "You are already logged in."
 msgstr "Už ste prihlásení."
@@ -1415,7 +1415,7 @@ msgid "Recent Changes for %s"
 msgstr "Nedávne zmeny pre %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr "Nedávne zmeny pre moje doplmky"
+msgstr "Nedávne zmeny pre Moje doplnky"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Doplnky Open Search už {blog_link_open}nie sú na AMO podporované{blog_link_close}. Namiesto toho môžete vytvoriť {doc_link_open}rozšírenie pre vyhľadávanie{doc_link_close}."
@@ -2553,7 +2553,7 @@ msgid "Your source code must include:"
 msgstr "Váš zdrojový kód musí obsahovať:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Podrobné pokyny na vytvorenie presnej kópie kódu dopnku, a to v súbore README vo vašom zdrojovom kóde alebo v poli Poznámky ku kontrole na ďalšej stránke."
+msgstr "Podrobné pokyny na vytvorenie presnej kópie kódu doplnku, a to v súbore README vo vašom zdrojovom kóde alebo v poli Poznámky ku kontrole na ďalšej stránke."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Zostavovací skript, ktorý vykonáva všetky potrebné technické kroky."
@@ -2673,7 +2673,7 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizáčnú hlavičku <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je "
+"Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizačnú hlavičku <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je "
 "vysvetlené v <a href=\"%(docs_url)s\">dokumentácii API</a>."
 
 #, python-format
@@ -4583,6 +4583,15 @@ msgstr "Nevhodne umiestnená správa o chybe alebo žiadosť o podporu"
 msgid "Other (please specify)"
 msgstr "Iný (popíšte)"
 
+msgid "Auto-flagged due to word match"
+msgstr "Automaticky označené na kontrolu z dôvodu zhody slov"
+
+msgid "The review text cannot contain the word: \"{0}\""
+msgid_plural "The review text cannot contain any of the words: \"{0}\""
+msgstr[0] "Text recenzie nemôže obsahovať slovo: \"{0}\""
+msgstr[1] "Text recenzie nemôže obsahovať slová: \"{0}\""
+msgstr[2] "Text recenzie nemôže obsahovať slová: \"{0}\""
+
 msgid "This field is required."
 msgstr "Toto pole je povinné."
 
@@ -4923,7 +4932,7 @@ msgid "Daily Users by Date"
 msgstr "Denní používatelia podľa dátumu"
 
 msgid "What are daily users?"
-msgstr "Čo sú to denný používatelia?"
+msgstr "Čo sú to denní používatelia?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "

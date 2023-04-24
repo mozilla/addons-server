@@ -16,6 +16,7 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.tests import (
+    AMOPaths,
     TestCase,
     addon_factory,
     license_factory,
@@ -29,6 +30,7 @@ from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
     LINE,
+    NOTABLE,
     NOT_PROMOTED,
     RECOMMENDED,
     SPOTLIGHT,
@@ -391,7 +393,7 @@ class TestVersionManager(TestCase):
         assert version_preview.version == version
 
 
-class TestVersion(TestCase):
+class TestVersion(AMOPaths, TestCase):
     fixtures = ['base/addon_3615', 'base/admin']
 
     def setUp(self):
@@ -420,6 +422,63 @@ class TestVersion(TestCase):
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
         assert not self._get_version(amo.STATUS_APPROVED).is_unreviewed
+
+    def test_sources_provided(self):
+        version = Version()
+        assert not version.sources_provided
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+
+    def test_flag_if_sources_were_provided(self):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        assert not version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert not AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        assert not ActivityLog.objects.exists()
+        assert not version.needs_human_review
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        activity = ActivityLog.objects.for_versions(version).get()
+        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert activity.user == user
+        assert not version.needs_human_review
+
+    def test_flag_if_sources_were_provided_pending_rejection(self):
+        user = UserProfile.objects.latest('pk')
+        version = Version.objects.get(pk=81551)
+        VersionReviewerFlags.objects.create(
+            version=version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_content_rejection=False,
+            pending_rejection_by=user,
+        )
+        assert not version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert not AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        assert not ActivityLog.objects.exists()
+        assert not version.needs_human_review
+
+        version.source = self.file_fixture_path('webextension_no_id.zip')
+        assert version.sources_provided
+        version.flag_if_sources_were_provided(user)
+        assert AddonReviewerFlags.objects.filter(
+            addon=version.addon, needs_admin_code_review=True
+        ).exists()
+        activity = ActivityLog.objects.for_versions(version).get()
+        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert activity.user == user
+        assert version.needs_human_review
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_version_delete(self, delete_preview_files_mock):
@@ -895,38 +954,39 @@ class TestVersion(TestCase):
         )
         assert version.should_have_due_date
 
-    def _test_should_have_due_date_deleted(self, channel):
+    def _test_should_have_due_date_disabled(self, channel):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=channel)
-        # set up
-        AddonReviewerFlags.objects.create(
-            addon=addon,
-            auto_approval_disabled=True,
-            auto_approval_disabled_unlisted=True,
-        )
-        version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.needs_human_review
-        assert version.should_have_due_date
-
-        # Then delete - the version shouldn't have a due date
-        version.delete()
         assert not version.should_have_due_date
 
-        # except if the reason was needs human review
+        # Any non-disabled status with needs_human_review is enough to get a
+        # due date, even if not signed.
         version.update(needs_human_review=True)
+        version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
+        assert version.should_have_due_date
+
+        # If disabled and not signed, it should lose the due date even if it
+        # was needing human review: there is no threat, reviewers don't need to
+        # review it anymore.
+        version.file.update(is_signed=False, status=amo.STATUS_DISABLED)
+        assert not version.should_have_due_date
+
+        # If it was signed however, it should get a due date.
         version.file.update(is_signed=True)
         assert version.should_have_due_date
 
-        # but only if the file is signed
-        version.file.update(is_signed=False)
-        assert not version.should_have_due_date
+        # Even if deleted (which internally disables the file), as long as it
+        # was signed and needs human review, it should keep the due date.
+        version.delete()
+        assert version.should_have_due_date
 
-    def test_should_have_due_date_deleted_listed(self):
-        self._test_should_have_due_date_deleted(amo.CHANNEL_LISTED)
+    def test_should_have_due_date_disabled_listed(self):
+        self._test_should_have_due_date_disabled(amo.CHANNEL_LISTED)
 
-    def test_should_have_due_date_deleted_unlisted(self):
-        self._test_should_have_due_date_deleted(amo.CHANNEL_UNLISTED)
+    def test_should_have_due_date_disabled_unlisted(self):
+        self._test_should_have_due_date_disabled(amo.CHANNEL_UNLISTED)
 
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
@@ -943,8 +1003,13 @@ class TestVersion(TestCase):
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
-        # Promoted groups are ignored for unlisted, even pre-review groups.
-        PromotedAddon.objects.create(addon=addon, group_id=RECOMMENDED.id)
+        # Promoted groups that are pre-review for unlisted get a due date.
+        promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
+        version.update(needs_human_review=False)  # adding Notable sets this, so clear.
+        assert version.should_have_due_date
+
+        # Not if it's a group that is only pre-review for listed though.
+        promo.update(group_id=RECOMMENDED.id)
         assert not version.should_have_due_date
 
         # But yes if auto approval is disabled
@@ -1970,6 +2035,65 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
+    def test_do_not_inherit_needs_human_review_from_other_addon(self):
+        addon_factory(version_kw={'needs_human_review': True})
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+        upload_version.reload()
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+
+    def test_inherit_needs_human_review_with_due_date(self):
+        due_date = datetime.now() + timedelta(days=15)
+        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=due_date)
+        upload_version.reload()
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=due_date)
+
+    def test_dont_inherit_needs_human_review_from_different_channel(self):
+        old_version = self.addon.current_version
+        self.make_addon_unlisted(self.addon)
+        old_version.update(needs_human_review=True)
+        assert old_version.due_date
+
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+        upload_version.reload()
+        assert not upload_version.needs_human_review
+        assert not upload_version.due_date
+
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
@@ -2039,7 +2163,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_if_restricted_by_email(self):
         EmailUserRestriction.objects.create(
             email_pattern=self.upload.user.email,
-            restriction_type=RESTRICTION_TYPES.APPROVAL,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(
@@ -2054,7 +2178,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
         IPNetworkUserRestriction.objects.create(
-            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(
@@ -2070,7 +2194,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
         IPNetworkUserRestriction.objects.create(
-            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.APPROVAL
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(

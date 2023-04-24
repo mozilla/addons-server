@@ -43,7 +43,7 @@ initialize_docker: create_env_file
 # by root. They don't matter: the ones at the root directory are mounted
 # instead.
 	touch deps/package.json
-	touch deps/package.json
+	touch deps/package-lock.json
 # Note that this is running with --user ${UID}:${GID} because the user olympia
 # would be uid 9500 regardless of host at this point (this is only fixed when
 # the container is up, through the command defined in docker-compose.yml),
