@@ -1625,7 +1625,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
             },
         )
@@ -1638,7 +1638,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé FOO',
+                'body': 'test bOdy-é FOO',
                 'score': 5,
             },
         )
@@ -1659,7 +1659,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
             },
         )
@@ -1674,7 +1674,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé WORld',
+                'body': 'test bOdy-é WORld',
                 'score': 5,
             },
         )
@@ -2502,7 +2502,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
@@ -2517,7 +2517,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé FOO',
+                'body': 'test bOdy-é FOO',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
@@ -2538,7 +2538,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé',
+                'body': 'test bOdy,é',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
