@@ -226,7 +226,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        deleted_addon = addon_factory(version_kw={'version': '1.2.5'})
+        deleted_addon = addon_factory(
+            version_kw={'version': '1.2.5', 'needs_human_review': True}
+        )
         deleted_addon_version = deleted_addon.current_version
         deleted_addon.delete()
         deleted_addon.addonguid.update(guid='guid@')
@@ -235,12 +237,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
         first_version = addon.current_version
         disabled_version = version_factory(
-            addon=addon, version='2.5', file_kw={'status': amo.STATUS_DISABLED}
+            addon=addon,
+            version='2.5',
+            file_kw={'status': amo.STATUS_DISABLED},
+            needs_human_review=True,
         )
         deleted_version = version_factory(
             addon=addon,
             version='2.5.1',
             deleted=True,
+            needs_human_review=True,
             file_kw={'status': amo.STATUS_DISABLED},
         )
         second_version = version_factory(addon=addon, version='3')
@@ -351,6 +357,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )  # no change because not in Block
         assert disabled_version.file.status == amo.STATUS_DISABLED  # no change
         assert deleted_version.file.status == amo.STATUS_DISABLED  # no change
+        disabled_version.reload()
+        deleted_version.reload()
+        deleted_addon_version.reload()
+        assert not disabled_version.needs_human_review
+        assert not deleted_version.needs_human_review
+        assert not deleted_addon_version.needs_human_review
 
     def _test_add_multiple_submit(self, addon_adu, delay=0):
         """addon_adu is important because whether dual signoff is needed is
@@ -1655,7 +1667,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
+        deleted_addon = addon_factory(
+            guid='guid@', version_kw={'version': '1.2.5', 'needs_human_review': True}
+        )
+        version = deleted_addon.current_version
         deleted_addon.delete()
         assert deleted_addon.status == amo.STATUS_DELETED
         assert not DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
@@ -1690,6 +1705,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         deleted_addon.reload()
         assert deleted_addon.status == amo.STATUS_DELETED  # Should stay deleted
         assert DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
+        version.reload()
+        version.file.reload()
+        assert version.file.status == amo.STATUS_DISABLED
+        assert not version.needs_human_review
 
     def test_blocking_addon_guid_already_denied(self):
         user = user_factory(email='someone@mozilla.com')
