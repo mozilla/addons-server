@@ -200,10 +200,10 @@ WITH
     EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id),
-  last_week AS (
+  previous_week AS (
   SELECT
     addon_id,
-    AVG(dau) AS avg_last_week
+    AVG(dau) AS avg_previous_week
   FROM
     `{get_amo_stats_dau_view_name()}`
   WHERE
@@ -219,7 +219,7 @@ SELECT
 FROM
   this_week
 JOIN
-  last_week
+  previous_week
 USING
   (addon_id)
 """
@@ -242,7 +242,7 @@ USING
     return {
         row['addon_id']: {
             'avg_this_week': row['avg_this_week'],
-            'avg_last_week': row['avg_last_week'],
+            'avg_previous_week': row['avg_previous_week'],
         }
         for row in rows
         if row['addon_id']

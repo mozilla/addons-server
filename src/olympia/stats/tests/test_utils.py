@@ -350,10 +350,10 @@ WITH
     EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id),
-  last_week AS (
+  previous_week AS (
   SELECT
     addon_id,
-    AVG(dau) AS avg_last_week
+    AVG(dau) AS avg_previous_week
   FROM
     `project.dataset.{AMO_STATS_DAU_VIEW}`
   WHERE
@@ -369,7 +369,7 @@ SELECT
 FROM
   this_week
 JOIN
-  last_week
+  previous_week
 USING
   (addon_id)
 """
@@ -450,14 +450,14 @@ USING
                 {
                     'addon_id': 'guid',
                     'avg_this_week': 123,
-                    'avg_last_week': 456,
+                    'avg_previous_week': 456,
                 }
             ),
             self.create_bigquery_row(
                 {
                     'addon_id': 'guid2',
                     'avg_this_week': 45,
-                    'avg_last_week': 40,
+                    'avg_previous_week': 40,
                 }
             ),
             # This should be skipped because `addon_id` is `None`.
@@ -465,7 +465,7 @@ USING
                 {
                     'addon_id': None,
                     'avg_this_week': 123,
-                    'avg_last_week': 456,
+                    'avg_previous_week': 456,
                 }
             ),
         ]
@@ -475,8 +475,8 @@ USING
         returned_results = get_averages_by_addon_from_bigquery(today=date(2020, 5, 6))
 
         assert returned_results == {
-            'guid': {'avg_this_week': 123, 'avg_last_week': 456},
-            'guid2': {'avg_this_week': 45, 'avg_last_week': 40},
+            'guid': {'avg_this_week': 123, 'avg_previous_week': 456},
+            'guid2': {'avg_this_week': 45, 'avg_previous_week': 40},
         }
 
 
