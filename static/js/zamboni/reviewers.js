@@ -85,9 +85,11 @@ function initReviewActions() {
     $data_toggle.filter('[data-value~="' + value + '"]').show();
   }
 
-  $('#review-actions .action_nav #id_action > *:not(.disabled)').click(function () {
-    showForm(this);
-  });
+  $('#review-actions .action_nav #id_action > *:not(.disabled)').click(
+    function () {
+      showForm(this);
+    },
+  );
 
   var review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
