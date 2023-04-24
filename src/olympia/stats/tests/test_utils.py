@@ -344,16 +344,24 @@ WITH
     `project.dataset.{AMO_STATS_DAU_VIEW}`
   WHERE
     submission_date >= @one_week_date
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 1
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id),
-  three_weeks_before_this_week AS (
+  last_week AS (
   SELECT
     addon_id,
-    AVG(dau) AS avg_three_weeks_before
+    AVG(dau) AS avg_last_week
   FROM
     `project.dataset.{AMO_STATS_DAU_VIEW}`
   WHERE
-    submission_date BETWEEN @four_weeks_date AND @one_week_date
+    submission_date BETWEEN @two_weeks_date AND @one_week_date
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 1
+  AND
+    EXTRACT(DAYOFWEEK FROM submission_date) <> 7
   GROUP BY
     addon_id)
 SELECT
@@ -361,7 +369,7 @@ SELECT
 FROM
   this_week
 JOIN
-  three_weeks_before_this_week
+  last_week
 USING
   (addon_id)
 """
@@ -398,8 +406,8 @@ USING
             },
             {
                 'parameterType': {'type': 'DATE'},
-                'parameterValue': {'value': '2020-05-03'},
-                'name': 'four_weeks_date',
+                'parameterValue': {'value': '2020-05-17'},
+                'name': 'two_weeks_date',
             },
         ]
 
@@ -422,8 +430,8 @@ USING
             },
             {
                 'parameterType': {'type': 'DATE'},
-                'parameterValue': {'value': '2020-05-03'},
-                'name': 'four_weeks_date',
+                'parameterValue': {'value': '2020-05-17'},
+                'name': 'two_weeks_date',
             },
             {
                 'parameterType': {
@@ -442,14 +450,14 @@ USING
                 {
                     'addon_id': 'guid',
                     'avg_this_week': 123,
-                    'avg_three_weeks_before': 456,
+                    'avg_last_week': 456,
                 }
             ),
             self.create_bigquery_row(
                 {
                     'addon_id': 'guid2',
                     'avg_this_week': 45,
-                    'avg_three_weeks_before': 40,
+                    'avg_last_week': 40,
                 }
             ),
             # This should be skipped because `addon_id` is `None`.
@@ -457,7 +465,7 @@ USING
                 {
                     'addon_id': None,
                     'avg_this_week': 123,
-                    'avg_three_weeks_before': 456,
+                    'avg_last_week': 456,
                 }
             ),
         ]
@@ -467,8 +475,8 @@ USING
         returned_results = get_averages_by_addon_from_bigquery(today=date(2020, 5, 6))
 
         assert returned_results == {
-            'guid': {'avg_this_week': 123, 'avg_three_weeks_before': 456},
-            'guid2': {'avg_this_week': 45, 'avg_three_weeks_before': 40},
+            'guid': {'avg_this_week': 123, 'avg_last_week': 456},
+            'guid2': {'avg_this_week': 45, 'avg_last_week': 40},
         }
 
 
