@@ -125,9 +125,10 @@ def disable_addon_for_block(block):
     review.set_data({'versions': versions_to_reject})
     review.reject_multiple_versions()
 
-    for version in review.data['versions']:
-        # Clear needs_human_review on rejected versions, we consider that
-        # the admin looked at them before blocking.
+    for version in block.addon_versions:
+        # Clear needs_human_review on all blocked versions, we consider that
+        # the admin looked at them before blocking (don't limit to versions
+        # we are rejecting, which is only a subset).
         review.clear_specific_needs_human_review_flags(version)
 
     if block.min_version == Block.MIN and block.max_version == Block.MAX:
