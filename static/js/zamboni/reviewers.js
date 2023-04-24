@@ -64,7 +64,7 @@ function initReviewActions() {
 
     pageload = pageload || false;
     $element.closest('.review-actions').addClass('on');
-    $('.review-actions .action_nav ul li').removeClass('on-tab');
+    $('.review-actions .action_nav #id_action > *').removeClass('on-tab');
     $element.find('input').prop('checked', true);
 
     // Input message into empty comments textbox.
@@ -85,7 +85,7 @@ function initReviewActions() {
     $data_toggle.filter('[data-value~="' + value + '"]').show();
   }
 
-  $('#review-actions .action_nav ul li:not(.disabled)').click(function () {
+  $('#review-actions .action_nav #id_action > *:not(.disabled)').click(function () {
     showForm(this);
   });
 
