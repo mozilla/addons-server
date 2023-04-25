@@ -823,6 +823,7 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
+    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive or

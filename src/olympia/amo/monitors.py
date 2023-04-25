@@ -200,23 +200,13 @@ def database():
 
 
 def remotesettings():
-    # check Remote Settings connection
+    # check Remote Settings connectivity.
+    # Since the blocklist filter task is performed by
+    # a worker, and since workers have different network
+    # configuration than the Web head, we use a task to check
+    # the connectivity to the Remote Settings server.
+    from olympia.blocklist.tasks import monitor_remote_settings
 
-    from olympia.lib.remote_settings import RemoteSettings
-    from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_MLBF
-
-    client = RemoteSettings(
-        settings.REMOTE_SETTINGS_WRITER_BUCKET,
-        REMOTE_SETTINGS_COLLECTION_MLBF,
-    )
-
-    status = ''
-    try:
-        client.heartbeat()
-    except Exception as e:
-        status = f'Failed to contact Remote Settings server: {e}'
-    if not status and not client.authenticated():
-        status = 'Invalid credentials for Remote Settings server'
-    if status:
-        monitor_log.critical(status)
+    result = monitor_remote_settings.delay()
+    status = result.get()
     return status, None
