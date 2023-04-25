@@ -304,15 +304,15 @@ def update_addon_hotness(averages):
             )
             continue
 
-        this = average['avg_this_week']
-        three = average['avg_three_weeks_before']
+        this_week = average['avg_this_week']
+        previous_week = average['avg_previous_week']
         threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
-        if this > threshold and three > 1:
-            hotness = (this - three) / float(three)
+        if this_week > threshold and previous_week > 1:
+            hotness = (this_week - previous_week) / float(previous_week)
         else:
             hotness = 0
-        # Update the hotness score but only update hotness if necessary. We
-        # don't want to cause unnecessary re-indexes.
+        # Update the hotness score but only if necessary - We don't want
+        # trigger useless reindexes.
         if addon.hotness != hotness:
             addon.update(hotness=hotness)
 

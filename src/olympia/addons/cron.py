@@ -96,8 +96,8 @@ def update_addon_hotness(chunk_size=300):
     """
     Calculate hotness of all add-ons.
 
-    a = avg(users this week)
-    b = avg(users three weeks before this week)
+    a = avg(users this week - excluding week-ends)
+    b = avg(users previous week before this week - excluding week-ends)
     threshold = 250 if addon type is theme, else 1000
     hotness = (a-b) / b if a > threshold and b > 1 else 0
     """
@@ -118,7 +118,7 @@ def update_addon_hotness(chunk_size=300):
         .values_list('guid', flat=True)
     )
     averages = {
-        guid: {'avg_this_week': 1, 'avg_three_weeks_before': 1} for guid in amo_guids
+        guid: {'avg_this_week': 1, 'avg_previous_week': 1} for guid in amo_guids
     }
     log.info('Found %s add-on GUIDs in AMO DB.', len(averages))
 
