@@ -293,7 +293,7 @@ references:
     parameters:
       djangoversion:
         type: string
-        default: django32
+        default: django42
     environment:
         DJANGO_VERSION : << parameters.djangoversion >>
     working_directory: &working-directory
@@ -648,7 +648,7 @@ jobs:
   release-master:
     <<: *defaults-release
     environment:
-      DJANGO_VERSION: django32
+      DJANGO_VERSION: django42
     steps:
       - checkout
       - make_release:

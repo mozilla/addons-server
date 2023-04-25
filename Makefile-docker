@@ -1,5 +1,5 @@
 export PYTHON_COMMAND=python3
-export DJANGO_VERSION?=django32
+export DJANGO_VERSION?=django42
 
 # As we're using user-local installs inside the docker-container we need
 # to be cautious about uprading pip and not confusing it with the

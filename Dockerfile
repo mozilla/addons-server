@@ -1,6 +1,6 @@
 FROM python:3.10-slim-buster
 
-ARG DJANGO_VERSION=django32
+ARG DJANGO_VERSION=django42
 ENV DJANGO_VERSION=$DJANGO_VERSION
 
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
