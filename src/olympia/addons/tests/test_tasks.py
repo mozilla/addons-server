@@ -211,13 +211,13 @@ def test_update_addon_hotness():
     addon4 = addon_factory(hotness=123)
     addon4.delete()
     averages = {
-        addon1.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
+        addon1.guid: {'avg_this_week': 213467, 'avg_previous_week': 123467},
         addon2.guid: {
             'avg_this_week': 1,
-            'avg_three_weeks_before': 1,
+            'avg_previous_week': 1,
         },
-        addon3.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
-        addon4.guid: {'avg_this_week': 213467, 'avg_three_weeks_before': 123467},
+        addon3.guid: {'avg_this_week': 213467, 'avg_previous_week': 123467},
+        addon4.guid: {'avg_this_week': 213467, 'avg_previous_week': 123467},
     }
 
     update_addon_hotness(averages=averages.items())
