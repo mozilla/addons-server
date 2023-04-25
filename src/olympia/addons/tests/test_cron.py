@@ -162,39 +162,39 @@ class TestUpdateAddonHotness(TestCase):
         get_averages_mock.return_value = {
             self.extension.guid: {
                 'avg_this_week': 827080,
-                'avg_three_weeks_before': 787930,
+                'avg_previous_week': 787930,
             },
             self.static_theme.guid: {
                 'avg_this_week': 827080,
-                'avg_three_weeks_before': 787930,
+                'avg_previous_week': 787930,
             },
             self.unpopular_extension.guid: {
                 'avg_this_week': 0,
-                'avg_three_weeks_before': 0,
+                'avg_previous_week': 0,
             },
             self.unpopular_theme.guid: {
                 'avg_this_week': 1,
-                'avg_three_weeks_before': 1.5,
+                'avg_previous_week': 1.5,
             },
             self.barely_popular_extension.guid: {
                 'avg_this_week': 400,
-                'avg_three_weeks_before': 300,
+                'avg_previous_week': 300,
             },
             self.barely_popular_theme.guid: {
                 'avg_this_week': 400,
-                'avg_three_weeks_before': 300,
+                'avg_previous_week': 300,
             },
             'unknown@guid': {
                 'avg_this_week': 10000,
-                'avg_three_weeks_before': 10000,
+                'avg_previous_week': 10000,
             },
             self.awaiting_review.guid: {
                 'avg_this_week': 827080,
-                'avg_three_weeks_before': 787930,
+                'avg_previous_week': 787930,
             },
             self.deleted_extension.guid: {
                 'avg_this_week': 1040,
-                'avg_three_weeks_before': 1000,
+                'avg_previous_week': 1000,
             },
         }
 
