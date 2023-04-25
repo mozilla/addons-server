@@ -339,21 +339,14 @@ class TestDeniedRatingWord(TestCase):
         DeniedRatingWord.objects.create(word='mmm', moderation=True)
 
         with self.assertNumQueries(1):
-            assert (
-                DeniedRatingWord.blocked('text with fooinside', moderation=True) == []
-            )
-            assert DeniedRatingWord.blocked(
-                'text with fooinside', moderation=False
-            ) == ['foo']
+            text = 'text with ,foo_ inside mmmm'
+            assert DeniedRatingWord.blocked(text, moderation=True) == []
+            assert DeniedRatingWord.blocked(text, moderation=False) == ['foo']
 
         with self.assertNumQueries(0):
-            assert DeniedRatingWord.blocked('BAA with Hmmm', moderation=True) == [
-                'hmm',
-                'mmm',
-            ]
-            assert DeniedRatingWord.blocked('BAA with Hmmm', moderation=False) == [
-                'baa'
-            ]
+            text = 'BAA! with Hmm:mmm'
+            assert DeniedRatingWord.blocked(text, moderation=True) == ['hmm', 'mmm']
+            assert DeniedRatingWord.blocked(text, moderation=False) == ['baa']
 
     def test_cache_clears_on_save(self):
         DeniedRatingWord.objects.create(word='FOO')

@@ -1,3 +1,5 @@
+import re
+
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
@@ -382,14 +384,18 @@ class DeniedRatingWord(ModelBase):
         Return the list of denied words (or an empty list if none are found).
 
         """
+        if not content:
+            return []
+
         values = cls.objects.all().values_list('word', 'moderation')
 
         def fetch_names():
             return [(word.lower(), mod) for word, mod in values]
 
         blocked_list = cache.get_or_set(cls.CACHE_KEY, fetch_names)
+        content_words = re.split(r'[^\w]+|_+', content.lower())
         return [
             word
             for word, mod in blocked_list
-            if mod == moderation and word in content.lower()
+            if mod == moderation and word in content_words
         ]

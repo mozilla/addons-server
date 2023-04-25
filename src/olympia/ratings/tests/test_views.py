@@ -1382,6 +1382,9 @@ class TestRatingViewSetEdit(TestCase):
             user=self.user,
         )
         self.url = reverse_ns(self.detail_url_name, kwargs={'pk': self.rating.pk})
+        # add some denied words that won't match
+        DeniedRatingWord.objects.create(word='something', moderation=True)
+        DeniedRatingWord.objects.create(word='else', moderation=False)
 
     def test_edit_anonymous(self):
         response = self.client.patch(self.url, {'body': 'løl!'})
@@ -1625,7 +1628,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
             },
         )
@@ -1638,7 +1641,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé FOO',
+                'body': 'test bOdy-é FOO',
                 'score': 5,
             },
         )
@@ -1659,7 +1662,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
             },
         )
@@ -1674,7 +1677,7 @@ class TestRatingViewSetEdit(TestCase):
         response = self.client.patch(
             self.url,
             {
-                'body': 'test bOdyé WORld',
+                'body': 'test bOdy-é WORld',
                 'score': 5,
             },
         )
@@ -1697,6 +1700,9 @@ class TestRatingViewSetPost(TestCase):
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.url = reverse_ns(self.list_url_name)
+        # add some denied words that won't match
+        DeniedRatingWord.objects.create(word='something', moderation=True)
+        DeniedRatingWord.objects.create(word='else', moderation=False)
 
     def test_post_anonymous(self):
         response = self.client.post(
@@ -1900,8 +1906,6 @@ class TestRatingViewSetPost(TestCase):
         ]
 
     def test_post_rating_has_body(self):
-        # add a denied word that won't match
-        DeniedRatingWord.objects.create(word='something', moderation=True)
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
@@ -1949,6 +1953,34 @@ class TestRatingViewSetPost(TestCase):
         assert review.pk == response.data['id']
         assert review.body is None
         assert response.data['body'] is None
+        assert review.rating == response.data['score'] == 5
+        assert review.user == self.user
+        assert review.reply_to is None
+        assert review.addon == self.addon
+        assert review.version == self.addon.current_version
+        assert response.data['version'] == {
+            'id': review.version.id,
+            'version': review.version.version,
+        }
+
+    def test_empty_body_just_rating(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url,
+            {
+                'addon': self.addon.pk,
+                'body': '',
+                'score': 5,
+                'version': self.addon.current_version.pk,
+            },
+        )
+        assert response.status_code == 201
+        review = Rating.objects.latest('pk')
+        assert review.pk == response.data['id']
+        assert review.body == ''
+        assert response.data['body'] == ''
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -2502,7 +2534,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé',
+                'body': 'test bOdy_é',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
@@ -2517,7 +2549,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé FOO',
+                'body': 'test bOdy-é FOO',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
@@ -2538,7 +2570,7 @@ class TestRatingViewSetPost(TestCase):
             self.url,
             {
                 'addon': self.addon.pk,
-                'body': 'test bOdyé',
+                'body': 'test bOdy,é',
                 'score': 5,
                 'version': self.addon.current_version.pk,
             },
