@@ -2146,20 +2146,21 @@ body.reviewer-tools {
           background: none;
           background-color: #ecf5fe;
 
-          li {
+          #id_action>* {
             text-shadow: none;
             border: none;
             background: none;
             color: @link-on-white-bg;
           }
 
-          li.on-tab {
+          #id_action>*.on-tab {
             color: @default-font-color;
             background-color: #ffffff;
             border-top: none;
           }
 
-          li:first-child, li:last-child {
+          #id_action>*:first-child,
+          #id_action>*:last-child {
             border-radius: 0;
             border-left: none;
 

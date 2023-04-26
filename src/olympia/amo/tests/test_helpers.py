@@ -393,16 +393,18 @@ def test_absolutify(url, site, expected):
 
 
 def test_timesince():
-    month_ago = datetime.now() - timedelta(days=30)
+    month_ago = datetime.now() - timedelta(days=31, seconds=0.001)
     assert jinja_helpers.timesince(month_ago) == '1 month ago'
+    two_weeks_ago = datetime.now() - timedelta(days=14, seconds=0.001)
+    assert jinja_helpers.timesince(two_weeks_ago) == '2 weeks ago'
     assert jinja_helpers.timesince(None) == ''
 
 
 def test_timeuntil():
     a_month_in_the_future = datetime.now() + timedelta(days=31, seconds=0.001)
     assert jinja_helpers.timeuntil(a_month_in_the_future) == '1 month'
-    a_week_in_the_future = datetime.now() + timedelta(days=14, hours=1)
-    assert jinja_helpers.timeuntil(a_week_in_the_future) == '2 weeks'
+    two_weeks_in_the_future = datetime.now() + timedelta(days=14, hours=1)
+    assert jinja_helpers.timeuntil(two_weeks_in_the_future) == '2 weeks'
 
 
 def test_format_unicode():
