@@ -9,7 +9,7 @@ The ``olympia.translations`` app defines a
 shouldn't have to use that directly. When you want to create a foreign key to
 the ``translations`` table, use
 ``olympia.translations.fields.TranslatedField``. This subclasses Django's
-:class:`django.db.models.ForeignKey` to make it work with our special handling
+``django.db.models.ForeignKey`` to make it work with our special handling
 of translation rows.
 
 A minimal model with translations in addons-server would look like this::

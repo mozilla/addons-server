@@ -4,7 +4,7 @@
 Push From Master
 ================
 
-We deploy from the `master`_ branch once a month. If you commit something to master
+We deploy from the `master`_ branch once a week. If you commit something to master
 that needs additional QA time, be sure to use a `waffle`_ feature flag.
 
 
@@ -23,5 +23,5 @@ but to use a merge commit if you have multiple commits that form a cohesive unit
 
 Here are some tips on `Using topic branches and interactive rebasing effectively <http://blog.mozilla.com/webdev/2011/11/21/git-using-topic-branches-and-interactive-rebasing-effectively/>`_.
 
-.. _master: http://github.com/mozilla/olympia/tree/master
+.. _master: http://github.com/mozilla/addons-server/tree/master
 .. _waffle: https://github.com/jsocol/django-waffle
