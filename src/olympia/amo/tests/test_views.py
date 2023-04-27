@@ -383,11 +383,11 @@ class TestHeartbeat(TestCase):
         assert response.status_code >= 500
         assert response.json()['database']['status'] == 'boom'
 
-    def test_front_heartbeat_success(self):
+    def test_services_heartbeat_success(self):
         response = self.client.get(reverse('amo.services_heartbeat'))
         assert response.status_code == 200
 
-    def test_front_heartbeat_failure(self):
+    def test_services_heartbeat_failure(self):
         self.mocks['rabbitmq'].return_value = ('boom', None)
 
         response = self.client.get(reverse('amo.services_heartbeat'))
