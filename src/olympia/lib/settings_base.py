@@ -823,7 +823,6 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.index_addons': {'queue': 'priority'},
     'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
     'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
-    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive or
@@ -840,6 +839,7 @@ CELERY_TASK_ROUTES = {
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
+    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
