@@ -7,6 +7,7 @@ from django.conf import settings
 
 import requests
 
+from django_statsd.clients import statsd
 from kombu import Connection
 from PIL import Image
 
@@ -17,6 +18,16 @@ from olympia.amo.models import use_primary_db
 
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
+
+
+def execute_checks(checks: list[str]):
+    status_summary = {}
+    for check in checks:
+        with statsd.timer('monitor.%s' % check):
+            status, _ = globals()[check]()
+        # state is a string. If it is empty, that means everything is fine.
+        status_summary[check] = {'state': not status, 'status': status}
+    return status_summary
 
 
 def memcache():
