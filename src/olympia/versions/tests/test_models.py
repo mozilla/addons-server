@@ -2054,7 +2054,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert not upload_version.due_date
 
     def test_inherit_needs_human_review_with_due_date(self):
-        due_date = datetime.now() + timedelta(days=15)
+        due_date = get_review_due_date()
         self.addon.current_version.update(needs_human_review=True, due_date=due_date)
         upload_version = Version.from_upload(
             self.upload,
@@ -2071,6 +2071,50 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
+
+    def test_dont_inherit_due_date_far_in_future(self):
+        standard_due_date = get_review_due_date()
+        due_date = datetime.now() + timedelta(days=15)
+        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        # Because the due date from the previous version is so far in the
+        # future we don't inherit from it and get the default one.
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
+        upload_version.reload()
+        assert upload_version.needs_human_review
+        self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
+
+    def test_dont_inherit_due_date_if_one_already_exists(self):
+        previous_version_due_date = datetime.now() + timedelta(days=30)
+        existing_due_date = datetime.now() + timedelta(days=15)
+        self.addon.current_version.update(
+            needs_human_review=True, due_date=previous_version_due_date
+        )
+        new_version = version_factory(
+            addon=self.addon,
+            needs_human_review=True,
+            due_date=existing_due_date,
+        )
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
+        new_version.inherit_due_date()
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        # Because the due date from the previous version is so far in the
+        # future we don't inherit from it and keep the existing one.
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
+        new_version.reload()
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
 
     def test_dont_inherit_needs_human_review_from_different_channel(self):
         old_version = self.addon.current_version

@@ -941,6 +941,11 @@ class Version(OnChangeMixin, ModelBase):
 
     @use_primary_db
     def inherit_due_date(self):
+        """
+        Inherit the earliest due date possible from any other version in the
+        same channel, but only if the result would be at at earlier date than
+        the default/existing one on the instance.
+        """
         qs = (
             Version.unfiltered.filter(addon=self.addon, channel=self.channel)
             .exclude(due_date=None)
@@ -948,10 +953,10 @@ class Version(OnChangeMixin, ModelBase):
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        # If no matching due_date is found, we end up passing due_date=None
-        # which will set the due date to standard review time if it wasn't
-        # already set on the instance.
-        self.reset_due_date(due_date=qs.first())
+        standard_or_existing_due_date = self.due_date or get_review_due_date()
+        if not (due_date := qs.first()) or due_date > standard_or_existing_due_date:
+            due_date = standard_or_existing_due_date
+        self.reset_due_date(due_date=due_date)
 
     @cached_property
     def is_ready_for_auto_approval(self):
