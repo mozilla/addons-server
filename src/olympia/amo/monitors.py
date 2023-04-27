@@ -219,5 +219,5 @@ def remotesettings():
     from olympia.blocklist.tasks import monitor_remote_settings
 
     result = monitor_remote_settings.delay()
-    status = result.get()
+    status = result.get(timetout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)
     return status, None
