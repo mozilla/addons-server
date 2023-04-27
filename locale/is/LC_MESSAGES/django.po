@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-17 11:15+0000\n"
+"PO-Revision-Date: 2023-04-27 17:40+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -78,7 +78,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Aðeins nýjustu útgáfur af viðbótum geta bætt athugasemdum við."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Lengd umbeðins efnis er of mikil."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Farið er yfir hámarksfjölda flokka á hvert forrit ({MAX_CATEGORIES})"
@@ -497,11 +497,11 @@ msgstr "Flokkum breytt fyrir {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) bætt við {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) fjarlægður úr {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Framlög til {addon}."
@@ -527,7 +527,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Útgáfu {0} eytt úr {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Skránni {file} bætt við {version} af {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Skránni {0} eytt úr {version} af {addon}."
@@ -618,7 +618,7 @@ msgstr "{0} {1} bætt við"
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Hlutverki notandans {user} breytt í {0} fyrir {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} er nú með notkunarleyfi samkvæmt {0}."
@@ -684,10 +684,10 @@ msgid "User {user} picture deleted."
 msgstr "Mynd notandans {user} eytt."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Notandanum {user} bætt við {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Notandinn {user} fjarlægður úr {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} afskráð."
