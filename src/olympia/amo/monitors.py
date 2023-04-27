@@ -5,6 +5,7 @@ import traceback
 
 from django.conf import settings
 
+import celery
 import requests
 
 from django_statsd.clients import statsd
@@ -218,6 +219,10 @@ def remotesettings():
     # the connectivity to the Remote Settings server.
     from olympia.blocklist.tasks import monitor_remote_settings
 
-    result = monitor_remote_settings.delay()
-    status = result.get(timetout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)
+    try:
+        result = monitor_remote_settings.delay()
+        status = result.get(timeout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)
+    except celery.exceptions.TimeoutError as e:
+        status = f'Failed to execute task in time: {e}'
+        monitor_log.critical(status)
     return status, None
