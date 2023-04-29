@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-29 00:45+0000\n"
+"PO-Revision-Date: 2023-04-29 00:54+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -686,10 +686,10 @@ msgid "User {user} picture deleted."
 msgstr "Okisanel {user} xyuj ruwachib'al."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Okisanel {user} xtz'aqatisäx pa {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Okisanel {user} xyuj pa {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} man xcholajïx ta."
@@ -789,13 +789,13 @@ msgid "User {user} api key reset."
 msgstr "Xtzolïx Okisanel {user} api."
 
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Tiq'at richin {0} xtz'aqatisäx pa Rucholajem Q'atoj."
 
 msgid "Block added"
 msgstr "Xtz'aqatisäx peraj"
 
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Tiq'at richin {0} xnuk' pa Rucholajem Q'atoj."
 
 msgid "Block edited"
 msgstr "Xnuk' peraj"
@@ -939,9 +939,8 @@ msgstr "Man okel ta ri LWT"
 msgid "Theme (Static)"
 msgstr "Wachinel (Molob'a')"
 
-#, fuzzy
 msgid "Site Permission"
-msgstr "Taq ya'oj q'ij:"
+msgstr "Taq ya'oj q'ij"
 
 msgid "Extensions"
 msgstr "Taq k'amal"
@@ -971,9 +970,8 @@ msgstr "Man okel ta ri LWTs"
 msgid "Themes (Static)"
 msgstr "Taq Wachinel (Molob'a')"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "Taq ya'oj q'ij:"
+msgstr "Taq ruya'oj q'ij ruxaq"
 
 msgid "Alerts & Updates"
 msgstr "Kitzijol K'ayewal & Taq K'exoj"
@@ -1269,7 +1267,7 @@ msgid "Video"
 msgstr "Silowäch"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Ruwinaqilal ya'öl q'ij 2.0 Mozilla"
 
 msgid "GNU General Public License v2.0"
 msgstr ""
@@ -1283,16 +1281,14 @@ msgstr ""
 msgid "GNU Library General Public License v3.0"
 msgstr ""
 
-#, fuzzy
 msgid "The MIT License"
-msgstr "Ya'oj q'ij"
+msgstr "Ri MIT Ya'oj q'ij"
 
-#, fuzzy
 msgid "The BSD License"
-msgstr "Ya'oj q'ij"
+msgstr "Ri BSD Ya'oj q'ij"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Ruwinaqilal ya'öl q'ij 1.1 Mozilla"
 
 msgid "All Rights Reserved"
 msgstr "E'ichinan Ronojel ri taq Ch'ojib'äl"
@@ -1315,9 +1311,8 @@ msgstr "Creative Commons Attribution-NoDerivs 3.0"
 msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
-#, fuzzy
 msgid "Not Promoted"
-msgstr "To'ïk"
+msgstr "Man to'on ta"
 
 msgid "Recommended"
 msgstr "Xchilab'ëx"
