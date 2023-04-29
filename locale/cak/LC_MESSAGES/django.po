@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-29 00:54+0000\n"
+"PO-Revision-Date: 2023-04-29 01:08+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -1708,9 +1708,8 @@ msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri
 msgid "Header area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj, man ke ta ri' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  textcolor."
+msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj, man ke ta ri' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Rupam ruk'ojlib'al rukajtz'ik samajib'äl"
@@ -2152,6 +2151,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Pa tz'alamtz'ib'ab'äl yatikïr naya' nïm etamab'äl chi re ri nuk'unel pa ruwi' ri atz'aqat, xab'achike ruwäch. Tawokisaj richin naya' rutzijol ri ütz rub'anikil richin nitojtob'ëx ri tz'aqat, chuqa' "
+"tatz'aqatisaj etamab'äl, ri nito'on. Ri nuk'unela' chuqa' yetikïr nikinük' ri tz'alamtz'ib'ab'äl."
 
 msgid "Add-on Media for {0}"
 msgstr "Tz'aqat Ruk'oxom {0}"
@@ -2372,9 +2373,8 @@ msgstr "Tiq'at chuqa' Tichup Ruwäch"
 msgid "Are you sure you wish to cancel and disable version?"
 msgstr "¿At jikïl chi nawajo' nayüj el re ruwäch re'?"
 
-#, fuzzy
 msgid "Yes, Cancel"
-msgstr "Tiq'at"
+msgstr "Ja', Tiq'at"
 
 msgid "No, don't cancel"
 msgstr "Mani, man tiq'at"
@@ -2935,9 +2935,8 @@ msgstr ""
 msgid "Matrix"
 msgstr "Matrix"
 
-#, fuzzy
 msgid "Community forum"
-msgstr "Tinamït & Tob'äl"
+msgstr "Chowen Tinamital Jay"
 
 #, fuzzy
 msgid "Extensions Developers Newsletter"
