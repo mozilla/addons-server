@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-06 18:44+0000\n"
+"PO-Revision-Date: 2023-04-29 09:16+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4083,7 +4083,7 @@ msgstr "Odstranite elemente za sledenje iz spletnih povezav."
 
 #. editorial content for the discovery pane.
 msgid "Get auto-populated RSS feed bookmark folders."
-msgstr ""
+msgstr "Mape zaznamkov, ki se samodejno posodabljajo iz virov RSS."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4154,7 +4154,7 @@ msgstr "Najpreprostejši način za upravljanje naročnin na YouTube."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "Imejte drsni trak, kot ste si ga vedno želeli – izberite si širino in barvo."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4171,7 +4171,7 @@ msgstr "Vsi emodžiji, ki jih potrebujete – vedno le klik stran."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Zamaskirajte svoj e-poštni naslov. Firefox Relay varuje vašo identiteto in vas ščiti pred neželeno pošto."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4236,6 +4236,8 @@ msgstr "Vrnite se v preprostejše čase – ko so najustreznejši zadetki iskanj
 #. editorial content for the primary hero shelves.
 msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
 msgstr ""
+"Ni treba, da spletnim mestom daste svoj e-poštni naslov. Firefox Relay varuje vašo identiteto in vas ščiti pred neželeno pošto. Plačljiva različica ponuja dodatne zmogljivosti, kot je blokiranje "
+"določnejše promocijske e-pošte."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4271,7 +4273,7 @@ msgstr "Izbrišite podatke o brskanju neposredno iz orodne vrstice brskalnika."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "Prejemajte samodejne posodobitve virov RSS naravnost v mape z zaznamki."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
