@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-29 00:35+0000\n"
+"PO-Revision-Date: 2023-04-29 00:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -91,7 +91,7 @@ msgid "Invalid category name."
 msgstr ""
 
 msgid "Invalid app name."
-msgstr ""
+msgstr "Rub'i' chokoy man k'o ta."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
@@ -108,7 +108,6 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil ({extensions})."
 
-#, fuzzy
 msgid "Invalid or broken archive."
 msgstr "Man okel ta yakb'äl."
 
@@ -141,7 +140,7 @@ msgid "Upload is not valid."
 msgstr ""
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Yakb'äl chupun chik."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -529,7 +528,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Ruwäch {0} xyuj pa {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Yakb'äl {file} xtz'aqatisäx pa {version} richin {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Yakb'äl {0} xyuj pa {version} richin {addon}."
@@ -580,7 +579,7 @@ msgid "{addon} {version} super review requested."
 msgstr "{addon} {version} xk'utüx runik'oxik."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
-msgstr ""
+msgstr "Xya' retal ri tz'aqat richin Tinik'öx ruma ri Nuk'samajel. K'o pa rucholajil qanik'oxik, po k'o chi xtiya' rejqalem ruma jun qanuk'samajel. Rik'in jub'a' xtiyoke' jub'a'."
 
 msgid "Commented"
 msgstr "Xtz'ijöx"
@@ -620,7 +619,7 @@ msgstr "{0} {1} xtz'aqatisäx."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "{user} xjal rik'in {0} richin {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} ya'on ruya'öl q'ij richin {0}."
@@ -628,9 +627,8 @@ msgstr "{addon} ya'on ruya'öl q'ij richin {0}."
 msgid "{addon} policy changed."
 msgstr "{addon} runa'ojil xjal."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon} wachib'äl xjal."
+msgstr ""
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} richin {addon} xya' q'ij chi re."
@@ -659,9 +657,8 @@ msgstr "Juch'un chik xa xe noyob'en"
 msgid "Account updated."
 msgstr "Xk'ex rub'i' taqoya'l."
 
-#, fuzzy
 msgid "Account {user} deleted."
-msgstr "Xk'ex rub'i' taqoya'l."
+msgstr "Xk'ex {user} taqoya'l."
 
 #, fuzzy
 msgid "Account {user} deleted, from Firefox Accounts event."
