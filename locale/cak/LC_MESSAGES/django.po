@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-29 01:08+0000\n"
+"PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -3065,9 +3065,8 @@ msgstr "Titaq jun K'ak'a' Ruwäch"
 msgid "Customize Firefox"
 msgstr "Tawichinaj Firefox"
 
-#, fuzzy
 msgid "Learn how to make an extension"
-msgstr "Tawetamaj Rub'eyal Nab'än jun Tz'aqat"
+msgstr "Tawetamaj rub'eyal nab'än jun k'amal"
 
 msgid "Ready to submit or manage your extension?"
 msgstr ""
@@ -3113,9 +3112,8 @@ msgstr "Ruxe'el b'itz'ib'"
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "We ri atz'aqat ruk'wan kach'akul o ewan b'itz'ib', tak'utu' ri taq xe'el wawe' kichin ri nik'onela'."
 
-#, fuzzy
 msgid "File {file_id}"
-msgstr "Yakb'äl {file_id} ({platform})"
+msgstr "Yakb'äl {file_id}"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -3323,9 +3321,8 @@ msgstr "¿La xatz'ët jun wachib'äl pan ajk'amaya'l chuqa' nawajo' nawetamaj pa
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#, fuzzy
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr "Nisamäj rik'in YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, chuqa' k'ïy ruxaq k'amaya'l richin silowäch."
+msgstr "Ke'aqasaj taq silowäch. Nisamäj rik'in YouTube Facebook, Vimeo, Twitch, Dailymotion, Periscope, chuqa' k'ïy ruxaq k'amaya'l richin silowäch."
 
 #. editorial content for the discovery pane.
 #, fuzzy
