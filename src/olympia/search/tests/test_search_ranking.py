@@ -67,8 +67,8 @@ class TestRankingScenarios(ESTestCase):
             # if found_score != expected_score:
             #     filename = 'src/olympia/search/tests/test_search_ranking.py'
             #     with open('/data/olympia/tmp/sed_me.sh', 'a+') as f:
-            #         f.write(
-            #             'sed -i s/%s/%s/ %s\n' % (expected_score, found_score, filename)
+            #         f.write('sed -i s/%s/%s/ %s\n' % (
+            #             expected_score, found_score, filename)
             #         )
             #     continue
             assert found_score == expected_score, (
