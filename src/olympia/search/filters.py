@@ -633,8 +633,8 @@ class SearchQueryFilter(BaseFilterBackend):
         # default locale translation only. That field has word delimiter rules
         # to help find matches, lowercase filter, etc, at the expense of any
         # language-specific features.
-        should.extend(
-            [
+        if ' ' in search_query:
+            should.append(
                 query.MatchPhrase(
                     **{
                         'name': {
@@ -644,7 +644,10 @@ class SearchQueryFilter(BaseFilterBackend):
                             'slop': 1,
                         },
                     }
-                ),
+                )
+            )
+        should.extend(
+            [
                 query.Match(
                     **{
                         'name': {
@@ -734,7 +737,7 @@ class SearchQueryFilter(BaseFilterBackend):
         language then only the first part is applied.
 
         If rescore_mode is True, the match applied are match_phrase queries
-        with a slop of 5 instead of a regular match. As those are more
+        with a slop of 10 instead of a regular match. As those are more
         expensive they are only done in the 'rescore' part of the query.
         """
         if rescore_mode is False:
