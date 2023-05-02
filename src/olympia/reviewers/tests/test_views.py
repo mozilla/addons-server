@@ -1312,7 +1312,9 @@ class TestQueueBasics(QueueTest):
     def test_flags_promoted(self):
         addon = addon_factory(name='Firefox Fún')
         version_factory(
-            addon=addon, version='1.1', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+            addon=addon, version='1.1',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=datetime.now() + timedelta(hours=24),
         )
         self.make_addon_promoted(addon, LINE)
 
@@ -1478,9 +1480,10 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # - 2 for savepoints because we're in tests
             # - 2 for user/groups
+            # - 1 for the due date cut off config
             # - 1 for the current queue count for pagination purposes
             # - 3 for the addons in the queue, their translations and the
             #     versions (regardless of how many are in the queue - that's
@@ -1510,7 +1513,7 @@ class TestExtensionQueue(QueueTest):
             score=0,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        with self.assertNumQueries(11):
+        with self.assertNumQueries(12):
             # See above for the queries. There should be a select_related()
             # when fetching the versions, so the score doesn't cost us any
             # extra queries.
@@ -1701,6 +1704,42 @@ class TestExtensionQueue(QueueTest):
         self.expected_addons = [
             self.addons['Nominated One'],
             self.addons['Pending One'],
+        ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self._test_results()
+
+    def _setup_queue_with_long_due_dates(self):
+        addon_names = self.expected_addons = self.generate_files()
+        for addon in addon_names:
+            AddonReviewerFlags.objects.create(
+                addon=self.addons[addon],
+                auto_approval_disabled=True,
+            )
+        self.addons['Nominated One'].current_version.update(
+            due_date=datetime.now() + timedelta(days=2, seconds=1)
+        )
+        self.addons['Pending Two'].current_version.update(
+            due_date=datetime.now() + timedelta(days=2, seconds=2)
+        )
+
+    def test_long_due_dates_filtered_out(self):
+        self._setup_queue_with_long_due_dates()
+        self.expected_addons = [
+            self.addons['Nominated Two'],
+            self.addons['Pending One'],
+        ]
+        self.expected_versions = self.get_expected_versions(self.expected_addons)
+        self._test_results()
+
+    def test_long_due_dates_shown_with_permission(self):
+        # self.grant_permission(self.user, 'Addons:AllDueDates')
+        self.grant_permission(self.user, '*:*')
+        self._setup_queue_with_long_due_dates()
+        self.expected_addons = [
+            self.addons['Nominated Two'],
+            self.addons['Pending One'],
+            self.addons['Nominated One'],
+            self.addons['Pending Two'],
         ]
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         self._test_results()

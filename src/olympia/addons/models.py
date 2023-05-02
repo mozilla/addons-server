@@ -5,7 +5,7 @@ import re
 import time
 import uuid
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import urlsplit
 
 from django.conf import settings
@@ -81,6 +81,7 @@ from olympia.versions.models import (
     inherit_due_date_if_nominated,
 )
 from olympia.versions.utils import get_review_due_date
+from olympia.zadmin.models import get_config
 
 from . import signals
 
@@ -91,6 +92,7 @@ log = olympia.core.logger.getLogger('z.addons')
 MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
+UPCOMING_DUE_DATE_CUT_OFF_CONFIG_KEY = 'upcoming-due-date-cut-off'
 
 
 class GuidAlreadyDeniedError(RuntimeError):
@@ -305,7 +307,12 @@ class AddonManager(ManagerBase):
         return qs
 
     def get_queryset_for_pending_queues(
-        self, *, admin_reviewer=False, theme_review=False, show_temporarily_delayed=True
+        self,
+        *,
+        admin_reviewer=False,
+        theme_review=False,
+        show_temporarily_delayed=True,
+        show_only_upcoming=False,
     ):
         if theme_review:
             filters = {
@@ -331,6 +338,11 @@ class AddonManager(ManagerBase):
             .no_transforms()
             .order_by('due_date')
         )
+        if show_only_upcoming:
+            upcoming_cutoff_date = datetime.now() + timedelta(
+                days=get_config(UPCOMING_DUE_DATE_CUT_OFF_CONFIG_KEY, 2)
+            )
+            versions_due_qs = versions_due_qs.filter(due_date__lte=upcoming_cutoff_date)
         if not show_temporarily_delayed:
             # If we were asked not to show temporarily delayed, we need to
             # exclude versions from the channel of the corresponding addon auto

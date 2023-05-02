@@ -301,7 +301,7 @@ def save_motd(request):
 
 def _queue(request, tab, unlisted=False):
     TableObj = reviewer_tables_registry[tab]
-    qs = TableObj.get_queryset(request=request)
+    qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
     params = {}
     order_by = request.GET.get('sort')
     if order_by is None and hasattr(TableObj, 'default_order_by'):

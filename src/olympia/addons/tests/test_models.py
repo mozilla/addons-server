@@ -3081,12 +3081,14 @@ class TestExtensionsQueues(TestCase):
             ).addon,
             version_factory(
                 addon=version_factory(
-                    addon=addon_factory(
-                        name='Mixed with both channel awaiting review',
-                        reviewer_flags={
-                            'auto_approval_disabled_unlisted': True,
-                            'auto_approval_disabled': True,
-                        },
+                    addon=(
+                        addon_mixed_with_both_awaiting_review := addon_factory(
+                            name='Mixed with both channel awaiting review',
+                            reviewer_flags={
+                                'auto_approval_disabled_unlisted': True,
+                                'auto_approval_disabled': True,
+                            },
+                        )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     channel=amo.CHANNEL_UNLISTED,
@@ -3104,13 +3106,16 @@ class TestExtensionsQueues(TestCase):
             ).addon,
             version_factory(
                 addon=version_factory(
-                    addon=addon_factory(
-                        name='Auto-approval delayed for listed, disabled for unlisted',
-                        reviewer_flags={
-                            'auto_approval_delayed_until': datetime.now()
-                            + timedelta(hours=24),
-                            'auto_approval_disabled_unlisted': True,
-                        },
+                    addon=(
+                        addon_auto_approval_delayed_for_listed := addon_factory(
+                            name='Auto-approval delayed for listed, disabled for '
+                            'unlisted',
+                            reviewer_flags={
+                                'auto_approval_delayed_until': datetime.now()
+                                + timedelta(hours=24),
+                                'auto_approval_disabled_unlisted': True,
+                            },
+                        )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     channel=amo.CHANNEL_UNLISTED,
@@ -3121,13 +3126,16 @@ class TestExtensionsQueues(TestCase):
             ).addon,
             version_factory(
                 addon=version_factory(
-                    addon=addon_factory(
-                        name='Auto-approval delayed for unlisted, disabled for listed',
-                        reviewer_flags={
-                            'auto_approval_delayed_until_unlisted': datetime.now()
-                            + timedelta(hours=24),
-                            'auto_approval_disabled': True,
-                        },
+                    addon=(
+                        addon_auto_approval_delayed_for_unlisted := addon_factory(
+                            name='Auto-approval delayed for unlisted, disabled for '
+                            'listed',
+                            reviewer_flags={
+                                'auto_approval_delayed_until_unlisted': datetime.now()
+                                + timedelta(hours=24),
+                                'auto_approval_disabled': True,
+                            },
+                        )
                     ),
                     file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                     due_date=datetime.now() + timedelta(hours=24),
@@ -3224,6 +3232,7 @@ class TestExtensionsQueues(TestCase):
                 'auto_approval_disabled': True,
                 'needs_admin_code_review': True,
             },
+            version_kw={'due_date': datetime.now() + timedelta(hours=24)},
         )
         addons = Addon.unfiltered.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
@@ -3244,6 +3253,27 @@ class TestExtensionsQueues(TestCase):
         expected_addons.append(addon_needing_admin_code_review)
         addons = Addon.unfiltered.get_queryset_for_pending_queues(admin_reviewer=True)
         assert set(addons) == set(expected_addons)
+
+        # If we show only upcoming - short due dates - most of the addons won't be
+        # included because our standard review time (3) is longer than the cut off (2)
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
+            show_only_upcoming=True
+        )
+        assert set(addons) == {
+            addon_auto_approval_delayed_for_listed,
+            addon_auto_approval_delayed_for_unlisted,
+            addon_mixed_with_both_awaiting_review,
+        }
+
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=True, show_only_upcoming=True
+        )
+        assert set(addons) == {
+            addon_auto_approval_delayed_for_listed,
+            addon_auto_approval_delayed_for_unlisted,
+            addon_mixed_with_both_awaiting_review,
+            addon_needing_admin_code_review,
+        }
 
         # If we pass show_temporarily_delayed=False, versions in a channel that
         # is temporarily delayed should not be considered. We already have a
