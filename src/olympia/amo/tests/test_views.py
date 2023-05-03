@@ -67,7 +67,7 @@ class Test404(TestCase):
     def test_404_no_app(self):
         """Make sure a 404 without an app doesn't turn into a 500."""
         # That could happen if helpers or templates expect APP to be defined.
-        url = reverse('amo.monitor')
+        url = reverse('amo.services_monitor')
         response = self.client.get(url + 'nonsense')
         assert response.status_code == 404
         self.assertTemplateUsed(response, 'amo/404.html')
@@ -349,6 +349,51 @@ class TestOtherStuff(TestCase):
         doc = etree.fromstring(result.content)
         e = doc.find('{http://a9.com/-/spec/opensearch/1.1/}ShortName')
         assert e.text == 'Firefox Add-ons'
+
+
+class TestHeartbeat(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.mocks = {}
+        for check in [
+            'memcache',
+            'libraries',
+            'elastic',
+            'path',
+            'database',
+            'rabbitmq',
+            'signer',
+            'remotesettings',
+        ]:
+            patcher = mock.patch(f'olympia.amo.monitors.{check}')
+            self.mocks[check] = patcher.start()
+            self.mocks[check].return_value = ('', None)
+            self.addCleanup(patcher.stop)
+
+    def test_front_heartbeat_success(self):
+        response = self.client.get(reverse('amo.front_heartbeat'))
+        assert response.status_code == 200
+
+    def test_front_heartbeat_failure(self):
+        self.mocks['database'].return_value = ('boom', None)
+
+        response = self.client.get(reverse('amo.front_heartbeat'))
+
+        assert response.status_code >= 500
+        assert response.json()['database']['status'] == 'boom'
+
+    def test_services_heartbeat_success(self):
+        response = self.client.get(reverse('amo.services_heartbeat'))
+        assert response.status_code == 200
+
+    def test_services_heartbeat_failure(self):
+        self.mocks['rabbitmq'].return_value = ('boom', None)
+
+        response = self.client.get(reverse('amo.services_heartbeat'))
+
+        assert response.status_code >= 500
+        assert response.json()['rabbitmq']['status'] == 'boom'
 
 
 class TestCORS(TestCase):

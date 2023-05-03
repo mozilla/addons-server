@@ -64,6 +64,28 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
         raise exc
 
 
+# We rarely care about task results and ignore them by default
+# (CELERY_TASK_IGNORE_RESULT=True) but here we need the result of that task to
+# return it to the monitor view.
+@task(ignore_result=False)
+def monitor_remote_settings():
+    # check Remote Settings connection
+    client = RemoteSettings(
+        settings.REMOTE_SETTINGS_WRITER_BUCKET,
+        REMOTE_SETTINGS_COLLECTION_MLBF,
+    )
+    status = ''
+    try:
+        client.heartbeat()
+    except Exception as e:
+        status = f'Failed to contact Remote Settings server: {e}'
+    if not status and not client.authenticated():
+        status = 'Invalid credentials for Remote Settings server'
+    if status:
+        log.critical(status)
+    return status
+
+
 @task
 def upload_filter(generation_time, is_base=True):
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET

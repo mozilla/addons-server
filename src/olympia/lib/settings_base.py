@@ -839,6 +839,7 @@ CELERY_TASK_ROUTES = {
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
+    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
@@ -1479,6 +1480,7 @@ DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
 REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
+REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS = 10
 
 # The remote settings test server needs accounts and setting up before using.
 REMOTE_SETTINGS_IS_TEST_SERVER = False
