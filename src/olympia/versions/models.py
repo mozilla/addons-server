@@ -954,7 +954,8 @@ class Version(OnChangeMixin, ModelBase):
             .order_by('-due_date')
         )
         standard_or_existing_due_date = self.due_date or get_review_due_date()
-        if not (due_date := qs.first()) or due_date > standard_or_existing_due_date:
+        due_date = qs.first()
+        if not due_date or due_date > standard_or_existing_due_date:
             due_date = standard_or_existing_due_date
         self.reset_due_date(due_date=due_date)
 
