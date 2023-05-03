@@ -148,7 +148,8 @@ p.addon-submit-distribute {
 
     #addon-categories-edit #id_category {
         column-count: 2;
-        li label {
+
+        >*>label {
             font-weight: normal;
         }
     }
@@ -193,11 +194,12 @@ p.addon-submit-distribute {
     }
 }
 
-#submit-describe #addon-categories-edit label + ul {
-  column-count: 2;
-  li label {
-    font-weight: normal;
-  }
+#submit-describe #addon-categories-edit label+* {
+    column-count: 2;
+
+    >*>label {
+        font-weight: normal;
+    }
 }
 
 span.tip:hover,
