@@ -64,7 +64,7 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
         raise exc
 
 
-@task
+@task(ignore_result=False)
 def monitor_remote_settings():
     # check Remote Settings connection
     client = RemoteSettings(
