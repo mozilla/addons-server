@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-05-03 01:51+0000\n"
+"PO-Revision-Date: 2023-05-03 02:08+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -68,7 +68,6 @@ msgstr "アドオン審査チーム"
 msgid "Review"
 msgstr "レビュー"
 
-#, fuzzy
 msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "バージョン {0}"
@@ -80,7 +79,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "ノートを追加できるのはアドオンの最新版のみです。"
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "リクエストしたコンテンツが長すぎます。"
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "アプリケーションあたりのカテゴリーの最大数 ({MAX_CATEGORIES}) を超えました"
@@ -104,10 +103,10 @@ msgid "URLs must start with https://."
 msgstr "URL は https:// で始まる必要があります。"
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "slug={value} のライセンスは存在しません。"
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "非対応のファイル形式です。アーカイブファイル ({extensions}) をアップロードしてください。"
 
 msgid "Invalid or broken archive."
 msgstr "不正または壊れたアーカイブです。"
@@ -116,21 +115,21 @@ msgid "Invalid app specified"
 msgstr "無効なアプリが指定されました"
 
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "不明なアプリの最大バージョンが指定されました"
 
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "不明な最小アプリ バージョンが指定されました"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "画像サイズは %d MB 未満でなければなりません"
 
 # Column name in a table.
 msgid "Listed"
 msgstr "表示"
 
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "アドオンとコレクションのパスは「/」で終わっていなければなりません"
 
 msgid "Previews cannot be created for themes."
 msgstr "テーマのプレビューを作成できません。"
@@ -142,11 +141,11 @@ msgid "Upload is not valid."
 msgstr "アップロードが無効です。"
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "ファイルはすでに無効になっています。"
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "この %s アドオンは、以前のバージョンが %s プロモーションで承認されなかったため、最新の承認済みバージョンを削除することができません。助けが必要な場合は AMO の管理者に問い合わせてください。"
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr "バージョン {version} は、このアドオンの {block_link} と一致します。追加の情報は {amo_admins} にお問い合わせください。"
@@ -164,7 +163,7 @@ msgid "Add-ons need at least one owner."
 msgstr "アドオンには少なくとも一人のオーナーが必要です。"
 
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "アドオンには少なくとも一人の作者が必要です。"
 
 msgid "Account not found."
 msgstr "アカウントが見つかりませんでした。"
@@ -176,43 +175,43 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "アカウントを作成者として追加するには、アカウントは表示名が必要です。"
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "このスラグは使用できません。別のスラグを付けてください。"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "アドオン名には Mozilla または Firefox の商標を含めることはできません。"
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "バージョン {version_string} は、以前に承認されたバージョン {previous_version_string} より大きくなければなりません。"
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "`license` と `custom_license` を同時に提供することはできません。"
 
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "このフィールド、または custom_license は、リストされているバージョンに必要です。"
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "このライセンスのアドオンの種類が正しくありません。"
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "テーマのカスタムライセンスはサポートされていません。"
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "このフィールドは、リストされたバージョンのアドオンに必須です。"
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "リストされたバージョンを作成するには、アドオンのメタデータを設定する必要があります: {missing_addon_metadata}。"
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "マニフェストで GUID を指定する必要があります。"
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "URL とマニフェストの GUID が一致しません。"
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "このバージョンは Mozilla によってレビューされているため、ソースを変更できません。"
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "この種類のアドオンは、カスタム互換性を許可しません。"
 
 msgid "My Add-ons"
 msgstr "自分のアドオン"
@@ -391,7 +390,7 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr "認証ヘッダーが無効です。資格情報の文字列にはスペースを含めないでください。"
 
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "指定されたセッションキーと一致する有効なユーザーセッションが見つかりません。"
 
 msgid "Access token refresh failed; user needs to login to FxA again."
 msgstr ""
@@ -1085,25 +1084,25 @@ msgid "Security & Privacy"
 msgstr "プライバシー／セキュリティ"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Firefox の拡張機能をダウンロードして、安全でプライバシーに配慮したネットサーフィンを楽しみましょう。隠れた広告トラッカーの追跡阻止や、閲覧履歴を簡単に消去できる拡張機能を見つけてください。"
 
 msgid "Social Networking"
 msgstr "ソーシャルネットワーキング"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Firefox の拡張機能をダウンロードして、YouTube、GitHub、Reddit などの人気の SNS での体験を向上させましょう。"
 
 msgid "Sports & Games"
 msgstr "スポーツ／ゲーム"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Firefox の拡張機能をダウンロードして、ライブ配信の強化やスポーツの最新情報など、エンターテイメントをより快適にお楽しみください。"
 
 msgid "User Interface"
 msgstr "ユーザーインタフェース"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "ウェブページを読みやすく、検索しやすく、ブラウジングしやすくするためにユーザーインタフェースをカスタマイズする Firefox 拡張機能をダウンロードできます。"
 
 msgid "Animals"
 msgstr "動物"
@@ -1136,25 +1135,25 @@ msgid "Abstract"
 msgstr "抽象画"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "芸術的でコンセプチュアルな Firefox のテーマをダウンロードできます。このカテゴリーには、カラフルなパレットや図形、ファンタジーな風景、遊び心のある猫、極彩色の花などが含まれます。"
 
 msgid "Causes"
 msgstr "社会活動"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "ニッチな趣味やトピックに対応した Firefox のテーマをダウンロードできます。このカテゴリーには、スポーツのテーマ、祝日、慈善活動、民族的なものなど、さまざまなものが含まれます。"
 
 msgid "Fashion"
 msgstr "ファッション"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "パターン、花柄、テクスチャー、モデルなど、あらゆる形のスタイルを称賛する Firefox のテーマをダウンロードできます。"
 
 msgid "Film and TV"
 msgstr "映画・テレビ"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "映画やテレビを題材にした Firefox のテーマをダウンロードできます。このカテゴリーには、ナルトなどのアニメ、マトリックスなどの映画や番組 (ゲーム・オブ・スローンズ) が含まれます。"
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
@@ -1295,7 +1294,7 @@ msgid "Recommended"
 msgstr "おすすめ"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "広告"
 
 msgid "Verified"
 msgstr "認証済み"
@@ -2318,7 +2317,7 @@ msgid "Yes, Cancel"
 msgstr "キャンセルする"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "いいえ、キャンセルしないでください"
 
 msgid "Name and Summary:"
 msgstr "名前と概要:"
