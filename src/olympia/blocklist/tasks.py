@@ -64,6 +64,9 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
         raise exc
 
 
+# We rarely care about task results and ignore them by default
+# (CELERY_TASK_IGNORE_RESULT=True) but here we need the result of that task to
+# return it to the monitor view.
 @task(ignore_result=False)
 def monitor_remote_settings():
     # check Remote Settings connection
