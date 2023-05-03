@@ -218,8 +218,11 @@ def remotesettings():
     # a worker, and since workers have different network
     # configuration than the Web head, we use a task to check
     # the connectivity to the Remote Settings server.
-    # Since we want the result immediately, bypass django-post-request-task and
-    # tell celery to not ignore the result.
-    result = monitor_remote_settings.original_apply_async(ignore_result=False)
-    status = result.get()
+    # Since we want the result immediately, bypass django-post-request-task.
+    result = monitor_remote_settings.original_apply_async()
+    try:
+        status = result.get(timeout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)
+    except celery.exceptions.TimeoutError as e:
+        status = f'Failed to execute task in time: {e}'
+        monitor_log.critical(status)
     return status, None
