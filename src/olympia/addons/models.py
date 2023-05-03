@@ -5,7 +5,7 @@ import re
 import time
 import uuid
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from urllib.parse import urlsplit
 
 from django.conf import settings
@@ -92,7 +92,7 @@ log = olympia.core.logger.getLogger('z.addons')
 MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
-UPCOMING_DUE_DATE_CUT_OFF_CONFIG_KEY = 'upcoming-due-date-cut-off'
+UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY = 'upcoming-due-date-cut-off-days'
 
 
 class GuidAlreadyDeniedError(RuntimeError):
@@ -339,8 +339,8 @@ class AddonManager(ManagerBase):
             .order_by('due_date')
         )
         if show_only_upcoming:
-            upcoming_cutoff_date = datetime.now() + timedelta(
-                days=get_config(UPCOMING_DUE_DATE_CUT_OFF_CONFIG_KEY, 2)
+            upcoming_cutoff_date = get_review_due_date(
+                default_days=get_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, 2)
             )
             versions_due_qs = versions_due_qs.filter(due_date__lte=upcoming_cutoff_date)
         if not show_temporarily_delayed:

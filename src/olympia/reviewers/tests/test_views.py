@@ -1312,7 +1312,8 @@ class TestQueueBasics(QueueTest):
     def test_flags_promoted(self):
         addon = addon_factory(name='Firefox Fún')
         version_factory(
-            addon=addon, version='1.1',
+            addon=addon,
+            version='1.1',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             due_date=datetime.now() + timedelta(hours=24),
         )
