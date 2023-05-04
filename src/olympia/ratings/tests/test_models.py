@@ -39,6 +39,7 @@ class TestRatingModel(TestCase):
 
         addon.reload()
         assert addon.average_rating == 4.0  # Has been computed after deletion.
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     @mock.patch('olympia.ratings.models.log')
     def test_soft_delete_by_different_user(self, log_mock):
@@ -55,6 +56,14 @@ class TestRatingModel(TestCase):
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == str(rating.user)
         assert log_mock.info.call_args[0][4] == str(rating.body)
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
+
+    def test_soft_delete_by_different_user_skip_activty_log(self):
+        different_user = user_factory()
+        core.set_user(different_user)
+        rating = Rating.objects.get(id=1)
+        rating.delete(skip_activity_log=True)
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
@@ -63,6 +72,7 @@ class TestRatingModel(TestCase):
         Rating.objects.filter(id=1).delete(hard_delete=True)
         assert Rating.unfiltered.count() == 1
         assert Rating.objects.filter(id=2).exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     def test_undelete(self):
         self.test_soft_delete()

@@ -2160,6 +2160,9 @@ class TestAddonDelete(TestCase):
         assert not Rating.objects.filter(pk=rating.pk).exists()
         assert not RatingFlag.objects.filter(pk=flag.pk).exists()
 
+        assert Rating.unfiltered.filter(pk=rating.pk).exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
+
     def test_delete_with_deleted_versions(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon, version='1.0')
