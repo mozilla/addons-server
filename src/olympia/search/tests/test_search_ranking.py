@@ -65,10 +65,11 @@ class TestRankingScenarios(ESTestCase):
             # Don't forget to verify the diff afterwards to see if they make
             # sense though!)
             # if found_score != expected_score:
-            #     filename = 'src/olympia/search/tests/test_search_ranking.py'
+            #     target = 'src/olympia/search/tests/test_search_ranking.py'
             #     with open('/data/olympia/tmp/sed_me.sh', 'a+') as f:
-            #         f.write('sed -i s/%s/%s/ %s\n' % (
-            #             expected_score, found_score, filename))
+            #         f.write(
+            #             'sed -i s/%s/%s/ %s\n' % (expected_score, found_score, target)
+            #         )
             #     continue
             assert found_score == expected_score, (
                 'Expected "{}" to be on position {} with score {} but '
@@ -97,10 +98,10 @@ class TestRankingScenarios(ESTestCase):
             name='Tab Center Redux',
             slug='tab-center-redux',
             summary='Move your tabs to the side of your browser window.',
-            weekly_downloads=915,
+            weekly_downloads=305,
         )
         amo.tests.addon_factory(
-            average_daily_users=468126,
+            average_daily_users=468127,
             description=None,
             name='Tab Mix Plus',
             slug='tab-mix-plus',
@@ -191,7 +192,7 @@ class TestRankingScenarios(ESTestCase):
                 'Protects your privacy by blocking spying ads and invisible '
                 'trackers.'
             ),
-            weekly_downloads=22931,
+            weekly_downloads=7731,
         )
         amo.tests.addon_factory(
             average_daily_users=8728,
@@ -227,7 +228,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=117,
         )
         amo.tests.addon_factory(
-            average_daily_users=70553,
+            average_daily_users=69553,
             description=None,
             name='Blur',
             slug='donottrackplus',
@@ -235,7 +236,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=2224,
         )
         amo.tests.addon_factory(
-            average_daily_users=1009156,
+            average_daily_users=1003056,
             description=None,
             name='Ghostery',
             slug='ghostery',
@@ -264,7 +265,7 @@ class TestRankingScenarios(ESTestCase):
             name='Firebug Autocompleter',
             slug='firebug-autocompleter',
             summary='Firebug command line autocomplete.',
-            weekly_downloads=76,
+            weekly_downloads=25,
         )
         amo.tests.addon_factory(
             average_daily_users=11992,
@@ -312,7 +313,7 @@ class TestRankingScenarios(ESTestCase):
             name='Frame Demolition',
             slug='frame-demolition',
             summary=('Enabling route to load abstracted file layer in select sites.'),
-            weekly_downloads=70,
+            weekly_downloads=69,
         )
         amo.tests.addon_factory(
             average_daily_users=99,
@@ -323,7 +324,7 @@ class TestRankingScenarios(ESTestCase):
                 'A user style manager which can load local files and apply UI '
                 'styles even in Firefox 57+'
             ),
-            weekly_downloads=70,
+            weekly_downloads=69,
         )
         amo.tests.addon_factory(
             average_daily_users=150,
@@ -376,13 +377,13 @@ class TestRankingScenarios(ESTestCase):
                 'when the content author still use the old style embed '
                 '(Flash).\n\nSource code at <a rel="nofollow" href="https://'
                 'outgoing.prod.mozaws.net/v1/14b404a3c05779fa94b24e0bffc0d710'
-                '6836f1d6b771367b065fb96e9c8656b9/https%3A//github.com/hfigui'
+                '6836f1d6b771387b065fb96e9c8656b9/https%3A//github.com/hfigui'
                 'ere/no-flash">https://github.com/hfiguiere/no-flash</a>'
             ),
             weekly_downloads=77,
         )
         amo.tests.addon_factory(
-            average_daily_users=547880,
+            average_daily_users=551880,
             description=None,
             name='Download Flash and Video',
             slug='download-flash-and-video',
@@ -437,7 +438,7 @@ class TestRankingScenarios(ESTestCase):
             name='Reader',
             slug='reader',
             summary='Reader is the ultimate Reader tool for Firefox.',
-            weekly_downloads=2463,
+            weekly_downloads=2483,
         )
         amo.tests.addon_factory(
             average_daily_users=53412,
@@ -483,7 +484,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=500,
         )
         amo.tests.addon_factory(
-            average_daily_users=74094,
+            average_daily_users=74104,
             description=None,
             name='OneTab',
             slug='onetab',
@@ -505,7 +506,7 @@ class TestRankingScenarios(ESTestCase):
                 'modus quidam per ex. Illum tempor duo eu, ut mutat noluisse '
                 'consulatu vel.'
             ),
-            weekly_downloads=700,
+            weekly_downloads=690,
         )
         amo.tests.addon_factory(
             average_daily_users=3064,
@@ -605,7 +606,7 @@ class TestRankingScenarios(ESTestCase):
             name='1-Click YouTube Video Download',
             type=amo.ADDON_EXTENSION,
             average_daily_users=566337,
-            weekly_downloads=150000,
+            weekly_downloads=150900,
             summary=None,
             description=(
                 'This addon contains Amazon 1-Click Lock in its description '
@@ -655,25 +656,32 @@ class TestRankingScenarios(ESTestCase):
             summary='A new friend in every new window.',
             weekly_downloads=350,
         )
+        amo.tests.addon_factory(
+            average_daily_users=209442,
+            description=None,
+            name='DownThemAll!',
+            summary='The Mass Downloader for your browser',
+            weekly_downloads=5251,
+        )
 
         cls.refresh()
 
     def test_scenario_tabby_cat(self):
-        self._check_scenario('Tabby cat', (['Tabby Cat', 43117],))
+        self._check_scenario('Tabby cat', (['Tabby Cat', 43336],))
 
     def test_scenario_tabbycat(self):
         self._check_scenario(
             'tabbycat',
             (
-                ['Tabby Cat', 4596],
-                ['OneTab', 207],
-                ['Tab Mix Plus', 181],
-                ['FoxyTab', 177],
-                ['Authenticator', 160],
-                ['Tab Center Redux', 136],
-                ['Open Bookmarks in New Tab', 126],
-                ['Open image in a new tab', 97],
-                ['Open Image in New Tab', 76],
+                ['Tabby Cat', 4622],
+                ['OneTab', 209],
+                ['Tab Mix Plus', 183],
+                ['FoxyTab', 179],
+                ['Authenticator', 161],
+                ['Tab Center Redux', 138],
+                ['Open Bookmarks in New Tab', 127],
+                ['Open image in a new tab', 98],
+                ['Open Image in New Tab', 77],
             ),
         )
 
@@ -681,15 +689,15 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tabbbycat',
             (
-                ['Tabby Cat', 4596],
-                ['OneTab', 207],
-                ['Tab Mix Plus', 181],
-                ['FoxyTab', 177],
-                ['Authenticator', 160],
-                ['Tab Center Redux', 136],
-                ['Open Bookmarks in New Tab', 126],
-                ['Open image in a new tab', 97],
-                ['Open Image in New Tab', 76],
+                ['Tabby Cat', 4622],
+                ['OneTab', 209],
+                ['Tab Mix Plus', 183],
+                ['FoxyTab', 179],
+                ['Authenticator', 161],
+                ['Tab Center Redux', 138],
+                ['Open Bookmarks in New Tab', 127],
+                ['Open image in a new tab', 98],
+                ['Open Image in New Tab', 77],
             ),
         )
 
@@ -697,35 +705,35 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tabbicat',
             (
-                ['Tabby Cat', 3236],
-                ['OneTab', 207],
-                ['Tab Mix Plus', 181],
-                ['FoxyTab', 177],
-                ['Authenticator', 160],
-                ['Tab Center Redux', 136],
-                ['Open Bookmarks in New Tab', 126],
-                ['Open image in a new tab', 97],
-                ['Open Image in New Tab', 76],
+                ['Tabby Cat', 3255],
+                ['OneTab', 209],
+                ['Tab Mix Plus', 183],
+                ['FoxyTab', 179],
+                ['Authenticator', 161],
+                ['Tab Center Redux', 138],
+                ['Open Bookmarks in New Tab', 127],
+                ['Open image in a new tab', 98],
+                ['Open Image in New Tab', 77],
             ),
         )
 
     def test_scenario_tab_center_redux(self):
-        # Tab Mix Plus and Redux DevTools to be found in this test but we now
-        # require all terms to be present through minimum_should_match on the
-        # fuzzy name query (and they have nothing else to match).
-        self._check_scenario('tab center redux', (['Tab Center Redux', 10784],))
+        # Tab Mix Plus and Redux DevTools used to be found in this test but we
+        # now require all terms to be present through minimum_should_match on
+        # the fuzzy name query (and they have nothing else to match).
+        self._check_scenario('tab center redux', (['Tab Center Redux', 10840],))
 
     def test_scenario_websocket(self):
         # Should *not* find add-ons that simply mention 'Source', 'Persona',
         # or other words with just 'so' in their name.
-        self._check_scenario('websocket', (['Simple WebSocket Client', 1490],))
+        self._check_scenario('websocket', (['Simple WebSocket Client', 1497],))
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario(
             'Open Image in New Tab',
             (
-                ['Open Image in New Tab', 5553],
-                ['Open image in a new tab', 1736],
+                ['Open Image in New Tab', 5582],
+                ['Open image in a new tab', 1745],
             ),
         )
 
@@ -734,8 +742,8 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'CoinHive',
             (
-                ['Coinhive Blocker', 1517],
-                ['NoMiners', 70],  # via description
+                ['Coinhive Blocker', 1524],
+                ['NoMiners', 69],  # via description
                 # ['CoinBlock', 0],  # via prefix search
             ),
         )
@@ -744,12 +752,12 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Privacy',
             (
-                ['Privacy Badger', 2098],
-                ['Google Privacy', 1521],  # More users, summary
-                ['Privacy Settings', 1500],
-                ['Privacy Pass', 1430],
-                ['Ghostery', 183],
-                ['Blur', 173],
+                ['Privacy Badger', 2111],
+                ['Google Privacy', 1530],  # More users, summary
+                ['Privacy Settings', 1509],
+                ['Privacy Pass', 1439],
+                ['Ghostery', 184],
+                ['Blur', 175],
             ),
         )
 
@@ -759,10 +767,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'firebu',
             (
-                ['Firebug', 1316],
-                ['Firefinder for Firebug', 741],
-                ['Firebug Autocompleter', 572],
-                ['Fire Drag', 410],
+                ['Firebug', 1324],
+                ['Firefinder for Firebug', 745],
+                ['Firebug Autocompleter', 576],
+                ['Fire Drag', 413],
             ),
         )
 
@@ -770,10 +778,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'fireb',
             (
-                ['Firebug', 990],
-                ['Firefinder for Firebug', 592],
-                ['Firebug Autocompleter', 435],
-                ['Fire Drag', 410],
+                ['Firebug', 996],
+                ['Firefinder for Firebug', 595],
+                ['Firebug Autocompleter', 437],
+                ['Fire Drag', 413],
             ),
         )
 
@@ -782,23 +790,23 @@ class TestRankingScenarios(ESTestCase):
         # but we now require all terms to be present through
         # minimum_should_match on the fuzzy name query (and it has nothing else
         # to match).
-        self._check_scenario('Menu Wizzard', (['Menu Wizard', 1523],))  # (fuzzy, typo)
+        self._check_scenario('Menu Wizzard', (['Menu Wizard', 1531],))  # (fuzzy, typo)
 
     def test_scenario_frame_demolition(self):
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4601],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4623],))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4601],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4623],))
 
     def test_scenario_restyle(self):
-        self._check_scenario('reStyle', (['reStyle', 4032],))
+        self._check_scenario('reStyle', (['reStyle', 4052],))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario(
-            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 5226],)
+            'MegaUpload DownloadHelper', (['MegaUpload DownloadHelper', 5241],)
         )
 
     def test_scenario_downloadhelper(self):
@@ -807,25 +815,26 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'DownloadHelper',
             (
-                ['RapidShare DownloadHelper', 1692],
+                ['RapidShare DownloadHelper', 1691],
                 ['MegaUpload DownloadHelper', 1146],
-                ['Download Flash and Video', 305],
-                ['1-Click YouTube Video Download', 244],
-                ['All Downloader Professional', 25],
+                ['Download Flash and Video', 285],
+                ['1-Click YouTube Video Download', 228],
+                ['DownThemAll!', 196],
+                ['All Downloader Professional', 23],
             ),
         )
 
     def test_scenario_megaupload(self):
-        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1216],))
+        self._check_scenario('MegaUpload', (['MegaUpload DownloadHelper', 1221],))
 
     def test_scenario_no_flash(self):
         self._check_scenario(
             'No Flash',
             (
-                ['No Flash', 7226],
-                ['Download Flash and Video', 1565],
-                ['YouTube Flash Player', 1371],
-                ['YouTube Flash Video Player', 1260],
+                ['No Flash', 7263],
+                ['Download Flash and Video', 1576],
+                ['YouTube Flash Player', 1379],
+                ['YouTube Flash Video Player', 1268],
             ),
         )
 
@@ -833,10 +842,10 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'no flash',
             (
-                ['No Flash', 7226],
-                ['Download Flash and Video', 1565],
-                ['YouTube Flash Player', 1371],
-                ['YouTube Flash Video Player', 1260],
+                ['No Flash', 7263],
+                ['Download Flash and Video', 1576],
+                ['YouTube Flash Player', 1379],
+                ['YouTube Flash Video Player', 1268],
             ),
         )
 
@@ -846,7 +855,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Youtube html5 Player',
             (
-                ['YouTube Flash Player', 474],
+                ['YouTube Flash Player', 475],
                 ['No Flash', 193],
             ),
         )
@@ -854,16 +863,16 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario(
             'Disable Hello, Pocket & Reader+',
-            (['Disable Hello, Pocket & Reader+', 8651],),  # yeay!
+            (['Disable Hello, Pocket & Reader+', 8693],),  # yeay!
         )
 
     def test_scenario_grapple(self):
         """Making sure this scenario works via the API"""
-        self._check_scenario('grapple', (['GrApple Yummy', 221],))
+        self._check_scenario('grapple', (['GrApple Yummy', 222],))
 
     def test_scenario_delicious(self):
         """Making sure this scenario works via the API"""
-        self._check_scenario('delicious', (['Delicious Bookmarks', 246],))
+        self._check_scenario('delicious', (['Delicious Bookmarks', 248],))
 
     def test_scenario_name_fuzzy(self):
         # Fuzzy + minimum_should_match combination means we find these 3 (only
@@ -871,9 +880,9 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'opeb boocmarks tab',
             (
-                ['Open Bookmarks in New Tab', 1124],
-                ['Open image in a new tab', 204],
-                ['Open Image in New Tab', 160],
+                ['Open Bookmarks in New Tab', 1131],
+                ['Open image in a new tab', 206],
+                ['Open Image in New Tab', 162],
             ),
         )
 
@@ -883,15 +892,15 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'merge windows',
             (
-                ['Merge Windows', 1202],
-                ['Merge All Windows', 409],
+                ['Merge Windows', 1207],
+                ['Merge All Windows', 410],
             ),
         )
 
         self._check_scenario(
             'merge all windows',
             (
-                ['Merge All Windows', 1290],
+                ['Merge All Windows', 1284],
                 ['Merge Windows', 188],
             ),
         )
@@ -901,9 +910,9 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'test addon test21',
             (
-                ['test addon test21', 1283],
-                ['test addon test31', 183],
-                ['test addon test11', 173],
+                ['test addon test21', 1289],
+                ['test addon test31', 184],
+                ['test addon test11', 174],
             ),
         )
 
@@ -912,7 +921,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Amazon 1-Click Lock',
             (
-                ['Amazon 1-Click Lock', 4794],
+                ['Amazon 1-Click Lock', 4818],
                 ['1-Click YouTube Video Download', 127],
             ),
         )
@@ -923,14 +932,14 @@ class TestRankingScenarios(ESTestCase):
         # translation exists.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 784],),
+            (['Foobar unique english', 788],),
             lang='en-US',
         )
 
         # Then in canadian english. Should get the same score.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 784],),
+            (['Foobar unique english', 788],),
             lang='en-CA',
         )
 
@@ -947,7 +956,7 @@ class TestRankingScenarios(ESTestCase):
         # the default_locale for this addon (fr).
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique francais', 784],),
+            (['Foobar unique francais', 788],),
             lang='en-GB',
             expected_lang='fr',
         )
@@ -956,7 +965,7 @@ class TestRankingScenarios(ESTestCase):
         # match, the translation exists, it's even the default locale.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1065],),
+            (['Foobar unique francais', 1071],),
             lang='fr',
         )
 
@@ -969,7 +978,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'mn' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1057],),
+            (['Foobar unique francais', 1062],),
             lang='mn',
             expected_lang='fr',
         )
@@ -983,7 +992,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'ca' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1057],),
+            (['Foobar unique francais', 1062],),
             lang='ca',
             expected_lang='fr',
         )
@@ -993,7 +1002,7 @@ class TestRankingScenarios(ESTestCase):
         # Note that the name returned follows the language requested.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique english', 1057],),
+            (['Foobar unique english', 1062],),
             lang='en-US',
         )
 
@@ -1001,14 +1010,14 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'tab',
             (
-                ['Tabby Cat', 2410],
-                ['Tab Mix Plus', 989],
-                ['OneTab', 729],
-                ['Tab Center Redux', 687],
-                ['Open Bookmarks in New Tab', 634],
-                ['FoxyTab', 547],
-                ['Open image in a new tab', 520],
-                ['Open Image in New Tab', 407],
+                ['Tabby Cat', 2432],
+                ['Tab Mix Plus', 996],
+                ['OneTab', 736],
+                ['Tab Center Redux', 692],
+                ['Open Bookmarks in New Tab', 638],
+                ['FoxyTab', 551],
+                ['Open image in a new tab', 524],
+                ['Open Image in New Tab', 410],
             ),
         )
 
@@ -1017,14 +1026,23 @@ class TestRankingScenarios(ESTestCase):
         # close but not enough.
         self._check_scenario('wallet', ())
 
+    def test_downloadthemall(self):
+        self._check_scenario(
+            'down them all',
+            (
+                ['DownThemAll!', 3891],
+                ['All Downloader Professional', 40],
+            ),
+        )
+
     def test_scenario_promoted(self):
         # Other than their promoted status, the 4 addons have the same data
         self._check_scenario(
             'strip',
             (
-                ['Stripy Dog 1', 2902],  # recommended
-                ['Stripy Dog 2', 2902],  # line
-                ['Stripy Dog 3', 580],  # verified (no boost)
-                ['Stripy Dog 4', 580],  # not promoted
+                ['Stripy Dog 1', 2921],  # recommended
+                ['Stripy Dog 2', 2921],  # line
+                ['Stripy Dog 3', 584],  # verified (no boost)
+                ['Stripy Dog 4', 584],  # not promoted
             ),
         )
