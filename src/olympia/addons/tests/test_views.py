@@ -5598,7 +5598,9 @@ class TestAddonSearchView(ESTestCase):
         for i in range(0, 10):
             addon_factory()
         self.refresh()
-        query = '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'
+        query = (
+            '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'  # noqa: E501
+        )
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0

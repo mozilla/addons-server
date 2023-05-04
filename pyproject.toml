@@ -18,9 +18,36 @@ exclude = '''
   )/
   | src/.*/migrations/.*\.py
   | src/olympia/translations/tests/testapp/migrations/.*\.py
-  | src/django-babel/.*\.py
 )
 '''
+
+[tool.ruff]
+exclude = [
+    "src/olympia/wsgi.py",
+    "docs",
+    "node_modules",
+    ".npm",
+    "build*.py",
+    "media",
+    "storage",
+    "logs",
+    "site-static",
+    "static",
+    ".git",
+    "*/migrations/*.py",
+]
+ignore = ["F405", "B004", "B007", "B009", "B010", "B015", "B017", "B018", "B023", "B026", "B028", "B904", "B905"]
+line-length = 88
+select = [
+    "B",
+    "E",
+    "F",
+    "Q",
+    "W",
+]
+
+[tool.ruff.flake8-quotes]
+inline-quotes = "single"
 
 [tool.pytest.ini_options]
 addopts = "-vs --reuse-db --showlocals --tb=short"
