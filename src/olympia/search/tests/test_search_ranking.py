@@ -658,6 +658,9 @@ class TestRankingScenarios(ESTestCase):
         )
         amo.tests.addon_factory(
             average_daily_users=209442,
+            # The actual add-on has a description, but avoid using it in our
+            # tests to ensure name and summary is enough to find it - don't
+            # mention "download", just "downloader".
             description=None,
             name='DownThemAll!',
             summary='The Mass Downloader for your browser',
@@ -1032,6 +1035,19 @@ class TestRankingScenarios(ESTestCase):
             (
                 ['DownThemAll!', 3891],
                 ['All Downloader Professional', 40],
+            ),
+        )
+
+    def test_download(self):
+        self._check_scenario(
+            'download',
+            (
+                ['Download Flash and Video', 1998],
+                ['1-Click YouTube Video Download', 1456],
+                ['RapidShare DownloadHelper', 834],
+                ['MegaUpload DownloadHelper', 642],
+                ['DownThemAll!', 414],
+                ['All Downloader Professional', 129],
             ),
         )
 
