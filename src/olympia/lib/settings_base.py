@@ -1177,11 +1177,6 @@ STATSD_PORT = 8125
 # The django statsd client to use, see django-statsd for more.
 STATSD_CLIENT = 'django_statsd.clients.normal'
 
-GRAPHITE_HOST = env('GRAPHITE_HOST', default='localhost')
-GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
-GRAPHITE_PORT = 2003
-GRAPHITE_TIMEOUT = 1
-
 # Blog URL
 DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
 
