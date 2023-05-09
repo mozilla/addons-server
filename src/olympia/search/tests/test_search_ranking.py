@@ -98,10 +98,10 @@ class TestRankingScenarios(ESTestCase):
             name='Tab Center Redux',
             slug='tab-center-redux',
             summary='Move your tabs to the side of your browser window.',
-            weekly_downloads=305,
+            weekly_downloads=915,
         )
         amo.tests.addon_factory(
-            average_daily_users=468127,
+            average_daily_users=468126,
             description=None,
             name='Tab Mix Plus',
             slug='tab-mix-plus',
@@ -192,7 +192,7 @@ class TestRankingScenarios(ESTestCase):
                 'Protects your privacy by blocking spying ads and invisible '
                 'trackers.'
             ),
-            weekly_downloads=7731,
+            weekly_downloads=22931,
         )
         amo.tests.addon_factory(
             average_daily_users=8728,
@@ -228,7 +228,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=117,
         )
         amo.tests.addon_factory(
-            average_daily_users=69553,
+            average_daily_users=70553,
             description=None,
             name='Blur',
             slug='donottrackplus',
@@ -236,7 +236,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=2224,
         )
         amo.tests.addon_factory(
-            average_daily_users=1003056,
+            average_daily_users=1009156,
             description=None,
             name='Ghostery',
             slug='ghostery',
@@ -265,7 +265,7 @@ class TestRankingScenarios(ESTestCase):
             name='Firebug Autocompleter',
             slug='firebug-autocompleter',
             summary='Firebug command line autocomplete.',
-            weekly_downloads=25,
+            weekly_downloads=76,
         )
         amo.tests.addon_factory(
             average_daily_users=11992,
@@ -313,7 +313,7 @@ class TestRankingScenarios(ESTestCase):
             name='Frame Demolition',
             slug='frame-demolition',
             summary=('Enabling route to load abstracted file layer in select sites.'),
-            weekly_downloads=69,
+            weekly_downloads=70,
         )
         amo.tests.addon_factory(
             average_daily_users=99,
@@ -324,7 +324,7 @@ class TestRankingScenarios(ESTestCase):
                 'A user style manager which can load local files and apply UI '
                 'styles even in Firefox 57+'
             ),
-            weekly_downloads=69,
+            weekly_downloads=70,
         )
         amo.tests.addon_factory(
             average_daily_users=150,
@@ -377,13 +377,13 @@ class TestRankingScenarios(ESTestCase):
                 'when the content author still use the old style embed '
                 '(Flash).\n\nSource code at <a rel="nofollow" href="https://'
                 'outgoing.prod.mozaws.net/v1/14b404a3c05779fa94b24e0bffc0d710'
-                '6836f1d6b771387b065fb96e9c8656b9/https%3A//github.com/hfigui'
+                '6836f1d6b771367b065fb96e9c8656b9/https%3A//github.com/hfigui'
                 'ere/no-flash">https://github.com/hfiguiere/no-flash</a>'
             ),
             weekly_downloads=77,
         )
         amo.tests.addon_factory(
-            average_daily_users=551880,
+            average_daily_users=547880,
             description=None,
             name='Download Flash and Video',
             slug='download-flash-and-video',
@@ -438,7 +438,7 @@ class TestRankingScenarios(ESTestCase):
             name='Reader',
             slug='reader',
             summary='Reader is the ultimate Reader tool for Firefox.',
-            weekly_downloads=2483,
+            weekly_downloads=2463,
         )
         amo.tests.addon_factory(
             average_daily_users=53412,
@@ -484,7 +484,7 @@ class TestRankingScenarios(ESTestCase):
             weekly_downloads=500,
         )
         amo.tests.addon_factory(
-            average_daily_users=74104,
+            average_daily_users=74094,
             description=None,
             name='OneTab',
             slug='onetab',
@@ -506,7 +506,7 @@ class TestRankingScenarios(ESTestCase):
                 'modus quidam per ex. Illum tempor duo eu, ut mutat noluisse '
                 'consulatu vel.'
             ),
-            weekly_downloads=690,
+            weekly_downloads=700,
         )
         amo.tests.addon_factory(
             average_daily_users=3064,
@@ -606,7 +606,7 @@ class TestRankingScenarios(ESTestCase):
             name='1-Click YouTube Video Download',
             type=amo.ADDON_EXTENSION,
             average_daily_users=566337,
-            weekly_downloads=150900,
+            weekly_downloads=150000,
             summary=None,
             description=(
                 'This addon contains Amazon 1-Click Lock in its description '
@@ -835,7 +835,7 @@ class TestRankingScenarios(ESTestCase):
             'No Flash',
             (
                 ['No Flash', 7263],
-                ['Download Flash and Video', 1576],
+                ['Download Flash and Video', 1575],
                 ['YouTube Flash Player', 1379],
                 ['YouTube Flash Video Player', 1268],
             ),
@@ -846,7 +846,7 @@ class TestRankingScenarios(ESTestCase):
             'no flash',
             (
                 ['No Flash', 7263],
-                ['Download Flash and Video', 1576],
+                ['Download Flash and Video', 1575],
                 ['YouTube Flash Player', 1379],
                 ['YouTube Flash Video Player', 1268],
             ),
@@ -1025,7 +1025,7 @@ class TestRankingScenarios(ESTestCase):
         )
 
     def test_scenario_wallet(self):
-        # Shouldn't be found: some ad-ons have the word "all" which is
+        # Shouldn't be found: some add-ons have the word "all" which is
         # close but not enough.
         self._check_scenario('wallet', ())
 
@@ -1042,7 +1042,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'download',
             (
-                ['Download Flash and Video', 1998],
+                ['Download Flash and Video', 1997],
                 ['1-Click YouTube Video Download', 1456],
                 ['RapidShare DownloadHelper', 834],
                 ['MegaUpload DownloadHelper', 642],
