@@ -23,15 +23,7 @@ exclude = '''
 
 [tool.ruff]
 exclude = [
-    "src/olympia/wsgi.py",
     "docs",
-    "node_modules",
-    ".npm",
-    "build*.py",
-    "media",
-    "storage",
-    "logs",
-    "site-static",
     "static",
     ".git",
     "*/migrations/*.py",
