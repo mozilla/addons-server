@@ -770,7 +770,8 @@ class Addon(OnChangeMixin, ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
-            self._ratings.all().delete()
+            for rating in self._ratings.all():
+                rating.delete(skip_activity_log=True)
             # We avoid triggering signals for Version & File on purpose to
             # avoid extra work.
             self.disable_all_files()
