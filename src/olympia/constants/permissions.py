@@ -47,6 +47,8 @@ STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
 # Can triage (and therefore see in the queues) add-ons with a temporary delay
 ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
+# Can see add-ons with all due dates in the queue, rather than just upcoming ones
+ADDONS_ALL_DUE_DATES = AclPermission('Addons', 'AllDueDates')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')

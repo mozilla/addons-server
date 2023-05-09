@@ -153,12 +153,16 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     @classmethod
-    def get_queryset(self, request):
+    def get_queryset(self, request, *, upcoming_due_date_focus=False, **kw):
+        show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
+            request.user, amo.permissions.ADDONS_ALL_DUE_DATES
+        )
         qs = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user),
             show_temporarily_delayed=acl.action_allowed_for(
                 request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
             ),
+            show_only_upcoming=show_only_upcoming,
         )
         return qs
 
@@ -196,7 +200,7 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_NOMINATED,))
@@ -204,7 +208,7 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_APPROVED,))
@@ -246,7 +250,7 @@ class PendingRejectionTable(AddonQueueTable):
         exclude = ('due_date',)
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_pending_rejection_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         )
@@ -275,7 +279,7 @@ class ContentReviewTable(AddonQueueTable):
         orderable = False
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_content_review_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         )
@@ -322,7 +326,7 @@ class MadReviewTable(AddonQueueTable):
         return markupsafe.Markup(''.join(rval))
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_mad_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         ).annotate(
