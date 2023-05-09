@@ -247,7 +247,7 @@ class AddonIndexer:
                     # helping users looking for 'tab password' find that addon.
                     'type': 'dictionary_decompounder',
                     'word_list': [
-                        'all',
+                        # Avoid "all" to prevent decompounding "wallet".
                         'auto',
                         'ball',
                         'bar',
