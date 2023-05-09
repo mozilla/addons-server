@@ -174,11 +174,11 @@ class Rating(ModelBase):
             flag.delete()
         self.update(editorreview=False, _signal=False)
 
-    def delete(self):
-        # Log deleting ratings to moderation log, except if the author deletes
-        # it.
+    def delete(self, skip_activity_log=False):
         current_user = core.get_user()
-        if current_user != self.user:
+        # Log deleting ratings to moderation log, except if the rating user deletes it,
+        # or skip_activty_log=True (sent when the addon is being deleted).
+        if not (current_user == self.user or skip_activity_log):
             activity.log_create(
                 amo.LOG.DELETE_RATING,
                 self.addon,

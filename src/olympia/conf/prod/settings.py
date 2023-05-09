@@ -46,10 +46,6 @@ ES_HOSTS = env('ES_HOSTS')
 ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
 
-CEF_PRODUCT = STATSD_PREFIX
-
-NEW_FEATURES = True
-
 ES_DEFAULT_NUM_SHARDS = 10
 
 RECOMMENDATION_ENGINE_URL = env(
