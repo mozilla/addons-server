@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-10 17:48+0000\n"
+"PO-Revision-Date: 2023-05-10 17:51+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4485,7 +4485,7 @@ msgstr "Tillägg för sociala medier"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Se fler tillägg för social medier som valts av anställda"
 
 msgid "Unreviewed"
 msgstr "Ej granskad"
@@ -4607,7 +4607,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Automatiskt flaggad på grund av ordmatchning"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatiskt flaggad på grund av användarbegränsning"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5086,7 +5086,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Ange ett giltigt IPv4 eller IPv6 CIDR-nätverksområde, t.ex. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Flera bidrag som bryter mot våra policyer har skickats från din position. IP-adressen har blockerats."
 
 msgid "Email Pattern"
 msgstr "E-postmönster"
@@ -5097,7 +5097,7 @@ msgstr ""
 "\"*@*.exempel.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "E-postadressen som används för ditt konto är inte tillåten för att skicka in bidrag."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
