@@ -29,6 +29,7 @@ from olympia.addons.models import (
     Preview,
     AddonGUID,
     track_addon_status_change,
+    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
 )
 from olympia.amo.tests import (
     TestCase,
@@ -63,6 +64,7 @@ from olympia.versions.models import (
     VersionPreview,
     VersionReviewerFlags,
 )
+from olympia.zadmin.models import Config
 
 
 class TestCleanSlug(TestCase):
@@ -3277,6 +3279,12 @@ class TestExtensionsQueues(TestCase):
             addon_mixed_with_both_awaiting_review,
             addon_needing_admin_code_review,
         }
+        # the upcoming days config can be overriden
+        Config.objects.create(key=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, value='10')
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=True, show_only_upcoming=True
+        )
+        assert set(addons) == set(expected_addons)
 
         # If we pass show_temporarily_delayed=False, versions in a channel that
         # is temporarily delayed should not be considered. We already have a
