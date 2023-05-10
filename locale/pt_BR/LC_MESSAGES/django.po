@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-10 13:31+0000\n"
+"PO-Revision-Date: 2023-05-10 13:42+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -4554,7 +4554,7 @@ msgstr "Extensões de mídias sociais"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Mais escolhas de mídias sociais da equipe"
 
 msgid "Unreviewed"
 msgstr "Não revisado"
@@ -4676,7 +4676,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Marcada automaticamente devido a correspondência de palavras"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Marcada automaticamente devido a restrições do usuário"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5159,7 +5159,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Digite uma faixa de rede IPv4 ou IPv6 CIDR válida, por exemplo 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Vários envios que violam nossas diretrizes foram feitos de seu local. O endereço IP foi bloqueado."
 
 msgid "Email Pattern"
 msgstr "Máscara de emails"
@@ -5170,7 +5170,7 @@ msgstr ""
 "exemplo \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "O endereço de email usado na sua conta não tem permissão para envios."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
