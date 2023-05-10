@@ -169,7 +169,7 @@ perf-tests: setup-ui-tests
 .PHONY: lint
 lint: ## lint the code
 	black --check src/ tests/
-	flake8 src/ tests/
+	ruff check .
 	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
@@ -235,6 +235,7 @@ watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compre
 .PHONY: format
 format: ## Autoformat our codebase.
 	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --write '**'
+	ruff check --fix-only .
 	black src/ tests/
 
 .PHONY: help_submake

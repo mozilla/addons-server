@@ -1812,7 +1812,9 @@ class TestThemeNominatedQueue(QueueTest):
         )
 
     def test_queue_layout(self):
-        self._test_queue_layout('🎨 New', tab_position=0, total_addons=2, total_queues=2)
+        self._test_queue_layout(
+            '🎨 New', tab_position=0, total_addons=2, total_queues=2
+        )  # noqa: E501
 
     def test_static_theme_filtered_out(self):
         self.addons['Nominated Two'].update(type=amo.ADDON_EXTENSION)

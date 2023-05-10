@@ -42,7 +42,7 @@ Regards,
 The Add-ons Team
 
 ---
-[1] https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/  # noqa
+[1] https://extensionworkshop.com/documentation/publish/signing-and-distribution-overview/
 [2] https://wiki.mozilla.org/Release_Management/Calendar
 [3] https://www.mozilla.org/firefox/enterprise/
 --
@@ -50,7 +50,7 @@ The Add-ons Team
 You have received this email because you are a registered developer of a
 Firefox add-on. If you do not want to receive these updates regarding your
 add-on, please sign in to addons.mozilla.org and delete your add-on(s).
-"""
+"""  # noqa: E501
 
 version_regex = re.compile(
     r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$'
