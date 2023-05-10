@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-02-17 06:53+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -3450,7 +3450,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Tự động xóa cookie sau khi bạn đóng thẻ."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Một cách đơn giản để điều chỉnh kích thước của bất kỳ văn bản nào của trang—hoặc thậm chí phóng to trang đó."
 
@@ -3592,7 +3591,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Chặn tất cả các cửa sổ bật lên theo mặc định, sau đó đợi bạn quyết định muốn mở cái nào."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Tùy chỉnh giao diện của bất kỳ trang web nào. Thay đổi màu sắc, nền trang và hơn thế nữa."
 
@@ -3832,7 +3830,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Đạt được lợi thế của Amazon. Khi xem các trang sản phẩm trên các cửa hàng trực tuyến khác, nếu nó cũng có sẵn trên Amazon, bạn có thể chỉ cần nhấp vào nút để kiểm tra danh sách Amazon của nó."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Tận hưởng quyền kiểm soát thẻ tốt nhất—đóng các thẻ trùng lặp, hợp nhất cửa sổ, sao chép tiêu đề thẻ và hơn thế nữa."
 
@@ -3949,7 +3946,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Sửa lỗi âm thanh khó chịu. Âm lượng trên trang web có quá nhỏ không? Quá lớn? SoundFixer có thể giúp bạn."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Chỉnh sửa trang web trước khi in. Thực hiện các thay đổi toàn diện về mặt hình ảnh—xóa quảng cáo hoặc nội dung không tốt—đối với bất kỳ trang web nào bạn muốn in."
 
@@ -4012,7 +4008,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Tận hưởng hỗ trợ tải xuống đa luồng. Tự động phát hiện các loại phương tiện khác nhau có sẵn để tải xuống."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Lưu hình ảnh dễ dàng—chỉ cần lấy chúng từ thẻ hiện tại của bạn."
 
@@ -4097,7 +4092,6 @@ msgid "Create and customize tab groups."
 msgstr "Tạo và tùy chỉnh các nhóm thẻ."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Lưu các trang hoàn chỉnh—hoặc chỉ một phần—trong một tập tin HTML."
 
@@ -4182,6 +4176,10 @@ msgstr "Trình thay đổi chủ đề dựa trên thời gian. Làm cho Firefox
 msgid "Declutter your Twitter experience."
 msgstr "Làm mới trải nghiệm Twitter của bạn."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đây là một cách sửa."
@@ -4189,6 +4187,14 @@ msgstr "Một số trang web gặp khó khăn khi phát video trên Android. Đ�
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Tìm một hình ảnh thú vị trên web? Sử dụng TinEye để khám phá nguồn gốc của nó."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4199,12 +4205,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Tùy chỉnh cử chỉ chuột. Khám phá những cách mới để điều hướng với hơn 50 tùy chỉnh."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Sử dụng cử chỉ chuột để đóng thẻ, điều hướng trang và hơn thế nữa."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Thưởng thức hình ảnh của bạn phù hợp với giao diện của kết quả tìm kiếm của bạn."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4235,10 +4257,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Quay trở lại thời điểm đơn giản hơn — khi kết quả tìm kiếm hàng đầu của bạn đứng trên quảng cáo (tương thích với công cụ tìm kiếm của Google và Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
-"Ngừng cung cấp địa chỉ email của bạn cho các trang web. Firefox Relay bảo vệ danh tính của bạn và ngăn chặn thư rác. Nâng cấp lên cao cấp để có thêm các lợi ích, chẳng hạn như chặn các email quảng "
-"cáo cụ thể hơn."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4304,6 +4324,14 @@ msgstr "Nâng cao trải nghiệm chơi trò chơi của bạn trên Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Các tiện ích mở rộng giống như các ứng dụng dành cho Firefox."
@@ -4317,15 +4345,16 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Tùy chỉnh YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4422,10 +4451,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Tùy chỉnh YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Xem thêm các tiện ích YouTube được lựa chọn bởi biên tập viên"
 
@@ -4468,6 +4493,14 @@ msgstr "Chủ đề thịnh hành"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Xem thêm các tiện ích sáng tạo được lựa chọn bởi biên tập viên"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Chưa được xét duyệt"
@@ -4586,6 +4619,9 @@ msgid "Other (please specify)"
 msgstr "Khác (vui lòng chỉ ra)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5067,8 +5103,8 @@ msgstr "Người dùng Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Nhập dải mạng CIDR IPv4 hoặc IPv6 hợp lệ, ví dụ: 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Nhiều tiện ích vi phạm chính sách của chúng tôi đã được gửi từ địa chỉ của bạn. Địa chỉ IP đã bị chặn."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "Mẫu email"
@@ -5076,8 +5112,8 @@ msgstr "Mẫu email"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Địa chỉ email được sử dụng cho tài khoản của bạn không được phép đệ trình tiện ích."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
