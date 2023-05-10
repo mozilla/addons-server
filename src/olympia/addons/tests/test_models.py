@@ -64,7 +64,7 @@ from olympia.versions.models import (
     VersionPreview,
     VersionReviewerFlags,
 )
-from olympia.zadmin.models import Config
+from olympia.zadmin.models import set_config
 
 
 class TestCleanSlug(TestCase):
@@ -3273,18 +3273,25 @@ class TestExtensionsQueues(TestCase):
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=True, show_only_upcoming=True
         )
-        assert set(addons) == {
+        due_dates_within_2_days = {
             addon_auto_approval_delayed_for_listed,
             addon_auto_approval_delayed_for_unlisted,
             addon_mixed_with_both_awaiting_review,
             addon_needing_admin_code_review,
         }
+        assert set(addons) == due_dates_within_2_days
         # the upcoming days config can be overriden
-        Config.objects.create(key=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, value='10')
+        set_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, '10')
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=True, show_only_upcoming=True
         )
         assert set(addons) == set(expected_addons)
+        # an invalid config value will default back to 2 again
+        set_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, '10.')
+        addons = Addon.unfiltered.get_queryset_for_pending_queues(
+            admin_reviewer=True, show_only_upcoming=True
+        )
+        assert set(addons) == due_dates_within_2_days
 
         # If we pass show_temporarily_delayed=False, versions in a channel that
         # is temporarily delayed should not be considered. We already have a
