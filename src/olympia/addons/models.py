@@ -93,6 +93,7 @@ MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
 UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY = 'upcoming-due-date-cut-off-days'
+UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT = 2
 
 
 class GuidAlreadyDeniedError(RuntimeError):
@@ -339,9 +340,16 @@ class AddonManager(ManagerBase):
             .order_by('due_date')
         )
         if show_only_upcoming:
-            upcoming_cutoff_date = get_review_due_date(
-                default_days=get_config(UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY, 2)
-            )
+            try:
+                days = int(
+                    get_config(
+                        UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
+                        UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
+                    )
+                )
+            except (ValueError, TypeError):
+                days = UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT
+            upcoming_cutoff_date = get_review_due_date(default_days=days)
             versions_due_qs = versions_due_qs.filter(due_date__lte=upcoming_cutoff_date)
         if not show_temporarily_delayed:
             # If we were asked not to show temporarily delayed, we need to
