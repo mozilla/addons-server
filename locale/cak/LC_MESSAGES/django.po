@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,16 +316,16 @@ msgstr "Man Xilitäj ta"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Kojakuyu', man xqïl ta ri nakanoj.</h1> <p> Ri ruxaq o Yakb'äl xak'utuj man k'o ta pa ruxaq qak'amaya'l. Rik'in jub'a' xapïtz' pa ruwi' jun ojer ximonel o man ütz ta xatz'ib'aj ri ochochib'äl. "
-"</p> <ul> <li>We xatz'ib'aj ri ochochib'äl tanik'oj chik.</li> <li> We xawojqaj jun ximonel pa jun ruxaq k'amaya'l %(open_bug_link)stataqa' jun rutzijol k'ayewal %(close_bug_link)s. Tatz'ijoj chi qe"
-" akuchi' atpetenäq chuqa' achike nakanoj, richin niqatïj qaq'ij richin niqab'än ruk'ojlem. </li> </ul> <p>O yatikïr yab'e pa ri ruxaq k'ïy kiwinaq.</p> <ul> <li>¿La nawajo' jun <a "
-"href=\"%(rec)s\">kicholajem taq tz'aqat ya'on kejqalem</a>?</li> <li> ¿La nawajo' <a href=\"%(search)s\">ye'akanoj taq tz'aqat</a>? Yatikïr natz'ët ri <a href=\"%(search)s\">ruxaq kanob'äl</a> o xa "
-"xe nawokisaj ri ruk'ojlem kanoxïk ajsik. </li> <li> We nawajo' natikirisaj rik'in majun, jät pa ri <a href=\"%(home)s\">kitikirib'al ruxaq taq tz'aqat</a>. </li> </ul>"
+"</p> <ul> <li>We xatz'ib'aj ri ochochib'äl tanik'oj chik.</li> <li> We xawojqaj jun ximonel pa jun ruxaq k'amaya'l %(open_bug_link)stataqa' jun rutzijol k'ayewal %(close_bug_link)s. Tatz'ijoj chi "
+"qe akuchi' atpetenäq chuqa' achike nakanoj, richin niqatïj qaq'ij richin niqab'än ruk'ojlem. </li> </ul> <p>O yatikïr yab'e pa ri ruxaq k'ïy kiwinaq.</p> <ul> <li>¿La nawajo' jun <a href=\"%(rec)s"
+"\">kicholajem taq tz'aqat ya'on kejqalem</a>?</li> <li> ¿La nawajo' <a href=\"%(search)s\">ye'akanoj taq tz'aqat</a>? Yatikïr natz'ët ri <a href=\"%(search)s\">ruxaq kanob'äl</a> o xa xe nawokisaj "
+"ri ruk'ojlem kanoxïk ajsik. </li> <li> We nawajo' natikirisaj rik'in majun, jät pa ri <a href=\"%(home)s\">kitikirib'al ruxaq taq tz'aqat</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Uy"
@@ -335,8 +335,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>¡Uuy!  Xqapalb'ej jun sachoj.</h1> <p>Xtiqatïj qaq'ij richin niqasöl.</p> <p> Tatojtob'ej rik'in nak'ëx ri ruxaq o yatzolin pa <a href=\"%(home)s\">Kitikirib'al ruxaq Tz'aqat</a>. Chuqa' yatikïr"
-" yojato' richin niqasöl ri k'ayewal <a href=\"https://github.com/mozilla/addons/issues/new\">rik'in naya' rutzijol ri k'ayewal</a> rik'in ri rub'anikil achi'el xtapon pa ri ruxaq. </p>"
+"<h1>¡Uuy!  Xqapalb'ej jun sachoj.</h1> <p>Xtiqatïj qaq'ij richin niqasöl.</p> <p> Tatojtob'ej rik'in nak'ëx ri ruxaq o yatzolin pa <a href=\"%(home)s\">Kitikirib'al ruxaq Tz'aqat</a>. Chuqa' "
+"yatikïr yojato' richin niqasöl ri k'ayewal <a href=\"https://github.com/mozilla/addons/issues/new\">rik'in naya' rutzijol ri k'ayewal</a> rik'in ri rub'anikil achi'el xtapon pa ri ruxaq. </p>"
 
 msgid "Register or Log in"
 msgstr "Titz'ib'äx B'i'aj o Titikirisäx Molojri'ïl"
@@ -1871,7 +1871,9 @@ msgstr ""
 "ruwäch re tz'aqat re'."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Tik'ex ri K'amonem</a> <a href=\"%(version_url)s\" class=\"button\">Tijotob'äx K'ak'a' Ruwäch</a> o <a href=\"#\" "
 "class=\"close\">Tirepüx kan</a>"
@@ -2099,8 +2101,8 @@ msgid "Email"
 msgstr "Taqoya'l"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "We nawajo' nak'üt ri taqoya'l richin ye'asöl taq k'utunïk, tatz'ib'aj wawe'. We jalajöj taq ataqoya'l pa jujun ch'ab'äl, tikirel yetz'aqatisäx kitzalq'omen kichin jujun ch'ab'äl, tikirel "
 "yetz'aqatisäx taq tzalq'omanem richin re k'ojlib'äl re'. Okel xa xe pa cholajin taq tz'aqat."
@@ -2148,8 +2150,8 @@ msgid "Whiteboard"
 msgstr "Tz'alamtz'ib'ab'äl"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Pa tz'alamtz'ib'ab'äl yatikïr naya' nïm etamab'äl chi re ri nuk'unel pa ruwi' ri atz'aqat, xab'achike ruwäch. Tawokisaj richin naya' rutzijol ri ütz rub'anikil richin nitojtob'ëx ri tz'aqat, chuqa' "
 "tatz'aqatisaj etamab'äl, ri nito'on. Ri nuk'unela' chuqa' yetikïr nikinük' ri tz'alamtz'ib'ab'äl."
@@ -2677,8 +2679,8 @@ msgstr "JWT jask'um"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Richin ye'ab'än API taq k'utunïk, tataqa' jun <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> achi'el rub'anikil b'i'aj richin niya' q'ij. K'o chi nab'än jun JWT toq natäq jun k'utunïk, achi'el "
 "nitzijöx pa <a href=\"%(docs_url)s\">API wujinem</a>."
@@ -2753,7 +2755,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3425,7 +3428,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Ruyonil yeruyüj ri taq kaxlanwäy toq nitz'apïx jun ruwi'."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Jun aninäq rub'eyal nib'an runuk'ulem runimilem jun tz'ib'anïk pa xab'achike ruxaq, o chuqa' richin ninimirisäx ri ruxaq."
 
@@ -3577,7 +3579,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Ke'aq'ata' ronojel ri elenel taq tzuwäch achi'el k'o wi, k'a ri tacha' achike nawajo' najäq."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "¡Tajala' ri rub'anikil xab'achike ajk'amaya'l ruxaq! Tajala' ri rub'onil, rupam ruxaq chuqa' ch'aqa' chik."
@@ -3837,7 +3838,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "We ri tikojil nakanoj pa xab'achike ajk'amab'ey k'ayij, k'o chuqa' pa Amazon, xa xe yapitz'on qa pa jun pitz'b'äl richin natz'ët pa Amazon."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "E k'o k'ïy cha'oj richin yenuk'samajïx taq ruwi'—kitz'apixik kamulun taq ruwi', kitunik taq ruwi', kiwachib'exik kib'i' taq ruwi' chuqa' ch'aqa' chik."
@@ -3963,7 +3963,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "¿La yalan qajinäq ruch'ab'äl jun ajk'amaya'l ruxaq? ¿La janila' jotöl? SoundFixer nitikïr yaruto'."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Tab'ana' nima'q taq k'exoj rik'in ri tz'etoj—tayuju' itzel taq eltzijol o taq rupam—pa xab'achike ajk'amaya'l ruxaq nawajo' natz'ajb'a'."
@@ -4029,7 +4028,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4114,7 +4112,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
@@ -4201,6 +4198,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4208,6 +4209,14 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "¿La xatz'ët jun jeb'ël wachib'äl pan ajk'amaya'l? Tawokisaj TinEye richin nawetamaj akuchi' petenäq wi."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4220,14 +4229,30 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Tawila' jun k'ak'a' rub'anikil richin yatok pa k'amaya'l rik'in 50+ ruwäch ch'oy."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Tawokisaj retal rupaläj ch'oy richin ye'atz'apij taq ruwi', natzolij jun ruxaq, yak'exon chuqa' ch'aqa' chik."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Tik'asäs ke'atz'eta' koköj taq wachib'äl junam kik'in ri ye'ilitäj toq yakanon."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4258,7 +4283,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4325,6 +4350,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4338,15 +4371,16 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4457,10 +4491,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Kinuk'samaj Chilab'en taq K'amal"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "chi Ruwäch Tz'aqat"
@@ -4513,6 +4543,14 @@ msgstr "Xchilab'ëx"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "chi Ruwäch Tz'aqat"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4635,6 +4673,9 @@ msgid "Other (please specify)"
 msgstr "Jun chik (tatzijoj)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5024,8 +5065,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
+"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a href=\"https://creativecommons.org/"
+"licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "tawetamaj kiwäch <b>tz'aqat</b>"
@@ -5124,7 +5165,7 @@ msgstr "Firefox okisanel {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Tatz'ib'aj jun okel IP4 p IP 6 k'amab'ey."
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5133,7 +5174,7 @@ msgstr ""
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""
@@ -5142,8 +5183,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Chuwäch natikirisaj, tasik'ij chuqa' tak'ulu' ri Qajunamil richin Kitaluxik Kitz'aqat Firefox chuqa' ri taq Qab'eyal chuqa' taq Qana'ojil richin Nik'oxïk. Pa ri Junamil chuqa' xtawïl jun ximonel "
 "yaruk'waj pa ri Qatzijol richin Ichinanem, chi ri' nitzijöx rub'eyal xtiqanuk'samajij ri awetamab'al."
@@ -5206,7 +5247,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

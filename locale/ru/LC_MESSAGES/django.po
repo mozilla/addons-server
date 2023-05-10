@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-04-08 21:07+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -320,10 +320,10 @@ msgstr "Не найдено"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Извините, но мы не можем найти то, что вы ищете.</h1> <p>Страница или файл, который вы запросили, не найдены на нашем сайте. Вполне возможно, что вы щёлкнули по ссылке, которая устарела, или "
 "неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, "
@@ -1571,8 +1571,8 @@ msgid ""
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 "Самостоятельно. <span class=\"helptext\">После того, как ваша заявка будет подписана Mozilla, вы можете загрузить .xpi-файл из Центра разработчиков и распространить его среди своей аудитории. "
-"Убедитесь, что в манифесте дополнения указан <a {a_attrs}>update_url</a>, так как это URL-адрес, по которому Firefox находит обновления для автоматического развертывания для ваших "
-"пользователей.</span>"
+"Убедитесь, что в манифесте дополнения указан <a {a_attrs}>update_url</a>, так как это URL-адрес, по которому Firefox находит обновления для автоматического развертывания для ваших пользователей.</"
+"span>"
 
 msgid "Display Name"
 msgstr "Отображаемое имя"
@@ -1866,11 +1866,13 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
-"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или загрузки"
-" новой версии этого дополнения."
+"Это дополнение несовместимо с <b>%(app_name)s %(app_version)s</b>, последней версией %(app_name)s. Просьба рассмотреть вопрос об обновлении информации о совместимости вашего дополнения, или "
+"загрузки новой версии этого дополнения."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Обновить совместимость</a> <a href=\"%(version_url)s\" class=\"button\">Загрузить новую версию</a> или <a href=\"#\" "
 "class=\"close\">Игнорировать</a>"
@@ -2051,8 +2053,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов и"
-" минимальную длину 2 символа по отдельности."
+"Описание должно объяснять, что делает ваше дополнение, чётко и кратко. И имя, и описание появятся на странице вашего продукта и в результатах поиска. Они имеют общую максимальную длину 70 символов "
+"и минимальную длину 2 символа по отдельности."
 
 msgid "Summary"
 msgstr "Сводка"
@@ -2109,8 +2111,8 @@ msgid "Email"
 msgstr "Адрес эл. почты"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Если вы хотите отобразить адрес электронной почты для поддержки,\n"
 "                          введите его здесь. Если у вас есть различные адреса\n"
@@ -2163,8 +2165,8 @@ msgid "Whiteboard"
 msgstr "Белая доска"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Белая доска является местом для предоставления информации, относящейся к вашему дополнению, независимо от версии, проверяющему. Используйте её, чтобы обеспечить тестирование дополнения, и для "
 "размещения любой дополнительной информации, которая может помочь. Эта доска может также редактироваться проверяющими."
@@ -2695,11 +2697,11 @@ msgstr "Секрет JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a "
-"href=\"%(docs_url)s\">документации по API</a>."
+"Чтобы делать запросы к API, отправьте <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> как авторизационный заголовок. Вам нужно будет сгенерировать JWT для каждого запроса, как в <a href="
+"\"%(docs_url)s\">документации по API</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2798,17 +2800,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Уважаемый разработчик дополнений,\n"
 "\n"
-"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить вашу учётную запись и дополнения, мы отозвали утёкшие учётные данные.\n"
+"Мы заметили, что ваши секретные учётные данные AMO API содержатся в дополнении, отправленном на addons.mozilla.org. Чтобы защитить вашу учётную запись и дополнения, мы отозвали утёкшие учётные "
+"данные.\n"
 "Вы можете сгенерировать новые учётные данные API на %(api_keys_url)s\n"
 "\n"
-"Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
+"Убедитесь, что вы никогда никому не сообщали свои учётные данные. Никогда не включайте их в общедоступное хранилище, дополнение или любое другое общедоступное место. Мы рекомендуем вам просмотреть "
+"свои репозитории кода и расширения, чтобы удалить любые ссылки на ваши учётные данные AMO.\n"
 "\n"
 "Спасибо,\n"
 "Команда дополнений Mozilla"
@@ -3135,8 +3140,8 @@ msgstr "Зарегистрируйте аккаунт разработчика �
 msgid "Manage Version {0}"
 msgstr "Управление версией {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Управлять {0}"
 
@@ -3311,16 +3316,16 @@ msgstr "Отмена вашего запроса на проверку поме�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Вы уверены, что хотите отменить свой запрос на отзыв?"
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} ошибка"
 msgstr[1] "{0} ошибки"
 msgstr[2] "{0} ошибок"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} предупреждение"
@@ -3479,7 +3484,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Автоматическое удаление кук при закрытии вкладки."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Простой способ подобрать размер текста любой страницы или даже увеличить саму страницу."
 
@@ -3621,7 +3625,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Заблокируйте по умолчанию все всплывающие окна, а потом выберите те из них, которые можно открывать."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Измените вид любого веб-сайта. Меняйте цвета, фон страниц и многое другое."
 
@@ -3862,7 +3865,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Покупайте на Amazon. Если товар, который вы ищете в интернет-магазинах, предлагается также на Amazon, просто нажмите кнопку и откройте страницу этого товара в Amazon."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Наслаждайтесь полным контролем над управлением вкладками — закрытие дубликатов, объединение окон, копирование заголовков вкладок и многое другое."
 
@@ -3979,7 +3981,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Уберите раздражающий шум. Звук на веб-сайте слишком тихий? Слишком громкий? Вам поможет SoundFixer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Отредактируйте веб-страницу перед печатью. Вносите радикальные визуальные изменения — удаляйте рекламу или неприятный контент — на любой веб-странице, которую хотите распечатать."
 
@@ -4042,7 +4043,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Наслаждайтесь поддержкой многопоточной загрузки. Автоматически определяйте различные форматы медиа для загрузки."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Легко сохраняйте изображения — просто берите их с текущей вкладки."
 
@@ -4127,7 +4127,6 @@ msgid "Create and customize tab groups."
 msgstr "Создавайте и настраивайте группы вкладок."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Сохраните всю веб-страницу, включая изображения и стили, в виде одного файла HTML."
 
@@ -4212,6 +4211,10 @@ msgstr "Смена темы на основе времени. Заставьте
 msgid "Declutter your Twitter experience."
 msgstr "Наведите порядок в своем Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
@@ -4219,6 +4222,14 @@ msgstr "Некоторые веб-сайты испытывают затрудн
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Нашли в Интернете интересную картинку? Проследите ее происхождение с помощью TinEye."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4229,12 +4240,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Настройте жесты мыши. Откройте для себя новые способы навигации с более чем 50 конфигурациями."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4265,10 +4292,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
-"Прекратите предоставлять сайтам свой адрес электронной почты. Firefox Relay защищает вашу личность и предотвращает нежелательную почту. Обновите подписку до премиум-класса, чтобы получить "
-"дополнительные преимущества, такие как блокировка конкретных рекламных писем."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4334,6 +4359,14 @@ msgstr "Улучшите свой игровой опыт в Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Палец вверх, чтобы вернуть палец вниз."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4347,16 +4380,17 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Настройка YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Стартовый пакет расширений"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Управление загрузками"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Расширения для игр и развлечений"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4386,8 +4420,8 @@ msgstr "Расширения для повышения приватности"
 msgid "See more recommended privacy extensions"
 msgstr "Больше рекомендуемых расширений для повышения приватности"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Популярные расширения"
 
@@ -4452,10 +4486,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Настройка YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Больше расширений для YouTube отобранных нашими сотрудниками"
 
@@ -4498,6 +4528,14 @@ msgstr "Расширения для творчества"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Больше креативных инструментов отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Неотрецензировано"
@@ -4617,6 +4655,9 @@ msgstr "Другая (пожалуйста укажите)"
 
 msgid "Auto-flagged due to word match"
 msgstr "Автоматически помечен из-за совпадения слов"
+
+msgid "Auto-flagged due to user restriction"
+msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4997,8 +5038,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
+"За исключением случаев, <a href=\"https://www.mozilla.org/about/legal/\">описанных здесь</a>, содержимое этого сайта лицензировано на условиях <br /> <a href=\"https://creativecommons.org/licenses/"
+"by-sa/3.0/\">лицензии Creative Commons «Атрибуция — На тех же условиях» версии 3.0</a> или любой более поздней версии."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "узнайте о <b>дополнениях</b>"
@@ -5097,8 +5138,8 @@ msgstr "Пользователь Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введите корректную IPv4 или IPv6 подсеть CIDR, например, 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Несколько дополнений, нарушающих наши правила, были представлены из вашего местоположения. IP-адрес был заблокирован."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "Шаблон адреса электронной почты"
@@ -5108,8 +5149,8 @@ msgstr ""
 "Введите полный адрес электронной почты, который следует заблокировать, или используйте подстановочные знаки в стиле unix, например, \"*@example.com\". Если вам нужно заблокировать домен, включая "
 "поддомены, добавьте вторую запись, например, \"*@*.example.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для представления дополнений."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -5119,8 +5160,8 @@ msgstr ""
 "используйте «Ограничение пользовательских адресов электронной почты»."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Перед началом, пожалуйста прочтите и примите наше Соглашение по распространению дополнений Firefox, а также наши Политики и Правила проверки. Соглашение по распространению дополнений Firefox также "
 "ссылается на Уведомление об использовании конфиденциальной информации, которое объясняет, как мы обрабатываем вашу информацию."
@@ -5181,7 +5222,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-05-03 09:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -316,10 +316,10 @@ msgstr "Ei löytynyt"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -1884,7 +1884,9 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
 msgid "View and update application compatibility ranges"
@@ -2123,8 +2125,8 @@ msgid "Email"
 msgstr "Sähköposti"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2169,8 +2171,8 @@ msgid "Whiteboard"
 msgstr "Valkotaulu"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2368,8 +2370,8 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> lataus viikossa"
 msgstr[1] "<strong>{0}</strong> latausta viikossa"
 
-#. {0} is the number of active users.
 # 78%
+#. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> aktiivinen käyttäjä"
@@ -2702,8 +2704,8 @@ msgstr "JWT-salaisuus"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2775,7 +2777,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3060,7 +3063,8 @@ msgid "View All Submissions"
 msgstr "Näytä kaikki versiot"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr "Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
+msgstr ""
+"Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Julkaise ensimmäinen lisäosani"
@@ -3115,8 +3119,8 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Hallitse versiota {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Hallitse {0}"
 
@@ -3290,15 +3294,15 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#. L10n: first parameter is the number of errors
 # {0} is a number
+#. L10n: first parameter is the number of errors
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} virhe"
 msgstr[1] "{0} virhettä"
 
-#. L10n: first parameter is the number of warnings
 # {0} is a number
+#. L10n: first parameter is the number of warnings
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varoitus"
@@ -3456,7 +3460,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Poista evästeet automaattisesti, kun suljet välilehden."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Yksinkertainen tapa säätää minkä tahansa sivun tekstin kokoa – tai jopa suurentaa itse sivua."
 
@@ -3598,7 +3601,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Estä kaikki ponnahdusikkunat oletusarvoisesti ja päätä sitten, mitkä haluat avata."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Mukauta minkä tahansa sivuston ulkoasua. Aseta käänteisiä värejä, muuta sivun taustaa yms."
 
@@ -3838,7 +3840,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
@@ -3956,7 +3957,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Muokkaa verkkosivua ennen tulostamista. Tee visuaalisia muokkauksia — poista mainokset tai muu häiritsevä sisältö — mille tahansa verkkosivulle ennen tulostamista."
 
@@ -4019,7 +4019,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4104,7 +4103,6 @@ msgid "Create and customize tab groups."
 msgstr "Luo ja muokkaa välilehtiryhmiä."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Tallenna koko verkkosivu — mukaan lukien kuvat ja tyylit — yhtenä HTML-tiedostona."
 
@@ -4189,6 +4187,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Joillakin verkkosivustoilla on vaikeuksia toistaa videoita Androidilla. Tässä on korjaus."
@@ -4196,6 +4198,14 @@ msgstr "Joillakin verkkosivustoilla on vaikeuksia toistaa videoita Androidilla. 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Löysitkö mielenkiintoisen kuvan verkosta? Käytä TinEye-palvelua löytääksesi kuvan alkuperän."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4206,12 +4216,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Mukauta hiirieleitä. Löydä uusi tapa liikkua yli 50 eri määrityksen pohjalta."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Käytä hiirieleitä sulkeaksesi välilehtiä, liikkuaksesi sivuilla jne."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Lisää sivustojen esikatselukuvat hakutulosten viereen."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4242,7 +4268,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4309,6 +4335,14 @@ msgstr "Paranna pelikokemustasi Steamissa."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Laajennukset ovat kuin sovelluksia Firefoxille."
@@ -4322,24 +4356,25 @@ msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTuben mukauttaminen"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Laajennusten aloituspaketti"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
 msgstr "Katso henkilöstön valinnat"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended extensions"
 msgstr "Suositellut laajennukset"
 
@@ -4363,8 +4398,8 @@ msgstr "Yksityisyyttä parantavat laajennukset"
 msgid "See more recommended privacy extensions"
 msgstr "Katso lisää suositeltuja yksityisyyttä parantavia laajennuksia"
 
-#. editorial content for the homepage shelves.
 # Plural in this context means many of the add-on type
+#. editorial content for the homepage shelves.
 msgid "Popular extensions"
 msgstr "Suositut laajennukset"
 
@@ -4372,9 +4407,9 @@ msgstr "Suositut laajennukset"
 msgid "See more popular extensions"
 msgstr "Katso lisää suosittuja laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Recommended themes"
 msgstr "Suositellut teemat"
 
@@ -4431,16 +4466,12 @@ msgid "See more ad blocker staff picks"
 msgstr "Katso lisää valittuja mainosestäjiä"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTuben mukauttaminen"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Katso lisää valittuja YouTube-laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending themes"
 msgstr "Nousussa olevat teemat"
 
@@ -4448,9 +4479,9 @@ msgstr "Nousussa olevat teemat"
 msgid "See more trending themes"
 msgstr "Katso lisää nousussa olevia teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Top rated themes"
 msgstr "Parhaiten arvioidut teemat"
 
@@ -4458,9 +4489,9 @@ msgstr "Parhaiten arvioidut teemat"
 msgid "See more top rated themes"
 msgstr "Katso lisää parhaiten arvioituja teemoja"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Trending extensions"
 msgstr "Nousussa olevat laajennukset"
 
@@ -4477,15 +4508,23 @@ msgstr "Steamin tehostajat"
 msgid "See more Steam staff picks"
 msgstr "Katso lisää sosiaalisen suoratoiston laajennuksia"
 
-#. editorial content for the homepage shelves.
 # 87%
 # 100%
+#. editorial content for the homepage shelves.
 msgid "Creativity extensions"
 msgstr "Luovuutta tukevat laajennukset"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Katso lisää valittuja luovuuden työkaluja"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4604,6 +4643,9 @@ msgid "Other (please specify)"
 msgstr "Muu (täsmennä)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5104,7 +5146,7 @@ msgstr "Firefox-käyttäjä {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Kirjoita kelvollinen IP4- tai IP6-verkko."
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5113,7 +5155,7 @@ msgstr ""
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""
@@ -5122,8 +5164,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Ennen kuin aloitat, lue ja hyväksy Firefoxin lisäosan jakelusopimusehtomme sekä tarkistuskäytäntömme ja -sääntömme. Firefoxin lisäosan jakelusopimusehdot sekä tarkistuskäytäntöjen ja -sääntöjen "
 "hyväksyminen sisältävät myös linkit yksityisyyskäytäntöömme, jossa kerrotaan kuinka käsittelemme tietojasi."
@@ -5186,7 +5228,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -4093,7 +4093,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "A simple way to adjust the size of any page's text—or even enlarge the page "
 "itself."
@@ -4267,7 +4266,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
@@ -4553,7 +4551,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab "
 "title, and more."
@@ -4694,7 +4691,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Edit a web page before printing. Make sweeping visual changes—remove ads or "
 "unsavory content—to any web page you want to print."
@@ -4770,7 +4766,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4873,7 +4868,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
@@ -4963,6 +4957,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4970,6 +4968,16 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid ""
 "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the "
+"tab title, and more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4984,11 +4992,34 @@ msgid ""
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid ""
+"Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid ""
+"A simple way to adjust the size of any page's text — or even enlarge the "
+"page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Save an entire web page — including images and styling — as a single HTML "
+"file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Edit a web page before printing. Make sweeping visual changes — remove ads "
+"or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5026,9 +5057,8 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid ""
-"Stop giving sites your email address. Firefox Relay protects your identity & "
-"prevents junk mail. Upgrade to premium for added benefits, like blocking "
-"more specific promotional emails."
+"Mask your email to protect your identity & prevent junk mail. New updates "
+"make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5097,6 +5127,16 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Block time-wasting websites. Block them completely or just during time "
+"frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5113,15 +5153,16 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5232,10 +5273,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "po verziji dodatka"
@@ -5288,6 +5325,14 @@ msgstr "Komentariši"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "po verziji dodatka"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -5419,6 +5464,9 @@ msgid "Other (please specify)"
 msgstr "Drugo (molimo navedite)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5961,7 +6009,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid ""
-"Multiple add-ons violating our policies have been submitted from your "
+"Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
@@ -5974,8 +6022,7 @@ msgid ""
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid ""
-"The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""
