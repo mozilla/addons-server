@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-03-12 21:45+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3391,7 +3391,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "ਇੱਕ ਟੈਬ ਬੰਦ ਕਰਨ ਤੋਂ ਬਾਅਦ ਕੁਕੀਜ਼ ਨੂੰ ਆਟੋਮੈਟਿਕਲੀ ਮਿਟਾਓ।"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "ਕਿਸੇ ਸਫੇ ਦੇ ਪਾਠ ਦੇ ਅਕਾਰ ਨੂੰ ਵਿਵਸਥਿਤ ਕਰਨ ਦਾ ਇੱਕ ਸੌਖਾ ਤਰੀਕਾ- ਜਾਂ ਪੰਨਾ ਨੂੰ ਖੁਦ ਵੀ ਵੱਡਾ ਕਰੋ।"
 
@@ -3546,7 +3545,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "ਡਿਫੌਲਟ ਤੌਰ ਤੇ ਸਾਰੇ ਪੌਪ-ਅਪਸ ਨੂੰ ਬਲੌਕ ਕਰੋ, ਫਿਰ ਇਹ ਨਿਸ਼ਚਤ ਕਰੋ ਕਿ ਤੁਸੀਂ ਕਿਨ੍ਹਾਂ ਨੂੰ ਖੋਲ੍ਹਣਾ ਚਾਹੁੰਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਦੀ ਦਿੱਖ ਬਦਲੋ! Shift ਰੰਗ, ਸਫ਼ਾ ਪਿਛੋਕੜ, ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
@@ -3806,7 +3804,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "ਹੋਰ ਆਨਲਾਈਨ ਦੁਕਾਨਾਂ ਤੇ ਉਤਪਾਦ ਪੰਨਿਆਂ ਨੂੰ ਦੇਖਦੇ ਹੋਏ, ਜੇ ਇਹ ਐਮਾਜ਼ਾਨ ਤੇ ਵੀ ਉਪਲਬਧ ਹੈ ਤਾਂ ਤੁਸੀਂ ਇਸ ਦੀ ਐਮਾਜ਼ਾਨ ਸੂਚੀਕਰਨ ਨੂੰ ਚੈੱਕ ਕਰਨ ਲਈ ਇਕ ਬਟਨ ਤੇ ਕਲਿਕ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "ਇਸ ਲਈ ਬਹੁਤ ਸਾਰੇ ਟੈਬ ਕੰਟਰੋਲ ਚੋਣਾਂ —ਡੁਪਲੀਕੇਟ ਟੈਬਸ ਨੂੰ ਬੰਦ ਕਰੋ, ਵਿੰਡੋਜ਼ ਨੂੰ ਮਿਲਾਓ, ਟੈਬ ਸਿਰਲੇਖ ਦੀ ਕਾਪੀ ਕਰੋ ਅਤੇ ਹੋਰ।"
@@ -3930,7 +3927,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "ਕੀ ਵੈਬਸਾਈਟ ਤੇ ਵਾਲੀਅਮ ਬਹੁਤ ਚੁੱਪ ਹੈ? ਬਹੁਤ ਉੱਚੀ? SoundFixer ਤੁਹਾਡੀ ਮਦਦ ਕਰ ਸਕਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "ਛਾਪਣ ਤੋਂ ਪਹਿਲਾਂ ਵੈੱਬ ਸਫ਼ੇ ਨੂੰ ਸੋਧੋ। ਕਿਸੇ ਵੀ ਵੈੱਬ, ਜਿਸ ਨੂੰ ਤੁਸੀਂ ਛਾਪਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤੋਂ— ਇਸ਼ਤਿਹਾਰ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾ ਕੇ—ਦਿੱਖ ਤਬਾਦਲੇ ਕਰੋ।"
 
@@ -3995,7 +3991,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "ਬਹੁ-ਥ੍ਰੈਡਿੰਗ ਡਾਉਨਲੋਡ ਸਹਾਇਤਾ ਦਾ ਅਨੰਦ ਮਾਣੋ। ਡਾਉਨਲੋਡ ਲਈ ਆਟੋਮੈਟਿਕ ਵੱਖ-ਵੱਖ ਮੀਡੀਆ ਉਪਲਬਧਾਂ ਦਾ ਪਤਾ ਲਗਾਓ।"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "ਚਿੱਤਰਾਂ ਨੂੰ ਸੌਖੀ ਤਰ੍ਹਾਂ ਸੰਭਾਲੋ — ਉਹਨਾਂ ਨੂੰ ਆਪਣੀ ਮੌਜੂਦਾ ਟੈਬ ਤੋਂ ਲੈ ਲਵੋ।"
 
@@ -4081,7 +4076,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "ਇੱਕ ਸਿੰਗਲ HTML ਫਾਈਲ ਵਜੋਂ—ਸੰਪੂਰਨ ਪੰਨਿਆਂ—ਜਾਂ ਸਿਰਫ਼ ਕੁਝ ਭਾਗਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਕਰੋ।"
@@ -4169,6 +4163,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4177,6 +4175,14 @@ msgstr "ਕੁਝ ਸਾਈਟਸ ਨੂੰ ਐਡਰਾਇਡ ਲਈ ਫਾਇ�
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "ਵੈਬ ਤੇ ਇਕ ਦਿਲਚਸਪ ਤਸਵੀਰ ਲੱਭੋ? ਆਪਣੇ ਮੂਲ ਦੀ ਖੋਜ ਕਰਨ ਲਈ TinEye ਵਰਤੋ।"
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4189,14 +4195,30 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "50+ ਮਦਦਗਾਰ ਮਾਊਸ ਸੰਕੇਤਾਂ ਦੇ ਨਾਲ ਨੈਵੀਗੇਟ ਕਰਨ ਦਾ ਇੱਕ ਨਵਾਂ ਤਰੀਕਾ ਲੱਭੋ।"
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "ਟੈਬਸ ਬੰਦ ਕਰਨ ਲਈ, ਮਾਉਸ ਸੰਕੇਤ ਦੀ ਵਰਤੋਂ ਕਰੋ, ਇਕ ਪੰਨੇ ਤੇ ਵਾਪਸ ਜਾਓ, ਦੁਬਾਰਾ ਲੋਡ ਕਰੋ, ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "ਆਪਣੀ ਖੋਜ ਰਿਟਰਨਾਂ ਦੇ ਨਾਲ ਥੰਬਨੇਲ ਚਿੱਤਰਾਂ ਦਾ ਅਨੰਦ ਮਾਣੋ।"
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4228,7 +4250,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4296,6 +4318,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4310,15 +4340,16 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4429,10 +4460,6 @@ msgid "See more ad blocker staff picks"
 msgstr "ਸਾਰੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਵੇਖੋ"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
@@ -4485,6 +4512,14 @@ msgstr "ਸਿਫਾਰਸ਼ੀ ({0})"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "ਐਡ-ਆਨ ਨਾਂ ਉਲੱਥੇ"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4606,6 +4641,9 @@ msgid "Other (please specify)"
 msgstr "ਹੋਰ ( ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5096,7 +5134,7 @@ msgstr "ਫਾਇਰਫੌਕਸ ਯੂਜ਼ਰ {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "ਇੱਕ ਜਾਇਜ IPv6 ਜਾਂ IPv6 ਸੀਆਈਡੀਆਰ ਨੈਟਵਰਕ ਰੇਂਜ ਦਰਜ ਕਰੋ, ਉਦਾਹਰਨ ਲਈ। 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5105,8 +5143,8 @@ msgstr "ਈਮੇਲ ਤਰਤੀਬ"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "ਤੁਹਾਡੇ ਖਾਤੇ ਲਈ ਵਰਤਿਆ ਗਿਆ ਈਮੇਲ ਪਤਾ ਐਡ-ਆਨ ਸਬਮਿਸ਼ਨ ਲਈ ਆਗਿਆ ਨਹੀਂ ਹੈ।"
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

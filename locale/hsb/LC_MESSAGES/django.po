@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-17 22:39+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"PO-Revision-Date: 2023-05-10 12:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3447,7 +3447,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Zhašejće placki awtomatisce, po tym zo sće rajtark začinił."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Jednora móžnosć za přiměrjenje tekstoweje wulkosće strony - abo powjetšće prosće stronu."
 
@@ -3589,7 +3588,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blokujće po standardźe wšě wuskakowace wokna a rozsudźće potom, kotre chceće wočinić."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Přiměrće napohlad websydłow. Změńće barby, pozadki stronow a wjace."
 
@@ -3831,7 +3829,6 @@ msgstr ""
 "Amazon widźał."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami - dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
@@ -3949,7 +3946,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Porjedźće mylace zynki. Je sylnosć zwuka na websydle přećicha? Přehłósna? SoundFixer móže pomhać."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Wobdźěłajće webstronu před ćišćenjom. Čińće skutkowne widźomne změny - wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
 
@@ -4012,7 +4008,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Wužiwajće wjacenitkowu sćehnjensku podpěru. Wotkryjće rozdźělne typy medijow za sćehnjenje."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Składujće wobrazy cyle lochko - hrabńće je ze swojeho aktualneho rajtarka."
 
@@ -4097,7 +4092,6 @@ msgid "Create and customize tab groups."
 msgstr "Wutworće a přiměrće rajtarkowe skupiny."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Składujće cyłu webstronu - mjez nimi wobrazy a stile - jako jeničku HTML-dataju."
 
@@ -4182,6 +4176,10 @@ msgstr "Wot časa wotwisne wuměnjenje drastow. Dajće Firefox barby po času dn
 msgid "Declutter your Twitter experience."
 msgstr "Wurjedźće swoje dožiwjenje Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je rozrisanje."
@@ -4189,6 +4187,14 @@ msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je ro
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Sće zajimawy wobraz w interneće namakał? Wužiwajće TinEye, zo byšće wuslědźił, zwotkelž pochadźa."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Składujće wobrazy cyle lochko – hrabńće je ze swojeho aktualneho rajtarka."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami – dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4199,12 +4205,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Přiměrće gesty myški. Wotkryjće nowe móžnosće, zo byšće z přez 50 konfiguracijemi nawigował."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Přiměrće napohlad websydła. Změńće barby, pozadki stronow a wjace."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Wužiwajće gesty myški, zo byšće rajtarki začinił, přez strony nawigował a wjace."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Jednora móžnosć za přiměrjenje tekstoweje wulkosće strony – abo powjetšće prosće stronu."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Wužiwajće miniaturki websydłow z pytanskimi wuslědkami."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Składujće cyłu webstronu – mjez nimi wobrazy a stile – jako jeničku HTML-dataju."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Wobdźěłajće webstronu před ćišćenjom. Čińće skutkowne widźomne změny – wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4235,10 +4257,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wuslědki nad wabjenjom stejachu (kompatibelne z pytawomaj Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
-"Njedajće hižo sydłam swoju e-mejlowu adresu. Firefox Relay wašu identitu škita a spamowym mejlkam zadźěwa. Aktualizujće na płaćomnu wersiju za dalše lěpšiny, kaž na přikład blokowanje dalšich "
-"specifiskich wabjenskich mejlkow."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4304,6 +4324,14 @@ msgstr "Polěpšće swoje hrajne dožiwjenje na Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Palc dele je so wróćił – na to palc horje."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšěrjenja su za Firefox kaž nałoženja."
@@ -4317,16 +4345,17 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přiměrjenje YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Spočatny pakćik rozšěrjenjow"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Zrjadowaki sćehnjenjow"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Rozšěrjenja za hry a zabawjenje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4421,10 +4450,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju blokowakow wabjenja pokazać"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přiměrjenje YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja YouTube pokazać"
 
@@ -4467,6 +4492,14 @@ msgstr "Rozšěrjenja za kreatiwnosć"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Wjace wot sobudźěłaćerjow wubrane rozšěrjenja kreatiwnosće socialneho prudźenja pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Njepřepruwowany"
@@ -4586,6 +4619,9 @@ msgstr "Druhe (prošu podać)"
 
 msgid "Auto-flagged due to word match"
 msgstr "Awtomatisce woznamjenjene wotpowědowanja słowa dla"
+
+msgid "Auto-flagged due to user restriction"
+msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5067,8 +5103,8 @@ msgstr "Wužiwar Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zapodajće płaćiwy IPv4 abo syćowy wobwod CIDR IPv6, na př. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Wot wašeho stejnišća su so wjacore přidatki zapodali, kotrež so přećiwo našim prawidłam přeńdu. IP-adresa je so zablokowała."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "E-mejlowy muster"
@@ -5078,8 +5114,8 @@ msgstr ""
 "Zapodajće dospołnu e-mejlowu adresu, kotraž ma so blokować abo wužiwajće zastupowace symbole w stilu Unix, na př. „*@example.com“. Jeli dyrbiće domenu inkluziwnje poddomeny blokować, přidajće dalši "
 "zapisk, na př. „*@*.example.com“."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodawanje přidatkow dowolena njeje."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodaća dowolena njeje."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

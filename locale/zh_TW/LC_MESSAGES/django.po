@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-03-08 03:45+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"PO-Revision-Date: 2023-05-10 15:26+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3382,7 +3382,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "關閉分頁後自動清除 Cookie。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr ""
 
@@ -3524,7 +3523,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "預設封鎖所有彈出視窗，然後再決定要開啟哪些想要的。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "自訂任何網站外觀！頁面顏色、背景等等皆可調整。"
 
@@ -3764,7 +3762,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
@@ -3881,7 +3878,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "網站的聲音太小聲或太大聲？SoundFixer 可以幫忙。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
@@ -3944,7 +3940,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4029,7 +4024,6 @@ msgid "Create and customize tab groups."
 msgstr "建立並自訂分頁群組。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。"
 
@@ -4114,6 +4108,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正此問題。"
@@ -4121,6 +4119,14 @@ msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4131,12 +4137,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "在搜尋結果中顯示網站畫面擷圖。"
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4167,7 +4189,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Google 及 Bing 搜尋引擎）。"
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4234,6 +4256,14 @@ msgstr "加強您在 Steam 的遊戲體驗。"
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "按下按讚按紐，即可顯示倒讚按鈕。"
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
@@ -4247,16 +4277,17 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "隱私權與安全性擴充套件"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "擴充套件組合包"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "下載管理員"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "遊戲與娛樂擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4352,10 +4383,6 @@ msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "自訂 YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "看員工精選的更多 YouTube 擴充套件"
 
@@ -4398,6 +4425,14 @@ msgstr "創意擴充套件"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "看員工精選的更多創意套件"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "社群媒體擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "看更多看員工精選的社群媒體套件"
 
 msgid "Unreviewed"
 msgstr "未審核的"
@@ -4517,6 +4552,9 @@ msgstr "其他（請詳述）"
 
 msgid "Auto-flagged due to word match"
 msgstr "由於文字符合而自動標記"
+
+msgid "Auto-flagged due to user restriction"
+msgstr "由於使用者限制而自動標記"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4990,8 +5028,8 @@ msgstr "Firefox 使用者 {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "請輸入有效的 IPv4 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "您的所在位置有多套違反我們使用政策的附加元件。此 IP 已遭封鎖。"
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "您的所在位置多次送出違反我們使用政策的附加元件。此 IP 已遭封鎖。"
 
 msgid "Email Pattern"
 msgstr "郵件模式"
@@ -4999,8 +5037,8 @@ msgstr "郵件模式"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr "請輸入要封鎖的完整電子郵件地址，或使用 unix 格式的萬用字元（例如「*@example.com」）。若您要封鎖包含所有子網域的完整網域，請另外針對子網域加入一筆「*@*.example.com」。"
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "您的帳號不允許用來上架附加元件。"
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "您帳號的電子郵件地址不允許用來送出附加元件。"
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

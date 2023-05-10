@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-02-21 18:42+0000\n"
 "Last-Translator: Petr Balvín <petrbalvin@petalmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -3441,7 +3441,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Automaticky vymažte cookies po zavření panelu."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky – nebo dokonce zvětšit samotnou stránku."
 
@@ -3583,7 +3582,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Zablokujte automaticky všechna vyskakovací okna a poté se rozhodněte, které z nich chcete otevřít."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Přizpůsobte si vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
 
@@ -3823,7 +3821,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Získejte výhody Amazonu. Když se díváte na stránku nějakého produktu v jiném internetovém obchodě, můžete pouhým kliknutím na tlačítko zjistit, jestli je výrobek k dispozici i na Amazonu."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Mějte maximální vládu nad panely – zavřete duplicitní panely, slučte okna, zkopírujte název panelu a mnoho dalšího."
 
@@ -3941,7 +3938,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Seřiďte správně zvuk. Je hlasitost na webové stránce příliš nízká? Příliš vysoká? SoundFixer vám může pomoci."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Upravte webovou stránku před jejím vytištěním. Proveďte rozsáhlé vizuální změny – odstraňte reklamy nebo odpudivý obsah – na každé webové stránce, kterou chcete vytisknout."
 
@@ -4004,7 +4000,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Užívejte si podporu stahování ve více vláknech. Automaticky najděte různé typy médií, které jsou pro stažení k mání."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Ukládejte obrázky snadno – jednoduše si je vezměte z aktuálního panelu."
 
@@ -4089,7 +4084,6 @@ msgid "Create and customize tab groups."
 msgstr "Vytvářejte a přizpůsobte si skupiny panelů."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Uložte si celou webovou stránku – včetně obrázků a stylů – jako jeden soubor HTML."
 
@@ -4174,6 +4168,10 @@ msgstr "Měnič motivů vzhledu na základě času. Přimějte Firefox měnit ba
 msgid "Declutter your Twitter experience."
 msgstr "Zpřehledněte si prostředí Twitteru."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Některé weby mají potíže s přehráváním videí v systému Android. Tady je oprava."
@@ -4181,6 +4179,14 @@ msgstr "Některé weby mají potíže s přehráváním videí v systému Androi
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud pochází."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4191,12 +4197,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navigaci pomocí více než 50 konfigurací."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Zavírejte panely, procházejte stránky a provádějte další činnosti pomocí gest myši."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných stránek."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4227,10 +4249,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhledávání nacházely nad reklamami (kompatibilní s vyhledávači Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
-"Přestaňte webům poskytovat svou e-mailovou adresu. Firefox Relay chrání vaši totožnost a předchází zasílání nevyžádané pošty. Při přechodu na prémiovou verzi získáte další výhody, jako třeba "
-"blokování konkrétnějších reklamních e-mailů."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4296,6 +4316,14 @@ msgstr "Vylepšete svůj herní prožitek na Steamu."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšíření jsou jako aplikace pro Firefox."
@@ -4309,15 +4337,16 @@ msgid "See all extensions"
 msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přizpůsobení YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4414,10 +4443,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Další vybraná rozšíření pro blokování reklam"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přizpůsobení YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Další vybraná rozšíření pro YouTube"
 
@@ -4459,6 +4484,14 @@ msgstr "Kreativní rozšíření"
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4578,6 +4611,9 @@ msgid "Other (please specify)"
 msgstr "Jiné (prosím upřesněte)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5059,8 +5095,8 @@ msgstr "Uživatel Firefoxu - {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadejte platný rozsah sítě ve formátu IPv4 nebo IPv6 CIDR, např. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Z vašeho umístění bylo odesláno více doplňků, které porušují naše pravidla. IP adresa byla zablokována."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "Šablona e-mailové adresy"
@@ -5068,8 +5104,8 @@ msgstr "Šablona e-mailové adresy"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "E-mailová adresa použitá pro váš účet nemá povoleno odesílat doplňky."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-08 21:07+0000\n"
-"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"PO-Revision-Date: 2023-05-10 13:30+0000\n"
+"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -3479,7 +3479,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Автоматическое удаление кук при закрытии вкладки."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Простой способ подобрать размер текста любой страницы или даже увеличить саму страницу."
 
@@ -3621,7 +3620,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Заблокируйте по умолчанию все всплывающие окна, а потом выберите те из них, которые можно открывать."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Измените вид любого веб-сайта. Меняйте цвета, фон страниц и многое другое."
 
@@ -3862,7 +3860,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Покупайте на Amazon. Если товар, который вы ищете в интернет-магазинах, предлагается также на Amazon, просто нажмите кнопку и откройте страницу этого товара в Amazon."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Наслаждайтесь полным контролем над управлением вкладками — закрытие дубликатов, объединение окон, копирование заголовков вкладок и многое другое."
 
@@ -3979,7 +3976,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Уберите раздражающий шум. Звук на веб-сайте слишком тихий? Слишком громкий? Вам поможет SoundFixer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Отредактируйте веб-страницу перед печатью. Вносите радикальные визуальные изменения — удаляйте рекламу или неприятный контент — на любой веб-странице, которую хотите распечатать."
 
@@ -4042,7 +4038,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Наслаждайтесь поддержкой многопоточной загрузки. Автоматически определяйте различные форматы медиа для загрузки."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Легко сохраняйте изображения — просто берите их с текущей вкладки."
 
@@ -4127,7 +4122,6 @@ msgid "Create and customize tab groups."
 msgstr "Создавайте и настраивайте группы вкладок."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Сохраните всю веб-страницу, включая изображения и стили, в виде одного файла HTML."
 
@@ -4212,6 +4206,10 @@ msgstr "Смена темы на основе времени. Заставьте
 msgid "Declutter your Twitter experience."
 msgstr "Наведите порядок в своем Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Верните способность видеть большой палец вниз!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Некоторые веб-сайты испытывают затруднения при воспроизведении видео на Android. Вот как это исправить."
@@ -4219,6 +4217,14 @@ msgstr "Некоторые веб-сайты испытывают затрудн
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Нашли в Интернете интересную картинку? Проследите ее происхождение с помощью TinEye."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Легко сохраняйте изображения — просто берите их с текущей вкладки."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Наслаждайтесь полным контролем над управлением вкладками — закрытие дубликатов, объединение окон, копирование заголовков вкладок и многое другое."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4229,12 +4235,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Настройте жесты мыши. Откройте для себя новые способы навигации с более чем 50 конфигурациями."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Измените вид любого веб-сайта. Меняйте цвета, фон страниц и многое другое."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Используйте жесты мышью для закрытия вкладок, перемещения по страницам и других действий."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Простой способ подобрать размер текста любой страницы или даже увеличить саму страницу."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Наслаждайтесь эскизами веб-сайтов в результатах поиска."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Сохраните всю веб-страницу, включая изображения и стили, в виде одного файла HTML."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Отредактируйте веб-страницу перед печатью. Вносите радикальные визуальные изменения — удаляйте рекламу или неприятный контент — на любой веб-странице, которую хотите распечатать."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4265,10 +4287,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Вернитесь к более простым временам — когда первые результаты поиска стояли выше рекламы (совместимо с поисковыми системами Google и Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Прекратите предоставлять сайтам свой адрес электронной почты. Firefox Relay защищает вашу личность и предотвращает нежелательную почту. Обновите подписку до премиум-класса, чтобы получить "
-"дополнительные преимущества, такие как блокировка конкретных рекламных писем."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Замаскируйте свою электронную почту, чтобы защитить свою личность и предотвратить нежелательную почту. Новые обновления делают Firefox Relay еще проще в использовании."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4334,6 +4354,14 @@ msgstr "Улучшите свой игровой опыт в Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Палец вверх, чтобы вернуть палец вниз."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Переводите сайты в Firefox конфиденциально, не используя облако."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Блокируйте веб-сайты, отнимающие время. Блокируйте их полностью или только в выбранные вами временные рамки."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Расширения — это как приложения для Firefox."
@@ -4347,16 +4375,17 @@ msgid "See all extensions"
 msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Расширения конфиденциальности и безопасности"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Настройка YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Стартовый пакет расширений"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Управление загрузками"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Расширения для игр и развлечений"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4452,10 +4481,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Больше средств блокировки рекламы отобранных нашими сотрудниками"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Настройка YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Больше расширений для YouTube отобранных нашими сотрудниками"
 
@@ -4498,6 +4523,14 @@ msgstr "Расширения для творчества"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Больше креативных инструментов отобранных нашими сотрудниками"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Расширения для социальных сетей"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Больше средств для социальных сетей, отобранных нашими сотрудниками"
 
 msgid "Unreviewed"
 msgstr "Неотрецензировано"
@@ -4617,6 +4650,9 @@ msgstr "Другая (пожалуйста укажите)"
 
 msgid "Auto-flagged due to word match"
 msgstr "Автоматически помечен из-за совпадения слов"
+
+msgid "Auto-flagged due to user restriction"
+msgstr "Автоматически помечен из-за ограничения пользователя"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5097,8 +5133,8 @@ msgstr "Пользователь Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введите корректную IPv4 или IPv6 подсеть CIDR, например, 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Несколько дополнений, нарушающих наши правила, были представлены из вашего местоположения. IP-адрес был заблокирован."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Несколько материалов, нарушающих наши правила, были отправлены из вашего местоположения. IP-адрес заблокирован."
 
 msgid "Email Pattern"
 msgstr "Шаблон адреса электронной почты"
@@ -5108,8 +5144,8 @@ msgstr ""
 "Введите полный адрес электронной почты, который следует заблокировать, или используйте подстановочные знаки в стиле unix, например, \"*@example.com\". Если вам нужно заблокировать домен, включая "
 "поддомены, добавьте вторую запись, например, \"*@*.example.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для представления дополнений."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "Адрес электронной почты, используемый вами в аккаунте, не может быть использован для отправки материалов."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

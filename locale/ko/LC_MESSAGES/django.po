@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
 "PO-Revision-Date: 2023-04-01 08:31+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -3415,7 +3415,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "탭을 닫은 후 자동으로 쿠키를 삭제합니다."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "페이지의 텍스트 크기를 조정하거나 페이지 전체를 확대하는 간단한 방법입니다."
 
@@ -3557,7 +3556,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "모든 팝업을 기본적으로 차단한 다음에 어떤 팝업을 열지 결정하세요."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "모든 웹 사이트의 모양을 사용자 정의하십시오. 색상, 페이지 배경 등을 변경합니다."
 
@@ -3797,7 +3795,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Amazon 우위를 확보하십시오. 다른 온라인 상점의 제품 페이지를 볼 때 Amazon에서도 사용할 수 있는 경우 버튼을 클릭하여 Amazon 목록을 확인할 수 있습니다."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "중복 탭 닫기, 창 병합, 탭 제목 복사 등 최고의 탭 제어 기능을 즐기십시오."
 
@@ -3914,7 +3911,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "성가신 오디오를 수정합니다. 웹사이트의 볼륨이 너무 작나요? 소리가 너무 큰가요? SoundFixer가 도와드리겠습니다."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "인쇄하기 전에 웹 페이지를 편집하세요. 인쇄하려는 웹 페이지가 어떻게 보이는지 변경(광고 또는 불쾌한 콘텐츠 제거)을 합니다."
 
@@ -3977,7 +3973,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "멀티 스레딩 다운로드 지원을 즐기십시오. 다운로드 할 수 있는 다양한 유형의 미디어를 자동으로 감지합니다."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "이미지를 쉽게 저장하세요. 현재 탭에서 가져오기만 하면 됩니다."
 
@@ -4062,7 +4057,6 @@ msgid "Create and customize tab groups."
 msgstr "탭 그룹을 만들고 사용자 지정합니다."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "이미지와 스타일을 포함한 전체 웹 페이지를 단일 HTML 파일로 저장합니다."
 
@@ -4147,6 +4141,10 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "일부 웹사이트는 Android에서 동영상을 재생하는 데 문제가 있습니다. 고쳐졌습니다."
@@ -4154,6 +4152,14 @@ msgstr "일부 웹사이트는 Android에서 동영상을 재생하는 데 문�
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "웹에서 흥미로운 이미지를 찾으십니까? TinEye를 사용하여 출처를 찾아보세요."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4164,12 +4170,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "검색 결과와 함께 웹 사이트의 썸네일 이미지를 즐기십시오."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4200,7 +4222,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4267,6 +4289,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "확장 기능은 Firefox만을 위한 앱입니다."
@@ -4280,15 +4310,16 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 사용자 지정"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4387,10 +4418,6 @@ msgid "See more ad blocker staff picks"
 msgstr "광고 차단기 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 사용자 지정"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "YouTube 확장 기능 직원 추천 더보기"
 
@@ -4435,6 +4462,14 @@ msgstr "창의성 확장 기능"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "창의성 직원 추천 더보기"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4555,6 +4590,9 @@ msgid "Other (please specify)"
 msgstr "기타 (이유를 적어주세요)"
 
 msgid "Auto-flagged due to word match"
+msgstr ""
+
+msgid "Auto-flagged due to user restriction"
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -5052,7 +5090,7 @@ msgstr "Firefox 사용자 {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "유효한 IP4 또한 IP6 네트워크를 입럭해주세요."
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5061,7 +5099,7 @@ msgstr ""
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""

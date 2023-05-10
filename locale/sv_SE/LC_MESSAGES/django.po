@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-06 02:10+0000\n"
+"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"PO-Revision-Date: 2023-05-10 17:51+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3436,7 +3436,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Ta bort kakor automatiskt när du stänger en flik."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Ett enkelt sätt att justera storleken på sidans text—eller till och med förstora sidan själv."
 
@@ -3578,7 +3577,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blockera alla popup-fönster som standard och bestäm sedan vilka som du vill öppna."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Anpassa utseendet på vilken webbplats som helst. Byt färger, sidobakgrunder och mer."
 
@@ -3818,7 +3816,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Få en Amazon-kant. Om du tittar på produktsidor på andra onlinebutiker, om det också finns tillgängligt på Amazon, kan du helt enkelt klicka på en knapp för att kontrollera Amazons lista."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Njut av den ultimata flikkontrollen—stäng duplicerade flikar, slå samman fönster, kopiera flikens titel och mer."
 
@@ -3935,7 +3932,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Fixa irriterande ljud. Är volymen på en webbplats för tyst? För högt? SoundFixer kan hjälpa till."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Redigera en webbsida innan du skriver ut. Gör svepande visuella ändringar—ta bort annonser eller olämpligt innehåll—på vilken webbsida du vill skriva ut."
 
@@ -3998,7 +3994,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Njut av nedladdning med stöd för flera trådar. Upptäck automatiskt olika typer av media som är tillgängliga för nedladdning."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Spara bilder enkelt—ta dem från din nuvarande flik."
 
@@ -4083,7 +4078,6 @@ msgid "Create and customize tab groups."
 msgstr "Skapa och anpassa flikgrupper."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Spara en hel webbsida—inklusive bilder och styling—som en enda HTML-fil."
 
@@ -4168,6 +4162,10 @@ msgstr "Tidsbaserad temaväxlare. Få Firefox att ändra färger när tiden på 
 msgid "Declutter your Twitter experience."
 msgstr "Ta bort distraktioner från din Twitter-upplevelse."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Få tillbaka förmågan att se tummen ner!"
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är en lösning."
@@ -4175,6 +4173,14 @@ msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Hitta en intressant bild på webben? Använd TinEye för att utforska dess ursprung."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Spara bilder enkelt — hämta dem direkt från din nuvarande flik."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Njut av ultimat flikkontroll — stäng dubbletter av flikar, slå samman fönster, kopiera fliktiteln och mer."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4185,12 +4191,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 konfigurationer."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Anpassa utseendet på vilken webbplats som helst. Byt färger, sidbakgrunder och mer."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Ett enkelt sätt att justera storleken på en sidas text — eller till och med förstora själva sidan."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Spara en hel webbsida — inklusive bilder och stil — som en enda HTML-fil."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Redigera en webbsida före utskrift. Gör genomgripande visuella ändringar — ta bort annonser eller otrevligt innehåll — på alla webbsidor du vill skriva ut."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4221,9 +4243,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Sluta ge webbplatser din e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost. Uppgradera till premium för extra fördelar, som att blockera mer specifika reklammeddelanden."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Maskera din e-post för att skydda din identitet och förhindra skräppost. Nya uppdateringar gör Firefox Relay ännu enklare att använda."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4289,6 +4310,14 @@ msgstr "Förbättra din spelupplevelse på Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Tummen upp för att få tillbaka tummen ner."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Översätt webbplatser i Firefox — privat — utan att använda molnet."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blockera tidsödande webbplatser. Blockera dem helt eller bara under tidsramar som du väljer."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -4302,16 +4331,17 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Sekretess- och säkerhetstillägg"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-anpassning"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Tilläggsstartpaket"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Nedladdningshanterare"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Spel och underhållningstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4406,10 +4436,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Se fler utvalda annonsblockerare som valts av anställda"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-anpassning"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Se fler YouTube-tillägg som valts av anställda"
 
@@ -4452,6 +4478,14 @@ msgstr "Kreativitetstillägg"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Se fler kreativitetstillägg som valts av anställda"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Tillägg för sociala medier"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Se fler tillägg för social medier som valts av anställda"
 
 msgid "Unreviewed"
 msgstr "Ej granskad"
@@ -4571,6 +4605,9 @@ msgstr "Annat (var god ange)"
 
 msgid "Auto-flagged due to word match"
 msgstr "Automatiskt flaggad på grund av ordmatchning"
+
+msgid "Auto-flagged due to user restriction"
+msgstr "Automatiskt flaggad på grund av användarbegränsning"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5048,8 +5085,8 @@ msgstr "Firefox-användare {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Ange ett giltigt IPv4 eller IPv6 CIDR-nätverksområde, t.ex. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Flera tillägg som bryter mot vår policy har skickats in från din plats. IP-adressen har blivit blockerad."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Flera bidrag som bryter mot våra policyer har skickats från din position. IP-adressen har blockerats."
 
 msgid "Email Pattern"
 msgstr "E-postmönster"
@@ -5059,8 +5096,8 @@ msgstr ""
 "Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. "
 "\"*@*.exempel.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Den e-postadress du använde för ditt konto kan inte användas för att skicka in tillägg."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "E-postadressen som används för ditt konto är inte tillåten för att skicka in bidrag."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
