@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-10 11:31+0000\n"
+"PO-Revision-Date: 2023-05-10 11:33+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4291,7 +4291,7 @@ msgstr "Enregistrez une page web entière, y compris les images et le style, dan
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc. "
+msgstr "Modifiez radicalement une page web avant de l’imprimer : supprimez les publicités, les contenus peu recommandables, etc."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4391,7 +4391,7 @@ msgstr "Un pouce levé pour faire revenir les pouces vers le bas."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Traduisez des sites web dans Firefox, de manière privée, sans utiliser le cloud."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4411,7 +4411,7 @@ msgstr "Voir toutes les extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Extensions sécurité et vie privée"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4561,7 +4561,7 @@ msgstr "Voir davantage d’extensions pour la créativité choisies par l’équ
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Extensions de réseaux sociaux"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
