@@ -197,12 +197,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         file_ = File.objects.get(id=67442)
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '15/3615/3615/a3615-2.1.072.zip'  # zip extension.
+            == '15/3615/3615/a3615-2.1.072.xpi'  # xpi extension.
         )
-        file_.is_signed = True
+        file_.is_signed = False
         assert (
             file_._meta.get_field('file').upload_to(file_, None)
-            == '15/3615/3615/a3615-2.1.072.xpi'  # xpi extension.
+            == '15/3615/3615/a3615-2.1.072.zip'  # zip extension.
         )
 
     def test_pretty_filename(self):

@@ -4,8 +4,10 @@ import pytest
 
 from freezegun import freeze_time
 
+from django.conf import settings
+
 from olympia import amo
-from olympia.amo.tests import addon_factory, version_factory
+from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.promoted import LINE, NOTABLE, NOT_PROMOTED
 from olympia.promoted.models import PromotedAddon
 from olympia.versions.utils import get_review_due_date
@@ -20,6 +22,7 @@ from ..tasks import (
 
 @pytest.mark.django_db
 def test_add_high_adu_extensions_to_notable():
+    user_factory(pk=settings.TASK_USER_ID)
     # Arbitrary_adu_limit
     adu_limit = 1234
     set_config(NOTABLE_ADU_LIMIT_CONFIG_KEY, adu_limit)
