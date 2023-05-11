@@ -50,6 +50,7 @@ from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
+from olympia.reviewers.models import NeedsHumanReviewHistory
 from olympia.translations.models import (
     Translation,
     TranslationSequence,
@@ -2018,6 +2019,7 @@ class TestAddonDueDate(TestCase):
         AddonReviewerFlags.objects.create(
             addon=Addon.objects.get(id=3615), auto_approval_disabled=True
         )
+        user_factory(pk=settings.TASK_USER_ID)
 
     def test_set_due_date(self):
         addon = Addon.objects.get(id=3615)
@@ -2120,6 +2122,68 @@ class TestAddonDueDate(TestCase):
             status=amo.STATUS_AWAITING_REVIEW, version=version, manifest_version=2
         )
         assert addon.versions.latest().due_date != due_date
+
+    def test_set_needs_human_review_on_latest_versions(self):
+        addon = Addon.objects.get(id=3615)
+        listed_version = version_factory(
+            addon=addon, created=self.days_ago(1), file_kw={'is_signed': True}
+        )
+        unsigned_listed_version = version_factory(
+            addon=addon, file_kw={'is_signed': False}
+        )
+        unlisted_version = version_factory(
+            addon=addon,
+            created=self.days_ago(1),
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'is_signed': True},
+        )
+        unsigned_unlisted_version = version_factory(
+            addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': False}
+        )
+        due_date = datetime.now() + timedelta(hours=42)
+        addon.set_needs_human_review_on_latest_versions(
+            due_date=due_date, reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+        )
+        for version in [listed_version, unlisted_version]:
+            version.reload()
+            assert version.needs_human_review
+            assert version.needshumanreviewhistory_set.count() == 1
+            assert (
+                version.needshumanreviewhistory_set.get().reason
+                == NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+            )
+        for version in [unsigned_listed_version, unsigned_unlisted_version]:
+            # Those are more recent but unsigned, so we don't consider them
+            # when figuring out which version to flag for human review.
+            version.reload()
+            assert not version.needs_human_review
+            assert version.needshumanreviewhistory_set.count() == 0
+
+    def test_set_needs_human_review_on_latest_versions_ignore_already_reviewed(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.update(human_review_date=self.days_ago(1))
+        addon.set_needs_human_review_on_latest_versions(
+            reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+        )
+        version.reload()
+        assert not version.needs_human_review
+        assert version.needshumanreviewhistory_set.count() == 0
+
+    def test_set_needs_human_review_on_latest_versions_even_deleted(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        version.delete()
+        addon.set_needs_human_review_on_latest_versions(
+            reason=NeedsHumanReviewHistory.REASON_UNKNOWN
+        )
+        version.reload()
+        assert version.needs_human_review
+        assert version.needshumanreviewhistory_set.count() == 1
+        assert (
+            version.needshumanreviewhistory_set.get().reason
+            == NeedsHumanReviewHistory.REASON_UNKNOWN
+        )
 
 
 class TestAddonDelete(TestCase):

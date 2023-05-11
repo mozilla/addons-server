@@ -15,7 +15,11 @@ def _no_action(*, version, rule):
 
 def _flag_for_human_review(*, version, rule):
     """Flag the version for human review."""
-    version.update(needs_human_review=True)
+    from olympia.reviewers.models import NeedsHumanReviewHistory
+
+    NeedsHumanReviewHistory.objects.create(
+        version=version, reason=NeedsHumanReviewHistory.REASON_SCANNER_ACTION
+    )
 
 
 def _delay_auto_approval(*, version, rule):

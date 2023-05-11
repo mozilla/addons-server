@@ -41,7 +41,7 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedAddon, PromotedApproval
-from olympia.reviewers.models import AutoApprovalSummary
+from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReviewHistory
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
     EmailUserRestriction,
@@ -399,6 +399,7 @@ class TestVersion(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
         self.version = Version.objects.get(pk=81551)
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
 
     def target_mobile(self):
         app = amo.ANDROID.id
@@ -451,6 +452,7 @@ class TestVersion(AMOPaths, TestCase):
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
         assert not version.needs_human_review
+        assert version.needshumanreviewhistory_set.count() == 0
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -475,10 +477,19 @@ class TestVersion(AMOPaths, TestCase):
         assert AddonReviewerFlags.objects.filter(
             addon=version.addon, needs_admin_code_review=True
         ).exists()
-        activity = ActivityLog.objects.for_versions(version).get()
-        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert ActivityLog.objects.for_versions(version).count() == 2
+        activity = (
+            ActivityLog.objects.for_versions(version)
+            .filter(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+            .get()
+        )
         assert activity.user == user
         assert version.needs_human_review
+        assert version.needshumanreviewhistory_set.count() == 1
+        assert (
+            version.needshumanreviewhistory_set.get().reason
+            == NeedsHumanReviewHistory.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+        )
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_version_delete(self, delete_preview_files_mock):
@@ -513,7 +524,6 @@ class TestVersion(AMOPaths, TestCase):
         assert not VersionPreview.objects.filter(version=version).exists()
 
     def test_version_delete_logs(self):
-        task_user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         user = UserProfile.objects.get(pk=55021)
         core.set_user(user)
         version = Version.objects.get(pk=81551)
@@ -522,7 +532,7 @@ class TestVersion(AMOPaths, TestCase):
         version.delete()
         assert qs.count() == 2
         assert qs[0].action == amo.LOG.CHANGE_STATUS.id
-        assert qs[0].user == task_user
+        assert qs[0].user == self.task_user
         assert qs[1].action == amo.LOG.DELETE_VERSION.id
         assert qs[1].user == user
 
@@ -2052,6 +2062,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert not upload_version.needs_human_review
         assert not upload_version.due_date
+        assert upload_version.needshumanreviewhistory_set.count() == 0
 
     def test_inherit_needs_human_review_with_due_date(self):
         due_date = get_review_due_date()
@@ -2071,6 +2082,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
+        assert upload_version.needshumanreviewhistory_set.count() == 1
+        assert (
+            upload_version.needshumanreviewhistory_set.get().reason
+            == NeedsHumanReviewHistory.REASON_INHERITANCE
+        )
 
     def test_dont_inherit_due_date_far_in_future(self):
         standard_due_date = get_review_due_date()
@@ -2137,6 +2153,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert not upload_version.needs_human_review
         assert not upload_version.due_date
+        assert upload_version.needshumanreviewhistory_set.count() == 0
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)

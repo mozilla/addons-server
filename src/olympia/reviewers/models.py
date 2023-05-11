@@ -11,7 +11,7 @@ from django.urls import reverse
 
 import olympia.core.logger
 
-from olympia import amo
+from olympia import activity, amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
@@ -718,3 +718,52 @@ class ReviewActionReason(ModelBase):
 
     def __str__(self):
         return str(self.name)
+
+
+class NeedsHumanReviewHistory(ModelBase):
+    """Model holding information about why a version was flagged for human
+    review. Never intended to be cleared, so that we have historical data even
+    after the version is eventually reviewed by a human."""
+
+    REASON_UNKNOWN = 0
+    REASON_SCANNER_ACTION = 1
+    REASON_PROMOTED_GROUP = 2
+    REASON_HOTNESS_THRESHOLD = 3
+    REASON_INHERITANCE = 4
+    REASON_PENDING_REJECTION_SOURCES_PROVIDED = 5
+    REASON_DEVELOPER_REPLY = 6
+
+    reason = models.SmallIntegerField(
+        default=0,
+        choices=(
+            (REASON_UNKNOWN, 'Unknown'),
+            (REASON_SCANNER_ACTION, 'Hit scanner rule'),
+            (REASON_PROMOTED_GROUP, 'Belongs to a promoted group'),
+            (REASON_HOTNESS_THRESHOLD, 'Over growth treshold for usage tier'),
+            (
+                REASON_INHERITANCE,
+                'Previous version in channel had needs human review set',
+            ),
+            (
+                REASON_PENDING_REJECTION_SOURCES_PROVIDED,
+                'Sources provided while pending rejection',
+            ),
+            (
+                REASON_DEVELOPER_REPLY,
+                'Developer replied',
+            ),
+        ),
+    )
+    version = models.ForeignKey(on_delete=models.CASCADE, to=Version)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            activity.log_create(
+                amo.LOG.NEEDS_HUMAN_REVIEW,
+                self.version,
+                details={'comments': self.get_reason_display()},
+                user=UserProfile.objects.get(pk=settings.TASK_USER_ID),
+            )
+            if not self.version.needs_human_review:
+                self.version.update(needs_human_review=True)
+        return super().save(*args, **kwargs)

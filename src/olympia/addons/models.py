@@ -669,6 +669,33 @@ class Addon(OnChangeMixin, ModelBase):
     def disable_all_files(self):
         File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
 
+    def set_needs_human_review_on_latest_versions(self, *, due_date=None, reason):
+        self._set_needs_human_review_on_latest_signed_version(
+            channel=amo.CHANNEL_LISTED, due_date=due_date, reason=reason
+        )
+        self._set_needs_human_review_on_latest_signed_version(
+            channel=amo.CHANNEL_UNLISTED, due_date=due_date, reason=reason
+        )
+
+    def _set_needs_human_review_on_latest_signed_version(
+        self, *, channel, due_date=None, reason
+    ):
+        from olympia.reviewers.models import NeedsHumanReviewHistory
+
+        version = (
+            self.versions(manager='unfiltered_for_relations')
+            .filter(file__is_signed=True, channel=channel)
+            .only_translations()
+            .first()
+        )
+        if not version or version.needs_human_review or version.human_review_date:
+            return
+        had_due_date_already = bool(version.due_date)
+        NeedsHumanReviewHistory.objects.create(version=version, reason=reason)
+        if not had_due_date_already and due_date:
+            # If we have a specific due_date, override the default
+            version.reset_due_date(due_date)
+
     @property
     def is_guid_denied(self):
         return DeniedGuid.objects.filter(guid=self.guid).exists()

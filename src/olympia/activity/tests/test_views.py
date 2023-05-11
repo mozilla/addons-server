@@ -4,6 +4,7 @@ from unittest import mock
 
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 from rest_framework.exceptions import ErrorDetail
@@ -399,6 +400,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         }
 
     def _test_developer_reply(self):
+        user_factory(id=settings.TASK_USER_ID)
         self.user = user_factory()
         self.user.addonuser_set.create(addon=self.addon)
         self.client.login_api(self.user)
@@ -423,6 +425,11 @@ class TestReviewNotesViewSetCreate(TestCase):
         # Version was set as needing human review for a developer reply.
         self.version.reload()
         assert self.version.needs_human_review
+        assert self.version.needshumanreviewhistory_set.count() == 1
+        assert (
+            self.version.needshumanreviewhistory_set.get().reason
+            == self.version.needshumanreviewhistory_set.model.REASON_DEVELOPER_REPLY
+        )
 
     def test_developer_reply_listed(self):
         self._test_developer_reply()

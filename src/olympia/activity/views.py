@@ -38,6 +38,7 @@ from olympia.api.permissions import (
     AnyOf,
 )
 from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.reviewers.models import NeedsHumanReviewHistory
 from olympia.versions.utils import get_review_due_date
 
 
@@ -108,6 +109,9 @@ class VersionReviewNotesViewSet(
                     default_days=REVIEWER_STANDARD_REPLY_TIME
                 )
             version.update(**fields)
+            NeedsHumanReviewHistory.objects.create(
+                version=version, reason=NeedsHumanReviewHistory.REASON_DEVELOPER_REPLY
+            )
         activity_object = log_and_notify(
             action_from_user(request.user, version),
             serializer.data['comments'],

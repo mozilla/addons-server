@@ -1,7 +1,6 @@
 from django.db import models
 from django.dispatch import receiver
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
@@ -10,6 +9,7 @@ from olympia.constants.promoted import (
     PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
 )
+from olympia.reviewers.models import NeedsHumanReviewHistory
 from olympia.versions.models import Version
 
 
@@ -117,26 +117,6 @@ class PromotedAddon(ModelBase):
         else:
             return None
 
-    def _set_needs_human_review_on_version(self, channel, due_date=None):
-        version = (
-            self.addon.versions(manager='unfiltered_for_relations')
-            .filter(file__is_signed=True, channel=channel)
-            .only_translations()
-            .first()
-        )
-        if (
-            not version
-            or version.needs_human_review
-            or version.human_review_date
-            or self._get_approved_applications_for_version(version)
-        ):
-            return
-        had_due_date_already = bool(version.due_date)
-        version.update(needs_human_review=True)
-        if not had_due_date_already and due_date:
-            # If we have a specific due_date, override the default
-            version.reset_due_date(due_date)
-
     def save(self, *args, **kwargs):
         due_date = kwargs.pop('_due_date', None)
 
@@ -148,8 +128,9 @@ class PromotedAddon(ModelBase):
         ):
             self.approve_for_addon()
         elif self.group.flag_for_human_review:
-            self._set_needs_human_review_on_version(amo.CHANNEL_LISTED, due_date)
-            self._set_needs_human_review_on_version(amo.CHANNEL_UNLISTED, due_date)
+            self.addon.set_needs_human_review_on_latest_versions(
+                due_date=due_date, reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+            )
 
 
 class PromotedTheme(PromotedAddon):
