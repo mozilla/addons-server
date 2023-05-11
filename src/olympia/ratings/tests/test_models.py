@@ -229,7 +229,7 @@ class TestRatingModel(TestCase):
         assert email.to == [addon_author.email]
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
 
-    def test_reply_triggers_email_but_no_logging(self):
+    def test_reply_triggers_email_and_logging(self):
         rating = Rating.objects.get(id=1)
         user = user_factory()
         core.set_user(user)
@@ -240,7 +240,7 @@ class TestRatingModel(TestCase):
             body='Rêply',
         )
 
-        assert not ActivityLog.objects.exists()
+        assert ActivityLog.objects.exists()
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
