@@ -56,7 +56,7 @@
             {% trans user=review.instance.user|user_link, date=review.instance.created|date,
                      stars=review.instance.rating|stars, locale=review.instance.body.locale %}
               by {{ user }} on {{ date }}
-              {{ stars }} ({{ locale }})
+              {{ stars }}
             {% endtrans %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>
