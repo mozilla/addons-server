@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-10 13:30+0000\n"
-"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
+"PO-Revision-Date: 2023-05-11 07:49+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4208,7 +4208,7 @@ msgstr "Наведите порядок в своем Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr "Верните способность видеть большой палец вниз!"
+msgstr "Верните способность видеть реакцию «Не понравилось»!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
