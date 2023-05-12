@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 06:58+0000\n"
+"PO-Revision-Date: 2023-05-12 07:09+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4334,7 +4334,7 @@ msgstr "Vertaal websites in Firefox – privé – zonder de cloud te gebruiken.
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokkeer tijdverspillende websites. Blokkeer ze volledig of alleen tijdens gekozen tijdvakken."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4504,7 +4504,7 @@ msgstr "Extensies voor sociale media"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Meer stafkeuzes voor sociale media bekijken"
 
 msgid "Unreviewed"
 msgstr "Niet beoordeeld"
@@ -5106,7 +5106,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Voer een geldige IPv4- of IPv6-CIDR-netwerkrange in, bijv. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Vanaf uw locatie zijn meerdere inzendingen die strijdig zijn met ons beleid ingediend. Het IP-adres is geblokkeerd."
 
 msgid "Email Pattern"
 msgstr "E-mailpatroon"
