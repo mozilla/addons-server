@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 16:09+0000\n"
+"PO-Revision-Date: 2023-05-12 16:19+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -4161,7 +4161,7 @@ msgstr "Tất cả biểu tượng cảm xúc của bạn cần—luôn chỉ c�
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Mặt nạ địa chỉ email. Firefox Relay bảo vệ danh tính của bạn & chặn thư rác."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4185,11 +4185,11 @@ msgstr "Tìm một hình ảnh thú vị trên web? Sử dụng TinEye để kh�
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Lưu hình ảnh dễ dàng — chỉ cần lấy chúng từ thẻ hiện tại của bạn."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Tận hưởng quyền kiểm soát thẻ tốt nhất — đóng các thẻ trùng lặp, hợp nhất cửa sổ, sao chép tiêu đề thẻ và hơn thế nữa."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4201,7 +4201,7 @@ msgstr "Tùy chỉnh cử chỉ chuột. Khám phá những cách mới để đ
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Tùy chỉnh giao diện của bất kỳ trang web nào. Thay đổi màu sắc, nền trang và hơn thế nữa."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4209,7 +4209,7 @@ msgstr "Sử dụng cử chỉ chuột để đóng thẻ, điều hướng tran
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Một cách đơn giản để điều chỉnh kích thước của bất kỳ văn bản nào của trang — hoặc thậm chí phóng to trang đó."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4217,11 +4217,11 @@ msgstr "Thưởng thức hình ảnh của bạn phù hợp với giao diện c�
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Lưu các trang hoàn chỉnh — hoặc chỉ một phần — vào tập tin HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Chỉnh sửa trang web trước khi in. Thực hiện các thay đổi toàn diện về mặt hình ảnh — xóa quảng cáo hoặc nội dung không tốt — đối với bất kỳ trang web nào bạn muốn in."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4253,7 +4253,7 @@ msgstr "Quay trở lại thời điểm đơn giản hơn — khi kết quả t�
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Che giấu email của bạn để bảo vệ danh tính của bạn và ngăn chặn thư rác. Các bản cập nhật mới giúp Firefox Relay dễ sử dụng hơn."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4321,11 +4321,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Dịch các trang web trong Firefox — một cách riêng tư — mà không cần sử dụng đám mây."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Chặn các trang web lãng phí thời gian. Chặn chúng hoàn toàn hoặc chỉ trong khung thời gian bạn chọn."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4341,7 +4341,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4491,11 +4491,11 @@ msgstr "Xem thêm các tiện ích sáng tạo được lựa chọn bởi biên
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng xã hội"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Xem thêm tiện ích xã hội được lựa chọn bởi biên tập viên"
 
 msgid "Unreviewed"
 msgstr "Chưa được xét duyệt"
@@ -4651,7 +4651,7 @@ msgid "This rating can't be flagged because it has no review text."
 msgstr "Không thể gắn cờ xếp hạng này vì nó không có văn bản đánh giá."
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Cần phải giải thích ngắn gọn khi chọn \"Khác\" làm lý do gắn cờ."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5108,7 +5108,7 @@ msgid "Enter full email that should be blocked or use unix-style wildcards, e.g.
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Địa chỉ email sử dụng cho tài khoản của bạn không được phép cho đệ trình."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
