@@ -4241,7 +4241,7 @@ msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο web; 
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Εύκολη αποθήκευση εικόνων — απλά «αρπάξτε» τις από την τρέχουσα καρτέλα σας."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
