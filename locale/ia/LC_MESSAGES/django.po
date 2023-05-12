@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 09:21+0000\n"
+"PO-Revision-Date: 2023-05-12 09:31+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -234,7 +234,7 @@ msgid "Log out"
 msgstr "Clauder le session"
 
 msgid "Manage My Submissions"
-msgstr "Gerer mi submissiones"
+msgstr "Gerer mi invios"
 
 msgid "Submit a New Add-on"
 msgstr "Inviar un nove additivo"
@@ -2287,7 +2287,7 @@ msgid "Actions"
 msgstr "Actiones"
 
 msgid "Resume the submission process for this add-on"
-msgstr "Resumer le processo de submission pro iste additivo"
+msgstr "Resumer le processo de invio pro iste additivo"
 
 msgid "Resume"
 msgstr "Resumer"
@@ -2367,7 +2367,7 @@ msgid ""
 "submission process is complete."
 msgstr ""
 "Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina Modificar"
-" Producto post que le processo de submission es concludite."
+" Producto post que le processo de invio es concludite."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -2462,7 +2462,7 @@ msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</
 msgstr "Tote le additivos debe conformar se al <a %(a_attrs)s>politica de additivos de Mozilla</a> e pote esser subjecte a un revision manual a omne momento post le invio."
 
 msgid "Submission Complete"
-msgstr "Submission complete"
+msgstr "Invio complete"
 
 msgid "Version Submitted"
 msgstr "Version inviate"
@@ -2504,7 +2504,7 @@ msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Non oblida que tu additivo pote esser subjecte a un revision manual a omne momento."
 
 msgid "Go to My Submissions"
-msgstr "Ir a mi submissiones"
+msgstr "Ir a mi invios"
 
 msgid "Source Code Upload"
 msgstr "Incargamento de codice fonte"
@@ -2784,8 +2784,8 @@ msgstr "Tu additivo ha essite disactivate per un administrator del sito e non es
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Tu additivo non essera includite in le resultatos del recerca, e le pagina de su lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le lista de presentation "
-"non essera acceptate in iste stato."
+"Tu additivo non essera includite in le resultatos del recerca, e le pagina de su lista de presentation indicara que tu disactivava illo. Le invio de nove versiones pro le lista de presentation non "
+"essera acceptate in iste stato."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3033,7 +3033,7 @@ msgstr "Listate sur iste sito post passate le revision del codice. Le actualisat
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Vide tote le submissiones"
+msgstr "Vide tote le invios"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Isto es ubi tu vide e gere tu additivos e themas. Pro publicar tu prime additivo, clicca \"Inviar tu prime additivo\" o \"Inviar tu prime thema\"."
@@ -3177,7 +3177,7 @@ msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e inc
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina de producto indicara que tu disactivava illo. Le submission de nove versiones pro le lista de "
+"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina de producto indicara que tu disactivava illo. Le invio de nove versiones pro le lista de "
 "presentation non essera acceptate in iste stato."
 
 msgid "Listed versions"
@@ -5076,7 +5076,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Insere un campo de rete CIDR IPv4 o IPv6 valide, e.g. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Plure invios que viola nostre criterios ha essite inviate de tu position. Le adresse IP ha essite blocate."
 
 msgid "Email Pattern"
 msgstr "Modello de email"
@@ -5087,7 +5087,7 @@ msgstr ""
 "entrata, per exemplo \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Le adresse email usate pro tu conto non es autorisate pro invios."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
