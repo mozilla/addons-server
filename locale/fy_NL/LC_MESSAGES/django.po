@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-10 13:11+0000\n"
+"PO-Revision-Date: 2023-05-12 14:30+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -4183,7 +4183,7 @@ msgstr "Romje jo Twitter-ûnderfining op."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Bring de mooglikheid werom om ôfkarreaksjes te sjen!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4195,11 +4195,11 @@ msgstr "In ynteressante ôfbylding op it web fûn? Brûk TinEye om de werkomst d
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Bewarje ôfbyldingen maklik – sleep se ienfâldichwei fan jo aktive ljepblêd."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Genietsje fan ultym ljepblêdbehear – dûbele ljepblêden slúte, finsters gearfoegje, de ljepblêdtitel kopiearje en mear."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4211,7 +4211,7 @@ msgstr "Pas jo mûsbewegingen oan. Untdek in nije manier fan navigearjen mei mea
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Wizigje de foarmjouwing fan websites. Pas kleuren, side-eftergrûnen en mear oan."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4219,7 +4219,7 @@ msgstr "Brûk mûsbewegingen om ljepblêden te sluten, nei siden te navigearjen,
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "In ienfâldige manier om de tekstgrutte fan siden oan te passen – of sels de side sels te fergrutsjen."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4227,11 +4227,11 @@ msgstr "Genietsje fan miniatuerôfbyldingen fan websites by jo sykresultaten."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Bewarje folsleine siden – ynklusyf ôfbyldingen en opmaak – as ien HTML-bestân."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Bewurkje in webside eardat jo dizze ôfdrukke. Meitsje bûtengewoane fisuele oanpassingen – smyt advertinsjes of ûnsmaaklike ynhâld fuort – foar websiden dy’t jo ôfdrukke wolle."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4263,7 +4263,7 @@ msgstr "Gean werom nei in ienfâldiger tiden – doe’t jo bêste sykresultaten
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Maskearje jo e-mailadres om jo identiteit te beskermjen en net-winske berjochten foar te kommen. Nije fernijingen meitsje Firefox Relay noch brûksfreonliker."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4331,11 +4331,11 @@ msgstr "Tomme omheech foar it werombringen fan de tomme omleech."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Set websites oer yn Firefox – privee – sûnder de cloud te brûken."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokkearje tiidfergriemjende websites. Blokkearje se folslein of gewoan yn in keazen tiidrek."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4505,7 +4505,7 @@ msgstr "Sosjale mediaútwreidingen"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Mear stêfkarren foar sosjale media besjen"
 
 msgid "Unreviewed"
 msgstr "Net beoardiele"
@@ -4627,7 +4627,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Automatysk labele fanwegen wurdoerienkomst"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatysk labele fanwegen brûkersbeheining"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5107,7 +5107,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Fier in jildige IPv4- of IPv6-CIDR-netwurkreeks yn, byg. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Fan jo lokaasje ôf binne mear ynstjoeringen dy’t stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
 
 msgid "Email Pattern"
 msgstr "E-mailpatroan"
