@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 08:56+0000\n"
+"PO-Revision-Date: 2023-05-12 09:21+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4322,7 +4322,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Extensiones de securitate e confidentialitate"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4471,11 +4471,11 @@ msgstr "Vide altere utensile de creativitate eligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Extensiones de medios social"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Vide altere medios social seligite per nostre equipa"
 
 msgid "Unreviewed"
 msgstr "Non revidite"
@@ -4597,7 +4597,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Auto-etiquettate per concordantia de parolas"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Auto-etiquettate per restriction de usator"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
