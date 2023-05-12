@@ -36,6 +36,7 @@ from olympia.addons.models import (
     AddonReviewerFlags,
     AddonUser,
     DeniedGuid,
+    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
 )
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify,
@@ -78,6 +79,7 @@ from olympia.versions.models import (
     AppVersion,
     VersionReviewerFlags,
 )
+from olympia.versions.utils import get_review_due_date
 from olympia.zadmin.models import get_config
 
 
@@ -1717,10 +1719,20 @@ class TestExtensionQueue(QueueTest):
                 auto_approval_disabled=True,
             )
         self.addons['Nominated One'].current_version.update(
-            due_date=datetime.now() + timedelta(days=2, seconds=1)
+            due_date=get_review_due_date(
+                starting=datetime.now()
+                + timedelta(
+                    days=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT, seconds=1
+                )
+            )
         )
         self.addons['Pending Two'].current_version.update(
-            due_date=datetime.now() + timedelta(days=2, seconds=2)
+            due_date=get_review_due_date(
+                starting=datetime.now()
+                + timedelta(
+                    days=UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT, seconds=2
+                )
+            )
         )
 
     def test_long_due_dates_filtered_out(self):

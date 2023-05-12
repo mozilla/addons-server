@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-11 13:38+0000\n"
+"PO-Revision-Date: 2023-05-12 10:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -4241,11 +4241,11 @@ msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο web; 
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Εύκολη αποθήκευση εικόνων — απλά «αρπάξτε» τις από την τρέχουσα καρτέλα σας."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Απολαύστε τον απόλυτο έλεγχο καρτελών — κλείστε τις διπλές καρτέλες, συγχωνεύστε παράθυρα, αντιγράψτε τον τίτλο της καρτέλας και άλλα."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4257,7 +4257,7 @@ msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύ
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοτόπων. Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4265,7 +4265,7 @@ msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για 
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Ένας απλός τρόπος για να προσαρμόσετε το μέγεθος του κειμένου οποιασδήποτε σελίδας — ή ακόμη και να μεγεθύνετε την ίδια τη σελίδα."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4273,11 +4273,11 @@ msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλ�
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Επεξεργασία ιστοσελίδας πριν από την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — αφαιρέστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4377,7 +4377,7 @@ msgstr "«Μου αρέσει» η επιστροφή του «Δεν μου α�
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Μετάφραση ιστοτόπων στο Firefox — ιδιωτικά — χωρίς τη χρήση του cloud."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4547,7 +4547,7 @@ msgstr "Περισσότερες επιλογές συντακτών για δη
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Επεκτάσεις κοινωνικών δικτύων"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
@@ -4673,7 +4673,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Αυτόματη σήμανση λόγω αντιστοίχισης λέξεων"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Αυτόματη σήμανση λόγω περιορισμού χρήστη"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5157,7 +5157,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Εισαγάγετε ένα έγκυρο εύρος CIDR δικτύου IPv4 ή IPv6, π.χ. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Έχουν αποσταλεί πολλαπλές υποβολές που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
 
 msgid "Email Pattern"
 msgstr "Μοτίβο email"
