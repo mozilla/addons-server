@@ -341,6 +341,9 @@ dennis==1.1.0 \
 Deprecated==1.2.13 \
     --hash=sha256:64756e3e14c8c5eea9795d93c524551432a0be75629f8f29e67ab8caf076c76d \
     --hash=sha256:43ac5335da90c31c24ba028af536a91d41d53f9e6901ddb021bcc572ce44e38d
+Django==4.2.1 \
+    --hash=sha256:7efa6b1f781a6119a10ac94b4794ded90db8accbe7802281cd26f8664ffed59c \
+    --hash=sha256:066b6debb5ac335458d2a713ed995570536c8b59a580005acb0732378d5eb1ee
 django-aesfield==4.0.0 \
     --hash=sha256:2c88e7dc063919c4fa2fba6d7c65eb7be05838323ca3adcce76fb687d30d630b \
     --hash=sha256:425b5c0ed6d96045af8b47230dd5870a12cf3feb7a9c601878c82ebaf409cdce

@@ -1,5 +1,0 @@
--r prod.txt
-
-Django==4.2.1 \
-    --hash=sha256:7efa6b1f781a6119a10ac94b4794ded90db8accbe7802281cd26f8664ffed59c \
-    --hash=sha256:066b6debb5ac335458d2a713ed995570536c8b59a580005acb0732378d5eb1ee

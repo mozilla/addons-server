@@ -1,8 +1,5 @@
 FROM python:3.10-slim-buster
 
-ARG DJANGO_VERSION=django42
-ENV DJANGO_VERSION=$DJANGO_VERSION
-
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
 # once the jenkins server is upgraded to support docker >= v1.9.0
 ENV OLYMPIA_UID=9500 \
