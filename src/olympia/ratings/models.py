@@ -101,7 +101,8 @@ class Rating(ModelBase):
         on_delete=models.CASCADE,
     )
 
-    rating = models.PositiveSmallIntegerField(null=True, choices=RATING_CHOICES)
+    rating = models.PositiveSmallIntegerField(
+        null=True, choices=RATING_CHOICES)
     # Note that max_length isn't enforced at the database level for TextFields,
     # but the API serializer is set to obey it.
     body = models.TextField(
@@ -144,7 +145,8 @@ class Rating(ModelBase):
                 fields=('reply_to', 'is_latest', 'addon', 'created'),
                 name='latest_reviews',
             ),
-            models.Index(fields=('ip_address',), name='reviews_ip_address_057fddfa'),
+            models.Index(fields=('ip_address',),
+                         name='reviews_ip_address_057fddfa'),
         ]
         constraints = [
             models.UniqueConstraint(
@@ -275,11 +277,12 @@ class Rating(ModelBase):
         if not undeleted and not instance.deleted:
             action = 'New' if created else 'Edited'
             if instance.reply_to:
-                log.info(f'{action} reply to {instance.reply_to_id}: {instance.pk}')
+                log.info(
+                    f'{action} reply to {instance.reply_to_id}: {instance.pk}')
             else:
                 log.info(f'{action} rating: {instance.pk}')
 
-            # For new ratings, replies, and all edits by users we want 
+            # For new ratings, replies, and all edits by users we want
             # to insert a new ActivityLog.
             action = amo.LOG.ADD_RATING if created else amo.LOG.EDIT_RATING
             activity.log_create(action, instance.addon, instance)
@@ -324,8 +327,10 @@ class RatingFlag(ModelBase):
         (AUTO_RESTRICTION, _('Auto-flagged due to user restriction')),
     )
 
-    rating = models.ForeignKey(Rating, db_column='review_id', on_delete=models.CASCADE)
-    user = models.ForeignKey('users.UserProfile', null=True, on_delete=models.CASCADE)
+    rating = models.ForeignKey(
+        Rating, db_column='review_id', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
     flag = models.CharField(
         max_length=64, default=OTHER, choices=FLAGS, db_column='flag_name'
     )
@@ -341,7 +346,8 @@ class RatingFlag(ModelBase):
             models.Index(fields=('modified',), name='index_modified'),
         ]
         constraints = [
-            models.UniqueConstraint(fields=('rating', 'user'), name='index_review_user')
+            models.UniqueConstraint(
+                fields=('rating', 'user'), name='index_review_user')
         ]
 
 
