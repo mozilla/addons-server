@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 06:55+0000\n"
+"PO-Revision-Date: 2023-05-12 06:58+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4182,7 +4182,7 @@ msgstr "Ruim uw Twitter-ervaring op."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Breng de mogelijkheid terug om afkeurreacties te zien!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4194,11 +4194,11 @@ msgstr "Een interessante afbeelding op het web gevonden? Gebruik TinEye om de he
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Sla afbeeldingen eenvoudig op – sleep ze eenvoudigweg van uw huidige tabblad."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Geniet van ultiem tabbladbeheer – dubbele tabbladen sluiten, vensters samenvoegen, de tabbladtitel kopiëren, en meer."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4210,7 +4210,7 @@ msgstr "Pas uw muisbewegingen aan. Ontdek nieuwe manieren van navigeren met meer
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Wijzig de vormgeving van websites. Pas kleuren, pagina-achtergronden en meer aan."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4230,7 +4230,7 @@ msgstr "Sla een volledige webpagina – inclusief afbeeldingen en opmaak – op 
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Bewerk een webpagina voordat u deze afdrukt. Maak buitengewone visuele aanpassingen – verwijder advertenties of onsmakelijke inhoud – voor webpagina’s die u wilt afdrukken."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4262,7 +4262,7 @@ msgstr "Keer terug naar een eenvoudiger tijdperk – toen uw beste zoekresultate
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Maskeer uw e-mailadres om uw identiteit te beschermen en ongewenste berichten te voorkomen. Nieuwe updates maken Firefox Relay nog gebruiksvriendelijker."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
