@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-12 10:46+0000\n"
+"PO-Revision-Date: 2023-05-12 10:59+0000\n"
 "Last-Translator: Michele Rodaro <michele.rodaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4329,7 +4329,7 @@ msgstr "Ritorna al tempo in cui era tutto più semplice, quando i risultati di r
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Nascondi il tuo indirizzo email per proteggere la tua identità e prevenire la posta indesiderata. I nuovi aggiornamenti rendono Firefox Relay ancora più facile da utilizzare."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4567,11 +4567,11 @@ msgstr "Visualizza altri strumenti per la creatività scelti dallo staff"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Estensioni per i social media"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Visualizza altri strumenti per i social media scelti dallo staff"
 
 msgid "Unreviewed"
 msgstr "Non revisionato"
@@ -4693,7 +4693,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Contrassegnato automaticamente per corrispondenza con parole"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Contrassegnato automaticamente a causa di restrizioni utente"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5185,7 +5185,7 @@ msgstr ""
 "“*@*.example.com”."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "L’indirizzo email del tuo account non possiede i permessi necessari per effettuare invii."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
