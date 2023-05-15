@@ -50,7 +50,7 @@ from olympia.files.utils import ManifestJSONExtractor, parse_addon
 from olympia.git.models import GitExtractionEntry
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating, RatingFlag
-from olympia.reviewers.models import NeedsHumanReviewHistory
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.translations.models import (
     Translation,
     TranslationSequence,
@@ -2142,47 +2142,46 @@ class TestAddonDueDate(TestCase):
         )
         due_date = datetime.now() + timedelta(hours=42)
         addon.set_needs_human_review_on_latest_versions(
-            due_date=due_date, reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+            due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
         for version in [listed_version, unlisted_version]:
             version.reload()
             assert version.needs_human_review
-            assert version.needshumanreviewhistory_set.count() == 1
+            assert version.needshumanreview_set.count() == 1
             assert (
-                version.needshumanreviewhistory_set.get().reason
-                == NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+                version.needshumanreview_set.get().reason
+                == NeedsHumanReview.REASON_PROMOTED_GROUP
             )
         for version in [unsigned_listed_version, unsigned_unlisted_version]:
             # Those are more recent but unsigned, so we don't consider them
             # when figuring out which version to flag for human review.
             version.reload()
             assert not version.needs_human_review
-            assert version.needshumanreviewhistory_set.count() == 0
+            assert version.needshumanreview_set.count() == 0
 
     def test_set_needs_human_review_on_latest_versions_ignore_already_reviewed(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(human_review_date=self.days_ago(1))
         addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
         version.reload()
         assert not version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 0
+        assert version.needshumanreview_set.count() == 0
 
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.delete()
         addon.set_needs_human_review_on_latest_versions(
-            reason=NeedsHumanReviewHistory.REASON_UNKNOWN
+            reason=NeedsHumanReview.REASON_UNKNOWN
         )
         version.reload()
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == NeedsHumanReviewHistory.REASON_UNKNOWN
+            version.needshumanreview_set.get().reason == NeedsHumanReview.REASON_UNKNOWN
         )
 
 

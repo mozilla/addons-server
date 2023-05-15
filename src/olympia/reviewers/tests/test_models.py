@@ -29,7 +29,7 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
-    NeedsHumanReviewHistory,
+    NeedsHumanReview,
     ReviewActionReason,
     ReviewerSubscription,
     get_flags,
@@ -1711,7 +1711,7 @@ class TestGetFlags(TestCase):
         assert get_flags(self.addon, None) == []
 
 
-class TestNeedsHumanReviewHistory(TestCase):
+class TestNeedsHumanReview(TestCase):
     def setUp(self):
         self.addon = addon_factory()
         self.version = self.addon.current_version
@@ -1719,8 +1719,8 @@ class TestNeedsHumanReviewHistory(TestCase):
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
     def test_save_new_record_activity_and_needs_human_review(self):
-        NeedsHumanReviewHistory.objects.create(
-            version=self.version, reason=NeedsHumanReviewHistory.REASON_UNKNOWN
+        NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
         assert self.version.needs_human_review
         self.version.reload()
@@ -1732,12 +1732,12 @@ class TestNeedsHumanReviewHistory(TestCase):
         )
 
     def test_save_existing_do_nothing(self):
-        flagged = NeedsHumanReviewHistory.objects.create(
-            version=self.version, reason=NeedsHumanReviewHistory.REASON_UNKNOWN
+        flagged = NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
         ActivityLog.objects.all().delete()
         self.version.update(needs_human_review=False)
-        flagged.reason = NeedsHumanReviewHistory.REASON_DEVELOPER_REPLY
+        flagged.reason = NeedsHumanReview.REASON_DEVELOPER_REPLY
         flagged.save()
         assert not self.version.needs_human_review
         self.version.reload()

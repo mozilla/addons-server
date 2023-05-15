@@ -9,7 +9,7 @@ from olympia.constants.promoted import (
     PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
 )
-from olympia.reviewers.models import NeedsHumanReviewHistory
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
 
@@ -129,7 +129,7 @@ class PromotedAddon(ModelBase):
             self.approve_for_addon()
         elif self.group.flag_for_human_review:
             self.addon.set_needs_human_review_on_latest_versions(
-                due_date=due_date, reason=NeedsHumanReviewHistory.REASON_PROMOTED_GROUP
+                due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
             )
 
 

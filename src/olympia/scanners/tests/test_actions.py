@@ -59,10 +59,10 @@ class TestActions(TestCase):
         assert version.needs_human_review
         version.reload()
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval(self):
@@ -84,10 +84,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_overwrite_null(self):
@@ -112,10 +112,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_overwrite_existing_lower_delay_on_right_channels(self):
@@ -150,10 +150,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_dont_overwrite_existing_higher_delay(self):
@@ -188,10 +188,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_overwrite_existing_lower_delay(self):
@@ -217,10 +217,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_existing_due_date_older(self):
@@ -242,10 +242,10 @@ class TestActions(TestCase):
         assert version.needs_human_review
         # We kept the original due date as it's shorter.
         self.assertCloseToNow(version.due_date, now=self.days_ago(1))
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_existing_due_date_newer(self):
@@ -274,10 +274,10 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_indefinitely(self):
@@ -289,10 +289,10 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_indefinitely_overwrite_existing(self):
@@ -309,10 +309,10 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_indefinitely_overwrite_existing_unlisted(self):
@@ -329,10 +329,10 @@ class TestActions(TestCase):
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_SCANNER_ACTION
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_SCANNER_ACTION
         )
 
     def test_delay_auto_approval_indefinitely_and_restrict(self):

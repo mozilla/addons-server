@@ -680,7 +680,7 @@ class Addon(OnChangeMixin, ModelBase):
     def _set_needs_human_review_on_latest_signed_version(
         self, *, channel, reason, due_date=None
     ):
-        from olympia.reviewers.models import NeedsHumanReviewHistory
+        from olympia.reviewers.models import NeedsHumanReview
 
         version = (
             self.versions(manager='unfiltered_for_relations')
@@ -691,7 +691,7 @@ class Addon(OnChangeMixin, ModelBase):
         if not version or version.needs_human_review or version.human_review_date:
             return
         had_due_date_already = bool(version.due_date)
-        NeedsHumanReviewHistory.objects.create(version=version, reason=reason)
+        NeedsHumanReview.objects.create(version=version, reason=reason)
         if not had_due_date_already and due_date:
             # If we have a specific due_date, override the default
             version.reset_due_date(due_date)

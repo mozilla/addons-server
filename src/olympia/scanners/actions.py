@@ -15,10 +15,10 @@ def _no_action(*, version, rule):
 
 def _flag_for_human_review(*, version, rule):
     """Flag the version for human review."""
-    from olympia.reviewers.models import NeedsHumanReviewHistory
+    from olympia.reviewers.models import NeedsHumanReview
 
-    NeedsHumanReviewHistory.objects.create(
-        version=version, reason=NeedsHumanReviewHistory.REASON_SCANNER_ACTION
+    NeedsHumanReview.objects.create(
+        version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
     )
 
 

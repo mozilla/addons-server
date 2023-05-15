@@ -720,7 +720,7 @@ class ReviewActionReason(ModelBase):
         return str(self.name)
 
 
-class NeedsHumanReviewHistory(ModelBase):
+class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
     review. Never intended to be cleared, so that we have historical data even
     after the version is eventually reviewed by a human."""

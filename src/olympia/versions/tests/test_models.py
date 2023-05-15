@@ -41,7 +41,7 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedAddon, PromotedApproval
-from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReviewHistory
+from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
     EmailUserRestriction,
@@ -452,7 +452,7 @@ class TestVersion(AMOPaths, TestCase):
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
         assert not version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 0
+        assert version.needshumanreview_set.count() == 0
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -485,10 +485,10 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert activity.user == user
         assert version.needs_human_review
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == NeedsHumanReviewHistory.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
         )
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
@@ -2062,7 +2062,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert not upload_version.needs_human_review
         assert not upload_version.due_date
-        assert upload_version.needshumanreviewhistory_set.count() == 0
+        assert upload_version.needshumanreview_set.count() == 0
 
     def test_inherit_needs_human_review_with_due_date(self):
         due_date = get_review_due_date()
@@ -2082,10 +2082,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
-        assert upload_version.needshumanreviewhistory_set.count() == 1
+        assert upload_version.needshumanreview_set.count() == 1
         assert (
-            upload_version.needshumanreviewhistory_set.get().reason
-            == NeedsHumanReviewHistory.REASON_INHERITANCE
+            upload_version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_INHERITANCE
         )
 
     def test_dont_inherit_due_date_far_in_future(self):
@@ -2153,7 +2153,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload_version.reload()
         assert not upload_version.needs_human_review
         assert not upload_version.due_date
-        assert upload_version.needshumanreviewhistory_set.count() == 0
+        assert upload_version.needshumanreview_set.count() == 0
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)

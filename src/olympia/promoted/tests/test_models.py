@@ -124,8 +124,8 @@ class TestPromotedAddon(TestCase):
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert not listed_ver.reload().needs_human_review
         assert not unlisted_ver.reload().needs_human_review
-        assert unlisted_ver.needshumanreviewhistory_set.count() == 0
-        assert listed_ver.needshumanreviewhistory_set.count() == 0
+        assert unlisted_ver.needshumanreview_set.count() == 0
+        assert listed_ver.needshumanreview_set.count() == 0
 
         # then with a group thats flag_for_human_review == True but pretend
         # the version has already been reviewed by a human (so it's not
@@ -145,8 +145,8 @@ class TestPromotedAddon(TestCase):
         assert not listed_ver.due_date
         assert not unlisted_ver.reload().needs_human_review
         assert not unlisted_ver.due_date
-        assert unlisted_ver.needshumanreviewhistory_set.count() == 0
-        assert listed_ver.needshumanreviewhistory_set.count() == 0
+        assert unlisted_ver.needshumanreview_set.count() == 0
+        assert listed_ver.needshumanreview_set.count() == 0
 
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human but not signed: also not
@@ -166,8 +166,8 @@ class TestPromotedAddon(TestCase):
         assert not listed_ver.due_date
         assert not unlisted_ver.reload().needs_human_review
         assert not unlisted_ver.due_date
-        assert unlisted_ver.needshumanreviewhistory_set.count() == 0
-        assert listed_ver.needshumanreviewhistory_set.count() == 0
+        assert unlisted_ver.needshumanreview_set.count() == 0
+        assert listed_ver.needshumanreview_set.count() == 0
 
         # then with a group thats flag_for_human_review == True without the
         # version having been reviewed by a human but signed: this time we
@@ -185,15 +185,15 @@ class TestPromotedAddon(TestCase):
         assert unlisted_ver.reload().needs_human_review
         self.assertCloseToNow(listed_ver.due_date, now=get_review_due_date())
         self.assertCloseToNow(unlisted_ver.due_date, now=get_review_due_date())
-        assert unlisted_ver.needshumanreviewhistory_set.count() == 1
+        assert unlisted_ver.needshumanreview_set.count() == 1
         assert (
-            unlisted_ver.needshumanreviewhistory_set.get().reason
-            == unlisted_ver.needshumanreviewhistory_set.model.REASON_PROMOTED_GROUP
+            unlisted_ver.needshumanreview_set.get().reason
+            == unlisted_ver.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
-        assert listed_ver.needshumanreviewhistory_set.count() == 1
+        assert listed_ver.needshumanreview_set.count() == 1
         assert (
-            listed_ver.needshumanreviewhistory_set.get().reason
-            == unlisted_ver.needshumanreviewhistory_set.model.REASON_PROMOTED_GROUP
+            listed_ver.needshumanreview_set.get().reason
+            == unlisted_ver.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
 
     def test_disabled_and_deleted_versions_flagged_for_human_review(self):
@@ -207,10 +207,10 @@ class TestPromotedAddon(TestCase):
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         assert version.reload().needs_human_review
         self.assertCloseToNow(version.due_date, now=get_review_due_date())
-        assert version.needshumanreviewhistory_set.count() == 1
+        assert version.needshumanreview_set.count() == 1
         assert (
-            version.needshumanreviewhistory_set.get().reason
-            == version.needshumanreviewhistory_set.model.REASON_PROMOTED_GROUP
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
 
         # And if deleted too
@@ -219,10 +219,10 @@ class TestPromotedAddon(TestCase):
         promo.save()
         assert version.reload().needs_human_review
         self.assertCloseToNow(version.due_date, now=get_review_due_date())
-        assert version.needshumanreviewhistory_set.count() == 2
+        assert version.needshumanreview_set.count() == 2
         assert (
-            version.needshumanreviewhistory_set.latest('pk').reason
-            == version.needshumanreviewhistory_set.model.REASON_PROMOTED_GROUP
+            version.needshumanreview_set.latest('pk').reason
+            == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
 
         # even if the add-on is deleted
@@ -231,10 +231,10 @@ class TestPromotedAddon(TestCase):
         promo.save()
         assert version.reload().needs_human_review
         self.assertCloseToNow(version.due_date, now=get_review_due_date())
-        assert version.needshumanreviewhistory_set.count() == 3
+        assert version.needshumanreview_set.count() == 3
         assert (
-            version.needshumanreviewhistory_set.latest('pk').reason
-            == version.needshumanreviewhistory_set.model.REASON_PROMOTED_GROUP
+            version.needshumanreview_set.latest('pk').reason
+            == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
 
     def test_addon_sets_due_date_on_save_if_specified(self):
