@@ -363,6 +363,7 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
+        from olympia.reviewers.models import NeedsHumanReview
         from olympia.git.utils import create_git_extraction_entry
 
         assert parsed_data is not None
@@ -447,6 +448,10 @@ class Version(OnChangeMixin, ModelBase):
                 },
             )
             activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
+            if previous_version_had_needs_human_review:
+                NeedsHumanReview.objects.create(
+                    version=version, reason=NeedsHumanReview.REASON_INHERITANCE
+                )
 
         if not compatibility:
             compatibility = {
@@ -760,6 +765,7 @@ class Version(OnChangeMixin, ModelBase):
     def flag_if_sources_were_provided(self, user):
         from olympia.activity.utils import log_and_notify
         from olympia.addons.models import AddonReviewerFlags
+        from olympia.reviewers.models import NeedsHumanReview
 
         if self.source:
             AddonReviewerFlags.objects.update_or_create(
@@ -771,7 +777,8 @@ class Version(OnChangeMixin, ModelBase):
             log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
 
             if self.pending_rejection:
-                self.update(needs_human_review=True)
+                reason = NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+                NeedsHumanReview.objects.create(version=self, reason=reason)
 
     @classmethod
     def transformer(cls, versions):

@@ -877,6 +877,14 @@ class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
     reviewer_review_action = True
 
 
+class NEEDS_HUMAN_REVIEW(_LOG):
+    id = 174
+    format = '{version} flagged for human review because of {0}.'
+    short = 'Flagged for human review'
+    keep = True
+    hide_developer = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
