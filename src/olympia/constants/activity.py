@@ -885,6 +885,14 @@ class NEEDS_HUMAN_REVIEW(_LOG):
     hide_developer = True
 
 
+class REPLY_RATING(_LOG):
+    id = 175
+    action_class = 'review'
+    format = _('Reply to {rating} for {addon} written.')
+    show_user_to_developer = True
+    store_ip = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
