@@ -893,11 +893,11 @@ pre.email_comment {
     margin-top: 1em;
 }
 
-#upload-file .compatible-apps ul {
+#upload-file #id_compatible_apps {
     margin-top: 0.5em;
 }
 
-#upload-file .compatible-apps li {
+#upload-file #id_compatible_apps>* {
     float: none;
 }
 
