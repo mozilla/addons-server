@@ -72,6 +72,7 @@ from olympia.reviewers.forms import (
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewerSubscription,
     Whiteboard,
     clear_reviewing_cache,
@@ -1250,7 +1251,9 @@ class AddonReviewerViewSet(GenericViewSet):
             Version, pk=request.data.get('version'), addon_id=kwargs['pk']
         )
         status_code = status.HTTP_202_ACCEPTED
-        version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+        )
         due_date = version.reload().due_date
         due_date_string = due_date.isoformat(timespec='seconds') if due_date else None
         return Response(status=status_code, data={'due_date': due_date_string})

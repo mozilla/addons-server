@@ -4133,7 +4133,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.addon.reload()
         assert self.version.source
         assert self.addon.needs_admin_code_review
-        assert self.version.needs_human_review
+        assert self.version.needshumanreview_set.filter(is_active=True).exists()
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
         assert log.user == self.user
         assert log.details is None

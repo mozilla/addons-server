@@ -122,8 +122,6 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert not listed_ver.reload().needs_human_review
-        assert not unlisted_ver.reload().needs_human_review
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -141,10 +139,8 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert not listed_ver.reload().needs_human_review
-        assert not listed_ver.due_date
-        assert not unlisted_ver.reload().needs_human_review
-        assert not unlisted_ver.due_date
+        assert not listed_ver.reload().due_date
+        assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -162,10 +158,8 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert not listed_ver.reload().needs_human_review
-        assert not listed_ver.due_date
-        assert not unlisted_ver.reload().needs_human_review
-        assert not unlisted_ver.due_date
+        assert not listed_ver.reload().due_date
+        assert not unlisted_ver.reload().due_date
         assert unlisted_ver.needshumanreview_set.count() == 0
         assert listed_ver.needshumanreview_set.count() == 0
 
@@ -181,16 +175,14 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == []  # doesn't approve immediately
         assert not PromotedApproval.objects.exists()
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert listed_ver.reload().needs_human_review
-        assert unlisted_ver.reload().needs_human_review
-        self.assertCloseToNow(listed_ver.due_date, now=get_review_due_date())
-        self.assertCloseToNow(unlisted_ver.due_date, now=get_review_due_date())
-        assert unlisted_ver.needshumanreview_set.count() == 1
+        self.assertCloseToNow(listed_ver.reload().due_date, now=get_review_due_date())
+        self.assertCloseToNow(unlisted_ver.reload().due_date, now=get_review_due_date())
+        assert unlisted_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             unlisted_ver.needshumanreview_set.get().reason
             == unlisted_ver.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
-        assert listed_ver.needshumanreview_set.count() == 1
+        assert listed_ver.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             listed_ver.needshumanreview_set.get().reason
             == unlisted_ver.needshumanreview_set.model.REASON_PROMOTED_GROUP
@@ -205,37 +197,40 @@ class TestPromotedAddon(TestCase):
             addon=addon, application_id=amo.FIREFOX.id, group_id=promoted.NOTABLE.id
         )
         assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        assert version.reload().needs_human_review
-        self.assertCloseToNow(version.due_date, now=get_review_due_date())
-        assert version.needshumanreview_set.count() == 1
+        self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
 
         # And if deleted too
-        version.update(needs_human_review=False, due_date=None)
+        version.needshumanreview_set.update(is_active=False)
+        version.update(due_date=None)
         version.delete()
         promo.save()
-        assert version.reload().needs_human_review
-        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+        self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.count() == 2
+        needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
-            version.needshumanreview_set.latest('pk').reason
+            needs_human_review.reason
             == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
+        assert needs_human_review.is_active
 
         # even if the add-on is deleted
-        version.update(needs_human_review=False, due_date=None)
+        version.needshumanreview_set.update(is_active=False)
+        version.update(due_date=None)
         addon.delete()
         promo.save()
-        assert version.reload().needs_human_review
-        self.assertCloseToNow(version.due_date, now=get_review_due_date())
+        self.assertCloseToNow(version.reload().due_date, now=get_review_due_date())
         assert version.needshumanreview_set.count() == 3
+        needs_human_review = version.needshumanreview_set.latest('pk')
         assert (
-            version.needshumanreview_set.latest('pk').reason
+            needs_human_review.reason
             == version.needshumanreview_set.model.REASON_PROMOTED_GROUP
         )
+        assert needs_human_review.is_active
 
     def test_addon_sets_due_date_on_save_if_specified(self):
         specified_due_date = datetime(2022, 2, 2, 2, 2, 2)
@@ -251,10 +246,10 @@ class TestPromotedAddon(TestCase):
         promo.group_id = promoted.NOTABLE.id
         promo.save(_due_date=specified_due_date)
         promo.addon.reload()
-        assert listed_ver.reload().needs_human_review
-        assert unlisted_ver.reload().needs_human_review
-        assert listed_ver.due_date == specified_due_date
-        assert unlisted_ver.due_date == specified_due_date
+        assert listed_ver.needshumanreview_set.filter(is_active=True).exists()
+        assert unlisted_ver.needshumanreview_set.filter(is_active=True).exists()
+        assert listed_ver.reload().due_date == specified_due_date
+        assert unlisted_ver.reload().due_date == specified_due_date
 
         # (just setting up a situation where the version would already have a due date)
         listed_ver.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -264,8 +259,10 @@ class TestPromotedAddon(TestCase):
             auto_approval_disabled=True,
             auto_approval_disabled_unlisted=True,
         )
-        listed_ver.update(needs_human_review=False)
-        unlisted_ver.update(needs_human_review=False)
+        listed_ver.needshumanreview_set.update(is_active=False)
+        unlisted_ver.needshumanreview_set.update(is_active=False)
+        listed_ver.reload()
+        unlisted_ver.reload()
         assert listed_ver.due_date == specified_due_date
         assert unlisted_ver.due_date == specified_due_date
         promo.addon.reload()
@@ -273,10 +270,10 @@ class TestPromotedAddon(TestCase):
         # but not if the version already had a due date
         promo.save(_due_date=datetime.now())
         promo.addon.reload()
-        assert listed_ver.reload().needs_human_review
-        assert unlisted_ver.reload().needs_human_review
-        assert listed_ver.due_date == specified_due_date
-        assert unlisted_ver.due_date == specified_due_date
+        assert listed_ver.needshumanreview_set.filter(is_active=True)
+        assert unlisted_ver.needshumanreview_set.filter(is_active=True)
+        assert listed_ver.reload().due_date == specified_due_date
+        assert unlisted_ver.reload().due_date == specified_due_date
 
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_approve_for_addon(self, mock_sign_file):

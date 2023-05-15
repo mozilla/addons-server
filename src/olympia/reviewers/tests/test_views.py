@@ -66,6 +66,7 @@ from olympia.git.tests.test_utils import apply_changes
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
     ReviewerSubscription,
     Whiteboard,
@@ -4507,7 +4508,8 @@ class TestReview(ReviewBase):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
+        old_version.update(channel=amo.CHANNEL_UNLISTED)
+        NeedsHumanReview.objects.create(version=old_version)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
@@ -4532,7 +4534,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
-            assert not version.needs_human_review
+            assert not version.needshumanreview_set.filter(is_active=True).exists()
             file_ = version.file.reload()
             assert file_.status == amo.STATUS_APPROVED
             assert not version.pending_rejection
@@ -4545,7 +4547,8 @@ class TestReview(ReviewBase):
     def test_reasons_optional_for_multiple_approve(self, sign_file_mock):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         old_version = self.version
-        old_version.update(needs_human_review=True, channel=amo.CHANNEL_UNLISTED)
+        old_version.update(channel=amo.CHANNEL_UNLISTED)
+        NeedsHumanReview.objects.create(version=old_version)
         old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.version = version_factory(
             addon=self.addon,
@@ -4569,7 +4572,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
-            assert not version.needs_human_review
+            assert not version.needshumanreview_set.filter(is_active=True)
             file_ = version.file.reload()
             assert file_.status == amo.STATUS_APPROVED
             assert not version.pending_rejection
@@ -4581,7 +4584,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
@@ -4602,7 +4605,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
-            assert not version.needs_human_review
+            assert not version.needshumanreview_set.filter(is_active=True)
             file_ = version.file.reload()
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
@@ -4610,7 +4613,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions_with_no_delay(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
@@ -4635,7 +4638,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         for version in [old_version, self.version]:
             version.reload()
-            assert not version.needs_human_review
+            assert not version.needshumanreview_set.filter(is_active=True)
             file_ = version.file.reload()
             assert file_.status == amo.STATUS_DISABLED
             assert not version.pending_rejection
@@ -4643,7 +4646,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions_with_delay(self):
         reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
         old_version = self.version
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
@@ -4672,7 +4675,7 @@ class TestReview(ReviewBase):
         for version in [old_version, self.version]:
             version.reload()
             # The versions no longer need human review...
-            assert not version.needs_human_review
+            assert not version.needshumanreview_set.filter(is_active=True)
             file_ = version.file
             # ... But their status shouldn't have changed yet ...
             assert file_.status == amo.STATUS_APPROVED
@@ -4754,7 +4757,7 @@ class TestReview(ReviewBase):
     def test_block_multiple_versions(self):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         old_version = self.version
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -4782,8 +4785,9 @@ class TestReview(ReviewBase):
 
     def test_clear_needs_human_review(self):
         old_version = self.version
-        old_version.update(needs_human_review=True)
-        self.version = version_factory(addon=self.addon, needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
+        self.version = version_factory(addon=self.addon)
+        NeedsHumanReview.objects.create(version=self.version)
 
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:Review')
@@ -4791,14 +4795,14 @@ class TestReview(ReviewBase):
         response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
         # the action needs an admin
         assert response.status_code == 200
-        assert self.version.reload().needs_human_review
-        assert old_version.reload().needs_human_review
+        assert self.version.needshumanreview_set.filter(is_active=True).exists()
+        assert old_version.needshumanreview_set.filter(is_active=True).exists()
 
         self.grant_permission(self.reviewer, 'Reviews:Admin')
         response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
         assert response.status_code == 302
-        assert not self.version.reload().needs_human_review
-        assert not old_version.reload().needs_human_review
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+        assert not old_version.needshumanreview_set.filter(is_active=True).exists()
 
     def test_clear_needs_human_review_deleted_addon(self):
         self.addon.delete()
@@ -5493,10 +5497,12 @@ class TestReview(ReviewBase):
             version = version_factory(
                 addon=self.addon,
                 version=f'1.{i}',
-                needs_human_review=needs_human_review,
                 created=self.days_ago(365 - i),
                 due_date=due_date,
             )
+            if needs_human_review:
+                NeedsHumanReview.objects.create(version=version)
+
             if matched_yara_rule:
                 ScannerResult.objects.create(
                     scanner=yara_rule.scanner,
@@ -5510,7 +5516,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(51):
+        with self.assertNumQueries(55):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -6810,10 +6816,11 @@ class TestAddonReviewerViewSet(TestCase):
         assert version.due_date
 
     def test_due_date(self):
+        user_factory(pk=settings.TASK_USER_ID)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         version = self.addon.current_version
-        version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=version)
         assert version.due_date
         new_due_date = datetime.now() - timedelta(weeks=1)
         response = self.client.post(
@@ -6828,16 +6835,21 @@ class TestAddonReviewerViewSet(TestCase):
         self.assertCloseToNow(version.due_date, now=new_due_date)
 
     def test_set_needs_human_review(self):
+        user_factory(pk=settings.TASK_USER_ID)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         version = self.addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.exists()
         response = self.client.post(
             self.set_needs_human_review_url, data={'version': version.id}
         )
         assert response.status_code == 202
         version.reload()
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            version.needshumanreview_set.get().reason
+            == version.needshumanreview_set.model.REASON_MANUALLY_SET_BY_REVIEWER
+        )
         # We strip off the milliseconds in the response
         assert response.data == {
             'due_date': version.due_date.isoformat(timespec='seconds')

@@ -54,12 +54,9 @@ class TestActions(TestCase):
 
     def test_flags_a_version_for_human_review(self):
         version = version_factory(addon=addon_factory())
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         _flag_for_human_review(version=version, rule=None)
-        assert version.needs_human_review
-        version.reload()
-        assert version.needs_human_review
-        assert version.needshumanreview_set.count() == 1
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert (
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASON_SCANNER_ACTION
@@ -68,7 +65,7 @@ class TestActions(TestCase):
     def test_delay_auto_approval(self):
         addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval(version=version, rule=None)
         self.assertCloseToNow(
@@ -79,12 +76,11 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until_unlisted,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needshumanreview_set.count() == 1
         assert (
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASON_SCANNER_ACTION
@@ -96,7 +92,7 @@ class TestActions(TestCase):
             reviewer_flags={'needs_admin_content_review': True},
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval(version=version, rule=None)
         self.assertCloseToNow(
@@ -107,7 +103,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until_unlisted,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(
             version.due_date,
             now=datetime.now() + timedelta(hours=24),
@@ -128,7 +124,7 @@ class TestActions(TestCase):
             },
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(
             addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
         )
@@ -144,7 +140,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until_unlisted,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # due date _was_ set to in 24 hours no matter what since it's per-version.
         self.assertCloseToNow(
             version.due_date,
@@ -166,7 +162,7 @@ class TestActions(TestCase):
             },
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(
             addon.auto_approval_delayed_until, now=datetime.now() + timedelta(days=2)
         )
@@ -182,7 +178,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until_unlisted,
             now=datetime.now() + timedelta(days=2),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # due date _was_ set to in 24 hours no matter what since it's per-version.
         self.assertCloseToNow(
             version.due_date,
@@ -200,7 +196,7 @@ class TestActions(TestCase):
             reviewer_flags={'auto_approval_delayed_until': datetime.now()},
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(addon.auto_approval_delayed_until, now=datetime.now())
         assert addon.auto_approval_delayed_until_unlisted is None
         _delay_auto_approval(version=version, rule=None)
@@ -211,7 +207,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until_unlisted,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # due date _was_ set to in 24 hours no matter what since it's per-version.
         self.assertCloseToNow(
             version.due_date,
@@ -231,7 +227,7 @@ class TestActions(TestCase):
         )
         version = addon.current_version
         self.assertCloseToNow(version.due_date, now=self.days_ago(1))
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval(version=version, rule=None)
         addon.reviewerflags.reload()
@@ -239,7 +235,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # We kept the original due date as it's shorter.
         self.assertCloseToNow(version.due_date, now=self.days_ago(1))
         assert version.needshumanreview_set.count() == 1
@@ -259,7 +255,7 @@ class TestActions(TestCase):
             version.due_date,
             now=datetime.now() + timedelta(hours=72),
         )
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval(version=version, rule=None)
         addon.reviewerflags.reload()
@@ -267,7 +263,7 @@ class TestActions(TestCase):
             addon.auto_approval_delayed_until,
             now=datetime.now() + timedelta(hours=24),
         )
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # We overrode the due date with 24 hours so that it goes back to the
         # top of the queue.
         self.assertCloseToNow(
@@ -283,12 +279,12 @@ class TestActions(TestCase):
     def test_delay_auto_approval_indefinitely(self):
         addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert version.needshumanreview_set.count() == 1
         assert (
             version.needshumanreview_set.get().reason
@@ -301,14 +297,14 @@ class TestActions(TestCase):
             reviewer_flags={'auto_approval_delayed_until': datetime.now()},
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         self.assertCloseToNow(addon.auto_approval_delayed_until)
         assert addon.auto_approval_delayed_until_unlisted is None
         _delay_auto_approval_indefinitely(version=version, rule=None)
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert version.needshumanreview_set.count() == 1
         assert (
             version.needshumanreview_set.get().reason
@@ -321,14 +317,14 @@ class TestActions(TestCase):
             reviewer_flags={'auto_approval_delayed_until_unlisted': datetime.now()},
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         self.assertCloseToNow(addon.auto_approval_delayed_until_unlisted)
         _delay_auto_approval_indefinitely(version=version, rule=None)
         addon.reviewerflags.reload()
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert version.needshumanreview_set.count() == 1
         assert (
             version.needshumanreview_set.get().reason
@@ -350,12 +346,12 @@ class TestActions(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
@@ -421,12 +417,12 @@ class TestActions(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         assert EmailUserRestriction.objects.filter(
             email_pattern=user1.email,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
@@ -502,12 +498,12 @@ class TestActions(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict(version=version, rule=rule)
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # We added a new restriction for submission without touching the existing one
         # for approval for user1 and user3
         assert EmailUserRestriction.objects.filter(
@@ -594,14 +590,14 @@ class TestActions(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely_and_restrict_future_approvals(
             version=version, rule=None
         )
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
         # We added a new restriction for approval without touching the existing one
         # for submission for user1 and user3
         assert EmailUserRestriction.objects.filter(
@@ -642,12 +638,12 @@ class TestActions(TestCase):
     def test_delay_auto_approval_indefinitely_and_restrict_nothing_to_restrict(self):
         addon = addon_factory()
         version = addon.current_version
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
         assert addon.auto_approval_delayed_until is None
         _delay_auto_approval_indefinitely(version=version, rule=None)
         assert addon.auto_approval_delayed_until == datetime.max
         assert addon.auto_approval_delayed_until_unlisted == datetime.max
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).exists()
 
     def test_flag_for_human_review_by_scanner(self):
         version = version_factory(addon=addon_factory())

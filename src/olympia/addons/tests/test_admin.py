@@ -748,6 +748,7 @@ class TestAddonAdmin(TestCase):
 
     def test_query_count(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
+        # version_factory(addon=addon)
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -762,8 +763,10 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
+        version_factory(addon=addon)
         with self.assertNumQueries(22):
-            # Confirm it scales
+            # Confirm it scales correctly by doing the same number of queries
+            # when number of versions increases.
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200

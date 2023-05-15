@@ -221,9 +221,13 @@ class VersionManager(ManagerBase):
         # dropped on various reviewer actions).
         is_needs_human_review = Q(
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
-            needs_human_review=True,
+            needshumanreview__is_active=True,
         )
-        return method(is_needs_human_review | is_pre_review_version).using('default')
+        return (
+            method(is_needs_human_review | is_pre_review_version)
+            .using('default')
+            .distinct()
+        )
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -301,8 +305,6 @@ class Version(OnChangeMixin, ModelBase):
     )
 
     git_hash = models.CharField(max_length=40, blank=True)
-
-    needs_human_review = models.BooleanField(default=False)
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
@@ -416,7 +418,7 @@ class Version(OnChangeMixin, ModelBase):
 
         previous_version_had_needs_human_review = (
             addon.versions(manager='unfiltered_for_relations')
-            .filter(channel=channel, needs_human_review=True)
+            .filter(channel=channel, needshumanreview__is_active=True)
             .exists()
         )
 
@@ -427,7 +429,6 @@ class Version(OnChangeMixin, ModelBase):
             license_id=license_id,
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
-            needs_human_review=previous_version_had_needs_human_review,
         )
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
@@ -1115,18 +1116,6 @@ class Version(OnChangeMixin, ModelBase):
             and self.get_review_status_for_auto_approval_and_delay_reject()
             or status
         )
-
-
-@receiver(
-    models.signals.post_save,
-    sender=Version,
-    dispatch_uid='version',
-)
-def update_due_date_for_needs_human_review_change(
-    sender, instance=None, update_fields=None, **kwargs
-):
-    if update_fields is None or 'needs_human_review' in update_fields:
-        instance.reset_due_date()
 
 
 class VersionReviewerFlags(ModelBase):

@@ -860,7 +860,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
         assert version.addon.needs_admin_code_review
-        assert not version.needs_human_review
+        assert version.needshumanreview_set.count() == 0
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(
@@ -891,7 +891,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         self.version = Version.objects.get(pk=self.version.pk)
         assert self.version.source
         assert self.version.addon.needs_admin_code_review
-        assert self.version.needs_human_review
+        assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
 
         # Check that the corresponding automatic activity log has been created.
         assert ActivityLog.objects.filter(

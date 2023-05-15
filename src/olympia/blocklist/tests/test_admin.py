@@ -18,6 +18,7 @@ from olympia.addons.models import DeniedGuid
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.activity import BLOCKLIST_SIGNOFF
+from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import Block, BlocklistSubmission
 
@@ -226,10 +227,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        deleted_addon = addon_factory(
-            version_kw={'version': '1.2.5', 'needs_human_review': True}
-        )
+        deleted_addon = addon_factory(version_kw={'version': '1.2.5'})
         deleted_addon_version = deleted_addon.current_version
+        NeedsHumanReview.objects.create(version=deleted_addon_version)
         deleted_addon.delete()
         deleted_addon.addonguid.update(guid='guid@')
         addon = addon_factory(
@@ -240,15 +240,15 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon,
             version='2.5',
             file_kw={'status': amo.STATUS_DISABLED},
-            needs_human_review=True,
         )
+        NeedsHumanReview.objects.create(version=disabled_version)
         deleted_version = version_factory(
             addon=addon,
             version='2.5.1',
             deleted=True,
-            needs_human_review=True,
             file_kw={'status': amo.STATUS_DISABLED},
         )
+        NeedsHumanReview.objects.create(version=deleted_version)
         second_version = version_factory(addon=addon, version='3')
         pending_version = version_factory(
             addon=addon, version='5.999', file_kw={'status': amo.STATUS_AWAITING_REVIEW}
@@ -360,9 +360,11 @@ class TestBlocklistSubmissionAdmin(TestCase):
         disabled_version.reload()
         deleted_version.reload()
         deleted_addon_version.reload()
-        assert not disabled_version.needs_human_review
-        assert not deleted_version.needs_human_review
-        assert not deleted_addon_version.needs_human_review
+        assert not disabled_version.needshumanreview_set.filter(is_active=True).exists()
+        assert not deleted_version.needshumanreview_set.filter(is_active=True).exists()
+        assert not deleted_addon_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
 
     def _test_add_multiple_submit(self, addon_adu, delay=0):
         """addon_adu is important because whether dual signoff is needed is
@@ -1667,10 +1669,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        deleted_addon = addon_factory(
-            guid='guid@', version_kw={'version': '1.2.5', 'needs_human_review': True}
-        )
+        deleted_addon = addon_factory(guid='guid@', version_kw={'version': '1.2.5'})
         version = deleted_addon.current_version
+        NeedsHumanReview.objects.create(version=version)
         deleted_addon.delete()
         assert deleted_addon.status == amo.STATUS_DELETED
         assert not DeniedGuid.objects.filter(guid=deleted_addon.guid).exists()
@@ -1708,7 +1709,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         version.reload()
         version.file.reload()
         assert version.file.status == amo.STATUS_DISABLED
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.filter(is_active=True).exists()
 
     def test_blocking_addon_guid_already_denied(self):
         user = user_factory(email='someone@mozilla.com')

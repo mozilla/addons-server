@@ -760,12 +760,13 @@ class TestAddonModels(TestCase):
     def test_force_disable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
-        version1 = version_factory(addon=addon, needs_human_review=True)
+        version1 = version_factory(addon=addon)
+        NeedsHumanReview.objects.create(version=version1, is_active=True)
         version2 = version_factory(
             addon=addon,
-            needs_human_review=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        NeedsHumanReview.objects.create(version=version2, is_active=True)
         assert addon.status != amo.STATUS_DISABLED
         files = File.objects.filter(version__addon=addon)
         assert files
@@ -785,7 +786,9 @@ class TestAddonModels(TestCase):
         for file_ in files:
             assert file_.status == amo.STATUS_DISABLED
             assert not file_.version.due_date
-            assert not file_.version.needs_human_review
+            assert not file_.version.needshumanreview_set.filter(
+                is_active=True
+            ).exists()
 
     def test_force_enable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
@@ -2147,9 +2150,7 @@ class TestAddonDueDate(TestCase):
             due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
         for version in [listed_version, unlisted_version]:
-            version.reload()
-            assert version.needs_human_review
-            assert version.needshumanreview_set.count() == 1
+            assert version.needshumanreview_set.filter(is_active=True).count() == 1
             assert (
                 version.needshumanreview_set.get().reason
                 == NeedsHumanReview.REASON_PROMOTED_GROUP
@@ -2157,9 +2158,7 @@ class TestAddonDueDate(TestCase):
         for version in [unsigned_listed_version, unsigned_unlisted_version]:
             # Those are more recent but unsigned, so we don't consider them
             # when figuring out which version to flag for human review.
-            version.reload()
-            assert not version.needs_human_review
-            assert version.needshumanreview_set.count() == 0
+            assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
     def test_set_needs_human_review_on_latest_versions_ignore_already_reviewed(self):
         addon = Addon.objects.get(id=3615)
@@ -2168,9 +2167,7 @@ class TestAddonDueDate(TestCase):
         addon.set_needs_human_review_on_latest_versions(
             reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
-        version.reload()
-        assert not version.needs_human_review
-        assert version.needshumanreview_set.count() == 0
+        assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
         addon = Addon.objects.get(id=3615)
@@ -2179,9 +2176,7 @@ class TestAddonDueDate(TestCase):
         addon.set_needs_human_review_on_latest_versions(
             reason=NeedsHumanReview.REASON_UNKNOWN
         )
-        version.reload()
-        assert version.needs_human_review
-        assert version.needshumanreview_set.count() == 1
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason == NeedsHumanReview.REASON_UNKNOWN
         )
@@ -3043,6 +3038,9 @@ class TestGitExtractionEntry(TestCase):
 
 
 class TestExtensionsQueues(TestCase):
+    def setUp(self):
+        user_factory(pk=settings.TASK_USER_ID)
+
     def test_mad_queue(self):
         expected_addons = {'flagged_addon': addon_factory()}
         unexpected_addons = {}
@@ -3216,23 +3214,31 @@ class TestExtensionsQueues(TestCase):
         deleted_addon_human_review = addon_factory(
             name='Deleted add-on - human review',
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
-            version_kw={'needs_human_review': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=deleted_addon_human_review.versions.latest('pk')
         )
         deleted_addon_human_review.delete()
         expected_addons.append(deleted_addon_human_review)
         deleted_unlisted_version_human_review = addon_factory(
             name='Deleted unlisted version - human review',
-            version_kw={'channel': amo.CHANNEL_UNLISTED, 'needs_human_review': True},
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled_unlisted': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=deleted_unlisted_version_human_review.versions.latest('pk')
         )
         deleted_unlisted_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_unlisted_version_human_review)
         deleted_listed_version_human_review = addon_factory(
             name='Deleted listed version - human review',
-            version_kw={'channel': amo.CHANNEL_LISTED, 'needs_human_review': True},
+            version_kw={'channel': amo.CHANNEL_LISTED},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW, 'is_signed': True},
             reviewer_flags={'auto_approval_disabled': True},
+        )
+        NeedsHumanReview.objects.create(
+            version=deleted_listed_version_human_review.versions.latest('pk')
         )
         deleted_listed_version_human_review.versions.all()[0].delete()
         expected_addons.append(deleted_listed_version_human_review)
