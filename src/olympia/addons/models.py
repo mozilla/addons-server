@@ -669,7 +669,7 @@ class Addon(OnChangeMixin, ModelBase):
     def disable_all_files(self):
         File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
 
-    def set_needs_human_review_on_latest_versions(self, *, due_date=None, reason):
+    def set_needs_human_review_on_latest_versions(self, *, reason, due_date=None):
         self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_LISTED, due_date=due_date, reason=reason
         )
@@ -678,7 +678,7 @@ class Addon(OnChangeMixin, ModelBase):
         )
 
     def _set_needs_human_review_on_latest_signed_version(
-        self, *, channel, due_date=None, reason
+        self, *, channel, reason, due_date=None
     ):
         from olympia.reviewers.models import NeedsHumanReviewHistory
 
