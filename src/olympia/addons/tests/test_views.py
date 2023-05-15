@@ -3645,6 +3645,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        user_factory(pk=settings.TASK_USER_ID)
         self.addon = addon_factory(
             users=(self.user,),
             guid='@webextension-guid',
@@ -3837,7 +3838,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
@@ -3868,7 +3873,13 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
         alog2 = (
             ActivityLog.objects.exclude(id=alog.id)
-            .exclude(action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id))
+            .exclude(
+                action__in=(
+                    amo.LOG.LOG_IN.id,
+                    amo.LOG.LOG_IN_API_TOKEN.id,
+                    amo.LOG.CHANGE_STATUS.id,
+                )
+            )
             .get()
         )
         assert alog2.user == self.user
@@ -3929,7 +3940,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
@@ -3950,7 +3965,13 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data['license']['url'] == builtin_license.url
         alog2 = (
             ActivityLog.objects.exclude(id=alog.id)
-            .exclude(action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id))
+            .exclude(
+                action__in=(
+                    amo.LOG.LOG_IN.id,
+                    amo.LOG.LOG_IN_API_TOKEN.id,
+                    amo.LOG.CHANGE_STATUS.id,
+                )
+            )
             .get()
         )
         assert alog2.user == self.user
@@ -4137,7 +4158,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.version.is_user_disabled
         assert self.version.file.status == amo.STATUS_DISABLED
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.DISABLE_VERSION.id
@@ -4168,7 +4193,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.version.is_user_disabled
         assert self.version.file.status == amo.STATUS_DISABLED
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.DISABLE_VERSION.id
@@ -4182,7 +4211,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.version.file.reload()
         assert not self.version.is_user_disabled
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.ENABLE_VERSION.id

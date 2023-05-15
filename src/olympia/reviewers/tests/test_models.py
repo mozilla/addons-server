@@ -7,6 +7,7 @@ from django.core import mail
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags, AddonUser
 from olympia.amo.tests import (
     TestCase,
@@ -28,12 +29,14 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
     ReviewerSubscription,
     get_flags,
     send_notifications,
     set_reviewing_cache,
 )
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
 
@@ -1706,3 +1709,37 @@ class TestGetFlags(TestCase):
 
     def test_version_none(self):
         assert get_flags(self.addon, None) == []
+
+
+class TestNeedsHumanReview(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+        ActivityLog.objects.all().delete()
+        UserProfile.objects.create(pk=settings.TASK_USER_ID)
+
+    def test_save_new_record_activity_and_needs_human_review(self):
+        NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+        )
+        assert self.version.needs_human_review
+        self.version.reload()
+        assert self.version.needs_human_review
+        assert ActivityLog.objects.for_versions(self.version).count() == 1
+        assert (
+            ActivityLog.objects.for_versions(self.version).get().action
+            == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        )
+
+    def test_save_existing_do_nothing(self):
+        flagged = NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+        )
+        ActivityLog.objects.all().delete()
+        self.version.update(needs_human_review=False)
+        flagged.reason = NeedsHumanReview.REASON_DEVELOPER_REPLY
+        flagged.save()
+        assert not self.version.needs_human_review
+        self.version.reload()
+        assert not self.version.needs_human_review
+        assert ActivityLog.objects.count() == 0
