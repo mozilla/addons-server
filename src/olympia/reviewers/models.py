@@ -756,6 +756,11 @@ class NeedsHumanReview(ModelBase):
     )
     version = models.ForeignKey(on_delete=models.CASCADE, to=Version)
 
+    def __str__(self):
+        return (
+            f'{self.version.addon.guid} - {self.version} - {self.get_reason_display()}'
+        )
+
     def save(self, *args, **kwargs):
         if not self.pk:
             activity.log_create(
