@@ -279,12 +279,14 @@ class Rating(ModelBase):
             else:
                 log.info(f'{action} rating: {instance.pk}')
 
-            # For new ratings - not replies - and all edits (including replies
-            # this time) by users we want to insert a new ActivityLog.
+            # For new ratings, replies, and all edits by users we
+            # want to insert a new ActivityLog.
             new_rating_or_edit = not instance.reply_to or not created
             if new_rating_or_edit:
                 action = amo.LOG.ADD_RATING if created else amo.LOG.EDIT_RATING
                 activity.log_create(action, instance.addon, instance)
+            else:
+                activity.log_create(amo.LOG.REPLY_RATING, instance.addon, instance)
 
             # For new ratings and new replies we want to send an email.
             if created:

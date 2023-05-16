@@ -3009,7 +3009,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.version is None
         assert 'version' not in response.data
 
-        assert not ActivityLog.objects.exists()
+        assert ActivityLog.objects.exists()
 
         assert len(mail.outbox) == 1
 
@@ -3038,7 +3038,7 @@ class TestRatingViewSetReply(TestCase):
         assert review.version is None
         assert 'version' not in response.data
 
-        assert not ActivityLog.objects.exists()
+        assert ActivityLog.objects.exists()
 
         assert len(mail.outbox) == 1
 
