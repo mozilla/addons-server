@@ -23,19 +23,25 @@ def addon_view_stats(f):
     return wrapper
 
 
-def bigquery_api_view(f):
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if switch_is_active('disable-bigquery'):
-            if kw.get('format') == 'csv':
-                response = http.HttpResponse(content_type='text/csv; charset=utf-8')
-            else:
-                response = http.HttpResponse(
-                    content_type='application/json', content='[]'
-                )
-            response.status_code = 503
-            return response
+def bigquery_api_view(f=None, json_default=list):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(request, *args, **kw):
+            if switch_is_active('disable-bigquery'):
+                if kw.get('format') == 'csv':
+                    response = http.HttpResponse(content_type='text/csv; charset=utf-8')
+                else:
+                    response = http.HttpResponse(
+                        content_type='application/json', content=f'{json_default()}'
+                    )
+                response.status_code = 503
+                return response
 
-        return f(request, *args, **kw)
+            return func(request, *args, **kw)
 
-    return wrapper
+        return wrapper
+
+    if f:
+        return decorator(f)
+    else:
+        return decorator

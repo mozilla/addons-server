@@ -18,11 +18,11 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.formats import localize
 
-from rest_framework.test import APIRequestFactory
-
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from pyquery import PyQuery as pq
+from rest_framework.test import APIRequestFactory
+from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
@@ -8711,3 +8711,53 @@ class TestMadQueue(QueueTest):
             total_queues=3,
             per_page=1,
         )
+
+
+class TestUsagePerVersion(ReviewerTest):
+    def setUp(self):
+        super().setUp()
+        self.addon = addon_factory()
+        self.login_as_reviewer()
+        self.url = reverse(
+            'reviewers.usage_per_version',
+            args=(self.addon.pk,),
+        )
+
+    @mock.patch(
+        'olympia.reviewers.views.get_average_daily_users_per_version_from_bigquery'
+    )
+    def test_empty(self, get_adu_per_version_mock):
+        get_adu_per_version_mock.return_value = []
+        response = self.client.get(self.url)
+
+        get_adu_per_version_mock.assert_called_once_with(self.addon)
+        assert response.status_code == 200
+        assert response.json() == {}
+
+    @mock.patch(
+        'olympia.reviewers.views.get_average_daily_users_per_version_from_bigquery'
+    )
+    def test_basic(self, get_adu_per_version_mock):
+        values = {'1.1': 394, '1.2': 345, '2': 450, '3.4545': 999}
+        get_adu_per_version_mock.return_value = list(values.items())
+        response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        assert response.json() == values
+
+    def test_not_reviewer(self):
+        user_factory(email='irregular@mozilla.com')
+        self.client.force_login(UserProfile.objects.get(email='irregular@mozilla.com'))
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 403
+
+    @override_switch('disable-bigquery', active=True)
+    @mock.patch(
+        'olympia.reviewers.views.get_average_daily_users_per_version_from_bigquery'
+    )
+    def test_bigquery_disabled(self, get_adu_per_version_mock):
+        get_adu_per_version_mock.return_value = [('123', 456)]
+        response = self.client.get(self.url)
+
+        assert response.status_code == 503
+        assert response.json() == {}
