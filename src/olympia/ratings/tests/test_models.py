@@ -240,7 +240,11 @@ class TestRatingModel(TestCase):
             body='Rêply',
         )
 
-        assert ActivityLog.objects.exists()
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == user
+        assert activity_log.arguments == [rating.addon, rating.reply]
+        assert activity_log.action == amo.LOG.REPLY_RATING.id
+
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
