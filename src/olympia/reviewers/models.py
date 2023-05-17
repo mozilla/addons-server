@@ -717,6 +717,19 @@ class ReviewActionReason(ModelBase):
         return str(self.name)
 
 
+class UsageTier(ModelBase):
+    name = models.CharField(max_length=255)
+    lower_adu_threshold = models.IntegerField(default=None, null=True)
+    upper_adu_threshold = models.IntegerField(default=None, null=True)
+    growth_threshold_before_flagging = models.IntegerField(default=None, null=True)
+
+    class Meta:
+        ordering = ('upper_adu_threshold',)
+
+    def __str__(self):
+        return self.name
+
+
 class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
     review."""

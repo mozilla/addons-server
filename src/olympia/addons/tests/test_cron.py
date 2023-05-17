@@ -169,20 +169,20 @@ class TestUpdateAddonHotness(TestCase):
                 'avg_previous_week': 787930,
             },
             self.unpopular_extension.guid: {
-                'avg_this_week': 0,
-                'avg_previous_week': 0,
+                'avg_this_week': 99,
+                'avg_previous_week': 150,
             },
             self.unpopular_theme.guid: {
-                'avg_this_week': 1,
-                'avg_previous_week': 1.5,
+                'avg_this_week': 249,
+                'avg_previous_week': 300,
             },
             self.barely_popular_extension.guid: {
-                'avg_this_week': 400,
-                'avg_previous_week': 300,
+                'avg_this_week': 100,
+                'avg_previous_week': 75,
             },
             self.barely_popular_theme.guid: {
-                'avg_this_week': 400,
-                'avg_previous_week': 300,
+                'avg_this_week': 250,
+                'avg_previous_week': 188,
             },
             'unknown@guid': {
                 'avg_this_week': 10000,
@@ -207,11 +207,12 @@ class TestUpdateAddonHotness(TestCase):
         assert self.unpopular_extension.reload().hotness == 0
         assert self.unpopular_theme.reload().hotness == 0
 
-        # A barely popular static theme should have a hotness value > 0 but
-        # when the same stats are applied to an extension, it should have a
-        # hotness of 0.
-        assert self.barely_popular_theme.reload().hotness == 0.3333333333333333
-        assert self.barely_popular_extension.reload().hotness == 0
+        # Themes have different threshold for popularity, and we only start
+        # computing hotness for them above 250. This one barely matches that.
+        assert self.barely_popular_theme.reload().hotness == 0.32978723404255317
+
+        # For extensions it's above 100.
+        assert self.barely_popular_extension.reload().hotness == 0.3333333333333333
 
         # Deleted or awaiting review add-ons get a hotness too.
         assert self.awaiting_review.reload().hotness == 0.049687154950312847

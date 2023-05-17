@@ -1,10 +1,10 @@
 import hashlib
 import os
+from datetime import datetime, timedelta
 
 from django.db import transaction
-from django.db.models import Value
+from django.db.models import Q, Value
 from django.db.models.functions import Collate
-
 
 from elasticsearch_dsl import Search
 
@@ -26,13 +26,19 @@ from olympia.amo.utils import extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.search.utils import get_es, index_objects, unindex_objects
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
+from olympia.versions.utils import get_staggered_review_due_date_generator
 
 
 log = olympia.core.logger.getLogger('z.task')
+
+
+MINIMUM_ADU_FOR_HOTNESS_NONTHEME = 100
+MINIMUM_ADU_FOR_HOTNESS_THEME = 250
 
 
 @task
@@ -306,8 +312,12 @@ def update_addon_hotness(averages):
 
         this_week = average['avg_this_week']
         previous_week = average['avg_previous_week']
-        threshold = 250 if addon.type == amo.ADDON_STATICTHEME else 1000
-        if this_week > threshold and previous_week > 1:
+        threshold = (
+            MINIMUM_ADU_FOR_HOTNESS_THEME
+            if addon.type == amo.ADDON_STATICTHEME
+            else MINIMUM_ADU_FOR_HOTNESS_NONTHEME
+        )
+        if this_week >= threshold and previous_week > 1:
             hotness = (this_week - previous_week) / float(previous_week)
         else:
             hotness = 0
@@ -417,3 +427,37 @@ def disable_addons(addon_ids, **kw):
     addons.update(status=amo.STATUS_DISABLED, _current_version=None)
     File.objects.filter(version__addon__in=addons).update(status=amo.STATUS_DISABLED)
     index_addons.delay(addon_ids)
+
+
+@task
+@use_primary_db
+def flag_high_hotness_according_to_review_tier():
+    from olympia.reviewers.models import UsageTier
+
+    due_date_generator = get_staggered_review_due_date_generator()
+    usage_tiers = UsageTier.objects.filter(
+        # We don't compute hotness below that, other signals could still apply.
+        lower_adu_threshold__gte=MINIMUM_ADU_FOR_HOTNESS_NONTHEME,
+        # Tiers with no upper adu threshold are special cases with their own
+        # way of flagging add-ons for review (either notable or promoted).
+        upper_adu_threshold__isnull=False,
+        # Need a hotness threshold to be set for the tier.
+        growth_threshold_before_flagging__isnull=False,
+    )
+    tier_filters = Q()
+    for usage_tier in usage_tiers:
+        tier_filters |= Q(
+            average_daily_users__gte=usage_tier.lower_adu_threshold,
+            average_daily_users__lt=usage_tier.upper_adu_threshold,
+            hotness__gte=usage_tier.growth_threshold_before_flagging / 100,
+        )
+    qs = (
+        Addon.unfiltered.exclude(status=amo.STATUS_DISABLED)
+        .filter(type=amo.ADDON_EXTENSION)
+        .filter(tier_filters)
+    )
+    for addon in qs:
+        due_date = next(due_date_generator)
+        addon.set_needs_human_review_on_latest_versions(
+            due_date=due_date, reason=NeedsHumanReview.REASON_HOTNESS_THRESHOLD
+        )

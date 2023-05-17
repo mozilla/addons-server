@@ -7,6 +7,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
+    flag_high_hotness_according_to_review_tier,
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_hotness as _update_addon_hotness,
     update_addon_weekly_downloads as _update_addon_weekly_downloads,
@@ -131,8 +132,11 @@ def update_addon_hotness(chunk_size=300):
     averages.update(bq_averages)
     log.info('Preparing update of `hotness` for %s add-ons.', len(averages))
 
-    create_chunked_tasks_signatures(
-        _update_addon_hotness, averages.items(), chunk_size
+    (
+        create_chunked_tasks_signatures(
+            _update_addon_hotness, averages.items(), chunk_size
+        )
+        | flag_high_hotness_according_to_review_tier.si()
     ).apply_async()
 
 

@@ -12,8 +12,12 @@ from django.utils.encoding import force_str
 from PIL import Image
 
 from olympia.amo.utils import convert_svg_to_png
-from olympia.constants.reviewers import REVIEWER_STANDARD_REVIEW_TIME
+from olympia.constants.reviewers import (
+    EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY,
+    REVIEWER_STANDARD_REVIEW_TIME,
+)
 from olympia.core import logger
+from olympia.zadmin.models import get_config
 
 log = logger.getLogger('z.versions.utils')
 
@@ -139,13 +143,42 @@ def process_color_value(prop, value):
 
 
 def get_review_due_date(starting=None, default_days=REVIEWER_STANDARD_REVIEW_TIME):
-    starting = starting or datetime.now()
-    # if starting falls on the weekend, move it to Monday morning
+    generator = get_staggered_review_due_date_generator(
+        starting=starting,
+        initial_days_delay=default_days,
+        # We send a dummy target per day just to avoid the database query for
+        # the staggering which we don't need here as we only want a single due
+        # date.
+        target_per_day=1,
+    )
+    return next(generator)
+
+
+def get_staggered_review_due_date_generator(
+    *, starting=None, initial_days_delay=0, target_per_day=None
+):
+    starting = (starting or datetime.now()).replace(microsecond=0)
+    # if starting falls on the weekend, move it to Monday morning.
     if starting.weekday() in (5, 6):
         starting = starting.replace(hour=9) + timedelta(days=(7 - starting.weekday()))
 
-    due = starting + timedelta(days=default_days)
-    # if due falls on a weekend, or passes over a weekend, add on 2 days
-    if due.weekday() in (5, 6) or due.weekday() < starting.weekday():
-        due += timedelta(days=2)
-    return due
+    due_date = starting + timedelta(days=initial_days_delay)
+
+    if target_per_day is None:
+        target_per_day = get_config(
+            EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, int_value=True, default=8
+        )
+    stagger = 24 / target_per_day
+
+    while True:
+        # if due date falls on or passes over a weekend, add on 2 days.
+        if due_date.weekday() in (5, 6) or due_date.weekday() < starting.weekday():
+            due_date += timedelta(days=2)
+        yield due_date
+        due_date += timedelta(hours=stagger)
+        # When we ask the generator for more than a single date, we no longer
+        # care about the due date passing over a week-end when compared to the
+        # starting date (since we're arbitrarily staggering the dates in the
+        # future), so fake the starting date from now on to prevent that check
+        # above from triggering an additional unwanted delay.
+        starting = due_date
