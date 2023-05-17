@@ -748,7 +748,6 @@ class TestAddonAdmin(TestCase):
 
     def test_query_count(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
-        # version_factory(addon=addon)
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
