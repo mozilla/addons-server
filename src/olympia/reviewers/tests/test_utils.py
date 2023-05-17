@@ -40,6 +40,7 @@ from olympia.lib.crypto.tests.test_signing import (
 from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewActionReason,
     ReviewerSubscription,
 )
@@ -834,7 +835,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert expected == actions
 
     def test_actions_versions_needing_human_review(self):
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['reply', 'super', 'comment']
         actions = list(
@@ -1059,33 +1060,35 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_nomination_to_public_need_human_review(self):
         self.setup_data(amo.STATUS_NOMINATED)
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.review_version.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert self.review_version.human_review_date
 
     def test_nomination_to_public_need_human_review_not_human(self):
         self.setup_data(amo.STATUS_NOMINATED, human_review=False)
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.helper.handler.approve_latest_version()
         self.addon.reload()
         self.review_version.reload()
         self.file.reload()
         assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.review_version.needs_human_review
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
         assert not self.review_version.human_review_date
 
     def test_unlisted_approve_latest_version_need_human_review(self):
         self.setup_data(
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
         )
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         flags = version_review_flags_factory(
             version=self.review_version,
             needs_human_review_by_mad=True,
@@ -1101,7 +1104,9 @@ class TestReviewHelper(TestReviewHelperBase):
         addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert not flags.needs_human_review_by_mad
         assert not addon_flags.auto_approval_disabled_until_next_approval_unlisted
         assert self.review_version.human_review_date
@@ -1110,7 +1115,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.setup_data(
             amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=False
         )
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         flags = version_review_flags_factory(
             version=self.review_version, needs_human_review_by_mad=True
         )
@@ -1125,7 +1130,7 @@ class TestReviewHelper(TestReviewHelperBase):
         addon_flags = self.addon.reviewerflags.reload()
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.review_version.needs_human_review
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
         assert flags.needs_human_review_by_mad
         assert not self.review_version.human_review_date
 
@@ -1139,7 +1144,9 @@ class TestReviewHelper(TestReviewHelperBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, auto_approval_delayed_until_unlisted=delay
         )
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
 
         self.helper.handler.approve_latest_version()
         self.addon.reload()
@@ -1151,12 +1158,14 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_unlisted_approve_flag_if_passed_auto_approval_delayed(self):
         yesterday = datetime.now() - timedelta(days=1)
         self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(yesterday)
-        assert self.review_version.needs_human_review
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
 
     def test_unlisted_approve_dont_flag_if_not_past_auto_approval_delayed(self):
         tomorrow = datetime.now() + timedelta(days=1)
         self._unlisted_approve_flag_if_passed_auto_approval_delayed_setup(tomorrow)
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
 
     def test_nomination_to_public_with_version_reviewer_flags(self):
         flags = version_review_flags_factory(
@@ -1291,7 +1300,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_public_addon_with_version_need_human_review_to_public(self):
         self.old_version = self.addon.current_version
-        self.old_version.update(created=self.days_ago(1), needs_human_review=True)
+        self.old_version.update(created=self.days_ago(1))
+        NeedsHumanReview.objects.create(version=self.old_version)
         self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -1308,7 +1318,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.reload().status == amo.STATUS_APPROVED
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
         self.old_version.reload()
-        assert not self.old_version.needs_human_review
+        assert not self.old_version.needshumanreview_set.filter(is_active=True).exists()
         assert self.review_version.human_review_date
 
     def test_public_addon_with_auto_approval_temporarily_disabled_to_public(self):
@@ -1381,14 +1391,15 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_public_addon_with_version_need_human_review_to_sandbox(self):
         self.old_version = self.addon.current_version
-        self.old_version.update(created=self.days_ago(1), needs_human_review=True)
+        self.old_version.update(created=self.days_ago(1))
+        NeedsHumanReview.objects.create(version=self.old_version)
         self.review_version = version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             version='3.0.42',
-            needs_human_review=True,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.file = self.review_version.file
         self.setup_data(amo.STATUS_APPROVED, human_review=True)
 
@@ -1404,11 +1415,15 @@ class TestReviewHelper(TestReviewHelperBase):
         # reviewed and rejected, so we leave the flag on past versions (unlike
         # approvals, we can't be sure the current version is safe now).
         self.addon.current_version.reload()
-        assert self.addon.current_version.needs_human_review
+        assert self.addon.current_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert not self.addon.current_version.human_review_date
 
         self.review_version.reload()
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert self.review_version.human_review_date
 
     def test_public_addon_confirm_auto_approval(self):
@@ -1592,25 +1607,29 @@ class TestReviewHelper(TestReviewHelperBase):
         ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
-        self.addon.current_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
         assert self.addon.current_version.due_date
         self.test_public_addon_confirm_auto_approval()
         self.addon.current_version.reload()
-        assert self.addon.current_version.needs_human_review is False
+        assert not self.addon.current_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert not self.addon.current_version.due_date
         assert self.addon.current_version.human_review_date
 
     def test_addon_with_old_versions_needing_human_review_confirm_auto_approval(self):
         previous_version = self.addon.current_version
-        self.addon.current_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
         assert self.addon.current_version.due_date
         self.review_version = version_factory(addon=self.addon)
         self.test_public_addon_confirm_auto_approval()
         self.review_version.reload()
         previous_version.reload()
-        assert not self.review_version.needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
         assert not self.review_version.due_date
-        assert not previous_version.needs_human_review
+        assert not previous_version.needshumanreview_set.filter(is_active=True).exists()
         assert not previous_version.due_date
 
     def test_addon_with_version_and_scanner_flag_confirm_auto_approvals(self):
@@ -1731,16 +1750,17 @@ class TestReviewHelper(TestReviewHelperBase):
             addon=self.addon,
             version='4.0',
             channel=amo.CHANNEL_UNLISTED,
-            needs_human_review=True,
             created=self.days_ago(6),
         )
+        NeedsHumanReview.objects.create(version=second_unlisted)
+
         self.review_version = version_factory(
             addon=self.addon,
             version='5.0',
             channel=amo.CHANNEL_UNLISTED,
-            needs_human_review=True,
             created=self.days_ago(5),
         )
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.file = self.review_version.file
         self.helper = self.get_helper()  # To make it pick up the new version.
         data = self.get_data().copy()
@@ -1759,11 +1779,15 @@ class TestReviewHelper(TestReviewHelperBase):
         assert summary.confirmed is True
 
         self.review_version.reload()
-        assert self.review_version.needs_human_review  # Untouched.
+        assert self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()  # Untouched.
         assert not self.review_version.human_review_date  # Not set.
 
         second_unlisted.reload()
-        assert not second_unlisted.needs_human_review  # Cleared.
+        assert not second_unlisted.needshumanreview_set.filter(
+            is_active=True
+        ).exists()  # Cleared.
         assert second_unlisted.human_review_date  # Set.
 
         assert (
@@ -2182,10 +2206,9 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_reject_multiple_versions_need_human_review(self):
         old_version = self.review_version
-        old_version.update(needs_human_review=True)
-        self.review_version = version_factory(
-            addon=self.addon, version='3.0', needs_human_review=True
-        )
+        NeedsHumanReview.objects.create(version=old_version)
+        self.review_version = version_factory(addon=self.addon, version='3.0')
+        NeedsHumanReview.objects.create(version=self.review_version)
 
         data = self.get_data().copy()
         data['versions'] = self.addon.versions.all()
@@ -2199,7 +2222,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert list(self.addon.versions.all()) == [self.review_version, old_version]
         # We rejected all versions so there aren't any left that need human
         # review.
-        assert not self.addon.versions.filter(needs_human_review=True).exists()
+        assert not NeedsHumanReview.objects.filter(
+            version__addon=self.addon, is_active=True
+        ).exists()
         assert self.file.status == amo.STATUS_DISABLED
 
     def test_reject_multiple_versions_content_review(self):
@@ -2757,9 +2782,8 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
         old_version = self.review_version
-        self.review_version = version_factory(
-            addon=self.addon, version='3.0', needs_human_review=True
-        )
+        self.review_version = version_factory(addon=self.addon, version='3.0')
+        NeedsHumanReview.objects.create(version=self.review_version)
         self.setup_data(
             amo.STATUS_NULL,
             file_status=amo.STATUS_APPROVED,
@@ -2784,7 +2808,9 @@ class TestReviewHelper(TestReviewHelperBase):
         # Nothing has changed as we change the statuses as part of the Block
         assert self.addon.status == amo.STATUS_NULL
         assert self.file.status == amo.STATUS_APPROVED
-        assert self.addon.versions.filter(needs_human_review=True).exists()
+        assert NeedsHumanReview.objects.filter(
+            version__addon=self.addon, is_active=True
+        ).exists()
         assert VersionReviewerFlags.objects.filter(
             version__addon=self.addon, needs_human_review_by_mad=True
         ).exists()
@@ -2835,7 +2861,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_clear_needs_human_review(self):
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        self.review_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=self.review_version)
         # set needs_human_review_by_mad - it shouldn't be cleared
         flags = VersionReviewerFlags.objects.create(
             version=self.review_version, needs_human_review_by_mad=True
@@ -2843,20 +2869,20 @@ class TestReviewHelper(TestReviewHelperBase):
         # some other versions that are also needs_human_review
         disabled = version_factory(
             addon=self.review_version.addon,
-            needs_human_review=True,
             file_kw={'status': amo.STATUS_DISABLED},
         )
+        NeedsHumanReview.objects.create(version=disabled)
         deleted = version_factory(
             addon=self.review_version.addon,
-            needs_human_review=True,
         )
+        NeedsHumanReview.objects.create(version=deleted)
         deleted.delete()
         # This is in a different channel so shouldn't be cleared
         unlisted = version_factory(
             addon=self.review_version.addon,
-            needs_human_review=True,
             channel=amo.CHANNEL_UNLISTED,
         )
+        NeedsHumanReview.objects.create(version=unlisted)
 
         self.helper.handler.clear_needs_human_review()
 
@@ -2869,14 +2895,17 @@ class TestReviewHelper(TestReviewHelperBase):
             == 'listed'
         )
         assert len(mail.outbox) == 0
+        self.review_version.reload()
         assert not self.review_version.human_review_date  # its not been reviewed
-        assert not self.review_version.reload().needs_human_review
-        assert not disabled.reload().needs_human_review
-        assert not deleted.reload().needs_human_review
+        assert not self.review_version.needshumanreview_set.filter(
+            is_active=True
+        ).exists()
+        assert not disabled.needshumanreview_set.filter(is_active=True).exists()
+        assert not deleted.needshumanreview_set.filter(is_active=True).exists()
         assert not self.review_version.due_date
         assert not disabled.due_date
         assert not deleted.due_date
-        assert unlisted.reload().needs_human_review  # not cleared
+        assert unlisted.needshumanreview_set.filter(is_active=True).exists()
         assert unlisted.due_date
 
         # mad flag hasn't changed

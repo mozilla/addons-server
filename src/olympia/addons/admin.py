@@ -29,6 +29,7 @@ from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 from olympia.zadmin.admin import related_content_link, related_single_content_link
 
@@ -127,7 +128,8 @@ class FileInline(admin.TabularInline):
     version__is_blocked.short_description = 'Block status'
 
     def version__needs_human_review(self, obj):
-        return obj.version.needs_human_review
+        # Set by the prefetch_related() call below.
+        return obj.needs_human_review
 
     version__needs_human_review.short_description = 'Needs human review'
     version__needs_human_review.boolean = True
@@ -162,7 +164,10 @@ class FileInline(admin.TabularInline):
             .filter(version__in=versions)
             .order_by('-version__id')
         )
-        return qs.select_related('version')
+        sub_qs = NeedsHumanReview.objects.filter(
+            is_active=True, version=OuterRef('version')
+        )
+        return qs.select_related('version').annotate(needs_human_review=Exists(sub_qs))
 
 
 class AddonAdmin(AMOModelAdmin):

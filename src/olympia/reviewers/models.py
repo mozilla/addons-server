@@ -6,12 +6,13 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
+from django.dispatch import receiver
 from django.template import loader
 from django.urls import reverse
 
 import olympia.core.logger
 
-from olympia import activity, amo
+from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
@@ -30,10 +31,6 @@ log = olympia.core.logger.getLogger('z.reviewers')
 
 
 VIEW_QUEUE_FLAGS = (
-    (
-        'needs_human_review',
-        'Needs Human Review',
-    ),
     (
         'needs_admin_code_review',
         'Needs Admin Code Review',
@@ -722,8 +719,7 @@ class ReviewActionReason(ModelBase):
 
 class NeedsHumanReview(ModelBase):
     """Model holding information about why a version was flagged for human
-    review. Never intended to be cleared, so that we have historical data even
-    after the version is eventually reviewed by a human."""
+    review."""
 
     REASON_UNKNOWN = 0
     REASON_SCANNER_ACTION = 1
@@ -732,6 +728,8 @@ class NeedsHumanReview(ModelBase):
     REASON_INHERITANCE = 4
     REASON_PENDING_REJECTION_SOURCES_PROVIDED = 5
     REASON_DEVELOPER_REPLY = 6
+    REASON_MANUALLY_SET_BY_REVIEWER = 7
+    REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
 
     reason = models.SmallIntegerField(
         default=0,
@@ -752,14 +750,22 @@ class NeedsHumanReview(ModelBase):
                 REASON_DEVELOPER_REPLY,
                 'Developer replied',
             ),
+            (
+                REASON_MANUALLY_SET_BY_REVIEWER,
+                'Manually set as needing human review by a reviewer',
+            ),
+            (
+                REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
+                'Auto-approved but still had an approval delay set in the past',
+            ),
         ),
+        editable=False,
     )
     version = models.ForeignKey(on_delete=models.CASCADE, to=Version)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return (
-            f'{self.version.addon.guid} - {self.version} - {self.get_reason_display()}'
-        )
+        return f'{self.version_id} - {self.get_reason_display()}'
 
     def save(self, *args, **kwargs):
         if not self.pk:
@@ -767,8 +773,20 @@ class NeedsHumanReview(ModelBase):
                 amo.LOG.NEEDS_HUMAN_REVIEW,
                 self.version,
                 details={'comments': self.get_reason_display()},
-                user=UserProfile.objects.get(pk=settings.TASK_USER_ID),
+                user=(
+                    core.get_user() or UserProfile.objects.get(pk=settings.TASK_USER_ID)
+                ),
             )
-            if not self.version.needs_human_review:
-                self.version.update(needs_human_review=True)
         return super().save(*args, **kwargs)
+
+
+@receiver(
+    models.signals.post_save,
+    sender=NeedsHumanReview,
+    dispatch_uid='needshumanreview',
+)
+def update_due_date_for_needs_human_review_change(
+    sender, instance=None, update_fields=None, **kwargs
+):
+    if update_fields is None or 'is_active' in update_fields:
+        instance.version.reset_due_date()

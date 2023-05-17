@@ -4,7 +4,8 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import mail
-from olympia import amo
+
+from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
@@ -1598,11 +1599,8 @@ class TestGetFlags(TestCase):
             needs_admin_code_review=True,
             needs_admin_theme_review=True,
         )
-        self.addon.current_version.update(
-            source='something.zip', needs_human_review=True
-        )
+        self.addon.current_version.update(source='something.zip')
         expected_flags = [
-            ('needs-human-review', 'Needs Human Review'),
             ('needs-admin-code-review', 'Needs Admin Code Review'),
             ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
@@ -1615,7 +1613,6 @@ class TestGetFlags(TestCase):
         # With infinite delay.
         self.addon.reviewerflags.update(auto_approval_delayed_until=datetime.max)
         expected_flags = [
-            ('needs-human-review', 'Needs Human Review'),
             ('needs-admin-code-review', 'Needs Admin Code Review'),
             ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
@@ -1640,7 +1637,6 @@ class TestGetFlags(TestCase):
         version.update(
             channel=amo.CHANNEL_UNLISTED,
             source='something.zip',
-            needs_human_review=True,
         )
         AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -1651,7 +1647,6 @@ class TestGetFlags(TestCase):
             needs_admin_theme_review=True,
         )
         expected_flags = [
-            ('needs-human-review', 'Needs Human Review'),
             ('needs-admin-code-review', 'Needs Admin Code Review'),
             ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
@@ -1669,7 +1664,6 @@ class TestGetFlags(TestCase):
             auto_approval_delayed_until_unlisted=datetime.max
         )
         expected_flags = [
-            ('needs-human-review', 'Needs Human Review'),
             ('needs-admin-code-review', 'Needs Admin Code Review'),
             ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
@@ -1718,28 +1712,36 @@ class TestNeedsHumanReview(TestCase):
         ActivityLog.objects.all().delete()
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
-    def test_save_new_record_activity_and_needs_human_review(self):
-        NeedsHumanReview.objects.create(
+    def tearDown(self):
+        core.set_user(None)
+
+    def test_save_new_record_activity(self):
+        needs_human_review = NeedsHumanReview.objects.create(
             version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
-        assert self.version.needs_human_review
-        self.version.reload()
-        assert self.version.needs_human_review
+        assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
-        assert (
-            ActivityLog.objects.for_versions(self.version).get().action
-            == amo.LOG.NEEDS_HUMAN_REVIEW.id
-        )
+        activity = ActivityLog.objects.for_versions(self.version).get()
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.user.pk == settings.TASK_USER_ID
 
-    def test_save_existing_do_nothing(self):
+    def test_save_new_record_activity_with_core_get_user(self):
+        self.user = user_factory()
+        core.set_user(self.user)
+        needs_human_review = NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
+        )
+        assert needs_human_review.is_active  # Defaults to active.
+        assert ActivityLog.objects.for_versions(self.version).count() == 1
+        activity = ActivityLog.objects.for_versions(self.version).get()
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.user.pk == self.user.pk
+
+    def test_save_existing_does_not_record_an_activity(self):
         flagged = NeedsHumanReview.objects.create(
             version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
         ActivityLog.objects.all().delete()
-        self.version.update(needs_human_review=False)
         flagged.reason = NeedsHumanReview.REASON_DEVELOPER_REPLY
         flagged.save()
-        assert not self.version.needs_human_review
-        self.version.reload()
-        assert not self.version.needs_human_review
         assert ActivityLog.objects.count() == 0

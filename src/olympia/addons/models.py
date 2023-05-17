@@ -645,6 +645,8 @@ class Addon(OnChangeMixin, ModelBase):
         clean_slug(self, slug_field)
 
     def force_disable(self):
+        from olympia.reviewers.models import NeedsHumanReview
+
         activity.log_create(amo.LOG.FORCE_DISABLE, self)
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_DISABLED
@@ -652,9 +654,10 @@ class Addon(OnChangeMixin, ModelBase):
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
         # https://github.com/mozilla/addons-server/issues/20507
-        self.versions(manager='unfiltered_for_relations').update(
-            due_date=None, needs_human_review=False
-        )
+        NeedsHumanReview.objects.filter(
+            version__in=self.versions(manager='unfiltered_for_relations').all()
+        ).update(is_active=False)
+        self.update_all_due_dates()
         # https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
@@ -708,7 +711,11 @@ class Addon(OnChangeMixin, ModelBase):
             .only_translations()
             .first()
         )
-        if not version or version.needs_human_review or version.human_review_date:
+        if (
+            not version
+            or version.human_review_date
+            or version.needshumanreview_set.filter(is_active=True).exists()
+        ):
             return
         had_due_date_already = bool(version.due_date)
         NeedsHumanReview.objects.create(version=version, reason=reason)

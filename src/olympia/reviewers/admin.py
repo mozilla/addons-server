@@ -18,10 +18,16 @@ admin.site.register(ReviewActionReason, ReviewActionReasonAdmin)
 
 
 class NeedsHumanReviewAdmin(AMOModelAdmin):
-    list_display = ('__str__',)
+    list_display = ('addon_guid', 'version', 'created', 'is_active')
+    list_filter = ('is_active',)
     raw_id_fields = ('version',)
     view_on_site = False
     list_select_related = ('version', 'version__addon')
+    fields = ('created', 'modified', 'reason', 'version', 'is_active')
+    readonly_fields = ('reason', 'created', 'modified')
+
+    def addon_guid(self, obj):
+        return obj.version.addon.guid
 
 
 admin.site.register(NeedsHumanReview, NeedsHumanReviewAdmin)

@@ -256,7 +256,7 @@
 
     {% if is_admin %}
     <ul class="admin_only">
-      {% if not addon.is_deleted and version and not version.needs_human_review %}
+      {% if not addon.is_deleted and version %}
         <li>
           <button data-api-url="{{ drf_url('reviewers-addon-set-needs-human-review', addon.pk) }}"
                   data-api-data="{&quot;version&quot;: {{ version.pk }}}"

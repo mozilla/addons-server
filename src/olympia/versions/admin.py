@@ -2,6 +2,8 @@ from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
 
+from olympia.reviewers.models import NeedsHumanReview
+
 from .models import (
     DeniedInstallOrigin,
     InstallOrigin,
@@ -17,6 +19,15 @@ class VersionReviewerFlagsInline(admin.StackedInline):
     verbose_name_plural = 'Version Reviewer Flags'
     can_delete = False
     view_on_site = False
+
+
+class NeedsHumanReviewInline(admin.TabularInline):
+    model = NeedsHumanReview
+    fields = ('created', 'modified', 'reason', 'is_active')
+    readonly_fields = ('reason', 'created', 'modified')
+    can_delete = False
+    view_on_site = False
+    extra = 0
 
 
 class LicenseAdmin(AMOModelAdmin):
@@ -52,9 +63,9 @@ class VersionAdmin(AMOModelAdmin):
                 )
             },
         ),
-        ('Flags', {'fields': ('deleted', 'needs_human_review', 'due_date')}),
+        ('Flags', {'fields': ('deleted', 'due_date')}),
     )
-    inlines = (VersionReviewerFlagsInline,)
+    inlines = (VersionReviewerFlagsInline, NeedsHumanReviewInline)
 
 
 class InstallOriginAdmin(AMOModelAdmin):

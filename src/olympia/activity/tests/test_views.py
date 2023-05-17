@@ -424,8 +424,7 @@ class TestReviewNotesViewSetCreate(TestCase):
 
         # Version was set as needing human review for a developer reply.
         self.version.reload()
-        assert self.version.needs_human_review
-        assert self.version.needshumanreview_set.count() == 1
+        assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             self.version.needshumanreview_set.get().reason
             == self.version.needshumanreview_set.model.REASON_DEVELOPER_REPLY
@@ -479,7 +478,7 @@ class TestReviewNotesViewSetCreate(TestCase):
 
         # Version wasn't set as needing human review for a reviewer reply.
         self.version.reload()
-        assert not self.version.needs_human_review
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
         assert not self.version.due_date
 
     def test_reviewer_reply_listed(self):

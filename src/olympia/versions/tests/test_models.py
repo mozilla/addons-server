@@ -440,7 +440,7 @@ class TestVersion(AMOPaths, TestCase):
             addon=version.addon, needs_admin_code_review=True
         ).exists()
         assert not ActivityLog.objects.exists()
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
@@ -451,8 +451,7 @@ class TestVersion(AMOPaths, TestCase):
         activity = ActivityLog.objects.for_versions(version).get()
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
-        assert not version.needs_human_review
-        assert version.needshumanreview_set.count() == 0
+        assert not version.needshumanreview_set.count()
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -469,7 +468,7 @@ class TestVersion(AMOPaths, TestCase):
             addon=version.addon, needs_admin_code_review=True
         ).exists()
         assert not ActivityLog.objects.exists()
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
@@ -484,8 +483,7 @@ class TestVersion(AMOPaths, TestCase):
             .get()
         )
         assert activity.user == user
-        assert version.needs_human_review
-        assert version.needshumanreview_set.count() == 1
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
@@ -897,11 +895,11 @@ class TestVersion(AMOPaths, TestCase):
 
         assert not version.should_have_due_date
         # having the needs_human_review flag means a due dute is needed
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.should_have_due_date
 
         # Just a version awaiting review will be auto approved so won't need a due date
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
@@ -968,12 +966,12 @@ class TestVersion(AMOPaths, TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=channel)
-        assert not version.needs_human_review
+        assert version.needshumanreview_set.count() == 0
         assert not version.should_have_due_date
 
         # Any non-disabled status with needs_human_review is enough to get a
         # due date, even if not signed.
-        version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=version)
         version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
 
@@ -1005,17 +1003,22 @@ class TestVersion(AMOPaths, TestCase):
 
         assert not version.should_have_due_date
         # having the needs_human_review flag means a due dute is needed
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.should_have_due_date
 
         # Just a version awaiting review will be auto approved so won't need a due date
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
         # Promoted groups that are pre-review for unlisted get a due date.
         promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
-        version.update(needs_human_review=False)  # adding Notable sets this, so clear.
+        # Adding Notable creates another NeedsHumanReview instance with
+        # is_active=True, so clear that.
+        needs_human_review = NeedsHumanReview.objects.filter(is_active=True).latest(
+            'pk'
+        )
+        needs_human_review.update(is_active=False)
         assert version.should_have_due_date
 
         # Not if it's a group that is only pre-review for listed though.
@@ -1130,10 +1133,10 @@ class TestVersion(AMOPaths, TestCase):
         version = addon.current_version
         assert not version.due_date
 
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.reload().due_date
 
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         assert not version.reload().due_date
 
     def test_transformer_license(self):
@@ -2046,7 +2049,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
     def test_do_not_inherit_needs_human_review_from_other_addon(self):
-        addon_factory(version_kw={'needs_human_review': True})
+        extra_addon = addon_factory()
+        NeedsHumanReview.objects.create(version=extra_addon.current_version)
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2057,16 +2061,15 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         upload_version.reload()
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         assert upload_version.needshumanreview_set.count() == 0
 
     def test_inherit_needs_human_review_with_due_date(self):
         due_date = get_review_due_date()
-        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=due_date)
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2077,12 +2080,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
         upload_version.reload()
-        assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
-        assert upload_version.needshumanreview_set.count() == 1
+        assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
         assert (
             upload_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_INHERITANCE
@@ -2091,7 +2092,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_inherit_due_date_far_in_future(self):
         standard_due_date = get_review_due_date()
         due_date = datetime.now() + timedelta(days=15)
-        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=due_date)
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2104,23 +2106,19 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # it.
         # Because the due date from the previous version is so far in the
         # future we don't inherit from it and get the default one.
-        assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
         upload_version.reload()
-        assert upload_version.needs_human_review
+        assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
         self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
 
     def test_dont_inherit_due_date_if_one_already_exists(self):
         previous_version_due_date = datetime.now() + timedelta(days=30)
         existing_due_date = datetime.now() + timedelta(days=15)
-        self.addon.current_version.update(
-            needs_human_review=True, due_date=previous_version_due_date
-        )
-        new_version = version_factory(
-            addon=self.addon,
-            needs_human_review=True,
-            due_date=existing_due_date,
-        )
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=previous_version_due_date)
+        new_version = version_factory(addon=self.addon)
+        NeedsHumanReview.objects.create(version=new_version)
+        new_version.update(due_date=existing_due_date)
         self.assertCloseToNow(new_version.due_date, now=existing_due_date)
         new_version.inherit_due_date()
         # Check twice: on the returned instance and in the database, in case
@@ -2135,7 +2133,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_inherit_needs_human_review_from_different_channel(self):
         old_version = self.addon.current_version
         self.make_addon_unlisted(self.addon)
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         assert old_version.due_date
 
         upload_version = Version.from_upload(
@@ -2148,10 +2146,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         upload_version.reload()
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         assert upload_version.needshumanreview_set.count() == 0
 

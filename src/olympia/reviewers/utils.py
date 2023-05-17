@@ -22,6 +22,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewerSubscription,
     get_flags,
 )
@@ -524,9 +525,9 @@ class ReviewHelper:
 
         has_needs_human_review = (
             self.version
-            and self.addon.versions(manager='unfiltered_for_relations')
-            .filter(needs_human_review=True, channel=self.version.channel)
-            .exists()
+            and NeedsHumanReview.objects.filter(
+                version__addon=self.addon, version__channel=self.version.channel
+            ).exists()
         )
 
         # Definitions for all actions.
@@ -839,9 +840,11 @@ class ReviewBase:
         Also used by clear_needs_human_review action for unlisted too.
         """
         # Do a mass UPDATE.
-        self.addon.versions(manager='unfiltered_for_relations').filter(
-            needs_human_review=True, channel=self.version.channel
-        ).update(needs_human_review=False)
+        NeedsHumanReview.objects.filter(
+            version__addon=self.addon,
+            version__channel=self.version.channel,
+            is_active=True,
+        ).update(is_active=False)
         if mad_too:
             # Another one for the needs_human_review_by_mad flag.
             VersionReviewerFlags.objects.filter(
@@ -851,15 +854,16 @@ class ReviewBase:
         # Trigger a check of all due dates on the add-on since we mass-updated
         # versions.
         self.addon.update_all_due_dates()
-        # Also reset it on self.version in case this instance is saved later.
-        self.version.needs_human_review = False
 
     def clear_specific_needs_human_review_flags(self, version):
         """Clear needs_human_review flags on a specific version."""
-        if version.needs_human_review:
-            version.update(needs_human_review=False)
+        version.needshumanreview_set.filter(is_active=True).update(is_active=False)
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
+        # Because the updating of needs human review was made with a queryset
+        # the post_save signal was not triggered so let's recheck the due date
+        # explicitly.
+        version.reset_due_date()
 
     def log_action(
         self,
@@ -1409,12 +1413,15 @@ class ReviewUnlisted(ReviewBase):
             )
             self.set_human_review_date()
         elif (
-            not self.version.needs_human_review
+            not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
             and delay < datetime.now()
         ):
             # if we're auto-approving because its past the approval delay, flag it.
-            self.version.update(needs_human_review=True)
+            NeedsHumanReview.objects.create(
+                version=self.version,
+                reason=NeedsHumanReview.REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
+            )
 
         self.notify_email(template, subject, perm_setting=None)
 
