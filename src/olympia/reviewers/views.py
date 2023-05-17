@@ -7,6 +7,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
@@ -101,6 +102,8 @@ from olympia.reviewers.utils import (
     UpdatedThemesQueueTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
+from olympia.stats.decorators import bigquery_api_view
+from olympia.stats.utils import get_average_daily_users_per_version_from_bigquery
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -1520,3 +1523,12 @@ class ReviewAddonVersionCompareViewSet(
             instance=version, data={'parent_version': objs['parent_version']}
         )
         return Response(serializer.data)
+
+
+@bigquery_api_view(json_default=dict)
+@any_reviewer_required
+@reviewer_addon_view_factory
+@non_atomic_requests
+def usage_per_version(request, addon):
+    versions_avg = get_average_daily_users_per_version_from_bigquery(addon)
+    return JsonResponse(dict(versions_avg))

@@ -98,4 +98,9 @@ urlpatterns = (
         views.developer_profile,
         name='reviewers.developer_profile',
     ),
+    re_path(
+        r'^usage_per_version/%s$' % ADDON_ID,
+        views.usage_per_version,
+        name='reviewers.usage_per_version',
+    ),
 )
