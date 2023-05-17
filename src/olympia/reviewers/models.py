@@ -12,7 +12,7 @@ from django.urls import reverse
 
 import olympia.core.logger
 
-from olympia import activity, amo
+from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
@@ -773,7 +773,9 @@ class NeedsHumanReview(ModelBase):
                 amo.LOG.NEEDS_HUMAN_REVIEW,
                 self.version,
                 details={'comments': self.get_reason_display()},
-                user=UserProfile.objects.get(pk=settings.TASK_USER_ID),
+                user=(
+                    core.get_user() or UserProfile.objects.get(pk=settings.TASK_USER_ID)
+                ),
             )
         return super().save(*args, **kwargs)
 

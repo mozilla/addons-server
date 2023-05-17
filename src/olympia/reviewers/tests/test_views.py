@@ -6850,6 +6850,10 @@ class TestAddonReviewerViewSet(TestCase):
             version.needshumanreview_set.get().reason
             == version.needshumanreview_set.model.REASON_MANUALLY_SET_BY_REVIEWER
         )
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW.id).get().user
+            == self.user
+        )
         # We strip off the milliseconds in the response
         assert response.data == {
             'due_date': version.due_date.isoformat(timespec='seconds')

@@ -4,7 +4,8 @@ from unittest import mock
 
 from django.conf import settings
 from django.core import mail
-from olympia import amo
+
+from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
@@ -1711,16 +1712,30 @@ class TestNeedsHumanReview(TestCase):
         ActivityLog.objects.all().delete()
         UserProfile.objects.create(pk=settings.TASK_USER_ID)
 
+    def tearDown(self):
+        core.set_user(None)
+
     def test_save_new_record_activity(self):
         needs_human_review = NeedsHumanReview.objects.create(
             version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
-        assert (
-            ActivityLog.objects.for_versions(self.version).get().action
-            == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        activity = ActivityLog.objects.for_versions(self.version).get()
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.user.pk == settings.TASK_USER_ID
+
+    def test_save_new_record_activity_with_core_get_user(self):
+        self.user = user_factory()
+        core.set_user(self.user)
+        needs_human_review = NeedsHumanReview.objects.create(
+            version=self.version, reason=NeedsHumanReview.REASON_UNKNOWN
         )
+        assert needs_human_review.is_active  # Defaults to active.
+        assert ActivityLog.objects.for_versions(self.version).count() == 1
+        activity = ActivityLog.objects.for_versions(self.version).get()
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.user.pk == self.user.pk
 
     def test_save_existing_does_not_record_an_activity(self):
         flagged = NeedsHumanReview.objects.create(
