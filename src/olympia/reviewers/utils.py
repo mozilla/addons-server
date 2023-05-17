@@ -142,6 +142,10 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         verbose_name='Maliciousness Score',
         accessor='first_pending_version__autoapprovalsummary__score',
     )
+    title = 'Manual Review'
+    urlname = 'reviewers.queue_extension'
+    url = r'^queue/extension$'
+    permission = amo.permissions.ADDONS_REVIEW
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'due_date', 'flags', 'score')
@@ -189,6 +193,10 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
+    title = 'New Themes'
+    urlname = 'reviewers.queue_theme_nominated'
+    url = r'^queue/theme_new'
+    permission = amo.permissions.STATIC_THEMES_REVIEW
     class Meta(AddonQueueTable.Meta):
         exclude = (
             'score',
@@ -207,6 +215,10 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
 
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
+    title = 'Updated Themes'
+    urlname = 'reviewers.queue_theme_pending'
+    url = r'^queue/theme_updates'
+
     @classmethod
     def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
@@ -235,7 +247,10 @@ class PendingRejectionTable(AddonQueueTable):
         verbose_name='Maliciousness Score',
         accessor='first_pending_version__autoapprovalsummary__score',
     )
-
+    title = 'Pending Rejection'
+    urlname = 'reviewers.queue_pending_rejection'
+    url = r'^queue/pending_rejection'
+    permission = amo.permissions.REVIEWS_ADMIN
     class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
             'addon_name',
@@ -266,6 +281,10 @@ class PendingRejectionTable(AddonQueueTable):
 
 class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
+    title = 'Content Review'
+    urlname = 'reviewers.queue_content_review'
+    url = r'^queue/content_review'
+    permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
     class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
@@ -295,6 +314,10 @@ class MadReviewTable(AddonQueueTable):
     listed_text = 'Listed version'
     unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
+    title = 'MAD Flagged'
+    urlname = 'reviewers.queue_mad'
+    url = r'^queue/mad'
+    permission = amo.permissions.ADDONS_REVIEW
 
     def render_addon_name(self, record):
         rval = [markupsafe.escape(record.name)]

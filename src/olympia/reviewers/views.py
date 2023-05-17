@@ -298,37 +298,44 @@ def save_motd(request):
     data = context(form=form)
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
+def queue(request, tab):
+    @permission_or_tools_listed_view_required(getattr(reviewer_tables_registry[tab], 'permission', None))
+    def _queue(request, tab, unlisted=False):
+        TableObj = reviewer_tables_registry[tab]
+        qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
+        params = {}
+        order_by = request.GET.get('sort')
+        if order_by is None and hasattr(TableObj, 'default_order_by'):
+            order_by = TableObj.default_order_by()
+        if order_by is not None:
+            params['order_by'] = order_by
+        table = TableObj(data=qs, **params)
+        per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
+        try:
+            per_page = int(per_page)
+        except ValueError:
+            per_page = REVIEWS_PER_PAGE
+        if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
+            per_page = REVIEWS_PER_PAGE
+        count = construct_count_queryset_from_queryset(qs)()
+        page = paginate(request, table.rows, per_page=per_page, count=count)
 
-def _queue(request, tab, unlisted=False):
-    TableObj = reviewer_tables_registry[tab]
-    qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
-    params = {}
-    order_by = request.GET.get('sort')
-    if order_by is None and hasattr(TableObj, 'default_order_by'):
-        order_by = TableObj.default_order_by()
-    if order_by is not None:
-        params['order_by'] = order_by
-    table = TableObj(data=qs, **params)
-    per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
-    try:
-        per_page = int(per_page)
-    except ValueError:
-        per_page = REVIEWS_PER_PAGE
-    if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
-        per_page = REVIEWS_PER_PAGE
-    count = construct_count_queryset_from_queryset(qs)()
-    page = paginate(request, table.rows, per_page=per_page, count=count)
+        # get the title attribute from the table class
+        title = getattr(TableObj, 'title', None)
 
-    return TemplateResponse(
-        request,
-        'reviewers/queue.html',
-        context=context(
-            table=table,
-            page=page,
-            tab=tab,
-            unlisted=unlisted,
-        ),
-    )
+        return TemplateResponse(
+            request,
+            'reviewers/queue.html',
+            context=context(
+                table=table,
+                page=page,
+                tab=tab,
+                unlisted=unlisted,
+                title=title,
+            ),
+        )
+
+    return _queue(request, tab)
 
 
 reviewer_tables_registry = {
@@ -366,21 +373,6 @@ def fetch_queue_counts(request):
     return {queue: count() for (queue, count) in counts.items()}
 
 
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_extension(request):
-    return _queue(request, 'extension')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
-def queue_theme_nominated(request):
-    return _queue(request, 'theme_nominated')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
-def queue_theme_pending(request):
-    return _queue(request, 'theme_pending')
-
-
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request):
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
@@ -415,21 +407,6 @@ def queue_moderated(request):
             flags=flags,
         ),
     )
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
-def queue_content_review(request):
-    return _queue(request, 'content_review')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_mad(request):
-    return _queue(request, 'mad')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
-def queue_pending_rejection(request):
-    return _queue(request, 'pending_rejection')
 
 
 def determine_channel(channel_as_text):

@@ -13,31 +13,43 @@ urlpatterns = (
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
     re_path(
-        r'^queue/extension$', views.queue_extension, name='reviewers.queue_extension'
+        getattr(views.reviewer_tables_registry['extension'], 'url'),
+        views.queue,
+        kwargs={'tab': 'extension'}, 
+        name=getattr(views.reviewer_tables_registry['extension'], 'urlname'),
     ),
     re_path(
-        r'^queue/theme_new$',
-        views.queue_theme_nominated,
-        name='reviewers.queue_theme_nominated',
+        getattr(views.reviewer_tables_registry['theme_nominated'], 'url'),
+        views.queue,
+        kwargs={'tab': 'theme_nominated'},
+        name=getattr(views.reviewer_tables_registry['theme_nominated'], 'urlname'),
     ),
     re_path(
-        r'^queue/theme_updates$',
-        views.queue_theme_pending,
-        name='reviewers.queue_theme_pending',
+        getattr(views.reviewer_tables_registry['theme_pending'], 'url'),
+        views.queue,
+        kwargs={'tab': 'theme_pending'},
+        name=getattr(views.reviewer_tables_registry['theme_pending'], 'urlname'),
     ),
     re_path(
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
     ),
     re_path(
-        r'^queue/content_review',
-        views.queue_content_review,
-        name='reviewers.queue_content_review',
+        getattr(views.reviewer_tables_registry['content_review'], 'url'),
+        views.queue,
+        kwargs={'tab': 'content_review'},
+        name=getattr(views.reviewer_tables_registry['content_review'], 'urlname'),
     ),
-    re_path(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
     re_path(
-        r'queue/pending_rejection',
-        views.queue_pending_rejection,
-        name='reviewers.queue_pending_rejection',
+        getattr(views.reviewer_tables_registry['mad'], 'url'),
+        views.queue,
+        kwargs={'tab': 'mad'},
+        name=getattr(views.reviewer_tables_registry['mad'], 'urlname'),
+    ),
+    re_path(
+        getattr(views.reviewer_tables_registry['pending_rejection'], 'url'),
+        views.queue,
+        kwargs={'tab': 'pending_rejection'},
+        name=getattr(views.reviewer_tables_registry['pending_rejection'], 'urlname'),
     ),
     re_path(
         r'^moderationlog$',
