@@ -146,6 +146,10 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'addons.change_replacementaddon': ADMIN_CURATION,
         'addons.add_replacementaddon': ADMIN_CURATION,
         'addons.delete_replacementaddon': ADMIN_CURATION,
+        # Users with Admin:Curation can do anything to AddonBrowserMapping.
+        'addons.add_addonbrowsermapping': ADMIN_CURATION,
+        'addons.change_addonbrowsermapping': ADMIN_CURATION,
+        'addons.delete_addonbrowsermapping': ADMIN_CURATION,
         'bandwagon.change_collection': COLLECTIONS_EDIT,
         'bandwagon.delete_collection': ADMIN_ADVANCED,
         'blocklist.add_block': BLOCKLIST_CREATE,

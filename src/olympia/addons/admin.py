@@ -656,6 +656,19 @@ class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
         self._send_mail(obj, 'changed' if change else 'added')
 
 
+@admin.register(models.AddonBrowserMapping)
+class AddonBrowserMappingAdmin(AMOModelAdmin):
+    list_display = ('addon__name', 'browser', 'extension_id', 'created', 'modified')
+    fields = ('addon', 'browser', 'extension_id')
+    raw_id_fields = ('addon',)
+    readonly_fields = ('created', 'modified')
+
+    def addon__name(self, obj):
+        return str(obj.addon)
+
+    addon__name.short_description = 'Addon'
+
+
 admin.site.register(models.DeniedGuid)
 admin.site.register(models.Addon, AddonAdmin)
 admin.site.register(models.FrozenAddon, FrozenAddonAdmin)
