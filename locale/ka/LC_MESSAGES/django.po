@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-18 19:21+0000\n"
+"PO-Revision-Date: 2023-05-18 19:28+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4218,7 +4218,7 @@ msgstr "შეინახეთ ვებგვერდი სრულად 
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "ჩაასწორეთ გვერდები ამობეჭდვამდე. შეცვალეთ გარეგნულად — მოაცილეთ რეკლამები და არასასურველი შიგთავსი — ნებისმიერიდან, რომლის ამობეჭდვაც გსურთ."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4250,7 +4250,7 @@ msgstr "დაიბრუნეთ ის დრო — როცა ძიე�
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "შენიღბეთ თქვენი ელფოსტა ვინაობის დასაფარად და უსარგებლო წერილების ასარიდებლად. განახლებების შედეგად Firefox Relay კიდევ უფრო ადვილი გამოსაყენებელი გახდა."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4318,11 +4318,11 @@ msgstr "„მოიწონეთ“ კვლავ, რომ დააბ�
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "თარგმნეთ ვებსაიტები Firefox-ში — პირადულად — ღრუბლოვანი მომსახურებების გარეშე."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "შეზღუდეთ დროის გასაფლანგი ვებსაიტები. მოიცილეთ სრულად ან მხოლოდ თქვენ მიერ შერჩეული დროის შუალედებში."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4338,7 +4338,7 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "პირადულობისა და უსაფრთხოების გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4487,11 +4487,11 @@ msgstr "ხელსაწყოები შემოქმედების�
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "სოცქსელის გაფართოებები"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "სოცქსელების სხვა გაფართოებები, თანამშრომლების შერჩეული"
 
 msgid "Unreviewed"
 msgstr "განუხილველი"
