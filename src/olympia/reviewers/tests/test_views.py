@@ -71,7 +71,7 @@ from olympia.reviewers.models import (
     Whiteboard,
 )
 from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
-from olympia.reviewers.views import _queue
+from olympia.reviewers.views import queue
 from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
@@ -1374,7 +1374,7 @@ class TestQueueBasics(QueueTest):
 
     @override_settings(DEBUG=True, LESS_PREPROCESS=False)
     def test_queue_is_never_executing_the_full_query(self):
-        """Test that _queue() is paginating without accidentally executing the
+        """Test that queue() is paginating without accidentally executing the
         full query."""
         self.grant_permission(self.user, 'Addons:ContentReview')
         request = RequestFactory().get('/')
@@ -1383,7 +1383,7 @@ class TestQueueBasics(QueueTest):
         self.generate_files()
         qs = Addon.objects.all().no_transforms()
 
-        # Execute the queryset we're passing to the _queue() so that we have
+        # Execute the queryset we're passing to the queue() so that we have
         # the exact query to compare to later (we can't use str(qs.query) to do
         # that, it has subtle differences in representation because of the way
         # params are passed for the lang=lang hack).
@@ -1393,7 +1393,7 @@ class TestQueueBasics(QueueTest):
         full_query = connection.queries[0]['sql']
 
         reset_queries()
-        response = _queue(request, 'content_review')
+        response = queue(request, 'content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1404,7 +1404,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(request, 'content_review')
+        response = queue(request, 'content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]
@@ -1415,7 +1415,7 @@ class TestQueueBasics(QueueTest):
         request = RequestFactory().get('/', {'per_page': 2, 'page': 2})
         request.user = self.user
         reset_queries()
-        response = _queue(request, 'content_review')
+        response = queue(request, 'content_review')
         response.render()
         assert connection.queries
         assert full_query not in [item['sql'] for item in connection.queries]

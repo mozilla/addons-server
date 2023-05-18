@@ -197,6 +197,7 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
     urlname = 'reviewers.queue_theme_nominated'
     url = r'^queue/theme_new'
     permission = amo.permissions.STATIC_THEMES_REVIEW
+
     class Meta(AddonQueueTable.Meta):
         exclude = (
             'score',
@@ -251,6 +252,7 @@ class PendingRejectionTable(AddonQueueTable):
     urlname = 'reviewers.queue_pending_rejection'
     url = r'^queue/pending_rejection'
     permission = amo.permissions.REVIEWS_ADMIN
+
     class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
             'addon_name',

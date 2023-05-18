@@ -298,10 +298,12 @@ def save_motd(request):
     data = context(form=form)
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
+
 def queue(request, tab):
-    @permission_or_tools_listed_view_required(getattr(reviewer_tables_registry[tab], 'permission', None))
-    def _queue(request, tab, unlisted=False):
-        TableObj = reviewer_tables_registry[tab]
+    TableObj = reviewer_tables_registry[tab]
+
+    @permission_or_tools_listed_view_required(TableObj.permission)
+    def _queue(request, tab):
         qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
         params = {}
         order_by = request.GET.get('sort')
@@ -330,7 +332,6 @@ def queue(request, tab):
                 table=table,
                 page=page,
                 tab=tab,
-                unlisted=unlisted,
                 title=title,
             ),
         )
