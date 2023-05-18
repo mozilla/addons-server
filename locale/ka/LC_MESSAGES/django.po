@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-18 19:16+0000\n"
+"PO-Revision-Date: 2023-05-18 19:21+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4198,7 +4198,7 @@ msgstr "მოირგეთ თაგვის ჟესტები. აღ�
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "შეცვალეთ ნებისმიერი საიტის იერსახე. შეფერადება, გვერდის ფონის ცვლა და სხვ."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4206,7 +4206,7 @@ msgstr "თაგვის ჟესტების გამოყენებ�
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "ნაწერის ზომის იოლად ცვლა ნებისმიერ გვერდზე — ანდაც თავად გვერდის გადიდება."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4214,7 +4214,7 @@ msgstr "იხილეთ საიტების გამოსახულ�
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "შეინახეთ ვებგვერდი სრულად — სურათებითა და გაფორმებით — ერთიან HTML-ფაილად."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
