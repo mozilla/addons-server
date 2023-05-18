@@ -1,11 +1,10 @@
 import datetime
-
 from pathlib import Path
 from unittest import mock
 
-import pytest
-
 from django.test.utils import override_settings
+
+import pytest
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -14,18 +13,17 @@ from olympia.amo.tests import (
     create_switch,
     version_factory,
 )
-from olympia.git.utils import AddonGitRepository, BrokenRefError
+from olympia.git.management.commands.git_extraction import (
+    SWITCH_NAME,
+    Command as GitExtractionCommand,
+)
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
     continue_git_extraction,
     extract_versions_to_git,
     remove_git_extraction_entry,
 )
-
-from olympia.git.management.commands.git_extraction import (
-    SWITCH_NAME,
-    Command as GitExtractionCommand,
-)
+from olympia.git.utils import AddonGitRepository, BrokenRefError
 
 from .test_utils import update_git_repo_creation_time
 

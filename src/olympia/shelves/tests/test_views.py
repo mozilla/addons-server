@@ -8,12 +8,12 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory,
     APITestClientSessionID,
-    collection_factory,
     ESTestCase,
-    reverse_ns,
     TestCase,
+    addon_factory,
+    collection_factory,
+    reverse_ns,
 )
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.promoted import RECOMMENDED

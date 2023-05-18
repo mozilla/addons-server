@@ -9,17 +9,17 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClientSessionID,
     APITestClientJWT,
+    APITestClientSessionID,
+    TestCase,
     get_random_ip,
     reverse_ns,
-    TestCase,
     user_factory,
 )
 
-from .test_models import UploadMixin
 from ..models import FileUpload
 from ..views import FileUploadViewSet
+from .test_models import UploadMixin
 
 
 files_fixtures = 'src/olympia/files/fixtures/files/'

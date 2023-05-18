@@ -1,5 +1,4 @@
 import django.contrib.messages as django_messages
-
 from django.contrib.messages.storage import default_storage
 from django.http import HttpRequest
 from django.template import loader

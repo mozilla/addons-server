@@ -1,5 +1,4 @@
 import random
-
 from datetime import datetime
 
 from olympia.amo.utils import slugify

@@ -1,11 +1,11 @@
-import pytest
 import uuid
+from unittest import mock
 
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
+import pytest
 from freezegun import freeze_time
-from unittest import mock
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory

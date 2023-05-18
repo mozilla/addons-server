@@ -4,29 +4,29 @@ import os
 import uuid
 
 from django.conf import settings
-from django.utils.translation import activate
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
+from django.utils.translation import activate
+
 from fxa.constants import ENVIRONMENT_URLS
 from fxa.core import Client
 from fxa.tests.utils import TestEmailAccount
 from rest_framework import serializers
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import AddonUser, Preview, Addon
+from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.addons.utils import generate_addon_guid
-from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
+from olympia.amo.tests import addon_factory, copy_file_to_temp, user_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
+from olympia.constants.promoted import RECOMMENDED
+from olympia.devhub.utils import create_version_for_upload
+from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.landfill.collection import generate_collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.devhub.utils import create_version_for_upload
-from olympia.hero.models import PrimaryHero, SecondaryHero
-from olympia.constants.promoted import RECOMMENDED
 
 from .version import generate_version
 

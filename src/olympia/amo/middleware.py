@@ -1,7 +1,6 @@
 import contextlib
 import re
 import uuid
-
 from urllib.parse import quote
 
 from django.conf import settings
@@ -20,6 +19,7 @@ from django.http import (
 )
 from django.middleware import common
 from django.template.response import TemplateResponse
+from django.urls import is_valid_path
 from django.utils.cache import (
     add_never_cache_headers,
     get_max_age,
@@ -30,19 +30,17 @@ from django.utils.crypto import constant_time_compare
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_str, iri_to_uri
 from django.utils.translation import activate, gettext_lazy as _
-from django.urls import is_valid_path
-
-from django_statsd.clients import statsd
-from rest_framework import permissions
 
 import MySQLdb as mysql
+from django_statsd.clients import statsd
+from rest_framework import permissions
 
 import olympia.core.logger
 from olympia import amo
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.verify import (
-    check_and_update_fxa_access_token,
     IdentificationError,
+    check_and_update_fxa_access_token,
 )
 
 from . import urlresolvers

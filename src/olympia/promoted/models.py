@@ -3,7 +3,7 @@ from django.dispatch import receiver
 
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
-from olympia.constants.applications import APP_IDS, APPS_CHOICES, APP_USAGE
+from olympia.constants.applications import APP_IDS, APP_USAGE, APPS_CHOICES
 from olympia.constants.promoted import (
     NOT_PROMOTED,
     PROMOTED_GROUPS,

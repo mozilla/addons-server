@@ -21,11 +21,10 @@ from olympia.addons.models import (
 )
 from olympia.addons.serializers import (
     AddonAuthorSerializer,
-    UserSerializerWithPictureUrl,
     AddonSerializer,
     DeveloperAddonSerializer,
-    DeveloperVersionSerializer,
     DeveloperListVersionSerializer,
+    DeveloperVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
@@ -33,6 +32,7 @@ from olympia.addons.serializers import (
     ListVersionSerializer,
     ReplacementAddonSerializer,
     SimpleVersionSerializer,
+    UserSerializerWithPictureUrl,
     VersionSerializer,
 )
 from olympia.addons.utils import generate_addon_guid
@@ -53,11 +53,12 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
+from olympia.constants.licenses import LICENSE_GPL3, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
+from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -65,7 +66,6 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
 )
-from olympia.users.models import UserProfile
 
 
 class AddonSerializerOutputTestMixin:

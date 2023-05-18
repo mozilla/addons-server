@@ -6,7 +6,7 @@ from django.urls import reverse
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.users.models import UserProfile
 
 

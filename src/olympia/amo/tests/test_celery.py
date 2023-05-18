@@ -1,7 +1,6 @@
+import datetime
 import importlib
 import time
-import datetime
-
 from datetime import timedelta
 from unittest import mock
 
@@ -12,8 +11,8 @@ from django.test.testcases import TransactionTestCase
 from celery import group
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 
-from olympia.amo.tests import TestCase
 from olympia.amo.celery import app, create_chunked_tasks_signatures, task
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
 
 

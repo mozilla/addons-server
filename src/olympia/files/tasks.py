@@ -2,7 +2,6 @@ import json
 import os
 import shutil
 import tempfile
-
 from pathlib import Path
 
 from django.conf import settings
@@ -11,7 +10,6 @@ from django.core.files.storage import default_storage as storage
 import waffle
 
 import olympia.core.logger
-
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import StopWatch

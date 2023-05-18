@@ -5,9 +5,9 @@ from rest_framework_nested.routers import NestedSimpleRouter
 
 from .views import (
     AddonReviewerViewSet,
-    ReviewAddonVersionViewSet,
     ReviewAddonVersionCompareViewSet,
     ReviewAddonVersionDraftCommentViewSet,
+    ReviewAddonVersionViewSet,
 )
 
 

@@ -4,6 +4,7 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.api.utils import is_gate_active
 
+
 factory = APIRequestFactory()
 
 

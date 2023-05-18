@@ -1,8 +1,7 @@
-import os
 import io
+import os
 import re
 import tempfile
-
 from base64 import b64encode
 from datetime import datetime, timedelta
 
@@ -18,6 +17,7 @@ from olympia.constants.reviewers import (
 )
 from olympia.core import logger
 from olympia.zadmin.models import get_config
+
 
 log = logger.getLogger('z.versions.utils')
 

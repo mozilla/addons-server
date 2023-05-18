@@ -1,6 +1,5 @@
 import json
 import uuid
-
 from collections import defaultdict
 from copy import copy
 
@@ -14,7 +13,6 @@ from django.utils.html import format_html, mark_safe
 from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
-
 from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
@@ -25,7 +23,6 @@ from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
-
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version

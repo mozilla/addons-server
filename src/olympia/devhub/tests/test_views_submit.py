@@ -1,12 +1,12 @@
+import io
 import json
 import os
-import io
 import stat
 import tarfile
 import zipfile
-
 from datetime import datetime, timedelta
 from ipaddress import IPv4Address
+from unittest import mock
 from urllib.parse import urlencode
 
 from django.conf import settings
@@ -15,9 +15,7 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.urls import reverse
 
-from unittest import mock
 import responses
-
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 

@@ -5,11 +5,12 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.constants.promoted import NOTABLE, NOT_PROMOTED
+from olympia.constants.promoted import NOT_PROMOTED, NOTABLE
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import get_config
 
 from .models import PromotedAddon
+
 
 log = olympia.core.logger.getLogger('z.promoted.tasks')
 

@@ -1,21 +1,18 @@
 import mimetypes
 import os
-
 from datetime import datetime, timedelta
 from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.urls import NoReverseMatch
 from django.test.client import RequestFactory
+from django.urls import NoReverseMatch
 from django.utils.encoding import force_bytes
 
 import pytest
-
 from pyquery import PyQuery
 
 import olympia
-
 from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.reverse import set_url_prefix

@@ -14,10 +14,10 @@ from olympia.abuse.admin import AbuseReportAdmin
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
+    TestCase,
     addon_factory,
     days_ago,
     grant_permission,
-    TestCase,
     user_factory,
 )
 from olympia.ratings.models import Rating

@@ -1,8 +1,8 @@
 from django.core.exceptions import ValidationError as DjangoValidationError
 
-from olympia.amo.validators import OneOrMorePrintableCharacterValidator
-
 from rest_framework import serializers
+
+from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 
 
 class OneOrMorePrintableCharacterAPIValidator(OneOrMorePrintableCharacterValidator):

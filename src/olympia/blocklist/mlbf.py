@@ -48,8 +48,8 @@ def generate_mlbf(stats, blocked, not_blocked):
 
 
 def fetch_blocked_from_db():
-    from olympia.files.models import File
     from olympia.blocklist.models import Block
+    from olympia.files.models import File
 
     blocks = Block.objects.all()
     blocks_guids = [block.guid for block in blocks]

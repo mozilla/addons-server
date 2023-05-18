@@ -1,11 +1,9 @@
 import uuid
-
 from datetime import datetime
 
 from django.db import models
 
 import olympia.core.logger
-
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase

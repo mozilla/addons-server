@@ -8,7 +8,6 @@ from django.core.management.base import BaseCommand, CommandError
 from elasticsearch.exceptions import NotFoundError
 
 import olympia.core.logger
-
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.celery import task
 from olympia.search.models import Reindexing

@@ -5,7 +5,6 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-
 from PIL import Image
 
 from olympia.amo.tests.test_helpers import get_image_path

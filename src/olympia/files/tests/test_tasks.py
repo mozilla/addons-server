@@ -2,18 +2,18 @@ import json
 import os
 import tempfile
 import zipfile
-
-import pytest
 from unittest import mock
-from waffle.testutils import override_switch
 
 from django.conf import settings
+
+import pytest
+from waffle.testutils import override_switch
 
 from olympia.amo.tests import TestCase
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.files.utils import SafeZip
 from olympia.files.tests.test_utils import AppVersionsMixin
+from olympia.files.utils import SafeZip
 
 
 class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):

@@ -1,15 +1,15 @@
-from celery import group
-
 from unittest import mock
+
+from celery import group
 
 from olympia import amo
 from olympia.addons import cron
+from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     update_addon_average_daily_users,
     update_addon_weekly_downloads,
 )
-from olympia.addons.models import Addon, FrozenAddon
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.files.models import File
 
 

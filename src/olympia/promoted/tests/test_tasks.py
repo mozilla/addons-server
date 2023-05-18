@@ -1,21 +1,20 @@
 from datetime import datetime
 
-import pytest
-
-from freezegun import freeze_time
-
 from django.conf import settings
+
+import pytest
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory, version_factory
-from olympia.constants.promoted import LINE, NOTABLE, NOT_PROMOTED
+from olympia.constants.promoted import LINE, NOT_PROMOTED, NOTABLE
 from olympia.promoted.models import PromotedAddon
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
 
 from ..tasks import (
-    add_high_adu_extensions_to_notable,
     NOTABLE_ADU_LIMIT_CONFIG_KEY,
+    add_high_adu_extensions_to_notable,
 )
 
 

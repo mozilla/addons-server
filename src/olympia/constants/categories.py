@@ -1,5 +1,4 @@
 import copy
-
 from functools import total_ordering
 
 from django.urls import reverse
@@ -8,14 +7,14 @@ from django.utils.translation import gettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
+    _ADDON_PERSONA,
+    _ADDON_SEARCH,
+    _ADDON_THEME,
     ADDON_DICT,
     ADDON_EXTENSION,
     ADDON_LPAPP,
-    _ADDON_SEARCH,
     ADDON_SLUGS,
     ADDON_STATICTHEME,
-    _ADDON_THEME,
-    _ADDON_PERSONA,
 )
 
 

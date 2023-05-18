@@ -15,8 +15,8 @@ from olympia.api.permissions import (
     AnyOf,
     PreventActionPermission,
 )
-from olympia.versions.models import License, Version
 from olympia.translations.query import order_by_translation
+from olympia.versions.models import License, Version
 
 from .models import Collection, CollectionAddon
 from .permissions import (

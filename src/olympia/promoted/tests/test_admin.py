@@ -1,14 +1,14 @@
 from django.urls import reverse
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
-from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.reverse import django_reverse
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import (
     LINE,
+    NOT_PROMOTED,
     RECOMMENDED,
     VERIFIED,
-    NOT_PROMOTED,
 )
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import PromotedAddon, PromotedApproval

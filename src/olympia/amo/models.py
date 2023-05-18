@@ -1,7 +1,6 @@
 import contextlib
 import os
 import time
-
 from urllib.parse import urljoin
 
 from django.conf import settings
@@ -20,7 +19,6 @@ from django.utils.functional import cached_property
 import multidb.pinning
 
 import olympia.core.logger
-
 from olympia.translations.hold import save_translations
 
 
@@ -131,8 +129,9 @@ class ManagerBase(models.Manager):
         return self._with_translations(qs)
 
     def _with_translations(self, qs):
-        from olympia.translations import transformer
         from django.db.models import Value
+
+        from olympia.translations import transformer
 
         if hasattr(self.model._meta, 'translated_fields'):
             qs = qs.transform(transformer.get_trans)

@@ -1,6 +1,5 @@
 import os
 import tempfile
-
 from functools import partial
 
 from django.conf import settings
@@ -10,7 +9,7 @@ from django.utils.encoding import force_str
 import pytest
 
 from olympia.amo.tests import TestCase
-from olympia.amo.utils import rm_local_tmp_dir, SafeStorage
+from olympia.amo.utils import SafeStorage, rm_local_tmp_dir
 
 
 pytestmark = pytest.mark.django_db

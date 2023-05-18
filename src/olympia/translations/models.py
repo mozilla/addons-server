@@ -7,7 +7,6 @@ import bleach
 from bleach.linkifier import URL_RE  # build_url_re() with good defaults.
 
 import olympia.core.logger
-
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.urlresolvers import linkify_bounce_url_callback

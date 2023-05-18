@@ -1,7 +1,7 @@
 import json
 import os
-
 from datetime import datetime, timedelta
+from unittest import mock
 from urllib.parse import quote, urlencode
 
 from django.conf import settings
@@ -12,10 +12,8 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import trim_whitespace
 
-from unittest import mock
 import pytest
 import responses
-
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 

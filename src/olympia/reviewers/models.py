@@ -1,5 +1,4 @@
 import json
-
 from datetime import datetime, timedelta
 
 from django.conf import settings
@@ -11,7 +10,6 @@ from django.template import loader
 from django.urls import reverse
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
@@ -724,7 +722,8 @@ class UsageTier(ModelBase):
     growth_threshold_before_flagging = models.IntegerField(
         default=None,
         null=True,
-        help_text="Usage growth percentage threshold before we start automatically flagging the add-on for human review.",
+        help_text='Usage growth percentage threshold before we start automatically '
+        'flagging the add-on for human review.',
     )
 
     class Meta:

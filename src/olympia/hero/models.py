@@ -8,8 +8,8 @@ from django.db import models
 from django.db.models.fields import BLANK_CHOICE_DASH
 from django.forms.widgets import RadioSelect
 from django.templatetags.static import static
-from django.utils.safestring import mark_safe
 from django.urls import Resolver404
+from django.utils.safestring import mark_safe
 
 from olympia.amo.models import LongNameIndex, ModelBase
 from olympia.amo.reverse import resolve_with_trailing_slash, reverse

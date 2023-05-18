@@ -2,21 +2,20 @@ import copy
 import os
 import tarfile
 import zipfile
-
 from urllib.parse import urlsplit, urlunsplit
 
 from django.conf import settings
 from django.db.models import Q
 from django.http.request import QueryDict
+from django.urls import reverse
 from django.utils.encoding import smart_str
 from django.utils.translation import gettext, gettext_lazy as _
-from django.urls import reverse
 
 from rest_framework import exceptions, serializers
 
 from olympia import amo
-from olympia.amo.utils import ImageCheck, sorted_groupby
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.amo.utils import ImageCheck, sorted_groupby
 from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
@@ -29,9 +28,9 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_SLUG
 from olympia.files.utils import SafeTar, SafeZip
 from olympia.versions.models import (
+    VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
     License,
-    VALID_SOURCE_EXTENSIONS,
 )
 
 

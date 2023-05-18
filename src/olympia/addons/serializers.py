@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
+from olympia.amo.utils import SafeStorage, remove_icons, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,
@@ -28,12 +28,12 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
-from olympia.api.serializers import BaseESSerializer, AMOModelSerializer
+from olympia.api.serializers import AMOModelSerializer, BaseESSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
-from olympia.constants.applications import APPS_ALL, APP_IDS
+from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
@@ -41,10 +41,10 @@ from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedAddon
-from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
+from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
-from olympia.users.models import EmailUserRestriction, RESTRICTION_TYPES, UserProfile
+from olympia.users.models import RESTRICTION_TYPES, EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
@@ -77,15 +77,15 @@ from .utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
 )
 from .validators import (
-    AddonMetadataValidator,
     AddonDefaultLocaleValidator,
+    AddonMetadataValidator,
     CanSetCompatibilityValidator,
     MatchingGuidValidator,
-    ReviewedSourceFileValidator,
-    VersionAddonMetadataValidator,
     NoFallbackDefaultLocaleValidator,
-    VersionLicenseValidator,
+    ReviewedSourceFileValidator,
     VerifyMozillaTrademark,
+    VersionAddonMetadataValidator,
+    VersionLicenseValidator,
 )
 
 

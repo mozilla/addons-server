@@ -1,3 +1,5 @@
+from unittest.mock import Mock, PropertyMock, patch
+
 from django import test
 from django.conf import settings
 from django.contrib.auth import SESSION_KEY
@@ -8,8 +10,6 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
-
-from unittest.mock import patch, Mock, PropertyMock
 from pyquery import PyQuery as pq
 
 from olympia.accounts.utils import fxa_login_url, path_with_query
@@ -22,7 +22,7 @@ from olympia.amo.middleware import (
     SetRemoteAddrFromForwardedFor,
     TokenValidMiddleware,
 )
-from olympia.amo.tests import addon_factory, reverse_ns, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.zadmin.models import Config
 
 

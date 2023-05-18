@@ -7,7 +7,6 @@ from django.utils.http import urlencode
 
 import requests
 import waffle
-
 from django_statsd.clients import statsd
 
 import olympia.core.logger

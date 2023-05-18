@@ -1,6 +1,6 @@
-import responses
-
 from django.conf import settings
+
+import responses
 
 from olympia import amo
 from olympia.amo.tests import TestCase, reverse_ns

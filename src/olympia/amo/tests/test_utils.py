@@ -2,6 +2,7 @@ import collections
 import datetime
 import os.path
 import tempfile
+from unittest import mock
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -11,9 +12,7 @@ from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
 import freezegun
-from unittest import mock
 import pytest
-
 from babel import Locale
 
 from olympia import amo

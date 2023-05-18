@@ -1,6 +1,7 @@
 import codecs
 import re
 
+
 UNICODE_BOMS = [
     (codecs.BOM_UTF8, 'utf-8'),
     (codecs.BOM_UTF32_LE, 'utf-32-le'),

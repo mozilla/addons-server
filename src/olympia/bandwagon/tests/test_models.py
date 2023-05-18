@@ -6,7 +6,7 @@ from django.conf import settings
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 

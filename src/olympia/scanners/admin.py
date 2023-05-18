@@ -1,3 +1,5 @@
+from urllib.parse import urljoin, urlparse
+
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
@@ -8,9 +10,6 @@ from django.template.loader import render_to_string
 from django.urls import re_path, reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
-
-
-from urllib.parse import urljoin, urlparse
 
 from olympia import amo
 from olympia.access import acl

@@ -1,12 +1,11 @@
 import datetime
 import os
-
 from copy import deepcopy
 
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import Elasticsearch, helpers, transport, TransportError
+from elasticsearch import Elasticsearch, TransportError, helpers, transport
 
 from .models import Reindexing
 

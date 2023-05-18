@@ -28,9 +28,9 @@ from olympia.constants.promoted import (
     LINE,
     NOTABLE,
     RECOMMENDED,
+    SPONSORED,
     SPOTLIGHT,
     STRATEGIC,
-    SPONSORED,
 )
 from olympia.files.models import File
 from olympia.lib.crypto.tests.test_signing import (

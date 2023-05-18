@@ -1,8 +1,7 @@
 from django.conf import settings
-from django.urls import include, re_path
 from django.contrib import admin
 from django.shortcuts import redirect
-from django.urls import reverse
+from django.urls import include, re_path, reverse
 from django.views.static import serve as serve_static
 
 from olympia.amo.utils import urlparams

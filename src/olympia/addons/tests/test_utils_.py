@@ -6,7 +6,6 @@ from django.forms import ValidationError
 from django.test.client import RequestFactory
 
 import pytest
-
 from freezegun import freeze_time
 
 from olympia import amo
@@ -14,17 +13,17 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.users.models import Group, GroupUser
 
 from ..utils import (
-    DeleteTokenSigner,
-    get_addon_recommendations,
-    get_addon_recommendations_invalid,
-    is_outcome_recommended,
     TAAR_LITE_FALLBACK_REASON_EMPTY,
+    TAAR_LITE_FALLBACK_REASON_INVALID,
     TAAR_LITE_FALLBACK_REASON_TIMEOUT,
     TAAR_LITE_FALLBACKS,
     TAAR_LITE_OUTCOME_CURATED,
     TAAR_LITE_OUTCOME_REAL_FAIL,
     TAAR_LITE_OUTCOME_REAL_SUCCESS,
-    TAAR_LITE_FALLBACK_REASON_INVALID,
+    DeleteTokenSigner,
+    get_addon_recommendations,
+    get_addon_recommendations_invalid,
+    is_outcome_recommended,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
     webext_version_stats,

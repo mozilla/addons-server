@@ -3,17 +3,15 @@ import ipaddress
 import operator
 from collections import OrderedDict
 
-from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
-
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.admin.views.main import (
-    ChangeList,
-    ChangeListSearchForm,
     ERROR_FLAG,
     PAGE_VAR,
     SEARCH_VAR,
+    ChangeList,
+    ChangeListSearchForm,
 )
 from django.core.exceptions import FieldDoesNotExist
 from django.core.paginator import InvalidPage
@@ -22,9 +20,12 @@ from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 
+from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
+
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
 from olympia.constants.activity import LOG_BY_ID
+
 from .models import FakeEmail
 
 

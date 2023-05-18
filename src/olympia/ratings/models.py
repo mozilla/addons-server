@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
@@ -265,6 +264,7 @@ class Rating(ModelBase):
 
     def post_save(sender, instance, created, **kwargs):
         from olympia.addons.models import update_search_index
+
         from . import tasks
 
         if kwargs.get('raw'):

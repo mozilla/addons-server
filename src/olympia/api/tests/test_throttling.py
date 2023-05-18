@@ -1,3 +1,4 @@
+from importlib import import_module
 from unittest import mock
 
 from django.conf import settings
@@ -5,9 +6,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-from importlib import import_module
 import pytest
-
 from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory, force_authenticate
 from rest_framework.throttling import BaseThrottle

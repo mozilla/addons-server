@@ -7,7 +7,7 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, TestCase, reverse_ns
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.promoted.models import PromotedAddon
 

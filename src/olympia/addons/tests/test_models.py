@@ -15,9 +15,11 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons import models as addons_models
 from olympia.addons.models import (
+    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
     Addon,
     AddonApprovalsCounter,
     AddonCategory,
+    AddonGUID,
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
@@ -27,9 +29,7 @@ from olympia.addons.models import (
     GuidAlreadyDeniedError,
     MigratedLWT,
     Preview,
-    AddonGUID,
     track_addon_status_change,
-    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
 )
 from olympia.amo.tests import (
     TestCase,

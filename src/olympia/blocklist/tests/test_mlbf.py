@@ -7,14 +7,14 @@ from filtercascade import FilterCascade
 
 from olympia import amo
 from olympia.addons.models import GUID_REUSE_FORMAT
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.files.models import File
 
 from ..mlbf import (
+    MLBF,
     fetch_all_versions_from_db,
     fetch_blocked_from_db,
     generate_mlbf,
-    MLBF,
 )
 from ..models import Block
 

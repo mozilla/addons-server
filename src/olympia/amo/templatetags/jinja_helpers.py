@@ -1,10 +1,9 @@
 import json as jsonlib
-
 from urllib.parse import urljoin
 
 from django.conf import settings
 from django.forms import CheckboxInput
-from django.template import defaultfilters, Library, loader
+from django.template import Library, defaultfilters, loader
 from django.templatetags.static import static
 from django.urls import reverse
 from django.utils.encoding import smart_str
@@ -18,10 +17,9 @@ from django.utils.translation import get_language, gettext
 import jinja2
 import markupsafe
 import waffle
-from jinja2.ext import Extension
-
 from babel.support import Format
 from django_jinja import library
+from jinja2.ext import Extension
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
 

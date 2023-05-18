@@ -26,7 +26,7 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import get_sitemap_path, get_sitemaps, InvalidSection, render_index_xml
+from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_index_xml
 
 
 @never_cache
@@ -147,7 +147,7 @@ def handler500(request, **kwargs):
 
 @non_atomic_requests
 def csrf_failure(request, reason=''):
-    from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+    from django.middleware.csrf import REASON_NO_CSRF_COOKIE, REASON_NO_REFERER
 
     ctx = {
         'reason': reason,

@@ -12,7 +12,6 @@ from django.utils.translation import gettext
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.activity import log_create
 

@@ -1,15 +1,15 @@
 from decimal import Decimal
 from unittest import mock
 
-import requests
-
 from django.conf import settings
 from django.test.utils import override_settings
 
+import requests
+
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory,
     TestCase,
+    addon_factory,
     user_factory,
     version_factory,
 )

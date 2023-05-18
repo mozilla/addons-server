@@ -1,5 +1,4 @@
 import datetime
-
 from unittest import mock
 
 from olympia.amo.tests import TestCase, addon_factory, version_factory

@@ -9,8 +9,9 @@ from django.forms.models import (
     modelformset_factory,
 )
 
-import olympia.core.logger
+import markupsafe
 
+import olympia.core.logger
 from olympia import amo, ratings
 from olympia.access import acl
 from olympia.amo.forms import AMOModelForm
@@ -20,7 +21,6 @@ from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
-import markupsafe
 
 log = olympia.core.logger.getLogger('z.reviewers.forms')
 

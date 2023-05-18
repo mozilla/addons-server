@@ -11,7 +11,7 @@ from olympia.amo.admin import (
 from olympia.translations.utils import truncate_text
 from olympia.zadmin.admin import related_single_content_link
 
-from .models import Rating, DeniedRatingWord
+from .models import DeniedRatingWord, Rating
 
 
 class RatingTypeFilter(admin.SimpleListFilter):

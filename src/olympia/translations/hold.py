@@ -1,7 +1,6 @@
 from threading import local
 
 import django.dispatch
-
 from django.core.signals import request_finished
 
 

@@ -2,8 +2,8 @@ import json
 import os
 import re
 import sys
-
 from unittest import mock
+from unittest.mock import patch
 from urllib.parse import urlparse
 
 import django
@@ -14,9 +14,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
-
 from lxml import etree
-from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, core

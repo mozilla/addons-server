@@ -3,6 +3,7 @@ from django.views.generic.base import TemplateView
 
 from . import views
 
+
 services_patterns = [
     re_path(
         r'^__heartbeat__$', views.services_heartbeat, name='amo.services_heartbeat'

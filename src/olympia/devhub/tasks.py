@@ -3,13 +3,10 @@ import json
 import os
 import subprocess
 import tempfile
-
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from zipfile import BadZipFile
-
-import waffle
 
 from django.conf import settings
 from django.core.cache import cache
@@ -21,11 +18,11 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
+import waffle
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
@@ -42,12 +39,12 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.devhub import file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
+    InvalidArchiveFile,
     InvalidManifest,
     NoManifestFound,
-    parse_addon,
     SafeZip,
     UnsupportedFileType,
-    InvalidArchiveFile,
+    parse_addon,
 )
 
 

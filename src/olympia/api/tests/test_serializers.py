@@ -1,10 +1,9 @@
 from datetime import datetime
-
 from importlib import import_module
-import pytest
 
 from django.conf import settings
 
+import pytest
 from rest_framework.serializers import BaseSerializer
 
 from olympia.addons.models import Addon

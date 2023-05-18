@@ -1,5 +1,5 @@
-from django.core.exceptions import PermissionDenied
 from django import http, shortcuts
+from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import gettext
 
@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile

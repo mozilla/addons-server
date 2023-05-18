@@ -1,5 +1,5 @@
-import os
 import io
+import os
 import socket
 import traceback
 
@@ -7,13 +7,11 @@ from django.conf import settings
 
 import celery
 import requests
-
 from django_statsd.clients import statsd
 from kombu import Connection
 from PIL import Image
 
 import olympia.core.logger
-
 from olympia.amo.models import use_primary_db
 from olympia.blocklist.tasks import monitor_remote_settings
 from olympia.search.utils import get_es

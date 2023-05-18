@@ -5,7 +5,6 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db

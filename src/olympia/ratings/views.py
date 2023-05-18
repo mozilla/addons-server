@@ -27,7 +27,7 @@ from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrot
 from olympia.api.utils import is_gate_active
 
 from .models import Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission, CanCreateRatingPermission
+from .permissions import CanCreateRatingPermission, CanDeleteRatingPermission
 from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
 from .utils import get_grouped_ratings
 

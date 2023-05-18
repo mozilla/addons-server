@@ -1,7 +1,5 @@
 from datetime import datetime, timedelta
 
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
@@ -10,10 +8,13 @@ from django.test.client import RequestFactory
 from django.urls import reverse
 from django.utils import formats, timezone
 
+from pyquery import PyQuery as pq
+
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.admin import AddonAdmin, ReplacementAddonAdmin
 from olympia.addons.models import Addon, AddonRegionalRestrictions, ReplacementAddon
+from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -21,7 +22,6 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.amo.reverse import django_reverse
 from olympia.blocklist.models import Block
 from olympia.git.models import GitExtractionEntry
 

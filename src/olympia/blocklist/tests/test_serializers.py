@@ -1,4 +1,4 @@
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.blocklist.models import Block
 from olympia.blocklist.serializers import BlockSerializer

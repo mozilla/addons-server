@@ -3,24 +3,21 @@ import io
 import json
 import os
 import zipfile
-
 from base64 import b64decode, b64encode
 
-from django.db import transaction
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 from django.utils.encoding import force_bytes, force_str
 
 import requests
 import waffle
-
+from asn1crypto import cms
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
-from asn1crypto import cms
 
 import olympia.core.logger
-
 from olympia import amo
 
 

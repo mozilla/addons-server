@@ -1,15 +1,14 @@
 import os
-
 from unittest import mock
 
 from django.conf import settings
-from django.utils.encoding import smart_str
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
+from django.utils.encoding import smart_str
 
-from rest_framework import exceptions as drf_exceptions
 from pyquery import PyQuery
+from rest_framework import exceptions as drf_exceptions
 
 from olympia import amo
 from olympia.access import acl

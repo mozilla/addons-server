@@ -1,13 +1,13 @@
 import os
 import tempfile
+from unittest import mock
 
 from django.conf import settings
 from django.core.validators import ValidationError
 
-from unittest import mock
 import pytest
 
-from olympia.amo.tests import get_temp_filename, TestCase
+from olympia.amo.tests import TestCase, get_temp_filename
 from olympia.amo.utils import (
     SafeStorage,
     escape_all,

@@ -2,6 +2,8 @@ import re
 
 from django.utils.translation import gettext_lazy as _
 
+from olympia.versions.compare import version_int as vint
+
 from .base import (
     ADDON_DICT,
     ADDON_EXTENSION,
@@ -10,8 +12,6 @@ from .base import (
     DEFAULT_WEBEXT_MIN_VERSION,
     DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
 )
-
-from olympia.versions.compare import version_int as vint
 
 
 class App:

@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 from unittest import mock
 
-import pytest
-
 from django.conf import settings
+
+import pytest
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -23,10 +23,6 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
-from olympia.scanners.models import (
-    ScannerResult,
-    ScannerRule,
-)
 from olympia.scanners.actions import (
     _delay_auto_approval,
     _delay_auto_approval_indefinitely,
@@ -36,10 +32,14 @@ from olympia.scanners.actions import (
     _flag_for_human_review_by_scanner,
     _no_action,
 )
+from olympia.scanners.models import (
+    ScannerResult,
+    ScannerRule,
+)
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
 )
 from olympia.versions.models import VersionReviewerFlags
 

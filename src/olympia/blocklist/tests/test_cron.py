@@ -3,23 +3,22 @@ import os
 from datetime import datetime, timedelta
 from unittest import mock
 
-import pytest
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.blocklist.cron import (
-    process_blocklistsubmissions,
     get_blocklist_last_modified_time,
+    process_blocklistsubmissions,
     upload_mlbf_to_remote_settings,
 )
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.blocklist import MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY
+from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 

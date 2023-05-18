@@ -3,7 +3,6 @@ import time
 from django.conf import settings
 
 import requests
-
 from django_statsd.clients import statsd
 
 import olympia.core.logger

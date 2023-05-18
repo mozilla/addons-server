@@ -4,16 +4,15 @@ import os
 import re
 import uuid
 from ipaddress import IPv4Address
+from unittest.mock import ANY, patch
 
 from django.core.files.base import ContentFile
 from django.core.management import call_command
 
-from unittest.mock import ANY, patch
-
 from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.utils import SafeStorage
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import UserProfile, UserRestrictionHistory

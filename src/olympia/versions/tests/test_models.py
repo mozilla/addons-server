@@ -1,15 +1,13 @@
 import os.path
-
 from datetime import datetime, timedelta
+from unittest import mock
 
-from django.db import transaction
 from django.conf import settings
+from django.db import transaction
 from django.test.testcases import TransactionTestCase
 
-from unittest import mock
 import pytest
 import waffle
-
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -30,13 +28,13 @@ from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block
 from olympia.constants.promoted import (
     LINE,
-    NOTABLE,
     NOT_PROMOTED,
+    NOTABLE,
     RECOMMENDED,
     SPOTLIGHT,
     STRATEGIC,
 )
-from olympia.constants.scanners import CUSTOMS, YARA, MAD
+from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -44,20 +42,20 @@ from olympia.promoted.models import PromotedAddon, PromotedApproval
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
     UserProfile,
 )
 from olympia.users.utils import get_task_user
 from olympia.zadmin.models import set_config
 
-from ..compare import version_int, VersionString
+from ..compare import VersionString, version_int
 from ..models import (
     ApplicationsVersions,
     DeniedInstallOrigin,
-    License,
     InstallOrigin,
+    License,
     Version,
     VersionCreateError,
     VersionPreview,

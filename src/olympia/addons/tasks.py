@@ -8,7 +8,6 @@ from django.db.models.functions import Collate
 from elasticsearch_dsl import Search
 
 import olympia.core
-
 from olympia import activity, amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (

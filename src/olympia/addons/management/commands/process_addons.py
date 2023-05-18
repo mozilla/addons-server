@@ -13,6 +13,7 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db,
     recreate_theme_previews,
 )
+from olympia.amo.management import ProcessObjectsCommand
 from olympia.blocklist.models import Block
 from olympia.constants.base import (
     _ADDON_LPADDON,
@@ -21,7 +22,6 @@ from olympia.constants.base import (
     _ADDON_THEME,
     _ADDON_WEBAPP,
 )
-from olympia.amo.management import ProcessObjectsCommand
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import addon_rating_aggregates

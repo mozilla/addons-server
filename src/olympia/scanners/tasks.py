@@ -6,13 +6,11 @@ from django.conf import settings
 import requests
 import waffle
 import yara
-
 from django_statsd.clients import statsd
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util import Retry
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db

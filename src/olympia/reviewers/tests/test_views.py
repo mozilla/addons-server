@@ -1,7 +1,6 @@
 import json
 import os
 import time
-
 from collections import OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
@@ -31,12 +30,12 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
+    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
     Addon,
     AddonApprovalsCounter,
     AddonReviewerFlags,
     AddonUser,
     DeniedGuid,
-    UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
 )
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify,
@@ -61,8 +60,8 @@ from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, ST
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import FileValidation, WebextPermission
-from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
+from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
     AutoApprovalSummary,

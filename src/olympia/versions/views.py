@@ -8,7 +8,6 @@ from django.urls import reverse
 from django.utils.cache import patch_cache_control, patch_vary_headers
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.decorators import addon_view_factory

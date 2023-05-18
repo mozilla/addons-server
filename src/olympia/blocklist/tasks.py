@@ -15,8 +15,8 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
 from olympia.constants.blocklist import (
-    MLBF_TIME_CONFIG_KEY,
     MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
     REMOTE_SETTINGS_COLLECTION_MLBF,
 )
 from olympia.lib.remote_settings import RemoteSettings

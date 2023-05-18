@@ -1,22 +1,22 @@
 import random
 from contextlib import contextmanager
 from datetime import timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-from freezegun import freeze_time
-from unittest import mock
 import pytest
+from freezegun import freeze_time
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport
 from olympia.addons.management.commands import (
     fix_langpacks_with_max_version_star,
     process_addons,
 )
 from olympia.addons.models import Addon, DeniedGuid
-from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase,
     addon_factory,

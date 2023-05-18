@@ -1,8 +1,8 @@
+from unittest.mock import MagicMock, Mock
+
 from django.core.paginator import EmptyPage, InvalidPage, PageNotAnInteger, Paginator
 
 import pytest
-
-from unittest.mock import MagicMock, Mock
 
 from olympia.amo.pagination import ESPaginator
 from olympia.amo.templatetags.jinja_helpers import PaginationRenderer

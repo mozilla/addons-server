@@ -1,5 +1,4 @@
 import json
-
 from datetime import timedelta
 from ipaddress import IPv4Address
 
@@ -24,10 +23,10 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     DisposableEmailDomainRestriction,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
 )
 
 from ..models import DeniedRatingWord, Rating, RatingFlag

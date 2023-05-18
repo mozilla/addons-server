@@ -2,7 +2,7 @@ from unittest import mock
 
 import pytest
 
-from olympia.zadmin.models import get_config, set_config, Config
+from olympia.zadmin.models import Config, get_config, set_config
 
 
 @pytest.mark.django_db

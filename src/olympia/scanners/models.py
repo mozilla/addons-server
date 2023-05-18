@@ -1,10 +1,7 @@
 import json
 import re
-
 from collections import defaultdict
 from datetime import datetime
-
-import yara
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -12,8 +9,9 @@ from django.db import models
 from django.utils.functional import classproperty
 from django.utils.translation import gettext_lazy as _
 
-import olympia.core.logger
+import yara
 
+import olympia.core.logger
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
@@ -27,10 +25,10 @@ from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT,
     DELAY_AUTO_APPROVAL_INDEFINITELY_AND_RESTRICT_FUTURE_APPROVALS,
     FLAG_FOR_HUMAN_REVIEW,
-    QUERY_RULE_STATES,
     MAD,
     NEW,
     NO_ACTION,
+    QUERY_RULE_STATES,
     RESULT_STATES,
     RUNNING,
     SCANNERS,

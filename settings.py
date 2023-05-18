@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
 
+
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
 INTERNAL_ROUTES_ALLOWED = True
@@ -134,8 +135,8 @@ REMOTE_SETTINGS_IS_TEST_SERVER = True
 try:
     from local_settings import *  # noqa
 except ImportError:
-    import warnings
     import traceback
+    import warnings
 
     warnings.warn(
         'Could not import local_settings module. {}'.format(traceback.format_exc())

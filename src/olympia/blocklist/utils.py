@@ -102,9 +102,10 @@ def datetime_to_ts(dt=None):
 def disable_addon_for_block(block):
     """Disable appropriate addon versions that are affected by the Block, and
     the addon too if 0 - *."""
-    from .models import Block
     from olympia.addons.models import GuidAlreadyDeniedError
     from olympia.reviewers.utils import ReviewBase
+
+    from .models import Block
 
     review = ReviewBase(
         addon=block.addon,

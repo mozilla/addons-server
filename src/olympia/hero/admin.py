@@ -11,7 +11,7 @@ from django.utils.safestring import mark_safe
 from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import resize_image
 
-from .models import PrimaryHero, SecondaryHeroModule, PrimaryHeroImage
+from .models import PrimaryHero, PrimaryHeroImage, SecondaryHeroModule
 
 
 class ImageChoiceField(forms.ModelChoiceField):

@@ -1,6 +1,7 @@
 import functools
 
 from django import http
+
 from waffle import switch_is_active
 
 from olympia.access import acl

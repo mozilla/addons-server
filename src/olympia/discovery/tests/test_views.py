@@ -1,6 +1,6 @@
-from django.test.utils import override_settings
-
 from unittest import mock
+
+from django.test.utils import override_settings
 
 from waffle import switch_is_active
 from waffle.testutils import override_switch

@@ -6,7 +6,7 @@ from django.conf import settings
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonReviewerFlags
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants import applications, promoted
 from olympia.promoted.models import (
     PromotedAddon,
