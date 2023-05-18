@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-18 19:28+0000\n"
+"PO-Revision-Date: 2023-05-18 19:40+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2942,8 +2942,7 @@ msgstr "შექმენით უმაღლესი დონის გა
 
 msgid "Whether you’re new to extension development, polishing up or porting an existing extension or theme, or creating a custom enterprise solution, we’ve got the resources to support you."
 msgstr ""
-"თუნდაც ჯერ პირველ ნაბიჯებს დგამდეთ გაფართოებების შემუშავებაში, დახვეწეთ ან გადააკეთეთ არსებული გაფართოება და თემა, ან შექმენით საკუთარ დაწესებულებაზე მორგებული გადაწყვეტა, ჩვენ დიდი ოდენობის მასალა "
-"გვაქვს თქვენს მხარდასაჭერად."
+"თუნდაც ახალბედა იყოთ გაფართოებების შექმნაში ან არსებულის დახვეწასა და გადაკეთებას ცდილობდეთ, ანდაც დაწესებულებაზე მორგებულ გადაწყვეტას ამუშავებდეთ, ჩვენ დიდი მასალა მოგვეპოვება თქვენს მხარდასაჭერად."
 
 msgid "Visit the Firefox Extension Workshop"
 msgstr "ეწვიეთ Firefox-ის გაფართოებების სახელოსნოს"
@@ -4170,7 +4169,7 @@ msgstr "მოიცილეთ ზედმეტობა Twitter-ით ს�
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "დააბრუნეთ „დაწუნების“ ხილვის საშუალება!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4613,7 +4612,7 @@ msgid "Auto-flagged due to word match"
 msgstr "თავადვე მოინიშნა სიტყვის დამთხვევის გამო"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "თავადვე მოინიშნა მომხმარებლის შეზღუდვის გამო"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5092,7 +5091,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "მიუთითეთ მართებული IPv4 ან IPv6 CIDR-ქსელის შუალედი, მაგ. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "თქვენი ადგილმდებარეობიდანაა მრავალჯერ გადმოგზავნილი და არღვევს ჩვენს დებულებას. აღნიშნული IP-მისამართი შეზღუდულია."
 
 msgid "Email Pattern"
 msgstr "ელფოსტის ნიმუში"
@@ -5102,7 +5101,7 @@ msgstr ""
 "შეიყვანეთ სრული ელფოსტა შესაზღუდად ან გამოიყენეთ Unix-სახის ჩანაწერი, მაგ. „*@example.com“. თუ გჭირდებათ მისამართის დაბლოკვა ქვემისამართებიანად, დაამატეთ მეორე ჩანაწერიც, მაგ. „*@*.example.com“."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "ელფოსტის მისამართი, რომელიც გამოიყენება თქვენი ანგარიშისთვის, დაუშვებელია წარსადგენად."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
