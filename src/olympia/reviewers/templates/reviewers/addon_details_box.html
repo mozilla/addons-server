@@ -12,7 +12,7 @@
           </a>
         {% endwith %}
       {% else %}
-        <img class="screenshot thumbnail" src="{{ addon.thumbnail_url }}"
+        <img class="screenshot thumbnail" src="{{ addon.get_icon_url(150) }}"
           alt="" width="200" height="150" />
       {% endif %}
     </div>

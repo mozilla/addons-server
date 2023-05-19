@@ -46,6 +46,10 @@
     initQueue();
   }
 
+  if ($('.version-adu').length > 0) {
+    initVersionsADU();
+  }
+
   // Show add-on ID when icon is clicked
   if ($('#addon[data-id], #persona[data-id]').length) {
     $('#addon .icon').click(function () {
@@ -496,4 +500,20 @@ function initScrollingSidebar() {
       setSticky(window.scrollY > addon_top);
     }, 20),
   );
+}
+
+function initVersionsADU() {
+  function loadVersionsADU() {
+    const aduUrl = $('#addon').attr('data-url-versions-adu');
+    $.get(aduUrl, function (data) {
+      Object.entries(data).forEach(([version, adu]) => {
+        $(
+          '.version-adu[data-version-string="' +
+            version +
+            '"] .version-adu-value',
+        ).text(adu);
+      });
+    });
+  }
+  setTimeout(loadVersionsADU, 100);
 }

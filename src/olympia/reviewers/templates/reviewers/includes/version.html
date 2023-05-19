@@ -30,6 +30,10 @@
   <td class="files">
     {% if addon.type != amo.ADDON_STATICTHEME %}
       {{ file_view(version) }}
+      <div class="version-adu" data-version-string="{{ version.version }}">
+        <h5>Average Daily Users:</h5>
+        <p class="version-adu-value downloads">-</p>
+      </div>
       {% if version.compatible_apps %}
         <div class="compatibility"><h5>Compatibility:</h5>
         <ul>

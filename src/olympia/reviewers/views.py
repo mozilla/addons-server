@@ -50,6 +50,7 @@ from olympia.amo.decorators import (
     permission_required,
     post_required,
 )
+from olympia.amo.templatetags.jinja_helpers import numberfmt
 from olympia.amo.utils import paginate
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
@@ -1531,4 +1532,4 @@ class ReviewAddonVersionCompareViewSet(
 @non_atomic_requests
 def usage_per_version(request, addon):
     versions_avg = get_average_daily_users_per_version_from_bigquery(addon)
-    return JsonResponse(dict(versions_avg))
+    return JsonResponse({version: numberfmt(adu) for (version, adu) in versions_avg})

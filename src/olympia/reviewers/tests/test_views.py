@@ -8759,7 +8759,7 @@ class TestUsagePerVersion(ReviewerTest):
         response = self.client.get(self.url)
 
         assert response.status_code == 200
-        assert response.json() == values
+        assert response.json() == {ver: str(adu) for ver, adu in values.items()}
 
     def test_not_reviewer(self):
         user_factory(email='irregular@mozilla.com')
