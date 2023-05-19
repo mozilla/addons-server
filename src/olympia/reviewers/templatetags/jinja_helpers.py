@@ -13,22 +13,27 @@ from olympia.reviewers.templatetags import code_manager
 
 @library.global_function
 @jinja2.pass_context
-def queue_tabnav(context):
+def queue_tabnav(context, reviewer_tables_registry):
     """Returns tuple of tab navigation for the queue pages.
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     request = context['request']
     tabnav = []
+
     if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         tabnav.extend(
             (
                 (
                     'extension',
-                    'queue_extension',
-                    '🛠️ Manual Review',
+                    reviewer_tables_registry['extension'].urlname,
+                    reviewer_tables_registry['extension'].title,
                 ),
-                ('mad', 'queue_mad', 'Flagged by MAD for Human Review'),
+                (
+                    'mad',
+                    reviewer_tables_registry['mad'].urlname,
+                    reviewer_tables_registry['mad'].title,
+                ),
             )
         )
     if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
@@ -36,13 +41,13 @@ def queue_tabnav(context):
             (
                 (
                     'theme_nominated',
-                    'queue_theme_nominated',
-                    '🎨 New',
+                    reviewer_tables_registry['theme_nominated'].urlname,
+                    reviewer_tables_registry['theme_nominated'].title,
                 ),
                 (
                     'theme_pending',
-                    'queue_theme_pending',
-                    '🎨 Updates',
+                    reviewer_tables_registry['theme_pending'].urlname,
+                    reviewer_tables_registry['theme_pending'].title,
                 ),
             )
         )
@@ -50,14 +55,20 @@ def queue_tabnav(context):
         tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
     if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
-        tabnav.append(('content_review', 'queue_content_review', 'Content Review'))
+        tabnav.append(
+            (
+                'content_review',
+                reviewer_tables_registry['content_review'].urlname,
+                reviewer_tables_registry['content_review'].title,
+            )
+        )
 
     if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
         tabnav.append(
             (
                 'pending_rejection',
-                'queue_pending_rejection',
-                'Pending Rejection',
+                reviewer_tables_registry['pending_rejection'].urlname,
+                reviewer_tables_registry['pending_rejection'].title,
             )
         )
 

@@ -15,7 +15,7 @@
 {% block content %}
 
 <ul class="tabnav">
-  {% for this, loc, text in queue_tabnav() %}
+  {% for this, loc, text in queue_tabnav(registry) %}
   <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('reviewers.%s' % loc) }}">{{ text }}</a></li>
   {% endfor %}
 </ul>

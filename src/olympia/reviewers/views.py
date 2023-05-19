@@ -333,6 +333,7 @@ def queue(request, tab):
                 page=page,
                 tab=tab,
                 title=title,
+                registry=reviewer_tables_registry,
             ),
         )
 
@@ -406,6 +407,7 @@ def queue_moderated(request):
             tab='moderated',
             page=page,
             flags=flags,
+            registry=reviewer_tables_registry,
         ),
     )
 

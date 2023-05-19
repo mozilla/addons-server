@@ -6,50 +6,27 @@ from olympia.reviewers import views
 from olympia.users.urls import USER_ID
 
 
+def queue_urls():
+    return [
+        re_path(
+            views.reviewer_tables_registry[queue].url,
+            views.queue,
+            kwargs={'tab': queue},
+            name='reviewers.' + views.reviewer_tables_registry[queue].urlname,
+        )
+        for queue in views.reviewer_tables_registry
+    ]
+
+
 # All URLs under /reviewers/
 urlpatterns = (
     re_path(r'^$', views.dashboard, name='reviewers.dashboard'),
     re_path(
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
-    re_path(
-        views.reviewer_tables_registry['extension'].url,
-        views.queue,
-        kwargs={'tab': 'extension'},
-        name=views.reviewer_tables_registry['extension'].urlname,
-    ),
-    re_path(
-        views.reviewer_tables_registry['theme_nominated'].url,
-        views.queue,
-        kwargs={'tab': 'theme_nominated'},
-        name=views.reviewer_tables_registry['theme_nominated'].urlname,
-    ),
-    re_path(
-        views.reviewer_tables_registry['theme_pending'].url,
-        views.queue,
-        kwargs={'tab': 'theme_pending'},
-        name=views.reviewer_tables_registry['theme_pending'].urlname,
-    ),
+    re_path(r'^queue/', include(queue_urls())),
     re_path(
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
-    ),
-    re_path(
-        views.reviewer_tables_registry['content_review'].url,
-        views.queue,
-        kwargs={'tab': 'content_review'},
-        name=views.reviewer_tables_registry['content_review'].urlname,
-    ),
-    re_path(
-        views.reviewer_tables_registry['mad'].url,
-        views.queue,
-        kwargs={'tab': 'mad'},
-        name=views.reviewer_tables_registry['mad'].urlname,
-    ),
-    re_path(
-        views.reviewer_tables_registry['pending_rejection'].url,
-        views.queue,
-        kwargs={'tab': 'pending_rejection'},
-        name=views.reviewer_tables_registry['pending_rejection'].urlname,
     ),
     re_path(
         r'^moderationlog$',
