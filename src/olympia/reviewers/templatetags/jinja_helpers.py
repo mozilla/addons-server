@@ -21,56 +21,27 @@ def queue_tabnav(context, reviewer_tables_registry):
     request = context['request']
     tabnav = []
 
-    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-        tabnav.extend(
-            (
+    for queue in (
+        'extension',
+        'mad',
+        'theme_nominated',
+        'theme_pending',
+        'moderation',
+        'content_review',
+        'pending_rejection',
+    ):
+        if queue in reviewer_tables_registry and acl.action_allowed_for(
+            request.user, reviewer_tables_registry[queue].permission
+        ):
+            tabnav.append(
                 (
-                    'extension',
-                    reviewer_tables_registry['extension'].urlname,
-                    reviewer_tables_registry['extension'].title,
-                ),
-                (
-                    'mad',
-                    reviewer_tables_registry['mad'].urlname,
-                    reviewer_tables_registry['mad'].title,
-                ),
+                    queue,
+                    reviewer_tables_registry[queue].urlname,
+                    reviewer_tables_registry[queue].title,
+                )
             )
-        )
-    if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
-        tabnav.extend(
-            (
-                (
-                    'theme_nominated',
-                    reviewer_tables_registry['theme_nominated'].urlname,
-                    reviewer_tables_registry['theme_nominated'].title,
-                ),
-                (
-                    'theme_pending',
-                    reviewer_tables_registry['theme_pending'].urlname,
-                    reviewer_tables_registry['theme_pending'].title,
-                ),
-            )
-        )
-    if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
-        tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
-
-    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
-        tabnav.append(
-            (
-                'content_review',
-                reviewer_tables_registry['content_review'].urlname,
-                reviewer_tables_registry['content_review'].title,
-            )
-        )
-
-    if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
-        tabnav.append(
-            (
-                'pending_rejection',
-                reviewer_tables_registry['pending_rejection'].urlname,
-                reviewer_tables_registry['pending_rejection'].title,
-            )
-        )
+        elif acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
+            tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
     return tabnav
 
