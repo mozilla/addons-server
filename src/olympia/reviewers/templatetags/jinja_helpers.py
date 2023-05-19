@@ -40,7 +40,9 @@ def queue_tabnav(context, reviewer_tables_registry):
                     reviewer_tables_registry[queue].title,
                 )
             )
-        elif acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
+        elif queue not in reviewer_tables_registry and acl.action_allowed_for(
+            request.user, amo.permissions.RATINGS_MODERATE
+        ):
             tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
     return tabnav
