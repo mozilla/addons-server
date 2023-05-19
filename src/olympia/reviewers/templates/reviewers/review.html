@@ -47,7 +47,8 @@
      class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}"
      role="main" data-id="{{ addon.id }}"
      data-url="{{ url('reviewers.review_viewing') }}"
-     data-url-versions-adu="{{ url('reviewers.usage_per_version', addon.id) }}"
+     data-versions-adu-url="{{ url('reviewers.usage_per_version', addon.id) }}"
+     data-versions-adu-max-results="{{ VERSION_ADU_LIMIT }}"
 >
 
   {% include 'reviewers/addon_details_box.html' %}
@@ -92,6 +93,15 @@
     <input type="submit" value="Update whiteboards" />
   </div>
 </form>
+{% endif %}
+
+{% if addon.type != amo.ADDON_STATICTHEME %}
+  <div id="version-adu-top-ten">
+    <h3>Top 10 Versions by Average Daily Users</h3>
+    <div>
+      <ol></ol>
+    </div>
+  </div>
 {% endif %}
 
 <form method="POST" action="#review-actions" class="review-form">

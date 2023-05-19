@@ -8754,12 +8754,15 @@ class TestUsagePerVersion(ReviewerTest):
         'olympia.reviewers.views.get_average_daily_users_per_version_from_bigquery'
     )
     def test_basic(self, get_adu_per_version_mock):
-        values = {'1.1': 394, '1.2': 345, '2': 450, '3.4545': 999}
-        get_adu_per_version_mock.return_value = list(values.items())
+        get_adu_per_version_mock.return_value = [
+            ('1.1', 394),
+            ('2', 450),
+            ('3.4545', 9999),
+        ]
         response = self.client.get(self.url)
 
         assert response.status_code == 200
-        assert response.json() == {ver: str(adu) for ver, adu in values.items()}
+        assert response.json() == {'1.1': '394', '2': '450', '3.4545': '9,999'}
 
     def test_not_reviewer(self):
         user_factory(email='irregular@mozilla.com')

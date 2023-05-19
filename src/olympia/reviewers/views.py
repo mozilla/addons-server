@@ -104,7 +104,10 @@ from olympia.reviewers.utils import (
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
-from olympia.stats.utils import get_average_daily_users_per_version_from_bigquery
+from olympia.stats.utils import (
+    get_average_daily_users_per_version_from_bigquery,
+    VERSION_ADU_LIMIT,
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -757,6 +760,7 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.CHANNEL_UNLISTED),
         user_ratings=user_ratings,
         version=version,
+        VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
         versions_with_a_due_date_other=versions_with_a_due_date_other,
         versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,

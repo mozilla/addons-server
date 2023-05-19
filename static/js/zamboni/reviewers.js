@@ -503,16 +503,57 @@ function initScrollingSidebar() {
 }
 
 function initVersionsADU() {
+  function fillVersionsTable(versionAduPairs) {
+    versionAduPairs.forEach(([version, adu]) => {
+      $(
+        format(
+          '.version-adu[data-version-string="{0}"] .version-adu-value',
+          version,
+        ),
+      ).text(adu);
+    });
+    let missingAduText;
+    const queryLimit = $('#addon').data('versions-adu-max-results');
+    if (versionAduPairs.length === queryLimit) {
+      // if we've got max results we may have hit the limit of the query
+      missingAduText = format('<= {0}', versionAduPairs[queryLimit - 1]);
+    } else {
+      // otherwise these are just 0 ADU versions
+      missingAduText = '0';
+    }
+    $('.version-adu-value:contains("\u2014")').text(missingAduText);
+  }
+
+  function fillTopTenBox(versionAduPairs) {
+    versionAduPairs.slice(0, 10).forEach(([version, adu]) => {
+      const versionEntryId = '#version-' + version.replaceAll('.', '_');
+      let versionLinkOrText;
+      if ($(versionEntryId).length) {
+        versionLinkOrText = format(
+          '<a href="{0}">{1}</a>',
+          versionEntryId,
+          version,
+        );
+      } else {
+        versionLinkOrText = format('<span>{0}</span>', version);
+      }
+      $('#version-adu-top-ten ol').append(
+        format('<li>{0}: {1}</li>', versionLinkOrText, adu),
+      );
+    });
+    if (!versionAduPairs.length) {
+      $('#version-adu-top-ten div').append(
+        'No average daily user values found.',
+      );
+    }
+  }
+
   function loadVersionsADU() {
-    const aduUrl = $('#addon').attr('data-url-versions-adu');
+    const aduUrl = $('#addon').data('versions-adu-url');
     $.get(aduUrl, function (data) {
-      Object.entries(data).forEach(([version, adu]) => {
-        $(
-          '.version-adu[data-version-string="' +
-            version +
-            '"] .version-adu-value',
-        ).text(adu);
-      });
+      const versionAduPairs = Object.entries(data);
+      fillVersionsTable(versionAduPairs);
+      fillTopTenBox(versionAduPairs);
     });
   }
   setTimeout(loadVersionsADU, 100);
