@@ -1,9 +1,21 @@
-from django.urls import re_path
+from django.urls import re_path, include
 from django.shortcuts import redirect
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
 from olympia.users.urls import USER_ID
+
+
+def queue_urls():
+    return [
+        re_path(
+            views.reviewer_tables_registry[queue].url,
+            views.queue,
+            kwargs={'tab': queue},
+            name='reviewers.' + views.reviewer_tables_registry[queue].urlname,
+        )
+        for queue in views.reviewer_tables_registry
+    ]
 
 
 # All URLs under /reviewers/
@@ -12,32 +24,9 @@ urlpatterns = (
     re_path(
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
-    re_path(
-        r'^queue/extension$', views.queue_extension, name='reviewers.queue_extension'
-    ),
-    re_path(
-        r'^queue/theme_new$',
-        views.queue_theme_nominated,
-        name='reviewers.queue_theme_nominated',
-    ),
-    re_path(
-        r'^queue/theme_updates$',
-        views.queue_theme_pending,
-        name='reviewers.queue_theme_pending',
-    ),
+    re_path(r'^queue/', include(queue_urls())),
     re_path(
         r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
-    ),
-    re_path(
-        r'^queue/content_review',
-        views.queue_content_review,
-        name='reviewers.queue_content_review',
-    ),
-    re_path(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
-    re_path(
-        r'queue/pending_rejection',
-        views.queue_pending_rejection,
-        name='reviewers.queue_pending_rejection',
     ),
     re_path(
         r'^moderationlog$',
