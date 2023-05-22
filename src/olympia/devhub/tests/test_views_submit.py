@@ -35,6 +35,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.promoted import NOTABLE
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -2198,6 +2199,55 @@ class VersionSubmitUploadMixin:
         assert not AddonReviewerFlags.objects.filter(
             addon=self.addon, needs_admin_code_review=True
         ).exists()
+
+    def test_submit_notification_warning(self):
+        config = Config.objects.create(
+            key='submit_notification_warning',
+            value='Text with <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
+
+    def test_submit_notification_warning_pre_review_ignore_if_not_promoted_group(self):
+        Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.notification-box.warning')
+
+    def test_submit_notification_warning_pre_review(self):
+        self.make_addon_promoted(self.addon, group=NOTABLE)
+        config = Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
+
+    def test_submit_notification_warning_pre_review_generic_test_already_present(self):
+        self.make_addon_promoted(self.addon, group=NOTABLE)
+        config = Config.objects.create(
+            key='submit_notification_warning',
+            value='Warning with <a href="http://example.com">a link</a>.',
+        )
+        Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):

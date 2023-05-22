@@ -1469,6 +1469,18 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         if existing_properties
         else []
     )
+    submit_notification_warning = get_config('submit_notification_warning')
+    if not submit_notification_warning:
+        # If we're not showing the generic submit notification warning, show
+        # one specific to pre review if the developer would be affected because
+        # of its promoted group.
+        promoted_group = addon.promoted_group(currently_approved=False)
+        if (channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review) or (
+            channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review
+        ):
+            submit_notification_warning = get_config(
+                'submit_notification_warning_pre_review'
+            )
     return TemplateResponse(
         request,
         template,
@@ -1476,7 +1488,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             'new_addon_form': form,
             'is_admin': is_admin,
             'addon': addon,
-            'submit_notification_warning': get_config('submit_notification_warning'),
+            'submit_notification_warning': submit_notification_warning,
             'submit_page': submit_page,
             'channel': channel,
             'channel_choice_text': channel_choice_text,
