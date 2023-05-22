@@ -1,5 +1,3 @@
-from datetime import datetime, timedelta
-
 from django.db.models import Q
 
 import olympia.core.logger

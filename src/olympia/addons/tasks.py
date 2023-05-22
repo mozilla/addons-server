@@ -1,6 +1,5 @@
 import hashlib
 import os
-from datetime import datetime, timedelta
 
 from django.db import transaction
 from django.db.models import Q, Value
