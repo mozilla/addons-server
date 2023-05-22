@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-20 06:14+0000\n"
+"PO-Revision-Date: 2023-05-22 19:50+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -74,7 +74,7 @@ msgid "Version {0}"
 msgid_plural "Versions {0}"
 msgstr[0] "Verze {0}"
 msgstr[1] ""
-msgstr[2] ""
+msgstr[2] "Verze {0}"
 
 msgid "Review note"
 msgstr "Poznámka ke kontrole"
@@ -86,7 +86,7 @@ msgid "Request content length is too large."
 msgstr "Délka obsahu požadavku je příliš velká."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Byl překročen maximální počet kategorií pro aplikaci ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Kategorii \"ostatní\" nelze kombinovat s jinou kategorií"
@@ -107,7 +107,7 @@ msgid "URLs must start with https://."
 msgstr "URL adresy musí začínat https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Licence s hodnotou atributu slug={value} neexistuje."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem ({extensions})."
@@ -150,6 +150,7 @@ msgstr "Soubor je už zakázaný."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nejnovější schválenou verzi tohoto doplňku pro %s nelze odstranit, protože předchozí verze nebyla schválena pro propagaci aplikace %s. Pokud s tím potřebujete pomoci, obraťte se na správce AMO."
 
 msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
@@ -179,7 +180,7 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Před přidáním účtu jako autora musí být v účtu nastaveno zobrazované jméno."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Tento slug (část adresy URL) se nedá použít. Zvolte si prosím jiný."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Názvy doplňků nesmí obsahovat ochranné známky Mozilly a Firefoxu."
@@ -188,7 +189,7 @@ msgid "Version {version_string} must be greater than the previous approved versi
 msgstr "Verze {version_string} musí být vyšší než předchozí schválená verze {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Atributy „license“ a „custom_license“ se nemohou vyskytnout současně."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
@@ -206,10 +207,10 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "K vytvoření uvedené verze je nutné nastavit metadata doplňku: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "V manifestu musí být uveden identifikátor GUID."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Identifikátor GUID v manifestu a adresa URL se neshodují."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Zdroj nemůže být změněn, protože tato verze již byla ověřena Mozillou."
@@ -504,11 +505,11 @@ msgstr "U doplňku {addon} byly upraveny kategorie."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "Uživatel {user} ({0}) byl přidaný k doplňku {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "Uživatel {user} ({0}) byl odebrát od doplňku {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Příspěvky pro doplněk {addon}."
@@ -534,7 +535,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "U doplňku {addon} byla smazána verze {0}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Soubor {file} byl přidán k verzi {version} doplňku {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Od doplňku {addon} verze {version} byl smazán soubor {0}."
@@ -691,10 +692,10 @@ msgid "User {user} picture deleted."
 msgstr "Obrázek uživatele {user} byl smazán."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Uživatel {user} byl přidán do skupiny {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Uživatel {user} byl odebrán ze skupiny {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} již není v seznamech."
@@ -848,7 +849,7 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "Zrušené zamítnutí"
 
 msgid "{addon} needs_human_review flag cleared."
 msgstr ""
@@ -1526,7 +1527,7 @@ msgid "Need to select at least one application."
 msgstr "Vyberte alespoň jednu aplikaci."
 
 msgid "a blocklist entry"
-msgstr ""
+msgstr "záznam v seznamu blokovaných položek"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verze {version} už byla dříve nahrána a smazána."
@@ -4330,7 +4331,7 @@ msgstr "Zobrazit všechna rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Rozšíření zaměřená na bezpečnost a soukromí"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4694,7 +4695,7 @@ msgid "Human-readable name for the scanner rule"
 msgstr ""
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "Název čitelný pro člověka"
 
 msgid "Human readable description for the scanner rule"
 msgstr ""
