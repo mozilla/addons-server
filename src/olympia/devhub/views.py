@@ -1470,7 +1470,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         else []
     )
     submit_notification_warning = get_config('submit_notification_warning')
-    if not submit_notification_warning:
+    if not submit_notification_warning and addon:
         # If we're not showing the generic submit notification warning, show
         # one specific to pre review if the developer would be affected because
         # of its promoted group.
