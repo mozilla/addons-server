@@ -75,5 +75,5 @@ EXTENSION_WORKSHOP_URL = env(
 )
 
 REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.allizom.org/v1/'
-REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings.allizom.org/v1/'
+REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
