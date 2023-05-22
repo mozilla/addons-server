@@ -721,7 +721,11 @@ class UsageTier(ModelBase):
     name = models.CharField(max_length=255)
     lower_adu_threshold = models.IntegerField(default=None, null=True)
     upper_adu_threshold = models.IntegerField(default=None, null=True)
-    growth_threshold_before_flagging = models.IntegerField(default=None, null=True)
+    growth_threshold_before_flagging = models.IntegerField(
+        default=None,
+        null=True,
+        help_text="Usage growth percentage threshold before we start automatically flagging the add-on for human review.",
+    )
 
     class Meta:
         ordering = ('upper_adu_threshold',)
