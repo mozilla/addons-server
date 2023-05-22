@@ -1,25 +1,32 @@
 import os
 import shutil
 import tempfile
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
 
 import pytest
+from freezegun import freeze_time
 from PIL import Image
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
+from olympia.files.models import File
+from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
-from olympia.versions.models import VersionPreview
+from olympia.versions.models import Version, VersionPreview
+from olympia.zadmin.models import set_config
 
 from ..tasks import (
     disable_addons,
+    flag_high_hotness_according_to_review_tier,
     index_addons,
     recreate_theme_previews,
     resize_icon,
@@ -230,6 +237,146 @@ def test_update_addon_hotness():
     assert addon4.hotness > 0
     # Too low averages so we set the hotness to 0.
     assert addon2.hotness == 0
+
+
+@freeze_time('2023-05-18 11:00')
+@pytest.mark.django_db
+def test_flag_high_hotness_according_to_review_tier():
+    user_factory(pk=settings.TASK_USER_ID)
+    set_config(EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, '1')
+    # Create some usage tiers and add add-ons in them for the task to do
+    # something. The ones missing a lower, upper, or growth threshold don't
+    # do anything. Also, tiers need to have a lower adu threshold above
+    # MINIMUM_ADU_FOR_HOTNESS_NONTHEME (100) to do anything.
+    UsageTier.objects.create(name='Not a tier with usage values')
+    UsageTier.objects.create(
+        name='D tier (below minimum usage for hotness)',
+        lower_adu_threshold=0,
+        upper_adu_threshold=100,
+        growth_threshold_before_flagging=0.1,
+    )
+    UsageTier.objects.create(
+        name='C tier (no growth threshold)',
+        lower_adu_threshold=100,
+        upper_adu_threshold=200,
+    )
+    UsageTier.objects.create(
+        name='B tier',
+        lower_adu_threshold=200,
+        upper_adu_threshold=250,
+        growth_threshold_before_flagging=20,
+    )
+    UsageTier.objects.create(
+        name='A tier',
+        lower_adu_threshold=250,
+        upper_adu_threshold=1000,
+        growth_threshold_before_flagging=30,
+    )
+    UsageTier.objects.create(
+        name='S tier (no upper threshold)',
+        lower_adu_threshold=1000,
+        upper_adu_threshold=None,
+        growth_threshold_before_flagging=30,
+    )
+
+    not_flagged = [
+        # Usage below MINIMUM_ADU_FOR_HOTNESS_NONTHEME so tier is inactive
+        addon_factory(name='Low usage addon', average_daily_users=99, hotness=0.3),
+        # Belongs to C tier, which doesn't have a growth threshold set.
+        addon_factory(name='C tier addon', average_daily_users=100, hotness=0.3),
+        # Belongs to B tier but not an extension.
+        addon_factory(
+            name='B tier language pack',
+            type=amo.ADDON_LPAPP,
+            average_daily_users=200,
+            hotness=0.3,
+        ),
+        addon_factory(
+            name='B tier theme',
+            type=amo.ADDON_STATICTHEME,
+            average_daily_users=200,
+            hotness=0.3,
+        ),
+        # Belongs to A tier but below the growth threshold.
+        addon_factory(
+            name='A tier below threshold', average_daily_users=250, hotness=0.2
+        ),
+        # Belongs to S tier, which doesn't have an upper threshold. (like
+        # notable, subject to human review anyway)
+        addon_factory(name='S tier addon', average_daily_users=1000, hotness=0.3),
+        # Belongs to A tier but already human reviewed.
+        addon_factory(
+            name='A tier already reviewed',
+            average_daily_users=250,
+            hotness=0.3,
+            version_kw={'human_review_date': datetime.now()},
+        ),
+        # Belongs to B tier but already disabled.
+        addon_factory(
+            name='B tier already disabled',
+            average_daily_users=200,
+            hotness=0.3,
+            status=amo.STATUS_DISABLED,
+        ),
+        # Belongs to B tier but already flagged for human review for growth
+        # (see below).
+        addon_factory(
+            name='B tier already flagged', average_daily_users=200, hotness=0.3
+        ),
+    ]
+    NeedsHumanReview.objects.create(
+        version=not_flagged[-1].current_version, is_active=True
+    )
+
+    flagged = [
+        addon_factory(name='B tier', average_daily_users=200, hotness=0.3),
+        addon_factory(name='A tier', average_daily_users=250, hotness=0.3),
+        addon_factory(
+            name='A tier with inactive flags', average_daily_users=250, hotness=0.3
+        ),
+    ]
+
+    # Add an inactive flag on the last one, shouldn't do anything.
+    NeedsHumanReview.objects.create(
+        version=flagged[-1].current_version, is_active=False
+    )
+
+    # Prtend all files were signed otherwise they would not get flagged.
+    File.objects.update(is_signed=True)
+    flag_high_hotness_according_to_review_tier()
+
+    for addon in not_flagged:
+        assert (
+            addon.versions.latest('pk')
+            .needshumanreview_set.filter(
+                reason=NeedsHumanReview.REASON_HOTNESS_THRESHOLD, is_active=True
+            )
+            .count()
+            == 0
+        )
+
+    for addon in flagged:
+        version = addon.versions.latest('pk')
+        assert (
+            version.needshumanreview_set.filter(
+                reason=NeedsHumanReview.REASON_HOTNESS_THRESHOLD, is_active=True
+            ).count()
+            == 1
+        )
+
+    # We've set EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY so that there would be
+    # one review per day after . Since we've frozen time on a Wednesday,
+    # we should get: Friday, Monday (skipping week-end), Tuesday.
+    due_dates = (
+        Version.objects.filter(addon__in=flagged)
+        .values_list('due_date', flat=True)
+        .order_by('due_date')
+    )
+    assert list(due_dates) == [
+        datetime(2023, 5, 18, 11, 0),
+        datetime(2023, 5, 19, 11, 0),
+        datetime(2023, 5, 22, 11, 0),
+    ]
 
 
 @pytest.mark.django_db

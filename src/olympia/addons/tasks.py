@@ -455,8 +455,13 @@ def flag_high_hotness_according_to_review_tier():
         .filter(type=amo.ADDON_EXTENSION)
         .filter(tier_filters)
     )
+    used_generator_last_iteration = None
+    due_date = None
     for addon in qs:
-        due_date = next(due_date_generator)
-        addon.set_needs_human_review_on_latest_versions(
+        if used_generator_last_iteration is not False:
+            # Only advance the generator if we used the previous due date or
+            # it's the first iteration.
+            due_date = next(due_date_generator)
+        used_generator_last_iteration = addon.set_needs_human_review_on_latest_versions(
             due_date=due_date, reason=NeedsHumanReview.REASON_HOTNESS_THRESHOLD
         )

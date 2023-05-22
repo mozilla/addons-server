@@ -157,8 +157,9 @@ class TestUpdateAddonHotness(TestCase):
         self.deleted_not_in_bigquery = addon_factory(hotness=666)
         self.deleted_not_in_bigquery.delete()
 
+    @mock.patch('olympia.addons.cron.flag_high_hotness_according_to_review_tier.si')
     @mock.patch('olympia.addons.cron.get_averages_by_addon_from_bigquery')
-    def test_basic(self, get_averages_mock):
+    def test_basic(self, get_averages_mock, flag_high_hotness_mock):
         get_averages_mock.return_value = {
             self.extension.guid: {
                 'avg_this_week': 827080,
@@ -226,6 +227,8 @@ class TestUpdateAddonHotness(TestCase):
 
         assert self.not_in_bigquery.reload().hotness == 0
         assert self.deleted_not_in_bigquery.reload().hotness == 0
+
+        assert flag_high_hotness_mock.call_count == 1
 
 
 class TestUpdateAddonWeeklyDownloads(TestCase):
