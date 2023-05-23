@@ -1,3 +1,4 @@
+from django import forms
 from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
@@ -13,6 +14,19 @@ from .models import (
 )
 
 
+class NeedsHumanReviewInlineForm(forms.ModelForm):
+    # Work around for https://code.djangoproject.com/ticket/29947
+    # Django admin checks whether each form has changed when saving, and
+    # ignores forms with no changes. But for NeedsHumanReviewInline, there
+    # might be no changes compared to the default, if the user is adding an
+    # active NeedsHumanReview instance. So, always pretend there are changes
+    # if the instance is new.
+    def has_changed(self):
+        if not self.instance or not self.instance.pk:
+            return True
+        return super().has_changed()
+
+
 class VersionReviewerFlagsInline(admin.StackedInline):
     model = VersionReviewerFlags
     fields = ('pending_rejection', 'needs_human_review_by_mad')
@@ -23,6 +37,7 @@ class VersionReviewerFlagsInline(admin.StackedInline):
 
 class NeedsHumanReviewInline(admin.TabularInline):
     model = NeedsHumanReview
+    form = NeedsHumanReviewInlineForm
     fields = ('created', 'modified', 'reason', 'is_active')
     readonly_fields = ('reason', 'created', 'modified')
     can_delete = False
