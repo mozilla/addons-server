@@ -1,14 +1,12 @@
 import os.path
 import zipfile
-
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.urls import reverse
-
-from unittest import mock
 
 from pyquery import PyQuery as pq
 
@@ -22,8 +20,8 @@ from olympia.amo.tests import (
     formset,
     initial,
     reverse_ns,
-    version_factory,
     user_factory,
+    version_factory,
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED

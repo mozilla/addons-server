@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib import admin, auth
 from django.core.exceptions import PermissionDenied
 from django.shortcuts import redirect
-from django.utils.html import format_html
 from django.urls import reverse
+from django.utils.html import format_html
 
 from olympia.accounts.utils import redirect_for_login
 

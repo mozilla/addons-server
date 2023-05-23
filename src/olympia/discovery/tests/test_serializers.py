@@ -4,7 +4,7 @@ import pytest
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import DiscoverySerializer
 from olympia.translations.models import Translation

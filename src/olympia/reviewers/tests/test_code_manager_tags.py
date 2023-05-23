@@ -1,7 +1,7 @@
 from django.test.utils import override_settings
 
-from olympia.reviewers.templatetags import code_manager
 from olympia.amo.tests import TestCase
+from olympia.reviewers.templatetags import code_manager
 
 
 class TestCodeManagerUrl(TestCase):

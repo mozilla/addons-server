@@ -2,17 +2,16 @@ import math
 import os
 import shutil
 import tempfile
-
 from base64 import b64encode
 from datetime import datetime
+from unittest import mock
 
 from django.conf import settings
 from django.utils.encoding import force_str
 
-from unittest import mock
 import pytest
-from PIL import Image, ImageChops
 from freezegun import freeze_time
+from PIL import Image, ImageChops
 
 from olympia import amo
 from olympia.amo.tests import root_storage

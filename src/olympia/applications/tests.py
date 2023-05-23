@@ -5,8 +5,7 @@ from django.db import IntegrityError
 import responses
 
 from olympia import amo
-from olympia.amo.tests import APITestClientSessionID, reverse_ns, TestCase
-
+from olympia.amo.tests import APITestClientSessionID, TestCase, reverse_ns
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 

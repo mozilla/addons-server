@@ -1,10 +1,10 @@
 from django.core.management.base import BaseCommand
-from django.utils import translation
-from django.test.utils import override_settings
 from django.db.models.signals import post_save
+from django.test.utils import override_settings
+from django.utils import translation
 
-from olympia.landfill.serializers import GenerateAddonsSerializer
 from olympia.addons.models import Addon, update_search_index
+from olympia.landfill.serializers import GenerateAddonsSerializer
 
 
 #  Featured collections on the homepage.

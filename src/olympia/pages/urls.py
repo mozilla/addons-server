@@ -1,10 +1,10 @@
 from django.conf import settings
-from django.urls import re_path
 from django.http import HttpResponsePermanentRedirect as perma_redirect
-from django.urls import reverse
+from django.urls import re_path, reverse
 from django.views.generic.base import TemplateView
 
 from olympia.amo.views import frontend_view
+
 
 urlpatterns = [
     re_path(

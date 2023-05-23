@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
 from django.utils.translation import gettext
 
-from elasticsearch_dsl import Q, query, Search
+from elasticsearch_dsl import Q, Search, query
 from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
@@ -25,7 +25,6 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -41,9 +40,9 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
     AllowIfNotMozillaDisabled,
+    AllowListedViewerOrReviewer,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
-    AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
     APIGatePermission,
@@ -78,21 +77,21 @@ from .decorators import addon_view_factory
 from .indexers import AddonIndexer
 from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
 from .serializers import (
-    AddonEulaPolicySerializer,
     AddonAuthorSerializer,
+    AddonEulaPolicySerializer,
+    AddonPendingAuthorSerializer,
     AddonSerializer,
     DeveloperAddonSerializer,
-    DeveloperVersionSerializer,
     DeveloperListVersionSerializer,
+    DeveloperVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
-    ReplacementAddonSerializer,
-    AddonPendingAuthorSerializer,
+    ListVersionSerializer,
     PreviewSerializer,
+    ReplacementAddonSerializer,
     StaticCategorySerializer,
     VersionSerializer,
-    ListVersionSerializer,
 )
 from .utils import (
     DeleteTokenSigner,

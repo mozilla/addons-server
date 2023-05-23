@@ -2,16 +2,14 @@ import copy
 import datetime
 import json
 import os
-
 from email.utils import formataddr
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
 
-from unittest import mock
 import pytest
-
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -20,6 +18,7 @@ from olympia.activity.models import MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLo
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP,
     ADDON_REVIEWER_NAME,
+    NOTIFICATIONS_FROM_EMAIL,
     ActivityEmailEncodingError,
     ActivityEmailError,
     ActivityEmailParser,
@@ -29,11 +28,10 @@ from olympia.activity.utils import (
     add_email_to_activity_log_wrapper,
     log_and_notify,
     notify_about_activity_log,
-    NOTIFICATIONS_FROM_EMAIL,
     send_activity_mail,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, SQUOTE_ESCAPED, user_factory
+from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, addon_factory, user_factory
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))

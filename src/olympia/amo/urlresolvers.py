@@ -1,7 +1,6 @@
 import hashlib
 import hmac
 import re
-
 from urllib.parse import quote
 
 from django.conf import settings

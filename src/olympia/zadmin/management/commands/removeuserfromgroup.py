@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 
 import olympia.core.logger
-
 from olympia.access.models import Group, GroupUser
 from olympia.users.models import UserProfile
 

@@ -9,11 +9,11 @@ from olympia.tags.views import TagListView
 
 from .views import (
     AddonAuthorViewSet,
-    AddonPendingAuthorViewSet,
     AddonAutoCompleteSearchView,
     AddonFeaturedView,
-    AddonRecommendationView,
+    AddonPendingAuthorViewSet,
     AddonPreviewViewSet,
+    AddonRecommendationView,
     AddonSearchView,
     AddonVersionViewSet,
     AddonViewSet,

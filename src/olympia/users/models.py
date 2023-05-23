@@ -1,15 +1,12 @@
 import binascii
+import ipaddress
 import os
 import random
 import re
 import time
-import ipaddress
-from urllib.parse import urljoin
-
 from datetime import datetime
-from extended_choices import Choices
 from fnmatch import fnmatchcase
-import requests
+from urllib.parse import urljoin
 
 from django import forms
 from django.conf import settings
@@ -27,12 +24,14 @@ from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.translation import gettext, gettext_lazy as _
 
-import olympia.core.logger
+import requests
+from extended_choices import Choices
 
-from olympia import amo, activity, core
+import olympia.core.logger
+from olympia import activity, amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.fields import PositiveAutoField, CIDRField
+from olympia.amo.fields import CIDRField, PositiveAutoField
 from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator

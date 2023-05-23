@@ -7,15 +7,14 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-
 from celery import chord
 from celery.result import AsyncResult
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    addon_factory,
     TestCase,
+    addon_factory,
     user_factory,
     version_factory,
 )
@@ -24,7 +23,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.scanners.tasks import run_customs, run_yara, call_mad_api
+from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
 from olympia.versions.models import Version
 
 

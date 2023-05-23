@@ -1,12 +1,10 @@
 import os
-from datetime import datetime, timedelta
-
 from base64 import b64encode
-from urllib.parse import urlparse
+from datetime import datetime, timedelta
 from fnmatch import fnmatch
+from urllib.parse import urlparse
 
 import django.dispatch
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
@@ -18,14 +16,11 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext, gettext_lazy as _
 
 import markupsafe
-from olympia.constants.applications import APP_IDS
 import waffle
-
 from django_statsd.clients import statsd
 from publicsuffix2 import get_sld
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
@@ -37,24 +32,25 @@ from olympia.amo.models import (
     OnChangeMixin,
 )
 from olympia.amo.utils import (
+    SafeStorage,
     id_to_path,
     sorted_groupby,
-    SafeStorage,
     utc_millesecs_from_epoch,
 )
 from olympia.applications.models import AppVersion
+from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
+from olympia.scanners.models import ScannerResult
 from olympia.translations.fields import (
     LinkifiedField,
     PurifiedField,
     TranslatedField,
     save_signal,
 )
-from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
 from olympia.users.utils import RestrictionChecker
 from olympia.zadmin.models import get_config
@@ -365,8 +361,8 @@ class Version(OnChangeMixin, ModelBase):
         """
         from olympia.addons.models import AddonReviewerFlags
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
-        from olympia.reviewers.models import NeedsHumanReview
         from olympia.git.utils import create_git_extraction_entry
+        from olympia.reviewers.models import NeedsHumanReview
 
         assert parsed_data is not None
 

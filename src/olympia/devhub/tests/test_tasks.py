@@ -1,25 +1,23 @@
 import json
 import shutil
 import tempfile
-
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from decimal import Decimal
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
-from unittest import mock
 import pytest
-
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, user_factory, root_storage
+from olympia.amo.tests import TestCase, addon_factory, root_storage, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file, get_image_path
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
@@ -27,8 +25,8 @@ from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks
 from olympia.files.models import File
-from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadMixin
+from olympia.files.utils import NoManifestFound
 
 
 pytestmark = pytest.mark.django_db

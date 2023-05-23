@@ -2,6 +2,7 @@ from datetime import date
 from unittest import mock
 
 from django.test.utils import override_settings
+
 from google.cloud import bigquery
 
 from olympia.amo.tests import TestCase, addon_factory
@@ -13,8 +14,8 @@ from olympia.stats.utils import (
     AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
-    get_averages_by_addon_from_bigquery,
     get_average_daily_users_per_version_from_bigquery,
+    get_averages_by_addon_from_bigquery,
     get_download_series,
     get_updates_series,
     rows_to_series,

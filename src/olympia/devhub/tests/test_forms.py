@@ -10,7 +10,6 @@ from django.utils import translation
 
 import pytest
 from freezegun import freeze_time
-
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
@@ -18,10 +17,10 @@ from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.addons.views import AddonViewSet
 from olympia.amo.tests import (
+    TestCase,
     addon_factory,
     get_random_ip,
     req_factory_factory,
-    TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path

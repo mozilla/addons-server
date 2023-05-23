@@ -1,5 +1,4 @@
 import olympia.core.logger
-
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db

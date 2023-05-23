@@ -1,6 +1,5 @@
 import json
 import time
-
 from calendar import timegm
 from datetime import datetime, timedelta
 from unittest import mock
@@ -10,7 +9,6 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 import jwt
-
 from freezegun import freeze_time
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
@@ -22,8 +20,8 @@ from olympia.accounts.verify import IdentificationError
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClientSessionID,
     APITestClientJWT,
+    APITestClientSessionID,
     TestCase,
     WithDynamicEndpoints,
     user_factory,

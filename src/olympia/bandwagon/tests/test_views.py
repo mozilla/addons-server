@@ -1,7 +1,6 @@
 import json
 
 import django.test
-
 from django.conf import settings
 from django.test.utils import override_settings
 from django.utils.cache import get_max_age

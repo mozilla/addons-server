@@ -1,7 +1,6 @@
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 

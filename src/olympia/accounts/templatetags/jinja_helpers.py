@@ -1,7 +1,7 @@
 from urllib.parse import quote_plus
 
-from django_jinja import library
 import jinja2
+from django_jinja import library
 
 from olympia.accounts.utils import path_with_query
 from olympia.amo.templatetags.jinja_helpers import drf_url

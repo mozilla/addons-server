@@ -1,7 +1,7 @@
 import re
+from unittest.mock import patch
 
 import django
-
 from django.conf import settings
 from django.db import connections, reset_queries
 from django.test import TransactionTestCase
@@ -11,8 +11,6 @@ from django.utils.functional import lazy
 
 import jinja2
 import pytest
-
-from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.models import use_primary_db
@@ -31,9 +29,9 @@ from olympia.translations.tests.testapp.models import (
     ContainsTranslatedThrough,
     FancyModel,
     TranslatedModel,
-    UntranslatedModel,
-    TranslatedModelWithDefaultNull,
     TranslatedModelLinkedAsForeignKey,
+    TranslatedModelWithDefaultNull,
+    UntranslatedModel,
 )
 
 

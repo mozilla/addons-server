@@ -1,10 +1,11 @@
 import collections
 import contextlib
 import errno
+import fcntl
 import hashlib
+import io
 import json
 import os
-import io
 import re
 import shutil
 import signal
@@ -13,7 +14,6 @@ import struct
 import tarfile
 import tempfile
 import zipfile
-import fcntl
 
 from django import forms
 from django.conf import settings
@@ -25,15 +25,13 @@ from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
-from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.lib import unicodehelper
-
+from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.versions.compare import VersionString
 
 

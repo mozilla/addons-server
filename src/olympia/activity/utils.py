@@ -1,5 +1,4 @@
 import re
-
 from datetime import datetime
 from email.utils import formataddr
 from html import unescape
@@ -12,11 +11,9 @@ from django.urls import reverse
 from django.utils import translation
 
 import waffle
-
 from email_reply_parser import EmailReplyParser
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken

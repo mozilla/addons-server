@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 
 from olympia.constants.scanners import MAD
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
 )
 
 

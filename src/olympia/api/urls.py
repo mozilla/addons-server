@@ -1,8 +1,8 @@
 from django.urls import include, re_path
 
 from olympia.accounts.urls import accounts_v3, accounts_v4, auth_urls
-from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.addons.api_urls import addons_v3, addons_v4, addons_v5
+from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 

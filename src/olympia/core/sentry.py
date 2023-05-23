@@ -3,6 +3,7 @@ import os
 import re
 import urllib.parse
 
+
 # List of fields to scrub in our custom sentry_before_send() callback.
 # /!\ Each value needs to be in lowercase !
 SENTRY_SENSITIVE_FIELDS = (

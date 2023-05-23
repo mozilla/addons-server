@@ -5,6 +5,7 @@ from django.utils.html import format_html
 
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
+
 from .models import GitExtractionEntry
 
 

@@ -1,7 +1,7 @@
-import pytest
-
 from django.test.utils import override_settings
 from django.urls.exceptions import NoReverseMatch
+
+import pytest
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, VersionLog
@@ -14,6 +14,8 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.api.tests.utils import APIKeyAuthTestMixin
+from olympia.blocklist.models import Block
+from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.scanners import (
     CUSTOMS,
     LABEL_BAD,
@@ -21,8 +23,6 @@ from olympia.constants.scanners import (
     TRUE_POSITIVE,
     YARA,
 )
-from olympia.blocklist.models import Block
-from olympia.blocklist.utils import block_activity_log_save
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
 

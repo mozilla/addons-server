@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
+from unittest import mock
+
 from django.conf import settings
 from django.core.management import call_command
 
-from unittest import mock
-
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.addons.models import Addon
+from olympia.amo.tests import TestCase
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
-from olympia.versions.models import Version
 from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 class TestExtractHostPermissions(UploadMixin, TestCase):

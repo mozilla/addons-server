@@ -1,6 +1,8 @@
 import os
 from unittest import mock
 
+from django.conf import settings
+from django.core.files.images import get_image_dimensions
 from django.urls import reverse
 
 import responses
@@ -10,9 +12,6 @@ from olympia import amo
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from django.conf import settings
-from django.core.files.images import get_image_dimensions
-
 from olympia.discovery.models import DiscoveryItem
 from olympia.hero.models import PrimaryHeroImage, SecondaryHero, SecondaryHeroModule
 from olympia.shelves.models import Shelf

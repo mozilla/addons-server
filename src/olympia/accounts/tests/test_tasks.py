@@ -11,7 +11,7 @@ from olympia.accounts.tasks import (
     primary_email_change_event,
 )
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 

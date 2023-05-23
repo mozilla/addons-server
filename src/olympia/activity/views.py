@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-
 from django.utils.translation import gettext, gettext_lazy as _
 
 from rest_framework import exceptions, status
@@ -14,7 +13,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -24,11 +22,11 @@ from olympia.activity.serializers import (
 )
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
+    USER_TYPE_ADDON_AUTHOR,
     action_from_user,
     filter_queryset_to_pending_replies,
     log_and_notify,
     type_of_user,
-    USER_TYPE_ADDON_AUTHOR,
 )
 from olympia.addons.views import AddonChildMixin
 from olympia.api.permissions import (

@@ -1,5 +1,5 @@
-from olympia.api.serializers import AMOModelSerializer
 from olympia.api.fields import OutgoingURLField, TranslationSerializerField
+from olympia.api.serializers import AMOModelSerializer
 
 from .models import Block
 

@@ -1,7 +1,6 @@
 from django.utils.encoding import force_str
 
 import markupsafe
-
 from django_jinja import library
 
 

@@ -1,12 +1,12 @@
-import os
 import json
+import os
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.conf import settings
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 from ..models import Block
 

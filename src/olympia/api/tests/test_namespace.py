@@ -1,10 +1,10 @@
-from django.urls import include, NoReverseMatch, re_path
+from django.urls import NoReverseMatch, include, re_path
 
 from rest_framework.response import Response
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
-from olympia.amo.tests import addon_factory, reverse_ns, TestCase, WithDynamicEndpoints
+from olympia.amo.tests import TestCase, WithDynamicEndpoints, addon_factory, reverse_ns
 
 
 class EmptyViewSet(GenericViewSet):

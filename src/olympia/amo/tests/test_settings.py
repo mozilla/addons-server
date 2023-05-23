@@ -1,11 +1,10 @@
-import os
 import json
-
+import os
 from copy import deepcopy
 
-from sentry_sdk.hub import Hub
-
 from django.conf import settings
+
+from sentry_sdk.hub import Hub
 
 from olympia.core.sentry import get_sentry_release
 

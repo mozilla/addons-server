@@ -3,7 +3,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 
 import jwt
-
 from rest_framework.exceptions import AuthenticationFailed
 
 from olympia.amo.tests import TestCase

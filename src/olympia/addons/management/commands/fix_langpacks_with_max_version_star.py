@@ -5,6 +5,7 @@ from olympia.core.logger import getLogger
 from olympia.versions.compare import version_dict
 from olympia.versions.models import AppVersion, Version
 
+
 log = getLogger('z.fix_langpacks_with_max_version_star')
 
 

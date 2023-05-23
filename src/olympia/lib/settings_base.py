@@ -1,12 +1,11 @@
 # Django settings for addons-server project.
 
-import environ
 import logging
 import os
 import socket
-
 from datetime import datetime
 
+import environ
 import sentry_sdk
 from corsheaders.defaults import default_headers
 from kombu import Queue

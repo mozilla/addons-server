@@ -1,35 +1,35 @@
-import os
 import io
+import os
 from datetime import datetime, timedelta
 from importlib import import_module
+from unittest import mock
 
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
-from unittest import mock
 import pytest
 
 from olympia.addons.models import Preview
 from olympia.amo.management.commands.get_changed_files import (
-    collect_user_pics,
-    collect_files,
-    collect_sources,
-    collect_addon_previews,
-    collect_theme_previews,
     collect_addon_icons,
-    collect_editoral,
-    collect_git,
+    collect_addon_previews,
     collect_blocklist,
+    collect_editoral,
+    collect_files,
+    collect_git,
+    collect_sources,
+    collect_theme_previews,
+    collect_user_pics,
 )
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.utils import id_to_path
 from olympia.blocklist.utils import datetime_to_ts
 from olympia.files.models import File, files_upload_to_callback
 from olympia.git.utils import AddonGitRepository
 from olympia.hero.models import PrimaryHeroImage
-from olympia.versions.models import source_upload_path, VersionPreview
+from olympia.versions.models import VersionPreview, source_upload_path
 
 
 def sample_cron_job(*args):

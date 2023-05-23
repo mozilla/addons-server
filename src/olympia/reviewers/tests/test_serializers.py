@@ -17,13 +17,13 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.files.models import FileValidation
-from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.git.tests.test_utils import apply_changes
+from olympia.git.utils import AddonGitRepository, extract_version_to_git
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer,
     AddonBrowseVersionSerializerFileOnly,
-    AddonCompareVersionSerializerFileOnly,
     AddonCompareVersionSerializer,
+    AddonCompareVersionSerializerFileOnly,
     DraftCommentSerializer,
     FileInfoDiffSerializer,
     FileInfoSerializer,

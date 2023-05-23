@@ -1,8 +1,8 @@
 from django import forms
+from django.utils.functional import cached_property
 
 from olympia.amo.utils import BaseModelSerializerAndFormMixin
 from olympia.translations.fields import TranslatedField
-from django.utils.functional import cached_property
 
 
 class AMOModelForm(BaseModelSerializerAndFormMixin, forms.ModelForm):

@@ -2,7 +2,6 @@ from django.template.loader import get_template
 from django.utils.translation import gettext
 
 import markupsafe
-
 from django_jinja import library
 
 

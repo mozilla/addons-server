@@ -1,18 +1,18 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
+from django.db.models import Prefetch
 from django.utils import translation
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
-from django.db.models import Prefetch
 
 from olympia import promoted
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
 from olympia.discovery.models import DiscoveryItem
-from olympia.hero.admin import SecondaryHeroAdmin, PrimaryHeroImageAdmin
-from olympia.hero.models import SecondaryHero, PrimaryHeroImage
+from olympia.hero.admin import PrimaryHeroImageAdmin, SecondaryHeroAdmin
+from olympia.hero.models import PrimaryHeroImage, SecondaryHero
 from olympia.promoted.admin import PromotedAddonAdmin
 from olympia.shelves.admin import ShelfAdmin
 from olympia.shelves.models import Shelf

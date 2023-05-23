@@ -2,7 +2,6 @@ from django.db import models
 
 import MySQLdb as mysql
 import pytest
-
 from pyquery import PyQuery as pq
 
 from olympia.addons.models import Addon

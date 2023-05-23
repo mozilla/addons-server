@@ -1,11 +1,9 @@
 from django.db import connections
 
 import multidb
-
 from celery import group
 
 import olympia.core.logger
-
 from olympia.amo import VALID_ADDON_STATUSES
 from olympia.amo.utils import chunked
 

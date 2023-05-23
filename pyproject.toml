@@ -27,12 +27,20 @@ select = [
     "B",
     "E",
     "F",
+    "I",
     "Q",
     "W",
 ]
 
 [tool.ruff.flake8-quotes]
 inline-quotes = "single"
+
+[tool.ruff.isort]
+combine-as-imports = true
+lines-after-imports = 2
+section-order = ["future", "standard-library", "django", "third-party", "first-party", "local-folder"]
+[tool.ruff.isort.sections]
+"django" = ["django"]
 
 [tool.pytest.ini_options]
 addopts = "-vs --reuse-db --showlocals --tb=short"

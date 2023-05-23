@@ -1,15 +1,15 @@
 import json
+from unittest import mock
 
 from django.conf import settings
 from django.http import HttpResponse
 
 import pytest
 import requests
-from unittest import mock
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import (
     call_recommendation_server,

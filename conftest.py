@@ -100,8 +100,9 @@ def pytest_configure(config):
 def instrument_jinja():
     """Make sure the "templates" list in a response is properly updated, even
     though we're using Jinja2 and not the default django template engine."""
-    import jinja2
     from django import test
+
+    import jinja2
 
     old_render = jinja2.Template.render
 
@@ -117,6 +118,7 @@ def instrument_jinja():
 def default_prefixer(settings):
     """Make sure each test starts with a default URL prefixer."""
     from django import http
+
     from olympia import amo
 
     request = http.HttpRequest()
@@ -131,10 +133,11 @@ def default_prefixer(settings):
 def test_pre_setup(request, tmpdir, settings):
     from django.core.cache import caches
     from django.utils import translation
+
     from olympia import amo, core
     from olympia.translations.hold import clean_translations
-    from waffle.utils import get_cache as waffle_get_cache
     from waffle import models as waffle_models
+    from waffle.utils import get_cache as waffle_get_cache
 
     # Clear all cache-instances. They'll be re-initialized by Django
     # This will make sure that our random `KEY_PREFIX` is applied

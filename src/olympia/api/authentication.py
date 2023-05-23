@@ -4,16 +4,14 @@ from django.utils.encoding import force_str, smart_str
 from django.utils.translation import gettext
 
 import jwt
-
 from rest_framework import exceptions
 from rest_framework.authentication import BaseAuthentication, get_authorization_header
 
 import olympia.core.logger
-
 from olympia import core
 from olympia.accounts.verify import (
-    check_and_update_fxa_access_token,
     IdentificationError,
+    check_and_update_fxa_access_token,
 )
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey

@@ -1,5 +1,6 @@
 from collections import OrderedDict
 from datetime import date, datetime
+from urllib.parse import quote
 
 from django import http
 from django.conf import settings
@@ -15,9 +16,6 @@ from django.urls import reverse
 from django.views.decorators.cache import never_cache
 
 import pygit2
-
-from urllib.parse import quote
-
 from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
@@ -33,7 +31,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
@@ -105,8 +102,8 @@ from olympia.reviewers.utils import (
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
 from olympia.stats.decorators import bigquery_api_view
 from olympia.stats.utils import (
-    get_average_daily_users_per_version_from_bigquery,
     VERSION_ADU_LIMIT,
+    get_average_daily_users_per_version_from_bigquery,
 )
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags

@@ -3,7 +3,6 @@ import json
 import os
 import re
 import uuid
-
 from urllib.parse import urljoin
 
 from django.conf import settings
@@ -12,24 +11,23 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
-from django.utils.translation import gettext
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.text import slugify
+from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.utils import id_to_path, SafeStorage
+from olympia.amo.utils import SafeStorage, id_to_path
 from olympia.files.utils import (
-    get_sha256,
     InvalidOrUnsupportedCrx,
+    get_sha256,
     write_crx_as_xpi,
 )
 

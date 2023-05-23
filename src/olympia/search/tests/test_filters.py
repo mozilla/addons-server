@@ -1,5 +1,4 @@
 import copy
-
 from unittest.mock import Mock, patch
 
 from django.test.client import RequestFactory
@@ -15,11 +14,11 @@ from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
     BADGED_GROUPS,
+    LINE,
     PROMOTED_API_NAME_TO_IDS,
     RECOMMENDED,
-    LINE,
-    STRATEGIC,
     SPONSORED,
+    STRATEGIC,
     VERIFIED,
 )
 from olympia.search.filters import (

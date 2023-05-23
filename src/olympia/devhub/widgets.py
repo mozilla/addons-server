@@ -5,7 +5,6 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext
 
-
 from olympia.constants.categories import CATEGORIES_BY_ID
 
 

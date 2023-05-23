@@ -1,7 +1,6 @@
 import datetime
 
 import jinja2
-
 from django_jinja import library
 
 from olympia import amo

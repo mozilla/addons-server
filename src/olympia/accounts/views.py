@@ -3,7 +3,6 @@ import binascii
 import functools
 import os
 import time
-
 from urllib.parse import quote_plus
 
 from django.conf import settings
@@ -20,18 +19,16 @@ from django.views.decorators.cache import never_cache
 import jwt
 import requests
 import waffle
-
 from corsheaders.conf import conf as corsheaders_conf
 from corsheaders.middleware import (
-    ACCESS_CONTROL_ALLOW_ORIGIN,
     ACCESS_CONTROL_ALLOW_CREDENTIALS,
     ACCESS_CONTROL_ALLOW_HEADERS,
     ACCESS_CONTROL_ALLOW_METHODS,
+    ACCESS_CONTROL_ALLOW_ORIGIN,
     ACCESS_CONTROL_MAX_AGE,
 )
 from django_statsd.clients import statsd
-from rest_framework import exceptions
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
 from rest_framework.generics import GenericAPIView
@@ -49,7 +46,6 @@ from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser

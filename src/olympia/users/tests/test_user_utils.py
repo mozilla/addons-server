@@ -13,9 +13,9 @@ from olympia.amo.tests import TestCase, user_factory
 from olympia.files.models import FileUpload
 
 from ..models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
     UserRestrictionHistory,
 )
 from ..utils import RestrictionChecker, UnsubscribeCode

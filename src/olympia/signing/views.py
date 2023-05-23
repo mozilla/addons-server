@@ -10,7 +10,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -19,18 +18,19 @@ from olympia.addons.utils import (
     webext_version_stats,
 )
 from olympia.amo.decorators import use_primary_db
-from olympia.api.authentication import JWTKeyAuthentication
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.throttling import addon_submission_throttles
 from olympia.blocklist.models import Block
-from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.devhub.permissions import IsSubmissionAllowedFor
+from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 
 from .serializers import SigningFileUploadSerializer
+
 
 log = olympia.core.logger.getLogger('signing')
 

@@ -1,14 +1,13 @@
 import json
 from datetime import datetime, timedelta
-
-from freezegun import freeze_time
 from unittest import mock
 
 from django.conf import settings
-from django.contrib.admin.models import LogEntry, ADDITION
+from django.contrib.admin.models import ADDITION, LogEntry
 from django.contrib.contenttypes.models import ContentType
 from django.urls import reverse
 
+from freezegun import freeze_time
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 

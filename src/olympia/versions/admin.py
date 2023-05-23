@@ -2,7 +2,6 @@ from django import forms
 from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
-
 from olympia.reviewers.models import NeedsHumanReview
 
 from .models import (

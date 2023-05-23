@@ -6,7 +6,7 @@ from django.conf import settings
 from olympia import amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon, Preview, attach_tags, attach_translations_dict
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.tests import ESTestCase, TestCase, addon_factory
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN

@@ -1,9 +1,9 @@
 from datetime import date, timedelta
 
-from freezegun import freeze_time
-import pytest
-
 from django.core import mail
+
+import pytest
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

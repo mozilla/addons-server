@@ -1,11 +1,11 @@
-import requests
 from urllib import parse
-
-from rest_framework.settings import api_settings
 
 from django import forms
 from django.conf import settings
 from django.urls import NoReverseMatch, reverse
+
+import requests
+from rest_framework.settings import api_settings
 
 import olympia.core.logger
 from olympia import amo

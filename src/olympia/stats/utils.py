@@ -1,10 +1,12 @@
 from datetime import timedelta
 
 from django.conf import settings
+
 from django_statsd.clients import statsd
 from google.cloud import bigquery
 
 from olympia.constants.applications import ANDROID, FIREFOX
+
 
 # This is the mapping between the AMO usage stats `sources` and the BigQuery
 # columns.

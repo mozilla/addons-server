@@ -1,10 +1,9 @@
-from rest_framework import serializers
-
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
-import olympia.core.logger
+from rest_framework import serializers
 
+import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer

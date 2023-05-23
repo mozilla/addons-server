@@ -1,9 +1,7 @@
 import random
-from collections import defaultdict, OrderedDict
+from collections import OrderedDict, defaultdict
 from datetime import datetime, timedelta
 
-import django_tables2 as tables
-import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db.models import Count, F, Q
@@ -11,6 +9,10 @@ from django.template import loader
 from django.urls import reverse
 from django.utils import translation
 
+import django_tables2 as tables
+import markupsafe
+
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -29,8 +31,6 @@ from olympia.reviewers.models import (
 from olympia.reviewers.templatetags.jinja_helpers import format_score
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
-
-import markupsafe
 
 
 log = olympia.core.logger.getLogger('z.mailer')

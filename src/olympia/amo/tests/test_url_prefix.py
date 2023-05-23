@@ -1,14 +1,14 @@
 from django import shortcuts
 from django.conf import settings
-from django.urls import resolve, reverse, set_script_prefix
 from django.test.client import Client, RequestFactory
+from django.urls import resolve, reverse, set_script_prefix
 
 import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
 from olympia.amo.reverse import clean_url_prefixes, set_url_prefix
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 
 
 pytestmark = pytest.mark.django_db

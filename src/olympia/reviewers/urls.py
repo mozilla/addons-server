@@ -1,5 +1,5 @@
-from django.urls import re_path, include
 from django.shortcuts import redirect
+from django.urls import include, re_path
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views

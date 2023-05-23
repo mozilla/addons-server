@@ -1,8 +1,8 @@
+from unittest.mock import Mock
+
 from django.utils import translation
 
 import pytest
-
-from unittest.mock import Mock
 
 from olympia import amo
 from olympia.activity.models import ActivityLog

@@ -2,7 +2,7 @@ from django.contrib import admin as admin_site
 from django.core.exceptions import ValidationError
 from django.test import RequestFactory
 
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.blocklist.admin import BlocklistSubmissionAdmin
 from olympia.blocklist.forms import MultiAddForm, MultiDeleteForm
 from olympia.blocklist.models import Block, BlocklistSubmission

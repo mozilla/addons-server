@@ -1,9 +1,8 @@
 from datetime import date
 
-from django.db.models import Value, IntegerField
+from django.db.models import IntegerField, Value
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (

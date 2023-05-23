@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 from ..models import Block, BlocklistSubmission
 

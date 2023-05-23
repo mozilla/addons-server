@@ -3,7 +3,6 @@ from django.db import models
 from django.db.models import signals
 
 import olympia.core.logger
-
 from olympia import activity, amo
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase

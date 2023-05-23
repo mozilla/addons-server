@@ -1,42 +1,39 @@
-from datetime import date, datetime, timedelta
-from ipaddress import IPv4Address
-
 import django  # noqa
-
+from datetime import date, datetime, timedelta
 from django import forms
-from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
+from django.db import models
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from ipaddress import IPv4Address
 
 import pytest
 import responses
 
 import olympia  # noqa
-
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     DeniedName,
     DisposableEmailDomainRestriction,
-    generate_auth_id,
-    get_anonymized_username,
     EmailReputationRestriction,
     EmailUserRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
-    RESTRICTION_TYPES,
     UserEmailField,
     UserProfile,
+    generate_auth_id,
+    get_anonymized_username,
 )
 from olympia.zadmin.models import set_config
 

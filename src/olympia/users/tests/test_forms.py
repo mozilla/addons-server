@@ -4,8 +4,8 @@ from django.urls import reverse
 
 from olympia.amo.tests import TestCase
 from olympia.users.models import (
-    IPNetworkUserRestriction,
     RESTRICTION_TYPES,
+    IPNetworkUserRestriction,
     UserProfile,
 )
 

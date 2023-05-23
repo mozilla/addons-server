@@ -4,7 +4,6 @@ import os
 import re
 import time
 import uuid
-
 from datetime import datetime
 from urllib.parse import urlsplit
 
@@ -26,12 +25,11 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.utils.translation import trans_real, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, trans_real
 
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
@@ -778,8 +776,9 @@ class Addon(OnChangeMixin, ModelBase):
     @transaction.atomic
     def delete(self, msg='', reason='', send_delete_email=True):
         # To avoid a circular import
-        from . import tasks
         from olympia.versions import tasks as version_tasks
+
+        from . import tasks
 
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.

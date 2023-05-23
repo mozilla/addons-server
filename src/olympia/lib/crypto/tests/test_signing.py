@@ -5,25 +5,24 @@ import io
 import json
 import os
 import zipfile
+from unittest import mock
 
-from django.db import transaction
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
+from django.db import transaction
 from django.test.testcases import TransactionTestCase
+from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_str
 
-from unittest import mock
 import pytest
-import responses
 import pytz
-
+import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int

@@ -1,7 +1,6 @@
 import datetime
 import os
 import time
-
 from urllib.parse import quote
 from uuid import UUID, uuid4
 
@@ -21,12 +20,10 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import waffle
-
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
@@ -40,8 +37,8 @@ from olympia.addons.models import (
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.reverse import get_url_prefix
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.utils import (
     MenuItem,
     StopWatch,

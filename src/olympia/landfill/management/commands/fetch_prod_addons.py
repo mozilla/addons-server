@@ -1,14 +1,15 @@
-import requests
 import uuid
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
+import requests
+
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.tests import addon_factory, user_factory
 from olympia.constants.categories import CATEGORIES
-from olympia.addons.models import Addon
 from olympia.users.models import UserProfile
 
 

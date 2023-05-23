@@ -1,7 +1,6 @@
 import os
 import tarfile
 import zipfile
-
 from urllib.parse import urlsplit
 
 from django import forms
@@ -58,8 +57,8 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import TranslationTextarea, TranslationTextInput
 from olympia.users.models import (
-    EmailUserRestriction,
     RESTRICTION_TYPES,
+    EmailUserRestriction,
     UserEmailField,
     UserProfile,
 )

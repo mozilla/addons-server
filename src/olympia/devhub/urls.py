@@ -1,5 +1,5 @@
-from django.urls import include, re_path
 from django.shortcuts import redirect
+from django.urls import include, re_path
 
 from olympia.addons.urls import ADDON_ID
 from olympia.amo.decorators import use_primary_db

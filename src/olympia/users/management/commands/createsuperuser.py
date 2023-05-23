@@ -5,7 +5,6 @@ Inspired by django.contrib.auth.management.commands.createsuperuser.
 (http://bit.ly/2cTgsNV)
 """
 import json
-
 from datetime import datetime
 
 from django.contrib.auth import get_user_model

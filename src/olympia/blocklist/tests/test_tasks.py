@@ -1,6 +1,5 @@
 import os
 from datetime import datetime, timedelta
-
 from unittest import mock
 
 from django.conf import settings

@@ -1,7 +1,6 @@
 import base64
 import json
 import time
-
 from datetime import datetime
 from ipaddress import IPv4Address
 from os import path
@@ -12,9 +11,9 @@ from django import http
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import AnonymousUser
-from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 import freezegun

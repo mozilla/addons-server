@@ -1,32 +1,33 @@
 import datetime
 import os
 import subprocess
-
-import pytest
-import pygit2
+from pathlib import Path
 from unittest import mock
 from unittest.mock import MagicMock
-from pathlib import Path
 
 from django.conf import settings
 
+import pygit2
+import pytest
+
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory,
-    version_factory,
-    user_factory,
     activate_locale,
+    addon_factory,
+    user_factory,
+    version_factory,
 )
 from olympia.git.utils import (
+    BRANCHES,
+    EXTRACTED_PREFIX,
     AddonGitRepository,
     BrokenRefError,
     MissingMasterBranchError,
     TemporaryWorktree,
-    BRANCHES,
-    EXTRACTED_PREFIX,
-    get_mime_type_for_blob,
     extract_version_to_git,
+    get_mime_type_for_blob,
 )
+
 
 # Aliases for easier and shorter access
 _blob_type = pygit2.GIT_OBJ_BLOB

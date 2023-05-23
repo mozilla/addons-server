@@ -3,7 +3,6 @@ import json
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
-
 from olympia.blocklist.mlbf import MLBF
 
 

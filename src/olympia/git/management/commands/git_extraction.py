@@ -1,11 +1,9 @@
-import waffle
-
-from celery import chain
 from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
-
+import waffle
+from celery import chain
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock

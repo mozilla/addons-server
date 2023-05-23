@@ -1,40 +1,39 @@
 import hashlib
 import io
-import os
-import mimetypes
-import pathlib
 import json
+import mimetypes
+import os
+import pathlib
 from collections import OrderedDict
 
-import pygit2
+from django.core.cache import cache
+from django.urls import reverse
+from django.utils.encoding import force_bytes, force_str
+from django.utils.functional import cached_property
 
+import pygit2
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
 from rest_framework.reverse import reverse as drf_reverse
 
-from django.core.cache import cache
-from django.urls import reverse
-from django.utils.functional import cached_property
-from django.utils.encoding import force_bytes, force_str
-
 from olympia import amo
-from olympia.activity.models import DraftComment
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.activity.models import DraftComment
+from olympia.addons.models import AddonReviewerFlags
 from olympia.addons.serializers import (
     FileSerializer,
     MinimalVersionSerializer,
     SimpleAddonSerializer,
 )
-from olympia.addons.models import AddonReviewerFlags
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.fields import ReverseChoiceField, SplitField
 from olympia.api.serializers import AMOModelSerializer
-from olympia.users.models import UserProfile
-from olympia.files.utils import get_sha256
 from olympia.files.models import File, FileValidation
-from olympia.versions.models import Version
+from olympia.files.utils import get_sha256
 from olympia.git.utils import AddonGitRepository, get_mime_type_for_blob
 from olympia.lib import unicodehelper
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 class AddonReviewerFlagsSerializer(AMOModelSerializer):

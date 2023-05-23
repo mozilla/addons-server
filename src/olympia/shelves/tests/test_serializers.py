@@ -1,20 +1,20 @@
-from rest_framework.request import Request as DRFRequest
-from rest_framework.settings import api_settings
-from rest_framework.test import APIRequestFactory
-
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.test.utils import override_settings
+
+from rest_framework.request import Request as DRFRequest
+from rest_framework.settings import api_settings
+from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.reverse import reverse
 from olympia.amo.tests import (
+    ESTestCase,
+    TestCase,
     addon_factory,
     collection_factory,
-    ESTestCase,
     reverse_ns,
-    TestCase,
 )
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
@@ -22,7 +22,7 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.users.models import UserProfile
 
 from ..models import Shelf
-from ..serializers import ShelfSerializer, ShelfEditorialSerializer
+from ..serializers import ShelfEditorialSerializer, ShelfSerializer
 
 
 class TestShelvesSerializer(ESTestCase):

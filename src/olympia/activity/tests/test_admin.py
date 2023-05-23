@@ -2,10 +2,9 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import amo, core
-from olympia import activity
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia import activity, amo, core
 from olympia.activity.models import ActivityLog, ReviewActionReasonLog
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.reviewers.models import ReviewActionReason
 
 

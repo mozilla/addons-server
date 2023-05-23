@@ -14,11 +14,11 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
 from olympia.amo.tests import (
+    SQUOTE_ESCAPED,
+    TestCase,
     addon_factory,
     formset,
     initial,
-    SQUOTE_ESCAPED,
-    TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path

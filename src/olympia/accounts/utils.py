@@ -1,6 +1,5 @@
 import binascii
 import os
-
 from base64 import urlsafe_b64encode
 from urllib.parse import urlencode
 

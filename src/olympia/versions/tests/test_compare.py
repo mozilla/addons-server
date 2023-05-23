@@ -1,8 +1,8 @@
 from olympia.versions.compare import (
     APP_MAJOR_VERSION_PART_MAX,
+    VersionString,
     version_dict,
     version_int,
-    VersionString,
 )
 
 

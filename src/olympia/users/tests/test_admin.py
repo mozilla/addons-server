@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.contrib import admin
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage import default_storage as default_messages_storage
@@ -7,8 +9,6 @@ from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 from django.utils.formats import localize
 
-from unittest import mock
-
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
@@ -16,9 +16,9 @@ from olympia.abuse.models import AbuseReport
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import (
+    TestCase,
     addon_factory,
     collection_factory,
-    TestCase,
     user_factory,
     version_factory,
 )

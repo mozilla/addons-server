@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from olympia.hero.views import PrimaryHeroShelfViewSet, SecondaryHeroShelfViewSet
 
 from .models import Shelf
-from .serializers import ShelfSerializer, ShelfEditorialSerializer
+from .serializers import ShelfEditorialSerializer, ShelfSerializer
 
 
 class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):

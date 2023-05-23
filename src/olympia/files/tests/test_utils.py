@@ -1,13 +1,12 @@
+import contextlib
 import json
+import multiprocessing
 import os
 import shutil
 import tarfile
 import tempfile
 import time
 import zipfile
-import multiprocessing
-import contextlib
-
 from unittest import mock
 
 from django import forms
@@ -20,7 +19,7 @@ from django.test.utils import override_settings
 import pytest
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils

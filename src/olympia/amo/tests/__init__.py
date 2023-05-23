@@ -9,9 +9,9 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
-from urllib.parse import parse_qs, urlparse
-from unittest import mock
 from tempfile import NamedTemporaryFile
+from unittest import mock
+from urllib.parse import parse_qs, urlparse
 
 from django import forms, test
 from django.conf import settings
@@ -46,10 +46,10 @@ from olympia.addons.models import (
     AddonReviewerFlags,
     update_search_index as addon_update_search_index,
 )
+from olympia.addons.tasks import compute_last_updated
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
 from olympia.amo.utils import SafeStorage, use_fake_fxa
-from olympia.addons.tasks import compute_last_updated
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
@@ -64,13 +64,13 @@ from olympia.promoted.models import (
 from olympia.search.utils import get_es, timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
+from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
     Version,
     VersionReviewerFlags,
 )
-from olympia.users.models import UserProfile
 
 from . import dynamic_urls
 

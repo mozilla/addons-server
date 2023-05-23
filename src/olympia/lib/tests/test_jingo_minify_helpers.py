@@ -1,9 +1,8 @@
 import os
+from unittest import mock
 
 from django.conf import settings
 from django.test.utils import override_settings
-
-from unittest import mock
 
 from olympia.amo.utils import from_string
 

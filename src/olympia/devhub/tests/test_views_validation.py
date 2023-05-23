@@ -1,17 +1,17 @@
 import json
 from datetime import datetime
+from unittest import mock
 
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 
 import waffle
-from unittest import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
-from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadMixin

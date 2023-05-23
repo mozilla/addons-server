@@ -6,7 +6,6 @@ import stat
 import tarfile
 import tempfile
 import zipfile
-
 from collections import Counter, OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
@@ -22,7 +21,6 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 
 import pytest
-
 from elasticsearch import Elasticsearch
 from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
@@ -34,9 +32,9 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    ESTestCase,
     APITestClientJWT,
     APITestClientSessionID,
+    ESTestCase,
     TestCase,
     addon_factory,
     collection_factory,
@@ -52,14 +50,14 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
     LINE,
-    SPOTLIGHT,
-    STRATEGIC,
     RECOMMENDED,
     SPONSORED,
+    SPOTLIGHT,
+    STRATEGIC,
     VERIFIED,
 )
-from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
+from olympia.files.utils import parse_addon, parse_xpi
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.search.utils import get_es
@@ -76,21 +74,21 @@ from olympia.versions.models import (
 
 from ..models import (
     Addon,
-    AddonCategory,
     AddonApprovalsCounter,
+    AddonCategory,
     AddonRegionalRestrictions,
     AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
-    ReplacementAddon,
     Preview,
+    ReplacementAddon,
 )
 from ..serializers import (
     AddonAuthorSerializer,
     AddonPendingAuthorSerializer,
-    DeveloperAddonSerializer,
     CompactLicenseSerializer,
+    DeveloperAddonSerializer,
     DeveloperVersionSerializer,
     LicenseSerializer,
 )

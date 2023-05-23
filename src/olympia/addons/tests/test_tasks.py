@@ -14,7 +14,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY

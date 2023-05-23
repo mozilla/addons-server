@@ -1,6 +1,6 @@
 import os
-from unittest import mock
 from datetime import datetime
+from unittest import mock
 
 from django.conf import settings
 from django.core.paginator import PageNotAnInteger
@@ -11,24 +11,24 @@ import pytest
 
 from olympia import amo
 from olympia.addons.models import AddonCategory
+from olympia.amo.reverse import override_url_prefix
 from olympia.amo.sitemap import (
     AccountSitemap,
     AddonSitemap,
     AMOSitemap,
     CategoriesSitemap,
     CollectionSitemap,
+    InvalidSection,
+    TagPagesSitemap,
     get_sitemap_path,
     get_sitemap_section_pages,
     get_sitemaps,
-    InvalidSection,
     render_index_xml,
-    TagPagesSitemap,
 )
-from olympia.amo.reverse import override_url_prefix
 from olympia.amo.tests import (
+    TestCase,
     addon_factory,
     collection_factory,
-    TestCase,
     user_factory,
     version_factory,
 )

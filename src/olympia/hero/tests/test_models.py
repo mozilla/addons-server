@@ -3,7 +3,7 @@ from datetime import datetime
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.constants.promoted import RECOMMENDED, SPOTLIGHT, VERIFIED
 from olympia.hero.models import (

@@ -38,9 +38,9 @@ from olympia.files.models import (
     track_file_status_change,
 )
 from olympia.files.utils import (
-    check_xpi_info,
     DuplicateAddonID,
     ManifestJSONExtractor,
+    check_xpi_info,
     parse_addon,
 )
 from olympia.users.models import UserProfile

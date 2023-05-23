@@ -2,7 +2,7 @@ from unittest import mock
 
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, ESTestCase, TestCase
+from olympia.amo.tests import ESTestCase, TestCase, addon_factory
 from olympia.search.models import Reindexing
 from olympia.search.utils import get_es, index_objects, unindex_objects
 

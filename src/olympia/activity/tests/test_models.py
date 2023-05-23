@@ -1,7 +1,7 @@
 from ipaddress import IPv4Address
+from unittest.mock import Mock
 from uuid import UUID
 
-from unittest.mock import Mock
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
@@ -18,8 +18,8 @@ from olympia.activity.models import (
 )
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import (
-    addon_factory,
     TestCase,
+    addon_factory,
     user_factory,
     version_factory,
 )

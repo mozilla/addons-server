@@ -1,13 +1,12 @@
 import csv
 import json
-
 from datetime import date
 from unittest import mock
 
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.urls import reverse
-from django.utils.encoding import force_str, force_bytes
+from django.utils.encoding import force_bytes, force_str
 
 from waffle.testutils import override_switch
 

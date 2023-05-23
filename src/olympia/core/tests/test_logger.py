@@ -1,10 +1,8 @@
 import json
 import logging
-
 from unittest import mock
 
 import olympia.core.logger
-
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 

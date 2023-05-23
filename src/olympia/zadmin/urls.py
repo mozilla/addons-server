@@ -1,6 +1,6 @@
-from django.urls import include, re_path
 from django.contrib import admin
 from django.shortcuts import redirect
+from django.urls import include, re_path
 
 
 urlpatterns = [

@@ -1,11 +1,10 @@
 import json
+from unittest.mock import Mock, patch
 
 from django.conf import settings
 from django.test.utils import override_settings
 
 import responses
-
-from unittest.mock import Mock, patch
 
 from olympia.amo import monitors
 from olympia.amo.tests import TestCase

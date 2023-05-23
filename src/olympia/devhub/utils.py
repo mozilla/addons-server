@@ -6,18 +6,16 @@ from django.forms import ValidationError
 from django.utils.translation import gettext
 
 import waffle
-
 from celery import chain, chord
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo, core
 from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.scanners.tasks import run_customs, run_yara, call_mad_api
+from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
 
