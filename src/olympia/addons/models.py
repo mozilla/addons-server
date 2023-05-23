@@ -693,12 +693,13 @@ class Addon(OnChangeMixin, ModelBase):
         File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
 
     def set_needs_human_review_on_latest_versions(self, *, reason, due_date=None):
-        self._set_needs_human_review_on_latest_signed_version(
+        set_listed = self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_LISTED, due_date=due_date, reason=reason
         )
-        self._set_needs_human_review_on_latest_signed_version(
+        set_unlisted = self._set_needs_human_review_on_latest_signed_version(
             channel=amo.CHANNEL_UNLISTED, due_date=due_date, reason=reason
         )
+        return set_listed or set_unlisted
 
     def _set_needs_human_review_on_latest_signed_version(
         self, *, channel, reason, due_date=None
@@ -716,12 +717,13 @@ class Addon(OnChangeMixin, ModelBase):
             or version.human_review_date
             or version.needshumanreview_set.filter(is_active=True).exists()
         ):
-            return
+            return False
         had_due_date_already = bool(version.due_date)
         NeedsHumanReview.objects.create(version=version, reason=reason)
         if not had_due_date_already and due_date:
             # If we have a specific due_date, override the default
             version.reset_due_date(due_date)
+        return True
 
     @property
     def is_guid_denied(self):

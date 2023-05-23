@@ -12,14 +12,18 @@ from django.utils.encoding import force_str
 from unittest import mock
 import pytest
 from PIL import Image, ImageChops
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import root_storage
+from olympia.constants.reviewers import EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY
+from olympia.zadmin.models import Config
 
 from ..utils import (
     AdditionalBackground,
     encode_header,
     get_review_due_date,
+    get_staggered_review_due_date_generator,
     process_color_value,
     write_svg_to_png,
 )
@@ -202,4 +206,106 @@ def test_get_review_due_date():
     # it's a Tuesday, so due on Monday because of week-end.
     assert get_review_due_date(datetime(2022, 12, 6, 10), default_days=4) == datetime(
         2022, 12, 12, 10
+    )
+
+
+@freeze_time('2023-05-22 11:00')
+def test_get_review_due_date_default_starting_date_now():
+    assert get_review_due_date() == datetime(2023, 5, 25, 11, 0)
+
+
+@freeze_time('2023-05-19 11:00')
+@pytest.mark.django_db
+def test_get_staggered_review_due_date_generator():
+    # Default config is to start now, and do 8 (arbitrary, gotta pick a number)
+    # reviews per day.
+    generator = get_staggered_review_due_date_generator()
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 11, 0)
+
+    # 8 per day means next target is 3 hours later (24 / 8)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 14, 0)
+
+    # Skip the week-end (would otherwise land on Saturday 20th).
+    for x in range(0, 4):
+        due = next(generator)
+    assert due == datetime(2023, 5, 22, 2, 0)
+
+    # Should have 7 more on that Monday.
+    for x in range(0, 7):
+        due = next(generator)
+    assert due == datetime(2023, 5, 22, 23, 0)
+
+    # Check we aren't putting any more on Monday.
+    due = next(generator)
+    assert due == datetime(2023, 5, 23, 2, 0)
+
+
+@freeze_time('2023-05-19 11:00')
+def test_get_staggered_review_due_date_generator_default_target_provided():
+    generator = get_staggered_review_due_date_generator(target_per_day=2)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 11, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 23, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 22, 11, 0)
+
+
+@freeze_time('2023-05-19 11:00')
+def test_get_staggered_review_due_date_generator_default_initial_days_delay():
+    generator = get_staggered_review_due_date_generator(
+        initial_days_delay=2, target_per_day=8
+    )
+    due = next(generator)
+    assert due == datetime(2023, 5, 23, 11, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 23, 14, 0)
+
+
+def test_get_staggered_review_due_date_generator_default_initial_starting_date():
+    generator = get_staggered_review_due_date_generator(
+        starting=datetime(2023, 5, 23, 11, 0), target_per_day=1
+    )
+    due = next(generator)
+    assert due == datetime(2023, 5, 23, 11, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 24, 11, 0)
+
+
+@freeze_time('2023-05-19 11:00')
+@pytest.mark.django_db
+def test_get_staggered_review_due_date_generator_custom_config():
+    Config.objects.create(key=EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, value='4')
+    generator = get_staggered_review_due_date_generator()
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 11, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 17, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 23, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 22, 5, 0)
+
+
+@mock.patch('olympia.zadmin.models.log')
+@freeze_time('2023-05-19 11:00')
+@pytest.mark.django_db
+def test_get_staggered_review_due_date_generator_garbage_config(log_mock):
+    Config.objects.create(key=EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, value='lolweird')
+    generator = get_staggered_review_due_date_generator()
+
+    # Falls back on arbitrary default (8), logging an error. So next due date
+    # after initial should be in 3 hours.
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 11, 0)
+    due = next(generator)
+    assert due == datetime(2023, 5, 19, 14, 0)
+
+    assert log_mock.error.call_count == 1
+    assert log_mock.error.call_args[0] == (
+        '[%s] config key appears to not be set correctly (%s)',
+        'extra-review-target-per-day',
+        'lolweird',
     )

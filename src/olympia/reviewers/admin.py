@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
 
-from .models import NeedsHumanReview, ReviewActionReason
+from .models import NeedsHumanReview, ReviewActionReason, UsageTier
 
 
 class ReviewActionReasonAdmin(AMOModelAdmin):
@@ -15,6 +15,24 @@ class ReviewActionReasonAdmin(AMOModelAdmin):
 
 
 admin.site.register(ReviewActionReason, ReviewActionReasonAdmin)
+
+
+class UsageTierAdmin(AMOModelAdmin):
+    list_display = (
+        'name',
+        'lower_adu_threshold',
+        'upper_adu_threshold',
+    )
+    view_on_site = False
+    fields = (
+        'name',
+        'lower_adu_threshold',
+        'upper_adu_threshold',
+        'growth_threshold_before_flagging',
+    )
+
+
+admin.site.register(UsageTier, UsageTierAdmin)
 
 
 class NeedsHumanReviewAdmin(AMOModelAdmin):

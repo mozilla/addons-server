@@ -2146,7 +2146,7 @@ class TestAddonDueDate(TestCase):
             addon=addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': False}
         )
         due_date = datetime.now() + timedelta(hours=42)
-        addon.set_needs_human_review_on_latest_versions(
+        assert addon.set_needs_human_review_on_latest_versions(
             due_date=due_date, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
         for version in [listed_version, unlisted_version]:
@@ -2164,7 +2164,7 @@ class TestAddonDueDate(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(human_review_date=self.days_ago(1))
-        addon.set_needs_human_review_on_latest_versions(
+        assert not addon.set_needs_human_review_on_latest_versions(
             reason=NeedsHumanReview.REASON_PROMOTED_GROUP
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
@@ -2173,7 +2173,7 @@ class TestAddonDueDate(TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.delete()
-        addon.set_needs_human_review_on_latest_versions(
+        assert addon.set_needs_human_review_on_latest_versions(
             reason=NeedsHumanReview.REASON_UNKNOWN
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 1

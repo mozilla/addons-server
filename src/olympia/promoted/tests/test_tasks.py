@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 import pytest
 
@@ -10,13 +10,12 @@ from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.promoted import LINE, NOTABLE, NOT_PROMOTED
 from olympia.promoted.models import PromotedAddon
-from olympia.versions.utils import get_review_due_date
+from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
 
 from ..tasks import (
     add_high_adu_extensions_to_notable,
     NOTABLE_ADU_LIMIT_CONFIG_KEY,
-    NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY,
 )
 
 
@@ -28,7 +27,7 @@ def test_add_high_adu_extensions_to_notable():
     set_config(NOTABLE_ADU_LIMIT_CONFIG_KEY, adu_limit)
     # arbitrary target per day
     target_per_day = 12
-    set_config(NOTABLE_REVIEW_TARGET_PER_DAY_CONFIG_KEY, target_per_day)
+    set_config(amo.EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, target_per_day)
 
     extension_with_low_adu = addon_factory(
         average_daily_users=adu_limit - 1, file_kw={'is_signed': True}
@@ -89,36 +88,32 @@ def test_add_high_adu_extensions_to_notable():
     assert mixed_extension.promoted_group(currently_approved=False) == NOTABLE
     assert deleted_extension.promoted_group(currently_approved=False) == NOTABLE
 
+    generator = get_staggered_review_due_date_generator(starting=now)
+
     assert extension_with_high_adu.current_version.needshumanreview_set.filter(
         is_active=True
     ).exists()
-    assert extension_with_high_adu.current_version.due_date == get_review_due_date(now)
+    assert extension_with_high_adu.current_version.due_date == next(generator)
     assert promoted_record_exists.current_version.needshumanreview_set.filter(
         is_active=True
     ).exists()
-    assert promoted_record_exists.current_version.due_date == get_review_due_date(
-        now + timedelta(hours=24 / target_per_day)
-    )
+    assert promoted_record_exists.current_version.due_date == next(generator)
     unlisted_latest_version = unlisted_only_extension.find_latest_version(channel=None)
     assert unlisted_latest_version.needshumanreview_set.filter(is_active=True).exists()
-    assert unlisted_latest_version.due_date == get_review_due_date(
-        now + timedelta(hours=(24 / target_per_day) * 2)
-    )
+    assert unlisted_latest_version.due_date == next(generator)
     assert mixed_extension_unlisted_version.needshumanreview_set.filter(
         is_active=True
     ).exists()
-    assert mixed_extension_unlisted_version.reload().due_date == get_review_due_date(
-        now + timedelta(hours=(24 / target_per_day) * 3)
-    )
+    assert mixed_extension_unlisted_version.reload().due_date == next(generator)
     assert mixed_extension_listed_version.needshumanreview_set.filter(
         is_active=True
     ).exists()
-    assert mixed_extension_listed_version.reload().due_date == get_review_due_date(
-        now + timedelta(hours=(24 / target_per_day) * 3)  # same as due due is per addon
+    # same as due due is per addon
+    assert (
+        mixed_extension_listed_version.reload().due_date
+        == mixed_extension_unlisted_version.due_date
     )
     assert deleted_extension_version.needshumanreview_set.filter(
         is_active=True
     ).exists()
-    assert deleted_extension_version.reload().due_date == get_review_due_date(
-        now + timedelta(hours=(24 / target_per_day) * 4)
-    )
+    assert deleted_extension_version.reload().due_date == next(generator)

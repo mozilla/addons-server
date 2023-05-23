@@ -2,6 +2,11 @@ import json
 
 from django.db import models
 
+import olympia.core.logger
+
+
+log = olympia.core.logger.getLogger('z.zadmin')
+
 
 class Config(models.Model):
     """Sitewide settings."""
@@ -15,20 +20,21 @@ class Config(models.Model):
     def __str__(self):
         return self.key
 
-    @property
-    def json(self):
-        try:
-            return json.loads(self.value)
-        except (TypeError, ValueError):
-            return {}
 
-
-def get_config(conf, default=None, *, json_value=False):
+def get_config(key, default=None, *, json_value=False, int_value=False):
     try:
-        config = Config.objects.get(key=conf)
-        return config.value if not json_value else config.json
+        value = Config.objects.get(key=key).value
     except Config.DoesNotExist:
-        return default
+        value = default
+    try:
+        if json_value:
+            value = json.loads(value)
+        elif int_value:
+            value = int(value)
+    except (TypeError, ValueError):
+        log.error('[%s] config key appears to not be set correctly (%s)', key, value)
+        value = default
+    return value
 
 
 def set_config(conf, value, *, json_value=False):
