@@ -1,4 +1,4 @@
-(function () {
+$(document).ready(function () {
   if ($('.daily-message').length) {
     initDailyMessage();
   }
@@ -46,13 +46,17 @@
     initQueue();
   }
 
+  if ($('.version-adu').length > 0) {
+    initVersionsADU();
+  }
+
   // Show add-on ID when icon is clicked
   if ($('#addon[data-id], #persona[data-id]').length) {
     $('#addon .icon').click(function () {
       window.location.hash = 'id=' + $('#addon, #persona').attr('data-id');
     });
   }
-})();
+});
 
 function initReviewActions() {
   function showForm(element, pageload) {
@@ -496,4 +500,61 @@ function initScrollingSidebar() {
       setSticky(window.scrollY > addon_top);
     }, 20),
   );
+}
+
+function initVersionsADU() {
+  function fillVersionsTable(versionAduPairs) {
+    versionAduPairs.forEach(([version, adu]) => {
+      $(
+        format(
+          '.version-adu[data-version-string="{0}"] .version-adu-value',
+          version,
+        ),
+      ).text(adu);
+    });
+    let missingAduText;
+    const queryLimit = $('#addon').data('versions-adu-max-results');
+    if (versionAduPairs.length === queryLimit) {
+      // if we've got max results we may have hit the limit of the query
+      missingAduText = format('<= {0}', versionAduPairs[queryLimit - 1]);
+    } else {
+      // otherwise these are just 0 ADU versions
+      missingAduText = '0';
+    }
+    $('.version-adu-value:contains("\u2014")').text(missingAduText);
+  }
+
+  function fillTopTenBox(versionAduPairs) {
+    versionAduPairs.slice(0, 10).forEach(([version, adu]) => {
+      const versionEntryId = '#version-' + version.replaceAll('.', '_');
+      let versionLinkOrText;
+      if ($(versionEntryId).length) {
+        versionLinkOrText = format(
+          '<a href="{0}">{1}</a>',
+          versionEntryId,
+          version,
+        );
+      } else {
+        versionLinkOrText = format('<span>{0}</span>', version);
+      }
+      $('#version-adu-top-ten ol').append(
+        format('<li>{0}: {1}</li>', versionLinkOrText, adu),
+      );
+    });
+    if (!versionAduPairs.length) {
+      $('#version-adu-top-ten div').append(
+        'No average daily user values found.',
+      );
+    }
+  }
+
+  function loadVersionsADU() {
+    const aduUrl = $('#addon').data('versions-adu-url');
+    $.get(aduUrl, function (data) {
+      const versionAduPairs = Object.entries(data);
+      fillVersionsTable(versionAduPairs);
+      fillTopTenBox(versionAduPairs);
+    });
+  }
+  loadVersionsADU();
 }

@@ -43,7 +43,13 @@
 </p>
 {% endif %}
 
-<div id="addon" class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}" role="main" data-id="{{ addon.id }}" data-url="{{ url('reviewers.review_viewing') }}">
+<div id="addon"
+     class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}"
+     role="main" data-id="{{ addon.id }}"
+     data-url="{{ url('reviewers.review_viewing') }}"
+     data-versions-adu-url="{{ url('reviewers.usage_per_version', addon.id) }}"
+     data-versions-adu-max-results="{{ VERSION_ADU_LIMIT }}"
+>
 
   {% include 'reviewers/addon_details_box.html' %}
 
@@ -498,6 +504,15 @@
     {% endfor %}
   </ul>
   {% endif %}
+
+  {% if addon.type != amo.ADDON_STATICTHEME %}
+  <div id="version-adu-top-ten">
+    <strong>Top 10 Version ADU</strong>
+    <div>
+      <ol></ol>
+    </div>
+  </div>
+{% endif %}
 
   </div>
 </div>

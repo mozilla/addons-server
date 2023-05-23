@@ -25,7 +25,7 @@
     text-decoration: none;
     vertical-align: middle;
     width: 16px; height: 16px;
-    
+
 }
 .ed-sprite-firefox { background-position: 0 0; }
 .ed-sprite-thunderbird { background-position: 0 -16px; }
@@ -818,6 +818,9 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
 .review-files .install {
     padding: 0;
 }
+.review-files p.version-adu-value {
+    display: inline;
+}
 .review-files .files > .compatibility, .review-files .files > .compatibility li {
     padding-top: 0;
 }
@@ -1258,6 +1261,21 @@ p.is_promoted {
         }
         .whiteboard-actions {
             text-align: right;
+        }
+    }
+}
+
+#version-adu-top-ten {
+    ol {
+        margin-bottom: 0;
+        margin-left: 1em;
+
+        li * {
+            font-style: italic;
+            color: lightgray;
+        }
+        li a {
+            color: #0996F8;
         }
     }
 }

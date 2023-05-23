@@ -269,7 +269,10 @@ GROUP BY hashed_addon_id"""
     ]
 
 
-def get_average_daily_users_per_version_from_bigquery(addon, limit=100):
+VERSION_ADU_LIMIT = 100
+
+
+def get_average_daily_users_per_version_from_bigquery(addon, limit=VERSION_ADU_LIMIT):
     """This function is used by the reviewer tools to show per-version adu to
     reviewers inline."""
     client = create_client()
