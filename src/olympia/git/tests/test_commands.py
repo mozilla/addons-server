@@ -149,7 +149,7 @@ class TestGitExtraction(TestCase):
             ),
             remove_git_extraction_entry.si(self.addon.pk),
         )
-        chain_mock.call_count == 1
+        assert chain_mock.call_count == 1
 
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_with_multiple_versions(self, chain_mock):

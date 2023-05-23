@@ -300,8 +300,8 @@ class TestModelBase(TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
 
     def test_get_unfiltered_manager(self):
-        Addon.get_unfiltered_manager() == Addon.unfiltered
-        UserProfile.get_unfiltered_manager() == UserProfile.objects
+        assert Addon.get_unfiltered_manager() == Addon.unfiltered
+        assert UserProfile.get_unfiltered_manager() == UserProfile.objects
 
     def test_get_url_path(self):
         addon = Addon.objects.get(pk=3615)

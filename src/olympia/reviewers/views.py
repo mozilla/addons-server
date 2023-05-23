@@ -13,6 +13,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
 import pygit2
@@ -1513,4 +1514,8 @@ class ReviewAddonVersionCompareViewSet(
 @non_atomic_requests
 def usage_per_version(request, addon):
     versions_avg = get_average_daily_users_per_version_from_bigquery(addon)
-    return JsonResponse({version: numberfmt(adu) for (version, adu) in versions_avg})
+    response = JsonResponse(
+        {version: numberfmt(adu) for (version, adu) in versions_avg}
+    )
+    patch_cache_control(response, max_age=5 * 60)
+    return response

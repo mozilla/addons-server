@@ -2862,7 +2862,7 @@ class TestTrackAddonStatusChange(TestCase):
             addon.update(status=amo.STATUS_APPROVED)
 
         addon.reload()
-        mock_.call_args[0][0].status == addon.status
+        assert mock_.call_args[0][0].status == addon.status
 
     def test_ignore_non_status_changes(self):
         addon = self.create_addon()

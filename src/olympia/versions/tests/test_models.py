@@ -370,8 +370,8 @@ class TestVersionManager(TestCase):
         assert addon.versions.count() == 0
 
         # But we should be able to see it using unfiltered_for_relations.
-        addon.versions(manager='unfiltered_for_relations').count() == 1
-        addon.versions(manager='unfiltered_for_relations').get() == version
+        assert addon.versions(manager='unfiltered_for_relations').count() == 1
+        assert addon.versions(manager='unfiltered_for_relations').get() == version
 
     def test_version_still_accessible_from_foreign_key_after_deletion(self):
         """Test that a version that has been deleted should still be accessible

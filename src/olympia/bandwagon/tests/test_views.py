@@ -34,7 +34,7 @@ class TestCollectionViewSetList(TestCase):
         collection_factory(author=self.user)
         collection_factory(author=self.user)
         collection_factory(author=user_factory())  # Not our collection.
-        Collection.objects.all().count() == 4
+        assert Collection.objects.all().count() == 4
 
         self.client.login_api(self.user)
         response = self.client.get(self.url)

@@ -1227,7 +1227,7 @@ class TestUserManager(TestCase):
             'test@test.com',
         )
         assert user.pk is not None
-        Group.objects.get(name='Admins') in user.groups.all()
+        assert Group.objects.get(name='Admins') in user.groups.all()
         assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
 

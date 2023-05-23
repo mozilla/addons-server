@@ -1804,7 +1804,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         assert response.status_code == 200
         doc = pq(response.content)
         channel_input = doc('form.addon-submit-distribute input.channel')
-        channel_input[0].attrib == {
+        assert channel_input[0].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'listed',
@@ -1813,7 +1813,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             'id': 'id_channel_0',
             'checked': 'checked',
         }
-        channel_input[1].attrib == {
+        assert channel_input[1].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'unlisted',
@@ -1834,7 +1834,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         doc = pq(response.content)
         channel_input = doc('form.addon-submit-distribute input.channel')
         assert len(channel_input) == 1
-        channel_input[0].attrib == {
+        assert channel_input[0].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'unlisted',

@@ -127,7 +127,7 @@ class TestGranularUserRateThrottle(TestCase):
     def test_freeze_time_works_with_throttling(self):
         old_time = self.throttle.timer()
         with freeze_time('2019-04-08 15:16:23.42'):
-            self.throttle.timer() == 1554736583.42
+            assert self.throttle.timer() == 1554736583.42
         new_time = self.throttle.timer()
         assert new_time != 1554736583.42
         assert old_time != 1554736583.42

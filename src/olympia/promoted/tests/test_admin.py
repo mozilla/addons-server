@@ -477,7 +477,7 @@ class TestPromotedAddonAdmin(TestCase):
         assert PrimaryHero.objects.count() == 1
         assert item.addon == addon
         hero = PrimaryHero.objects.last()
-        hero.select_image == image
+        assert hero.select_image == image
         assert hero.select_image.pk == image.pk
         assert hero.gradient_color == '#054096'
         assert hero.promoted_addon == item
