@@ -214,6 +214,8 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'users.view_userhistory': ADMIN_ADVANCED,
         'ratings.change_rating': RATINGS_MODERATE,
         'ratings.delete_rating': ADMIN_ADVANCED,
+        'reviewers.add_needshumanreview': ADMIN_ADVANCED,
+        'reviewers.change_needshumanreview': ADMIN_ADVANCED,
         'versions.change_version': ADMIN_ADVANCED,
         'versions.change_versionreviewerflags': ADMIN_ADVANCED,
     }

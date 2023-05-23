@@ -1,8 +1,12 @@
+from datetime import datetime
+
+from django.conf import settings
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import InstallOrigin
 
 
@@ -28,6 +32,162 @@ class TestVersionAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
+
+    def test_change_due_date(self):
+        addon = addon_factory()
+        version = addon.current_version
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        post_data = {
+            # Django wants the whole form to be submitted, unfortunately.
+            'addon': addon.pk,
+            'release_notes_en-us': '',
+            'approval_notes': '',
+            'license': version.license.pk,
+            'source': {},
+            'due_date_0': '2023-02-21',
+            'due_date_1': '12:30:00',
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '0',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-pending_rejection_0': '',
+            'reviewerflags-0-pending_rejection_1': '',
+            'reviewerflags-0-version': version.pk,
+            'needshumanreview_set-TOTAL_FORMS': '0',
+            'needshumanreview_set-INITIAL_FORMS': '0',
+            'needshumanreview_set-MIN_NUM_FORMS': '0',
+            'needshumanreview_set-MAX_NUM_FORMS': '1000',
+        }
+        response = self.client.post(detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        version.reload()
+        assert version.due_date == datetime(2023, 2, 21, 12, 30)
+
+    def test_new_needshumanreviewinline_is_saved(self):
+        # Using default Django form, saving a new NeedsHumanReview through the
+        # inline with no changes to the default values would not work. We have
+        # a custom form to work around that issue.
+        addon = addon_factory()
+        version = addon.current_version
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        post_data = {
+            'addon': addon.pk,
+            'release_notes_en-us': '',
+            'approval_notes': '',
+            'license': version.license.pk,
+            'source': {},
+            'due_date_0': '2023-02-21',
+            'due_date_1': '12:30:00',
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '0',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-pending_rejection_0': '',
+            'reviewerflags-0-pending_rejection_1': '',
+            'reviewerflags-0-version': version.pk,
+            'needshumanreview_set-TOTAL_FORMS': '1',
+            'needshumanreview_set-INITIAL_FORMS': '0',
+            'needshumanreview_set-MIN_NUM_FORMS': '0',
+            'needshumanreview_set-MAX_NUM_FORMS': '1000',
+            'needshumanreview_set-0-id': '',
+            'needshumanreview_set-0-version': version.pk,
+            'needshumanreview_set-0-is_active': 'on',
+        }
+        response = self.client.post(detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        version.reload()
+        assert version.needshumanreview_set.count() == 1
+        needs_human_review = version.needshumanreview_set.get()
+        assert needs_human_review.reason == NeedsHumanReview.REASON_UNKNOWN
+        assert needs_human_review.is_active
+
+    def test_existing_needshumanreviewinline_is_not_saved_if_no_changes(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        addon = addon_factory()
+        version = addon.current_version
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        old_modified = self.days_ago(42)
+        needs_human_review.update(modified=old_modified)
+        version.update(modified=old_modified)
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        post_data = {
+            'addon': addon.pk,
+            'release_notes_en-us': '',
+            'approval_notes': '',
+            'license': version.license.pk,
+            'source': {},
+            'due_date_0': '',
+            'due_date_1': '',
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '0',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-pending_rejection_0': '',
+            'reviewerflags-0-pending_rejection_1': '',
+            'reviewerflags-0-version': version.pk,
+            'needshumanreview_set-TOTAL_FORMS': '1',
+            'needshumanreview_set-INITIAL_FORMS': '1',
+            'needshumanreview_set-MIN_NUM_FORMS': '0',
+            'needshumanreview_set-MAX_NUM_FORMS': '1000',
+            'needshumanreview_set-0-id': needs_human_review.pk,
+            'needshumanreview_set-0-version': version.pk,
+            'needshumanreview_set-0-is_active': 'on',
+        }
+        response = self.client.post(detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        assert version.reload().modified != old_modified
+        assert needs_human_review.reload().modified == old_modified
+        assert needs_human_review.is_active
+
+    def test_existing_needshumanreviewinline_is_saved_if_changes(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        addon = addon_factory()
+        version = addon.current_version
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        old_modified = self.days_ago(42)
+        needs_human_review.update(modified=old_modified)
+        version.update(modified=old_modified)
+        detail_url = reverse('admin:versions_version_change', args=(version.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        post_data = {
+            'addon': addon.pk,
+            'release_notes_en-us': '',
+            'approval_notes': '',
+            'license': version.license.pk,
+            'source': {},
+            'due_date_0': '',
+            'due_date_1': '',
+            'reviewerflags-TOTAL_FORMS': '1',
+            'reviewerflags-INITIAL_FORMS': '0',
+            'reviewerflags-MIN_NUM_FORMS': '0',
+            'reviewerflags-MAX_NUM_FORMS': '1',
+            'reviewerflags-0-pending_rejection_0': '',
+            'reviewerflags-0-pending_rejection_1': '',
+            'reviewerflags-0-version': version.pk,
+            'needshumanreview_set-TOTAL_FORMS': '1',
+            'needshumanreview_set-INITIAL_FORMS': '1',
+            'needshumanreview_set-MIN_NUM_FORMS': '0',
+            'needshumanreview_set-MAX_NUM_FORMS': '1000',
+            'needshumanreview_set-0-id': needs_human_review.pk,
+            'needshumanreview_set-0-version': version.pk,
+            'needshumanreview_set-0-is_active': '',
+        }
+        response = self.client.post(detail_url, post_data, follow=True)
+        assert response.status_code == 200
+        assert version.reload().modified != old_modified
+        assert needs_human_review.reload().modified != old_modified
+        assert not needs_human_review.is_active
 
 
 class TestInstallOriginAdmin(TestCase):
