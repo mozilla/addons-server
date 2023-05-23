@@ -1,4 +1,4 @@
-(function () {
+$(document).ready(function () {
   if ($('.daily-message').length) {
     initDailyMessage();
   }
@@ -56,7 +56,7 @@
       window.location.hash = 'id=' + $('#addon, #persona').attr('data-id');
     });
   }
-})();
+});
 
 function initReviewActions() {
   function showForm(element, pageload) {
@@ -556,5 +556,5 @@ function initVersionsADU() {
       fillTopTenBox(versionAduPairs);
     });
   }
-  setTimeout(loadVersionsADU, 100);
+  loadVersionsADU();
 }

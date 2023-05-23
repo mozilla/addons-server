@@ -95,15 +95,6 @@
 </form>
 {% endif %}
 
-{% if addon.type != amo.ADDON_STATICTHEME %}
-  <div id="version-adu-top-ten">
-    <h3>Top 10 Versions by Average Daily Users</h3>
-    <div>
-      <ol></ol>
-    </div>
-  </div>
-{% endif %}
-
 <form method="POST" action="#review-actions" class="review-form">
   {% csrf_token %}
 
@@ -513,6 +504,15 @@
     {% endfor %}
   </ul>
   {% endif %}
+
+  {% if addon.type != amo.ADDON_STATICTHEME %}
+  <div id="version-adu-top-ten">
+    <strong>Top 10 Version ADU</strong>
+    <div>
+      <ol></ol>
+    </div>
+  </div>
+{% endif %}
 
   </div>
 </div>
