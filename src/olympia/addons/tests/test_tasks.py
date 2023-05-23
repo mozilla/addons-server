@@ -239,7 +239,7 @@ def test_update_addon_hotness():
     assert addon2.hotness == 0
 
 
-@freeze_time('2023-05-18 11:00')
+@freeze_time('2023-05-15 11:00')
 @pytest.mark.django_db
 def test_flag_high_hotness_according_to_review_tier():
     user_factory(pk=settings.TASK_USER_ID)

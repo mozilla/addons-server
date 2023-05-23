@@ -155,7 +155,10 @@ def get_review_due_date(starting=None, default_days=REVIEWER_STANDARD_REVIEW_TIM
 
 
 def get_staggered_review_due_date_generator(
-    *, starting=None, initial_days_delay=0, target_per_day=None
+    *,
+    starting=None,
+    initial_days_delay=REVIEWER_STANDARD_REVIEW_TIME,
+    target_per_day=None,
 ):
     starting = (starting or datetime.now()).replace(microsecond=0)
     # if starting falls on the weekend, move it to Monday morning.

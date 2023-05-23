@@ -213,11 +213,11 @@ def test_get_review_due_date_default_starting_date_now():
     assert get_review_due_date() == datetime(2023, 5, 25, 11, 0)
 
 
-@freeze_time('2023-05-19 11:00')
+@freeze_time('2023-05-16 11:00')
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator():
-    # Default config is to start now, and do 8 (arbitrary, gotta pick a number)
-    # reviews per day.
+    # Default config is to start from now + REVIEWER_STANDARD_REVIEW_TIME, and
+    # do 8 (arbitrary, gotta pick a number) reviews per day.
     generator = get_staggered_review_due_date_generator()
     due = next(generator)
     assert due == datetime(2023, 5, 19, 11, 0)
@@ -241,7 +241,7 @@ def test_get_staggered_review_due_date_generator():
     assert due == datetime(2023, 5, 23, 2, 0)
 
 
-@freeze_time('2023-05-19 11:00')
+@freeze_time('2023-05-16 11:00')
 def test_get_staggered_review_due_date_generator_default_target_provided():
     generator = get_staggered_review_due_date_generator(target_per_day=2)
     due = next(generator)
@@ -265,15 +265,15 @@ def test_get_staggered_review_due_date_generator_default_initial_days_delay():
 
 def test_get_staggered_review_due_date_generator_default_initial_starting_date():
     generator = get_staggered_review_due_date_generator(
-        starting=datetime(2023, 5, 23, 11, 0), target_per_day=1
+        starting=datetime(2023, 5, 22, 11, 0), target_per_day=1
     )
     due = next(generator)
-    assert due == datetime(2023, 5, 23, 11, 0)
+    assert due == datetime(2023, 5, 25, 11, 0)
     due = next(generator)
-    assert due == datetime(2023, 5, 24, 11, 0)
+    assert due == datetime(2023, 5, 26, 11, 0)
 
 
-@freeze_time('2023-05-19 11:00')
+@freeze_time('2023-05-16 11:00')
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_custom_config():
     Config.objects.create(key=EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, value='4')
@@ -289,7 +289,7 @@ def test_get_staggered_review_due_date_generator_custom_config():
 
 
 @mock.patch('olympia.zadmin.models.log')
-@freeze_time('2023-05-19 11:00')
+@freeze_time('2023-05-16 11:00')
 @pytest.mark.django_db
 def test_get_staggered_review_due_date_generator_garbage_config(log_mock):
     Config.objects.create(key=EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, value='lolweird')
