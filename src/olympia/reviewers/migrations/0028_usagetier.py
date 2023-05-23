@@ -6,7 +6,6 @@ import olympia.amo.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('reviewers', '0027_backfill_needshumanreview'),
     ]
@@ -15,13 +14,33 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UsageTier',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created', models.DateTimeField(blank=True, default=django.utils.timezone.now, editable=False)),
+                (
+                    'id',
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name='ID',
+                    ),
+                ),
+                (
+                    'created',
+                    models.DateTimeField(
+                        blank=True, default=django.utils.timezone.now, editable=False
+                    ),
+                ),
                 ('modified', models.DateTimeField(auto_now=True)),
                 ('name', models.CharField(max_length=255)),
                 ('lower_adu_threshold', models.IntegerField(default=None, null=True)),
                 ('upper_adu_threshold', models.IntegerField(default=None, null=True)),
-                ('growth_threshold_before_flagging', models.IntegerField(default=None, null=True)),
+                (
+                    'growth_threshold_before_flagging',
+                    models.IntegerField(
+                        default=None,
+                        null=True,
+                        help_text='Usage growth percentage threshold before we start automatically flagging the add-on for human review.',
+                    ),
+                ),
             ],
             options={
                 'ordering': ('upper_adu_threshold',),
