@@ -341,7 +341,7 @@ def test_flag_high_hotness_according_to_review_tier():
         version=flagged[-1].current_version, is_active=False
     )
 
-    # Prtend all files were signed otherwise they would not get flagged.
+    # Pretend all files were signed otherwise they would not get flagged.
     File.objects.update(is_signed=True)
     flag_high_hotness_according_to_review_tier()
 
@@ -377,6 +377,14 @@ def test_flag_high_hotness_according_to_review_tier():
         datetime(2023, 5, 19, 11, 0),
         datetime(2023, 5, 22, 11, 0),
     ]
+
+
+@pytest.mark.django_db
+def test_flag_high_hotness_according_to_review_tier_no_tiers_defined():
+    user_factory(pk=settings.TASK_USER_ID)
+    addon = addon_factory(average_daily_users=1001, file_kw={'is_signed': True})
+    flag_high_hotness_according_to_review_tier()
+    assert not addon.current_version.needshumanreview_set.exists()
 
 
 @pytest.mark.django_db

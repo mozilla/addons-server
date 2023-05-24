@@ -449,6 +449,8 @@ def flag_high_hotness_according_to_review_tier():
             average_daily_users__lt=usage_tier.upper_adu_threshold,
             hotness__gte=usage_tier.growth_threshold_before_flagging / 100,
         )
+    if not tier_filters:
+        return
     qs = (
         Addon.unfiltered.exclude(status=amo.STATUS_DISABLED)
         .filter(type=amo.ADDON_EXTENSION)
