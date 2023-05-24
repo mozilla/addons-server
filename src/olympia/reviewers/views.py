@@ -93,6 +93,7 @@ from olympia.reviewers.serializers import (
 from olympia.reviewers.utils import (
     ContentReviewTable,
     MadReviewTable,
+    ModerationQueueFields,
     NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
@@ -305,6 +306,9 @@ def save_motd(request):
 
 
 def queue(request, tab):
+    if tab == 'moderated':
+        return queue_moderated(request, tab)
+
     TableObj = reviewer_tables_registry[tab]
 
     @permission_or_tools_listed_view_required(TableObj.permission)
@@ -327,9 +331,6 @@ def queue(request, tab):
         count = construct_count_queryset_from_queryset(qs)()
         page = paginate(request, table.rows, per_page=per_page, count=count)
 
-        # get the title attribute from the table class
-        title = getattr(TableObj, 'title', None)
-
         return TemplateResponse(
             request,
             'reviewers/queue.html',
@@ -337,22 +338,12 @@ def queue(request, tab):
                 table=table,
                 page=page,
                 tab=tab,
-                title=title,
+                title=TableObj.title,
                 registry=reviewer_tables_registry,
             ),
         )
 
     return _queue(request, tab)
-
-
-reviewer_tables_registry = {
-    'extension': PendingManualApprovalQueueTable,
-    'theme_pending': UpdatedThemesQueueTable,
-    'theme_nominated': NewThemesQueueTable,
-    'content_review': ContentReviewTable,
-    'mad': MadReviewTable,
-    'pending_rejection': PendingRejectionTable,
-}
 
 
 def construct_count_queryset_from_queryset(qs):
@@ -381,7 +372,8 @@ def fetch_queue_counts(request):
 
 
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
-def queue_moderated(request):
+def queue_moderated(request, tab):
+    TableObj = reviewer_tables_registry[tab]
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
 
@@ -409,12 +401,24 @@ def queue_moderated(request):
         'reviewers/queue.html',
         context=context(
             reviews_formset=reviews_formset,
-            tab='moderated',
+            tab=tab,
             page=page,
             flags=flags,
             registry=reviewer_tables_registry,
+            title=TableObj.title,
         ),
     )
+
+
+reviewer_tables_registry = {
+    'extension': PendingManualApprovalQueueTable,
+    'theme_pending': UpdatedThemesQueueTable,
+    'theme_nominated': NewThemesQueueTable,
+    'content_review': ContentReviewTable,
+    'mad': MadReviewTable,
+    'pending_rejection': PendingRejectionTable,
+    'moderated': ModerationQueueFields,
+}
 
 
 def determine_channel(channel_as_text):

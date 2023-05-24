@@ -26,9 +26,6 @@ urlpatterns = (
     ),
     re_path(r'^queue/', include(queue_urls())),
     re_path(
-        r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
-    ),
-    re_path(
         r'^moderationlog$',
         views.ratings_moderation_log,
         name='reviewers.ratings_moderation_log',

@@ -369,6 +369,14 @@ class MadReviewTable(AddonQueueTable):
         )
 
 
+class ModerationQueueFields:
+    title = 'Rating Reviews'
+    urlname = 'queue_moderated'
+    url = r'^reviews$'
+    permission = amo.permissions.RATINGS_MODERATE
+    show_count_in_dashboard = False
+
+
 class ReviewHelper:
     """
     A class that builds enough to render the form back to the user and
