@@ -10,7 +10,7 @@ def queue_urls():
     return [
         re_path(
             views.reviewer_tables_registry[queue].url,
-            views.queue,
+            views.reviewer_tables_registry[queue].view,
             kwargs={'tab': queue},
             name='reviewers.' + views.reviewer_tables_registry[queue].urlname,
         )

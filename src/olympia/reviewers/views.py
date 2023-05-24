@@ -306,8 +306,8 @@ def save_motd(request):
 
 
 def queue(request, tab):
-    if tab == 'moderated':
-        return queue_moderated(request, tab)
+    # if tab == 'moderated':
+    #     return queue_moderated(request, tab)
 
     TableObj = reviewer_tables_registry[tab]
 
@@ -419,6 +419,12 @@ reviewer_tables_registry = {
     'pending_rejection': PendingRejectionTable,
     'moderated': ModerationQueueFields,
 }
+
+for queue_type in reviewer_tables_registry:
+    if queue_type == 'moderated':
+        reviewer_tables_registry[queue_type].view = queue_moderated
+    else:
+        reviewer_tables_registry[queue_type].view = queue
 
 
 def determine_channel(channel_as_text):
