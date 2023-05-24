@@ -302,9 +302,10 @@ class TestSigning(TestCase):
             for info in orig_zip.filelist:
                 if info.filename != 'manifest.json':
                     # all other files should be the same
-                    orig_zip.open(info.filename).read() == new_zip.open(
-                        info.filename
-                    ).read()
+                    assert (
+                        orig_zip.open(info.filename).read()
+                        == new_zip.open(info.filename).read()
+                    )
                 else:
                     # only manifest.json should have been updated
                     orig_manifest = json.load(orig_zip.open(info.filename))

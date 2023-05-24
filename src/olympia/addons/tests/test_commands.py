@@ -432,7 +432,7 @@ class TestDeleteObsoleteAddons(TestCase):
     def test_hard(self):
         # add it already to check that the conflict is ignored
         DeniedGuid.objects.create(guid=self.xul_theme.guid)
-        DeniedGuid.objects.all().count() == 1
+        assert DeniedGuid.objects.all().count() == 1
 
         call_command('process_addons', task='delete_obsolete_addons', with_deleted=True)
 

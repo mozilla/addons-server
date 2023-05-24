@@ -110,7 +110,7 @@ class TestAbuse(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
-        'Ehehehehe' in doc('#result_list').text()
+        assert 'Ehehehehe' in doc('#result_list').text()
 
         # Type filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
@@ -231,8 +231,8 @@ class TestAbuse(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 2
         result_list_text = doc('#result_list').text()
-        'Foo' in result_list_text
-        'Bar' in result_list_text
+        assert 'Foo' in result_list_text
+        assert 'Bar' in result_list_text
 
         # State filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')

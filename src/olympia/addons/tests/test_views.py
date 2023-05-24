@@ -1212,7 +1212,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert data['summary'] == {'en-US': 'new summary', 'fr': 'lé summary'}
         assert addon.summary == 'new summary'
         with self.activate(locale='fr'):
-            Addon.objects.get().summary == 'lé summary'
+            assert Addon.objects.get().summary == 'lé summary'
         assert data['support_email'] == {'en-US': 'email@me.me'}
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
@@ -1256,7 +1256,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
         assert addon.summary == 'new summary'
         with self.activate(locale='fr'):
-            Addon.objects.get().summary == 'lé summary'
+            assert Addon.objects.get().summary == 'lé summary'
 
     def test_fields_max_length(self):
         data = {
@@ -6886,7 +6886,7 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.addonuser.reload()
         assert response.data['role'] == 'developer'
-        self.addonuser.role == amo.AUTHOR_ROLE_DEV
+        assert self.addonuser.role == amo.AUTHOR_ROLE_DEV
 
         log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
         assert log.user == self.user
@@ -6909,7 +6909,7 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.addonuser.reload()
         assert response.data['listed'] is False
-        self.addonuser.listed is False
+        assert self.addonuser.listed is False
         assert not ActivityLog.objects.filter(
             action=amo.LOG.CHANGE_USER_WITH_ROLE.id
         ).exists()
@@ -7110,7 +7110,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.pending_author.reload()
         assert response.data['role'] == 'developer'
-        self.pending_author.role == amo.AUTHOR_ROLE_DEV
+        assert self.pending_author.role == amo.AUTHOR_ROLE_DEV
 
         log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
         assert log.user == self.user

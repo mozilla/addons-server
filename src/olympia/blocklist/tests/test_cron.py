@@ -337,8 +337,8 @@ class TestUploadToRemoteSettings(TestCase):
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_remote_settings()
         self.publish_attachment_mock.assert_not_called()
-        self.publish_record_mock.call_count == 2
-        self.cleanup_files_mock.call_count == 2
+        assert self.publish_record_mock.call_count == 2
+        assert self.cleanup_files_mock.call_count == 2
 
         self.statsd_incr_mock.assert_has_calls(
             [

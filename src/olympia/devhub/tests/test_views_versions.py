@@ -612,9 +612,7 @@ class TestVersion(TestCase):
             self.client.session.session_key
         )
         api_url = absolutify(
-            reverse_ns(
-                'version-reviewnotes-list', args=[self.addon.id, self.version.id]
-            )
+            reverse_ns('version-reviewnotes-list', args=[self.addon.id, v1.id])
         )
         assert review_history_td.attrib['data-api-url'] == api_url
         assert doc('.review-history-hide').length == 2
@@ -623,12 +621,15 @@ class TestVersion(TestCase):
         # No counter, because we don't have any pending activity to show.
         assert pending_activity_count.length == 0
 
+        reply_api_url = absolutify(
+            reverse_ns('version-reviewnotes-list', args=[self.addon.id, v2.id])
+        )
         # Reply box div is there (only one)
         assert doc('.dev-review-reply-form').length == 1
         review_form = doc('.dev-review-reply-form')[0]
-        review_form.attrib['action'] == api_url
-        review_form.attrib['data-session-id'] == self.client.session.session_key
-        review_form.attrib['data-history'] == '#%s-review-history' % v2.id
+        assert review_form.attrib['action'] == reply_api_url
+        assert review_form.attrib['data-session-id'] == self.client.session.session_key
+        assert review_form.attrib['data-history'] == '#%s-review-history' % v2.id
         textarea = doc('.dev-review-reply-form textarea')[0]
         assert textarea.attrib['maxlength'] == '100000'
 
@@ -643,10 +644,10 @@ class TestVersion(TestCase):
 
         # Should be 2 reply boxes, one for each channel
         assert doc('.dev-review-reply-form').length == 2
-        doc('.dev-review-reply-form')[0].attrib['data-history'] == (
+        assert doc('.dev-review-reply-form')[0].attrib['data-history'] == (
             '#%s-review-history' % v1.id
         )
-        doc('.dev-review-reply-form')[1].attrib['data-history'] == (
+        assert doc('.dev-review-reply-form')[1].attrib['data-history'] == (
             '#%s-review-history' % v2.id
         )
 

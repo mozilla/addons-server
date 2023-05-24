@@ -287,7 +287,7 @@ class TestSessionIDAuthentication(TestCase):
 
     def test_no_token(self):
         request = self.factory.post('/api/v4/whatever/')
-        self.auth.authenticate(request) is None
+        assert self.auth.authenticate(request) is None
         self.update_token_mock.assert_not_called()
 
     def test_still_valid_token(self):

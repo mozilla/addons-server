@@ -837,8 +837,8 @@ def test_translation_unicode():
 
 def test_comparison_with_lazy():
     lazy_u = lazy(lambda s: s, str)
-    Translation(localized_string='xxx') == lazy_u('xxx')
-    lazy_u('xxx') == Translation(localized_string='xxx')
+    assert Translation(localized_string='xxx') == lazy_u('xxx')
+    assert lazy_u('xxx') == Translation(localized_string='xxx')
 
 
 def test_translated_field_default_null():

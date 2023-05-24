@@ -374,6 +374,6 @@ def test_parse_accept_language(test_input, expected):
 
 class TestShorter(TestCase):
     def test_no_shorter_language(self):
-        urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
+        assert urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
         with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
-            urlresolvers.lang_from_accept_header('zh') == 'en-US'
+            assert urlresolvers.lang_from_accept_header('zh') == 'en-US'

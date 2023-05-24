@@ -481,34 +481,39 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert self.parse(data)['version'] == 'None'
 
     def test_install_origins(self):
-        self.parse({})['install_origins'] == []
-        self.parse({'install_origins': ['https://fôo.com']})['install_origins'] == [
-            'https://fôo.com'
-        ]
-        self.parse({'install_origins': ['https://bâr.net', 'https://alice.org']})[
+        assert self.parse({})['install_origins'] == []
+        assert self.parse({'install_origins': ['https://fôo.com']})[
             'install_origins'
-        ] == ['https://bâr.net', 'https://alice.org']
+        ] == ['https://fôo.com']
+        assert self.parse(
+            {'install_origins': ['https://bâr.net', 'https://alice.org']}
+        )['install_origins'] == ['https://bâr.net', 'https://alice.org']
 
     def test_install_origins_wrong_type_ignored(self):
-        self.parse({'install_origins': 42})['install_origins'] == []
-        self.parse({'install_origins': None})['install_origins'] == []
-        self.parse({'install_origins': {}})['install_origins'] == []
+        assert self.parse({'install_origins': 42})['install_origins'] == []
+        assert self.parse({'install_origins': None})['install_origins'] == []
+        assert self.parse({'install_origins': {}})['install_origins'] == []
 
     def test_install_origins_wrong_type_inside_list_ignored(self):
-        self.parse({'install_origins': [42]})['install_origins'] == []
-        self.parse({'install_origins': [None]})['install_origins'] == []
-        self.parse({'install_origins': [{}]})['install_origins'] == []
-        self.parse({'install_origins': [['https://inception.com']]})[
+        assert self.parse({'install_origins': [42]})['install_origins'] == []
+        assert self.parse({'install_origins': [None]})['install_origins'] == []
+        assert self.parse({'install_origins': [{}]})['install_origins'] == []
+        assert (
+            self.parse({'install_origins': [['https://inception.com']]})[
+                'install_origins'
+            ]
+            == []
+        )
+        assert self.parse({'install_origins': [42, 'https://goo.com']})[
             'install_origins'
-        ] == []
-        self.parse({'install_origins': [42, 'https://goo.com']})['install_origins'] == [
-            'https://goo.com'
-        ]
+        ] == ['https://goo.com']
 
         # 'flop' is not a valid origin, but the linter is responsible for that
         # validation. We just care about it being a string so that we don't
         # raise a TypeError later in the process.
-        self.parse({'install_origins': [42, 'flop']})['install_origins'] == ['flop']
+        assert self.parse({'install_origins': [42, 'flop']})['install_origins'] == [
+            'flop'
+        ]
 
 
 class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
@@ -1230,7 +1235,7 @@ class TestArchiveMemberValidatorZip(TestCase):
 
     def test_unsupported_compression_method(self):
         info = self._fake_archive_member('foo', 123)
-        info.compress_type == zipfile.ZIP_DEFLATED
+        info.compress_type = zipfile.ZIP_DEFLATED
         # ZIP_DEFLATED works.
         utils.archive_member_validator(info)
         # ZIP_STORED works.

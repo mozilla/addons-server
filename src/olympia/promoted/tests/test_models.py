@@ -287,21 +287,19 @@ class TestPromotedAddon(TestCase):
         )
         file_ = promo.addon.current_version.file
         # SPOTLIGHT doesnt have special signing states so won't be resigned
+        # approve_for_addon is called automatically - SPOTLIGHT has immediate_approval
         promo.addon.reload()
-        promo.addon.promoted_group() == promoted.NOT_PROMOTED
-        promo.approve_for_addon()
-        promo.addon.reload()
-        promo.addon.promoted_group() == promoted.SPOTLIGHT
+        assert promo.addon.promoted_group() == promoted.SPOTLIGHT
         assert promo.addon.current_version.version == '0.123a'
         mock_sign_file.assert_not_called()
 
         # VERIFIED does though.
         promo.update(group_id=promoted.VERIFIED.id)
         promo.addon.reload()
-        promo.addon.promoted_group() == promoted.NOT_PROMOTED
+        assert promo.addon.promoted_group() == promoted.NOT_PROMOTED
         promo.approve_for_addon()
         promo.addon.reload()
-        promo.addon.promoted_group() == promoted.VERIFIED
+        assert promo.addon.promoted_group() == promoted.VERIFIED
         assert promo.addon.current_version.version == '0.123a.1-signed'
         mock_sign_file.assert_called_with(file_)
         assert (

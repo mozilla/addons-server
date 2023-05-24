@@ -385,7 +385,7 @@ class TestReviewForm(TestCase):
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
-        select.attrib.get('class') == 'data-toggle'
+        assert select.attrib.get('class') == 'data-toggle'
         assert select.attrib.get('data-value') == 'reject_multiple_versions'
 
         # <option>s should as well, and the value depends on which version:
@@ -488,7 +488,7 @@ class TestReviewForm(TestCase):
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
-        select.attrib.get('class') == 'data-toggle'
+        assert select.attrib.get('class') == 'data-toggle'
         assert select.attrib.get('data-value') == select_data_value
 
         # <option>s should as well, and the value depends on which version:
