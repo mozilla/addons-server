@@ -257,6 +257,7 @@ class AddonAdmin(AMOModelAdmin):
         'text_ratings_count',
         'weekly_downloads',
         'average_daily_users',
+        'hotness',
     )
 
     fieldsets = (
@@ -306,6 +307,7 @@ class AddonAdmin(AMOModelAdmin):
                     'text_ratings_count',
                     'weekly_downloads',
                     'average_daily_users',
+                    'hotness',
                 ),
             },
         ),
