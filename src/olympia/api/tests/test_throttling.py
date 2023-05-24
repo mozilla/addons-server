@@ -124,14 +124,13 @@ class TestGranularUserRateThrottle(TestCase):
         assert self.throttle.allow_request(request, view) is True
         assert allow_request_mock.call_count == 0
 
-    def test_freeze_time_works_with_throttling(self):
+    @freeze_time(as_kwarg='frozen_time')
+    def test_freeze_time_works_with_throttling(self, frozen_time):
+        self.throttle = self.throttle.__class__()
         old_time = self.throttle.timer()
-        with freeze_time('2019-04-08 15:16:23.42'):
-            assert self.throttle.timer() == 1554736583.42
-        new_time = self.throttle.timer()
-        assert new_time != 1554736583.42
+        frozen_time.move_to('2019-04-08 15:16:23.42')
+        assert self.throttle.timer() == 1554736583.42
         assert old_time != 1554736583.42
-        assert old_time != new_time
 
     @mock.patch('rest_framework.throttling.UserRateThrottle.allow_request')
     def test_activity_log(self, allow_request_mock):
