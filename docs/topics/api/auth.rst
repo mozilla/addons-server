@@ -4,7 +4,7 @@
 Authentication (External)
 =========================
 
-To execute authenticated calls against the API as an external consumer (See the
+To execute authenticated calls against the API as an external consumer, (see the
 documentation for individual endpoints where it will indicate if that endpoint
 requires, or would benefit from, authentication), you need to include a
 `JSON Web Token (JWT)`_ in the ``Authorization`` header for every request.
