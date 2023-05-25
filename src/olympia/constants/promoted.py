@@ -137,7 +137,6 @@ NOTABLE = PromotedClass(
     warning=False,
     listed_pre_review=True,
     unlisted_pre_review=True,
-    can_primary_hero=True,
     flag_for_human_review=True,
 )
 
