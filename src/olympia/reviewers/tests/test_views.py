@@ -70,9 +70,10 @@ from olympia.reviewers.models import (
     ReviewerSubscription,
     Whiteboard,
 )
-from olympia.reviewers.templatetags.jinja_helpers import code_manager_url
+from olympia.reviewers.templatetags.jinja_helpers import code_manager_url, to_dom_id
 from olympia.reviewers.views import queue
 from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.stats.utils import VERSION_ADU_LIMIT
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
@@ -8779,3 +8780,83 @@ class TestUsagePerVersion(ReviewerTest):
 
         assert response.status_code == 503
         assert response.json() == {}
+
+    def test_review_page_html(self):
+        version = self.addon.current_version
+        review_url = reverse('reviewers.review', args=[self.addon.pk])
+        response = self.client.get(review_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        # the version id as the anchor
+        assert doc(f'#version-{to_dom_id(version.version)}.listing-header')
+        assert doc('.version-adu').attr('data-version-string') == version.version
+        # url to the usage_per_version view, and what the max results will be
+        addon_div = doc('#addon')
+        assert addon_div.attr('data-versions-adu-url') == self.url
+        assert addon_div.attr('data-versions-adu-max-results') == str(VERSION_ADU_LIMIT)
+        # url to the review_version_redirect
+        assert addon_div.attr('data-review-version-url') == reverse(
+            'reviewers.review_version_redirect', args=(self.addon.id, '__')
+        )
+
+
+class TestReviewVersionRedirect(ReviewerTest):
+    def login_as_reviewer(self):
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'Addons:ReviewUnlisted',
+        )
+        return super().login_as_reviewer()
+
+    def test_responses(self):
+        addon = addon_factory()
+        listed = addon.current_version
+        unlisted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        deleted = version_factory(addon=addon)
+        deleted.delete()
+
+        def redirect_url(version):
+            return reverse(
+                'reviewers.review_version_redirect', args=(addon.id, version.version)
+            )
+
+        review_url_listed = reverse('reviewers.review', args=('listed', addon.id))
+        review_url_unlisted = reverse('reviewers.review', args=('unlisted', addon.id))
+
+        assert self.client.get(redirect_url(listed)).status_code == 403
+        self.login_as_reviewer()
+
+        # on the first pages
+        listed_version_id_anchor = f'#version-{to_dom_id(listed.version)}'
+        self.assertRedirects(
+            self.client.get(redirect_url(listed)),
+            review_url_listed + listed_version_id_anchor,
+        )
+        deleted_version_id_anchor = f'#version-{to_dom_id(deleted.version)}'
+        self.assertRedirects(
+            self.client.get(redirect_url(deleted)),
+            review_url_listed + deleted_version_id_anchor,
+        )
+        unlisted_version_id_anchor = f'#version-{to_dom_id(unlisted.version)}'
+        self.assertRedirects(
+            self.client.get(redirect_url(unlisted)),
+            review_url_unlisted + unlisted_version_id_anchor,
+        )
+        # add another 9 listed versions
+        for _i in range(9):
+            version_factory(addon=addon)
+        # the first listed version will be on the second page now
+        self.assertRedirects(
+            self.client.get(redirect_url(listed)),
+            review_url_listed + '?page=2' + listed_version_id_anchor,
+        )
+        # the deleted version will still be on the first page though
+        self.assertRedirects(
+            self.client.get(redirect_url(deleted)),
+            review_url_listed + deleted_version_id_anchor,
+        )
+        # unlisted too, because it's independently paginated
+        self.assertRedirects(
+            self.client.get(redirect_url(unlisted)),
+            review_url_unlisted + unlisted_version_id_anchor,
+        )

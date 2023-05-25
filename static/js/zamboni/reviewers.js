@@ -525,20 +525,26 @@ function initVersionsADU() {
   }
 
   function fillTopTenBox(versionAduPairs) {
+    const review_version_url = $('#addon').data('review-version-url');
+
     versionAduPairs.slice(0, 10).forEach(([version, adu]) => {
       const versionEntryId = '#version-' + version.replaceAll('.', '_');
-      let versionLinkOrText;
+      let versionLink;
       if ($(versionEntryId).length) {
-        versionLinkOrText = format(
-          '<a href="{0}">{1}</a>',
+        versionLink = format(
+          '<a href="{0}">\u2B07&nbsp;{1}</a>',
           versionEntryId,
           version,
         );
       } else {
-        versionLinkOrText = format('<span>{0}</span>', version);
+        versionLink = format(
+          '<a href="{0}">\u2794&nbsp;{1}</a>',
+          review_version_url.replace('__', version),
+          version,
+        );
       }
       $('#version-adu-top-ten ol').append(
-        format('<li>{0}: {1}</li>', versionLinkOrText, adu),
+        format('<li>{0}: {1}</li>', versionLink, adu),
       );
     });
     if (!versionAduPairs.length) {
