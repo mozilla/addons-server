@@ -66,7 +66,7 @@ class AddonQueueTable(tables.Table):
         accessor='_current_version__autoapprovalsummary__score',
     )
     show_count_in_dashboard = True
-    view = None
+    view_name = 'queue'
 
     class Meta:
         fields = (
@@ -376,7 +376,7 @@ class ModerationQueueFields:
     url = r'^reviews$'
     permission = amo.permissions.RATINGS_MODERATE
     show_count_in_dashboard = False
-    view = None
+    view_name = 'queue_moderated'
 
 
 class ReviewHelper:
