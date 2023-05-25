@@ -50,8 +50,6 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
 
 ES_TIMEOUT = 60
-ES_HOSTS = env('ES_HOSTS')
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
 
 ALLOW_SELF_REVIEWS = True
