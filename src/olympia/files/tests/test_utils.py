@@ -749,6 +749,26 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
+    def test_strict_min_version_100(self):
+        # Overridden because static themes are not compatible with Android.
+        firefox_min_version = self.create_appversion('firefox', '100.0')
+        firefox_max_version = self.create_appversion('firefox', '100.*')
+
+        data = {
+            'applications': {
+                'gecko': {
+                    'strict_min_version': '>=100.0',
+                    'strict_max_version': '=100.*',
+                    'id': '@radioactive',
+                }
+            }
+        }
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min == firefox_min_version
+        assert apps[0].max == firefox_max_version
+
 
 @pytest.mark.parametrize(
     'filename, expected_files',
