@@ -53,7 +53,6 @@ class AppVersionsMixin:
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
         cls.create_appversion('firefox', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
-        cls.create_appversion('android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
         cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
 
@@ -679,34 +678,24 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         """
         data = {}
         apps = self.parse(data)['apps']
-        assert len(apps) == 2
+        assert len(apps) == 1
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-        assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
-        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
         data = {'applications': {'gecko': {'id': 'some-id'}}}
         apps = self.parse(data)['apps']
-        assert len(apps) == 2
+        assert len(apps) == 1
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-
-        assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
-        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
         firefox_min_version = self.create_appversion('firefox', '66.0')
         firefox_max_version = self.create_appversion('firefox', '66.*')
-        android_min_version = self.create_appversion('android', '66.0')
-        android_max_version = self.create_appversion('android', '66.*')
 
         data = {
             'applications': {
@@ -718,13 +707,10 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             }
         }
         apps = self.parse(data)['apps']
-        assert len(apps) == 2
+        assert len(apps) == 1
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min == firefox_min_version
         assert apps[0].max == firefox_max_version
-        assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min == android_min_version
-        assert apps[1].max == android_max_version
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
@@ -757,14 +743,11 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         }
 
         apps = self.parse(data)['apps']
-        assert len(apps) == 2
+        assert len(apps) == 1
 
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-        assert apps[1].appdata == amo.ANDROID
-        assert apps[1].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
-        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
 
 @pytest.mark.parametrize(

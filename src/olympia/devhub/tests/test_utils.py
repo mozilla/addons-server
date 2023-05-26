@@ -250,7 +250,6 @@ def test_extract_theme_properties(zip_file):
     versions = {
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
     }
     for version in versions:
         AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
