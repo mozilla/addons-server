@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-26 19:20+0000\n"
+"PO-Revision-Date: 2023-05-26 19:29+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -706,7 +706,7 @@ msgstr "{file} byl podepsán."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Doplněk id {0} s GUID {1} byl smazán"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} byl přesunut z předběžných."
@@ -736,7 +736,7 @@ msgid "Source code uploaded"
 msgstr "Zdrojový kód nahrán"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "Automatické schválení doplňku {addon} {version} bylo potvrzeno."
 
 msgid "Auto-Approval confirmed"
 msgstr "Automatické schválení potvrzeno"
@@ -814,16 +814,16 @@ msgid "Block deleted"
 msgstr "Blok odstraněn"
 
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "Identifikátor GUID pro doplněk {addon} byl přidán do seznamu DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "Identifikátor GUID pro doplněk {addon} byl odebrán ze seznamu DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr ""
 
 msgid "Block action signoff"
-msgstr ""
+msgstr "Odsouhlasení akce blokování"
 
 msgid "User {user} session(s) reset."
 msgstr "Relace uživatele {user} byly obnoveny."
@@ -847,16 +847,16 @@ msgid "Version re-signed"
 msgstr "Verze znovu podepsána"
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "Pro doplněk {addon} {version} bylo zrušeno zamítnutí."
 
 msgid "Un-rejected"
 msgstr "Zrušené zamítnutí"
 
 msgid "{addon} needs_human_review flag cleared."
-msgstr ""
+msgstr "Příznak needs_human_review byl pro doplněk {addon} odstraněn."
 
 msgid "Needs Human Review cleared"
-msgstr ""
+msgstr "Příznak Needs Human Review byl odstraněn."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4341,7 +4341,7 @@ msgstr "Přizpůsobení YouTube"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "Startovací balíček rozšíření"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4590,7 +4590,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr "Chybí klíč \"upload\" v multipart části dat."
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "Chybí parametr \"channel\"."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Nevyžádaný příspěvek či obsah nesouvisící s recenzí"
@@ -4612,9 +4612,9 @@ msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Text recenze nemůže obsahovat slovo: \"{0}\""
+msgstr[1] "Text recenze nemůže obsahovat slova: \"{0}\""
+msgstr[2] "Text recenze nemůže obsahovat slova: \"{0}\""
 
 msgid "This field is required."
 msgstr "Toto pole je povinné."
@@ -4785,7 +4785,7 @@ msgid "by Content"
 msgstr "podle obsahu"
 
 msgid "by Campaign"
-msgstr ""
+msgstr "Podle stáhnutí v kampaních"
 
 msgid "Daily Users"
 msgstr "Denních uživatelů"
