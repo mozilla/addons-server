@@ -3,7 +3,6 @@ import datetime
 import jinja2
 from django_jinja import library
 
-from olympia import amo
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
@@ -25,11 +24,11 @@ def queue_tabnav(context, reviewer_tables_registry):
         'mad',
         'theme_nominated',
         'theme_pending',
-        'moderation',
+        'moderated',
         'content_review',
         'pending_rejection',
     ):
-        if queue in reviewer_tables_registry and acl.action_allowed_for(
+        if acl.action_allowed_for(
             request.user, reviewer_tables_registry[queue].permission
         ):
             tabnav.append(
@@ -39,10 +38,6 @@ def queue_tabnav(context, reviewer_tables_registry):
                     reviewer_tables_registry[queue].title,
                 )
             )
-        elif queue not in reviewer_tables_registry and acl.action_allowed_for(
-            request.user, amo.permissions.RATINGS_MODERATE
-        ):
-            tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
     return tabnav
 

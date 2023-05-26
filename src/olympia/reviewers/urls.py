@@ -10,7 +10,7 @@ def queue_urls():
     return [
         re_path(
             views.reviewer_tables_registry[queue].url,
-            views.queue,
+            getattr(views, views.reviewer_tables_registry[queue].view_name),
             kwargs={'tab': queue},
             name='reviewers.' + views.reviewer_tables_registry[queue].urlname,
         )
@@ -25,9 +25,6 @@ urlpatterns = (
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
     re_path(r'^queue/', include(queue_urls())),
-    re_path(
-        r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
-    ),
     re_path(
         r'^moderationlog$',
         views.ratings_moderation_log,

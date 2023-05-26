@@ -1,9 +1,7 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {% if tab == "moderated" %}
-    Review Moderation – Add-ons for Firefox
-  {% elif title %}
+  {% if title %}
     {{ title }} - Add-ons for Firefox
   {% else %}
     {{ super() }}

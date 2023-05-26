@@ -66,6 +66,7 @@ class AddonQueueTable(tables.Table):
         accessor='_current_version__autoapprovalsummary__score',
     )
     show_count_in_dashboard = True
+    view_name = 'queue'
 
     class Meta:
         fields = (
@@ -367,6 +368,15 @@ class MadReviewTable(AddonQueueTable):
                 '_current_version__reviewerflags__needs_human_review_by_mad'
             ),
         )
+
+
+class ModerationQueueTable:
+    title = 'Rating Reviews'
+    urlname = 'queue_moderated'
+    url = r'^reviews$'
+    permission = amo.permissions.RATINGS_MODERATE
+    show_count_in_dashboard = False
+    view_name = 'queue_moderated'
 
 
 class ReviewHelper:
