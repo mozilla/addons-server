@@ -1,5 +1,5 @@
 <tr class="listing-header{% if version.needs_human_review %} needs-human-review{% elif version.needs_human_review_by_mad %} flagged-by-mad{%endif %}"
-    id="version-{{ version.version.replace('.', '_') }}"
+    id="version-{{ version.version|to_dom_id }}"
 >
   <th>
     {% trans version = version.version, created = version.created|date, version_status = version.get_review_status_display() %}

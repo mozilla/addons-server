@@ -49,6 +49,7 @@
      data-url="{{ url('reviewers.review_viewing') }}"
      data-versions-adu-url="{{ url('reviewers.usage_per_version', addon.id) }}"
      data-versions-adu-max-results="{{ VERSION_ADU_LIMIT }}"
+     data-review-version-url="{{ url('reviewers.review_version_redirect', addon.id, '__') }}"
 >
 
   {% include 'reviewers/addon_details_box.html' %}

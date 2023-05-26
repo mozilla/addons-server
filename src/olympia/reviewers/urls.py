@@ -56,6 +56,11 @@ urlpatterns = (
         name='reviewers.review',
     ),
     re_path(
+        r'^review-version/%s/(?P<version>[^/<>]+)' % ADDON_ID,
+        views.review_version_redirect,
+        name='reviewers.review_version_redirect',
+    ),
+    re_path(
         r'^whiteboard/(?P<channel>listed|unlisted|content)/%s$' % ADDON_ID,
         views.whiteboard,
         name='reviewers.whiteboard',

@@ -57,7 +57,11 @@ from olympia.api.permissions import (
     AnyOf,
     GroupPermission,
 )
-from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
+from olympia.constants.reviewers import (
+    REVIEWS_PER_PAGE,
+    REVIEWS_PER_PAGE_MAX,
+    VERSIONS_PER_REVIEW_PAGE,
+)
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
@@ -117,6 +121,7 @@ from .decorators import (
     permission_or_tools_listed_view_required,
     reviewer_addon_view_factory,
 )
+from .templatetags.jinja_helpers import to_dom_id
 
 
 def context(**kw):
@@ -612,7 +617,7 @@ def review(request, addon, channel=None):
         except AddonApprovalsCounter.DoesNotExist:
             pass
 
-    pager = paginate(request, versions_qs, 10)
+    pager = paginate(request, versions_qs, VERSIONS_PER_REVIEW_PAGE)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
@@ -1520,3 +1525,32 @@ def usage_per_version(request, addon):
     )
     patch_cache_control(response, max_age=5 * 60)
     return response
+
+
+@any_reviewer_required
+@reviewer_addon_view_factory
+@non_atomic_requests
+def review_version_redirect(request, addon, version):
+    addon_versions = addon.versions(manager='unfiltered_for_relations').values_list(
+        'version', 'channel'
+    )
+
+    def index_in_versions_list(channel, value):
+        versions = (ver for ver, chan in addon_versions if chan == channel)
+        for idx, ver in enumerate(versions):
+            if value == ver:
+                return idx
+        return None
+
+    # Check each channel to calculate which # it would be in a list of versions
+    for channel, channel_text in amo.CHANNEL_CHOICES_API.items():
+        if (index := index_in_versions_list(channel, version)) is not None:
+            break
+    else:
+        raise http.Http404
+
+    page_param = (
+        f'?page={page + 1}' if (page := index // VERSIONS_PER_REVIEW_PAGE) else ''
+    )
+    url = reverse('reviewers.review', args=(channel_text, addon.pk))
+    return redirect(url + page_param + f'#version-{to_dom_id(version)}')
