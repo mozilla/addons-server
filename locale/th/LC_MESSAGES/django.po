@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-26 03:09+0000\n"
+"PO-Revision-Date: 2023-05-26 03:16+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1008,7 +1008,7 @@ msgid "Games & Entertainment"
 msgstr "เกมและความบันเทิง"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยาย Firefox เพื่อเพิ่มประสบการณ์ความบันเทิงของคุณ หมวดหมู่นี้มีส่วนขยายที่ช่วยเสริมพลังในเรื่องการเล่นเกม การควบคุมการเล่นวิดีโอ และอื่น ๆ อีกมากมาย"
 
 msgid "Language Support"
 msgstr "การรองรับภาษา"
@@ -1020,13 +1020,13 @@ msgid "Photos, Music & Videos"
 msgstr "รูปถ่าย, เพลง และวิดีโอ"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยายของ Firefox ที่ช่วยเสริมแต่งประสบการณ์ใช้งานในเรื่องภาพ เพลง และวิดีโอ ส่วนขยายในหมวดหมู่นี้สามารถแก้ไขเสียงและวิดีโอ ค้นหาภาพแบบย้อนกลับ และอื่น ๆ อีกมากมาย"
 
 msgid "Privacy & Security"
 msgstr "ความเป็นส่วนตัวและความปลอดภัย"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยายของ Firefox เพื่อท่องเว็บอย่างเป็นส่วนตัวและปลอดภัย หมวดหมู่นี้มีส่วนขยายที่จะช่วยปิดกั้นโฆษณาที่น่ารำคาญ ป้องกันการติดตาม จัดการการเปลี่ยนเส้นทาง และอื่น ๆ อีกมากมาย"
 
 msgid "Search Tools"
 msgstr "เครื่องมือค้นหา"
