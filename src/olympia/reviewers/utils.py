@@ -370,7 +370,7 @@ class MadReviewTable(AddonQueueTable):
         )
 
 
-class ModerationQueueFields:
+class ModerationQueueTable:
     title = 'Rating Reviews'
     urlname = 'queue_moderated'
     url = r'^reviews$'

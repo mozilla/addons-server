@@ -93,7 +93,7 @@ from olympia.reviewers.serializers import (
 from olympia.reviewers.utils import (
     ContentReviewTable,
     MadReviewTable,
-    ModerationQueueFields,
+    ModerationQueueTable,
     NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
@@ -306,9 +306,6 @@ def save_motd(request):
 
 
 def queue(request, tab):
-    # if tab == 'moderated':
-    #     return queue_moderated(request, tab)
-
     TableObj = reviewer_tables_registry[tab]
 
     @permission_or_tools_listed_view_required(TableObj.permission)
@@ -417,7 +414,7 @@ reviewer_tables_registry = {
     'content_review': ContentReviewTable,
     'mad': MadReviewTable,
     'pending_rejection': PendingRejectionTable,
-    'moderated': ModerationQueueFields,
+    'moderated': ModerationQueueTable,
 }
 
 
