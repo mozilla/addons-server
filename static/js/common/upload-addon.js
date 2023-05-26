@@ -469,8 +469,8 @@
             });
           }, 1000);
         } else {
-          if (results.addon_type == 10) {
-            // No source or compat app selection for static themes.
+          if (results.addon_type != 1) {
+            // No source or compat app selection for themes/dicts/langpacks.
             $('.binary-source').hide();
             $('.compatible-apps').hide();
           } else {
