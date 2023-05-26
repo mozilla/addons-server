@@ -901,6 +901,11 @@ pre.email_comment {
     float: none;
 }
 
+#upload-file .compatible-apps {
+    /* hidden by default, shown by JavaScript for extensions */
+    display: none;
+}
+
 #upload-file .compatible-apps label.app {
     padding-left: 25px;
 
