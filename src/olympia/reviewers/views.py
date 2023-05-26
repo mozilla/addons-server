@@ -1530,18 +1530,16 @@ def usage_per_version(request, addon):
 @reviewer_addon_view_factory
 @non_atomic_requests
 def review_version_redirect(request, addon, version):
-    addon_versions = list(
-        addon.versions(manager='unfiltered_for_relations').values_list(
-            'version', 'channel'
-        )
+    addon_versions = addon.versions(manager='unfiltered_for_relations').values_list(
+        'version', 'channel'
     )
 
     def index_in_versions_list(channel, value):
-        versions = [ver for ver, chan in addon_versions if chan == channel]
-        try:
-            return versions.index(value)
-        except ValueError:
-            return None
+        versions = (ver for ver, chan in addon_versions if chan == channel)
+        for idx, ver in enumerate(versions):
+            if value == ver:
+                return idx
+        return None
 
     # Check each channel to calculate which # it would be in a list of versions
     for channel, channel_text in amo.CHANNEL_CHOICES_API.items():

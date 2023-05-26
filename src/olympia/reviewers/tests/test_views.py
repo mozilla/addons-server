@@ -8814,6 +8814,7 @@ class TestReviewVersionRedirect(ReviewerTest):
         unlisted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         deleted = version_factory(addon=addon)
         deleted.delete()
+        addon_factory()  # another addon with a version that should be ignored
 
         def redirect_url(version):
             return reverse(
@@ -8859,4 +8860,30 @@ class TestReviewVersionRedirect(ReviewerTest):
         self.assertRedirects(
             self.client.get(redirect_url(unlisted)),
             review_url_unlisted + unlisted_version_id_anchor,
+        )
+
+    def test_version_not_found(self):
+        self.login_as_reviewer()
+
+        addon = addon_factory()
+        assert (
+            self.client.get(
+                reverse(
+                    'reviewers.review_version_redirect',
+                    args=(addon.id, addon.current_version.version + '.1'),
+                )
+            ).status_code
+            == 404
+        )
+
+        # Doesn't find a version on a diferrent add-on either.
+        other = addon_factory()
+        assert (
+            self.client.get(
+                reverse(
+                    'reviewers.review_version_redirect',
+                    args=(addon.id, other.current_version.version),
+                )
+            ).status_code
+            == 404
         )
