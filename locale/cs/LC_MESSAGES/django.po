@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-26 19:11+0000\n"
+"PO-Revision-Date: 2023-05-26 19:20+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -201,7 +201,7 @@ msgid "Custom licenses are not supported for themes."
 msgstr "Vlastní licence nejsou pro motivy vzhledu podporovány."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Toto pole je pro doplňky s veřejnými verzemi povinné."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr "K vytvoření uvedené verze je nutné nastavit metadata doplňku: {missing_addon_metadata}."
@@ -433,10 +433,10 @@ msgid "You must provide an object of {{lang-code:value}}."
 msgstr "Je nutné poskytnout tento objekt: {{lang-code:value}}."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Vyžaduje se hodnota v předvoleném jazyce \"{lang_code}\"."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Pokud jsou nastavené jiné překlady, je vyžadována hodnota v předvoleném jazyce \"{lang_code}\"."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -462,7 +462,7 @@ msgstr "Tento doplněk už ve sbírce je"
 
 #, python-format
 msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
+msgstr "GUID %(guid)s se nachází v doplňku čekajícím na kontrolu"
 
 #, python-format
 msgid "Block with GUID %(guid)s not found"
@@ -470,7 +470,7 @@ msgstr "Blokace s GUID %(guid)s nebyla nalezena"
 
 #, python-format
 msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
+msgstr "Doplněk s GUID %(guid)s neexistuje"
 
 msgid "Blocks to be updated are different because Min or Max version has changed."
 msgstr "Blokace, které mají být aktualizovány, jsou rozdílné, protože se změnila minimální nebo maximální verze."
@@ -486,10 +486,10 @@ msgid "Min version can not be greater than Max version"
 msgstr "Minimální verze nesmí být větší než maximální verze"
 
 msgid "Review Listed"
-msgstr ""
+msgstr "Kontrola veřejných verzí"
 
 msgid "Review Unlisted"
-msgstr ""
+msgstr "Kontrola neveřejných verzí"
 
 msgid "{addon} was created."
 msgstr "Doplněk {addon} byl vytvořen."
@@ -587,6 +587,7 @@ msgstr "U doplňku {addon} {version} byla vyžádána kontrola administrátorem.
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Doplněk byl označen pro administrátorskou kontrolu. Stále je ve frontě na kontrolu, avšak bude nutné jej zkontrolovat některým z našich hlavních redaktorů. Tato kontrola může trvat déle než obvykle."
 
 msgid "Commented"
 msgstr "Okomentováno"
@@ -626,7 +627,7 @@ msgstr "{0} {1} byl přidán."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Uživatel {user} má u doplňku {addon} nově roli {0}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "Doplněk {addon} je nyní dostupný pod licencí {0}."
