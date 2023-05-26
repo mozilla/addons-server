@@ -9,7 +9,7 @@ the vm *after* you have started the VPN connection.
 
 To do this simply stop the containers::
 
-    docker-compose stop
+    docker compose stop
 
 Stop the docker-machine vm::
 
@@ -22,4 +22,4 @@ Then connect to your VPN and restart the docker vm::
 
 and fire up the env containers again::
 
-    docker-compose up -d
+    docker compose up -d

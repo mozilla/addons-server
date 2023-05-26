@@ -13,7 +13,7 @@ virtualbox as the driver::
 
     docker-machine create --driver=virtualbox addons-dev
 
-Then you can export the variables so that docker-compose can talk to
+Then you can export the variables so that ``docker compose`` can talk to
 the docker service. This command will tell you how to do that::
 
     docker-machine env addons-dev
