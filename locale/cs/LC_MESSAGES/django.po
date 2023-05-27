@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-26 19:29+0000\n"
+"PO-Revision-Date: 2023-05-27 16:21+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -669,7 +669,7 @@ msgid "Account {user} deleted."
 msgstr "Účet uživatele {user} byl smazán."
 
 msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr ""
+msgstr "Účet {user} byl odstraněn, jako akce Účtů Firefox."
 
 msgid "Created: {0}."
 msgstr "Vytvořeno: {0}."
@@ -820,7 +820,7 @@ msgid "GUID for {addon} removed from DeniedGuid."
 msgstr "Identifikátor GUID pro doplněk {addon} byl odebrán ze seznamu DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Akce blokování {1} pro {0} odsouhlasena."
 
 msgid "Block action signoff"
 msgstr "Odsouhlasení akce blokování"
@@ -4770,7 +4770,7 @@ msgid "You cannot add a listed version to this add-on via the API due to missing
 msgstr ""
 
 msgid "No uploaded file for that add-on and version."
-msgstr ""
+msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
 
 msgid "Overview"
 msgstr "Přehled"
@@ -5090,7 +5090,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadejte platný rozsah sítě ve formátu IPv4 nebo IPv6 CIDR, např. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Z vašeho umístění bylo odesláno několik příspěvků, které porušují naše pravidla. IP adresa byla zablokována."
 
 msgid "Email Pattern"
 msgstr "Šablona e-mailové adresy"
