@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-27 16:21+0000\n"
+"PO-Revision-Date: 2023-05-28 06:44+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1431,7 +1431,7 @@ msgid ""
 msgstr ""
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Další informace o zavádění rozšíření MV3 nebo rozšířeních MV3 na vlastním hostingu naleznete na https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."
@@ -1671,6 +1671,8 @@ msgstr "Při nahrávání obrázku se vyskytla chyba."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nejnovější schválenou verzi tohoto doplňku pro %s nelze odstranit ani zakázat, protože předchozí verze nebyla schválena pro propagaci aplikace %s. Pokud s tím potřebujete pomoci, obraťte se na "
+"správce AMO."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2142,6 +2144,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Poznámka pro redaktora je místo, kde můžete pro redaktora napsat informace relevantní pro váš doplněk a jeho verzi. Používejte jej pro informace, jak otestovat doplněk, a jakékoliv další informace, "
+"které mohou pomoci. Poznámka je upravitelná redaktory."
 
 msgid "Add-on Media for {0}"
 msgstr "Média doplňku {0}"
@@ -4712,10 +4716,10 @@ msgstr ""
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
-msgstr ""
+msgstr "Definice není platná: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "Při sestavování definice se vyskytla chyba"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
 msgstr ""
@@ -4752,22 +4756,22 @@ msgstr "Nejste vlastníkem tohoto doplňku."
 
 #, python-format
 msgid "You cannot add versions to an add-on that has status: %s."
-msgstr ""
+msgstr "Nemůžete přidávat verze k doplňku, který má stav: %s."
 
 msgid "Version does not match the manifest file."
 msgstr "Verze neodpovídá manifest souboru."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Je-li identifikátor ID doplňku delší než 64 znaků, specifikujte jej prosím v manifestu."
 
 msgid "Invalid Add-on ID in URL or package"
-msgstr ""
+msgstr "Neplatné ID doplňku v adrese URL nebo balíčku"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Kvůli chybějícím metadatům nemůžete k tomuto doplňku přidat veřejnou verzi prostřednictvím API. Nahrejte ji prosím pomocí webového rozhraní"
 
 msgid "No uploaded file for that add-on and version."
 msgstr "Pro tuto verzi doplňku nebyl nahrán žádný soubor."
