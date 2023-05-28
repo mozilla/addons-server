@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-28 06:44+0000\n"
+"PO-Revision-Date: 2023-05-28 09:59+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4486,7 +4486,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Rozšíření pro sociální sítě"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
@@ -4500,7 +4500,7 @@ msgid "[status:%s]"
 msgstr "[stav:%s]"
 
 msgid "This upload has already been submitted."
-msgstr ""
+msgstr "Toto nahrání již bylo odesláno."
 
 msgid "Could not parse the manifest file."
 msgstr "Nepodařilo se zpracovat manifest soubor."
@@ -4518,7 +4518,7 @@ msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Neznámá hodnota \"strict_max_version\" {appver} pro {app}"
 
 msgid "Unsupported compression method in archive."
-msgstr ""
+msgstr "Archiv je v nepodporované metodě komprese."
 
 msgid "Unsupported archive type."
 msgstr "Nepodporovaný typ archivu."
@@ -4535,7 +4535,7 @@ msgid "File exceeding size limit in archive: {0}"
 msgstr "Překročena velikost souboru v archivu: {0}"
 
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
-msgstr ""
+msgstr "Archiv obsahuje zakázaný speciální soubor (symbolický / pevný odkaz nebo soubor zařízení / blokovaný)"
 
 msgid "Uncompressed size is too large"
 msgstr "Nekomprimovaná velikost je příliš velká"
@@ -4557,7 +4557,7 @@ msgid "Duplicate add-on ID found."
 msgstr "Nalezeno duplicitní ID doplňku."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "Čísla verzí mohou mít nejvíce {max_length} znaků."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Čísla verzí by měla obsahovat pouze základní znaky, čísla a následující speciální znaky: +*.-_."
@@ -4578,7 +4578,7 @@ msgid "You cannot submit a language pack"
 msgstr "Nemůžete odeslat jazykový balíček"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "Jazykové nastavení existujícího slovníku/jazykového balíčku není možné změnit"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím podporovaný soubor typu {extensions}."
@@ -4609,7 +4609,7 @@ msgid "Other (please specify)"
 msgstr "Jiné (prosím upřesněte)"
 
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Automaticky označeno na kontrolu z důvodu shody slov"
 
 msgid "Auto-flagged due to user restriction"
 msgstr ""
