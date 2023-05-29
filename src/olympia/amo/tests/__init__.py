@@ -901,7 +901,6 @@ def create_default_webext_appversion():
 
     versions = {
         amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
     }

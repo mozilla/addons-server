@@ -2709,7 +2709,6 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:

@@ -3097,13 +3097,13 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Invalid value']}
 
-        response = self.request(compatibility={'firefox': {'min': '65.0'}, 'foo': {}})
+        response = self.request(compatibility={'firefox': {'min': '61.0'}, 'foo': {}})
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Invalid app specified']}
 
-        # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
+        # 61.0 (DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX) should be valid.
         response = self.request(
-            compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+            compatibility={'firefox': {'min': '61.0'}, 'android': {}}
         )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         data = response.data
@@ -3114,7 +3114,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             # android was specified but with an empty dict, so gets the defaults
             'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
             # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '65.0'},
+            'firefox': {'max': '*', 'min': '61.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
 
@@ -3169,7 +3169,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             response = self.request(
-                compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+                compatibility={'firefox': {'min': '61.0'}, 'android': {}}
             )
         assert response.status_code == 400, response.content
         assert response.data == {
@@ -3212,7 +3212,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
@@ -3631,7 +3630,6 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             '109.0',

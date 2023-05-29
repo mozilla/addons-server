@@ -259,12 +259,10 @@ class ManifestJSONExtractor:
             # the default min version here doesn't matter much.
             apps = ((amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),)
         elif type_ == amo.ADDON_STATICTHEME:
-            # Static themes are only compatible with Firefox desktop >= 53
-            # and Firefox for Android >=65.
-            apps = (
-                (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
-                (amo.ANDROID, amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID),
-            )
+            # Static themes are only compatible with Firefox desktop >= 53.
+            # They used to be compatible with Android, but that support was
+            # removed.
+            apps = ((amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),)
         elif type_ == amo.ADDON_DICT:
             # WebExt dicts are only compatible with Firefox desktop >= 61.
             apps = ((amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),)
