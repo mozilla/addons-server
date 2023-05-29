@@ -199,7 +199,7 @@ class TestQueryFilter(FilterTestsBase):
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
         query = 'tea pot'
-        qs = self._test_q(self._filter(data={'q': query, 'sort': 'rating'}), query)
+        qs = self._test_q(self._filter(data={'q': query, 'sort': 'ratings'}), query)
         assert 'rescore' not in qs
 
     def test_q(self):
@@ -479,13 +479,13 @@ class TestSortingFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "sort" parameter.']
 
     def test_sort_query_multiple(self):
-        qs = self._filter(data={'sort': ['rating,created']})
+        qs = self._filter(data={'sort': ['ratings,created']})
         assert qs['sort'] == [
             self._reformat_order('-bayesian_rating'),
             self._reformat_order('-created'),
         ]
 
-        qs = self._filter(data={'sort': 'created,rating'})
+        qs = self._filter(data={'sort': 'created,ratings'})
         assert qs['sort'] == [
             self._reformat_order('-created'),
             self._reformat_order('-bayesian_rating'),
@@ -500,7 +500,7 @@ class TestSortingFilter(FilterTestsBase):
         expected = 'The "random" "sort" parameter can not be combined.'
 
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'sort': ['rating,random']})
+            self._filter(data={'sort': ['ratings,random']})
         assert context.exception.detail == [expected]
 
         with self.assertRaises(serializers.ValidationError) as context:
@@ -547,6 +547,15 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {'seed': 737482, 'field': 'id'}}
         ]
+
+    def test_sort_ratings(self):
+        # "ratings" sort parameter is the officially supported one, for consistency.
+        qs = self._filter(data={'sort': 'ratings'})
+        assert qs['sort'] == [self._reformat_order('-bayesian_rating')]
+
+        # "rating" sort parameter is still supported for backwards compatibility.
+        qs = self._filter(data={'sort': 'rating'})
+        assert qs['sort'] == [self._reformat_order('-bayesian_rating')]
 
     def test_sort_recommended_only(self):
         # If you try to sort by just recommended it gets ignored
