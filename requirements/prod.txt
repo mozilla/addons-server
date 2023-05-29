@@ -139,9 +139,9 @@ PyJWT==2.7.0 \
 amqp==5.1.1 \
     --hash=sha256:2c1b13fecc0893e946c65cbd5f36427861cffa4ea2201d8f6fca22e2a373b5e2 \
     --hash=sha256:6f0956d2c23d8fa6e7691934d8c3930eadb44972cbbd1a7ae3a520f735d43359
-asgiref==3.7.1 \
-    --hash=sha256:33958cb2e4b3cd8b1b06ef295bd8605cde65b11df51d3beab39e2e149a610ab3 \
-    --hash=sha256:8de379fcc383bcfe4507e229fc31209ea23d4831c850f74063b2c11639474dd2
+asgiref==3.7.2 \
+    --hash=sha256:89b2ef2247e3b562a16eef663bc0e2e703ec6468e2fa8a5cd61cd449786d4f6e \
+    --hash=sha256:9e0ce3aa93a819ba5b45120216b23878cf6e8525eb3848653452b4192b92afed
 # billiard is required by celery, pinned to <3.6 until we upgrade Celery to a version that
 # supports it.
 billiard==3.6.4.0 \
