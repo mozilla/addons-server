@@ -18,7 +18,7 @@ COMPAT_MODE_STRICT = 'strict'
 COMPAT_MODE_NORMAL = 'normal'
 COMPAT_MODE_IGNORE = 'ignore'
 
-# Pref in Firefox: sextensions.update.url
+# Pref in Firefox: extensions.update.url
 # A typical request looks like:
 # https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=2
 # &id=uBlock0@raymondhill.net&version=1.45.2&maxAppVersion=*&status=userEnabled
