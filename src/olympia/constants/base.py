@@ -349,8 +349,12 @@ DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
 # The version of Firefox that first supported manifest version 3 (MV3)
 DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '109.0a1'
+
 # We don't know if the Android min version will be different, but assume it might be.
 DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX
+
+# The version of Firefox for Android that first supported `gecko_android` key.
+DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID = '113.0'
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)

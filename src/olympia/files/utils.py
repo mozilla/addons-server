@@ -127,14 +127,6 @@ class DuplicateAddonID(forms.ValidationError):
     pass
 
 
-def get_appversions(app, min_version, max_version):
-    """Return the `AppVersion`s that correspond to the given versions."""
-    qs = AppVersion.objects.filter(application=app.id)
-    min_appver = qs.get(version=min_version)
-    max_appver = qs.get(version=max_version)
-    return min_appver, max_appver
-
-
 def get_simple_version(version_string):
     """Extract the version number without the ><= requirements, returning a
     VersionString instance.
@@ -214,6 +206,11 @@ class ManifestJSONExtractor:
         return parent_block.get('gecko', {})
 
     @property
+    def gecko_android(self):
+        """Return `browser_specific_settings.gecko_android` if present."""
+        return self.get('browser_specific_settings', {}).get('gecko_android', {})
+
+    @property
     def guid(self):
         return str(self.gecko.get('id', None) or '') or None
 
@@ -229,13 +226,17 @@ class ManifestJSONExtractor:
             else amo.ADDON_EXTENSION
         )
 
-    @property
-    def strict_max_version(self):
-        return get_simple_version(self.gecko.get('strict_max_version'))
-
-    @property
-    def strict_min_version(self):
-        return get_simple_version(self.gecko.get('strict_min_version'))
+    def get_strict_version_for(self, *, key, application):
+        strict_key = f'strict_{key}_version'
+        if application == amo.FIREFOX:
+            strict_version_value = self.gecko.get(strict_key)
+        elif application == amo.ANDROID:
+            strict_version_value = self.gecko_android.get(
+                strict_key, self.gecko.get(strict_key)
+            )
+        else:
+            strict_version_value = None
+        return get_simple_version(strict_version_value)
 
     @property
     def install_origins(self):
@@ -267,17 +268,19 @@ class ManifestJSONExtractor:
             # WebExt dicts are only compatible with Firefox desktop >= 61.
             apps = ((amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),)
         else:
-            webext_min = (
+            webext_min_firefox = (
                 amo.DEFAULT_WEBEXT_MIN_VERSION
                 if self.get('browser_specific_settings', None) is None
                 else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC
             )
-            # amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC should be 48.0,
-            # which is the same as amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, so
-            # no specific treatment for Android.
+            webext_min_android = (
+                amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+                if self.gecko_android
+                else amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+            )
             apps = (
-                (amo.FIREFOX, webext_min),
-                (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
+                (amo.FIREFOX, webext_min_firefox),
+                (amo.ANDROID, webext_min_android),
             )
 
         if self.get('manifest_version') == 3:
@@ -291,9 +294,13 @@ class ManifestJSONExtractor:
                 for app, ver in apps
             )
 
+        strict_min_version_firefox = self.get_strict_version_for(
+            key='min', application=amo.FIREFOX
+        )
+
         doesnt_support_no_id = (
-            self.strict_min_version
-            and self.strict_min_version
+            strict_min_version_firefox
+            and strict_min_version_firefox
             < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
         )
 
@@ -305,15 +312,17 @@ class ManifestJSONExtractor:
         # If a minimum strict version is specified, it needs to be higher
         # than the version when Firefox started supporting WebExtensions.
         unsupported_no_matter_what = (
-            self.strict_min_version
-            and self.strict_min_version < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION)
+            strict_min_version_firefox
+            and strict_min_version_firefox
+            < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION)
         )
         if unsupported_no_matter_what:
             msg = gettext('Lowest supported "strict_min_version" is 42.0.')
             raise forms.ValidationError(msg)
 
         for app, default_min_version in apps:
-            if self.guid is None and not self.strict_min_version:
+            strict_min_version = self.get_strict_version_for(key='min', application=app)
+            if self.guid is None and not strict_min_version:
                 strict_min_version = max(
                     VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID),
                     VersionString(default_min_version),
@@ -322,12 +331,12 @@ class ManifestJSONExtractor:
                 # strict_min_version for this app shouldn't be lower than the
                 # default min version for this app.
                 strict_min_version = max(
-                    self.strict_min_version, VersionString(default_min_version)
+                    strict_min_version, VersionString(default_min_version)
                 )
 
-            strict_max_version = self.strict_max_version or VersionString(
-                amo.DEFAULT_WEBEXT_MAX_VERSION
-            )
+            strict_max_version = self.get_strict_version_for(
+                key='max', application=app
+            ) or VersionString(amo.DEFAULT_WEBEXT_MAX_VERSION)
 
             if strict_max_version < strict_min_version:
                 strict_max_version = strict_min_version
