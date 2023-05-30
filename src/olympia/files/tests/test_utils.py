@@ -57,10 +57,13 @@ class AppVersionsMixin:
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         cls.create_appversion('firefox', amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID)
         cls.create_appversion('android', amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID)
-        cls.create_appversion('firefox', '114.0')
-        cls.create_appversion('android', '114.0')
-        cls.create_appversion('firefox', '114.*')
-        cls.create_appversion('android', '114.*')
+        # Some additional test versions:
+        cls.HIGHER_THAN_EVERYTHING_ELSE = '114.0'
+        cls.HIGHER_THAN_EVERYTHING_ELSE_STAR = '114.*'
+        cls.create_appversion('firefox', cls.HIGHER_THAN_EVERYTHING_ELSE)
+        cls.create_appversion('android', cls.HIGHER_THAN_EVERYTHING_ELSE)
+        cls.create_appversion('firefox', cls.HIGHER_THAN_EVERYTHING_ELSE_STAR)
+        cls.create_appversion('android', cls.HIGHER_THAN_EVERYTHING_ELSE_STAR)
 
 
 class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
@@ -368,8 +371,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         data = {
             'browser_specific_settings': {
                 'gecko_android': {
-                    'strict_min_version': '114.0',
-                    'strict_max_version': '114.*',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 }
             }
         }
@@ -383,8 +386,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         # gecko_android is present with both min and max versions.
         app = apps[1]
         assert app.appdata == amo.ANDROID
-        assert app.min.version == '114.0'
-        assert app.max.version == '114.*'
+        assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
+        assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
     def test_gecko_android_strict_min_max_with_gecko_alongside(self):
         data = {
@@ -393,8 +396,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                     'strict_min_version': '53.0',
                 },
                 'gecko_android': {
-                    'strict_min_version': '114.0',
-                    'strict_max_version': '114.*',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 },
             }
         }
@@ -408,17 +411,17 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         # gecko_android is present with both min and max versions.
         app = apps[1]
         assert app.appdata == amo.ANDROID
-        assert app.min.version == '114.0'
-        assert app.max.version == '114.*'
+        assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
+        assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
     def test_gecko_android_strict_min_default_max_with_gecko_alongside(self):
         data = {
             'browser_specific_settings': {
                 'gecko': {
-                    'strict_max_version': '114.*',
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 },
                 'gecko_android': {
-                    'strict_min_version': '114.0',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
                 },
             }
         }
@@ -427,13 +430,13 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
-        assert app.max.version == '114.*'
+        assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
         # we fall back on gecko's strict_max_version since it was specified.
         app = apps[1]
         assert app.appdata == amo.ANDROID
-        assert app.min.version == '114.0'
-        assert app.max.version == '114.*'
+        assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
+        assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
     def test_gecko_android_min_too_low(self):
         data = {
@@ -955,8 +958,8 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         data = {
             'browser_specific_settings': {
                 'gecko_android': {
-                    'strict_min_version': '114.0',
-                    'strict_max_version': '114.*',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 }
             }
         }
@@ -975,8 +978,8 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
                     'strict_min_version': '53.0',
                 },
                 'gecko_android': {
-                    'strict_min_version': '114.0',
-                    'strict_max_version': '114.*',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 },
             }
         }
@@ -992,10 +995,10 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         data = {
             'browser_specific_settings': {
                 'gecko': {
-                    'strict_max_version': '114.*',
+                    'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
                 },
                 'gecko_android': {
-                    'strict_min_version': '114.0',
+                    'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
                 },
             }
         }
@@ -1004,7 +1007,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX
-        assert app.max.version == '114.*'
+        assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
     def test_gecko_android_min_too_low(self):
         # Overridden because static themes are not compatible with Android.
