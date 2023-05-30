@@ -229,13 +229,14 @@ class ManifestJSONExtractor:
     def get_strict_version_for(self, *, key, application):
         strict_key = f'strict_{key}_version'
         if application == amo.FIREFOX:
-            return get_simple_version(self.gecko.get(strict_key))
+            strict_version_value = self.gecko.get(strict_key)
         elif application == amo.ANDROID:
-            return get_simple_version(
-                self.gecko_android.get(strict_key, self.gecko.get(strict_key))
+            strict_version_value = self.gecko_android.get(
+                strict_key, self.gecko.get(strict_key)
             )
         else:
-            return get_simple_version(None)
+            strict_version_value = None
+        return get_simple_version(strict_version_value)
 
     @property
     def install_origins(self):
