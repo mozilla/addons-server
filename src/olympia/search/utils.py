@@ -23,7 +23,7 @@ class AlreadyVerifiedTransport(transport.Transport):
 def get_es():
     """Create an ES object and return it."""
     return Elasticsearch(
-        [settings.ES_HOST],
+        settings.ES_HOST,
         timeout=settings.ES_TIMEOUT,
         transport_class=AlreadyVerifiedTransport,
     )
