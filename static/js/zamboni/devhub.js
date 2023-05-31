@@ -1012,39 +1012,6 @@ function initCompatibility() {
       addAppRow($row);
     }),
   );
-
-  $('.compat-update-modal').modal('a.compat-update', {
-    delegate: $('.item-actions'),
-    hideme: false,
-    emptyme: true,
-    callback: compatModalCallback,
-  });
-
-  $('.compat-error-popup').popup('a.compat-error', {
-    delegate: $('.item-actions'),
-    emptyme: true,
-    width: '450px',
-    callback: function (obj) {
-      var $popup = this,
-        ct = $(obj.click_target),
-        error_url = ct.attr('data-errorurl');
-
-      if (ct.hasClass('ajax-loading')) return;
-      ct.addClass('ajax-loading');
-      $popup.load(error_url, function (e) {
-        ct.removeClass('ajax-loading');
-      });
-
-      $('.compat-update-modal').modal('a.compat-update', {
-        delegate: $('.compat-error-popup'),
-        hideme: false,
-        emptyme: true,
-        callback: compatModalCallback,
-      });
-
-      return { pointTo: $(obj.click_target) };
-    },
-  });
 }
 
 function imagePoller() {
