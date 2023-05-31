@@ -1215,54 +1215,6 @@ function compatModalCallback(obj) {
   return { pointTo: ct };
 }
 
-function initAddonCompatCheck($doc) {
-  var $elem = $('#id_application', $doc),
-    $form = $doc.closest('form');
-
-  $elem.change(function (e) {
-    var $appVer = $('#id_app_version', $form),
-      $sel = $(e.target),
-      appId = $('option:selected', $sel).val();
-
-    if (!appId) {
-      $('option', $appVer).remove();
-      $appVer.append(
-        format('<option value="{0}">{1}</option>', [
-          '',
-          gettext('Select an application first'),
-        ]),
-      );
-      return;
-    }
-    $.post(
-      $sel.attr('data-url'),
-      {
-        application: appId,
-        csrfmiddlewaretoken: $(
-          "input[name='csrfmiddlewaretoken']",
-          $form,
-        ).val(),
-      },
-      function (d) {
-        $('option', $appVer).remove();
-        $.each(d.choices, function (i, ch) {
-          $appVer.append(
-            format('<option value="{0}">{1}</option>', [ch[0], ch[1]]),
-          );
-        });
-      },
-    );
-  });
-
-  if (
-    $elem.children('option:selected').val() &&
-    !$('#id_app_version option:selected', $form).val()
-  ) {
-    // If an app is selected when page loads and it's not a form post.
-    $elem.trigger('change');
-  }
-}
-
 function initCCLicense() {
   function setCopyright(isCopyr) {
     // Set the license options based on whether the copyright license is selected.

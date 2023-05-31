@@ -165,52 +165,6 @@ def dashboard(request, theme=False):
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
 
 
-@dev_required
-def ajax_compat_status(request, addon_id, addon):
-    if not (addon.can_set_compatibility and addon.current_version):
-        raise http.Http404()
-    return TemplateResponse(
-        request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon}
-    )
-
-
-@dev_required
-def ajax_compat_error(request, addon_id, addon):
-    if not (addon.can_set_compatibility and addon.current_version):
-        raise http.Http404()
-    return TemplateResponse(
-        request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon}
-    )
-
-
-@dev_required
-def ajax_compat_update(request, addon_id, addon, version_id):
-    if not addon.can_set_compatibility:
-        raise http.Http404()
-    version = get_object_or_404(addon.versions.all(), pk=version_id)
-    compat_form = forms.CompatFormSet(
-        request.POST or None,
-        queryset=version.apps.all().select_related('min', 'max'),
-        form_kwargs={'version': version},
-    )
-    if request.method == 'POST' and compat_form.is_valid():
-        for compat in compat_form.save(commit=False):
-            compat.version = version
-            compat.save()
-
-        for compat in compat_form.deleted_objects:
-            compat.delete()
-
-        for form in compat_form.forms:
-            if isinstance(form, forms.CompatForm) and 'max' in form.changed_data:
-                _log_max_version_change(addon, version, form.instance)
-    return TemplateResponse(
-        request,
-        'devhub/addons/ajax_compat_update.html',
-        context={'addon': addon, 'version': version, 'compat_form': compat_form},
-    )
-
-
 def _get_addons(request, addons, addon_id, action):
     """Create a list of ``MenuItem``s for the activity feed."""
     items = []
