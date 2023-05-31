@@ -135,6 +135,10 @@ detail_patterns = [
     re_path(r'^request-review$', views.request_review, name='devhub.request-review'),
     re_path(r'^rmlocale$', views.remove_locale, name='devhub.addons.remove-locale'),
 ]
+# These will all start with /ajax/addon/<addon_id>/
+ajax_patterns = [
+    re_path(r'^image/status$', views.image_status, name='devhub.ajax.image.status'),
+]
 redirect_patterns = [
     re_path(
         r'^addon/edit/(\d+)',
@@ -233,6 +237,7 @@ urlpatterns = decorate(
         ),
         # URLs for a single add-on.
         re_path(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
+        re_path(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
         # Old LWT Theme submission.
         re_path(
             r'^theme/submit/?$',

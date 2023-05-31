@@ -1161,27 +1161,6 @@ class TestVersionEditCompat(TestVersionEditBase):
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
         ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
-    def test_ajax_update_appversion(self):
-        url = reverse('devhub.ajax.compat.update', args=['a3615', self.version.id])
-        data = self.get_form(url)
-        data.update(min=self.v1.id, max=self.v5.id)
-        response = self.client.post(url, self.formset(data, initial_count=1))
-        assert response.status_code == 200
-        av = self.version.apps.get()
-        assert av.min.version == '1.0'
-        assert av.max.version == '5.0'
-        assert list(
-            ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
-        ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
-
-    def test_ajax_update_on_deleted_version(self):
-        url = reverse('devhub.ajax.compat.update', args=['a3615', self.version.id])
-        data = self.get_form(url)
-        data.update(min=self.v1.id, max=self.v5.id)
-        self.version.delete()
-        response = self.client.post(url, self.formset(data, initial_count=1))
-        assert response.status_code == 404
-
     def test_delete_appversion(self):
         # Add android compat so we can delete firefox.
         self.test_add_appversion()
