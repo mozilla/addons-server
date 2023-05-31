@@ -44,7 +44,7 @@ from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import IPNetworkUserRestriction, UserProfile
 from olympia.users.tests.test_views import UserViewBase
-from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
+from olympia.versions.models import Version, VersionPreview
 from olympia.zadmin.models import set_config
 
 
