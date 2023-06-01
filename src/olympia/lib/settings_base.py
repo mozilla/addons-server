@@ -1144,12 +1144,19 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 NFS_LAG_DELAY = 3
 
 # Elasticsearch
-ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
+# The ES_HOST should be be any sort of valid URL, like:
+# - host e.g. 'localhost'
+# - host:port e.g. 'localhost:9200'
+# - scheme://host:port e.g. 'https://localhost:9200'
+# - scheme://user:password@host:port e.g. https://foo:bar@localhost:9200
+ES_HOST = env('ELASTICSEARCH_LOCATION', default=None)
+if not ES_HOST:
+    # Fallback to previous env var name, or the actual default used by CI.
+    # It's pluralized but actually contains a single host.
+    ES_HOST = env('ES_HOSTS', default='127.0.0.1:9200')
 ES_INDEXES = {
     'default': 'addons',
 }
-
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
