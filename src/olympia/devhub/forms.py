@@ -847,11 +847,21 @@ class CompatForm(AMOModelForm):
         self.fields['min'].queryset = qs.filter(~Q(version__contains='*'))
         self.fields['max'].queryset = qs.all()
 
+        if self.instance.locked_from_manifest:
+            for field in self.fields.values():
+                field.disabled = True
+                field.required = False
+
     def clean(self):
-        min_ = self.cleaned_data.get('min')
-        max_ = self.cleaned_data.get('max')
-        if not (min_ and max_ and min_.version_int <= max_.version_int):
-            raise forms.ValidationError(gettext('Invalid version range.'))
+        if not self.instance.locked_from_manifest:
+            min_ = self.cleaned_data.get('min')
+            max_ = self.cleaned_data.get('max')
+            if not (min_ and max_ and min_.version_int <= max_.version_int):
+                raise forms.ValidationError(gettext('Invalid version range.'))
+            if self.instance.application:
+                self.cleaned_data['application'] = self.instance.application
+        else:
+            self.cleaned_data = {}
         return self.cleaned_data
 
 
@@ -895,6 +905,16 @@ class BaseCompatFormSet(BaseModelFormSet):
         if hasattr(self, 'forms'):
             del self.forms
         self.forms
+
+    def add_fields(self, form, index):
+        # By default django handles can_delete globally for the whole formset,
+        # we want to do it per-form so we override the function that adds the
+        # delete button.
+        original_can_delete = self.can_delete
+        if self.can_delete and form.instance and form.instance.locked_from_manifest:
+            self.can_delete = False
+        super().add_fields(form, index)
+        self.can_delete = original_can_delete
 
     def clean(self):
         if any(self.errors):

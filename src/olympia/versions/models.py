@@ -457,19 +457,34 @@ class Version(OnChangeMixin, ModelBase):
             }
 
         compatible_apps = {}
-        for parsed_app in parsed_data.get('apps', []):
-            if parsed_app.appdata not in compatibility:
-                # If the user chose to explicitly deselect Firefox for Android
-                # we're not creating the respective `ApplicationsVersions`
-                # which will have this add-on then be listed only for
-                # Firefox specifically.
+        for avs_from_parsed_data in parsed_data.get('apps', []):
+            application = APP_IDS.get(avs_from_parsed_data.application)
+            if not application:
                 continue
-            avs = compatibility[parsed_app.appdata]
+            elif avs_from_parsed_data.locked_from_manifest:
+                # In that case, the manifest takes precedence.
+                avs = avs_from_parsed_data
+            elif application not in compatibility:
+                # In that case, the developer didn't include compatibility
+                # information we have to follow, and they didn't select this
+                # app at upload time, so we ignore that app.
+                continue
+            else:
+                # They selected the app we're currently dealing with, so let's
+                # try to build some compatibility info from what we have.
+                avs = compatibility[application]
+                # Start by considering the data is coming from the manifest,
+                # but override if min or max were provided.
+                avs.originated_from = avs_from_parsed_data.originated_from
+                if avs.min_id is None:
+                    avs.min = avs_from_parsed_data.min
+                    avs.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+                if avs.max_id is None:
+                    avs.max = avs_from_parsed_data.max
+                    avs.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
             avs.version = version
-            avs.min = getattr(avs, 'min', parsed_app.min)
-            avs.max = getattr(avs, 'max', parsed_app.max)
             avs.save()
-            compatible_apps[parsed_app.appdata] = avs
+            compatible_apps[application] = avs
 
         # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.
@@ -1336,6 +1351,29 @@ class ApplicationsVersions(models.Model):
     max = models.ForeignKey(
         AppVersion, db_column='max', related_name='max_set', on_delete=models.CASCADE
     )
+    originated_from = models.PositiveSmallIntegerField(
+        choices=(
+            (amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN, 'Unknown'),
+            (amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC, 'Automatically determined'),
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER,
+                'Set by developer through devhub or API',
+            ),
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST,
+                'Set in the manifest (gecko key)',
+            ),
+            # Special case for Android, where compatibility information in the
+            # manifest can come from the `gecko_android` key (with `gecko` as a
+            # fallback).
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+                'Set in the manifest (gecko_android key)',
+            ),
+        ),
+        default=amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN,
+        null=True,
+    )
 
     class Meta:
         db_table = 'applications_versions'
@@ -1357,15 +1395,28 @@ class ApplicationsVersions(models.Model):
             .first()
         )
 
+    @property
+    def locked_from_manifest(self):
+        """Whether the manifest is the source of truth for this ApplicationsVersions or
+        not.
+
+        Currently only True if `gecko_android` is present in manifest.
+        """
+        return (
+            self.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+
     def __str__(self):
+        pretty_application = self.get_application_display() if self.application else '?'
         try:
             if self.version.is_compatible_by_default:
                 return gettext('{app} {min} and later').format(
-                    app=self.get_application_display(), min=self.min
+                    app=pretty_application, min=self.min
                 )
-            return f'{self.get_application_display()} {self.min} - {self.max}'
+            return f'{pretty_application} {self.min} - {self.max}'
         except ObjectDoesNotExist:
-            return self.get_application_display()
+            return pretty_application
 
 
 class InstallOrigin(ModelBase):

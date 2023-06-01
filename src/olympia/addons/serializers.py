@@ -344,11 +344,14 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
     compatibility = VersionCompatibilityField(
         # default to just Desktop Firefox; most of the times developers don't develop
         # their WebExtensions for Android.  See https://bit.ly/2QaMicU
+        # Note that if the manifest contains `gecko_android`, this will be
+        # overridden and an ApplicationsVersions will be created for Android at
+        # upload.
         source='compatible_apps',
         default=serializers.CreateOnlyDefault(
             {
                 amo.APPS['firefox']: ApplicationsVersions(
-                    application=amo.APPS['firefox'].id
+                    application=amo.APPS['firefox'].id,
                 )
             }
         ),
