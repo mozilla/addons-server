@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-06-01 09:10+0000\n"
+"PO-Revision-Date: 2023-06-01 09:19+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -3466,7 +3466,7 @@ msgstr "80% прибыли от поисковых операций Ecosia ин�
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr "Страница, которую вы ищете, недоступна? Поищите архивированную или кэшированную версию."
+msgstr "Страница, которую вы ищете, недоступна? Поищите архивированную или кешированную версию."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3792,7 +3792,7 @@ msgstr "Прокрутка страниц на компьютере как на 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr "Очистите кэш браузера щелчком мыши или нажатием клавиши."
+msgstr "Очистите кеш браузера щелчком мыши или нажатием клавиши."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on web pages to save and access later."
@@ -4100,7 +4100,7 @@ msgstr "Смотрите прогноз погоды прямо в браузе�
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
-msgstr "Удаляйте куки, историю просмотров и кэш одним щелчком мыши."
+msgstr "Удаляйте куки, историю просмотров и кеш одним щелчком мыши."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
