@@ -976,7 +976,10 @@ class SortingFilter(BaseFilterBackend):
         'hotness': '-hotness',
         'name': 'name.raw',
         'random': '_score',
+        # For backwards compatibility.
         'rating': '-bayesian_rating',
+        # For consistency with other filters & result properties (officially supported).
+        'ratings': '-bayesian_rating',
         'recommended': '-is_recommended',
         'relevance': '_score',
         'updated': '-last_updated',

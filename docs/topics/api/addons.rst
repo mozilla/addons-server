@@ -53,7 +53,8 @@ This endpoint allows you to search through public add-ons.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
                     passed and when filtering to only return promoted add-ons.
-            rating  Bayesian rating, descending.
+           ratings  Bayesian rating, descending.
+            rating  Bayesian rating, descending (deprecated, backwards-compatibility only).
        recommended  Promoted addons in the recommended category above
                     non-recommended add-ons. Only available combined with
                     another sort - ignored on its own.
