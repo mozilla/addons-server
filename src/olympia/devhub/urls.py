@@ -137,21 +137,6 @@ detail_patterns = [
 ]
 # These will all start with /ajax/addon/<addon_id>/
 ajax_patterns = [
-    re_path(
-        r'^versions/compatibility/status$',
-        views.ajax_compat_status,
-        name='devhub.ajax.compat.status',
-    ),
-    re_path(
-        r'^versions/compatibility/error$',
-        views.ajax_compat_error,
-        name='devhub.ajax.compat.error',
-    ),
-    re_path(
-        r'^versions/(?P<version_id>\d+)/compatibility$',
-        views.ajax_compat_update,
-        name='devhub.ajax.compat.update',
-    ),
     re_path(r'^image/status$', views.image_status, name='devhub.ajax.image.status'),
 ]
 redirect_patterns = [

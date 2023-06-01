@@ -1,22 +1,5 @@
 @import '../impala/lib';
 
-.compat-error {
-    background: url(../../img/zamboni/notifications.png) 0px -164px no-repeat;
-    padding-left: 15px;
-}
-.dashboard .item .item-actions a.compat-error {
-    color: #c00;
-}
-
-.compat-error-popup.popup {
-    min-height: 100px;
-    padding: 15px;
-
-    .msg {
-        padding-left: 45px;
-    }
-}
-
 .compat-versions td.app,
 .new-apps a.app {
     font-weight: bold;
@@ -105,30 +88,6 @@
     tr.app-extra,
     .new-apps {
         display: none;
-    }
-}
-
-.compat-update-modal {
-    h3 {
-        font-size: 16px;
-        font-weight: bold;
-    }
-    min-height: 425px;
-    > :first-child {
-        margin-top: 0;
-    }
-    > :last-child {
-        margin-bottom: 0;
-    }
-    table {
-        margin-top: 1em;
-    }
-    .compat-versions td.app {
-        background-position: 0 0.5em;
-        .background-size(auto 20px);
-    }
-    tbody tr:not(:last-child) {
-        border-bottom-color: @light-gray;
     }
 }
 
