@@ -492,6 +492,7 @@ def review(request, addon, channel=None):
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
+        .select_related('blockversion')
         # Prefetch scanner results and related rules...
         .prefetch_related('scannerresults')
         .prefetch_related('scannerresults__matched_rules')

@@ -9,6 +9,8 @@
         {{ log.log.short }} by {{ log.user.name }}:
         {% if log.details %}{{ log.details.guid }}{% else %}{{ log.arguments.1 }}{% endif %}{% if 'min_version' in log.details %}
             , versions {{ log.details.min_version }} - {{ log.details.max_version }}.
+        {% elif 'versions' in log.details %}
+        , versions [{{ log.details.versions|join:',' }}].
         {% else %}.
         {% endif %}
         <ul>

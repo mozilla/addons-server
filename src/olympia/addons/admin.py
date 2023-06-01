@@ -118,12 +118,12 @@ class FileInline(admin.TabularInline):
     version__deleted.boolean = True
 
     def version__is_blocked(self, obj):
-        block = self.instance.block
-        if not (block and block.is_version_blocked(obj.version.version)):
+        blockversion = getattr(obj.version, 'blockversion', None)
+        if not blockversion:
             return ''
-        url = block.get_admin_url_path()
-        template = '<a href="{}">Blocked ({} - {})</a>'
-        return format_html(template, url, block.min_version, block.max_version)
+        url = blockversion.block.get_admin_url_path()
+        template = '<a href="{}">Blocked</a>'
+        return format_html(template, url)
 
     version__is_blocked.short_description = 'Block status'
 
@@ -167,7 +167,9 @@ class FileInline(admin.TabularInline):
         sub_qs = NeedsHumanReview.objects.filter(
             is_active=True, version=OuterRef('version')
         )
-        return qs.select_related('version').annotate(needs_human_review=Exists(sub_qs))
+        return qs.select_related('version', 'version__blockversion').annotate(
+            needs_human_review=Exists(sub_qs)
+        )
 
 
 class AddonAdmin(AMOModelAdmin):

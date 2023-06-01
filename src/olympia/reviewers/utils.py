@@ -1452,18 +1452,10 @@ class ReviewUnlisted(ReviewBase):
         log.info('Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        min_version = ('0', None)
-        max_version = ('*', None)
-        for version in self.data['versions']:
-            version_str = version.version
-            if not min_version[1] or version_str < min_version[1]:
-                min_version = (version, version_str)
-            if not max_version[1] or version_str > max_version[1]:
-                max_version = (version, version_str)
-
-        params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
+        version_ids = ','.join(str(version.id) for version in self.data['versions'])
         self.redirect_url = (
-            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) + params
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,))
+            + f'?changed_version_ids={version_ids}'
         )
 
     def confirm_multiple_versions(self):

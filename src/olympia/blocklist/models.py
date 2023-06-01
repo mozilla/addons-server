@@ -2,7 +2,6 @@ from collections import defaultdict, namedtuple
 from datetime import datetime
 
 from django.conf import settings
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
@@ -17,31 +16,17 @@ from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
 from olympia.users.models import UserProfile
-from olympia.versions.compare import VersionString
-from olympia.versions.fields import VersionStringField
 from olympia.versions.models import Version
 
 from .utils import (
-    block_activity_log_delete,
-    save_guids_to_blocks,
+    delete_versions_from_blocks,
+    save_versions_to_blocks,
     splitlines,
 )
 
 
-def no_asterisk(value):
-    if '*' in value:
-        raise ValidationError(_('%(value)s contains *'), params={'value': value})
-
-
 class Block(ModelBase):
-    MIN = VersionString('0')
-    MAX = VersionString('*')
-
     guid = models.CharField(max_length=255, unique=True, null=False)
-    min_version = VersionStringField(
-        max_length=255, blank=False, default=MIN, validators=(no_asterisk,)
-    )
-    max_version = VersionStringField(max_length=255, blank=False, default=MAX)
     url = models.CharField(max_length=255, blank=True)
     reason = models.TextField(blank=True)
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
@@ -100,28 +85,16 @@ class Block(ModelBase):
             .order_by('id')
             .no_transforms()
             .annotate(**{GUID: models.F(GUID)})
+            .select_related('blockversion')
         )
+        all_submission_versions = BlocklistSubmission.get_all_submission_versions()
 
         all_addon_versions = defaultdict(list)
         for version in qs:
+            version.blocklist_submission_id = all_submission_versions.get(version.id, 0)
             all_addon_versions[getattr(version, GUID)].append(version)
         for block in blocks:
             block.addon_versions = all_addon_versions[block.guid]
-
-    def clean(self):
-        if self.id:
-            # We're only concerned with edits - self.guid isn't set at this
-            # point for new instances anyway.
-            choices = list(version.version for version in self.addon_versions)
-            if self.min_version not in choices + [self.MIN]:
-                raise ValidationError({'min_version': _('Invalid version')})
-            if self.max_version not in choices + [self.MAX]:
-                raise ValidationError({'max_version': _('Invalid version')})
-        if self.min_version > self.max_version:
-            raise ValidationError(_('Min version can not be greater than Max version'))
-
-    def is_version_blocked(self, version):
-        return self.min_version <= version and self.max_version >= version
 
     def review_listed_link(self):
         has_listed = any(
@@ -185,6 +158,14 @@ class Block(ModelBase):
         return list(existing_blocks.values())
 
 
+class BlockVersion(ModelBase):
+    version = models.OneToOneField(Version, on_delete=models.CASCADE)
+    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'Block.id={self.block_id} -> Version.id={self.version_id}'
+
+
 class BlocklistSubmissionQuerySet(BaseQuerySet):
     def delayed(self):
         return self.filter(delayed_until__gt=datetime.now())
@@ -208,7 +189,7 @@ class BlocklistSubmission(ModelBase):
         SIGNOFF_APPROVED: 'Approved',
         SIGNOFF_REJECTED: 'Rejected',
         SIGNOFF_AUTOAPPROVED: 'Auto Sign-off',
-        SIGNOFF_PUBLISHED: 'Published to Blocks',
+        SIGNOFF_PUBLISHED: 'Published',
     }
     SIGNOFF_STATES_APPROVED = (
         SIGNOFF_APPROVED,
@@ -224,25 +205,30 @@ class BlocklistSubmission(ModelBase):
         ACTION_ADDCHANGE: 'Add/Change',
         ACTION_DELETE: 'Delete',
     }
+    FakeBlockAddonVersion = namedtuple(
+        'FakeBlockAddonVersion',
+        (
+            'id',
+            'version',
+            'is_blocked',
+            'blocklist_submission_id',
+        ),
+    )
     FakeBlock = namedtuple(
         'FakeBlock',
         (
             'id',
             'guid',
-            'min_version',
-            'max_version',
             'current_adu',
+            'addon_versions',
         ),
     )
 
     action = models.SmallIntegerField(choices=ACTIONS.items(), default=ACTION_ADDCHANGE)
 
     input_guids = models.TextField()
+    changed_version_ids = models.JSONField(default=list)
     to_block = models.JSONField(default=list)
-    min_version = VersionStringField(
-        max_length=255, blank=False, default=Block.MIN, validators=(no_asterisk,)
-    )
-    max_version = VersionStringField(max_length=255, blank=False, default=Block.MAX)
     url = models.CharField(
         max_length=255,
         blank=True,
@@ -265,6 +251,7 @@ class BlocklistSubmission(ModelBase):
         blank=True,
         help_text='The submission will not be published into blocks before this time.',
     )
+    disable_addon = models.BooleanField(default=True)
 
     objects = BlocklistSubmissionManager()
 
@@ -288,8 +275,7 @@ class BlocklistSubmission(ModelBase):
         # as a dict of property_name: (old_value, new_value).
         changes = {}
         properties = (
-            'min_version',
-            'max_version',
+            'versions',
             'url',
             'reason',
         )
@@ -298,26 +284,34 @@ class BlocklistSubmission(ModelBase):
                 changes[prop] = (getattr(block, prop), getattr(self, prop))
         return changes
 
-    def clean(self):
-        if self.min_version > self.max_version:
-            raise ValidationError(_('Min version can not be greater than Max version'))
-
     def get_blocks_submitted(self, load_full_objects_threshold=1_000_000_000):
-        blocks = self.block_set.all().order_by('id')
-        if blocks.count() > load_full_objects_threshold:
+        blocks_qs = self.block_set.all().order_by('id')
+        load_fakes = blocks_qs.count() > load_full_objects_threshold
+        if load_fakes:
+            blocks = list(blocks_qs.values_list('id', 'guid', named=True))
+            blocked_versions = list(
+                BlockVersion.objects.filter(
+                    block__in=(b.id for b in blocks)
+                ).values_list('block_id', 'version__version')
+            )
+        if load_fakes:
             # If we'd be returning too many Block objects, fake them with the
             # minimum needed to display the link to the Block change page.
-            blocks = [
+            return [
                 self.FakeBlock(
                     id=block.id,
                     guid=block.guid,
-                    min_version=None,
-                    max_version=None,
                     current_adu=None,
+                    addon_versions=[
+                        self.FakeBlockAddonVersion(None, bv.version, True, 0)
+                        for bv in blocked_versions
+                        if bv.block_id == block.id
+                    ],
                 )
                 for block in blocks
             ]
-        return blocks
+        else:
+            return blocks_qs.prefetch_related('blockversion_set')
 
     def can_user_signoff(self, signoff_user):
         require_different_users = not settings.DEBUG
@@ -335,14 +329,7 @@ class BlocklistSubmission(ModelBase):
         )
 
     def has_version_changes(self):
-        block_ids = [block['id'] for block in self.to_block]
-
-        has_new_blocks = any(not id_ for id_ in block_ids)
-        blocks_with_version_changes_qs = Block.objects.filter(id__in=block_ids).exclude(
-            min_version=self.min_version, max_version=self.max_version
-        )
-
-        return has_new_blocks or blocks_with_version_changes_qs.exists()
+        return bool(self.changed_version_ids)
 
     def update_signoff_for_auto_approval(self):
         is_pending = self.signoff_state == self.SIGNOFF_PENDING
@@ -376,8 +363,6 @@ class BlocklistSubmission(ModelBase):
 
         processed = self.process_input_guids(
             self.input_guids,
-            self.min_version,
-            self.max_version,
             load_full_objects=False,
             filter_existing=(self.action == self.ACTION_ADDCHANGE),
         )
@@ -400,15 +385,38 @@ class BlocklistSubmission(ModelBase):
 
         # And then any existing block instances
         block_qs = Block.objects.filter(guid__in=guids).values_list(
-            'id', 'guid', 'min_version', 'max_version', named=True
+            'id', 'guid', named=True
         )
+        version_qs = (
+            Version.unfiltered.filter(addon__addonguid__guid__in=guids)
+            .order_by('id')
+            .values_list(
+                'id',
+                'version',
+                'blockversion__block_id',
+                'addon__addonguid__guid',
+                named=True,
+            )
+        )
+        all_submission_versions = BlocklistSubmission.get_all_submission_versions()
+
+        all_addon_versions = defaultdict(list)
+        for version in version_qs:
+            all_addon_versions[version.addon__addonguid__guid].append(
+                cls.FakeBlockAddonVersion(
+                    version.id,
+                    version.version,
+                    version.blockversion__block_id is not None,
+                    all_submission_versions.get(version.id, 0),
+                )
+            )
+
         blocks = {
             block.guid: cls.FakeBlock(
                 id=block.id,
                 guid=block.guid,
-                min_version=block.min_version,
-                max_version=block.max_version,
                 current_adu=adu_lookup.get(block.guid, -1),
+                addon_versions=tuple(all_addon_versions.get(block.guid, [])),
             )
             for block in block_qs
         }
@@ -422,29 +430,29 @@ class BlocklistSubmission(ModelBase):
             block = cls.FakeBlock(
                 id=None,
                 guid=addon.guid,
-                min_version=Block.MIN,
-                max_version=Block.MAX,
                 current_adu=adu_lookup.get(addon.guid, -1),
+                addon_versions=tuple(all_addon_versions.get(addon.guid, [])),
             )
             blocks[addon.guid] = block
-        return list(blocks.values())
+        blocks_list = blocks.values()
+        return list(blocks_list)
 
     @classmethod
     def process_input_guids(
-        cls, input_guids, v_min, v_max, *, load_full_objects=True, filter_existing=True
+        cls, input_guids, *, load_full_objects=True, filter_existing=True
     ):
         """Process a line-return separated list of guids into a list of invalid
-        guids, a list of guids that are blocked already for v_min - vmax, and a
+        guids, a list of guids that are completely blocked already, and a
         list of Block instances - including new Blocks (unsaved) and existing
         partial Blocks. If `filter_existing` is False, all existing blocks are
         included.
 
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
+        Block.id
         Block.guid,
         Block.current_adu,
-        Block.min_version,
-        Block.max_version,
+        Block.addon_versions,
         """
         all_guids = set(splitlines(input_guids))
 
@@ -453,19 +461,25 @@ class BlocklistSubmission(ModelBase):
             if load_full_objects
             else cls._get_fake_blocks_from_guids(all_guids)
         )
+        all_addon_version_ids_qs = Version.unfiltered.filter(
+            addon__addonguid__guid__in=all_guids
+        ).values_list('addon__addonguid__guid', 'id')
+        all_addon_version_ids = defaultdict(set)
+        for guid, version_id in all_addon_version_ids_qs:
+            all_addon_version_ids[guid].add(version_id)
 
         if len(all_guids) == 1 or not filter_existing:
             # We special case a single guid to always update it.
             blocks = unfiltered_blocks
             existing_guids = []
         else:
-            # unfiltered_blocks contains blocks that don't need to be updated.
+            # Get a list of a blocks from unfiltered_blocks that are either new or
+            # not completely blocked.
             blocks = [
                 block
                 for block in unfiltered_blocks
                 if not block.id
-                or block.min_version != v_min
-                or block.max_version != v_max
+                or any(not ver.is_blocked for ver in block.addon_versions)
             ]
             existing_guids = [
                 block.guid for block in unfiltered_blocks if block not in blocks
@@ -475,7 +489,6 @@ class BlocklistSubmission(ModelBase):
         invalid_guids = list(
             all_guids - set(existing_guids) - {block.guid for block in blocks}
         )
-
         return {
             'invalid_guids': invalid_guids,
             'existing_guids': existing_guids,
@@ -487,8 +500,6 @@ class BlocklistSubmission(ModelBase):
         assert self.action == self.ACTION_ADDCHANGE
 
         fields_to_set = [
-            'min_version',
-            'max_version',
             'url',
             'reason',
             'updated_by',
@@ -496,7 +507,7 @@ class BlocklistSubmission(ModelBase):
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
         for guids_chunk in chunked(all_guids_to_block, 100):
-            save_guids_to_blocks(guids_chunk, self, fields_to_set=fields_to_set)
+            save_versions_to_blocks(guids_chunk, self, fields_to_set=fields_to_set)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
@@ -504,14 +515,18 @@ class BlocklistSubmission(ModelBase):
     def delete_block_objects(self):
         assert self.is_submission_ready
         assert self.action == self.ACTION_DELETE
-        block_ids_to_delete = [block['id'] for block in self.to_block]
-        for ids_chunk in chunked(block_ids_to_delete, 100):
-            blocks = list(Block.objects.filter(id__in=ids_chunk))
-            Block.preload_addon_versions(blocks)
-            for block in blocks:
-                block_activity_log_delete(block, submission_obj=self)
+
+        fields_to_set = [
+            'url',
+            'reason',
+            'updated_by',
+        ]
+        all_guids_to_block = [block['guid'] for block in self.to_block]
+
+        for guids_chunk in chunked(all_guids_to_block, 100):
+            # This function will remove BlockVersions and delete the Block if empty
+            delete_versions_from_blocks(guids_chunk, self, fields_to_set=fields_to_set)
             self.save()
-            Block.objects.filter(id__in=ids_chunk).delete()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
 
@@ -520,3 +535,18 @@ class BlocklistSubmission(ModelBase):
         return cls.objects.exclude(signoff_state__in=excludes).filter(
             to_block__contains={'guid': guid}
         )
+
+    @classmethod
+    def get_submissions_from_version_id(cls, version_id):
+        return cls.objects.exclude(
+            signoff_state__in=cls.SIGNOFF_STATES_FINISHED
+        ).filter(changed_version_ids__contains=version_id)
+
+    @classmethod
+    def get_all_submission_versions(cls):
+        submission_qs = BlocklistSubmission.objects.exclude(
+            signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_FINISHED
+        ).values_list('id', 'changed_version_ids')
+        return {
+            ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list
+        }

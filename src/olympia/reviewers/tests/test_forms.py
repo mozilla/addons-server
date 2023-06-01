@@ -6,8 +6,13 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
-from olympia.blocklist.models import Block
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
@@ -337,10 +342,9 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
-        Block.objects.create(
-            addon=self.addon,
-            min_version=blocked_version.version,
-            max_version=blocked_version.version,
+        block_factory(
+            addon=blocked_version.addon,
+            version_ids=[blocked_version.id],
             updated_by=user_factory(),
         )
         # auto-approve everything (including self.addon.current_version)
@@ -431,10 +435,9 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
-        Block.objects.create(
-            addon=self.addon,
-            min_version=blocked_version.version,
-            max_version=blocked_version.version,
+        block_factory(
+            addon=blocked_version.addon,
+            version_ids=[blocked_version.id],
             updated_by=user_factory(),
         )
         self.version.update(channel=amo.CHANNEL_UNLISTED)

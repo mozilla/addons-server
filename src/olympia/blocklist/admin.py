@@ -1,7 +1,8 @@
+from types import SimpleNamespace
+
 from django import http
-from django.contrib import admin, auth, contenttypes, messages
+from django.contrib import admin, auth, contenttypes
 from django.core.exceptions import PermissionDenied
-from django.forms.fields import ChoiceField
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
@@ -13,33 +14,15 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.utils import HttpResponseTemporaryRedirect
-from olympia.versions.models import Version
 
-from .forms import BlocklistSubmissionForm, MultiAddForm, MultiDeleteForm
+from .forms import (
+    BlocklistSubmissionForm,
+    MultiAddForm,
+    MultiDeleteForm,
+)
 from .models import Block, BlocklistSubmission
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
-
-
-# The limit for how many GUIDs should be fully loaded with all metadata
-GUID_FULL_LOAD_LIMIT = 100
-
-
-def _get_version_choices(block, field_name):
-    # field_name will be `min_version` or `max_version`
-    default = block._meta.get_field(field_name).default
-    choices = [(default, default)] + list(
-        (version.version, version.version) for version in block.addon_versions
-    )
-    block_version = getattr(block, field_name)
-    if block_version and (block_version, block_version) not in choices:
-        # if the current version isn't in choices it's not a valid version of
-        # the addon.  This is either because:
-        # - the Block was created as a multiple submission so was a free input
-        # - it's a new Block and the min|max_version was passed as a GET param
-        # - the version was hard-deleted from the addon afterwards (unlikely)
-        choices = [(block_version, '(invalid)')] + choices
-    return choices
 
 
 class BlocklistSubmissionStateFilter(admin.SimpleListFilter):
@@ -106,17 +89,9 @@ class BlockAdminAddMixin:
         if request.method == 'POST':
             form = MultiForm(request.POST)
             if form.is_valid():
-                guids = splitlines(form.data.get('guids'))
-                if len(guids) == 1 and form.existing_block:
-                    # If the guid already has a Block go to the change view
-                    return redirect(
-                        'admin:blocklist_block_change', form.existing_block.id
-                    )
-                elif len(guids) > 0:
-                    # Otherwise go to multi view.
-                    return HttpResponseTemporaryRedirect(
-                        reverse('admin:blocklist_blocklistsubmission_add')
-                    )
+                return HttpResponseTemporaryRedirect(
+                    reverse('admin:blocklist_blocklistsubmission_add')
+                )
         else:
             form = MultiForm()
 
@@ -138,55 +113,11 @@ class BlockAdminAddMixin:
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
-        get_params = request.GET.copy()
-        for key in ('min', 'max'):
-            if key in get_params:
-                version = get_object_or_404(
-                    Version.unfiltered, pk=get_params.pop(key)[0]
-                )
-                get_params[f'{key}_version'] = version.version
 
-        if 'min_version' in get_params or 'max_version' in get_params:
-            warning_message = (
-                f"The versions {get_params.get('min_version', '0')} to "
-                f"{get_params.get('max_version', '*')} could not be "
-                'pre-selected because {reason}'
-            )
-        else:
-            warning_message = None
-
-        if addon.blocklistsubmission:
-            if 'min_version' in get_params or 'max_version' in get_params:
-                messages.add_message(
-                    request,
-                    messages.WARNING,
-                    warning_message.format(
-                        reason='this addon is part of a pending submission'
-                    ),
-                )
-            return redirect(
-                reverse(
-                    'admin:blocklist_blocklistsubmission_change',
-                    args=(addon.blocklistsubmission.pk,),
-                )
-            )
-        elif addon.block:
-            if 'min_version' in get_params or 'max_version' in get_params:
-                messages.add_message(
-                    request,
-                    messages.WARNING,
-                    warning_message.format(
-                        reason='some versions have been blocked already'
-                    ),
-                )
-            return redirect(
-                reverse('admin:blocklist_block_change', args=(addon.block.pk,))
-            )
-        else:
-            return redirect(
-                reverse('admin:blocklist_blocklistsubmission_add')
-                + f'?guids={addon.addonguid_guid}&{get_params.urlencode()}'
-            )
+        return redirect(
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={addon.addonguid_guid}&{request.GET.urlencode()}'
+        )
 
 
 @admin.register(BlocklistSubmission)
@@ -308,8 +239,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             {
                 'fields': (
                     'blocks',
-                    'min_version',
-                    'max_version',
+                    'disable_addon',
+                    'changed_version_ids',
                     'url',
                     'reason',
                     'updated_by',
@@ -338,6 +269,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             {
                 'fields': (
                     'blocks',
+                    'changed_version_ids',
                     'updated_by',
                     'signoff_by',
                     'submission_logs',
@@ -368,10 +300,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             ro_fields += [
                 'input_guids',
                 'action',
-                'min_version',
-                'max_version',
-                'existing_min_version',
-                'existing_max_version',
+                'changed_version_ids',
                 'delay_days',
             ]
             if not self.has_change_permission(request, obj, strict=True):
@@ -388,25 +317,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             )
         )
 
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        single_guid = len(self._get_input_guids(request)) == 1
-        if single_guid and db_field.name in ('min_version', 'max_version'):
-            return ChoiceField(**kwargs)
-        return super().formfield_for_dbfield(db_field, request, **kwargs)
-
     def get_form(self, request, obj=None, change=False, **kwargs):
         form = super().get_form(request, obj, change, **kwargs)
         if not change:
-            guids = self._get_input_guids(request)
-            if len(guids) == 1:
-                block_obj = Block(guid=guids[0])
-                if 'min_version' in form.base_fields:
-                    form.base_fields['min_version'].choices = _get_version_choices(
-                        block_obj, 'min_version'
-                    )
-                    form.base_fields['max_version'].choices = _get_version_choices(
-                        block_obj, 'max_version'
-                    )
             form.base_fields['input_guids'].widget = HiddenInput()
             form.base_fields['action'].widget = HiddenInput()
             if 'delayed_until' in form.base_fields:
@@ -419,24 +332,18 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
         MultiBlockForm = self.get_form(request, change=False, **kwargs)
         is_delete = not self.is_add_change_submission(request, None)
-
         guids_data = self.get_value('guids', request)
         if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
             initial = {key: values for key, values in request.GET.items()}
-            initial.update(
-                **{
-                    'input_guids': guids_data,
-                    'existing_min_version': initial.get('min_version', Block.MIN),
-                    'existing_max_version': initial.get('max_version', Block.MAX),
-                }
-            )
+            initial.update(**{'input_guids': guids_data})
             if 'action' in request.POST:
                 initial['action'] = request.POST['action']
             form = MultiBlockForm(initial=initial)
         elif request.method == 'POST':
+            form_data = request.POST.copy()
             # Otherwise, if its a POST try to process the form.
-            form = MultiBlockForm(request.POST)
+            form = MultiBlockForm(form_data)
             if form.is_valid():
                 # Save the object so we have the guids
                 obj = form.save(commit=False)
@@ -444,15 +351,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 self.save_model(request, obj, form, change=False)
                 self.log_addition(request, obj, [{'added': {}}])
                 return self.response_add(request, obj)
-            elif not is_delete:
-                guids_data = request.POST.get('input_guids')
-                form_data = form.data.copy()
-                # each time we render the form we pass along the existing
-                # versions so we can detect if they've been changed and we'd '
-                # need a recalculation how existing blocks are affected.
-                form_data['existing_min_version'] = form_data['min_version']
-                form_data['existing_max_version'] = form_data['max_version']
-                form.data = form_data
+            else:
+                guids_data = form_data.get('input_guids')
         else:
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')
@@ -468,26 +368,14 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'title': 'Delete Blocks' if is_delete else 'Block Add-ons',
             'save_as': False,
             'block_history': self.block_history(self.model(input_guids=guids_data)),
-            'submission_complete': False,
+            'submission_published': False,
+            'site_title': None,
+            'is_popup': False,
+            'form_url': '',
         }
-        context.update(**self._get_enhanced_guid_context(request, guids_data))
         return TemplateResponse(
             request, 'admin/blocklist/blocklistsubmission_add_form.html', context
         )
-
-    def _get_enhanced_guid_context(self, request, guids_data, obj=None):
-        load_full_objects = len(splitlines(guids_data)) <= GUID_FULL_LOAD_LIMIT
-        objects = self.model.process_input_guids(
-            guids_data,
-            v_min=self.get_value('min_version', request, obj, Block.MIN),
-            v_max=self.get_value('max_version', request, obj, Block.MAX),
-            load_full_objects=load_full_objects,
-            filter_existing=self.is_add_change_submission(request, obj),
-        )
-        if load_full_objects:
-            Block.preload_addon_versions(objects['blocks'])
-        objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
-        return objects
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -506,19 +394,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         extra_context['can_reject'] = self.is_changeable(
             obj
         ) and self.has_signoff_reject_permission(request, obj)
-        if obj.signoff_state != BlocklistSubmission.SIGNOFF_PUBLISHED:
-            extra_context.update(
-                **self._get_enhanced_guid_context(request, obj.input_guids, obj)
-            )
-        else:
-            extra_context['blocks'] = obj.get_blocks_submitted(
-                load_full_objects_threshold=GUID_FULL_LOAD_LIMIT
-            )
-            if len(extra_context['blocks']) <= GUID_FULL_LOAD_LIMIT:
-                # if it's less than the limit we loaded full Block instances
-                # so preload the addon_versions so the review links are
-                # generated efficiently.
-                Block.preload_addon_versions(extra_context['blocks'])
         return super().change_view(
             request, object_id, form_url=form_url, extra_context=extra_context
         )
@@ -528,7 +403,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     ):
         if change:
             # add this to the instance so blocks() below can reference it.
-            obj._blocks = context['blocks']
+            obj._blocks = context['adminform'].form.blocks
         return super().render_change_form(
             request, context, add=add, change=change, form_url=form_url, obj=obj
         )
@@ -594,12 +469,13 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def blocks(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
-        complete = obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        is_published = obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+
         return render_to_string(
             'admin/blocklist/includes/enhanced_blocks.html',
             {
-                'blocks': obj._blocks,
-                'submission_complete': complete,
+                'form': SimpleNamespace(blocks=obj._blocks),
+                'submission_published': is_published,
             },
         )
 
@@ -620,7 +496,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
 @admin.register(Block)
 class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
-    list_display = ('guid', 'min_version', 'max_version', 'updated_by', 'modified')
+    list_display = ('guid', 'updated_by', 'modified')
     readonly_fields = (
         'addon_guid',
         'addon_name',
@@ -630,6 +506,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         'review_unlisted_link',
         'block_history',
         'url_link',
+        'blocked_versions',
     )
     ordering = ['-modified']
     view_on_site = False
@@ -654,6 +531,11 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
 
     def users(self, obj):
         return obj.average_daily_users_snapshot
+
+    def blocked_versions(self, obj):
+        return ', '.join(
+            sorted(obj.blockversion_set.values_list('version__version', flat=True))
+        )
 
     def block_history(self, obj):
         logs = (
@@ -694,8 +576,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
             'Edit Block',
             {
                 'fields': (
-                    'min_version',
-                    'max_version',
+                    'blocked_versions',
                     ('url', 'url_link'),
                     'reason',
                 ),
@@ -705,10 +586,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         return (details, history, edit)
 
     def has_change_permission(self, request, obj=None):
-        if obj and obj.is_readonly:
-            return False
-        else:
-            return super().has_change_permission(request, obj=obj)
+        return False
 
     def has_delete_permission(self, request, obj=None):
         if obj and obj.is_readonly:
@@ -725,22 +603,6 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         # We don't delete via this Admin so if we get here something has gone
         # wrong.
         raise PermissionDenied
-
-    def get_form(self, request, obj=None, change=False, **kwargs):
-        form = super().get_form(request, obj=obj, change=change, **kwargs)
-        if 'min_version' in form.base_fields:
-            form.base_fields['min_version'].choices = _get_version_choices(
-                obj, 'min_version'
-            )
-            form.base_fields['max_version'].choices = _get_version_choices(
-                obj, 'max_version'
-            )
-        return form
-
-    def formfield_for_dbfield(self, db_field, request, **kwargs):
-        if db_field.name in ('min_version', 'max_version'):
-            return ChoiceField(**kwargs)
-        return super().formfield_for_dbfield(db_field, request, **kwargs)
 
     def changeform_view(self, request, obj_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}

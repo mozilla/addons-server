@@ -1808,12 +1808,11 @@ class Addon(OnChangeMixin, ModelBase):
         # Block.guid is unique so it's either on the list or not.
         return Block.objects.filter(guid=self.addonguid_guid).last()
 
-    @cached_property
-    def blocklistsubmission(self):
+    @property
+    def blocklistsubmission_set(self):
         from olympia.blocklist.models import BlocklistSubmission
 
-        # GUIDs should only exist in one (active) submission at once.
-        return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid).last()
+        return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid)
 
     @property
     def git_extraction_is_in_progress(self):
