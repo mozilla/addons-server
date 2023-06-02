@@ -413,6 +413,7 @@ class ManifestJSONExtractor:
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
             'install_origins': self.install_origins,
+            'gecko_android': self.gecko_android,
         }
 
         # Populate certificate information (e.g signed by mozilla or not)

@@ -711,6 +711,12 @@ def json_upload_detail(request, upload, addon_slug=None):
             return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
+            result['explicitly_compatible_with_android'] = bool(
+                # The key should always exist, and we default to returning {}
+                # so we have to cast into a boolean to see what we really care
+                # about.
+                pkg.get('gecko_android', False)
+            )
     return result
 
 
@@ -1045,13 +1051,13 @@ def version_edit(request, addon_id, addon, version_id):
             timer.log_interval('2.form_validated')
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
-                compat.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
-                compat.version = version
-                compat.save()
+                if data['compat_form'].has_changed():
+                    compat.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+                    compat.version = version
+                    compat.save()
 
             for compat in data['compat_form'].deleted_objects:
-                if not compat.locked_from_manifest:
-                    compat.delete()
+                compat.delete()
 
             for form in data['compat_form'].forms:
                 if isinstance(form, forms.CompatForm) and 'max' in form.changed_data:

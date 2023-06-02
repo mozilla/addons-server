@@ -610,6 +610,35 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'Need to select at least one application.'
         )
 
+    def test_compatible_apps_gecko_android_in_manifest(self):
+        # Only specifying firefox compatibility for an add-on that has explicit
+        # gecko_android compatibility in manifest is accepted, but we
+        # automatically add Android compatibility.
+        self.upload = self.get_upload('webextension_gecko_android.xpi', user=self.user)
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.post(
+            url,
+            {
+                'upload': self.upload.uuid.hex,
+                'compatible_apps': [amo.FIREFOX.id],
+            },
+        )
+        assert response.status_code == 302
+        addon = Addon.objects.latest('pk')
+        assert addon.current_version.apps.count() == 2
+        assert (
+            addon.current_version.compatible_apps[amo.FIREFOX].originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+        )
+        assert (
+            addon.current_version.compatible_apps[amo.ANDROID].originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+        assert (
+            addon.current_version.compatible_apps[amo.ANDROID].min.version
+            == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+        )
+
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(
             reverse('devhub.submit.upload', args=['listed']), follow=True

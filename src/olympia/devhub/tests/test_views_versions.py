@@ -17,6 +17,7 @@ from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
+    create_default_webext_appversion,
     formset,
     initial,
     reverse_ns,
@@ -718,12 +719,7 @@ class TestVersionEditBase(TestCase):
         self.addon = self.get_addon()
         self.version = self.get_version()
         self.url = reverse('devhub.versions.edit', args=['a3615', self.version.id])
-        self.v1, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='1.0'
-        )
-        self.v5, _created = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='5.0'
-        )
+        create_default_webext_appversion()
 
     def get_addon(self):
         return Addon.objects.get(id=3615)
@@ -1107,15 +1103,6 @@ class TestVersionEditStaticTheme(TestVersionEditBase):
 
 
 class TestVersionEditCompat(TestVersionEditBase):
-    def setUp(self):
-        super().setUp()
-        self.android_32pre, _created = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='3.2a1pre'
-        )
-        self.android_30, _created = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='3.0'
-        )
-
     def get_form(self, url=None):
         if not url:
             url = self.url
@@ -1136,8 +1123,13 @@ class TestVersionEditCompat(TestVersionEditBase):
             initial(form),
             {
                 'application': amo.ANDROID.id,
-                'min': self.android_30.id,
-                'max': self.android_32pre.id,
+                'min': AppVersion.objects.get(
+                    application=amo.ANDROID.id,
+                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+                ).pk,
+                'max': AppVersion.objects.get(
+                    application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+                ).pk,
             },
             initial_count=1,
         )
@@ -1151,12 +1143,20 @@ class TestVersionEditCompat(TestVersionEditBase):
 
     def test_update_appversion(self):
         data = self.get_form()
-        data.update(min=self.v1.id, max=self.v5.id)
+        data.update(
+            min=AppVersion.objects.get(
+                application=amo.FIREFOX.id,
+                version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            ).pk,
+            max=AppVersion.objects.get(
+                application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+            ).pk,
+        )
         response = self.client.post(self.url, self.formset(data, initial_count=1))
         assert response.status_code == 302
         av = self.version.apps.get()
-        assert av.min.version == '1.0'
-        assert av.max.version == '5.0'
+        assert av.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+        assert av.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
         ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
@@ -1174,6 +1174,115 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
         ) == ([(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
+
+    def test_cant_delete_android_if_locked_from_manifest(self):
+        # Add android compat from manifest. We shouldn't be able to delete it.
+        avs = self.addon.current_version.apps.create(
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            ),
+            max=AppVersion.objects.get(
+                application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+            ),
+            originated_from=amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+        )
+        form = self.client.get(self.url).context['compat_form']
+        data = list(map(initial, form.initial_forms))
+        data[1]['DELETE'] = True
+        response = self.client.post(self.url, self.formset(*data, initial_count=2))
+        # We've overridden add_fields() on the formset to prevent the delete
+        # field from being added, so Django never adds it to the HTML and
+        # silently ignores it if it's somehow part of the POST data.
+        assert response.status_code == 302
+        assert self.addon.current_version.apps.all().count() == 2
+        avs.refresh_from_db()  # Still exists
+        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+        assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert (
+            avs.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+
+    def test_cant_edit_android_if_locked_from_manifest(self):
+        # Add android compat from manifest. We shouldn't be able to edit it.
+        avs = self.addon.current_version.apps.create(
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            ),
+            max=AppVersion.objects.get(
+                application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+            ),
+            originated_from=amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+        )
+        form = self.client.get(self.url).context['compat_form']
+        data = list(map(initial, form.initial_forms))
+        data[1]['max'] = AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+        ).pk
+        response = self.client.post(self.url, self.formset(*data, initial_count=2))
+        # The fields for the locked applicationsversions are disabled at the
+        # form level, so they would be rendered disabled in the HTML, clients
+        # will never submit any edits, and Django will silently prevent any
+        # changes.
+        assert response.status_code == 302
+        assert self.addon.current_version.apps.all().count() == 2
+        avs.refresh_from_db()
+        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+        assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert (
+            avs.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+
+    def test_can_submit_other_changes_when_android_compat_is_locked_from_manifest(self):
+        # Add android compat from manifest. We shouldn't be able to edit it,
+        # but we can still change the Firefox one.
+        avs = self.addon.current_version.apps.all().get()
+        self.addon.current_version.apps.create(
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            ),
+            max=AppVersion.objects.get(
+                application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+            ),
+            originated_from=amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+        )
+        form = self.client.get(self.url).context['compat_form']
+        data = list(map(initial, form.initial_forms))
+        # Change Firefox compat
+        data[0]['min'] = AppVersion.objects.get(
+            application=amo.FIREFOX.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+        ).pk
+        data[0]['max'] = AppVersion.objects.get(
+            application=amo.FIREFOX.id,
+            version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+        ).pk
+        response = self.client.post(self.url, self.formset(*data, initial_count=2))
+        assert response.status_code == 302
+        assert self.addon.current_version.apps.all().count() == 2
+        avs.refresh_from_db()
+        assert avs.application == amo.FIREFOX.id
+        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
+        assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+
+    def test_no_compat_changes(self):
+        avs = self.addon.current_version.apps.all().get()
+        form = self.client.get(self.url).context['compat_form']
+        data = list(map(initial, form.initial_forms))
+        response = self.client.post(self.url, self.formset(*data, initial_count=2))
+        assert response.status_code == 302
+        assert self.addon.current_version.apps.all().count() == 1
+        avs.refresh_from_db()
+        assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN
 
     def test_unique_apps(self):
         form = self.client.get(self.url).context['compat_form'].initial_forms[0]

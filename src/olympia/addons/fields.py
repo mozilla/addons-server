@@ -299,8 +299,9 @@ class VersionCompatibilityField(serializers.Field):
                     raise exceptions.ValidationError(
                         gettext(
                             'Can not override compatibility information set in the '
-                            'manifest for this application (%s)' % app.pretty
+                            'manifest for this application (%s)'
                         )
+                        % app.pretty
                     )
             else:
                 apps_versions.originated_from = (
@@ -316,8 +317,9 @@ class VersionCompatibilityField(serializers.Field):
                 raise exceptions.ValidationError(
                     gettext(
                         'Can not override compatibility information set in the '
-                        'manifest for this application (%s)' % app.pretty
+                        'manifest for this application (%s)'
                     )
+                    % app.pretty
                 )
 
         return internal

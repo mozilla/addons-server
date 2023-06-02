@@ -860,8 +860,6 @@ class CompatForm(AMOModelForm):
                 raise forms.ValidationError(gettext('Invalid version range.'))
             if self.instance.application:
                 self.cleaned_data['application'] = self.instance.application
-        else:
-            self.cleaned_data = {}
         return self.cleaned_data
 
 

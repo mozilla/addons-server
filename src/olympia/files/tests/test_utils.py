@@ -336,7 +336,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     def test_gecko_android_default_min_max(self):
         data = {'browser_specific_settings': {'gecko_android': {}}}
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -349,11 +350,14 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
+        assert parsed_data['gecko_android'] == {}
+
     def test_gecko_android_default_min_if_only_max_is_present(self):
         data = {
             'browser_specific_settings': {'gecko_android': {'strict_max_version': '*'}}
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -367,6 +371,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
+        assert parsed_data['gecko_android'] == {'strict_max_version': '*'}
+
     def test_gecko_android_strict_min_max(self):
         data = {
             'browser_specific_settings': {
@@ -376,7 +382,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 }
             }
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -388,6 +395,11 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.ANDROID.id
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
+
+        assert parsed_data['gecko_android'] == {
+            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+            'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
+        }
 
     def test_gecko_android_strict_min_max_with_gecko_alongside(self):
         data = {
@@ -401,7 +413,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 },
             }
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -414,6 +427,11 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
+        assert parsed_data['gecko_android'] == {
+            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+            'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
+        }
+
     def test_gecko_android_strict_min_default_max_with_gecko_alongside(self):
         data = {
             'browser_specific_settings': {
@@ -425,7 +443,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 },
             }
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -438,6 +457,10 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
 
+        assert parsed_data['gecko_android'] == {
+            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
+        }
+
     def test_gecko_android_min_too_low(self):
         data = {
             'browser_specific_settings': {
@@ -446,7 +469,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 },
             }
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -458,6 +482,11 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.ANDROID.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        assert parsed_data['gecko_android'] == {
+            # The gecko_android data is returned as-is.
+            'strict_min_version': '48.0',
+        }
 
     def test_gecko_android_unknown_min(self):
         data = {
