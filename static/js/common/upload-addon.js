@@ -502,7 +502,10 @@
           } else {
             // Pre-check Android or not depending on what we detected in the
             // manifest.
-            $('#id_compatible_apps .android input').prop('checked', results.explicitly_compatible_with_android);
+            $('#id_compatible_apps .android input').prop(
+              'checked',
+              results.explicitly_compatible_with_android,
+            );
             $('.binary-source').show();
             $('.compatible-apps').show();
           }
