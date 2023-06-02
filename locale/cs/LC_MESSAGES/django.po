@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-28 09:59+0000\n"
+"PO-Revision-Date: 2023-06-02 19:09+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2524,7 +2524,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "Potřebujete poslat zdrojový kód?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "Kontroloři doplňků Mozilla musí být schopni číst a reprodukovat kód ve vašem rozšíření. Pokud to nedokážou, vaše rozšíření může být zamítnuté."
 
 msgid "Do you use any of the following in your extension?"
 msgstr "Používáte ve svém rozšíření něco z tohoto?"
@@ -4156,7 +4156,7 @@ msgstr "Emoji pro každou příležitost vždy po ruce."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Zamaskujte svou e-mailovou adresu. Firefox Relay chrání vaši identitu a zabraňuje nevyžádané poště."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4168,7 +4168,7 @@ msgstr "Zpřehledněte si prostředí Twitteru."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Přineste si zpět možnost vidět palec dole!"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4180,11 +4180,11 @@ msgstr "Narazili jste na webu na zajímavý obrázek? S TinEye zjistíte, odkud 
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Ukládejte obrázky snadno — jednoduše si je vezměte z aktuálního panelu."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Mějte maximální vládu nad panely — zavřete duplicitní panely, slučte okna, zkopírujte název panelu a mnoho dalšího."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4196,7 +4196,7 @@ msgstr "Přizpůsobte si gesta myši. Objevte nový způsob, jak provádět navi
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Změňte vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4204,7 +4204,7 @@ msgstr "Zavírejte panely, procházejte stránky a provádějte další činnost
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky — nebo dokonce zvětšit samotnou stránku."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4212,11 +4212,11 @@ msgstr "Nechte si vedle výsledků vyhledávání zobrazovat náhledy daných st
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Uložte si celou webovou stránku — včetně obrázků a stylů — jako jeden soubor HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Upravte webovou stránku před jejím vytištěním. Proveďte rozsáhlé vizuální změny — odstraňte reklamy nebo odpudivý obsah — na každé webové stránce, kterou chcete vytisknout."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4248,7 +4248,7 @@ msgstr "Vraťte se do jednodušších časů, kdy se nejlepší výsledky vyhled
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Zamaskujte svůj e-mail, abyste ochránili svou identitu a zabránili tak nevyžádané poště. Díky novinkám je používání služby Firefox Relay ještě jednodušší."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4304,7 +4304,7 @@ msgstr "Odstraňte formátování z textu zkopírovaného ze schránky."
 
 #. editorial content for the primary hero shelves.
 msgid "Fingerprinting privacy protection."
-msgstr ""
+msgstr "Ochrana soukromí před vytvářením otisku prohlížeče."
 
 #. editorial content for the primary hero shelves.
 msgid "Enhance your gaming experience on Steam."
@@ -4312,7 +4312,7 @@ msgstr "Vylepšete svůj herní prožitek na Steamu."
 
 #. editorial content for the primary hero shelves.
 msgid "Thumbs-up to bringing back thumbs-down."
-msgstr ""
+msgstr "Palec nahoru k vrácení palce dolů."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
