@@ -480,6 +480,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
+            'gecko_android': {},
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -501,6 +502,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
+            'gecko_android': {},
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
