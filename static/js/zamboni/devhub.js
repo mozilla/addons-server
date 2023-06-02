@@ -27,11 +27,6 @@ $(document).ready(function () {
   // Validate addon (standalone)
   $('.validate-addon').exists(initSubmit);
 
-  // Add-on Compatibility Check
-  $('#addon-compat-upload').exists(initAddonCompatCheck, [
-    $('#addon-compat-upload'),
-  ]);
-
   // Submission > Source
   $('#submit-source').exists(initSourceSubmitOutcomes);
 
