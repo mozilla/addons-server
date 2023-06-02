@@ -3091,6 +3091,8 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             'firefox': {'max': '*', 'min': '42.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
     def test_compatibility_dict(self):
         response = self.request(compatibility={})
@@ -3117,10 +3119,16 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             'firefox': {'max': '*', 'min': '61.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
-    def test_compatibility_dict_109(self):
-        # 109.0 is valid per setUpTestData()
-        response = self.request(compatibility={'firefox': {'min': '109.0'}})
+    def test_compatibility_dict_high_appversion_that_exists(self):
+        # APPVERSION_HIGHER_THAN_EVERYTHING_ELSE ('114.0') is valid per setUpTestData()
+        response = self.request(
+            compatibility={
+                'firefox': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
+            }
+        )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         data = response.data
         self.addon.reload()
@@ -3128,7 +3136,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
             # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '109.0'},
+            'firefox': {'max': '*', 'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
 
@@ -3204,6 +3212,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     client_class = APITestClientSessionID
     client_request_verb = 'post'
     SUCCESS_STATUS_CODE = 201
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '114.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3215,7 +3224,8 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
-            '109.0',
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
             AppVersion.objects.get_or_create(
@@ -3595,6 +3605,28 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ],
         }
 
+    def test_compatibility_gecko_android_in_manifest(self):
+        # Only specifying firefox compatibility for an add-on that has explicit
+        # gecko_android compatibility in manifest is accepted, but we
+        # automatically add Android compatibility.
+        self.upload = self.get_upload(
+            'webextension_gecko_android.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        self.minimal_data = {'upload': self.upload.uuid}
+        response = self.request(compatibility={'firefox': {'min': '61.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+        assert data['compatibility'] == {
+            'android': {
+                'max': '*',
+                'min': amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            },
+            'firefox': {'max': '*', 'min': '61.0'},
+        }
+
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
         src = SimpleUploadedFile(
@@ -3622,6 +3654,7 @@ class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
 class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
     client_request_verb = 'patch'
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '114.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3632,7 +3665,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
-            '109.0',
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
             AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
@@ -4215,6 +4249,51 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.ENABLE_VERSION.id
+
+    def test_compatibility_with_appversion_locked_from_manifest(self):
+        # Add a 114.0 for Android coming from manifest. It shouldn't be
+        # possible for the developer to remove it in any way.
+        self.version.apps.create(
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
+            ),
+            max=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+            ),
+            originated_from=amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+        )
+        response = self.request(compatibility=['firefox'])
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
+
+        response = self.request(
+            compatibility={
+                'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX}
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
+
+        response = self.request(
+            compatibility={
+                'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
+                'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID},
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):

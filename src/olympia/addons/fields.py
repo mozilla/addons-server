@@ -298,8 +298,8 @@ class VersionCompatibilityField(serializers.Field):
                 ):
                     raise exceptions.ValidationError(
                         gettext(
-                            'Can not override compatibility information set in the'
-                            'manifest for this application'
+                            'Can not override compatibility information set in the '
+                            'manifest for this application (%s)' % app.pretty
                         )
                     )
             else:
@@ -309,11 +309,16 @@ class VersionCompatibilityField(serializers.Field):
 
             internal[app] = apps_versions
 
-        # Add back ApplicationsVersions that existed already and were locked
-        # because manifest is the source of truth: they can't be removed.
+        # Also make sure no ApplicationsVersions that existed already and were
+        # locked because manifest is the source of truth are gone.
         for app, apps_versions in existing.items():
             if apps_versions.locked_from_manifest and app not in internal:
-                internal[app] = apps_versions
+                raise exceptions.ValidationError(
+                    gettext(
+                        'Can not override compatibility information set in the '
+                        'manifest for this application (%s)' % app.pretty
+                    )
+                )
 
         return internal
 
