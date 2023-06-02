@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-05-19 16:41+0000\n"
+"PO-Revision-Date: 2023-06-02 13:34+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -900,7 +900,7 @@ msgid "Extension"
 msgstr "扩展"
 
 msgid "Deprecated Complete Theme"
-msgstr "已不赞成使用的完整主题"
+msgstr "已弃用的完整主题"
 
 msgid "Dictionary"
 msgstr "字典"
@@ -931,7 +931,7 @@ msgid "Extensions"
 msgstr "扩展"
 
 msgid "Deprecated Complete Themes"
-msgstr "已不赞成使用的完整主题"
+msgstr "已弃用的完整主题"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
