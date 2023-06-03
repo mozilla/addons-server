@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-06-02 19:16+0000\n"
+"PO-Revision-Date: 2023-06-03 16:34+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4474,7 +4474,7 @@ msgstr "Vylepšení pro Steam"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
-msgstr ""
+msgstr "Další vybraná rozšíření pro platformu Steam"
 
 #. editorial content for the homepage shelves.
 msgid "Creativity extensions"
@@ -4694,25 +4694,25 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "Verze %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "Toto je přesný název pravidla, který používá skener."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "Lidsky čitelný název pro pravidlo skeneru"
 
 msgid "Human-readable name"
 msgstr "Název čitelný pro člověka"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "Lidsky čitelný popis pro pravidlo skeneru"
 
 msgid "Yara rules should have a definition"
 msgstr "Pravidla Yara by měla mít definici"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "Název pravidla v definici by se měl shodovat s názvem pravidla skeneru"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "V definici je povoleno pouze jedno pravidlo Yara"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
@@ -4768,7 +4768,7 @@ msgid "Invalid Add-on ID in URL or package"
 msgstr "Neplatné ID doplňku v adrese URL nebo balíčku"
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr ""
+msgstr "Uvedené verze nelze přidat do doplňku nastaveného do stavu „Neviditelný“."
 
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "Kvůli chybějícím metadatům nemůžete k tomuto doplňku přidat veřejnou verzi prostřednictvím API. Nahrejte ji prosím pomocí webového rozhraní"
@@ -4783,7 +4783,7 @@ msgid "by Source"
 msgstr "dle zdroje"
 
 msgid "by Medium"
-msgstr ""
+msgstr "Dle způsobu stažení"
 
 msgid "by Content"
 msgstr "podle obsahu"
