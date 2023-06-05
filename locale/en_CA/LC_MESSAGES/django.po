@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-05-10 09:46+0000\n"
-"PO-Revision-Date: 2023-06-05 20:00+0000\n"
+"PO-Revision-Date: 2023-06-05 20:06+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -4160,7 +4160,7 @@ msgstr "Customize mouse gestures. Discover new ways to navigate with 50+ configu
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Customize the look of any website. Shift colours, page backgrounds & more."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4176,11 +4176,11 @@ msgstr "Enjoy thumbnail images of websites alongside your search returns."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Save an entire web page — including images and styling — as a single HTML file."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavoury content—to any web page you want to print."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4212,7 +4212,7 @@ msgstr "Return to a simpler time — when your top search results stood above th
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4280,11 +4280,11 @@ msgstr "Thumbs-up to bringing back thumbs-down."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Translate websites in Firefox — privately — without using the cloud."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4300,7 +4300,7 @@ msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4449,11 +4449,11 @@ msgstr "See more creativity staff picks"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Social media extensions"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "See more social media staff picks"
 
 msgid "Unreviewed"
 msgstr "Unreviewed"
@@ -4575,7 +4575,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Auto-flagged due to word match"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Auto-flagged due to user restriction"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -5054,7 +5054,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 
 msgid "Email Pattern"
 msgstr "Email Pattern"
@@ -5063,7 +5063,7 @@ msgid "Enter full email that should be blocked or use unix-style wildcards, e.g.
 msgstr "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "The email address used for your account is not allowed for submissions."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
