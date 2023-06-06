@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,6 +119,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -855,10 +859,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1855,55 +1856,6 @@ msgstr "गतिविधि"
 msgid "Subscribe to this feed"
 msgstr "इस फ़ीड की सदस्यता लें"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "अनुप्रयोग संगतता विस्तार देखें और अद्यतन करें।"
-
-msgid "Compatibility"
-msgstr "संगतता"
-
-msgid "Update Compatibility"
-msgstr "संगतता अद्यतन करें"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-
-msgid "Application"
-msgstr "अनुप्रयोग"
-
-msgid "Supported Versions"
-msgstr "समर्थित संस्करण"
-
-msgid "Remove"
-msgstr "हटाएँ"
-
-msgid "Add Another Application&hellip;"
-msgstr "एक और आवेदन जोड़ें &hellip;"
-
-msgid "Save Changes"
-msgstr "परिवर्तन सहेजें"
-
-msgid "or"
-msgstr "या"
-
-msgid "Cancel"
-msgstr "रद्द करें"
-
-msgid "Close"
-msgstr "बंद करें"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1975,10 +1927,16 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "परिवर्तन सहेजें"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "बंद करें"
 
 msgid "Additional Details"
 msgstr "अतिरिक्त जानकारियां"
@@ -2017,6 +1975,12 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+msgid "or"
+msgstr "या"
+
+msgid "Cancel"
+msgstr "रद्द करें"
 
 msgid "Describe Add-on"
 msgstr "ऐड-ऑन का वर्णन करें"
@@ -3054,6 +3018,15 @@ msgstr "प्रबंधन {0}"
 
 msgid "Files"
 msgstr "फ़ाइल्स"
+
+msgid "Compatibility"
+msgstr "संगतता"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Add Another Application&hellip;"
+msgstr "एक और आवेदन जोड़ें &hellip;"
 
 msgid "Version Notes"
 msgstr "संस्करण टिप्पणियाँ"
@@ -4109,6 +4082,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4633,7 +4610,7 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
 msgstr ""
 
 #, python-format

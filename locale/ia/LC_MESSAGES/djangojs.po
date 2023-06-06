@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-05-12 09:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "Tu additivo excede le maxime dimension de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recipite un responsa vacue ab le servitor; stato: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Error impreviste del servitor durante le validation."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Validation de {0} completate"
@@ -614,9 +620,6 @@ msgstr[1] "{files} files"
 
 msgid "Image changes being processed"
 msgstr "Cambios de imagines in elaboration"
-
-msgid "Select an application first"
-msgstr "Elige antea un application"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

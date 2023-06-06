@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-01-29 20:55+0000\n"
 "Last-Translator: Jiye Back <jiye080202@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,8 +64,14 @@ msgstr "부가 기능 최대 크기인 {0}을 초과했습니다."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 빈 응답을 받았습니다; 상태: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "유효성 검사 도중 예상치 못한 오류가 발생했습니다."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "{0} 검사 완료"
@@ -596,9 +602,6 @@ msgstr[0] "파일 {files}개"
 
 msgid "Image changes being processed"
 msgstr "이미지 변경이 처리되었습니다"
-
-msgid "Select an application first"
-msgstr "먼저 애플리케이션을 선택하세요"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

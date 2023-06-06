@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,6 +117,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -901,10 +905,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1933,57 +1934,6 @@ msgstr "ਸਰਗਰਮੀ"
 msgid "Subscribe to this feed"
 msgstr "ਇਸ ਫ਼ੀਡ ਦੀ ਗਾਹਕੀ ਲਵੋ"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "ਇਹ ਐਡ-ਆਨ %(app_name)s ਦੇ ਤਾਜ਼ਾ ਰਿਲੀਜ਼, <b>%(app_name)s %(app_version)s</b>ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਜਾਣਕਾਰੀ ਅੱਪਡੇਟ ਕਰਨ ਤੇ ਵਿਚਾਰ ਕਰੋ, ਜਾਂ ਇਸ ਐਡ-ਆਨ ਦਾ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ।"
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ</a> <a href=\"%(version_url)s\" class=\"button\">ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ</a> or <a href=\"#\" class=\"close"
-"\">ਅਣਡਿੱਠ ਕਰੋ</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "ਵੇਖੋ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ ਅਨੁਕੂਲਤਾ ਹੱਦਾਂ ਅੱਪਡੇਟ ਕਰੋ।"
-
-msgid "Compatibility"
-msgstr "ਅਨੁਕੂਲਤਾ"
-
-msgid "Update Compatibility"
-msgstr "ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ ਕਰੋ"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "ਇੱਥੇ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਕੀਤਾ ਫ਼ੇਰਬਦਲ ਉਪਭੋਗੀਆਂ ਨੂੰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰਨ ਦੇਵੇਗਾ ਭਲੇ ਹੀ ਪੈਕੇਜ ਵਿੱਚ ਦਿੱਤਾ ਇੰਸਟਾਲ ਮੈਨਫ਼ੇਸ਼ਟ ਇਹ ਦੱਸੇ ਕਿ ਐਡ-ਆਨ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
-
-msgid "Application"
-msgstr "ਐਪਲੀਕੇਸ਼ਨ"
-
-msgid "Supported Versions"
-msgstr "ਸਹਿਯੋਗੀ ਵਰਜਨ"
-
-msgid "Remove"
-msgstr "ਹਟਾਓ"
-
-msgid "Add Another Application&hellip;"
-msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਜੋੜੋ&hellip;"
-
-msgid "Save Changes"
-msgstr "ਤਬਦੀਲੀ ਸੰਭਾਲ੍ਹੋ"
-
-msgid "or"
-msgstr "ਜਾਂ"
-
-msgid "Cancel"
-msgstr "ਰੱਦ"
-
-msgid "Close"
-msgstr "ਬੰਦ"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2056,6 +2006,9 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "ਤਬਦੀਲੀ ਸੰਭਾਲ੍ਹੋ"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2063,6 +2016,9 @@ msgid ""
 msgstr ""
 "<p>ਐਡ-ਆਨਾਂ ਦੇ ਤਿੰਨ ਸੰਭਵ ਭੂਮਿਕਾਵਾਂ ਦੇ ਨਾਲ ਬਹੁਤ ਸਾਰੇ ਲੇਖਕ ਹੋ ਸਕਦੇ ਹਨ:</p> <ul> <li><b>ਮਾਲਕ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਜਿਸ ਵਿੱਚ ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣਾ ਵੀ ਸ਼ਾਮਲ ਹੈ</li> <li><b>ਡਿਵੈਲਪਰ:</b>ਐਡ-ਆਨ ਸੂਚੀ ਦੇ "
 "ਸਾਰੇ ਪੱਖਾਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰ ਸਕਦਾ ਹੈ, ਦੂਜੇ ਲੇਖਕਾਂ ਨੂੰ ਜੋੜਣਾ ਅਤੇ ਹਟਾਉਣ ਅਤੇ ਭੁਗਤਾਨਾਂ ਦੈ ਪ੍ਰਬੰਧ ਨੂੰ ਛੱਡ ਕੇ</li><b>ਦਰਸ਼ਕ:</b> ਐਡ-ਆਨਾਂ ਦੀਆਂ ਸੈਟਿੰਗਾਂ ਅਤੇ ਅੰਕੜੇ ਵੇਖ ਸਕਦਾ, ਪਰ ਕੋਈ ਬਦਲਾਵ ਨਹੀਂ ਕਰ ਸਕਦਾ ਹੈ</li> </ul>"
+
+msgid "Close"
+msgstr "ਬੰਦ"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2104,6 +2060,12 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "ਜੇਕਰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਕੋਈ ਹੋਰ ਵੀ ਮੁੱਖ-ਸਫ਼ਾ ਹੈ, ਉਸ ਦਾ ਪਤਾ ਇੱਥੇ ਦਰਜ ਕਰੋ। ਜੇਕਰ ਤੁਹਾਡੀ ਵੈੱਬਸਾਈਟ ਦਾ ਤਰਜਮਾ ਹੋਰ ਭਾਸ਼ਾਵਾਂ ਵਿੱਚ ਹੋਇਆ ਇਸ ਖੇਤਰ ਦੇ ਬਹੁਤ ਸਾਰੇ ਅਨੁਵਾਦ ਸ਼ਾਮਲ ਕੀਤੇ ਜਾ ਸਕਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
+
+msgid "or"
+msgstr "ਜਾਂ"
+
+msgid "Cancel"
+msgstr "ਰੱਦ"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3234,6 +3196,15 @@ msgstr "ਸੰਭਾਲ੍ਹੋ {0}"
 msgid "Files"
 msgstr "ਫ਼ਾਈਲਾਂ"
 
+msgid "Compatibility"
+msgstr "ਅਨੁਕੂਲਤਾ"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "ਇੱਥੇ ਐਪਲੀਕੇਸ਼ਨ ਦੀ ਜਾਣਕਾਰੀ ਵਿੱਚ ਕੀਤਾ ਫ਼ੇਰਬਦਲ ਉਪਭੋਗੀਆਂ ਨੂੰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਇੰਸਟਾਲ ਕਰਨ ਦੇਵੇਗਾ ਭਲੇ ਹੀ ਪੈਕੇਜ ਵਿੱਚ ਦਿੱਤਾ ਇੰਸਟਾਲ ਮੈਨਫ਼ੇਸ਼ਟ ਇਹ ਦੱਸੇ ਕਿ ਐਡ-ਆਨ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ।"
+
+msgid "Add Another Application&hellip;"
+msgstr "ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਜੋੜੋ&hellip;"
+
 msgid "Version Notes"
 msgstr "ਵਰਜਨ ਨੋਟ"
 
@@ -4304,6 +4275,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4832,8 +4807,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "%(date)s %(stars)s (%(locale)s) ਤੇ %(user)s ਵੱਲੋਂ"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

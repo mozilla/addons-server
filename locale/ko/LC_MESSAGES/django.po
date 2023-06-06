@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-04-01 08:31+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -120,6 +120,10 @@ msgstr "알 수 없는 최대 앱 버전이 지정됨"
 
 msgid "Unknown min app version specified"
 msgstr "알 수 없는 최소 앱 버전이 지정됨"
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -850,10 +854,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1847,59 +1848,6 @@ msgstr "활동 내역"
 msgid "Subscribe to this feed"
 msgstr "이 피드 구독하기"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "이 부가 기능은 %(app_name)s의 최신 버전인 <b>%(app_name)s %(app_version)s</b>에서 호환되지 않습니다. 부가 기능의 호환성 정보를 업데이트 하거나 최신 버전을 올리는 것을 검토해 주시기 바랍니다."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무"
-"시</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "호환 가능 범위 내의 애플리케이션을 보고 업데이트를 하세요."
-
-msgid "Compatibility"
-msgstr "호환성"
-
-msgid "Update Compatibility"
-msgstr "업데이트 호환성"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "이곳의 애플리케이션 정보를 수정하면 패키지 내의 앱 정보 설정 파일이 비호환으로 인식하고 있던 부가 기능도 사용자가 설치할 수 있게 됩니다."
-
-msgid "Application"
-msgstr "애플리케이션"
-
-msgid "Supported Versions"
-msgstr "지원 버전"
-
-msgid "Remove"
-msgstr "삭제"
-
-msgid "Add Another Application&hellip;"
-msgstr "다른 애플리케이션 추가&hellip;"
-
-msgid "Save Changes"
-msgstr "변경사항 저장"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "또는"
-
-msgid "Cancel"
-msgstr "취소"
-
-msgid "Close"
-msgstr "닫기"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1969,6 +1917,9 @@ msgstr "확인 대기중인 작성자"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "이 부가 기능에 추가되었지만 확인되지 않은 작성자입니다."
 
+msgid "Save Changes"
+msgstr "변경사항 저장"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -1976,6 +1927,9 @@ msgid ""
 msgstr ""
 "<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
 "기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
+
+msgid "Close"
+msgstr "닫기"
 
 msgid "Additional Details"
 msgstr "추가 세부 사항"
@@ -2015,6 +1969,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "부가 기능에 다른 홈페이지가 있는 경우 여기에 주소를 입력하세요. 웹 사이트가 다른 언어로 현지화 된 경우 이 필드의 여러 번역을 추가 할 수 있습니다. 나열된 추가 기능에만 관련됩니다."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "또는"
+
+msgid "Cancel"
+msgstr "취소"
 
 msgid "Describe Add-on"
 msgstr "부가 기능 설명"
@@ -3081,6 +3043,15 @@ msgstr "{0} 관리"
 msgid "Files"
 msgstr "파일"
 
+msgid "Compatibility"
+msgstr "호환성"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "이곳의 애플리케이션 정보를 수정하면 패키지 내의 앱 정보 설정 파일이 비호환으로 인식하고 있던 부가 기능도 사용자가 설치할 수 있게 됩니다."
+
+msgid "Add Another Application&hellip;"
+msgstr "다른 애플리케이션 추가&hellip;"
+
 msgid "Version Notes"
 msgstr "버전 기록"
 
@@ -4145,6 +4116,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "일부 웹사이트는 Android에서 동영상을 재생하는 데 문제가 있습니다. 고쳐졌습니다."
@@ -4650,8 +4625,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "제작자: %(user)s 날짜: %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

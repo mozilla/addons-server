@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -73,8 +73,14 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fuarthas freagra folamh ón bhfreastalaí; stádas: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Earráid fhreastalaí gan súil leis le linn bailíochtaithe."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Bailíochtú {0} críochnaithe"
@@ -663,9 +669,6 @@ msgstr[4] ""
 
 msgid "Image changes being processed"
 msgstr ""
-
-msgid "Select an application first"
-msgstr "Roghnaigh feidhmchlár i dtosach báire"
 
 #, fuzzy
 msgid "<b>{0}</b> character"

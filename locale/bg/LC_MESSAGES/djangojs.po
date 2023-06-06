@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-06-01 07:46+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -66,8 +66,14 @@ msgstr "Добавката надхвърля максимално допуст�
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен е празен отговор от сървъра; състояние {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Неочаквана грешка на сървъра при проверяване."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Проверяването на {0} приключи"
@@ -617,9 +623,6 @@ msgstr[1] "{files} файла"
 
 msgid "Image changes being processed"
 msgstr "Обработват се промените по изображението"
-
-msgid "Select an application first"
-msgstr "Първо изберете приложение"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

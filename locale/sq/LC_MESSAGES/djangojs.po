@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-11-15 22:07+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -69,8 +69,14 @@ msgstr "Shtesa juaj e tejkalon madhësinë maksimum për {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prej shërbyesit u mor një përgjigje e zbrazët, me gjendjen: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Gabim i papritur shërbyesi gjatë vleftësimit."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Po përfundohet vleftësimi i {0}"
@@ -615,9 +621,6 @@ msgstr[1] "{files} kartela"
 
 msgid "Image changes being processed"
 msgstr "Po përpunohen ndryshimet e figurës"
-
-msgid "Select an application first"
-msgstr "Përzgjidhni së pari një aplikacion"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

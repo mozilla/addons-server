@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2020-12-07 22:46+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -66,8 +66,14 @@ msgstr "Ditt tillägg överskrider den maximala storleken {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fick ett tomt svar från servern; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Oväntat serverfel under validering."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Validering klar för {0}"
@@ -611,9 +617,6 @@ msgstr[1] "{files} filer"
 
 msgid "Image changes being processed"
 msgstr "Bildändringar behandlas"
-
-msgid "Select an application first"
-msgstr "Välj en applikation först"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

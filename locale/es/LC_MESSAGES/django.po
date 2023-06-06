@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -125,6 +125,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -859,10 +863,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1864,60 +1865,6 @@ msgstr "Actividad"
 msgid "Subscribe to this feed"
 msgstr "Suscribirse a este hilo"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Este complemento es incompatible con <b>%(app_name)s %(app_version)s</b>, la última versión de %(app_name)s. Considera actualizar la información de compatibilidad de tu complemento, o enviar una "
-"versión nueva del mismo."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualizar compatibilidad</a> <a href=\"%(version_url)s\" class=\"button\">Subir nueva versión</a> o <a href=\"#\" "
-"class=\"close\">Ignorar</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Ver y actualizar los rangos de compatibilidad de la aplicación"
-
-msgid "Compatibility"
-msgstr "Compatibilidad"
-
-msgid "Update Compatibility"
-msgstr "Actualizar compatiblidad"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Al ajustar la información de la aplicación, permitirás a los usuarios instalar tu complemento incluso si el archivo manifest del paquete indica que no es compatible."
-
-msgid "Application"
-msgstr "Aplicación"
-
-msgid "Supported Versions"
-msgstr "Versiones compatibles"
-
-msgid "Remove"
-msgstr "Borrar"
-
-msgid "Add Another Application&hellip;"
-msgstr "Agregar otra aplicación&hellip;"
-
-msgid "Save Changes"
-msgstr "Guardar cambios"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "o"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
-msgid "Close"
-msgstr "Cerrar"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1988,12 +1935,18 @@ msgstr "Autores pendientes de confirmación"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autores que se han agregado a este complemento pero que no han confirmado."
 
+msgid "Save Changes"
+msgstr "Guardar cambios"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Los complementos pueden tener cualquier número de autores con 2 funciones posibles:</p> <ul><li><b>Propietario:</b> Puede gestionar todos los aspectos del listado del complemento, incluyendo "
 "añadir y eliminar otros autores.</li> <li><b>Desarrollador:</b> Puede gestionar todos los aspectos del listado del complemento, excepto añadir y eliminar otros autores</li> </ul>"
+
+msgid "Close"
+msgstr "Cerrar"
 
 msgid "Additional Details"
 msgstr "Más detalles"
@@ -2039,6 +1992,14 @@ msgstr ""
 "                          dirección aquí. Si la página está localizada en\n"
 "                          otros idiomas, se pueden agregar varias traducciones.\n"
 "                          Solo es útil para complementos listados."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "o"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 msgid "Describe Add-on"
 msgstr "Describir complemento"
@@ -3173,6 +3134,15 @@ msgstr "Administrar {0}"
 msgid "Files"
 msgstr "Archivos"
 
+msgid "Compatibility"
+msgstr "Compatibilidad"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Al ajustar la información de la aplicación, permitirás a los usuarios instalar tu complemento incluso si el archivo manifest del paquete indica que no es compatible."
+
+msgid "Add Another Application&hellip;"
+msgstr "Agregar otra aplicación&hellip;"
+
 msgid "Version Notes"
 msgstr "Notas de la versión"
 
@@ -4273,6 +4243,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4803,8 +4777,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "por %(user)s el %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

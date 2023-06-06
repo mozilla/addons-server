@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-01-03 14:36+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -66,8 +66,14 @@ msgstr "మీ పొడిగింత {0} గరిష్ఠ పరిమా�
 msgid "Received an empty response from the server; status: {0}"
 msgstr "సర్వరు నుండి ఖాళీ స్పందన వచ్చింది; స్థితి: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "ధృవీకరిస్తున్నప్పుడు ఊహించని సర్వర్ లోపం ఏర్పడింది."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "సరిచూడడం పూర్తయింది {0}"
@@ -609,9 +615,6 @@ msgstr[1] "{files} ఫైళ్లు"
 
 msgid "Image changes being processed"
 msgstr "బొమ్మ మార్పులు ప్రాసెస్ అవుతున్నాయి"
-
-msgid "Select an application first"
-msgstr "మొదట అనువర్తనాన్ని ఎంచుకోండి"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

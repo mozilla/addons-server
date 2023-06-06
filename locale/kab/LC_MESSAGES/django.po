@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-04-12 14:56+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,6 +118,10 @@ msgstr "Lqem afellay arusin n usnas i yettwafernen"
 
 msgid "Unknown min app version specified"
 msgstr "Lqem adday arusin n usnas i yettwafernen"
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -841,10 +845,7 @@ msgstr "{addon} {version} ur yettwagi ara."
 msgid "Un-rejected"
 msgstr "Ur yettwagi ara"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1828,56 +1829,6 @@ msgstr "Armud"
 msgid "Subscribe to this feed"
 msgstr "Jerred ar usuddem-agi"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "Azegrir-a ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close"
-"\">Anef</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen"
-
-msgid "Compatibility"
-msgstr "Amṣada"
-
-msgid "Update Compatibility"
-msgstr "Aleqqem n umṣada"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Aseggem n telɣut n yisnasen dagi ad yeǧǧ iseqdacen ad sbedden azegrir-ik, ɣas akken ameskan n usebeddi deg ukemmus yemmal-d d akken azegrir ur yemṣada ara."
-
-msgid "Application"
-msgstr "Asnas"
-
-msgid "Supported Versions"
-msgstr "Ileqman yettwasefraken"
-
-msgid "Remove"
-msgstr "Kkes"
-
-msgid "Add Another Application&hellip;"
-msgstr "Rnu asnas nniḍen&hellip;"
-
-msgid "Save Changes"
-msgstr "Sekles asnifel"
-
-msgid "or"
-msgstr "neγ"
-
-msgid "Cancel"
-msgstr "Sefsex"
-
-msgid "Close"
-msgstr "Mdel"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1948,12 +1899,18 @@ msgstr "Imeskaren yettraǧun asentem"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Imeskaren yettwarnan ɣer uzegrir-a maca ur ttwasnetmen ara yakan."
 
+msgid "Save Changes"
+msgstr "Sekles asnifel"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> <li><b>Aneflay :</"
 "b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
+
+msgid "Close"
+msgstr "Mdel"
 
 msgid "Additional Details"
 msgstr "Talqayt-nniḍen"
@@ -1994,6 +1951,12 @@ msgid ""
 msgstr ""
 "MA yella γur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi "
 "yettwaseqdackani yizegrar yettwasnen."
+
+msgid "or"
+msgstr "neγ"
+
+msgid "Cancel"
+msgstr "Sefsex"
 
 msgid "Describe Add-on"
 msgstr "Seglem azegrir"
@@ -3080,6 +3043,15 @@ msgstr "Sefrek {0}"
 msgid "Files"
 msgstr "Ifuyla"
 
+msgid "Compatibility"
+msgstr "Amṣada"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Aseggem n telɣut n yisnasen dagi ad yeǧǧ iseqdacen ad sbedden azegrir-ik, ɣas akken ameskan n usebeddi deg ukemmus yemmal-d d akken azegrir ur yemṣada ara."
+
+msgid "Add Another Application&hellip;"
+msgstr "Rnu asnas nniḍen&hellip;"
+
 msgid "Version Notes"
 msgstr "Tizmilin n lqem"
 
@@ -4138,6 +4110,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
@@ -4636,8 +4612,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "sɣuṛ %(user)s di %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
