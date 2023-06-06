@@ -509,7 +509,9 @@
               .prop(
                 'title',
                 results.explicitly_compatible_with_android === true
-                  ? gettext('Explicitly marked as compatible with Firefox for Android in the manifest')
+                  ? gettext(
+                      'Explicitly marked as compatible with Firefox for Android in the manifest',
+                    )
                   : '',
               );
             $('.binary-source').show();
