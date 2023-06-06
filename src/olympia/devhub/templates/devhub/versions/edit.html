@@ -34,7 +34,9 @@
           {% if compat_form %}
           <tr>
             <th>{{ tip(_("Compatibility"),
-                       _("Which versions of what applications your add-on is compatible with. It is not editable if you specified compatibility information in your manifest already.")) }}</th>
+                       _("Adjusting application information here will allow users to install your "
+                         "add-on even if the install manifest in the package indicates that the "
+                         "add-on is incompatible.")) }}</th>
             <td class="compat-versions">
                 {{ compat_form.non_form_errors() }}
                 {{ compat_form.management_form }}
