@@ -456,3 +456,9 @@ DOWNLOAD_SOURCES_PREFIX = ('external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-
 # Regexp for Firefox client IDs passed to our APIs, just to avoid sending
 # garbage to underlying services.
 VALID_CLIENT_ID = re.compile('^[a-zA-Z0-9]{64}$')
+
+APPVERSIONS_ORIGINATED_FROM_UNKNOWN = 0
+APPVERSIONS_ORIGINATED_FROM_AUTOMATIC = 1
+APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
+APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
+APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4

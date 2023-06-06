@@ -39,12 +39,11 @@ from olympia.files.models import (
 )
 from olympia.files.utils import (
     DuplicateAddonID,
-    ManifestJSONExtractor,
     check_xpi_info,
     parse_addon,
 )
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import ApplicationsVersions, Version
 
 
 pytestmark = pytest.mark.django_db
@@ -481,6 +480,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
+            'gecko_android': {},
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -502,6 +502,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
+            'gecko_android': {},
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -534,20 +535,23 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
     def test_parse_apps(self):
         expected = [
-            ManifestJSONExtractor.App(
-                amo.FIREFOX,
-                amo.FIREFOX.id,
-                AppVersion.objects.get(application=amo.FIREFOX.id, version='42.0'),
-                AppVersion.objects.get(application=amo.FIREFOX.id, version='*'),
+            ApplicationsVersions(
+                application=amo.FIREFOX.id,
+                min=AppVersion.objects.get(application=amo.FIREFOX.id, version='42.0'),
+                max=AppVersion.objects.get(application=amo.FIREFOX.id, version='*'),
             ),
-            ManifestJSONExtractor.App(
-                amo.ANDROID,
-                amo.ANDROID.id,
-                AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
-                AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
+            ApplicationsVersions(
+                application=amo.ANDROID.id,
+                min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
+                max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
             ),
         ]
-        assert self.parse()['apps'] == expected
+        apps = self.parse()['apps']
+        assert len(apps) == 2
+        for idx, avs in enumerate(apps):
+            assert avs.application == expected[idx].application
+            assert avs.min == expected[idx].min
+            assert avs.max == expected[idx].max
 
     def test_no_parse_apps_error_webextension(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='57.0')

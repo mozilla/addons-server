@@ -1,4 +1,3 @@
-import collections
 import contextlib
 import errno
 import fcntl
@@ -146,8 +145,6 @@ def get_simple_version(version_string):
 class ManifestJSONExtractor:
     """Extract add-on info from a manifest file."""
 
-    App = collections.namedtuple('App', 'appdata id min max')
-
     def __init__(self, manifest_data, *, certinfo=None):
         self.certinfo = certinfo
 
@@ -251,7 +248,10 @@ class ManifestJSONExtractor:
         )
 
     def apps(self):
-        """Get `AppVersion`s for the application."""
+        """Return `ApplicationsVersion`s (without the `version` field being
+        set yet) for this manifest to be used in Version.from_upload()."""
+        from olympia.versions.models import ApplicationsVersions
+
         type_ = self.type
         if type_ == amo.ADDON_LPAPP:
             # Langpack are only compatible with Firefox desktop at the moment.
@@ -321,7 +321,10 @@ class ManifestJSONExtractor:
             raise forms.ValidationError(msg)
 
         for app, default_min_version in apps:
-            strict_min_version = self.get_strict_version_for(key='min', application=app)
+            strict_min_version_from_manifest = self.get_strict_version_for(
+                key='min', application=app
+            )
+            strict_min_version = strict_min_version_from_manifest
             if self.guid is None and not strict_min_version:
                 strict_min_version = max(
                     VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID),
@@ -334,9 +337,12 @@ class ManifestJSONExtractor:
                     strict_min_version, VersionString(default_min_version)
                 )
 
-            strict_max_version = self.get_strict_version_for(
+            strict_max_version_from_manifest = self.get_strict_version_for(
                 key='max', application=app
-            ) or VersionString(amo.DEFAULT_WEBEXT_MAX_VERSION)
+            )
+            strict_max_version = strict_max_version_from_manifest or VersionString(
+                amo.DEFAULT_WEBEXT_MAX_VERSION
+            )
 
             if strict_max_version < strict_min_version:
                 strict_max_version = strict_min_version
@@ -366,7 +372,20 @@ class ManifestJSONExtractor:
                 )
                 raise forms.ValidationError(msg)
 
-            yield self.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
+            if app == amo.ANDROID and self.gecko_android:
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+            elif strict_min_version_from_manifest or strict_max_version_from_manifest:
+                # At least part of the compatibility came from the manifest.
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
+            else:
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
+
+            yield ApplicationsVersions(
+                application=app.id,
+                min=min_appver,
+                max=max_appver,
+                originated_from=originated_from,
+            )
 
     def target_locale(self):
         """Guess target_locale for a dictionary/langpack from manifest contents."""
@@ -394,6 +413,7 @@ class ManifestJSONExtractor:
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
             'install_origins': self.install_origins,
+            'gecko_android': self.gecko_android,
         }
 
         # Populate certificate information (e.g signed by mozilla or not)

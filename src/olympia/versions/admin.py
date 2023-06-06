@@ -5,6 +5,7 @@ from olympia.amo.admin import AMOModelAdmin
 from olympia.reviewers.models import NeedsHumanReview
 
 from .models import (
+    ApplicationsVersions,
     DeniedInstallOrigin,
     InstallOrigin,
     License,
@@ -32,6 +33,13 @@ class VersionReviewerFlagsInline(admin.StackedInline):
     verbose_name_plural = 'Version Reviewer Flags'
     can_delete = False
     view_on_site = False
+
+
+class ApplicationsVersionsInline(admin.TabularInline):
+    model = ApplicationsVersions
+    fields = ('application', 'min', 'max', 'originated_from')
+    view_on_site = False
+    extra = 0
 
 
 class NeedsHumanReviewInline(admin.TabularInline):
@@ -79,7 +87,11 @@ class VersionAdmin(AMOModelAdmin):
         ),
         ('Flags', {'fields': ('deleted', 'due_date')}),
     )
-    inlines = (VersionReviewerFlagsInline, NeedsHumanReviewInline)
+    inlines = (
+        VersionReviewerFlagsInline,
+        NeedsHumanReviewInline,
+        ApplicationsVersionsInline,
+    )
 
 
 class InstallOriginAdmin(AMOModelAdmin):

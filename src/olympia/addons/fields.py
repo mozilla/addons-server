@@ -259,8 +259,9 @@ class VersionCompatibilityField(serializers.Field):
             except KeyError:
                 raise exceptions.ValidationError(gettext('Invalid app specified'))
 
+            existing_app = existing.get(app)
             # we need to copy() to avoid changing the instance before save
-            apps_versions = copy.copy(existing.get(app)) or ApplicationsVersions(
+            apps_versions = copy.copy(existing_app) or ApplicationsVersions(
                 application=app.id
             )
 
@@ -290,7 +291,36 @@ class VersionCompatibilityField(serializers.Field):
                     gettext('Unknown min app version specified')
                 )
 
+            if existing_app and existing_app.locked_from_manifest:
+                if (
+                    existing_app.min != apps_versions.min
+                    or existing_app.max != apps_versions.max
+                ):
+                    raise exceptions.ValidationError(
+                        gettext(
+                            'Can not override compatibility information set in the '
+                            'manifest for this application (%s)'
+                        )
+                        % app.pretty
+                    )
+            else:
+                apps_versions.originated_from = (
+                    amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+                )
+
             internal[app] = apps_versions
+
+        # Also make sure no ApplicationsVersions that existed already and were
+        # locked because manifest is the source of truth are gone.
+        for app, apps_versions in existing.items():
+            if apps_versions.locked_from_manifest and app not in internal:
+                raise exceptions.ValidationError(
+                    gettext(
+                        'Can not override compatibility information set in the '
+                        'manifest for this application (%s)'
+                    )
+                    % app.pretty
+                )
 
         return internal
 
