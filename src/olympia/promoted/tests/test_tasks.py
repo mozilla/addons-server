@@ -13,7 +13,7 @@ from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
 
-from ..tasks import add_high_adu_extensions_to_notable, NOTABLE_TIER_SLUG
+from ..tasks import NOTABLE_TIER_SLUG, add_high_adu_extensions_to_notable
 
 
 @pytest.mark.django_db
