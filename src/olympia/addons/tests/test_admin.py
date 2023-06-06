@@ -13,7 +13,12 @@ from pyquery import PyQuery as pq
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.admin import AddonAdmin, ReplacementAddonAdmin
-from olympia.addons.models import Addon, AddonRegionalRestrictions, ReplacementAddon
+from olympia.addons.models import (
+    Addon,
+    AddonBrowserMapping,
+    AddonRegionalRestrictions,
+    ReplacementAddon,
+)
 from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import (
     TestCase,
@@ -23,6 +28,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block
+from olympia.constants.browsers import CHROME
 from olympia.git.models import GitExtractionEntry
 
 
@@ -1120,3 +1126,101 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f"[{restriction.addon.id}] deleted: ['FR']"
         )
         assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+
+
+class TestAddonBrowserMappingAdmin(TestCase):
+    def setUp(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.force_login(user)
+        self.list_url = reverse('admin:addons_addonbrowsermapping_changelist')
+        self.add_url = reverse('admin:addons_addonbrowsermapping_add')
+
+    def test_can_see_module_in_admin(self):
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        list_url = django_reverse('admin:addons_addonbrowsermapping_changelist')
+        assert list_url in response.content.decode('utf-8')
+
+    def test_can_list(self):
+        extension_id = 'some-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(name='an-addon'),
+            browser=CHROME,
+            extension_id=extension_id,
+        )
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert 'an-addon' in response.content.decode('utf-8')
+        assert extension_id in response.content.decode('utf-8')
+
+    def test_can_add(self):
+        addon = addon_factory(name='an-addon')
+        response = self.client.get(self.add_url, follow=True)
+        assert response.status_code == 200
+        assert pq(response.content)('#id_addon')  # addon input is editable
+
+        extension_id = 'some-extension-id'
+        response = self.client.post(
+            self.add_url,
+            {
+                'addon': addon.id,
+                'browser': CHROME,
+                'extension_id': extension_id,
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mapping = AddonBrowserMapping.objects.get(addon=addon)
+        assert mapping.browser == CHROME
+        assert mapping.extension_id == extension_id
+
+    def test_can_edit(self):
+        extension_id = 'some-extension-id'
+        addon = addon_factory(name='an-addon')
+        mapping = AddonBrowserMapping.objects.create(
+            addon=addon,
+            browser=CHROME,
+            extension_id=extension_id,
+        )
+        detail_url = reverse(
+            'admin:addons_addonbrowsermapping_change', args=(mapping.pk,)
+        )
+        response = self.client.get(detail_url, follow=True)
+        assert response.status_code == 200
+        assert extension_id in response.content.decode('utf-8')
+
+        another_extension_id = 'some-other-extension-id'
+        another_addon = addon_factory()
+        response = self.client.post(
+            detail_url,
+            {
+                'addon': another_addon.id,
+                'browser': CHROME,
+                'extension_id': another_extension_id,
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mapping.reload()
+        assert mapping.browser == CHROME
+        assert mapping.extension_id == another_extension_id
+        assert mapping.addon == another_addon
+
+    def test_can_delete(self):
+        mapping = AddonBrowserMapping.objects.create(
+            addon=addon_factory(name='an-addon'),
+            browser=CHROME,
+            extension_id='some-extension-id',
+        )
+        delete_url = reverse(
+            'admin:addons_addonbrowsermapping_delete', args=(mapping.pk,)
+        )
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        response = self.client.post(delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not AddonBrowserMapping.objects.exists()

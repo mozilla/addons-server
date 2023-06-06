@@ -55,6 +55,7 @@ from olympia.amo.utils import (
     timer,
     to_language,
 )
+from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -2393,3 +2394,24 @@ class AddonGUID(ModelBase):
     def save(self, *args, **kwargs):
         self.hashed_guid = hashlib.sha256(self.guid.encode()).hexdigest()
         super().save(*args, **kwargs)
+
+
+class AddonBrowserMapping(ModelBase):
+    """
+    Mapping between an extension ID for a different browser to a Firefox add-on
+    on AMO.
+    """
+
+    addon = models.ForeignKey(
+        Addon,
+        on_delete=models.CASCADE,
+        help_text='Add-on id this item will point to. If you do not know the '
+        'id, paste the slug instead and it will be transformed automatically '
+        'for you. You can also use the magnifying glass to see all the '
+        'available add-ons if you have access to the add-on admin page.',
+    )
+    browser = models.PositiveSmallIntegerField(choices=BROWSERS.items())
+    extension_id = models.CharField(max_length=255, null=False, db_index=True)
+
+    class Meta:
+        unique_together = ('browser', 'extension_id')
