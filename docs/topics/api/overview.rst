@@ -461,6 +461,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-03-09: added ``host_permissions`` to the response of the version detail endpoint. https://github.com/mozilla/addons-server/issues/20418
 * 2023-04-13: removed signing api from api/v5+ in favor of addon submission api. https://github.com/mozilla/addons-server/issues/20560
 * 2023-06-01: renamed add-ons search endpoint sort by ratings parameter to ``sort=ratings``, ``sort=rating`` is still supported for backwards-compatibility. https://github.com/mozilla/addons-server/issues/20763
+* 2023-06-06: added the /addons/browser-mappings/ endpoint. https://github.com/mozilla/addons-server/issues/20798
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

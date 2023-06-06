@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from django import http
-from django.db.models import Max, Prefetch
+from django.db.models import F, Max, Prefetch
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
@@ -35,7 +35,7 @@ from olympia.api.authentication import (
     SessionIDAuthentication,
 )
 from olympia.api.exceptions import UnavailableForLegalReasons
-from olympia.api.pagination import ESPageNumberPagination
+from olympia.api.pagination import ESPageNumberPagination, LargePageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
@@ -51,6 +51,7 @@ from olympia.api.permissions import (
 )
 from olympia.api.throttling import addon_submission_throttles
 from olympia.api.utils import is_gate_active
+from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.search.filters import (
@@ -75,9 +76,16 @@ from olympia.versions.models import Version
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import Addon, AddonUser, AddonUserPendingConfirmation, ReplacementAddon
+from .models import (
+    Addon,
+    AddonBrowserMapping,
+    AddonUser,
+    AddonUserPendingConfirmation,
+    ReplacementAddon,
+)
 from .serializers import (
     AddonAuthorSerializer,
+    AddonBrowserMappingSerializer,
     AddonEulaPolicySerializer,
     AddonPendingAuthorSerializer,
     AddonSerializer,
@@ -1239,3 +1247,41 @@ class AddonRecommendationView(AddonSearchView):
     def paginate_queryset(self, queryset):
         # We don't need pagination for the fixed number of results.
         return queryset
+
+
+class AddonBrowserMappingView(ListAPIView):
+    authentication_classes = []
+    serializer_class = AddonBrowserMappingSerializer
+    pagination_class = LargePageNumberPagination
+
+    def get(self, request, format=None):
+        browser = self.request.query_params.get('browser', None)
+        if browser not in list(BROWSERS.values()):
+            raise exceptions.ParseError('Invalid browser parameter')
+
+        response = super().get(request, format)
+        # Cache for 24 hours.
+        patch_cache_control(response, max_age=60 * 60 * 24)
+        return response
+
+    def get_queryset(self):
+        browser = next(
+            (
+                key
+                for key in BROWSERS
+                if BROWSERS.get(key) == self.request.query_params.get('browser')
+            ),
+            None,
+        )
+        return AddonBrowserMapping.objects.filter(
+            browser=browser, addon__status__in=amo.APPROVED_STATUSES
+        ).annotate(
+            # This is used in `AddonBrowserMappingSerializer` in order to avoid
+            # unnecessary queries since we only need the add-on GUID.
+            addon__guid=F('addon__guid')
+        )
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(super().as_view(**initkwargs))
