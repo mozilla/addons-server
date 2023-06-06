@@ -9,49 +9,75 @@ from olympia import amo
 from olympia.amo.tests import addon_factory, user_factory, version_factory
 from olympia.constants.promoted import LINE, NOT_PROMOTED, NOTABLE
 from olympia.promoted.models import PromotedAddon
+from olympia.reviewers.models import UsageTier
 from olympia.versions.utils import get_staggered_review_due_date_generator
 from olympia.zadmin.models import set_config
 
-from ..tasks import (
-    NOTABLE_ADU_LIMIT_CONFIG_KEY,
-    add_high_adu_extensions_to_notable,
-)
+from ..tasks import add_high_adu_extensions_to_notable, NOTABLE_TIER_SLUG
+
+
+@pytest.mark.django_db
+def test_add_high_adu_extensions_to_notable_tier_absent_or_no_threshold():
+    user_factory(pk=settings.TASK_USER_ID)
+    set_config(amo.EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, 999)
+
+    extension_with_high_adu = addon_factory(
+        average_daily_users=42, file_kw={'is_signed': True}
+    )
+
+    add_high_adu_extensions_to_notable()
+
+    assert (
+        extension_with_high_adu.reload().promoted_group(currently_approved=False)
+        == NOT_PROMOTED
+    )
+
+    UsageTier.objects.create(slug=NOTABLE_TIER_SLUG, lower_adu_threshold=None)
+
+    add_high_adu_extensions_to_notable()
+
+    assert (
+        extension_with_high_adu.reload().promoted_group(currently_approved=False)
+        == NOT_PROMOTED
+    )
 
 
 @pytest.mark.django_db
 def test_add_high_adu_extensions_to_notable():
     user_factory(pk=settings.TASK_USER_ID)
-    # Arbitrary_adu_limit
-    adu_limit = 1234
-    set_config(NOTABLE_ADU_LIMIT_CONFIG_KEY, adu_limit)
+    # Arbitrary_lower_adu_threshold
+    lower_adu_threshold = 1234
+    UsageTier.objects.create(
+        slug=NOTABLE_TIER_SLUG, lower_adu_threshold=lower_adu_threshold
+    )
     # arbitrary target per day
     target_per_day = 12
     set_config(amo.EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY, target_per_day)
 
     extension_with_low_adu = addon_factory(
-        average_daily_users=adu_limit - 1, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold - 1, file_kw={'is_signed': True}
     )
     extension_with_high_adu = addon_factory(
-        average_daily_users=adu_limit, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold, file_kw={'is_signed': True}
     )
     ignored_theme = addon_factory(
-        average_daily_users=adu_limit + 1, type=amo.ADDON_STATICTHEME
+        average_daily_users=lower_adu_threshold + 1, type=amo.ADDON_STATICTHEME
     )
     already_promoted = addon_factory(
-        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
     PromotedAddon.objects.create(addon=already_promoted, group_id=LINE.id)
     promoted_record_exists = addon_factory(
-        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
     PromotedAddon.objects.create(addon=promoted_record_exists, group_id=NOT_PROMOTED.id)
     unlisted_only_extension = addon_factory(
-        average_daily_users=adu_limit + 1,
+        average_daily_users=lower_adu_threshold + 1,
         version_kw={'channel': amo.CHANNEL_UNLISTED},
         file_kw={'is_signed': True},
     )
     mixed_extension = addon_factory(
-        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
     mixed_extension_listed_version = mixed_extension.current_version
     mixed_extension_listed_version.delete()
@@ -59,7 +85,7 @@ def test_add_high_adu_extensions_to_notable():
         addon=mixed_extension, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
     )
     deleted_extension = addon_factory(
-        average_daily_users=adu_limit + 1, file_kw={'is_signed': True}
+        average_daily_users=lower_adu_threshold + 1, file_kw={'is_signed': True}
     )
     deleted_extension_version = deleted_extension.current_version
     deleted_extension.delete()
