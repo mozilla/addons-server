@@ -458,11 +458,11 @@ class Version(OnChangeMixin, ModelBase):
 
         compatible_apps = {}
         for avs_from_parsed_data in parsed_data.get('apps', []):
+            application = APP_IDS.get(avs_from_parsed_data.application)
             if avs_from_parsed_data.locked_from_manifest:
                 # In that case, the manifest takes precedence.
                 avs = avs_from_parsed_data
-            application = APP_IDS.get(avs_from_parsed_data.application)
-            if application not in compatibility:
+            elif application not in compatibility:
                 # In that case, the developer didn't include compatibility
                 # information we have to follow, and they didn't select this
                 # app at upload time, so we ignore that app.
