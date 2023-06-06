@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-03-04 22:32+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -125,6 +125,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -895,10 +899,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1909,63 +1910,6 @@ msgstr "Activitat"
 msgid "Subscribe to this feed"
 msgstr "Subscriu-me a aquest canal"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Aquest complement no és compatible amb l'última versió del complement %(app_name)s: <b>%(app_name)s %(app_version)s</b>. Actualitzeu la informació de compatibilitat del vostre complement o bé pugeu "
-"una versió més nova del complement."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualitza la compatibilitat</a> <a href=\"%(version_url)s\" class=\"button\">Puja una altra versió</a> or <a href=\"#"
-"\" class=\"close\">Ignora</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Mostra i actualitza els detalls de compatibilitat de l'aplicació."
-
-msgid "Compatibility"
-msgstr "Compatibilitat"
-
-msgid "Update Compatibility"
-msgstr "Actualitza la compatibilitat"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Si ajusteu la informació de l'aplicació aquí, permetreu que els usuaris instal·lin el vostre complement fins i tot quan el manifest de la instal·lació del paquet indiqui que el complement és "
-"incompatible. "
-
-msgid "Application"
-msgstr "Aplicació"
-
-msgid "Supported Versions"
-msgstr "Versions disponibles"
-
-msgid "Remove"
-msgstr "Suprimeix"
-
-msgid "Add Another Application&hellip;"
-msgstr "Afegeix una altra aplicació&hellip;"
-
-msgid "Save Changes"
-msgstr "Desa els canvis"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "o"
-
-msgid "Cancel"
-msgstr "Cancel·la"
-
-msgid "Close"
-msgstr "Tanca"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2038,10 +1982,16 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Desa els canvis"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "Tanca"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2085,6 +2035,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "o"
+
+msgid "Cancel"
+msgstr "Cancel·la"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3196,6 +3154,17 @@ msgstr "Gestiona {0}"
 msgid "Files"
 msgstr "Fitxers"
 
+msgid "Compatibility"
+msgstr "Compatibilitat"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+"Si ajusteu la informació de l'aplicació aquí, permetreu que els usuaris instal·lin el vostre complement fins i tot quan el manifest de la instal·lació del paquet indiqui que el complement és "
+"incompatible. "
+
+msgid "Add Another Application&hellip;"
+msgstr "Afegeix una altra aplicació&hellip;"
+
 msgid "Version Notes"
 msgstr "Notes de la versió"
 
@@ -4262,6 +4231,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4788,8 +4761,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "per en/la %(user)s el %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

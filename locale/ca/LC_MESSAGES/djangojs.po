@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-02-04 18:19+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,14 @@ msgstr "El vostre complement supera la mida màxima de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S'ha rebut una resposta buida des del servidor; l'estat: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "S'ha produït un error del servidor inesperat durant la validació."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Ha finalitzat la validació de {0}"
@@ -613,9 +619,6 @@ msgstr[1] "{files} fitxers"
 
 msgid "Image changes being processed"
 msgstr "S'estan processant els canvis a la imatge"
-
-msgid "Select an application first"
-msgstr "Primer cal que seleccioneu una aplicació"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

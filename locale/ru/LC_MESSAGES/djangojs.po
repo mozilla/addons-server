@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-08-06 08:45+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -68,8 +68,14 @@ msgstr "Размер вашего дополнения превышает мак
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Получен пустой ответ от сервера; статус: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "При проверке произошла неожиданная ошибка сервера."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Закончена проверка {0}"
@@ -624,9 +630,6 @@ msgstr[2] "{files} файлов"
 
 msgid "Image changes being processed"
 msgstr "Обработка изменений изображения"
-
-msgid "Select an application first"
-msgstr "Сначала выберите приложение"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-02-25 14:42+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,14 @@ msgstr "התוספת שלך חורגת מהגודל המירבי של {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "התקבלה תגובה ריקה מהשרת; סטטוס: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקת האימות."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "בדיקת האימות של {0} הסתיימה"
@@ -616,9 +622,6 @@ msgstr[1] "{files} קבצים"
 
 msgid "Image changes being processed"
 msgstr "מתבצע עיבוד שינויים בתמונות"
-
-msgid "Select an application first"
-msgstr "תחילה יש לבחור יישום"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-03-16 20:20+0000\n"
 "Last-Translator: Bjørn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,6 +119,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -849,10 +853,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1842,58 +1843,6 @@ msgstr "Aktivitet"
 msgid "Subscribe to this feed"
 msgstr "Abonner på denne RSS-kjelda"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Denne utvidinga er ikkje kompatibel med <b>%(app_name)s %(app_version)s</b>, den siste versjonen av %(app_name)s. Vurder å oppdatere kompatiblitetsinfoen til utvidinga di, eller last opp ein nyare "
-"versjon av utvidinga."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Oppdater kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Last opp ny versjon</a> eller <a href=\"#\" "
-"class=\"close\">ignorer</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Sjå og rediger programkompatibilitetsområde"
-
-msgid "Compatibility"
-msgstr "Kompatibilitet"
-
-msgid "Update Compatibility"
-msgstr "Oppdater kompatibilitet"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-
-msgid "Application"
-msgstr "Program"
-
-msgid "Supported Versions"
-msgstr "Støtta versjonar"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Add Another Application&hellip;"
-msgstr "Legg til ein annan applikasjon&hellip;"
-
-msgid "Save Changes"
-msgstr "Lagra endringane"
-
-msgid "or"
-msgstr "eller"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "Close"
-msgstr "Lat att"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1964,12 +1913,18 @@ msgstr "Opphavsmenn som ventar på stadfesting"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Opphavsmenn som har blitt lagt til dette tillegget, men ikkje har stadfesta det."
 
+msgid "Save Changes"
+msgstr "Lagra endringane"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Tillegg kan ha mange opphavsmenn med 2 moglege roller:</p> <ul> <li><b>Eigar:</b> Kan handtere alle aspek av listinga av tillegget, inkludert å leggje til og fjerne andre opphavsmenn</li> "
 "<li><b>Utviklar:</b> Kan handtere alle aspekt av listinga av tillegget, forutan å leggje til og fjerne andre opphavsmenn</li> </ul>"
+
+msgid "Close"
+msgstr "Lat att"
 
 msgid "Additional Details"
 msgstr "Ytterlegare detaljar"
@@ -2008,6 +1963,12 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+msgid "or"
+msgstr "eller"
+
+msgid "Cancel"
+msgstr "Avbryt"
 
 msgid "Describe Add-on"
 msgstr "Beskriv utvidinga"
@@ -3073,6 +3034,15 @@ msgstr "Handsam {0}"
 msgid "Files"
 msgstr "Filer"
 
+msgid "Compatibility"
+msgstr "Kompatibilitet"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Add Another Application&hellip;"
+msgstr "Legg til ein annan applikasjon&hellip;"
+
 msgid "Version Notes"
 msgstr "Versjonsmerknad"
 
@@ -4131,6 +4101,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4650,8 +4624,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "av %(user)s den %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

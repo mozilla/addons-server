@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,7 +67,7 @@ msgid_plural "&hellip;and {0} more"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:659
+#: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:701
 msgid "See full validation report"
 msgstr ""
 
@@ -83,56 +83,64 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:444
+#: static/js/common/upload-addon.js:400
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
+#: static/js/common/upload-addon.js:470
 msgid "Unexpected server error while validating."
 msgstr ""
 
-#: static/js/common/upload-addon.js:499
+#: static/js/common/upload-addon.js:512
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
+
+#: static/js/common/upload-addon.js:541
 msgid "Finished validating {0}"
 msgstr ""
 
-#: static/js/common/upload-addon.js:506
+#: static/js/common/upload-addon.js:548
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr ""
 
-#: static/js/common/upload-addon.js:511
+#: static/js/common/upload-addon.js:553
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:520
+#: static/js/common/upload-addon.js:562
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/common/upload-addon.js:528
+#: static/js/common/upload-addon.js:570
 msgid "Your add-on was validated with no errors or warnings."
 msgstr ""
 
-#: static/js/common/upload-addon.js:605
+#: static/js/common/upload-addon.js:647
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:608
+#: static/js/common/upload-addon.js:650
 msgid ""
 "If your add-on requires an account to a website in order to be fully tested, "
 "include a test username and password in the Notes to Reviewer (this can be "
 "done in the next step)."
 msgstr ""
 
-#: static/js/common/upload-addon.js:614
+#: static/js/common/upload-addon.js:656
 msgid "Add-on submission checklist"
 msgstr ""
 
-#: static/js/common/upload-addon.js:618
+#: static/js/common/upload-addon.js:660
 msgid ""
 "Please verify the following points before finalizing your submission. This "
 "will minimize delays or misunderstanding during the review process:"
 msgstr ""
 
-#: static/js/common/upload-addon.js:625
+#: static/js/common/upload-addon.js:667
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding "
 "known libraries) need to have their sources submitted separately for review. "
@@ -140,7 +148,7 @@ msgid ""
 "submission rejected."
 msgstr ""
 
-#: static/js/common/upload-addon.js:638
+#: static/js/common/upload-addon.js:680
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr ""
 
@@ -770,30 +778,26 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:270
+#: static/js/zamboni/devhub.js:265
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:287
+#: static/js/zamboni/devhub.js:282
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:413
+#: static/js/zamboni/devhub.js:408
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:569
+#: static/js/zamboni/devhub.js:564
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1128
+#: static/js/zamboni/devhub.js:1090
 msgid "Image changes being processed"
-msgstr ""
-
-#: static/js/zamboni/devhub.js:1232
-msgid "Select an application first"
 msgstr ""
 
 #: static/js/zamboni/global.js:460
@@ -818,35 +822,35 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:142
+#: static/js/zamboni/reviewers.js:146
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:416
+#: static/js/zamboni/reviewers.js:420
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:429 static/js/zamboni/reviewers.js:455
+#: static/js/zamboni/reviewers.js:433 static/js/zamboni/reviewers.js:459
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:434
+#: static/js/zamboni/reviewers.js:438
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:441
+#: static/js/zamboni/reviewers.js:445
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:448
+#: static/js/zamboni/reviewers.js:452
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:460
+#: static/js/zamboni/reviewers.js:464
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:467
+#: static/js/zamboni/reviewers.js:471
 msgid "Review notes found"
 msgstr ""
 

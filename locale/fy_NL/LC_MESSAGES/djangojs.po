@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2021-11-18 11:42+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,14 @@ msgstr "Jo add-on is grutter as de maksimale grutte fan {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons fan server ûntfongen; steat: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Unferwachte serverflater wylst falidaasje."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Falidaasje fan {0} foltôge"
@@ -613,9 +619,6 @@ msgstr[1] "{files} bestannen"
 
 msgid "Image changes being processed"
 msgstr "Ofbyldingswizigingen wurde ferwurke"
-
-msgid "Select an application first"
-msgstr "Selektearje earst in tapassing"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,8 +64,14 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Dobijen je prazan odgovor od servera; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška na serveru tokom provere."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Završena provera {0}"
@@ -627,9 +633,6 @@ msgstr[1] "{files} datoteke"
 
 msgid "Image changes being processed"
 msgstr "Izmene na slici se obrađuju"
-
-msgid "Select an application first"
-msgstr "Prvo izaberite aplikaciju"
 
 #, fuzzy
 msgid "<b>{0}</b> character"

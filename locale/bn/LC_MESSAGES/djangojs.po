@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2017-09-28 10:22+0000\n"
 "Last-Translator: Shahriar Shanto <shahriar083@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "আপনার অ্যাড-অন সর্বোচ্চ সা�
 msgid "Received an empty response from the server; status: {0}"
 msgstr "সার্ভার হতে একটি খালি প্রতিক্রিয়া এসেছে; অবস্থা : {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "যাচাইয়ের সময় অপ্রত্যাশিত সার্ভার ত্রুটি হয়েছে।"
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "বৈধতা যাচাইকরণ শেষ {0}"
@@ -618,9 +624,6 @@ msgstr[1] "{files} ফাইল"
 
 msgid "Image changes being processed"
 msgstr "ছবির পরিবর্তন প্রক্রিয়াধীন"
-
-msgid "Select an application first"
-msgstr "প্রথমে একটি অ্যাপ্লিকেশন নির্বাচন করুন"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

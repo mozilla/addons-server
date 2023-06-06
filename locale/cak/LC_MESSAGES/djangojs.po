@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2021-01-18 00:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "Ri atz'aqat xik'o chuwa ri nïm runimilem {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Xk'ulutäj jun kowöl tzolin rutzij k'uxasamaj; rub'anikil: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Man oyob'en ta ri sachoj toq nijikib'äx."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Xk'is richin nijikib'äx {0}"
@@ -615,9 +621,6 @@ msgstr[1] "{files} taq yakb'äl"
 
 msgid "Image changes being processed"
 msgstr "Yesamajïx ri taq jaloj pa ri wachib'äl"
-
-msgid "Select an application first"
-msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

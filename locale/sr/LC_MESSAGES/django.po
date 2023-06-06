@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -120,6 +120,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -908,10 +912,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1951,61 +1952,6 @@ msgstr "Активност"
 msgid "Subscribe to this feed"
 msgstr "Претплатите се на ове новости"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Овај додатак није компатибилан са <b>%(app_name)s %(app_version)s</b>, последнег издања %(app_name)s-а. Молимо Вас узмите у обзир ажурирање информација компатибилности Вашег додатка, или отпремите "
-"новију верзију."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Ажурирање компатибилности</a> <a href=\"%(version_url)s\" class=\"button\">Отпреми нову верзију</a> или <a href=\"#\" "
-"class=\"close\">Игнориши</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Погледајте и ажурирајте распон компатибилности апликације."
-
-msgid "Compatibility"
-msgstr "Компатибилност"
-
-msgid "Update Compatibility"
-msgstr "Ажурирање компатибилности"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Подешавање информације о апликацији овде ће дозволити корисницима да инсталирају Ваш додатак чак иако манифест инсталације у пакету указује да је додатак некомпатибилан."
-
-msgid "Application"
-msgstr "Апликација"
-
-msgid "Supported Versions"
-msgstr "Подржане верзије"
-
-msgid "Remove"
-msgstr "Уклони"
-
-msgid "Add Another Application&hellip;"
-msgstr "Додај другу апликацију&hellip;"
-
-msgid "Save Changes"
-msgstr "Сачувај измене"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "или"
-
-msgid "Cancel"
-msgstr "Откажи"
-
-msgid "Close"
-msgstr "Затвори"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2078,6 +2024,9 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Сачувај измене"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2086,6 +2035,9 @@ msgstr ""
 "<p>Додаци могу имати било који број аутора са 3 могуће улоге:</p> <ul> <li><b>Власник:</b> Може управљати свим аспектима листинга додатка, укључујући и додавање и уклањање других аутора</li> "
 "<li><b>Програмер:</b> Може управљати свим аспектима листинга додатка, осим за додавање и уклањање других аутора и управљање плаћања</li> <li><b>Посматрач:</b> Може видети подешавања додатка и "
 "статистике, али не може да мења</li> </ul>"
+
+msgid "Close"
+msgstr "Затвори"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2127,6 +2079,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "или"
+
+msgid "Cancel"
+msgstr "Откажи"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3254,6 +3214,15 @@ msgstr "Управљај са {0}"
 msgid "Files"
 msgstr "Датотеке"
 
+msgid "Compatibility"
+msgstr "Компатибилност"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Подешавање информације о апликацији овде ће дозволити корисницима да инсталирају Ваш додатак чак иако манифест инсталације у пакету указује да је додатак некомпатибилан."
+
+msgid "Add Another Application&hellip;"
+msgstr "Додај другу апликацију&hellip;"
+
 msgid "Version Notes"
 msgstr "Белешке о верзији"
 
@@ -4327,6 +4296,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4856,8 +4829,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "од %(user)s дана %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

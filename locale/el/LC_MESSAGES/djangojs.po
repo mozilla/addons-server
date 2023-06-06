@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-03-10 12:44+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -66,8 +66,14 @@ msgstr "Το πρόσθετό σας ξεπερνά το μέγιστο μέγε
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Ελήφθη κενή απάντηση από τον διακομιστή· κατάσταση: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Απρόσμενο σφάλμα διακομιστή κατά την επικύρωση."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Ολοκληρώθηκε η επικύρωση του {0}"
@@ -613,9 +619,6 @@ msgstr[1] "{files} αρχεία"
 
 msgid "Image changes being processed"
 msgstr "Οι αλλαγές εικόνων βρίσκονται υπό επεξεργασία"
-
-msgid "Select an application first"
-msgstr "Επιλέξτε πρώτα εφαρμογή"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-03-29 11:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -120,6 +120,10 @@ msgstr "U tregua version maksimum i panjohur i aplikacionit"
 
 msgid "Unknown min app version specified"
 msgstr "U tregua version minimum i panjohur i aplikacionit"
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -853,11 +857,8 @@ msgstr "U hoq hedhja poshtë për {addon} {version}."
 msgid "Un-rejected"
 msgstr "Iu hoq hedhja poshtë"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Etiketa needs_human_review për {addon} u hoq."
-
-msgid "Needs Human Review cleared"
-msgstr "“Lyp Shqyrtim Nga Dikush” u hoq"
+msgid "Reply to {rating} for {addon} written."
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1852,60 +1853,6 @@ msgstr "Veprimtari"
 msgid "Subscribe to this feed"
 msgstr "Pajtohuni te kjo prurje"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Kjo shtesë është e papërputhshme me <b>%(app_name)s %(app_version)s</b>, hedhja më e re në qarkullim e %(app_name)s-it. Ju lutemi, shihni mundësinë e përditësimit të të dhënave të përputhjes së "
-"shtesës suaj, ose të ngarkimit të një versioni më të ri të kësaj shtese."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhje Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#\" "
-"class=\"close\">Shpërfilleni</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Shihni dhe përditësoni intervale përputhjeje aplikacioni"
-
-msgid "Compatibility"
-msgstr "Përputhje"
-
-msgid "Update Compatibility"
-msgstr "Përditësoni Përputhjen"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Rregullimi i të dhënave të aplikacionit këtu do t’u lejojë përdoruesve të instalojnë shtesën tuaj edhe manifesti i instalimit te paketa tregon që ajo shtesë është e papërputhshme."
-
-msgid "Application"
-msgstr "Aplikacion"
-
-msgid "Supported Versions"
-msgstr "Versione Që Mbulohen"
-
-msgid "Remove"
-msgstr "Hiqe"
-
-msgid "Add Another Application&hellip;"
-msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
-
-msgid "Save Changes"
-msgstr "Ruaji Ndryshimet"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "ose"
-
-msgid "Cancel"
-msgstr "Anuloje"
-
-msgid "Close"
-msgstr "Mbylle"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1977,12 +1924,18 @@ msgstr "Autorë në pritje të miratimit"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autorë që janë shtuar te kjo shtesë, por nuk janë ripohuar."
 
+msgid "Save Changes"
+msgstr "Ruaji Ndryshimet"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Shtesat mund të kenë çfarëdo numri autorësh me një nga 2 rolet e mundshme:</p> <ul> <li><b>Pronar:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, përfshi shtim dhe heqje "
 "autorësh të tjerë</li> <li><b>Zhvillues:</b> Mund të administrojë krejt anët e paraqitjes së shtesës te galeria, hiq shtim dhe heqje autorësh të tjerë</li></ul>"
+
+msgid "Close"
+msgstr "Mbylle"
 
 msgid "Additional Details"
 msgstr "Hollësi Shtesë"
@@ -2023,6 +1976,14 @@ msgid ""
 msgstr ""
 "Nëse shtesa juaj ka një tjetër faqe të vetën, jepeni këtu adresën e saj. Nëse sajti juaj është i përkthyer në gjuhë të tjera, mund të shtohen përkthime të kësaj fushe. Kjo vlen vetëm për shtesa të "
 "shfaqura."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "ose"
+
+msgid "Cancel"
+msgstr "Anuloje"
 
 msgid "Describe Add-on"
 msgstr "Përshkruani Shtesën"
@@ -3125,6 +3086,15 @@ msgstr "Administroni {0}"
 msgid "Files"
 msgstr "Kartela"
 
+msgid "Compatibility"
+msgstr "Përputhje"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Rregullimi i të dhënave të aplikacionit këtu do t’u lejojë përdoruesve të instalojnë shtesën tuaj edhe manifesti i instalimit te paketa tregon që ajo shtesë është e papërputhshme."
+
+msgid "Add Another Application&hellip;"
+msgstr "Shtoni Një Tjetër Aplikacion&hellip;"
+
 msgid "Version Notes"
 msgstr "Shënime Versioni"
 
@@ -4193,6 +4163,10 @@ msgstr "Hiqni rrëmujën nga puna juaj me Twitter-in."
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Disa sajte kanë vështirësi të luajnë video nën Android. Ky zgjerim sjell zgjidhje."
@@ -4692,8 +4666,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "nga %(user)s më %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

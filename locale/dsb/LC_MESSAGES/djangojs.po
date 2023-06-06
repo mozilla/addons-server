@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2020-12-07 12:06+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,8 +71,14 @@ msgstr "Waš dodank pśekšacujo maksimalnu wjelikosć {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prozne wótegrono jo se wót serwera dostało; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Njewótcakana serwerowa zmólka pśi pśeglědowanju."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Pśeglědowanje {0} dokóńcone"
@@ -638,9 +644,6 @@ msgstr[3] "{files} datajow"
 
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny se pśeźěłuju"
-
-msgid "Select an application first"
-msgstr "Wubjeŕśo nejpjerwjej nałoženje"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

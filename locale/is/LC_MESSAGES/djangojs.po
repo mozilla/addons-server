@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-01-03 07:58+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "Viðbótin þín fer yfir hámarksstærðina {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fékk autt svar frá netþjóninum; staða: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Upp kom óvænt villa í netþjóni við fullgildingu."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Lauk við að fullgilda {0}"
@@ -612,9 +618,6 @@ msgstr[1] "{files} skrár"
 
 msgid "Image changes being processed"
 msgstr "Myndbreytingar eru í vinnslu"
-
-msgid "Select an application first"
-msgstr "Veldu fyrst forrit"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -121,6 +121,12 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid ""
+"Can not override compatibility information set in the manifest for this "
+"application (%s)"
 msgstr ""
 
 #, python-format
@@ -978,10 +984,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -2182,71 +2185,6 @@ msgstr "Aktivnost"
 msgid "Subscribe to this feed"
 msgstr "Pretplatite se na ove novosti"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the "
-"latest release of %(app_name)s. Please consider updating your add-on's "
-"compatibility info, or uploading a newer version of this add-on."
-msgstr ""
-"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, "
-"posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje "
-"informacija kompatibilnosti Vašeg dodatka, ili otpremite noviju verziju."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s"
-"\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button"
-"\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s"
-"\">Ažuriranje kompatibilnosti</a> <a href=\"%(version_url)s\" class=\"button"
-"\">Otpremi novu verziju</a> ili <a href=\"#\" class=\"close\">Ignoriši</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Pogledajte i ažurirajte raspon kompatibilnosti aplikacije."
-
-msgid "Compatibility"
-msgstr "Kompatibilnost"
-
-msgid "Update Compatibility"
-msgstr "Ažuriranje kompatibilnosti"
-
-msgid ""
-"Adjusting application information here will allow users to install your add-"
-"on even if the install manifest in the package indicates that the add-on is "
-"incompatible."
-msgstr ""
-"Podešavanje informacije o aplikaciji ovde će dozvoliti korisnicima da "
-"instaliraju Vaš dodatak čak iako manifest instalacije u paketu ukazuje da je "
-"dodatak nekompatibilan."
-
-msgid "Application"
-msgstr "Aplikacija"
-
-msgid "Supported Versions"
-msgstr "Podržane verzije"
-
-msgid "Remove"
-msgstr "Ukloni"
-
-msgid "Add Another Application&hellip;"
-msgstr "Dodaj drugu aplikaciju&hellip;"
-
-msgid "Save Changes"
-msgstr "Sačuvaj izmene"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "ili"
-
-msgid "Cancel"
-msgstr "Otkaži"
-
-msgid "Close"
-msgstr "Zatvori"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2323,6 +2261,9 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Sačuvaj izmene"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> "
@@ -2337,6 +2278,9 @@ msgstr ""
 "b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i "
 "uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> "
 "Može videti podešavanja dodatka i statistike, ali ne može da menja</li> </ul>"
+
+msgid "Close"
+msgstr "Zatvori"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2386,6 +2330,14 @@ msgid ""
 "is localized into other languages multiple translations of this field can be "
 "added. It is only relevant for listed add-ons."
 msgstr ""
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "ili"
+
+msgid "Cancel"
+msgstr "Otkaži"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3683,6 +3635,21 @@ msgstr "Upravljaj sa {0}"
 msgid "Files"
 msgstr "Datoteke"
 
+msgid "Compatibility"
+msgstr "Kompatibilnost"
+
+msgid ""
+"Adjusting application information here will allow users to install your add-"
+"on even if the install manifest in the package indicates that the add-on is "
+"incompatible."
+msgstr ""
+"Podešavanje informacije o aplikaciji ovde će dozvoliti korisnicima da "
+"instaliraju Vaš dodatak čak iako manifest instalacije u paketu ukazuje da je "
+"dodatak nekompatibilan."
+
+msgid "Add Another Application&hellip;"
+msgstr "Dodaj drugu aplikaciju&hellip;"
+
 msgid "Version Notes"
 msgstr "Beleške o verziji"
 
@@ -4961,6 +4928,12 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid ""
+"Listen to music on YouTube without those annoying \"Video paused. Continue "
+"watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -5532,8 +5505,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "od %(user)s dana %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid ""

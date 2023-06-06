@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2023-03-24 13:38+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -123,6 +123,10 @@ msgstr "גרסת היישום המרבית שצוינה אינה ידועה"
 
 msgid "Unknown min app version specified"
 msgstr "גרסת היישום המזערית שצוינה אינה ידועה"
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -850,10 +854,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1855,58 +1856,6 @@ msgstr "פעילות"
 msgid "Subscribe to this feed"
 msgstr "הרשמה להזנה זו"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "תוספת זו אינה נתמכת ב־<b>%(app_name)s %(app_version)s</b>, הגרסה העדכנית ביותר של %(app_name)s. מוטב לעדכן את פרטי התאימות של התוספת שלך או להעלות גרסה חדשה יותר של תוספת זו."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">עדכון תאימות</a> <a href=\"%(version_url)s\" class=\"button\">העלאת גרסה חדשה</a> או <a href=\"#\" class=\"close"
-"\">התעלמות</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "הצגה ועדכון טווחי תאימות יישום"
-
-msgid "Compatibility"
-msgstr "תאימות"
-
-msgid "Update Compatibility"
-msgstr "עדכון תאימות"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-
-msgid "Application"
-msgstr "יישום"
-
-msgid "Supported Versions"
-msgstr "גרסאות נתמכות"
-
-msgid "Remove"
-msgstr "הסרה"
-
-msgid "Add Another Application&hellip;"
-msgstr "הוספת יישום נוסף&hellip;"
-
-msgid "Save Changes"
-msgstr "שמירת שינויים"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "או"
-
-msgid "Cancel"
-msgstr "ביטול"
-
-msgid "Close"
-msgstr "סגירה"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1977,10 +1926,16 @@ msgstr "יוצרים הממתינים לאישור"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "יוצרים שנוספו לתוספת זו אך לא אישרו."
 
+msgid "Save Changes"
+msgstr "שמירת שינויים"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "סגירה"
 
 msgid "Additional Details"
 msgstr "פרטים נוספים"
@@ -2020,6 +1975,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "אם לתוספת שלך יש אתר בית נוסף, יש להקליד את הכתובת שלו כאן. אם האתר שלך מתורגם לשפות נוספות ניתן להוסיף את השדה הזה בשפות נוספות. תקף רק לתוספות מוצגות."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "או"
+
+msgid "Cancel"
+msgstr "ביטול"
 
 # 75%
 # 100%
@@ -3076,6 +3039,15 @@ msgstr "ניהול {0}"
 
 msgid "Files"
 msgstr "קבצים"
+
+msgid "Compatibility"
+msgstr "תאימות"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Add Another Application&hellip;"
+msgstr "הוספת יישום נוסף&hellip;"
 
 msgid "Version Notes"
 msgstr "הערות גרסה"
@@ -4146,6 +4118,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
@@ -4648,8 +4624,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "מאת %(user)s בתאריך %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

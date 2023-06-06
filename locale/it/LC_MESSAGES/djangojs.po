@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2022-07-03 08:15+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -66,8 +66,14 @@ msgstr "Il componente aggiuntivo supera la dimensione massima di {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Ricevuta una risposta vuota dal server; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Errore inatteso del server durante il controllo."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Validazione di {0} completata"
@@ -617,9 +623,6 @@ msgstr[1] "{files} file"
 
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
-
-msgid "Select an application first"
-msgstr "Selezionare un’applicazione"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

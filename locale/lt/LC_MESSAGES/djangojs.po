@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2014-02-24 21:26+0000\n"
 "Last-Translator: Matjaž <m@owca.info>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,13 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
+msgstr ""
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
 msgid "Finished validating {0}"
@@ -605,9 +611,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Image changes being processed"
-msgstr ""
-
-msgid "Select an application first"
 msgstr ""
 
 msgid "<b>{0}</b> character"

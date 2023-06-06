@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -128,6 +128,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -878,10 +882,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1895,62 +1896,6 @@ msgstr "Aktywność"
 msgid "Subscribe to this feed"
 msgstr "Subskrybuj ten kanał"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Ten dodatek jest niekompatybilny z wersją <b>%(app_name)s %(app_version)s</b>, najnowszym wydaniem programu %(app_name)s. Zaktualizuj informacje o kompatybilności dodatku lub prześlij jego nową "
-"wersję."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Zaktualizuj kompatybilność</a> <a href=\"%(version_url)s\" class=\"button\">Prześlij nową wersję</a> lub <a href=\"#\" "
-"class=\"close\">Pomiń</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Zobacz i zaktualizuj zakres kompatybilności programu."
-
-msgid "Compatibility"
-msgstr "Kompatybilność"
-
-msgid "Update Compatibility"
-msgstr "Aktualizuj"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Podanie tutaj informacji dotyczących modyfikacji aplikacji umożliwi użytkownikom zainstalowanie dodatku, nawet jeśli dane zawarte w pliku install.rdf wskazują, że dodatek jest niekompatybilny."
-
-msgid "Application"
-msgstr "Program"
-
-msgid "Supported Versions"
-msgstr "Obsługiwane wersje"
-
-msgid "Remove"
-msgstr "Usuń"
-
-msgid "Add Another Application&hellip;"
-msgstr "Dodaj następny program&hellip;"
-
-msgid "Save Changes"
-msgstr "Zapisz zmiany"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "lub"
-
-msgid "Cancel"
-msgstr "Anuluj"
-
-msgid "Close"
-msgstr "Zamknij"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2024,12 +1969,18 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Dodatki mogą mieć wielu autorów z przypisaną im jedną z dwóch możliwych ról:</p> <ul> <li><b>Właściciel</b> — może zarządzać wszystkimi aspektami dodatku, łącznie z dodawaniem i usuwaniem innych "
 "autorów</li> <li><b>Autor</b> — może zarządzać wszystkimi aspektami dodatku z wyjątkiem dodawania i usuwania innych autorów</li> </ul>"
+
+msgid "Close"
+msgstr "Zamknij"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2070,6 +2021,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "Jeśli dodatek ma inną stronę domową, wpisz tutaj jej adres. Jeśli strona ma wiele wersji językowych, można dodać je w tym polu. Dotyczy tylko wyświetlanych dodatków."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "lub"
+
+msgid "Cancel"
+msgstr "Anuluj"
 
 msgid "Describe Add-on"
 msgstr "Opisz dodatek"
@@ -3156,6 +3115,16 @@ msgstr "Zarządzanie {0}"
 
 msgid "Files"
 msgstr "Pliki"
+
+msgid "Compatibility"
+msgstr "Kompatybilność"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+"Podanie tutaj informacji dotyczących modyfikacji aplikacji umożliwi użytkownikom zainstalowanie dodatku, nawet jeśli dane zawarte w pliku install.rdf wskazują, że dodatek jest niekompatybilny."
+
+msgid "Add Another Application&hellip;"
+msgstr "Dodaj następny program&hellip;"
 
 msgid "Version Notes"
 msgstr "Informacje o wersji"
@@ -4285,6 +4254,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4820,8 +4793,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "autor: %(user)s dnia %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

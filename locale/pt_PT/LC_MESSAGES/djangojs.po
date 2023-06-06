@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2021-09-20 10:18+0000\n"
 "Last-Translator: cjdiniz <cjdiniz@gmail.com>\n"
 "Language-Team: \n"
@@ -66,8 +66,14 @@ msgstr "O seu extra excede o tamanho máximo de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida uma resposta vazia do servidor; estado: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Erro inesperado do servidor enquanto validava."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Terminada a validação de {0}"
@@ -612,9 +618,6 @@ msgstr[1] "{files} ficheiros"
 
 msgid "Image changes being processed"
 msgstr "Alterações de imagens em processamento"
-
-msgid "Select an application first"
-msgstr "Primeiro selecione uma aplicação"
 
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"

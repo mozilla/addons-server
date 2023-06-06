@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 09:46+0000\n"
+"POT-Creation-Date: 2023-06-06 19:03+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,6 +117,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -901,10 +905,7 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr ""
-
-msgid "Needs Human Review cleared"
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "Firefox"
@@ -1933,59 +1934,6 @@ msgstr "Atividade"
 msgid "Subscribe to this feed"
 msgstr "Subscrever a esta fonte"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Este extra é incompatível com <b>%(app_name)s %(app_version)s</b>, a última versão do %(app_name)s. Por favor, considere em atualizar a informação de compatibilidade do seu extra, ou submeta uma "
-"nova versão."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Atualizar a compatibilidade</a> <a href=\"%(version_url)s\" class=\"button\">Submeter uma nova versão</a> ou <a href="
-"\"#\" class=\"close\">Ignorar</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Ver e atualizar os intervalos de compatibilidade da aplicação."
-
-msgid "Compatibility"
-msgstr "Compatibilidade"
-
-msgid "Update Compatibility"
-msgstr "Atualizar compatibilidade"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Ajustar a informação da aplicação aqui permite aos utilizadores instalar o seu extra mesmo que o manifesto de instalação do pacote indique que o extra é incompatível."
-
-msgid "Application"
-msgstr "Aplicação"
-
-msgid "Supported Versions"
-msgstr "Versões suportadas"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Add Another Application&hellip;"
-msgstr "Adicionar outra aplicação&hellip;"
-
-msgid "Save Changes"
-msgstr "Guardar alterações"
-
-msgid "or"
-msgstr "ou"
-
-msgid "Cancel"
-msgstr "Cancelar"
-
-msgid "Close"
-msgstr "Fechar"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2058,6 +2006,9 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Guardar alterações"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2066,6 +2017,9 @@ msgstr ""
 "<p>Os extras podem ter um qualquer número de autores com 3 possíveis papeis:</p> <ul> <li><b>Dono:</b> pode gerir todos os aspetos da listagem do extra, incluindo adicionar e remover outros "
 "autores</li> <li><b>Programador:</b> pode gerir todos os detalhes da listagem do extra, exceto adicionar ou remover outros autores e gerir pagamentos</li> <li><b>Visualizador:</b> pode ver as "
 "configurações e estatísticas do extra, mas não pode fazer nenhuma alteração</li> </ul>"
+
+msgid "Close"
+msgstr "Fechar"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2109,6 +2063,12 @@ msgid ""
 msgstr ""
 "Se o seu extra tem outra página inicial, introduza o respetivo endereço aqui. Se o seu sítio web está traduzido em vários idiomas podem ser adicionadas múltiplas traduções para este campo. Isto "
 "apenas é relevante para extras listados."
+
+msgid "or"
+msgstr "ou"
+
+msgid "Cancel"
+msgstr "Cancelar"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3253,6 +3213,15 @@ msgstr "Gerir {0}"
 msgid "Files"
 msgstr "Ficheiros"
 
+msgid "Compatibility"
+msgstr "Compatibilidade"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Ajustar a informação da aplicação aqui permite aos utilizadores instalar o seu extra mesmo que o manifesto de instalação do pacote indique que o extra é incompatível."
+
+msgid "Add Another Application&hellip;"
+msgstr "Adicionar outra aplicação&hellip;"
+
 msgid "Version Notes"
 msgstr "Notas da versão"
 
@@ -4326,6 +4295,10 @@ msgstr ""
 msgid "Bring back the ability to see thumbs down!"
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4854,8 +4827,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "por %(user)s em %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
