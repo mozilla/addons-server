@@ -382,8 +382,34 @@
         });
       $('.addon-upload-failure-dependant').prop('disabled', true);
 
+      function setCompatibilityCheckboxesValidity() {
+        if (
+          compatibilityCheckboxes.length === 0 ||
+          !compatibilityCheckboxes.is(':visible') ||
+          compatibilityCheckboxes.is(':checked')
+        ) {
+          // If there are no compatibility checkboxes or they aren't visible or
+          // at least one is checked: remove custom validity on them.
+          compatibilityCheckboxes.each(function (idx, item) {
+            item.setCustomValidity('');
+          });
+        } else {
+          // We need a least a visible checkbox checked to continue. Add an error
+          // message to the first one.
+          compatibilityCheckboxes[0].setCustomValidity(
+            gettext(
+              'Your extension has to be compatible with at least one application.',
+            ),
+          );
+        }
+      }
+
+      var compatibilityCheckboxes = $('.compatible-apps input[type=checkbox]');
       var $newForm = $('.new-addon-file');
       var $channelChoice = $('input[name="channel"]');
+
+      compatibilityCheckboxes.on('change', setCompatibilityCheckboxesValidity);
+      setCompatibilityCheckboxesValidity(); // Initialize.
 
       function isUnlisted() {
         // True if there's radio input with 'name="channel"' with 'value="unlisted"' checked, or a
@@ -477,6 +503,8 @@
             $('.binary-source').show();
             $('.compatible-apps').show();
           }
+          setCompatibilityCheckboxesValidity();
+
           var errors = getErrors(results),
             v = results.validation,
             timeout = checkTimeout(v);
