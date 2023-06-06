@@ -502,10 +502,16 @@
           } else {
             // Pre-check Android or not depending on what we detected in the
             // manifest.
-            $('#id_compatible_apps .android input').prop(
-              'checked',
-              results.explicitly_compatible_with_android,
-            );
+            $('#id_compatible_apps .android input')
+              .prop('checked', results.explicitly_compatible_with_android)
+              .prop('disabled', results.explicitly_compatible_with_android)
+              .parent()
+              .prop(
+                'title',
+                results.explicitly_compatible_with_android === true
+                  ? gettext('Explicitly marked as compatible with Firefox for Android in the manifest')
+                  : '',
+              );
             $('.binary-source').show();
             $('.compatible-apps').show();
           }
