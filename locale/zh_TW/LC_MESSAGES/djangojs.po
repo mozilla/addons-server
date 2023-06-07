@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2020-12-07 11:05+0000\n"
+"PO-Revision-Date: 2023-06-07 03:05+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -65,13 +65,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "從伺服器收到一個空白的回覆; 狀態:{0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "您的擴充套件必須與至少一套應用程式相容。"
 
 msgid "Unexpected server error while validating."
 msgstr "在驗證時發生了不可預見的伺服器錯誤。"
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "於安裝資訊檔中明確標示為與 Firefox for Android 相容"
 
 msgid "Finished validating {0}"
 msgstr "已完成驗證 {0}"
