@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 19:20+0000\n"
+"PO-Revision-Date: 2023-06-07 19:22+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -5083,7 +5083,7 @@ msgid "Enter full email that should be blocked or use unix-style wildcards, e.g.
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "E-mailová adresa použitá pro váš účet nemá povolené odesílání příspěvků."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
