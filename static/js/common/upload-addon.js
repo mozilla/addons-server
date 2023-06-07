@@ -495,6 +495,9 @@
             });
           }, 1000);
         } else {
+          // Remove hidden android compatibility input if present (it will
+          // be re-added if necessary)
+          $('#id_compatible_apps_hidden_android').remove();
           if (results.addon_type != 1) {
             // No source or compat app selection for themes/dicts/langpacks.
             $('.binary-source').hide();
@@ -502,7 +505,8 @@
           } else {
             // Pre-check Android or not depending on what we detected in the
             // manifest.
-            $('#id_compatible_apps .android input')
+            let $checkbox = $('#id_compatible_apps .android input');
+            $checkbox
               .prop('checked', results.explicitly_compatible_with_android)
               .prop('disabled', results.explicitly_compatible_with_android)
               .parent()
@@ -514,6 +518,19 @@
                     )
                   : '',
               );
+            // In addition, if we automatically ticked and disabled the Android
+            // checkbox, the browser won't submit the value. It's fine if
+            // Firefox was also checked, but if not then we'd not submit
+            // anything and the validation would fail server-side, so we
+            // add/remove an hidden input to compensate.
+            if (results.explicitly_compatible_with_android === true) {
+              $checkbox
+                .clone()
+                .prop('id', 'id_compatible_apps_hidden_android')
+                .prop('disabled', false)
+                .prop('type', 'hidden')
+                .insertAfter($checkbox);
+            }
             $('.binary-source').show();
             $('.compatible-apps').show();
           }
