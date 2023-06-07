@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2022-07-22 07:51+0000\n"
-"Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
+"PO-Revision-Date: 2023-06-07 00:32+0000\n"
+"Last-Translator: wxie <xiewensheng@hotmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "从服务器上接收到一个空的响应；状态：{0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "您的扩展必须与至少一个应用程序兼容。"
 
 msgid "Unexpected server error while validating."
 msgstr "验证时发生了意外的服务器错误。"
