@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 19:11+0000\n"
+"PO-Revision-Date: 2023-06-07 19:20+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -857,7 +857,7 @@ msgid "Un-rejected"
 msgstr "Zrušené zamítnutí"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Pro doplněk {addon} byla napsána odpověď na hodnocení {rating}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1430,6 +1430,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox přidává podporu pro rozšíření s manifestem verze 3 (MV3) ve Firefoxu {version}. Starší verze jsou nicméně kompatibilní pouze s rozšířeními s manifestem verze 2 (MV2). Doporučujeme zatím "
+"nahrávat rozšíření s manifestem verze 3 pouze na vlastní stránky, abyste pro své uživatele nenarušili kompatibilitu."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr "Další informace o zavádění rozšíření MV3 nebo rozšířeních MV3 na vlastním hostingu naleznete na https://mzl.la/3hIwQXX"
@@ -2530,7 +2532,7 @@ msgstr "Zdrojové soubory (s výjimkou open-source knihoven třetích stran) nem
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Další informace o <a %(a_attrs)s>Odeslání zdrojového kódu</a> získejte na stránkách Firefox Extension Workshop."
 
 msgid "Upload source code:"
 msgstr "Nahrání zdrojového kódu:"
@@ -3224,6 +3226,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
+"Nejnovější schválená verze doplňku %(promoted_group_name)s se nedá odstranit či zakázat, protože předchozí verze %(promoted_group_name)s nebyla schválená na zveřejnění. Pokud s tím potřebujete "
+"pomoci, kontaktujte správce stránek AMO."
 
 msgid "Hide Add-on"
 msgstr "Skrýt doplněk"
@@ -4296,7 +4300,7 @@ msgstr "Překládejte webové stránky ve Firefoxu — soukromně — bez použi
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokujte webové stránky, které vás obírají o čas. Zablokujte je úplně nebo jen v časech podle vaší volby."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4588,7 +4592,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Automaticky označeno na kontrolu z důvodu shody slov"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Automatické označení z důvodu omezení uživatele"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4648,7 +4652,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "od %(user)s dne %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
