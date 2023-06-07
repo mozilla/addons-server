@@ -27,6 +27,8 @@ if os.path.exists(ENVIRON_SETTINGS_FILE_PATH):
 
 ALLOWED_HOSTS = [
     '.allizom.org',
+    '.amo.nonprod.webservices.mozgcp.net',
+    '.amo.prod.webservices.mozgcp.net',
     '.mozilla.org',
     '.mozilla.com',
     '.mozilla.net',
