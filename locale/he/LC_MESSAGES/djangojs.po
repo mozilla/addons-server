@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2022-02-25 14:42+0000\n"
+"PO-Revision-Date: 2023-06-07 16:36+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -67,13 +67,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "התקבלה תגובה ריקה מהשרת; סטטוס: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "על ההרחבה שלך להיות נתמכת ביישום אחד לפחות."
 
 msgid "Unexpected server error while validating."
 msgstr "שגיאה בלתי־צפויה בשרת בזמן בדיקת האימות."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "מסומנת במפורש כנתמכת ב־Firefox עבור Android ב־manifest"
 
 msgid "Finished validating {0}"
 msgstr "בדיקת האימות של {0} הסתיימה"
