@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2022-07-23 20:38+0000\n"
-"Last-Translator: adrian <adrian@familyverhulst.com>\n"
+"PO-Revision-Date: 2023-06-07 19:10+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -69,13 +69,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Vaše rozšíření musí být kompatibilní s alespoň jednou aplikací."
 
 msgid "Unexpected server error while validating."
 msgstr "Při kontrole nastala neočekávaná chyba serveru."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "V manifestu explicitně označené jako kompatibilní s Firefoxem pro Android"
 
 msgid "Finished validating {0}"
 msgstr "Dokončena kontrola {0}"
