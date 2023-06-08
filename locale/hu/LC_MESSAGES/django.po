@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-08 11:37+0000\n"
+"PO-Revision-Date: 2023-06-08 13:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -610,7 +610,7 @@ msgid "{addon} removed from {collection}."
 msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
 
 msgid "{rating} for {addon} written."
-msgstr "{rating} érkezett a(z) {addon} kiegészítőhöz."
+msgstr "{rating} értékelés érkezett a(z) {addon} kiegészítőhöz."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -858,7 +858,7 @@ msgid "Un-rejected"
 msgstr "Elutasítás visszavonva"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Válasz készült a(z) {rating} értékeléshez a(z) {addon} kiegészítőnél."
 
 msgid "Firefox"
 msgstr "Firefox"
