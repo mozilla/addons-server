@@ -1,4 +1,3 @@
-import collections
 import mimetypes
 import os
 import uuid
@@ -8,9 +7,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
 from django.utils.translation import activate
 
-from fxa.constants import ENVIRONMENT_URLS
-from fxa.core import Client
-from fxa.tests.utils import TestEmailAccount
 from rest_framework import serializers
 
 import olympia.core.logger
