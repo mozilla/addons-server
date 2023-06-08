@@ -281,7 +281,7 @@ function initValidator($doc) {
         file = file.join('/');
       }
 
-      if (this.fileURL and this.fileID) {
+      if (this.fileURL && this.fileID) {
         var url = this.fileURL + '?path=' + file;
         if (msg.line) {
           url += '#L' + msg.line;
