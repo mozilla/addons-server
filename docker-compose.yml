@@ -13,8 +13,6 @@ x-env-mapping: &env
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - TERM=xterm-256color
-    - UITEST_FXA_EMAIL
-    - UITEST_FXA_PASSWORD=uitester
     - CIRCLECI=${CIRCLECI}
     - HISTFILE=/data/olympia/docker/artifacts/bash_history
     - HISTSIZE=50000

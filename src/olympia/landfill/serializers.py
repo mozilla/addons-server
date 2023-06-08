@@ -38,35 +38,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
 
     def __init__(self):
-        self.fxa_email = os.environ.get('UITEST_FXA_EMAIL')
-        self.fxa_password = os.environ.get('UITEST_FXA_PASSWORD', 'uitester')
-        if self.fxa_email:
-            self.fxa_id = self._create_fxa_user()
-        else:
-            # If UITEST_FXA_EMAIL was empty/absent, skip creating the fxa
-            # account: we won't need to log in with that user through FxA.
-            log.info('UITEST_FXA_EMAIL is empty, skipping FxA user creation')
-            # We still need those to be set for the content to be created.
-            self.fxa_id = None
-            self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
+        self.fxa_id = None
+        self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
         self.user = self._create_addon_user()
-
-    def _create_fxa_user(self):
-        """Create fxa user for logging in."""
-        fxa_client = Client(ENVIRONMENT_URLS['stable']['authentication'])
-        account = TestEmailAccount(email=self.fxa_email)
-        password = self.fxa_password
-        FxAccount = collections.namedtuple('FxAccount', 'email password')
-        fxa_account = FxAccount(email=account.email, password=password)
-        session = fxa_client.create_account(fxa_account.email, fxa_account.password)
-        account.fetch()
-        message = account.wait_for_email(
-            lambda m: 'x-verify-code' in m['headers']
-            and session.uid == m['headers']['x-uid']
-        )
-        session.verify_email_code(message['headers']['x-verify-code'])
-        log.info(f'fxa account created: {fxa_account}')
-        return session.uid
 
     def _create_addon_user(self):
         """Create addon user with fxa information assigned."""
