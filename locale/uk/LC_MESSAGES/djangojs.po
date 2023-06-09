@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2021-10-13 17:52+0000\n"
+"PO-Revision-Date: 2023-06-06 21:07+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -69,13 +69,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Отримано порожню відповідь від сервера; стан: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Ваше розширення має бути сумісним принаймні з однією програмою."
 
 msgid "Unexpected server error while validating."
 msgstr "Під час засвідчення сталася неочікувана помилка сервера."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Явно позначено сумісним із Firefox для Android у маніфесті"
 
 msgid "Finished validating {0}"
 msgstr "Завершено перевірку {0}"
