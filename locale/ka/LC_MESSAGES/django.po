@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-11 10:54+0000\n"
+"PO-Revision-Date: 2023-06-11 20:03+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -121,7 +121,7 @@ msgstr "ვერსიის ქვედა ზღვარი არასწ
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "ვერ გადაეწერება თავსებადობის მითითებულ მონაცემებს მანიფესტში ამ აპლიკაციისთვის (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -848,7 +848,7 @@ msgid "Un-rejected"
 msgstr "უარყოფის გაუქმება"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "გამოხმაურება {rating} შეფასებაზე {addon} დამატებისთვის."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4148,7 +4148,7 @@ msgstr "დააბრუნეთ „დაწუნების“ ხილ�
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "მოუსმინეთ მუსიკას YouTube-ზე შეუფერხებლად და აირიდეთ „ვიდეო შეჩერებულია. განაგრძობთ ყურებას?“."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4649,7 +4649,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "მომხმარებელი %(user)s, თარიღი %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
