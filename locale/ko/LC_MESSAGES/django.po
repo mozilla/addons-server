@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-11 03:31+0000\n"
+"PO-Revision-Date: 2023-06-11 03:33+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -689,10 +689,10 @@ msgid "User {user} picture deleted."
 msgstr "{user} 사용자의 사진이 삭제되었습니다."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "{user} 사용자가 {group}에 추가되었습니다."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "{user} 사용자가 {group}에서 제거되었습니다."
 
 msgid "{addon} unlisted."
 msgstr "{addon}이 목록에서 제거되었습니다."
@@ -848,7 +848,7 @@ msgid "{addon} {version} un-rejected."
 msgstr ""
 
 msgid "Un-rejected"
-msgstr ""
+msgstr "거부되지 않음"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
@@ -918,7 +918,7 @@ msgid "Dictionary"
 msgstr "맞춤법 사전"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "사용되지 않는 검색 엔진"
 
 msgid "Language Pack (Application)"
 msgstr "언어팩(애플리케이션)"
@@ -961,7 +961,7 @@ msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "사용되지 않는 플러그인"
 
 msgid "Deprecated LWTs"
 msgstr "비추천 LWTs"
@@ -969,9 +969,8 @@ msgstr "비추천 LWTs"
 msgid "Themes (Static)"
 msgstr "테마(정적)"
 
-#, fuzzy
 msgid "Site Permissions"
-msgstr "권한:"
+msgstr "사이트 권한"
 
 msgid "Alerts & Updates"
 msgstr "웹 데이터 위젯"
