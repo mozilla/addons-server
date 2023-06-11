@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-11 03:18+0000\n"
+"PO-Revision-Date: 2023-06-11 03:31+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -425,13 +425,13 @@ msgid "The language code \"{lang_code}\" is invalid."
 msgstr "\"{lang_code}\" 언어 코드는 유효하지 않습니다."
 
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "{{lang-code:value}} 객체를 제공해야 합니다."
 
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "\"{lang_code}\"의 기본 로케일 값이 필요합니다."
 
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "다른 번역이 설정된 경우 \"{lang_code}\"의 기본 로케일 값이 필요합니다."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -500,11 +500,11 @@ msgstr "{addon}의 분류 정보가 수정되었습니다."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0})가 {addon}에 추가되었습니다."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0})가 {addon}에서 제거되었습니다."
 
 msgid "Contributions for {addon}."
 msgstr "{addon}에 기부금이 들어왔습니다."
@@ -631,9 +631,8 @@ msgstr "{addon} 부가기능이 {0} 라이선스를 채용했습니다."
 msgid "{addon} policy changed."
 msgstr "{addon}의 개인정보처리방침이 변경되었습니다."
 
-#, fuzzy
 msgid "{addon} icon or previews changed."
-msgstr "{addon} 아이콘이 변경되었습니다."
+msgstr "{addon} 아이콘 또는 미리보기가 변경되었습니다."
 
 msgid "{rating} for {addon} approved."
 msgstr "{addon}의 {rating} 평가가 승인되었습니다."
