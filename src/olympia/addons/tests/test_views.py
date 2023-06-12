@@ -46,6 +46,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.blocklist.models import Block
+from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
@@ -75,6 +76,7 @@ from olympia.versions.models import (
 from ..models import (
     Addon,
     AddonApprovalsCounter,
+    AddonBrowserMapping,
     AddonCategory,
     AddonRegionalRestrictions,
     AddonReviewerFlags,
@@ -7272,3 +7274,71 @@ class TestAddonPendingAuthorViewSet(TestCase):
         # and not delete either
         response = self.client.delete(self.detail_url)
         assert response.status_code == 403, response.content
+
+
+class TestBrowserMapping(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.url = reverse_ns('addon-browser-mappings', api_version='v5')
+
+    def assert_json_results(self, response, expected_results):
+        json = response.json()
+        assert 'results' in json
+        assert 'count' in json
+        assert 'page_size' in json
+        assert json['count'] == expected_results
+        assert json['page_size'] == 100  # We use `LargePageNumberPagination`.
+        return json['results']
+
+    def test_invalid_params(self):
+        for query_string in ['', '?invalid=param', '?browser=not-a-browser']:
+            res = self.client.get(f'{self.url}{query_string}')
+            assert res.status_code == 400
+            assert res['cache-control'] == 's-maxage=0'
+            assert res.json() == {'detail': 'Invalid browser parameter'}
+
+    def test_get(self):
+        addon_1 = addon_factory()
+        extension_id_1 = 'an-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_1,
+            extension_id=extension_id_1,
+            browser=CHROME,
+        )
+        addon_2 = addon_factory()
+        extension_id_2 = 'another-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_2,
+            extension_id=extension_id_2,
+            browser=CHROME,
+        )
+        # Shouldn't show up because of the add-on status.
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(status=amo.STATUS_NOMINATED),
+            extension_id='some-other-extension-id-1',
+            browser=CHROME,
+        )
+        # Shouldn't show up because the browser is unrelated.
+        AddonBrowserMapping.objects.create(
+            addon=addon_1,
+            extension_id='some-other-extension-id-2',
+            browser=0,
+        )
+        # - 1 for counting the number of results
+        # - 1 for fetching the results of the first (and only) page
+        with self.assertNumQueries(2):
+            res = self.client.get(f'{self.url}?browser=chrome')
+
+        assert res.status_code == 200
+        assert res['cache-control'] == 'max-age=86400'
+
+        results = self.assert_json_results(res, 2)
+        assert results[0] == {
+            'extension_id': extension_id_1,
+            'addon_guid': addon_1.guid,
+        }
+        assert results[1] == {
+            'extension_id': extension_id_2,
+            'addon_guid': addon_2.guid,
+        }

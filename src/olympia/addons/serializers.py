@@ -65,6 +65,7 @@ from .fields import (
 from .models import (
     Addon,
     AddonApprovalsCounter,
+    AddonBrowserMapping,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -1648,3 +1649,15 @@ class ReplacementAddonSerializer(AMOModelSerializer):
                 coll_match.group('user_id'), coll_match.group('coll_slug')
             )
         return []
+
+
+class AddonBrowserMappingSerializer(AMOModelSerializer):
+    # The source is an annotated field defined in `AddonBrowserMappingView`.
+    addon_guid = serializers.CharField(source='addon__guid')
+
+    class Meta:
+        model = AddonBrowserMapping
+        fields = (
+            'addon_guid',
+            'extension_id',
+        )

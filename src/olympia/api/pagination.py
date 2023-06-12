@@ -59,3 +59,13 @@ class OneOrZeroPageNumberPagination(CustomPageNumberPagination):
                 ]
             )
         )
+
+
+class LargePageNumberPagination(CustomPageNumberPagination):
+    """
+    A pagination implementation that allows large page sizes. You should
+    probably not use it.
+    """
+
+    max_page_size = 100
+    page_size = 100
