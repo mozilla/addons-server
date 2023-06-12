@@ -783,7 +783,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -851,7 +850,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tar.gz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -863,7 +861,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tgz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -875,7 +872,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tar.bz2')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -889,7 +885,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(has_source=True, source=None, expect_errors=True)
@@ -898,7 +893,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2**22)
     def test_submit_source_in_memory_upload(self):
@@ -909,7 +903,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -922,7 +915,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -940,7 +932,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_non_compressed_tar(self):
         response = self.post(
@@ -954,7 +945,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_not_an_actual_archive(self):
         response = self.post(
@@ -967,7 +957,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive(self):
         source = self.generate_source_zip(
@@ -986,7 +975,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
         source = self.generate_source_tar()
@@ -1002,14 +990,12 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_no_source(self):
         response = self.post(has_source=False, source=None)
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_non_extension_redirects_past_to_details(self):
         # static themes should redirect
@@ -2208,24 +2194,6 @@ class VersionSubmitUploadMixin:
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
-
-    def test_admin_override(self):
-        self.grant_permission(self.user, ':'.join(amo.permissions.REVIEWS_ADMIN))
-        assert not AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
-        response = self.post(override_validation=True)
-        assert response.status_code == 302
-        assert AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
-
-    def test_admin_override_no_permission(self):
-        response = self.post(override_validation=True)
-        assert response.status_code == 302
-        assert not AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
 
     def test_submit_notification_warning(self):
         config = Config.objects.create(

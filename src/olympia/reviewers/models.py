@@ -30,14 +30,6 @@ log = olympia.core.logger.getLogger('z.reviewers')
 
 VIEW_QUEUE_FLAGS = (
     (
-        'needs_admin_code_review',
-        'Needs Admin Code Review',
-    ),
-    (
-        'needs_admin_content_review',
-        'Needs Admin Content Review',
-    ),
-    (
         'needs_admin_theme_review',
         'Needs Admin Static Theme Review',
     ),
@@ -289,8 +281,6 @@ class AutoApprovalSummary(ModelBase):
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         six_weeks_ago = (self.created or datetime.now()) - timedelta(days=42)
         factors = {
-            # Add-ons under admin code review: 100 added to weight.
-            'admin_code_review': 100 if addon.needs_admin_code_review else 0,
             # Each abuse reports for the add-on or one of the listed developers
             # in the last 6 weeks adds 15 to the weight, up to a maximum of
             # 100.

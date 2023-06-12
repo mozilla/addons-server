@@ -79,7 +79,6 @@ from ..models import (
     AddonBrowserMapping,
     AddonCategory,
     AddonRegionalRestrictions,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -2852,7 +2851,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         )
         assert version.source
         assert str(version.source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
         assert log_mock.info.call_count == 4
@@ -2913,7 +2911,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
         assert version.source
         assert str(version.source).endswith('.tar.gz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2921,7 +2918,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         _, version = self._submit_source(self.file_path('webextension_no_id.tgz'))
         assert version.source
         assert str(version.source).endswith('.tgz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2931,7 +2927,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         )
         assert version.source
         assert str(version.source).endswith('.tar.bz2')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2946,7 +2941,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         ]
         assert not version or not version.source
         self.addon.reload()
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
@@ -2970,7 +2964,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data['source'] == ['Invalid or broken archive.']
         self.addon.reload()
         assert not version or not version.source
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
@@ -2990,22 +2983,16 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data['source'] == ['Invalid or broken archive.']
         self.addon.reload()
         assert not version or not version.source
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
 
     def test_activity_log_each_time(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        assert self.addon.needs_admin_code_review
         _, version = self._submit_source(
             self.file_path('webextension_with_image.zip'),
         )
         assert version.source
         assert str(version.source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -4060,15 +4047,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     @mock.patch('olympia.addons.views.log')
     def _test_delete_source(self, request_kw, log_mock):
-        AddonReviewerFlags.objects.create(
-            addon=self.version.addon, needs_admin_code_review=True
-        )
         self.version.update(source='src.zip')
         response = self.client.patch(self.url, **request_kw)
         assert response.status_code == 200, response.content
         self.version.reload()
         assert not self.version.source
-        assert self.addon.needs_admin_code_review  # still set
         # No logging when setting source to None.
         assert log_mock.info.call_count == 0
 
@@ -4164,7 +4147,6 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         response, self.version = self._submit_source(new_source)
         self.addon.reload()
         assert self.version.source
-        assert self.addon.needs_admin_code_review
         assert self.version.needshumanreview_set.filter(is_active=True).exists()
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
         assert log.user == self.user

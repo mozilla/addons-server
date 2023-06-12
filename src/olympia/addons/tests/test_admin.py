@@ -191,8 +191,6 @@ class TestAddonAdmin(TestCase):
         addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
-                'needs_admin_content_review': False,
                 'auto_approval_delayed_until': delay,
                 'auto_approval_delayed_until_unlisted': delay_unlisted,
             },
@@ -215,7 +213,6 @@ class TestAddonAdmin(TestCase):
             '#result_list > tbody > tr:nth-child(2) .field-reviewer_flags'
         ).text() == '\n'.join(
             [
-                'needs admin code review',
                 'auto approval delayed until',
                 formats.localize(timezone.template_localtime(delay)),
                 'auto approval delayed until unlisted',
@@ -561,12 +558,11 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
+                'needs_admin_theme_review': True,
             },
             users=[user_factory()],
         )
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -576,26 +572,23 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert doc('#id_reviewerflags-0-needs_admin_code_review')[0].value == 'on'
+        assert doc('#id_reviewerflags-0-needs_admin_theme_review')[0].value == 'on'
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
-        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
-        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        post_data['reviewerflags-0-needs_admin_theme_review'] = ''  # empty turns it off
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reviewerflags.reload()
-        assert not addon.reviewerflags.needs_admin_code_review
-        assert addon.reviewerflags.needs_admin_content_review
+        assert not addon.reviewerflags.needs_admin_theme_review
 
     def test_cannot_edit_reviewerflags_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
+                'needs_admin_theme_review': True,
             },
             users=[user_factory()],
         )
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -604,16 +597,14 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert not doc('#id_reviewerflags-0-needs_admin_code_review')
+        assert not doc('#id_reviewerflags-0-needs_admin_theme_review')
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
-        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
-        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        post_data['reviewerflags-0-needs_admin_theme_review'] = ''  # empty turns it off
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reviewerflags.reload()
         # Unchanged.
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
 
     def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])

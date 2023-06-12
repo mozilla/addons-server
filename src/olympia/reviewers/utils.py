@@ -460,23 +460,18 @@ class ReviewHelper:
         # code review, nothing fancy.
         permission = amo.permissions.ADDONS_REVIEW
         permission_post_review = amo.permissions.ADDONS_REVIEW
-        is_admin_needed = (
-            self.addon.needs_admin_content_review or self.addon.needs_admin_code_review
-        )
-        is_admin_needed_post_review = is_admin_needed
+        is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
         if promoted_group == RECOMMENDED:
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
         elif version_is_unlisted:
-            is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
         elif promoted_group.admin_review:
             is_admin_needed = is_admin_needed_post_review = True
         elif self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif is_static_theme:
             is_admin_needed = self.addon.needs_admin_theme_review
@@ -758,7 +753,7 @@ class ReviewHelper:
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
-            'label': 'Request super-review',
+            'label': 'Request review from admin',
             'details': (
                 'If you have concerns about this add-on that '
                 'an admin reviewer should look into, enter '
@@ -766,7 +761,7 @@ class ReviewHelper:
                 'not be sent to the developer.'
             ),
             'minimal': True,
-            'available': (self.version is not None and is_reviewer),
+            'available': (self.version is not None and is_reviewer and is_static_theme),
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -1115,25 +1110,15 @@ class ReviewBase:
         log.info('Sending email for %s' % (self.addon))
 
     def process_super_review(self):
-        """Mark an add-on as needing admin code, content, or theme review."""
+        """Mark an add-on as needing admin theme review."""
         addon_type = self.addon.type
 
         if addon_type == amo.ADDON_STATICTHEME:
-            needs_admin_property = 'needs_admin_theme_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_THEME
-        elif self.content_review:
-            needs_admin_property = 'needs_admin_content_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT
-        else:
-            needs_admin_property = 'needs_admin_code_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CODE
-
-        AddonReviewerFlags.objects.update_or_create(
-            addon=self.addon, defaults={needs_admin_property: True}
-        )
-
-        self.log_action(log_action_type)
-        log.info(f'{log_action_type.short} for {self.addon}')
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_theme_review': True}
+            )
+            self.log_action(amo.LOG.REQUEST_ADMIN_REVIEW_THEME)
+            log.info(f'{amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def approve_content(self):
         """Approve content of an add-on."""

@@ -297,13 +297,8 @@ class AddonManager(ManagerBase):
             )
         qs = qs.select_related(*select_related_fields)
 
-        if not admin_reviewer:
-            if content_review:
-                qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
-            elif theme_review:
-                qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
-            else:
-                qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
+        if theme_review and not admin_reviewer:
+            qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
         return qs
 
     def get_queryset_for_pending_queues(
@@ -1669,21 +1664,6 @@ class Addon(OnChangeMixin, ModelBase):
     # AddonReviewerFlags does not exist for this add-on: they are also used
     # by reviewer tools get_flags() function to return flags shown to reviewers
     # in both the review queues and the review page.
-
-    @property
-    def needs_admin_code_review(self):
-        try:
-            return self.reviewerflags.needs_admin_code_review
-        except AddonReviewerFlags.DoesNotExist:
-            return None
-
-    @property
-    def needs_admin_content_review(self):
-        try:
-            return self.reviewerflags.needs_admin_content_review
-        except AddonReviewerFlags.DoesNotExist:
-            return None
-
     @property
     def needs_admin_theme_review(self):
         try:
@@ -1966,8 +1946,8 @@ class AddonReviewerFlags(ModelBase):
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE, related_name='reviewerflags'
     )
-    needs_admin_code_review = models.BooleanField(default=False)
-    needs_admin_content_review = models.BooleanField(default=False)
+    needs_admin_code_review = models.BooleanField(default=False, null=True)
+    needs_admin_content_review = models.BooleanField(default=False, null=True)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
     auto_approval_disabled_unlisted = models.BooleanField(default=None, null=True)

@@ -89,7 +89,6 @@ class TestActions(TestCase):
     def test_delay_auto_approval_overwrite_null(self):
         addon = addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            reviewer_flags={'needs_admin_content_review': True},
         )
         version = addon.current_version
         assert not version.needshumanreview_set.filter(is_active=True).exists()

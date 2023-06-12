@@ -1670,30 +1670,6 @@ class TestAddonModels(TestCase):
         flags.update(auto_approval_delayed_until=in_the_future)
         assert addon.auto_approval_delayed_temporarily_unlisted is False
 
-    def test_needs_admin_code_review_property(self):
-        addon = Addon.objects.get(pk=3615)
-        # No flags: None
-        assert addon.needs_admin_code_review is None
-        # Flag present, value is False (default): False.
-        flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.needs_admin_code_review is False
-        assert addon.needs_admin_code_review is False
-        # Flag present, value is True: True.
-        flags.update(needs_admin_code_review=True)
-        assert addon.needs_admin_code_review is True
-
-    def test_needs_admin_content_review_property(self):
-        addon = Addon.objects.get(pk=3615)
-        # No flags: None
-        assert addon.needs_admin_content_review is None
-        # Flag present, value is False (default): False.
-        flags = AddonReviewerFlags.objects.create(addon=addon)
-        assert flags.needs_admin_content_review is False
-        assert addon.needs_admin_content_review is False
-        # Flag present, value is True: True.
-        flags.update(needs_admin_content_review=True)
-        assert addon.needs_admin_content_review is True
-
     def test_needs_admin_theme_review_property(self):
         addon = Addon.objects.get(pk=3615)
         # No flags: None
@@ -2606,7 +2582,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
 
     def test_validation_timeout(self):
@@ -2623,7 +2598,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
 
     def test_mozilla_signed(self):
@@ -2635,7 +2609,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert addon.needs_admin_code_review
         assert addon.auto_approval_disabled
 
     def test_mozilla_signed_langpack(self):
@@ -2648,7 +2621,6 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert not addon.needs_admin_code_review
         assert not addon.auto_approval_disabled
 
     def test_webextension_generate_guid(self):
@@ -3122,7 +3094,6 @@ class TestExtensionsQueues(TestCase):
                 file_kw={'status': amo.STATUS_AWAITING_REVIEW},
                 reviewer_flags={
                     'auto_approval_disabled': True,
-                    'needs_admin_content_review': True,
                 },
             ),
             addon_factory(
@@ -3297,16 +3268,6 @@ class TestExtensionsQueues(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={'auto_approval_disabled': True},
         ).versions.all()[0].delete()
-        addon_needing_admin_code_review = addon_factory(
-            name='Listed with auto-approval disabled needing code review',
-            status=amo.STATUS_NOMINATED,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            reviewer_flags={
-                'auto_approval_disabled': True,
-                'needs_admin_code_review': True,
-            },
-            version_kw={'due_date': datetime.now() + timedelta(hours=24)},
-        )
         addons = Addon.unfiltered.get_queryset_for_pending_queues()
         assert list(addons.order_by('pk')) == expected_addons
 
@@ -3321,11 +3282,6 @@ class TestExtensionsQueues(TestCase):
             )
             assert expected_version
             assert addon.first_pending_version == expected_version
-
-        # Admins should be able to see addons needing admin code review.
-        expected_addons.append(addon_needing_admin_code_review)
-        addons = Addon.unfiltered.get_queryset_for_pending_queues(admin_reviewer=True)
-        assert set(addons) == set(expected_addons)
 
         # If we show only upcoming - short due dates - most of the addons won't be
         # included because our standard review time (3) is longer than the cut off (2)
@@ -3345,7 +3301,6 @@ class TestExtensionsQueues(TestCase):
             addon_auto_approval_delayed_for_listed,
             addon_auto_approval_delayed_for_unlisted,
             addon_mixed_with_both_awaiting_review,
-            addon_needing_admin_code_review,
         }
         assert set(addons) == due_dates_within_2_days
         # the upcoming days config can be overriden
@@ -3394,7 +3349,6 @@ class TestExtensionsQueues(TestCase):
         addons = Addon.unfiltered.get_queryset_for_pending_queues(
             show_temporarily_delayed=False
         )
-        expected_addons.remove(addon_needing_admin_code_review)
         assert set(addons) == set(expected_addons)
 
     def test_get_pending_rejection_queue(self):

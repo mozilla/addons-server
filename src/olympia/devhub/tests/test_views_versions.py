@@ -13,7 +13,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
-from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
@@ -854,7 +854,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert response.status_code == 302
         version = Version.objects.get(pk=self.version.pk)
         assert version.source
-        assert version.addon.needs_admin_code_review
         assert version.needshumanreview_set.count() == 0
 
         # Check that the corresponding automatic activity log has been created.
@@ -885,7 +884,6 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert response.status_code == 302
         self.version = Version.objects.get(pk=self.version.pk)
         assert self.version.source
-        assert self.version.addon.needs_admin_code_review
         assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
 
         # Check that the corresponding automatic activity log has been created.
@@ -1058,32 +1056,6 @@ class TestVersionEditDetails(TestVersionEditBase):
             response = self.client.post(self.url, data)
             assert response.status_code == 200
             assert not Version.objects.get(pk=self.version.pk).source
-
-    def test_dont_reset_needs_admin_code_review_flag_if_no_new_source(self):
-        tdir = temp.gettempdir()
-        tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix='.zip', dir=tdir) as source_file:
-            with zipfile.ZipFile(source_file, 'w') as zip_file:
-                zip_file.writestr('foo', 'a' * (2**21))
-            source_file.seek(0)
-            data = self.formset(source=source_file)
-            response = self.client.post(self.url, data)
-            assert response.status_code == 302
-            version = Version.objects.get(pk=self.version.pk)
-            assert version.source
-            assert version.addon.needs_admin_code_review
-
-        # Unset the "admin review" flag, and re save the version. It shouldn't
-        # reset the flag, as the source hasn't changed.
-        AddonReviewerFlags.objects.get(addon=version.addon).update(
-            needs_admin_code_review=False
-        )
-        data = self.formset(name='some other name')
-        response = self.client.post(self.url, data)
-        assert response.status_code == 302
-        version = Version.objects.get(pk=self.version.pk)
-        assert version.source
-        assert not version.addon.needs_admin_code_review
 
 
 class TestVersionEditStaticTheme(TestVersionEditBase):

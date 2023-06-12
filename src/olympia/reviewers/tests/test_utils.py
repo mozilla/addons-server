@@ -220,7 +220,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -240,7 +239,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -255,7 +253,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_full_nonpending(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
+        expected = ['reject_multiple_versions', 'reply', 'comment']
         f_statuses = [amo.STATUS_APPROVED, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert (
@@ -269,7 +267,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_public_post_review(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
+        expected = ['reject_multiple_versions', 'reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -287,7 +285,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -302,7 +299,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # Now make add a recommended promoted addon. The user should lose all
         # approve/reject actions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -318,7 +315,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'approve_content',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -340,7 +336,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'approve_content',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -410,7 +405,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # recommended extensions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -420,7 +415,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -438,7 +433,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -456,7 +450,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # recommended extensions.
         self.make_addon_promoted(self.addon, RECOMMENDED)
         self.grant_permission(self.user, 'Addons:ContentReview')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -475,7 +469,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'approve_content',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -495,7 +488,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # admin_review=True.
         self.make_addon_promoted(self.addon, LINE)
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['super', 'comment']
+        expected = ['comment']
         assert (
             list(
                 self.get_review_actions(
@@ -521,7 +514,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -538,7 +530,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.make_addon_promoted(self.addon, SPOTLIGHT)
 
         self.grant_permission(self.user, 'Addons:RecommendedReview')
-        expected = ['super', 'comment']
+        expected = ['comment']
         assert (
             list(
                 self.get_review_actions(
@@ -556,7 +548,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -574,7 +565,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # review page.
         self.review_version.update(channel=amo.CHANNEL_UNLISTED)
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -593,7 +584,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -626,7 +616,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -646,7 +635,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -662,7 +650,7 @@ class TestReviewHelper(TestReviewHelperBase):
         # But when the add-on is blocked 'public' shouldn't be available
         block = Block.objects.create(addon=self.addon, updated_by=self.user)
         del self.addon.block
-        expected = ['reject', 'reject_multiple_versions', 'reply', 'super', 'comment']
+        expected = ['reject', 'reject_multiple_versions', 'reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -680,7 +668,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         del self.addon.block
@@ -695,7 +682,7 @@ class TestReviewHelper(TestReviewHelperBase):
         version_review_flags_factory(
             version=self.review_version, pending_rejection=datetime.now()
         )
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         assert (
             list(
                 self.get_review_actions(
@@ -711,7 +698,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         self.review_version = version_factory(addon=self.addon)
@@ -742,7 +728,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert (
@@ -765,7 +750,6 @@ class TestReviewHelper(TestReviewHelperBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         self.review_version = version_factory(addon=self.addon)
@@ -782,7 +766,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_disabled_addon(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DISABLED,
@@ -797,7 +781,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_rejected_version(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
 
         self.file.update(status=amo.STATUS_DISABLED)
         self.file.version.update(human_review_date=datetime.now())
@@ -806,7 +790,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert expected == actions
 
         self.grant_permission(self.user, 'Reviews:Admin')
-        expected = ['unreject_latest_version', 'reply', 'super', 'comment']
+        expected = ['unreject_latest_version', 'reply', 'comment']
         actions = list(self.get_helper().actions.keys())
         assert expected == actions
 
@@ -825,7 +809,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_actions_deleted_addon(self):
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DELETED,
@@ -837,7 +821,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_actions_versions_needing_human_review(self):
         NeedsHumanReview.objects.create(version=self.review_version)
         self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'super', 'comment']
+        expected = ['reply', 'comment']
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DELETED,
@@ -847,7 +831,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert expected == actions
 
         self.grant_permission(self.user, 'Reviews:Admin')
-        expected = ['reply', 'super', 'comment', 'clear_needs_human_review']
+        expected = ['reply', 'comment', 'clear_needs_human_review']
         actions = list(
             self.get_review_actions(
                 addon_status=amo.STATUS_DELETED,
@@ -1875,40 +1859,6 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert 'TaobaoShopping淘宝网导航按钮' in message.subject
 
-    def test_nomination_to_super_review(self):
-        self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
-        # Make sure we used an activity log that has the special `sanitize`
-        # property so that comments aren't shown to the developer (a generic
-        # message is shown instead)
-        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CODE, 'sanitize', '')
-
-    def test_auto_approved_admin_code_review(self):
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
-
-    def test_auto_approved_admin_content_review(self):
-        self.setup_data(
-            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
-        )
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_content_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
-        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT, 'sanitize', '')
-
     def test_auto_approved_admin_theme_review(self):
         self.setup_data(
             amo.STATUS_APPROVED,
@@ -1923,14 +1873,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.needs_admin_theme_review
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
         assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_THEME, 'sanitize', '')
-
-    def test_nomination_to_super_review_and_escalate(self):
-        self.setup_data(amo.STATUS_NOMINATED)
-        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1965,13 +1907,6 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.reject_latest_version()
         message = mail.outbox[0]
         assert 'Tested' not in message.body
-
-    def test_pending_to_super_review(self):
-        for status in (amo.STATUS_DISABLED, amo.STATUS_NULL):
-            self.setup_data(status)
-            self.helper.handler.process_super_review()
-
-            assert self.addon.needs_admin_code_review
 
     def test_nominated_human_review_date_set_version_approve_latest_version(self):
         self.review_version.update(human_review_date=None)
