@@ -351,6 +351,13 @@ class TestFileValidation(TestCase):
         assert link.attrib['href'] == 'https://bugzilla.mozilla.org/'
 
     def test_file_url(self):
+        response = self.client.get(self.url, follow=False)
+        doc = pq(response.content)
+        assert doc('#addon-validator-suite').attr['data-file-url'] is None
+
+    def test_file_url_reviewer(self):
+        self.client.logout()
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         file_url = code_manager_url(
             'browse', addon_id=self.addon.pk, version_id=self.file.version.pk
         )
