@@ -460,7 +460,7 @@ class ReviewHelper:
         # code review, nothing fancy.
         permission = amo.permissions.ADDONS_REVIEW
         permission_post_review = amo.permissions.ADDONS_REVIEW
-        is_admin_needed = False  # Only a thing for themes nowadays.
+        is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
         if promoted_group == RECOMMENDED:
@@ -469,6 +469,8 @@ class ReviewHelper:
         elif version_is_unlisted:
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
+        elif promoted_group.admin_review:
+            is_admin_needed = is_admin_needed_post_review = True
         elif self.content_review:
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif is_static_theme:
@@ -476,9 +478,18 @@ class ReviewHelper:
             permission = amo.permissions.STATIC_THEMES_REVIEW
             permission_post_review = permission
 
+        # In addition, if the latest (or current for post-review) version is
+        # pending rejection, an admin is needed.
+        if self.version and self.version.pending_rejection:
+            is_admin_needed = True
+        if self.addon.current_version and self.addon.current_version.pending_rejection:
+            is_admin_needed_post_review = True
+
         # Whatever permission values we set, we override if an admin is needed.
         if is_admin_needed:
             permission = amo.permissions.REVIEWS_ADMIN
+        if is_admin_needed_post_review:
+            permission_post_review = amo.permissions.REVIEWS_ADMIN
 
         # Is the current user a reviewer for this kind of add-on ?
         is_reviewer = acl.is_reviewer(self.user, self.addon)
@@ -742,7 +753,7 @@ class ReviewHelper:
         }
         actions['super'] = {
             'method': self.handler.process_super_review,
-            'label': 'Request super-review',
+            'label': 'Request review from admin',
             'details': (
                 'If you have concerns about this add-on that '
                 'an admin reviewer should look into, enter '
@@ -750,7 +761,7 @@ class ReviewHelper:
                 'not be sent to the developer.'
             ),
             'minimal': True,
-            'available': (self.version is not None and is_reviewer),
+            'available': (self.version is not None and is_reviewer and is_static_theme),
         }
         actions['comment'] = {
             'method': self.handler.process_comment,

@@ -213,7 +213,6 @@ class TestAddonAdmin(TestCase):
             '#result_list > tbody > tr:nth-child(2) .field-reviewer_flags'
         ).text() == '\n'.join(
             [
-                'needs admin code review',
                 'auto approval delayed until',
                 formats.localize(timezone.template_localtime(delay)),
                 'auto approval delayed until unlisted',

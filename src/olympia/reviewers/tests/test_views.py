@@ -728,9 +728,9 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         # pre-approval addons
-        assert doc('.dashboard a')[0].text == 'Manual Review (5)'
+        assert doc('.dashboard a')[0].text == 'Manual Review (4)'
         # content review
-        assert doc('.dashboard a')[4].text == 'Content Review (11)'
+        assert doc('.dashboard a')[4].text == 'Content Review (7)'
         # themes
         assert doc('.dashboard a')[5].text == 'New (1)'
         assert doc('.dashboard a')[6].text == 'Updates (1)'
@@ -828,7 +828,7 @@ class TestDashboard(TestCase):
         )
         # This one has been content reviewed already.
         already_content_reviewed = addon_factory()
-        AddonApprovalsCounter.reset_content_for_addon(addon=already_content_reviewed)
+        AddonApprovalsCounter.approve_content_for_addon(addon=already_content_reviewed)
         AutoApprovalSummary.objects.create(
             version=already_content_reviewed.current_version, verdict=amo.AUTO_APPROVED
         )

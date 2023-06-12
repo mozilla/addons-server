@@ -1641,8 +1641,6 @@ class TestGetFlags(TestCase):
             auto_approval_delayed_until_unlisted=datetime.max
         )
         expected_flags = [
-            ('needs-admin-code-review', 'Needs Admin Code Review'),
-            ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
             ('sources-provided', 'Source Code Provided'),
             ('auto-approval-disabled-unlisted', 'Unlisted Auto-approval disabled'),
