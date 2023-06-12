@@ -2123,16 +2123,6 @@ class TestContentReviewQueue(QueueTest):
             'Content Review', tab_position=0, total_addons=4, total_queues=1, per_page=1
         )
 
-    def test_queue_layout_admin(self):
-        # Admins should see the extra add-on that needs admin content review.
-        user = self.login_with_permission()
-        self.grant_permission(user, 'Reviews:Admin')
-        self.generate_files()
-
-        self._test_queue_layout(
-            'Content Review', tab_position=0, total_addons=5, total_queues=2
-        )
-
     def test_pending_rejection_filtered_out(self):
         self.login_with_permission()
         self.generate_files()
@@ -2344,7 +2334,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         choices = list(dict(response.context['form'].fields['action'].choices).keys())
-        expected_choices = ['reply', 'super', 'comment']
+        expected_choices = ['reply', 'comment']
         assert choices == expected_choices
 
         doc = pq(response.content)
@@ -2363,7 +2353,6 @@ class TestReview(ReviewBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert choices == expected_choices
@@ -2379,7 +2368,7 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         choices = list(dict(response.context['form'].fields['action'].choices).keys())
-        expected_choices = ['super', 'comment']
+        expected_choices = ['comment']
         assert choices == expected_choices
 
         doc = pq(response.content)
@@ -2398,7 +2387,6 @@ class TestReview(ReviewBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert choices == expected_choices
@@ -2507,12 +2495,6 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         assert len(mail.outbox) == 1
         self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
-
-    def test_super_review_requested(self):
-        response = self.client.post(
-            self.url, {'action': 'super', 'comments': 'hello sailor'}
-        )
-        assert response.status_code == 302
 
     def test_page_title(self):
         response = self.client.get(self.url)
@@ -4901,7 +4883,6 @@ class TestReview(ReviewBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert [
@@ -4920,7 +4901,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'reject_multiple_versions reply super comment'
+            == 'reject_multiple_versions reply comment'
         )
 
         assert (
@@ -4953,7 +4934,6 @@ class TestReview(ReviewBase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert [
@@ -4968,7 +4948,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'approve_multiple_versions reject_multiple_versions reply super comment'
+            == 'approve_multiple_versions reject_multiple_versions reply comment'
         )
 
         assert (
@@ -5021,7 +5001,6 @@ class TestReview(ReviewBase):
             'reject',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert [
@@ -5032,7 +5011,7 @@ class TestReview(ReviewBase):
 
         assert (
             doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'public reject reject_multiple_versions reply super comment'
+            == 'public reject reject_multiple_versions reply comment'
         )
         assert (
             doc('.data-toggle.review-files')[0].attrib['data-value'] == 'public reject'
@@ -5093,7 +5072,6 @@ class TestReview(ReviewBase):
             'confirm_auto_approved',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions
@@ -5113,7 +5091,6 @@ class TestReview(ReviewBase):
             'approve_content',
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
         assert [action[0] for action in response.context['actions']] == expected_actions
@@ -8414,18 +8391,6 @@ class TestMadQueue(QueueTest):
             tab_position=1,
             total_addons=4,
             total_queues=2,
-            per_page=1,
-        )
-
-    def test_queue_layout_admin(self):
-        # Admins should see the extra add-on that needs admin content review.
-        self.grant_permission(self.user, 'Reviews:Admin')
-
-        self._test_queue_layout(
-            'Flagged by MAD for Human Review',
-            tab_position=1,
-            total_addons=5,
-            total_queues=3,
             per_page=1,
         )
 

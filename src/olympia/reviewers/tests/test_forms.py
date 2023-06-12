@@ -62,7 +62,7 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
         self.version.update(human_review_date=datetime.now())
-        assert list(actions.keys()) == ['reply', 'super', 'comment']
+        assert list(actions.keys()) == ['reply', 'comment']
 
         # If an admin reviewer we also show unreject_latest_version
         self.grant_permission(self.request.user, 'Reviews:Admin')
@@ -70,7 +70,6 @@ class TestReviewForm(TestCase):
         assert list(actions.keys()) == [
             'unreject_latest_version',
             'reply',
-            'super',
             'comment',
         ]
 
@@ -89,7 +88,6 @@ class TestReviewForm(TestCase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
 
@@ -103,7 +101,6 @@ class TestReviewForm(TestCase):
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
 
@@ -114,7 +111,7 @@ class TestReviewForm(TestCase):
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
-        assert list(actions.keys()) == ['reply', 'super', 'comment']
+        assert list(actions.keys()) == ['reply', 'comment']
 
     def test_actions_no_pending_files(self):
         # If the add-on has no pending files we only show
@@ -126,7 +123,6 @@ class TestReviewForm(TestCase):
         assert list(actions.keys()) == [
             'reject_multiple_versions',
             'reply',
-            'super',
             'comment',
         ]
 
@@ -135,7 +131,7 @@ class TestReviewForm(TestCase):
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
-        assert list(actions.keys()) == ['reply', 'super', 'comment']
+        assert list(actions.keys()) == ['reply', 'comment']
 
     def test_reasons(self):
         self.reason_a = ReviewActionReason.objects.create(
@@ -263,7 +259,6 @@ class TestReviewForm(TestCase):
         )
         assert doc('input')[3].attrib.get('data-value') is None
         assert doc('input')[4].attrib.get('data-value') is None
-        assert doc('input')[5].attrib.get('data-value') is None
 
     def test_comments_and_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
