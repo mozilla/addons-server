@@ -5,7 +5,7 @@ from django.utils.encoding import force_str
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.blocklist.models import Block
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT

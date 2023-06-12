@@ -13,7 +13,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import ACTIVITY_MAIL_GROUP
-from olympia.addons.models import Addon, AddonReviewerFlags
+from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,

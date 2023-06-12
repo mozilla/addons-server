@@ -77,7 +77,6 @@ from ..models import (
     AddonApprovalsCounter,
     AddonCategory,
     AddonRegionalRestrictions,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
