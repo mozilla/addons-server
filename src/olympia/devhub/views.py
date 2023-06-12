@@ -31,6 +31,7 @@ from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
     Addon,
+    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
 )
@@ -1175,8 +1176,6 @@ def check_validation_override(request, form, addon, version):
         helper = ReviewHelper(addon=addon, version=version, user=request.user)
         helper.set_data(
             {
-                'operating_systems': '',
-                'applications': '',
                 'comments': gettext(
                     'This upload has failed validation, and may '
                     'lack complete validation results. Please '
@@ -1184,7 +1183,11 @@ def check_validation_override(request, form, addon, version):
                 ),
             }
         )
-        helper.handler.process_super_review()
+        helper.handler.process_comment()
+        flag = 'auto_approval_disabled_until_next_approval'
+        if version.channel == amo.CHANNEL_UNLISTED:
+            flag = 'auto_approval_disabled_until_next_approval_unlisted'
+        AddonReviewerFlags.objects.update_or_create(addon=addon, defaults={flag: True})
 
 
 @dev_required

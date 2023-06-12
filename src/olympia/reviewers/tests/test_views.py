@@ -656,43 +656,13 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             reviewer_flags={
                 'auto_approval_disabled': True,
-                'needs_admin_code_review': True,
             },
-        )
-        under_admin_review_and_pending = addon_factory(
-            reviewer_flags={
-                'needs_admin_theme_review': True,
-                'auto_approval_disabled': True,
-            }
-        )
-        version_factory(
-            addon=under_admin_review_and_pending,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Auto-approved and Content Review.
         addon1 = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon1)
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED
-        )
-        under_content_review = addon_factory(
-            reviewer_flags={'needs_admin_content_review': True}
-        )
-        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
-        AutoApprovalSummary.objects.create(
-            version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
-        )
-        addon2 = addon_factory(reviewer_flags={'needs_admin_content_review': True})
-        AddonApprovalsCounter.reset_for_addon(addon=addon2)
-        AutoApprovalSummary.objects.create(
-            version=addon2.current_version, verdict=amo.AUTO_APPROVED
-        )
-        under_code_review = addon_factory(
-            reviewer_flags={'needs_admin_code_review': True}
-        )
-        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
-        AutoApprovalSummary.objects.create(
-            version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
         )
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
@@ -813,10 +783,9 @@ class TestDashboard(TestCase):
         addon_factory(
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            reviewer_flags={'needs_admin_code_review': True},
         )
         version_factory(
-            addon=addon_factory(reviewer_flags={'needs_admin_code_review': True}),
+            addon=addon_factory(),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # This is a static theme so won't be shown
@@ -826,19 +795,10 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         # Create an add-on to test the post-review queue count.
-        # It's under admin content review but that does not have an impact.
-        addon = addon_factory(reviewer_flags={'needs_admin_content_review': True})
+        addon = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        # This one however is under admin code review, it's ignored.
-        under_code_review = addon_factory(
-            reviewer_flags={'needs_admin_code_review': True}
-        )
-        AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
-        AutoApprovalSummary.objects.create(
-            version=under_code_review.current_version, verdict=amo.AUTO_APPROVED
         )
 
         # Grant user the permission to see only the legacy/post add-ons section
@@ -860,20 +820,17 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[0].text == 'Manual Review (3)'
 
     def test_content_reviewer(self):
-        # Create an add-on to test the queue count. It's under admin code
-        # review but that does not have an impact.
-        addon = addon_factory(reviewer_flags={'needs_admin_code_review': True})
+        # Create an add-on to test the queue count.
+        addon = addon_factory()
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        # This one is under admin *content* review so it's ignored.
-        under_content_review = addon_factory(
-            reviewer_flags={'needs_admin_content_review': True}
-        )
-        AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
+        # This one has been content reviewed already.
+        already_content_reviewed = addon_factory()
+        AddonApprovalsCounter.reset_content_for_addon(addon=already_content_reviewed)
         AutoApprovalSummary.objects.create(
-            version=under_content_review.current_version, verdict=amo.AUTO_APPROVED
+            version=already_content_reviewed.current_version, verdict=amo.AUTO_APPROVED
         )
 
         # Grant user the permission to see only the Content Review section.
@@ -939,22 +896,6 @@ class TestDashboard(TestCase):
             addon=addon_factory(
                 name='Other updated theme',
                 type=amo.ADDON_STATICTHEME,
-            ),
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        # These two are under admin review and will be ignored.
-        addon_factory(
-            name='Nominated theme under admin review',
-            status=amo.STATUS_NOMINATED,
-            type=amo.ADDON_STATICTHEME,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            reviewer_flags={'needs_admin_theme_review': True},
-        )
-        version_factory(
-            addon=addon_factory(
-                name='Updated theme under admin review',
-                type=amo.ADDON_STATICTHEME,
-                reviewer_flags={'needs_admin_theme_review': True},
             ),
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
@@ -2107,21 +2048,6 @@ class TestContentReviewQueue(QueueTest):
             addon=extra_addon3, last_content_review=self.days_ago(1)
         )
 
-        # This one has never been content-reviewed, but it has the
-        # needs_admin_content_review flag, and we're not an admin.
-        extra_addon4 = addon_factory(
-            name='Extra Addön 4', reviewer_flags={'needs_admin_content_review': True}
-        )
-        extra_addon4.update(created=self.days_ago(2))
-        AutoApprovalSummary.objects.create(
-            version=extra_addon4.current_version,
-            verdict=amo.AUTO_APPROVED,
-            confirmed=True,
-        )
-        AddonApprovalsCounter.objects.create(
-            addon=extra_addon4, last_content_review=None
-        )
-
         # Those should appear in the queue
         # Has not been auto-approved.
         addon1 = addon_factory(name='Addôn 1', created=self.days_ago(4))
@@ -2133,12 +2059,10 @@ class TestContentReviewQueue(QueueTest):
             verdict=amo.WOULD_HAVE_BEEN_AUTO_APPROVED,
         )
 
-        # This one has never been content-reviewed. It has an
-        # needs_admin_code_review flag, but that should not have any impact.
+        # This one has never been content-reviewed.
         addon3 = addon_factory(
             name='Addön 3',
             created=self.days_ago(2),
-            reviewer_flags={'needs_admin_code_review': True},
         )
         AutoApprovalSummary.objects.create(
             version=addon3.current_version, verdict=amo.AUTO_APPROVED, confirmed=True
@@ -2495,14 +2419,6 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert len(response.context['flags']) == 0
-
-    def test_flag_needs_admin_code_review(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        assert len(response.context['flags']) == 1
 
     def test_info_comments_requested(self):
         response = self.client.post(self.url, {'action': 'reply'})
@@ -3187,9 +3103,6 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
             auto_approval_disabled=True,
-            needs_admin_code_review=True,
-            needs_admin_content_review=True,
-            needs_admin_theme_review=True,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=1),
         )
         version_review_flags_factory(
@@ -3364,38 +3277,10 @@ class TestReview(ReviewBase):
         self.addon.delete()
         self.test_admin_block_actions()
 
-    def test_unflag_option_forflagged_as_admin(self):
-        self.login_as_admin()
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_admin_code_review').length == 1
-        assert doc('#clear_admin_content_review').length == 0
-        assert doc('#clear_admin_content_review').length == 0
-
-    def test_unflag_content_option_forflagged_as_admin(self):
-        self.login_as_admin()
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            needs_admin_code_review=False,
-            needs_admin_content_review=True,
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_admin_code_review').length == 0
-        assert doc('#clear_admin_content_review').length == 1
-        assert doc('#clear_admin_theme_review').length == 0
-
     def test_unflag_theme_option_forflagged_as_admin(self):
         self.login_as_admin()
         AddonReviewerFlags.objects.create(
             addon=self.addon,
-            needs_admin_code_review=False,
-            needs_admin_content_review=False,
             needs_admin_theme_review=True,
         )
         response = self.client.get(self.url)
@@ -4206,86 +4091,6 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         assert mock_sign_file.called
 
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        self.login_as_admin()
-        response = self.client.post(
-            self.url, self.get_dict(action='public', reasons=[reason.id]), follow=True
-        )
-        assert response.status_code == 200
-        addon = self.get_addon()
-        assert self.version == addon.current_version
-        assert addon.status == amo.STATUS_APPROVED
-        assert addon.current_version.file.status == (amo.STATUS_APPROVED)
-
-        assert mock_sign_file.called
-
-    def test_admin_flagged_addon_actions_as_reviewer(self):
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        self.login_as_reviewer()
-        response = self.client.post(self.url, self.get_dict(action='public'))
-        assert response.status_code == 200  # Form error.
-        # The add-on status must not change as non-admin reviewers are not
-        # allowed to review admin-flagged add-ons.
-        addon = self.get_addon()
-        assert addon.status == amo.STATUS_NOMINATED
-        assert self.version == addon.current_version
-        assert addon.current_version.file.status == (amo.STATUS_AWAITING_REVIEW)
-        assert response.context['form'].errors['action'] == (
-            ['Select a valid choice. public is not one of the available choices.']
-        )
-
-        # Same if it's the content review flag.
-        flags = AddonReviewerFlags.objects.get(addon=self.addon)
-        flags.update(needs_admin_content_review=True, needs_admin_code_review=False)
-        response = self.client.post(self.url, self.get_dict(action='public'))
-        assert response.status_code == 200  # Form error.
-        addon = self.get_addon()
-        assert addon.status == amo.STATUS_NOMINATED
-        assert self.version == addon.current_version
-        assert addon.current_version.file.status == (amo.STATUS_AWAITING_REVIEW)
-        assert response.context['form'].errors['action'] == (
-            ['Select a valid choice. public is not one of the available choices.']
-        )
-
-    def test_admin_flagged_addon_actions_as_content_reviewer(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        summary = AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
-        response = self.client.post(
-            content_url, self.get_dict(action='approve_content')
-        )
-        assert response.status_code == 302
-        summary.reload()
-        assert summary.confirmed is None  # We're only doing a content review.
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count()
-            == 0
-        )
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).count() == 1
-        )
-        a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
-        assert a_log.details['version'] == self.addon.current_version.version
-        assert a_log.details['comments'] == ''
-        self.assert3xx(response, content_url)
-
     def test_approve_content_content_review(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         content_url = reverse('reviewers.review', args=['content', self.addon.pk])
@@ -4315,28 +4120,6 @@ class TestReview(ReviewBase):
         assert a_log.details['comments'] == ''
         self.assert3xx(response, content_url)
 
-    def test_cant_contentreview_if_admin_content_review_flag_is_set(self):
-        GroupUser.objects.filter(user=self.reviewer).all().delete()
-        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_content_review=True
-        )
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        response = self.client.post(
-            content_url,
-            {
-                'action': 'approve_content',
-                'comments': 'ignore me this action does not support comments',
-            },
-        )
-        assert response.status_code == 200  # Form error
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).count() == 0
-        )
-
     def test_content_review_redirect_if_only_permission(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -4356,41 +4139,6 @@ class TestReview(ReviewBase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
-
-    def test_cant_postreview_if_admin_content_review_flag_is_set(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_content_review=True
-        )
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        for action in ['approve_content', 'reject_multiple_versions']:
-            response = self.client.post(self.url, self.get_dict(action=action))
-            assert response.status_code == 200  # Form error.
-            # The add-on status must not change as non-admin reviewers are not
-            # allowed to review admin-flagged add-ons.
-            addon = self.get_addon()
-            assert addon.status == amo.STATUS_APPROVED
-            assert self.version == addon.current_version
-            assert addon.current_version.file.status == (amo.STATUS_APPROVED)
-            assert response.context['form'].errors['action'] == (
-                [
-                    'Select a valid choice. %s is not one of the available '
-                    'choices.' % action
-                ]
-            )
-            assert (
-                ActivityLog.objects.filter(
-                    action=amo.LOG.CONFIRM_AUTO_APPROVED.id
-                ).count()
-                == 0
-            )
-            assert (
-                ActivityLog.objects.filter(action=amo.LOG.REJECT_VERSION.id).count()
-                == 0
-            )
-            assert (
-                ActivityLog.objects.filter(action=amo.LOG.APPROVE_VERSION.id).count()
-                == 0
-            )
 
     def test_cant_review_static_theme_if_admin_theme_review_flag_is_set(self):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4442,39 +4190,6 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
         assert self.get_addon().status == amo.STATUS_APPROVED
         assert mock_sign_file.called
-
-    def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
-        GroupUser.objects.filter(user=self.reviewer).all().delete()
-        content_url = reverse('reviewers.review', args=['content', self.addon.pk])
-        summary = AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_content_review=True
-        )
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
-        response = self.client.post(
-            content_url,
-            {
-                'action': 'approve_content',
-                'comments': 'ignore me this action does not support comments',
-            },
-        )
-        assert response.status_code == 302
-        summary.reload()
-        assert summary.confirmed is None  # We're only doing a content review.
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.CONFIRM_AUTO_APPROVED.id).count()
-            == 0
-        )
-        assert (
-            ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).count() == 1
-        )
-        a_log = ActivityLog.objects.filter(action=amo.LOG.APPROVE_CONTENT.id).get()
-        assert a_log.details['version'] == self.addon.current_version.version
-        assert a_log.details['comments'] == ''
-        self.assert3xx(response, content_url)
 
     def test_confirm_auto_approval_with_permission(self):
         summary = AutoApprovalSummary.objects.create(
@@ -6703,8 +6418,6 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled_until_next_approval_unlisted': True,
             'auto_approval_delayed_until': None,
             'auto_approval_delayed_until_unlisted': None,
-            'needs_admin_code_review': True,
-            'needs_admin_content_review': True,
             'needs_admin_theme_review': True,
         }
         response = self.client.patch(self.flags_url, data)
@@ -6719,8 +6432,6 @@ class TestAddonReviewerViewSet(TestCase):
         )
         assert reviewer_flags.auto_approval_delayed_until is None
         assert reviewer_flags.auto_approval_delayed_until_unlisted is None
-        assert reviewer_flags.needs_admin_code_review is True
-        assert reviewer_flags.needs_admin_content_review is True
         assert reviewer_flags.needs_admin_theme_review is True
 
     def test_deny_resubmission(self):
@@ -8579,16 +8290,6 @@ class TestMadQueue(QueueTest):
         version_review_flags_factory(
             version=version_factory(addon=addon_factory()),
             needs_human_review_by_mad=False,
-        )
-
-        # Needs admin code review, so wouldn't show up for regular reviewers.
-        addon_admin_only = addon_factory(
-            created=self.days_ago(1),
-            reviewer_flags={'needs_admin_code_review': True},
-        )
-        version_review_flags_factory(
-            version=version_factory(addon=addon_admin_only),
-            needs_human_review_by_mad=True,
         )
 
         # Mixed listed and unlisted versions. Should not show up in queue.

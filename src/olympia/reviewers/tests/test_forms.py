@@ -137,24 +137,6 @@ class TestReviewForm(TestCase):
         )
         assert list(actions.keys()) == ['reply', 'super', 'comment']
 
-    def test_actions_admin_flagged_addon_actions(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        # Test with an admin reviewer.
-        self.grant_permission(self.request.user, 'Reviews:Admin')
-        actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
-        )
-        assert 'public' in actions.keys()
-        # Test with an non-admin reviewer.
-        self.request.user.groupuser_set.all().delete()
-        self.grant_permission(self.request.user, 'Addons:Review')
-        actions = self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
-        )
-        assert 'public' not in actions.keys()
-
     def test_reasons(self):
         self.reason_a = ReviewActionReason.objects.create(
             name='a reason',

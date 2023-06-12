@@ -434,18 +434,12 @@ class TestVersion(AMOPaths, TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert not AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         assert not ActivityLog.objects.exists()
         assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         activity = ActivityLog.objects.for_versions(version).get()
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
@@ -462,18 +456,12 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert not version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert not AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         assert not ActivityLog.objects.exists()
         assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         assert ActivityLog.objects.for_versions(version).count() == 2
         activity = (
             ActivityLog.objects.for_versions(version)

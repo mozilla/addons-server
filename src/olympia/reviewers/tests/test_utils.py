@@ -1875,40 +1875,6 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert 'TaobaoShopping淘宝网导航按钮' in message.subject
 
-    def test_nomination_to_super_review(self):
-        self.setup_data(amo.STATUS_NOMINATED)
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
-        # Make sure we used an activity log that has the special `sanitize`
-        # property so that comments aren't shown to the developer (a generic
-        # message is shown instead)
-        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CODE, 'sanitize', '')
-
-    def test_auto_approved_admin_code_review(self):
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
-
-    def test_auto_approved_admin_content_review(self):
-        self.setup_data(
-            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
-        )
-        AutoApprovalSummary.objects.create(
-            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
-        )
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_content_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
-        assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT, 'sanitize', '')
-
     def test_auto_approved_admin_theme_review(self):
         self.setup_data(
             amo.STATUS_APPROVED,
@@ -1923,14 +1889,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.needs_admin_theme_review
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
         assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_THEME, 'sanitize', '')
-
-    def test_nomination_to_super_review_and_escalate(self):
-        self.setup_data(amo.STATUS_NOMINATED)
-        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.helper.handler.process_super_review()
-
-        assert self.addon.needs_admin_code_review
-        assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_APPROVED)
@@ -1965,13 +1923,6 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.reject_latest_version()
         message = mail.outbox[0]
         assert 'Tested' not in message.body
-
-    def test_pending_to_super_review(self):
-        for status in (amo.STATUS_DISABLED, amo.STATUS_NULL):
-            self.setup_data(status)
-            self.helper.handler.process_super_review()
-
-            assert self.addon.needs_admin_code_review
 
     def test_nominated_human_review_date_set_version_approve_latest_version(self):
         self.review_version.update(human_review_date=None)

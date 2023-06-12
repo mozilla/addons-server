@@ -303,18 +303,6 @@ class TestAutoApprovalSummary(TestCase):
         assert weight_info == expected_result
         assert summary.weight_info == weight_info
 
-    def test_calculate_weight_admin_code_review(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        summary = AutoApprovalSummary(version=self.version)
-        weight_info = summary.calculate_weight()
-        assert summary.weight_info == weight_info
-        assert summary.weight == 100
-        assert summary.metadata_weight == 100
-        assert summary.code_weight == 0
-        assert weight_info['admin_code_review'] == 100
-
     def test_calculate_weight_abuse_reports(self):
         # Extra abuse report for a different add-on, does not count.
         AbuseReport.objects.create(guid=addon_factory().guid)
@@ -1361,9 +1349,8 @@ class TestAutoApprovalSummary(TestCase):
         assert info == {'dummy_verdict': True}
 
     def test_create_summary_for_version_no_mocks(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
+        self.addon.update(average_daily_users=1000000)
+        AddonReviewerFlags.objects.create(addon=self.addon)
         self.file_validation.update(
             validation=json.dumps(
                 {
@@ -1385,7 +1372,7 @@ class TestAutoApprovalSummary(TestCase):
         assert summary.code_weight == 50
         assert summary.metadata_weight == 100
         assert summary.weight_info == {
-            'admin_code_review': 100,
+            'average_daily_users': 100,
             'uses_eval_or_document_write': 50,
         }
 
@@ -1595,14 +1582,10 @@ class TestGetFlags(TestCase):
             addon=self.addon,
             auto_approval_disabled=True,
             auto_approval_delayed_until=datetime.now() + timedelta(hours=2),
-            needs_admin_content_review=True,
-            needs_admin_code_review=True,
             needs_admin_theme_review=True,
         )
         self.addon.current_version.update(source='something.zip')
         expected_flags = [
-            ('needs-admin-code-review', 'Needs Admin Code Review'),
-            ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
             ('sources-provided', 'Source Code Provided'),
             ('auto-approval-disabled', 'Auto-approval disabled'),
@@ -1613,8 +1596,6 @@ class TestGetFlags(TestCase):
         # With infinite delay.
         self.addon.reviewerflags.update(auto_approval_delayed_until=datetime.max)
         expected_flags = [
-            ('needs-admin-code-review', 'Needs Admin Code Review'),
-            ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
             ('sources-provided', 'Source Code Provided'),
             ('auto-approval-disabled', 'Auto-approval disabled'),
@@ -1642,13 +1623,9 @@ class TestGetFlags(TestCase):
             addon=self.addon,
             auto_approval_disabled_unlisted=True,
             auto_approval_delayed_until_unlisted=datetime.now() + timedelta(hours=2),
-            needs_admin_content_review=True,
-            needs_admin_code_review=True,
             needs_admin_theme_review=True,
         )
         expected_flags = [
-            ('needs-admin-code-review', 'Needs Admin Code Review'),
-            ('needs-admin-content-review', 'Needs Admin Content Review'),
             ('needs-admin-theme-review', 'Needs Admin Static Theme Review'),
             ('sources-provided', 'Source Code Provided'),
             ('auto-approval-disabled-unlisted', 'Unlisted Auto-approval disabled'),

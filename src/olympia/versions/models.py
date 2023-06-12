@@ -535,10 +535,7 @@ class Version(OnChangeMixin, ModelBase):
         # admin code review if the package has already been signed by mozilla.
         reviewer_flags_defaults = {}
         is_mozilla_signed = parsed_data.get('is_mozilla_signed_extension')
-        if upload.validation_timeout:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
         if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
         # Check if the approval should be restricted
@@ -774,14 +771,9 @@ class Version(OnChangeMixin, ModelBase):
 
     def flag_if_sources_were_provided(self, user):
         from olympia.activity.utils import log_and_notify
-        from olympia.addons.models import AddonReviewerFlags
         from olympia.reviewers.models import NeedsHumanReview
 
         if self.source:
-            AddonReviewerFlags.objects.update_or_create(
-                addon=self.addon, defaults={'needs_admin_code_review': True}
-            )
-
             # Add Activity Log, notifying staff, relevant reviewers and
             # other authors of the add-on.
             log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
