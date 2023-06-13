@@ -16,7 +16,7 @@ updates:
     - ">= 4"
   - dependency-name: billiard
     versions:
-    - ">= 4"
+    - ">= 5"
   - dependency-name: celery
     versions:
     - ">= 6"
