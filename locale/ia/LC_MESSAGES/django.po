@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-08 07:25+0000\n"
+"PO-Revision-Date: 2023-06-13 11:42+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4130,7 +4130,7 @@ msgstr "Reporta le capacitate de vider pollices a basso!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Ascolta musica sur YouTube sin le enoiose interruptiones “Video in pausa. Reguardar ancora?\"."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
