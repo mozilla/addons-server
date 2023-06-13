@@ -13,7 +13,7 @@ updates:
   ignore:
   - dependency-name: django
     versions:
-    - ">= 4"
+    - ">= 4.3.0"
   - dependency-name: billiard
     versions:
     - ">= 4"
