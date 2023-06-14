@@ -2802,6 +2802,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_approve_latest_version_fails_for_blocked_version(self):
         block_factory(addon=self.addon, updated_by=user_factory())
+        self.review_version.refresh_from_db()
         self.setup_data(amo.STATUS_NOMINATED)
 
         with self.assertRaises(AssertionError):
