@@ -922,7 +922,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[0].application == amo.FIREFOX.id
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
-        assert apps[0].originated_from == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
+        assert apps[0].originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
@@ -943,6 +943,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[0].application == amo.FIREFOX.id
         assert apps[0].min == firefox_min_version
         assert apps[0].max == firefox_max_version
+        assert apps[0].originated_from == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
