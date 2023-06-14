@@ -19,12 +19,14 @@ admin.site.register(ReviewActionReason, ReviewActionReasonAdmin)
 
 class UsageTierAdmin(AMOModelAdmin):
     list_display = (
+        'slug',
         'name',
         'lower_adu_threshold',
         'upper_adu_threshold',
     )
     view_on_site = False
     fields = (
+        'slug',
         'name',
         'lower_adu_threshold',
         'upper_adu_threshold',

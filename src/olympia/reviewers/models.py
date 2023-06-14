@@ -706,10 +706,17 @@ class ReviewActionReason(ModelBase):
 
 
 class UsageTier(ModelBase):
+    slug = models.CharField(
+        max_length=255,
+        help_text='Slug to help retrieve the UsageTier instance in our code.',
+        unique=True,
+        null=True,
+    )
     name = models.CharField(max_length=255)
-    lower_adu_threshold = models.IntegerField(default=None, null=True)
-    upper_adu_threshold = models.IntegerField(default=None, null=True)
+    lower_adu_threshold = models.IntegerField(default=None, null=True, blank=True)
+    upper_adu_threshold = models.IntegerField(default=None, null=True, blank=True)
     growth_threshold_before_flagging = models.IntegerField(
+        blank=True,
         default=None,
         null=True,
         help_text='Usage growth percentage threshold before we start automatically '
