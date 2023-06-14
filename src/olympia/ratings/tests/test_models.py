@@ -1,6 +1,7 @@
 from unittest import mock
 
 from django.core import mail
+from django.core.exceptions import ValidationError
 
 from elasticsearch_dsl import Q, Search
 
@@ -358,16 +359,65 @@ class TestDeniedRatingWord(TestCase):
             assert DeniedRatingWord.blocked(text, moderation=False) == ['foo']
 
         with self.assertNumQueries(0):
-            text = 'BAA! with Hmm:mmm'
+            text = 'BAA! with Hmm:mmm mmm'
             assert DeniedRatingWord.blocked(text, moderation=True) == ['hmm', 'mmm']
             assert DeniedRatingWord.blocked(text, moderation=False) == ['baa']
+
+        assert DeniedRatingWord.blocked('foobar', moderation=False) == []
+        for sep in ('.', ',', '-', '_', ':', ';', ' '):
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=False) == ['foo']
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=True) == []
+            assert DeniedRatingWord.blocked(f'mmm{sep}bar', moderation=False) == []
+            assert DeniedRatingWord.blocked(f'mmm{sep}bar', moderation=True) == ['mmm']
+
+    def test_blocked_domains(self):
+        DeniedRatingWord.objects.create(word='FOO.bar', moderation=False)
+        DeniedRatingWord.objects.create(word='www.hMm.com', moderation=True)
+
+        non_mod_contents = [
+            'bazfoo.bar',
+            'foo.bar.baz',
+            'foo.barbaz',
+            'foo.bar.',
+        ]
+        mod_contents = [
+            'wwwwww.hmm.com',
+            'www.hmm.com.baz',
+            'www.hmm.comcom',
+            'www.hmm.com.',
+        ]
+        for content in non_mod_contents:
+            assert DeniedRatingWord.blocked(content, moderation=True) == []
+            assert DeniedRatingWord.blocked(content, moderation=False) == ['foo.bar']
+
+        for content in mod_contents:
+            assert DeniedRatingWord.blocked(content, moderation=True) == ['www.hmm.com']
+            assert DeniedRatingWord.blocked(content, moderation=False) == []
+
+        for sep in (',', '-', '_', ':', ';', ' ', ''):
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=False) == []
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=True) == []
+            assert (
+                DeniedRatingWord.blocked(f'www{sep}hmm{sep}com', moderation=False) == []
+            )
+            assert (
+                DeniedRatingWord.blocked(f'www{sep}hmm{sep}com', moderation=True) == []
+            )
 
     def test_cache_clears_on_save(self):
         DeniedRatingWord.objects.create(word='FOO')
         with self.assertNumQueries(1):
-            DeniedRatingWord.blocked('dfdfdf')
-            DeniedRatingWord.blocked('45goih')
+            DeniedRatingWord.blocked('dfdfdf', moderation=False)
+            DeniedRatingWord.blocked('45goih', moderation=False)
         DeniedRatingWord.objects.create(word='baa')
         with self.assertNumQueries(1):
-            DeniedRatingWord.blocked('446kjsd')
-            DeniedRatingWord.blocked('ddv 989')
+            DeniedRatingWord.blocked('446kjsd', moderation=False)
+            DeniedRatingWord.blocked('ddv 989', moderation=False)
+
+    def test_word_validation(self):
+        for word in ('yes', 'foo.baa'):
+            DeniedRatingWord(word=word).full_clean()  # would raise
+
+        for word in ('sp ace', 'comma,', 'un_der', '-dash'):
+            with self.assertRaises(ValidationError):
+                DeniedRatingWord(word=word).full_clean()
