@@ -13,6 +13,7 @@ import struct
 import tarfile
 import tempfile
 import zipfile
+from types import MappingProxyType
 
 from django import forms
 from django.conf import settings
@@ -126,6 +127,12 @@ class DuplicateAddonID(forms.ValidationError):
     pass
 
 
+# Return an immutable empty dict used as the fallback value when fetching
+# manifest keys that are missing. Comparisons need to be done with the `is`
+# operator to distinguish from an empty dict specified in the manifest.
+EMPTY_FALLBACK_DICT = MappingProxyType({})
+
+
 def get_simple_version(version_string):
     """Extract the version number without the ><= requirements, returning a
     VersionString instance.
@@ -181,7 +188,7 @@ class ManifestJSONExtractor:
     def homepage(self):
         homepage_url = self.get('homepage_url')
         # `developer.url` in the manifest overrides `homepage_url`.
-        return self.get('developer', {}).get('url', homepage_url)
+        return self.get('developer', EMPTY_FALLBACK_DICT).get('url', homepage_url)
 
     @property
     def is_experiment(self):
@@ -198,14 +205,16 @@ class ManifestJSONExtractor:
         """Return the "applications|browser_specific_settings["gecko"]" part
         of the manifest."""
         parent_block = self.get(
-            'browser_specific_settings', self.get('applications', {})
+            'browser_specific_settings', self.get('applications', EMPTY_FALLBACK_DICT)
         )
-        return parent_block.get('gecko', {})
+        return parent_block.get('gecko', EMPTY_FALLBACK_DICT)
 
     @property
     def gecko_android(self):
         """Return `browser_specific_settings.gecko_android` if present."""
-        return self.get('browser_specific_settings', {}).get('gecko_android', {})
+        return self.get('browser_specific_settings', EMPTY_FALLBACK_DICT).get(
+            'gecko_android', EMPTY_FALLBACK_DICT
+        )
 
     @property
     def guid(self):
@@ -275,7 +284,7 @@ class ManifestJSONExtractor:
             )
             webext_min_android = (
                 amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
-                if self.gecko_android
+                if self.gecko_android is not EMPTY_FALLBACK_DICT
                 else amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
             )
             apps = (
@@ -372,7 +381,7 @@ class ManifestJSONExtractor:
                 )
                 raise forms.ValidationError(msg)
 
-            if app == amo.ANDROID and self.gecko_android:
+            if app == amo.ANDROID and self.gecko_android is not EMPTY_FALLBACK_DICT:
                 originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
             elif strict_min_version_from_manifest or strict_max_version_from_manifest:
                 # At least part of the compatibility came from the manifest.
@@ -393,7 +402,7 @@ class ManifestJSONExtractor:
             if langpack_id := self.get('langpack_id'):
                 return force_str(langpack_id)[:255]
 
-            dictionaries = self.get('dictionaries', {})
+            dictionaries = self.get('dictionaries', EMPTY_FALLBACK_DICT)
             key = force_str(list(dictionaries.keys())[0])
             return key[:255]
         except (IndexError, UnicodeDecodeError):
@@ -413,7 +422,9 @@ class ManifestJSONExtractor:
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
             'install_origins': self.install_origins,
-            'gecko_android': self.gecko_android,
+            'explicitly_compatible_with_android': (
+                self.gecko_android is not EMPTY_FALLBACK_DICT
+            ),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -422,7 +433,7 @@ class ManifestJSONExtractor:
             data.update(self.certinfo.parse())
 
         if self.type == amo.ADDON_STATICTHEME:
-            data['theme'] = self.get('theme', {})
+            data['theme'] = self.get('theme', EMPTY_FALLBACK_DICT)
 
         if not minimal:
             data.update(
@@ -1213,11 +1224,11 @@ def get_background_images(file_obj, theme_data, header_only=False):
         # we might already have theme_data, but otherwise get it from the xpi.
         try:
             parsed_data = parse_xpi(xpi, minimal=True)
-            theme_data = parsed_data.get('theme', {})
+            theme_data = parsed_data.get('theme', EMPTY_FALLBACK_DICT)
         except forms.ValidationError:
             # If we can't parse the existing manifest safely return.
             return {}
-    images_dict = theme_data.get('images', {})
+    images_dict = theme_data.get('images', EMPTY_FALLBACK_DICT)
     # Get the reference in the manifest.  headerURL is the deprecated variant.
     header_url = images_dict.get('theme_frame', images_dict.get('headerURL'))
     # And any additional backgrounds too.

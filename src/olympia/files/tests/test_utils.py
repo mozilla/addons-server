@@ -251,7 +251,8 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
                 }
             }
         }
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
@@ -266,6 +267,10 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.ANDROID.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+
+        # Compatible, but not because of something in the manifest.
+        # (gecko_android key is absent).
+        assert not parsed_data['explicitly_compatible_with_android']
 
     def test_strict_min_version_100(self):
         firefox_min_version = self.create_appversion('firefox', '100.0')
@@ -300,25 +305,30 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         # But if 'browser_specific_settings' is used, it's higher min version.
         data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
-        apps = self.parse(data)['apps']
+        parsed_data = self.parse(data)
+        apps = parsed_data['apps']
         assert len(apps) == 2
         app = apps[0]
         assert app.application == amo.FIREFOX.id
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         # And if mv3 then a higher min version again
         data['manifest_version'] = 3
@@ -328,11 +338,17 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == (amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
+
+        # Compatible, but not because of something in the manifest
+        # (gecko_android key is absent).
+        assert not parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_default_min_max(self):
         data = {'browser_specific_settings': {'gecko_android': {}}}
@@ -343,14 +359,24 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
-        # gecko_android is present but empty so it's ignored.
+        # gecko_android is present but empty so we consider it's explicitly
+        # compatible.
         app = apps[1]
         assert app.application == amo.ANDROID.id
-        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert (
+            # Gray area: gecko_android is specified so we consider the origin
+            # of the appversions is the manifest, even though technically there
+            # were no values specified. The important point is that the
+            # developer opted-in by using that key, so compatibility is locked.
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {}
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_default_min_if_only_max_is_present(self):
         data = {
@@ -363,6 +389,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         # gecko_android is present, that bumps the default min version for
         # android.
@@ -370,8 +397,12 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.ANDROID.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert (
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {'strict_max_version': '*'}
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_strict_min_max(self):
         data = {
@@ -389,17 +420,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         # gecko_android is present with both min and max versions.
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
+        assert (
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {
-            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
-            'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
-        }
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_strict_min_max_with_gecko_alongside(self):
         data = {
@@ -420,17 +453,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == '53.0'
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
 
         # gecko_android is present with both min and max versions.
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
+        assert (
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {
-            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
-            'strict_max_version': self.HIGHER_THAN_EVERYTHING_ELSE_STAR,
-        }
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_strict_min_default_max_with_gecko_alongside(self):
         data = {
@@ -450,16 +485,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
 
         # we fall back on gecko's strict_max_version since it was specified.
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == self.HIGHER_THAN_EVERYTHING_ELSE
         assert app.max.version == self.HIGHER_THAN_EVERYTHING_ELSE_STAR
+        assert (
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {
-            'strict_min_version': self.HIGHER_THAN_EVERYTHING_ELSE,
-        }
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_min_too_low(self):
         data = {
@@ -476,17 +514,19 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         assert app.application == amo.FIREFOX.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert app.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
         # strict min version is too low for gecko_android, we override it.
         app = apps[1]
         assert app.application == amo.ANDROID.id
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert (
+            app.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
-        assert parsed_data['gecko_android'] == {
-            # The gecko_android data is returned as-is.
-            'strict_min_version': '48.0',
-        }
+        assert parsed_data['explicitly_compatible_with_android']
 
     def test_gecko_android_unknown_min(self):
         data = {
@@ -882,6 +922,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[0].application == amo.FIREFOX.id
         assert apps[0].min.version == (amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert apps[0].originated_from == amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
@@ -902,6 +943,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert apps[0].application == amo.FIREFOX.id
         assert apps[0].min == firefox_min_version
         assert apps[0].max == firefox_max_version
+        assert apps[0].originated_from == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
