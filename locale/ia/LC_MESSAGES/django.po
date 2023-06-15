@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-15 17:02+0000\n"
+"PO-Revision-Date: 2023-06-15 17:08+0000\n"
 "Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -196,7 +196,7 @@ msgid "Wrong add-on type for this license."
 msgstr "Errate typo de additivo pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
-msgstr "Le licentias personalisate non es compatible con themas."
+msgstr "Le licentias personalisate non es compatibile con themas."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr "Iste campo es necesse pro additivos con versiones publicate."
@@ -1410,10 +1410,10 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Recente cambiamentos pro mi additivos"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr "Le additivos de recerca aperte {blog_link_open}non es plus compatible con AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
+msgstr "Le additivos de recerca aperte {blog_link_open}non es plus compatibile con AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifesto V3 non es actualmente compatible con incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
+msgstr "Manifesto V3 non es compatibile actualmente con incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
 
 msgid "Manifest V3 compatibility warning"
 msgstr "Aviso de compatibilitate del File manifesto V3"
@@ -1497,7 +1497,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Typo incompatible de file, per favor incarga un file de archivo {extensions}."
+msgstr "Typo incompatibile de file, per favor incarga un file de archivo {extensions}."
 
 msgid "View current"
 msgstr "Vider version actual"
@@ -2142,7 +2142,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Incargar un icone personalisate..."
 
 msgid "PNG and JPG supported."
-msgstr "PNG e JPG es compatible."
+msgstr "PNG e JPG es compatibile."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Le icone debe esser quadrate con un dimension minime de 128x128 pixels."
@@ -2163,7 +2163,7 @@ msgid "Add a Screenshot..."
 msgstr "Adder un captura de schermo..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate pro capturas de schermo es 2400x1800 pixels."
+msgstr "Le formatos PNG e JPG es compatibile, ma PNG es le recommendate. Le formato maxime e recommendate pro capturas de schermo es 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
@@ -2563,7 +2563,7 @@ msgid "Theme generator"
 msgstr "Generator de thema"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Aviso: le sequente proprietates usate in le manifesto de tu ultime version incargate non es supportate per iste assistente e essera ignorate:"
+msgstr "Aviso: le sequente proprietates usate in le manifesto de tu ultime version incargate non es compatibile con iste assistente e essera ignorate:"
 
 msgid "Theme name"
 msgstr "Nomine del thema"
@@ -2848,7 +2848,7 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "Tags HTML permittite: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr "Alcun HTML supportate."
+msgstr "Alcun HTML es compatibile."
 
 msgid "Remove this application"
 msgstr "Remover iste application"
@@ -3467,7 +3467,7 @@ msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Adde securitate cryptographic a omne sito que supporta HTTPS. Naviga con securitate."
+msgstr "Adde securitate cryptographic a omne sito compatibile con HTTPS. Naviga con securitate."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -4063,7 +4063,7 @@ msgstr "Salta le portiones sponsorisate del videos sur YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr "Ascolta le contento del paginas web. Plus de 40 linguas supportate."
+msgstr "Ascolta le contento del paginas web. Plus de 40 linguas es compatibile."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4182,7 +4182,7 @@ msgstr "Redige un pagina web ante imprimer lo. Apporta cambiamentos visual radic
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Paginas web legite in alte voce. Plus de 40 linguas supportate."
+msgstr "Paginas web legite in alte voce. Plus de 40 linguas es compatibile."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
