@@ -100,6 +100,7 @@ class Block(ModelBase):
             .order_by('id')
             .no_transforms()
             .annotate(**{GUID: models.F(GUID)})
+            .select_related('blockversion')
         )
 
         all_addon_versions = defaultdict(list)
@@ -185,6 +186,14 @@ class Block(ModelBase):
         return list(existing_blocks.values())
 
 
+class BlockVersion(ModelBase):
+    version = models.OneToOneField(Version, on_delete=models.CASCADE)
+    block = models.ForeignKey(Block, on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return f'Block.id={self.block_id} -> Version.id={self.version_id}'
+
+
 class BlocklistSubmissionQuerySet(BaseQuerySet):
     def delayed(self):
         return self.filter(delayed_until__gt=datetime.now())
@@ -208,7 +217,7 @@ class BlocklistSubmission(ModelBase):
         SIGNOFF_APPROVED: 'Approved',
         SIGNOFF_REJECTED: 'Rejected',
         SIGNOFF_AUTOAPPROVED: 'Auto Sign-off',
-        SIGNOFF_PUBLISHED: 'Published to Blocks',
+        SIGNOFF_PUBLISHED: 'Published',
     }
     SIGNOFF_STATES_APPROVED = (
         SIGNOFF_APPROVED,

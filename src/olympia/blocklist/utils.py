@@ -143,7 +143,7 @@ def disable_addon_for_block(block):
 
 
 def save_guids_to_blocks(guids, submission, *, fields_to_set):
-    from .models import Block
+    from .models import Block, BlockVersion
 
     common_args = {field: getattr(submission, field) for field in fields_to_set}
     modified_datetime = datetime.now()
@@ -163,6 +163,21 @@ def save_guids_to_blocks(guids, submission, *, fields_to_set):
             setattr(block, field, val)
         block.average_daily_users_snapshot = block.current_adu
         block.save()
+
+        if change:
+            # if not a new Block then delete any BlockVersions that are outside min-max
+            BlockVersion.objects.filter(block=block).exclude(
+                version__version__gte=block.min_version,
+                version__version__lte=block.max_version,
+            ).delete()
+        # create BlockVersions for versions in min-max range, that don't already exist
+        BlockVersion.objects.bulk_create(
+            BlockVersion(version=version, block=block)
+            for version in block.addon_versions
+            if not hasattr(version, 'blockversion')
+            and block.is_version_blocked(version.version)
+        )
+
         if submission.id:
             block.submission.add(submission)
         block_activity_log_save(

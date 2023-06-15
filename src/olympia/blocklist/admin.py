@@ -139,12 +139,12 @@ class BlockAdminAddMixin:
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
         get_params = request.GET.copy()
-        for key in ('min', 'max'):
-            if key in get_params:
-                version = get_object_or_404(
-                    Version.unfiltered, pk=get_params.pop(key)[0]
-                )
-                get_params[f'{key}_version'] = version.version
+        if changed_version_ids := get_params.pop('v', None):
+            version_strings = Version.unfiltered.filter(
+                id__in=(int(id_) for id_ in changed_version_ids)
+            ).values_list('version', flat=True)
+            get_params['min_version'] = min(version_strings)
+            get_params['max_version'] = max(version_strings)
 
         if 'min_version' in get_params or 'max_version' in get_params:
             warning_message = (

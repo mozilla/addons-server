@@ -139,7 +139,7 @@ class TestBlockAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        addon = addon_factory()
+        addon = addon_factory(version_kw={'version': '123.456'})
         url = reverse('admin:blocklist_block_addaddon', args=(addon.id,))
         response = self.client.post(url, follow=True)
         self.assertRedirects(response, self.submission_url + f'?guids={addon.guid}')
@@ -154,37 +154,60 @@ class TestBlockAdmin(TestCase):
 
         # GET params are passed along
         version = addon.current_version
+        second_version = version_factory(
+            addon=addon, channel=amo.CHANNEL_UNLISTED, version='100.000.000'
+        )
         response = self.client.post(
-            url + f'?min_version={version.version}', follow=True
+            url + f'?min_version={version.version}&', follow=True
         )
         self.assertRedirects(
             response,
             self.submission_url + f'?guids={addon.guid}&min_version={version.version}',
         )
 
-        # And version ids as short params are expanded and passed along
-        response = self.client.post(url + f'?max={version.pk}', follow=True)
+        # And version ids are expanded and passed along
+        response = self.client.post(
+            url + f'?v={version.pk}&v={second_version.pk}', follow=True
+        )
         self.assertRedirects(
             response,
-            self.submission_url + f'?guids={addon.guid}&max_version={version.version}',
+            self.submission_url
+            + f'?guids={addon.guid}'
+            + f'&min_version={second_version.version}&max_version={version.version}',
+        )
+        assert not response.context['messages']
+
+        # The order of the params doesn't determine max and min
+        response = self.client.post(
+            url + f'?v={second_version.pk}&v={version.pk}', follow=True
+        )
+        self.assertRedirects(
+            response,
+            self.submission_url
+            + f'?guids={addon.guid}'
+            + f'&min_version={second_version.version}&max_version={version.version}',
         )
         assert not response.context['messages']
 
         # Existing blocks are redirected to the change view instead
         block = Block.objects.create(addon=addon, updated_by=user_factory())
-        response = self.client.post(url + f'?max={version.pk}', follow=True)
+        response = self.client.post(
+            url + f'?v={version.pk}&v={second_version.pk}', follow=True
+        )
         self.assertRedirects(
             response, reverse('admin:blocklist_block_change', args=(block.pk,))
         )
         # with a message warning the versions were ignored
         assert [msg.message for msg in response.context['messages']] == [
-            f'The versions 0 to {version.version} could not be pre-selected '
-            'because some versions have been blocked already'
+            f'The versions {second_version.version} to {version.version} could not be '
+            'pre-selected because some versions have been blocked already'
         ]
 
         # Pending blocksubmissions are redirected to the submission view
         submission = BlocklistSubmission.objects.create(input_guids=addon.guid)
-        response = self.client.post(url + f'?max={version.pk}', follow=True)
+        response = self.client.post(
+            url + f'?v={version.pk}&v={second_version.pk}', follow=True
+        )
         self.assertRedirects(
             response,
             reverse(
@@ -193,8 +216,8 @@ class TestBlockAdmin(TestCase):
         )
         # with a message warning the versions were ignored
         assert [msg.message for msg in response.context['messages']] == [
-            f'The versions 0 to {version.version} could not be pre-selected '
-            'because this addon is part of a pending submission'
+            f'The versions {second_version.version} to {version.version} could not be '
+            'pre-selected because this addon is part of a pending submission'
         ]
 
     def test_guid_redirects(self):
@@ -1626,7 +1649,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             ('Approved', '?signoff_state=1'),
             ('Rejected', '?signoff_state=2'),
             ('Auto Sign-off', '?signoff_state=3'),
-            ('Published to Blocks', '?signoff_state=4'),
+            ('Published', '?signoff_state=4'),
         ]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
         assert filters == expected_filters
@@ -1660,7 +1683,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert doc('#result_list tbody tr').length == 3
         assert doc('#changelist-filter li.selected a').text() == 'All'
         assert doc('#changelist-form td.field-state').text() == (
-            'Published to Blocks Approved:Delayed Pending Sign-off'
+            'Published Approved:Delayed Pending Sign-off'
         )
 
     def test_blocked_deleted_keeps_addon_status(self):

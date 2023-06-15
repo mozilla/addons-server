@@ -1,36 +1,28 @@
-import json
 import os
 
 from django.conf import settings
 from django.core.management import call_command
-from django.core.management.base import CommandError
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 
-from ..models import Block
-
-
-# This is a fragment of the actual json blocklist file
-TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
-blocklist_file = os.path.join(TESTS_DIR, 'blocklists', 'blocklist.json')
-with open(blocklist_file) as file_object:
-    blocklist_json = json.load(file_object)
+from ..models import Block, BlockVersion
 
 
 class TestExportBlocklist(TestCase):
     def test_command(self):
-        for idx in range(0, 5):
+        user = user_factory()
+        for _idx in range(0, 5):
             addon_factory()
         # one version, 0 - *
         Block.objects.create(
             addon=addon_factory(file_kw={'is_signed': True}),
-            updated_by=user_factory(),
+            updated_by=user,
         )
         # one version, 0 - 9999
         Block.objects.create(
             addon=addon_factory(file_kw={'is_signed': True}),
-            updated_by=user_factory(),
+            updated_by=user,
             max_version='9999',
         )
         # one version, 0 - *, unlisted
@@ -39,7 +31,7 @@ class TestExportBlocklist(TestCase):
                 version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'is_signed': True},
             ),
-            updated_by=user_factory(),
+            updated_by=user,
         )
 
         call_command('export_blocklist', '1')
@@ -47,34 +39,43 @@ class TestExportBlocklist(TestCase):
         assert os.path.exists(out_path)
 
 
-class TestBulkAddBlocks(TestCase):
+class TestCreateBlockversions(TestCase):
     def test_command(self):
-        user_factory(id=settings.TASK_USER_ID)
+        user = user_factory()
+        Block.objects.create(guid='missing@', min_version='123', updated_by=user)
+        addon = addon_factory(version_kw={'version': '0.1'})
+        v1 = version_factory(addon=addon, version='1')
+        v2 = version_factory(addon=addon, version='2.0.0')
+        v2.delete()
+        minmax_block = Block.objects.create(
+            addon=addon, min_version='0.1.1', max_version='2', updated_by=user
+        )
+        full_block = Block.objects.create(addon=addon_factory(), updated_by=user)
 
-        with self.assertRaises(CommandError):
-            # no input guids
-            call_command('bulk_add_blocks')
-        assert Block.objects.count() == 0
+        call_command('create_blockversions')
 
-        guids_path = os.path.join(TESTS_DIR, 'blocklists', 'input_guids.txt')
-        call_command('bulk_add_blocks', guids_input=guids_path)
-        # no guids matching addons
-        assert Block.objects.count() == 0
+        assert BlockVersion.objects.count() == 3
+        v1.refresh_from_db()
+        v2.refresh_from_db()
+        full_block.refresh_from_db()
+        assert v1.blockversion.block == minmax_block
+        assert v2.blockversion.block == minmax_block
+        assert full_block.addon.current_version.blockversion.block == full_block
 
-        addon_factory(guid='{0020bd71-b1ba-4295-86af-db7f4e7eaedc}')
-        addon_factory(guid='{another-random-guid')
-        call_command('bulk_add_blocks', guids_input=guids_path)
-        # this time we have 1 matching guid so one Block created
-        assert Block.objects.count() == 1
-        assert Block.objects.last().guid == ('{0020bd71-b1ba-4295-86af-db7f4e7eaedc}')
+        # we can run it again without a problem
+        call_command('create_blockversions')
+        assert BlockVersion.objects.count() == 3
 
-        addon_factory(guid='{00116dc4-ba1f-42c5-b20c-da7f743f7377}')
-        call_command('bulk_add_blocks', guids_input=guids_path, min_version='44')
-        # The guid before shouldn't be added twice
-        # assert Block.objects.count() == 2
-        prev_block = Block.objects.first()
-        assert prev_block.guid == '{0020bd71-b1ba-4295-86af-db7f4e7eaedc}'
-        assert prev_block.min_version == '44'
-        new_block = Block.objects.last()
-        assert new_block.guid == '{00116dc4-ba1f-42c5-b20c-da7f743f7377}'
-        assert new_block.min_version == '44'
+        # and extra versions / blocks are created
+        new_version = version_factory(
+            addon=addon, channel=amo.CHANNEL_UNLISTED, version='0.2'
+        )
+        new_block = Block.objects.create(addon=addon_factory(), updated_by=user)
+
+        call_command('create_blockversions')
+
+        assert BlockVersion.objects.count() == 5
+        new_block.refresh_from_db()
+        new_version.refresh_from_db()
+        assert new_version.blockversion.block == minmax_block
+        assert new_block.addon.current_version.blockversion.block == new_block
