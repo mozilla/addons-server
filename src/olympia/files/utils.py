@@ -387,6 +387,10 @@ class ManifestJSONExtractor(object):
         we just look at the manifest."""
         return bool(self.get('experiment_apis', False))
 
+    def is_theme_experiment(self):
+        """Return whether the webextension uses the theme experiment API."""
+        return bool(self.get('theme_experiment', False))
+
     @property
     def gecko(self):
         """Return the "applications|browser_specific_settings["gecko"]" part
@@ -453,9 +457,9 @@ class ManifestJSONExtractor(object):
                 ugettext('GUID is required for Thunderbird Mail Extensions, including Themes.')
             )
 
-        if self.is_experiment and not self.strict_max_version:
+        if (self.is_experiment or self.is_theme_experiment) and not self.strict_max_version:
             raise forms.ValidationError(
-                ugettext('A "strict_max_version" is required for Thunderbird Mail Experiments.')
+                ugettext('A "strict_max_version" is required for Thunderbird Mail Experiments, including Theme Experiments.')
             )
 
         # If a minimum strict version is specified, it needs to be higher
