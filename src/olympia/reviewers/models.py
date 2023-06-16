@@ -781,7 +781,8 @@ class NeedsHumanReview(ModelBase):
         return f'{self.version_id} - {self.get_reason_display()}'
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        automatic_activity_log = not kwargs.pop('_no_automatic_activity_log', False)
+        if not self.pk and automatic_activity_log:
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW,
                 self.version,

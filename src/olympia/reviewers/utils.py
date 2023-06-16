@@ -553,13 +553,6 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
-        has_needs_human_review = (
-            self.version
-            and NeedsHumanReview.objects.filter(
-                version__addon=self.addon, version__channel=self.version.channel
-            ).exists()
-        )
-
         # Definitions for all actions.
         boilerplate_for_approve = 'Thank you for your contribution.'
         boilerplate_for_reject = (
@@ -773,16 +766,38 @@ class ReviewHelper:
             'minimal': True,
             'available': (is_reviewer),
         }
-        actions['clear_needs_human_review'] = {
-            'method': self.handler.clear_needs_human_review,
-            'label': 'Clear Needs Human Review',
+        actions['clear_pending_rejection_multiple_versions'] = {
+            'method': self.handler.clear_pending_rejection_multiple_versions,
+            'label': 'Clear pending rejection',
             'details': (
-                'Clear needs human review flag from all versions in this channel, but '
+                'Clear pending rejection from selected versions, but '
                 "otherwise don't change the version(s) or add-on statuses."
             ),
+            'multiple_versions': True,
             'minimal': True,
-            'comments': False,
-            'available': (is_appropriate_admin_reviewer and has_needs_human_review),
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['clear_needs_human_review_multiple_versions'] = {
+            'method': self.handler.clear_needs_human_review_multiple_versions,
+            'label': 'Clear Needs Human Review',
+            'details': (
+                'Clear needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['set_needs_human_review_multiple_versions'] = {
+            'method': self.handler.set_needs_human_review_multiple_versions,
+            'label': 'Set Needs Human Review',
+            'details': (
+                'Set needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': is_reviewer,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
@@ -866,8 +881,6 @@ class ReviewBase:
         reviewers are approving is always the latest listed one, and then users
         are supposed to automatically get the update to that version, so we
         don't need to care about older ones anymore.
-
-        Also used by clear_needs_human_review action for unlisted too.
         """
         # Do a mass UPDATE.
         NeedsHumanReview.objects.filter(
@@ -1370,13 +1383,50 @@ class ReviewBase:
     def unreject_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
-    def clear_needs_human_review(self):
-        """clears human review all versions in this channel."""
-        self.clear_all_needs_human_review_flags_in_channel(mad_too=False)
-        channel = amo.CHANNEL_CHOICES_API.get(self.version.channel)
-        self.version = None  # we don't want to associate the log with a version
+    def clear_needs_human_review_multiple_versions(self):
+        """Clear human review on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save().
+            self.clear_specific_needs_human_review_flags(version)
+        # Record a single activity log.
         self.log_action(
-            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS, extra_details={'channel': channel}
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW_VERSION, versions=self.data['versions']
+        )
+
+    def set_needs_human_review_multiple_versions(self):
+        """Record human review flag on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save(), but avoid the
+            # individual activity logs: we'll record a single one ourselves.
+            NeedsHumanReview(
+                version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            ).save(_no_automatic_activity_log=True)
+        # Record a single activity log.
+        self.log_action(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW,
+            versions=self.data['versions'],
+        )
+
+    def clear_pending_rejection_multiple_versions(self):
+        """Clear pending rejection on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save().
+            if version.pending_rejection:
+                version.reviewerflags.update(
+                    pending_rejection=None,
+                    pending_rejection_by=None,
+                    pending_content_rejection=None,
+                )
+        # Record a single activity log.
+        self.log_action(
+            action=amo.LOG.CLEAR_PENDING_REJECTION,
+            versions=self.data['versions'],
         )
 
 
@@ -1550,7 +1600,6 @@ class ReviewUnlisted(ReviewBase):
         # versions.
         self.version = None
         self.file = None
-        now = datetime.now()
         # we're only supporting non-automated reviews right now:
         assert self.human_review
 
@@ -1565,7 +1614,6 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(
             action=amo.LOG.UNREJECT_VERSION,
             versions=self.data['versions'],
-            timestamp=now,
             user=self.user,
         )
 

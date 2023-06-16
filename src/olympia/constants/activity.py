@@ -880,7 +880,7 @@ class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
 
 class NEEDS_HUMAN_REVIEW(_LOG):
     id = 174
-    format = '{version} flagged for human review because of {0}.'
+    format = '{version} flagged for human review.'
     short = 'Flagged for human review'
     keep = True
     hide_developer = True
@@ -892,6 +892,25 @@ class REPLY_RATING(_LOG):
     format = _('Reply to {rating} for {addon} written.')
     show_user_to_developer = True
     store_ip = True
+
+
+class CLEAR_NEEDS_HUMAN_REVIEW_VERSION(_LOG):
+    id = 176
+    format = '{version} no longer flagged for human review.'
+    short = 'Needs Human Review cleared'
+    admin_event = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
+
+
+class CLEAR_PENDING_REJECTION(_LOG):
+    id = 177
+    format = '{version} pending rejection cleared.'
+    short = 'Pending rejection cleared'
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
