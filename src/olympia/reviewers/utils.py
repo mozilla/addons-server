@@ -8,6 +8,7 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.http import urlencode
 
 import django_tables2 as tables
 import markupsafe
@@ -1453,7 +1454,7 @@ class ReviewUnlisted(ReviewBase):
 
     def block_multiple_versions(self):
         versions = self.data['versions']
-        params = f'?{"&".join(f"v={v.id}" for v in versions)}'
+        params = '?' + urlencode((('v', v.id) for v in versions), doseq=True)
         self.redirect_url = (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) + params
         )
