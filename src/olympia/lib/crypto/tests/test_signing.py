@@ -228,7 +228,6 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    @override_switch('add-guid-to-manifest', active=True)
     def test_call_signing_add_guid(self):
         file_ = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
@@ -264,10 +263,7 @@ class TestSigning(TestCase):
     def _test_add_guid_existing_guid(self, file_):
         with open(file_.file.path, 'rb') as fobj:
             contents = fobj.read()
-        with override_switch('add-guid-to-manifest', active=False):
-            assert signing.add_guid(file_) == contents
-        with override_switch('add-guid-to-manifest', active=True):
-            assert signing.add_guid(file_) == contents
+        assert signing.add_guid(file_) == contents
 
     def test_add_guid_existing_guid_applications(self):
         # self.file_ is "webextension.xpi", which already has a guid, as "applications"
@@ -286,14 +282,9 @@ class TestSigning(TestCase):
         ).file
         with open(file_.file.path, 'rb') as fobj:
             contents = fobj.read()
-        # with the waffle off it's the same as with an existing guid
-        with override_switch('add-guid-to-manifest', active=False):
-            assert signing.add_guid(file_) == contents
 
-        # if it's on though, it's different
-        with override_switch('add-guid-to-manifest', active=True):
-            zip_blob = signing.add_guid(file_)
-            assert zip_blob != contents
+        zip_blob = signing.add_guid(file_)
+        assert zip_blob != contents
         # compare the zip contents
         with (
             zipfile.ZipFile(file_.file.path) as orig_zip,

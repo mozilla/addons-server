@@ -8,6 +8,7 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.http import urlencode
 
 import django_tables2 as tables
 import markupsafe
@@ -1452,10 +1453,10 @@ class ReviewUnlisted(ReviewBase):
         log.info('Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        version_ids = ','.join(str(version.id) for version in self.data['versions'])
+        versions = self.data['versions']
+        params = '?' + urlencode((('v', v.id) for v in versions), doseq=True)
         self.redirect_url = (
-            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,))
-            + f'?changed_version_ids={version_ids}'
+            reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) + params
         )
 
     def confirm_multiple_versions(self):

@@ -113,10 +113,13 @@ class BlockAdminAddMixin:
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
+        get_params = request.GET.copy()
+        if changed_version_ids := get_params.pop('v', None):
+            get_params['changed_version_ids'] = list(changed_version_ids)
 
         return redirect(
             reverse('admin:blocklist_blocklistsubmission_add')
-            + f'?guids={addon.addonguid_guid}&{request.GET.urlencode()}'
+            + f'?guids={addon.addonguid_guid}&{get_params.urlencode()}'
         )
 
 

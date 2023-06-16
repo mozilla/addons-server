@@ -109,7 +109,9 @@ class TestBlockAdmin(TestCase):
         self.grant_permission(user, 'Blocklist:Create')
         self.client.force_login(user)
 
-        addon = addon_factory()
+        addon = addon_factory(version_kw={'version': '123.456'})
+        version = addon.current_version
+        second_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
         url = reverse('admin:blocklist_block_addaddon', args=(addon.id,))
         response = self.client.post(url, follow=True)
         self.assertRedirects(response, self.submission_url + f'?guids={addon.guid}')
@@ -121,6 +123,18 @@ class TestBlockAdmin(TestCase):
         url = reverse('admin:blocklist_block_addaddon', args=(deleted_addon.id,))
         response = self.client.post(url, follow=True)
         self.assertRedirects(response, self.submission_url + f'?guids={addon.guid}')
+
+        # And version ids are expanded and passed along
+        response = self.client.post(
+            url + f'?v={version.pk}&v={second_version.pk}', follow=True
+        )
+        self.assertRedirects(
+            response,
+            self.submission_url
+            + f'?guids={addon.guid}'
+            + f'&changed_version_ids={version.version},{second_version.version}',
+        )
+        assert not response.context['messages']
 
     def test_guid_redirects(self):
         block = block_factory(guid='foo@baa', updated_by=user_factory())
