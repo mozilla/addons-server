@@ -366,7 +366,7 @@ ALPHANUMERIC_REGEX = r'[^\w]+|_+'
 def word_validator(value):
     if DOT not in value and list(re.split(ALPHANUMERIC_REGEX, value)) != [value]:
         raise ValidationError(
-            _('%(value)s contains a non-alphanumeric charactor.'),
+            _('%(value)s contains a non-alphanumeric character.'),
             params={'value': value},
         )
 
@@ -377,9 +377,9 @@ class DeniedRatingWord(ModelBase):
     word = models.CharField(
         max_length=255,
         unique=True,
-        help_text='Can only contain alphanumeric charactors ("\\w", exc. "_"). '
-        'If contains a "." it will be interpretted as a doman name instead, '
-        'and can contain any charactor',
+        help_text='Can only contain alphanumeric characters ("\\w", exc. "_"). '
+        'If contains a "." it will be interpreted as a domain name instead, '
+        'and can contain any character',
         validators=(word_validator,),
     )
     moderation = models.BooleanField(
