@@ -30,3 +30,4 @@ This endpoint returns an add-on Block from the blocklist, specified by guid or i
     :>json string max_version: The maximum version of the add-on that will be blocked.  "*" is the highest version, meaning all versions from min_version will be blocked.  ("0" - "*" would be all versions).
     :>json string|null reason: Why the add-on needed to be blocked.
     :>json object|null url: A url to the report/request that detailed why the add-on should potentially be blocked.  Typically a bug report on bugzilla.mozilla.org.  (See :ref:`Outgoing Links <api-overview-outgoing>`)
+    :>json string versions[]: The versions of this add-on that are blocked.

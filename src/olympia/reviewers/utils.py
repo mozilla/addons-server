@@ -8,6 +8,7 @@ from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.http import urlencode
 
 import django_tables2 as tables
 import markupsafe
@@ -1452,16 +1453,8 @@ class ReviewUnlisted(ReviewBase):
         log.info('Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        min_version = ('0', None)
-        max_version = ('*', None)
-        for version in self.data['versions']:
-            version_str = version.version
-            if not min_version[1] or version_str < min_version[1]:
-                min_version = (version, version_str)
-            if not max_version[1] or version_str > max_version[1]:
-                max_version = (version, version_str)
-
-        params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
+        versions = self.data['versions']
+        params = '?' + urlencode((('v', v.id) for v in versions), doseq=True)
         self.redirect_url = (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) + params
         )

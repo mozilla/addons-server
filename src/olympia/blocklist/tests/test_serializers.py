@@ -1,7 +1,8 @@
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.blocklist.models import Block
-from olympia.blocklist.serializers import BlockSerializer
+
+from ..models import Block, BlockVersion
+from ..serializers import BlockSerializer
 
 
 class TestBlockSerializer(TestCase):
@@ -27,11 +28,16 @@ class TestBlockSerializer(TestCase):
                 'url': 'https://goo.gol',
                 'outgoing': get_outgoing_url('https://goo.gol'),
             },
+            'versions': [],
             'created': self.block.created.isoformat()[:-7] + 'Z',
             'modified': self.block.modified.isoformat()[:-7] + 'Z',
         }
 
     def test_with_addon(self):
         addon_factory(guid=self.block.guid, name='Addón náme')
+        BlockVersion.objects.create(
+            block=self.block, version=self.block.addon.current_version
+        )
         serializer = BlockSerializer(instance=self.block)
         assert serializer.data['addon_name'] == {'en-US': 'Addón náme'}
+        assert serializer.data['versions'] == [self.block.addon.current_version.version]
