@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-17 11:41+0000\n"
+"PO-Revision-Date: 2023-06-17 11:44+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1947,7 +1947,7 @@ msgid "Decline"
 msgstr "Απόρριψη"
 
 msgid "Manage Authors & License"
-msgstr "Διαχείριση προγραμματιστών & άδειας χρήσης"
+msgstr "Διαχείριση προγραμματιστών και άδειας χρήσης"
 
 msgid "Authors"
 msgstr "Δημιουργοί"
@@ -2328,7 +2328,7 @@ msgid "More"
 msgstr "Περισσότερα"
 
 msgid "Manage Status & Versions"
-msgstr "Διαχείριση κατάστασης & έκδοσης"
+msgstr "Διαχείριση κατάστασης και εκδόσεων"
 
 msgid "View Recent Changes"
 msgstr "Προβολή πρόσφατων αλλαγών"
@@ -2886,7 +2886,7 @@ msgid "Developer News"
 msgstr "Ειδήσεις προγραμματιστών"
 
 msgid "View the blog &#9658;"
-msgstr "Προβολή του blog &#9658;"
+msgstr "Προβολή ιστολογίου &#9658;"
 
 msgid "Version Signature Pending"
 msgstr "Εκκρεμεί η υπογραφή έκδοσης"
@@ -3007,7 +3007,7 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr "Web-Ext: ανάπτυξη & δοκιμή επεκτάσεων"
+msgstr "Web-Ext: ανάπτυξη και δοκιμή επεκτάσεων"
 
 msgid "Promote"
 msgstr "Προώθηση"
@@ -3136,7 +3136,7 @@ msgstr ""
 "συμβατό."
 
 msgid "Add Another Application&hellip;"
-msgstr "Προσθήκη κι άλλης εφαρμογής&hellip;"
+msgstr "Προσθήκη άλλης εφαρμογής&hellip;"
 
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
@@ -3175,7 +3175,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Δημιουργήθηκε στις %(created)s και άλλαξε σε %(status)s"
 
 msgid "Status & Versions"
-msgstr "Κατάσταση & εκδόσεις"
+msgstr "Κατάσταση και εκδόσεις"
 
 msgid "Edit this version"
 msgstr "Επεξεργασία έκδοσης"
@@ -4147,7 +4147,7 @@ msgstr "Κάντε διπλό κλικ σε οποιαδήποτε λέξη γι
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr "Μπλε & κίτρινα"
+msgstr "Μπλε και κίτρινα"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4970,19 +4970,19 @@ msgid "Top Applications"
 msgstr "Κορυφαίες εφαρμογές"
 
 msgid "See more applications&hellip;"
-msgstr "Δείτε περισσότερες εφαρμογές&hellip;"
+msgstr "Περισσότερες εφαρμογές&hellip;"
 
 msgid "Top Languages"
 msgstr "Κορυφαίες γλώσσες"
 
 msgid "See more languages&hellip;"
-msgstr "Δείτε περισσότερες γλώσσες&hellip;"
+msgstr "Περισσότερες γλώσσες&hellip;"
 
 msgid "Top Platforms"
 msgstr "Κορυφαίες πλατφόρμες"
 
 msgid "See more platforms&hellip;"
-msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
+msgstr "Περισσότερες πλατφόρμες&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Πηγές λήψεων κατά ημερομηνία"
