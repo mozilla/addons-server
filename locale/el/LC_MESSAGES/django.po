@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-08 14:33+0000\n"
+"PO-Revision-Date: 2023-06-17 11:41+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -979,7 +979,7 @@ msgid "Site Permissions"
 msgstr "Άδειες ιστοτόπων"
 
 msgid "Alerts & Updates"
-msgstr "Ειδοποιήσεις & ενημερώσεις"
+msgstr "Ειδοποιήσεις και ενημερώσεις"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
@@ -1009,7 +1009,7 @@ msgstr ""
 " και πολλά άλλα."
 
 msgid "Feeds, News & Blogging"
-msgstr "Ροές, ειδήσεις & blog"
+msgstr "Ροές, ειδήσεις και ιστολόγια"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
@@ -1017,7 +1017,7 @@ msgstr ""
 "και πολλά άλλα."
 
 msgid "Games & Entertainment"
-msgstr "Παιχνίδια & ψυχαγωγία"
+msgstr "Παιχνίδια και ψυχαγωγία"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr "Κάντε λήψη επεκτάσεων του Firefox για ενίσχυση της ψυχαγωγικής σας εμπειρίας. Αυτή η κατηγορία περιέχει επεκτάσεις που μπορούν να βελτιώσουν το gaming, την αναπαραγωγή βίντεο και πολλά άλλα."
@@ -1029,7 +1029,7 @@ msgid "Download Firefox extensions that offer language support like grammar chec
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν υποστήριξη γλωσσών, όπως γραμματικό έλεγχο, αναζήτηση λέξεων σε λεξικό, μετάφραση κειμένου, μηχανισμό ανάγνωσης κειμένου και πολλά άλλα."
 
 msgid "Photos, Music & Videos"
-msgstr "Εικόνες & πολυμέσα"
+msgstr "Φωτογραφίες, μουσική και βίντεο"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
@@ -1037,7 +1037,7 @@ msgstr ""
 "εικόνων και πολλά άλλα."
 
 msgid "Privacy & Security"
-msgstr "Απόρρητο & ασφάλεια"
+msgstr "Απόρρητο και ασφάλεια"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1057,7 +1057,7 @@ msgid "Download Firefox extensions that can enhance your online shopping experie
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορούν να βελτιώσουν την εμπειρία των διαδικτυακών σας αγορών με εύρεση κουπονιών και προσφορών, ανάλυση κριτικών και πολλά άλλα."
 
 msgid "Social & Communication"
-msgstr "Κοινωνικά δίκτυα & επικοινωνία"
+msgstr "Κοινωνικά δίκτυα και επικοινωνία"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
@@ -1087,7 +1087,7 @@ msgid "Download Firefox extensions that can be unpredictable and creative, yet u
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορεί να είναι απρόβλεπτες και δημιουργικές, αλλά και χρήσιμες για περίεργες εργασίες."
 
 msgid "Device Features & Location"
-msgstr "Λειτουργίες συσκευής & τοποθεσία"
+msgstr "Λειτουργίες συσκευής και τοποθεσία"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
 msgstr "Κάντε λήψη επεκτάσεων για βελτίωση του Firefox για Android. Εκτελέστε γρήγορες αναζητήσεις, απελευθερώστε πόρους συστήματος, δημιουργήστε σημειώσεις και πολλά άλλα."
@@ -1107,7 +1107,7 @@ msgstr ""
 "Κάντε λήψη επεκτάσεων που ενισχύουν τις επιδόσεις του Firefox. Βρείτε επεκτάσεις που σας βοηθούν να είστε πιο παραγωγικοί και αποτελεσματικοί, αποκλείοντας ενοχλητικές διαφημίσεις και πολλά άλλα."
 
 msgid "Photos & Media"
-msgstr "Εικόνες & πολυμέσα"
+msgstr "Φωτογραφίες και πολυμέσα"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
@@ -1115,7 +1115,7 @@ msgstr ""
 "πολλά άλλα."
 
 msgid "Security & Privacy"
-msgstr "Ασφάλεια & απόρρητο"
+msgstr "Ασφάλεια και απόρρητο"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
@@ -1129,7 +1129,7 @@ msgid "Download Firefox extensions to enhance your experience on popular social 
 msgstr "Κάντε λήψη επεκτάσεων του Firefox για βελτίωση της εμπειρίας σας σε δημοφιλείς ιστοτόπους κοινωνικής δικτύωσης, όπως το YouTube, το GitHub, το Reddit και πολλά άλλα."
 
 msgid "Sports & Games"
-msgstr "Αθλητισμός & παιχνίδια"
+msgstr "Αθλητισμός και παιχνίδια"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που ενισχύουν την ψυχαγωγική σας εμπειρία με βελτιώσεις ζωντανών ροών, αθλητικές ενημερώσεις και πολλά άλλα."
@@ -1188,7 +1188,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που εκφράζουν όλα τα είδη του στυλ — μοτίβα, φλοράλ, υφές, μοντέλα και πολλά άλλα."
 
 msgid "Film and TV"
-msgstr "Ταινίες & τηλεόραση"
+msgstr "Κινηματογράφος και τηλεόραση"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1269,7 +1269,7 @@ msgid "Business"
 msgstr "Επιχειρήσεις"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "Λεξικά & εγκυκλοπαίδειες"
+msgstr "Λεξικά και εγκυκλοπαίδειες"
 
 msgid "Kids"
 msgstr "Παιδιά"
@@ -1278,16 +1278,16 @@ msgid "Multiple Search"
 msgstr "Πολλαπλή αναζήτηση"
 
 msgid "News & Blogs"
-msgstr "Ειδήσεις & blog"
+msgstr "Ειδήσεις και ιστολόγια"
 
 msgid "Photos & Images"
-msgstr "Φωτογραφίες & εικόνες"
+msgstr "Φωτογραφίες και εικόνες"
 
 msgid "Shopping & E-Commerce"
-msgstr "Αγορές & ηλεκτρονικό εμπόριο"
+msgstr "Αγορές και ηλεκτρονικό εμπόριο"
 
 msgid "Social & People"
-msgstr "Κοινωνικά δίκτυα & άτομα"
+msgstr "Κοινωνικά δίκτυα και άνθρωποι"
 
 msgid "Travel"
 msgstr "Ταξίδια"
@@ -1829,7 +1829,7 @@ msgid "Development Add-ons"
 msgstr "Δημιουργικά πρόσθετα"
 
 msgid "Community & Support"
-msgstr "Κοινότητα & υποστήριξη"
+msgstr "Κοινότητα και υποστήριξη"
 
 msgid "Add-ons Blog"
 msgstr "Blog πρόσθετων"
