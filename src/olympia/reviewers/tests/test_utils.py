@@ -2913,6 +2913,109 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.reload().needs_human_review_by_mad
         assert not self.review_version.needs_human_review_by_mad
 
+    def test_set_needs_human_review_multiple_versions(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        selected = version_factory(addon=self.review_version.addon)
+        unselected = version_factory(addon=self.review_version.addon)
+        data = self.get_data().copy()
+        data['versions'] = (
+            self.addon.versions(manager='unfiltered_for_relations')
+            .all()
+            .exclude(pk=unselected.pk)
+            .order_by('pk')
+        )
+        self.helper.set_data(data)
+        self.helper.handler.set_needs_human_review_multiple_versions()
+
+        log_type_id = amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert self.check_log_count(log_type_id) == 1
+        assert ActivityLog.objects.for_addons(self.helper.addon).get(
+            action=log_type_id
+        ).details.get('versions') == [
+            self.review_version.version,
+            selected.version,
+        ]
+        assert self.check_log_count(amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id) == 0
+        assert len(mail.outbox) == 0
+
+        self.review_version.reload()
+        assert not self.review_version.human_review_date
+        assert self.review_version.needshumanreview_set.filter(is_active=True).exists()
+        assert self.review_version.due_date
+
+        selected.reload()
+        assert not selected.human_review_date
+        assert selected.needshumanreview_set.filter(is_active=True).exists()
+        assert selected.due_date
+
+        unselected.reload()
+        assert not selected.human_review_date
+        assert not unselected.needshumanreview_set.filter(is_active=True).exists()
+        assert not unselected.due_date
+
+    def test_clear_pending_rejection_multiple_versions(self):
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        VersionReviewerFlags.objects.create(
+            version=self.review_version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_rejection_by=self.user,
+            pending_content_rejection=False,
+        )
+        selected = version_factory(addon=self.review_version.addon)
+        VersionReviewerFlags.objects.create(
+            version=selected,
+            pending_rejection=datetime.now() + timedelta(days=2),
+            pending_rejection_by=self.user,
+            pending_content_rejection=True,
+        )
+        unselected = version_factory(addon=self.review_version.addon)
+        VersionReviewerFlags.objects.create(
+            version=unselected,
+            pending_rejection=datetime.now() + timedelta(days=3),
+            pending_rejection_by=self.user,
+            pending_content_rejection=False,
+        )
+        data = self.get_data().copy()
+        data['versions'] = (
+            self.addon.versions(manager='unfiltered_for_relations')
+            .all()
+            .exclude(pk=unselected.pk)
+            .order_by('pk')
+        )
+        self.helper.set_data(data)
+        self.helper.handler.clear_pending_rejection_multiple_versions()
+
+        log_type_id = amo.LOG.CLEAR_PENDING_REJECTION.id
+        assert self.check_log_count(log_type_id) == 1
+        assert ActivityLog.objects.for_addons(self.helper.addon).get(
+            action=log_type_id
+        ).details.get('versions') == [
+            self.review_version.version,
+            selected.version,
+        ]
+        assert len(mail.outbox) == 0
+
+        self.review_version.reload()
+        self.review_version.reviewerflags.reload()
+        assert not self.review_version.human_review_date
+        assert self.review_version.reviewerflags.pending_content_rejection is None
+        assert self.review_version.reviewerflags.pending_rejection_by is None
+        assert self.review_version.reviewerflags.pending_rejection is None
+
+        selected.reload()
+        selected.reviewerflags.reload()
+        assert not selected.human_review_date
+        assert selected.reviewerflags.pending_content_rejection is None
+        assert selected.reviewerflags.pending_rejection_by is None
+        assert selected.reviewerflags.pending_rejection is None
+
+        unselected.reload()
+        unselected.reviewerflags.reload()
+        assert not unselected.human_review_date
+        assert unselected.reviewerflags.pending_content_rejection is False
+        assert unselected.reviewerflags.pending_rejection_by
+        assert unselected.reviewerflags.pending_rejection is not None
+
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestReviewHelperSigning(TestReviewHelperBase):
