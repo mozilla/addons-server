@@ -728,6 +728,39 @@ class ReviewHelper:
                 not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
+        actions['clear_pending_rejection_multiple_versions'] = {
+            'method': self.handler.clear_pending_rejection_multiple_versions,
+            'label': 'Clear pending rejection',
+            'details': (
+                'Clear pending rejection from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['clear_needs_human_review_multiple_versions'] = {
+            'method': self.handler.clear_needs_human_review_multiple_versions,
+            'label': 'Clear Needs Human Review',
+            'details': (
+                'Clear needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['set_needs_human_review_multiple_versions'] = {
+            'method': self.handler.set_needs_human_review_multiple_versions,
+            'label': 'Set Needs Human Review',
+            'details': (
+                'Set needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': is_appropriate_reviewer,
+        }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
             'label': 'Reviewer reply',
@@ -763,39 +796,6 @@ class ReviewHelper:
                 'Make a comment on this version. The developer '
                 "won't be able to see this."
             ),
-            'minimal': True,
-            'available': (is_reviewer),
-        }
-        actions['clear_pending_rejection_multiple_versions'] = {
-            'method': self.handler.clear_pending_rejection_multiple_versions,
-            'label': 'Clear pending rejection',
-            'details': (
-                'Clear pending rejection from selected versions, but '
-                "otherwise don't change the version(s) or add-on statuses."
-            ),
-            'multiple_versions': True,
-            'minimal': True,
-            'available': is_appropriate_admin_reviewer,
-        }
-        actions['clear_needs_human_review_multiple_versions'] = {
-            'method': self.handler.clear_needs_human_review_multiple_versions,
-            'label': 'Clear Needs Human Review',
-            'details': (
-                'Clear needs human review flag from selected versions, but '
-                "otherwise don't change the version(s) or add-on statuses."
-            ),
-            'multiple_versions': True,
-            'minimal': True,
-            'available': is_appropriate_admin_reviewer,
-        }
-        actions['set_needs_human_review_multiple_versions'] = {
-            'method': self.handler.set_needs_human_review_multiple_versions,
-            'label': 'Set Needs Human Review',
-            'details': (
-                'Set needs human review flag from selected versions, but '
-                "otherwise don't change the version(s) or add-on statuses."
-            ),
-            'multiple_versions': True,
             'minimal': True,
             'available': is_reviewer,
         }
@@ -1392,7 +1392,7 @@ class ReviewBase:
             self.clear_specific_needs_human_review_flags(version)
         # Record a single activity log.
         self.log_action(
-            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW_VERSION, versions=self.data['versions']
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
 
     def set_needs_human_review_multiple_versions(self):

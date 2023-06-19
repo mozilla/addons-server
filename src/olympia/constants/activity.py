@@ -870,7 +870,7 @@ class LOG_IN_API_TOKEN(_LOG):
 
 
 # Obsolete now that this is done per version.
-class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
+class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     id = 173
     format = '{addon} no longer flagged for human review.'
     short = 'Needs Human Review cleared'
@@ -895,7 +895,7 @@ class REPLY_RATING(_LOG):
     store_ip = True
 
 
-class CLEAR_NEEDS_HUMAN_REVIEW_VERSION(_LOG):
+class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
     id = 176
     format = '{version} no longer flagged for human review.'
     short = 'Needs Human Review cleared'
