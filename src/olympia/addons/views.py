@@ -1274,7 +1274,9 @@ class AddonBrowserMappingView(ListAPIView):
             None,
         )
         return AddonBrowserMapping.objects.filter(
-            browser=browser, addon__status__in=amo.APPROVED_STATUSES
+            browser=browser,
+            addon__status__in=amo.APPROVED_STATUSES,
+            addon__disabled_by_user=False,
         ).annotate(
             # This is used in `AddonBrowserMappingSerializer` in order to avoid
             # unnecessary queries since we only need the add-on GUID.
