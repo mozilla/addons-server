@@ -784,7 +784,7 @@ class NeedsHumanReview(ModelBase):
         automatic_activity_log = not kwargs.pop('_no_automatic_activity_log', False)
         if not self.pk and automatic_activity_log:
             activity.log_create(
-                amo.LOG.NEEDS_HUMAN_REVIEW,
+                amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC,
                 self.version,
                 details={'comments': self.get_reason_display()},
                 user=(

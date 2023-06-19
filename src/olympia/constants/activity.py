@@ -869,6 +869,7 @@ class LOG_IN_API_TOKEN(_LOG):
     format = '{user_responsible} authenticated through an API token.'
 
 
+# Obsolete now that this is done per version.
 class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
     id = 173
     format = '{addon} no longer flagged for human review.'
@@ -878,7 +879,7 @@ class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
     reviewer_review_action = True
 
 
-class NEEDS_HUMAN_REVIEW(_LOG):
+class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):
     id = 174
     format = '{version} flagged for human review.'
     short = 'Flagged for human review'
@@ -906,11 +907,22 @@ class CLEAR_NEEDS_HUMAN_REVIEW_VERSION(_LOG):
 
 class CLEAR_PENDING_REJECTION(_LOG):
     id = 177
-    format = '{version} pending rejection cleared.'
-    short = 'Pending rejection cleared'
+    format = _('{version} pending rejection cleared.')
+    short = _('Pending rejection cleared')
     keep = True
     review_queue = True
     reviewer_review_action = True
+    # Not hiddden to developers.
+
+
+class NEEDS_HUMAN_REVIEW(_LOG):
+    id = 178
+    format = '{version} flagged for human review.'
+    short = 'Flagged for human review'
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
