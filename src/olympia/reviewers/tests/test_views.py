@@ -6553,7 +6553,6 @@ class TestAddonReviewerViewSet(TestCase):
         self.assertCloseToNow(version.due_date, now=new_due_date)
 
     def test_set_needs_human_review(self):
-        user_factory(pk=settings.TASK_USER_ID)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         version = self.addon.current_version
@@ -6569,7 +6568,9 @@ class TestAddonReviewerViewSet(TestCase):
             == version.needshumanreview_set.model.REASON_MANUALLY_SET_BY_REVIEWER
         )
         assert (
-            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW.id).get().user
+            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)
+            .get()
+            .user
             == self.user
         )
         # We strip off the milliseconds in the response
