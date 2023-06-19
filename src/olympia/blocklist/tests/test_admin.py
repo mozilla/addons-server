@@ -112,6 +112,9 @@ class TestBlockAdmin(TestCase):
         addon = addon_factory(version_kw={'version': '123.456'})
         version = addon.current_version
         second_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        third_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        block_factory(addon=addon, version_ids=[third_version.id], updated_by=user)
+
         url = reverse('admin:blocklist_block_addaddon', args=(addon.id,))
         response = self.client.post(url, follow=True)
         self.assertRedirects(response, self.submission_url + f'?guids={addon.guid}')
@@ -134,6 +137,27 @@ class TestBlockAdmin(TestCase):
             + f'?guids={addon.guid}&v={version.id}&v={second_version.id}',
         )
         assert not response.context['messages']
+
+        # Pending blocksubmissions and blocked versions are forwarded with a warning
+        BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[version.pk]
+        )
+        response = self.client.post(
+            url + f'?v={version.pk}&v={second_version.pk}&v={third_version.pk}',
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            self.submission_url
+            + f'?guids={addon.guid}'
+            + f'&v={version.id}&v={second_version.id}&v={third_version.id}',
+        )
+        assert [msg.message for msg in response.context['messages']] == [
+            f'The version id:{version.id} could not be selected because this version '
+            'is part of a pending submission',
+            f'The version id:{third_version.id} could not be selected because this '
+            'version is already blocked',
+        ]
 
     def test_guid_redirects(self):
         block = block_factory(guid='foo@baa', updated_by=user_factory())

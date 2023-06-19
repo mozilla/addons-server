@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
 from django import http
-from django.contrib import admin, auth, contenttypes
+from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
 from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404, redirect
@@ -20,7 +20,7 @@ from .forms import (
     MultiAddForm,
     MultiDeleteForm,
 )
-from .models import Block, BlocklistSubmission
+from .models import Block, BlocklistSubmission, BlockVersion
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
@@ -113,11 +113,35 @@ class BlockAdminAddMixin:
 
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
-        get_params = request.GET.copy()
+        warning_message = (
+            'The version id:{version_id} could not be selected because {reason}'
+        )
+
+        if v_ids := [int(v) for v in request.GET.getlist('v')]:
+            submissions = BlocklistSubmission.get_all_submission_versions()
+            clashes = set(v_ids) & set(submissions)
+            for version_id in clashes:
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        version_id=version_id,
+                        reason='this version is part of a pending submission',
+                    ),
+                )
+            for block in BlockVersion.objects.filter(version_id__in=v_ids):
+                messages.add_message(
+                    request,
+                    messages.WARNING,
+                    warning_message.format(
+                        version_id=block.version_id,
+                        reason='this version is already blocked',
+                    ),
+                )
 
         return redirect(
             reverse('admin:blocklist_blocklistsubmission_add')
-            + f'?guids={addon.addonguid_guid}&{get_params.urlencode()}'
+            + f'?guids={addon.addonguid_guid}&{request.GET.urlencode()}'
         )
 
 
