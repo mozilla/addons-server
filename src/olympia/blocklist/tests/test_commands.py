@@ -12,8 +12,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 
-from ..models import Block, BlockVersion
-
 
 class TestExportBlocklist(TestCase):
     def test_command(self):

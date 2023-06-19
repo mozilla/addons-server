@@ -409,8 +409,8 @@
       {% endif %}
 
       <li>
-        {% if addon.blocklistsubmission_set  %}
-          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission_set[0].id) }}" class="button"
+        {% if addon.blocklistsubmissions  %}
+          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmissions[0].id) }}" class="button"
              id="edit_addon_blocklistsubmission" type="button">View Active Blocklist Submission</a>
         {% endif %}
         {% if not addon.block %}

@@ -1809,7 +1809,7 @@ class Addon(OnChangeMixin, ModelBase):
         return Block.objects.filter(guid=self.addonguid_guid).last()
 
     @property
-    def blocklistsubmission_set(self):
+    def blocklistsubmissions(self):
         from olympia.blocklist.models import BlocklistSubmission
 
         return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid)

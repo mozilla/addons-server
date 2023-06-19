@@ -4474,8 +4474,8 @@ class TestReview(ReviewBase):
 
         new_block_url = reverse(
             'admin:blocklist_blocklistsubmission_add'
-        ) + '?guids={}&changed_version_ids={}'.format(
-            self.addon.guid, ','.join((str(old_version.pk), str(self.version.pk)))
+        ) + '?guids={}&v={}&v={}'.format(
+            self.addon.guid, old_version.pk, self.version.pk
         )
         self.assertRedirects(response, new_block_url)
 

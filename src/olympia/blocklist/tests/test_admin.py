@@ -124,15 +124,14 @@ class TestBlockAdmin(TestCase):
         response = self.client.post(url, follow=True)
         self.assertRedirects(response, self.submission_url + f'?guids={addon.guid}')
 
-        # And version ids are expanded and passed along
+        # And version ids are passed along
         response = self.client.post(
             url + f'?v={version.pk}&v={second_version.pk}', follow=True
         )
         self.assertRedirects(
             response,
             self.submission_url
-            + f'?guids={addon.guid}'
-            + f'&changed_version_ids={version.version},{second_version.version}',
+            + f'?guids={addon.guid}&v={version.id}&v={second_version.id}',
         )
         assert not response.context['messages']
 

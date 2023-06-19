@@ -114,8 +114,6 @@ class BlockAdminAddMixin:
     def add_from_addon_pk_view(self, request, pk, **kwargs):
         addon = get_object_or_404(Addon.unfiltered, pk=pk or kwargs.get('pk'))
         get_params = request.GET.copy()
-        if changed_version_ids := get_params.pop('v', None):
-            get_params['changed_version_ids'] = list(changed_version_ids)
 
         return redirect(
             reverse('admin:blocklist_blocklistsubmission_add')
@@ -338,15 +336,17 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         guids_data = self.get_value('guids', request)
         if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
-            initial = {key: values for key, values in request.GET.items()}
+            initial = {key: values for key, values in request.GET.items() if key != 'v'}
+            if version_ids := request.GET.getlist('v'):
+                # `v` can contain multiple version ids
+                initial['changed_version_ids'] = version_ids
             initial.update(**{'input_guids': guids_data})
             if 'action' in request.POST:
                 initial['action'] = request.POST['action']
             form = MultiBlockForm(initial=initial)
         elif request.method == 'POST':
-            form_data = request.POST.copy()
             # Otherwise, if its a POST try to process the form.
-            form = MultiBlockForm(form_data)
+            form = MultiBlockForm(request.POST)
             if form.is_valid():
                 # Save the object so we have the guids
                 obj = form.save(commit=False)
@@ -355,7 +355,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 self.log_addition(request, obj, [{'added': {}}])
                 return self.response_add(request, obj)
             else:
-                guids_data = form_data.get('input_guids')
+                guids_data = request.POST.get('input_guids')
         else:
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')

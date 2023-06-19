@@ -29,11 +29,13 @@ class BlockSerializer(AMOModelSerializer):
         )
 
     def get_versions(self, obj):
-        return list(
-            obj.blockversion_set.order_by('version__version').values_list(
-                'version__version', flat=True
+        if not hasattr(obj, '_blockversion_set_qs_values_list'):
+            obj._blockversion_set_qs_values_list = list(
+                obj.blockversion_set.order_by('version__version').values_list(
+                    'version__version', flat=True
+                )
             )
-        )
+        return obj._blockversion_set_qs_values_list
 
     def get_min_version(self, obj):
         return versions[0] if (versions := self.get_versions(obj)) else ''

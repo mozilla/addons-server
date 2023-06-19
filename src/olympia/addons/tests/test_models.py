@@ -1853,22 +1853,22 @@ class TestAddonModels(TestCase):
         AddonGUID.objects.create(addon=addon, guid='not-a-guid')
         assert addon.block == block
 
-    def test_blocklistsubmission_set_property(self):
+    def test_blocklistsubmissions_property(self):
         addon = Addon.objects.get(id=3615)
-        assert not addon.blocklistsubmission_set.exists()
+        assert not addon.blocklistsubmissions.exists()
 
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid, updated_by=user_factory()
         )
-        assert list(addon.blocklistsubmission_set) == [submission]
+        assert list(addon.blocklistsubmissions) == [submission]
 
         submission.update(input_guids='not-a-guid')
         submission.update(to_block=[{'guid': 'not-a-guid'}])
-        assert not addon.blocklistsubmission_set.exists()
+        assert not addon.blocklistsubmissions.exists()
 
         addon.delete()
         AddonGUID.objects.create(addon=addon, guid='not-a-guid')
-        assert list(addon.blocklistsubmission_set) == [submission]
+        assert list(addon.blocklistsubmissions) == [submission]
 
 
 class TestAddonUser(TestCase):
