@@ -121,26 +121,27 @@ class BlocklistSubmissionForm(AMOModelForm):
                 load_full_objects=load_full_objects,
                 filter_existing=is_add_change,
             )
-            if load_full_objects:
-                Block.preload_addon_versions(objects['blocks'])
             objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
 
             if changed_version_ids_field := self.fields.get('changed_version_ids'):
                 changed_version_ids_field.choices = _get_version_choices(
                     objects['blocks'],
+                    # ^ is XOR
+                    # - for add action it allows the version when it is NOT blocked
+                    # - for delete action it allows the version when it IS blocked
                     lambda v: (v.is_blocked ^ is_add_change)
                     and not v.blocklist_submission_id,
                 )
+                self.changed_version_ids_choices = [
+                    v_id
+                    for _guid, opts in changed_version_ids_field.choices
+                    for (v_id, _text) in opts
+                ]
                 if not data and 'changed_version_ids' not in (self.initial or {}):
                     # preselect all the options
-                    flattened_choices = [
-                        v_id
-                        for _guid, opts in changed_version_ids_field.choices
-                        for (v_id, _text) in opts
-                    ]
                     self.initial = {
                         **(self.initial or {}),
-                        'changed_version_ids': flattened_choices,
+                        'changed_version_ids': self.changed_version_ids_choices,
                     }
             for key, value in objects.items():
                 setattr(self, key, value)

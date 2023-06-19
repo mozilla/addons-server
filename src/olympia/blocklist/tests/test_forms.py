@@ -22,25 +22,32 @@ class TestBlocklistSubmissionForm(TestCase):
         self.another_new_addon = addon_factory(
             guid='another@new',
             average_daily_users=100000,
-            version_kw={'version': '34.545'},
         )
-        existing_addon = addon_factory(guid='partial@existing')
-        version_factory(addon=existing_addon)
-        self.existing_block_fully_blocked = block_factory(
-            addon=existing_addon,
-            updated_by=user_factory(),
-        )
-        self.existing_block_partially_blocked = block_factory(
-            addon=addon_factory(
-                guid='full@existing',
-                average_daily_users=99,
-                version_kw={'version': '10'},
-            ),
-            updated_by=user_factory(),
-        )
-        version_factory(addon=self.existing_block_partially_blocked.addon)
 
-    def test_changed_version_ids_choices(self):
+        self.full_existing_addon = addon_factory(guid='full@existing')
+        self.full_existing_addon_v1 = self.full_existing_addon.current_version
+        self.full_existing_addon_v2 = version_factory(addon=self.full_existing_addon)
+        self.existing_block_full = block_factory(
+            addon=self.full_existing_addon,
+            updated_by=user_factory(),
+        )
+
+        self.partial_existing_addon = addon_factory(
+            guid='partial@existing',
+            average_daily_users=99,
+        )
+        self.partial_existing_addon_v_blocked = (
+            self.partial_existing_addon.current_version
+        )
+        self.existing_block_partial = block_factory(
+            addon=self.partial_existing_addon,
+            updated_by=user_factory(),
+        )
+        self.partial_existing_addon_v_notblocked = version_factory(
+            addon=self.partial_existing_addon
+        )
+
+    def test_changed_version_ids_choices_add_action(self):
         block_admin = BlocklistSubmissionAdmin(
             model=BlocklistSubmission, admin_site=admin_site
         )
@@ -50,8 +57,8 @@ class TestBlocklistSubmissionForm(TestCase):
         data = {
             'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
-            f'{self.existing_block_fully_blocked.guid}\n'
-            f'{self.existing_block_partially_blocked.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
         }
         form = Form(data=data)
@@ -66,11 +73,11 @@ class TestBlocklistSubmissionForm(TestCase):
                 ],
             ),
             (
-                self.existing_block_partially_blocked.guid,
+                self.existing_block_partial.guid,
                 [
                     (
-                        self.existing_block_partially_blocked.addon.current_version.id,
-                        self.existing_block_partially_blocked.addon.current_version.version,
+                        self.partial_existing_addon_v_notblocked.id,
+                        self.partial_existing_addon_v_notblocked.version,
                     )
                 ],
             ),
@@ -80,9 +87,81 @@ class TestBlocklistSubmissionForm(TestCase):
         form = Form(
             data={**data, 'changed_version_ids': [self.new_addon.current_version.id]}
         )
+        assert form.is_valid()
+        assert not form.errors
 
-        assert form.is_valid(), form.errors
-        form.clean()  # would raise
+        form = Form(
+            data={
+                **data,
+                'changed_version_ids': [self.partial_existing_addon_v_blocked.id],
+            }
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'changed_version_ids': [
+                f'Select a valid choice. {self.partial_existing_addon_v_blocked.id} is '
+                'not one of the available choices.'
+            ]
+        }
+
+    def test_test_changed_version_ids_choices_delete_action(self):
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site
+        )
+        request = RequestFactory().get('/')
+
+        Form = block_admin.get_form(request=request)
+        data = {
+            'action': str(BlocklistSubmission.ACTION_DELETE),
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+        }
+        form = Form(data=data)
+        assert form.fields['changed_version_ids'].choices == [
+            (
+                self.existing_block_full.guid,
+                [
+                    (
+                        self.full_existing_addon_v1.id,
+                        self.full_existing_addon_v1.version,
+                    ),
+                    (
+                        self.full_existing_addon_v2.id,
+                        self.full_existing_addon_v2.version,
+                    ),
+                ],
+            ),
+            (self.new_addon.guid, []),
+            (
+                self.existing_block_partial.guid,
+                [
+                    (
+                        self.partial_existing_addon_v_blocked.id,
+                        self.partial_existing_addon_v_blocked.version,
+                    )
+                ],
+            ),
+        ]
+        assert form.invalid_guids == ['invalid@guid']
+
+        form = Form(
+            data={**data, 'changed_version_ids': [self.full_existing_addon_v1.id]}
+        )
+        assert form.is_valid()
+        assert not form.errors
+
+        form = Form(
+            data={**data, 'changed_version_ids': [self.new_addon.current_version.id]}
+        )
+        assert not form.is_valid()
+        assert form.errors == {
+            'changed_version_ids': [
+                f'Select a valid choice. {self.new_addon.current_version.id} is not '
+                'one of the available choices.'
+            ]
+        }
 
 
 class TestMultiDeleteForm(TestCase):

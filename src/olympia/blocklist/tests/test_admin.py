@@ -175,6 +175,18 @@ class TestBlockAdmin(TestCase):
         )
 
 
+def check_checkbox(checkbox, version, is_checked, is_disabled):
+    assert checkbox.attrib['value'] == str(version.id)
+    if not is_disabled:
+        assert checkbox.value == str(version.id)
+    assert checkbox.checked is is_checked
+    assert (
+        'disabled' in checkbox.attrib
+        if is_disabled
+        else 'disabled' not in checkbox.attrib
+    ), checkbox.attrib
+
+
 class TestBlocklistSubmissionAdmin(TestCase):
     def setUp(self):
         self.submission_url = reverse('admin:blocklist_blocklistsubmission_add')
@@ -182,6 +194,93 @@ class TestBlocklistSubmissionAdmin(TestCase):
             'admin:blocklist_blocklistsubmission_changelist'
         )
         self.task_user = user_factory(id=settings.TASK_USER_ID)
+
+    def test_initial_values_from_add_from_addon_pk_view(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@')
+        ver = addon.current_version
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's inclusion in the choices
+        ver_unlisted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        # these next two versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_block = version_factory(addon=addon)
+        block_factory(addon=addon, version_ids=[ver_block.id], updated_by=user)
+        response = self.client.get(
+            self.submission_url
+            + f'?guids={addon.guid}&v={ver.pk}&v={ver_deleted.pk}&v={ver_add_subm.id}'
+            + f'&v={ver_block.id}'
+        )
+        # all the `v` values are passed to initial
+        assert response.context['form'].initial == {
+            'input_guids': addon.guid,
+            'changed_version_ids': [
+                str(ver.id),
+                str(ver_deleted.id),
+                str(ver_add_subm.id),
+                str(ver_block.id),
+            ],
+        }
+        # but the form logic filters out the invalid choices, even when in `initial`
+        assert response.context['form'].fields['changed_version_ids'].choices == [
+            (
+                addon.guid,
+                [
+                    (ver.id, ver.version),
+                    (ver_deleted.id, ver_deleted.version),
+                    (ver_unlisted.id, ver_unlisted.version),
+                ],
+            )
+        ]
+
+    def test_version_checkboxes(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver = addon.current_version
+        ver_deleted = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        ver_deleted.delete()  # shouldn't affect it's status
+        # these next two versions shouldn't be possible choices
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        ver_other = addon_factory(average_daily_users=99).current_version
+        ver_block = version_factory(addon=ver_other.addon)
+        block_factory(addon=addon, version_ids=[ver_block.id], updated_by=user)
+        response = self.client.get(
+            self.submission_url,
+            {'guids': f'{addon.guid}\n {ver_block.addon.guid}\n'},
+        )
+        doc = pq(response.content)
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 5
+        # pre-checked because available to block
+        check_checkbox(checkboxes[0], ver, True, False)
+        # pre-checked because available to block
+        check_checkbox(checkboxes[1], ver_deleted, True, False)
+        # not checked because not blocked currently, but disabled because in submission
+        check_checkbox(checkboxes[2], ver_add_subm, False, True)
+        # pre-checked because available to block
+        check_checkbox(checkboxes[3], ver_other, True, False)
+        # checked and disabled because blocked already, and this is an add action
+        check_checkbox(checkboxes[4], ver_block, True, True)
+
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -223,7 +322,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert 'Add-on GUIDs (one per line)' not in content
         assert 'guid@' in content
         assert 'Danger Danger' in content
-        assert str(addon.average_daily_users) in content
+        assert f'{addon.average_daily_users} users' in content
         assert Block.objects.count() == 0  # Check we didn't create it already
         assert 'Block History' in content
 
@@ -378,14 +477,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert f'2 Add-on GUIDs with {total_adu:,} users:' in content
         assert 'any@new' in content
         assert 'New Danger' in content
-        assert str(new_addon.average_daily_users) in content
+        assert f'{new_addon.average_daily_users} users' in content
         assert 'partial@existing' in content
         assert 'Partial Danger' in content
-        assert str(partial_addon.average_daily_users) in content
+        assert f'{partial_addon.average_daily_users} users' in content
         # but not for existing blocks already 0 - *
         assert 'full@existing' in content
         assert 'Full Danger' not in content
-        assert str(existing_and_complete.addon.average_daily_users) not in content
+        assert f'{existing_and_complete.addon.average_daily_users} users' not in content
         # no metadata for an invalid guid but it should be shown
         assert 'invalid@' in content
         # Check we didn't create the block already
@@ -411,6 +510,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
+        assert BlocklistSubmission.objects.count() == 1
         return (new_addon, existing_and_complete, partial_addon, existing_and_partial)
 
     def _test_add_multiple_verify_blocks(
@@ -644,9 +744,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         content = response.content.decode('utf-8')
         # This metadata should exist
         assert new_addon.guid in content
-        assert str(new_addon.average_daily_users) in content
+        assert f'{new_addon.average_daily_users} users' in content
         assert partial_addon.guid in content
-        assert str(partial_addon.average_daily_users) in content
+        assert f'{partial_addon.average_daily_users} users' in content
         assert 'full@existing' in content
         assert 'invalid@' in content
         assert 'regex@legacy' in content
@@ -1664,6 +1764,63 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
         assert Block.objects.count() == 1
 
+    def test_not_disable_addon(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        new_addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1
+        new_addon = addon_factory(
+            guid='any@new', name='New Danger', average_daily_users=new_addon_adu
+        )
+        partial_addon_adu = new_addon_adu - 1
+        partial_addon = addon_factory(
+            guid='partial@existing',
+            name='Partial Danger',
+            average_daily_users=(partial_addon_adu),
+        )
+        block_factory(
+            guid=partial_addon.guid,
+            # should be updated to addon's adu
+            average_daily_users_snapshot=146722437,
+            updated_by=user_factory(),
+        )
+        version_factory(addon=partial_addon)
+        assert Block.objects.count() == 1
+        # Create the block submission
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
+                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'changed_version_ids': [
+                    new_addon.current_version.id,
+                    partial_addon.current_version.id,
+                ],
+                # 'disable_addon' it's a checkbox so leaving it out is False
+                'url': 'dfd',
+                'reason': 'some reason',
+                'delay_days': 0,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+
+        assert Block.objects.count() == 2
+        assert BlocklistSubmission.objects.count() == 1
+
+        new_addon_version = new_addon.current_version
+        new_addon.reload()
+        new_addon_version.file.reload()
+        assert new_addon.status != amo.STATUS_DISABLED
+        assert new_addon_version.file.status == amo.STATUS_DISABLED
+        partial_addon_version = partial_addon.current_version
+        partial_addon.reload()
+        partial_addon_version.file.reload()
+        assert partial_addon.status != amo.STATUS_DISABLED
+        assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
+
 
 class TestBlockAdminDelete(TestCase):
     def setUp(self):
@@ -1737,7 +1894,7 @@ class TestBlockAdminDelete(TestCase):
         assert 'Delete Blocks' in content
         assert 'guid@' in content
         assert 'Normal' in content
-        assert str(block_one_ver.addon.average_daily_users) in content
+        assert f'{block_one_ver.addon.average_daily_users} users' in content
         assert '{12345-6789}' in content
         # The fields only used for Add/Change submissions shouldn't be shown
         assert 'reason' not in content
@@ -1834,6 +1991,69 @@ class TestBlockAdminDelete(TestCase):
         submission.delete_block_objects()
         self._test_delete_verify(
             block_with_addon, block_no_addon, block_two_ver, has_signoff=True
+        )
+
+    def test_version_checkboxes(self):
+        # Note this is similar to the test in BlocklistSubmission for add action,
+        # but with the logic around what versions are available to select switched
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon = addon_factory(guid='guid@', average_daily_users=100)
+        ver = addon.current_version
+        ver_add_subm = version_factory(addon=addon)
+        add_submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[ver_add_subm.id]
+        )
+        other_addon = addon_factory(average_daily_users=99)
+        ver_del_subm = other_addon.current_version
+        del_submission = BlocklistSubmission.objects.create(
+            input_guids=other_addon.guid,
+            changed_version_ids=[ver_del_subm.id],
+            action=BlocklistSubmission.ACTION_DELETE,
+        )
+        ver_deleted = version_factory(addon=other_addon)
+        ver_deleted.delete()  # shouldn't affect it's status
+        ver_block = version_factory(addon=other_addon)
+        block_factory(
+            addon=addon,
+            updated_by=user,
+            version_ids=[ver_del_subm.id, ver_block.id],
+        )
+        response = self.client.get(
+            self.submission_url,
+            {
+                'guids': f'{addon.guid}\n {other_addon.guid}\n',
+                'action': BlocklistSubmission.ACTION_DELETE,
+            },
+        )
+        doc = pq(response.content)
+        checkboxes = doc('input[name=changed_version_ids]')
+
+        assert len(checkboxes) == 5
+        # not checked, and disabled, because not blocked currently
+        check_checkbox(checkboxes[0], ver, False, True)
+        # not checked because not blocked currently, but disabled because in submission
+        check_checkbox(checkboxes[1], ver_add_subm, False, True)
+        # checked because blocked, but disabled because in a submission
+        check_checkbox(checkboxes[2], ver_del_subm, True, True)
+        # not checked, and disabled, because not blocked currently
+        check_checkbox(checkboxes[3], ver_deleted, False, True)
+        # pre-checked because blocked, and this is a delete action
+        check_checkbox(checkboxes[4], ver_block, True, False)
+
+        submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(add_submission.id,),
+        )
+        submission_link = doc(f'li[data-version-id="{ver_del_subm.id}"] a')
+        assert submission_link.text() == 'Edit Submission'
+        assert submission_link.attr['href'] == reverse(
+            'admin:blocklist_blocklistsubmission_change',
+            args=(del_submission.id,),
         )
 
     def test_edit_with_delete_submission(self):

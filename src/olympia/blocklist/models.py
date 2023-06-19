@@ -140,22 +140,24 @@ class Block(ModelBase):
         addons = list(cls.get_addons_for_guids_qs(guids).using(using_db))
 
         # And then any existing block instances
-        existing_blocks = {
+        blocks = {
             block.guid: block
             for block in cls.objects.using(using_db).filter(guid__in=guids)
         }
 
         for addon in addons:
             # get the existing block object or create a new instance
-            block = existing_blocks.get(addon.guid, None)
+            block = blocks.get(addon.guid, None)
             if block:
                 # if it exists hook up the addon instance
                 block.addon = addon
             else:
                 # otherwise create a new Block
                 block = Block(addon=addon)
-                existing_blocks[block.guid] = block
-        return list(existing_blocks.values())
+                blocks[block.guid] = block
+        blocks = list(blocks.values())  # flatten to just the Block instances
+        Block.preload_addon_versions(blocks)
+        return blocks
 
 
 class BlockVersion(ModelBase):
@@ -461,12 +463,6 @@ class BlocklistSubmission(ModelBase):
             if load_full_objects
             else cls._get_fake_blocks_from_guids(all_guids)
         )
-        all_addon_version_ids_qs = Version.unfiltered.filter(
-            addon__addonguid__guid__in=all_guids
-        ).values_list('addon__addonguid__guid', 'id')
-        all_addon_version_ids = defaultdict(set)
-        for guid, version_id in all_addon_version_ids_qs:
-            all_addon_version_ids[guid].add(version_id)
 
         if len(all_guids) == 1 or not filter_existing:
             # We special case a single guid to always update it.

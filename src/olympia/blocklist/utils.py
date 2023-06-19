@@ -147,7 +147,6 @@ def save_versions_to_blocks(guids, submission, *, fields_to_set):
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
-    Block.preload_addon_versions(blocks)
     for block in blocks:
         change = bool(block.id)
         if change:
@@ -194,8 +193,9 @@ def delete_versions_from_blocks(guids, submission, *, fields_to_set):
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
-    Block.preload_addon_versions(blocks)
     for block in blocks:
+        if not block.id:
+            continue
         setattr(block, 'modified', modified_datetime)
 
         BlockVersion.objects.filter(

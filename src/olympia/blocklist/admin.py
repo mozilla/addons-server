@@ -360,7 +360,11 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         guids_data = self.get_value('guids', request)
         if guids_data and 'input_guids' not in request.POST:
             # If we get a guids param it's a redirect from input_guids_view.
-            initial = {key: values for key, values in request.GET.items() if key != 'v'}
+            initial = {
+                key: value
+                for key, value in request.GET.items()
+                if key not in ('v', 'guids')
+            }
             if version_ids := request.GET.getlist('v'):
                 # `v` can contain multiple version ids
                 initial['changed_version_ids'] = version_ids
