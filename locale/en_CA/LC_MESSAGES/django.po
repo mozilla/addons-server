@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
+"POT-Creation-Date: 2023-06-20 16:13+0000\n"
 "PO-Revision-Date: 2023-06-05 20:06+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4556,6 +4556,10 @@ msgstr "Auto-flagged due to word match"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Auto-flagged due to user restriction"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
