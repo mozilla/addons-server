@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.db.models import Exists, OuterRef
 from django.forms import widgets
 from django.forms.models import (
     BaseModelFormSet,
@@ -18,7 +19,7 @@ from olympia.amo.forms import AMOModelForm
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import ReviewActionReason, Whiteboard
+from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Whiteboard
 from olympia.versions.models import Version
 
 
@@ -110,26 +111,26 @@ class VersionsChoiceWidget(forms.SelectMultiple):
 
     actions_filters = {
         amo.CHANNEL_UNLISTED: {
-            amo.STATUS_APPROVED: (
+            amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'confirm_multiple_versions',
-            ),
-            amo.STATUS_AWAITING_REVIEW: (
+            ],
+            amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
-            ),
-            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+            ],
+            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
         },
         amo.CHANNEL_LISTED: {
-            amo.STATUS_APPROVED: (
+            amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'reject_multiple_versions',
-            ),
-            amo.STATUS_AWAITING_REVIEW: (
+            ],
+            amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
                 'reject_multiple_versions',
-            ),
-            amo.STATUS_DISABLED: ('unreject_multiple_versions',),
+            ],
+            amo.STATUS_DISABLED: ['unreject_multiple_versions'],
         },
     }
 
@@ -140,19 +141,33 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         obj = option['label']
         if getattr(self, 'versions_actions', None):
             status = obj.file.status if obj.file else None
+            # We annotate that needs_human_review property in review().
+            needs_human_review = getattr(obj, 'needs_human_review', False)
             if status == amo.STATUS_DISABLED and obj.is_blocked:
-                # Override status for blocked versions: we don't want them unrejected.
+                # Override status for blocked versions: we don't want them
+                # unrejected.
                 status = None
-            # Add our special `data-toggle` class and the right `data-value` depending
-            # on status.
+            # Add our special `data-toggle` class and the right `data-value`
+            # depending on what state the version is in.
+            actions = self.actions_filters[obj.channel].get(status, []).copy()
+            if obj.pending_rejection:
+                actions.append('clear_pending_rejection_multiple_versions')
+            if needs_human_review:
+                actions.append('clear_needs_human_review_multiple_versions')
+            # Setting needs human review is always available, even if the
+            # version has already been flagged, since we can record multiple
+            # reasons for a version to require human review.
+            actions.append('set_needs_human_review_multiple_versions')
             option['attrs']['class'] = 'data-toggle'
-            option['attrs']['data-value'] = ' '.join(
-                self.actions_filters[obj.channel].get(status, ())
-            )
+            option['attrs']['data-value'] = ' '.join(actions)
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
-        option['label'] = str(obj) + markupsafe.Markup(
-            f' - {obj.get_review_status_display(True)}' if obj else ''
+        option['label'] = (
+            str(obj)
+            + markupsafe.Markup(
+                f' - {obj.get_review_status_display(True)}' if obj else ''
+            )
+            + (' (needs human review)' if needs_human_review else '')
         )
         return option
 
@@ -318,6 +333,9 @@ class ReviewForm(forms.Form):
                 channel = self.helper.version.channel
             else:
                 channel = amo.CHANNEL_LISTED
+            needs_human_review_qs = NeedsHumanReview.objects.filter(
+                is_active=True, version=OuterRef('pk')
+            )
             self.fields['versions'].widget.versions_actions = versions_actions
             self.fields['versions'].queryset = (
                 self.helper.addon.versions(manager='unfiltered_for_relations')
@@ -326,6 +344,7 @@ class ReviewForm(forms.Form):
                 .select_related('file')
                 .select_related('autoapprovalsummary')
                 .select_related('reviewerflags')
+                .annotate(needs_human_review=Exists(needs_human_review_qs))
                 .order_by('created')
             )
             # Reset data-value depending on widget depending on actions available.
