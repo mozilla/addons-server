@@ -31,3 +31,4 @@ This endpoint returns an add-on Block from the blocklist, specified by guid or i
     :>json string|null reason: Why the add-on needed to be blocked.
     :>json object|null url: A url to the report/request that detailed why the add-on should potentially be blocked.  Typically a bug report on bugzilla.mozilla.org.  (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json string versions[]: The versions of this add-on that are blocked.
+    :>json boolean is_all_versions: Are all versions of this add-on blocked. If ``False``, some versions are not blocked.
