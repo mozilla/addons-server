@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 16:13+0000\n"
-"PO-Revision-Date: 2022-05-04 16:59+0000\n"
-"Last-Translator: safaburakerenkara15 <safaburakerenkara15@gmail.com>\n"
+"PO-Revision-Date: 2023-06-21 06:04+0000\n"
+"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -67,7 +67,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Sunucudan boş yanıt alındı. Durum: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "Uzantınız en az bir uygulama ile uyumlu olmalıdır."
 
 msgid "Unexpected server error while validating."
 msgstr "Doğrulama sırasında beklenmeyen sunucu hatası."
