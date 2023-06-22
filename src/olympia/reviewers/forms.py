@@ -154,10 +154,11 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 actions.append('clear_pending_rejection_multiple_versions')
             if needs_human_review:
                 actions.append('clear_needs_human_review_multiple_versions')
-            # Setting needs human review is always available, even if the
-            # version has already been flagged, since we can record multiple
-            # reasons for a version to require human review.
-            actions.append('set_needs_human_review_multiple_versions')
+            # Setting needs human review is available if the version is not
+            # disabled or was signed. Note that we can record multiple reasons
+            # for a version to require human review.
+            if obj.file.status != amo.STATUS_DISABLED or obj.file.is_signed:
+                actions.append('set_needs_human_review_multiple_versions')
             option['attrs']['class'] = 'data-toggle'
             option['attrs']['data-value'] = ' '.join(actions)
         # Just in case, let's now force the label to be a string (it would be
