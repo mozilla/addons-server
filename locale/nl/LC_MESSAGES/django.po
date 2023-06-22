@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 05:44+0000\n"
+"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"PO-Revision-Date: 2023-06-21 07:04+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -4603,6 +4603,10 @@ msgstr "Automatisch gelabeld vanwege woordovereenkomst"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Automatisch gelabeld vanwege gebruikersbeperking"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s bevat een niet-alfanumeriek teken."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

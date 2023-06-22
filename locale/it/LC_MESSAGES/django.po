@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 04:49+0000\n"
+"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"PO-Revision-Date: 2023-06-20 16:33+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4670,6 +4670,10 @@ msgstr "Contrassegnato automaticamente per corrispondenza con parole"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Contrassegnato automaticamente a causa di restrizioni utente"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s contiene un carattere non alfanumerico."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

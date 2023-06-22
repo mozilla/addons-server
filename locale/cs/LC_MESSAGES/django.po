@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-11 10:09+0000\n"
+"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"PO-Revision-Date: 2023-06-20 18:58+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4593,6 +4593,10 @@ msgstr "Automaticky označeno na kontrolu z důvodu shody slov"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Automatické označení z důvodu omezení uživatele"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s obsahuje nealfanumerický znak."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

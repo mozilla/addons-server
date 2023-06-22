@@ -7296,6 +7296,12 @@ class TestBrowserMapping(TestCase):
             extension_id='some-other-extension-id-2',
             browser=0,
         )
+        # Shouldn't show up because the add-on has been disabled by the user.
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(disabled_by_user=True),
+            extension_id='some-other-extension-id-3',
+            browser=CHROME,
+        )
         # - 1 for counting the number of results
         # - 1 for fetching the results of the first (and only) page
         with self.assertNumQueries(2):

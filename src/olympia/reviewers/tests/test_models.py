@@ -1698,7 +1698,7 @@ class TestNeedsHumanReview(TestCase):
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
         activity = ActivityLog.objects.for_versions(self.version).get()
-        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
         assert activity.user.pk == settings.TASK_USER_ID
 
     def test_save_new_record_activity_with_core_get_user(self):
@@ -1710,7 +1710,7 @@ class TestNeedsHumanReview(TestCase):
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
         activity = ActivityLog.objects.for_versions(self.version).get()
-        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
         assert activity.user.pk == self.user.pk
 
     def test_save_existing_does_not_record_an_activity(self):

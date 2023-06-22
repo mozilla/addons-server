@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Exists, OuterRef, Q
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
@@ -480,6 +480,9 @@ def review(request, addon, channel=None):
         amo.messages.warning(request, 'Self-reviews are not allowed.')
         return redirect(reverse('reviewers.dashboard'))
 
+    needs_human_review_qs = NeedsHumanReview.objects.filter(
+        is_active=True, version=OuterRef('pk')
+    )
     # Queryset to be paginated for versions. We use the default ordering to get
     # most recently created first (Note that the template displays each page
     # in reverse order, older first).
@@ -493,6 +496,9 @@ def review(request, addon, channel=None):
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
         .select_related('blockversion')
+        # Prefetch needshumanreview existence into a property that the
+        # VersionsChoiceWidget will use.
+        .annotate(needs_human_review=Exists(needs_human_review_qs))
         # Prefetch scanner results and related rules...
         .prefetch_related('scannerresults')
         .prefetch_related('scannerresults__matched_rules')
@@ -643,7 +649,6 @@ def review(request, addon, channel=None):
     versions_pending_rejection_qs = versions_qs.filter(
         reviewerflags__pending_rejection__isnull=False
     )
-    has_versions_pending_rejection = versions_pending_rejection_qs.exists()
     # We want to notify the reviewer if there are versions needing extra
     # attention that are not present in the versions history (which is
     # paginated).
@@ -718,7 +723,6 @@ def review(request, addon, channel=None):
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,
-        has_versions_pending_rejection=has_versions_pending_rejection,
         important_changes_log=important_changes_log,
         is_admin=is_admin,
         language_dict=dict(settings.LANGUAGES),

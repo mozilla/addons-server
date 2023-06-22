@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 18:42+0000\n"
+"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"PO-Revision-Date: 2023-06-21 00:33+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -4584,6 +4584,10 @@ msgstr "Automatiskt flaggad på grund av ordmatchning"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Automatiskt flaggad på grund av användarbegränsning"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s innehåller ett icke-alfanumeriskt tecken."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

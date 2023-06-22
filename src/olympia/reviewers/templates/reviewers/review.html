@@ -263,13 +263,6 @@
 
     {% if is_admin %}
     <ul class="admin_only">
-      {% if not addon.is_deleted and version %}
-        <li>
-          <button data-api-url="{{ drf_url('reviewers-addon-set-needs-human-review', addon.pk) }}"
-                  data-api-data="{&quot;version&quot;: {{ version.pk }}}"
-                  id="set_needs_human_review" type="button">Set "Needs Human Review"</button>
-        </li>
-      {% endif %}
       <li {% if not version.due_date %}class="hidden"{% endif %}>
         <label for="due_date_update">Change latest version review due date</label>
         <input type="datetime-local" id="due_date_update"
@@ -389,13 +382,6 @@
                       id="clear_auto_approval_delayed_until_unlisted" class="oneoff" type="button">Clear Unlisted Auto-Approval Extra Delay</button>
             </li>
           {% endif %}
-        {% endif %}
-
-        {% if has_versions_pending_rejection %}
-          <li>
-              <button data-api-url="{{ drf_url('reviewers-addon-clear-pending-rejections', addon.pk) }}"
-                      id="clear_pending_rejections" class="oneoff" type="button">Clear pending rejections</button>
-          </li>
         {% endif %}
 
         {% if addon.needs_admin_theme_review %}

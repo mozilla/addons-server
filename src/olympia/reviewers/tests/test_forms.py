@@ -61,19 +61,29 @@ class TestReviewForm(TestCase):
         assert force_str(action).startswith('This will reject this version')
 
     def test_actions_addon_status_null(self):
-        # If the add-on is null we only show reply, comment and super review.
+        # If the add-on is null we only show set needs human review, reply,
+        # comment.
         self.grant_permission(self.request.user, 'Addons:Review')
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
         self.version.update(human_review_date=datetime.now())
-        assert list(actions.keys()) == ['reply', 'comment']
+        assert list(actions.keys()) == [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
 
-        # If an admin reviewer we also show unreject_latest_version
+        # If an admin reviewer we also show unreject_latest_version and clear
+        # pending rejection/needs human review (though the versions form would
+        # be empty for the last 2 here).
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
             'unreject_latest_version',
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -92,11 +102,13 @@ class TestReviewForm(TestCase):
             'reject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
 
-        # If an admin reviewer we also show unreject_multiple_versions
+        # If an admin reviewer we also show unreject_multiple_versions,
+        # clear pending rejections/clear needs human review.
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
@@ -105,6 +117,9 @@ class TestReviewForm(TestCase):
             'unreject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -116,7 +131,11 @@ class TestReviewForm(TestCase):
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
-        assert list(actions.keys()) == ['reply', 'comment']
+        assert list(actions.keys()) == [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
 
     def test_actions_no_pending_files(self):
         # If the add-on has no pending files we only show
@@ -127,6 +146,7 @@ class TestReviewForm(TestCase):
         )
         assert list(actions.keys()) == [
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -136,7 +156,11 @@ class TestReviewForm(TestCase):
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
-        assert list(actions.keys()) == ['reply', 'comment']
+        assert list(actions.keys()) == [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
 
     def test_reasons(self):
         self.reason_a = ReviewActionReason.objects.create(
@@ -321,7 +345,14 @@ class TestReviewForm(TestCase):
         assert form.fields['versions'].required is False
         assert list(form.fields['versions'].queryset) == [self.addon.current_version]
 
-    def test_versions_queryset_contains_pending_files_for_listed(self):
+    def test_versions_queryset_contains_pending_files_for_listed(
+        self, expected_select_data_value=None
+    ):
+        if expected_select_data_value is None:
+            expected_select_data_value = [
+                'reject_multiple_versions',
+                'set_needs_human_review_multiple_versions',
+            ]
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
         # The queryset should contain both pending, rejected, and approved versions.
@@ -367,55 +398,72 @@ class TestReviewForm(TestCase):
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
         assert select.attrib.get('class') == 'data-toggle'
-        assert select.attrib.get('data-value') == 'reject_multiple_versions'
+        assert select.attrib.get('data-value').split(' ') == expected_select_data_value
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
         assert len(doc('option')) == 4
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
-        assert option1.attrib.get('data-value') == (
+        assert option1.attrib.get('data-value').split(' ') == [
             # That version is approved.
-            'block_multiple_versions reject_multiple_versions'
-        )
+            'block_multiple_versions',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option1.attrib.get('value') == str(self.version.pk)
 
         option2 = doc('option[value="%s"]' % pending_version.pk)[0]
         assert option2.attrib.get('class') == 'data-toggle'
-        assert option2.attrib.get('data-value') == (
+        assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
-            'approve_multiple_versions reject_multiple_versions'
-        )
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option2.attrib.get('value') == str(pending_version.pk)
 
         option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
         assert option3.attrib.get('class') == 'data-toggle'
-        assert option3.attrib.get('data-value') == (
+        assert option3.attrib.get('data-value').split(' ') == [
             # That version is rejected.
-            'unreject_multiple_versions'
-        )
+            'unreject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        assert option4.attrib.get('data-value') == (
+        assert option4.attrib.get('data-value').split(' ') == [
             # That version is blocked, so unreject_multiple_versions is unavailable.
-            ''
-        )
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
         # No change
-        self.test_versions_queryset_contains_pending_files_for_listed()
+        self.test_versions_queryset_contains_pending_files_for_listed(
+            expected_select_data_value=[
+                'reject_multiple_versions',
+                'clear_pending_rejection_multiple_versions',
+                'clear_needs_human_review_multiple_versions',
+                'set_needs_human_review_multiple_versions',
+            ]
+        )
 
     def test_versions_queryset_contains_pending_files_for_unlisted(
         self,
-        select_data_value=(
-            'approve_multiple_versions reject_multiple_versions '
-            'block_multiple_versions confirm_multiple_versions'
-        ),
+        expected_select_data_value=None,
     ):
+        if expected_select_data_value is None:
+            expected_select_data_value = [
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+                'block_multiple_versions',
+                'confirm_multiple_versions',
+                'set_needs_human_review_multiple_versions',
+            ]
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
         # The queryset should contain both pending, rejected, and approved versions.
@@ -469,51 +517,61 @@ class TestReviewForm(TestCase):
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
         assert select.attrib.get('class') == 'data-toggle'
-        assert select.attrib.get('data-value') == select_data_value
+        assert select.attrib.get('data-value').split(' ') == expected_select_data_value
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
         assert len(doc('option')) == 4
         option1 = doc('option[value="%s"]' % self.version.pk)[0]
         assert option1.attrib.get('class') == 'data-toggle'
-        assert option1.attrib.get('data-value') == (
+        assert option1.attrib.get('data-value').split(' ') == [
             # That version is approved.
-            'block_multiple_versions confirm_multiple_versions'
-        )
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option1.attrib.get('value') == str(self.version.pk)
 
         option2 = doc('option[value="%s"]' % pending_version.pk)[0]
         assert option2.attrib.get('class') == 'data-toggle'
-        assert option2.attrib.get('data-value') == (
+        assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
-            'approve_multiple_versions reject_multiple_versions'
-        )
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option2.attrib.get('value') == str(pending_version.pk)
 
         option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
         assert option3.attrib.get('class') == 'data-toggle'
-        assert option3.attrib.get('data-value') == (
+        assert option3.attrib.get('data-value').split(' ') == [
             # That version is rejected.
-            'unreject_multiple_versions'
-        )
+            'unreject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        assert option4.attrib.get('data-value') == (
+        assert option4.attrib.get('data-value').split(' ') == [
             # That version is blocked, so unreject_multiple_versions is unavailable.
-            ''
-        )
+            'set_needs_human_review_multiple_versions',
+        ]
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
         self.test_versions_queryset_contains_pending_files_for_unlisted(
-            select_data_value=(
-                'approve_multiple_versions reject_multiple_versions '
-                'unreject_multiple_versions block_multiple_versions '
-                'confirm_multiple_versions'
-            )
+            expected_select_data_value=[
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+                'unreject_multiple_versions',
+                'block_multiple_versions',
+                'confirm_multiple_versions',
+                'clear_pending_rejection_multiple_versions',
+                'clear_needs_human_review_multiple_versions',
+                'set_needs_human_review_multiple_versions',
+            ]
         )
 
     def test_versions_required(self):

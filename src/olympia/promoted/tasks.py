@@ -22,7 +22,9 @@ NOTABLE_TIER_SLUG = 'notable'
 def add_high_adu_extensions_to_notable():
     """Add add-ons with high ADU to Notable promoted group."""
     try:
-        lower_adu_threshold = UsageTier.objects.get(slug='notable').lower_adu_threshold
+        lower_adu_threshold = UsageTier.objects.get(
+            slug=NOTABLE_TIER_SLUG
+        ).lower_adu_threshold
     except UsageTier.DoesNotExist:
         lower_adu_threshold = None
     if not lower_adu_threshold:
