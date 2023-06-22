@@ -4,13 +4,6 @@ from django.db import migrations, models
 from olympia.amo.utils import slugify
 
 
-def provide_default_slug(apps, schema_editor):
-    UsageTier = apps.get_model('reviewers', 'UsageTier')
-    for tier in UsageTier.objects.all():
-        tier.slug = slugify(tier.name)
-        tier.save()
-
-
 class Migration(migrations.Migration):
     dependencies = [
         ('reviewers', '0028_usagetier'),
@@ -47,5 +40,4 @@ class Migration(migrations.Migration):
             name='upper_adu_threshold',
             field=models.IntegerField(blank=True, default=None, null=True),
         ),
-        migrations.RunPython(provide_default_slug, lambda *args: None),
     ]
