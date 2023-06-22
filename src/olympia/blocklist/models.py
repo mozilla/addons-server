@@ -254,6 +254,13 @@ class BlocklistSubmission(ModelBase):
         help_text='The submission will not be published into blocks before this time.',
     )
     disable_addon = models.BooleanField(default=True)
+    from_reviewer_tools = models.BooleanField(
+        help_text='When enabled, this submission was created via a reviewer tools '
+        'rejection. If this is a delayed submission it will be wait to be published '
+        'until after all changed versions are rejected. If the delayed rejection is '
+        'cancelled the affected versions will not be blocked.',
+        default=False,
+    )
 
     objects = BlocklistSubmissionManager()
 
@@ -495,11 +502,15 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
 
-        fields_to_set = [
-            'url',
-            'reason',
-            'updated_by',
-        ]
+        fields_to_set = (
+            [
+                'url',
+                'reason',
+                'updated_by',
+            ]
+            if not self.from_reviewer_tools
+            else ['updated_by']
+        )
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
         for guids_chunk in chunked(all_guids_to_block, 100):

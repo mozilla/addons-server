@@ -8,12 +8,18 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils import translation
 
+import freezegun
 import pytest
 import responses
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken, ReviewActionReasonLog
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
+from olympia.addons.models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonGUID,
+    AddonReviewerFlags,
+)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
@@ -24,7 +30,7 @@ from olympia.amo.tests import (
     version_review_flags_factory,
 )
 from olympia.amo.utils import send_mail
-from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.constants.promoted import (
     LINE,
     NOTABLE,
@@ -2346,6 +2352,70 @@ class TestReviewHelper(TestReviewHelperBase):
         assert ReviewerSubscription.objects.filter(
             addon=self.addon, user=self.user, channel=self.review_version.channel
         ).exists()
+
+    def _test_reject_multiple_versions_create_block(self, delay_days=None):
+        # the ancient fixture doesn't have an AddonGUID instance.
+        AddonGUID.objects.create(addon=self.addon, guid=self.addon.guid)
+        old_version = self.review_version
+        old_version.file.update(is_signed=True)
+        self.review_version = version_factory(addon=self.addon, version='3.0')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+
+        # Safeguards.
+        assert isinstance(self.helper.handler, ReviewFiles)
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.is_public()
+        assert BlocklistSubmission.objects.count() == 0
+
+        data = self.get_data().copy()
+        data['versions'] = self.addon.versions.all()
+        data['create_block'] = True
+        if delay_days:
+            data['delayed_rejection'] = True
+            data['delayed_rejection_days'] = delay_days
+        self.helper.set_data(data)
+        self.helper.handler.reject_multiple_versions()
+
+        self.addon.reload()
+        self.file.reload()
+
+        assert len(mail.outbox) == 1
+
+        assert BlocklistSubmission.objects.count() == 1
+        # review_version wasn't signed
+        submission = BlocklistSubmission.objects.get()
+        assert submission.changed_version_ids == [old_version.id]
+        assert submission.from_reviewer_tools is True
+        assert submission.disable_addon is False
+        return submission
+
+    @override_settings(DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD=6000001)
+    def test_reject_multiple_versions_create_block_no_signoff(self):
+        submission = self._test_reject_multiple_versions_create_block()
+        assert submission.delayed_until is None
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert Block.objects.get().guid == self.addon.guid
+        assert (
+            BlockVersion.objects.get().version.id == submission.changed_version_ids[0]
+        )
+
+    def test_reject_multiple_versions_create_block_signoff_needed(self):
+        submission = self._test_reject_multiple_versions_create_block()
+        assert submission.delayed_until is None
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
+        assert not Block.objects.exists()
+        assert not BlockVersion.objects.exists()
+
+    @override_settings(DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD=6000001)
+    def test_reject_multiple_versions_create_block_delayed(self):
+        with freezegun.freeze_time():
+            delay_datetime = datetime.now() + timedelta(days=1)
+            submission = self._test_reject_multiple_versions_create_block(delay_days=1)
+        assert submission.delayed_until == delay_datetime
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        assert not Block.objects.exists()
+        assert not BlockVersion.objects.exists()
 
     def test_unreject_latest_version_approved_addon(self):
         first_version = self.review_version

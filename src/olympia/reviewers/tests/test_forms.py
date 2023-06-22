@@ -529,6 +529,7 @@ class TestReviewForm(TestCase):
             # That version is approved.
             'block_multiple_versions',
             'confirm_multiple_versions',
+            'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
         ]
         assert option1.attrib.get('value') == str(self.version.pk)

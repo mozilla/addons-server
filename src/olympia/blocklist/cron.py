@@ -4,7 +4,9 @@ import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia import amo
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
+from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
 from .mlbf import MLBF
@@ -106,9 +108,59 @@ def _upload_mlbf_to_remote_settings(*, force_base=False):
 
 
 def process_blocklistsubmissions():
-    qs = BlocklistSubmission.objects.filter(
-        signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_APPROVED,
-        delayed_until__lte=datetime.now(),
+    submissions = list(
+        BlocklistSubmission.objects.filter(
+            signoff_state__in=BlocklistSubmission.SIGNOFF_STATES_APPROVED,
+            delayed_until__lte=datetime.now(),
+        )
     )
-    for sub in qs:
+    # collect all the versions in one query for efficiency
+    all_version_ids = [
+        vid
+        for sub in submissions
+        for vid in sub.changed_version_ids
+        if sub.from_reviewer_tools
+    ]
+    all_versions = list(
+        Version.unfiltered.filter(id__in=all_version_ids)
+        .select_related('reviewerflags')
+        .no_transforms()
+        if all_version_ids
+        else ()
+    )
+    for sub in submissions:
+        if sub.from_reviewer_tools:
+            # This submission has to wait for a delayed rejection
+            # First, check if some of the versions are not rejected and have had the
+            # pending rejection flag cleared. If so remove them from the submission
+            ids_cleared_pending_rejection = {
+                ver.id
+                for ver in all_versions
+                if ver.id in sub.changed_version_ids
+                and not ver.pending_rejection
+                and ver.file.status != amo.STATUS_DISABLED
+            }
+            if ids_cleared_pending_rejection:
+                if ids_cleared_pending_rejection == set(sub.changed_version_ids):
+                    # if all the versions have been cleared, just delete the submission
+                    sub.delete()
+                    # nothing to do any longer
+                    continue
+                else:
+                    # otherwise drop just those versions from the submission
+                    sub.update(
+                        changed_version_ids=sorted(
+                            set(sub.changed_version_ids) - ids_cleared_pending_rejection
+                        )
+                    )
+
+            # if there are still versions pending rejection we skip and try later
+            if any(
+                version.pending_rejection
+                for version in all_versions
+                if version.id in sub.changed_version_ids
+            ):
+                continue
+            # otherwise we're good to proccess the submission into Blocks
+
         process_blocklistsubmission.delay(sub.id)

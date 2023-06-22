@@ -6,16 +6,17 @@ from unittest import mock
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
-import pytest
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
+from olympia import amo
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
     block_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.blocklist.cron import (
     get_blocklist_last_modified_time,
@@ -26,6 +27,7 @@ from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.lib.remote_settings import RemoteSettings
+from olympia.versions.models import VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
 
 
@@ -368,47 +370,108 @@ class TestUploadToRemoteSettings(TestCase):
             self.statsd_incr_mock.assert_called()
 
 
-@pytest.mark.django_db
-def test_process_blocklistsubmissions():
-    user = user_factory()
-    user_factory(id=settings.TASK_USER_ID)
-    past_guid = 'past@'
-    past_signoff_guid = 'signoff@'
-    future_guid = 'future@'
-    addon_factory(
-        guid=past_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1,
-    )
-    past = BlocklistSubmission.objects.create(
-        input_guids=past_guid,
-        updated_by=user,
-        delayed_until=datetime.now() - timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
-    )
-    addon_factory(
-        guid=past_signoff_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
-    )
-    past_signoff = BlocklistSubmission.objects.create(
-        input_guids=past_signoff_guid,
-        updated_by=user,
-        delayed_until=datetime.now() - timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
-        signoff_by=user_factory(),
-    )
-    future = BlocklistSubmission.objects.create(
-        input_guids=future_guid,
-        updated_by=user,
-        delayed_until=datetime.now() + timedelta(days=1),
-        signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
-    )
+class TestProcessBlocklistSubmissions(TestCase):
+    def test_basic(self):
+        user = user_factory()
+        user_factory(id=settings.TASK_USER_ID)
+        past_guid = 'past@'
+        past_signoff_guid = 'signoff@'
+        future_guid = 'future@'
+        addon_factory(
+            guid=past_guid,
+            average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1,
+        )
+        past = BlocklistSubmission.objects.create(
+            input_guids=past_guid,
+            updated_by=user,
+            delayed_until=datetime.now() - timedelta(days=1),
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        )
+        addon_factory(
+            guid=past_signoff_guid,
+            average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
+        )
+        past_signoff = BlocklistSubmission.objects.create(
+            input_guids=past_signoff_guid,
+            updated_by=user,
+            delayed_until=datetime.now() - timedelta(days=1),
+            signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            signoff_by=user_factory(),
+        )
+        future = BlocklistSubmission.objects.create(
+            input_guids=future_guid,
+            updated_by=user,
+            delayed_until=datetime.now() + timedelta(days=1),
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        )
 
-    process_blocklistsubmissions()
+        process_blocklistsubmissions()
 
-    assert past.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
-    assert past_signoff.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
-    assert future.reload().signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
+        assert past.reload().signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        assert past_signoff.reload().signoff_state == (
+            BlocklistSubmission.SIGNOFF_PUBLISHED
+        )
+        assert future.reload().signoff_state == BlocklistSubmission.SIGNOFF_AUTOAPPROVED
 
-    assert Block.objects.filter(guid=past_guid).exists()
-    assert Block.objects.filter(guid=past_signoff_guid).exists()
-    assert not Block.objects.filter(guid=future_guid).exists()
+        assert Block.objects.filter(guid=past_guid).exists()
+        assert Block.objects.filter(guid=past_signoff_guid).exists()
+        assert not Block.objects.filter(guid=future_guid).exists()
+
+    def test_from_reviewer_tools(self):
+        mock_point = 'olympia.blocklist.cron.process_blocklistsubmission.delay'
+        addon = addon_factory()
+        user = user_factory()
+        ver1 = addon.current_version
+        version_review_flags_factory(version=ver1, pending_rejection=datetime.now())
+        ver2 = version_factory(addon=addon)
+        version_review_flags_factory(version=ver2, pending_rejection=datetime.now())
+        ver3 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_review_flags_factory(version=ver3, pending_rejection=datetime.now())
+
+        submission_two_ver = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            updated_by=user,
+            delayed_until=datetime.now(),
+            changed_version_ids=[ver1.id, ver2.id],
+            from_reviewer_tools=True,
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        )
+        submission_one_ver = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            updated_by=user,
+            delayed_until=datetime.now(),
+            changed_version_ids=[ver3.id],
+            from_reviewer_tools=True,
+            signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        )
+
+        with mock.patch(mock_point) as delay_mock:
+            with self.assertNumQueries(2):
+                # One for the BlocklistSubmissions; one for the Versions
+                process_blocklistsubmissions()
+
+            # all the versions are still pending rejection so shouldn't do anything
+            delay_mock.assert_not_called()
+            # and no changes either
+            assert submission_two_ver.reload().changed_version_ids == [ver1.id, ver2.id]
+            assert submission_one_ver.reload().changed_version_ids == [ver3.id]
+
+            # clear pending rejection flags
+            VersionReviewerFlags.objects.all().update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
+            # make ver1 rejected, leaving ver2 & ver3 approved
+            ver1.file.update(status=amo.STATUS_DISABLED)
+            with self.assertNumQueries(5):
+                # 3 extra for an update (two_ver) and a delete + fk (one_ver)
+                process_blocklistsubmissions()
+
+            delay_mock.assert_called_once_with(submission_two_ver.id)
+            # ver2 was dropped from the submission because it wasn't rejected
+            assert submission_two_ver.reload().changed_version_ids == [ver1.id]
+            # and submission_one_ver was deleted because all versions weren't rejected
+            assert not BlocklistSubmission.objects.filter(
+                id=submission_one_ver.id
+            ).exists()

@@ -285,7 +285,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         delay_change = (
             'Delay',
             {
-                'fields': ('delayed_until',),
+                'fields': ('delayed_until', 'from_reviewer_tools'),
             },
         )
 
@@ -320,6 +320,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'signoff_by',
             'block_history',
             'submission_logs',
+            'from_reviewer_tools',
         ]
         if obj:
             ro_fields += [

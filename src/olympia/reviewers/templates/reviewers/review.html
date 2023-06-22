@@ -222,6 +222,13 @@
           </div>
         </div>
       </div>
+      <div class="review-actions-section data-toggle review-create-block"
+           data-value="{{ actions_create_block|join(' ') }}">
+        <div class="review-create-block-inner">
+          {{ form.create_block }}
+          {{ form.create_block.errors }}
+        </div>
+      </div>
       <div class="review-actions-section review-actions-save">
         <span class="currently_viewing_warning">
           {% trans %}

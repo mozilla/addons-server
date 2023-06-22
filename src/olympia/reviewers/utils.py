@@ -12,6 +12,7 @@ from django.utils.http import urlencode
 
 import django_tables2 as tables
 import markupsafe
+import waffle
 
 import olympia.core.logger
 from olympia import amo
@@ -21,6 +22,8 @@ from olympia.activity.utils import notify_about_activity_log, send_activity_mail
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import to_language
+from olympia.blocklist.models import BlocklistSubmission
+from olympia.blocklist.tasks import process_blocklistsubmission
 from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
@@ -560,6 +563,9 @@ class ReviewHelper:
             "This add-on didn't pass review because of the following problems:\n\n1) "
         )
 
+        # integrated block functionality is behind a waffle at the moment
+        integrated_block_enabled = waffle.switch_is_active('reviewer-block-integration')
+
         actions['public'] = {
             'method': self.handler.approve_latest_version,
             'minimal': False,
@@ -601,6 +607,12 @@ class ReviewHelper:
             'allows_reasons': True,
             'requires_reasons': not is_static_theme,
             'boilerplate_text': boilerplate_for_reject,
+            'create_block': (
+                integrated_block_enabled
+                and self.version
+                and self.version.file
+                and self.version.file.is_signed
+            ),
         }
         actions['approve_content'] = {
             'method': self.handler.approve_content,
@@ -667,6 +679,7 @@ class ReviewHelper:
             'allows_reasons': True,
             'requires_reasons': not is_static_theme,
             'boilerplate_text': boilerplate_for_reject,
+            'create_block': integrated_block_enabled,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -1039,6 +1052,30 @@ class ReviewBase:
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
 
+    def create_block(self, versions, deadline=None, now=None):
+        # safeguard that we're not blocking without human interaction
+        assert self.human_review
+
+        version_ids = [ver.id for ver in versions if ver.file.is_signed]
+        if not version_ids:
+            # Don't create the submission if there are no versions to block
+            return
+        submission = BlocklistSubmission(
+            input_guids=self.addon.guid,
+            updated_by=self.user,
+            changed_version_ids=version_ids,
+            # reason=?  # TODO: set a reason for the block
+            delayed_until=deadline,
+            created=now or datetime.now(),  # create everything with same datetime
+            from_reviewer_tools=True,
+            disable_addon=False,
+        )
+        submission.save()
+        submission.update_signoff_for_auto_approval()
+        if submission.is_submission_ready:
+            # Then launch a task to async save the block
+            process_blocklistsubmission.delay(submission.id)
+
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
         approved if it was awaiting its first review)."""
@@ -1124,6 +1161,9 @@ class ReviewBase:
 
         self.log_sandbox_message()
         log.info('Sending email for %s' % (self.addon))
+
+        if self.human_review and self.data.get('create_block'):
+            self.create_block([self.version])
 
     def process_super_review(self):
         """Mark an add-on as needing admin theme review."""
@@ -1324,10 +1364,10 @@ class ReviewBase:
             defaults=addonreviewerflags,
         )
 
-        # Assign reviewer incentive scores and send email, if it's an human
-        # reviewer: if it's not, it's coming from some automation where we
-        # don't need to notify the developer (we should already have done that
-        # before) and don't need to award points.
+        # Send email and subscribe, if it's an human reviewer: if it's not, it's coming
+        # from some automation where we don't need to notify the developer (we should
+        # already have done that before).
+        # Also create the BlocklistSubmission if selected.
         if self.human_review:
             channel = latest_version.channel
             # Send the email to the developer. We need to pass the latest
@@ -1359,6 +1399,10 @@ class ReviewBase:
             ReviewerSubscription.objects.get_or_create(
                 user=self.user, addon=self.addon, channel=latest_version.channel
             )
+            if self.data.get('create_block'):
+                self.create_block(
+                    self.data['versions'], pending_rejection_deadline, now
+                )
 
     def unreject_latest_version(self):
         """Un-reject the latest version."""

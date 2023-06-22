@@ -593,6 +593,8 @@ def review(request, addon, channel=None):
     actions_delayable = []
     # The actions for which we should display the reason select field.
     actions_reasons = []
+    # The actions for which we should display the block option too
+    actions_create_block = []
 
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
@@ -603,6 +605,8 @@ def review(request, addon, channel=None):
             actions_delayable.append(key)
         if action.get('allows_reasons', False):
             actions_reasons.append(key)
+        if action.get('create_block', False):
+            actions_create_block.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -712,6 +716,7 @@ def review(request, addon, channel=None):
         actions_delayable=actions_delayable,
         actions_full=actions_full,
         actions_reasons=actions_reasons,
+        actions_create_block=actions_create_block,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         approvals_info=approvals_info,

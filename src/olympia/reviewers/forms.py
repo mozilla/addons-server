@@ -114,6 +114,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             amo.STATUS_APPROVED: [
                 'block_multiple_versions',
                 'confirm_multiple_versions',
+                'reject_multiple_versions',
             ],
             amo.STATUS_AWAITING_REVIEW: [
                 'approve_multiple_versions',
@@ -274,6 +275,22 @@ class ReviewForm(forms.Form):
         label='days',
         min_value=1,
         max_value=99,
+    )
+    create_block = forms.BooleanField(
+        required=False,
+        initial=True,
+        widget=forms.RadioSelect(
+            choices=(
+                (
+                    True,
+                    'Block version too, after rejection',
+                ),
+                (
+                    False,
+                    'Do not add version to the Blocklist',
+                ),
+            )
+        ),
     )
     reasons = ReasonsChoiceField(
         label='Choose one or more reasons:',
