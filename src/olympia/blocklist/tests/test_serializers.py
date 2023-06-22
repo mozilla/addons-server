@@ -61,6 +61,7 @@ class TestBlockSerializer(TestCase):
                 'outgoing': get_outgoing_url('https://goo.gol'),
             },
             'versions': [version_2.version, version_4.version],
+            'is_all_versions': False,
             'created': self.block.created.isoformat()[:-7] + 'Z',
             'modified': self.block.modified.isoformat()[:-7] + 'Z',
         }
