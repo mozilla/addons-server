@@ -97,7 +97,7 @@ function initReviewActions() {
 
   var review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
-    showForm(review_checked.closest('li'), true);
+    showForm(review_checked.parentsUntil('#id_action', 'div'), true);
   }
 
   /* Review action reason stuff */
