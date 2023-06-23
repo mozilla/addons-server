@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 16:13+0000\n"
-"PO-Revision-Date: 2023-06-07 00:34+0000\n"
+"PO-Revision-Date: 2023-06-23 07:52+0000\n"
 "Last-Translator: wxie <xiewensheng@hotmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -840,7 +840,7 @@ msgid "Un-rejected"
 msgstr "撤销驳回"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "请回复为 {addon} 做 {rating}。"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4520,7 +4520,7 @@ msgstr "由于用户限制而自动标记"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s 包含非字母数字字符。"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4576,7 +4576,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "由 %(user)s 在 %(date)s 点赞 %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
