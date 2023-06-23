@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 16:13+0000\n"
-"PO-Revision-Date: 2023-06-13 08:06+0000\n"
-"Last-Translator: heyuyang5 <heyuyang5@outlook.com>\n"
+"PO-Revision-Date: 2023-06-15 02:33+0000\n"
+"Last-Translator: nancy_hugo <nancy_hugo@yeah.net>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -71,7 +71,7 @@ msgid "Unexpected server error while validating."
 msgstr "验证时发生了意外的服务器错误。"
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "请在清单中明确标记与 Firefox for Android 兼容"
 
 msgid "Finished validating {0}"
 msgstr "已完成验证 {0}"
