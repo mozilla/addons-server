@@ -11,6 +11,8 @@ from .models import Block
 class BlockSerializer(AMOModelSerializer):
     addon_name = TranslationSerializerField(source='addon.name')
     url = OutgoingURLField()
+    min_version = fields.SerializerMethodField()
+    max_version = fields.SerializerMethodField()
     versions = fields.SerializerMethodField()
     is_all_versions = fields.SerializerMethodField()
 
@@ -31,11 +33,19 @@ class BlockSerializer(AMOModelSerializer):
         )
 
     def get_versions(self, obj):
-        return list(
-            obj.blockversion_set.order_by('version__version').values_list(
-                'version__version', flat=True
+        if not hasattr(obj, '_blockversion_set_qs_values_list'):
+            obj._blockversion_set_qs_values_list = sorted(
+                obj.blockversion_set.order_by('version__version').values_list(
+                    'version__version', flat=True
+                )
             )
-        )
+        return obj._blockversion_set_qs_values_list
+
+    def get_min_version(self, obj):
+        return versions[0] if (versions := self.get_versions(obj)) else ''
+
+    def get_max_version(self, obj):
+        return versions[-1] if (versions := self.get_versions(obj)) else ''
 
     def get_is_all_versions(self, obj):
         cannot_upload_new_versions = not obj.addon or obj.addon.status in (

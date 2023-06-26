@@ -495,6 +495,7 @@ def review(request, addon, channel=None):
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
+        .select_related('blockversion')
         # Prefetch needshumanreview existence into a property that the
         # VersionsChoiceWidget will use.
         .annotate(needs_human_review=Exists(needs_human_review_qs))

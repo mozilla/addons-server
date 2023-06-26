@@ -12,7 +12,7 @@ from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.urls import reverse
 from django.utils.functional import keep_lazy_text
-from django.utils.html import escape, format_html
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
@@ -45,7 +45,6 @@ from olympia.amo.messages import DoubleSafe
 from olympia.amo.utils import remove_icons, slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
@@ -1051,31 +1050,6 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
                 gettext('There was an error with your upload. Please try again.')
             )
 
-    def check_blocklist(self, guid, version_string):
-        # check the guid/version isn't in the addon blocklist
-        block = Block.objects.filter(guid=guid).first()
-        if block and block.is_version_blocked(version_string):
-            msg = escape(
-                gettext(
-                    'Version {version} matches {block_link} for this add-on. '
-                    'You can contact {amo_admins} for additional information.'
-                )
-            )
-            formatted_msg = DoubleSafe(
-                msg.format(
-                    version=version_string,
-                    block_link=format_html(
-                        '<a href="{}">{}</a>',
-                        reverse('blocklist.block', args=[guid]),
-                        gettext('a blocklist entry'),
-                    ),
-                    amo_admins=(
-                        '<a href="mailto:amo-admins@mozilla.com">AMO Admins</a>'
-                    ),
-                )
-            )
-            raise forms.ValidationError(formatted_msg)
-
     def check_for_existing_versions(self, version_string):
         # Make sure we don't already have this version.
         existing_versions = Version.unfiltered.filter(
@@ -1111,10 +1085,6 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
                 self.cleaned_data['upload'], self.addon, user=self.request.user
             )
 
-            self.check_blocklist(
-                self.addon.guid if self.addon else parsed_data.get('guid'),
-                parsed_data.get('version'),
-            )
             if self.addon:
                 self.check_for_existing_versions(parsed_data.get('version'))
                 if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:

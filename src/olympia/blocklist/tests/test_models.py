@@ -1,60 +1,26 @@
 from datetime import datetime, timedelta
 
-from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 
-from ..models import Block, BlocklistSubmission
+from ..models import BlocklistSubmission
 
 
 class TestBlock(TestCase):
-    def test_is_version_blocked(self):
-        block = Block.objects.create(guid='anyguid@', updated_by=user_factory())
-        # default is 0 to *
-        assert block.is_version_blocked('0')
-        # 999999999 is the maximum version part permitted by the linter
-        over_linter_max = str(999999999 + 1234)
-        assert block.is_version_blocked(over_linter_max)
-
-        # Now with some restricted version range
-        block.update(min_version='2.0')
-        assert not block.is_version_blocked('1')
-        assert not block.is_version_blocked('2.0b1')
-        assert block.is_version_blocked('2')
-        assert block.is_version_blocked('3')
-        assert block.is_version_blocked(over_linter_max)
-        block.update(max_version='10.*')
-        assert not block.is_version_blocked('11')
-        assert not block.is_version_blocked(over_linter_max)
-        assert block.is_version_blocked('10')
-        assert block.is_version_blocked('9')
-        assert block.is_version_blocked('10.1')
-        assert block.is_version_blocked('10.%s' % (over_linter_max))
-
     def test_is_readonly(self):
-        block = Block.objects.create(guid='foo@baa', updated_by=user_factory())
+        block = block_factory(guid='foo@baa', updated_by=user_factory())
         # not read only by default
         assert not block.is_readonly
         # but should be if there's an active BlocklistSubmission
         block.active_submissions = [object()]  # just needs to be non-empty
         assert block.is_readonly
-
-    def test_no_asterisk_in_min_version(self):
-        non_user_writeable_fields = (
-            'average_daily_users_snapshot',
-            'guid',
-        )
-        block = Block(min_version='123.4', max_version='*', updated_by=user_factory())
-        block.full_clean(exclude=non_user_writeable_fields)
-        block.min_version = '*'
-        with self.assertRaises(ValidationError):
-            block.full_clean(exclude=non_user_writeable_fields)
-        block.min_version = '0'
-        block.full_clean(exclude=non_user_writeable_fields)
-        block.min_version = '123.*'
-        with self.assertRaises(ValidationError):
-            block.full_clean(exclude=non_user_writeable_fields)
 
 
 class TestBlocklistSubmissionManager(TestCase):
@@ -149,20 +115,11 @@ class TestBlocklistSubmission(TestCase):
         assert list(BlocklistSubmission.get_submissions_from_guid('ggguid@')) == []
 
     def test_all_adu_safe(self):
-        Block.objects.create(
-            addon=addon_factory(guid='zero@adu', average_daily_users=0),
-            updated_by=user_factory(),
-        )
-        Block.objects.create(
-            addon=addon_factory(guid='normal@adu', average_daily_users=500),
-            updated_by=user_factory(),
-        )
-        Block.objects.create(
-            addon=addon_factory(guid='high@adu', average_daily_users=999_999),
-            updated_by=user_factory(),
-        )
+        addon_factory(guid='zero@adu', average_daily_users=0)
+        addon_factory(guid='normal@adu', average_daily_users=500)
+        addon_factory(guid='high@adu', average_daily_users=999_999)
         submission = BlocklistSubmission.objects.create(
-            input_guids='zero@adu\nnormal@adu', min_version=99
+            input_guids='zero@adu\nnormal@adu'
         )
 
         submission.to_block = submission._serialize_blocks()
@@ -180,37 +137,19 @@ class TestBlocklistSubmission(TestCase):
         assert not submission.all_adu_safe()
 
     def test_has_version_changes(self):
-        block = Block.objects.create(
-            addon=addon_factory(guid='guid@'), updated_by=user_factory()
+        addon = addon_factory(guid='guid@')
+        block_factory(addon=addon, updated_by=user_factory(), reason='things')
+        new_version = version_factory(addon=addon)
+        submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid, changed_version_ids=[]
         )
-        submission = BlocklistSubmission.objects.create(input_guids='guid@')
 
         submission.to_block = submission._serialize_blocks()
-        # no changes to anything
+        # reason is chaning, but no versions are being changed
         assert not submission.has_version_changes()
 
-        block.update(min_version='999', reason='things')
-        # min_version has changed (and reason)
+        submission.update(changed_version_ids=[new_version.id])
         assert submission.has_version_changes()
-
-        submission.update(min_version='999')
-        # if min_version is the same then it's only the metadata (reason)
-        assert not submission.has_version_changes()
-
-    def test_no_asterisk_in_min_version(self):
-        non_user_writeable_fields = ('updated_by', 'signoff_by', 'to_block')
-        submission = BlocklistSubmission(
-            min_version='123.4', max_version='*', input_guids='df@'
-        )
-        submission.full_clean(exclude=non_user_writeable_fields)
-        submission.min_version = '*'
-        with self.assertRaises(ValidationError):
-            submission.full_clean(exclude=non_user_writeable_fields)
-        submission.min_version = '0'
-        submission.full_clean(exclude=non_user_writeable_fields)
-        submission.min_version = '123.*'
-        with self.assertRaises(ValidationError):
-            submission.full_clean(exclude=non_user_writeable_fields)
 
     def test_is_delayed(self):
         now = datetime.now()

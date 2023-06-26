@@ -13,10 +13,11 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags, Add
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import BlockVersion
 from olympia.constants.promoted import (
     LINE,
     NOTABLE,
@@ -1285,17 +1286,17 @@ class TestAutoApprovalSummary(TestCase):
     def test_check_is_blocked(self):
         assert AutoApprovalSummary.check_is_blocked(self.version) is False
 
-        block = Block.objects.create(addon=self.addon, updated_by=user_factory())
-        del self.version.addon.block
+        block_factory(
+            addon=self.addon, updated_by=user_factory(), version_ids=[self.version.id]
+        )
+        self.version.refresh_from_db()
         assert AutoApprovalSummary.check_is_blocked(self.version) is True
 
-        block.update(min_version='9999999')
-        del self.version.addon.block
+        BlockVersion.objects.get().update(
+            version=version_factory(addon=self.version.addon)
+        )
+        self.version.refresh_from_db()
         assert AutoApprovalSummary.check_is_blocked(self.version) is False
-
-        block.update(min_version='0')
-        del self.version.addon.block
-        assert AutoApprovalSummary.check_is_blocked(self.version) is True
 
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False

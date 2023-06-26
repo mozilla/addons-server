@@ -13,6 +13,10 @@ form ul.guid_list {
     padding: 5px 20px;
 }
 
+form .guid_list li ul {
+    margin: 0;
+}
+
 form ul.guid_list li {
     list-style-type: disc;
 }

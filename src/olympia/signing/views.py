@@ -1,7 +1,6 @@
 import functools
 
 from django import forms
-from django.urls import reverse
 from django.utils.translation import gettext
 
 from rest_framework import status
@@ -18,10 +17,8 @@ from olympia.addons.utils import (
     webext_version_stats,
 )
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.throttling import addon_submission_throttles
-from olympia.blocklist.models import Block
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.files.models import FileUpload
@@ -187,22 +184,6 @@ class VersionView(APIView):
                     gettext('Invalid Add-on ID in URL or package'),
                     status.HTTP_400_BAD_REQUEST,
                 )
-
-        block_qs = Block.objects.filter(guid=addon.guid if addon else guid)
-        if block_qs and block_qs.first().is_version_blocked(version_string):
-            msg = gettext(
-                'Version {version} matches {block_link} for this add-on. '
-                'You can contact {amo_admins} for additional information.'
-            )
-
-            raise forms.ValidationError(
-                msg.format(
-                    version=version_string,
-                    block_link=absolutify(reverse('blocklist.block', args=[guid])),
-                    amo_admins='amo-admins@mozilla.com',
-                ),
-                status.HTTP_400_BAD_REQUEST,
-            )
 
         # channel will be ignored for new addons.
         if addon is None:

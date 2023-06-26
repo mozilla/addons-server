@@ -46,6 +46,7 @@ from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
+    block_factory,
     check_links,
     formset,
     initial,
@@ -54,7 +55,7 @@ from olympia.amo.tests import (
     version_factory,
     version_review_flags_factory,
 )
-from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
@@ -3241,13 +3242,13 @@ class TestReview(ReviewBase):
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,))
         )
 
-        # If the guid is in a pending submission we show a link to that instead
+        # If the guid is in a pending submission we show a link to that too
         subm = BlocklistSubmission.objects.create(input_guids=self.addon.guid)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#block_addon')
-        assert not doc('#edit_addon_block')
+        assert doc('#edit_addon_block')
         blocklistsubmission_block = doc('#edit_addon_blocklistsubmission')
         assert blocklistsubmission_block
         assert blocklistsubmission_block[0].attrib.get('href') == (
@@ -4460,10 +4461,8 @@ class TestReview(ReviewBase):
 
         new_block_url = reverse(
             'admin:blocklist_blocklistsubmission_add'
-        ) + '?guids={}&min_version={}&max_version={}'.format(
-            self.addon.guid,
-            old_version.version,
-            self.version.version,
+        ) + '?guids={}&v={}&v={}'.format(
+            self.addon.guid, old_version.pk, self.version.pk
         )
         self.assertRedirects(response, new_block_url)
 
@@ -5332,21 +5331,24 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Blocked' not in response.content
 
-        block = Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
+        block = block_factory(guid=self.addon.guid, updated_by=user_factory())
         response = self.client.get(self.url)
         assert b'Blocked' in response.content
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked'
         assert span.length == 1  # addon only has 1 version
 
-        version_factory(addon=self.addon, version='99')
+        blockversion = BlockVersion.objects.create(
+            block=block, version=version_factory(addon=self.addon, version='99')
+        )
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked Blocked'
         assert span.length == 2  # a new version is blocked too
 
         block_reason = 'Very bad addon!'
-        block.update(max_version='98', reason=block_reason)
+        blockversion.delete()
+        block.update(reason=block_reason)
         block_activity_log_save(obj=block, change=False)
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')

@@ -7,7 +7,6 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
-from django.urls import reverse
 from django.utils import translation
 
 import responses
@@ -26,10 +25,8 @@ from olympia.amo.tests import (
     developer_factory,
     get_random_ip,
     reverse_ns,
-    user_factory,
 )
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.blocklist.models import Block
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import get_sha256
 from olympia.users.models import (
@@ -893,78 +890,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 },
             )
             assert response.status_code == 202
-
-    def test_version_blocked(self):
-        block = Block.objects.create(
-            guid=self.guid, max_version='3.0', updated_by=user_factory()
-        )
-        response = self.request('PUT', self.url(self.guid, '3.0'))
-        assert response.status_code == 400
-        block_url = absolutify(reverse('blocklist.block', args=(self.guid,)))
-        assert response.data['error'] == (
-            f'Version 3.0 matches {block_url} for this add-on. '
-            'You can contact amo-admins@mozilla.com for additional '
-            'information.'
-        )
-        # it's okay if it's outside of the blocked range though
-        block.update(max_version='2.9')
-        response = self.request('PUT', self.url(self.guid, '3.0'))
-        assert response.status_code == 202
-
-    def test_addon_blocked(self):
-        guid = '@create-webextension'
-        block = Block.objects.create(
-            guid=guid, max_version='3.0', updated_by=user_factory()
-        )
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-
-        # Testing when a new addon guid is specified in the url
-        response = self.request('PUT', guid=guid, version='1.0')
-        assert response.status_code == 400
-        block_url = absolutify(reverse('blocklist.block', args=(guid,)))
-        error_msg = (
-            f'Version 1.0 matches {block_url} for this add-on. '
-            'You can contact amo-admins@mozilla.com for additional '
-            'information.'
-        )
-        assert response.data['error'] == error_msg
-        assert not qs.exists()
-
-        # it's okay if it's outside of the blocked range though
-        block.update(min_version='2.0')
-        response = self.request('PUT', guid=guid, version='1.0')
-        assert response.status_code == 201
-
-    def test_addon_blocked_guid_in_xpi(self):
-        guid = '@webextension-with-guid'
-        block = Block.objects.create(
-            guid=guid, max_version='3.0', updated_by=user_factory()
-        )
-        qs = Addon.unfiltered.filter(guid=guid)
-        assert not qs.exists()
-        filename = self.xpi_filepath('@create-webextension-with-guid', '1.0')
-        url = reverse_ns('signing.version', api_version='v4')
-
-        response = self.request(
-            'POST', guid=guid, version='1.0', filename=filename, url=url
-        )
-        assert response.status_code == 400
-        block_url = absolutify(reverse('blocklist.block', args=(guid,)))
-        error_msg = (
-            f'Version 1.0 matches {block_url} for this add-on. '
-            'You can contact amo-admins@mozilla.com for additional '
-            'information.'
-        )
-        assert response.data['error'] == error_msg
-        assert not qs.exists()
-
-        # it's okay if it's outside of the blocked range though
-        block.update(min_version='2.0')
-        response = self.request(
-            'POST', guid=guid, version='1.0', filename=filename, url=url
-        )
-        assert response.status_code == 201
 
     def test_deleted_webextension(self):
         guid = '@webextension-with-guid'

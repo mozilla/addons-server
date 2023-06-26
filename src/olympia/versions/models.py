@@ -1034,8 +1034,22 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_blocked(self):
-        block = self.addon.block
-        return bool(block and block.is_version_blocked(self.version))
+        return hasattr(self, 'blockversion')
+
+    @cached_property
+    def blocklist_submission_id(self):
+        from olympia.blocklist.models import BlocklistSubmission
+
+        return (
+            submission.id
+            if self.id
+            and (
+                submission := BlocklistSubmission.get_submissions_from_version_id(
+                    self.id
+                ).last()
+            )
+            else 0
+        )
 
     @property
     def pending_rejection(self):

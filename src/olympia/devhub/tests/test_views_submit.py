@@ -28,10 +28,8 @@ from olympia.amo.tests import (
     create_default_webext_appversion,
     formset,
     initial,
-    user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import NOTABLE
 from olympia.devhub import views
@@ -538,24 +536,6 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # that is already used by an unlisted add-on.
         assert 'new_addon_form' not in response.context
         assert get_addon_count('Beastify') == 2
-
-    def test_new_addon_is_already_blocked(self):
-        self.upload = self.get_upload('webextension.xpi', user=self.user)
-        guid = '@webextension-guid'
-        block = Block.objects.create(guid=guid, updated_by=user_factory())
-
-        response = self.post(expect_errors=True)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 matches a blocklist entry for this add-on. '
-            'You can contact AMO Admins for additional information.'
-        )
-        assert pq(response.content)('ul.errorlist a').attr('href') == (
-            reverse('blocklist.block', args=[guid])
-        )
-
-        # Though we allow if the version is outside of the specified range
-        block.update(min_version='0.0.2')
-        response = self.post(expect_errors=False)
 
     def test_success_listed(self):
         assert Addon.objects.count() == 0
@@ -2023,21 +2003,6 @@ class VersionSubmitUploadMixin:
                 'devhub.submit.version.details', args=[self.addon.slug, self.version.pk]
             )
         )
-
-    def test_addon_version_is_blocked(self):
-        block = Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 matches a blocklist entry for this add-on. '
-            'You can contact AMO Admins for additional information.'
-        )
-        assert pq(response.content)('ul.errorlist a').attr('href') == (
-            reverse('blocklist.block', args=[self.addon.guid])
-        )
-
-        # Though we allow if the version is outside of the specified range
-        block.update(min_version='0.2')
-        response = self.post(expected_status=302), response.content
 
     def test_distribution_link(self):
         response = self.client.get(self.url)

@@ -29,21 +29,21 @@
   {% csrf_token %}
   {{ form.action }}
   {{ form.input_guids }}
-  {% if not existing_guids|length == 0 or not invalid_guids|length == 0 %}
+  {% if not form.existing_guids|length == 0 or not form.invalid_guids|length == 0 %}
   <div>
     <div class="form-row horizontal-grid">
       <div>
-        <h3>{{ existing_guids|length }} Add-on GUIDs are already blocked for {{ form.min_version.value }} to {{ form.max_version.value }}:</h3>
+        <h3>{{ form.existing_guids|length }} Add-on GUIDs already completely blocked:</h3>
         <ul class="guid_list field-existing-guids">
-          {% for guid in existing_guids %}
+          {% for guid in form.existing_guids %}
           <li>{{ guid }}</li>
           {% endfor %}
         </ul>
       </div>
       <div>
-        <h3>{{ invalid_guids|length }} Add-on GUIDs were not found:</h3>
+        <h3>{{ form.invalid_guids|length }} Add-on GUIDs were not found:</h3>
         <ul class="guid_list">
-          {% for guid in invalid_guids %}
+          {% for guid in form.invalid_guids %}
           <li>{{ guid }}</li>
           {% endfor %}
         </ul>
@@ -57,10 +57,11 @@
       <div>
         {% include 'admin/blocklist/includes/enhanced_blocks.html' %}
       </div>
+      {{ form.changed_version_ids.errors }}
     </div>
     {% if block_history %}
     <div class="form-row field-block_history">
-      <label for="id_min_version">Block History:</label>
+      <label>Block History:</label>
       <div class="readonly">{{ block_history }}</div>
     </div>
     {% endif %}
@@ -70,18 +71,10 @@
     </div>
     {% endif %}
     <div class="form-row">
-      <div>
-        {{ form.min_version.errors }}
-        {{ form.min_version.label_tag }}
-        {{ form.min_version }}
-        {{ form.existing_min_version }}
-      </div>
-    </div>
-    <div class="form-row">
-      {{ form.max_version.errors }}
-      {{ form.max_version.label_tag }}
-      {{ form.max_version }}
-      {{ form.existing_max_version }}
+      {{ form.disable_addon.errors }}
+      {{ form.disable_addon.label_tag }}
+      {{ form.disable_addon }}
+      <p class="help">{{ form.disable_addon.help_text }}</p>
     </div>
     <div class="form-row">
       {{ form.url.errors }}

@@ -395,10 +395,11 @@
       {% endif %}
 
       <li>
-        {% if addon.blocklistsubmission %}
-          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission.id) }}" class="button"
-                  id="edit_addon_blocklistsubmission" type="button">View Blocklist Submission</a>
-        {% elif not addon.block %}
+        {% if addon.blocklistsubmissions  %}
+          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmissions[0].id) }}" class="button"
+             id="edit_addon_blocklistsubmission" type="button">View Active Blocklist Submission</a>
+        {% endif %}
+        {% if not addon.block %}
           <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
                   id="block_addon" type="button">Block add-on</a>
         {% else %}

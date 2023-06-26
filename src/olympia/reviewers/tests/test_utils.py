@@ -18,6 +18,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     user_factory,
     version_factory,
     version_review_flags_factory,
@@ -676,8 +677,9 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # But when the add-on is blocked 'public' shouldn't be available
-        block = Block.objects.create(addon=self.addon, updated_by=self.user)
-        del self.addon.block
+        block_factory(addon=self.addon, updated_by=self.user)
+        self.review_version.refresh_from_db()
+        assert self.review_version.is_blocked
         expected = [
             'reject',
             'reject_multiple_versions',
@@ -695,8 +697,10 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # it's okay if the version is outside the blocked range though
-        block.update(min_version=self.review_version.version + '.1')
+        # it's okay if a different version of the add-on is blocked though
+        self.review_version = version_factory(addon=self.review_version.addon)
+        self.file = self.review_version.file
+        assert not self.review_version.is_blocked
         expected = [
             'public',
             'reject',
@@ -705,7 +709,15 @@ class TestReviewHelper(TestReviewHelperBase):
             'reply',
             'comment',
         ]
-        del self.addon.block
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_APPROVED,
+                    file_status=amo.STATUS_AWAITING_REVIEW,
+                ).keys()
+            )
+            == expected
+        )
 
     def test_actions_pending_rejection(self):
         # An addon having its latest version pending rejection won't be
@@ -2837,7 +2849,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_existing_block_multiple_unlisted_versions(self):
-        Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
+        block_factory(guid=self.addon.guid, updated_by=user_factory())
         redirect_url = (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,))
             + '?v=%s&v=%s'
@@ -2845,9 +2857,9 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_block_multiple_unlisted_versions(redirect_url)
 
     def test_approve_latest_version_fails_for_blocked_version(self):
-        Block.objects.create(addon=self.addon, updated_by=user_factory())
+        block_factory(addon=self.addon, updated_by=user_factory())
+        self.review_version.refresh_from_db()
         self.setup_data(amo.STATUS_NOMINATED)
-        del self.addon.block
 
         with self.assertRaises(AssertionError):
             self.helper.handler.approve_latest_version()

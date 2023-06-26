@@ -10,7 +10,13 @@ import pytest
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.blocklist.cron import (
     get_blocklist_last_modified_time,
     process_blocklistsubmissions,
@@ -33,7 +39,7 @@ class TestUploadToRemoteSettings(TestCase):
         addon = addon_factory()
         version_factory(addon=addon)
         version_factory(addon=addon)
-        self.block = Block.objects.create(
+        self.block = block_factory(
             addon=addon_factory(
                 version_kw={'version': '1.2b3'},
                 file_kw={'is_signed': True},
@@ -316,7 +322,7 @@ class TestUploadToRemoteSettings(TestCase):
         self.cleanup_files_mock.assert_not_called()
 
         # But if we add a new Block a new filter is needed
-        Block.objects.create(
+        block_factory(
             addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user_factory(),
         )

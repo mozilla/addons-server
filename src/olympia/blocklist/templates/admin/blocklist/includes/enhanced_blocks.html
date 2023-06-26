@@ -1,15 +1,15 @@
 {% load humanize %}
 
-<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
+<h3>{{ form.blocks|length|intcomma }} Add-on GUIDs with {{ form.total_adu|intcomma }} users:</h3>
  <ul class="guid_list">
-  {% for block_obj in blocks %}
+  {% for block_obj in form.blocks %}
     <li>
       {{ block_obj.guid }}.
       {% if block_obj.addon %}
         <span class="addon-name">{{ block_obj.addon.name }}</span>
       {% endif %}
 
-      {% if submission_complete|default_if_none:False %}
+      {% if submission_published|default_if_none:False %}
         {% if block_obj.average_daily_users_snapshot is not None %}
           ({{ block_obj.average_daily_users_snapshot }} users).
         {% endif %}
@@ -20,8 +20,28 @@
       {{ block_obj.review_listed_link }}
       {{ block_obj.review_unlisted_link }}
       {% if block_obj.id %}
-        <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
+        <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>
       {% endif %}
+      <ul>
+        {% for version in block_obj.addon_versions %}
+          <li data-version-id="{{ version.id }}">
+            <label><input
+              type="checkbox"
+              name="changed_version_ids"
+              value="{{ version.id }}"
+              {% if version.id in form.changed_version_ids_choices %}
+                {% if version.id in form.changed_version_ids.value %}checked{% endif %}
+              {% else %}
+                disabled
+                {% if version.is_blocked %}checked{% endif %}
+              {% endif %}
+            >{{ version.version }}</label>
+            {% if version.blocklist_submission_id %}
+              [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </li>
   {% endfor %}
 </ul>

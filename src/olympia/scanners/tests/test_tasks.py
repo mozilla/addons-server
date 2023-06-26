@@ -10,10 +10,10 @@ from olympia import amo
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -749,7 +749,7 @@ class TestRunYaraQueryRule(TestCase):
 
     def test_run_on_chunk_was_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
-        Block.objects.create(guid=self.version.addon.guid, updated_by=user_factory())
+        block_factory(addon=self.version.addon, updated_by=user_factory())
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
@@ -761,13 +761,16 @@ class TestRunYaraQueryRule(TestCase):
     def test_run_on_chunk_not_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         self.version.update(version='2.0')
-        Block.objects.create(
-            guid=self.version.addon.guid,
-            updated_by=user_factory(),
-            max_version='1.0',
+        another_version = version_factory(
+            addon=self.version.addon, channel=amo.CHANNEL_UNLISTED
         )
-        Block.objects.create(
-            guid='@differentguid',
+        block_factory(
+            addon=self.version.addon,
+            updated_by=user_factory(),
+            version_ids=[another_version.id],
+        )
+        block_factory(
+            addon=addon_factory(guid='@differentguid'),
             updated_by=user_factory(),
         )
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
