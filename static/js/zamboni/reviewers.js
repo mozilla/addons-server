@@ -261,20 +261,6 @@ function initExtraReviewActions() {
     }),
   );
 
-  $('#set_needs_human_review').click(
-    _pd(function () {
-      var $button = $(this).prop('disabled', true); // Prevent double-send.
-      var apiUrl = $button.data('api-url');
-      var data = $button.data('api-data') || null;
-      var $due_date_update_input = $('#due_date_update');
-      callReviewersAPI(apiUrl, 'post', data, function (response) {
-        $button.remove();
-        $due_date_update_input.parents('li').removeClass('hidden').show();
-        $due_date_update_input.val(response.due_date);
-      });
-    }),
-  );
-
   // One-off-style buttons.
   $('.more-actions button.oneoff[data-api-url]').click(
     _pd(function () {

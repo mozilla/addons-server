@@ -738,6 +738,7 @@ class ReviewHelper:
             ),
             'multiple_versions': True,
             'minimal': True,
+            'comments': False,
             'available': is_appropriate_admin_reviewer,
         }
         actions['clear_needs_human_review_multiple_versions'] = {
@@ -749,6 +750,7 @@ class ReviewHelper:
             ),
             'multiple_versions': True,
             'minimal': True,
+            'comments': False,
             'available': is_appropriate_admin_reviewer,
         }
         actions['set_needs_human_review_multiple_versions'] = {
