@@ -25,20 +25,21 @@
       <ul>
         {% for version in block_obj.addon_versions %}
           <li data-version-id="{{ version.id }}">
+          {% if version.id in form.changed_version_ids_choices or version.id in instance.changed_version_ids %}
             <label><input
               type="checkbox"
               name="changed_version_ids"
               value="{{ version.id }}"
-              {% if version.id in form.changed_version_ids_choices %}
-                {% if version.id in form.changed_version_ids.value %}checked{% endif %}
-              {% else %}
-                disabled
-                {% if version.is_blocked %}checked{% endif %}
+              {% if version.id in form.changed_version_ids.value %}checked{% endif %}
+              {% if version.id in instance.changed_version_ids %}checked disabled{% endif %}
+            > {% if is_delete %}Unblock{% else %}Block{% endif %} {{ version.version }}</label>
+          {% else %}
+            <!-- Red Hexagonal stop sign for Blocked; Green cirle for not blocked -->
+            {% if version.is_blocked %}&#x1F6D1;{% else %}&#x1F7E2;{% endif %}{{ version.version }}
+              {% if version.blocklist_submission_id %}
+                [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
               {% endif %}
-            >{{ version.version }}</label>
-            {% if version.blocklist_submission_id %}
-              [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
-            {% endif %}
+          {% endif %}
           </li>
         {% endfor %}
       </ul>

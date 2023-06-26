@@ -263,24 +263,43 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content)
         checkboxes = doc('input[name=changed_version_ids]')
 
-        assert len(checkboxes) == 5
-        # pre-checked because available to block
+        assert len(checkboxes) == 3
         check_checkbox(checkboxes[0], ver, True, False)
-        # pre-checked because available to block
         check_checkbox(checkboxes[1], ver_deleted, True, False)
-        # not checked because not blocked currently, but disabled because in submission
-        check_checkbox(checkboxes[2], ver_add_subm, False, True)
-        # pre-checked because available to block
-        check_checkbox(checkboxes[3], ver_other, True, False)
-        # checked and disabled because blocked already, and this is an add action
-        check_checkbox(checkboxes[4], ver_block, True, True)
+        check_checkbox(checkboxes[2], ver_other, True, False)
 
+        # not a checkbox because in a submission, green circle because not blocked
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'\U0001F7E2{ver_add_subm.version} [Edit Submission]'
+        )
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
         assert submission_link.text() == 'Edit Submission'
         assert submission_link.attr['href'] == reverse(
             'admin:blocklist_blocklistsubmission_change',
             args=(add_submission.id,),
         )
+
+        # not a checkbox because blocked already and this is an add action
+        assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
+            f'\U0001F6D1{ver_block.version}'
+        )
+
+        # Now with an existing submission
+        submission = BlocklistSubmission.objects.create(
+            input_guids=f'{addon.guid}\n {ver_block.addon.guid}\n',
+            changed_version_ids=[ver_deleted.id, ver_other.id],
+        )
+        response = self.client.get(
+            reverse(
+                'admin:blocklist_blocklistsubmission_change', args=(submission.id,)
+            ),
+            {'guids': f'{addon.guid}\n {ver_block.addon.guid}\n'},
+        )
+        doc = pq(response.content)
+        checkboxes = doc('input[name=changed_version_ids]')
+        assert len(checkboxes) == 2
+        check_checkbox(checkboxes[0], ver_deleted, True, True)
+        check_checkbox(checkboxes[1], ver_other, True, True)
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -2031,17 +2050,26 @@ class TestBlockAdminDelete(TestCase):
         doc = pq(response.content)
         checkboxes = doc('input[name=changed_version_ids]')
 
-        assert len(checkboxes) == 5
-        # not checked, and disabled, because not blocked currently
-        check_checkbox(checkboxes[0], ver, False, True)
-        # not checked because not blocked currently, but disabled because in submission
-        check_checkbox(checkboxes[1], ver_add_subm, False, True)
-        # checked because blocked, but disabled because in a submission
-        check_checkbox(checkboxes[2], ver_del_subm, True, True)
-        # not checked, and disabled, because not blocked currently
-        check_checkbox(checkboxes[3], ver_deleted, False, True)
-        # pre-checked because blocked, and this is a delete action
-        check_checkbox(checkboxes[4], ver_block, True, False)
+        assert len(checkboxes) == 1
+
+        check_checkbox(checkboxes[0], ver_block, True, False)
+
+        # not a checkbox because in a submission, green circle because not blocked
+        assert doc(f'li[data-version-id="{ver_add_subm.id}"]').text() == (
+            f'\U0001F7E2{ver_add_subm.version} [Edit Submission]'
+        )
+        # not a checkbox because in a submission, red hexagon because not blocked
+        assert doc(f'li[data-version-id="{ver_del_subm.id}"]').text() == (
+            f'\U0001F6D1{ver_del_subm.version} [Edit Submission]'
+        )
+        # not a checkbox because not blocked, and this is a delete action
+        assert doc(f'li[data-version-id="{ver.id}"]').text() == (
+            f'\U0001F7E2{ver.version}'
+        )
+        # not a checkbox because not blocked, and this is a delete action
+        assert doc(f'li[data-version-id="{ver_deleted.id}"]').text() == (
+            f'\U0001F7E2{ver_deleted.version}'
+        )
 
         submission_link = doc(f'li[data-version-id="{ver_add_subm.id}"] a')
         assert submission_link.text() == 'Edit Submission'
