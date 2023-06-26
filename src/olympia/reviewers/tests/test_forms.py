@@ -422,18 +422,19 @@ class TestReviewForm(TestCase):
         option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
         assert option3.attrib.get('class') == 'data-toggle'
         assert option3.attrib.get('data-value').split(' ') == [
-            # That version is rejected.
+            # That version is rejected, so it has unreject_multiple_versions,
+            # but it was never signed so it doesn't get
+            # set_needs_human_review_multiple_versions
             'unreject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
         ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        assert option4.attrib.get('data-value').split(' ') == [
-            # That version is blocked, so unreject_multiple_versions is unavailable.
-            'set_needs_human_review_multiple_versions',
-        ]
+        # That version is blocked, so unreject_multiple_versions is not
+        # present. It was never signed, so
+        # set_needs_human_review_multiple_versions is also absent.
+        assert option4.attrib.get('data-value') == ''
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
@@ -542,19 +543,95 @@ class TestReviewForm(TestCase):
         option3 = doc('option[value="%s"]' % rejected_version.pk)[0]
         assert option3.attrib.get('class') == 'data-toggle'
         assert option3.attrib.get('data-value').split(' ') == [
-            # That version is rejected.
+            # That version is rejected, so it has unreject_multiple_versions,
+            # but it was never signed so it doesn't get
+            # set_needs_human_review_multiple_versions
             'unreject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
         ]
         assert option3.attrib.get('value') == str(rejected_version.pk)
 
         option4 = doc('option[value="%s"]' % blocked_version.pk)[0]
         assert option4.attrib.get('class') == 'data-toggle'
-        assert option4.attrib.get('data-value').split(' ') == [
-            # That version is blocked, so unreject_multiple_versions is unavailable.
-            'set_needs_human_review_multiple_versions',
-        ]
+        # That version is blocked, so unreject_multiple_versions is not
+        # present. It was never signed, so
+        # set_needs_human_review_multiple_versions is also absent.
+        assert option4.attrib.get('data-value') == ''
         assert option4.attrib.get('value') == str(blocked_version.pk)
+
+    def test_set_needs_human_review_presence(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        deleted_but_signed = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_APPROVED,
+                'is_signed': True,
+            },
+        )
+        deleted_but_signed.delete()
+        deleted_but_unsigned = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+                'is_signed': False,
+            },
+        )
+        deleted_but_unsigned.delete()
+        user_disabled_version_but_signed = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+                'is_signed': True,
+            },
+        )
+        user_disabled_version_but_unsigned = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+                'is_signed': False,
+            },
+        )
+        pending_version = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_AWAITING_REVIEW,
+            },
+        )
+        approved_signed_version = version_factory(
+            addon=self.addon,
+            file_kw={
+                'is_signed': True,
+            },
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        assert list(form.fields['versions'].queryset) == list(
+            self.addon.versions(manager='unfiltered_for_relations').all().order_by('pk')
+        )
+        assert form.fields['versions'].queryset.count() == 7
+
+        content = str(form['versions'])
+        doc = pq(content)
+
+        assert len(doc('option')) == 7
+
+        for version in [
+            self.version,
+            deleted_but_signed,
+            user_disabled_version_but_signed,
+            pending_version,
+            approved_signed_version,
+        ]:
+            option = doc('option[value="%s"]' % version.pk)[0]
+            assert 'set_needs_human_review_multiple_versions' in option.attrib.get(
+                'data-value'
+            ).split(' '), version
+        for version in [deleted_but_unsigned, user_disabled_version_but_unsigned]:
+            option = doc('option[value="%s"]' % version.pk)[0]
+            assert 'set_needs_human_review_multiple_versions' not in option.attrib.get(
+                'data-value'
+            ).split(' '), version
 
     def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
