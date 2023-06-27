@@ -1,9 +1,9 @@
 from datetime import datetime
 
+from django.conf import settings
+
 import pytest
 from freezegun import freeze_time
-
-from django.conf import settings
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
