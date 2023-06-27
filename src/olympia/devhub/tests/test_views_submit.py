@@ -2157,55 +2157,55 @@ class TestSubmitWithSensitiveDataAccess(UploadTest, TestCase):
         """Ensure that our initial upload includes the sensitive data access flag due to messagesRead."""
         assert Addon.objects.count() == 0
         addon = self.upload_addon()
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
     def test_extension_version_without_messagesRead_permission(self):
         """Ensure removing messagesRead in a version update does not remove the sensitive data access flag."""
         # Add our initial version with sensitive data use enabled
         assert Addon.objects.count() == 0
         addon = self.upload_addon()
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
         # Removes the messagesRead permission (permission = [])
         addon = self.upload_version('webextension_sda_v2.zip')
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
-    def test_extension_version_with_sensitive_data_access_and_exfiltrate(self):
-        """Ensure that adding the `exfiltrate` permission removes the sensitive data access flag."""
+    def test_extension_version_with_sensitive_data_access_and_sensitive_data_upload(self):
+        """Ensure that adding the `sensitiveDataUpload` permission removes the sensitive data access flag."""
         # Add our initial version with sensitive data use enabled
         assert Addon.objects.count() == 0
         addon = self.upload_addon()
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
-        # Adds exfiltrate permission (permission = ['exfiltrate'])
+        # Adds sensitiveDataUpload permission (permission = ['sensitiveDataUpload'])
         addon = self.upload_version('webextension_sda_v3.zip')
-        assert addon.needs_sensitive_data_access_review == False
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is False
+        assert addon.requires_sensitive_data_access is True
 
-    def test_extension_version_update_without_exfiltrate(self):
-        """Ensure that previously having the `exfiltrate` permission, does not influence the current sensitive data access flag."""
+    def test_extension_version_update_without_sensitive_data_upload(self):
+        """Ensure that previously having the `sensitiveDataUpload` permission, does not influence the current sensitive data access flag."""
         # Add our initial version with sensitive data use enabled
         assert Addon.objects.count() == 0
         addon = self.upload_addon()
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
-        # Adds exfiltrate permission (permission = ['exfiltrate'])
+        # Adds sensitiveDataUpload permission (permission = ['sensitiveDataUpload'])
         addon = self.upload_version('webextension_sda_v3.zip')
-        assert addon.needs_sensitive_data_access_review == False
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is False
+        assert addon.requires_sensitive_data_access is True
 
-        # Removes exfiltrate permission (permission = [])
+        # Removes sensitiveDataUpload permission (permission = [])
         addon = self.upload_version('webextension_sda_v4.zip')
-        assert addon.needs_sensitive_data_access_review == True
-        assert addon.requires_sensitive_data_access == True
+        assert addon.needs_sensitive_data_access_review is True
+        assert addon.requires_sensitive_data_access is True
 
     def test_extension_no_sensitive_permissions(self):
         assert Addon.objects.count() == 0
-        addon = self.upload_addon('webextension_no_sda.zip')
-        assert addon.needs_sensitive_data_access_review == False
-        assert addon.requires_sensitive_data_access == False
+        addon = self.upload_addon('webextension.xpi')
+        assert addon.needs_sensitive_data_access_review is False
+        assert addon.requires_sensitive_data_access is False

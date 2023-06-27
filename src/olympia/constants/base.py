@@ -505,5 +505,5 @@ SENSITIVE_DATA_ACCESS_PERMISSIONS = (
     'addressBooks', 'messagesRead', 'messagesModify'
 )
 SENSITIVE_DATA_ACCESS_SKIP_PERMISSIONS = (
-    'exfiltrate'
+    'sensitiveDataUpload'
 )

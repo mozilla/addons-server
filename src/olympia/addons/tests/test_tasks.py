@@ -12,7 +12,7 @@ from freezegun import freeze_time
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons import cron
-from olympia.addons.models import AddonCategory, MigratedLWT
+from olympia.addons.models import AddonCategory, MigratedLWT, Addon
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
     migrate_legacy_dictionary_to_webextension, migrate_lwts_to_static_themes,
@@ -348,13 +348,16 @@ class TestMigrateAddonsThatRequireSensitiveDataAccess(TestCase):
                 ]
         })
 
-        assert addon_with_sda.requires_sensitive_data_access == False
+        assert addon_with_sda.requires_sensitive_data_access is False
         assert not addon_with_sda.needs_sensitive_data_access_review
 
-        migrate_addons_that_require_sensitive_data_access(addon_with_sda)
+        migrate_addons_that_require_sensitive_data_access([addon_with_sda.pk])
 
-        assert addon_with_sda.requires_sensitive_data_access == True
-        assert addon_with_sda.needs_sensitive_data_access_review == True
+        # Reload the addon
+        addon_with_sda = Addon.objects.get(pk=addon_with_sda.pk)
+
+        assert addon_with_sda.requires_sensitive_data_access is True
+        assert addon_with_sda.needs_sensitive_data_access_review is True
 
     def test_addon_without_sda(self):
         """Test addon without sensitive permissions. No flags should be set to True"""
@@ -367,30 +370,36 @@ class TestMigrateAddonsThatRequireSensitiveDataAccess(TestCase):
                 ]
         })
 
-        assert addon_without_sda.requires_sensitive_data_access == False
+        assert addon_without_sda.requires_sensitive_data_access is False
         assert not addon_without_sda.needs_sensitive_data_access_review
 
-        migrate_addons_that_require_sensitive_data_access(addon_without_sda)
+        migrate_addons_that_require_sensitive_data_access([addon_without_sda.pk])
 
-        assert addon_without_sda.requires_sensitive_data_access == False
+        # Reload the addon
+        addon_without_sda = Addon.objects.get(pk=addon_without_sda.pk)
+
+        assert addon_without_sda.requires_sensitive_data_access is False
         assert not addon_without_sda.needs_sensitive_data_access_review
 
-    def test_addon_with_sda_and_exfiltrate(self):
-        """Test addon with sensitive permissions, but also an explicitly set `exfiltrate` permission. The Addon Flag should be True, but the AddonReviewer Flag should not"""
-        addon_with_sda_and_exfiltrate = addon_factory(
+    def test_addon_with_sda_and_sensitive_data_upload(self):
+        """Test addon with sensitive permissions, but also an explicitly set `sensitiveDataUpload` permission. The Addon Flag should be True, but the AddonReviewer Flag should not"""
+        addon_with_sda_and_sensitive_data_upload = addon_factory(
             version_kw={'application': amo.THUNDERBIRD.id},
             file_kw={
                 'is_webextension': True,
                 'permissions': [
                     'messagesRead',
-                    'exfiltrate'
+                    'sensitiveDataUpload'
                 ]
         })
 
-        assert addon_with_sda_and_exfiltrate.requires_sensitive_data_access == False
-        assert not addon_with_sda_and_exfiltrate.needs_sensitive_data_access_review
+        assert addon_with_sda_and_sensitive_data_upload.requires_sensitive_data_access is False
+        assert not addon_with_sda_and_sensitive_data_upload.needs_sensitive_data_access_review
 
-        migrate_addons_that_require_sensitive_data_access(addon_with_sda_and_exfiltrate)
+        migrate_addons_that_require_sensitive_data_access([addon_with_sda_and_sensitive_data_upload.pk])
 
-        assert addon_with_sda_and_exfiltrate.requires_sensitive_data_access == True
-        assert not addon_with_sda_and_exfiltrate.needs_sensitive_data_access_review
+        # Reload the addon
+        addon_with_sda_and_sensitive_data_upload = Addon.objects.get(pk=addon_with_sda_and_sensitive_data_upload.pk)
+
+        assert addon_with_sda_and_sensitive_data_upload.requires_sensitive_data_access is True
+        assert not addon_with_sda_and_sensitive_data_upload.needs_sensitive_data_access_review

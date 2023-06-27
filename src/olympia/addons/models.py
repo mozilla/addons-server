@@ -365,7 +365,11 @@ class Addon(OnChangeMixin, ModelBase):
                   'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
-    requires_sensitive_data_access = models.BooleanField(default=False, help_text='This Addon uses or used permissions that contain sensitive user data. If this flag is True, it will disable auto approvals for any subsequent version submissions, unless the `Exfiltrate` permission is used.')
+    requires_sensitive_data_access = models.BooleanField(
+        default=False,
+        help_text='This Addon uses or used permissions that contain sensitive user data. '
+                  'If this flag is True, it will disable auto approvals for any subsequent version submissions, '
+                  'unless the `sensitiveDataUpload` permission is used.')
 
     unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
