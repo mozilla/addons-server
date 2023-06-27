@@ -34,11 +34,14 @@
               {% if version.id in instance.changed_version_ids %}checked disabled{% endif %}
             > {% if is_delete %}Unblock{% else %}Block{% endif %} {{ version.version }}</label>
           {% else %}
-            <!-- Red Hexagonal stop sign for Blocked; Green cirle for not blocked -->
-            {% if version.is_blocked %}&#x1F6D1;{% else %}&#x1F7E2;{% endif %}{{ version.version }}
+            <span title="{% if version.is_blocked %}Blocked{% else %}Not blocked{% endif %}">
+              <!-- Red Hexagonal stop sign for Blocked; Green cirle for not blocked -->
+              {% if version.is_blocked %}&#x1F6D1;{% else %}&#x1F7E2;{% endif %}{{ version.version }}
               {% if version.blocklist_submission_id %}
                 [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
               {% endif %}
+            </span>
+
           {% endif %}
           </li>
         {% endfor %}
