@@ -1085,7 +1085,7 @@ VAMO_URL = 'https://versioncheck.addons.mozilla.org'
 
 
 # Outgoing URL bouncer
-REDIRECT_URL = 'https://outgoing.prod.mozaws.net/v1/'
+REDIRECT_URL = ''
 REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 
 # Allow URLs from these servers. Use full domain names.
