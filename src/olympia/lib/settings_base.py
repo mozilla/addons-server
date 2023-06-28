@@ -1911,6 +1911,7 @@ CRON_JOBS = {
     'reindex_addons': 'olympia.addons.cron',
     'cleanup_image_files': 'olympia.addons.cron',
 
+    'add_latest_appversion': 'olympia.amo.cron',
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',

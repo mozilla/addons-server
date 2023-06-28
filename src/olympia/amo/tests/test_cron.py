@@ -4,10 +4,12 @@ from datetime import timedelta
 
 import mock
 
+from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.cron import gc
+from olympia.amo.cron import gc, add_latest_appversion
 from olympia.amo.tests import TestCase
 from olympia.amo.utils import utc_millesecs_from_epoch
+from olympia.applications.models import AppVersion
 from olympia.files.models import FileUpload
 from olympia.lib.akismet.models import AkismetReport
 
@@ -114,3 +116,79 @@ class TestGC(TestCase):
         gc()
         assert AkismetReport.objects.count() == 1
         assert AkismetReport.objects.get() == rep_new
+
+
+class TestAddLatestAppVersion(TestCase):
+
+    def test_add_valid_versions(self):
+        product_details = {
+            'LATEST_THUNDERBIRD_NIGHTLY_VERSION': '604.91.0a99',
+        }
+        versions = [
+            '604.91.0a99',
+            '604.0',
+            '604.*',
+        ]
+
+        app_version_count = AppVersion.objects.count()
+
+        # Ensure we don't have these versions
+        for version in versions:
+            try:
+                assertion = AppVersion.objects.get(application=amo.THUNDERBIRD.id, version=version)
+            except AppVersion.DoesNotExist:
+                assertion = None
+            assert assertion is None, 'Ensure {version} does not yet exist'.format(version=version)
+
+        add_latest_appversion(product_details)
+
+        # Make sure our count is incremented by the amount of new versions!
+        assert app_version_count + len(versions) == AppVersion.objects.count()
+
+        for version in versions:
+            try:
+                assertion = AppVersion.objects.get(application=amo.THUNDERBIRD.id, version=version)
+            except AppVersion.DoesNotExist:
+                assertion = None
+
+            assert assertion is not None, 'Ensure {version} exists'.format(version=version)
+
+    def test_add_invalid_version_words(self):
+        product_details = {
+            'LATEST_THUNDERBIRD_NIGHTLY_VERSION': 'nonsense.more-nonsense.0',
+        }
+        versions = product_details.values()
+
+        app_version_count = AppVersion.objects.count()
+
+        add_latest_appversion(product_details)
+
+        assert app_version_count == AppVersion.objects.count()
+
+        for version in versions:
+            try:
+                assertion = AppVersion.objects.get(application=amo.THUNDERBIRD.id, version=version)
+            except AppVersion.DoesNotExist:
+                assertion = None
+
+            assert assertion is None, 'Ensure {version} does not exist'.format(version=version)
+
+    def test_add_invalid_version_star(self):
+        product_details = {
+            'LATEST_THUNDERBIRD_NIGHTLY_VERSION': '*',
+        }
+        versions = product_details.values()
+
+        app_version_count = AppVersion.objects.count()
+
+        add_latest_appversion(product_details)
+
+        assert app_version_count == AppVersion.objects.count()
+
+        for version in versions:
+            try:
+                assertion = AppVersion.objects.get(application=amo.THUNDERBIRD.id, version=version)
+            except AppVersion.DoesNotExist:
+                assertion = None
+
+            assert assertion is None, 'Ensure {version} does not exist'.format(version=version)
