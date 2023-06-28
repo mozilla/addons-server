@@ -45,12 +45,12 @@ def serve_file_upload(request, uuid):
         log.error('Denying access to %s, token invalid.', upload.id)
         raise PermissionDenied
 
-    if not upload.path:
+    if not upload.file_path:
         log.info('Preventing access to %s, upload path is falsey.' % upload.id)
         return http.HttpResponseGone('upload path does not exist anymore')
 
     return HttpResponseXSendFile(
-        request, upload.path, content_type='application/octet-stream'
+        request, upload.file_path, content_type='application/octet-stream'
     )
 
 

@@ -50,7 +50,7 @@ class TestServeFileUpload(UploadMixin, TestCase):
 
         assert resp.status_code == 200
         assert resp['content-type'] == 'application/octet-stream'
-        assert resp[settings.XSENDFILE_HEADER] == self.upload.path
+        assert resp[settings.XSENDFILE_HEADER] == self.upload.file_path
 
     def test_returns_410_when_upload_path_is_falsey(self):
         self.upload.path = ''

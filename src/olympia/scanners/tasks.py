@@ -67,8 +67,8 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
     upload = FileUpload.objects.get(pk=upload_pk)
 
     try:
-        if not os.path.exists(upload.path):
-            raise ValueError(f'File "{upload.path}" does not exist.')
+        if not os.path.exists(upload.file_path):
+            raise ValueError(f'FileUpload "{upload.file_path}" does not exist.')
 
         scanner_result = ScannerResult(upload=upload, scanner=scanner)
 
@@ -179,7 +179,7 @@ def _run_yara(results, upload_pk):
     try:
         upload = FileUpload.objects.get(pk=upload_pk)
         scanner_result = ScannerResult(upload=upload, scanner=YARA)
-        _run_yara_for_path(scanner_result, upload.path)
+        _run_yara_for_path(scanner_result, upload.file_path)
         scanner_result.save()
 
         if scanner_result.has_matches:

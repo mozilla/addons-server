@@ -1115,7 +1115,7 @@ class TestUpload(UploadMixin, TestCase):
         upload = FileUpload.objects.filter().order_by('-created').first()
         assert 'animated.png' in upload.name
         data = open(self.image_path, 'rb').read()
-        assert storage.open(upload.path).read() == data
+        assert storage.open(upload.file_path).read() == data
 
     def test_fileupload_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
