@@ -743,6 +743,10 @@ class TestFileUpload(UploadMixin, TestCase):
         assert upload.file_path == upload.path
         assert os.path.exists(upload.file_path)
 
+        # If the path is empty, we return an empty string
+        upload.update(path='')
+        assert upload.file_path == ''
+
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid

@@ -448,7 +448,10 @@ class FileUpload(ModelBase):
     def file_path(self):
         if self.path.startswith('/'):
             return self.path
-        return os.path.join(settings.ADDONS_PATH, self.path)
+        elif self.path:
+            return os.path.join(settings.ADDONS_PATH, self.path)
+        else:
+            return self.path
 
     def add_file(self, chunks, filename, size):
         if not self.uuid:
