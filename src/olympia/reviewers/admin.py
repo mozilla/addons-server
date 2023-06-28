@@ -31,6 +31,7 @@ class UsageTierAdmin(AMOModelAdmin):
         'lower_adu_threshold',
         'upper_adu_threshold',
         'growth_threshold_before_flagging',
+        'abuse_reports_ratio_threshold_before_flagging',
     )
 
 
