@@ -58,9 +58,9 @@ def gc(test_result=True):
                 uuid=file_upload.uuid, path=file_upload.path
             )
         )
-        if file_upload.path:
+        if file_upload.file_path:
             try:
-                storage.delete(file_upload.path)
+                storage.delete(file_upload.file_path)
             except OSError:
                 pass
         file_upload.delete()
