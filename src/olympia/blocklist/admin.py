@@ -259,13 +259,14 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         else:
             edit_title = 'Proposed New Blocks'
 
+        changed_version_ids = ('changed_version_ids',) if not obj else ()
         add_change = (
             edit_title,
             {
                 'fields': (
                     'blocks',
                     'disable_addon',
-                    'changed_version_ids',
+                    *changed_version_ids,
                     'url',
                     'reason',
                     'updated_by',
@@ -403,6 +404,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'site_title': None,
             'is_popup': False,
             'form_url': '',
+            'is_delete': is_delete,
         }
         return TemplateResponse(
             request, 'admin/blocklist/blocklistsubmission_add_form.html', context
@@ -432,9 +434,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def render_change_form(
         self, request, context, add=False, change=False, form_url='', obj=None
     ):
-        if change:
-            # add this to the instance so blocks() below can reference it.
-            obj._blocks = context['adminform'].form.blocks
+        # add this to the instance so blocks() below can reference it.
+        obj._blocks = context['adminform'].form.blocks
         return super().render_change_form(
             request, context, add=add, change=change, form_url=form_url, obj=obj
         )
@@ -507,6 +508,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             {
                 'form': SimpleNamespace(blocks=obj._blocks),
                 'submission_published': is_published,
+                'instance': obj,
+                'is_delete': obj.action == BlocklistSubmission.ACTION_DELETE,
             },
         )
 
