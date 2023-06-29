@@ -160,7 +160,7 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version)
-        upload_path = force_str(upload.path)
+        upload_path = force_str(upload.file_path)
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -434,7 +434,7 @@ class FileUpload(ModelBase):
 
     def write_data_to_path(self, chunks):
         hash_obj = hashlib.sha256()
-        with storage.open(self.path, 'wb') as file_destination:
+        with storage.open(self.file_path, 'wb') as file_destination:
             for chunk in chunks:
                 hash_obj.update(chunk)
                 file_destination.write(chunk)
@@ -442,7 +442,16 @@ class FileUpload(ModelBase):
 
     @classmethod
     def generate_path(cls, ext='.zip'):
-        return os.path.join(settings.ADDONS_PATH, 'temp', f'{uuid.uuid4().hex}{ext}')
+        return os.path.join('temp', f'{uuid.uuid4().hex}{ext}')
+
+    @property
+    def file_path(self):
+        if self.path.startswith('/'):
+            return self.path
+        elif self.path:
+            return os.path.join(settings.ADDONS_PATH, self.path)
+        else:
+            return self.path
 
     def add_file(self, chunks, filename, size):
         if not self.uuid:
@@ -466,7 +475,7 @@ class FileUpload(ModelBase):
         hash_obj = None
         if was_crx:
             try:
-                hash_obj = write_crx_as_xpi(chunks, self.path)
+                hash_obj = write_crx_as_xpi(chunks, self.file_path)
             except InvalidOrUnsupportedCrx:
                 # We couldn't convert the crx file. Write it to the filesystem
                 # normally, the validation process should reject this with a

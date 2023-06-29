@@ -449,8 +449,10 @@ class TestValidateAddon(TestCase):
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
         with open(fpath, 'rb') as file_:
-            self.client.post(url, {'upload': file_})
+            response = self.client.post(url, {'upload': file_})
 
+        assert response.status_code == 302
+        assert validate_mock.call_count == 1
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_LISTED
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().channel == amo.CHANNEL_LISTED
@@ -464,8 +466,10 @@ class TestValidateAddon(TestCase):
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
         with open(fpath, 'rb') as file_:
-            self.client.post(url, {'upload': file_})
+            response = self.client.post(url, {'upload': file_})
 
+        assert response.status_code == 302
+        assert validate_mock.call_count == 1
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_UNLISTED
         # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().channel == amo.CHANNEL_UNLISTED

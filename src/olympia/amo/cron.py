@@ -55,12 +55,12 @@ def gc(test_result=True):
     for file_upload in stale_uploads:
         log.info(
             '[FileUpload:{uuid}] Removing file: {path}'.format(
-                uuid=file_upload.uuid, path=file_upload.path
+                uuid=file_upload.uuid, path=file_upload.file_path
             )
         )
-        if file_upload.path:
+        if file_upload.file_path:
             try:
-                storage.delete(file_upload.path)
+                storage.delete(file_upload.file_path)
             except OSError:
                 pass
         file_upload.delete()

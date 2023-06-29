@@ -200,7 +200,7 @@ def validate_upload(results, upload_pk, channel):
 
     Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    data = validate_file_path(upload.path, channel)
+    data = validate_file_path(upload.file_path, channel)
     return {**results, **json.loads(force_str(data))}
 
 
@@ -286,16 +286,16 @@ def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_sign
     delta = now_ts - upload_start
     statsd.timing('devhub.validation_results_processed', delta)
 
-    if not storage.exists(upload.path):
+    if not storage.exists(upload.file_path):
         # TODO: actually fix this so we can get stats. It seems that
         # the file maybe gets moved but it needs more investigation.
         log.warning(
             'Scaled upload stats were not tracked. File is '
-            'missing: {}'.format(upload.path)
+            'missing: {}'.format(upload.file_path)
         )
         return
 
-    size = Decimal(storage.size(upload.path))
+    size = Decimal(storage.size(upload.file_path))
     megabyte = Decimal(1024 * 1024)
 
     # Stash separate metrics for small / large files.
@@ -360,7 +360,7 @@ def check_for_api_keys_in_file(results, upload_pk):
 
     try:
         if len(keys) > 0:
-            zipfile = SafeZip(source=upload.path)
+            zipfile = SafeZip(source=upload.file_path)
             for zipinfo in zipfile.info_list:
                 if zipinfo.file_size >= 64:
                     file_ = zipfile.read(zipinfo)

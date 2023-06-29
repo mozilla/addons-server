@@ -66,21 +66,24 @@ def get_filepath(fileorpath):
     elif isinstance(fileorpath, File):
         return fileorpath.file
     elif isinstance(fileorpath, FileUpload):
-        return fileorpath.path
+        return fileorpath.file_path
     elif hasattr(fileorpath, 'name'):  # file-like object
         return fileorpath.name
     return fileorpath
 
 
 def get_file(fileorpath):
-    """Get a file-like object, whether given a FileUpload object or a path."""
-    if hasattr(fileorpath, 'path'):  # FileUpload
+    """Get a file-like object, whether given a FileUpload, a (Django) File or
+    a path."""
+    if hasattr(fileorpath, 'file_path'):  # FileUpload
         if not fileorpath.path:
             # This upload has already been used to create a Version. Note that
             # we say "processed" but it's different than the `processed`
             # property on FileUpload, it's just used here as a generic term to
             # inform the developer this FileUpload has already been used.
             raise AlreadyUsedUpload(gettext('This upload has already been submitted.'))
+        return storage.open(fileorpath.file_path, 'rb')
+    elif hasattr(fileorpath, 'path'):
         return storage.open(fileorpath.path, 'rb')
     if hasattr(fileorpath, 'name'):
         return fileorpath
