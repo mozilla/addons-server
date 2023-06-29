@@ -897,7 +897,7 @@ class REPLY_RATING(_LOG):
 
 class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
     id = 176
-    format = '{version} no longer flagged for human review.'
+    format = '{addon} {version} no longer flagged for human review.'
     short = 'Needs Human Review cleared'
     admin_event = True
     review_queue = True
@@ -907,17 +907,17 @@ class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
 
 class CLEAR_PENDING_REJECTION(_LOG):
     id = 177
-    format = _('{version} pending rejection cleared.')
+    format = _('{addon} {version} pending rejection cleared.')
     short = _('Pending rejection cleared')
     keep = True
     review_queue = True
     reviewer_review_action = True
-    # Not hiddden to developers.
+    # Not hidden to developers.
 
 
 class NEEDS_HUMAN_REVIEW(_LOG):
     id = 178
-    format = '{version} flagged for human review.'
+    format = '{addon} {version} flagged for human review.'
     short = 'Flagged for human review'
     keep = True
     review_queue = True
