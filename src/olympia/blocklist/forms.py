@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
 
 from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
@@ -32,9 +31,7 @@ class MultiDeleteForm(MultiGUIDInputForm):
 
         missing_guids = (guid for guid in guids if guid not in matching)
         errors = [
-            ValidationError(
-                _('Block with GUID %(guid)s not found'), params={'guid': guid}
-            )
+            ValidationError(f'Block with GUID {guid} not found')
             for guid in missing_guids
         ]
 
@@ -46,20 +43,11 @@ class MultiAddForm(MultiGUIDInputForm):
     def clean(self):
         guids = splitlines(self.cleaned_data.get('guids'))
 
-        errors = []
         if len(guids) == 1:
             guid = guids[0]
             blk = self.existing_block = Block.objects.filter(guid=guid).first()
             if not blk and not Block.get_addons_for_guids_qs((guid,)).exists():
-                errors.append(
-                    ValidationError(
-                        _('Add-on with GUID %(guid)s does not exist'),
-                        params={'guid': guid},
-                    )
-                )
-
-        if errors:
-            raise ValidationError(errors)
+                raise ValidationError(f'Add-on with GUID {guid} does not exist')
 
 
 def _get_version_choices(blocks, ver_filter=lambda v: True):
@@ -89,7 +77,11 @@ class BlocklistSubmissionForm(AMOModelForm):
     )
     # Note we don't render the widget - we manually create the checkboxes in
     # enhanced_blocks.html
-    changed_version_ids = forms.fields.TypedMultipleChoiceField(choices=(), coerce=int)
+    changed_version_ids = forms.fields.TypedMultipleChoiceField(
+        choices=(), coerce=int, required=False
+    )
+    update_reason = forms.fields.BooleanField(required=False, initial=True)
+    update_url = forms.fields.BooleanField(required=False, initial=True)
 
     def __init__(self, data=None, *args, **kw):
         instance = kw.get('instance')
@@ -122,6 +114,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                 filter_existing=is_add_change,
             )
             objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
+            self.initial = self.initial or {}
 
             if changed_version_ids_field := self.fields.get('changed_version_ids'):
                 changed_version_ids_field.choices = _get_version_choices(
@@ -139,10 +132,23 @@ class BlocklistSubmissionForm(AMOModelForm):
                 ]
                 if not data and 'changed_version_ids' not in (self.initial or {}):
                     # preselect all the options
-                    self.initial = {
-                        **(self.initial or {}),
-                        'changed_version_ids': self.changed_version_ids_choices,
-                    }
+                    self.initial[
+                        'changed_version_ids'
+                    ] = self.changed_version_ids_choices
+            for field_name in ('reason', 'url'):
+                values = {
+                    getattr(block, field_name, '')
+                    for block in objects['blocks']
+                    if block.id
+                }
+                update_field_name = f'update_{field_name}'
+                if len(values) == 1 and (value := tuple(values)[0]):
+                    # if there's just one existing value, prefill the field
+                    self.initial[field_name] = value
+                elif len(values) > 1:
+                    # If the field has multiple existing values, default to not changing
+                    self.initial[update_field_name] = False
+
             for key, value in objects.items():
                 setattr(self, key, value)
         elif instance:
@@ -160,3 +166,7 @@ class BlocklistSubmissionForm(AMOModelForm):
         data = self.cleaned_data
         if delay_days := data.get('delay_days', 0):
             data['delayed_until'] = datetime.now() + timedelta(days=delay_days)
+        if not data.get('update_reason'):
+            data['reason'] = None
+        if not data.get('update_url'):
+            data['url'] = None

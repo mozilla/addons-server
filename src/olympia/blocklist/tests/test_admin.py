@@ -367,6 +367,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': changed_version_ids,
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Save',
             },
             follow=True,
@@ -529,6 +531,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'disable_addon': True,
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 'delay_days': delay,
                 '_save': 'Save',
             },
@@ -733,6 +737,78 @@ class TestBlocklistSubmissionAdmin(TestCase):
             new_addon, existing_and_full, partial_addon, existing_and_partial
         )
 
+    def test_submit_no_metadata_updates(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Blocklist:Create')
+        self.client.force_login(user)
+
+        addon_adu = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+        new_addon = addon_factory(
+            guid='any@new', name='New Danger', average_daily_users=addon_adu
+        )
+        partial_addon_adu = addon_adu - 1
+        partial_addon = addon_factory(
+            guid='partial@existing',
+            name='Partial Danger',
+            average_daily_users=(partial_addon_adu),
+        )
+        existing_and_partial = block_factory(
+            guid=partial_addon.guid,
+            # should be updated to addon's adu
+            average_daily_users_snapshot=146722437,
+            updated_by=user_factory(),
+            reason='partial reason',
+            url='partial url',
+        )
+        version_factory(addon=partial_addon)
+        existing_and_complete = block_factory(
+            addon=addon_factory(guid='full@existing', name='Full Danger'),
+            # addon will have a different adu
+            average_daily_users_snapshot=346733434,
+            updated_by=user_factory(),
+            reason='full reason',
+            url='full url',
+        )
+
+        # Create the block submission
+        response = self.client.post(
+            self.submission_url,
+            {
+                'input_guids': ('any@new\npartial@existing\nfull@existing\ninvalid@'),
+                'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+                'changed_version_ids': [
+                    new_addon.current_version.id,
+                    partial_addon.current_version.id,
+                ],
+                'disable_addon': True,
+                'url': 'new url that will be ignored because no update_url=True',
+                'reason': 'new reason',
+                # no 'update_url'
+                'update_reason': True,
+                '_save': 'Save',
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.get()
+        assert submission.reason == 'new reason'
+        assert submission.url is None
+        assert Block.objects.count() == 3
+        new_block = Block.objects.exclude(
+            id__in=[existing_and_complete.id, existing_and_partial.id]
+        ).get()
+
+        existing_and_complete.reload()
+        existing_and_partial.reload()
+
+        assert existing_and_complete.reason == 'full reason'  # not affected at all
+        assert existing_and_partial.reason == 'new reason'
+        assert new_block.reason == 'new reason'
+        assert existing_and_complete.url == 'full url'  # not affected at all
+        assert existing_and_partial.url == 'partial url'  # .url is None
+        assert new_block.url == ''
+
     @mock.patch('olympia.blocklist.forms.GUID_FULL_LOAD_LIMIT', 1)
     def test_add_multiple_bulk_so_fake_block_objects(self):
         user = user_factory(email='someone@mozilla.com')
@@ -868,6 +944,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Save',
             },
             follow=True,
@@ -990,6 +1068,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'url': 'new.url',
                 # disable_addon defaults to True, so omitting it is changing to False
                 'reason': 'a new reason thats longer than 40 charactors',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Update',
             },
             follow=True,
@@ -1068,6 +1148,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],
                 'url': 'new.url',
                 'reason': 'a reason',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Update',
             },
             follow=True,
@@ -1116,6 +1198,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
+                'update_url': True,
+                'update_reason': True,
                 '_approve': 'Approve Submission',
             },
             follow=True,
@@ -1234,6 +1318,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'versions': [],  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
+                'update_url': True,
+                'update_reason': True,
                 '_reject': 'Reject Submission',
             },
             follow=True,
@@ -1305,6 +1391,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
+                'update_url': True,
+                'update_reason': True,
                 '_approve': 'Approve Submission',
             },
             follow=True,
@@ -1344,6 +1432,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
+                'update_url': True,
+                'update_reason': True,
                 '_reject': 'Reject Submission',
             },
             follow=True,
@@ -1375,6 +1465,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
+                'update_url': True,
+                'update_reason': True,
                 '_reject': 'Reject Submission',
             },
             follow=True,
@@ -1536,6 +1628,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'disable_addon': True,
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Save',
             },
             follow=True,
@@ -1580,6 +1674,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [version.id],
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 '_save': 'Save',
             },
             follow=True,
@@ -1690,6 +1786,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
+                'update_url': True,
+                'update_reason': True,
                 '_reject': 'Reject Submission',
             },
             follow=True,
@@ -1825,6 +1923,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 # 'disable_addon' it's a checkbox so leaving it out is False
                 'url': 'dfd',
                 'reason': 'some reason',
+                'update_url': True,
+                'update_reason': True,
                 'delay_days': 0,
                 '_save': 'Save',
             },
@@ -1922,7 +2022,7 @@ class TestBlockAdminDelete(TestCase):
         assert f'{block_one_ver.addon.average_daily_users} users' in content
         assert '{12345-6789}' in content
         # The fields only used for Add/Change submissions shouldn't be shown
-        assert 'reason' not in content
+        assert 'id_reason' not in content
         # Check we didn't delete the blocks already
         assert Block.objects.count() == 3
         assert BlocklistSubmission.objects.count() == 0
