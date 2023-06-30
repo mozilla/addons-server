@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-06-20 16:13+0000\n"
-"PO-Revision-Date: 2023-06-20 23:24+0000\n"
+"PO-Revision-Date: 2023-06-30 08:39+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -120,7 +120,7 @@ msgstr "Καθορίστηκε άγνωστη ελάχιστη έκδοση εφ
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο μανιφέστο για αυτήν την εφαρμογή (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -858,7 +858,7 @@ msgid "Un-rejected"
 msgstr "Αναιρέθηκε η απόρριψη"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Έγινε σύνταξη απάντησης στο {rating} για το {addon}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4201,11 +4201,11 @@ msgstr "Τακτοποιήστε την εμπειρία σας στο Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Επαναφέρετε τη δυνατότητα εμφάνισης του κουμπιού «Δεν μου αρέσει»!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Ακούστε μουσική στο YouTube χωρίς τις ενοχλητικές διακοπές «Βίντεο σε παύση. Συνέχεια παρακολούθησης;»."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4285,7 +4285,7 @@ msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τ
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Κρύψτε το email σας για να προστατέψετε την ταυτότητά σας και να αποτρέψετε την ανεπιθύμητη αλληλογραφία. Οι νέες ενημερώσεις κάνουν το Firefox Relay ακόμα πιο εύκολο στη χρήση."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4357,7 +4357,7 @@ msgstr "Μετάφραση ιστοτόπων στο Firefox — ιδιωτικ�
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Αποκλεισμός ιστοτόπων που σπαταλούν τον χρόνο σας. Αποκλείστε τους εντελώς ή μόνο με χρονικό περιορισμό της επιλογής σας."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4527,7 +4527,7 @@ msgstr "Επεκτάσεις κοινωνικών δικτύων"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλογές συντακτών για κοινωνικά δίκτυα"
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"
@@ -5148,7 +5148,7 @@ msgstr ""
 "προσθέστε μια δευτερεύουσα καταχώρηση, π.χ. «*@*.paradeigma.com»."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "Δεν επιτρέπονται υποβολές από τη διεύθυνση email του λογαριασμού σας."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
