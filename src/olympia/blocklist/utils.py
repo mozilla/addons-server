@@ -4,22 +4,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
 from olympia.users.utils import get_task_user
+from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.amo.blocklist')
-
-
-def add_version_log_for_blocked_versions(obj, al, submission_obj=None):
-    from olympia.activity.models import VersionLog
-
-    VersionLog.objects.bulk_create(
-        [
-            VersionLog(activity_log=al, version=version)
-            for version in obj.addon_versions
-            if version.is_blocked
-            or (submission_obj and version.id in submission_obj.changed_version_ids)
-        ]
-    )
 
 
 def block_activity_log_save(
@@ -28,13 +16,25 @@ def block_activity_log_save(
     submission_obj=None,
 ):
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
-    version_ids = sorted(ver.id for ver in obj.addon_versions if ver.is_blocked)
+    addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
+    blocked_versions = sorted(
+        ver.version for ver in obj.addon_versions if ver.is_blocked
+    )
+    changed_version_ids = (
+        [v_id for v_id in submission_obj.changed_version_ids if v_id in addon_versions]
+        if submission_obj
+        else sorted(ver.id for ver in obj.addon_versions if ver.is_blocked)
+    )
+    changed_versions = sorted(addon_versions[ver_id] for ver_id in changed_version_ids)
+
     details = {
         'guid': obj.guid,
-        'versions': version_ids,
+        'blocked_versions': blocked_versions,
+        'added_versions': changed_versions,
         'url': obj.url,
         'reason': obj.reason,
-        'comments': f'{len(version_ids)} versions blocked.',
+        'comments': f'{len(changed_versions)} versions added to block; '
+        f'{len(blocked_versions)} total versions now blocked.',
     }
     if submission_obj:
         details['signoff_state'] = submission_obj.SIGNOFF_STATES.get(
@@ -42,30 +42,54 @@ def block_activity_log_save(
         )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
-    addon = obj.addon
-    al = log_create(action, addon, obj.guid, obj, details=details, user=obj.updated_by)
+
+    log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
+    for version_id in changed_version_ids:
+        log_create(
+            amo.LOG.BLOCKLIST_VERSION_BLOCKED,
+            (Version, version_id),
+            obj,
+            user=obj.updated_by,
+        )
+
     if submission_obj and submission_obj.signoff_by:
         log_create(
             amo.LOG.BLOCKLIST_SIGNOFF,
-            addon,
+            obj.addon,
             obj.guid,
             action.action_class,
             obj,
             user=submission_obj.signoff_by,
         )
 
-    add_version_log_for_blocked_versions(obj, al)
-
 
 def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=None):
     assert submission_obj or delete_user
-    version_ids = [ver.id for ver in obj.addon_versions if ver.is_blocked]
+    addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
+    blocked_versions = (
+        sorted(ver.version for ver in obj.addon_versions if ver.is_blocked)
+        if not deleted
+        else []
+    )
+    changed_version_ids = (
+        [v_id for v_id in submission_obj.changed_version_ids if v_id in addon_versions]
+        if submission_obj
+        else sorted(ver.id for ver in obj.addon_versions if not ver.is_blocked)
+    )
+    changed_versions = sorted(
+        addon_versions[ver_id]
+        for ver_id in changed_version_ids
+        if ver_id in addon_versions
+    )
+
     details = {
         'guid': obj.guid,
-        'versions': version_ids,
+        'blocked_versions': blocked_versions,
+        'removed_versions': changed_versions,
         'url': obj.url,
         'reason': obj.reason,
-        'comments': f'{len(version_ids)} versions unblocked.',
+        'comments': f'{len(changed_versions)} versions removed from block; '
+        f'{len(blocked_versions)} total versions now blocked.',
     }
     action = (
         amo.LOG.BLOCKLIST_BLOCK_EDITED
@@ -79,18 +103,24 @@ def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=
         )
         if submission_obj.signoff_by:
             details['signoff_by'] = submission_obj.signoff_by.id
-    addon = obj.addon
-    al = log_create(
-        *[action, *([addon] if addon else []), obj.guid, obj],
+
+    log_create(
+        *[action, *([obj.addon] if obj.addon else []), obj.guid, obj],
         details=details,
         user=submission_obj.updated_by if submission_obj else delete_user,
     )
-    if addon:
-        add_version_log_for_blocked_versions(obj, al, submission_obj)
+    for version_id in changed_version_ids:
+        log_create(
+            amo.LOG.BLOCKLIST_VERSION_UNBLOCKED,
+            (Version, version_id),
+            obj,
+            user=obj.updated_by,
+        )
+
     if submission_obj and submission_obj.signoff_by:
         args = [
             amo.LOG.BLOCKLIST_SIGNOFF,
-            *([addon] if addon else []),
+            *([obj.addon] if obj.addon else []),
             obj.guid,
             action.action_class,
             obj,

@@ -925,6 +925,24 @@ class NEEDS_HUMAN_REVIEW(_LOG):
     hide_developer = True
 
 
+class BLOCKLIST_VERSION_BLOCKED(_LOG):
+    id = 179
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = _('{version} added to Blocklist.')
+    short = _('Version Blocked')
+
+
+class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
+    id = 180
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = _('{version} removed from Blocklist.')
+    short = _('Version Unblocked')
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
