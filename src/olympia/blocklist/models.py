@@ -126,10 +126,6 @@ class Block(ModelBase):
     def active_submissions(self):
         return BlocklistSubmission.get_submissions_from_guid(self.guid)
 
-    @property
-    def is_readonly(self):
-        return self.active_submissions
-
     @classmethod
     def get_blocks_from_guids(cls, guids):
         """Given a list of guids, return a list of Blocks - either existing

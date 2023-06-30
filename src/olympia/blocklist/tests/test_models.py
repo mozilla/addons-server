@@ -13,16 +13,6 @@ from olympia.amo.tests import (
 from ..models import BlocklistSubmission
 
 
-class TestBlock(TestCase):
-    def test_is_readonly(self):
-        block = block_factory(guid='foo@baa', updated_by=user_factory())
-        # not read only by default
-        assert not block.is_readonly
-        # but should be if there's an active BlocklistSubmission
-        block.active_submissions = [object()]  # just needs to be non-empty
-        assert block.is_readonly
-
-
 class TestBlocklistSubmissionManager(TestCase):
     def test_delayed(self):
         now = datetime.now()
