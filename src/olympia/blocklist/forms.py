@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.forms.widgets import HiddenInput, NumberInput
 
 from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
@@ -66,7 +67,7 @@ def _get_version_choices(blocks, ver_filter=lambda v: True):
 
 class BlocklistSubmissionForm(AMOModelForm):
     delay_days = forms.fields.IntegerField(
-        widget=forms.widgets.NumberInput,
+        widget=NumberInput,
         initial=0,
         label='Delay Block by days',
         required=False,
@@ -85,24 +86,19 @@ class BlocklistSubmissionForm(AMOModelForm):
 
     def __init__(self, data=None, *args, **kw):
         instance = kw.get('instance')
-
-        def get_value(field_name, default):
-            return (
-                getattr(instance, field_name, default)
-                if instance
-                else (
-                    (data or {}).get(field_name)
-                    or (kw.get('initial') or {}).get(field_name, default)
-                )
-            )
-
-        is_add_change = get_value(
-            'action', str(BlocklistSubmission.ACTION_ADDCHANGE)
+        is_add_change = self.get_value(
+            instance, data, kw, 'action', str(BlocklistSubmission.ACTION_ADDCHANGE)
         ) == str(BlocklistSubmission.ACTION_ADDCHANGE)
-        input_guids = get_value('input_guids', '')
+        input_guids = self.get_value(instance, data, kw, 'input_guids', '')
+
         super().__init__(data, *args, **kw)
 
         load_full_objects = len(splitlines(input_guids)) <= GUID_FULL_LOAD_LIMIT
+
+        if not instance:
+            self.fields['input_guids'].widget = HiddenInput()
+            self.fields['action'].widget = HiddenInput()
+            self.fields['delayed_until'].widget = HiddenInput()
 
         if (
             not instance
@@ -160,6 +156,16 @@ class BlocklistSubmissionForm(AMOModelForm):
                 # so preload the addon_versions so the review links are
                 # generated efficiently.
                 Block.preload_addon_versions(self.blocks)
+
+    def get_value(self, instance, data, kw, field_name, default):
+        return (
+            getattr(instance, field_name, default)
+            if instance
+            else (
+                (data or {}).get(field_name)
+                or (kw.get('initial') or {}).get(field_name, default)
+            )
+        )
 
     def clean(self):
         super().clean()

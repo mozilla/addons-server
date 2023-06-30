@@ -3,7 +3,6 @@ from types import SimpleNamespace
 from django import http
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
-from django.forms.widgets import HiddenInput
 from django.shortcuts import get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.template.response import TemplateResponse
@@ -327,12 +326,13 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 'input_guids',
                 'action',
                 'changed_version_ids',
-                'delay_days',
             ]
             if not self.has_change_permission(request, obj, strict=True):
                 ro_fields += admin.utils.flatten_fieldsets(
                     self.get_fieldsets(request, obj)
                 )
+        if obj or not self.is_add_change_submission(request, obj):
+            ro_fields.append('delay_days')
 
         return ro_fields
 
@@ -342,19 +342,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 'guids', request, default=request.POST.get('input_guids', '')
             )
         )
-
-    def get_form(self, request, obj=None, change=False, **kwargs):
-        form = super().get_form(request, obj, change, **kwargs)
-        if not change:
-            form.base_fields['input_guids'].widget = HiddenInput()
-            form.base_fields['action'].widget = HiddenInput()
-            form.base_fields['delayed_until'].widget = HiddenInput()
-        if (
-            not self.is_add_change_submission(request, obj)
-            and 'delay_days' in form.base_fields
-        ):
-            del form.base_fields['delay_days']
-        return form
 
     def add_view(self, request, **kwargs):
         if not self.has_add_permission(request):
