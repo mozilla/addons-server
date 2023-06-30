@@ -78,12 +78,16 @@
       <p class="help">{{ form.disable_addon.help_text }}</p>
     </div>
     <div class="form-row">
+      {{ form.update_url }}
+      {{ form.update_url.errors }}
       {{ form.url.errors }}
       {{ form.url.label_tag }}
       {{ form.url }}
       <p class="help">{{ form.url.help_text }}</p>
     </div>
     <div class="form-row">
+      {{ form.update_reason }}
+      {{ form.update_reason.errors }}
       {{ form.reason.errors }}
       {{ form.reason.label_tag }}
       {{ form.reason }}

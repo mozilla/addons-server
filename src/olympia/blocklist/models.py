@@ -234,10 +234,12 @@ class BlocklistSubmission(ModelBase):
     url = models.CharField(
         max_length=255,
         blank=True,
+        null=True,
         help_text='The URL related to this block, i.e. the bug filed.',
     )
     reason = models.TextField(
         blank=True,
+        null=True,
         help_text='Note this reason will be displayed publicly on the block-addon '
         'pages.',
     )
@@ -495,15 +497,10 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_ADDCHANGE
 
-        fields_to_set = [
-            'url',
-            'reason',
-            'updated_by',
-        ]
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
         for guids_chunk in chunked(all_guids_to_block, 100):
-            save_versions_to_blocks(guids_chunk, self, fields_to_set=fields_to_set)
+            save_versions_to_blocks(guids_chunk, self)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)
@@ -512,16 +509,11 @@ class BlocklistSubmission(ModelBase):
         assert self.is_submission_ready
         assert self.action == self.ACTION_DELETE
 
-        fields_to_set = [
-            'url',
-            'reason',
-            'updated_by',
-        ]
         all_guids_to_block = [block['guid'] for block in self.to_block]
 
         for guids_chunk in chunked(all_guids_to_block, 100):
             # This function will remove BlockVersions and delete the Block if empty
-            delete_versions_from_blocks(guids_chunk, self, fields_to_set=fields_to_set)
+            delete_versions_from_blocks(guids_chunk, self)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_PUBLISHED)

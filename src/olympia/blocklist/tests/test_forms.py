@@ -163,6 +163,62 @@ class TestBlocklistSubmissionForm(TestCase):
             ]
         }
 
+    def test_initial_reason_and_url_values(self):
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site
+        )
+        request = RequestFactory().get('/')
+
+        Form = block_admin.get_form(request=request)
+        data = {
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+        }
+        self.existing_block_partial.update(reason='partial reason')
+        self.existing_block_full.update(reason='full reason')
+        self.existing_block_partial.update(url='url')
+        self.existing_block_full.update(url='url')
+
+        form = Form(initial=data)
+        # when we just have a single existing block we default to the existing values
+        # (existing_block_full is ignored entirely because won't be updated)
+        assert form.initial['reason'] == 'partial reason'
+        assert form.initial['url'] == 'url'
+        assert 'update_url' not in form.initial
+        assert 'update_reason' not in form.initial
+
+        # lets make existing_block_full not fully blocked
+        self.full_existing_addon_v2.blockversion.delete()
+        form = Form(initial=data)
+        assert 'reason' not in form.initial  # two values so not default
+        assert form.initial['url'] == 'url'  # both the same, so we can default
+        assert 'update_url' not in form.initial
+        assert form.initial['update_reason'] is False  # so the checkbox defaults false
+
+    def test_update_url_reason_sets_null(self):
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site
+        )
+        request = RequestFactory().get('/')
+
+        Form = block_admin.get_form(request=request)
+        data = {
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+            'url': 'new url',
+            'update_url': True,
+            'reason': 'new reason',
+            # no update_url
+        }
+        form = Form(data=data)
+        form.is_valid()
+        assert form.cleaned_data['url'] == 'new url'
+        assert form.cleaned_data['reason'] is None
+
 
 class TestMultiDeleteForm(TestCase):
     def test_guids_must_exist_for_block_deletion(self):

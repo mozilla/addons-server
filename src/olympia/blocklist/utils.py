@@ -138,12 +138,11 @@ def disable_versions_for_block(block, submission):
         review.clear_specific_needs_human_review_flags(version)
 
 
-def save_versions_to_blocks(guids, submission, *, fields_to_set):
+def save_versions_to_blocks(guids, submission):
     from olympia.addons.models import GuidAlreadyDeniedError
 
     from .models import Block, BlockVersion
 
-    common_args = {field: getattr(submission, field) for field in fields_to_set}
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
@@ -151,8 +150,11 @@ def save_versions_to_blocks(guids, submission, *, fields_to_set):
         change = bool(block.id)
         if change:
             setattr(block, 'modified', modified_datetime)
-        for field, val in common_args.items():
-            setattr(block, field, val)
+        block.updated_by = submission.updated_by
+        if submission.reason is not None:
+            block.reason = submission.reason
+        if submission.url is not None:
+            block.url = submission.url
         block.average_daily_users_snapshot = block.current_adu
         block.save()
         # And now update the BlockVersion instances - instances to add first
@@ -186,10 +188,9 @@ def save_versions_to_blocks(guids, submission, *, fields_to_set):
     return blocks
 
 
-def delete_versions_from_blocks(guids, submission, *, fields_to_set):
+def delete_versions_from_blocks(guids, submission):
     from .models import Block, BlockVersion
 
-    common_args = {field: getattr(submission, field) for field in fields_to_set}
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
@@ -204,8 +205,11 @@ def delete_versions_from_blocks(guids, submission, *, fields_to_set):
 
         if BlockVersion.objects.filter(block=block).exists():
             # if there are still other versions blocked update the metadata
-            for field, val in common_args.items():
-                setattr(block, field, val)
+            block.updated_by = submission.updated_by
+            if submission.reason is not None:
+                block.reason = submission.reason
+            if submission.url is not None:
+                block.url = submission.url
             block.average_daily_users_snapshot = block.current_adu
             block.save()
             should_delete = False
