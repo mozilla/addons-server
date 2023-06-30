@@ -387,6 +387,7 @@ class ManifestJSONExtractor(object):
         we just look at the manifest."""
         return bool(self.get('experiment_apis', False))
 
+    @property
     def is_theme_experiment(self):
         """Return whether the webextension uses the theme experiment API."""
         return bool(self.get('theme_experiment', False))
