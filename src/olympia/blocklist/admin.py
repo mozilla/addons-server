@@ -348,8 +348,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         if not change:
             form.base_fields['input_guids'].widget = HiddenInput()
             form.base_fields['action'].widget = HiddenInput()
-            if 'delayed_until' in form.base_fields:
-                form.base_fields['delayed_until'].widget = HiddenInput()
+            form.base_fields['delayed_until'].widget = HiddenInput()
+        if (
+            not self.is_add_change_submission(request, obj)
+            and 'delay_days' in form.base_fields
+        ):
+            del form.base_fields['delay_days']
         return form
 
     def add_view(self, request, **kwargs):

@@ -2026,6 +2026,7 @@ class TestBlockAdminDelete(TestCase):
         # Check we didn't delete the blocks already
         assert Block.objects.count() == 3
         assert BlocklistSubmission.objects.count() == 0
+        assert 'id_delay_days' not in content
 
         # Create the block submission
         response = self.client.post(
