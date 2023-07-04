@@ -616,12 +616,6 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
     def has_change_permission(self, request, obj=None):
         return False
 
-    def has_delete_permission(self, request, obj=None):
-        if obj and obj.is_readonly:
-            return False
-        else:
-            return super().has_delete_permission(request, obj=obj)
-
     def save_model(self, request, obj, form, change):
         # We don't save via this Admin so if we get here something has gone
         # wrong.
