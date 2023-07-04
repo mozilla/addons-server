@@ -377,6 +377,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
             deleted_version.id,
             second_version.id,
         ]
+        changed_versions = [
+            first_version.version,
+            deleted_addon_version.version,
+            disabled_version.version,
+            deleted_version.version,
+            second_version.version,
+        ]
         # Create the block
         response = self.client.post(
             self.submission_url,
@@ -407,7 +414,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = logs[3]
         assert block_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert block_log.arguments == [addon, addon.guid, block]
-        assert block_log.details['versions'] == changed_version_ids
+        assert block_log.details['blocked_versions'] == changed_versions
+        assert block_log.details['added_versions'] == changed_versions
         assert block_log.details['reason'] == 'some reason'
         assert block_log == (
             ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
@@ -417,17 +425,24 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .filter(action=block_log.action)
             .get()
         )
-        # The Reject and block activities are recorded once for all affected
-        # versions, but attached separately to each of them through VersionLog.
-        assert [reject_log, block_log] == list(
-            ActivityLog.objects.for_versions(first_version)
-        )
-        assert [reject_log, block_log] == list(
-            ActivityLog.objects.for_versions(second_version)
-        )
-        assert [block_log] == list(
-            ActivityLog.objects.for_versions(deleted_addon_version)
-        )
+        # The Reject activity is recorded once for all affected versions and attached
+        # to each of them through VersionLog.
+        # A seperate activity is recorded for each version added to the blocklist.
+        for version in (first_version, second_version):
+            version_reject_log, version_block_log = tuple(
+                ActivityLog.objects.for_versions(version)
+            )
+            assert version_reject_log == reject_log
+            assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
+            assert version_block_log.arguments == [version, block]
+
+        # The disabled and deleted versions should only have the block activity,
+        # not a reject activity
+        for version in (deleted_addon_version, disabled_version):
+            (version_block_log,) = tuple(ActivityLog.objects.for_versions(version))
+            assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
+            assert version_block_log.arguments == [version, block]
+
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         change_url = reverse(
             'admin:blocklist_blocklistsubmission_change',
@@ -438,10 +453,6 @@ class TestBlocklistSubmissionAdmin(TestCase):
             f'<a href="{change_url}">Auto Sign-off: guid@; dfd; some reason</a>'
             f'{FANCY_QUOTE_CLOSE} was added successfully.'
         ]
-        # The disabled and deleted versions should only have the block activity,
-        # not a reject activity
-        assert [block_log] == list(ActivityLog.objects.for_versions(disabled_version))
-        assert [block_log] == list(ActivityLog.objects.for_versions(deleted_version))
 
         response = self.client.get(
             reverse('admin:blocklist_block_change', args=(block.pk,))
@@ -450,9 +461,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         todaysdate = datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
-        assert f'versions [{",".join(str(id_) for id_ in changed_version_ids)}].' in (
-            content
-        )
+        assert f'versions added [{", ".join(changed_versions)}].' in content
 
         addon.reload()
         first_version.file.reload()
@@ -587,7 +596,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         reject_log = logs[2]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
-        assert add_log.details['versions'] == [new_addon.current_version.id]
+        assert add_log.details['blocked_versions'] == [
+            new_addon.current_version.version
+        ]
+        assert add_log.details['added_versions'] == [new_addon.current_version.version]
         assert add_log.details['reason'] == 'some reason'
         if has_signoff:
             assert add_log.details['signoff_state'] == 'Approved'
@@ -601,12 +613,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .last()
         )
         assert block_log == add_log
-        assert (
-            add_log
-            == ActivityLog.objects.for_versions(new_addon.current_version).order_by(
-                'pk'
-            )[0]
+        version_reject_log, version_block_log = tuple(
+            ActivityLog.objects.for_versions(new_addon.current_version)
         )
+        if version_reject_log != reject_log:
+            version_reject_log, version_block_log = (
+                version_block_log,
+                version_reject_log,
+            )
+        assert version_reject_log == reject_log
+        assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
+        assert version_block_log.arguments == [new_addon.current_version, new_block]
+
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
         assert reject_log.arguments == [new_addon, new_addon.current_version]
         assert reject_log.user == self.task_user
@@ -640,8 +658,14 @@ class TestBlocklistSubmissionAdmin(TestCase):
             partial_addon.guid,
             existing_and_partial,
         ]
-        assert edit_log.details['versions'] == [
-            ver.id for ver in partial_addon.versions.all().order_by('id')
+        assert edit_log.details['blocked_versions'] == [
+            version
+            for version in sorted(
+                partial_addon.versions.all().values_list('version', flat=True)
+            )
+        ]
+        assert edit_log.details['added_versions'] == [
+            partial_addon.current_version.version
         ]
         assert edit_log.details['reason'] == 'some reason'
         if has_signoff:
@@ -656,21 +680,24 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .first()
         )
         assert block_log == edit_log
-        assert (
-            edit_log
-            == ActivityLog.objects.for_versions(partial_addon.current_version).order_by(
-                'pk'
-            )[0]
+        version_reject_log, version_block_log = tuple(
+            ActivityLog.objects.for_versions(partial_addon.current_version)
         )
+        if version_reject_log != reject_log:
+            version_reject_log, version_block_log = (
+                version_block_log,
+                version_reject_log,
+            )
+        assert version_reject_log == reject_log
+        assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
+        assert version_block_log.arguments == [
+            partial_addon.current_version,
+            existing_and_partial,
+        ]
+
         assert reject_log.action == amo.LOG.REJECT_VERSION.id
         assert reject_log.arguments == [partial_addon, partial_addon.current_version]
         assert reject_log.user == self.task_user
-        assert (
-            reject_log
-            == ActivityLog.objects.for_versions(partial_addon.current_version).order_by(
-                'pk'
-            )[1]
-        )
         assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         existing_and_full = existing_and_full.reload()
@@ -1245,7 +1272,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         add_log = logs[3]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [addon, addon.guid, new_block]
-        assert add_log.details['versions'] == [addon.current_version.id]
+        assert add_log.details['blocked_versions'] == [addon.current_version.version]
+        assert add_log.details['added_versions'] == [addon.current_version.version]
         assert add_log.details['reason'] == ''
         assert add_log.details['signoff_state'] == 'Approved'
         assert add_log.details['signoff_by'] == user.id
@@ -1256,7 +1284,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .last()
         )
         assert block_log == add_log
-        assert add_log == ActivityLog.objects.for_versions(addon.current_version).last()
+        version_reject_log, version_block_log = tuple(
+            ActivityLog.objects.for_versions(addon.current_version)
+        )
+        assert version_reject_log == reject_log
+        assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
+        assert version_block_log.arguments == [addon.current_version, new_block]
 
         assert signoff_log.action == amo.LOG.BLOCKLIST_SIGNOFF.id
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
@@ -1334,7 +1367,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             multi_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
-                'versions': [],  # should be ignored
+                'changed_version_ids': [],  # should be ignored
                 'url': 'new.url',  # should be ignored
                 'reason': 'a reason',  # should be ignored
                 'update_url': True,
@@ -2076,14 +2109,22 @@ class TestBlockAdminDelete(TestCase):
         add_log = ActivityLog.objects.for_addons(block_from_addon).last()
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_DELETED.id
         assert add_log.arguments == [block_from_addon, block_from_addon.guid, None]
+        assert add_log.details['blocked_versions'] == []
+        assert add_log.details['removed_versions'] == [
+            block_from_addon.current_version.version
+        ]
         if has_signoff:
             assert add_log.details['signoff_state'] == 'Approved'
             assert add_log.details['signoff_by'] == submission.signoff_by.id
         else:
             assert add_log.details['signoff_state'] == 'Auto Sign-off'
             assert 'signoff_by' not in add_log.details
-        vlog = ActivityLog.objects.for_versions(block_from_addon.current_version).last()
-        assert vlog == add_log
+
+        (version_block_log,) = tuple(
+            ActivityLog.objects.for_versions(block_from_addon.current_version)
+        )
+        assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_UNBLOCKED.id
+        assert version_block_log.arguments == [block_from_addon.current_version, None]
 
         assert submission.input_guids == ('guid@\n{12345-6789}\nlegacy@')
 
