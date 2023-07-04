@@ -1,20 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  const checkAllCheckboxes = (event) =>
+  const checkOrClearAllCheckboxes = (event) => {
     event.target.parentElement
       .querySelectorAll(`input[name="changed_version_ids"]`)
-      .forEach((checkbox) => checkbox.setAttribute('checked', true));
-  const clearAllCheckboxes = (event) =>
-    event.target.parentElement
-      .querySelectorAll(`input[name="changed_version_ids"]`)
-      .forEach((checkbox) => checkbox.removeAttribute('checked'));
+      .forEach(
+        (checkbox) =>
+          (checkbox.checked = event.target.classList.contains('all-versions')),
+      );
+    event.preventDefault();
+  };
+
   document
-    .querySelectorAll('a.select-all-versions')
-    .forEach((a) => a.addEventListener('click', checkAllCheckboxes, true));
-  document
-    .querySelectorAll('a.select-none-versions')
-    .forEach((a) => a.addEventListener('click', clearAllCheckboxes, true));
+    .querySelectorAll('a.select-versions-all-none')
+    .forEach((a) =>
+      a.addEventListener('click', checkOrClearAllCheckboxes, true),
+    );
 
   const enableIfChecked = (isChecked, fieldId) => {
     const field = document.querySelector(`#${fieldId}`);

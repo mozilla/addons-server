@@ -22,8 +22,8 @@
       {% if block_obj.id %}
         <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>
       {% endif %}
-      [<a href='#' class="select-all-versions">select all</a>]
-      [<a href='#' class="select-none-versions">select none</a>]
+      [<a href='#' class="select-versions-all-none all-versions">select all</a>]
+      [<a href='#' class="select-versions-all-none">select none</a>]
       <ul>
         {% for version in block_obj.addon_versions %}
           <li data-version-id="{{ version.id }}">
