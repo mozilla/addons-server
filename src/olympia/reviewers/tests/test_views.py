@@ -5354,8 +5354,8 @@ class TestReview(ReviewBase):
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked'
         assert span.length == 1
-        assert block_reason in (
-            pq(response.content)('#versions-history .history-comment').text()
+        assert 'Version Blocked' in (
+            pq(response.content)('#versions-history .activity').text()
         )
 
     def test_redirect_after_review_unlisted(self):
