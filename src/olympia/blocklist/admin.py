@@ -359,7 +359,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             }
             if version_ids := request.GET.getlist('v'):
                 # `v` can contain multiple version ids
-                initial['changed_version_ids'] = version_ids
+                try:
+                    initial['changed_version_ids'] = [int(v) for v in version_ids]
+                except ValueError:
+                    pass
             initial.update(**{'input_guids': guids_data})
             if 'action' in request.POST:
                 initial['action'] = request.POST['action']
