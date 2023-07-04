@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2022-07-14 02:22+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -157,9 +157,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "La versión {version} coincide con {block_link} para este complemento. Puede comunicarse con {amo_admins} para obtener información adicional."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
@@ -468,31 +465,6 @@ msgstr "No se puede usar esta URL personalizada."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Este complemento ya pertenece a la colección"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s está en un envío pendiente"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Bloque con GUID %(guid)s no encontrado"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Los bloques que se actualizarán son diferentes porque la versión mínima o máxima ha cambiado."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s contiene *"
-
-msgid "Invalid version"
-msgstr "Versión no válida"
-
-msgid "Min version can not be greater than Max version"
-msgstr "La versión mínima no puede ser mayor que la versión máxima"
 
 msgid "Review Listed"
 msgstr ""
@@ -864,6 +836,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1543,9 +1533,6 @@ msgstr "Ignorar error en la validación"
 
 msgid "Need to select at least one application."
 msgstr "Es necesario seleccionar al menos una aplicación."
-
-msgid "a blocklist entry"
-msgstr "una entrada de lista de bloqueo"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La versión {version} fue cargada anteriormente y eliminada."

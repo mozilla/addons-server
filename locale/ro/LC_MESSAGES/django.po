@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -150,9 +150,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versiunea {version} corespunde cu {block_link} pentru acest supliment. Contactează {amo_admins} pentru informații suplimentare."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
@@ -460,31 +457,6 @@ msgstr "Acest URL personalizat nu poate fi folosit."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Acest supliment deja face parte din colecție"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s este o propunere în așteptare"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blocare cu GUID %(guid)s negăsită"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blocajele de actualizat sunt diferite deoarece versiunea Min sau Max a fost modificată."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-msgid "Invalid version"
-msgstr "Versiune nevalidă"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Versiunea Min nu poate fi mai mare decât versiunea Max"
 
 msgid "Review Listed"
 msgstr "Recenzie listată"
@@ -858,6 +830,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1547,9 +1537,6 @@ msgstr "Înlocuire forțată validare eșuată"
 
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
-
-msgid "a blocklist entry"
-msgstr "o intrare în lista de blocaje"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versiunea {version} a mai fost încărcată și apoi ștearsă."

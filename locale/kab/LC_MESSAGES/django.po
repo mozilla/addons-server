@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-04-12 14:56+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,9 +148,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Lqem {version} yemṣada {block_link} i uzegrir-a. Tzemreḍ ad tremseḍ {amo_admins} i wugar n talɣut."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Lqem {version_string} yuli yakan sakin yettwakkes."
@@ -453,31 +450,6 @@ msgstr "Tansa-agi URL ur tezmir ara ad tettwaseqdec."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Azegrir-agi ittekkayakan ar tegrumma"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Guid %(guid)s ha-t-an deg tuzzna yettraǧu"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Ur yettwaf ara yiḥder s GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Ulac azegrir s GUID %(guid)s"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Iḥedren ara yettwaleqmen mgaraden acku lqem n Min neɣ n Max ibeddel."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s deg-s*"
-
-msgid "Invalid version"
-msgstr "Lqem armeɣtu"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Lqem n Min ur yezmir ara ad yager lqem n Max"
 
 msgid "Review Listed"
 msgstr "Aceggir yettwabder"
@@ -846,6 +818,24 @@ msgid "Un-rejected"
 msgstr "Ur yettwagi ara"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1508,9 +1498,6 @@ msgstr "Zgel asentem yeccḍen"
 
 msgid "Need to select at least one application."
 msgstr "Fren xarṣum yiwen n usnas."
-
-msgid "a blocklist entry"
-msgstr "anekcum n wumuɣ nusewḥel"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Lqem {version} yuli yakan sakin yettwakkes"

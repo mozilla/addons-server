@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-08 13:32+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -158,9 +158,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
 "segítségre van szüksége."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "A(z) {version_string} verzió már korábban fel lett töltve, és törölve lett."
@@ -463,31 +460,6 @@ msgstr "Ez az egyéni URL nem használható."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "A(z) %(guid)s GUID szerepel egy függőben lévő beküldésben"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "A(z) %(guid)s GUID azonosítójú blokkolás nem található"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "A(z) %(guid)s GUID azonosítójú kiegészítő nem található"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "A frissítendő blokkolások különböznek, mert a Min vagy Max verzió megváltozott."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s *-ot tartalmaz"
-
-msgid "Invalid version"
-msgstr "Érvénytelen verzió"
-
-msgid "Min version can not be greater than Max version"
-msgstr "A Min verzió nem lehet nagyobb, mint a Max verzió"
 
 msgid "Review Listed"
 msgstr "Listázottak értékelése"
@@ -859,6 +831,24 @@ msgstr "Elutasítás visszavonva"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "Válasz készült a(z) {rating} értékeléshez a(z) {addon} kiegészítőnél."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1545,9 +1535,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 
 msgid "Need to select at least one application."
 msgstr "Legalább egy alkalmazást ki kell választania."
-
-msgid "a blocklist entry"
-msgstr "egy blokklistabejegyzés"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."

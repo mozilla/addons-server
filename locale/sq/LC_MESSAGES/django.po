@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-03-29 11:39+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -153,9 +153,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Versioni më i ri i miratuar i kësaj shtese %s s’mund të fshihet, ngaqë versioni i mëparshëm s’qe miratuar për promovim në %s. Nëse ju duhet ndihmë për këtë, ju lutemi, lidhuni me Përgjegjësit e AMO-"
 "s."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versioni {version} përputhet me {block_link} për këtë shtesë. Për më tepër informacion, mund të lidheni me {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Versioni {version_string} qe ngarkuar më herët dhe është fshirë."
@@ -462,31 +459,6 @@ msgstr "Kjo URL vetjake s’përdoret dot."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Kjo shtesë bën pjesë tashmë te koleksioni"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID-ja %(guid)s gjendet në Parashtrim pezull"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "S’u gjet bllok me GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Shtesa me GUID %(guid)s s’ekziston"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blloqet që duhen përditësuar janë të ndryshëm, ngaqë versioni Min ose Max ka ndryshuar."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s përmban *"
-
-msgid "Invalid version"
-msgstr "Interval i pavlefshëm"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Versioni Min s’mund të jetë më i madh se versioni Max"
 
 msgid "Review Listed"
 msgstr "Shqyrtoni të Shfaqura"
@@ -858,6 +830,24 @@ msgid "Un-rejected"
 msgstr "Iu hoq hedhja poshtë"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1527,9 +1517,6 @@ msgstr "Anashkaloje vleftësimin e dështuar"
 
 msgid "Need to select at least one application."
 msgstr "Lypset të përzgjidhet të paktën një aplikacion."
-
-msgid "a blocklist entry"
-msgstr "zë liste blloqesh"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versioni {version} qe ngarkuar më herët dhe është fshirë."

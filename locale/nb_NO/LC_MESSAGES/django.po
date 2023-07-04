@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-23 07:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,9 +148,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versjon {version} samsvarer med {block_link} for dette tillegget. Du kan kontakte {amo_admins} for mer informasjon."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
@@ -303,8 +300,8 @@ msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
-"Hvis du har konfigurert din nettleser for å deaktivere «Referer headers», bør du aktivere dem på nytt, i hvert fall for dette nettstedet, eller for HTTPS-tilkoblinger, eller for «same-"
-"origin»-forespørsler."
+"Hvis du har konfigurert din nettleser for å deaktivere «Referer headers», bør du aktivere dem på nytt, i hvert fall for dette nettstedet, eller for HTTPS-tilkoblinger, eller for «same-origin»-"
+"forespørsler."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -319,17 +316,16 @@ msgstr "Ikke funnet"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Vi beklager, men vi klarte ikke finne det du lette etter.</h1> <p> Siden eller filen du spurte om ble ikke funnet på nettstedet. Det er mulig at du trykket på en lenke som er utdatert, eller at "
-"du skrev inn adressen med feil. </p> <ul> <li>Dersom du skrev inn adressen, dobbeltsjekk stavingen.</li> <li> Dersom du fulgte en lenke fra et annet sted, %(open_bug_link)ssend inn en "
-"feilrapport%(close_bug_link)s. Si hvor du kom fra, og hva du lette etter, så vil vi gjøre vårt beste for å rette det. </li> </ul> <p>Eller du kan også gå til noen av de populære sidene på vårt "
-"nettsted.</p> <ul> <li>Er du interessert i en <a href=\"%(rec)s\">liste over fremhevede utvidelser</a>?</li> <li> Ønsker du å <a href=\"%(search)s\">søke etter utvidelser</a>? Du kan også gå til <a "
-"href=\"%(search)s\">søkesiden</a> eller bare bruke søkefeltene ovenfor. </li> <li> Dersom du foretrekker å starte fra begynnelsen, gå til <a href=\"%(home)s\">hjemmesiden for utvidelser</a>. </li> "
-"</ul>"
+"du skrev inn adressen med feil. </p> <ul> <li>Dersom du skrev inn adressen, dobbeltsjekk stavingen.</li> <li> Dersom du fulgte en lenke fra et annet sted, %(open_bug_link)ssend inn en feilrapport"
+"%(close_bug_link)s. Si hvor du kom fra, og hva du lette etter, så vil vi gjøre vårt beste for å rette det. </li> </ul> <p>Eller du kan også gå til noen av de populære sidene på vårt nettsted.</p> "
+"<ul> <li>Er du interessert i en <a href=\"%(rec)s\">liste over fremhevede utvidelser</a>?</li> <li> Ønsker du å <a href=\"%(search)s\">søke etter utvidelser</a>? Du kan også gå til <a href="
+"\"%(search)s\">søkesiden</a> eller bare bruke søkefeltene ovenfor. </li> <li> Dersom du foretrekker å starte fra begynnelsen, gå til <a href=\"%(home)s\">hjemmesiden for utvidelser</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ops"
@@ -456,31 +452,6 @@ msgstr "Denne tilpasssede nettadressen kan ikke brukes."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dette tillegget er allerede en del av samlingen"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s venter på å bli sendt inn"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Fant ikke blokkering med GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokkeringer som skal oppdateres er ulike, fordi minimum- eller maksimum-versjonen har endret seg."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s inneholder *"
-
-msgid "Invalid version"
-msgstr "Ugyldig versjon"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Min-versjon kan ikke være større enn Max-versjon"
 
 msgid "Review Listed"
 msgstr "Gjennomgang listet"
@@ -852,6 +823,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1518,9 +1507,6 @@ msgstr "Overstyringen feilet validering"
 msgid "Need to select at least one application."
 msgstr "Velg minst ett program."
 
-msgid "a blocklist entry"
-msgstr "en blokkeringslisteoppføring"
-
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versjon {version} er lastet opp tidligere og slettet."
 
@@ -2035,8 +2021,8 @@ msgid "Email"
 msgstr "E-post"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2078,8 +2064,8 @@ msgid "Whiteboard"
 msgstr "Oppslagstavle"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2593,8 +2579,8 @@ msgstr "JWT-hemmelighet"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "For å gjøre API-forandringer, send en <a href=\"%(jwt_url)s\">JSON Web token (JWT)</a> som authorization-header. Du må lage en JWT for hver forespørsel som beskrevet i <a href=\"%(docs_url)s\">API-"
 "dokumentasjonen</a>."
@@ -2680,17 +2666,20 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
 "Kjære tilleggsutvikler,\n"
 "\n"
-"Vi la merke til at de hemmelige AMO API-innloggingsopplysningene dine var inkludert i et tillegg som ble sendt til addons.mozilla.org. For å beskytte kontoen din og dine tillegg, opphevet vi de lekkede innloggingsopplysningene.\n"
+"Vi la merke til at de hemmelige AMO API-innloggingsopplysningene dine var inkludert i et tillegg som ble sendt til addons.mozilla.org. For å beskytte kontoen din og dine tillegg, opphevet vi de "
+"lekkede innloggingsopplysningene.\n"
 "Du kan generere nye API-innloggingsopplysninger på %(api_keys_url)s\n"
 "\n"
-"Forsikre deg om at du aldri deler innloggingsopplysningene din med noen. Inkluder dem aldri i et offentlig kodelager, tillegg eller noe annet offentlig sted. Vi oppfordrer deg til å gå gjennom kodelagerene og utvidelsene dine for å fjerne referanser til AMO-innloggingsopplysningene.\n"
+"Forsikre deg om at du aldri deler innloggingsopplysningene din med noen. Inkluder dem aldri i et offentlig kodelager, tillegg eller noe annet offentlig sted. Vi oppfordrer deg til å gå gjennom "
+"kodelagerene og utvidelsene dine for å fjerne referanser til AMO-innloggingsopplysningene.\n"
 "\n"
 "Takk skal du ha,\n"
 "Mozilla tilleggsteam"
@@ -5042,8 +5031,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5099,7 +5088,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5112,7 +5102,8 @@ msgid ""
 msgstr ""
 "Hei %(author_name)s,\n"
 "\n"
-"Du er blitt invitert til å bli opphavsmann av %(addon_name)s på %(domain)s. Hvis du godtar invitasjonen, kan du redigere tillegget og kanskje vise navnet ditt i listen over opphavsmenn på nettstedet.\n"
+"Du er blitt invitert til å bli opphavsmann av %(addon_name)s på %(domain)s. Hvis du godtar invitasjonen, kan du redigere tillegget og kanskje vise navnet ditt i listen over opphavsmenn på "
+"nettstedet.\n"
 "\n"
 "Klikk på lenken nedenfor for å svare om du vil bli lagt til som opphavsmann for %(addon_name)s.\n"
 "\n"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-05 20:06+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,9 +148,6 @@ msgstr "File is already disabled."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Version {version_string} was uploaded before and deleted."
@@ -453,31 +450,6 @@ msgstr "This custom URL cannot be used."
 
 msgid "This add-on already belongs to the collection"
 msgstr "This add-on already belongs to the collection"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s is in a pending Submission"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Block with GUID %(guid)s not found"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Add-on with GUID %(guid)s does not exist"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blocks to be updated are different because Min or Max Version has changed."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s contains *"
-
-msgid "Invalid version"
-msgstr "Invalid version"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Min version can not be greater than Max Version"
 
 msgid "Review Listed"
 msgstr "Review Listed"
@@ -846,6 +818,24 @@ msgid "Un-rejected"
 msgstr "Un-rejected"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1508,9 +1498,6 @@ msgstr "Override failed validation"
 
 msgid "Need to select at least one application."
 msgstr "Need to select at least one application."
-
-msgid "a blocklist entry"
-msgstr "a blocklist entry"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} was uploaded before and deleted."

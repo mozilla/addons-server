@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-05-10 12:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,9 +152,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Najnowša schwalena wersija tutoho rozšěrjenja %s njeda so zhašeć, dokelž předchadna wersija njeje so za doporučenje %s schwaliła. Prošu stajće so z administratorami AMO do zwiska, jeli pomoc wo tym "
 "trjebaće."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Wersija {version} {block_link} za tutón přidatk wotpowěduje. Móžeće so z {amo_admins} za přidatne informacije do zwiska stajić."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Wersija {version_string} je so prjedy nahrała a zhašała."
@@ -456,31 +453,6 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s je we wustejacym zapodaću"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokowanje z GUID %(guid)s njeje so namakało"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Přidatk z GUID %(guid)s njeeksistuje"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokjowanja, kotrež maja so aktualizować, su rozdźělne, dokelž minimalna abo maksimalna wersija je so změniła."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s * wobsahuje"
-
-msgid "Invalid version"
-msgstr "Njepłaćiwa wersija"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimalna wersija njemóže wjetša hač maksimalna wersija być"
 
 msgid "Review Listed"
 msgstr "Nalistowane přepruwować"
@@ -851,6 +823,24 @@ msgid "Un-rejected"
 msgstr "Wotpokazanje zběhnjene"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1524,9 +1514,6 @@ msgstr "Njeporadźene přepruwowanje přepisać"
 
 msgid "Need to select at least one application."
 msgstr "Dyrbiće znajmjeńša jedne nałoženje wubrać."
-
-msgid "a blocklist entry"
-msgstr "zapisk blokowanskeje lisćiny"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Wersija {version} je so prjedy nahrała a zhašała."

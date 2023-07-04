@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -157,9 +157,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Verzija {version} odgovara {block_link} za ovaj dodatak. Za dodatne informacije možeš kontaktirati {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Verzija {version_string} je već prije bila prenesena i izbrisana."
@@ -463,31 +460,6 @@ msgstr "Ovaj se prilagođeni URL ne može koristiti."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj dodatak već pripada zbirci"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s se nalazi u podnesku na čekanju"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokada s GUID-om %(guid)s nije pronađena"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Dodatak s GUID-om %(guid)s ne postoji"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokade koje se moraju aktualizirati razlikuju se, jer su se minimalna ili maksimalna verzija promijenile."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s sadrži *"
-
-msgid "Invalid version"
-msgstr "Neispravna verzija"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimalna verzija ne može biti veća od maksimalne verzije"
 
 msgid "Review Listed"
 msgstr "Pregled navedenih"
@@ -861,6 +833,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1534,9 +1524,6 @@ msgstr "Zanemari neuspjelu provjeru"
 
 msgid "Need to select at least one application."
 msgstr "Moraš odabrati barem jednu aplikaciju."
-
-msgid "a blocklist entry"
-msgstr "unos u popisu blokiranja"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je već prije bila prenesena i izbrisana."
