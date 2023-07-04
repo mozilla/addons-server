@@ -221,10 +221,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert response.context['form'].initial == {
             'input_guids': addon.guid,
             'changed_version_ids': [
-                str(ver.id),
-                str(ver_deleted.id),
-                str(ver_add_subm.id),
-                str(ver_block.id),
+                ver.id,
+                ver_deleted.id,
+                ver_add_subm.id,
+                ver_block.id,
             ],
         }
         # but the form logic filters out the invalid choices, even when in `initial`
@@ -238,6 +238,25 @@ class TestBlocklistSubmissionAdmin(TestCase):
                 ],
             )
         ]
+        doc = pq(response.content)
+        # the selected choices are checked
+        assert (
+            doc(f'input[name="changed_version_ids"][value="{ver.id}"]').attr('checked')
+            == 'checked'
+        )
+        assert (
+            doc(f'input[name="changed_version_ids"][value="{ver_deleted.id}"]').attr(
+                'checked'
+            )
+            == 'checked'
+        )
+        # and other one is not.
+        assert (
+            doc(f'input[name="changed_version_ids"][value="{ver_unlisted.id}"]').attr(
+                'checked'
+            )
+            is None
+        )
 
     def test_version_checkboxes(self):
         user = user_factory(email='someone@mozilla.com')
