@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-05-03 02:10+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -150,9 +150,6 @@ msgstr "ファイルはすでに無効になっています。"
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "この %s アドオンは、以前のバージョンが %s プロモーションで承認されなかったため、最新の承認済みバージョンを削除することができません。助けが必要な場合は AMO の管理者に問い合わせてください。"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "バージョン {version} は、このアドオンの {block_link} と一致します。追加の情報は {amo_admins} にお問い合わせください。"
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "バージョン {version_string} は以前アップロードされ、削除されています。"
@@ -458,31 +455,6 @@ msgstr "このカスタム URL は使用できません。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s の送信が保留中です。"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "GUID %(guid)s のブロックが見つかりませんでした"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "GUID %(guid)s のアドオンは存在しません"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "最小または最大バージョンが変更されたため、更新されるブロックが異なります。"
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s に * が含まれています"
-
-msgid "Invalid version"
-msgstr "不正なバージョン"
-
-msgid "Min version can not be greater than Max version"
-msgstr "最小バージョンを最大バージョンより大きくすることはできません"
 
 msgid "Review Listed"
 msgstr ""
@@ -852,6 +824,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1515,9 +1505,6 @@ msgstr "失敗した検証を上書き"
 
 msgid "Need to select at least one application."
 msgstr "対応アプリケーションを少なくとも一つ選択する必要があります。"
-
-msgid "a blocklist entry"
-msgstr "ブロックリストのエントリー"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "バージョン {version} は以前アップロードされ、削除されています。"

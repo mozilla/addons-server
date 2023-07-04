@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-01-21 20:37+0000\n"
 "Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -151,9 +151,6 @@ msgstr ""
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
@@ -465,31 +462,6 @@ msgstr "URL ubahsuai ini tidak dapat digunakan."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Tidak ada pengaya dengan GUID %(guid)s"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-msgid "Invalid version"
-msgstr "Versi tidak valid"
-
-msgid "Min version can not be greater than Max version"
-msgstr ""
 
 msgid "Review Listed"
 msgstr "Tinjauan Terdaftar"
@@ -864,6 +836,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1541,9 +1531,6 @@ msgstr "Validasi gagal dikesampingkan"
 
 msgid "Need to select at least one application."
 msgstr "Perlu memilih setidaknya satu aplikasi."
-
-msgid "a blocklist entry"
-msgstr "entri daftar blokir"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."

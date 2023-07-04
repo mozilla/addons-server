@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -826,31 +826,31 @@ msgstr ""
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:420
+#: static/js/zamboni/reviewers.js:406
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:433 static/js/zamboni/reviewers.js:459
+#: static/js/zamboni/reviewers.js:419 static/js/zamboni/reviewers.js:445
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:438
+#: static/js/zamboni/reviewers.js:424
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:445
+#: static/js/zamboni/reviewers.js:431
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:452
+#: static/js/zamboni/reviewers.js:438
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:464
+#: static/js/zamboni/reviewers.js:450
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:471
+#: static/js/zamboni/reviewers.js:457
 msgid "Review notes found"
 msgstr ""
 

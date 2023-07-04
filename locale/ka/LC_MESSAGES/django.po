@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-11 20:03+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,9 +148,6 @@ msgstr "ფაილი უკვე ამორთულია."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "უახლესი დამოწმებული ვერსიის %s დამატება ვერ წაიშლება, ვინაიდან წინა ვერსია არ დამოწმებულა %s რეკლამისთვის. გთხოვთ, დაუკავშირდეთ AMO-ს ხელმძღვანელობას ამ საკითხზე დახმარებისთვის."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "ვერსია {version} და {block_link} ემთხვევა ამ დამატებისთვის. დამატებითი ინფორმაციისთვის შეგიძლიათ {amo_admins}-ს დაუკავშირდეთ."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "{version_string} ვერსია ადრე იყო ატვირთული და წაიშალა."
@@ -453,31 +450,6 @@ msgstr "ამ URL-ბმულის გამოყენება შეუ�
 
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s ელოდება წარდგენას"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "შეზღუდვა GUID-ით %(guid)s ვერ მოიძებნა"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "დამატება GUID-ით %(guid)s არ არსებობს"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "განსაახლებელი შეზღუდვები განსხვავებულია, ვინაიდან, Min ან Max-ვერსია შეიცვალა."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s შეიცავს *"
-
-msgid "Invalid version"
-msgstr "არასწორი ვერსია"
-
-msgid "Min version can not be greater than Max version"
-msgstr "ვერსიის ქვედა ზღვარი არ უნდა აღემატებოდეს ზედა ზღვარს"
 
 msgid "Review Listed"
 msgstr "მიმოხილვა გამოქვეყნებულია"
@@ -849,6 +821,24 @@ msgstr "უარყოფის გაუქმება"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "გამოხმაურება {rating} შეფასებაზე {addon} დამატებისთვის."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1538,9 +1528,6 @@ msgstr "წარუმატებელ დამოწმებაზე გ�
 
 msgid "Need to select at least one application."
 msgstr "საჭიროა, სულ მცირე ერთი პროგრამის არჩევა."
-
-msgid "a blocklist entry"
-msgstr "შეზღუდვის სიის ჩანაწერი"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} ვერსია იყო ატვირთული და წაიშალა."

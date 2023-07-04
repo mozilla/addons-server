@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-05-26 03:16+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -151,9 +151,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "รุ่น {version} ตรงกับ {block_link} สำหรับส่วนเสริมนี้ คุณสามารถติดต่อ {amo_admins} สำหรับข้อมูลเพิ่มเติมได้"
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
@@ -451,31 +448,6 @@ msgstr "ไม่สามารถใช้ URL ที่กำหนดเอ�
 
 msgid "This add-on already belongs to the collection"
 msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s กำลังดำเนินการตรวจสอบการเสนอที่ส่งเข้ามา"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "ไม่พบบล็อกที่ระบุด้วย GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "บล็อกที่จะอัปเดตนั้นแตกต่างกันเนื่องจากรุ่นต่ำสุดหรือรุ่นสูงสุดได้ถูกเปลี่ยนแปลง"
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s มี *"
-
-msgid "Invalid version"
-msgstr "รุ่นไม่ถูกต้อง"
-
-msgid "Min version can not be greater than Max version"
-msgstr "รุ่นต่ำสุดต้องไม่มากกว่ารุ่นสูงสุด"
 
 #, fuzzy
 msgid "Review Listed"
@@ -852,6 +824,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1518,9 +1508,6 @@ msgstr "เขียนทับการตรวจสอบความถู
 
 msgid "Need to select at least one application."
 msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
-
-msgid "a blocklist entry"
-msgstr "รายการในรายการปิดกั้น"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "มีการอัปโหลดรุ่น {version} ก่อนหน้าและลบแล้ว"

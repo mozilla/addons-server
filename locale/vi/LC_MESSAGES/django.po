@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-14 18:28+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -148,9 +148,6 @@ msgstr "Tập tin đã bị vô hiệu hóa."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Không thể xóa phiên bản mới nhất được phê duyệt của tiện ích %s vì phiên bản trước đó không được chấp thuận cho quảng cáo %s. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ giúp về việc này."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Phiên bản {version} khớp với {block_link} cho tiện ích này. Bạn có thể liên hệ với {amo_admins} để biết thêm thông tin."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Phiên bản {version_string} đã được tải lên trước đó và đã bị xóa."
@@ -456,31 +453,6 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s đang trong một đệ trình đang chờ xử lý"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Tiện ích với GUID %(guid)s không tồn tại"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Các khối được cập nhật khác nhau vì phiên bản tối thiểu hoặc tối đa đã thay đổi."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s chứa *"
-
-msgid "Invalid version"
-msgstr "Phiên bản không hợp lệ"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Phiên bản tối thiểu không được lớn hơn phiên bản tối đa"
 
 #, fuzzy
 msgid "Review Listed"
@@ -855,6 +827,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1528,9 +1518,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr "Cần chọn ít nhất một ứng dụng."
-
-msgid "a blocklist entry"
-msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Phiên bản {version} đã được tải lên trước đó và đã bị xóa."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-20 16:13+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-07 09:57+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -152,9 +152,6 @@ msgstr "Dosya zaten devre dışı."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Bu %s eklentisinin en son onaylanmış sürümü silinemez çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda yardıma ihtiyacınız varsa lütfen AMO yöneticileri ile iletişime geçin."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "{version} sürümü, bu eklenti için {block_link} ile eşleşiyor. Ek bilgi için {amo_admins} ile iletişime geçebilirsiniz."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "{version_string} sürümü daha önce yüklendi ve silindi."
@@ -462,31 +459,6 @@ msgstr "Bu özel URL kullanılamaz."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Bu eklenti zaten bir koleksiyona ait"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s bekleyen bir gönderide"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "GUID'si %(guid)s olan blok bulunamadı"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "%(guid)s GUID'li eklenti mevcut değil"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Minimum veya maksimum sürüm değiştiği için güncellenecek engeller farklıdır."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s * içeriyor"
-
-msgid "Invalid version"
-msgstr "Geçersiz sürüm"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimum sürüm maksimum sürümden büyük olamaz"
 
 msgid "Review Listed"
 msgstr "Listelenen inceleme"
@@ -857,6 +829,24 @@ msgid "Un-rejected"
 msgstr "Ret geri alındı"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1540,9 +1530,6 @@ msgstr "Başarısız doğrulamayı geçersiz kıl"
 
 msgid "Need to select at least one application."
 msgstr "En az bir uygulamanın seçilmesi gerekiyor."
-
-msgid "a blocklist entry"
-msgstr "bir engelleme listesi kaydı"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "{version} sürümü daha önce yüklenip silinmiş."
