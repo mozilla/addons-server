@@ -16,6 +16,7 @@ from olympia.blocklist.models import Block, BlocklistSubmission
 
 class TestBlocklistSubmissionForm(TestCase):
     def setUp(self):
+        self.user = user_factory()
         self.new_addon = addon_factory(
             guid='any@new', average_daily_users=100, version_kw={'version': '5.56'}
         )
@@ -29,7 +30,7 @@ class TestBlocklistSubmissionForm(TestCase):
         self.full_existing_addon_v2 = version_factory(addon=self.full_existing_addon)
         self.existing_block_full = block_factory(
             addon=self.full_existing_addon,
-            updated_by=user_factory(),
+            updated_by=self.user,
         )
 
         self.partial_existing_addon = addon_factory(
@@ -41,7 +42,7 @@ class TestBlocklistSubmissionForm(TestCase):
         )
         self.existing_block_partial = block_factory(
             addon=self.partial_existing_addon,
-            updated_by=user_factory(),
+            updated_by=self.user,
         )
         self.partial_existing_addon_v_notblocked = version_factory(
             addon=self.partial_existing_addon
@@ -87,7 +88,7 @@ class TestBlocklistSubmissionForm(TestCase):
         form = Form(
             data={**data, 'changed_version_ids': [self.new_addon.current_version.id]}
         )
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         assert not form.errors
 
         form = Form(
@@ -104,7 +105,7 @@ class TestBlocklistSubmissionForm(TestCase):
             ]
         }
 
-    def test_test_changed_version_ids_choices_delete_action(self):
+    def test_changed_version_ids_choices_delete_action(self):
         block_admin = BlocklistSubmissionAdmin(
             model=BlocklistSubmission, admin_site=admin_site
         )
@@ -147,9 +148,15 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.invalid_guids == ['invalid@guid']
 
         form = Form(
-            data={**data, 'changed_version_ids': [self.full_existing_addon_v1.id]}
+            data={
+                **data,
+                'changed_version_ids': [
+                    self.partial_existing_addon_v_blocked.id,
+                    self.full_existing_addon_v1.id,
+                ],
+            }
         )
-        assert form.is_valid()
+        assert form.is_valid(), form.errors
         assert not form.errors
 
         form = Form(
@@ -196,6 +203,39 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.initial['url'] == 'url'  # both the same, so we can default
         assert 'update_url' not in form.initial
         assert form.initial['update_reason'] is False  # so the checkbox defaults false
+
+    def test_new_blocks_must_have_changed_versions(self):
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site
+        )
+        request = RequestFactory().get('/')
+
+        Form = block_admin.get_form(request=request)
+        data = {
+            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+            # only one version selected
+            'changed_version_ids': [self.partial_existing_addon_v_notblocked.id],
+        }
+        form = Form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            # only new_addon is an error- existing blocks can just have metadata changes
+            'changed_version_ids': [f'{self.new_addon.guid} has no changed versions']
+        }
+
+        # delete action is similar, but we allow deleting a block with no versions
+        Block.objects.create(addon=self.new_addon, updated_by=self.user)
+        data['action'] = str(BlocklistSubmission.ACTION_DELETE)
+        data['changed_version_ids'] = [
+            self.partial_existing_addon_v_blocked.id,
+            self.full_existing_addon_v1.id,
+        ]
+        form = Form(data=data)
+        assert form.is_valid(), form.errors
 
     def test_update_url_reason_sets_null(self):
         block_admin = BlocklistSubmissionAdmin(

@@ -86,7 +86,7 @@ class BlocklistSubmissionForm(AMOModelForm):
 
     def __init__(self, data=None, *args, **kw):
         instance = kw.get('instance')
-        is_add_change = self.get_value(
+        self.is_add_change = self.get_value(
             instance, data, kw, 'action', str(BlocklistSubmission.ACTION_ADDCHANGE)
         ) == str(BlocklistSubmission.ACTION_ADDCHANGE)
         input_guids = self.get_value(instance, data, kw, 'input_guids', '')
@@ -107,7 +107,7 @@ class BlocklistSubmissionForm(AMOModelForm):
             objects = BlocklistSubmission.process_input_guids(
                 input_guids,
                 load_full_objects=load_full_objects,
-                filter_existing=is_add_change,
+                filter_existing=self.is_add_change,
             )
             objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
             self.initial = self.initial or {}
@@ -118,7 +118,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                     # ^ is XOR
                     # - for add action it allows the version when it is NOT blocked
                     # - for delete action it allows the version when it IS blocked
-                    lambda v: (v.is_blocked ^ is_add_change)
+                    lambda v: (v.is_blocked ^ self.is_add_change)
                     and not v.blocklist_submission_id,
                 )
                 self.changed_version_ids_choices = [
@@ -166,6 +166,23 @@ class BlocklistSubmissionForm(AMOModelForm):
                 or (kw.get('initial') or {}).get(field_name, default)
             )
         )
+
+    def clean_changed_version_ids(self):
+        data = self.cleaned_data.get('changed_version_ids', [])
+        errors = []
+        # we're checking new blocks for add/change; and all blocks for delete
+        for block in (bl for bl in self.blocks if not bl.id or not self.is_add_change):
+            version_ids = [v.id for v in block.addon_versions]
+            changed_ids = (v_id for v_id in data if v_id in version_ids)
+            blocked_ids = (v.id for v in block.addon_versions if v.is_blocked)
+            # for add/change we raise if there are no changed ids for this addon
+            # for delete, only if there is also at least one existing blocked version
+            if (self.is_add_change or any(blocked_ids)) and not any(changed_ids):
+                errors.append(ValidationError(f'{block.guid} has no changed versions'))
+
+        if errors:
+            raise ValidationError(errors)
+        return data
 
     def clean(self):
         super().clean()
