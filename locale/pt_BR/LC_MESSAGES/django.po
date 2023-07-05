@@ -843,7 +843,7 @@ msgid "Reply to {rating} for {addon} written."
 msgstr "Escrita resposta a {rating} para {addon}."
 
 msgid "{addon} {version} pending rejection cleared."
-msgstr "Removida rejeição pendente de {addon} {versão}."
+msgstr "Removida rejeição pendente de {addon} {version}."
 
 msgid "Pending rejection cleared"
 msgstr "Removida rejeição pendente"
