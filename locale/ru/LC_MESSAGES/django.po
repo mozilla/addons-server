@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-04 17:08+0000\n"
-"PO-Revision-Date: 2023-07-05 11:35+0000\n"
+"PO-Revision-Date: 2023-07-05 11:45+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -835,19 +835,19 @@ msgid "{addon} {version} pending rejection cleared."
 msgstr "{addon} {version}, ожидающее отклонения, удалено."
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Ожидание отклонения удалено"
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "{version} добавлена в черный список."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Версия заблокирована"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "{version} удалена из черного списка."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Версия разблокирована"
 
 msgid "Firefox"
 msgstr "Firefox"
