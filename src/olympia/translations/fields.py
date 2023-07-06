@@ -227,6 +227,8 @@ class _TransField:
         kwargs.pop('blank', None)
 
         super().__init__(*args, **kwargs)
+        # Some fields (e.g. EmailField) set a default we don't want to use
+        self.max_length = kwargs.get('max_length')
 
     def set_default_values(self, field_name, parent_form, default_locale):
         self.parent_form = parent_form
