@@ -509,6 +509,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             name='Partial Danger',
             average_daily_users=(partial_addon_adu),
         )
+        partial_addon.current_version.update(
+            created=partial_addon.current_version.created - timedelta(seconds=1)
+        )
         existing_and_partial = block_factory(
             guid=partial_addon.guid,
             # should be updated to addon's adu
