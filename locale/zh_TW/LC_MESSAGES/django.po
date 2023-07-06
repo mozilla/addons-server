@@ -4525,7 +4525,7 @@ msgstr "由於使用者限制而自動標記"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s 包含非字母與數字的字元。"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
