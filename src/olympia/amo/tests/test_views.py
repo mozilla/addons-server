@@ -440,11 +440,8 @@ class TestCORS(TestCase):
         assert response['Access-Control-Allow-Origin'] == '*'
         assert sorted(response['Access-Control-Allow-Headers'].lower().split(', ')) == [
             'accept',
-            'accept-encoding',
             'authorization',
             'content-type',
-            'dnt',
-            'origin',
             'user-agent',
             'x-country-code',
             'x-csrftoken',
