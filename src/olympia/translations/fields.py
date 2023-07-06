@@ -227,7 +227,9 @@ class _TransField:
         kwargs.pop('blank', None)
 
         super().__init__(*args, **kwargs)
-        # Some fields (e.g. EmailField) set a default we don't want to use
+        # Some fields (e.g. EmailField) set a default we don't want to use.
+        # But, any form inheriting from AMOModelForm gets the max_length from the model
+        # field instead, via `set_max_length_on_fields_where_necessary`.
         self.max_length = kwargs.get('max_length')
 
     def set_default_values(self, field_name, parent_form, default_locale):
