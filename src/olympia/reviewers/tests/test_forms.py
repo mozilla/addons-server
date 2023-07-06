@@ -6,13 +6,8 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.tests import (
-    TestCase,
-    addon_factory,
-    block_factory,
-    user_factory,
-    version_factory,
-)
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.blocklist.models import Block
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
@@ -152,12 +147,11 @@ class TestReviewForm(TestCase):
         ]
 
         # The add-on is already disabled so we don't show reject_multiple_versions, but
-        # reply/super/comment are still present.
+        # reply/comment are still present.
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -373,9 +367,10 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
-        block_factory(
-            addon=blocked_version.addon,
-            version_ids=[blocked_version.id],
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
             updated_by=user_factory(),
         )
         # auto-approve everything (including self.addon.current_version)
@@ -484,9 +479,10 @@ class TestReviewForm(TestCase):
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
-        block_factory(
-            addon=blocked_version.addon,
-            version_ids=[blocked_version.id],
+        Block.objects.create(
+            addon=self.addon,
+            min_version=blocked_version.version,
+            max_version=blocked_version.version,
             updated_by=user_factory(),
         )
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -629,12 +625,12 @@ class TestReviewForm(TestCase):
             option = doc('option[value="%s"]' % version.pk)[0]
             assert 'set_needs_human_review_multiple_versions' in option.attrib.get(
                 'data-value'
-            ).split(' '), version
+            ).split(' ')
         for version in [deleted_but_unsigned, user_disabled_version_but_unsigned]:
             option = doc('option[value="%s"]' % version.pk)[0]
             assert 'set_needs_human_review_multiple_versions' not in option.attrib.get(
                 'data-value'
-            ).split(' '), version
+            ).split(' ')
 
     def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
         self.grant_permission(self.request.user, 'Reviews:Admin')
