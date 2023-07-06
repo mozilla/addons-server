@@ -571,7 +571,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     ==============  ==========================================================
             public  Approved
           disabled  Rejected, disabled, or not reviewed
-         nominated  Awaiting Review
+        unreviewed  Awaiting Review
     ==============  ==========================================================
 
 

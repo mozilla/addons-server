@@ -1,7 +1,6 @@
 import json
 import os
 import secrets
-from collections import defaultdict
 
 from django.conf import settings
 from django.utils.functional import cached_property
@@ -48,39 +47,15 @@ def generate_mlbf(stats, blocked, not_blocked):
 
 
 def fetch_blocked_from_db():
-    from olympia.blocklist.models import Block
-    from olympia.files.models import File
+    from olympia.blocklist.models import BlockVersion
 
-    blocks = Block.objects.all()
-    blocks_guids = [block.guid for block in blocks]
-
-    file_qs = (
-        File.objects.filter(
-            version__addon__addonguid__guid__in=blocks_guids,
-            is_signed=True,
+    all_versions = {
+        block_version.version_id: (
+            block_version.block.guid,
+            block_version.version.version,
         )
-        .order_by('version_id')
-        .values('version__addon__addonguid__guid', 'version__version', 'version_id')
-    )
-    addons_versions = defaultdict(list)
-    for file_ in file_qs:
-        addon_key = file_['version__addon__addonguid__guid']
-        addons_versions[addon_key].append(
-            (file_['version__version'], file_['version_id'])
-        )
-
-    all_versions = {}
-    # collect all the blocked versions
-    for block in blocks:
-        is_all_versions = (
-            block.min_version == Block.MIN and block.max_version == Block.MAX
-        )
-        versions = {
-            version_id: (block.guid, version)
-            for version, version_id in addons_versions[block.guid]
-            if is_all_versions or block.is_version_blocked(version)
-        }
-        all_versions.update(versions)
+        for block_version in BlockVersion.objects.filter(version__file__is_signed=True)
+    }
     return all_versions
 
 

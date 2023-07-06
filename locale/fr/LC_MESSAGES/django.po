@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 13:19+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-05 10:29+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -157,9 +157,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "La dernière version approuvée de ce module complémentaire %s ne peut pas être supprimée, car la version précédente n’a pas été approuvée pour la promotion %s. Si vous avez besoin d’aide à ce sujet, "
 "veuillez contacter les administrateurs d’AMO."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "La version {version} correspond à {block_link} pour ce module complémentaire. Vous pouvez contacter {amo_admins} pour plus d’informations."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "La version {version_string} a déjà été envoyée et supprimée auparavant."
@@ -471,31 +468,6 @@ msgstr "Cette adresse personnalisée ne peut pas être utilisée."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ce module appartient déjà à la collection"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Le GUID %(guid)s est dans une soumission en attente"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Le blocage avec le GUID %(guid)s est introuvable"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Il n’existe pas de module complémentaire avec le GUID %(guid)s"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Les blocages à mettre à jour sont différents car la version Min ou Max a changé."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s contient *"
-
-msgid "Invalid version"
-msgstr "Version invalide"
-
-msgid "Min version can not be greater than Max version"
-msgstr "La version Min ne peut pas être supérieure à la version Max"
 
 msgid "Review Listed"
 msgstr "Revue listée"
@@ -867,6 +839,24 @@ msgstr "Non rejeté"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "Réponse à {rating} pour {addon} écrite."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr "Rejet en attente du module {addon} {version} effacé."
+
+msgid "Pending rejection cleared"
+msgstr "Rejet en attente effacé"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} ajoutée à la liste de blocage."
+
+msgid "Version Blocked"
+msgstr "Version bloquée"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} supprimée de la liste de blocage."
+
+msgid "Version Unblocked"
+msgstr "Version débloquée"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1566,9 +1556,6 @@ msgstr "Passer outre la validation échouée"
 
 msgid "Need to select at least one application."
 msgstr "Choisissez au moins une application."
-
-msgid "a blocklist entry"
-msgstr "Une entrée de liste de blocage"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "La version {version} a déjà été envoyée et supprimée."
@@ -4664,6 +4651,10 @@ msgstr "Signalé automatiquement en raison d’une correspondance de mots"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Signalé automatiquement en raison des restrictions imposées à l’utilisateur"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s contient un caractère qui n’est pas alphanumérique."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

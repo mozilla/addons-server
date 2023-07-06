@@ -32,7 +32,6 @@ from olympia.api.serializers import AMOModelSerializer, BaseESSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
@@ -525,22 +524,6 @@ class DeveloperVersionSerializer(VersionSerializer):
                 raise exceptions.ValidationError(msg)
         return disable
 
-    def _check_blocklist(self, guid, version_string):
-        # check the guid/version isn't in the addon blocklist
-        block_qs = Block.objects.filter(guid=guid) if guid else ()
-        if block_qs and block_qs.first().is_version_blocked(version_string):
-            msg = gettext(
-                'Version {version} matches {block_link} for this add-on. '
-                'You can contact {amo_admins} for additional information.'
-            )
-            raise exceptions.ValidationError(
-                msg.format(
-                    version=version_string,
-                    block_link=absolutify(reverse('blocklist.block', args=[guid])),
-                    amo_admins='amo-admins@mozilla.com',
-                ),
-            )
-
     def _check_for_existing_versions(self, version_string):
         # Make sure we don't already have this version.
         existing_versions = Version.unfiltered.filter(
@@ -557,9 +540,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     def validate(self, data):
         if not self.instance:
-            guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             version_string = self.parsed_data.get('version')
-            self._check_blocklist(guid, version_string)
             if self.addon:
                 self._check_for_existing_versions(version_string)
 

@@ -1,15 +1,15 @@
 {% load humanize %}
 
-<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
+<h3>{{ form.blocks|length|intcomma }} Add-on GUIDs with {{ form.total_adu|intcomma }} users:</h3>
  <ul class="guid_list">
-  {% for block_obj in blocks %}
+  {% for block_obj in form.blocks %}
     <li>
       {{ block_obj.guid }}.
       {% if block_obj.addon %}
         <span class="addon-name">{{ block_obj.addon.name }}</span>
       {% endif %}
 
-      {% if submission_complete|default_if_none:False %}
+      {% if submission_published|default_if_none:False %}
         {% if block_obj.average_daily_users_snapshot is not None %}
           ({{ block_obj.average_daily_users_snapshot }} users).
         {% endif %}
@@ -20,8 +20,34 @@
       {{ block_obj.review_listed_link }}
       {{ block_obj.review_unlisted_link }}
       {% if block_obj.id %}
-        <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>: {{ block_obj.min_version }} - {{ block_obj.max_version }}]</span>
+        <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>
       {% endif %}
+      [<a href='#' class="select-versions-all-none all-versions">select all</a>]
+      [<a href='#' class="select-versions-all-none">select none</a>]
+      <ul>
+        {% for version in block_obj.addon_versions %}
+          <li data-version-id="{{ version.id }}">
+          {% if version.id in form.changed_version_ids_choices or version.id in instance.changed_version_ids %}
+            <label><input
+              type="checkbox"
+              name="changed_version_ids"
+              value="{{ version.id }}"
+              {% if version.id in form.changed_version_ids.value %}checked{% endif %}
+              {% if version.id in instance.changed_version_ids %}checked disabled{% endif %}
+            > {% if is_delete %}Unblock{% else %}Block{% endif %} {{ version.version }}</label>
+          {% else %}
+            <span title="{% if version.is_blocked %}Blocked{% else %}Not blocked{% endif %}">
+              <!-- Red Hexagonal stop sign for Blocked; Green cirle for not blocked -->
+              {% if version.is_blocked %}&#x1F6D1;{% else %}&#x1F7E2;{% endif %}{{ version.version }}
+              {% if version.blocklist_submission_id %}
+                [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
+              {% endif %}
+            </span>
+
+          {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
     </li>
   {% endfor %}
 </ul>

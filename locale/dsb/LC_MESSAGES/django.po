@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-05-19 20:35+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,9 +152,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Nejnowša pśizwólona wersija dodanka %s njedajo se wulašowaś, dokulaž pjerwjejšna wersija njejo se pśizwóliła za dopórucenje %s. Pšosym stajśo se z administratorami AMO do zwiska, jolic pomoc wó tom "
 "trjebaśo."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Wersija {version} {block_link} za toś ten dodank wótpowědujo. Móžośo se z {amo_admins} za pśidatne informacije do zwiska stajiś."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Wersija {version_string} jo se pjerwjej nagrała a wulašowała."
@@ -458,31 +455,6 @@ msgstr "Toś ten swójski URL njedajo se wužywaś."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Toś ten dodank južo k zběrce słuša"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s jo w njedocynjonem zapódaśu"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokěrowanje z GUID %(guid)s njejo se namakało"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Dodank z GUID %(guid)s njeeksistěrujo"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokěrowanja, kótarež maju se aktualizěrowaś, su rozdźělne, dokulaž minimalna abo maksimalna wersija jo se změniła."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s * wopśimujo"
-
-msgid "Invalid version"
-msgstr "Njepłaśiwa wersija"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimalna wersija njamóžo wětša ako maksimalna wersija byś"
 
 msgid "Review Listed"
 msgstr "Nalicone pśeglědowaś"
@@ -853,6 +825,24 @@ msgid "Un-rejected"
 msgstr "Wótpokazanje jo wótpórane"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1526,9 +1516,6 @@ msgstr "Njeraźone pśeglědanje pśepisaś"
 
 msgid "Need to select at least one application."
 msgstr "Musyśo nanejmjenjej jadno nałoženje wubraś."
-
-msgid "a blocklist entry"
-msgstr "zapisk blokěrowańskeje lisćiny"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Wersija {version} jo se pjerwjej nagrała a wulašowała."
@@ -4601,6 +4588,10 @@ msgid "Auto-flagged due to word match"
 msgstr "Awtomatiski wóznamjenjone wótpowědowanja słowa dla"
 
 msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""

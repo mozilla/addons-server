@@ -23,11 +23,11 @@ from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     collection_factory,
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.browsers import CHROME
 from olympia.git.models import GitExtractionEntry
 
@@ -731,15 +731,11 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'Blocked' not in response.content.decode('utf-8')
 
-        block = Block.objects.create(
-            addon=addon, min_version=addon.current_version.version, updated_by=user
-        )
+        block = block_factory(addon=addon, updated_by=user)
 
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert f'Blocked ({addon.current_version.version} - *)' in (
-            response.content.decode('utf-8')
-        )
+        assert 'Blocked' in response.content.decode('utf-8')
         link = pq(response.content)('.field-version__is_blocked a')[0]
         assert link.attrib['href'] == block.get_admin_url_path()
 
@@ -750,7 +746,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        with self.assertNumQueries(22):
+        with self.assertNumQueries(20):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -760,7 +756,7 @@ class TestAddonAdmin(TestCase):
 
         version_factory(addon=addon)
         version_factory(addon=addon)
-        with self.assertNumQueries(22):
+        with self.assertNumQueries(20):
             # Confirm it scales correctly by doing the same number of queries
             # when number of versions increases.
             # FIXME: explain each query

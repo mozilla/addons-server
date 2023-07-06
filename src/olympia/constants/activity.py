@@ -869,7 +869,8 @@ class LOG_IN_API_TOKEN(_LOG):
     format = '{user_responsible} authenticated through an API token.'
 
 
-class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
+# Obsolete now that this is done per version.
+class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     id = 173
     format = '{addon} no longer flagged for human review.'
     short = 'Needs Human Review cleared'
@@ -878,9 +879,9 @@ class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
     reviewer_review_action = True
 
 
-class NEEDS_HUMAN_REVIEW(_LOG):
+class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):
     id = 174
-    format = '{version} flagged for human review because of {0}.'
+    format = '{version} flagged for human review.'
     short = 'Flagged for human review'
     keep = True
     hide_developer = True
@@ -892,6 +893,54 @@ class REPLY_RATING(_LOG):
     format = _('Reply to {rating} for {addon} written.')
     show_user_to_developer = True
     store_ip = True
+
+
+class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
+    id = 176
+    format = '{addon} {version} no longer flagged for human review.'
+    short = 'Needs Human Review cleared'
+    admin_event = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
+
+
+class CLEAR_PENDING_REJECTION(_LOG):
+    id = 177
+    format = _('{addon} {version} pending rejection cleared.')
+    short = _('Pending rejection cleared')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    # Not hidden to developers.
+
+
+class NEEDS_HUMAN_REVIEW(_LOG):
+    id = 178
+    format = '{addon} {version} flagged for human review.'
+    short = 'Flagged for human review'
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
+
+
+class BLOCKLIST_VERSION_BLOCKED(_LOG):
+    id = 179
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = _('{version} added to Blocklist.')
+    short = _('Version Blocked')
+
+
+class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
+    id = 180
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = _('{version} removed from Blocklist.')
+    short = _('Version Unblocked')
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

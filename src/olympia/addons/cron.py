@@ -4,6 +4,9 @@ from django.db.models import IntegerField, Value
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.tasks import (
+    flag_high_abuse_reports_addons_according_to_review_tier,
+)
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
     flag_high_hotness_according_to_review_tier,
@@ -52,6 +55,7 @@ def update_addon_average_daily_users(chunk_size=250):
             _update_addon_average_daily_users, counts, chunk_size
         )
         | add_high_adu_extensions_to_notable.si()
+        | flag_high_abuse_reports_addons_according_to_review_tier.si()
     ).apply_async()
 
 

@@ -13,10 +13,11 @@ from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags, Add
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import BlockVersion
 from olympia.constants.promoted import (
     LINE,
     NOTABLE,
@@ -1285,17 +1286,17 @@ class TestAutoApprovalSummary(TestCase):
     def test_check_is_blocked(self):
         assert AutoApprovalSummary.check_is_blocked(self.version) is False
 
-        block = Block.objects.create(addon=self.addon, updated_by=user_factory())
-        del self.version.addon.block
+        block_factory(
+            addon=self.addon, updated_by=user_factory(), version_ids=[self.version.id]
+        )
+        self.version.refresh_from_db()
         assert AutoApprovalSummary.check_is_blocked(self.version) is True
 
-        block.update(min_version='9999999')
-        del self.version.addon.block
+        BlockVersion.objects.get().update(
+            version=version_factory(addon=self.version.addon)
+        )
+        self.version.refresh_from_db()
         assert AutoApprovalSummary.check_is_blocked(self.version) is False
-
-        block.update(min_version='0')
-        del self.version.addon.block
-        assert AutoApprovalSummary.check_is_blocked(self.version) is True
 
     def test_check_is_locked(self):
         assert AutoApprovalSummary.check_is_locked(self.version) is False
@@ -1697,7 +1698,7 @@ class TestNeedsHumanReview(TestCase):
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
         activity = ActivityLog.objects.for_versions(self.version).get()
-        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
         assert activity.user.pk == settings.TASK_USER_ID
 
     def test_save_new_record_activity_with_core_get_user(self):
@@ -1709,7 +1710,7 @@ class TestNeedsHumanReview(TestCase):
         assert needs_human_review.is_active  # Defaults to active.
         assert ActivityLog.objects.for_versions(self.version).count() == 1
         activity = ActivityLog.objects.for_versions(self.version).get()
-        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW.id
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
         assert activity.user.pk == self.user.pk
 
     def test_save_existing_does_not_record_an_activity(self):

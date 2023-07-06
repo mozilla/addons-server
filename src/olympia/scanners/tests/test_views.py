@@ -9,12 +9,12 @@ from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
+    block_factory,
     reverse_ns,
     user_factory,
     version_factory,
 )
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.blocklist.models import Block
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.scanners import (
     CUSTOMS,
@@ -231,21 +231,21 @@ class TestScannerResultViewInternal(TestCase):
         blocked_addon_1 = addon_factory()
         blocked_version_1 = version_factory(addon=blocked_addon_1)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_1)
-        block_1 = Block.objects.create(guid=blocked_addon_1.guid, updated_by=self.user)
+        block_1 = block_factory(guid=blocked_addon_1.guid, updated_by=self.user)
         block_activity_log_save(block_1, change=False)
         # result labelled as "bad" because the add-on is blocked and the block
         # has been edited.
         blocked_addon_2 = addon_factory()
         blocked_version_2 = version_factory(addon=blocked_addon_2)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_2)
-        block_2 = Block.objects.create(guid=blocked_addon_2.guid, updated_by=self.user)
+        block_2 = block_factory(guid=blocked_addon_2.guid, updated_by=self.user)
         block_activity_log_save(block_2, change=True)
         # result labelled as "bad" because the add-on is blocked and the block
         # has been added *and* edited. It should only return one result.
         blocked_addon_3 = addon_factory()
         blocked_version_3 = version_factory(addon=blocked_addon_3)
         ScannerResult.objects.create(scanner=YARA, version=blocked_version_3)
-        block_3 = Block.objects.create(guid=blocked_addon_3.guid, updated_by=self.user)
+        block_3 = block_factory(guid=blocked_addon_3.guid, updated_by=self.user)
         block_activity_log_save(block_3, change=False)
         block_activity_log_save(block_3, change=True)
         # result labelled as "bad" because its state is TRUE_POSITIVE and the
@@ -255,7 +255,7 @@ class TestScannerResultViewInternal(TestCase):
         ScannerResult.objects.create(
             scanner=YARA, version=blocked_version_4, state=TRUE_POSITIVE
         )
-        block_4 = Block.objects.create(guid=blocked_addon_4.guid, updated_by=self.user)
+        block_4 = block_factory(guid=blocked_addon_4.guid, updated_by=self.user)
         block_activity_log_save(block_4, change=False)
 
         response = self.client.get(self.url)
@@ -267,7 +267,7 @@ class TestScannerResultViewInternal(TestCase):
         result_1 = ScannerResult.objects.create(scanner=CUSTOMS, version=version_1)
         ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         # Oh noes! The version has been blocked.
-        block_1 = Block.objects.create(guid=version_1.addon.guid, updated_by=self.user)
+        block_1 = block_factory(guid=version_1.addon.guid, updated_by=self.user)
         block_activity_log_save(block_1, change=False)
 
         response = self.client.get(self.url)

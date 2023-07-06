@@ -54,6 +54,7 @@ class ScannerResultView(ListAPIView):
             version__versionlog__activity_log__action__in=(
                 amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
                 amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
+                amo.LOG.BLOCKLIST_VERSION_BLOCKED.id,
             )
         )
 

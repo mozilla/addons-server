@@ -97,7 +97,7 @@ function initReviewActions() {
 
   var review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
-    showForm(review_checked.closest('li'), true);
+    showForm(review_checked.parentsUntil('#id_action', 'div'), true);
   }
 
   /* Review action reason stuff */
@@ -257,20 +257,6 @@ function initExtraReviewActions() {
       var data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {
         $input.prop('disabled', false);
-      });
-    }),
-  );
-
-  $('#set_needs_human_review').click(
-    _pd(function () {
-      var $button = $(this).prop('disabled', true); // Prevent double-send.
-      var apiUrl = $button.data('api-url');
-      var data = $button.data('api-data') || null;
-      var $due_date_update_input = $('#due_date_update');
-      callReviewersAPI(apiUrl, 'post', data, function (response) {
-        $button.remove();
-        $due_date_update_input.parents('li').removeClass('hidden').show();
-        $due_date_update_input.val(response.due_date);
       });
     }),
   );

@@ -1,6 +1,7 @@
 import re
 
 from django.core.cache import cache
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models import Q
 from django.dispatch import receiver
@@ -358,10 +359,29 @@ class RatingAggregate(ModelBase):
     count_5 = models.IntegerField(default=0, null=False)
 
 
+DOT = '.'
+ALPHANUMERIC_REGEX = r'[^\w]+|_+'
+
+
+def word_validator(value):
+    if DOT not in value and list(re.split(ALPHANUMERIC_REGEX, value)) != [value]:
+        raise ValidationError(
+            _('%(value)s contains a non-alphanumeric character.'),
+            params={'value': value},
+        )
+
+
 class DeniedRatingWord(ModelBase):
     """Denied words in a rating body."""
 
-    word = models.CharField(max_length=255, unique=True)
+    word = models.CharField(
+        max_length=255,
+        unique=True,
+        help_text='Can only contain alphanumeric characters ("\\w", exc. "_"). '
+        'If contains a "." it will be interpreted as a domain name instead, '
+        'and can contain any character',
+        validators=(word_validator,),
+    )
     moderation = models.BooleanField(
         help_text='Flag for moderation rather than immediately deny.', default=False
     )
@@ -380,14 +400,14 @@ class DeniedRatingWord(ModelBase):
         cache.delete(self.CACHE_KEY)
 
     @classmethod
-    def blocked(cls, content, moderation=False):
+    def blocked(cls, content, *, moderation):
         """
         Check to see if the content contains any of the (cached) list of denied words.
         Return the list of denied words (or an empty list if none are found).
-
         """
         if not content:
             return []
+        content = content.lower()
 
         values = cls.objects.all().values_list('word', 'moderation')
 
@@ -395,9 +415,15 @@ class DeniedRatingWord(ModelBase):
             return [(word.lower(), mod) for word, mod in values]
 
         blocked_list = cache.get_or_set(cls.CACHE_KEY, fetch_names)
-        content_words = re.split(r'[^\w]+|_+', content.lower())
-        return [
+        content_words = re.split(ALPHANUMERIC_REGEX, content)
+        word_matches = (
             word
             for word, mod in blocked_list
-            if mod == moderation and word in content_words
-        ]
+            if mod == moderation and DOT not in word and word in content_words
+        )
+        domain_matches = (
+            domain
+            for domain, mod in blocked_list
+            if mod == moderation and DOT in domain and domain in content
+        )
+        return [*word_matches, *domain_matches]

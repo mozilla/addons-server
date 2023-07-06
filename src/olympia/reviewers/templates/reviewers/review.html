@@ -263,13 +263,6 @@
 
     {% if is_admin %}
     <ul class="admin_only">
-      {% if not addon.is_deleted and version %}
-        <li>
-          <button data-api-url="{{ drf_url('reviewers-addon-set-needs-human-review', addon.pk) }}"
-                  data-api-data="{&quot;version&quot;: {{ version.pk }}}"
-                  id="set_needs_human_review" type="button">Set "Needs Human Review"</button>
-        </li>
-      {% endif %}
       <li {% if not version.due_date %}class="hidden"{% endif %}>
         <label for="due_date_update">Change latest version review due date</label>
         <input type="datetime-local" id="due_date_update"
@@ -391,13 +384,6 @@
           {% endif %}
         {% endif %}
 
-        {% if has_versions_pending_rejection %}
-          <li>
-              <button data-api-url="{{ drf_url('reviewers-addon-clear-pending-rejections', addon.pk) }}"
-                      id="clear_pending_rejections" class="oneoff" type="button">Clear pending rejections</button>
-          </li>
-        {% endif %}
-
         {% if addon.needs_admin_theme_review %}
           <li>
             <button data-api-url="{{ drf_url('reviewers-addon-flags', addon.pk) }}"
@@ -409,10 +395,11 @@
       {% endif %}
 
       <li>
-        {% if addon.blocklistsubmission %}
-          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmission.id) }}" class="button"
-                  id="edit_addon_blocklistsubmission" type="button">View Blocklist Submission</a>
-        {% elif not addon.block %}
+        {% if addon.blocklistsubmissions  %}
+          <a href="{{ url('admin:blocklist_blocklistsubmission_change', addon.blocklistsubmissions[0].id) }}" class="button"
+             id="edit_addon_blocklistsubmission" type="button">View Active Blocklist Submission</a>
+        {% endif %}
+        {% if not addon.block %}
           <a href="{{ url('admin:blocklist_block_addaddon', addon.pk) }}" class="button"
                   id="block_addon" type="button">Block add-on</a>
         {% else %}

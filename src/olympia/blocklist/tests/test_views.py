@@ -1,16 +1,23 @@
 from django.test.utils import override_settings
 
-from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    reverse_ns,
+    user_factory,
+)
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.blocklist.models import Block
 from olympia.blocklist.serializers import BlockSerializer
 
 
 class TestBlockViewSet(TestCase):
     def setUp(self):
-        self.block = Block.objects.create(
-            guid='foo@baa.com',
-            min_version='45',
+        self.addon = addon_factory(
+            guid='foo@baa.com', name='English name', default_locale='en-CA'
+        )
+        self.block = block_factory(
+            addon=self.addon,
             reason='something happened',
             url='https://goo.gol',
             updated_by=user_factory(),
@@ -43,11 +50,8 @@ class TestBlockViewSet(TestCase):
         }
 
     def test_addon_name(self):
-        addon = addon_factory(
-            guid=self.block.guid, name='English name', default_locale='en-CA'
-        )
-        addon.name = {'fr': 'Lé name Francois'}
-        addon.save()
+        self.addon.name = {'fr': 'Lé name Francois'}
+        self.addon.save()
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json()['addon_name'] == {

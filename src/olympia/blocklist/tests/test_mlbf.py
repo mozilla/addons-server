@@ -7,7 +7,13 @@ from filtercascade import FilterCascade
 
 from olympia import amo
 from olympia.addons.models import GUID_REUSE_FORMAT
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.files.models import File
 
 from ..mlbf import (
@@ -16,30 +22,24 @@ from ..mlbf import (
     fetch_blocked_from_db,
     generate_mlbf,
 )
-from ..models import Block
 
 
 class TestMLBF(TestCase):
     def setup_data(self):
         user = user_factory()
-        for idx in range(0, 5):
+        for _idx in range(0, 5):
             addon_factory()
-        # one version, 0 - *
-        Block.objects.create(
+        # one version, listed (twice)
+        block_factory(
             addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user,
         )
-        # one version, 0 - 9999
-        Block.objects.create(
-            addon=addon_factory(
-                version_kw={'version': '11.7'},
-                file_kw={'is_signed': True},
-            ),
+        block_factory(
+            addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user,
-            max_version='9999',
         )
-        # one version, 0 - *, unlisted
-        Block.objects.create(
+        # one version, unlisted
+        block_factory(
             addon=addon_factory(
                 version_kw={'channel': amo.CHANNEL_UNLISTED},
                 file_kw={'is_signed': True},
@@ -47,53 +47,60 @@ class TestMLBF(TestCase):
             updated_by=user,
         )
         # five versions, but only two within block (123.40, 123.5)
-        self.five_ver_block = Block.objects.create(
-            addon=addon_factory(
-                version_kw={'version': '123.40'},
-                file_kw={'is_signed': True},
-            ),
-            updated_by=user,
-            max_version='123.45',
+        five_ver_block_addon = addon_factory(
+            version_kw={'version': '123.40'},
+            file_kw={'is_signed': True},
         )
-        self.five_ver_123_40 = self.five_ver_block.addon.current_version
+        self.five_ver_123_40 = five_ver_block_addon.current_version
         self.five_ver_123_5 = version_factory(
-            addon=self.five_ver_block.addon,
+            addon=five_ver_block_addon,
             version='123.5',
             deleted=True,
             file_kw={'is_signed': True},
         )
         self.five_ver_123_45_1 = version_factory(
-            addon=self.five_ver_block.addon,
+            addon=five_ver_block_addon,
             version='123.45.1',
             file_kw={'is_signed': True},
         )
         # these two would be included if they were signed
         self.not_signed_version = version_factory(
-            addon=self.five_ver_block.addon,
+            addon=five_ver_block_addon,
             version='123.5.1',
             file_kw={'is_signed': False},
         )
         self.not_signed_version2 = version_factory(
-            addon=self.five_ver_block.addon,
+            addon=five_ver_block_addon,
             version='123.5.2',
             file_kw={'is_signed': False},
         )
+        self.five_ver_block = block_factory(
+            addon=five_ver_block_addon,
+            updated_by=user,
+            version_ids=[
+                self.five_ver_123_40.id,
+                self.five_ver_123_5.id,
+                self.not_signed_version.id,
+                self.not_signed_version2.id,
+            ],
+        )
+
         # no matching versions (edge cases)
-        self.over = Block.objects.create(
+        self.no_versions = block_factory(
             addon=addon_factory(
                 version_kw={'version': '0.1'},
                 file_kw={'is_signed': True},
             ),
             updated_by=user,
-            max_version='0',
+            version_ids=[],
         )
-        self.under = Block.objects.create(
+        self.no_versions2 = block_factory(
             addon=addon_factory(
-                version_kw={'version': '9998.0'},
+                version_kw={'version': '0.1'},
                 file_kw={'is_signed': True},
             ),
             updated_by=user,
-            min_version='9999',
+            version_ids=[],
         )
 
         # A blocked addon has been uploaded and deleted before
@@ -122,7 +129,7 @@ class TestMLBF(TestCase):
             # not signed, but shouldn't override the signed 2.1 version
             file_kw={'is_signed': False},
         )
-        version_factory(
+        self.addon_deleted_before_3_0_ver = version_factory(
             addon=current_addon,
             version='3.0',
             file_kw={'is_signed': True},
@@ -131,8 +138,15 @@ class TestMLBF(TestCase):
         reused_2_5_addon.update(guid=GUID_REUSE_FORMAT.format(reused_2_1_addon.id))
         reused_2_1_addon.addonguid.update(guid=current_addon.guid)
         reused_2_5_addon.addonguid.update(guid=current_addon.guid)
-        self.addon_deleted_before_block = Block.objects.create(
-            guid=current_addon.guid, min_version='2.0.1', updated_by=user
+        self.addon_deleted_before_block = block_factory(
+            guid=current_addon.guid,
+            updated_by=user,
+            version_ids=[
+                self.addon_deleted_before_2_1_ver.id,
+                self.addon_deleted_before_2_5_ver.id,
+                self.addon_deleted_before_unsigned_ver.id,
+                self.addon_deleted_before_3_0_ver.id,
+            ],
         )
 
     def test_fetch_all_versions_from_db(self):
@@ -144,10 +158,16 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.45.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.2') in all_versions
-        over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (self.under.guid, self.under.addon.current_version.version)
-        assert over_tuple in all_versions
-        assert under_tuple in all_versions
+        no_versions_tuple = (
+            self.no_versions.guid,
+            self.no_versions.addon.current_version.version,
+        )
+        assert no_versions_tuple in all_versions
+        no_versions2_tuple = (
+            self.no_versions2.guid,
+            self.no_versions2.addon.current_version.version,
+        )
+        assert no_versions2_tuple in all_versions
 
         assert (self.addon_deleted_before_block.guid, '2') in all_versions
         # this is fine; test_hash_filter_inputs removes duplicates.
@@ -164,10 +184,16 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.45.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.1') in all_versions
         assert (self.five_ver_block.guid, '123.5.2') in all_versions
-        over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (self.under.guid, self.under.addon.current_version.version)
-        assert over_tuple in all_versions
-        assert under_tuple in all_versions
+        no_versions_tuple = (
+            self.no_versions.guid,
+            self.no_versions.addon.current_version.version,
+        )
+        assert no_versions_tuple in all_versions
+        no_versions2_tuple = (
+            self.no_versions2.guid,
+            self.no_versions2.addon.current_version.version,
+        )
+        assert no_versions2_tuple in all_versions
 
     def test_fetch_blocked_from_db(self):
         self.setup_data()
@@ -181,10 +207,16 @@ class TestMLBF(TestCase):
         assert (self.five_ver_block.guid, '123.45.1') not in blocked_guids
         assert (self.five_ver_block.guid, '123.5.1') not in blocked_guids
         assert (self.five_ver_block.guid, '123.5.2') not in blocked_guids
-        over_tuple = (self.over.guid, self.over.addon.current_version.version)
-        under_tuple = (self.under.guid, self.under.addon.current_version.version)
-        assert over_tuple not in blocked_guids
-        assert under_tuple not in blocked_guids
+        no_versions_tuple = (
+            self.no_versions.guid,
+            self.no_versions.addon.current_version.version,
+        )
+        assert no_versions_tuple not in blocked_guids
+        no_versions2_tuple = (
+            self.no_versions2.guid,
+            self.no_versions2.addon.current_version.version,
+        )
+        assert no_versions2_tuple not in blocked_guids
         assert (self.addon_deleted_before_block.guid, '2.1') in blocked_guids
         assert (self.addon_deleted_before_block.guid, '2.5') in blocked_guids
         assert (self.addon_deleted_before_block.guid, '3.0') in blocked_guids
@@ -196,8 +228,8 @@ class TestMLBF(TestCase):
         assert self.five_ver_123_45_1.id not in blocked_versions
         assert self.not_signed_version.id not in blocked_versions
         assert self.not_signed_version2.id not in blocked_versions
-        assert self.over.addon.current_version.id not in blocked_versions
-        assert self.under.addon.current_version.id not in blocked_versions
+        assert self.no_versions.addon.current_version.id not in blocked_versions
+        assert self.no_versions2.addon.current_version.id not in blocked_versions
 
         assert self.addon_deleted_before_unblocked_ver.id not in (blocked_versions)
         assert self.addon_deleted_before_unsigned_ver.id not in (blocked_versions)
@@ -349,7 +381,7 @@ class TestMLBF(TestCase):
             assert json.load(stash_file) == empty_stash
         assert new_mlbf.stash_json == empty_stash
         # add a new Block and delete one
-        Block.objects.create(
+        block_factory(
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},
@@ -385,7 +417,7 @@ class TestMLBF(TestCase):
         assert not no_change_mlbf.blocks_changed_since_previous(base_mlbf)
 
         # make some changes
-        Block.objects.create(
+        block_factory(
             addon=addon_factory(
                 guid='fooo@baaaa',
                 version_kw={'version': '999'},

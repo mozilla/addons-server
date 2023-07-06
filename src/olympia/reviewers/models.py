@@ -21,6 +21,7 @@ from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
+from olympia.versions.utils import get_staggered_review_due_date_generator
 
 
 user_log = olympia.core.logger.getLogger('z.users')
@@ -706,14 +707,29 @@ class ReviewActionReason(ModelBase):
 
 
 class UsageTier(ModelBase):
+    slug = models.CharField(
+        max_length=255,
+        help_text='Slug to help retrieve the UsageTier instance in our code.',
+        unique=True,
+        null=True,
+    )
     name = models.CharField(max_length=255)
-    lower_adu_threshold = models.IntegerField(default=None, null=True)
-    upper_adu_threshold = models.IntegerField(default=None, null=True)
+    lower_adu_threshold = models.IntegerField(default=None, null=True, blank=True)
+    upper_adu_threshold = models.IntegerField(default=None, null=True, blank=True)
     growth_threshold_before_flagging = models.IntegerField(
+        blank=True,
         default=None,
         null=True,
         help_text='Usage growth percentage threshold before we start automatically '
         'flagging the add-on for human review.',
+    )
+    abuse_reports_ratio_threshold_before_flagging = models.IntegerField(
+        blank=True,
+        default=None,
+        null=True,
+        help_text='Percentage threshold of ratio between abuse reports over the past 2 '
+        'weeks to add-on usage before we start automatically flagging the add-on for '
+        'human review.',
     )
 
     class Meta:
@@ -736,6 +752,7 @@ class NeedsHumanReview(ModelBase):
     REASON_DEVELOPER_REPLY = 6
     REASON_MANUALLY_SET_BY_REVIEWER = 7
     REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
+    REASON_ABUSE_REPORTS_THRESHOLD = 9
 
     reason = models.SmallIntegerField(
         default=0,
@@ -743,7 +760,7 @@ class NeedsHumanReview(ModelBase):
             (REASON_UNKNOWN, 'Unknown'),
             (REASON_SCANNER_ACTION, 'Hit scanner rule'),
             (REASON_PROMOTED_GROUP, 'Belongs to a promoted group'),
-            (REASON_HOTNESS_THRESHOLD, 'Over growth treshold for usage tier'),
+            (REASON_HOTNESS_THRESHOLD, 'Over growth threshold for usage tier'),
             (
                 REASON_INHERITANCE,
                 'Previous version in channel had needs human review set',
@@ -764,6 +781,10 @@ class NeedsHumanReview(ModelBase):
                 REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
                 'Auto-approved but still had an approval delay set in the past',
             ),
+            (
+                REASON_ABUSE_REPORTS_THRESHOLD,
+                'Over abuse reports threshold for usage tier',
+            ),
         ),
         editable=False,
     )
@@ -774,9 +795,10 @@ class NeedsHumanReview(ModelBase):
         return f'{self.version_id} - {self.get_reason_display()}'
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        automatic_activity_log = not kwargs.pop('_no_automatic_activity_log', False)
+        if not self.pk and automatic_activity_log:
             activity.log_create(
-                amo.LOG.NEEDS_HUMAN_REVIEW,
+                amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC,
                 self.version,
                 details={'comments': self.get_reason_display()},
                 user=(
@@ -784,6 +806,27 @@ class NeedsHumanReview(ModelBase):
                 ),
             )
         return super().save(*args, **kwargs)
+
+    @classmethod
+    def set_on_addons_latest_signed_versions(cls, addons, reason):
+        """Set needs human review on latest signed version in every channel for
+        each addon in `addons`, if that version hasn't been reviewed or flagged
+        for human review already, using `reason`. Due dates are
+        staggered using get_staggered_review_due_date_generator().
+        """
+        due_date_generator = get_staggered_review_due_date_generator()
+        used_generator_last_iteration = None
+        due_date = None
+        for addon in addons:
+            if used_generator_last_iteration is not False:
+                # Only advance the generator if we used the previous due date or
+                # it's the first iteration.
+                due_date = next(due_date_generator)
+            used_generator_last_iteration = (
+                addon.set_needs_human_review_on_latest_versions(
+                    due_date=due_date, reason=reason
+                )
+            )
 
 
 @receiver(

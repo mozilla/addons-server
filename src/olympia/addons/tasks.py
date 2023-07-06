@@ -24,12 +24,11 @@ from olympia.amo.utils import extract_colors_from_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
-from olympia.reviewers.models import NeedsHumanReview
+from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.search.utils import get_es, index_objects, unindex_objects
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
-from olympia.versions.utils import get_staggered_review_due_date_generator
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -430,9 +429,6 @@ def disable_addons(addon_ids, **kw):
 @task
 @use_primary_db
 def flag_high_hotness_according_to_review_tier():
-    from olympia.reviewers.models import UsageTier
-
-    due_date_generator = get_staggered_review_due_date_generator()
     usage_tiers = UsageTier.objects.filter(
         # We don't compute hotness below that, other signals could still apply.
         lower_adu_threshold__gte=MINIMUM_ADU_FOR_HOTNESS_NONTHEME,
@@ -456,13 +452,6 @@ def flag_high_hotness_according_to_review_tier():
         .filter(type=amo.ADDON_EXTENSION)
         .filter(tier_filters)
     )
-    used_generator_last_iteration = None
-    due_date = None
-    for addon in qs:
-        if used_generator_last_iteration is not False:
-            # Only advance the generator if we used the previous due date or
-            # it's the first iteration.
-            due_date = next(due_date_generator)
-        used_generator_last_iteration = addon.set_needs_human_review_on_latest_versions(
-            due_date=due_date, reason=NeedsHumanReview.REASON_HOTNESS_THRESHOLD
-        )
+    NeedsHumanReview.set_on_addons_latest_signed_versions(
+        qs, NeedsHumanReview.REASON_HOTNESS_THRESHOLD
+    )

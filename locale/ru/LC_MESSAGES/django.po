@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 09:41+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-05 11:45+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -157,9 +157,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Последнюю утвержденную версию этого дополнения %s нельзя удалить, поскольку предыдущая версия не была утверждена для продвижения %s. Пожалуйста, свяжитесь с администраторами AMO, если вам нужна "
 "помощь."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Версия {version} соответствует {block_link} для этого дополнения. Вы можете связаться с {amo_admins} для получения дополнительной информации."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Версия {version_string} была выгружена ранее и удалена."
@@ -464,31 +461,6 @@ msgstr "Этот пользовательский URL не может быть �
 
 msgid "This add-on already belongs to the collection"
 msgstr "Это дополнение уже используется другой подборкой"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s находится в ожидании Представления"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "GUID %(guid)s не заблокирован"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Дополнение с GUID %(guid)s не существует"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Блокировки, подлежащие обновлению, отличаются, поскольку изменилась минимальная или максимальная версия."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s содержит *"
-
-msgid "Invalid version"
-msgstr "Неверная версия"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Минимальная версия не может быть выше максимальной"
 
 msgid "Review Listed"
 msgstr "Отзыв размещён"
@@ -858,6 +830,24 @@ msgstr "Отклонение отменено"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "Ответ на {rating} для {addon} написан."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version}, ожидающее отклонения, удалено."
+
+msgid "Pending rejection cleared"
+msgstr "Ожидание отклонения удалено"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} добавлена в черный список."
+
+msgid "Version Blocked"
+msgstr "Версия заблокирована"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} удалена из черного списка."
+
+msgid "Version Unblocked"
+msgstr "Версия разблокирована"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1536,9 +1526,6 @@ msgstr "Игнорировать неудавшуюся валидацию"
 
 msgid "Need to select at least one application."
 msgstr "Нужно выбрать хотя бы одно приложение."
-
-msgid "a blocklist entry"
-msgstr "элемент чёрного списка"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версия {version} была загружена раньше и удалена."
@@ -4629,6 +4616,10 @@ msgstr "Автоматически помечен из-за совпадения
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Автоматически помечен из-за ограничения пользователя"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s содержит не буквенно-цифровой символ."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

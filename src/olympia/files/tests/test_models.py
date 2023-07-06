@@ -480,7 +480,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
-            'gecko_android': {},
+            'explicitly_compatible_with_android': False,
         }
         parsed = self.parse(minimal=True)
         assert parsed == expected
@@ -502,7 +502,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
             'homepage': None,
             'manifest_version': 2,
             'install_origins': [],
-            'gecko_android': {},
+            'explicitly_compatible_with_android': False,
         }
         parsed = self.parse(minimal=True, user=None)
         assert parsed == expected
@@ -729,7 +729,23 @@ class TestFileUpload(UploadMixin, TestCase):
         )
 
     def test_from_post_write_file(self):
-        assert storage.open(self.upload().path, 'rb').read() == self.data
+        assert storage.open(self.upload().file_path, 'rb').read() == self.data
+
+    def test_file_path(self):
+        upload = self.upload()
+        assert not upload.path.startswith('/')
+        assert upload.file_path != upload.path
+        assert upload.file_path == os.path.join(settings.ADDONS_PATH, upload.path)
+        assert os.path.exists(upload.file_path)
+
+        # If the absolute path is stored (old FileUploads) we use them as-is.
+        upload.update(path=upload.file_path)
+        assert upload.file_path == upload.path
+        assert os.path.exists(upload.file_path)
+
+        # If the path is empty, we return an empty string
+        upload.update(path='')
+        assert upload.file_path == ''
 
     def test_from_post_filename(self):
         upload = self.upload()
@@ -737,7 +753,7 @@ class TestFileUpload(UploadMixin, TestCase):
         assert upload.name == f'{force_str(upload.uuid.hex)}_filenamé.xpi'
         # Actual path on filesystem is different, fully random
         assert upload.name not in upload.path
-        assert re.match(r'.*/temp/[a-f0-9]{32}\.zip$', upload.path)
+        assert re.match(r'^temp/[a-f0-9]{32}\.zip$', upload.path)
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
@@ -986,11 +1002,11 @@ class TestFileUpload(UploadMixin, TestCase):
         """Test to ensure we accept ZIP uploads"""
         upload = self.get_upload(filename='webextension_no_id.zip')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
         assert upload.hash == (
             'sha256:7978b06704f4f80152f16a3ce7fe4e2590f950a99cefed15f9a8caa90fbafa23'
         )
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx(self):
         """Test to ensure we accept CRX uploads, but convert them into zip
@@ -998,11 +1014,11 @@ class TestFileUpload(UploadMixin, TestCase):
         """
         upload = self.get_upload('webextension.crx')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
         assert upload.hash == (
             'sha256:6eec73112c9912e4ef63973d38ea490ccc18fa6f3cf4357fb3052a748f799f9a'
         )
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx_large(self):
         """Test to ensure we accept large CRX uploads, because of how we
@@ -1010,11 +1026,11 @@ class TestFileUpload(UploadMixin, TestCase):
         """
         upload = self.get_upload('https-everywhere.crx')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
         assert upload.hash == (
             'sha256:82b71db5e6378ae888b2bcbb92fc8a24f417ef079e909db7fa51b253b13b3409'
         )
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx_version_3(self):
         """Test to ensure we accept CRX uploads (version 3), but convert them
@@ -1022,11 +1038,11 @@ class TestFileUpload(UploadMixin, TestCase):
         """
         upload = self.get_upload('webextension_crx3.crx')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
         assert upload.hash == (
             'sha256:8640cdcbd5e85403b0a08f1c42b9dff362ceca6a92bf61f424c9764189c58950'
         )
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx_not_a_crx(self):
         """Test to ensure we raise an explicit exception when a .crx file isn't
@@ -1043,7 +1059,7 @@ class TestFileUpload(UploadMixin, TestCase):
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx_version_unsupported(self):
         """Test to ensure we only support crx versions 2 and 3 and raise an
@@ -1061,7 +1077,7 @@ class TestFileUpload(UploadMixin, TestCase):
         # We couldn't convert it as it's an invalid or unsupported crx, so
         # re storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_webextension_crx_version_cant_unpack(self):
         """Test to ensure we raise an explicit exception when we can't unpack
@@ -1077,19 +1093,19 @@ class TestFileUpload(UploadMixin, TestCase):
         )
         # We're storing the file as-is.
         assert upload.hash == 'sha256:%s' % hashlib.sha256(data).hexdigest()
-        storage.delete(upload.path)
+        storage.delete(upload.file_path)
 
     def test_extension_zip(self):
         upload = self.get_upload('recurse.zip')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
-        storage.delete(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
+        storage.delete(upload.file_path)
 
     def test_extension_xpi(self):
         upload = self.get_upload('webextension.xpi')
         assert upload.path.endswith('.zip')
-        assert zipfile.is_zipfile(upload.path)
-        storage.delete(upload.path)
+        assert zipfile.is_zipfile(upload.file_path)
+        storage.delete(upload.file_path)
 
     def test_generate_access_token_on_save(self):
         upload = FileUpload(
@@ -1195,11 +1211,8 @@ class TestFileFromUpload(UploadMixin, TestCase):
                 'metadata': {},
             }
         )
-        src_path = self.file_fixture_path(name)
-        dest_path = FileUpload.generate_path()
-        self.root_storage.copy_stored_file(src_path, dest_path)
-        return FileUpload.objects.create(
-            path=dest_path,
+        upload = FileUpload.objects.create(
+            path=FileUpload.generate_path(),
             name=name,
             hash='sha256:fake_hash',
             validation=validation_data,
@@ -1208,6 +1221,10 @@ class TestFileFromUpload(UploadMixin, TestCase):
             user=user_factory(),
             channel=amo.CHANNEL_LISTED,
         )
+        src_path = self.file_fixture_path(name)
+        dest_path = upload.file_path
+        self.root_storage.copy_stored_file(src_path, dest_path)
+        return upload
 
     def test_filename(self):
         upload = self.upload('webextension.xpi')
@@ -1316,7 +1333,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        with self.root_storage.open(upload.path, 'rb') as upload_file:
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
             parsed_data = parse_addon(upload_file, user=user_factory())
         # 5 permissions; 2 content_scripts entries.
         assert len(parsed_data['permissions']) == 5
@@ -1349,7 +1366,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_optional_permissions(self):
         upload = self.upload('webextension_no_id.xpi')
-        with self.root_storage.open(upload.path, 'rb') as upload_file:
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
             parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['optional_permissions']) == 2
         file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
@@ -1359,7 +1376,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_host_permissions(self):
         upload = self.upload('webextension_mv3.xpi')
-        with self.root_storage.open(upload.path, 'rb') as upload_file:
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
             parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['host_permissions']) == 2
         file_ = File.from_upload(upload, self.version, parsed_data=parsed_data)
@@ -1369,7 +1386,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_mv3_invalid_host_permissions(self):
         upload = self.upload('webextension_mv3_invalid_permissions.xpi')
-        with self.root_storage.open(upload.path, 'rb') as upload_file:
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
             parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['host_permissions']) == 2
         assert len(parsed_data['permissions']) == 2
@@ -1383,7 +1400,7 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_mv2_invalid_host_permissions(self):
         upload = self.upload('webextension_mv2_invalid_permissions.xpi')
-        with self.root_storage.open(upload.path, 'rb') as upload_file:
+        with self.root_storage.open(upload.file_path, 'rb') as upload_file:
             parsed_data = parse_addon(upload_file, user=user_factory())
         assert len(parsed_data['host_permissions']) == 2
         assert len(parsed_data['permissions']) == 2

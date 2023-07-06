@@ -61,11 +61,11 @@ def repack_fileupload(results, upload_pk):
     log.info('Starting task to repackage FileUpload %s', upload_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     # When a FileUpload is created and a file added to it, if it's a xpi/zip,
-    # it should be move to upload.path, and it should have a .zip extension,
-    # so we only need to care about that extension here.
+    # it should be moved to upload.file_path, and it should have a .zip
+    # extension, so we only need to care about that extension here.
     # We don't trust upload.name: it's the original filename as used by the
     # developer, so it could be something else.
-    if upload.path.endswith('.zip'):
+    if upload.file_path.endswith('.zip'):
         timer = StopWatch('files.tasks.repack_fileupload.')
         timer.start()
         # tempdir must *not* be on TMP_PATH, we want local fs instead. It will be
@@ -75,14 +75,14 @@ def repack_fileupload(results, upload_pk):
             # @validation_task should catch everything, return a nice error
             # message to the developer and log the exception if it's not
             # something we are handling.
-            extract_zip(upload.path, tempdir=tempdir)
+            extract_zip(upload.file_path, tempdir=tempdir)
 
             if waffle.switch_is_active('enable-manifest-normalization'):
                 manifest = Path(tempdir) / 'manifest.json'
 
                 if manifest.exists():
                     try:
-                        xpi_data = parse_xpi(upload.path, minimal=True)
+                        xpi_data = parse_xpi(upload.file_path, minimal=True)
 
                         if not xpi_data.get('is_mozilla_signed_extension', False):
                             json_data = ManifestJSONExtractor(
@@ -107,7 +107,7 @@ def repack_fileupload(results, upload_pk):
         upload.hash = 'sha256:%s' % get_sha256(file_)
         timer.log_interval('2.repackaged')
         log.info('Zip from upload %s repackaged, moving file back', upload_pk)
-        storage.move_stored_file(file_.name, upload.path)
+        storage.move_stored_file(file_.name, upload.file_path)
         timer.log_interval('3.moved')
         upload.save()
         timer.log_interval('4.end')

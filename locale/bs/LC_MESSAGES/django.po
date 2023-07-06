@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,9 +151,6 @@ msgstr ""
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
@@ -451,32 +448,6 @@ msgid "This custom URL cannot be used."
 msgstr "Ovaj prilagođeni URL se ne može koristiti."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid version"
-msgstr "Neispravna verzija raspona."
-
-msgid "Min version can not be greater than Max version"
 msgstr ""
 
 #, fuzzy
@@ -861,6 +832,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1532,9 +1521,6 @@ msgstr "Preuredite neuspjelu validaciju"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Treba barem jednu kompatibilnu aplikaciju."
-
-msgid "a blocklist entry"
-msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzija {version} je učitana ranije i izbrisana je."
@@ -4608,6 +4594,10 @@ msgid "Auto-flagged due to word match"
 msgstr ""
 
 msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""

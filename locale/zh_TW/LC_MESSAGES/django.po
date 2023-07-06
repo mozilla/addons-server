@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 03:07+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-06 02:08+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -147,9 +147,6 @@ msgstr "已停用檔案。"
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "版本 {version_string} 之前已上傳過，且已刪除。"
@@ -446,31 +443,6 @@ msgstr "無法使用此自訂網址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s 仍在準備送出中"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "找不到對 GUID %(guid)s 的封鎖紀錄"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "GUID 為 %(guid)s 的附加元件不存在"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "由於最小或最大版本變動，要更新的封鎖資訊不同。"
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s 包含 *"
-
-msgid "Invalid version"
-msgstr "版本無效"
-
-msgid "Min version can not be greater than Max version"
-msgstr "最小版本不應超過最大版本"
 
 msgid "Review Listed"
 msgstr "審核上架項目"
@@ -852,6 +824,24 @@ msgstr "已取消退回"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "已寫下 {addon} 的 {rating}。"
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr "已清除 {addon} {version} 等待退回。"
+
+msgid "Pending rejection cleared"
+msgstr "已清除等待退回"
+
+msgid "{version} added to Blocklist."
+msgstr "已將 {version} 加入封鎖清單。"
+
+msgid "Version Blocked"
+msgstr "已封鎖版本"
+
+msgid "{version} removed from Blocklist."
+msgstr "已將 {version} 從封鎖清單刪除。"
+
+msgid "Version Unblocked"
+msgstr "已取消封鎖版本"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1513,9 +1503,6 @@ msgstr "無視驗證失敗"
 
 msgid "Need to select at least one application."
 msgstr "至少需要一套相容的應用程式。"
-
-msgid "a blocklist entry"
-msgstr "封鎖清單項目"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
@@ -4535,6 +4522,10 @@ msgstr "由於文字符合而自動標記"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "由於使用者限制而自動標記"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s 包含非字母與數字的字元。"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

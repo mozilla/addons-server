@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-05-15 20:15+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -150,9 +150,6 @@ msgstr "Datoteka je že onemogočena."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Različica {version} se ujema z {block_link} za to razširitev. Za več informacij se obrnite na {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Različica {version_string} je bila v preteklosti že naložena in izbrisana."
@@ -457,31 +454,6 @@ msgstr "Tega spletnega naslova po meri ni mogoče uporabiti."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ta dodatek že pripada zbirki"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s je v prispevku na čakanju"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokada z GUID %(guid)s ni bila najdena"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Dodatek z GUID %(guid)s ne obstaja"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokade za posodobitev se razlikujejo, ker se je spremenila najnižja ali najvišja različica."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s vsebuje *"
-
-msgid "Invalid version"
-msgstr "Neveljavna različica"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Najstarejša različica ne more biti višja kot najnovejša"
 
 #, fuzzy
 msgid "Review Listed"
@@ -859,6 +831,24 @@ msgid "Un-rejected"
 msgstr "Zavrnitev razveljavljena"
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1536,9 +1526,6 @@ msgstr "Preglasi neuspešno preverjanje veljavnosti"
 
 msgid "Need to select at least one application."
 msgstr "Izbrati je treba vsaj en program."
-
-msgid "a blocklist entry"
-msgstr "vnos v seznam blokad"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Različica {version} je bila v preteklosti že naložena in izbrisana."
@@ -4601,6 +4588,10 @@ msgid "Auto-flagged due to word match"
 msgstr "Samodejno prijavljeno zaradi ujemanja besed"
 
 msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""

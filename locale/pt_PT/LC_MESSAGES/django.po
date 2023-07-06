@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-04-04 00:47+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-02 21:00+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -149,9 +149,6 @@ msgstr "O ficheiro já está desativado."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "A versão {version} corresponde a {block_link} para este Extra. Pode contactar {amo_admins} para informação adicional."
-
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "A versão {version_string} foi anteriormente carregada e eliminada."
 
@@ -195,10 +192,10 @@ msgid "Wrong add-on type for this license."
 msgstr "Tipo de extra incorreto para esta licença."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Os temas não suportam licenças personalizadas."
 
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Este campo é obrigatório para extras com versões listadas."
 
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
 msgstr ""
@@ -425,7 +422,7 @@ msgid "Unavailable for legal reasons."
 msgstr "Indisponível por motivos legais."
 
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "O código de idioma \"{lang_code}\" é inválido."
 
 msgid "You must provide an object of {{lang-code:value}}."
 msgstr ""
@@ -457,31 +454,6 @@ msgstr "Este URL personalizado não pode ser utilizado."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Este extra já pertence à coleção"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s está numa Submissão pendente"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Bloqueio com GUID %(guid)s não encontrado"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Os bloqueios para serem atualizados são diferentes porque as versões Mín ou Máx foram alteradas."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s contém *"
-
-msgid "Invalid version"
-msgstr "Versão inválida"
-
-msgid "Min version can not be greater than Max version"
-msgstr "A versão Mín não pode ser maior que a versão Máx"
 
 msgid "Review Listed"
 msgstr "Revisão Listada"
@@ -585,6 +557,8 @@ msgstr "Super revisão para {addon} {version} solicitada."
 
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"O extra foi sinalizado para uma Avaliação Administrativa. Ainda se encontra na nossa fila para avaliações, mas terá de ser verificada por um dos nossos avaliadores administrativos. Esta avaliação "
+"poderá demorar mais do que o normal."
 
 msgid "Commented"
 msgstr "Comentado"
@@ -854,6 +828,24 @@ msgstr ""
 msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -921,13 +913,13 @@ msgid "Dictionary"
 msgstr "Dicionário"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "Motor de Pesquisa Descontinuado"
 
 msgid "Language Pack (Application)"
 msgstr "Pacote de Idioma (Aplicação)"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "Pacote de Idioma (Extra) Descontinuado"
 
 msgid "Deprecated Plugin"
 msgstr ""
@@ -1533,9 +1525,6 @@ msgstr "Sobrepor validação falhada"
 
 msgid "Need to select at least one application."
 msgstr "Necessita de selecionar pelo menos uma aplicação."
-
-msgid "a blocklist entry"
-msgstr "uma entrada de lista de bloqueio"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi carregada e eliminada anteriormente."
@@ -4623,6 +4612,10 @@ msgid "Auto-flagged due to word match"
 msgstr ""
 
 msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""

@@ -46,6 +46,7 @@ from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
+    block_factory,
     check_links,
     formset,
     initial,
@@ -54,7 +55,7 @@ from olympia.amo.tests import (
     version_factory,
     version_review_flags_factory,
 )
-from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.promoted import LINE, NOTABLE, RECOMMENDED, SPOTLIGHT, STRATEGIC
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
@@ -2352,6 +2353,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -2386,6 +2388,9 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -2588,7 +2593,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(54):
+        with self.assertNumQueries(52):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2613,44 +2618,42 @@ class TestReview(ReviewBase):
             # 14. latest versions translations
             # 15. latest version in channel not disabled + file
             # 16. latest version in channel not disabled translations
-            # 17. addon reviewer flags
-            # 18. version reviewer flags
-            # 19. version reviewer flags (repeated)
-            # 20. version autoapprovalsummary
-            # 21. addonreusedguid
-            # 22. blocklist
-            # 23. versions needing human review in channel
-            # 24. abuse reports count against user or addon
-            # 25. low ratings count
-            # 26. base version pk for comparison
-            # 27. count of all versions in channel
-            # 28. paginated list of versions in channel
-            # 29. scanner results for paginated list of versions
-            # 30. translations for paginated list of versions
-            # 31. applications versions for  paginated list of versions
-            # 32. activity log for  paginated list of versions
-            # 33. files for  paginated list of versions
-            # 34. versionreviewer flags exists to find out if pending rejection
-            # 35. count versions needing human review on other pages
-            # 36. count versions needing human review by mad on other pages
-            # 37. count versions pending rejection on other pages
-            # 38. whiteboard
-            # 39. reviewer subscriptions for listed
-            # 40. reviewer subscriptions for unlisted
-            # 41. config for motd
-            # 42. release savepoint (?)
-            # 43. count add-ons the user is a developer of
-            # 44. config for site notice
-            # 45. other add-ons with same guid
-            # 46. translations for... (?! id=1)
-            # 47. important activity log about the add-on
-            # 48. user for the activity (from the ActivityLog foreignkey)
-            # 49. user for the activity (from the ActivityLog arguments)
-            # 50. add-on for the activity
-            # 51. translation for the add-on for the activity
-            # 52. select all versions in channel for versions dropdown widget
-            # 53. reviewer reasons for the reason dropdown
-            # 54. select users by role for this add-on (?)
+            # 17. version reviewer flags
+            # 18. version reviewer flags (repeated)
+            # 19. version autoapprovalsummary
+            # 20. addonreusedguid
+            # 21. blocklist
+            # 22. abuse reports count against user or addon
+            # 23. low ratings count
+            # 24. base version pk for comparison
+            # 25. count of all versions in channel
+            # 26. paginated list of versions in channel
+            # 27. scanner results for paginated list of versions
+            # 28. translations for paginated list of versions
+            # 29. applications versions for  paginated list of versions
+            # 30. activity log for  paginated list of versions
+            # 31. files for  paginated list of versions
+            # 32. versionreviewer flags exists to find out if pending rejection
+            # 33. count versions needing human review on other pages
+            # 34. count versions needing human review by mad on other pages
+            # 35. count versions pending rejection on other pages
+            # 36. whiteboard
+            # 37. reviewer subscriptions for listed
+            # 38. reviewer subscriptions for unlisted
+            # 39. config for motd
+            # 40. release savepoint (?)
+            # 41. count add-ons the user is a developer of
+            # 42. config for site notice
+            # 43. other add-ons with same guid
+            # 44. translations for... (?! id=1)
+            # 45. important activity log about the add-on
+            # 46. user for the activity (from the ActivityLog foreignkey)
+            # 47. user for the activity (from the ActivityLog arguments)
+            # 48. add-on for the activity
+            # 49. translation for the add-on for the activity
+            # 50. select all versions in channel for versions dropdown widget
+            # 51. reviewer reasons for the reason dropdown
+            # 52. select users by role for this add-on (?)
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -3239,13 +3242,13 @@ class TestReview(ReviewBase):
             reverse('admin:blocklist_block_addaddon', args=(self.addon.id,))
         )
 
-        # If the guid is in a pending submission we show a link to that instead
+        # If the guid is in a pending submission we show a link to that too
         subm = BlocklistSubmission.objects.create(input_guids=self.addon.guid)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#block_addon')
-        assert not doc('#edit_addon_block')
+        assert doc('#edit_addon_block')
         blocklistsubmission_block = doc('#edit_addon_blocklistsubmission')
         assert blocklistsubmission_block
         assert blocklistsubmission_block[0].attrib.get('href') == (
@@ -3495,21 +3498,6 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert not doc('#disable_auto_approval_until_next_approval')
         assert not doc('#enable_auto_approval_until_next_approval')
-
-    def test_clear_pending_rejections_as_admin(self):
-        self.login_as_admin()
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#clear_pending_rejections')
-
-        version_review_flags_factory(
-            version=self.addon.current_version, pending_rejection=datetime.now()
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_pending_rejections')
 
     def test_no_public(self):
         assert self.version.file.status == amo.STATUS_APPROVED
@@ -4473,10 +4461,8 @@ class TestReview(ReviewBase):
 
         new_block_url = reverse(
             'admin:blocklist_blocklistsubmission_add'
-        ) + '?guids={}&min_version={}&max_version={}'.format(
-            self.addon.guid,
-            old_version.version,
-            self.version.version,
+        ) + '?guids={}&v={}&v={}'.format(
+            self.addon.guid, old_version.pk, self.version.pk
         )
         self.assertRedirects(response, new_block_url)
 
@@ -4489,14 +4475,28 @@ class TestReview(ReviewBase):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, 'Addons:Review')
 
-        response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
+        response = self.client.post(
+            self.url,
+            {
+                'comments': 'this does not need human review anymore!',
+                'versions': [old_version.pk, self.version.pk],
+                'action': 'clear_needs_human_review_multiple_versions',
+            },
+        )
         # the action needs an admin
         assert response.status_code == 200
         assert self.version.needshumanreview_set.filter(is_active=True).exists()
         assert old_version.needshumanreview_set.filter(is_active=True).exists()
 
         self.grant_permission(self.reviewer, 'Reviews:Admin')
-        response = self.client.post(self.url, {'action': 'clear_needs_human_review'})
+        response = self.client.post(
+            self.url,
+            {
+                'comments': 'this does not need human review anymore!',
+                'versions': [old_version.pk, self.version.pk],
+                'action': 'clear_needs_human_review_multiple_versions',
+            },
+        )
         assert response.status_code == 302
         assert not self.version.needshumanreview_set.filter(is_active=True).exists()
         assert not old_version.needshumanreview_set.filter(is_active=True).exists()
@@ -4882,6 +4882,7 @@ class TestReview(ReviewBase):
         expected_actions_values = [
             'confirm_auto_approved',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -4889,25 +4890,27 @@ class TestReview(ReviewBase):
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
         ] == expected_actions_values
 
-        assert (
-            doc('select#id_versions.data-toggle')[0].attrib['data-value']
-            == 'reject_multiple_versions'
-        )
+        assert doc('select#id_versions.data-toggle')[0].attrib['data-value'].split(
+            ' '
+        ) == ['reject_multiple_versions', 'set_needs_human_review_multiple_versions']
 
         assert (
             doc('select#id_versions.data-toggle option')[0].text
             == f'{self.version.version} - Auto-approved, not Confirmed'
         )
 
-        assert (
-            doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'reject_multiple_versions reply comment'
-        )
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
 
-        assert (
-            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'reject_multiple_versions reply'
-        )
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == ['reject_multiple_versions', 'reply']
 
         # We don't have approve/reject actions so these have an empty
         # data-value.
@@ -4933,6 +4936,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'block_multiple_versions',
             'confirm_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -4940,21 +4944,29 @@ class TestReview(ReviewBase):
             act.attrib['data-value'] for act in doc('.data-toggle.review-actions-desc')
         ] == expected_actions_values
 
-        assert (
-            doc('select#id_versions.data-toggle')[0].attrib['data-value']
-            == 'approve_multiple_versions reject_multiple_versions '
-            'block_multiple_versions confirm_multiple_versions'
-        )
+        assert doc('select#id_versions.data-toggle')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'block_multiple_versions',
+            'confirm_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+        ]
 
-        assert (
-            doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'approve_multiple_versions reject_multiple_versions reply comment'
-        )
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'approve_multiple_versions',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
 
-        assert (
-            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'approve_multiple_versions reject_multiple_versions reply'
-        )
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == ['approve_multiple_versions', 'reject_multiple_versions', 'reply']
 
         # We don't have approve/reject actions so these have an empty
         # data-value.
@@ -5000,6 +5012,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -5009,20 +5022,27 @@ class TestReview(ReviewBase):
 
         assert 'data-value' not in doc('select#id_versions.data-toggle')[0]
 
-        assert (
-            doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'public reject reject_multiple_versions reply comment'
-        )
-        assert (
-            doc('.data-toggle.review-files')[0].attrib['data-value'] == 'public reject'
-        )
-        assert (
-            doc('.data-toggle.review-tested')[0].attrib['data-value'] == 'public reject'
-        )
-        assert (
-            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'public reject reject_multiple_versions reply'
-        )
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'public',
+            'reject',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
+        assert doc('.data-toggle.review-files')[0].attrib['data-value'].split(' ') == [
+            'public',
+            'reject',
+        ]
+        assert doc('.data-toggle.review-tested')[0].attrib['data-value'].split(' ') == [
+            'public',
+            'reject',
+        ]
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == ['public', 'reject', 'reject_multiple_versions', 'reply']
 
     def test_data_value_attributes_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
@@ -5036,6 +5056,7 @@ class TestReview(ReviewBase):
             'public',
             'reject',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'super',
             'comment',
@@ -5046,16 +5067,22 @@ class TestReview(ReviewBase):
 
         assert 'data-value' not in doc('select#id_versions.data-toggle')[0]
 
-        assert (
-            doc('.data-toggle.review-comments')[0].attrib['data-value']
-            == 'public reject reject_multiple_versions reply super comment'
-        )
+        assert doc('.data-toggle.review-comments')[0].attrib['data-value'].split(
+            ' '
+        ) == [
+            'public',
+            'reject',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'super',
+            'comment',
+        ]
         # we don't show files, reasons, and tested with for any static theme actions
         assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert (
-            doc('.data-toggle.review-actions-reasons')[0].attrib['data-value']
-            == 'reject reject_multiple_versions'
-        )
+        assert doc('.data-toggle.review-actions-reasons')[0].attrib['data-value'].split(
+            ' '
+        ) == ['reject', 'reject_multiple_versions']
         assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
     def test_post_review_ignore_disabled(self):
@@ -5071,6 +5098,7 @@ class TestReview(ReviewBase):
         expected_actions = [
             'confirm_auto_approved',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -5090,6 +5118,7 @@ class TestReview(ReviewBase):
         expected_actions = [
             'approve_content',
             'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]
@@ -5208,7 +5237,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(55):
+        with self.assertNumQueries(53):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5302,28 +5331,31 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         assert b'Blocked' not in response.content
 
-        block = Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
+        block = block_factory(guid=self.addon.guid, updated_by=user_factory())
         response = self.client.get(self.url)
         assert b'Blocked' in response.content
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked'
         assert span.length == 1  # addon only has 1 version
 
-        version_factory(addon=self.addon, version='99')
+        blockversion = BlockVersion.objects.create(
+            block=block, version=version_factory(addon=self.addon, version='99')
+        )
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked Blocked'
         assert span.length == 2  # a new version is blocked too
 
         block_reason = 'Very bad addon!'
-        block.update(max_version='98', reason=block_reason)
+        blockversion.delete()
+        block.update(reason=block_reason)
         block_activity_log_save(obj=block, change=False)
         response = self.client.get(self.url)
         span = pq(response.content)('#versions-history .blocked-version')
         assert span.text() == 'Blocked'
         assert span.length == 1
-        assert block_reason in (
-            pq(response.content)('#versions-history .history-comment').text()
+        assert 'Version Blocked' in (
+            pq(response.content)('#versions-history .activity').text()
         )
 
     def test_redirect_after_review_unlisted(self):
@@ -6523,7 +6555,6 @@ class TestAddonReviewerViewSet(TestCase):
         self.assertCloseToNow(version.due_date, now=new_due_date)
 
     def test_set_needs_human_review(self):
-        user_factory(pk=settings.TASK_USER_ID)
         self.grant_permission(self.user, 'Reviews:Admin')
         self.client.login_api(self.user)
         version = self.addon.current_version
@@ -6539,7 +6570,9 @@ class TestAddonReviewerViewSet(TestCase):
             == version.needshumanreview_set.model.REASON_MANUALLY_SET_BY_REVIEWER
         )
         assert (
-            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW.id).get().user
+            ActivityLog.objects.filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)
+            .get()
+            .user
             == self.user
         )
         # We strip off the milliseconds in the response

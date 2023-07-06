@@ -714,11 +714,8 @@ def json_upload_detail(request, upload, addon_slug=None):
             return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
-            result['explicitly_compatible_with_android'] = bool(
-                # The key should always exist, and we default to returning {}
-                # so we have to cast into a boolean to see what we really care
-                # about.
-                pkg.get('gecko_android', False)
+            result['explicitly_compatible_with_android'] = pkg.get(
+                'explicitly_compatible_with_android', False
             )
     return result
 

@@ -82,6 +82,9 @@ class TestAvgDailyUserCountTestCase(TestCase):
         # The value is 0 because the add-on does not exist in BigQuery.
         assert addon_without_count.average_daily_users == 0
 
+    @mock.patch(
+        'olympia.addons.cron.flag_high_abuse_reports_addons_according_to_review_tier.si'
+    )
     @mock.patch('olympia.addons.cron.add_high_adu_extensions_to_notable.si')
     @mock.patch('olympia.addons.cron.create_chunked_tasks_signatures')
     @mock.patch('olympia.addons.cron.get_addons_and_average_daily_users_from_bigquery')
@@ -89,7 +92,8 @@ class TestAvgDailyUserCountTestCase(TestCase):
         self,
         get_mock,
         create_chunked_mock,
-        notable_mock,
+        add_high_adu_extensions_to_notable_mock,
+        flag_high_abuse_reports_addons_according_to_review_tier_mock,
     ):
         create_chunked_mock.return_value = group([])
         addon = Addon.objects.get(pk=3615)
@@ -131,7 +135,10 @@ class TestAvgDailyUserCountTestCase(TestCase):
             chunk_size,
         )
 
-        notable_mock.assert_called()
+        assert add_high_adu_extensions_to_notable_mock.call_count == 1
+        assert (
+            flag_high_abuse_reports_addons_according_to_review_tier_mock.call_count == 1
+        )
 
 
 class TestUpdateAddonHotness(TestCase):

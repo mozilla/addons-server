@@ -53,6 +53,7 @@ from olympia.amo.utils import SafeStorage, use_fake_fxa
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
 from olympia.promoted.models import (
@@ -958,6 +959,18 @@ def version_factory(file_kw=None, **kw):
         # intended, even if that's not consistent with should_have_due_date().
         ver.update(due_date=kw['due_date'], _signal=False)
     return ver
+
+
+def block_factory(*, version_ids=None, **kwargs):
+    block = Block.objects.create(**kwargs)
+    if version_ids is None and block.addon:
+        version_ids = list(block.addon.versions.values_list('id', flat=True))
+    if version_ids is not None:
+        BlockVersion.objects.bulk_create(
+            BlockVersion(block=block, version_id=version_id)
+            for version_id in version_ids
+        )
+    return block
 
 
 @pytest.mark.es_tests

@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
 "PO-Revision-Date: 2023-06-07 16:36+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,11 +106,10 @@ msgstr "בדיקות לפני הגשת תוספת"
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "נא לבדוק את הנקודות הבאות לפני סיום ההגשה. הבדיקה תמזער עיכובים או אי הבנות במהלך הסקירה:"
 
-#, fuzzy
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr "יש לשלוח את קובצי המקור של קבצים בינריים שהודרו מראש, כמו גם סקריפטים מעורפלים (למעט ספריות מוכרות) בנפרד לסקירה. נא לוודא שעשית שימוש בשדה העלאת קוד מקור כדי להימנע מדחיית ההגשה שלך."
+msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "תהליך בדיקת האימות מצא את התקלות הבאות שעלולות להוביל לסירובים:"

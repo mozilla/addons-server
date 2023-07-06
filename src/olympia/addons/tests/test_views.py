@@ -45,7 +45,6 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
-from olympia.blocklist.models import Block
 from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
@@ -3432,16 +3431,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert version.release_notes == 'dsdsdsd'
         assert version.approval_notes == 'This!'
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
-
-    def test_check_blocklist(self):
-        Block.objects.create(guid=self.addon.guid, updated_by=self.user)
-        response = self.client.post(
-            self.url,
-            data=self.minimal_data,
-        )
-        assert response.status_code == 400
-        assert 'Version 0.0.1 matches ' in str(response.data['non_field_errors'])
-        assert self.addon.reload().versions.count() == 1
 
     def test_cant_update_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -7306,6 +7295,12 @@ class TestBrowserMapping(TestCase):
             addon=addon_1,
             extension_id='some-other-extension-id-2',
             browser=0,
+        )
+        # Shouldn't show up because the add-on has been disabled by the user.
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(disabled_by_user=True),
+            extension_id='some-other-extension-id-3',
+            browser=CHROME,
         )
         # - 1 for counting the number of results
         # - 1 for fetching the results of the first (and only) page

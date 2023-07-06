@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-05-12 16:19+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-06-14 18:28+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -119,7 +119,7 @@ msgstr "Đã chỉ định phiên bản ứng dụng tối thiểu không xác �
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Không thể ghi đè thông tin tương thích được đặt trong manifest cho ứng dụng này (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -148,9 +148,6 @@ msgstr "Tập tin đã bị vô hiệu hóa."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Không thể xóa phiên bản mới nhất được phê duyệt của tiện ích %s vì phiên bản trước đó không được chấp thuận cho quảng cáo %s. Vui lòng liên hệ với quản trị viên AMO nếu bạn cần trợ giúp về việc này."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Phiên bản {version} khớp với {block_link} cho tiện ích này. Bạn có thể liên hệ với {amo_admins} để biết thêm thông tin."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Phiên bản {version_string} đã được tải lên trước đó và đã bị xóa."
@@ -456,31 +453,6 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s đang trong một đệ trình đang chờ xử lý"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Tiện ích với GUID %(guid)s không tồn tại"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Các khối được cập nhật khác nhau vì phiên bản tối thiểu hoặc tối đa đã thay đổi."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s chứa *"
-
-msgid "Invalid version"
-msgstr "Phiên bản không hợp lệ"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Phiên bản tối thiểu không được lớn hơn phiên bản tối đa"
 
 #, fuzzy
 msgid "Review Listed"
@@ -855,6 +827,24 @@ msgid "Un-rejected"
 msgstr ""
 
 msgid "Reply to {rating} for {addon} written."
+msgstr ""
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
 msgstr ""
 
 msgid "Firefox"
@@ -1327,7 +1317,7 @@ msgid "Strategic"
 msgstr "Chiến lược"
 
 msgid "Notable"
-msgstr ""
+msgstr "Đáng chú ý"
 
 msgid "No Reputation"
 msgstr "Không có danh tiếng"
@@ -1372,13 +1362,13 @@ msgid "Delay auto-approval"
 msgstr "Trì hoãn tự động phê duyệt"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Trì hoãn tự động phê duyệt vô thời hạn"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Trì hoãn tự động phê duyệt vô thời hạn và thêm hạn chế"
 
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Trì hoãn tự động phê duyệt vô thời hạn và thêm các hạn chế cho phê duyệt trong tương lai"
 
 msgid "Unknown"
 msgstr "Không rõ"
@@ -1529,9 +1519,6 @@ msgstr ""
 msgid "Need to select at least one application."
 msgstr "Cần chọn ít nhất một ứng dụng."
 
-msgid "a blocklist entry"
-msgstr ""
-
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Phiên bản {version} đã được tải lên trước đó và đã bị xóa."
 
@@ -1551,7 +1538,7 @@ msgid "You have not uploaded a source file."
 msgstr "Bạn chưa tải lên một tập tin nguồn."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Mã nguồn tập tin đã được tải lên nhưng bạn cho biết không có mã nguồn nào cần đến."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Đảm bảo tên và tóm tắt được kết hợp tối đa {limit_value} ký tự (hiện tại là {show_value})."
@@ -2965,7 +2952,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
 
 msgid "Promote"
-msgstr ""
+msgstr "Quảng bá"
 
 msgid "\"Get The Add-on\" button"
 msgstr "Nút \"Nhận tiện ích mở rộng\""
@@ -4152,7 +4139,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Nghe nhạc trên YouTube mà không bị hiện tượng \"Video đã tạm dừng. Tiếp tục xem?\" gián đoạn."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4593,9 +4580,13 @@ msgid "Other (please specify)"
 msgstr "Khác (vui lòng chỉ ra)"
 
 msgid "Auto-flagged due to word match"
-msgstr ""
+msgstr "Đã tự động gắn cờ do khớp từ"
 
 msgid "Auto-flagged due to user restriction"
+msgstr "Đã tự động gắn cờ do hạn chế người dùng"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
 msgstr ""
 
 msgid "The review text cannot contain the word: \"{0}\""
@@ -4652,7 +4643,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "bởi %(user)s vào %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"

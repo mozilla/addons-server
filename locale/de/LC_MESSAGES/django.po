@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 14:45+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-04 18:06+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -150,9 +150,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Die letzte freigeschaltete Version dieses %s-Add-ons kann nicht gelöscht werden, da die vorherige Version nicht zur %s-Empfehlung genehmigt wurde. Bitte wenden Sie sich an die AMO-Administratoren, "
 "wenn Sie Hilfe benötigen."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Version {version_string} wurde zuvor schon hochgeladen und gelöscht."
@@ -463,31 +460,6 @@ msgstr "Diese benutzerdefinierte Adresse kann nicht verwendet werden."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Einreichung zu GUID %(guid)s steht noch aus"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Sperre mit GUID %(guid)s nicht gefunden"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Add-on mit GUID %(guid)s existiert nicht"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Zu aktualisierende Sperren unterscheiden sich, weil sich Min- oder Max-Version geändert haben."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s enthält *"
-
-msgid "Invalid version"
-msgstr "Ungültige Version"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Die Min-Version darf nicht größer als die Max-Version sein"
 
 msgid "Review Listed"
 msgstr "Gelistete überprüfen"
@@ -859,6 +831,24 @@ msgstr "Zurückweisung aufgehoben"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "Antwort auf {rating} für {addon} verfassen."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} ausstehende Ablehnung gelöscht."
+
+msgid "Pending rejection cleared"
+msgstr "Ausstehende Ablehnung gelöscht"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} zu Blockliste hinzugefügt."
+
+msgid "Version Blocked"
+msgstr "Version blockiert"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} aus Blockliste entfernt."
+
+msgid "Version Unblocked"
+msgstr "Blockierung der Version aufgehoben"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1544,9 +1534,6 @@ msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
 msgid "Need to select at least one application."
 msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
-
-msgid "a blocklist entry"
-msgstr "ein Sperrlisteneintrag"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} wurde zuvor schon hochgeladen und gelöscht."
@@ -4625,6 +4612,10 @@ msgstr "Automatisch gemeldet wegen Wortübereinstimmung"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Automatisch gemeldet wegen Benutzereinschränkung"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s enthält ein nicht-alphanumerisches Zeichen."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

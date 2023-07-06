@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-06 19:03+0000\n"
-"PO-Revision-Date: 2023-06-07 05:44+0000\n"
+"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"PO-Revision-Date: 2023-07-04 18:08+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -153,9 +153,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "De nieuwste goedgekeurde versie van deze %s add-on kan niet worden verwijderd, omdat de vorige versie niet is goedgekeurd voor promotie als %s. Neem contact op met AMO-beheerders als u hier hulp bij"
 " nodig hebt."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Versie {version} komt overeen met {block_link} voor deze add-on. U kunt contact opnemen met {amo_admins} voor aanvullende informatie."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Versie {version_string} is eerder geüpload en verwijderd."
@@ -464,31 +461,6 @@ msgstr "Deze aangepaste URL kan niet worden gebruikt."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Deze add-on behoort al tot de collectie"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s is in behandeling"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokkering met GUID %(guid)s niet gevonden"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Add-on met GUID %(guid)s bestaat niet"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Bij te werken blokkeringen zijn verschillend, omdat de minimum- of maximumversie is gewijzigd."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s bevat *"
-
-msgid "Invalid version"
-msgstr "Ongeldige versie"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimumversie kan niet groter zijn dan de maximumversie"
 
 msgid "Review Listed"
 msgstr "Vermeldingen beoordelen"
@@ -862,6 +834,24 @@ msgstr "Afwijzing ongedaan gemaakt"
 
 msgid "Reply to {rating} for {addon} written."
 msgstr "Antwoord op {rating} voor {addon} geschreven."
+
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr "Versie geblokkeerd"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} verwijderd van blokkeerlijst."
+
+msgid "Version Unblocked"
+msgstr "Versie gedeblokkeerd"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1529,9 +1519,6 @@ msgstr "Mislukte validatie negeren"
 
 msgid "Need to select at least one application."
 msgstr "U dient ten minste één toepassing te selecteren."
-
-msgid "a blocklist entry"
-msgstr "een blokkeringslijstitem"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versie {version} is eerder geüpload en verwijderd."
@@ -4603,6 +4590,10 @@ msgstr "Automatisch gelabeld vanwege woordovereenkomst"
 
 msgid "Auto-flagged due to user restriction"
 msgstr "Automatisch gelabeld vanwege gebruikersbeperking"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s bevat een niet-alfanumeriek teken."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""

@@ -25,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.promoted import (
     LINE,
     NOT_PROMOTED,
@@ -1241,17 +1241,18 @@ class TestVersion(AMOPaths, TestCase):
             assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):
-        addon = Addon.objects.get(id=3615)
-        assert addon.current_version.is_blocked is False
+        version = Addon.objects.get(id=3615).current_version
+        assert version.is_blocked is False
 
-        block = Block.objects.create(addon=addon, updated_by=user_factory())
-        assert Addon.objects.get(id=3615).current_version.is_blocked is True
+        block = Block.objects.create(addon=version.addon, updated_by=user_factory())
+        assert version.reload().is_blocked is False
 
-        block.update(min_version='999999999')
-        assert Addon.objects.get(id=3615).current_version.is_blocked is False
+        blockversion = BlockVersion.objects.create(block=block, version=version)
+        assert version.reload().is_blocked is True
 
-        block.update(min_version='0')
-        assert Addon.objects.get(id=3615).current_version.is_blocked is True
+        blockversion.update(version=version_factory(addon=version.addon))
+        version.refresh_from_db()
+        assert version.is_blocked is False
 
     def test_pending_rejection_property(self):
         addon = Addon.objects.get(id=3615)
