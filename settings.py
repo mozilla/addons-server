@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 """This is the standard development settings file.
 
 If you need to overload settings, please do so in a local_settings.py file (it
