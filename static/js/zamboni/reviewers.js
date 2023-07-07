@@ -502,7 +502,8 @@ function initVersionsADU() {
     const queryLimit = $('#addon').data('versions-adu-max-results');
     if (versionAduPairs.length === queryLimit) {
       // if we've got max results we may have hit the limit of the query
-      missingAduText = format('<= {0}', versionAduPairs[queryLimit - 1]);
+      const [_, min_adu] = versionAduPairs[queryLimit - 1];
+      missingAduText = format('<= {0}', min_adu);
     } else {
       // otherwise these are just 0 ADU versions
       missingAduText = '0';
