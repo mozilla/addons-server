@@ -65,7 +65,9 @@ class TestUploadToRemoteSettings(TestCase):
         self.cleanup_files_mock = cleanup_files_patcher.start()
 
     def test_no_previous_mlbf(self):
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(16):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
         self.publish_attachment_mock.assert_called_with(
@@ -110,7 +112,9 @@ class TestUploadToRemoteSettings(TestCase):
         with storage.open(prev_blocked_path, 'w') as blocked_file:
             json.dump(['madeup@guid:123'], blocked_file)
 
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(8):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 
@@ -206,7 +210,9 @@ class TestUploadToRemoteSettings(TestCase):
         with storage.open(base_blocked_path, 'w') as blocked_file:
             json.dump([], blocked_file)
 
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(10):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 

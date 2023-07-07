@@ -151,7 +151,8 @@ class TestMLBF(TestCase):
 
     def test_fetch_all_versions_from_db(self):
         self.setup_data()
-        all_versions = fetch_all_versions_from_db()
+        with self.assertNumQueries(1):
+            all_versions = fetch_all_versions_from_db()
         assert len(all_versions) == File.objects.count() == 5 + 10 + 5
         assert (self.five_ver_block.guid, '123.40') in all_versions
         assert (self.five_ver_block.guid, '123.5') in all_versions
@@ -197,7 +198,8 @@ class TestMLBF(TestCase):
 
     def test_fetch_blocked_from_db(self):
         self.setup_data()
-        blocked_versions = fetch_blocked_from_db()
+        with self.assertNumQueries(1):
+            blocked_versions = fetch_blocked_from_db()
 
         # check the values - the tuples used to generate the mlbf
         blocked_guids = blocked_versions.values()
@@ -317,8 +319,9 @@ class TestMLBF(TestCase):
 
     def test_generate_and_write_filter(self):
         self.setup_data()
-        mlbf = MLBF.generate_from_db(123456)
-        mlbf.generate_and_write_filter()
+        with self.assertNumQueries(2):
+            mlbf = MLBF.generate_from_db(123456)
+            mlbf.generate_and_write_filter()
 
         with open(mlbf.filter_path, 'rb') as filter_file:
             buffer = filter_file.read()
