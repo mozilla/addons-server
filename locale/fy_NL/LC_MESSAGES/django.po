@@ -836,19 +836,19 @@ msgid "{addon} {version} pending rejection cleared."
 msgstr "{addon} {version} wachtsjende ôfwizing wiske."
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Wachtsjende ôfwizing wiske"
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "{version} tafoege oan blokkearlist."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Ferzje blokkearre"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "{version} fuortsmiten fan blokkearlist."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Ferzje deblokkearre"
 
 msgid "Firefox"
 msgstr "Firefox"
