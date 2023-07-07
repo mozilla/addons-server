@@ -629,6 +629,7 @@ class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
     fields = ('created', 'modified', 'addon', 'excluded_regions')
     raw_id_fields = ('addon',)
     readonly_fields = ('created', 'modified')
+    view_on_site = False
 
     def get_readonly_fields(self, request, obj=None):
         return self.readonly_fields + (('addon',) if obj else ())
