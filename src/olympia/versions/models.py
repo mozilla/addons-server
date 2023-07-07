@@ -52,7 +52,7 @@ from olympia.translations.fields import (
     save_signal,
 )
 from olympia.users.models import UserProfile
-from olympia.users.utils import RestrictionChecker
+from olympia.users.utils import RestrictionChecker, get_task_user
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -446,9 +446,9 @@ class Version(OnChangeMixin, ModelBase):
             )
             activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
             if previous_version_had_needs_human_review:
-                NeedsHumanReview.objects.create(
+                NeedsHumanReview(
                     version=version, reason=NeedsHumanReview.REASON_INHERITANCE
-                )
+                ).save(_user=get_task_user())
 
         if not compatibility:
             compatibility = {

@@ -20,6 +20,7 @@ from olympia.amo.utils import send_mail
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
+from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, version_uploaded
 from olympia.versions.utils import get_staggered_review_due_date_generator
 
@@ -796,14 +797,13 @@ class NeedsHumanReview(ModelBase):
 
     def save(self, *args, **kwargs):
         automatic_activity_log = not kwargs.pop('_no_automatic_activity_log', False)
+        user = kwargs.pop('_user', None)
         if not self.pk and automatic_activity_log:
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC,
                 self.version,
                 details={'comments': self.get_reason_display()},
-                user=(
-                    core.get_user() or UserProfile.objects.get(pk=settings.TASK_USER_ID)
-                ),
+                user=user or core.get_user() or get_task_user(),
             )
         return super().save(*args, **kwargs)
 
