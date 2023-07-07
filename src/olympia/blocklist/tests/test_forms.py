@@ -11,7 +11,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.admin import BlocklistSubmissionAdmin
 from olympia.blocklist.forms import MultiAddForm, MultiDeleteForm
-from olympia.blocklist.models import Block, BlocklistSubmission
+from olympia.blocklist.models import Block, BlocklistCannedReason, BlocklistSubmission
 
 
 class TestBlocklistSubmissionForm(TestCase):
@@ -48,13 +48,15 @@ class TestBlocklistSubmissionForm(TestCase):
             addon=self.partial_existing_addon
         )
 
-    def test_changed_version_ids_choices_add_action(self):
+    def get_form(self):
         block_admin = BlocklistSubmissionAdmin(
             model=BlocklistSubmission, admin_site=admin_site
         )
         request = RequestFactory().get('/')
+        request.user = self.user
+        return block_admin.get_form(request=request)
 
-        Form = block_admin.get_form(request=request)
+    def test_changed_version_ids_choices_add_action(self):
         data = {
             'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
@@ -62,6 +64,7 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
         }
+        Form = self.get_form()
         form = Form(data=data)
         assert form.fields['changed_version_ids'].choices == [
             (
@@ -106,12 +109,7 @@ class TestBlocklistSubmissionForm(TestCase):
         }
 
     def test_changed_version_ids_choices_delete_action(self):
-        block_admin = BlocklistSubmissionAdmin(
-            model=BlocklistSubmission, admin_site=admin_site
-        )
-        request = RequestFactory().get('/')
-
-        Form = block_admin.get_form(request=request)
+        Form = self.get_form()
         data = {
             'action': str(BlocklistSubmission.ACTION_DELETE),
             'input_guids': f'{self.new_addon.guid}\n'
@@ -171,12 +169,7 @@ class TestBlocklistSubmissionForm(TestCase):
         }
 
     def test_initial_reason_and_url_values(self):
-        block_admin = BlocklistSubmissionAdmin(
-            model=BlocklistSubmission, admin_site=admin_site
-        )
-        request = RequestFactory().get('/')
-
-        Form = block_admin.get_form(request=request)
+        Form = self.get_form()
         data = {
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
@@ -205,12 +198,7 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.initial['update_reason_value'] is False  # checkbox defaults false
 
     def test_new_blocks_must_have_changed_versions(self):
-        block_admin = BlocklistSubmissionAdmin(
-            model=BlocklistSubmission, admin_site=admin_site
-        )
-        request = RequestFactory().get('/')
-
-        Form = block_admin.get_form(request=request)
+        Form = self.get_form()
         data = {
             'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
             'input_guids': f'{self.new_addon.guid}\n'
@@ -238,12 +226,7 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.is_valid(), form.errors
 
     def test_clean(self):
-        block_admin = BlocklistSubmissionAdmin(
-            model=BlocklistSubmission, admin_site=admin_site
-        )
-        request = RequestFactory().get('/')
-
-        Form = block_admin.get_form(request=request)
+        Form = self.get_form()
         data = {
             'input_guids': f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
@@ -269,6 +252,37 @@ class TestBlocklistSubmissionForm(TestCase):
         # if update_xxx_value is True a value should be set, even if None in data
         assert form.cleaned_data['url'] == ''
         assert form.cleaned_data['reason'] == 'new reason'
+
+    def test_canned_reasons(self):
+        addon = addon_factory()
+        a = BlocklistCannedReason.objects.create(name='aaa', canned_reason='yes')
+        c = BlocklistCannedReason.objects.create(name='cc', canned_reason='noooo')
+        b = BlocklistCannedReason.objects.create(name='b', canned_reason='maybe')
+
+        form = self.get_form()(data={'input_guids': addon.guid})
+
+        choices = list(form.fields['canned_reasons'].choices)
+        assert choices == [
+            ('', '---------'),
+            (a.id, 'aaa'),
+            (b.id, 'b'),
+            (c.id, 'cc'),
+        ]
+        assert choices[1][0].instance == a
+        assert choices[2][0].instance == b
+        assert choices[3][0].instance == c
+
+        render = form.fields['canned_reasons'].widget.render(
+            name='canned_reasons', value=''
+        )
+        assert render == (
+            '<select name="canned_reasons">\n'
+            '  <option value="" selected>---------</option>\n\n'
+            f'  <option value="{a.id}" text="{a.canned_reason}">{a.name}</option>\n\n'
+            f'  <option value="{b.id}" text="{b.canned_reason}">{b.name}</option>\n\n'
+            f'  <option value="{c.id}" text="{c.canned_reason}">{c.name}</option>\n\n'
+            '</select>'
+        )
 
 
 class TestMultiDeleteForm(TestCase):

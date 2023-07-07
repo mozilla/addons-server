@@ -19,7 +19,7 @@ from .forms import (
     MultiAddForm,
     MultiDeleteForm,
 )
-from .models import Block, BlocklistSubmission, BlockVersion
+from .models import Block, BlocklistCannedReason, BlocklistSubmission, BlockVersion
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
@@ -246,7 +246,11 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         return has_perm or is_own_submission
 
     def get_fieldsets(self, request, obj):
-        input_guids = (
+        is_new = obj is None
+        can_change = self.has_change_permission(request, obj, strict=True)
+        is_delete_submission = not self.is_add_change_submission(request, obj)
+
+        input_guids_section = (
             'Input Guids',
             {
                 'fields': (
@@ -256,25 +260,23 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 'classes': ('collapse',),
             },
         )
-        block_history = ('Block History', {'fields': ('block_history',)})
-        if not obj:
-            edit_title = 'Add New Blocks'
-        elif obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED:
-            edit_title = 'Blocks Published'
-        else:
-            edit_title = 'Proposed New Blocks'
 
-        changed_version_ids = ('changed_version_ids',) if not obj else ()
-        add_change = (
-            edit_title,
+        block_history_section = not is_new and (
+            'Block History',
+            {'fields': ('block_history',)},
+        )
+
+        add_change_section = (
+            'Add or Change Blocks',
             {
                 'fields': (
                     'blocks',
                     'disable_addon',
-                    *changed_version_ids,
+                    *(('changed_version_ids',) if is_new else ()),
                     'update_url_value',
                     'url',
                     'update_reason_value',
+                    *(('canned_reasons',) if can_change else ()),
                     'reason',
                     'updated_by',
                     'signoff_by',
@@ -283,21 +285,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             },
         )
 
-        delay_new = (
-            'Delay',
-            {
-                'fields': ('delay_days', 'delayed_until'),
-            },
-        )
-
-        delay_change = (
-            'Delay',
-            {
-                'fields': ('delayed_until',),
-            },
-        )
-
-        delete = (
+        delete_section = (
             'Delete Blocks',
             {
                 'fields': (
@@ -310,16 +298,20 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             },
         )
 
-        if self.is_add_change_submission(request, obj):
-            return (
-                (input_guids, add_change, delay_change)
-                if obj
-                else (input_guids, block_history, add_change, delay_new)
-            )
-        else:
-            return (
-                (input_guids, delete) if obj else (input_guids, block_history, delete)
-            )
+        delay_section = not is_delete_submission and (
+            'Delay',
+            {
+                'fields': (*(('delay_days',) if is_new else ()), 'delayed_until'),
+            },
+        )
+
+        sections = (
+            input_guids_section,
+            block_history_section,
+            (add_change_section if not is_delete_submission else delete_section),
+            delay_section,
+        )
+        return tuple(section for section in sections if section)
 
     def get_readonly_fields(self, request, obj=None):
         ro_fields = [
@@ -672,3 +664,9 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
             reverse('admin:blocklist_blocklistsubmission_add')
             + f'?guids={obj.guid}&action={BlocklistSubmission.ACTION_DELETE}'
         )
+
+
+@admin.register(BlocklistCannedReason)
+class BlocklistCannedReasonAdmin(AMOModelAdmin):
+    list_display = ('name',)
+    view_on_site = False

@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
       a.addEventListener('click', checkOrClearAllCheckboxes, true),
     );
 
-  const enableIfChecked = (isChecked, fieldId) => {
-    const field = document.querySelector(`#${fieldId}`);
+  const enableIfChecked = (isChecked, fieldSelector) => {
+    const field = document.querySelector(fieldSelector);
     if (isChecked) {
       field.removeAttribute('disabled');
     } else {
@@ -29,21 +29,39 @@ document.addEventListener('DOMContentLoaded', () => {
   document
     .querySelector('#id_update_reason_value')
     .addEventListener('click', (e) =>
-      enableIfChecked(e.target.checked, 'id_reason'),
+      enableIfChecked(e.target.checked, '#id_reason'),
     );
-
+  document
+    .querySelector('#id_update_reason_value')
+    .addEventListener('click', (e) =>
+      enableIfChecked(e.target.checked, '#id_canned_reasons'),
+    );
   document
     .querySelector('#id_update_url_value')
     .addEventListener('click', (e) =>
-      enableIfChecked(e.target.checked, 'id_url'),
+      enableIfChecked(e.target.checked, '#id_url'),
     );
 
   enableIfChecked(
     document.querySelector('#id_update_reason_value').checked,
-    'id_reason',
+    '#id_reason',
+  );
+  enableIfChecked(
+    document.querySelector('#id_update_reason_value').checked,
+    '#id_canned_reasons',
   );
   enableIfChecked(
     document.querySelector('#id_update_url_value').checked,
-    'id_url',
+    '#id_url',
   );
+
+  document
+    .querySelector('#id_canned_reasons')
+    .addEventListener('click', (e) => {
+      const target = e.target;
+      if (target.hasAttribute('text')) {
+        document.querySelector('#id_reason').value =
+          target.getAttribute('text');
+      }
+    });
 });

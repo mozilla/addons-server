@@ -6,7 +6,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import format_html
-from django.utils.translation import gettext_lazy as _
 
 from multidb import get_replica
 
@@ -106,7 +105,7 @@ class Block(ModelBase):
             url = absolutify(
                 reverse('reviewers.review', kwargs={'addon_id': self.addon.pk})
             )
-            return format_html('<a href="{}">{}</a>', url, _('Review Listed'))
+            return format_html('<a href="{}">{}</a>', url, 'Review Listed')
         return ''
 
     def review_unlisted_link(self):
@@ -119,7 +118,7 @@ class Block(ModelBase):
             url = absolutify(
                 reverse('reviewers.review', args=('unlisted', self.addon.pk))
             )
-            return format_html('<a href="{}">{}</a>', url, _('Review Unlisted'))
+            return format_html('<a href="{}">{}</a>', url, 'Review Unlisted')
         return ''
 
     @cached_property
@@ -441,11 +440,14 @@ class BlocklistSubmission(ModelBase):
     def process_input_guids(
         cls, input_guids, *, load_full_objects=True, filter_existing=True
     ):
-        """Process a line-return separated list of guids into a list of invalid
-        guids, a list of guids that are completely blocked already, and a
-        list of Block instances - including new Blocks (unsaved) and existing
-        partial Blocks. If `filter_existing` is False, all existing blocks are
-        included.
+        """Process a line-return separated list of guids into a dict:
+        {'invalid_guids': a list of invalid guids,
+         'existing_guids': a list of guids that are completely blocked already,
+         'blocks': a list of Block instances - including new Blocks (unsaved) and
+                   existing partial Blocks.
+        }
+        If `filter_existing=False`, all existing blocks are included in 'blocks' so
+        'existing_guids' will be empty.
 
         If `load_full_objects=False` is passed the Block instances are fake
         (namedtuples) with only minimal data available in the "Block" objects:
@@ -534,3 +536,14 @@ class BlocklistSubmission(ModelBase):
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list
         }
+
+
+class BlocklistCannedReason(ModelBase):
+    name = models.CharField(max_length=255)
+    canned_reason = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return str(self.name)

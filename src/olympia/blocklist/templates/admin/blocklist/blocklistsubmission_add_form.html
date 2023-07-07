@@ -87,6 +87,9 @@
     </div>
     <div class="form-row">
       {{ form.update_reason_value }}
+      {{ form.canned_reasons.label_tag }}
+      {{ form.canned_reasons }}
+      {{ form.canned_reasons.errors }}
       {{ form.update_reason_value.errors }}
       {{ form.reason.errors }}
       {{ form.reason.label_tag }}
