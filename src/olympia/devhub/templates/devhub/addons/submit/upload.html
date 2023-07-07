@@ -48,6 +48,9 @@
     {% endif %}
   {% endif %}
   >
+  {% if theme_specific %}
+    <input type="hidden" name="theme_specific" id="upload-addon-theme-specific" value="1" />
+  {% endif %}
 
   {{ new_addon_form.non_field_errors() }}
 

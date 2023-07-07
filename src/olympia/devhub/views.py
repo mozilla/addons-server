@@ -1,6 +1,7 @@
 import datetime
 import os
 import time
+from copy import deepcopy
 from urllib.parse import quote
 from uuid import UUID, uuid4
 
@@ -49,6 +50,7 @@ from olympia.amo.utils import (
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
+from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     extract_theme_properties,
@@ -553,6 +555,7 @@ def validate_addon(request):
 
 
 def handle_upload(
+    *,
     filedata,
     request,
     channel,
@@ -560,6 +563,7 @@ def handle_upload(
     is_standalone=False,
     submit=False,
     source=amo.UPLOAD_SOURCE_DEVHUB,
+    theme_specific=False,
 ):
     upload = FileUpload.from_post(
         filedata,
@@ -570,12 +574,10 @@ def handle_upload(
         source=source,
         user=request.user,
     )
-
     if submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
+        tasks.validate_and_submit(addon, upload, theme_specific=theme_specific)
     else:
-        tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
-
+        tasks.validate(upload, theme_specific=theme_specific)
     return upload
 
 
@@ -584,13 +586,23 @@ def handle_upload(
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
-    upload = handle_upload(
-        filedata=filedata,
-        request=request,
-        addon=addon,
-        is_standalone=is_standalone,
-        channel=channel,
-    )
+    theme_specific = request.POST.get('theme_specific', False)
+    try:
+        upload = handle_upload(
+            filedata=filedata,
+            request=request,
+            addon=addon,
+            is_standalone=is_standalone,
+            channel=channel,
+            theme_specific=bool(theme_specific),
+        )
+    except django_forms.ValidationError as exc:
+        # handle_upload() should be firing tasks to do validation. If it raised
+        # a ValidationError, that means we failed before even reaching those
+        # tasks, and need to return an error response immediately.
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        insert_validation_message(results, message=exc.message)
+        return JsonResponse({'validation': results}, status=400)
     if addon:
         return redirect('devhub.upload_detail_for_version', addon.slug, upload.uuid.hex)
     elif is_standalone:

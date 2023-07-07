@@ -44,15 +44,18 @@ $(document).ready(function () {
   var $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
     var opt = { cancel: $('.upload-file-cancel') };
-    if ($('#addon-compat-upload').length) {
-      opt.appendFormData = function (formData) {
+    opt.appendFormData = function (formData) {
+      if ($('#addon-compat-upload').length) {
         formData.append('app_id', $('#id_application option:selected').val());
         formData.append(
           'version_id',
           $('#id_app_version option:selected').val(),
         );
-      };
-    }
+      }
+      if ($('#upload-addon-theme-specific').length) {
+        formData.append('theme_specific', true);
+      }
+    };
     $uploadAddon.addonUploader(opt);
   }
 
