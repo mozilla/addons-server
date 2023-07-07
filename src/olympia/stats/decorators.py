@@ -19,7 +19,7 @@ def addon_view_stats(f):
         else:
             qs = Addon.objects.not_disabled_by_mozilla
 
-        return addon_view(f, qs)(request, addon_id=addon_id, *args, **kw)
+        return addon_view(f, qs)(request, addon_id, *args, **kw)
 
     return wrapper
 

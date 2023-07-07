@@ -99,8 +99,8 @@ class BaseQuerySet(models.QuerySet):
 class RawQuerySet(models.query.RawQuerySet):
     """A RawQuerySet with __len__."""
 
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
+    def __init__(self, raw_query, *args, **kw):
+        super().__init__(raw_query, *args, **kw)
         self._result_cache = None
 
     def __iter__(self):
@@ -145,9 +145,13 @@ class ManagerBase(models.Manager):
     def transform(self, fn):
         return self.all().transform(fn)
 
-    def raw(self, raw_query, params=None, *args, **kwargs):
+    def raw(self, raw_query, params=(), translations=None, using=None):
         return RawQuerySet(
-            raw_query, self.model, params=params, using=self._db, *args, **kwargs
+            raw_query,
+            model=self.model,
+            params=params,
+            translations=translations,
+            using=using or self._db,
         )
 
 

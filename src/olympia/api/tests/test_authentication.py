@@ -196,7 +196,9 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
         return handler(reverse('test-dynamic-endpoint'), *args, **kw)
 
     def jwt_request(self, token, method, *args, **kw):
-        return self.request(method, HTTP_AUTHORIZATION=f'JWT {token}', *args, **kw)
+        return self.request(
+            method, *args, **{'HTTP_AUTHORIZATION':f'JWT {token}', **kw}
+        )
 
     def test_get_requires_auth(self):
         res = self.request('get')
