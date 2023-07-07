@@ -172,6 +172,12 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
     state.admin_order_field = '-signoff_state'
 
+    def update_url_value(self, obj):
+        return obj.url is None
+
+    def update_reason_value(self, obj):
+        return obj.reason is None
+
     def has_delete_permission(self, request, obj=None):
         # For now, keep all BlocklistSubmission records.
         # TODO: define under what cirumstances records can be safely deleted.
@@ -266,7 +272,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                     'blocks',
                     'disable_addon',
                     *changed_version_ids,
+                    'update_url_value',
                     'url',
+                    'update_reason_value',
                     'reason',
                     'updated_by',
                     'signoff_by',

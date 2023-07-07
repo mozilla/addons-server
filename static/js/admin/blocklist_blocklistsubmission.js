@@ -27,20 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document
-    .querySelector('#id_update_reason')
+    .querySelector('#id_update_reason_value')
     .addEventListener('click', (e) =>
       enableIfChecked(e.target.checked, 'id_reason'),
     );
 
   document
-    .querySelector('#id_update_url')
+    .querySelector('#id_update_url_value')
     .addEventListener('click', (e) =>
       enableIfChecked(e.target.checked, 'id_url'),
     );
 
   enableIfChecked(
-    document.querySelector('#id_update_reason').checked,
+    document.querySelector('#id_update_reason_value').checked,
     'id_reason',
   );
-  enableIfChecked(document.querySelector('#id_update_url').checked, 'id_url');
+  enableIfChecked(
+    document.querySelector('#id_update_url_value').checked,
+    'id_url',
+  );
 });
