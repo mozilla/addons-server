@@ -15,7 +15,9 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         revoked_count = 0
         with open(options['csv_file']) as csvfile:
-            for idx, (key, secret) in enumerate(csv.reader(csvfile), start=1):
+            for idx, (key, secret) in enumerate(  # noqa: B007
+                csv.reader(csvfile), start=1
+            ):
                 try:
                     apikey = APIKey.objects.get(key=key, is_active=True)
                 except APIKey.DoesNotExist:

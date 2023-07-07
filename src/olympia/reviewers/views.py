@@ -1548,7 +1548,7 @@ def review_version_redirect(request, addon, version):
         return None
 
     # Check each channel to calculate which # it would be in a list of versions
-    for channel, channel_text in amo.CHANNEL_CHOICES_API.items():
+    for channel, channel_text in amo.CHANNEL_CHOICES_API.items():  # noqa: B007
         if (index := index_in_versions_list(channel, version)) is not None:
             break
     else:
