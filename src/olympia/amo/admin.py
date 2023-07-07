@@ -264,7 +264,7 @@ class AMOModelAdmin(admin.ModelAdmin):
         # it was renamed to admin.utils.lookup_spawns_duplicates in django4.0
         lookup_function = getattr(
             admin.utils, 'lookup_spawns_duplicates', None
-        ) or getattr(admin.utils, 'lookup_needs_distinct')
+        ) or admin.utils.lookup_needs_distinct
         rval = lookup_function(opts, lookup_path)
         lookup_fields = lookup_path.split(LOOKUP_SEP)
         # Not pretty but looking up the actual field would require truly

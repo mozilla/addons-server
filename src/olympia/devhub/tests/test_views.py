@@ -139,7 +139,7 @@ class TestDashboard(HubTest):
         """Check themes show on dashboard."""
         # Create 2 themes.
         staticthemes = []
-        for x in range(2):
+        for _x in range(2):
             addon = addon_factory(type=amo.ADDON_STATICTHEME, users=[self.user_profile])
             VersionPreview.objects.create(version=addon.current_version)
             staticthemes.append(addon)

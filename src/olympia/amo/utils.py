@@ -941,7 +941,7 @@ class SafeStorage(FileSystemStorage):
         """
         empty_dirs = []
         # Delete all files first then all empty directories.
-        for root, dirs, files in self.walk(dir_path):
+        for root, _dirs, files in self.walk(dir_path):
             for fn in files:
                 self.delete(f'{root}/{fn}')
             empty_dirs.insert(0, root)

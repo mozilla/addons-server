@@ -179,7 +179,7 @@ def save_versions_to_blocks(guids, submission):
     for block in blocks:
         change = bool(block.id)
         if change:
-            setattr(block, 'modified', modified_datetime)
+            block.modified = modified_datetime
         block.updated_by = submission.updated_by
         if submission.reason is not None:
             block.reason = submission.reason
@@ -227,7 +227,7 @@ def delete_versions_from_blocks(guids, submission):
     for block in blocks:
         if not block.id:
             continue
-        setattr(block, 'modified', modified_datetime)
+        block.modified = modified_datetime
 
         BlockVersion.objects.filter(
             block=block, version_id__in=submission.changed_version_ids

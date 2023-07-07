@@ -55,7 +55,7 @@ def test_summarize_validation():
 
 def test_log_action_class():
     v = Mock()
-    for k, v in amo.LOG_BY_ID.items():
+    for _k, v in amo.LOG_BY_ID.items():
         if v.action_class is not None:
             cls = 'action-' + v.action_class
         else:

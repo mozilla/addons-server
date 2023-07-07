@@ -557,7 +557,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         middleware = SessionMiddleware(request)
         middleware.process_request(request)
         messages = FallbackStorage(request)
-        setattr(request, '_messages', messages)
+        request._messages = messages
         request.session.save()
         return request
 

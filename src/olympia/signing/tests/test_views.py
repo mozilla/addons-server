@@ -667,7 +667,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 6):
+            for _x in range(0, 6):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -707,7 +707,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def _test_throttling_verb_user_hourly(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
             # 21 is above the hourly limit but below the daily one.
-            for x in range(0, 21):
+            for _x in range(0, 21):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -759,7 +759,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_user_daily(self, verb, url, expected_status=201):
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 50):
+            for _x in range(0, 50):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -868,7 +868,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
         url = self.url(self.guid, '3.0')
         with freeze_time('2019-04-08 15:16:23.42'):
-            for x in range(0, 60):
+            for _x in range(0, 60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(
@@ -1199,7 +1199,7 @@ class TestTestUploadVersionWebextensionTransactions(
     def test_activity_log_saved_on_throttling(self):
         url = reverse_ns('signing.version', api_version='v4')
         with freeze_time('2019-04-08 15:16:23.42'):
-            for x in range(0, 3):
+            for _x in range(0, 3):
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
@@ -1388,7 +1388,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         url = self.url(self.guid, '3.0')
 
         with freeze_time('2019-04-08 15:16:23.42'):
-            for x in range(0, 60):
+            for _x in range(0, 60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(

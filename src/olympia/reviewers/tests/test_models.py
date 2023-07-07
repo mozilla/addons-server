@@ -335,7 +335,7 @@ class TestAutoApprovalSummary(TestCase):
 
         # Should be capped at 100. We're already at 45, adding 4 more should
         # result in a weight of 100 instead of 105.
-        for i in range(0, 4):
+        for _i in range(0, 4):
             AbuseReport.objects.create(guid=self.addon.guid)
         weight_info = summary.calculate_weight()
         assert summary.weight == 100

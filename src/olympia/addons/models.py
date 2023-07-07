@@ -1309,8 +1309,8 @@ class Addon(OnChangeMixin, ModelBase):
         for addon_id, addonusers in groupby:
             authors = []
             for addonuser in addonusers:
-                setattr(addonuser.user, 'role', addonuser.role)
-                setattr(addonuser.user, 'listed', addonuser.listed)
+                addonuser.user.role = addonuser.role
+                addonuser.user.listed = addonuser.listed
                 authors.append(addonuser.user)
             setattr(addon_dict[addon_id], to_attr, authors)
             seen.add(addon_id)
