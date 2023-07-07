@@ -21,15 +21,21 @@ exclude = [
     ".git",
     "*/migrations/*.py",
 ]
-ignore = ["F405", "B004", "B007", "B009", "B010", "B017", "B018", "B023", "B026", "B028", "B904", "B905"]
+ignore = [
+  "B017",  # `assertRaises(Exception)` should be considered evil
+  "B018",  # Found useless attribute access. Either assign it to a variable or remove it.
+  "B028",  # No explicit `stacklevel` keyword argument found
+  "B904",  # Within an `except` clause, raise exceptions with `raise ... from err|None`
+  "B905"   # `zip()` without an explicit `strict=` parameter
+]
 line-length = 88
 select = [
-    "B",
-    "E",
-    "F",
-    "I",
-    "Q",
-    "W",
+    "B",  # flake8-bugbear
+    "E",  # pycodestyle errors
+    "F",  # pyflakes
+    "I",  # isort
+    "Q",  # flake8-quotes
+    "W",  # pycodestyle warnings
 ]
 
 [tool.ruff.flake8-quotes]
