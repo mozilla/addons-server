@@ -1239,6 +1239,15 @@ def submit_addon(request):
     )
 
 
+@login_required
+def submit_theme(request):
+    return render_agreement(
+        request=request,
+        template='devhub/addons/submit/start.html',
+        next_step='devhub.submit.theme.distribution',
+    )
+
+
 @dev_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
@@ -1283,6 +1292,13 @@ def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     return _submit_distribution(request, None, 'devhub.submit.upload')
+
+
+@login_required
+def submit_theme_distribution(request):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    return _submit_distribution(request, None, 'devhub.submit.theme.upload')
 
 
 @dev_required(submitting=True)
@@ -1363,7 +1379,9 @@ WIZARD_COLOR_FIELDS = [
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_view, wizard=False):
+def _submit_upload(
+    request, addon, channel, next_view, wizard=False, theme_specific=False
+):
     """If this is a new addon upload `addon` will be None.
 
     next_view is the view that will be redirected to.
@@ -1442,21 +1460,31 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             submit_notification_warning = get_config(
                 'submit_notification_warning_pre_review'
             )
+    if addon and addon.type == amo.ADDON_STATICTHEME:
+        wizard_url = reverse(
+            'devhub.submit.version.wizard', args=[addon.slug, channel_text]
+        )
+    elif not addon and theme_specific:
+        wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
+    else:
+        wizard_url = None
     return TemplateResponse(
         request,
         template,
         context={
-            'new_addon_form': form,
-            'is_admin': is_admin,
             'addon': addon,
-            'submit_notification_warning': submit_notification_warning,
-            'submit_page': submit_page,
             'channel': channel,
             'channel_choice_text': channel_choice_text,
-            'existing_properties': existing_properties,
             'colors': WIZARD_COLOR_FIELDS,
+            'existing_properties': existing_properties,
+            'is_admin': is_admin,
+            'new_addon_form': form,
+            'submit_notification_warning': submit_notification_warning,
+            'submit_page': submit_page,
+            'theme_specific': theme_specific,
             'unsupported_properties': unsupported_properties,
             'version_number': get_next_version_number(addon) if wizard else None,
+            'wizard_url': wizard_url,
         },
     )
 
@@ -1467,6 +1495,16 @@ def submit_addon_upload(request, channel):
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, None, channel_id, 'devhub.submit.source')
+
+
+@login_required
+def submit_theme_upload(request, channel):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.details', theme_specific=True
+    )
 
 
 @dev_required(submitting=True)

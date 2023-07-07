@@ -111,7 +111,7 @@
             {% if addon %}
                 formaction="{{ url('devhub.submit.version.upload', addon.slug, channel_param) }}"
             {% else %}
-                formaction="{{ url('devhub.submit.upload', channel_param) }}"
+                formaction="{{ url('devhub.submit.theme.upload', channel_param) }}"
             {% endif %}
             >{{ _('Back') }}
         </button>
