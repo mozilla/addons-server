@@ -2054,7 +2054,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert upload_version.needshumanreview_set.count() == 0
 
     def test_inherit_needs_human_review_with_due_date(self):
-        core.set_user(user_factory())
+        user = user_factory()
+        core.set_user(user)
         due_date = get_review_due_date()
         NeedsHumanReview.objects.create(version=self.addon.current_version)
         self.addon.current_version.update(due_date=due_date)
@@ -2082,7 +2083,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             .filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)
             .first()
         )
-        assert core.get_user() is not None
+        assert core.get_user() == user
         assert activity_log.user == get_task_user()
 
     def test_dont_inherit_due_date_far_in_future(self):
