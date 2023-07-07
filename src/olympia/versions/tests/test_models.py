@@ -2076,6 +2076,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             == NeedsHumanReview.REASON_INHERITANCE
         )
 
+        activity_log = (
+            ActivityLog.objects.for_versions(upload_version)
+            .filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)
+            .first()
+        )
+        assert activity_log.user == get_task_user()
+
     def test_dont_inherit_due_date_far_in_future(self):
         standard_due_date = get_review_due_date()
         due_date = datetime.now() + timedelta(days=15)

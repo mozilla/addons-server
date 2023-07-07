@@ -796,13 +796,16 @@ class NeedsHumanReview(ModelBase):
 
     def save(self, *args, **kwargs):
         automatic_activity_log = not kwargs.pop('_no_automatic_activity_log', False)
+        user = kwargs.pop('_user', False)
         if not self.pk and automatic_activity_log:
             activity.log_create(
                 amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC,
                 self.version,
                 details={'comments': self.get_reason_display()},
                 user=(
-                    core.get_user() or UserProfile.objects.get(pk=settings.TASK_USER_ID)
+                    user
+                    or core.get_user()
+                    or UserProfile.objects.get(pk=settings.TASK_USER_ID)
                 ),
             )
         return super().save(*args, **kwargs)
