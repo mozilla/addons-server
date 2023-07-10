@@ -1097,12 +1097,15 @@ class TestUpload(UploadMixin, TestCase):
         super().setUp()
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.url = reverse('devhub.upload')
-        self.image_path = get_image_path('animated.png')
+        self.xpi_path = self.file_path('webextension_no_id.xpi')
 
-    def post(self, **kwargs):
-        # Has to be a binary, non xpi file.
-        data = open(self.image_path, 'rb')
-        return self.client.post(self.url, {'upload': data}, **kwargs)
+    def post(self, theme_specific=False, **kwargs):
+        data = {
+            'upload': open(self.xpi_path, 'rb'),
+        }
+        if theme_specific:
+            data['theme_specific'] = '1'
+        return self.client.post(self.url, data, **kwargs)
 
     def test_login_required(self):
         self.client.logout()
@@ -1148,6 +1151,7 @@ class TestUpload(UploadMixin, TestCase):
     def test_redirect(self):
         response = self.post()
         upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_LISTED
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         self.assert3xx(response, url)
 
@@ -1161,9 +1165,43 @@ class TestUpload(UploadMixin, TestCase):
         """Unlisted addons are validated as "self hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_unlisted')
-        self.post()
-        # Make sure it was called with listed=False.
-        assert not validate_mock.call_args[1]['listed']
+        response = self.post()
+        upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_UNLISTED
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        self.assert3xx(response, url)
+
+    def test_upload_extension_in_theme_specific_flow(self):
+        self.url = reverse('devhub.upload_unlisted')
+        response = self.post(theme_specific=True)
+        assert response.status_code == 400
+        assert response.json() == {
+            'validation': {
+                'errors': 1,
+                'warnings': 0,
+                'notices': 0,
+                'success': False,
+                'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
+                'metadata': {'listed': True},
+                'messages': [
+                    {
+                        'tier': 1,
+                        'type': 'error',
+                        'id': ['validation', 'messages', ''],
+                        'message': (
+                            'This add-on is not a theme. Use the <a href="http://test'
+                            'server/en-US/developers/addon/submit/upload-unlisted">'
+                            'Submit a New Add-on</a> page to submit extensions.'
+                        ),
+                        'description': [],
+                        'compatibility_type': None,
+                        'extra': True,
+                    }
+                ],
+                'message_tree': {},
+                'ending_tier': 5,
+            }
+        }
 
 
 class TestUploadDetail(UploadMixin, TestCase):

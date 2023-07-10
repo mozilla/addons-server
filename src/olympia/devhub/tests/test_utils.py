@@ -91,6 +91,15 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
             tasks.handle_file_validation_result.s(self.file.pk),
         )
 
+    def test_validate_non_theme_passing_theme_specific_arg(self):
+        repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
+        validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
+
+        with self.assertRaises(utils.InvalidAddonType):
+            utils.Validator(self.file_upload, theme_specific=True)
+        assert not repack_fileupload.called
+        assert not validate_upload.called
+
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):
         """Tests that only a single validation task is run for a given file."""
