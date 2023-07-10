@@ -656,7 +656,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         )
 
-    def test_static_theme_wizard_button_shown(self):
+    def test_theme_variant_has_theme_stuff_visible(self):
         response = self.client.get(
             reverse('devhub.submit.theme.upload', args=['listed']), follow=True
         )
@@ -666,6 +666,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['listed'])
         )
+        assert doc('#upload-addon-theme-specific').attr('value') == '1'
 
         response = self.client.get(
             reverse('devhub.submit.theme.upload', args=['unlisted']), follow=True
@@ -676,6 +677,24 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted'])
         )
+        assert doc('#upload-addon-theme-specific').attr('value') == '1'
+
+    def test_non_theme_variant_has_theme_stuff_hidden(self):
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['listed']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert not doc('#upload-addon-theme-specific')
+
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert not doc('#upload-addon-theme-specific')
 
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
