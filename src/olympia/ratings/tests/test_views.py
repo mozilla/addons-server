@@ -1335,7 +1335,7 @@ class TestRatingViewSetDelete(TestCase):
             assert Rating.objects.count() == 0
 
             # Go over 5 requests and you get throttled though.
-            for x in range(0, 3):
+            for _x in range(0, 3):
                 response = self.client.delete(
                     reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
                 )
@@ -2282,7 +2282,7 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 201, response.content
 
             # Add fake actions to get close to the daily limit.
-            for x in range(3, 23):
+            for _x in range(3, 23):
                 self._add_fake_throttling_action(
                     view_class=RatingViewSet,
                     url=self.url,
@@ -2908,7 +2908,7 @@ class TestRatingViewSetFlag(TestCase):
             # Both should have been flagged.
             assert RatingFlag.objects.count() == 2
 
-            for x in range(0, 18):
+            for _x in range(0, 18):
                 # You can keep flagging up to 20 a day.
                 response = self.client.post(
                     url_b, data={'flag': 'review_flag_reason_spam'}

@@ -19,7 +19,7 @@ from olympia.zadmin.models import set_config
 def addon_factory_with_abuse_reports(*args, **kwargs):
     abuse_reports_count = kwargs.pop('abuse_reports_count')
     addon = addon_factory(*args, **kwargs)
-    for x in range(0, abuse_reports_count):
+    for _x in range(0, abuse_reports_count):
         AbuseReport.objects.create(guid=addon.guid)
     return addon
 

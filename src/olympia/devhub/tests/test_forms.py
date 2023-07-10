@@ -218,7 +218,7 @@ class TestNewUploadForm(TestCase):
         request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
         with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
-            for x in range(0, 6):
+            for _x in range(0, 6):
                 self._add_fake_throttling_action(
                     view_class=AddonViewSet,
                     url='/',

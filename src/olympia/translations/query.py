@@ -127,7 +127,7 @@ class SQLCompiler(compiler.SQLCompiler):
 
         # Add our locale-aware joins.  We're not respecting the table ordering
         # Django had in query.alias_map, but that seems to be ok.
-        for field, aliases in self.query.translation_aliases.items():
+        for aliases in self.query.translation_aliases.values():
             t1, t2 = aliases
             joins.append(self.join_with_locale(t1, None, old_map, model))
             joins.append(self.join_with_locale(t2, fallback, old_map, model))

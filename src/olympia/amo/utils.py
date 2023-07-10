@@ -123,7 +123,7 @@ def sorted_groupby(seq, key, *, reverse=False):
 
     key should be a string (used with attrgetter) or a function.
     """
-    if not hasattr(key, '__call__'):
+    if not callable(key):
         key = operator.attrgetter(key)
     return itertools.groupby(sorted(seq, key=key, reverse=reverse), key=key)
 
@@ -342,9 +342,8 @@ def send_html_mail_jinja(
     msg = send_mail(
         subject,
         text_template.render(context),
-        html_message=html_template.render(context),
         *args,
-        **kwargs,
+        **{'html_message': html_template.render(context), **kwargs},
     )
     return msg
 
@@ -941,7 +940,7 @@ class SafeStorage(FileSystemStorage):
         """
         empty_dirs = []
         # Delete all files first then all empty directories.
-        for root, dirs, files in self.walk(dir_path):
+        for root, _dirs, files in self.walk(dir_path):
             for fn in files:
                 self.delete(f'{root}/{fn}')
             empty_dirs.insert(0, root)

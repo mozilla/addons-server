@@ -43,7 +43,7 @@ def dev_required(
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
             def fun():
-                return f(request, addon_id=addon.id, addon=addon, *args, **kw)
+                return f(request, *args, **{'addon_id': addon.id, 'addon': addon, **kw})
 
             if request.method in ('HEAD', 'GET'):
                 # Allow reviewers for read operations, if file_id is present

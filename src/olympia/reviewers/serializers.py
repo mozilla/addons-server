@@ -231,7 +231,7 @@ class FileEntriesDiffMixin(FileEntriesMixin):
         entries = super()._get_entries()
 
         # All files have a "unmodified" status by default
-        for path, value in entries.items():
+        for path in entries:
             entries[path].setdefault('status', '')
 
         # Now let's overwrite that with data from the actual delta
