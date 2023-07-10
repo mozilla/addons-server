@@ -333,7 +333,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 401
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
@@ -356,7 +356,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 403
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -476,7 +476,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 404
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_addon_regional_restrictions(self):
         response = self.client.get(
@@ -485,7 +485,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
         AddonRegionalRestrictions.objects.create(
@@ -497,7 +497,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
@@ -509,7 +509,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 451
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
         assert response['Link'] == (
             '<https://www.mozilla.org/about/policy/transparency/>; rel="blocked-by"'
         )
@@ -544,7 +544,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(force_str(response.content))
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': 'My Addôn'}
@@ -2613,7 +2613,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
         result = json.loads(force_str(response.content))
         assert result['id'] == self.version.pk
@@ -6388,7 +6388,7 @@ class TestLanguageToolsView(TestCase):
 
         assert response['Cache-Control'] == 'max-age=86400'
         assert response['Vary'] == (
-            'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
 

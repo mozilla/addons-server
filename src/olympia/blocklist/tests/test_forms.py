@@ -193,16 +193,16 @@ class TestBlocklistSubmissionForm(TestCase):
         # (existing_block_full is ignored entirely because won't be updated)
         assert form.initial['reason'] == 'partial reason'
         assert form.initial['url'] == 'url'
-        assert 'update_url' not in form.initial
-        assert 'update_reason' not in form.initial
+        assert 'update_url_value' not in form.initial
+        assert 'update_reason_value' not in form.initial
 
         # lets make existing_block_full not fully blocked
         self.full_existing_addon_v2.blockversion.delete()
         form = Form(initial=data)
         assert 'reason' not in form.initial  # two values so not default
         assert form.initial['url'] == 'url'  # both the same, so we can default
-        assert 'update_url' not in form.initial
-        assert form.initial['update_reason'] is False  # so the checkbox defaults false
+        assert 'update_url_value' not in form.initial
+        assert form.initial['update_reason_value'] is False  # checkbox defaults false
 
     def test_new_blocks_must_have_changed_versions(self):
         block_admin = BlocklistSubmissionAdmin(
@@ -237,7 +237,7 @@ class TestBlocklistSubmissionForm(TestCase):
         form = Form(data=data)
         assert form.is_valid(), form.errors
 
-    def test_update_url_reason_sets_null(self):
+    def test_clean(self):
         block_admin = BlocklistSubmissionAdmin(
             model=BlocklistSubmission, admin_site=admin_site
         )
@@ -250,14 +250,25 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
             'url': 'new url',
-            'update_url': True,
+            'update_url_value': False,
             'reason': 'new reason',
-            # no update_url
+            # no update_reason_value
+            'changed_version_ids': [self.new_addon.current_version.id],
         }
         form = Form(data=data)
         form.is_valid()
-        assert form.cleaned_data['url'] == 'new url'
+        # if update_xxx_value is False or mising the value will be ignored
+        assert form.cleaned_data['url'] is None
         assert form.cleaned_data['reason'] is None
+
+        data['url'] = None
+        data['update_url_value'] = True
+        data['update_reason_value'] = True
+        form = Form(data=data)
+        form.is_valid()
+        # if update_xxx_value is True a value should be set, even if None in data
+        assert form.cleaned_data['url'] == ''
+        assert form.cleaned_data['reason'] == 'new reason'
 
 
 class TestMultiDeleteForm(TestCase):

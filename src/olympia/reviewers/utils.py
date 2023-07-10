@@ -506,6 +506,7 @@ class ReviewHelper:
             self.user
         )
 
+        addon_is_not_disabled = self.addon.status != amo.STATUS_DISABLED
         addon_is_not_disabled_or_deleted = self.addon.status not in (
             amo.STATUS_DELETED,
             amo.STATUS_DISABLED,
@@ -762,7 +763,7 @@ class ReviewHelper:
             ),
             'multiple_versions': True,
             'minimal': True,
-            'available': is_appropriate_reviewer,
+            'available': addon_is_not_disabled and is_appropriate_reviewer,
         }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,

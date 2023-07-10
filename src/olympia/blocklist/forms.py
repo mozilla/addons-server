@@ -81,8 +81,8 @@ class BlocklistSubmissionForm(AMOModelForm):
     changed_version_ids = forms.fields.TypedMultipleChoiceField(
         choices=(), coerce=int, required=False
     )
-    update_reason = forms.fields.BooleanField(required=False, initial=True)
-    update_url = forms.fields.BooleanField(required=False, initial=True)
+    update_reason_value = forms.fields.BooleanField(required=False, initial=True)
+    update_url_value = forms.fields.BooleanField(required=False, initial=True)
 
     def __init__(self, data=None, *args, **kw):
         instance = kw.get('instance')
@@ -137,7 +137,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                     for block in objects['blocks']
                     if block.id
                 }
-                update_field_name = f'update_{field_name}'
+                update_field_name = f'update_{field_name}_value'
                 if len(values) == 1 and (value := tuple(values)[0]):
                     # if there's just one existing value, prefill the field
                     self.initial[field_name] = value
@@ -189,7 +189,8 @@ class BlocklistSubmissionForm(AMOModelForm):
         data = self.cleaned_data
         if delay_days := data.get('delay_days', 0):
             data['delayed_until'] = datetime.now() + timedelta(days=delay_days)
-        if not data.get('update_reason'):
-            data['reason'] = None
-        if not data.get('update_url'):
-            data['url'] = None
+        for field_name in ('reason', 'url'):
+            if not data.get(f'update_{field_name}_value'):
+                data[field_name] = None
+            elif field_name in data and data[field_name] is None:
+                data[field_name] = ''

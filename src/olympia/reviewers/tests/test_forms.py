@@ -152,12 +152,11 @@ class TestReviewForm(TestCase):
         ]
 
         # The add-on is already disabled so we don't show reject_multiple_versions, but
-        # reply/super/comment are still present.
+        # reply/comment are still present.
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
-            'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
         ]

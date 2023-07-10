@@ -49,12 +49,15 @@ def generate_mlbf(stats, blocked, not_blocked):
 def fetch_blocked_from_db():
     from olympia.blocklist.models import BlockVersion
 
+    qs = BlockVersion.objects.filter(version__file__is_signed=True).values_list(
+        'block__guid', 'version__version', 'version_id', named=True
+    )
     all_versions = {
         block_version.version_id: (
-            block_version.block.guid,
-            block_version.version.version,
+            block_version.block__guid,
+            block_version.version__version,
         )
-        for block_version in BlockVersion.objects.filter(version__file__is_signed=True)
+        for block_version in qs
     }
     return all_versions
 
