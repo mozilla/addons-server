@@ -293,7 +293,8 @@ class TestCacheControlMiddleware(TestCase):
         request.is_api = True
         for status_code in (400, 401, 403, 404, 429, 500, 502, 503, 504):
             response = CacheControlMiddleware(
-                lambda x, status=status_code: HttpResponse(status=status))(request)
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 's-maxage=0'
 
     def test_everything_ok_should_cache_for_3_minutes(self):
@@ -301,7 +302,8 @@ class TestCacheControlMiddleware(TestCase):
         request.is_api = True
         for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
             response = CacheControlMiddleware(
-                lambda x, status=status_code: HttpResponse(status=status))(request)
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 'max-age=180'
 
     def test_functional_should_cache(self):

@@ -197,7 +197,7 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
 
     def jwt_request(self, token, method, *args, **kw):
         return self.request(
-            method, *args, **{'HTTP_AUTHORIZATION':f'JWT {token}', **kw}
+            method, *args, **{'HTTP_AUTHORIZATION': f'JWT {token}', **kw}
         )
 
     def test_get_requires_auth(self):
