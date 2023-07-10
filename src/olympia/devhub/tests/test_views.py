@@ -1,5 +1,6 @@
 import json
 import os
+import zipfile
 from datetime import datetime, timedelta
 from unittest import mock
 from urllib.parse import quote, urlencode
@@ -1116,9 +1117,17 @@ class TestUpload(UploadMixin, TestCase):
         self.post()
 
         upload = FileUpload.objects.filter().order_by('-created').first()
-        assert 'animated.png' in upload.name
-        data = open(self.image_path, 'rb').read()
-        assert storage.open(upload.file_path).read() == data
+        assert 'webextension_no_id.xpi' in upload.name
+        assert upload.file_path.endswith('.zip')  # and not .xpi!
+        # Can't compare the data bit by bit because we're repacking, look
+        # inside to check it contains the same thing.
+        manifest_data = json.loads(
+            zipfile.ZipFile(upload.file_path).read('manifest.json')
+        )
+        original_manifest_data = json.loads(
+            zipfile.ZipFile(self.xpi_path).read('manifest.json')
+        )
+        assert manifest_data == original_manifest_data
 
     def test_fileupload_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -1129,7 +1138,8 @@ class TestUpload(UploadMixin, TestCase):
         assert upload.source == amo.UPLOAD_SOURCE_DEVHUB
         assert upload.ip_address == '4.8.15.16.23.42'
 
-    def test_fileupload_validation(self):
+    def test_fileupload_validation_not_a_xpi_file(self):
+        self.xpi_path = get_image_path('animated.png')  # not a xpi file.
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
         assert upload.validation
