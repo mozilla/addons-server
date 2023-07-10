@@ -1,5 +1,3 @@
-from types import SimpleNamespace
-
 from django import http
 from django.contrib import admin, auth, contenttypes, messages
 from django.core.exceptions import PermissionDenied
@@ -248,7 +246,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
     def get_fieldsets(self, request, obj):
         is_new = obj is None
-        can_change = self.has_change_permission(request, obj, strict=True)
+        show_canned = self.has_change_permission(request, obj, strict=True)
         is_delete_submission = not self.is_add_change_submission(request, obj)
 
         input_guids_section = (
@@ -267,17 +265,22 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             {'fields': ('block_history',)},
         )
 
+        changed_version_ids_field = (
+            'changed_version_ids'
+            if self.has_change_permission(request, obj)
+            else 'ro_changed_version_ids'
+        )
+
         add_change_section = (
             'Add or Change Blocks',
             {
                 'fields': (
-                    'blocks',
+                    changed_version_ids_field,
                     'disable_addon',
-                    *(('changed_version_ids',) if is_new else ()),
                     'update_url_value',
                     'url',
                     'update_reason_value',
-                    *(('canned_reasons',) if can_change else ()),
+                    *(('canned_reasons',) if show_canned else ()),
                     'reason',
                     'updated_by',
                     'signoff_by',
@@ -290,8 +293,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'Delete Blocks',
             {
                 'fields': (
-                    'blocks',
-                    'changed_version_ids',
+                    changed_version_ids_field,
                     'updated_by',
                     'signoff_by',
                     'submission_logs',
@@ -316,7 +318,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
 
     def get_readonly_fields(self, request, obj=None):
         ro_fields = [
-            'blocks',
+            'ro_changed_version_ids',
             'updated_by',
             'signoff_by',
             'block_history',
@@ -326,7 +328,6 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             ro_fields += [
                 'input_guids',
                 'action',
-                'changed_version_ids',
             ]
             if not self.has_change_permission(request, obj, strict=True):
                 ro_fields += admin.utils.flatten_fieldsets(
@@ -384,10 +385,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')
 
-        formsets = self.get_fieldsets(request, None)
+        fieldsets = self.get_fieldsets(request, None)
         admin_form = admin.helpers.AdminForm(
             form,
-            list(formsets),
+            list(fieldsets),
             self.get_prepopulated_fields(request, None),
             self.get_readonly_fields(request, None),
             model_admin=self,
@@ -403,7 +404,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'to_field': None,
             'media': self.media + admin_form.media,
             'inline_admin_formsets': [],
-            'errors': admin.helpers.AdminErrorList(form, formsets),
+            'errors': admin.helpers.AdminErrorList(form, []),
             'preserved_filters': self.get_preserved_filters(request),
             # extra context we use in our custom template
             'is_delete': is_delete,
@@ -437,7 +438,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         self, request, context, add=False, change=False, form_url='', obj=None
     ):
         if obj:
-            # add this to the instance so blocks() below can reference it.
+            # add this to the instance so ro_changed_version_ids() can reference it.
             obj._blocks = context['adminform'].form.blocks
         return super().render_change_form(
             request, context, add=add, change=change, form_url=form_url, obj=obj
@@ -501,20 +502,21 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         )
         return '\n'.join(f'{log.action_time.date()}: {str(log)}' for log in logs)
 
-    def blocks(self, obj):
+    def ro_changed_version_ids(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks
         # earlier in render_change_form().
-        is_published = obj.signoff_state == BlocklistSubmission.SIGNOFF_PUBLISHED
+        published = obj.signoff_state == obj.SIGNOFF_PUBLISHED
+        total_adu = sum(
+            (bl.current_adu if not published else bl.average_daily_users_snapshot) or 0
+            for bl in obj._blocks
+        )
 
         return render_to_string(
-            'admin/blocklist/includes/enhanced_blocks.html',
-            {
-                'form': SimpleNamespace(blocks=obj._blocks),
-                'submission_published': is_published,
-                'instance': obj,
-                'is_delete': obj.action == BlocklistSubmission.ACTION_DELETE,
-            },
+            'admin/blocklist/includes/blocks.html',
+            {'blocks': obj._blocks, 'instance': obj, 'total_adu': total_adu},
         )
+
+    ro_changed_version_ids.short_description = 'Changed version ids'
 
     def blocks_count(self, obj):
         return f'{len(obj.to_block)} add-ons'

@@ -1,19 +1,15 @@
 {% load humanize %}
 
-<h3>{{ form.blocks|length|intcomma }} Add-on GUIDs with {{ form.total_adu|intcomma }} users:</h3>
+<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
  <ul class="guid_list">
-  {% for block_obj in form.blocks %}
+  {% for block_obj in blocks %}
     <li>
       {{ block_obj.guid }}.
       {% if block_obj.addon %}
         <span class="addon-name">{{ block_obj.addon.name }}</span>
       {% endif %}
 
-      {% if submission_published|default_if_none:False %}
-        {% if block_obj.average_daily_users_snapshot is not None %}
-          ({{ block_obj.average_daily_users_snapshot }} users).
-        {% endif %}
-      {% elif block_obj.current_adu is not None %}
+      {% if block_obj.current_adu is not None %}
         ({{ block_obj.current_adu }} users).
       {% endif %}
 
@@ -27,13 +23,12 @@
       <ul>
         {% for version in block_obj.addon_versions %}
           <li data-version-id="{{ version.id }}">
-          {% if version.id in form.changed_version_ids_choices or version.id in instance.changed_version_ids %}
+          {% if version.id in widget.choices %}
             <label><input
               type="checkbox"
               name="changed_version_ids"
               value="{{ version.id }}"
-              {% if version.id in form.changed_version_ids.value %}checked{% endif %}
-              {% if version.id in instance.changed_version_ids %}checked disabled{% endif %}
+              {% if version.id in widget.value %}checked{% endif %}
             > {% if is_delete %}Unblock{% else %}Block{% endif %} {{ version.version }}</label>
           {% else %}
             <span title="{% if version.is_blocked %}Blocked{% else %}Not blocked{% endif %}">
@@ -43,7 +38,6 @@
                 [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
               {% endif %}
             </span>
-
           {% endif %}
           </li>
         {% endfor %}
