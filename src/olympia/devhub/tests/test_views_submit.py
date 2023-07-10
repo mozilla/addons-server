@@ -113,6 +113,20 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             },
         )
         assert response.status_code == 302
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+
+    def test_set_read_dev_agreement_theme(self):
+        response = self.client.post(
+            reverse('devhub.submit.theme.agreement'),
+            {
+                'distribution_agreement': 'on',
+                'review_policy': 'on',
+            },
+        )
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('devhub.submit.theme.distribution'))
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -396,6 +410,24 @@ class TestAddonSubmitDistribution(TestCase):
         response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
+    def test_redirect_back_to_agreement_theme(self):
+        self.user.update(read_dev_agreement=None)
+
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
+
+        # read_dev_agreement needs to be a more recent date than
+        # the setting.
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
+        before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
+
     def test_redirect_back_to_agreement_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
@@ -412,6 +444,12 @@ class TestAddonSubmitDistribution(TestCase):
             reverse('devhub.submit.distribution'), {'channel': 'unlisted'}
         )
         self.assert3xx(response, reverse('devhub.submit.upload', args=['unlisted']))
+
+    def test_listed_redirects_to_next_step_theme(self):
+        response = self.client.post(
+            reverse('devhub.submit.theme.distribution'), {'channel': 'listed'}
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.upload', args=['listed']))
 
     def test_channel_selection_error_shown(self):
         url = reverse('devhub.submit.distribution')
