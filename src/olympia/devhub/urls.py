@@ -183,7 +183,7 @@ urlpatterns = decorate(
             views.submit_addon_upload,
             name='devhub.submit.upload',
         ),
-        # Theme-specific submission
+        # Theme-specific submission pages
         re_path(
             r'^addon/submit/theme/agreement$',
             views.submit_theme,
@@ -257,7 +257,7 @@ urlpatterns = decorate(
         # Old LWT Theme submission.
         re_path(
             r'^theme/submit/?$',
-            lambda r: redirect('devhub.submit.agreement'),
+            lambda r: redirect('devhub.submit.theme.agreement'),
             name='devhub.themes.submit',
         ),
         # Add-on SDK page

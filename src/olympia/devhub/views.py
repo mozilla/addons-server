@@ -1515,7 +1515,7 @@ def submit_theme_upload(request, channel):
         return redirect('devhub.submit.theme.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
-        request, None, channel_id, 'devhub.submit.details', theme_specific=True
+        request, None, channel_id, 'devhub.submit.source', theme_specific=True
     )
 
 

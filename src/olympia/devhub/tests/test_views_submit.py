@@ -441,7 +441,6 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
-        self.client.post(reverse('devhub.submit.agreement'))
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
@@ -452,6 +451,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         listed=True,
         status_code=200,
         url=None,
+        theme=False,
         extra_kwargs=None,
     ):
         if compatible_apps is None:
@@ -460,9 +460,8 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'upload': self.upload.uuid.hex,
             'compatible_apps': [p.id for p in compatible_apps],
         }
-        url = url or reverse(
-            'devhub.submit.upload', args=['listed' if listed else 'unlisted']
-        )
+        urlname = 'devhub.submit.upload' if not theme else 'devhub.submit.theme.upload'
+        url = url or reverse(urlname, args=['listed' if listed else 'unlisted'])
         response = self.client.post(url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
@@ -530,7 +529,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
-        response = self.post()
+        response = self.post(theme=True)
         # Kind of redundant with the `self.post()` above: we just want to make
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
@@ -621,7 +620,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['listed']), follow=True
+            reverse('devhub.submit.theme.upload', args=['listed']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -631,7 +630,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         )
 
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+            reverse('devhub.submit.theme.upload', args=['unlisted']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -646,7 +645,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post()
+        response = self.post(theme=True)
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
@@ -664,7 +663,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post(listed=False)
+        response = self.post(listed=False, theme=True)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))

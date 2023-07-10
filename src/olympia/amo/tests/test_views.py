@@ -154,7 +154,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
@@ -176,7 +176,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
@@ -193,7 +193,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -215,7 +215,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -236,7 +236,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -262,7 +262,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
