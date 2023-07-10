@@ -186,7 +186,6 @@ def save_versions_to_blocks(guids, submission):
         if submission.url is not None:
             block.url = submission.url
         block.average_daily_users_snapshot = block.current_adu
-        block.save()
         # And now update the BlockVersion instances - instances to add first
         block_versions_to_create = []
         for version in block.addon_versions:
@@ -196,6 +195,12 @@ def save_versions_to_blocks(guids, submission):
                 block_version = BlockVersion(block=block, version=version)
                 block_versions_to_create.append(block_version)
                 version.blockversion = block_version
+        if not block_versions_to_create and not change:
+            # If we have no versions to block and it's a new Block don't do anything.
+            # Note: we shouldn't have gotten this far with such a guid - it would have
+            # been raised as a validation error in the form.
+            continue
+        block.save()
         BlockVersion.objects.bulk_create(block_versions_to_create)
 
         if submission.id:

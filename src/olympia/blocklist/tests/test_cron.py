@@ -381,32 +381,48 @@ def test_process_blocklistsubmissions():
     past_guid = 'past@'
     past_signoff_guid = 'signoff@'
     future_guid = 'future@'
-    addon_factory(
-        guid=past_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1,
-    )
+
     past = BlocklistSubmission.objects.create(
         input_guids=past_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        changed_version_ids=[
+            addon_factory(
+                guid=past_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                - 1,
+            ).current_version.id
+        ],
     )
-    addon_factory(
-        guid=past_signoff_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
-    )
+
     past_signoff = BlocklistSubmission.objects.create(
         input_guids=past_signoff_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
         signoff_by=user_factory(),
+        changed_version_ids=[
+            addon_factory(
+                guid=past_signoff_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                + 1,
+            ).current_version.id
+        ],
     )
+
     future = BlocklistSubmission.objects.create(
         input_guids=future_guid,
         updated_by=user,
         delayed_until=datetime.now() + timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        changed_version_ids=[
+            addon_factory(
+                guid=future_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                - 1,
+            ).current_version.id
+        ],
     )
 
     process_blocklistsubmissions()

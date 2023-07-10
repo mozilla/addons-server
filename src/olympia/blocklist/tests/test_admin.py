@@ -1540,6 +1540,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             updated_by=user_factory(),
             signoff_by=user_factory(),
             signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
+            changed_version_ids=[addon.current_version.id],
         )
         assert mbs.to_block == [
             {
