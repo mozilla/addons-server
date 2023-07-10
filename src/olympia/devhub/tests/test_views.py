@@ -7,7 +7,6 @@ from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.encoding import force_str
