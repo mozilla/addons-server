@@ -52,9 +52,10 @@ $(document).ready(function () {
           $('#id_app_version option:selected').val(),
         );
       }
-      if ($('#upload-addon-theme-specific').length) {
-        formData.append('theme_specific', true);
-      }
+      // theme_specific is a django BooleanField, so the value will be the
+      // litteral string "True" or "False". That's what the upload() view
+      // expects.
+      formData.append('theme_specific', $('#id_theme_specific').val());
     };
     $uploadAddon.addonUploader(opt);
   }

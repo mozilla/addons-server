@@ -586,7 +586,9 @@ def handle_upload(
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
-    theme_specific = request.POST.get('theme_specific', False)
+    theme_specific = django_forms.BooleanField().to_python(
+        request.POST.get('theme_specific')
+    )
     try:
         upload = handle_upload(
             filedata=filedata,
@@ -1405,6 +1407,7 @@ def _submit_upload(
     form = forms.NewUploadForm(
         request.POST or None, request.FILES or None, addon=addon, request=request
     )
+    form.fields['theme_specific'].initial = theme_specific
     channel_text = amo.CHANNEL_CHOICES_API[channel]
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data

@@ -1102,9 +1102,8 @@ class TestUpload(UploadMixin, TestCase):
     def post(self, theme_specific=False, **kwargs):
         data = {
             'upload': open(self.xpi_path, 'rb'),
+            'theme_specific': 'True' if theme_specific else 'False',
         }
-        if theme_specific:
-            data['theme_specific'] = '1'
         return self.client.post(self.url, data, **kwargs)
 
     def test_login_required(self):
