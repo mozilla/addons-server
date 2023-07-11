@@ -1019,6 +1019,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
         widget=CompatAppSelectWidget(),
         error_messages={'required': _('Need to select at least one application.')},
     )
+    theme_specific = forms.BooleanField(required=False, widget=forms.HiddenInput)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')

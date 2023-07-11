@@ -113,6 +113,20 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             },
         )
         assert response.status_code == 302
+        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+
+    def test_set_read_dev_agreement_theme(self):
+        response = self.client.post(
+            reverse('devhub.submit.theme.agreement'),
+            {
+                'distribution_agreement': 'on',
+                'review_policy': 'on',
+            },
+        )
+        assert response.status_code == 302
+        self.assert3xx(response, reverse('devhub.submit.theme.distribution'))
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -396,6 +410,24 @@ class TestAddonSubmitDistribution(TestCase):
         response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
+    def test_redirect_back_to_agreement_theme(self):
+        self.user.update(read_dev_agreement=None)
+
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
+
+        # read_dev_agreement needs to be a more recent date than
+        # the setting.
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
+        before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
+
     def test_redirect_back_to_agreement_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
@@ -412,6 +444,12 @@ class TestAddonSubmitDistribution(TestCase):
             reverse('devhub.submit.distribution'), {'channel': 'unlisted'}
         )
         self.assert3xx(response, reverse('devhub.submit.upload', args=['unlisted']))
+
+    def test_listed_redirects_to_next_step_theme(self):
+        response = self.client.post(
+            reverse('devhub.submit.theme.distribution'), {'channel': 'listed'}
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.upload', args=['listed']))
 
     def test_channel_selection_error_shown(self):
         url = reverse('devhub.submit.distribution')
@@ -441,7 +479,6 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.user.update(last_login_ip='192.168.1.1')
-        self.client.post(reverse('devhub.submit.agreement'))
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
@@ -452,6 +489,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         listed=True,
         status_code=200,
         url=None,
+        theme=False,
         extra_kwargs=None,
     ):
         if compatible_apps is None:
@@ -460,9 +498,8 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'upload': self.upload.uuid.hex,
             'compatible_apps': [p.id for p in compatible_apps],
         }
-        url = url or reverse(
-            'devhub.submit.upload', args=['listed' if listed else 'unlisted']
-        )
+        urlname = 'devhub.submit.upload' if not theme else 'devhub.submit.theme.upload'
+        url = url or reverse(urlname, args=['listed' if listed else 'unlisted'])
         response = self.client.post(url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
@@ -530,7 +567,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
-        response = self.post()
+        response = self.post(theme=True)
         # Kind of redundant with the `self.post()` above: we just want to make
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
@@ -619,9 +656,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
         )
 
-    def test_static_theme_wizard_button_shown(self):
+    def test_theme_variant_has_theme_stuff_visible(self):
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['listed']), follow=True
+            reverse('devhub.submit.theme.upload', args=['listed']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -629,9 +666,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['listed'])
         )
+        assert doc('#id_theme_specific').attr('value') == 'True'
 
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+            reverse('devhub.submit.theme.upload', args=['unlisted']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -639,6 +677,24 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted'])
         )
+        assert doc('#id_theme_specific').attr('value') == 'True'
+
+    def test_non_theme_variant_has_theme_stuff_hidden(self):
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['listed']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert doc('#id_theme_specific').attr('value') == 'False'
+
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert doc('#id_theme_specific').attr('value') == 'False'
 
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
@@ -646,7 +702,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post()
+        response = self.post(theme=True)
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
@@ -664,7 +720,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post(listed=False)
+        response = self.post(listed=False, theme=True)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))

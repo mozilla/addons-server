@@ -3,6 +3,7 @@ import uuid
 from django.conf import settings
 from django.db import transaction
 from django.forms import ValidationError
+from django.urls import reverse
 from django.utils.translation import gettext
 
 import waffle
@@ -11,6 +12,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo, core
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
 from olympia.files.tasks import repack_fileupload
@@ -169,24 +171,23 @@ def fix_addons_linter_output(validation, channel):
     }
 
 
+class InvalidAddonType(ValidationError):
+    pass
+
+
 class Validator:
     """
-    Class which handles creating or fetching validation results for File
+    Class which handles creating and running validation tasks for File
     and FileUpload instances.
-
-    It forwards the actual validation to `devhub.tasks:validate_upload`
-    and `devhub.tasks:validate_file` but implements shortcuts for
-    legacy add-ons and search plugins to avoid running the linter.
     """
 
-    def __init__(self, file_, addon=None, listed=None, final_task=None):
+    def __init__(self, file_, *, addon=None, theme_specific=False, final_task=None):
         self.addon = addon
         self.file = None
         self.prev_file = None
 
         if isinstance(file_, FileUpload):
-            assert listed is not None
-            channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
+            channel = file_.channel
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the
@@ -195,6 +196,29 @@ class Validator:
             try:
                 addon_data = parse_addon(file_, minimal=True)
                 is_mozilla_signed = addon_data.get('is_mozilla_signed_extension', False)
+                # If trying to upload a non-theme in the theme specific flow,
+                # raise an error immediately and don't validate. We don't care
+                # about the opposite: if a developer tries to upload a theme
+                # using the "non-theme" flow, that works.
+                if theme_specific and addon_data['type'] != amo.ADDON_STATICTHEME:
+                    channel_text = amo.CHANNEL_CHOICES_API[channel]
+                    raise InvalidAddonType(
+                        gettext(
+                            'This add-on is not a theme. '
+                            'Use the <a href="{link}">Submit a New Add-on</a> '
+                            'page to submit extensions.'
+                        ).format(
+                            link=absolutify(
+                                reverse('devhub.submit.upload', args=[channel_text])
+                            )
+                        ),
+                    )
+            except InvalidAddonType:
+                log.error(
+                    'Tried to validate non-theme upload %s using theme specific flow',
+                    file_.uuid,
+                )
+                raise
             except ValidationError as form_error:
                 log.info(
                     'could not parse addon for upload {}: {}'.format(
@@ -208,14 +232,9 @@ class Validator:
             assert not file_.validation
 
             validation_tasks = self.create_file_upload_tasks(
-                upload_pk=file_.pk, channel=channel, is_mozilla_signed=is_mozilla_signed
+                upload_pk=file_.pk, is_mozilla_signed=is_mozilla_signed
             )
         elif isinstance(file_, File):
-            # The listed flag for a File object should always come from
-            # the status of its owner Addon. If the caller tries to override
-            # this, something is wrong.
-            assert listed is None
-
             channel = file_.version.channel
             is_mozilla_signed = file_.is_mozilla_signed_extension
 
@@ -240,14 +259,14 @@ class Validator:
         # same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{}.{}:{}:{}'.format(
-            opts.app_label, opts.object_name, file_.pk, listed
+            opts.app_label, opts.object_name, file_.pk, channel
         )
 
     def get_task(self):
         """Return task chain to execute to trigger validation."""
         return self.task
 
-    def create_file_upload_tasks(self, upload_pk, channel, is_mozilla_signed):
+    def create_file_upload_tasks(self, upload_pk, is_mozilla_signed):
         """
         This method creates the validation chain used during the submission
         process, combining tasks in parallel (chord) with tasks chained
@@ -264,12 +283,10 @@ class Validator:
         return [
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(upload_pk),
-            tasks.validate_upload.s(upload_pk, channel),
+            tasks.validate_upload.s(upload_pk),
             tasks.check_for_api_keys_in_file.s(upload_pk),
             chord(tasks_in_parallel, call_mad_api.s(upload_pk)),
-            tasks.handle_upload_validation_result.s(
-                upload_pk, channel, is_mozilla_signed
-            ),
+            tasks.handle_upload_validation_result.s(upload_pk, is_mozilla_signed),
         ]
 
 

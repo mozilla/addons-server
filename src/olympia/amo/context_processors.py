@@ -69,7 +69,7 @@ def global_settings(request):
         tools_links.append(
             {
                 'text': gettext('Submit a New Theme'),
-                'href': reverse('devhub.submit.agreement'),
+                'href': reverse('devhub.submit.theme.agreement'),
             }
         )
         tools_links.append(
