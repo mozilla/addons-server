@@ -808,10 +808,17 @@ class ReviewHelper:
         )
 
     def process(self):
-        action = self.handler.data.get('action', '')
-        if not action:
+        requested_action = self.handler.data.get('action', '')
+        if not requested_action or requested_action not in self.actions:
             raise NotImplementedError
-        return self.actions[action]['method']()
+        action = self.actions[requested_action]
+        # Clear comments in data before processing if the action isn't supposed
+        # to have any, because the reviewer might have submitted some by
+        # accident after switching between tabs, and the logging methods will
+        # automatically include them if some are present.
+        if not action.get('comments', True):
+            self.handler.data['comments'] = ''
+        return action['method']()
 
 
 class ReviewBase:
@@ -1148,12 +1155,6 @@ class ReviewBase:
         # Doesn't make sense for unlisted versions.
         assert channel == amo.CHANNEL_LISTED
 
-        # Like confirm auto approval, the approve content action should not
-        # show the comment box, so override the text in case the reviewer
-        # switched between actions and accidently submitted some comments from
-        # another action.
-        self.data['comments'] = ''
-
         # When doing a content review, don't increment the approvals counter,
         # just record the date of the content approval and log it.
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
@@ -1175,10 +1176,6 @@ class ReviewBase:
         else:
             # For unlisted, we just use self.version.
             version = self.version
-        # The confirm auto-approval action should not show the comment box,
-        # so override the text in case the reviewer switched between actions
-        # and accidently submitted some comments from another action.
-        self.data['comments'] = ''
 
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
@@ -1514,8 +1511,6 @@ class ReviewUnlisted(ReviewBase):
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""
-        # There shouldn't be any comments for this action.
-        self.data['comments'] = ''
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None so that the action is
         # recorded against the specific versions we are confirming approval of.

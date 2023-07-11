@@ -1497,7 +1497,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not self.review_version.human_review_date
         assert summary.confirmed is None
 
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.data['action'] = 'confirm_auto_approved'
+        self.helper.process()
 
         summary.reload()
         assert summary.confirmed is True
@@ -1534,7 +1535,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # version is not public, what we care about is the current_version.
         assert 'confirm_auto_approved' in self.helper.actions
 
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.data['action'] = 'confirm_auto_approved'
+        self.helper.process()
 
         summary.reload()
         assert summary.confirmed is True
@@ -1568,7 +1570,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # version is not public, what we care about is the current_version.
         assert 'confirm_auto_approved' in self.helper.actions
 
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.data['action'] = 'confirm_auto_approved'
+        self.helper.process()
 
         summary.reload()
         assert summary.confirmed is True
@@ -1610,7 +1613,8 @@ class TestReviewHelper(TestReviewHelperBase):
         # We're an admin, so we can confirm auto approval even if the current
         # version is pending rejection.
         assert 'confirm_auto_approved' in self.helper.actions
-        self.helper.handler.confirm_auto_approved()
+        self.helper.handler.data['action'] = 'confirm_auto_approved'
+        self.helper.process()
 
         summary.reload()
         assert summary.confirmed is True
@@ -2686,7 +2690,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.file.status == (amo.STATUS_APPROVED)
 
-        self.helper.handler.approve_content()
+        self.helper.handler.data['action'] = 'approve_content'
+        self.helper.process()
 
         summary.reload()
         assert summary.confirmed is None  # unchanged.
@@ -2966,6 +2971,8 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not unselected.due_date
 
     def test_clear_pending_rejection_multiple_versions(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         VersionReviewerFlags.objects.create(
             version=self.review_version,
@@ -2994,14 +3001,17 @@ class TestReviewHelper(TestReviewHelperBase):
             .exclude(pk=unselected.pk)
             .order_by('pk')
         )
+        data['action'] = 'clear_pending_rejection_multiple_versions'
         self.helper.set_data(data)
-        self.helper.handler.clear_pending_rejection_multiple_versions()
+        self.helper.process()
 
         log_type_id = amo.LOG.CLEAR_PENDING_REJECTION.id
         assert self.check_log_count(log_type_id) == 1
-        assert ActivityLog.objects.for_addons(self.helper.addon).get(
+        activity = ActivityLog.objects.for_addons(self.helper.addon).get(
             action=log_type_id
-        ).details.get('versions') == [
+        )
+        assert activity.details['comments'] == ''
+        assert activity.details['versions'] == [
             self.review_version.version,
             selected.version,
         ]
