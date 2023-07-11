@@ -196,6 +196,10 @@ class Validator:
             try:
                 addon_data = parse_addon(file_, minimal=True)
                 is_mozilla_signed = addon_data.get('is_mozilla_signed_extension', False)
+                # If trying to upload a non-theme in the theme specific flow,
+                # raise an error immediately and don't validate. We don't care
+                # about the opposite: if a developer tries to upload a theme
+                # using the "non-theme" flow, that works.
                 if theme_specific and addon_data['type'] != amo.ADDON_STATICTHEME:
                     channel_text = amo.CHANNEL_CHOICES_API[channel]
                     raise InvalidAddonType(
