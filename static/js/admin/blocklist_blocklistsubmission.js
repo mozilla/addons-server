@@ -17,51 +17,60 @@ document.addEventListener('DOMContentLoaded', () => {
       a.addEventListener('click', checkOrClearAllCheckboxes, true),
     );
 
-  const enableIfChecked = (isChecked, fieldSelector) => {
-    const field = document.querySelector(fieldSelector);
-    if (isChecked) {
-      field.removeAttribute('disabled');
+  const enableIfChecked = (isChecked, fieldsSelector) => {
+    document.querySelectorAll(fieldsSelector).forEach((field) => {
+      if (isChecked) {
+        field.removeAttribute('disabled');
+      } else {
+        field.setAttribute('disabled', true);
+      }
+    });
+  };
+
+  const updateReasonValueCheckbox = document.getElementById(
+    'id_update_reason_value',
+  );
+  if (updateReasonValueCheckbox) {
+    updateReasonValueCheckbox.addEventListener('click', (e) =>
+      enableIfChecked(e.target.checked, '#id_reason'),
+    );
+    updateReasonValueCheckbox.addEventListener('click', (e) =>
+      enableIfChecked(e.target.checked, 'input[name="canned_reasons"]'),
+    );
+    enableIfChecked(updateReasonValueCheckbox.checked, '#id_reason');
+    enableIfChecked(
+      updateReasonValueCheckbox.checked,
+      'input[name="canned_reasons"]',
+    );
+  }
+
+  const updateUrlValueCheckbox = document.getElementById('id_update_url_value');
+  if (updateUrlValueCheckbox) {
+    updateUrlValueCheckbox.addEventListener('click', (e) =>
+      enableIfChecked(e.target.checked, '#id_url'),
+    );
+    enableIfChecked(updateUrlValueCheckbox.checked, '#id_url');
+  }
+
+  const fillCannedReason = (e) => {
+    const reasonField = document.getElementById('id_reason');
+    const cannedReason = e.target.getAttribute('data-block-reason');
+    if (e.target.checked) {
+      reasonField.setRangeText(
+        cannedReason,
+        reasonField.selectionStart,
+        reasonField.selectionEnd,
+        'end',
+      );
     } else {
-      field.setAttribute('disabled', true);
+      // Attempt to remove the canned response related to the reason.
+      reasonField.value = reasonField.value.replace(cannedReason, '');
     }
   };
 
   document
-    .querySelector('#id_update_reason_value')
-    .addEventListener('click', (e) =>
-      enableIfChecked(e.target.checked, '#id_reason'),
-    );
-  document
-    .querySelector('#id_update_reason_value')
-    .addEventListener('click', (e) =>
-      enableIfChecked(e.target.checked, '#id_canned_reasons'),
-    );
-  document
-    .querySelector('#id_update_url_value')
-    .addEventListener('click', (e) =>
-      enableIfChecked(e.target.checked, '#id_url'),
-    );
-
-  enableIfChecked(
-    document.querySelector('#id_update_reason_value').checked,
-    '#id_reason',
-  );
-  enableIfChecked(
-    document.querySelector('#id_update_reason_value').checked,
-    '#id_canned_reasons',
-  );
-  enableIfChecked(
-    document.querySelector('#id_update_url_value').checked,
-    '#id_url',
-  );
-
-  document
-    .querySelector('#id_canned_reasons')
-    .addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.hasAttribute('text')) {
-        document.querySelector('#id_reason').value =
-          target.getAttribute('text');
-      }
-    });
+    .querySelectorAll('#id_canned_reasons input')
+    .forEach((a) => a.addEventListener('click', fillCannedReason));
+  // Move the cursor to the end of the textarea
+  document.getElementById('id_reason').setSelectionRange(100000, 100000);
 });

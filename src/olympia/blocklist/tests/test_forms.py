@@ -9,9 +9,11 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.blocklist.admin import BlocklistSubmissionAdmin
-from olympia.blocklist.forms import MultiAddForm, MultiDeleteForm
-from olympia.blocklist.models import Block, BlocklistCannedReason, BlocklistSubmission
+from olympia.reviewers.models import ReviewActionReason
+
+from ..admin import BlocklistSubmissionAdmin
+from ..forms import MultiAddForm, MultiDeleteForm
+from ..models import Block, BlocklistSubmission
 
 
 class TestBlocklistSubmissionForm(TestCase):
@@ -255,33 +257,43 @@ class TestBlocklistSubmissionForm(TestCase):
 
     def test_canned_reasons(self):
         addon = addon_factory()
-        a = BlocklistCannedReason.objects.create(name='aaa', canned_reason='yes')
-        c = BlocklistCannedReason.objects.create(name='cc', canned_reason='noooo')
-        b = BlocklistCannedReason.objects.create(name='b', canned_reason='maybe')
+        a = ReviewActionReason.objects.create(name='aaa', canned_block_reason='yes')
+        c = ReviewActionReason.objects.create(name='cc', canned_block_reason='noooo')
+        b = ReviewActionReason.objects.create(name='b', canned_block_reason='maybe')
+        ReviewActionReason.objects.create(
+            name='inactive', canned_block_reason='.', is_active=False
+        )
+        ReviewActionReason.objects.create(name='empty', canned_block_reason='')
 
         form = self.get_form()(data={'input_guids': addon.guid})
 
         choices = list(form.fields['canned_reasons'].choices)
         assert choices == [
-            ('', '---------'),
             (a.id, 'aaa'),
             (b.id, 'b'),
             (c.id, 'cc'),
         ]
-        assert choices[1][0].instance == a
-        assert choices[2][0].instance == b
-        assert choices[3][0].instance == c
+        assert choices[0][0].instance == a
+        assert choices[1][0].instance == b
+        assert choices[2][0].instance == c
 
         render = form.fields['canned_reasons'].widget.render(
             name='canned_reasons', value=''
         )
+        input = (
+            '<div>\n    '
+            '<label><input type="checkbox" name="canned_reasons" value="{id}" '
+            'data-block-reason="{reason}">\n '
+            '{name}</label>\n\n'
+            '</div>'
+        )
         assert render == (
-            '<select name="canned_reasons">\n'
-            '  <option value="" selected>---------</option>\n\n'
-            f'  <option value="{a.id}" text="{a.canned_reason}">{a.name}</option>\n\n'
-            f'  <option value="{b.id}" text="{b.canned_reason}">{b.name}</option>\n\n'
-            f'  <option value="{c.id}" text="{c.canned_reason}">{c.name}</option>\n\n'
-            '</select>'
+            '<div>'
+            + ''.join(
+                input.format(id=obj.id, reason=obj.canned_block_reason, name=obj.name)
+                for obj in (a, b, c)
+            )
+            + '\n</div>'
         )
 
 

@@ -6,8 +6,9 @@ from django.forms.widgets import HiddenInput, NumberInput
 
 from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
+from olympia.reviewers.models import ReviewActionReason
 
-from .models import Block, BlocklistCannedReason, BlocklistSubmission
+from .models import Block, BlocklistSubmission
 from .utils import splitlines
 
 
@@ -51,7 +52,7 @@ class MultiAddForm(MultiGUIDInputForm):
                 raise ValidationError(f'Add-on with GUID {guid} does not exist')
 
 
-class CannedResponseWidget(forms.widgets.Select):
+class CannedResponseWidget(forms.widgets.CheckboxSelectMultiple):
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
     ):
@@ -61,7 +62,7 @@ class CannedResponseWidget(forms.widgets.Select):
         if instance := getattr(value, 'instance', None):
             option['attrs'] = {
                 **(option.get('attrs') or {}),
-                'text': instance.canned_reason,
+                'data-block-reason': instance.canned_block_reason,
             }
         return option
 
@@ -84,9 +85,11 @@ class BlocklistSubmissionForm(AMOModelForm):
     )
     update_reason_value = forms.fields.BooleanField(required=False, initial=True)
     update_url_value = forms.fields.BooleanField(required=False, initial=True)
-    canned_reasons = forms.ModelChoiceField(
+    canned_reasons = forms.ModelMultipleChoiceField(
         required=False,
-        queryset=BlocklistCannedReason.objects.all(),
+        queryset=ReviewActionReason.objects.filter(
+            is_active=True, canned_block_reason__isnull=False
+        ).exclude(canned_block_reason=''),
         widget=CannedResponseWidget,
     )
 

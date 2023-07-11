@@ -19,7 +19,7 @@ from .forms import (
     MultiAddForm,
     MultiDeleteForm,
 )
-from .models import Block, BlocklistCannedReason, BlocklistSubmission, BlockVersion
+from .models import Block, BlocklistSubmission, BlockVersion
 from .tasks import process_blocklistsubmission
 from .utils import splitlines
 
@@ -664,9 +664,3 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
             reverse('admin:blocklist_blocklistsubmission_add')
             + f'?guids={obj.guid}&action={BlocklistSubmission.ACTION_DELETE}'
         )
-
-
-@admin.register(BlocklistCannedReason)
-class BlocklistCannedReasonAdmin(AMOModelAdmin):
-    list_display = ('name',)
-    view_on_site = False

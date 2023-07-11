@@ -536,14 +536,3 @@ class BlocklistSubmission(ModelBase):
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list
         }
-
-
-class BlocklistCannedReason(ModelBase):
-    name = models.CharField(max_length=255)
-    canned_reason = models.TextField(blank=True)
-
-    class Meta:
-        ordering = ('name',)
-
-    def __str__(self):
-        return str(self.name)

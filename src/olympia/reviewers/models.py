@@ -692,6 +692,7 @@ class ReviewActionReason(ModelBase):
     )
     name = models.CharField(max_length=255)
     canned_response = models.TextField(blank=True)
+    canned_block_reason = models.TextField(blank=True)
     addon_type = models.PositiveIntegerField(
         choices=amo.REASON_ADDON_TYPE_CHOICES.items(),
         default=amo.ADDON_ANY,
