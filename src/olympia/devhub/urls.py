@@ -258,7 +258,7 @@ urlpatterns = decorate(
         re_path(
             r'^theme/submit/?$',
             lambda r: redirect('devhub.submit.theme.agreement'),
-            name='devhub.themes.submit',
+            name='devhub.submit.theme.old_lwt_flow',
         ),
         # Add-on SDK page
         re_path(r'builder$', lambda r: redirect(views.MDN_BASE)),

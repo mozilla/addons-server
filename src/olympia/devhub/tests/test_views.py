@@ -1737,7 +1737,7 @@ class TestRedirects(TestCase):
         self.assert3xx(response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
     def test_lwt_submit_redirects_to_theme_submit(self):
-        url = reverse('devhub.themes.submit')
+        url = reverse('devhub.submit.theme.old_lwt_flow')
         response = self.client.get(url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.theme.distribution'), 302)
 
