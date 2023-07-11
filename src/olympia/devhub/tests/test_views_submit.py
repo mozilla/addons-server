@@ -666,7 +666,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['listed'])
         )
-        assert doc('#upload-addon-theme-specific').attr('value') == '1'
+        assert doc('#id_theme_specific').attr('value') == 'True'
 
         response = self.client.get(
             reverse('devhub.submit.theme.upload', args=['unlisted']), follow=True
@@ -677,7 +677,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted'])
         )
-        assert doc('#upload-addon-theme-specific').attr('value') == '1'
+        assert doc('#id_theme_specific').attr('value') == 'True'
 
     def test_non_theme_variant_has_theme_stuff_hidden(self):
         response = self.client.get(
@@ -686,7 +686,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#wizardlink')
-        assert not doc('#upload-addon-theme-specific')
+        assert doc('#id_theme_specific').attr('value') == 'False'
 
         response = self.client.get(
             reverse('devhub.submit.upload', args=['unlisted']), follow=True
@@ -694,7 +694,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#wizardlink')
-        assert not doc('#upload-addon-theme-specific')
+        assert doc('#id_theme_specific').attr('value') == 'False'
 
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
