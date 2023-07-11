@@ -596,7 +596,7 @@ def upload(request, channel='listed', addon=None, is_standalone=False):
             addon=addon,
             is_standalone=is_standalone,
             channel=channel,
-            theme_specific=bool(theme_specific),
+            theme_specific=theme_specific,
         )
     except django_forms.ValidationError as exc:
         # handle_upload() should be firing tasks to do validation. If it raised
