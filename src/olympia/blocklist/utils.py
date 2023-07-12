@@ -44,13 +44,12 @@ def block_activity_log_save(
             details['signoff_by'] = submission_obj.signoff_by.id
 
     log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
-    for version_id in changed_version_ids:
-        log_create(
-            amo.LOG.BLOCKLIST_VERSION_BLOCKED,
-            (Version, version_id),
-            obj,
-            user=obj.updated_by,
-        )
+    log_create(
+        amo.LOG.BLOCKLIST_VERSION_BLOCKED,
+        *((Version, version_id) for version_id in changed_version_ids),
+        obj,
+        user=obj.updated_by,
+    )
 
     if submission_obj and submission_obj.signoff_by:
         log_create(
@@ -109,13 +108,12 @@ def block_activity_log_delete(obj, deleted, *, submission_obj=None, delete_user=
         details=details,
         user=submission_obj.updated_by if submission_obj else delete_user,
     )
-    for version_id in changed_version_ids:
-        log_create(
-            amo.LOG.BLOCKLIST_VERSION_UNBLOCKED,
-            (Version, version_id),
-            obj,
-            user=obj.updated_by,
-        )
+    log_create(
+        amo.LOG.BLOCKLIST_VERSION_UNBLOCKED,
+        *((Version, version_id) for version_id in changed_version_ids),
+        obj,
+        user=obj.updated_by,
+    )
 
     if submission_obj and submission_obj.signoff_by:
         args = [
