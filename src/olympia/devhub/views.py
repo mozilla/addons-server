@@ -27,6 +27,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
+from olympia.accounts.decorators import two_factor_auth_required
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
@@ -1245,6 +1246,7 @@ def version_stats(request, addon_id, addon):
 
 
 @login_required
+@two_factor_auth_required
 def submit_addon(request):
     return render_agreement(
         request=request,
@@ -1263,6 +1265,7 @@ def submit_theme(request):
 
 
 @dev_required
+@two_factor_auth_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
         request=request,
@@ -1302,6 +1305,7 @@ def _submit_distribution(request, addon, next_view):
 
 
 @login_required
+@two_factor_auth_required
 def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
@@ -1316,6 +1320,7 @@ def submit_theme_distribution(request):
 
 
 @dev_required(submitting=True)
+@two_factor_auth_required
 def submit_version_distribution(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1505,6 +1510,7 @@ def _submit_upload(
 
 
 @login_required
+@two_factor_auth_required
 def submit_addon_upload(request, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
@@ -1523,6 +1529,7 @@ def submit_theme_upload(request, channel):
 
 
 @dev_required(submitting=True)
+@two_factor_auth_required
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1532,6 +1539,7 @@ def submit_version_upload(request, addon_id, addon, channel):
 
 
 @dev_required(submitting=True)
+@two_factor_auth_required
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1893,6 +1901,7 @@ def render_agreement(request, template, next_step, **extra_context):
 
 
 @login_required
+@two_factor_auth_required
 @transaction.atomic
 def api_key(request):
     if not RestrictionChecker(request=request).is_submission_allowed():

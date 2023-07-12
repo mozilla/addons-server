@@ -73,7 +73,11 @@ from .serializers import (
     UserProfileSerializer,
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
-from .utils import fxa_login_url, generate_fxa_state
+from .utils import (
+    fxa_login_url,
+    generate_fxa_state,
+    redirect_for_login_with_two_factor_authentication,
+)
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -176,6 +180,9 @@ def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info('Logging in user %s from FxA', user)
     login(request, user)
+    request.session['two_factor_authentication'] = identity.get(
+        'twoFactorAuthentication'
+    )
     if token_data:
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
         request.session['fxa_refresh_token'] = token_data['refresh_token']
@@ -249,6 +256,9 @@ def with_user(f):
                     'email': data['fake_fxa_email'],
                     'uid': 'fake_fxa_id-%s'
                     % force_str(binascii.b2a_hex(os.urandom(16))),
+                    'twoFactorAuthentication': data.get(
+                        'fake_two_factor_authentication'
+                    ),
                 }
                 id_token, token_data = identity['email'], {}
             else:
@@ -281,29 +291,30 @@ def with_user(f):
                 user
                 and not identity.get('twoFactorAuthentication')
                 and enforce_2fa_for_developers_and_special_users
-                and (user.is_addon_developer or user.groups_list)
+                and (
+                    user.is_addon_developer
+                    or user.groups_list
+                    or request.session.pop('enforce_two_factor_authentication', False)
+                )
             ):
                 # https://github.com/mozilla/addons/issues/732
-                # The user is an add-on developer (with other types of
-                # add-ons than just themes) or part of any group (so they
-                # are special in some way, may be an admin or a reviewer),
-                # but hasn't logged in with a second factor. Immediately
-                # redirect them to start the FxA flow again, this time
-                # requesting 2FA to be present - they should be
-                # automatically logged in FxA with the existing token, and
-                # should be prompted to create the second factor before
-                # coming back to AMO.
+                # https://github.com/mozilla/addons-server/issues/20943
+                # The user is an add-on developer (with other types of add-ons
+                # than just themes) or part of any group (so they are special
+                # in some way, may be an admin or a reviewer), or trying to
+                # access a page restricted to users with 2FA, they have
+                # successfully logged in from FxA, but without a second factor.
+                # Immediately redirect them to start the FxA flow again, this
+                # time requesting 2FA to be present:
+                # they should be automatically logged in FxA with the existing
+                # id_token, and should be prompted to create the second factor
+                # before coming back to AMO.
                 log.info('Redirecting user %s to enforce 2FA', user)
-                return HttpResponseRedirect(
-                    fxa_login_url(
-                        config=fxa_config,
-                        state=request.session['fxa_state'],
-                        next_path=next_path,
-                        action='signin',
-                        force_two_factor=True,
-                        request=request,
-                        id_token=id_token,
-                    )
+                return redirect_for_login_with_two_factor_authentication(
+                    request,
+                    config=fxa_config,
+                    next_path=next_path,
+                    id_token_hint=id_token,
                 )
             return f(
                 self,
