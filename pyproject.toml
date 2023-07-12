@@ -22,11 +22,7 @@ exclude = [
     "*/migrations/*.py",
 ]
 ignore = [
-  "B017",  # `assertRaises(Exception)` should be considered evil
-  "B018",  # Found useless attribute access. Either assign it to a variable or remove it.
-  "B028",  # No explicit `stacklevel` keyword argument found
   "B904",  # Within an `except` clause, raise exceptions with `raise ... from err|None`
-  "B905"   # `zip()` without an explicit `strict=` parameter
 ]
 line-length = 88
 select = [

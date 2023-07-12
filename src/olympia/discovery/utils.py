@@ -82,14 +82,14 @@ def get_disco_recommendations(hashed_client_id, overrides):
         )
         for addon in qs:
             try:
-                addon.discoveryitem
+                discoveryitem = addon.discoveryitem
             except DiscoveryItem.DoesNotExist:
                 # This just means the add-on isn't "known" as a possible
                 # recommendation, but this is fine: create a dummy instance,
                 # and it will use the add-on name and description to build the
                 # data we need to return in the API.
-                addon.discoveryitem = DiscoveryItem(addon=addon)
-            results.append(addon.discoveryitem)
+                discoveryitem = addon.discoveryitem = DiscoveryItem(addon=addon)
+            results.append(discoveryitem)
     return results
 
 

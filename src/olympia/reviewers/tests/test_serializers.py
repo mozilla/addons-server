@@ -65,7 +65,7 @@ class TestFileInfoSerializer(TestCase):
         serializer = FileInfoSerializer(instance=file)
 
         with self.assertRaises(RuntimeError):
-            serializer.data
+            serializer.data  # noqa: B018
 
     def test_can_access_version_from_parent(self):
         serializer = AddonBrowseVersionSerializer(
@@ -188,7 +188,7 @@ class TestFileInfoDiffSerializer(TestCase):
         serializer = FileInfoDiffSerializer(instance=file)
 
         with self.assertRaises(RuntimeError):
-            serializer.data
+            serializer.data  # noqa: B018
 
     def test_can_access_version_from_parent(self):
         parent_version = self.addon.current_version
@@ -545,7 +545,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
 
     def test_sha256_only_calculated_or_fetched_for_selected_file(self):
         serializer = self.get_serializer(file='icons/LICENSE')
-        serializer.data
+        serializer.data  # noqa: B018
 
         assert serializer._entries['manifest.json']['sha256'] is None
         assert serializer._entries['icons/LICENSE']['sha256'] == (
@@ -553,7 +553,7 @@ class TestAddonBrowseVersionSerializer(TestCase):
         )
 
         serializer = self.get_serializer(file='manifest.json')
-        serializer.data
+        serializer.data  # noqa: B018
         assert serializer._entries['manifest.json']['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0'
         )

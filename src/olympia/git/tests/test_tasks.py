@@ -68,7 +68,7 @@ class TestOnExtractionError(TestCase):
         addon = addon_factory()
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
-        addon_repo.git_repository
+        addon_repo.git_repository  # noqa: B018
         update_git_repo_creation_time(addon_repo, time=datetime.datetime(2019, 1, 1))
         assert addon_repo.is_extracted
         assert not addon_repo.is_recent
@@ -90,7 +90,7 @@ class TestOnExtractionError(TestCase):
         addon = addon_factory()
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
-        addon_repo.git_repository
+        addon_repo.git_repository  # noqa: B018
         update_git_repo_creation_time(addon_repo, time=datetime.datetime(2019, 1, 1))
         assert addon_repo.is_extracted
         assert not addon_repo.is_recent
@@ -113,7 +113,7 @@ class TestOnExtractionError(TestCase):
         addon = addon_factory()
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
-        addon_repo.git_repository
+        addon_repo.git_repository  # noqa: B018
         assert addon_repo.is_extracted
         # Simulate a git extraction in progress.
         GitExtractionEntry.objects.create(addon_id=addon.pk, in_progress=True)
@@ -128,7 +128,7 @@ class TestOnExtractionError(TestCase):
         addon = addon_factory()
         addon_repo = AddonGitRepository(addon)
         # Create the git repo
-        addon_repo.git_repository
+        addon_repo.git_repository  # noqa: B018
         # We do not update the creation time of the git repository here so that
         # it is less than 1 hour (because the git repository was created in
         # this test case).

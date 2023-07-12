@@ -276,7 +276,7 @@ class TestGitExtraction(TestCase):
         version = self.addon.current_version
         repo = AddonGitRepository(self.addon)
         # Force the creation of the git repository.
-        repo.git_repository
+        repo.git_repository  # noqa: B018
         assert repo.is_extracted
         # Set the "creation time" of the git repository to something older than
         # 1 hour.
