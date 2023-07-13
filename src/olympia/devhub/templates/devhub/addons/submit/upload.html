@@ -48,7 +48,7 @@
     {% endif %}
   {% endif %}
   >
-
+  {{ new_addon_form.theme_specific }}
   {{ new_addon_form.non_field_errors() }}
 
     <div class="compatible-apps">
@@ -69,11 +69,6 @@
     </div>
     {% endif %}
 
-    {% if addon and addon.type == amo.ADDON_STATICTHEME %}
-        {% set wizard_url = url('devhub.submit.version.wizard', addon.slug, channel_param) %}
-    {% elif not addon %}
-        {% set wizard_url = url('devhub.submit.wizard', channel_param) %}
-    {% endif %}
     {% if wizard_url %}
     <div class="submission-buttons addon-create-theme-section">
       <p></p>

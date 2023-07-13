@@ -36,7 +36,7 @@ def test_xss():
 def test_no_dupes():
     """Test that duplicate messages aren't saved."""
     request = HttpRequest()
-    setattr(request, '_messages', default_storage(request))
+    request._messages = default_storage(request)
 
     info(request, 'Title', 'Body')
     info(request, 'Title', 'Body')
@@ -49,7 +49,7 @@ def test_no_dupes():
 def test_l10n_dups():
     """Test that L10n values are preserved."""
     request = HttpRequest()
-    setattr(request, '_messages', default_storage(request))
+    request._messages = default_storage(request)
 
     info(request, gettext('Title'), gettext('Body'))
     info(request, gettext('Title'), gettext('Body'))
@@ -62,7 +62,7 @@ def test_l10n_dups():
 def test_unicode_dups():
     """Test that unicode values are preserved."""
     request = HttpRequest()
-    setattr(request, '_messages', default_storage(request))
+    request._messages = default_storage(request)
 
     info(request, 'Titlé', 'Body')
     info(request, 'Titlé', 'Body')
@@ -75,7 +75,7 @@ def test_unicode_dups():
 def test_html_rendered_properly():
     """Html markup is properly displayed in final template."""
     request = HttpRequest()
-    setattr(request, '_messages', default_storage(request))
+    request._messages = default_storage(request)
 
     # This will call _file_message, which in turn calls _make_message, which in
     # turn renders the message_content.html template, which adds html markup.

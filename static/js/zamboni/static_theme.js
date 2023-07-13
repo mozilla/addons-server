@@ -216,6 +216,7 @@ $(document).ready(function () {
             function (blob) {
               var formData = new FormData();
               formData.append('upload', blob, 'upload.zip');
+              formData.append('theme_specific', true);
               $.ajax({
                 type: 'POST',
                 url: $button.attr('formaction'),

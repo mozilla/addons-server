@@ -43,7 +43,7 @@ class APIKey(ModelBase):
     # is_active=False when revoking keys).
     is_active = models.BooleanField(default=True, null=True)
     type = models.PositiveIntegerField(
-        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES)).items(), default=0
+        choices=dict(zip(API_KEY_TYPES, API_KEY_TYPES, strict=True)).items(), default=0
     )
     key = models.CharField(max_length=255, db_index=True, unique=True)
     # TODO: use RSA public keys instead? If we were to use JWT RSA keys

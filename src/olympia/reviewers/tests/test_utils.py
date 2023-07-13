@@ -34,6 +34,7 @@ from olympia.constants.promoted import (
     STRATEGIC,
 )
 from olympia.files.models import File
+from olympia.lib.crypto.signing import SigningError
 from olympia.lib.crypto.tests.test_signing import (
     _get_recommendation_data,
     _get_signature_details,
@@ -187,7 +188,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
-        with self.assertRaises(Exception):
+        with self.assertRaises(KeyError):
             self.helper.process()
 
     def test_process_action_good(self):
@@ -1885,11 +1886,11 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.APPROVE_VERSION.id) == 1
 
     def test_nomination_to_public_failed_signing(self):
-        self.sign_file_mock.side_effect = Exception
+        self.sign_file_mock.side_effect = SigningError
         self.sign_file_mock.reset()
         self.setup_data(amo.STATUS_NOMINATED)
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(SigningError):
             self.helper.handler.approve_latest_version()
 
         # AddonApprovalsCounter was not touched since we failed signing.

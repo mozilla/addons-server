@@ -253,8 +253,7 @@ class TestCacheControlMiddleware(TestCase):
         request.is_api = True
         for method in ('POST', 'DELETE', 'PUT', 'PATCH'):
             request.method = method
-            response = HttpResponse()
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(lambda x: HttpResponse())(request)
             assert response['Cache-Control'] == 's-maxage=0'
 
     def test_disable_caching_arg_should_not_cache(self):
@@ -292,19 +291,19 @@ class TestCacheControlMiddleware(TestCase):
     def test_non_success_status_code_should_not_cache(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
-        response = HttpResponse()
         for status_code in (400, 401, 403, 404, 429, 500, 502, 503, 504):
-            response.status_code = status_code
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 's-maxage=0'
 
     def test_everything_ok_should_cache_for_3_minutes(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
-        response = HttpResponse()
         for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
-            response.status_code = status_code
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 'max-age=180'
 
     def test_functional_should_cache(self):

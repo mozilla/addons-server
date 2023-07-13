@@ -160,7 +160,7 @@ class TestRatingsModerationLog(ReviewerTest):
         reviews.
         """
         review = self.make_review()
-        for i in range(2):
+        for _i in range(2):
             ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
             ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         response = self.client.get(self.url, {'filter': 'deleted'})
@@ -1154,7 +1154,7 @@ class QueueTest(ReviewerTest):
         expected = []
         if not len(self.expected_addons):
             raise AssertionError('self.expected_addons was an empty list')
-        for idx, addon in enumerate(self.expected_addons):
+        for _idx, addon in enumerate(self.expected_addons):
             if self.channel_name == 'unlisted' or dont_expect_version_number:
                 # In unlisted queue we don't display latest version number.
                 name = str(addon.name)

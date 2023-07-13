@@ -2,6 +2,8 @@
 
 {% if submit_page == 'version' %}
   {% set title = _('Submit a New Version') %}
+{% elif theme_specific %}
+  {% set title = _('Submit a New Theme') %}
 {% else %}
   {% set title = _('Submit a New Add-on') %}
 {% endif %}

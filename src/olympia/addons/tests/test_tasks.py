@@ -448,7 +448,7 @@ class TestResizeIcon(TestCase):
             os.makedirs(uploadto)
         except OSError:
             pass
-        for rsize, expected_size in zip(resize_size, final_size):
+        for rsize, expected_size in zip(resize_size, final_size, strict=True):
             # resize_icon moves the original
             shutil.copyfile(img, src.name)
             src_image = Image.open(src.name)

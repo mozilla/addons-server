@@ -127,12 +127,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def has_been_validated(self):
-        try:
-            self.validation
-        except FileValidation.DoesNotExist:
-            return False
-        else:
-            return True
+        return hasattr(self, 'validation')
 
     def get_url_path(self, attachment=False):
         # We allow requests to not specify a filename, but it's mandatory that

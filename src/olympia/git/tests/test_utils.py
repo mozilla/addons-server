@@ -151,7 +151,7 @@ def test_git_repo_init_with_missing_master_branch_raises_error(settings):
     pygit2.init_repository(path=repo.git_repository_path, bare=False)
 
     with pytest.raises(MissingMasterBranchError):
-        repo.git_repository
+        repo.git_repository  # noqa: B018
 
 
 def test_git_repo_init_opens_existing_repo(settings):
@@ -168,7 +168,7 @@ def test_git_repo_init_opens_existing_repo(settings):
     assert not os.path.exists(expected_path)
 
     # accessing repo.git_repository creates the directory
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     assert os.path.exists(expected_path)
 
     repo2 = AddonGitRepository(4815162342)
@@ -233,7 +233,7 @@ def test_find_or_create_branch_raises_broken_ref_error(settings):
     )
     branch = 'listed'
     # Create the git repo
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     assert repo.is_extracted
     # Create a broken ref, see:
     # https://github.com/mozilla/addons-server/issues/13590
@@ -256,7 +256,7 @@ def test_delete(settings):
     )
     repo = AddonGitRepository(addon)
     # Create the git repo
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     assert repo.is_extracted
     assert addon.current_version.git_hash
     assert addon2.current_version.git_hash
@@ -281,7 +281,7 @@ def test_delete_with_deleted_version(settings):
     version.delete()
     repo = AddonGitRepository(addon)
     # Create the git repo
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     assert repo.is_extracted
     assert version.git_hash
 
@@ -1474,7 +1474,7 @@ def test_is_recent(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
     # Force the creation of the git repository.
-    repo.git_repository
+    repo.git_repository  # noqa: B018
 
     assert repo.is_recent
 
@@ -1483,7 +1483,7 @@ def test_is_recent_with_no_description_file(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
     # Force the creation of the git repository.
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     # We should have a description file but we noticed errors about missing
     # files in production so let's protect against those errors.
     Path(os.path.join(repo.git_repository_path, repo.GIT_DESCRIPTION)).unlink()
@@ -1495,7 +1495,7 @@ def test_is_recent_with_relatively_recent_repo(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
     # Force the creation of the git repository.
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     fifteen_min_ago = datetime.datetime.now() - datetime.timedelta(minutes=15)
     update_git_repo_creation_time(repo, time=fifteen_min_ago)
 
@@ -1506,7 +1506,7 @@ def test_is_recent_with_very_old_repo(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
     # Force the creation of the git repository.
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     update_git_repo_creation_time(repo, time=datetime.datetime(2020, 1, 1))
 
     assert not repo.is_recent
@@ -1516,7 +1516,7 @@ def test_is_recent_with_oldish_repo(settings):
     addon_pk = 123
     repo = AddonGitRepository(addon_pk)
     # Force the creation of the git repository.
-    repo.git_repository
+    repo.git_repository  # noqa: B018
     time = datetime.datetime.now() - datetime.timedelta(minutes=60)
     update_git_repo_creation_time(repo, time=time)
 
@@ -1569,7 +1569,7 @@ def test_extract_version_to_git_with_error(incr_mock, extract_and_commit_mock):
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
     extract_and_commit_mock.side_effect = Exception()
 
-    with pytest.raises(Exception):
+    with pytest.raises(Exception):  # noqa: B017
         extract_version_to_git(addon.current_version.pk)
 
     incr_mock.assert_called_with('git.extraction.version.failure')

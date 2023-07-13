@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
 
 

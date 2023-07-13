@@ -38,7 +38,7 @@ class TestAPIKey(TestCase):
 
     def test_generate_new_unique_keys(self):
         last_key = None
-        for counter in range(3):
+        for _counter in range(3):
             credentials = APIKey.new_jwt_credentials(self.user)
             assert credentials.key != last_key
             last_key = credentials.key
@@ -56,7 +56,7 @@ class TestAPIKey(TestCase):
         mock_filter.return_value.exists.return_value = True
 
         with self.assertRaises(RuntimeError):
-            for counter in range(max + 1):
+            for _counter in range(max + 1):
                 APIKey.get_unique_key('key-prefix-', max_tries=max)
 
     def test_generate_secret(self):

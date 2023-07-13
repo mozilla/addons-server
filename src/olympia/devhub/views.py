@@ -1,6 +1,7 @@
 import datetime
 import os
 import time
+from copy import deepcopy
 from urllib.parse import quote
 from uuid import UUID, uuid4
 
@@ -49,6 +50,7 @@ from olympia.amo.utils import (
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
+from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     extract_theme_properties,
@@ -553,6 +555,7 @@ def validate_addon(request):
 
 
 def handle_upload(
+    *,
     filedata,
     request,
     channel,
@@ -560,6 +563,7 @@ def handle_upload(
     is_standalone=False,
     submit=False,
     source=amo.UPLOAD_SOURCE_DEVHUB,
+    theme_specific=False,
 ):
     upload = FileUpload.from_post(
         filedata,
@@ -570,12 +574,10 @@ def handle_upload(
         source=source,
         user=request.user,
     )
-
     if submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
+        tasks.validate_and_submit(addon, upload, theme_specific=theme_specific)
     else:
-        tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
-
+        tasks.validate(upload, theme_specific=theme_specific)
     return upload
 
 
@@ -584,13 +586,25 @@ def handle_upload(
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
-    upload = handle_upload(
-        filedata=filedata,
-        request=request,
-        addon=addon,
-        is_standalone=is_standalone,
-        channel=channel,
+    theme_specific = django_forms.BooleanField().to_python(
+        request.POST.get('theme_specific')
     )
+    try:
+        upload = handle_upload(
+            filedata=filedata,
+            request=request,
+            addon=addon,
+            is_standalone=is_standalone,
+            channel=channel,
+            theme_specific=theme_specific,
+        )
+    except django_forms.ValidationError as exc:
+        # handle_upload() should be firing tasks to do validation. If it raised
+        # a ValidationError, that means we failed before even reaching those
+        # tasks, and need to return an error response immediately.
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        insert_validation_message(results, message=exc.message)
+        return JsonResponse({'validation': results}, status=400)
     if addon:
         return redirect('devhub.upload_detail_for_version', addon.slug, upload.uuid.hex)
     elif is_standalone:
@@ -1239,6 +1253,15 @@ def submit_addon(request):
     )
 
 
+@login_required
+def submit_theme(request):
+    return render_agreement(
+        request=request,
+        template='devhub/addons/submit/start.html',
+        next_step='devhub.submit.theme.distribution',
+    )
+
+
 @dev_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
@@ -1283,6 +1306,13 @@ def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
     return _submit_distribution(request, None, 'devhub.submit.upload')
+
+
+@login_required
+def submit_theme_distribution(request):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    return _submit_distribution(request, None, 'devhub.submit.theme.upload')
 
 
 @dev_required(submitting=True)
@@ -1363,7 +1393,9 @@ WIZARD_COLOR_FIELDS = [
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_view, wizard=False):
+def _submit_upload(
+    request, addon, channel, next_view, wizard=False, theme_specific=False
+):
     """If this is a new addon upload `addon` will be None.
 
     next_view is the view that will be redirected to.
@@ -1375,6 +1407,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     form = forms.NewUploadForm(
         request.POST or None, request.FILES or None, addon=addon, request=request
     )
+    form.fields['theme_specific'].initial = theme_specific
     channel_text = amo.CHANNEL_CHOICES_API[channel]
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -1442,21 +1475,31 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
             submit_notification_warning = get_config(
                 'submit_notification_warning_pre_review'
             )
+    if addon and addon.type == amo.ADDON_STATICTHEME:
+        wizard_url = reverse(
+            'devhub.submit.version.wizard', args=[addon.slug, channel_text]
+        )
+    elif not addon and theme_specific:
+        wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
+    else:
+        wizard_url = None
     return TemplateResponse(
         request,
         template,
         context={
-            'new_addon_form': form,
-            'is_admin': is_admin,
             'addon': addon,
-            'submit_notification_warning': submit_notification_warning,
-            'submit_page': submit_page,
             'channel': channel,
             'channel_choice_text': channel_choice_text,
-            'existing_properties': existing_properties,
             'colors': WIZARD_COLOR_FIELDS,
+            'existing_properties': existing_properties,
+            'is_admin': is_admin,
+            'new_addon_form': form,
+            'submit_notification_warning': submit_notification_warning,
+            'submit_page': submit_page,
+            'theme_specific': theme_specific,
             'unsupported_properties': unsupported_properties,
             'version_number': get_next_version_number(addon) if wizard else None,
+            'wizard_url': wizard_url,
         },
     )
 
@@ -1467,6 +1510,16 @@ def submit_addon_upload(request, channel):
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(request, None, channel_id, 'devhub.submit.source')
+
+
+@login_required
+def submit_theme_upload(request, channel):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.source', theme_specific=True
+    )
 
 
 @dev_required(submitting=True)

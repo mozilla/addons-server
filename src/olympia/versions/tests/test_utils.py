@@ -227,12 +227,12 @@ def test_get_staggered_review_due_date_generator():
     assert due == datetime(2023, 5, 19, 14, 0)
 
     # Skip the week-end (would otherwise land on Saturday 20th).
-    for x in range(0, 4):
+    for _x in range(0, 4):
         due = next(generator)
     assert due == datetime(2023, 5, 22, 2, 0)
 
     # Should have 7 more on that Monday.
-    for x in range(0, 7):
+    for _x in range(0, 7):
         due = next(generator)
     assert due == datetime(2023, 5, 22, 23, 0)
 

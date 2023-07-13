@@ -32,7 +32,7 @@
 
   $.fn.addonUploader = function (options) {
     var settings = {
-      filetypes: ['zip', 'xpi', 'crx', 'xml'],
+      filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
       maxSize: 200 * 1024 * 1024, // 200M

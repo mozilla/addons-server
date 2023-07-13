@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-04 17:08+0000\n"
-"PO-Revision-Date: 2023-07-05 06:31+0000\n"
+"PO-Revision-Date: 2023-07-05 06:26+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -124,7 +124,7 @@ msgstr "Bilinmeyen minimum uygulama sürümü belirtildi"
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Bu uygulama (%s) için manifest’te ayarlanan uyumluluk bilgileri geçersiz kılınamaz"
 
 #, python-format
 msgid "Images must be smaller than %dMB"

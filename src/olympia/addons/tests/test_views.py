@@ -5676,7 +5676,7 @@ class TestAddonSearchView(ESTestCase):
         # contain a string that was causing such breakage before.
         # Populate the index with a few add-ons first (enough to trigger the
         # issue locally).
-        for i in range(0, 10):
+        for _i in range(0, 10):
             addon_factory()
         self.refresh()
         query = (

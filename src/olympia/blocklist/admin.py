@@ -159,6 +159,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
     change_form_template = 'admin/blocklist/blocklistsubmission_change_form.html'
+    add_form_template = 'admin/blocklist/blocklistsubmission_add_form.html'
     form = BlocklistSubmissionForm
 
     class Media:
@@ -382,27 +383,34 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         else:
             # if its not a POST and no ?guids there's nothing to do so go back
             return redirect('admin:blocklist_block_add')
+
+        formsets = self.get_fieldsets(request, None)
+        admin_form = admin.helpers.AdminForm(
+            form,
+            list(formsets),
+            self.get_prepopulated_fields(request, None),
+            self.get_readonly_fields(request, None),
+            model_admin=self,
+        )
         context = {
-            'form': form,
-            'fieldsets': self.get_fieldsets(request, None),
-            'add': True,
-            'change': False,
-            'has_view_permission': self.has_view_permission(request, None),
-            'has_add_permission': self.has_add_permission(request),
-            'app_label': 'blocklist',
-            'opts': self.model._meta,
+            # standard context django admin expects
             'title': 'Delete Blocks' if is_delete else 'Block Add-ons',
-            'save_as': False,
+            'subtitle': None,
+            'adminform': admin_form,
+            'object_id': None,
+            'original': None,
+            'is_popup': False,
+            'to_field': None,
+            'media': self.media + admin_form.media,
+            'inline_admin_formsets': [],
+            'errors': admin.helpers.AdminErrorList(form, formsets),
+            'preserved_filters': self.get_preserved_filters(request),
+            # extra context we use in our custom template
+            'is_delete': is_delete,
             'block_history': self.block_history(self.model(input_guids=guids_data)),
             'submission_published': False,
-            'site_title': None,
-            'is_popup': False,
-            'form_url': '',
-            'is_delete': is_delete,
         }
-        return TemplateResponse(
-            request, 'admin/blocklist/blocklistsubmission_add_form.html', context
-        )
+        return self.render_change_form(request, context, add=True)
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -428,8 +436,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     def render_change_form(
         self, request, context, add=False, change=False, form_url='', obj=None
     ):
-        # add this to the instance so blocks() below can reference it.
-        obj._blocks = context['adminform'].form.blocks
+        if obj:
+            # add this to the instance so blocks() below can reference it.
+            obj._blocks = context['adminform'].form.blocks
         return super().render_change_form(
             request, context, add=add, change=change, form_url=form_url, obj=obj
         )

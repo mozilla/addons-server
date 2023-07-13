@@ -192,7 +192,7 @@ class TestCleanSlug(TestCase):
         # worst case scenario where all the available clashes have been
         # avoided. Check the comment in addons.models.clean_slug, in the 'else'
         # part of the 'for" loop checking for available slugs not yet assigned.
-        for i in range(100):
+        for _i in range(100):
             Addon.objects.create(slug=long_slug)
 
         with self.assertRaises(RuntimeError):  # Fail on the 100th clash.
@@ -1938,7 +1938,7 @@ class TestShouldRedirectToSubmitFlow(TestCase):
 
         status_exc_null = dict(amo.STATUS_CHOICES_ADDON)
         status_exc_null.pop(amo.STATUS_NULL)
-        for status in status_exc_null:
+        for _status in status_exc_null:
             assert not addon.should_redirect_to_submit_flow()
         addon.update(status=amo.STATUS_NULL)
         assert addon.should_redirect_to_submit_flow()

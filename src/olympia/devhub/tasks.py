@@ -51,7 +51,7 @@ from olympia.files.utils import (
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, final_task=None):
+def validate(file_, *, final_task=None, theme_specific=False):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
@@ -66,7 +66,7 @@ def validate(file_, listed=None, final_task=None):
     # Import loop.
     from .utils import Validator
 
-    validator = Validator(file_, listed=listed, final_task=final_task)
+    validator = Validator(file_, theme_specific=theme_specific, final_task=final_task)
 
     task_id = cache.get(validator.cache_key)
 
@@ -78,23 +78,23 @@ def validate(file_, listed=None, final_task=None):
         return result
 
 
-def validate_and_submit(addon, file_, channel):
+def validate_and_submit(addon, file_, *, theme_specific=False):
     return validate(
         file_,
-        listed=(channel == amo.CHANNEL_LISTED),
-        final_task=submit_file.si(addon.pk, file_.pk, channel),
+        theme_specific=theme_specific,
+        final_task=submit_file.si(addon.pk, file_.pk),
     )
 
 
 @task
 @use_primary_db
-def submit_file(addon_pk, upload_pk, channel):
+def submit_file(addon_pk, upload_pk):
     from olympia.devhub.utils import create_version_for_upload
 
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(addon, upload, channel)
+        create_version_for_upload(addon, upload, upload.channel)
     else:
         log.info(
             'Skipping version creation for {upload_uuid} that failed '
@@ -195,12 +195,12 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_upload(results, upload_pk, channel):
+def validate_upload(results, upload_pk):
     """Validate a FileUpload instance.
 
     Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    data = validate_file_path(upload.file_path, channel)
+    data = validate_file_path(upload.file_path, upload.channel)
     return {**results, **json.loads(force_str(data))}
 
 
@@ -271,7 +271,7 @@ def forward_linter_results(results, upload_pk):
 
 @task
 @use_primary_db
-def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
     """Save a set of validation results to a FileUpload instance corresponding
     to the given upload_pk."""
     upload = FileUpload.objects.get(pk=upload_pk)

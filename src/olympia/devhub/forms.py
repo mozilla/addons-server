@@ -211,7 +211,7 @@ class BaseCategoryFormSet(BaseFormSet):
             cats = self.addon.app_categories.get(app.short, [])
             self.initial.append({'categories': [c.id for c in cats]})
 
-        for app, form in zip(apps, self.forms):
+        for app, form in zip(apps, self.forms, strict=True):
             key = app.id if app else None
             form.request = self.request
             form.initial['application'] = key
@@ -901,7 +901,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         # del self.forms
         if hasattr(self, 'forms'):
             del self.forms
-        self.forms
+        self.forms  # noqa: B018
 
     def add_fields(self, form, index):
         # By default django handles can_delete globally for the whole formset,
@@ -1019,6 +1019,7 @@ class NewUploadForm(CheckThrottlesMixin, forms.Form):
         widget=CompatAppSelectWidget(),
         error_messages={'required': _('Need to select at least one application.')},
     )
+    theme_specific = forms.BooleanField(required=False, widget=forms.HiddenInput)
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')

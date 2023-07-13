@@ -370,20 +370,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert Block.objects.count() == 0  # Check we didn't create it already
         assert 'Block History' in content
 
-        changed_version_ids = [
-            deleted_addon_version.id,
-            first_version.id,
-            disabled_version.id,
-            deleted_version.id,
-            second_version.id,
-        ]
         changed_versions = [
-            first_version.version,
-            deleted_addon_version.version,
-            disabled_version.version,
-            deleted_version.version,
-            second_version.version,
+            deleted_addon_version,
+            first_version,
+            disabled_version,
+            deleted_version,
+            second_version,
         ]
+        changed_version_ids = [v.id for v in changed_versions]
+        changed_version_strs = sorted(v.version for v in changed_versions)
+
         # Create the block
         response = self.client.post(
             self.submission_url,
@@ -414,8 +410,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_log = logs[3]
         assert block_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert block_log.arguments == [addon, addon.guid, block]
-        assert block_log.details['blocked_versions'] == changed_versions
-        assert block_log.details['added_versions'] == changed_versions
+        assert block_log.details['blocked_versions'] == changed_version_strs
+        assert block_log.details['added_versions'] == changed_version_strs
         assert block_log.details['reason'] == 'some reason'
         assert block_log == (
             ActivityLog.objects.for_block(block).filter(action=block_log.action).get()
@@ -425,23 +421,22 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .filter(action=block_log.action)
             .get()
         )
-        # The Reject activity is recorded once for all affected versions and attached
-        # to each of them through VersionLog.
-        # A seperate activity is recorded for each version added to the blocklist.
+        # The Reject and version blocked activities are recorded once for all affected
+        # versions and attached to each of them through VersionLog.
         for version in (first_version, second_version):
             version_reject_log, version_block_log = tuple(
                 ActivityLog.objects.for_versions(version)
             )
             assert version_reject_log == reject_log
             assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
-            assert version_block_log.arguments == [version, block]
+            assert version_block_log.arguments == [*changed_versions, block]
 
         # The disabled and deleted versions should only have the block activity,
         # not a reject activity
         for version in (deleted_addon_version, disabled_version):
             (version_block_log,) = tuple(ActivityLog.objects.for_versions(version))
             assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
-            assert version_block_log.arguments == [version, block]
+            assert version_block_log.arguments == [*changed_versions, block]
 
         assert not ActivityLog.objects.for_versions(pending_version).exists()
         change_url = reverse(
@@ -461,7 +456,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         todaysdate = datetime.now().date()
         assert f'<a href="dfd">{todaysdate}</a>' in content
         assert f'Block added by {user.name}:\n        guid@' in content
-        assert f'versions added [{", ".join(changed_versions)}].' in content
+        assert f'versions added [{", ".join(changed_version_strs)}].' in content
 
         addon.reload()
         first_version.file.reload()

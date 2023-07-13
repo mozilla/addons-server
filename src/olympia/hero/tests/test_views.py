@@ -454,7 +454,7 @@ class TestHeroShelvesView(TestCase):
 
         found_ids = set()
         # check its not just returning the same add-on each time
-        for count in range(0, 19):
+        for _count in range(0, 19):
             response = self.client.get(self.url)
             found_ids.add(response.json()['primary']['addon']['id'])
             if len(found_ids) == 3:

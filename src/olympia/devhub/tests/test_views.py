@@ -1,12 +1,12 @@
 import json
 import os
+import zipfile
 from datetime import datetime, timedelta
 from unittest import mock
 from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
-from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -139,7 +139,7 @@ class TestDashboard(HubTest):
         """Check themes show on dashboard."""
         # Create 2 themes.
         staticthemes = []
-        for x in range(2):
+        for _x in range(2):
             addon = addon_factory(type=amo.ADDON_STATICTHEME, users=[self.user_profile])
             VersionPreview.objects.create(version=addon.current_version)
             staticthemes.append(addon)
@@ -1097,12 +1097,14 @@ class TestUpload(UploadMixin, TestCase):
         super().setUp()
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.url = reverse('devhub.upload')
-        self.image_path = get_image_path('animated.png')
+        self.xpi_path = self.file_path('webextension_no_id.xpi')
 
-    def post(self, **kwargs):
-        # Has to be a binary, non xpi file.
-        data = open(self.image_path, 'rb')
-        return self.client.post(self.url, {'upload': data}, **kwargs)
+    def post(self, theme_specific=False, **kwargs):
+        data = {
+            'upload': open(self.xpi_path, 'rb'),
+            'theme_specific': 'True' if theme_specific else 'False',
+        }
+        return self.client.post(self.url, data, **kwargs)
 
     def test_login_required(self):
         self.client.logout()
@@ -1113,9 +1115,17 @@ class TestUpload(UploadMixin, TestCase):
         self.post()
 
         upload = FileUpload.objects.filter().order_by('-created').first()
-        assert 'animated.png' in upload.name
-        data = open(self.image_path, 'rb').read()
-        assert storage.open(upload.file_path).read() == data
+        assert 'webextension_no_id.xpi' in upload.name
+        assert upload.file_path.endswith('.zip')  # and not .xpi!
+        # Can't compare the data bit by bit because we're repacking, look
+        # inside to check it contains the same thing.
+        manifest_data = json.loads(
+            zipfile.ZipFile(upload.file_path).read('manifest.json')
+        )
+        original_manifest_data = json.loads(
+            zipfile.ZipFile(self.xpi_path).read('manifest.json')
+        )
+        assert manifest_data == original_manifest_data
 
     def test_fileupload_metadata(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
@@ -1126,7 +1136,8 @@ class TestUpload(UploadMixin, TestCase):
         assert upload.source == amo.UPLOAD_SOURCE_DEVHUB
         assert upload.ip_address == '4.8.15.16.23.42'
 
-    def test_fileupload_validation(self):
+    def test_fileupload_validation_not_a_xpi_file(self):
+        self.xpi_path = get_image_path('animated.png')  # not a xpi file.
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
         assert upload.validation
@@ -1148,6 +1159,7 @@ class TestUpload(UploadMixin, TestCase):
     def test_redirect(self):
         response = self.post()
         upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_LISTED
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
         self.assert3xx(response, url)
 
@@ -1161,9 +1173,43 @@ class TestUpload(UploadMixin, TestCase):
         """Unlisted addons are validated as "self hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_unlisted')
-        self.post()
-        # Make sure it was called with listed=False.
-        assert not validate_mock.call_args[1]['listed']
+        response = self.post()
+        upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_UNLISTED
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        self.assert3xx(response, url)
+
+    def test_upload_extension_in_theme_specific_flow(self):
+        self.url = reverse('devhub.upload_unlisted')
+        response = self.post(theme_specific=True)
+        assert response.status_code == 400
+        assert response.json() == {
+            'validation': {
+                'errors': 1,
+                'warnings': 0,
+                'notices': 0,
+                'success': False,
+                'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
+                'metadata': {'listed': True},
+                'messages': [
+                    {
+                        'tier': 1,
+                        'type': 'error',
+                        'id': ['validation', 'messages', ''],
+                        'message': (
+                            'This add-on is not a theme. Use the <a href="http://test'
+                            'server/en-US/developers/addon/submit/upload-unlisted">'
+                            'Submit a New Add-on</a> page to submit extensions.'
+                        ),
+                        'description': [],
+                        'compatibility_type': None,
+                        'extra': True,
+                    }
+                ],
+                'message_tree': {},
+                'ending_tier': 5,
+            }
+        }
 
 
 class TestUploadDetail(UploadMixin, TestCase):
@@ -1689,10 +1735,10 @@ class TestRedirects(TestCase):
         response = self.client.get(url, follow=True)
         self.assert3xx(response, reverse('devhub.addons.versions', args=['a3615']), 301)
 
-    def test_lwt_submit_redirects_to_addon_submit(self):
-        url = reverse('devhub.themes.submit')
+    def test_lwt_submit_redirects_to_theme_submit(self):
+        url = reverse('devhub.submit.theme.old_lwt_flow')
         response = self.client.get(url, follow=True)
-        self.assert3xx(response, reverse('devhub.submit.distribution'), 302)
+        self.assert3xx(response, reverse('devhub.submit.theme.distribution'), 302)
 
 
 class TestHasCompleteMetadataRedirects(TestCase):

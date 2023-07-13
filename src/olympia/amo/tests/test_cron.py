@@ -249,7 +249,7 @@ class TestWriteSitemaps(TestCase):
             entry = (
                 '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
             )
-            for (section, app), sitemap in sitemaps.items():
+            for section, app in sitemaps:
                 if not app:
                     assert entry.format(params=f'section={section}') in contents
                 else:
