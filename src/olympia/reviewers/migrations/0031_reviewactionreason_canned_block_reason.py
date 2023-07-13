@@ -12,6 +12,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='reviewactionreason',
             name='canned_block_reason',
-            field=models.TextField(blank=True),
+            field=models.TextField(blank=True, default=''),
+            preserve_default=False,
         ),
     ]

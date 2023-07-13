@@ -88,7 +88,7 @@ class BlocklistSubmissionForm(AMOModelForm):
     canned_reasons = forms.ModelMultipleChoiceField(
         required=False,
         queryset=ReviewActionReason.objects.filter(
-            is_active=True, canned_block_reason__isnull=False
+            is_active=True,
         ).exclude(canned_block_reason=''),
         widget=CannedResponseWidget,
     )
