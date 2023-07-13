@@ -6,6 +6,7 @@ from django.forms.widgets import HiddenInput, NumberInput
 
 from olympia.amo.admin import HTML5DateTimeInput
 from olympia.amo.forms import AMOModelForm
+from olympia.reviewers.models import ReviewActionReason
 
 from .models import Block, BlocklistSubmission
 from .utils import splitlines
@@ -51,18 +52,19 @@ class MultiAddForm(MultiGUIDInputForm):
                 raise ValidationError(f'Add-on with GUID {guid} does not exist')
 
 
-def _get_version_choices(blocks, ver_filter=lambda v: True):
-    return [
-        (
-            block.guid,
-            [
-                (version.id, version.version)
-                for version in block.addon_versions
-                if ver_filter(version)
-            ],
+class CannedResponseWidget(forms.widgets.CheckboxSelectMultiple):
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
+        option = super().create_option(
+            name, value, label, selected, index, subindex=subindex, attrs=attrs
         )
-        for block in blocks
-    ]
+        if instance := getattr(value, 'instance', None):
+            option['attrs'] = {
+                **(option.get('attrs') or {}),
+                'data-block-reason': instance.canned_block_reason,
+            }
+        return option
 
 
 class BlocklistSubmissionForm(AMOModelForm):
@@ -83,6 +85,13 @@ class BlocklistSubmissionForm(AMOModelForm):
     )
     update_reason_value = forms.fields.BooleanField(required=False, initial=True)
     update_url_value = forms.fields.BooleanField(required=False, initial=True)
+    canned_reasons = forms.ModelMultipleChoiceField(
+        required=False,
+        queryset=ReviewActionReason.objects.filter(
+            is_active=True,
+        ).exclude(canned_block_reason=''),
+        widget=CannedResponseWidget,
+    )
 
     def __init__(self, data=None, *args, **kw):
         instance = kw.get('instance')
@@ -113,24 +122,12 @@ class BlocklistSubmissionForm(AMOModelForm):
             self.initial = self.initial or {}
 
             if changed_version_ids_field := self.fields.get('changed_version_ids'):
-                changed_version_ids_field.choices = _get_version_choices(
+                self.setup_changed_version_ids_field(
+                    changed_version_ids_field,
                     objects['blocks'],
-                    # ^ is XOR
-                    # - for add action it allows the version when it is NOT blocked
-                    # - for delete action it allows the version when it IS blocked
-                    lambda v: (v.is_blocked ^ self.is_add_change)
-                    and not v.blocklist_submission_id,
+                    self.is_add_change,
+                    data,
                 )
-                self.changed_version_ids_choices = [
-                    v_id
-                    for _guid, opts in changed_version_ids_field.choices
-                    for (v_id, _text) in opts
-                ]
-                if not data and 'changed_version_ids' not in (self.initial or {}):
-                    # preselect all the options
-                    self.initial[
-                        'changed_version_ids'
-                    ] = self.changed_version_ids_choices
             for field_name in ('reason', 'url'):
                 values = {
                     getattr(block, field_name, '')
@@ -156,6 +153,30 @@ class BlocklistSubmissionForm(AMOModelForm):
                 # so preload the addon_versions so the review links are
                 # generated efficiently.
                 Block.preload_addon_versions(self.blocks)
+
+    def setup_changed_version_ids_field(self, field, blocks, is_add_change, data):
+        field.choices = [
+            (
+                block.guid,
+                [
+                    (version.id, version.version)
+                    for version in block.addon_versions
+                    # ^ is XOR
+                    # - for add action it allows the version when it is NOT blocked
+                    # - for delete action it allows the version when it IS blocked
+                    if (version.is_blocked ^ is_add_change)
+                    and not version.blocklist_submission_id
+                ],
+            )
+            for block in blocks
+        ]
+
+        self.changed_version_ids_choices = [
+            v_id for _guid, opts in field.choices for (v_id, _text) in opts
+        ]
+        if not data and 'changed_version_ids' not in (self.initial or {}):
+            # preselect all the options
+            self.initial['changed_version_ids'] = self.changed_version_ids_choices
 
     def get_value(self, instance, data, kw, field_name, default):
         return (

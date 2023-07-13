@@ -368,7 +368,7 @@ class ReviewForm(forms.Form):
                 if self.helper.addon.type == amo.ADDON_STATICTHEME
                 else amo.ADDON_EXTENSION,
             ],
-        )
+        ).exclude(canned_response='')
 
         # Add actions from the helper into the action widget so we can access
         # them in create_option.
