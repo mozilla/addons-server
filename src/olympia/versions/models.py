@@ -449,6 +449,12 @@ class Version(OnChangeMixin, ModelBase):
                 NeedsHumanReview(
                     version=version, reason=NeedsHumanReview.REASON_INHERITANCE
                 ).save(_user=get_task_user())
+            if (
+                promoted_group := addon.promoted_group(currently_approved=False)
+            ) and promoted_group.flag_for_human_review:
+                NeedsHumanReview(
+                    version=version, reason=NeedsHumanReview.REASON_PROMOTED_GROUP
+                ).save(_user=get_task_user())
 
         if not compatibility:
             compatibility = {

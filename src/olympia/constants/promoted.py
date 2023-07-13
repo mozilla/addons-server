@@ -135,8 +135,8 @@ NOTABLE = PromotedClass(
     name=_('Notable'),
     api_name='notable',
     warning=False,
-    listed_pre_review=True,
-    unlisted_pre_review=True,
+    listed_pre_review=False,
+    unlisted_pre_review=False,
     flag_for_human_review=True,
 )
 
