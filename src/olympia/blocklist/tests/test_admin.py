@@ -1142,7 +1142,17 @@ class TestBlocklistSubmissionAdmin(TestCase):
             field.lower() for field in change_json[0]['changed']['fields']
         ]
         assert change_json == [
-            {'changed': {'fields': ['disable addon', 'url', 'reason']}}
+            {
+                'changed': {
+                    'fields': [
+                        'disable addon',
+                        'update_url_value',
+                        'url',
+                        'update_reason_value',
+                        'reason',
+                    ]
+                }
+            }
         ]
 
         response = self.client.get(multi_url, follow=True)

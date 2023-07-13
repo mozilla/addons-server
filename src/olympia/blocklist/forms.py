@@ -131,20 +131,6 @@ class BlocklistSubmissionForm(AMOModelForm):
                     self.initial[
                         'changed_version_ids'
                     ] = self.changed_version_ids_choices
-            for field_name in ('reason', 'url'):
-                values = {
-                    getattr(block, field_name, '')
-                    for block in objects['blocks']
-                    if block.id
-                }
-                update_field_name = f'update_{field_name}_value'
-                if len(values) == 1 and (value := tuple(values)[0]):
-                    # if there's just one existing value, prefill the field
-                    self.initial[field_name] = value
-                elif len(values) > 1:
-                    # If the field has multiple existing values, default to not changing
-                    self.initial[update_field_name] = False
-
             for key, value in objects.items():
                 setattr(self, key, value)
         elif instance:
@@ -156,6 +142,22 @@ class BlocklistSubmissionForm(AMOModelForm):
                 # so preload the addon_versions so the review links are
                 # generated efficiently.
                 Block.preload_addon_versions(self.blocks)
+        for field_name in ('reason', 'url'):
+            update_field_name = f'update_{field_name}_value'
+            if not instance:
+                values = {
+                    getattr(block, field_name, '') for block in self.blocks if block.id
+                }
+                if len(values) == 1 and (value := tuple(values)[0]):
+                    # if there's just one existing value, prefill the field
+                    self.initial[field_name] = value
+                elif len(values) > 1:
+                    # If the field has multiple existing values, default to not changing
+                    self.initial[update_field_name] = False
+            else:
+                self.initial[update_field_name] = (
+                    getattr(instance, field_name) is not None
+                )
 
     def get_value(self, instance, data, kw, field_name, default):
         return (

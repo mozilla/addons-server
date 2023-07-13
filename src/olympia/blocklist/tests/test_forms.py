@@ -183,10 +183,8 @@ class TestBlocklistSubmissionForm(TestCase):
             f'{self.existing_block_partial.guid}\n'
             'invalid@guid',
         }
-        self.existing_block_partial.update(reason='partial reason')
-        self.existing_block_full.update(reason='full reason')
-        self.existing_block_partial.update(url='url')
-        self.existing_block_full.update(url='url')
+        self.existing_block_partial.update(reason='partial reason', url='url')
+        self.existing_block_full.update(reason='full reason', url='url')
 
         form = Form(initial=data)
         # when we just have a single existing block we default to the existing values
@@ -203,6 +201,36 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.initial['url'] == 'url'  # both the same, so we can default
         assert 'update_url_value' not in form.initial
         assert form.initial['update_reason_value'] is False  # checkbox defaults false
+
+    def test_existing_reason_and_url_values(self):
+        block_admin = BlocklistSubmissionAdmin(
+            model=BlocklistSubmission, admin_site=admin_site
+        )
+        request = RequestFactory().get('/')
+        # block metadata shouldn't make a difference
+        self.existing_block_partial.update(reason='partial reason')
+
+        Form = block_admin.get_form(request=request)
+        submission = BlocklistSubmission.objects.create(
+            input_guids=f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+            url='new url',
+        )
+
+        form = Form(instance=submission)
+        # for an existing submission we get initial url and reason from the instance
+        assert form.initial['reason'] is None
+        assert form.initial['url'] == 'new url'
+        assert form.initial['update_reason_value'] is False
+        assert form.initial['update_url_value'] is True
+
+        # An empty string is still counted
+        submission.update(url='')
+        form = Form(instance=submission)
+        assert form.initial['url'] == ''
+        assert form.initial['update_url_value'] is True
 
     def test_new_blocks_must_have_changed_versions(self):
         block_admin = BlocklistSubmissionAdmin(
