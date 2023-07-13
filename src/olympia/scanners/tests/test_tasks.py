@@ -534,11 +534,11 @@ class TestRunYara(UploadMixin, TestCase):
     @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_throws_errors(self, incr_mock, yara_compile_mock):
-        yara_compile_mock.side_effect = Exception()
+        yara_compile_mock.side_effect = RuntimeError()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
         # `@validation_task`, which gracefully handles exceptions.
-        with self.assertRaises(Exception):
+        with self.assertRaises(RuntimeError):
             _run_yara(self.results, self.upload.pk)
 
         assert incr_mock.called
@@ -647,7 +647,7 @@ class TestRunYaraQueryRule(TestCase):
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
             status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
-        ).current_version
+        )
         # Unlisted extension without a File instance
         Version.objects.create(
             addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='42.42.42.42'

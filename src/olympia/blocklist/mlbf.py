@@ -228,11 +228,11 @@ class DatabaseMLBF(MLBF):
     @cached_property
     def not_blocked_items(self):
         # see blocked_items - we need self._version_excludes populated
-        self.blocked_items
+        blocked_items = self.blocked_items
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
         return list(
             self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
-            - set(self.blocked_items)
+            - set(blocked_items)
         )

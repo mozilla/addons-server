@@ -63,9 +63,9 @@ class TestAddonRatingAggregates(TestCase):
         assert addon2.text_ratings_count == 0
 
         with self.assertRaises(RatingAggregate.DoesNotExist):
-            addon.ratingaggregate
+            addon.ratingaggregate  # noqa: B018
         with self.assertRaises(RatingAggregate.DoesNotExist):
-            addon2.ratingaggregate
+            addon2.ratingaggregate  # noqa: B018
 
         # Trigger the task and test results.
         addon_rating_aggregates([addon.pk, addon2.pk])

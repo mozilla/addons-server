@@ -647,7 +647,7 @@ class TestActions(TestCase):
     def test_flag_for_human_review_by_scanner(self):
         version = version_factory(addon=addon_factory())
         with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.reviewerflags
+            version.reviewerflags  # noqa: B018
 
         _flag_for_human_review_by_scanner(version=version, rule=None, scanner=MAD)
 
@@ -844,4 +844,4 @@ class TestRunAction(TestCase):
         ScannerResult.run_action(version)
 
         with self.assertRaises(VersionReviewerFlags.DoesNotExist):
-            version.reviewerflags
+            version.reviewerflags  # noqa: B018

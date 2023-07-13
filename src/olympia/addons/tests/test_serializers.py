@@ -1543,7 +1543,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         # Create a new current version, just to prove that
         # current_compatible_version does not use that.
         version_factory(addon=self.addon)
-        self.addon.reload
+        self.addon.reload()
         assert self.addon.compatible_versions[0] != self.addon.current_version
         self.request = APIRequestFactory().get('/?app=firefox&appversion=57.0')
         result = self.serialize()

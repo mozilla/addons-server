@@ -81,9 +81,7 @@ def get_disco_recommendations(hashed_client_id, overrides):
             .filter(guid__in=guids)
         )
         for addon in qs:
-            try:
-                addon.discoveryitem
-            except DiscoveryItem.DoesNotExist:
+            if not hasattr(addon, 'discoveryitem'):
                 # This just means the add-on isn't "known" as a possible
                 # recommendation, but this is fine: create a dummy instance,
                 # and it will use the add-on name and description to build the
