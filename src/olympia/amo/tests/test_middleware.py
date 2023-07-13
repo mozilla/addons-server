@@ -1,3 +1,4 @@
+import os
 from unittest.mock import Mock, PropertyMock, patch
 
 from django import test
@@ -168,6 +169,22 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
         self.middleware.process_request(request)
         assert request.META['REMOTE_ADDR'] == '4.8.15.16'
 
+    @patch.dict(os.environ, {'DEPLOY_PLATFORM': 'gcp'})
+    def test_request_not_from_cdn_on_gcp(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='2.3.4.2', HTTP_X_FORWARDED_FOR='4.8.15.16,2.3.4.2'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='2.3.4.2', HTTP_X_FORWARDED_FOR='1.1.1.1,4.8.15.16,2.3.4.2'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
     @override_settings(SECRET_CDN_TOKEN=None)
     def test_request_not_from_cdn_because_setting_is_none(self):
         request = RequestFactory().get(
@@ -222,6 +239,19 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
             '/',
             REMOTE_ADDR='4.8.15.16',
             HTTP_X_FORWARDED_FOR=',, 2.3.4.2,  4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '2.3.4.2'
+
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    @patch.dict(os.environ, {'DEPLOY_PLATFORM': 'gcp'})
+    def test_request_from_cdn_pick_third_to_last_ip_in_x_forwarded_for_on_gcp(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='1.1.1.1',
+            HTTP_X_FORWARDED_FOR=',, 2.3.4.2, 1.1.1.1, 4.8.15.16',
             HTTP_X_REQUEST_VIA_CDN='foo',
         )
         assert self.middleware.is_request_from_cdn(request)
