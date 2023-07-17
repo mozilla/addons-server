@@ -682,6 +682,8 @@ def review(request, addon, channel=None):
     admin_changes_actions = (
         amo.LOG.FORCE_DISABLE.id,
         amo.LOG.FORCE_ENABLE.id,
+        amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id,
+        amo.LOG.CLEAR_ADMIN_REVIEW_THEME.id,
     )
     important_changes_log = ActivityLog.objects.filter(
         action__in=(user_changes_actions + admin_changes_actions),
