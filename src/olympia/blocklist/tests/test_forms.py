@@ -198,14 +198,10 @@ class TestBlocklistSubmissionForm(TestCase):
         assert form.initial['update_reason_value'] is False  # checkbox defaults false
 
     def test_existing_reason_and_url_values(self):
-        block_admin = BlocklistSubmissionAdmin(
-            model=BlocklistSubmission, admin_site=admin_site
-        )
-        request = RequestFactory().get('/')
         # block metadata shouldn't make a difference
         self.existing_block_partial.update(reason='partial reason')
 
-        Form = block_admin.get_form(request=request)
+        Form = self.get_form()
         submission = BlocklistSubmission.objects.create(
             input_guids=f'{self.new_addon.guid}\n'
             f'{self.existing_block_full.guid}\n'
