@@ -298,20 +298,21 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     Nginx converts X-Request-Via-CDN and X-Forwarded-For to
     HTTP_X_REQUEST_VIA_CDN and HTTP_X_FORWARDED_FOR, respectively.
 
-    CloudFront always make make origin requests with a X-Forwarded-For header
+    CloudFront always makes origin requests with a X-Forwarded-For header
     set to "Client IP, CDN IP", so the client IP will be second to last for a
     CDN request.
 
-    On top of that, on AWS, the classic ELB we're using does not make any
-    alterations to X-Forwarded-For but on GCP, GKE Ingress appends its own IP,
-    so the client IP would move from second to last to third to last in the CDN
-    case
+    On AWS, the classic ELB we're using does not make any alterations to
+    X-Forwarded-For.
+
+    On GCP, GKE Ingress appends its own IP to that header, resulting
+    in a value of "Client IP, CDN IP, GKE Ingress IP", so the client IP will be
+    third to last.
 
     If the request didn't come from the CDN and is a direct origin request, on
-    AWS the client IP will be in last position in HTTP_X_FORWARDED_FOR but in
-    this case nginx already sets REMOTE_ADDR so we don't need to use it. On GCP
-    though, that won't be true and we'll need to extract it from the second to
-    last position in HTTP_X_FORWARDED_FOR.
+    AWS we can use REMOTE_ADDR, but on GCP we'd get the GKE Ingress IP, and the
+    X-Forwarded-For value will be "Client IP, GKE Ingress IP", so the client IP
+    will be second to last.
     """
 
     def is_request_from_cdn(self, request):
