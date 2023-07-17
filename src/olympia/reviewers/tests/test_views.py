@@ -3264,19 +3264,6 @@ class TestReview(ReviewBase):
         self.addon.delete()
         self.test_admin_block_actions()
 
-    def test_unflag_theme_option_forflagged_as_admin(self):
-        self.login_as_admin()
-        AddonReviewerFlags.objects.create(
-            addon=self.addon,
-            needs_admin_theme_review=True,
-        )
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#clear_admin_code_review').length == 0
-        assert doc('#clear_admin_content_review').length == 0
-        assert doc('#clear_admin_theme_review').length == 1
-
     def test_disable_auto_approval_as_admin(self):
         self.login_as_admin()
         response = self.client.get(self.url)
@@ -5076,7 +5063,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
-            'super',
+            'request_admin_review',
             'comment',
         ]
         assert [
@@ -5093,7 +5080,7 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
-            'super',
+            'request_admin_review',
             'comment',
         ]
         # we don't show files, reasons, and tested with for any static theme actions
@@ -6449,7 +6436,6 @@ class TestAddonReviewerViewSet(TestCase):
             'auto_approval_disabled_until_next_approval_unlisted': True,
             'auto_approval_delayed_until': None,
             'auto_approval_delayed_until_unlisted': None,
-            'needs_admin_theme_review': True,
         }
         response = self.client.patch(self.flags_url, data)
         assert response.status_code == 200
@@ -6463,7 +6449,6 @@ class TestAddonReviewerViewSet(TestCase):
         )
         assert reviewer_flags.auto_approval_delayed_until is None
         assert reviewer_flags.auto_approval_delayed_until_unlisted is None
-        assert reviewer_flags.needs_admin_theme_review is True
 
     def test_deny_resubmission(self):
         self.grant_permission(self.user, 'Reviews:Admin')

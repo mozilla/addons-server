@@ -799,7 +799,7 @@ class ReviewHelper:
             'details': ('Clear needs admin review flag on the add-on.'),
             'minimal': True,
             'comments': False,
-            'available': is_appropriate_admin_reviewer,
+            'available': is_appropriate_admin_reviewer and is_static_theme,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -1144,7 +1144,7 @@ class ReviewBase:
             log.info(f'{amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def clear_admin_review(self):
-        if self.addon_type == amo.ADDON_STATICTHEME:
+        if self.addon.type == amo.ADDON_STATICTHEME:
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon, defaults={'needs_admin_theme_review': False}
             )

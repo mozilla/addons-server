@@ -393,7 +393,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
-            'super',
+            'request_admin_review',
             'comment',
         ]
         assert (
@@ -1939,11 +1939,28 @@ class TestReviewHelper(TestReviewHelperBase):
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        self.helper.handler.process_super_review()
+        self.helper.handler.request_admin_review()
 
         assert self.addon.needs_admin_theme_review
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id) == 1
         assert getattr(amo.LOG.REQUEST_ADMIN_REVIEW_THEME, 'sanitize', '')
+
+    def test_clear_admin_review(self):
+        self.setup_data(
+            amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
+            type=amo.ADDON_STATICTHEME,
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon, needs_admin_theme_review=True
+        )
+        AutoApprovalSummary.objects.create(
+            version=self.addon.current_version, verdict=amo.AUTO_APPROVED
+        )
+        self.helper.handler.clear_admin_review()
+
+        assert not self.addon.reviewerflags.reload().needs_admin_theme_review
+        assert self.check_log_count(amo.LOG.CLEAR_ADMIN_REVIEW_THEME.id) == 1
 
     def test_operating_system_present(self):
         self.setup_data(amo.STATUS_APPROVED)
