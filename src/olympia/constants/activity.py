@@ -943,6 +943,16 @@ class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
     short = _('Version Unblocked')
 
 
+class CLEAR_ADMIN_REVIEW_THEME(_LOG):
+    id = 181
+    format = _('{addon} {version} admin add-on-review cleared.')
+    short = _('Admin add-on-review cleared')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

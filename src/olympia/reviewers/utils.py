@@ -781,8 +781,8 @@ class ReviewHelper:
             'allows_reasons': not is_static_theme,
             'requires_reasons': False,
         }
-        actions['super'] = {
-            'method': self.handler.process_super_review,
+        actions['request_admin_review'] = {
+            'method': self.handler.request_admin_review,
             'label': 'Request review from admin',
             'details': (
                 'If you have concerns about this add-on that '
@@ -792,6 +792,14 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': (self.version is not None and is_reviewer and is_static_theme),
+        }
+        actions['clear_admin_review'] = {
+            'method': self.handler.clear_admin_review,
+            'label': 'Clear admin review',
+            'details': ('Clear needs admin review flag on the add-on.'),
+            'minimal': True,
+            'comments': False,
+            'available': is_appropriate_admin_reviewer,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -1126,16 +1134,22 @@ class ReviewBase:
         self.log_sandbox_message()
         log.info('Sending email for %s' % (self.addon))
 
-    def process_super_review(self):
+    def request_admin_review(self):
         """Mark an add-on as needing admin theme review."""
-        addon_type = self.addon.type
-
-        if addon_type == amo.ADDON_STATICTHEME:
+        if self.addon.type == amo.ADDON_STATICTHEME:
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon, defaults={'needs_admin_theme_review': True}
             )
             self.log_action(amo.LOG.REQUEST_ADMIN_REVIEW_THEME)
             log.info(f'{amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short} for {self.addon}')
+
+    def clear_admin_review(self):
+        if self.addon_type == amo.ADDON_STATICTHEME:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_theme_review': False}
+            )
+            self.log_action(amo.LOG.CLEAR_ADMIN_REVIEW_THEME)
+            log.info(f'{amo.LOG.CLEAR_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def approve_content(self):
         """Approve content of an add-on."""
