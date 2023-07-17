@@ -46,7 +46,6 @@ class AddonReviewerFlagsSerializer(AMOModelSerializer):
             'auto_approval_disabled_unlisted',
             'auto_approval_disabled_until_next_approval',
             'auto_approval_disabled_until_next_approval_unlisted',
-            'needs_admin_theme_review',
         )
 
     def update(self, instance, validated_data):
