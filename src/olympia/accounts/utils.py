@@ -92,6 +92,7 @@ def redirect_for_login_with_two_factor_authentication(
         config = settings.FXA_CONFIG['default']
     if next_path is None:
         next_path = path_with_query(request)
+    request.session.setdefault('fxa_state', generate_fxa_state())
     request.session['enforce_two_factor_authentication'] = True
     url = fxa_login_url(
         config=config,
