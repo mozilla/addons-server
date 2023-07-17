@@ -170,11 +170,17 @@ class TestReviewForm(TestCase):
         self.inactive_reason = ReviewActionReason.objects.create(
             name='b inactive reason',
             is_active=False,
+            canned_response='Canned response for B',
         )
         self.reason_c = ReviewActionReason.objects.create(
             name='c reason',
             is_active=True,
             canned_response='Canned response for C',
+        )
+        self.empty_reason = ReviewActionReason.objects.create(
+            name='d reason',
+            is_active=True,
+            canned_response='',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
@@ -194,16 +200,19 @@ class TestReviewForm(TestCase):
             name='A reason for all add-on types',
             is_active=True,
             addon_type=amo.ADDON_ANY,
+            canned_response='all',
         )
         self.reason_extension = ReviewActionReason.objects.create(
             name='An extension only reason',
             is_active=True,
             addon_type=amo.ADDON_EXTENSION,
+            canned_response='extension',
         )
         self.reason_theme = ReviewActionReason.objects.create(
             name='A theme only reason',
             is_active=True,
             addon_type=amo.ADDON_STATICTHEME,
+            canned_response='theme',
         )
         form = self.get_form()
         choices = form.fields['reasons'].choices
@@ -298,6 +307,7 @@ class TestReviewForm(TestCase):
                     ReviewActionReason.objects.create(
                         name='reason 1',
                         is_active=True,
+                        canned_response='reason 1',
                     )
                 ],
             }
@@ -319,6 +329,7 @@ class TestReviewForm(TestCase):
                     ReviewActionReason.objects.create(
                         name='reason 1',
                         is_active=True,
+                        canned_response='reason 1',
                     )
                 ],
             }
@@ -665,6 +676,7 @@ class TestReviewForm(TestCase):
                     ReviewActionReason.objects.create(
                         name='reason 1',
                         is_active=True,
+                        canned_response='reason 1',
                     )
                 ],
             }

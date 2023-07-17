@@ -140,7 +140,8 @@ except ImportError:
     import warnings
 
     warnings.warn(
-        'Could not import local_settings module. {}'.format(traceback.format_exc())
+        'Could not import local_settings module. {}'.format(traceback.format_exc()),
+        stacklevel=1,
     )
 
 SITEMAP_DEBUG_AVAILABLE = True

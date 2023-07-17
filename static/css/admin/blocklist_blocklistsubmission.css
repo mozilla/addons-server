@@ -48,6 +48,7 @@ form ul.guid_list .addon-name {
 }
 
 #id_reason:disabled,
+#id_canned_reasons:disabled,
 #id_url:disabled {
     background-color:#eeeeee;
 }

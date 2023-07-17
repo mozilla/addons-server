@@ -2492,7 +2492,9 @@ class TestReview(ReviewBase):
         assert ActivityLog.objects.filter(action=comment_version.id).count() == 1
 
     def test_reviewer_reply(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         response = self.client.post(
             self.url,
             {'action': 'reply', 'comments': 'hello sailor', 'reasons': [reason.id]},
@@ -3610,7 +3612,9 @@ class TestReview(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def review_version(self, version, url, mock_sign):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         if version.channel == amo.CHANNEL_LISTED:
             version.file.update(status=amo.STATUS_AWAITING_REVIEW)
             action = 'public'
@@ -4003,7 +4007,9 @@ class TestReview(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_recommended_addon(self, mock_sign_file):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.make_addon_promoted(self.addon, RECOMMENDED)
@@ -4025,7 +4031,9 @@ class TestReview(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_addon_for_unlisted_pre_review_promoted_group(self, mock_sign_file):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NULL)
         self.make_addon_promoted(self.addon, NOTABLE)
@@ -4145,7 +4153,9 @@ class TestReview(ReviewBase):
     def test_admin_can_review_statictheme_if_admin_theme_review_flag_set(
         self, mock_sign_file
     ):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME, status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
@@ -4191,7 +4201,9 @@ class TestReview(ReviewBase):
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_approve_multiple_versions(self, sign_file_mock):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         old_version = self.version
         old_version.update(channel=amo.CHANNEL_UNLISTED)
         NeedsHumanReview.objects.create(version=old_version)
@@ -4267,7 +4279,9 @@ class TestReview(ReviewBase):
         )
 
     def test_reject_multiple_versions(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         old_version = self.version
         NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -4296,7 +4310,9 @@ class TestReview(ReviewBase):
             assert not version.pending_rejection
 
     def test_reject_multiple_versions_with_no_delay(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         old_version = self.version
         NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -4329,7 +4345,9 @@ class TestReview(ReviewBase):
             assert not version.pending_rejection
 
     def test_reject_multiple_versions_with_delay(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         old_version = self.version
         NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
@@ -5359,7 +5377,9 @@ class TestReview(ReviewBase):
         )
 
     def test_redirect_after_review_unlisted(self):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
@@ -5534,7 +5554,9 @@ class TestReviewPending(ReviewBase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_pending_to_public(self, mock_sign):
-        reason = ReviewActionReason.objects.create(name='reason 1', is_active=True)
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
         assert self.version.file.status == amo.STATUS_AWAITING_REVIEW
 
         response = self.client.post(
