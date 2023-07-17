@@ -298,6 +298,11 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     Nginx converts X-Request-Via-CDN and X-Forwarded-For to
     HTTP_X_REQUEST_VIA_CDN and HTTP_X_FORWARDED_FOR, respectively.
 
+    The X-Forwarded-For header is potentially user input. When intermediary
+    servers in the flow described above add their own IP to it, they are always
+    appending to the list, so we can only trust specific positions starting
+    from the right, anything else cannot be trusted.
+
     CloudFront always makes origin requests with a X-Forwarded-For header
     set to "Client IP, CDN IP", so the client IP will be second to last for a
     CDN request.
