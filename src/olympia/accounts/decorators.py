@@ -1,6 +1,5 @@
 import functools
 
-
 import olympia.core.logger
 from olympia.accounts.utils import redirect_for_login_with_two_factor_authentication
 
