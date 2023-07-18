@@ -93,9 +93,9 @@ def redirect_for_login(request, *, config=None, next_path=None):
     # page they were on.
     request.session['enforce_2fa'] = False
     url = fxa_login_url(
-        config=get_fxa_config(request),
+        config=config,
         state=request.session['fxa_state'],
-        next_path=path_with_query(request),
+        next_path=next_path,
     )
     return HttpResponseRedirect(url)
 
