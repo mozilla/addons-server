@@ -840,7 +840,7 @@ class TestAPIKeyPage(TestCase):
     def setUp(self):
         super().setUp()
         self.url = reverse('devhub.api_key')
-        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
+        self.client.force_login_with_2fa(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
 
