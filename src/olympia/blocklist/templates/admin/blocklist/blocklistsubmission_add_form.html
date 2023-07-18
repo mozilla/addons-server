@@ -56,7 +56,7 @@
     <h2>{{ fieldsets.2.0 }}</h2>
     <div class="form-row field-blocks-to-add">
       <div>
-        {% include 'admin/blocklist/includes/enhanced_blocks.html' with form=adminform.form %}
+        {{ adminform.form.changed_version_ids }}
       </div>
       {{ adminform.form.changed_version_ids.errors }}
     </div>

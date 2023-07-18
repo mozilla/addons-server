@@ -67,6 +67,29 @@ class CannedResponseWidget(forms.widgets.CheckboxSelectMultiple):
         return option
 
 
+class BlocksWidget(forms.widgets.SelectMultiple):
+    """Custom widget that renders a template snippet with all the guids and versions,
+    rather than just checkboxes for the valid choices"""
+
+    template_name = 'admin/blocklist/widgets/blocks.html'
+
+    def optgroups(self, name, value, attrs=None):
+        return []
+
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        return {
+            **context,
+            'widget': {
+                **context.get('widget', {}),
+                'choices': self.choices,
+                'value': value,
+            },
+            'blocks': self.blocks,
+            'total_adu': sum(block.current_adu for block in self.blocks),
+        }
+
+
 class BlocklistSubmissionForm(AMOModelForm):
     delay_days = forms.fields.IntegerField(
         widget=NumberInput,
@@ -78,10 +101,11 @@ class BlocklistSubmissionForm(AMOModelForm):
     delayed_until = forms.fields.DateTimeField(
         widget=HTML5DateTimeInput, required=False
     )
-    # Note we don't render the widget - we manually create the checkboxes in
-    # enhanced_blocks.html
     changed_version_ids = forms.fields.TypedMultipleChoiceField(
-        choices=(), coerce=int, required=False
+        choices=(),
+        coerce=int,
+        required=False,
+        widget=BlocksWidget,
     )
     update_reason_value = forms.fields.BooleanField(required=False, initial=True)
     update_url_value = forms.fields.BooleanField(required=False, initial=True)
@@ -94,54 +118,34 @@ class BlocklistSubmissionForm(AMOModelForm):
     )
 
     def __init__(self, data=None, *args, **kw):
-        instance = kw.get('instance')
-        self.is_add_change = self.get_value(
-            instance, data, kw, 'action', str(BlocklistSubmission.ACTION_ADDCHANGE)
-        ) == str(BlocklistSubmission.ACTION_ADDCHANGE)
-        input_guids = self.get_value(instance, data, kw, 'input_guids', '')
-
         super().__init__(data, *args, **kw)
 
+        self.is_add_change = str(BlocklistSubmission.ACTION_ADDCHANGE) == str(
+            self.get_value('action', BlocklistSubmission.ACTION_ADDCHANGE)
+        )
+        input_guids = self.get_value('input_guids', '')
         load_full_objects = len(splitlines(input_guids)) <= GUID_FULL_LOAD_LIMIT
+        is_published = self.instance.signoff_state == self.instance.SIGNOFF_PUBLISHED
 
-        if not instance:
+        if not self.instance.id:
             self.fields['input_guids'].widget = HiddenInput()
             self.fields['action'].widget = HiddenInput()
             self.fields['delayed_until'].widget = HiddenInput()
 
-        if (
-            not instance
-            or instance.signoff_state != BlocklistSubmission.SIGNOFF_PUBLISHED
-        ):
-            objects = BlocklistSubmission.process_input_guids(
-                input_guids,
-                load_full_objects=load_full_objects,
-                filter_existing=self.is_add_change,
-            )
-            objects['total_adu'] = sum(block.current_adu for block in objects['blocks'])
-            self.initial = self.initial or {}
+        objects = BlocklistSubmission.process_input_guids(
+            input_guids,
+            load_full_objects=load_full_objects,
+            filter_existing=self.is_add_change and not is_published,
+        )
+        for key, value in objects.items():
+            setattr(self, key, value)
 
-            if changed_version_ids_field := self.fields.get('changed_version_ids'):
-                self.setup_changed_version_ids_field(
-                    changed_version_ids_field,
-                    objects['blocks'],
-                    self.is_add_change,
-                    data,
-                )
-            for key, value in objects.items():
-                setattr(self, key, value)
-        elif instance:
-            self.blocks = instance.get_blocks_submitted(
-                load_full_objects_threshold=GUID_FULL_LOAD_LIMIT
-            )
-            if load_full_objects:
-                # if it's less than the limit we loaded full Block instances
-                # so preload the addon_versions so the review links are
-                # generated efficiently.
-                Block.preload_addon_versions(self.blocks)
+        if changed_version_ids_field := self.fields.get('changed_version_ids'):
+            self.setup_changed_version_ids_field(changed_version_ids_field, data)
+
         for field_name in ('reason', 'url'):
             update_field_name = f'update_{field_name}_value'
-            if not instance:
+            if not self.instance.id:
                 values = {
                     getattr(block, field_name, '') for block in self.blocks if block.id
                 }
@@ -153,41 +157,45 @@ class BlocklistSubmissionForm(AMOModelForm):
                     self.initial[update_field_name] = False
             else:
                 self.initial[update_field_name] = (
-                    getattr(instance, field_name) is not None
+                    getattr(self.instance, field_name) is not None
                 )
 
-    def setup_changed_version_ids_field(self, field, blocks, is_add_change, data):
-        field.choices = [
-            (
-                block.guid,
-                [
-                    (version.id, version.version)
-                    for version in block.addon_versions
-                    # ^ is XOR
-                    # - for add action it allows the version when it is NOT blocked
-                    # - for delete action it allows the version when it IS blocked
-                    if (version.is_blocked ^ is_add_change)
-                    and not version.blocklist_submission_id
-                ],
+    def setup_changed_version_ids_field(self, field, data):
+        if not self.instance.id:
+            field.choices = [
+                (
+                    block.guid,
+                    [
+                        (version.id, version.version)
+                        for version in block.addon_versions
+                        # ^ is XOR
+                        # - for add action it allows the version when it is NOT blocked
+                        # - for delete action it allows the version when it IS blocked
+                        if (version.is_blocked ^ self.is_add_change)
+                        and not version.blocklist_submission_id
+                    ],
+                )
+                for block in self.blocks
+            ]
+
+            field.widget.choices = [
+                v_id for _guid, opts in field.choices for (v_id, _text) in opts
+            ]
+            if not data and not self.initial.get('changed_version_ids'):
+                # preselect all the options
+                self.initial['changed_version_ids'] = field.widget.choices
+        else:
+            field.choices = list(
+                (v_id, v_id) for v_id in self.instance.changed_version_ids
             )
-            for block in blocks
-        ]
+            field.widget.choices = self.instance.changed_version_ids
+        field.widget.blocks = self.blocks
 
-        self.changed_version_ids_choices = [
-            v_id for _guid, opts in field.choices for (v_id, _text) in opts
-        ]
-        if not data and 'changed_version_ids' not in (self.initial or {}):
-            # preselect all the options
-            self.initial['changed_version_ids'] = self.changed_version_ids_choices
-
-    def get_value(self, instance, data, kw, field_name, default):
+    def get_value(self, field_name, default):
         return (
-            getattr(instance, field_name, default)
-            if instance
-            else (
-                (data or {}).get(field_name)
-                or (kw.get('initial') or {}).get(field_name, default)
-            )
+            getattr(self.instance, field_name, default)
+            if self.instance.id
+            else self.data.get(field_name, self.initial.get(field_name, default))
         )
 
     def clean_changed_version_ids(self):

@@ -283,35 +283,6 @@ class BlocklistSubmission(ModelBase):
                 changes[prop] = (getattr(block, prop), getattr(self, prop))
         return changes
 
-    def get_blocks_submitted(self, load_full_objects_threshold=1_000_000_000):
-        blocks_qs = self.block_set.all().order_by('id')
-        load_fakes = blocks_qs.count() > load_full_objects_threshold
-        if load_fakes:
-            blocks = list(blocks_qs.values_list('id', 'guid', named=True))
-            blocked_versions = list(
-                BlockVersion.objects.filter(
-                    block__in=(b.id for b in blocks)
-                ).values_list('block_id', 'version__version')
-            )
-        if load_fakes:
-            # If we'd be returning too many Block objects, fake them with the
-            # minimum needed to display the link to the Block change page.
-            return [
-                self.FakeBlock(
-                    id=block.id,
-                    guid=block.guid,
-                    current_adu=None,
-                    addon_versions=[
-                        self.FakeBlockAddonVersion(None, bv.version, True, 0)
-                        for bv in blocked_versions
-                        if bv.block_id == block.id
-                    ],
-                )
-                for block in blocks
-            ]
-        else:
-            return blocks_qs.prefetch_related('blockversion_set')
-
     def can_user_signoff(self, signoff_user):
         require_different_users = not settings.DEBUG
         different_users = (

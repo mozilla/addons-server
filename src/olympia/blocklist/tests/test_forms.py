@@ -170,6 +170,71 @@ class TestBlocklistSubmissionForm(TestCase):
             ]
         }
 
+    def test_changed_version_ids_choices_existing_submission(self):
+        Form = self.get_form()
+
+        # When the instance exists the choices are limited to the existing versions
+        # We don't bother creating proper labels because they aren't rendered anyway
+        choices = [
+            (self.new_addon.current_version.id, self.new_addon.current_version.id),
+            (
+                self.partial_existing_addon_v_notblocked.id,
+                self.partial_existing_addon_v_notblocked.id,
+            ),
+        ]
+        submission = BlocklistSubmission.objects.create(
+            input_guids=f'{self.new_addon.guid}\n{self.existing_block_partial.guid}',
+        )
+        for action in BlocklistSubmission.ACTIONS:
+            # they're the same for each of the actions
+            submission.update(
+                action=action,
+                changed_version_ids=[
+                    self.new_addon.current_version.id,
+                    self.partial_existing_addon_v_notblocked.id,
+                ],
+            )
+            form = Form(instance=submission)
+
+            assert form.fields['changed_version_ids'].choices == choices
+
+            submission.update(changed_version_ids=[self.new_addon.current_version.id])
+            form = Form(instance=submission)
+            assert form.fields['changed_version_ids'].choices == [choices[0]]
+            assert choices[0][0] == self.new_addon.current_version.id
+
+    def test_changed_version_ids_widget(self):
+        data = {
+            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}\n'
+            'invalid@guid',
+            'changed_version_ids': [self.new_addon.current_version.id],
+        }
+        form = self.get_form()(data=data)
+        field = form.fields['changed_version_ids']
+        value = data['changed_version_ids']
+        name = 'name'
+        attrs = {'some_attr': 'some_attr_value'}
+        flattened_choices = [
+            v_id for _guid, opts in field.choices for (v_id, _text) in opts
+        ]
+        assert field.widget.get_context(name, value, attrs) == {
+            'widget': {
+                'attrs': {'multiple': True, **attrs},
+                'choices': flattened_choices,
+                'is_hidden': False,
+                'name': name,
+                'optgroups': [],
+                'required': False,
+                'template_name': 'admin/blocklist/widgets/blocks.html',
+                'value': value,
+            },
+            'blocks': form.blocks,
+            'total_adu': sum(block.current_adu for block in form.blocks),
+        }
+
     def test_initial_reason_and_url_values(self):
         Form = self.get_form()
         data = {

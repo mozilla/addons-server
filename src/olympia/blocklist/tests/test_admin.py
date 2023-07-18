@@ -218,7 +218,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             + f'&v={ver_block.id}'
         )
         # all the `v` values are passed to initial
-        assert response.context['form'].initial == {
+        assert response.context['adminform'].form.initial == {
             'input_guids': addon.guid,
             'changed_version_ids': [
                 ver.id,
@@ -228,7 +228,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             ],
         }
         # but the form logic filters out the invalid choices, even when in `initial`
-        assert response.context['form'].fields['changed_version_ids'].choices == [
+        assert response.context['adminform'].form.fields[
+            'changed_version_ids'
+        ].choices == [
             (
                 addon.guid,
                 [
@@ -318,13 +320,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
             reverse(
                 'admin:blocklist_blocklistsubmission_change', args=(submission.id,)
             ),
-            {'guids': f'{addon.guid}\n {ver_block.addon.guid}\n'},
         )
         doc = pq(response.content)
         checkboxes = doc('input[name=changed_version_ids]')
         assert len(checkboxes) == 2
-        check_checkbox(checkboxes[0], ver_deleted, True, True)
-        check_checkbox(checkboxes[1], ver_other, True, True)
+        check_checkbox(checkboxes[0], ver_deleted, True, False)
+        check_checkbox(checkboxes[1], ver_other, True, False)
 
     def test_add_single(self):
         user = user_factory(email='someone@mozilla.com')
@@ -1074,10 +1075,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         addon = addon_factory(
             guid='guid@', name='Danger Danger', average_daily_users=threshold + 1
         )
+        first_version = addon.current_version
+        second_version = version_factory(addon=addon)
         mbs = BlocklistSubmission.objects.create(
             input_guids='guid@\ninvalid@\nsecond@invalid',
             updated_by=user_factory(),
-            changed_version_ids=[addon.current_version.id],
+            changed_version_ids=[first_version.id, second_version.id],
         )
         assert mbs.to_block == [
             {
@@ -1108,7 +1111,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             multi_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
-                'changed_version_ids': [],  # should be ignored
+                'changed_version_ids': [first_version.id],
                 'url': 'new.url',
                 # disable_addon defaults to True, so omitting it is changing to False
                 'reason': 'a new reason thats longer than 40 charactors',
@@ -1123,7 +1126,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
 
         # the read-only values above weren't changed.
         assert mbs.input_guids == 'guid@\ninvalid@\nsecond@invalid'
-        assert mbs.changed_version_ids != []
+        assert mbs.changed_version_ids == [first_version.id]
         # but the other details were
         assert mbs.url == 'new.url'
         assert mbs.reason == 'a new reason thats longer than 40 charactors'
@@ -1145,6 +1148,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             {
                 'changed': {
                     'fields': [
+                        'changed_version_ids',
                         'disable addon',
                         'update_url_value',
                         'url',
@@ -1428,7 +1432,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
     def test_cannot_approve_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         mbs = BlocklistSubmission.objects.create(
-            input_guids='guid@\ninvalid@', updated_by=user_factory()
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory(),
+            changed_version_ids=[addon.current_version.id],
         )
         assert mbs.to_block == [
             {
@@ -1448,7 +1454,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             multi_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
-                'changed_version_ids': [],  # should be ignored
+                'changed_version_ids': [addon.current_version.id],
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
                 'update_url_value': True,
@@ -1469,7 +1475,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
     def test_can_only_reject_your_own_with_only_block_create_permission(self):
         addon = addon_factory(guid='guid@', name='Danger Danger')
         submission = BlocklistSubmission.objects.create(
-            input_guids='guid@\ninvalid@', updated_by=user_factory()
+            input_guids='guid@\ninvalid@',
+            updated_by=user_factory(),
+            changed_version_ids=[addon.current_version.id],
         )
         assert submission.to_block == [
             {
@@ -1489,7 +1497,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             change_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
-                'changed_version_ids': [],  # should be ignored
+                'changed_version_ids': [addon.current_version.id],
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
                 'update_url_value': True,
@@ -1522,7 +1530,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             change_url,
             {
                 'input_guids': 'guid2@\nfoo@baa',  # should be ignored
-                'changed_version_ids': [],  # should be ignored
+                'changed_version_ids': [addon.current_version.id],
                 'url': 'new.url',  # could be updated with this permission
                 'reason': 'a reason',  # could be updated with this permission
                 'update_url_value': True,
@@ -1572,11 +1580,10 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert response.status_code == 200
         assert b'guid@<br>invalid@<br>second@invalid' in response.content
         doc = pq(response.content)
-        review_link = doc('div.field-blocks div div a')[0]
+        (review_link, guid_link) = doc('div.field-ro_changed_version_ids div div a')
         assert review_link.attrib['href'] == absolutify(
             reverse('reviewers.review', args=(addon.pk,))
         )
-        guid_link = doc('div.field-blocks div div a')[1]
         assert guid_link.attrib['href'] == reverse(
             'admin:blocklist_block_change', args=(block.pk,)
         )
@@ -1584,6 +1591,19 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert str(block.average_daily_users_snapshot) in (
             response.content.decode('utf-8')
         )
+        assert b'[Block Deleted]' not in response.content
+
+        # Now check what the page looks like if the guid is subsequently unblocked
+        block.delete()
+        response = self.client.get(multi_view_url, follow=True)
+        assert response.status_code == 200
+        assert b'guid@<br>invalid@<br>second@invalid' in response.content
+        doc = pq(response.content)
+        (review_link,) = doc('div.field-ro_changed_version_ids div div a')
+        assert review_link.attrib['href'] == absolutify(
+            reverse('reviewers.review', args=(addon.pk,))
+        )
+        assert b'[Block Deleted]' in response.content
 
     def test_list_filters(self):
         now = datetime.now()
@@ -1901,23 +1921,31 @@ class TestBlocklistSubmissionAdmin(TestCase):
         )
 
         # First a change to a date in the future
+        data = {
+            'delayed_until': now + timedelta(days=5),
+            '_save': 'Update',
+            'changed_version_ids': [addon.current_version.id],
+        }
         response = self.client.post(
             multi_url,
-            {'delayed_until': now + timedelta(days=5), '_save': 'Update'},
+            data,
             follow=True,
         )
         assert response.status_code == 200
         mbs = mbs.reload()
         # new delayed date
-        assert mbs.delayed_until == now + timedelta(days=5)
+        assert mbs.delayed_until == now + timedelta(days=5), response.context[
+            'adminform'
+        ].form.errors
         # The blocklistsubmission wasn't approved or rejected though
         assert mbs.signoff_state == BlocklistSubmission.SIGNOFF_PENDING
         assert Block.objects.count() == 0
 
         # Then to a date that is already past
+        data['delayed_until'] = now
         response = self.client.post(
             multi_url,
-            {'delayed_until': now, '_save': 'Update'},
+            data,
             follow=True,
         )
         assert response.status_code == 200
@@ -1937,7 +1965,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert mbs.all_adu_safe()
         response = self.client.post(
             multi_url,
-            {'delayed_until': now, '_save': 'Update'},
+            data,
             follow=True,
         )
         assert response.status_code == 200
