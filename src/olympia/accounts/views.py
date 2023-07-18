@@ -224,18 +224,16 @@ def with_user(f):
     @functools.wraps(f)
     @use_primary_db
     def inner(self, request):
-        # Pop these early: if we get an error, we want a new session without
-        # the old fxa state or 2FA enforcement active for future authentication
-        # attempts.
+        # If we get an error, we want a new session without the 2FA enforcement
+        # requirement active for future authentication attempts, so pop it.
         enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
-        fxa_state_session = request.session.pop('fxa_state', None)
+        fxa_state_session = request.session.get('fxa_state')
 
         fxa_config = get_fxa_config(request)
         if request.method == 'GET':
             data = request.query_params
         else:
             data = request.data
-
         state_parts = data.get('state', '').split(':', 1)
         state = state_parts[0]
         next_path = parse_next_path(state_parts, request)
@@ -335,7 +333,7 @@ def with_user(f):
 class LoginStartView(APIView):
     @method_decorator(never_cache)
     def get(self, request):
-        return redirect_for_login(request, next_path=request.GET.get('to'))
+        return redirect_for_login(request, next_path=request.GET.get('to', ''))
 
 
 class AuthenticateView(APIView):
