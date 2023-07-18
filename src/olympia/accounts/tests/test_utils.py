@@ -1,6 +1,8 @@
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from urllib.parse import parse_qs, urlparse
+from unittest import mock
 
+from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
@@ -103,6 +105,102 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         'acr_values': ['AAL2'],
         'client_id': ['foo'],
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
+        'prompt': ['none'],
+        'scope': ['profile openid'],
+        'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
+    }
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
+def test_fxa_login_url_requiring_two_factor_auth_passing_nothing():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path,
+        enforce_2fa=True,
+    )
+
+    url = urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = parse_qs(url.query)
+    next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
+    assert query == {
+        'acr_values': ['AAL2'],
+        'client_id': ['foo'],
+        'scope': ['profile openid'],
+        'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
+    }
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
+def test_fxa_login_url_requiring_two_factor_auth_passing_nothing_with_anonymous_user():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+    request.user = AnonymousUser()
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path,
+        enforce_2fa=True,
+        request=request,
+    )
+
+    url = urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = parse_qs(url.query)
+    next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
+    assert query == {
+        'acr_values': ['AAL2'],
+        'client_id': ['foo'],
+        'scope': ['profile openid'],
+        'state': [f'myfxastate:{force_str(next_path)}'],
+        'access_type': ['offline'],
+    }
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+@override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
+def test_fxa_login_url_requiring_two_factor_auth_passing_login_hint():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+    request.user = mock.Mock(is_authenticated=True, email='test@example.com')
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path=path,
+        enforce_2fa=True,
+        request=request,
+    )
+
+    url = urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path
+    )
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = parse_qs(url.query)
+    next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
+    assert query == {
+        'acr_values': ['AAL2'],
+        'client_id': ['foo'],
+        'login_hint': ['test@example.com'],
         'prompt': ['none'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
