@@ -3,13 +3,12 @@ import os
 from base64 import urlsafe_b64encode
 from urllib.parse import urlencode
 
-import olympia.core.logger
-
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_str
 
+import olympia.core.logger
 from olympia.amo.utils import is_safe_url, use_fake_fxa
 
 
@@ -70,13 +69,17 @@ def generate_fxa_state():
     return force_str(binascii.hexlify(os.urandom(32)))
 
 
-def get_fxa_config(request):
+def get_fxa_config_name(request):
     config_name = request.GET.get('config')
     if config_name not in settings.FXA_CONFIG:
         if config_name:
             log.info(f'Using default FxA config instead of {config_name}')
         config_name = settings.DEFAULT_FXA_CONFIG_NAME
-    return settings.FXA_CONFIG[config_name]
+    return config_name
+
+
+def get_fxa_config(request):
+    return settings.FXA_CONFIG[get_fxa_config_name(request)]
 
 
 def redirect_for_login(request, *, config=None, next_path=None):

@@ -75,6 +75,7 @@ from .serializers import (
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 from .utils import (
     get_fxa_config,
+    get_fxa_config_name,
     redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
@@ -227,7 +228,7 @@ def with_user(f):
         # the old fxa state or 2FA enforcement active for future authentication
         # attempts.
         enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
-        fxa_state_session = request.session.pop('fxa_state')
+        fxa_state_session = request.session.pop('fxa_state', None)
 
         fxa_config = get_fxa_config(request)
         if request.method == 'GET':
@@ -268,7 +269,7 @@ def with_user(f):
                 identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
                 )
-                token_data['config_name'] = self.get_config_name(request)
+                token_data['config_name'] = get_fxa_config_name(request)
                 id_token = token_data.get('id_token')
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
