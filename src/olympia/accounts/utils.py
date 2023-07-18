@@ -83,11 +83,11 @@ def get_fxa_config(request):
 
 
 def redirect_for_login(request, *, config=None, next_path=None):
-    request.session.setdefault('fxa_state', generate_fxa_state())
     if config is None:
         config = get_fxa_config(request)
     if next_path is None:
         next_path = path_with_query(request)
+    request.session.setdefault('fxa_state', generate_fxa_state())
     # Previous page in session might have required 2FA, but this page doesn't.
     # We override it in case the user didn't complete the flow for the previous
     # page they were on.
