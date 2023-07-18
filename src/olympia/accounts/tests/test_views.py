@@ -88,7 +88,6 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         with mock.patch(
             'olympia.accounts.utils.generate_fxa_state', lambda: 'arandomstring'
         ):
-            # FIXME: I'm getting a next I shouldn't have, right ?
             response = self.client.get(self.url)
         assert response.status_code == 302
         assert (
