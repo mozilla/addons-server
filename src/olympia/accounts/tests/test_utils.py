@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 
 from olympia.accounts import utils
+from olympia.amo.tests import TestCase
 
 
 FXA_CONFIG = {
@@ -157,3 +158,28 @@ def test_fxa_login_url_when_faking_fxa_auth():
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
     }
+
+
+@override_settings(
+    FXA_CONFIG={
+        'foo': {'FOO': 123},
+        'bar': {'BAR': 456},
+        'baz': {'BAZ': 789},
+    },
+    DEFAULT_FXA_CONFIG_NAME='baz',
+)
+class TestGetFxaConfig(TestCase):
+    def test_no_config(self):
+        request = RequestFactory().get('/login')
+        config = utils.get_fxa_config(request)
+        assert config == {'BAZ': 789}
+
+    def test_config_alternate(self):
+        request = RequestFactory().get('/login?config=bar')
+        config = utils.get_fxa_config(request)
+        assert config == {'BAR': 456}
+
+    def test_config_is_default(self):
+        request = RequestFactory().get('/login?config=baz')
+        config = utils.get_fxa_config(request)
+        assert config == {'BAZ': 789}

@@ -352,7 +352,6 @@ class TestTokenValidMiddleware(TestCase):
             config=settings.FXA_CONFIG['default'],
             state=request.session['fxa_state'],
             next_path=path_with_query(request),
-            action='signin',
         )
 
     def test_anonymous_user(self):
