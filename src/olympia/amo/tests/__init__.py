@@ -393,7 +393,6 @@ def fxa_login_link(response=None, to=None, request=None):
         config=settings.FXA_CONFIG['default'],
         state=state,
         next_path=to,
-        action='signin',
     )
 
 

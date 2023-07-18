@@ -28,8 +28,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
-        action='signin',
-        force_two_factor=False,
+        enforce_2fa=False,
     )
 
     url = urlparse(raw_url)
@@ -40,7 +39,6 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
@@ -59,8 +57,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
-        action='signin',
-        force_two_factor=True,
+        enforce_2fa=True,
     )
 
     url = urlparse(raw_url)
@@ -72,7 +69,6 @@ def test_fxa_login_url_requiring_two_factor_auth():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
@@ -91,9 +87,8 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
-        action='signin',
-        force_two_factor=True,
-        id_token='YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=',
+        enforce_2fa=True,
+        id_token_hint='YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo=',
     )
 
     url = urlparse(raw_url)
@@ -105,7 +100,6 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
         'acr_values': ['AAL2'],
-        'action': ['signin'],
         'client_id': ['foo'],
         'id_token_hint': ['YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXo='],
         'prompt': ['none'],
@@ -123,7 +117,6 @@ def test_unicode_next_path():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=utils.path_with_query(request),
-        action='signin',
     )
     state = parse_qs(urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
@@ -139,7 +132,6 @@ def test_redirect_for_login():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path='/somewhere',
-        action='signin',
     )
 
 
@@ -152,7 +144,6 @@ def test_fxa_login_url_when_faking_fxa_auth():
         config=FXA_CONFIG['default'],
         state=request.session['fxa_state'],
         next_path=path,
-        action='signin',
     )
     url = urlparse(raw_url)
     assert url.scheme == ''
@@ -161,7 +152,6 @@ def test_fxa_login_url_when_faking_fxa_auth():
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
     assert query == {
-        'action': ['signin'],
         'client_id': ['foo'],
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
