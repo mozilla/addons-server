@@ -3,6 +3,8 @@ import os
 from base64 import urlsafe_b64encode
 from urllib.parse import urlencode
 
+import olympia.core.logger
+
 from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -11,11 +13,13 @@ from django.utils.encoding import force_str
 from olympia.amo.utils import is_safe_url, use_fake_fxa
 
 
+log = olympia.core.logger.getLogger('accounts')
+
+
 def fxa_login_url(
     config,
     state,
     next_path=None,
-    action=None,
     enforce_2fa=False,
     request=None,
     id_token_hint=None,
@@ -30,8 +34,6 @@ def fxa_login_url(
         'state': state,
         'access_type': 'offline',
     }
-    if action is not None:
-        query['action'] = action
     if enforce_2fa is True:
         # Specifying AAL2 will require the token to have an authentication
         # assurance level >= 2 which corresponds to requiring 2FA.
@@ -68,13 +70,29 @@ def generate_fxa_state():
     return force_str(binascii.hexlify(os.urandom(32)))
 
 
-def redirect_for_login(request):
+def get_fxa_config(request):
+    config_name = request.GET.get('config')
+    if config_name not in settings.FXA_CONFIG:
+        if config_name:
+            log.info(f'Using default FxA config instead of {config_name}')
+        config_name = settings.DEFAULT_FXA_CONFIG_NAME
+    return settings.FXA_CONFIG[config_name]
+
+
+def redirect_for_login(request, *, config=None, next_path=None):
     request.session.setdefault('fxa_state', generate_fxa_state())
+    if config is None:
+        config = get_fxa_config(request)
+    if next_path is None:
+        next_path = path_with_query(request)
+    # Previous page in session might have required 2FA, but this page doesn't.
+    # We override it in case the user didn't complete the flow for the previous
+    # page they were on.
+    request.session['enforce_2fa'] = False
     url = fxa_login_url(
-        config=settings.FXA_CONFIG['default'],
+        config=get_fxa_config(request),
         state=request.session['fxa_state'],
         next_path=path_with_query(request),
-        action='signin',
     )
     return HttpResponseRedirect(url)
 
@@ -83,7 +101,7 @@ def redirect_for_login_with_2fa_enforced(
     request, *, config=None, next_path=None, id_token_hint=None
 ):
     if config is None:
-        config = settings.FXA_CONFIG['default']
+        config = get_fxa_config(request)
     if next_path is None:
         next_path = path_with_query(request)
     request.session.setdefault('fxa_state', generate_fxa_state())
@@ -92,7 +110,6 @@ def redirect_for_login_with_2fa_enforced(
         config=config,
         state=request.session['fxa_state'],
         next_path=next_path,
-        action='signin',
         enforce_2fa=True,
         id_token_hint=id_token_hint,
     )

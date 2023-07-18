@@ -74,8 +74,8 @@ from .serializers import (
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
 from .utils import (
-    fxa_login_url,
-    generate_fxa_state,
+    get_fxa_config,
+    redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
 
@@ -229,7 +229,7 @@ def with_user(f):
         enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
         fxa_state_session = request.session.pop('fxa_state')
 
-        fxa_config = self.get_fxa_config(request)
+        fxa_config = get_fxa_config(request)
         if request.method == 'GET':
             data = request.query_params
         else:
@@ -331,35 +331,13 @@ def with_user(f):
     return inner
 
 
-class FxAConfigMixin:
-    def get_config_name(self, request):
-        config_name = request.GET.get('config')
-        if config_name not in settings.FXA_CONFIG:
-            if config_name:
-                log.info(f'Using default FxA config instead of {config_name}')
-            config_name = settings.DEFAULT_FXA_CONFIG_NAME
-        return config_name
-
-    def get_fxa_config(self, request):
-        return settings.FXA_CONFIG[self.get_config_name(request)]
-
-
-class LoginStartView(FxAConfigMixin, APIView):
+class LoginStartView(APIView):
     @method_decorator(never_cache)
     def get(self, request):
-        request.session.setdefault('fxa_state', generate_fxa_state())
-        return HttpResponseRedirect(
-            fxa_login_url(
-                config=self.get_fxa_config(request),
-                state=request.session['fxa_state'],
-                next_path=request.GET.get('to'),
-                action=request.GET.get('action', 'signin'),
-                request=request,
-            )
-        )
+        return redirect_for_login(request, next_path=request.GET.get('to'))
 
 
-class AuthenticateView(FxAConfigMixin, APIView):
+class AuthenticateView(APIView):
     authentication_classes = (SessionAuthentication,)
 
     @method_decorator(never_cache)
@@ -749,7 +727,7 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
         return Response(serializer.data)
 
 
-class FxaNotificationView(FxAConfigMixin, APIView):
+class FxaNotificationView(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -781,7 +759,7 @@ class FxaNotificationView(FxAConfigMixin, APIView):
         return cls.fxa_verifying_keys
 
     def get_jwt_payload(self, request):
-        client_id = self.get_fxa_config(request)['client_id']
+        client_id = get_fxa_config(request)['client_id']
         authenticated_jwt = None
 
         auth_header_split = request.headers.get('Authorization', '').split('Bearer ')
