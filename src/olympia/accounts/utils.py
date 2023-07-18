@@ -16,7 +16,7 @@ def fxa_login_url(
     state,
     next_path=None,
     action=None,
-    enforce_two_factor_authentication=False,
+    enforce_2fa=False,
     request=None,
     id_token_hint=None,
 ):
@@ -32,31 +32,25 @@ def fxa_login_url(
     }
     if action is not None:
         query['action'] = action
-    if enforce_two_factor_authentication is True:
+    if enforce_2fa is True:
         # Specifying AAL2 will require the token to have an authentication
         # assurance level >= 2 which corresponds to requiring 2FA.
         query['acr_values'] = 'AAL2'
-        # Requesting 'prompt=none' during authorization allows the user to not
-        # have to re-authenticate with FxA if they still have a valid session,
-        # in case they just went through FxA, then back to AMO only to find out
-        # we are requiring 2FA. To let FxA know who the user should be, we pass
-        # id_token_hint, which we have in this specific case.
-        # If we didn't just go through authentication, that means the user was
-        # alraedy logged in but we enforced 2FA at a later stage. We don't have
-        # id_token_hint, but we can pass login_hint instead.
-        # FIXME: this doesn't work, getting redirected to our callback with an
-        # unauthorized_client error from FxA. According to the docs usage of
-        # id_token_hint is always allowed but login_hint isn't, so we need to
-        # have our oauth client configs be explicitly allowed.
         # https://mozilla.github.io/ecosystem-platform/reference/oauth-details
         # #promptnone-support
-        # FIXME: this highlights the fact that we need to handle error cases
-        # and regenerate a new state to start from scratch - right now we're
-        # ignoring them, so the user can't recover. I'm not sure what's
-        # supposed to happen if the user goes to FxA with prompt=none and
-        # login_hint=email if they no longer have a valid FxA session (ideally
-        # FxA would handle that gracefully), but if an error is raised we'll
-        # need to handle it.
+        # Requesting 'prompt=none' during authorization allows the user to not
+        # have to re-authenticate with FxA if they still have a valid session.
+        # We have 2 use cases for this:
+        # - The user just logged in through FxA without 2FA, was redirected
+        #   back to AMO where we noticed they are a developer and are requiring
+        #   2FA for their account. We have id_token_hint in that case that we
+        #   pass down.
+        # - The user was already logged in but we enforced 2FA on a specific
+        #   view they tried to access. We don't have id_token_hint in that case
+        #   but our clients are explicitly allowed to pass login_hint instead
+        #   (See https://mozilla-hub.atlassian.net/browse/SVCSE-1358).
+        # In both cases, the user should then see the 2FA enrollment flow when
+        # they get redirected back to FxA.
         if id_token_hint:
             query['prompt'] = 'none'
             query['id_token_hint'] = id_token_hint
@@ -85,7 +79,7 @@ def redirect_for_login(request):
     return HttpResponseRedirect(url)
 
 
-def redirect_for_login_with_two_factor_authentication(
+def redirect_for_login_with_2fa_enforced(
     request, *, config=None, next_path=None, id_token_hint=None
 ):
     if config is None:
@@ -93,13 +87,13 @@ def redirect_for_login_with_two_factor_authentication(
     if next_path is None:
         next_path = path_with_query(request)
     request.session.setdefault('fxa_state', generate_fxa_state())
-    request.session['enforce_two_factor_authentication'] = True
+    request.session['enforce_2fa'] = True
     url = fxa_login_url(
         config=config,
         state=request.session['fxa_state'],
         next_path=next_path,
         action='signin',
-        enforce_two_factor_authentication=True,
+        enforce_2fa=True,
         id_token_hint=id_token_hint,
     )
     return HttpResponseRedirect(url)

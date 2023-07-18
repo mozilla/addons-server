@@ -76,7 +76,7 @@ from .tasks import clear_sessions_event, delete_user_event, primary_email_change
 from .utils import (
     fxa_login_url,
     generate_fxa_state,
-    redirect_for_login_with_two_factor_authentication,
+    redirect_for_login_with_2fa_enforced,
 )
 
 
@@ -180,7 +180,7 @@ def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info('Logging in user %s from FxA', user)
     login(request, user)
-    request.session['two_factor_authentication'] = identity.get(
+    request.session['has_two_factor_authentication'] = identity.get(
         'twoFactorAuthentication'
     )
     if token_data:
@@ -223,6 +223,12 @@ def with_user(f):
     @functools.wraps(f)
     @use_primary_db
     def inner(self, request):
+        # Pop these early: if we get an error, we want a new session without
+        # the old fxa state or 2FA enforcement active for future authentication
+        # attempts.
+        enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
+        fxa_state_session = request.session.pop('fxa_state')
+
         fxa_config = self.get_fxa_config(request)
         if request.method == 'GET':
             data = request.query_params
@@ -235,14 +241,11 @@ def with_user(f):
         if not data.get('code'):
             log.info('No code provided.')
             return safe_redirect(request, next_path, ERROR_NO_CODE)
-        elif (
-            not request.session.get('fxa_state')
-            or request.session['fxa_state'] != state
-        ):
+        elif not fxa_state_session or fxa_state_session != state:
             log.info(
-                'State mismatch. URL: {url} Session: {session}'.format(
-                    url=data.get('state'),
-                    session=request.session.get('fxa_state'),
+                'FxA Auth State mismatch: {state} Session: {fxa_state_session}'.format(
+                    state=data.get('state'),
+                    fxa_state_session=fxa_state_session,
                 )
             )
             return safe_redirect(request, next_path, ERROR_STATE_MISMATCH)
@@ -281,20 +284,20 @@ def with_user(f):
             # We can't use waffle.flag_is_active() wrapper, because
             # request.user isn't populated at this point (and we don't want
             # it to be).
-            flag = waffle.get_waffle_flag_model().get(
+            enforce_2fa_flag = waffle.get_waffle_flag_model().get(
                 '2fa-enforcement-for-developers-and-special-users'
             )
-            enforce_2fa_for_developers_and_special_users = flag.is_active(request) or (
-                flag.pk and flag.is_active_for_user(user)
+            enforce_2fa_flag_is_active = enforce_2fa_flag.is_active(request) or (
+                enforce_2fa_flag.pk and enforce_2fa_flag.is_active_for_user(user)
             )
             if (
                 user
                 and not identity.get('twoFactorAuthentication')
-                and enforce_2fa_for_developers_and_special_users
+                and enforce_2fa_flag_is_active
                 and (
                     user.is_addon_developer
                     or user.groups_list
-                    or request.session.pop('enforce_two_factor_authentication', False)
+                    or enforce_2fa_for_this_session
                 )
             ):
                 # https://github.com/mozilla/addons/issues/732
@@ -302,15 +305,15 @@ def with_user(f):
                 # The user is an add-on developer (with other types of add-ons
                 # than just themes) or part of any group (so they are special
                 # in some way, may be an admin or a reviewer), or trying to
-                # access a page restricted to users with 2FA, they have
+                # access a page restricted to users with 2FA and they have
                 # successfully logged in from FxA, but without a second factor.
                 # Immediately redirect them to start the FxA flow again, this
                 # time requesting 2FA to be present:
-                # they should be automatically logged in FxA with the existing
+                # They should be automatically logged in FxA with the existing
                 # id_token, and should be prompted to create the second factor
                 # before coming back to AMO.
                 log.info('Redirecting user %s to enforce 2FA', user)
-                return redirect_for_login_with_two_factor_authentication(
+                return redirect_for_login_with_2fa_enforced(
                     request,
                     config=fxa_config,
                     next_path=next_path,
