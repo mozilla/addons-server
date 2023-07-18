@@ -1245,8 +1245,8 @@ def version_stats(request, addon_id, addon):
     return data
 
 
-@login_required
 @two_factor_auth_required
+@login_required
 def submit_addon(request):
     return render_agreement(
         request=request,
@@ -1264,8 +1264,8 @@ def submit_theme(request):
     )
 
 
-@dev_required
 @two_factor_auth_required
+@dev_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
         request=request,
@@ -1304,8 +1304,8 @@ def _submit_distribution(request, addon, next_view):
     )
 
 
-@login_required
 @two_factor_auth_required
+@login_required
 def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
@@ -1319,8 +1319,8 @@ def submit_theme_distribution(request):
     return _submit_distribution(request, None, 'devhub.submit.theme.upload')
 
 
-@dev_required(submitting=True)
 @two_factor_auth_required
+@dev_required(submitting=True)
 def submit_version_distribution(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1509,8 +1509,8 @@ def _submit_upload(
     )
 
 
-@login_required
 @two_factor_auth_required
+@login_required
 def submit_addon_upload(request, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
@@ -1528,8 +1528,8 @@ def submit_theme_upload(request, channel):
     )
 
 
-@dev_required(submitting=True)
 @two_factor_auth_required
+@dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1538,8 +1538,8 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
-@dev_required(submitting=True)
 @two_factor_auth_required
+@dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1900,8 +1900,8 @@ def render_agreement(request, template, next_step, **extra_context):
         return response
 
 
-@login_required
 @two_factor_auth_required
+@login_required
 @transaction.atomic
 def api_key(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
