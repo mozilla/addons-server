@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-19 18:51+0000\n"
+"PO-Revision-Date: 2023-07-19 18:57+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3739,7 +3739,7 @@ msgstr "Elimine a formatação desnecessária e copie somente o texto simples."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr "Traduza uma página web inteira para seu idioma preferido — com o clique de um botão."
+msgstr "Traduza uma página web inteira para seu idioma preferido, com o clique de um botão."
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a web page in new tabs."
@@ -4857,13 +4857,13 @@ msgstr "Exportar"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Painel de estatísticas :: Extensões para o {1}"
+msgstr "{0} :: Painel de estatísticas :: Extensões para {1}"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr "{0} :: Painel de estatísticas"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Painel de estatísticas :: Extensões para o {0}"
+msgstr "Painel de estatísticas :: Extensões para {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
@@ -5047,7 +5047,7 @@ msgid "Focus Browser"
 msgstr "Navegador Focus"
 
 msgid "Desktop Browser"
-msgstr "Navegador para Desktop"
+msgstr "Navegador para computador"
 
 msgid "Beta, Nightly, Developer Edition"
 msgstr "Beta, Nightly, Developer Edition"
@@ -5080,7 +5080,7 @@ msgstr "(opcional)"
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr "Informações para o idioma: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
+msgstr "Traduzir para: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
@@ -5168,7 +5168,7 @@ msgid "my add-on's compatibility is upgraded successfully"
 msgstr "a compatibilidade da minha extensão foi atualizada com sucesso"
 
 msgid "someone writes a review of my add-on"
-msgstr "alguém escreveu uma análise para minha extensão"
+msgstr "alguém escreveu uma análise sobre minha extensão"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
 msgstr "fique atualizado com notícias e eventos relevantes a desenvolvedores de extensões (incluindo a newsletter about:addons)"
