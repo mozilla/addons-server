@@ -179,17 +179,18 @@ class BlocklistSubmissionForm(AMOModelForm):
                 for block in self.blocks
             ]
 
-            field.widget.choices = [
+            self.changed_version_ids_choices = [
                 v_id for _guid, opts in field.choices for (v_id, _text) in opts
             ]
             if not data and not self.initial.get('changed_version_ids'):
                 # preselect all the options
-                self.initial['changed_version_ids'] = field.widget.choices
+                self.initial['changed_version_ids'] = self.changed_version_ids_choices
         else:
             field.choices = list(
                 (v_id, v_id) for v_id in self.instance.changed_version_ids
             )
-            field.widget.choices = self.instance.changed_version_ids
+            self.changed_version_ids_choices = self.instance.changed_version_ids
+        field.widget.choices = self.changed_version_ids_choices
         field.widget.blocks = self.blocks
 
     def get_value(self, field_name, default):
