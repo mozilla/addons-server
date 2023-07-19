@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-19 15:23+0000\n"
+"PO-Revision-Date: 2023-07-19 18:51+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3438,7 +3438,7 @@ msgstr "Personalize gestos do mouse. Descubra uma nova forma de navegar, com mai
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr "Escureça a página ao redor dos reprodutores de vídeo para uma experiência de visualização mais focada."
+msgstr "Escureça a página ao redor de reprodutores de vídeo para ter uma experiência de visualização mais focada."
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -3454,7 +3454,7 @@ msgstr "A página que procura não está disponível? Procure uma versão arquiv
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Hover over an image to magnify it."
-msgstr "Passe o cursor do mouse sobre uma imagem para ampliá-la."
+msgstr "Passe o cursor do mouse sobre uma imagem para ampliar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3565,7 +3565,7 @@ msgstr "Novo visual de favoritos. Acesse seus sites preferidos, abas fechadas re
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr "Defina uma página inicial personalizada para as novas abas."
+msgstr "Defina uma página inicial personalizada para novas abas."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
