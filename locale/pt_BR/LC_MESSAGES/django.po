@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-19 15:11+0000\n"
+"PO-Revision-Date: 2023-07-19 15:20+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2171,7 +2171,7 @@ msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Os ícones devem ser quadrados e ter um tamanho mínimo de 128x128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Os ícones serão redimensionados para 128x128 pixels caso sejam maiores."
+msgstr "Ícones são redimensionados para 128x128 pixels, caso sejam maiores."
 
 msgid "Screenshots"
 msgstr "Capturas de tela"
@@ -2253,7 +2253,7 @@ msgid "Compatibility Tests"
 msgstr "Testes de compatibilidade"
 
 msgid "Hide messages not required for automated signing"
-msgstr "Não é necessário ocultar mensagens para a assinatura automática"
+msgstr "Não é necessário ocultar mensagens para assinatura automática"
 
 msgid "Hide messages present in previous version and ignored"
 msgstr "Ocultar mensagens presentes na versão anterior e ignoradas"
@@ -2391,7 +2391,8 @@ msgstr "Esta extensão é experimental"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Marque esta opção se suas extensões são experimentais ou não estão pronto para o uso. A extensão será listada mas terá visibilidade reduzida. Você pode alterar esta configuração posteriormente."
+"Marque esta opção se sua extensão for experimental ou não estiver pronta para uso geral. A extensão aparecerá na lista, mas terá visibilidade reduzida. Você pode alterar esta configuração mais "
+"tarde."
 
 # {1} is the application name (Firefox, Thunderbird)
 msgid "Select a category for this add-on:"
@@ -2504,7 +2505,7 @@ msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Lembre que sua extensão está sujeita a ter revisão manual a qualquer momento."
 
 msgid "Go to My Submissions"
-msgstr "Ir para minhas submissões"
+msgstr "Ir para meus envios"
 
 msgid "Source Code Upload"
 msgstr "Envio de Código Fonte"
@@ -2605,7 +2606,7 @@ msgstr "Nome do tema"
 
 # 82%
 msgid "Select a header image for your theme"
-msgstr "Selecione uma imagem de cabeçalho para o seu tema"
+msgstr "Selecione uma imagem de cabeçalho para seu tema."
 
 msgid "Recommended height: 200 pixels"
 msgstr "Altura recomendada: 200 pixels"
@@ -2919,11 +2920,11 @@ msgstr "Política de privacidade"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
-"Se seu add-on transmite qualquer dado do computador do usuário, é obrigatória uma política de privacidade que explique quais dados são enviados e como são utilizados.\n"
-"                Somente é relevante para os add-ons listados."
+"Se sua extensão transmite qualquer dado do computador do usuário, é obrigatória uma política de privacidade que explique quais dados são enviados e como são usados. Só é relevante para extensões "
+"listadas."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Se sua extensão contém código minimizado, concatenado ou gerado por máquina, que não seja de bibliotecas conhecidas, envie o código fonte para revisão."
+msgstr "Se sua extensão contém código minimizado, concatenado ou gerado por máquina, que não seja de bibliotecas conhecidas, envie o código-fonte para revisão."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Inclua instruções sobre como reproduzir o arquivo final da extensão, seja um arquivo README/LEIAME ou as notas ao revisor para esta versão."
