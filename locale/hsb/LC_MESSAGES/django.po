@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-05-10 12:26+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,12 +454,6 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
 
-msgid "Review Listed"
-msgstr "Nalistowane přepruwować"
-
-msgid "Review Unlisted"
-msgstr "Njenalistowane přepruwować"
-
 msgid "{addon} was created."
 msgstr "{addon} je so wutworił."
 
@@ -841,6 +835,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1567,6 +1567,9 @@ msgstr "Wěstotna zdźělenka Mozilla: Waše přizjewjenske daty za API AMO su s
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Zaktualizowany"

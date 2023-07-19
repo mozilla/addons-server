@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-05-03 09:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -450,16 +450,6 @@ msgstr "Tätä muokattua URL:ää ei voida käyttää."
 msgid "This add-on already belongs to the collection"
 msgstr "Tämä lisäosa kuuluu jo kokoelmaan"
 
-# 85%
-#, fuzzy
-msgid "Review Listed"
-msgstr "Tarkastajan huomautukset"
-
-# 85%
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Tarkastajan huomautukset"
-
 msgid "{addon} was created."
 msgstr "{addon} luotiin."
 
@@ -855,6 +845,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1589,6 +1585,9 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"

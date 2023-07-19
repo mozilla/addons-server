@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-06-23 07:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -453,12 +453,6 @@ msgstr "Denne tilpasssede nettadressen kan ikke brukes."
 msgid "This add-on already belongs to the collection"
 msgstr "Dette tillegget er allerede en del av samlingen"
 
-msgid "Review Listed"
-msgstr "Gjennomgang listet"
-
-msgid "Review Unlisted"
-msgstr "Gjennomgang listet"
-
 msgid "{addon} was created."
 msgstr "{addon} ble opprettet."
 
@@ -841,6 +835,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1557,6 +1557,9 @@ msgstr "Mozilla sikkerhetsmelding: Dine AMO API-innloggingsopplysninger har blit
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validering genererte for mange feil/advarsler slik at %s meldinger ble avkortet. Etter å ha adressert de synlige meldingene, vil du kunne se de andre."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Oppdatert"

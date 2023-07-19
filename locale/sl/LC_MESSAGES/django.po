@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-05-15 20:15+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -455,14 +455,6 @@ msgstr "Tega spletnega naslova po meri ni mogoče uporabiti."
 msgid "This add-on already belongs to the collection"
 msgstr "Ta dodatek že pripada zbirki"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Zahtevan pregled"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Opomba pregleda"
-
 msgid "{addon} was created."
 msgstr "{addon} je bil ustvarjen."
 
@@ -849,6 +841,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1579,6 +1577,9 @@ msgstr "Mozillino varnostno obvestilo: Vaše poverilnice API za AMO so bile prek
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Med preverjanjem veljavnosti je prišlo do preveč napak/opozoril, tako da je bilo %s sporočil skrajšanih. Ko enkrat spravite v red vidna sporočila, boste lahko videli tudi preostala."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Posodobljeno"

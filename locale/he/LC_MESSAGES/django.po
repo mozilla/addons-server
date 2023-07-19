@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-06-07 16:57+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -456,14 +456,6 @@ msgstr "לא ניתן להשתמש בכתובת המותאמת אישית הזא
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "נוספה בקשה לסקירה"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "סקירה"
-
 msgid "{addon} was created."
 msgstr "התוספת {addon} נוצרה"
 
@@ -850,6 +842,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1572,6 +1570,9 @@ msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API �
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "תאריך עדכון"

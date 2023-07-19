@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-05-26 03:16+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -449,14 +449,6 @@ msgstr "ไม่สามารถใช้ URL ที่กำหนดเอ�
 msgid "This add-on already belongs to the collection"
 msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "ร้องขอการพิจารณาแล้ว"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "หมายเหตุบทวิจารณ์"
-
 msgid "{addon} was created."
 msgstr "สร้าง {addon} แล้ว"
 
@@ -842,6 +834,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1559,6 +1557,9 @@ msgstr "ประกาศเกี่ยวกับความปลอดภ
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "เกิดข้อผิดพลาด/คำเตือนหลายข้อในการตรวจสอบความถูกต้อง %s ข้อความจึงถูกตัดทอน หลังจากที่จัดการกับข้อความที่มองเห็นได้แล้ว คุณจะสามารถเห็นข้อความอื่น ๆ ได้"
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "อัปเดตแล้ว"

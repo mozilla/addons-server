@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2022-06-23 21:34+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
@@ -456,14 +456,6 @@ msgstr "Denne URL kan ikke bruges."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne tilføjelse er allerede en del af samlingen"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Anmeldelseshistorik"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Anmeldelseshistorik"
-
 msgid "{addon} was created."
 msgstr "{addon} blev lavet."
 
@@ -857,6 +849,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1576,6 +1574,9 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"

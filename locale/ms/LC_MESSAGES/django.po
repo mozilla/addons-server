@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -456,14 +456,6 @@ msgstr "URL penyesuaian ini tidak boleh digunakan."
 msgid "This add-on already belongs to the collection"
 msgstr "Add-on ini sudah ada dalam koleksi"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Perlu semakan"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Nota ulasan"
-
 msgid "{addon} was created."
 msgstr "{addon} dicipta."
 
@@ -857,6 +849,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1582,6 +1580,9 @@ msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pengesahan menghasilkan terlalu banyak ralat/warnings, maka %s mesej telah dicantas. Selepas menangani mesej yang ketara, anda akan boleh nampak yang lain."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Dikemaskini"
