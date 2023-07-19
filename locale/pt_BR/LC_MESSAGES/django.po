@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-19 15:20+0000\n"
+"PO-Revision-Date: 2023-07-19 15:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2927,7 +2927,7 @@ msgid "If your add-on contains minified, concatenated or otherwise machine-gener
 msgstr "Se sua extensão contém código minimizado, concatenado ou gerado por máquina, que não seja de bibliotecas conhecidas, envie o código-fonte para revisão."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr "Inclua instruções sobre como reproduzir o arquivo final da extensão, seja um arquivo README/LEIAME ou as notas ao revisor para esta versão."
+msgstr "Inclua instruções de como reproduzir o arquivo final da extensão, seja um arquivo README/LEIAME ou as notas ao revisor para esta versão."
 
 msgid "Read more about the source code review policy."
 msgstr "Leia mais sobre a política de revisão de código."
@@ -3403,7 +3403,7 @@ msgstr "Bloqueie a exibição de anúncios e anotações incômodas no seu YouTu
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr "Envie novos artigos, postagens de blogs e muito mais para o seu Kindle."
+msgstr "Envie novos artigos, histórias, publicações de blog e muito mais para seu Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3425,7 +3425,7 @@ msgstr "Exiba as horas mundiais atuais na barra de status do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Traduções fáceis. Selecione texto em qualquer página web — ou selecione a página inteira ─ para traduzir instantaneamente."
+msgstr "Traduções fáceis. Selecione texto em qualquer página web, ou selecione a página inteira, para traduzir imediatamente."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
