@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -474,14 +474,6 @@ msgstr "This username cannot be used."
 msgid "This add-on already belongs to the collection"
 msgstr "This url is already in use by another collection"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Review requested"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Review Date"
-
 msgid "{addon} was created."
 msgstr "{addon} was created."
 
@@ -911,6 +903,12 @@ msgstr "{version} removed from Blocklist."
 
 msgid "Version Unblocked"
 msgstr "Version Unblocked"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "{addon} {version} admin add-on-review cleared."
+
+msgid "Admin add-on-review cleared"
+msgstr "Admin add-on-review cleared"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1678,6 +1676,9 @@ msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 
 msgid "Updated"
 msgstr "Updated"

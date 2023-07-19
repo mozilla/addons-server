@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -450,14 +450,6 @@ msgstr "Ovaj prilagođeni URL se ne može koristiti."
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Pregledajte napomenu"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Pregledajte napomenu"
-
 msgid "{addon} was created."
 msgstr ""
 
@@ -850,6 +842,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1574,6 +1572,9 @@ msgstr ""
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validacija je generirala previše grešaka/upozorenja tako da su poruke %s bile skraćene. Nakon adresiranja vidljivih poruka, bićete u mogućnosti da vidite ostale."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr ""

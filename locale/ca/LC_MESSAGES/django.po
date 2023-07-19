@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-03-04 22:32+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -463,14 +463,6 @@ msgstr "Aquest URL personalitzat no es pot fer sevir."
 msgid "This add-on already belongs to the collection"
 msgstr "Aquest complement ja pertany a la col·lecció"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "S'ha sol·licitat la revisió"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Comentari"
-
 msgid "{addon} was created."
 msgstr "S'ha creat el {addon}."
 
@@ -890,6 +882,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1619,6 +1617,9 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"

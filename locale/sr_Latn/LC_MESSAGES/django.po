@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -532,14 +532,6 @@ msgstr "Ovo korisničko ime ne može da se koristi."
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "Zahtevana recenzija"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Datum recenzije"
-
 msgid "{addon} was created."
 msgstr "{addon} je kreiran."
 
@@ -971,6 +963,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1864,6 +1862,11 @@ msgid ""
 msgstr ""
 "Overa je stvorila previše grešaka/upozorenja pa je %s poruka skraćeno. Nakon "
 "obraćanja vidljivim porukama, bićete u mogućnosti da pogledate ostale."
+
+msgid ""
+"This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</"
+"a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Ažurirano"

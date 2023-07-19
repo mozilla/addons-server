@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,12 +454,6 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
-msgid "Review Listed"
-msgstr "Xcholajïx Nik'oxïk"
-
-msgid "Review Unlisted"
-msgstr "Man Xcholajïx Ta Nik'oxïk"
-
 msgid "{addon} was created."
 msgstr "{addon} xtz'uk."
 
@@ -846,6 +840,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1579,6 +1579,9 @@ msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Ri junamanem ruya'on k'ïy taq sachoj//warnings ruma ri toq %s taq rutzijol xe'ewäx. Toq xesamajïx yan ri tz'etel taq rutzijol, xkatikïr xtatz'ët ri ch'aqa' chik."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Xk'ex"

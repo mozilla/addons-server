@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-06-11 20:03+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,12 +451,6 @@ msgstr "ამ URL-ბმულის გამოყენება შეუ�
 msgid "This add-on already belongs to the collection"
 msgstr "ეს დამატება, უკვე სხვა კრებულს ეკუთვნის"
 
-msgid "Review Listed"
-msgstr "მიმოხილვა გამოქვეყნებულია"
-
-msgid "Review Unlisted"
-msgstr "მიმოხილვა გამოუქვეყნებელია"
-
 msgid "{addon} was created."
 msgstr "{addon} შექმნილია."
 
@@ -838,6 +832,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1581,6 +1581,9 @@ msgstr "Mozilla-ს უსაფრთხოების განაცხა�
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "დამოწმებისას ზედმეტად ბევრი შეცდომა/გაფრთხილება აღინიშნა, ასე რომ, %s შეტყობინებები შეკვეცილად გამოჩნდება. ხილული შეტყობინებების გაცნობის შემდეგ შეგეძლებათ დანარჩენების ნახვაც."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "განახლებული"

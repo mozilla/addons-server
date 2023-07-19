@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2019-09-08 11:41+0000\n"
 "Last-Translator: Ahsun Mahmud Riad <ahsunriad@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -442,14 +442,6 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "পর্যালোচনা নোট"
-
 msgid "{addon} was created."
 msgstr "{addon} তৈরি করা হয়েছিল।"
 
@@ -840,6 +832,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1564,6 +1562,9 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"

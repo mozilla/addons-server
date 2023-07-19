@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-03-12 21:45+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -448,12 +448,6 @@ msgstr "ਇਹ ਚੋਣਵਾਂ URL ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕ
 msgid "This add-on already belongs to the collection"
 msgstr "ਇਹ ਐਡਆਨ ਪਹਿਲਾਂ ਹੀ ਸੰਗ੍ਰਹਿ ਨਾਲ ਸਬੰਧਤ ਹੈ"
 
-msgid "Review Listed"
-msgstr "ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ ਕਰੋ"
-
-msgid "Review Unlisted"
-msgstr "ਨਾ-ਸੂਚੀਬੱਧ ਦੀ ਪੜਤਾਲ"
-
 msgid "{addon} was created."
 msgstr "{addon} ਰਚਿਆ ਗਿਆ।"
 
@@ -845,6 +839,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1563,6 +1563,9 @@ msgstr "ਮੋਜ਼ੀਲਾ ਸੁਰੱਖਿਆ ਸੂਚਨਾ: ਤੁਹ�
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਨੇ ਬਹੁਤ ਸਾਰੀਆਂ ਗਲਤੀਆਂ/ਚੇਤਾਵਨੀਆਂ ਪੈਦਾ ਕੀਤੀਆਂ ਇਸ ਲਈ %s ਸੁਨੇਹੇ ਛੋਟੇ ਹੋ ਗਏ। ਵੇਖਣਯੋਗ ਸੁਨੇਹਿਆਂ ਦਾ ਸੰਬੋਧਨ ਕਰਨ ਤੋਂ ਬਾਅਦ, ਤੁਸੀਂ ਹੋਰਾਂ ਨੂੰ ਵੇਖਣ ਦੇ ਯੋਗ ਹੋ ਜਾਵੋਗੇ।"
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "ਅੱਪਡੇਟ ਹੋਇਆ"

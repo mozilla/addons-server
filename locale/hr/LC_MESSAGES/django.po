@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -461,13 +461,6 @@ msgstr "Ovaj se prilagođeni URL ne može koristiti."
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj dodatak već pripada zbirci"
 
-msgid "Review Listed"
-msgstr "Pregled navedenih"
-
-# 75%
-msgid "Review Unlisted"
-msgstr "Pregled nenavedenih"
-
 msgid "{addon} was created."
 msgstr "{addon} je stvoren."
 
@@ -851,6 +844,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1575,6 +1574,9 @@ msgstr "Mozillina sigurnosna obavijest: tvoje AMO API vjerodajnice su opozvane"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Provjera je stvorila previše grešaka/upozorenja, tako da je %s poruka odrezano. Nakon odrađivanja vidljivih poruka, moći ćeš vidjeti ostale."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Aktualizirano"

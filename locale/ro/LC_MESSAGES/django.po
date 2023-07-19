@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -458,12 +458,6 @@ msgstr "Acest URL personalizat nu poate fi folosit."
 msgid "This add-on already belongs to the collection"
 msgstr "Acest supliment deja face parte din colecție"
 
-msgid "Review Listed"
-msgstr "Recenzie listată"
-
-msgid "Review Unlisted"
-msgstr "Recenzie nelistată"
-
 msgid "{addon} was created."
 msgstr "{addon} a fost creat."
 
@@ -848,6 +842,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1588,6 +1588,9 @@ msgstr "Notificare de securitate Mozilla: Datele tale de autentificare AMO API a
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesaje au fost trunchiate. După corectarea mesajelor vizibile, vei putea să le vezi și pe celelalte."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Actualizat"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -451,14 +451,6 @@ msgstr "इस कस्टम URL का उपयोग नहीं किय
 msgid "This add-on already belongs to the collection"
 msgstr "यह ऐड-ऑन पहले ही संग्रह मे मौजूद है"
 
-#, fuzzy
-msgid "Review Listed"
-msgstr "समीक्षा अनुरोधित"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "समीक्षा नोट"
-
 msgid "{addon} was created."
 msgstr "{addon} का निर्माण किया गया था।"
 
@@ -849,6 +841,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1574,6 +1572,9 @@ msgstr "Mozilla सुरक्षा नोटिस: आपके AMO API क�
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"

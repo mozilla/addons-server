@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-04 17:08+0000\n"
+"POT-Creation-Date: 2023-07-19 12:05+0000\n"
 "PO-Revision-Date: 2023-07-03 22:55+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -455,12 +455,6 @@ msgstr "이 URL은 사용할 수 없습니다."
 msgid "This add-on already belongs to the collection"
 msgstr "이 부가 기능은 이미 모음집에 속해 있음"
 
-msgid "Review Listed"
-msgstr "검토목록"
-
-msgid "Review Unlisted"
-msgstr "미등록 검토"
-
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
 
@@ -844,6 +838,12 @@ msgid "{version} removed from Blocklist."
 msgstr ""
 
 msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1562,6 +1562,9 @@ msgstr "Mozila 보안 공지: 귀하의 AMO API 자격 증명이 취소되었습
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "검사 과정에서 너무 많은 오류/경고가 발생했으며 %s개의 메세지가 잘려져 있는 상태입니다. 현재 표시된 메세지부터 확인 후에 나머지 메세지를 확인하실 수 있습니다."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "최근 업데이트"
