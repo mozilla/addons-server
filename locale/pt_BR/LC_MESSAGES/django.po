@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-19 12:50+0000\n"
+"PO-Revision-Date: 2023-07-19 15:01+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -31,7 +31,7 @@ msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser usado."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "O campo de página inicial só pode ser usado para sites externos."
+msgstr "O campo de página inicial só pode ser usado para link para sites externos."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
@@ -300,8 +300,8 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
-"Você está vendo essa mensagem porque nenhum \"Referer header\" foi enviado pelo seu navegador Web para este site HTTPS. Este cabeçalho é necessário por questões de segurança, pois garante que seu "
-"navegador não será sequestrado por terceiros."
+"Você está vendo essa mensagem porque nenhum \"Referer header\" foi enviado pelo seu navegador Web para este site HTTPS. Este cabeçalho é necessário por questões de segurança, para garantir que seu "
+"navegador não seja sequestrado por terceiros."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "Caso você tenha configurado seu navegador para desativar cabeçalhos 'Referer', reative pelo menos neste site, em conexões HTTPS ou em requisições 'same-origin'."
@@ -443,7 +443,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ou slug \"%s\" inválidos - objeto não existe."
 
 msgid "Confirmation for developer API keys"
-msgstr "Confirmação para chaves de API do desenvolvedor"
+msgstr "Confirmação de chaves de API de desenvolvimento"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Essa URL já está sendo usada por outra coleção."
@@ -506,7 +506,7 @@ msgstr "{version} adicionada a {addon}."
 # 75%
 # 100%
 msgid "{version} edited for {addon}."
-msgstr "{version} editada para {addon}."
+msgstr "{version} editada de {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
@@ -584,7 +584,7 @@ msgid "{addon} removed from {collection}."
 msgstr "{addon} removido de {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr "{rating} para {addon} escrita."
+msgstr "{rating} de {addon} escrita."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -620,13 +620,13 @@ msgid "{addon} icon or previews changed."
 msgstr "Ícone ou visão de {addon} alterados."
 
 msgid "{rating} for {addon} approved."
-msgstr "{rating} para {addon} aprovada."
+msgstr "{rating} de {addon} aprovada."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr "Análise {rating} de {addon} excluída."
 
 msgid "Application max version for {version} updated."
-msgstr "Versão máxima da aplicação para {version} atualizada."
+msgstr "Versão máxima da aplicação de {version} atualizada."
 
 msgid "Authors emailed about compatibility of {version}."
 msgstr "Os autores foram notificados por email sobre a compatibilidade de {version}."
@@ -656,7 +656,7 @@ msgid "Created: {0}."
 msgstr "Criado: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr "Campo editado: {2} definido para: {0}."
+msgstr "Campo editado: {2} definido como: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Excluído: {1}."
@@ -855,10 +855,10 @@ msgid "Version Unblocked"
 msgstr "Versão desbloqueada"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
+msgstr "Análise administrativa de {addon} {version} removida."
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "Análise administrativa removida"
 
 msgid "Firefox"
 msgstr "Firefox"
