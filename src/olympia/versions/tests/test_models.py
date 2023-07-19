@@ -1920,6 +1920,27 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
             mock_incr.assert_called_with('devhub.version_created_from_upload.extension')
 
+    def test_due_date_notable(self):
+        # Notable has flag_for_human_review=True so new version should be
+        # flagged for human review.
+        PromotedAddon.objects.create(addon=self.addon, group_id=NOTABLE.id)
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        assert upload_version.due_date
+        upload_version.reload()
+        assert upload_version.due_date
+        assert upload_version.needshumanreview_set.filter(
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, is_active=True
+        ).exists()
+
     def test_due_date_inherited_for_updates(self):
         AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
         assert self.addon.status == amo.STATUS_APPROVED

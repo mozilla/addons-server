@@ -27,7 +27,6 @@ from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.promoted import (
     LINE,
-    NOTABLE,
     RECOMMENDED,
     SPONSORED,
     SPOTLIGHT,
