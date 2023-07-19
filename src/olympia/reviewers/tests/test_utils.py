@@ -1643,7 +1643,7 @@ class TestReviewHelper(TestReviewHelperBase):
     def test_confirm_auto_approved_approves_for_promoted(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
-        PromotedAddon.objects.create(addon=self.addon, group_id=NOTABLE.id)
+        PromotedAddon.objects.create(addon=self.addon, group_id=SPOTLIGHT.id)
         self.create_paths()
 
         # Safeguards.
@@ -1655,10 +1655,10 @@ class TestReviewHelper(TestReviewHelperBase):
 
         self.addon.reload()
         self.addon.promotedaddon.reload()
-        assert self.addon.promoted_group() == NOTABLE, self.addon.promotedaddon
+        assert self.addon.promoted_group() == SPOTLIGHT, self.addon.promotedaddon
         assert self.review_version.reload().approved_for_groups == [
-            (NOTABLE, amo.FIREFOX),
-            (NOTABLE, amo.ANDROID),
+            (SPOTLIGHT, amo.FIREFOX),
+            (SPOTLIGHT, amo.ANDROID),
         ]
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):

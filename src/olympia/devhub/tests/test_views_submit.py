@@ -2237,6 +2237,8 @@ class VersionSubmitUploadMixin:
         doc = pq(response.content)
         assert not doc('.notification-box.warning')
 
+    @mock.patch.object(NOTABLE, 'listed_pre_review', True)
+    @mock.patch.object(NOTABLE, 'unlisted_pre_review', True)
     def test_submit_notification_warning_pre_review(self):
         self.make_addon_promoted(self.addon, group=NOTABLE)
         config = Config.objects.create(
@@ -2249,6 +2251,8 @@ class VersionSubmitUploadMixin:
         assert doc('.notification-box.warning')
         assert doc('.notification-box.warning').html().strip() == config.value
 
+    @mock.patch.object(NOTABLE, 'listed_pre_review', True)
+    @mock.patch.object(NOTABLE, 'unlisted_pre_review', True)
     def test_submit_notification_warning_pre_review_generic_test_already_present(self):
         self.make_addon_promoted(self.addon, group=NOTABLE)
         config = Config.objects.create(

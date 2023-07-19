@@ -103,6 +103,8 @@ class TestPromotedAddon(TestCase):
         assert promo.approved_applications == [amo.FIREFOX, amo.ANDROID]
         assert PromotedApproval.objects.count() == 2
 
+    @mock.patch.object(promoted.NOTABLE, 'listed_pre_review', True)
+    @mock.patch.object(promoted.NOTABLE, 'unlisted_pre_review', True)
     def test_addon_flagged_for_human_review_when_saved(self):
         # empty case with no group set
         promo = PromotedAddon.objects.create(
