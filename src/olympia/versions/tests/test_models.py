@@ -982,6 +982,7 @@ class TestVersion(AMOPaths, TestCase):
     def test_should_have_due_date_disabled_unlisted(self):
         self._test_should_have_due_date_disabled(amo.CHANNEL_UNLISTED)
 
+    @mock.patch.object(NOTABLE, 'unlisted_pre_review', True)
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
         self.make_addon_unlisted(addon)
