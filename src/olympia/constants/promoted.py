@@ -27,8 +27,11 @@ class PromotedClass:
         return bool(self.id)
 
 
-NOT_PROMOTED = PromotedClass(id=0, name=_('Not Promoted'), api_name='not_promoted')
-
+NOT_PROMOTED = PromotedClass(
+    id=0,
+    name=_('Not Promoted'),
+    api_name='not_promoted',
+)
 
 RECOMMENDED = PromotedClass(
     id=1,
@@ -38,15 +41,12 @@ RECOMMENDED = PromotedClass(
     warning=False,
     listed_pre_review=True,
     badged=True,
-    autograph_signing_states=(
-        {
-            applications.FIREFOX.short: 'recommended',
-            applications.ANDROID.short: 'recommended-android',
-        },
-    ),
+    autograph_signing_states={
+        applications.FIREFOX.short: 'recommended',
+        applications.ANDROID.short: 'recommended-android',
+    },
     can_primary_hero=True,
 )
-
 
 SPONSORED = PromotedClass(
     id=2,
@@ -62,7 +62,6 @@ SPONSORED = PromotedClass(
     can_primary_hero=True,
 )
 
-
 VERIFIED = PromotedClass(
     id=3,
     name=_('Verified'),
@@ -76,7 +75,6 @@ VERIFIED = PromotedClass(
     },
 )
 
-
 LINE = PromotedClass(
     id=4,
     name=_('By Firefox'),
@@ -86,15 +84,12 @@ LINE = PromotedClass(
     listed_pre_review=True,
     admin_review=True,
     badged=True,
-    autograph_signing_states=(
-        {
-            applications.FIREFOX.short: 'line',
-            applications.ANDROID.short: 'line',
-        },
-    ),
+    autograph_signing_states={
+        applications.FIREFOX.short: 'line',
+        applications.ANDROID.short: 'line',
+    },
     can_primary_hero=True,
 )
-
 
 SPOTLIGHT = PromotedClass(
     id=5,
@@ -107,14 +102,12 @@ SPOTLIGHT = PromotedClass(
     immediate_approval=True,
 )
 
-
 STRATEGIC = PromotedClass(
     id=6,
     name=_('Strategic'),
     api_name='strategic',
     admin_review=True,
 )
-
 
 NOTABLE = PromotedClass(
     id=7,
@@ -125,7 +118,6 @@ NOTABLE = PromotedClass(
     unlisted_pre_review=False,
     flag_for_human_review=True,
 )
-
 
 PROMOTED_GROUPS = [
     NOT_PROMOTED,
