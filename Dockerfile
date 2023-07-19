@@ -23,7 +23,7 @@ COPY docker/*.list /etc/apt/sources.list.d/
 
 # Override mysql repos with our own locally built one while upstream is broken.
 RUN mkdir /opt/apt-local-repository
-COPY docker/mysql/* /opt/apt-local-repository
+COPY docker/mysql/* /opt/apt-local-repository/
 RUN /opt/apt-local-repository/local-mysql-repos.sh
 
 # Allow scripts to detect we're running in our own container and install
