@@ -266,18 +266,21 @@ def test_fxa_login_url_when_faking_fxa_auth():
     },
     DEFAULT_FXA_CONFIG_NAME='baz',
 )
-class TestGetFxaConfig(TestCase):
+class TestGetFxaConfigAndName(TestCase):
     def test_no_config(self):
         request = RequestFactory().get('/login')
+        assert utils.get_fxa_config_name(request) == 'baz'
         config = utils.get_fxa_config(request)
         assert config == {'BAZ': 789}
 
     def test_config_alternate(self):
         request = RequestFactory().get('/login?config=bar')
+        assert utils.get_fxa_config_name(request) == 'bar'
         config = utils.get_fxa_config(request)
         assert config == {'BAR': 456}
 
     def test_config_is_default(self):
         request = RequestFactory().get('/login?config=baz')
+        assert utils.get_fxa_config_name(request) == 'baz'
         config = utils.get_fxa_config(request)
         assert config == {'BAZ': 789}
