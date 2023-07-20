@@ -17,6 +17,7 @@ FXA_CONFIG = {
         'client_id': 'foo',
         'client_secret': 'bar',
     },
+    'other': {'client_id': 'foo_other', 'client_secret': 'bar_other'},
 }
 
 
@@ -232,6 +233,96 @@ def test_redirect_for_login():
         state=request.session['fxa_state'],
         next_path='/somewhere',
     )
+    assert request.session['enforce_2fa'] is False
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_next_path():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login(request, next_path='/over/the/rainbow')
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path='/over/the/rainbow',
+    )
+    assert request.session['enforce_2fa'] is False
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_config():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login(request, config=FXA_CONFIG['other'])
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['other'],
+        state=request.session['fxa_state'],
+        next_path='/somewhere',
+    )
+    assert request.session['enforce_2fa'] is False
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_2fa_enforced():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login_with_2fa_enforced(request)
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path='/somewhere',
+        enforce_2fa=True,
+    )
+    assert request.session['enforce_2fa'] is True
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_2fa_enforced_id_token_hint():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login_with_2fa_enforced(
+        request, id_token_hint='some_token_hint'
+    )
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path='/somewhere',
+        enforce_2fa=True,
+        id_token_hint='some_token_hint',
+    )
+    assert request.session['enforce_2fa'] is True
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_2fa_enforced_and_next_path():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login_with_2fa_enforced(
+        request, next_path='/over/the/rainbow'
+    )
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'],
+        next_path='/over/the/rainbow',
+        enforce_2fa=True,
+    )
+    assert request.session['enforce_2fa'] is True
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_redirect_for_login_with_2fa_enforced_and_config():
+    request = RequestFactory().get('/somewhere')
+    request.session = {'fxa_state': 'fake-state'}
+    response = utils.redirect_for_login_with_2fa_enforced(
+        request, config=FXA_CONFIG['other']
+    )
+    assert response['location'] == utils.fxa_login_url(
+        config=FXA_CONFIG['other'],
+        state=request.session['fxa_state'],
+        next_path='/somewhere',
+        enforce_2fa=True,
+    )
+    assert request.session['enforce_2fa'] is True
 
 
 @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
