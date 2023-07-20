@@ -1,6 +1,6 @@
 from base64 import urlsafe_b64decode, urlsafe_b64encode
-from urllib.parse import parse_qs, urlparse
 from unittest import mock
+from urllib.parse import parse_qs, urlparse
 
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
