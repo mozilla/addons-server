@@ -188,7 +188,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_process_action_none(self):
         self.helper.set_data({'action': 'foo'})
-        with self.assertRaises(KeyError):
+        with self.assertRaises(NotImplementedError):
             self.helper.process()
 
     def test_process_action_good(self):
