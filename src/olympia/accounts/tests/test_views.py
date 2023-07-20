@@ -675,7 +675,7 @@ class TestWithUser(TestCase):
         )
         # Since the authentication was successful and satistified our 2FA
         # requirement, we removed the property from the session.
-        assert 'enforce_2fa' in self.request.session
+        assert 'enforce_2fa' not in self.request.session
 
     def test_2fa_enforced_on_this_view_should_redirect_for_two_factor_auth(self):
         self.create_flag('2fa-enforcement-for-developers-and-special-users')
