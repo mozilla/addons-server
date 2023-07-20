@@ -1,3 +1,4 @@
+from collections import defaultdict
 from datetime import datetime, timedelta
 
 from django import forms
@@ -178,17 +179,18 @@ class BlocklistSubmissionForm(AMOModelForm):
                 for block in self.blocks
             ]
 
-            field.widget.choices = [
+            self.changed_version_ids_choices = [
                 v_id for _guid, opts in field.choices for (v_id, _text) in opts
             ]
             if not data and not self.initial.get('changed_version_ids'):
                 # preselect all the options
-                self.initial['changed_version_ids'] = field.widget.choices
+                self.initial['changed_version_ids'] = self.changed_version_ids_choices
         else:
             field.choices = list(
                 (v_id, v_id) for v_id in self.instance.changed_version_ids
             )
-            field.widget.choices = self.instance.changed_version_ids
+            self.changed_version_ids_choices = self.instance.changed_version_ids
+        field.widget.choices = self.changed_version_ids_choices
         field.widget.blocks = self.blocks
 
     def get_value(self, field_name, default):
@@ -201,6 +203,8 @@ class BlocklistSubmissionForm(AMOModelForm):
     def clean_changed_version_ids(self):
         data = self.cleaned_data.get('changed_version_ids', [])
         errors = []
+
+        # First, check we're not creating empty blocks
         # we're checking new blocks for add/change; and all blocks for delete
         for block in (bl for bl in self.blocks if not bl.id or not self.is_add_change):
             version_ids = [v.id for v in block.addon_versions]
@@ -210,6 +214,25 @@ class BlocklistSubmissionForm(AMOModelForm):
             # for delete, only if there is also at least one existing blocked version
             if (self.is_add_change or any(blocked_ids)) and not any(changed_ids):
                 errors.append(ValidationError(f'{block.guid} has no changed versions'))
+
+        # Second, check for duplicate version strings in reused guids.
+        error_string = (
+            '{}:{} exists more than once. All {} versions must be '
+            f'{"blocked" if self.is_add_change else "unblocked"} together'
+        )
+        for block in self.blocks:
+            version_strs = defaultdict(set)  # collect version strings together
+            for version in block.addon_versions:
+                if version.id in self.changed_version_ids_choices:
+                    version_strs[version.version].add(version.id)
+            for version_str, ids in version_strs.items():
+                # i.e. dupe version string & some ids, but not all, are being changed.
+                if len(ids) > 1 and not ids.isdisjoint(data) and not ids.issubset(data):
+                    errors.append(
+                        ValidationError(
+                            error_string.format(block.guid, version_str, version_str)
+                        )
+                    )
 
         if errors:
             raise ValidationError(errors)

@@ -13,7 +13,7 @@ from olympia.reviewers.models import ReviewActionReason
 
 from ..admin import BlocklistSubmissionAdmin
 from ..forms import MultiAddForm, MultiDeleteForm
-from ..models import Block, BlocklistSubmission
+from ..models import Block, BlocklistSubmission, BlockVersion
 
 
 class TestBlocklistSubmissionForm(TestCase):
@@ -315,6 +315,53 @@ class TestBlocklistSubmissionForm(TestCase):
         ]
         form = Form(data=data)
         assert form.is_valid(), form.errors
+
+    def test_duplicate_version_strings_must_all_be_changed(self):
+        Form = self.get_form()
+        # this version string will exist twice for this guid
+        ver_string = self.partial_existing_addon_v_notblocked.version
+        # create a previous addon instance that reused the same version string
+        old_addon = addon_factory(version_kw={'version': ver_string})
+        old_addon_version = old_addon.current_version
+        old_addon.delete()
+        old_addon.addonguid.update(guid=self.partial_existing_addon.guid)
+        # repeat but this time the version was blocked already so not a choice
+        old_blocked_addon = addon_factory(version_kw={'version': ver_string})
+        old_blocked_addon_version = old_blocked_addon.current_version
+        old_blocked_addon.delete()
+        old_blocked_addon.addonguid.update(guid=self.partial_existing_addon.guid)
+        BlockVersion.objects.create(
+            version=old_blocked_addon_version, block=self.existing_block_partial
+        )
+        data = {
+            'action': str(BlocklistSubmission.ACTION_ADDCHANGE),
+            'input_guids': f'{self.new_addon.guid}\n'
+            f'{self.existing_block_full.guid}\n'
+            f'{self.existing_block_partial.guid}',
+            'changed_version_ids': [
+                self.new_addon.current_version.id,
+            ],
+        }
+
+        # it's valid when neither of the versions are being changed
+        form = Form(data=data)
+        assert form.is_valid()
+
+        # but not when only one is
+        data['changed_version_ids'].append(self.partial_existing_addon_v_notblocked.id)
+        form = Form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'changed_version_ids': [
+                f'{self.partial_existing_addon.guid}:{ver_string} exists more than once'
+                f'. All {ver_string} versions must be blocked together'
+            ]
+        }
+
+        # and it's valid again if both are being changed
+        data['changed_version_ids'].append(old_addon_version.id)
+        form = Form(data=data)
+        assert form.is_valid()
 
     def test_clean(self):
         Form = self.get_form()
