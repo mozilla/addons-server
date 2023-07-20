@@ -716,6 +716,29 @@ class TestWithUser(TestCase):
         assert kwargs['identity']['email'] == self.user.email
         assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
         assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['identity']['twoFactorAuthentication'] is None
+        assert kwargs['next_path'] == '/a/path/?'
+        assert self.fxa_identify.call_count == 0
+
+    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+    def test_fake_fxa_auth_with_2fa(self):
+        self.user = user_factory()
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'fake_fxa_email': self.user.email,
+            'fake_two_factor_authentication': 'true',
+            'state': 'some-blob:{next_path}'.format(
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs['user'] == self.user
+        assert kwargs['identity']['email'] == self.user.email
+        assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
+        assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['identity']['twoFactorAuthentication'] == 'true'
         assert kwargs['next_path'] == '/a/path/?'
         assert self.fxa_identify.call_count == 0
 
