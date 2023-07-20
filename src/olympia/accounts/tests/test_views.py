@@ -661,12 +661,42 @@ class TestWithUser(TestCase):
             identity=identity
         )
 
+    def test_2fa_enforced_already_using_two_factor_should_continue(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        identity = {
+            'uid': '1234',
+            'email': 'hey@yo.it',
+            'twoFactorAuthentication': True,
+        }
+        self.request.session['enforce_2fa'] = True
+        self._test_should_continue_without_redirect_for_two_factor_auth(
+            identity=identity
+        )
+        # Since the authentication was successful and satistified our 2FA
+        # requirement, we removed the property from the session.
+        assert 'enforce_2fa' in self.request.session
+
+    def test_2fa_enforced_on_this_view_should_redirect_for_two_factor_auth(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        self.request.session['enforce_2fa'] = True
+        self._test_should_redirect_for_two_factor_auth()
+
     def test_waffle_flag_off_developer_without_2fa_should_continue(self):
         self.create_flag(
             '2fa-enforcement-for-developers-and-special-users', everyone=False
         )
         self.user = user_factory()
         addon_factory(users=[self.user])
+        self._test_should_continue_without_redirect_for_two_factor_auth()
+
+    def test_waffle_flag_off_enforced_2fa_should_have_no_effect(self):
+        self.create_flag(
+            '2fa-enforcement-for-developers-and-special-users', everyone=False
+        )
+        self.user = user_factory()
+        self.request.session['enforce_2fa'] = True
         self._test_should_continue_without_redirect_for_two_factor_auth()
 
     @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
