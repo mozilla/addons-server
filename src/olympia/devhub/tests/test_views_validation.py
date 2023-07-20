@@ -414,6 +414,9 @@ class TestValidateAddon(TestCase):
         assert b'this tool only works with legacy' not in response.content
 
         doc = pq(response.content)
+
+        assert doc('#id_theme_specific').attr('value') == 'false'
+
         assert doc('#upload-addon').attr('data-upload-url') == (
             reverse('devhub.standalone_upload')
         )
