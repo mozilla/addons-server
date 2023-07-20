@@ -22,6 +22,7 @@
       <label>{{ _('Do you want your add-on to be distributed on this site?') }}</label>
       {{ new_addon_form.channel }}
     </div>
+    <input type="hidden" id="id_theme_specific" name="theme_specific" value="false" />
     <input type="file" id="upload-addon"
       data-upload-url="{{ url('devhub.standalone_upload') }}"
       data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
