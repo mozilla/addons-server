@@ -808,10 +808,8 @@ class ReviewHelper:
         )
 
     def process(self):
-        requested_action = self.handler.data.get('action', '')
-        if not requested_action or requested_action not in self.actions:
+        if not (action := self.actions.get(self.handler.data.get('action'))):
             raise NotImplementedError
-        action = self.actions[requested_action]
         # Clear comments in data before processing if the action isn't supposed
         # to have any, because the reviewer might have submitted some by
         # accident after switching between tabs, and the logging methods will
