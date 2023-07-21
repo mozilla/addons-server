@@ -1224,6 +1224,67 @@ class TestUpload(UploadMixin, TestCase):
             }
         }
 
+    def test_upload_extension_without_2fa(self):
+        self.url = reverse('devhub.upload')
+        from olympia.accounts.utils import fxa_login_url
+        from olympia.amo.templatetags.jinja_helpers import absolutify
+
+        response = self.post()
+        expected_url = absolutify(
+            fxa_login_url(
+                config=settings.FXA_CONFIG['default'],
+                state=self.client.session['fxa_state'],
+                next_path=reverse('devhub.submit.upload', args=['listed']),
+                enforce_2fa=True,
+            )
+        )
+        assert response.status_code == 400
+        assert response.json() == {
+            'validation': {
+                'errors': 1,
+                'warnings': 0,
+                'notices': 0,
+                'success': False,
+                'compatibility_summary': {'notices': 0, 'errors': 0, 'warnings': 0},
+                'metadata': {'listed': True},
+                'messages': [
+                    {
+                        'tier': 1,
+                        'type': 'error',
+                        'id': ['validation', 'messages', ''],
+                        'message': (
+                            f'<a href="{expected_url}">'
+                            'Please add two-factor authentication to your account '
+                            'to submit extensions.</a>'
+                        ),
+                        'description': [],
+                        'compatibility_type': None,
+                        'extra': True,
+                    }
+                ],
+                'message_tree': {},
+                'ending_tier': 5,
+            }
+        }
+
+    def test_upload_theme_without_2fa(self):
+        self.xpi_path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
+        )
+        response = self.post(theme_specific=True)
+        upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_LISTED
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        self.assert3xx(response, url)
+
+    def test_upload_for_standalone_validation_without_2fa(self):
+        self.url = reverse('devhub.standalone_upload')
+        response = self.post()
+        upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_LISTED
+        url = reverse('devhub.standalone_upload_detail', args=[upload.uuid.hex])
+        self.assert3xx(response, url)
+
 
 class TestUploadDetail(UploadMixin, TestCase):
     fixtures = ['base/appversion', 'base/users']

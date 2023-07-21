@@ -28,7 +28,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.decorators import two_factor_auth_required
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.utils import (
+    redirect_for_login,
+    redirect_for_login_with_2fa_enforced,
+)
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
@@ -585,11 +588,40 @@ def handle_upload(
 @login_required
 @post_required
 def upload(request, channel='listed', addon=None, is_standalone=False):
+    channel_as_text = channel
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
     theme_specific = django_forms.BooleanField().to_python(
         request.POST.get('theme_specific')
     )
+    if (
+        not theme_specific
+        and not is_standalone
+        and not request.session.get('has_two_factor_authentication')
+    ):
+        # This shouldn't happen: it means the user attempted to use the add-on
+        # submission flow that is behind @two_factor_auth_required decorator
+        # but didn't log in with 2FA. Because this view is used to serve an XHR
+        # we return a fake validation error suggesting to enable 2FA instead of
+        # redirecting.
+        next_path = (
+            reverse('devhub.submit.version.upload', args=[addon.slug, channel_as_text])
+            if addon
+            else reverse('devhub.submit.upload', args=[channel_as_text])
+        )
+        url = redirect_for_login_with_2fa_enforced(request, next_path=next_path)[
+            'location'
+        ]
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        insert_validation_message(
+            results,
+            message=_(
+                '<a href="{link}">Please add two-factor authentication to your account '
+                'to submit extensions.</a>'
+            ).format(link=absolutify(url)),
+        )
+        return JsonResponse({'validation': results}, status=400)
+
     try:
         upload = handle_upload(
             filedata=filedata,
