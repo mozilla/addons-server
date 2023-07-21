@@ -38,6 +38,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.models import BlogPost
+from olympia.devhub.tasks import validate
 from olympia.devhub.views import get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
@@ -1108,7 +1109,8 @@ class TestUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login(self.user)
         self.url = reverse('devhub.upload')
         self.xpi_path = self.file_path('webextension_no_id.xpi')
 
@@ -1125,6 +1127,7 @@ class TestUpload(UploadMixin, TestCase):
         assert response.status_code == 302
 
     def test_create_fileupload(self):
+        self.client.force_login_with_2fa(self.user)
         self.post()
 
         upload = FileUpload.objects.filter().order_by('-created').first()
@@ -1141,15 +1144,16 @@ class TestUpload(UploadMixin, TestCase):
         assert manifest_data == original_manifest_data
 
     def test_fileupload_metadata(self):
-        user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(self.user)
+        self.client.force_login(self.user)
         self.post(REMOTE_ADDR='4.8.15.16.23.42')
         upload = FileUpload.objects.get()
-        assert upload.user == user
+        assert upload.user == self.user
         assert upload.source == amo.UPLOAD_SOURCE_DEVHUB
         assert upload.ip_address == '4.8.15.16.23.42'
 
     def test_fileupload_validation_not_a_xpi_file(self):
+        self.client.force_login_with_2fa(self.user)
         self.xpi_path = get_image_path('animated.png')  # not a xpi file.
         self.post()
         upload = FileUpload.objects.filter().order_by('-created').first()
@@ -1170,6 +1174,7 @@ class TestUpload(UploadMixin, TestCase):
         assert not msg['description']
 
     def test_redirect(self):
+        self.client.force_login_with_2fa(self.user)
         response = self.post()
         upload = FileUpload.objects.get()
         assert upload.channel == amo.CHANNEL_LISTED
@@ -1184,6 +1189,7 @@ class TestUpload(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.validate')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self hosted" addons."""
+        self.client.force_login_with_2fa(self.user)
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         self.url = reverse('devhub.upload_unlisted')
         response = self.post()
@@ -1303,18 +1309,14 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login(self.user)
 
     @classmethod
     def create_appversion(cls, application_name, version):
         return AppVersion.objects.create(
             application=amo.APPS[application_name].id, version=version
         )
-
-    def post(self):
-        # Has to be a binary, non xpi file.
-        data = open(get_image_path('animated.png'), 'rb')
-        return self.client.post(reverse('devhub.upload'), {'upload': data})
 
     def validation_ok(self):
         return {
@@ -1328,16 +1330,31 @@ class TestUploadDetail(UploadMixin, TestCase):
             'metadata': {},
         }
 
-    def upload_file(self, file, url='devhub.upload'):
-        addon = os.path.join(
-            settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', file
+    def upload_dummy_file(self):
+        return self.upload_file(get_image_path('animated.png'))
+
+    def upload_file(self, filename):
+        path = (
+            os.path.join(
+                settings.ROOT, 'src', 'olympia', 'devhub', 'tests', 'addons', filename
+            )
+            if not filename.startswith('/')
+            else filename
         )
-        with open(addon, 'rb') as f:
-            response = self.client.post(reverse(url), {'upload': f})
-        assert response.status_code == 302
+        with open(path, 'rb') as f:
+            data = f.read()
+        upload = FileUpload.from_post(
+            [data],
+            filename=os.path.basename(filename),
+            size=42,
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        validate(upload)
 
     def test_detail_json(self):
-        self.post()
+        self.upload_dummy_file()
 
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1363,7 +1380,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
-        self.post()
+        self.upload_dummy_file()
 
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1385,7 +1402,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
-        self.post()
+        self.upload_dummy_file()
         upload = FileUpload.objects.get()
         self.client.force_login(user_factory())
 
@@ -1400,7 +1417,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
         addon.addonuser_set.create(user=user)
-        self.post()
+        self.upload_dummy_file()
 
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1415,7 +1432,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         addon = addon_factory()
         addon.addonuser_set.create(user=user)
         addon.delete()
-        self.post()
+        self.upload_dummy_file()
 
         upload = FileUpload.objects.get()
         response = self.client.get(
@@ -1426,7 +1443,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert response.status_code == 404
 
     def test_detail_view(self):
-        self.post()
+        self.upload_dummy_file()
         upload = FileUpload.objects.filter().order_by('-created').first()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex])
@@ -1446,7 +1463,7 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert response.status_code == 404
 
     def test_wrong_user(self):
-        self.post()
+        self.upload_dummy_file()
         upload = FileUpload.objects.filter().order_by('-created').first()
         self.client.force_login(user_factory())
         response = self.client.get(
@@ -1565,11 +1582,9 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_restricted_guid_addon_allowed(self, run_addons_linter_mock):
-        user = user_factory()
-        self.grant_permission(user, 'SystemAddon:Submit')
-        self.client.force_login(user)
+        self.grant_permission(self.user, 'SystemAddon:Submit')
         run_addons_linter_mock.return_value = self.validation_ok()
-        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file(self.file_fixture_path('mozilla_guid.xpi'))
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
@@ -1579,10 +1594,8 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_restricted_guid_addon_not_allowed(self, run_addons_linter_mock):
-        user = user_factory()
-        self.client.force_login(user)
         run_addons_linter_mock.return_value = self.validation_ok()
-        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file(self.file_fixture_path('mozilla_guid.xpi'))
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
@@ -1602,14 +1615,10 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
-        user = user_factory()
-        self.client.force_login(user)
-        self.grant_permission(user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, 'SystemAddon:Submit')
         run_addons_linter_mock.return_value = self.validation_ok()
         get_signer_mock.return_value = 'Mozilla Extensions'
-        self.upload_file(
-            '../../../files/fixtures/files/webextension_signed_already.xpi'
-        )
+        self.upload_file(self.file_fixture_path('webextension_signed_already.xpi'))
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
@@ -1619,12 +1628,8 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_not_allowed_not_allowed(self, get_signer_mock):
-        user_factory(email='redpanda@mozilla.com')
-        self.client.force_login(UserProfile.objects.get(email='redpanda@mozilla.com'))
         get_signer_mock.return_value = 'Mozilla Extensions'
-        self.upload_file(
-            '../../../files/fixtures/files/webextension_signed_already.xpi'
-        )
+        self.upload_file(self.file_fixture_path('webextension_signed_already.xpi'))
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
@@ -1644,12 +1649,10 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_update_allowed(self, run_addons_linter_mock):
         """Updates to system addons are allowed from anyone."""
-        user = user_factory(email='pinkpanda@notzilla.com')
         addon = addon_factory(guid='systemaddon@mozilla.org')
-        AddonUser.objects.create(addon=addon, user=user)
-        self.client.force_login(UserProfile.objects.get(email='pinkpanda@notzilla.com'))
+        AddonUser.objects.create(addon=addon, user=self.user)
         run_addons_linter_mock.return_value = self.validation_ok()
-        self.upload_file('../../../files/fixtures/files/mozilla_guid.xpi')
+        self.upload_file(self.file_fixture_path('mozilla_guid.xpi'))
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse(
@@ -1660,11 +1663,10 @@ class TestUploadDetail(UploadMixin, TestCase):
         assert data['validation']['messages'] == []
 
     def test_no_redirect_for_metadata(self):
-        user = UserProfile.objects.get(email='regular@mozilla.com')
         addon = addon_factory(status=amo.STATUS_NULL)
         AddonCategory.objects.filter(addon=addon).delete()
-        addon.addonuser_set.create(user=user)
-        self.post()
+        addon.addonuser_set.create(user=self.user)
+        self.upload_dummy_file()
 
         upload = FileUpload.objects.get()
         response = self.client.get(
