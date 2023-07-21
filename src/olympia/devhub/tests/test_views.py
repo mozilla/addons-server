@@ -18,6 +18,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
+from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
@@ -1088,6 +1089,18 @@ class TestAPIKeyPage(TestCase):
 
         assert len(mail.outbox) == 1
         assert 'revoked' in mail.outbox[0].body
+
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestUpload(UploadMixin, TestCase):
