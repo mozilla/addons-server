@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-19 12:05+0000\n"
-"PO-Revision-Date: 2023-07-26 05:02+0000\n"
+"PO-Revision-Date: 2023-07-26 05:03+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -812,22 +812,22 @@ msgid "Un-rejected"
 msgstr "Un-rejected"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Reply to {rating} for {addon} written."
 
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "{addon} {version} pending rejection cleared."
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Pending rejection cleared"
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "{version} added to Blocklist."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Version Blocked"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "{version} removed from Blocklist."
 
 msgid "Version Unblocked"
 msgstr ""
