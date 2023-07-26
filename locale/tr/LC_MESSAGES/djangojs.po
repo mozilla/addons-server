@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:26+0000\n"
-"PO-Revision-Date: 2023-06-21 06:04+0000\n"
-"Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
+"PO-Revision-Date: 2023-07-26 15:24+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -73,7 +73,7 @@ msgid "Unexpected server error while validating."
 msgstr "Doğrulama sırasında beklenmeyen sunucu hatası."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Manifest’te Android için Firefox ile uyumlu olarak işaretlendi"
 
 msgid "Finished validating {0}"
 msgstr "{0} doğrulaması tamamlandı"
