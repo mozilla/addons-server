@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:26+0000\n"
-"PO-Revision-Date: 2022-11-26 05:10+0000\n"
-"Last-Translator: srifqi <muhammadrifqipriyosusanto@gmail.com>\n"
+"PO-Revision-Date: 2023-07-30 11:25+0000\n"
+"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "Ada masalah menghubungi server."
+msgstr "Terjadi masalah dalam menghubungi server."
 
 msgid "Select a file..."
 msgstr "Pilih berkas..."
