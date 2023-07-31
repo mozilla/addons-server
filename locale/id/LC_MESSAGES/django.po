@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-07-31 13:37+0000\n"
+"PO-Revision-Date: 2023-07-31 13:58+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -169,9 +169,8 @@ msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "Akun tidak ditemukan."
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "Penulis hanya akan terdaftar sekali."
 
@@ -179,13 +178,13 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Slug ini tidak dapat digunakan. Silakan pilih yang lain."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Versi {version_string} harus lebih besar dari versi {previous_version_string} yang telah disetujui sebelumnya."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
