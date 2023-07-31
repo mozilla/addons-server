@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-07-31 14:08+0000\n"
+"PO-Revision-Date: 2023-07-31 14:17+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -668,7 +668,7 @@ msgid "User {user} added to {group}."
 msgstr ""
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Pengguna {user} dihapus dari {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} tidak terdaftar."
@@ -678,7 +678,7 @@ msgstr "{file} telah ditandatangani."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Pengaya id {0} dengan GUID {1} telah dihapus"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} dimigrasi dari awal."
@@ -3692,7 +3692,7 @@ msgstr "Cara yang lebih efisien untuk menyimpan markah ketika Anda menggunakan b
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Buang format yang tidak perlu dan salin teks polos saja."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -4807,7 +4807,7 @@ msgid "by Source"
 msgstr "berdasarkan Sumber"
 
 msgid "by Medium"
-msgstr ""
+msgstr "berdasarkan Medium"
 
 #, fuzzy
 msgid "by Content"
