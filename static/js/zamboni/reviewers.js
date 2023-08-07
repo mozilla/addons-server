@@ -549,9 +549,10 @@ function initVersionsADU() {
         fillVersionsTable(versionAduPairs);
         fillTopTenBox(versionAduPairs);
       } else {
-        $('#version-adu-top-ten div').append('No average daily user values because BigQuery disabled.');
+        $('#version-adu-top-ten div').append(
+          'No average daily user values because BigQuery disabled.',
+        );
       }
-
     });
   }
   loadVersionsADU();
