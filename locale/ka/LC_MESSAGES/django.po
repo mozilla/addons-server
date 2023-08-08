@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-08-08 19:31+0000\n"
+"PO-Revision-Date: 2023-08-08 22:24+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1499,7 +1499,7 @@ msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების სამომხმარებლო შეთანხმება:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr "დამატება, პირადი მონაცემების დაცვის დებულებითაა"
+msgstr "დამატება პირადი მონაცემების დაცვის დებულებითაა"
 
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "გთხოვთ მიუთითოთ თქვენი დამატების პირადი მონაცემების დაცვის დებულება:"
@@ -2102,8 +2102,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
-"შენიშვნების გვერდი არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია, ვერსიის განურჩევლად. გამოიყენეთ დამატების გამოცდის გზებისა და სხვა საჭირო ინფორმაციის "
-"მისათითებლად. არსებული ინფორმაციის შეცვლა, შეეძლებათ შემსწორებლებს."
+"შენიშვნების გვერდი არის ადგილი, სადაც შეიძლება განთავსდეს თქვენს დამატებასთან დაკავშირებული ინფორმაცია ვერსიის განურჩევლად. გამოიყენეთ დამატების მოსინჯვის გზებისა და სხვა საჭირო ინფორმაციის "
+"მისათითებლად. არსებული ინფორმაციის შეცვლა შეეძლებათ შემსწორებლებს."
 
 msgid "Add-on Media for {0}"
 msgstr "მედია დამატება {0}-სთვის"
@@ -4341,7 +4341,7 @@ msgstr "გაფართოებები პირადულობის �
 
 #. editorial content for the homepage shelves.
 msgid "See more recommended privacy extensions"
-msgstr "სხვა სასურველი გაფართოებები, პირადულობისთვის"
+msgstr "სხვა სასურველი გაფართოებები პირადულობისთვის"
 
 #. editorial content for the homepage shelves.
 msgid "Popular extensions"
