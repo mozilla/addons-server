@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-08-04 21:37+0000\n"
+"PO-Revision-Date: 2023-08-08 13:07+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1564,7 +1564,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Le validation ha producite troppo de errores/avisos, dunque %s messages ha essite truncate. Post haber corrigite le messages visibile, tu potera vider le alteres."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Iste additivo non es un thema. Usa le pagina <a href=\"{link}\">Inviar un nove additivo</a> pro inviar extensiones."
 
 msgid "Updated"
 msgstr "Actualisate"
