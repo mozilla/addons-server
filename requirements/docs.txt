@@ -105,9 +105,9 @@ sphinxcontrib.jquery==4.1 \
 sphinxcontrib-jsmath==1.0.1 \
     --hash=sha256:2ec2eaebfb78f3f2078e73666b1415417a116cc848b72e5172e596c871103178 \
     --hash=sha256:a9925e4a4587247ed2191a22df5f6970656cb8ca2bd6284309578f2153e0c4b8
-sphinxcontrib-htmlhelp==2.0.1 \
-    --hash=sha256:0cbdd302815330058422b98a113195c9249825d681e18f11e8b1f78a2f11efff \
-    --hash=sha256:c38cb46dccf316c79de6e5515e1770414b797162b23cd3d06e67020e1d2a6903
+sphinxcontrib-htmlhelp==2.0.2 \
+    --hash=sha256:3fc535431dced1d3f50d30e3d9135873a724f6c38eeb4ac967ebb5c06d7bff9c \
+    --hash=sha256:f9515c1e2deac30498a8fa54b23a477943fc7432d6e7fcf23f7d90e12d3fdcd4
 sphinxcontrib-qthelp==1.0.3 \
     --hash=sha256:4c33767ee058b70dba89a6fc5c1892c0d57a54be67ddd3e7875a18d14cba5a72 \
     --hash=sha256:bd9fc24bcb748a8d51fd4ecaade681350aa63009a347a8c14e637895444dfab6
