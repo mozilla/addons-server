@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-08-14 08:40+0000\n"
+"PO-Revision-Date: 2023-08-14 08:42+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4653,7 +4653,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "wót %(user)s dnja %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -5074,7 +5074,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zapódajśo płaśiwy IPv4 abo seśowy wobceŕk CIDR IPv6, na pś. 127.0.0.1/28"
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "Wót wašogo stojnišća su se pósłali někotare zapódaśa, kótarež se pśeśiwo našym pšawidłam pśejdu. IP-adresa jo se blokěrowała."
 
 msgid "Email Pattern"
 msgstr "E-mailowy muster"
@@ -5085,7 +5085,7 @@ msgstr ""
 "dalšny zapisk, na pś. „*@*.example.com“."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "E-mailowa adresa, kótaruž sćo wužył za swójo konto njejo dowólona za zapódaśa."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
