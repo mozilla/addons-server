@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-08-14 08:30+0000\n"
+"PO-Revision-Date: 2023-08-14 08:40+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -828,22 +828,22 @@ msgid "Pending rejection cleared"
 msgstr ""
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "Wersija {version} jo se pśidała lisćinje blokěrowanjow."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "Wersija jo se blokěrowała"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "Wersija {version} jo se wótwónoźeła z lisćiny blokěrowanjow."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Blokěrowanje wersije jo wótpórane"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
+msgstr "Pśeglědowanje dodanka {addon} {version} jo se wulašowało."
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "Pśeglědowanje dodanka wót administratora jo se wulašowało"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1571,7 +1571,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Pśeglědanje jo pśewjele zmólkow/warnowanjow wunjasło, togodla jo se %s powěsćow wótdźěliło. Pó wobźěłowanju widobnych powěsćow móžośo druge wiźeś."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Toś ten dodank njejo drastwa. Wužywajśo město togo bok <a href=\"{link}\">Nowy dodank zapódaś</a>, aby rozšyrjenja zapódał."
 
 msgid "Updated"
 msgstr "Aktualizěrowane"
@@ -4292,7 +4292,7 @@ msgstr "Wjeliki palc dołoj jo se wrośił – na to wjeliki palc górjej."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Pśełožujśo websedła w Firefox – priwatnje – bźez togo aby cloud wužywał."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4461,11 +4461,11 @@ msgstr "Wěcej wót sobuźěłaśerjow wubrane rozšyrjenja kreatiwnosći pokaza
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Rozšyrjenja za socialne medije"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Dalšne wót sobuźěłaśerjow wubrane rozšyrjenja za socialne medije pokazaś"
 
 msgid "Unreviewed"
 msgstr "Njepśeglědany"
@@ -4591,7 +4591,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s njealfanumeriske znamuško wopśimujo."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
