@@ -4587,6 +4587,49 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
         self._test_url_contains_all(filter='all_with_unlisted')
 
+    def test_all_with_unlisted_when_no_unlisted_versions(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        # delete the unlisted version so only the listed versions remain.
+        self.unlisted_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 2
+        result_version = result['results'][0]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
+    
+    def test_all_with_unlisted_when_no_unlisted_versions_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(user)
+        # delete the unlisted version so only the listed versions remain.
+        self.unlisted_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 2
+        result_version = result['results'][0]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
+
     def test_deleted_version_anonymous(self):
         self.version.delete()
         self._test_url_only_contains_old_version()
