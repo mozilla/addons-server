@@ -4608,7 +4608,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # And that without_unlisted doesn't fail when there are no unlisted
         response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 200
-    
+
     def test_all_with_unlisted_when_no_unlisted_versions_viewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
