@@ -225,11 +225,15 @@ class TestEmailBouncing(TestCase):
 class TestAddEmailToActivityLog(TestCase):
     def setUp(self):
         self.addon = addon_factory(name='Badger', status=amo.STATUS_NOMINATED)
-        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.profile = user_factory()
-        self.token = ActivityLogToken.objects.create(version=version, user=self.profile)
+        self.token = ActivityLogToken.objects.create(
+            version=self.version, user=self.profile
+        )
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.parser = ActivityEmailParser(sample_message_content['Message'])
+        user_factory(id=settings.TASK_USER_ID)
+        assert not self.version.due_date
 
     def test_developer_comment(self):
         self.profile.addonuser_set.create(addon=self.addon)
@@ -237,6 +241,8 @@ class TestAddEmailToActivityLog(TestCase):
         assert note.log == amo.LOG.DEVELOPER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
+        assert self.version.needshumanreview_set.exists()
+        assert self.version.reload().due_date
 
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'Addons:Review')
@@ -244,6 +250,8 @@ class TestAddEmailToActivityLog(TestCase):
         assert note.log == amo.LOG.REVIEWER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
+        assert not self.version.needshumanreview_set.exists()
+        assert not self.version.reload().due_date
 
     def test_with_max_count_token(self):
         """Test with an invalid token."""
