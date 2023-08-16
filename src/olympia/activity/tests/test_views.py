@@ -431,7 +431,6 @@ class TestReviewNotesViewSetCreate(TestCase):
 
     def test_developer_reply_listed(self):
         self._test_developer_reply()
-        print(self.version.due_date, get_review_due_date())
         self.assertCloseToNow(
             self.version.due_date,
             now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
