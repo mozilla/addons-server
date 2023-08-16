@@ -511,7 +511,11 @@ class AddonVersionViewSet(
             # To see unlisted versions, you need to be add-on author or
             # unlisted reviewer.
             self.permission_classes = [
-                AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)
+                AnyOf(
+                    GroupPermission(amo.permissions.ADDONS_REVIEW_UNLISTED),
+                    GroupPermission(amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW),
+                    AllowAddonAuthor,
+                )
             ]
         elif requested == 'all_without_unlisted':
             # To see all listed versions (not just public ones) you need to
