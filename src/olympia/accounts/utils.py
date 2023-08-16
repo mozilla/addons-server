@@ -22,6 +22,7 @@ def fxa_login_url(
     enforce_2fa=False,
     request=None,
     id_token_hint=None,
+    login_hint=None,
 ):
     if next_path and is_safe_url(next_path, request):
         state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
@@ -55,9 +56,9 @@ def fxa_login_url(
         if id_token_hint:
             query['prompt'] = 'none'
             query['id_token_hint'] = id_token_hint
-        elif request and request.user.is_authenticated:
+        elif login_hint:
             query['prompt'] = 'none'
-            query['login_hint'] = request.user.email
+            query['login_hint'] = login_hint
     if use_fake_fxa():
         base_url = reverse('fake-fxa-authorization')
     else:
@@ -101,7 +102,7 @@ def redirect_for_login(request, *, config=None, next_path=None):
 
 
 def redirect_for_login_with_2fa_enforced(
-    request, *, config=None, next_path=None, id_token_hint=None
+    request, *, config=None, next_path=None, id_token_hint=None, login_hint=None
 ):
     if config is None:
         config = get_fxa_config(request)
@@ -115,6 +116,8 @@ def redirect_for_login_with_2fa_enforced(
         next_path=next_path,
         enforce_2fa=True,
         id_token_hint=id_token_hint,
+        login_hint=login_hint,
+        request=request,
     )
     return HttpResponseRedirect(url)
 

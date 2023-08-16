@@ -88,17 +88,20 @@ ERROR_NO_CODE = 'no-code'
 ERROR_NO_PROFILE = 'no-profile'
 ERROR_NO_USER = 'no-user'
 ERROR_STATE_MISMATCH = 'state-mismatch'
+ERROR_FXA_ERROR = 'error-fxa'
 ERROR_STATUSES = {
     ERROR_AUTHENTICATED: 400,
     ERROR_NO_CODE: 422,
     ERROR_NO_PROFILE: 401,
     ERROR_STATE_MISMATCH: 400,
+    ERROR_FXA_ERROR: 400,
 }
 LOGIN_ERROR_MESSAGES = {
     ERROR_AUTHENTICATED: _('You are already logged in.'),
     ERROR_NO_CODE: _('Your login attempt could not be parsed. Please try again.'),
     ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
+    ERROR_FXA_ERROR: _('You could not be logged in. Please try again.'),
 }
 
 
@@ -225,9 +228,10 @@ def with_user(f):
     @use_primary_db
     def inner(self, request):
         # If we get an error, we want a new session without the 2FA enforcement
-        # requirement active for future authentication attempts, so pop it.
+        # requirement active and with a fresh state for future authentication
+        # attempts, so pop them.
         enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
-        fxa_state_session = request.session.get('fxa_state')
+        fxa_state_session = request.session.pop('fxa_state', None)
 
         fxa_config = get_fxa_config(request)
         if request.method == 'GET':
@@ -237,18 +241,34 @@ def with_user(f):
         state_parts = data.get('state', '').split(':', 1)
         state = state_parts[0]
         next_path = parse_next_path(state_parts, request)
-        if not data.get('code'):
-            log.info('No code provided.')
-            return safe_redirect(request, next_path, ERROR_NO_CODE)
-        elif not fxa_state_session or fxa_state_session != state:
+
+        if not fxa_state_session or fxa_state_session != state:
             log.info(
                 'FxA Auth State mismatch: {state} Session: {fxa_state_session}'.format(
                     state=data.get('state'),
                     fxa_state_session=fxa_state_session,
                 )
             )
-            return safe_redirect(request, next_path, ERROR_STATE_MISMATCH)
-        elif request.user.is_authenticated:
+            # Redirect to / as the state mismatch indicates the next path might
+            # not be reliable.
+            return safe_redirect(request, '/', ERROR_STATE_MISMATCH)
+        elif data.get('error'):
+            if enforce_2fa_for_this_session:
+                # If we're trying to enforce 2FA, we should try again without
+                # prompt=none (and a new state), maybe there is a mismatch
+                # between what user we currently have logged in and what
+                # Firefox Account the browser is logged into.
+                return redirect_for_login_with_2fa_enforced(
+                    request,
+                    config=fxa_config,
+                    next_path=next_path,
+                )
+            else:
+                return safe_redirect(request, next_path, ERROR_FXA_ERROR)
+        elif not data.get('code'):
+            log.info('No code provided.')
+            return safe_redirect(request, next_path, ERROR_NO_CODE)
+        elif request.user.is_authenticated and not enforce_2fa_for_this_session:
             return safe_redirect(request, next_path, ERROR_AUTHENTICATED)
         try:
             if use_fake_fxa() and 'fake_fxa_email' in data:
@@ -312,6 +332,8 @@ def with_user(f):
                 # id_token, and should be prompted to create the second factor
                 # before coming back to AMO.
                 log.info('Redirecting user %s to enforce 2FA', user)
+                # There wasn't any error, we can keep the original state.
+                request.session['fxa_state'] = fxa_state_session
                 return redirect_for_login_with_2fa_enforced(
                     request,
                     config=fxa_config,

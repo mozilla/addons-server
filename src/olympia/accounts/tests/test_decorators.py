@@ -30,9 +30,9 @@ class TestTwoFactorAuthRequired(TestCase):
         func = two_factor_auth_required(self.f)
         response = func(self.request)
         assert self.f.call_count == 0
-        expected_redirect_url = redirect_for_login_with_2fa_enforced(self.request)[
-            'location'
-        ]
+        expected_redirect_url = redirect_for_login_with_2fa_enforced(
+            self.request, login_hint=self.user.email
+        )['location']
         self.assert3xx(response, expected_redirect_url)
 
     def test_does_not_have_two_factor_auth_yet_anonymous(self):

@@ -521,7 +521,8 @@ class TestWithUser(TestCase):
             ),
         }
         response = self.fn(self.request)
-        self.assertRedirects(response, '/next', fetch_redirect_response=False)
+        # next path is ignored as state is not reliable.
+        self.assertRedirects(response, '/', fetch_redirect_response=False)
 
     @override_settings(
         FXA_CONFIG={'a_conf': {'client_id': 'clientid', 'client_secret': 'supersikret'}}
@@ -788,7 +789,8 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert_url_equal(response['location'], '/en-US/firefox/')
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
@@ -800,7 +802,21 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert_url_equal(response['location'], '/en-US/firefox/')
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
+        assert not self.login_user.called
+        assert not self.register_user.called
+        assert not self.reregister_user.called
+
+    def test_error_from_fxa(self):
+        response = self.client.get(self.url, {'error': 'foo', 'state': '9f865be0'})
+        assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
