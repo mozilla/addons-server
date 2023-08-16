@@ -1,4 +1,5 @@
 import contextlib
+import os
 import re
 import uuid
 from urllib.parse import quote
@@ -279,18 +280,44 @@ class ReadOnlyMiddleware(MiddlewareMixin):
 
 class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     """
-    Set REMOTE_ADDR from HTTP_X_FORWARDED_FOR if the request came from the CDN.
+    Set REMOTE_ADDR from HTTP_X_FORWARDED_FOR if necessary.
 
-    If the request came from the CDN, the client IP will always be in
-    HTTP_X_FORWARDED_FOR in second to last position (CDN puts it last, but the
-    load balancer then appends the IP from where it saw the request come from,
-    which is the CDN server that forwarded the request). In addition, the CDN
-    will set HTTP_X_REQUEST_VIA_CDN to a secret value known to us so we can
-    verify the request did originate from the CDN.
+    The request flow is either:
+    Client -> CDN -> Load balancer -> WSGI proxy -> addons-server.
+    or
+    Client -> Load balancer -> WSGI proxy -> addons-server.
 
-    If the request didn't come from the CDN and is a direct origin request, the
-    client IP will be in last position in HTTP_X_FORWARDED_FOR but in this case
-    nginx already sets REMOTE_ADDR so we don't need to use it.
+    Currently:
+    - CDN is CloudFront
+    - Load Balancer is either a classic ELB (AWS) or GKE Ingress (GCP)
+    - WSGI proxy is nginx + uwsgi
+
+    CloudFront is set up to add a X-Request-Via-CDN header set to a secret
+    value known to us so we can verify the request did originate from the CDN.
+
+    Nginx converts X-Request-Via-CDN and X-Forwarded-For to
+    HTTP_X_REQUEST_VIA_CDN and HTTP_X_FORWARDED_FOR, respectively.
+
+    The X-Forwarded-For header is potentially user input. When intermediary
+    servers in the flow described above add their own IP to it, they are always
+    appending to the list, so we can only trust specific positions starting
+    from the right, anything else cannot be trusted.
+
+    CloudFront always makes origin requests with a X-Forwarded-For header
+    set to "Client IP, CDN IP", so the client IP will be second to last for a
+    CDN request.
+
+    On AWS, the classic ELB we're using does not make any alterations to
+    X-Forwarded-For.
+
+    On GCP, GKE Ingress appends its own IP to that header, resulting
+    in a value of "Client IP, CDN IP, GKE Ingress IP", so the client IP will be
+    third to last.
+
+    If the request didn't come from the CDN and is a direct origin request, on
+    AWS we can use REMOTE_ADDR, but on GCP we'd get the GKE Ingress IP, and the
+    X-Forwarded-For value will be "Client IP, GKE Ingress IP", so the client IP
+    will be second to last.
     """
 
     def is_request_from_cdn(self, request):
@@ -298,19 +325,31 @@ class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
             request.META.get('HTTP_X_REQUEST_VIA_CDN'), settings.SECRET_CDN_TOKEN
         )
 
+    def is_request_from_gcp_environement(self, request):
+        return os.environ.get('DEPLOY_PLATFORM') == 'gcp'
+
     def process_request(self, request):
+        position = 1
         x_forwarded_for_header = request.META.get('HTTP_X_FORWARDED_FOR')
-        if x_forwarded_for_header and self.is_request_from_cdn(request):
-            # We only have to split twice from the right to find what we're looking for.
-            try:
-                value = x_forwarded_for_header.rsplit(sep=',', maxsplit=2)[-2].strip()
-                if not value:
-                    raise IndexError
-                request.META['REMOTE_ADDR'] = value
-            except IndexError:
-                # Shouldn't happen, must be a misconfiguration, raise an error
-                # rather than potentially use/record incorrect IPs.
-                raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for_header:
+            if self.is_request_from_cdn(request):
+                position += 1
+            if self.is_request_from_gcp_environement(request):
+                position += 1
+            # If position is greater than 1 then we need to fix REMOTE_ADDR by
+            # looking into HTTP_X_FORWARDED_FOR, otherwise we should ignore it.
+            if position > 1:
+                try:
+                    value = x_forwarded_for_header.rsplit(sep=',', maxsplit=position)[
+                        -position
+                    ].strip()
+                    if not value:
+                        raise IndexError
+                    request.META['REMOTE_ADDR'] = value
+                except IndexError:
+                    # Shouldn't happen, must be a misconfiguration, raise an error
+                    # rather than potentially use/record incorrect IPs.
+                    raise ImproperlyConfigured('Invalid HTTP_X_FORWARDED_FOR')
 
 
 class RequestIdMiddleware(MiddlewareMixin):
