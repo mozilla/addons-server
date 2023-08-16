@@ -1528,7 +1528,7 @@ class ReviewAddonVersionCompareViewSet(
 def usage_per_version(request, addon):
     versions_avg = get_average_daily_users_per_version_from_bigquery(addon)
     response = JsonResponse(
-        {version: numberfmt(adu) for (version, adu) in versions_avg}
+        {'adus': [[version, numberfmt(adu)] for (version, adu) in versions_avg]}
     )
     patch_cache_control(response, max_age=5 * 60)
     return response

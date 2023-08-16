@@ -8454,7 +8454,7 @@ class TestUsagePerVersion(ReviewerTest):
 
         get_adu_per_version_mock.assert_called_once_with(self.addon)
         assert response.status_code == 200
-        assert response.json() == {}
+        assert response.json() == {'adus': []}
 
     @mock.patch(
         'olympia.reviewers.views.get_average_daily_users_per_version_from_bigquery'
@@ -8468,7 +8468,9 @@ class TestUsagePerVersion(ReviewerTest):
         response = self.client.get(self.url)
 
         assert response.status_code == 200
-        assert response.json() == {'1.1': '394', '2': '450', '3.4545': '9,999'}
+        assert response.json() == {
+            'adus': [['1.1', '394'], ['2', '450'], ['3.4545', '9,999']]
+        }
 
     def test_not_reviewer(self):
         user_factory(email='irregular@mozilla.com')

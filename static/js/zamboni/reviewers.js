@@ -544,9 +544,15 @@ function initVersionsADU() {
   function loadVersionsADU() {
     const aduUrl = $('#addon').data('versions-adu-url');
     $.get(aduUrl, function (data) {
-      const versionAduPairs = Object.entries(data);
-      fillVersionsTable(versionAduPairs);
-      fillTopTenBox(versionAduPairs);
+      const versionAduPairs = data.adus;
+      if (versionAduPairs !== undefined) {
+        fillVersionsTable(versionAduPairs);
+        fillTopTenBox(versionAduPairs);
+      } else {
+        $('#version-adu-top-ten div').append(
+          'No average daily user values because BigQuery disabled.',
+        );
+      }
     });
   }
   loadVersionsADU();
