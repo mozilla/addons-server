@@ -19,8 +19,11 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
+from olympia.versions.utils import get_review_due_date
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')
@@ -246,6 +249,16 @@ def log_and_notify(
         detail_kwargs['comments'] = comments
     if detail_kwargs:
         log_kwargs['details'] = detail_kwargs
+
+    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
+        had_due_date = bool(version.due_date)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASON_DEVELOPER_REPLY
+        )
+        if not had_due_date:
+            version.update(
+                due_date=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
+            )
 
     note = ActivityLog.create(action, version.addon, version, **log_kwargs)
     if not note:

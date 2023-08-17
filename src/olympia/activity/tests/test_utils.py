@@ -1,7 +1,7 @@
 import copy
-import datetime
 import json
 import os
+from datetime import datetime, timedelta
 from email.utils import formataddr
 from unittest import mock
 
@@ -32,6 +32,8 @@ from olympia.activity.utils import (
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, addon_factory, user_factory
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.versions.utils import get_review_due_date
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -225,11 +227,15 @@ class TestEmailBouncing(TestCase):
 class TestAddEmailToActivityLog(TestCase):
     def setUp(self):
         self.addon = addon_factory(name='Badger', status=amo.STATUS_NOMINATED)
-        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+        self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.profile = user_factory()
-        self.token = ActivityLogToken.objects.create(version=version, user=self.profile)
+        self.token = ActivityLogToken.objects.create(
+            version=self.version, user=self.profile
+        )
         self.token.update(uuid='5a0b8a83d501412589cc5d562334b46b')
         self.parser = ActivityEmailParser(sample_message_content['Message'])
+        user_factory(id=settings.TASK_USER_ID)
+        assert not self.version.due_date
 
     def test_developer_comment(self):
         self.profile.addonuser_set.create(addon=self.addon)
@@ -237,6 +243,22 @@ class TestAddEmailToActivityLog(TestCase):
         assert note.log == amo.LOG.DEVELOPER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
+        assert self.version.needshumanreview_set.exists()
+        self.assertCloseToNow(
+            self.version.reload().due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
+        )
+
+    def test_developer_comment_existing_due_date(self):
+        self.profile.addonuser_set.create(addon=self.addon)
+        expected_due_date = datetime.now() + timedelta(days=1)
+        self.version.update(due_date=expected_due_date)
+        note = add_email_to_activity_log(self.parser)
+        assert note.log == amo.LOG.DEVELOPER_REPLY_VERSION
+        self.token.refresh_from_db()
+        assert self.token.use_count == 1
+        assert self.version.needshumanreview_set.exists()
+        assert self.version.reload().due_date == expected_due_date
 
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'Addons:Review')
@@ -244,6 +266,8 @@ class TestAddEmailToActivityLog(TestCase):
         assert note.log == amo.LOG.REVIEWER_REPLY_VERSION
         self.token.refresh_from_db()
         assert self.token.use_count == 1
+        assert not self.version.needshumanreview_set.exists()
+        assert not self.version.reload().due_date
 
     def test_with_max_count_token(self):
         """Test with an invalid token."""
@@ -273,7 +297,7 @@ class TestAddEmailToActivityLog(TestCase):
 
     def test_banned_user(self):
         self.profile.addonuser_set.create(addon=self.addon)
-        self.profile.update(banned=datetime.datetime.now())
+        self.profile.update(banned=datetime.now())
         with self.assertRaises(ActivityEmailError):
             assert not add_email_to_activity_log(self.parser)
 
