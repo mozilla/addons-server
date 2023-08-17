@@ -246,7 +246,7 @@ class TestAddEmailToActivityLog(TestCase):
         assert self.version.needshumanreview_set.exists()
         self.assertCloseToNow(
             self.version.reload().due_date,
-            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME),
         )
 
     def test_developer_comment_existing_due_date(self):
