@@ -285,6 +285,17 @@ class TestClient(Client):
         else:
             raise AttributeError
 
+    def force_login_with_2fa(self, user, backend=None):
+        self.force_login(user, backend=backend)
+        # https://docs.djangoproject.com/en/dev/topics/testing/tools/
+        # #django.test.Client.session
+        # To modify the session and then save it, it must be stored in a
+        # variable first (because a new SessionStore is created every time this
+        # property is accessed)
+        session = self.session
+        session['has_two_factor_authentication'] = True
+        session.save()
+
 
 class APITestClientSessionID(APIClient):
     def create_session(self, user, **overrides):
@@ -393,7 +404,6 @@ def fxa_login_link(response=None, to=None, request=None):
         config=settings.FXA_CONFIG['default'],
         state=state,
         next_path=to,
-        action='signin',
     )
 
 
