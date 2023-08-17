@@ -18,7 +18,7 @@ def dev_required(
     submitting=False,
     qs=Addon.objects.all,
 ):
-    """Requires user to be add-on owner or admin.
+    """Require user to be add-on owner or admin.
 
     When owner_for_post is True, only owners can make a POST request. That
     argument can also be a callable.
@@ -100,7 +100,7 @@ def dev_required(
 
 
 def no_admin_disabled(f):
-    """Requires the addon not be STATUS_DISABLED (mozilla admin disabled)."""
+    """Require the addon not be STATUS_DISABLED (mozilla admin disabled)."""
 
     @functools.wraps(f)
     def wrapper(*args, **kw):
