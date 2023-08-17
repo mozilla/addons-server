@@ -1,6 +1,13 @@
 # ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
 
+ALLOWED_HOSTS = [
+    '.amo.prod.webservices.mozgcp.net',
+    '.mozilla.org',
+    '.mozilla.com',
+    '.mozilla.net',
+    '.mozaws.net',
+]
 
 ENGAGE_ROBOTS = True
 
