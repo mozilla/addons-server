@@ -1100,6 +1100,7 @@ class TestAPIKeyPage(TestCase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 

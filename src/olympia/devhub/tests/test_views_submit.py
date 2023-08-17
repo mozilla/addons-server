@@ -386,6 +386,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
@@ -494,6 +495,7 @@ class TestAddonSubmitDistribution(TestCase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
@@ -838,6 +840,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
@@ -848,6 +851,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
@@ -1983,6 +1987,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
@@ -2350,6 +2355,7 @@ class VersionSubmitUploadMixin:
             state=self.client.session['fxa_state'],
             next_path=self.url,
             enforce_2fa=True,
+            login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
 
