@@ -1,8 +1,6 @@
 from base64 import urlsafe_b64decode, urlsafe_b64encode
-from unittest import mock
 from urllib.parse import parse_qs, urlparse
 
-from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
