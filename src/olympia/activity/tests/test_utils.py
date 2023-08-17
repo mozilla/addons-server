@@ -1,7 +1,7 @@
 import copy
-import datetime
 import json
 import os
+from datetime import datetime, timedelta
 from email.utils import formataddr
 from unittest import mock
 
@@ -32,6 +32,8 @@ from olympia.activity.utils import (
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, addon_factory, user_factory
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.versions.utils import get_review_due_date
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -242,7 +244,21 @@ class TestAddEmailToActivityLog(TestCase):
         self.token.refresh_from_db()
         assert self.token.use_count == 1
         assert self.version.needshumanreview_set.exists()
-        assert self.version.reload().due_date
+        self.assertCloseToNow(
+            self.version.reload().due_date,
+            now=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
+        )
+
+    def test_developer_comment_existing_due_date(self):
+        self.profile.addonuser_set.create(addon=self.addon)
+        expected_due_date = datetime.now() + timedelta(days=1)
+        self.version.update(due_date=expected_due_date)
+        note = add_email_to_activity_log(self.parser)
+        assert note.log == amo.LOG.DEVELOPER_REPLY_VERSION
+        self.token.refresh_from_db()
+        assert self.token.use_count == 1
+        assert self.version.needshumanreview_set.exists()
+        assert self.version.reload().due_date == expected_due_date
 
     def test_reviewer_comment(self):
         self.grant_permission(self.profile, 'Addons:Review')
@@ -281,7 +297,7 @@ class TestAddEmailToActivityLog(TestCase):
 
     def test_banned_user(self):
         self.profile.addonuser_set.create(addon=self.addon)
-        self.profile.update(banned=datetime.datetime.now())
+        self.profile.update(banned=datetime.now())
         with self.assertRaises(ActivityEmailError):
             assert not add_email_to_activity_log(self.parser)
 
