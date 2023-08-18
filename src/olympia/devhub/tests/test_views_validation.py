@@ -26,7 +26,7 @@ class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         self.validation = {
             'errors': 1,
             'detected_type': 'extension',
@@ -400,7 +400,9 @@ class TestValidateAddon(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
 
     def test_login_required(self):
         self.client.logout()
@@ -484,7 +486,9 @@ class TestUploadURLs(TestCase):
     def setUp(self):
         super().setUp()
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
 
         self.addon = Addon.objects.create(
             guid='thing@stuff', slug='thing-stuff', status=amo.STATUS_APPROVED

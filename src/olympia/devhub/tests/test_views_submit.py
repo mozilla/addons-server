@@ -20,6 +20,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -62,8 +63,8 @@ class TestSubmitBase(TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.client.force_login(self.user)
-        self.user.update(last_login_ip='192.168.1.1')
+        self.client.force_login_with_2fa(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         self.addon = self.get_addon()
 
     def get_addon(self):
@@ -104,29 +105,38 @@ class TestSubmitBase(TestCase):
 
 
 class TestAddonSubmitAgreement(TestSubmitBase):
+    def setUp(self):
+        self.url = reverse('devhub.submit.agreement')
+        self.next_url = reverse('devhub.submit.distribution')
+        super().setUp()
+
     def test_set_read_dev_agreement(self):
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             {
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-        assert response.status_code == 302
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        self.assert3xx(response, self.next_url)
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
     def test_set_read_dev_agreement_theme(self):
+        self.client.logout()  # Shouldn't need 2FA.
+        self.client.force_login(self.user)
+        # Make sure we still have a last login ip though.
+        self.user.update(last_login_ip='192.0.2.1')
+        self.url = reverse('devhub.submit.theme.agreement')
+        self.next_url = reverse('devhub.submit.theme.distribution')
         response = self.client.post(
-            reverse('devhub.submit.theme.agreement'),
+            self.url,
             {
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-        assert response.status_code == 302
-        self.assert3xx(response, reverse('devhub.submit.theme.distribution'))
+        self.assert3xx(response, self.next_url)
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -134,7 +144,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.post(reverse('devhub.submit.agreement'))
+        response = self.client.post(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -152,21 +162,21 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         after_agreement_last_changed = datetime(2019, 6, 10) + timedelta(days=1)
         self.user.update(read_dev_agreement=after_agreement_last_changed)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(2019, 6, 10, 12, 00))
     def test_read_dev_agreement_fallback_with_config_set_to_future(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_fallback_with_conf_future_and_not_agreed(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -175,30 +185,30 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_invalid_date_not_agreed_post_fallback(self):
         set_config('last_dev_agreement_change_date', '2099,31,12,0,0')
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         self.assertRaises(ValueError)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
     def test_read_dev_agreement_no_date_configured_agreed_post_fallback(self):
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_no_date_configured_not_agreed_post_fallb(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
     def test_read_dev_agreement_captcha_inactive(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' not in form.fields
@@ -209,12 +219,12 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' in form.fields
 
-        response = self.client.post(reverse('devhub.submit.agreement'))
+        response = self.client.post(self.url)
 
         # Captcha is properly rendered
         doc = pq(response.content)
@@ -225,7 +235,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_success(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' in form.fields
@@ -248,22 +258,20 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         )
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'g-recaptcha-response': 'test',
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-
-        assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.submit.distribution')
+        self.assert3xx(response, self.next_url)
 
     def test_cant_submit_agreement_if_restricted_functional(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -284,23 +292,23 @@ class TestAddonSubmitAgreement(TestSubmitBase):
 
     def test_display_name_already_set_not_asked_again(self):
         self.user.update(read_dev_agreement=None, display_name='Foo')
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'display_name' not in form.fields
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-        assert response.status_code == 302
+        self.assert3xx(response, self.next_url)
         assert self.user.reload().read_dev_agreement
 
     def test_display_name_required(self):
         self.user.update(read_dev_agreement=None, display_name='')
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         form = response.context['agreement_form']
@@ -310,7 +318,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             in doc('.addon-submission-process').text()
         )
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -328,7 +336,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     def test_display_name_submission(self):
         self.user.update(read_dev_agreement=None, display_name='')
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -342,7 +350,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         }
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -356,17 +364,31 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         }
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
                 'display_name': 'Fôä',
             },
         )
-        assert response.status_code == 302
+        self.assert3xx(response, self.next_url)
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
         assert self.user.display_name == 'Fôä'
+
+    def test_enforce_2fa(self):
+        self.user.update(read_dev_agreement=None)
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestAddonSubmitDistribution(TestCase):
@@ -374,14 +396,17 @@ class TestAddonSubmitDistribution(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.user.update(last_login_ip='192.168.1.1')
+        self.user.update(last_login_ip='192.0.2.1')
+        self.url = reverse('devhub.submit.distribution')
 
     def test_check_agreement_okay(self):
         response = self.client.post(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
-        response = self.client.get(reverse('devhub.submit.distribution'))
+        self.assert3xx(response, self.url)
+        response = self.client.get(self.url)
         assert response.status_code == 200
         # No error shown for a redirect from previous step.
         assert b'This field is required' not in response.content
@@ -391,7 +416,7 @@ class TestAddonSubmitDistribution(TestCase):
             key='submit_notification_warning',
             value='Text with <a href="http://example.com">a link</a>.',
         )
-        response = self.client.get(reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.notification-box.warning').html().strip() == config.value
@@ -399,7 +424,7 @@ class TestAddonSubmitDistribution(TestCase):
     def test_redirect_back_to_agreement(self):
         self.user.update(read_dev_agreement=None)
 
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
         # read_dev_agreement needs to be a more recent date than
@@ -407,7 +432,7 @@ class TestAddonSubmitDistribution(TestCase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_redirect_back_to_agreement_theme(self):
@@ -430,19 +455,15 @@ class TestAddonSubmitDistribution(TestCase):
 
     def test_redirect_back_to_agreement_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_listed_redirects_to_next_step(self):
-        response = self.client.post(
-            reverse('devhub.submit.distribution'), {'channel': 'listed'}
-        )
+        response = self.client.post(self.url, {'channel': 'listed'})
         self.assert3xx(response, reverse('devhub.submit.upload', args=['listed']))
 
     def test_unlisted_redirects_to_next_step(self):
-        response = self.client.post(
-            reverse('devhub.submit.distribution'), {'channel': 'unlisted'}
-        )
+        response = self.client.post(self.url, {'channel': 'unlisted'})
         self.assert3xx(response, reverse('devhub.submit.upload', args=['unlisted']))
 
     def test_listed_redirects_to_next_step_theme(self):
@@ -452,7 +473,7 @@ class TestAddonSubmitDistribution(TestCase):
         self.assert3xx(response, reverse('devhub.submit.theme.upload', args=['listed']))
 
     def test_channel_selection_error_shown(self):
-        url = reverse('devhub.submit.distribution')
+        url = self.url
         # First load should have no error
         assert b'This field is required' not in self.client.get(url).content
 
@@ -465,6 +486,19 @@ class TestAddonSubmitDistribution(TestCase):
         # A post submission without channel selection should be an error
         assert b'This field is required' in self.client.post(url).content
 
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
 
 @override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadMixin, TestCase):
@@ -476,9 +510,11 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.user.update(last_login_ip='192.168.1.1')
+        self.user.update(last_login_ip='192.0.2.1')
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
@@ -657,6 +693,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         )
 
     def test_theme_variant_has_theme_stuff_visible(self):
+        self.client.logout()  # Shouldn't need 2FA.
+        self.client.force_login(self.user)
+        # Make sure we still have a last login ip though.
+        self.user.update(last_login_ip='192.0.2.1')
         response = self.client.get(
             reverse('devhub.submit.theme.upload', args=['listed']), follow=True
         )
@@ -789,6 +829,31 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
+
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
+        self.url = reverse('devhub.submit.upload', args=['unlisted'])
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestAddonSubmitSource(TestSubmitBase):
@@ -1579,6 +1644,9 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def setUp(self):
         super().setUp()
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.0.2.0.1')
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
         addon = self.get_addon()
@@ -1910,6 +1978,19 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             response, reverse('devhub.submit.version.agreement', args=[self.addon.slug])
         )
 
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
     """Just check we chose the right upload channel.  The upload tests
@@ -1973,8 +2054,8 @@ class VersionSubmitUploadMixin:
         self.version = self.addon.current_version
         self.addon.update(guid='@webextension-guid')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.client.force_login(self.user)
-        self.user.update(last_login_ip='192.168.1.1')
+        self.client.force_login_with_2fa(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         self.addon.versions.update(channel=self.channel, version='0.0.0.99')
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.url = reverse(
@@ -2264,6 +2345,19 @@ class VersionSubmitUploadMixin:
         doc = pq(response.content)
         assert doc('.notification-box.warning')
         assert doc('.notification-box.warning').html().strip() == config.value
+
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
