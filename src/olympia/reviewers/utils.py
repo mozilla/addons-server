@@ -26,7 +26,6 @@ from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
-    ReviewerSubscription,
     get_flags,
 )
 from olympia.reviewers.templatetags.jinja_helpers import format_score
@@ -1363,12 +1362,6 @@ class ReviewBase:
                 subject = 'Mozilla Add-ons: Versions disabled for %s%s'
             log.info('Sending email for %s' % (self.addon))
             self.notify_email(template, subject, version=latest_version)
-
-            # The reviewer should be automatically subscribed to any new
-            # versions posted to the same channel.
-            ReviewerSubscription.objects.get_or_create(
-                user=self.user, addon=self.addon, channel=latest_version.channel
-            )
 
     def unreject_latest_version(self):
         """Un-reject the latest version."""

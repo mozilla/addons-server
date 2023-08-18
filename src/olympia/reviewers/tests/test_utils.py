@@ -44,7 +44,6 @@ from olympia.reviewers.models import (
     AutoApprovalSummary,
     NeedsHumanReview,
     ReviewActionReason,
-    ReviewerSubscription,
 )
 from olympia.reviewers.utils import (
     ReviewAddon,
@@ -2095,12 +2094,6 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not flags.auto_approval_disabled_until_next_approval_unlisted
         assert flags.auto_approval_disabled_until_next_approval
 
-        # The reviewer should have been automatically subscribed to new listed
-        # versions.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
-
     def test_reject_multiple_versions_with_delay(self):
         old_version = self.review_version
         self.review_version = version_factory(addon=self.addon, version='3.0')
@@ -2174,12 +2167,6 @@ class TestReviewHelper(TestReviewHelperBase):
         flags.reload()
         assert not flags.notified_about_expiring_delayed_rejections
         assert flags.auto_approval_disabled_until_next_approval
-
-        # The reviewer should have been automatically subscribed to new listed
-        # versions.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
 
     def test_reject_multiple_versions_except_latest(self):
         old_version = self.review_version
@@ -2302,12 +2289,6 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED, content_review=True
         )
 
-        # Pre-subscribe the user to new listed versions of this add-on, it
-        # shouldn't matter.
-        ReviewerSubscription.objects.create(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        )
-
         in_the_future = datetime.now() + timedelta(days=14)
 
         # Safeguards.
@@ -2362,12 +2343,6 @@ class TestReviewHelper(TestReviewHelperBase):
             .get()
         )
         assert log.arguments == [self.addon, self.review_version, old_version]
-
-        # The reviewer was already subscribed to new listed versions for this
-        # addon, nothing has changed.
-        assert ReviewerSubscription.objects.filter(
-            addon=self.addon, user=self.user, channel=self.review_version.channel
-        ).exists()
 
     def test_unreject_latest_version_approved_addon(self):
         first_version = self.review_version
