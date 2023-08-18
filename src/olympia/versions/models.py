@@ -912,9 +912,10 @@ class Version(OnChangeMixin, ModelBase):
         Disable files from versions older than the current one in the same
         channel and awaiting review. Used when uploading a new version.
 
-        Does nothing if the current instance is unlisted.
+        Does nothing if the add-on is a langpack or if the current instance is
+        unlisted.
         """
-        if self.channel == amo.CHANNEL_LISTED:
+        if self.channel == amo.CHANNEL_LISTED and self.addon.type != amo.ADDON_LPAPP:
             qs = File.objects.filter(
                 version__addon=self.addon_id,
                 version__lt=self.id,
