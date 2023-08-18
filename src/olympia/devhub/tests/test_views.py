@@ -845,6 +845,7 @@ class TestAPIKeyPage(TestCase):
         self.client.force_login_with_2fa(UserProfile.objects.get(email='del@icio.us'))
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.user.update(last_login_ip='192.168.1.1')
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def test_key_redirect(self):
         self.user.update(read_dev_agreement=None)
@@ -1114,6 +1115,7 @@ class TestUpload(UploadMixin, TestCase):
         self.client.force_login(self.user)
         self.url = reverse('devhub.upload')
         self.xpi_path = self.file_path('webextension_no_id.xpi')
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(self, theme_specific=False, **kwargs):
         data = {
