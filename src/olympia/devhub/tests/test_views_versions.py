@@ -1032,15 +1032,14 @@ class TestVersionEditDetails(TestVersionEditBase):
         self.test_should_accept_zip_source_file()
 
         # Check that an email has been sent to relevant people.
-        assert len(mail.outbox) == 3
+        assert len(mail.outbox) == 2
         for message in mail.outbox:
             assert message.subject == ('Mozilla Add-ons: Delicious Bookmarks 2.1.072')
             assert 'Source code uploaded' in message.body
 
         # Check each message was sent separately to who we are meant to notify.
-        assert mail.outbox[0].to != mail.outbox[1].to != mail.outbox[2].to
-        assert set(mail.outbox[0].to + mail.outbox[1].to + mail.outbox[2].to) == {
-            reviewer.email,
+        assert mail.outbox[0].to != mail.outbox[1].to
+        assert set(mail.outbox[0].to + mail.outbox[1].to) == {
             extra_author.email,
             staff_user.email,
         }

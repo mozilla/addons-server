@@ -13,7 +13,7 @@ import pytest
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.access.models import Group, GroupUser
+from olympia.access.models import Group
 from olympia.activity.models import MAX_TOKEN_USE_COUNT, ActivityLog, ActivityLogToken
 from olympia.activity.utils import (
     ACTIVITY_MAIL_GROUP,
@@ -375,13 +375,12 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 2  # We added one above.
         assert logs[0].details['comments'] == 'Thïs is á reply'
 
-        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        assert send_mail_mock.call_count == 1  # One author.
         sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.reviewer.email in recipients
-        assert self.developer2.email in recipients
+        assert len(recipients) == 1
+        assert [self.developer2.email] == recipients
         # The developer who sent it doesn't get their email back.
         assert self.developer.email not in recipients
 
@@ -389,21 +388,6 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            author=self.developer,
-            is_from_developer=True,
-            is_to_developer=True,
-        )
-        review_url = absolutify(
-            reverse(
-                'reviewers.review',
-                kwargs={'addon_id': self.version.addon.pk, 'channel': 'listed'},
-                add_prefix=False,
-            )
-        )
-        self._check_email(
-            send_mail_mock.call_args_list[1],
-            review_url,
-            'you reviewed this add-on.',
             author=self.developer,
             is_from_developer=True,
             is_to_developer=True,
@@ -430,8 +414,6 @@ class TestLogAndNotify(TestCase):
         assert len(recipients) == 2
         assert self.developer.email in recipients
         assert self.developer2.email in recipients
-        # The reviewer who sent it doesn't get their email back.
-        assert self.reviewer.email not in recipients
 
         self._check_email(
             send_mail_mock.call_args_list[0],
@@ -466,16 +448,14 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 1
         assert not logs[0].details  # No details json because no comment.
 
-        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        assert send_mail_mock.call_count == 1  # One author.
         sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.reviewer.email in recipients
-        assert self.developer2.email in recipients
+        assert len(recipients) == 1
+        assert [self.developer2.email] == recipients
 
         assert 'Approval notes changed' in (send_mail_mock.call_args_list[0][0][1])
-        assert 'Approval notes changed' in (send_mail_mock.call_args_list[1][0][1])
 
     def test_staff_cc_group_is_empty_no_failure(self):
         Group.objects.create(name=ACTIVITY_MAIL_GROUP, rules='None:None')
@@ -495,7 +475,7 @@ class TestLogAndNotify(TestCase):
         sender = formataddr((self.developer.name, NOTIFICATIONS_FROM_EMAIL))
         assert sender == send_mail_mock.call_args_list[0][1]['from_email']
         assert len(recipients) == 2
-        # self.reviewers wasn't on the thread, but gets an email anyway.
+        # self.reviewer wasn't on the thread, but gets an email anyway.
         assert self.reviewer.email in recipients
         assert self.developer2.email in recipients
         review_url = absolutify(
@@ -531,27 +511,6 @@ class TestLogAndNotify(TestCase):
         assert self.task_user.email not in recipients
 
     @mock.patch('olympia.activity.utils.send_mail')
-    def test_ex_reviewer_doesnt_get_mail(self, send_mail_mock):
-        """If a reviewer has now left the team don't email them."""
-        self._create(amo.LOG.REJECT_VERSION, self.reviewer)
-        # Take his joob!
-        GroupUser.objects.get(
-            group=Group.objects.get(name='Addon Reviewers'), user=self.reviewer
-        ).delete()
-
-        action = amo.LOG.DEVELOPER_REPLY_VERSION
-        comments = 'Thïs is á reply'
-        log_and_notify(action, comments, self.developer, self.version)
-
-        logs = ActivityLog.objects.filter(action=action.id)
-        assert len(logs) == 1
-
-        recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 1
-        assert self.developer2.email in recipients
-        assert self.reviewer.email not in recipients
-
-    @mock.patch('olympia.activity.utils.send_mail')
     def test_review_url_listed(self, send_mail_mock):
         # One from the reviewer.
         self._create(amo.LOG.REJECT_VERSION, self.reviewer)
@@ -565,11 +524,10 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 2  # We added one above.
         assert logs[0].details['comments'] == 'Thïs is á reply'
 
-        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        assert send_mail_mock.call_count == 1  # One author
         recipients = self._recipients(send_mail_mock)
-        assert len(recipients) == 2
-        assert self.reviewer.email in recipients
-        assert self.developer2.email in recipients
+        assert len(recipients) == 1
+        assert [self.developer2.email] == recipients
         # The developer who sent it doesn't get their email back.
         assert self.developer.email not in recipients
 
@@ -577,19 +535,6 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            author=self.developer,
-        )
-        review_url = absolutify(
-            reverse(
-                'reviewers.review',
-                add_prefix=False,
-                kwargs={'channel': 'listed', 'addon_id': self.addon.pk},
-            )
-        )
-        self._check_email(
-            send_mail_mock.call_args_list[1],
-            review_url,
-            'you reviewed this add-on.',
             author=self.developer,
         )
 
@@ -610,12 +555,11 @@ class TestLogAndNotify(TestCase):
         assert len(logs) == 2  # We added one above.
         assert logs[0].details['comments'] == 'Thïs is á reply'
 
-        assert send_mail_mock.call_count == 2  # One author, one reviewer.
+        assert send_mail_mock.call_count == 1  # One author
         recipients = self._recipients(send_mail_mock)
 
-        assert len(recipients) == 2
-        assert self.reviewer.email in recipients
-        assert self.developer2.email in recipients
+        assert len(recipients) == 1
+        assert [self.developer2.email] == recipients
         # The developer who sent it doesn't get their email back.
         assert self.developer.email not in recipients
 
@@ -623,19 +567,6 @@ class TestLogAndNotify(TestCase):
             send_mail_mock.call_args_list[0],
             absolutify(self.addon.get_dev_url('versions')),
             'you are listed as an author of this add-on.',
-            author=self.developer,
-        )
-        review_url = absolutify(
-            reverse(
-                'reviewers.review',
-                add_prefix=False,
-                kwargs={'channel': 'unlisted', 'addon_id': self.addon.pk},
-            )
-        )
-        self._check_email(
-            send_mail_mock.call_args_list[1],
-            review_url,
-            'you reviewed this add-on.',
             author=self.developer,
         )
 
