@@ -24,7 +24,7 @@
     "underscore": "1.13.6"
   },
   "devDependencies": {
-    "jest": "^29.6.1",
+    "jest": "^29.6.3",
     "jest-date-mock": "^1.0.8",
     "jest-environment-jsdom": "^29.6.2",
     "lodash": "^4.17.21",
