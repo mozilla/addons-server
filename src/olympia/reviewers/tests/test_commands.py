@@ -90,16 +90,16 @@ class AutoApproveTestsMixin:
 
         # Add langpack with 2 listed versions awaiting review: both should be
         # considered.
-        self.langpack = addon_factory(
+        langpack = addon_factory(
             name='Langpack',
             type=amo.ADDON_LPAPP,
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        langpack_version_one = self.langpack.versions.all()[0]
+        langpack_version_one = langpack.versions.all()[0]
         langpack_version_one.update(created=self.days_ago(3), due_date=self.days_ago(0))
         langpack_version_two = version_factory(
-            addon=self.langpack,
+            addon=langpack,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             created=self.days_ago(4),
             due_date=self.days_ago(0),
@@ -352,11 +352,28 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # TestAutoApproveCommandTransactions below.
         return summary
 
+    def test_multiple_langpacks_awaiting_review_are_both_approved(self):
         # Spot check langpack versions in particular, they both should be
         # approved.
-        self.langpack.versions.filter(
+        langpack = addon_factory(
+            name='Langpack',
+            type=amo.ADDON_LPAPP,
+            status=amo.STATUS_APPROVED,
+        )
+        version_factory(
+            addon=langpack,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        version_factory(
+            addon=langpack,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+
+        call_command('auto_approve')
+
+        langpack.versions.filter(
             file__status=amo.STATUS_APPROVED
-        ).count() == self.langpack.versions.count()
+        ).count() == langpack.versions.count()
 
     def test_full_with_weights_and_score(self):
         ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)
