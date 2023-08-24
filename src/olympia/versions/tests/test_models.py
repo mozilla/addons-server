@@ -2658,25 +2658,50 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         create_entry_mock.assert_not_called()
 
 
-class TestStatusFromUpload(TestVersionFromUpload):
+class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
     filename = 'webextension.xpi'
 
     def setUp(self):
         super().setUp()
-        self.current = self.addon.current_version
+        self.old_version = self.addon.current_version
 
-    def test_status(self):
-        self.current.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        Version.from_upload(
+    def test_disable_old_files_waiting_review(self):
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
             self.upload,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert File.objects.filter(version=self.current)[0].status == (
-            amo.STATUS_DISABLED
+        assert self.old_version.file.reload().status == amo.STATUS_DISABLED
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_disable_old_files_waiting_review_not_for_unlisted_channel(self):
+        self.old_version.update(channel=amo.CHANNEL_UNLISTED)
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
+        assert self.old_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_disable_old_files_waiting_review_not_for_langpacks(self):
+        self.old_version.addon.update(type=amo.ADDON_LPAPP)
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.old_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
 
 
 class TestPermissionsFromUpload(TestVersionFromUpload):
