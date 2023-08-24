@@ -352,28 +352,28 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # TestAutoApproveCommandTransactions below.
         return summary
 
-    def test_multiple_langpacks_awaiting_review_are_both_approved(self):
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_multiple_langpacks_awaiting_review_are_both_approved(self, sign_file_mock):
         # Spot check langpack versions in particular, they both should be
         # approved.
-        langpack = addon_factory(
-            name='Langpack',
-            type=amo.ADDON_LPAPP,
-            status=amo.STATUS_APPROVED,
-        )
-        version_factory(
-            addon=langpack,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-        )
-        version_factory(
-            addon=langpack,
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        self.author = user_factory()
+        self.addon.addonuser_set.create(user=self.author)
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        FileValidation.objects.create(
+            file=version_factory(
+                addon=self.addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).file,
+            validation='{}',
         )
 
         call_command('auto_approve')
 
-        langpack.versions.filter(
-            file__status=amo.STATUS_APPROVED
-        ).count() == langpack.versions.count()
+        assert (
+            self.addon.versions.filter(file__status=amo.STATUS_APPROVED).count()
+            == self.addon.versions.count()
+        )
 
     def test_full_with_weights_and_score(self):
         ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)
