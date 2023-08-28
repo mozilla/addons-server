@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-07-29 07:30+0000\n"
+"PO-Revision-Date: 2023-08-28 19:19+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4154,7 +4154,7 @@ msgstr "让 Firefox 根据一天中的时间改变颜色。"
 
 #. editorial content for the primary hero shelves.
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
-msgstr "消除 YouTube 干扰。移除相关﹠推荐的视频、评论及更多。"
+msgstr "消除 YouTube 干扰。移除相关＆推荐的视频、评论及更多。"
 
 #. editorial content for the primary hero shelves.
 msgid "Take emojis with you everywhere on the web."
