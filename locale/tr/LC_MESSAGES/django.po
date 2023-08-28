@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-07-26 09:25+0000\n"
-"PO-Revision-Date: 2023-07-26 16:13+0000\n"
-"Last-Translator: mistermind02 <mistermind02@outlook.com.tr>\n"
+"PO-Revision-Date: 2023-08-28 15:45+0000\n"
+"Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -706,7 +706,7 @@ msgid "Source code uploaded"
 msgstr "Kaynak kodu yüklendi"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "{addon} {version} otomatik onaylama onaylandı."
 
 msgid "Auto-Approval confirmed"
 msgstr "Otomatik onay doğrulandı"
@@ -4175,7 +4175,7 @@ msgstr "Web sayfalarının sesli okunmasını sağlayın. 40'tan fazla dili dest
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
-msgstr ""
+msgstr "Google arama sonuçlarındaki adreslerde bulunan uzun takip parametrelerini kaldırır."
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
@@ -4199,7 +4199,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Kimliğinizi korumak ve istenmeyen postaları önlemek için e-postanızı maskeleyin. Yeni güncellemeler Firefox Relay’in kullanımını daha da kolaylaştırıyor."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4966,6 +4966,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"<a href=\"https://www.mozilla.org/about/legal/\">Aksi belirtilmedikçe</a> bu sitedeki içerikler <br/> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution Share-"
+"Alike License v3.0</a> veya üstü bir sürümle lisanslanmıştır."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "<b>eklentileri</b> tanıyın"
