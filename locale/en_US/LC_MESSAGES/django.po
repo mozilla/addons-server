@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -355,6 +355,9 @@ msgstr "Register or Log in"
 #, fuzzy
 msgid "Email:"
 msgstr "Email"
+
+msgid "Two-factor authentication"
+msgstr "Two-factor authentication"
 
 msgid "OK"
 msgstr "OK"
@@ -1742,6 +1745,9 @@ msgstr "Changes successfully saved."
 
 msgid "Validate Add-on"
 msgstr "Validate Add-on"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Icons must be either PNG or JPG."

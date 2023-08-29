@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,6 +344,9 @@ msgstr "Titz'ib'äx B'i'aj o Titikirisäx Molojri'ïl"
 
 msgid "Email:"
 msgstr "Taqoya'l:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "ÜTZ"
@@ -1645,6 +1648,9 @@ msgstr "Ütz xeyak ri jaloj."
 
 msgid "Validate Add-on"
 msgstr "Tijikib'äx ri Tz'aqat"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."

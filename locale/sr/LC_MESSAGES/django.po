@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -347,6 +347,9 @@ msgstr ""
 #, fuzzy
 msgid "Email:"
 msgstr "Е-пошта"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr ""
@@ -1726,6 +1729,9 @@ msgstr "Измене су успешно сачуване."
 
 msgid "Validate Add-on"
 msgstr "Оверите додатак"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Иконице морају бити или PNG или JPG формата."

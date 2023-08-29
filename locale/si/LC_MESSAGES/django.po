@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2023-07-02 19:59+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,6 +331,9 @@ msgstr "පිවිසෙන්න හෝ ලියාපදිංචිය"
 
 msgid "Email:"
 msgstr "වි-තැපෑල:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "හරි"
@@ -1602,6 +1605,9 @@ msgid "Changes successfully saved."
 msgstr ""
 
 msgid "Validate Add-on"
+msgstr ""
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."
