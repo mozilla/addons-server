@@ -1276,6 +1276,17 @@ class TestUpload(UploadMixin, TestCase):
             }
         }
 
+    def test_upload_extension_without_2fa_waffle_is_off(self):
+        self.create_flag(
+            '2fa-enforcement-for-developers-and-special-users', everyone=False
+        )
+        self.url = reverse('devhub.upload')
+        response = self.post()
+        upload = FileUpload.objects.get()
+        assert upload.channel == amo.CHANNEL_LISTED
+        url = reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json'])
+        self.assert3xx(response, url)
+
     def test_upload_theme_without_2fa(self):
         self.xpi_path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
