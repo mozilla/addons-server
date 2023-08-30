@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-29 16:45+0000\n"
-"PO-Revision-Date: 2023-08-30 11:33+0000\n"
+"PO-Revision-Date: 2023-08-30 15:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -823,10 +823,10 @@ msgid "Reply to {rating} for {addon} written."
 msgstr "Wotmołwa na {rating} za {addon} napisana."
 
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Wustejace wotpokazanje za {addon} {version} je so zhašało."
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Wustejace wotpokazanje je so zhašało"
 
 msgid "{version} added to Blocklist."
 msgstr "Wersija {version} je so lisćinje blokowanjow přidała."
@@ -841,10 +841,10 @@ msgid "Version Unblocked"
 msgstr "Blokowanje wersije je zběhnjene"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
+msgstr "Přepruwowanje přidatka {addon} {version} wot administratora je so zhašało."
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "Přepruwowanje přidatka wot administratora je so zhašało"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1572,7 +1572,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Tutón přidatk drasta njeje. Wužiwajće město toho stronu <a href=\"{link}\">Nowy přidatk zapodać</a>, zo byšće rozšerjenja zapodał."
 
 msgid "Updated"
 msgstr "Zaktualizowany"
@@ -4298,7 +4298,7 @@ msgstr "Palc dele je so wróćił – na to palc horje."
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Přełožujće websydła w Firefox – priwatnje – bjeztoho, zo byšće cloud wužiwał."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
