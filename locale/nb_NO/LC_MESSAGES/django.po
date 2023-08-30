@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2023-06-23 07:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -343,6 +343,9 @@ msgstr "Registrer eller logg inn"
 
 msgid "Email:"
 msgstr "E-post:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -1623,6 +1626,9 @@ msgstr "Endringene ble lagret."
 
 msgid "Validate Add-on"
 msgstr "Valider utvidelsen"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner må være enten PNG eller JPG."

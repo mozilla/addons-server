@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2020-07-17 11:46+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -333,6 +333,9 @@ msgid "Register or Log in"
 msgstr ""
 
 msgid "Email:"
+msgstr ""
+
+msgid "Two-factor authentication"
 msgstr ""
 
 msgid "OK"
@@ -1672,6 +1675,9 @@ msgid "Changes successfully saved."
 msgstr ""
 
 msgid "Validate Add-on"
+msgstr ""
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2023-05-03 09:50+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -337,6 +337,9 @@ msgstr "Rekisteröidy tai kirjaudu sisään"
 
 msgid "Email:"
 msgstr "Sähköposti:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -1656,6 +1659,9 @@ msgstr "Muutokset tallennettu onnistuneesti."
 
 msgid "Validate Add-on"
 msgstr "Lisäosan kelpuutus"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Kuvakkeiden tulee olla PNG- tai JPG-muotoa."

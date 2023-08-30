@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2023-07-20 11:14+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -349,6 +349,9 @@ msgstr "Registrearje of oanmelde"
 
 msgid "Email:"
 msgstr "E-mailadres:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "OK"
@@ -1640,6 +1643,9 @@ msgstr "Wizigingen mei sukses bewarre."
 
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."

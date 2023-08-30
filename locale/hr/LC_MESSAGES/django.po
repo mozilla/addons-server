@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -351,6 +351,9 @@ msgstr "Registriraj se ili se prijavi"
 
 msgid "Email:"
 msgstr "E-pošta:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "U redu"
@@ -1641,6 +1644,9 @@ msgstr "Promjene uspješno spremljene."
 
 msgid "Validate Add-on"
 msgstr "Provjeri dodatak"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonica mora biti ili PNG ili JPG."

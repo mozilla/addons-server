@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2020-10-09 05:48+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -347,6 +347,9 @@ msgstr ""
 #, fuzzy
 msgid "Email:"
 msgstr "البريد الإلكتروني"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr ""
@@ -1664,6 +1667,9 @@ msgid "Changes successfully saved."
 msgstr "حُفظت التغييرات بنجاح."
 
 msgid "Validate Add-on"
+msgstr ""
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
 
 msgid "Icons must be either PNG or JPG."

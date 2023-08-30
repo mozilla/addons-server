@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -356,6 +356,9 @@ msgstr ""
 #, fuzzy
 msgid "Email:"
 msgstr "E-mail"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr ""
@@ -1670,6 +1673,9 @@ msgstr "Zmiany zostały zapisane."
 
 msgid "Validate Add-on"
 msgstr "Sprawdzanie dodatku"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikona musi być w formacie PNG lub JPG."

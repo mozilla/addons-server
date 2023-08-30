@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,6 +342,9 @@ msgstr ""
 #, fuzzy
 msgid "Email:"
 msgstr "Email"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr ""
@@ -1709,6 +1712,9 @@ msgstr "Alterações guardadas com sucesso."
 
 msgid "Validate Add-on"
 msgstr "Validar extra"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Os ícones devem ser PNG ou JPG."

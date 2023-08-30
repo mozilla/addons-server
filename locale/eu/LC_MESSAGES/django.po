@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-07-26 09:25+0000\n"
+"POT-Creation-Date: 2023-08-29 16:45+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -339,6 +339,9 @@ msgstr ""
 #, fuzzy
 msgid "Email:"
 msgstr "E-posta"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr ""
@@ -1684,6 +1687,9 @@ msgstr ""
 
 msgid "Validate Add-on"
 msgstr "Balidatu gehigarria"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonoek PNG edo JPG izan behar dute."
