@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-29 16:45+0000\n"
-"PO-Revision-Date: 2023-08-30 11:27+0000\n"
+"PO-Revision-Date: 2023-08-30 11:31+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -835,10 +835,10 @@ msgid "Version Blocked"
 msgstr "Wersija je so blokowała"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "Wersija {version} je so z lisćiny blokowanjow wotstroniła."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Blokowanje wersije je zběhnjene"
 
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
@@ -4318,7 +4318,7 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "Rozšěrjenja priwatnosće a wěstoty"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4467,11 +4467,11 @@ msgstr "Wjace wot sobudźěłaćerjow wubrane rozšěrjenja kreatiwnosće social
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "Rozšěrjenja za socialne medije"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja za socialne medije pokazać"
 
 msgid "Unreviewed"
 msgstr "Njepřepruwowany"
@@ -4597,7 +4597,7 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "%(value)s njealfanumeriske znamješko wobsahuje."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
@@ -4659,7 +4659,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "wot %(user)s dnja %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
