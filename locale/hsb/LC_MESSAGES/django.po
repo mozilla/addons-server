@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-29 16:45+0000\n"
-"PO-Revision-Date: 2023-08-31 09:01+0000\n"
+"PO-Revision-Date: 2023-08-31 09:04+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4146,7 +4146,7 @@ msgstr "Wurjedźće swoje dožiwjenje Twitter."
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "Přinjesće sej móžnosć wróćo, palcy dele widźeć!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
@@ -4593,7 +4593,7 @@ msgid "Auto-flagged due to word match"
 msgstr "Awtomatisce woznamjenjene wotpowědowanja słowa dla"
 
 msgid "Auto-flagged due to user restriction"
-msgstr ""
+msgstr "Wužiwarskeho wobmjezowanja dla awtomatisce woznamjenjeny"
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
