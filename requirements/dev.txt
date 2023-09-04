@@ -4,9 +4,9 @@ pyinotify==0.9.6 \
 ipdb==0.13.13 \
     --hash=sha256:45529994741c4ab6d2388bfa5d7b725c2cf7fe9deffabdb8a6113aa5ed449ed4 \
     --hash=sha256:e3ac6018ef05126d442af680aad863006ec19d02290561ac88b8b1c0b0cfc726
-ipython==8.14.0 \
-    --hash=sha256:1d197b907b6ba441b692c48cf2a3a2de280dc0ac91a3405b39349a50272ca0a1 \
-    --hash=sha256:248aca623f5c99a6635bc3857677b7320b9b8039f99f070ee0d20a5ca5a8e6bf
+ipython==8.15.0 \
+    --hash=sha256:2baeb5be6949eeebf532150f81746f8333e2ccce02de1c7eedde3f23ed5e9f1e \
+    --hash=sha256:45a2c3a529296870a97b7de34eda4a31bee16bc7bf954e07d39abe49caf8f887
 watchdog[watchmedo]==2.2.1 \
     --hash=sha256:102a60093090fc3ff76c983367b19849b7cc24ec414a43c0333680106e62aae1 \
     --hash=sha256:17f1708f7410af92ddf591e94ae71a27a13974559e72f7e9fde3ec174b26ba2e \
