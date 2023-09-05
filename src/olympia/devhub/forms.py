@@ -907,7 +907,7 @@ class CompatForm(AMOModelForm):
         max_ = self.cleaned_data.get('max')
         if not self.instance.locked_from_manifest:
             if min_ and max_ and min_.version_int > max_.version_int:
-                raise forms.ValidationError(gettext('Invalid version range'))
+                raise forms.ValidationError(gettext('Invalid version range.'))
             if self.instance.application:
                 self.cleaned_data['application'] = self.instance.application
         # Build a temporary instance with cleaned data to make it easier to
