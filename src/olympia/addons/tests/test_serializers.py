@@ -213,9 +213,6 @@ class AddonSerializerOutputTestMixin:
             min=av_min,
             max=av_max,
         )
-        # Reset current_version.compatible_apps now that we've added an app.
-        del self.addon.current_version._compatible_apps
-
         cat2 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
         AddonCategory.objects.create(addon=self.addon, category=cat2)
         cat3 = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']

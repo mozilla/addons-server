@@ -736,9 +736,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         # Override local version with fresh one fetched by update_version()
         # so that everything is in sync...
         version = addon.current_version
-    if not version.compatible_apps:
-        # Erase compatible apps cache if it was computed too soon (before we
-        # added the apps).
+    if hasattr(version, '_compatible_apps'):
         del version._compatible_apps
 
     # version_changed task will be triggered and will update last_updated in

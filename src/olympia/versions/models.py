@@ -1509,7 +1509,10 @@ class ApplicationsVersions(models.Model):
             if self.version.file.strict_compatibility != strict_compatibility:
                 self.version.file.update(strict_compatibility=strict_compatibility)
 
-        return super().save(*args, **kwargs)
+        rval = super().save(*args, **kwargs)
+        if hasattr(self.version, '_compatible_apps'):
+            del self.version._compatible_apps
+        return rval
 
 
 class InstallOrigin(ModelBase):
