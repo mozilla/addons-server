@@ -228,13 +228,13 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         addon = addon_factory(
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '57.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
         appversions = {
-            'min': version_int('58.0'),
-            'max': version_int('58.0'),
+            'min': version_int('120.0'),
+            'max': version_int('120.0'),
         }
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
@@ -244,13 +244,13 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         assert qs.exists()
         assert str(qs.query).count('JOIN') == 4
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].min_compatible_version == '119.0'
         assert qs[0].max_compatible_version == '*'
 
         # Add a Firefox version, but don't let it be compatible with what we're
         # requesting yet.
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='59.0'
+            application=amo.FIREFOX.id, version='121.0'
         )
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*'
@@ -264,7 +264,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
 
-        av_min.version = '58.0'
+        av_min.version = '120.0'
         av_min.version_int = None
         av_min.save()  # Will deal with version_intification behind the scenes.
 
@@ -272,7 +272,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert qs.exists()
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '58.0'
+        assert qs[0].min_compatible_version == '120.0'
         assert qs[0].max_compatible_version == '*'
 
     def test_latest_public_compatible_with_no_max_argument(self):
@@ -1849,23 +1849,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
-        # Add an extra ApplicationsVersions. It should *not* appear in
-        # version.compatible_apps, because that's a cached_property.
-        new_app_vr_min = AppVersion.objects.create(
-            application=amo.ANDROID.id, version='1.0'
-        )
-        new_app_vr_max = AppVersion.objects.create(
-            application=amo.ANDROID.id, version='2.0'
-        )
-        ApplicationsVersions.objects.create(
-            version=version,
-            application=amo.ANDROID.id,
-            min=new_app_vr_min,
-            max=new_app_vr_max,
+        # Alter the ApplicationsVersions through an objects.update() so that
+        # the custom save() method is not used - compatible_apps should not be
+        # updated.
+        ApplicationsVersions.objects.filter(version=version).update(
+            application=amo.ANDROID.id
         )
         assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
+
+        # Clear cache and check again, it should be updated.
+        del version._compatible_apps
+        assert amo.ANDROID in version.compatible_apps
+        assert amo.FIREFOX not in version.compatible_apps
+        app = version.compatible_apps[amo.ANDROID]
         assert app.min.version == '42.0'
         assert app.max.version == '*'
 

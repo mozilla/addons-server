@@ -1492,11 +1492,15 @@ class ApplicationsVersions(models.Model):
             # availability, so we might need to override the compat data before
             # saving it.
             if self.version_range_contains_forbidden_compatibility():
+                # Arbitrarily pick a range that makes sense and is valid.
                 self.min = AppVersion.objects.filter(
                     application=amo.ANDROID.id,
                     version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
                 ).first()
-                self.max = self.get_latest_application_version()
+                self.max = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+                ).first()
 
             # In addition if the range max is below the first Fenix version,
             # then we need to set strict_compatibility to True on the File to

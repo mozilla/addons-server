@@ -3075,7 +3075,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
-            'android': {'max': '*', 'min': '48.0'},
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             'firefox': {'max': '*', 'min': '42.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
@@ -3101,8 +3101,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
-            # android was specified but with an empty dict, so gets the defaults
-            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
+            # android was specified but with an empty dict, so gets the default
+            # corrected to account for general availability.
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             # firefox max wasn't specified, so is the default max app version
             'firefox': {'max': '*', 'min': '61.0'},
         }
@@ -3111,7 +3112,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
     def test_compatibility_dict_high_appversion_that_exists(self):
-        # APPVERSION_HIGHER_THAN_EVERYTHING_ELSE ('114.0') is valid per setUpTestData()
+        # APPVERSION_HIGHER_THAN_EVERYTHING_ELSE ('121.0') is valid per setUpTestData()
         response = self.request(
             compatibility={
                 'firefox': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
@@ -3200,7 +3201,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     client_class = APITestClientSessionID
     client_request_verb = 'post'
     SUCCESS_STATUS_CODE = 201
-    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '114.0'
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3213,6 +3214,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
             amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
@@ -3600,7 +3602,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data['compatibility'] == {
             'android': {
                 'max': '*',
-                'min': amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+                'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             },
             'firefox': {'max': '*', 'min': '61.0'},
         }
@@ -3632,7 +3634,7 @@ class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
 class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
     client_request_verb = 'patch'
-    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '114.0'
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3644,6 +3646,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
@@ -5181,7 +5184,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
@@ -5189,7 +5192,7 @@ class TestAddonSearchView(ESTestCase):
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '42.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
@@ -5197,14 +5200,14 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='43.0'),
+            min=AppVersion.objects.create(application=amo.ANDROID.id, version='120.0'),
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
@@ -5228,7 +5231,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
@@ -5236,7 +5239,7 @@ class TestAddonSearchView(ESTestCase):
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '42.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
@@ -5244,38 +5247,42 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='43.0'),
+            min=AppVersion.objects.create(application=amo.ANDROID.id, version='120.0'),
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '46.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'android', 'appversion': '43.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'android', 'appversion': '121.0.1'}
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '42.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '119.0'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'app': 'android', 'appversion': '42.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'android', 'appversion': '119.0.1'}
+        )
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == an_addon.pk
