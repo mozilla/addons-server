@@ -1096,7 +1096,7 @@ class TestVersionEditCompat(TestVersionEditBase):
                 'application': amo.ANDROID.id,
                 'min': AppVersion.objects.get(
                     application=amo.ANDROID.id,
-                    version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+                    version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
                 ).pk,
                 'max': AppVersion.objects.get(
                     application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
@@ -1152,7 +1152,7 @@ class TestVersionEditCompat(TestVersionEditBase):
             application=amo.ANDROID.id,
             min=AppVersion.objects.get(
                 application=amo.ANDROID.id,
-                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+                version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             ),
             max=AppVersion.objects.get(
                 application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
@@ -1169,7 +1169,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 302
         assert self.addon.current_version.apps.all().count() == 2
         avs.refresh_from_db()  # Still exists
-        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+        assert avs.min.version == amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY
         assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert (
             avs.originated_from
@@ -1177,12 +1177,13 @@ class TestVersionEditCompat(TestVersionEditBase):
         )
 
     def test_cant_edit_android_if_locked_from_manifest(self):
+        new_max = AppVersion.objects.create(version='122.0', application=amo.ANDROID.id)
         # Add android compat from manifest. We shouldn't be able to edit it.
         avs = self.addon.current_version.apps.create(
             application=amo.ANDROID.id,
             min=AppVersion.objects.get(
                 application=amo.ANDROID.id,
-                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+                version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             ),
             max=AppVersion.objects.get(
                 application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
@@ -1191,10 +1192,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         )
         form = self.client.get(self.url).context['compat_form']
         data = list(map(initial, form.initial_forms))
-        data[1]['max'] = AppVersion.objects.get(
-            application=amo.ANDROID.id,
-            version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
-        ).pk
+        data[1]['max'] = new_max.pk
         response = self.client.post(self.url, self.formset(*data, initial_count=2))
         # The fields for the locked applicationsversions are disabled at the
         # form level, so they would be rendered disabled in the HTML, clients
@@ -1203,7 +1201,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 302
         assert self.addon.current_version.apps.all().count() == 2
         avs.refresh_from_db()
-        assert avs.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+        assert avs.min.version == amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY
         assert avs.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
         assert (
             avs.originated_from
@@ -1218,7 +1216,7 @@ class TestVersionEditCompat(TestVersionEditBase):
             application=amo.ANDROID.id,
             min=AppVersion.objects.get(
                 application=amo.ANDROID.id,
-                version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+                version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             ),
             max=AppVersion.objects.get(
                 application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
