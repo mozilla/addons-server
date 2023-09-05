@@ -21,6 +21,11 @@ def generate_version(addon, app=None):
     v = Version.objects.create(addon=addon, version=version)
     v.created = v.last_updated = datetime.now()
     v.save()
+    File.objects.create(
+        version=v,
+        status=amo.STATUS_APPROVED,
+        manifest_version=2,
+    )
     if app is not None:  # Not for themes.
         av_min, _ = AppVersion.objects.get_or_create(
             application=app.id, version=min_app_version
@@ -31,9 +36,4 @@ def generate_version(addon, app=None):
         ApplicationsVersions.objects.get_or_create(
             application=app.id, version=v, min=av_min, max=av_max
         )
-    File.objects.create(
-        version=v,
-        status=amo.STATUS_APPROVED,
-        manifest_version=2,
-    )
     return v

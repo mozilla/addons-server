@@ -456,6 +456,31 @@ class Version(OnChangeMixin, ModelBase):
                     version=version, reason=NeedsHumanReview.REASON_INHERITANCE
                 ).save(_user=get_task_user())
 
+        # Record declared install origins. base_domain is set automatically.
+        if waffle.switch_is_active('record-install-origins'):
+            for origin in set(parsed_data.get('install_origins', [])):
+                version.installorigin_set.create(origin=origin)
+
+        # Create relevant file.
+        File.from_upload(
+            upload=upload,
+            version=version,
+            parsed_data=parsed_data,
+        )
+
+        version.inherit_due_date()
+        version.disable_old_files()
+
+        # After the upload has been copied to its permanent location, delete it
+        # from storage. Keep the FileUpload instance (it gets cleaned up by a
+        # cron eventually some time after its creation, in amo.cron.gc()),
+        # making sure it's associated with the add-on instance.
+        storage.delete(upload.path)
+        upload.path = ''
+        if upload.addon is None:
+            upload.addon = addon
+        upload.save()
+
         if not compatibility:
             compatibility = {
                 amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
@@ -493,31 +518,6 @@ class Version(OnChangeMixin, ModelBase):
         # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.
         version.compatible_apps = compatible_apps
-
-        # Record declared install origins. base_domain is set automatically.
-        if waffle.switch_is_active('record-install-origins'):
-            for origin in set(parsed_data.get('install_origins', [])):
-                version.installorigin_set.create(origin=origin)
-
-        # Create relevant file.
-        File.from_upload(
-            upload=upload,
-            version=version,
-            parsed_data=parsed_data,
-        )
-
-        version.inherit_due_date()
-        version.disable_old_files()
-
-        # After the upload has been copied to its permanent location, delete it
-        # from storage. Keep the FileUpload instance (it gets cleaned up by a
-        # cron eventually some time after its creation, in amo.cron.gc()),
-        # making sure it's associated with the add-on instance.
-        storage.delete(upload.path)
-        upload.path = ''
-        if upload.addon is None:
-            upload.addon = addon
-        upload.save()
 
         version_uploaded.send(instance=version, sender=Version)
 
@@ -1448,16 +1448,18 @@ class ApplicationsVersions(models.Model):
         if self.application != amo.ANDROID.id:
             return False
 
-        if self.version.addon.type != amo.ADDON_EXTENSION:
+        addon = self.version.addon
+
+        if addon.type != amo.ADDON_EXTENSION:
             # We don't care about non-extension compatibility for this.
             return False
 
         # Recommended/line for Android are allowed to set compatibility in the
         # limited range.
-        promoted_group = self.version.addon.promoted_group()
         if (
-            promoted_group in (RECOMMENDED, LINE)
-            and amo.ANDROID in promoted_group.approved_applications
+            addon.promoted
+            and addon.promoted.group in (RECOMMENDED, LINE)
+            and amo.ANDROID in addon.promoted.approved_applications
         ):
             return False
 
@@ -1493,7 +1495,7 @@ class ApplicationsVersions(models.Model):
                 self.min = AppVersion.objects.filter(
                     application=amo.ANDROID.id,
                     version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
-                )
+                ).first()
                 self.max = self.get_latest_application_version()
 
             # In addition if the range max is below the first Fenix version,
