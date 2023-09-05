@@ -734,8 +734,13 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     addon.update_version()
     if addon.current_version:
         # Override local version with fresh one fetched by update_version()
-        # so that everything is in sync.
+        # so that everything is in sync...
         version = addon.current_version
+    if not version.compatible_apps:
+        # Erase compatible apps cache if it was computed too soon (before we
+        # added the apps).
+        del version._compatible_apps
+
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
@@ -964,6 +969,9 @@ def version_factory(file_kw=None, **kw):
     ApplicationsVersions.objects.get_or_create(
         application=application, version=ver, min=av_min, max=av_max
     )
+    ver._compatible_apps = ver._create_compatible_apps(
+        ver.apps.all().select_related('min', 'max')
+    )  # FIXME: the issue is, it's not this instance which is problematic...
     if 'due_date' not in kw:
         ver.inherit_due_date()
     elif ver.due_date != kw['due_date']:
