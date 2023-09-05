@@ -356,6 +356,13 @@ DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX
 # The version of Firefox for Android that first supported `gecko_android` key.
 DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID = '113.0'
 
+# First version we consider as "Fenix".
+MIN_VERSION_FENIX = '79.0a1'
+
+# The minimum version of Fenix where extensions are all available. Expect this
+# to be bumped to 120.0 later.
+MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '119.0'
+
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.
@@ -462,3 +469,4 @@ APPVERSIONS_ORIGINATED_FROM_AUTOMATIC = 1
 APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
 APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
 APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4
+APPVERSIONS_ORIGINATED_FROM_MIGRATION = 5

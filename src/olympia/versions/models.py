@@ -40,7 +40,12 @@ from olympia.amo.utils import (
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    LINE,
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+    RECOMMENDED,
+)
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -53,6 +58,7 @@ from olympia.translations.fields import (
 )
 from olympia.users.models import UserProfile
 from olympia.users.utils import RestrictionChecker, get_task_user
+from olympia.versions.compare import version_int
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -1361,6 +1367,10 @@ class ApplicationsVersions(models.Model):
             (amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN, 'Unknown'),
             (amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC, 'Automatically determined'),
             (
+                amo.APPVERSIONS_ORIGINATED_FROM_MIGRATION,
+                'Automatically set by a migration',
+            ),
+            (
                 amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER,
                 'Set by developer through devhub or API',
             ),
@@ -1378,6 +1388,11 @@ class ApplicationsVersions(models.Model):
         ),
         default=amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN,
         null=True,
+    )
+
+    ANDROID_LIMITED_COMPATIBILITY_RANGE = (
+        amo.MIN_VERSION_FENIX,
+        amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
     )
 
     class Meta:
@@ -1422,6 +1437,77 @@ class ApplicationsVersions(models.Model):
             return f'{pretty_application} {self.min} - {self.max}'
         except ObjectDoesNotExist:
             return pretty_application
+
+    def version_range_contains_forbidden_compatibility(self):
+        """
+        Return whether the instance contains forbidden ranges.
+
+        Used for Android to disallow non line/recommended to be compatible with
+        Fenix before General Availability.
+        """
+        if self.application != amo.ANDROID.id:
+            return False
+
+        if self.version.addon.type != amo.ADDON_EXTENSION:
+            # We don't care about non-extension compatibility for this.
+            return False
+
+        # Recommended/line for Android are allowed to set compatibility in the
+        # limited range.
+        promoted_group = self.version.addon.promoted_group()
+        if (
+            promoted_group in (RECOMMENDED, LINE)
+            and amo.ANDROID in promoted_group.approved_applications
+        ):
+            return False
+
+        is_min_in_limited_range = self.min.version_int >= version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
+        ) and self.min.version_int < version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        )
+        is_max_in_limited_range = self.max.version_int >= version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
+        ) and self.max.version_int < version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        )
+        is_range_bigger_than_limited_range = self.min.version_int < version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
+        ) and self.max.version_int >= version_int(
+            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        )
+        return (
+            is_min_in_limited_range
+            or is_max_in_limited_range
+            or is_range_bigger_than_limited_range
+        )
+
+    def save(self, *args, **kwargs):
+        if self.application == amo.ANDROID.id:
+            # Regardless of whether the compat information came from the
+            # manifest, on Android we currently only allow non-promoted/line
+            # extensions to be compatible with Fennec or Fenix that has general
+            # availability, so we might need to override the compat data before
+            # saving it.
+            if self.version_range_contains_forbidden_compatibility():
+                self.min = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+                )
+                self.max = self.get_latest_application_version()
+
+            # In addition if the range max is below the first Fenix version,
+            # then we need to set strict_compatibility to True on the File to
+            # prevent that version from being installed in Fenix. If it's not,
+            # then we need to clear it if it was set.
+            if self.max.version_int < version_int(amo.MIN_VERSION_FENIX):
+                strict_compatibility = True
+            else:
+                strict_compatibility = False
+            if self.version.file.strict_compatibility != strict_compatibility:
+                self.version.file.update(strict_compatibility=strict_compatibility)
+
+        return super().save(*args, **kwargs)
 
 
 class InstallOrigin(ModelBase):

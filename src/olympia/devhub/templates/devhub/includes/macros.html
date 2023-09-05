@@ -40,7 +40,6 @@
     <td class="select">
       <div>
         <label>{{ form.min.label }}</label> {{ form.min }}
-        {{ form.non_field_errors() }}
         {{ form.min.errors }}
       </div>
       <div><span class="range">&ndash;</span></div>
@@ -48,6 +47,7 @@
         <label>{{ form.max.label }}</label> {{ form.max }}
         {{ form.max.errors }}
       </div>
+      {{ form.non_field_errors() }}
     </td>
     <td class="remove">
       <div>
