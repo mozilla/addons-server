@@ -307,25 +307,35 @@ class TestCompatForm(TestCase):
         assert form.initial['max'] == current_max.pk
 
     def _test_form_choices_expect_all_versions(self, version):
-        expected_min_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
+        expected_min_choices = [('', '---------')] + [
+            (obj.pk, obj)
+            for obj in AppVersion.objects.filter(application=amo.FIREFOX.id)
             .exclude(version__contains='*')
-            .values_list('pk', 'version')
             .order_by('version_int')
-        )
-        expected_max_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
+        ]
+        expected_max_choices = [('', '---------')] + [
+            (obj.pk, obj)
+            for obj in AppVersion.objects.filter(application=amo.FIREFOX.id).order_by(
+                'version_int'
+            )
+        ]
 
         formset = forms.CompatFormSet(
             None, queryset=version.apps.all(), form_kwargs={'version': version}
         )
         form = formset.forms[0]
         assert form.app == amo.FIREFOX
-        assert list(form.fields['min'].choices) == expected_min_choices
-        assert list(form.fields['max'].choices) == expected_max_choices
+
+        # The choices are wrapped in ModelChoiceIterator which itself wraps the
+        # values in ModelChoiceIteratorValue - except that first empty choice.
+        assert [
+            (getattr(choice[0], 'value', choice[0]), choice[1])
+            for choice in form.fields['min'].choices
+        ] == expected_min_choices
+        assert [
+            (getattr(choice[0], 'value', choice[0]), choice[1])
+            for choice in form.fields['max'].choices
+        ] == expected_max_choices
 
     def test_form_choices(self):
         version = Addon.objects.get(id=3615).current_version
