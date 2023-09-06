@@ -11,6 +11,7 @@ from ipaddress import IPv4Address
 
 import pytest
 import responses
+from freezegun import freeze_time
 
 import olympia  # noqa
 from olympia import amo, core
@@ -182,6 +183,24 @@ class TestUserProfile(TestCase):
             user=rating_writer, addon=addon, version=addon.current_version
         )
         assert rating_writer.should_send_delete_email()
+
+    @freeze_time(amo.MZA_LAUNCH_DATETIME - timedelta(minutes=1), as_arg=True)
+    def test_delete_email_says_fxa_before_mza_date_and_mza_after(frozen_time, self):
+        user = UserProfile.objects.get(pk=4043307)
+        user.delete()
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.to == [user.email]
+        assert 'deleted your Firefox Account.' in email.body
+
+        frozen_time.move_to(amo.MZA_LAUNCH_DATETIME)
+        user.update(deleted=False, display_name='somebody')
+        mail.outbox.clear()
+        user.delete()
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.to == [user.email]
+        assert 'deleted your Mozilla account (we renamed Firefox Accounts' in email.body
 
     def test_ban_and_disable_related_content_bulk(self):
         user_sole = user_factory(

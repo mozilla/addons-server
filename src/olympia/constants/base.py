@@ -1,5 +1,6 @@
 import re
 from collections import namedtuple
+from datetime import datetime
 
 from django.utils.translation import gettext_lazy as _
 
@@ -473,3 +474,9 @@ APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
 APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
 APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4
 APPVERSIONS_ORIGINATED_FROM_MIGRATION = 5
+
+MZA_LAUNCH_DATETIME = datetime(2023, 11, 1, 19, 0, 0)
+
+
+def is_mza_branding():
+    return datetime.now() >= MZA_LAUNCH_DATETIME

@@ -3,6 +3,8 @@ from inspect import isclass
 
 from django.utils.translation import gettext_lazy as _
 
+from . import base as amo
+
 
 RETENTION_DAYS = 365
 
@@ -405,9 +407,21 @@ class USER_DELETED(_LOG):
     format = _('Account {user} deleted.')
 
 
-class USER_AUTO_DELETED(_LOG):
+class _USER_AUTO_DELETED_METACLASS(type):
+    """Using metaclass is a workaround because we need a class property,
+    (and chaining @classmethod and @property is deprecated)"""
+
+    @property
+    def format(cls):
+        return (
+            _('Account {user} deleted, from Mozilla accounts event.')
+            if amo.is_mza_branding()
+            else _('Account {user} deleted, from Firefox Accounts event.')
+        )
+
+
+class USER_AUTO_DELETED(_LOG, metaclass=_USER_AUTO_DELETED_METACLASS):
     id = 62
-    format = _('Account {user} deleted, from Firefox Accounts event.')
 
 
 class CUSTOM_TEXT(_LOG):

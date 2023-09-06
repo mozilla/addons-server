@@ -1,4 +1,12 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}Hello,
+{% load i18n %}{% if is_mza_branding %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}Hello,
+
+You’re receiving this message because your user account {{ name }} on {{ site_url }} has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed Firefox Accounts to Mozilla accounts).
+
+If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.
+
+Regards,
+
+The Firefox Add-ons Team{% endblocktrans %}{% else %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}Hello,
 
 You’re receiving this message because your user account {{ name }} on {{ site_url }} has been deleted. This could have been done automatically if you recently deleted your Firefox Account.
 
@@ -6,4 +14,4 @@ If you didn’t do this or believe an unauthorized person has accessed your acco
 
 Regards,
 
-The Firefox Add-ons Team{% endblocktrans %}
+The Firefox Add-ons Team{% endblocktrans %}{% endif %}
