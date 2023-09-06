@@ -1502,10 +1502,11 @@ class ApplicationsVersions(models.Model):
                     version=amo.DEFAULT_WEBEXT_MAX_VERSION,
                 ).first()
 
-            # In addition if the range max is below the first Fenix version,
-            # then we need to set strict_compatibility to True on the File to
-            # prevent that version from being installed in Fenix. If it's not,
-            # then we need to clear it if it was set.
+            # In addition we need to set/clear strict compatibility.
+            # If the range max is below the first Fenix version, then we need
+            # to set strict_compatibility to True on the File to prevent that
+            # version from being installed in Fenix. If it's not, then we need
+            # to clear it if it was set.
             if self.max.version_int < version_int(amo.MIN_VERSION_FENIX):
                 strict_compatibility = True
             else:
