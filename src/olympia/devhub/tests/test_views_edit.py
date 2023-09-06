@@ -1568,17 +1568,16 @@ class TestEditDescribeStaticThemeListed(
         )
 
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [308, 408]
+        assert sorted(addon_cats) == [308]
 
     def test_edit_categories_change(self):
         AddonCategory(addon=self.addon, category_id=300).save()
-        AddonCategory(addon=self.addon, category_id=400).save()
-        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300, 400]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300]
 
         self.client.post(self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes (per application)
-        assert category_ids_new == [308, 408]
+        assert category_ids_new == [308]
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')
