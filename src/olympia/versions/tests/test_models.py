@@ -17,6 +17,7 @@ from olympia.amo.tests import (
     AMOPaths,
     TestCase,
     addon_factory,
+    create_default_webext_appversion,
     license_factory,
     user_factory,
     version_factory,
@@ -2587,7 +2588,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         super().setUp()
         # We can't use `setUpTestData` here because it doesn't play well with
         # the behavior of `TransactionTestCase`
-        amo.tests.create_default_webext_appversion()
+        create_default_webext_appversion()
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
@@ -2820,6 +2821,205 @@ class TestApplicationsVersions(TestCase):
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox ك - ك'
+
+
+class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+        cls.fennec_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        )
+        cls.fenix_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+        )
+        cls.fenix_ga_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+        )
+        cls.star_android_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id, version='*'
+        )
+        # Extra not created by create_default_webext_appversion():
+        cls.fennec_appversion_star = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='68.*'
+        )[0]
+        cls.fenix_appversion_star = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='117.*'
+        )[0]
+
+    def assert_min_and_max_unchanged_on_save(self, avs):
+        old_min = avs.min
+        old_max = avs.max
+        avs.save()
+        assert avs.min == old_min
+        assert avs.max == old_max
+
+    def assert_min_and_max_are_set_to_fenix_ga_on_save(self, avs):
+        avs.save()
+        assert avs.min == self.fenix_ga_appversion
+        assert avs.max == self.star_android_appversion
+
+    def test_not_android(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions.objects.get(
+            application=amo.FIREFOX.id, version=addon.current_version
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_not_extension(self):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # We don't care about allowing that non-extensions, they are filtered
+        # elsewhere.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_recommended_for_android(self):
+        addon = addon_factory(promoted=RECOMMENDED)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_line_for_android(self):
+        addon = addon_factory(promoted=LINE)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_other_promotion_for_android(self):
+        addon = addon_factory(promoted=NOTABLE)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # Not recommended/line and is using a forbidden range.
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_recommended_or_line_for_desktop(self):
+        addon = addon_factory(promoted=RECOMMENDED)
+        android_approval = (
+            addon.current_version.promoted_approvals.all()
+            .filter(application_id=amo.ANDROID.id)
+            .get()
+        )
+        android_approval.delete()
+        assert amo.ANDROID not in addon.promoted.approved_applications
+        assert amo.FIREFOX in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # Not recommended/line and is using a forbidden range.
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_below_forbidden_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fennec_appversion_star,
+        )
+        # Entirely below range is allowed.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        # This triggers the file to have strict compatibility enabled though
+        # (so that this extension is only seen by Fennec, not Fenix).
+        assert avs.version.file.reload().strict_compatibility
+
+    def test_above_forbidden_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_ga_appversion,
+            max=self.star_android_appversion,
+        )
+        # Entirely above range is allowed.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_min_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_appversion,
+            max=self.star_android_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_max_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fenix_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_both_min_and_max_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_appversion,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_min_below_and_max_above_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fenix_ga_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
 
 
 class TestVersionPreview(BasePreviewMixin, TestCase):

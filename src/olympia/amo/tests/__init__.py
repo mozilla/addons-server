@@ -969,7 +969,7 @@ def version_factory(file_kw=None, **kw):
     )
     ver._compatible_apps = ver._create_compatible_apps(
         ver.apps.all().select_related('min', 'max')
-    )  # FIXME: the issue is, it's not this instance which is problematic...
+    )
     if 'due_date' not in kw:
         ver.inherit_due_date()
     elif ver.due_date != kw['due_date']:

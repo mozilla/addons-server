@@ -1485,7 +1485,10 @@ class ApplicationsVersions(models.Model):
         )
 
     def save(self, *args, **kwargs):
-        if self.application == amo.ANDROID.id:
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+        ):
             # Regardless of whether the compat information came from the
             # manifest, on Android we currently only allow non-promoted/line
             # extensions to be compatible with Fennec or Fenix that has general
