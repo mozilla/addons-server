@@ -292,7 +292,7 @@ class TestCompatForm(TestCase):
         AppVersion.objects.create(application=amo.ANDROID.id, version='79.0')
         AppVersion.objects.create(application=amo.ANDROID.id, version='79.*')
         AppVersion.objects.create(application=amo.ANDROID.id, version='113.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='119.0')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='119.0a1')
         AppVersion.objects.create(application=amo.ANDROID.id, version='119.*')
         AppVersion.objects.create(application=amo.ANDROID.id, version='*')
 
@@ -410,7 +410,7 @@ class TestCompatForm(TestCase):
                 version='48.0'
             ),
             'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='119.0'
+                version='119.0a1'
             ),
             'form-1-application': amo.ANDROID.id,
             'form-1-id': '',
@@ -426,8 +426,8 @@ class TestCompatForm(TestCase):
             {
                 '__all__': [
                     'Invalid version range. For Firefox for Android, you may only pick '
-                    'a range that starts with version 119.0 or or higher, or ends with '
-                    'lower than version 79.0a1.'
+                    'a range that starts with version 119.0a1 or or higher, or ends '
+                    'with lower than version 79.0a1.'
                 ]
             },
         ]
@@ -442,7 +442,7 @@ class TestCompatForm(TestCase):
 
         # That range is valid because it's entirely above Fenix GA
         data['form-1-min'] = AppVersion.objects.get(
-            application=amo.ANDROID.id, version='119.0'
+            application=amo.ANDROID.id, version='119.0a1'
         )
         data['form-1-max'] = AppVersion.objects.get(
             application=amo.ANDROID.id, version='*'
@@ -487,7 +487,7 @@ class TestCompatForm(TestCase):
                 version='48.0'
             ),
             'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='119.0'
+                version='119.0a1'
             ),
             'form-1-application': amo.ANDROID.id,
             'form-1-id': '',
