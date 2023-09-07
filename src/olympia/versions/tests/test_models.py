@@ -2959,6 +2959,9 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
         # This triggers the file to have strict compatibility enabled though
         # (so that this extension is only seen by Fennec, not Fenix).
         assert avs.version.file.reload().strict_compatibility
+        # Deleting Android compatibility resets it though.
+        avs.delete()
+        assert not avs.version.file.reload().strict_compatibility
 
     def test_above_forbidden_range(self):
         addon = addon_factory()

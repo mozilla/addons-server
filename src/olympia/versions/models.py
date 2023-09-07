@@ -1522,6 +1522,15 @@ class ApplicationsVersions(models.Model):
             del self.version._compatible_apps
         return rval
 
+    def delete(self, *args, **kwargs):
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+            and self.version.file.strict_compatibility
+        ):
+            self.version.file.update(strict_compatibility=False)
+        return super().delete(*args, **kwargs)
+
 
 class InstallOrigin(ModelBase):
     version = models.ForeignKey(Version, on_delete=models.CASCADE)
