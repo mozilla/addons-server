@@ -1510,6 +1510,10 @@ class ApplicationsVersions(models.Model):
             # to set strict_compatibility to True on the File to prevent that
             # version from being installed in Fenix. If it's not, then we need
             # to clear it if it was set.
+            #
+            # Strict compatibility also affects Desktop, so there is a slight
+            # edge case if the developer had also set a max on desktop without
+            # expecting it to be obeyed, but that should be fairly rare.
             if self.max.version_int < version_int(amo.MIN_VERSION_FENIX):
                 strict_compatibility = True
             else:
