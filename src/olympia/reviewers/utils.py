@@ -41,7 +41,9 @@ def is_admin_reviewer(user):
 
 
 class AddonQueueTable(tables.Table):
-    addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
+    addon_name = tables.Column(
+        verbose_name='Add-on', accessor='name', orderable=False, empty_values=()
+    )
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(verbose_name='Flags', empty_values=(), orderable=False)
@@ -106,13 +108,10 @@ class AddonQueueTable(tables.Table):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
+        name = markupsafe.escape(str(record.name or '').strip() or f'[{record.id}]')
         return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
-            % (
-                url,
-                markupsafe.escape(record.name),
-                markupsafe.escape(self.get_version(record).version),
-            )
+            % (url, name, markupsafe.escape(self.get_version(record).version))
         )
 
     def render_last_human_review(self, value):
