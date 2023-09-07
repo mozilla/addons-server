@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-29 16:45+0000\n"
-"PO-Revision-Date: 2023-08-30 13:22+0000\n"
+"PO-Revision-Date: 2023-09-07 12:17+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3431,7 +3431,7 @@ msgstr "Exiba as horas mundiais atuais na barra de status do Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations. Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr "Traduções fáceis. Selecione texto em qualquer página web, ou selecione a página inteira, para traduzir imediatamente."
+msgstr "Tradução fácil. Selecione texto em qualquer página web, ou selecione a página inteira, para traduzir imediatamente."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
@@ -3704,7 +3704,7 @@ msgstr "Um caminho direto para personalizar as configurações de privacidade in
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations by highlighting text and clicking the button that pops up."
-msgstr "Obtenha traduções instantânea selecionando um texto e clicando no botão que aparece."
+msgstr "Tenha tradução instantânea, selecionando um texto e clicando no botão que aparece."
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
