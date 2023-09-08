@@ -13,6 +13,7 @@ from olympia.applications.models import AppVersion
 class TestAppVersion(TestCase):
     def test_unique_together_application_version(self):
         """Check that one can't add duplicate application-version pairs."""
+        AppVersion.objects.all().delete()
         AppVersion.objects.create(application=1, version='123')
 
         with self.assertRaises(IntegrityError):
@@ -36,6 +37,7 @@ class TestAppVersionsAPIGet(TestCase):
 
     def setUp(self):
         self.url = reverse_ns('appversions-list', kwargs={'application': 'firefox'})
+        AppVersion.objects.all().delete()
 
     def test_invalid_application_argument(self):
         url = reverse_ns('appversions-list', kwargs={'application': 'unknown'})
@@ -86,6 +88,7 @@ class TestAppVersionsAPIPut(APIKeyAuthTestMixin, TestCase):
         )
         self.create_api_user()
         self.grant_permission(self.user, 'AppVersions:Create')
+        AppVersion.objects.all().delete()
 
     def test_not_authenticated(self):
         # Don't use self.put() here, it automatically adds authentication.

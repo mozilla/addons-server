@@ -279,22 +279,28 @@ class TestCompatForm(TestCase):
 
     def setUp(self):
         super().setUp()
-        AppVersion.objects.create(application=amo.ANDROID.id, version='50.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='56.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='56.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.*')
-
-        AppVersion.objects.create(application=amo.ANDROID.id, version='48.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='68.*')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='79.0a1')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='79.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='79.*')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='113.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='119.0a1')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='119.*')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='*')
+        # Add useful AppVersions for testing. Note that some might already
+        # exist in the database because of data migrations or fixtures.
+        for version in ('56.0', '56.*', '57.0', '57.*', '*'):
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+        for version in (
+            '48.0',
+            '50.0',
+            '56.0',
+            '68.*',
+            '79.0a1',
+            '79.0',
+            '79.*',
+            '113.0',
+            '119.0a1',
+            '119.0',
+            '*',
+        ):
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def test_forms(self):
         version = Addon.objects.get(id=3615).current_version
@@ -383,8 +389,8 @@ class TestCompatForm(TestCase):
         doc = pq(content)
         assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
         # Versions inside the forbidden Fenix range are disabled for regular
-        assert len(doc('#id_form-1-min option')) == 8
-        assert len(doc('#id_form-1-max option')) == 12
+        assert len(doc('#id_form-1-min option')) == 11
+        assert len(doc('#id_form-1-max option')) == 14
         # extensions.
         assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == [
             '79.0a1',
@@ -470,8 +476,8 @@ class TestCompatForm(TestCase):
         content = formset.render()
         doc = pq(content)
         assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
-        assert len(doc('#id_form-1-min option')) == 8
-        assert len(doc('#id_form-1-max option')) == 12
+        assert len(doc('#id_form-1-min option')) == 11
+        assert len(doc('#id_form-1-max option')) == 14
         assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == []
         assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == []
         data = {

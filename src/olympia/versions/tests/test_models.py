@@ -256,7 +256,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*'
         )
-        ApplicationsVersions.objects.get_or_create(
+        avs, _ = ApplicationsVersions.objects.get_or_create(
             application=amo.FIREFOX.id,
             version=addon.current_version,
             min=av_min,
@@ -265,9 +265,10 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
 
-        av_min.version = '120.0'
-        av_min.version_int = None
-        av_min.save()  # Will deal with version_intification behind the scenes.
+        avs.min = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='120.0'
+        )[0]
+        avs.save()
 
         # Now it should work!
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)

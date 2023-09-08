@@ -1544,22 +1544,6 @@ class Addon(OnChangeMixin, ModelBase):
     def can_set_compatibility(self):
         return self.type_can_set_compatibility(self.type)
 
-    def incompatible_latest_apps(self):
-        """Returns a list of applications with which this add-on is
-        incompatible (based on the latest version of each app).
-        """
-        apps = []
-
-        for application, version in self.compatible_apps.items():
-            if not version:
-                continue
-
-            latest_version = version.get_latest_application_version()
-
-            if version_int(version.max.version) < version_int(latest_version):
-                apps.append((application, latest_version))
-        return apps
-
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""
         if user is None or user.is_anonymous:

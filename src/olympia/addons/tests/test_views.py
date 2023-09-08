@@ -3650,8 +3650,12 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super().setUp()
@@ -5207,7 +5211,9 @@ class TestAddonSearchView(ESTestCase):
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='120.0'),
+            min=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version='120.0'
+            )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
@@ -5254,7 +5260,9 @@ class TestAddonSearchView(ESTestCase):
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='120.0'),
+            min=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version='120.0'
+            )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
