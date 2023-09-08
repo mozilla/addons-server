@@ -72,7 +72,6 @@ from olympia.translations.fields import (
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import version_int
 from olympia.versions.models import (
     Version,
     VersionPreview,

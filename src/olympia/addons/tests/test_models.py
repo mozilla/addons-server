@@ -58,7 +58,6 @@ from olympia.translations.models import (
     delete_translation,
 )
 from olympia.users.models import UserProfile
-from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions,
     Version,
