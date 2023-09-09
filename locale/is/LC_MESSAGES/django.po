@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-08-29 16:45+0000\n"
-"PO-Revision-Date: 2023-09-09 10:08+0000\n"
+"PO-Revision-Date: 2023-09-09 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -2128,13 +2128,13 @@ msgid "Add a Screenshot..."
 msgstr "Bæta við skjámynd..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Stuðningur við PNG og JPG, mælt með PNG. Hámarks- og ráðlögð stærð fyrir skjámyndir er 2400x1800 mynddílar."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Lágmarksstærðin er 1000x750 og krafist er stærðarhlutfallana 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Að hafa skjámyndir á kynningarsíðunni þinni eykur til muna líkurnar á að forritsaukinn verði settur upp."
 
 msgid "Continue"
 msgstr "Halda áfram"
@@ -2426,7 +2426,7 @@ msgid "Go to My Submissions"
 msgstr "Fara í innsendingarnar mínar"
 
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Innsending grunnkóða"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
