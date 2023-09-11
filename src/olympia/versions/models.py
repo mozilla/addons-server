@@ -1390,6 +1390,9 @@ class ApplicationsVersions(models.Model):
         null=True,
     )
 
+    # Range of Firefox for Android versions where compatibility should be
+    # limited to add-ons with a promoted group that can be compatible with
+    # Fenix (i.e. Line, Recommended).
     ANDROID_LIMITED_COMPATIBILITY_RANGE = (
         amo.MIN_VERSION_FENIX,
         amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
@@ -1463,21 +1466,23 @@ class ApplicationsVersions(models.Model):
         ):
             return False
 
-        is_min_in_limited_range = self.min.version_int >= version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
-        ) and self.min.version_int < version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        # Range is expressed as a [closed, open) interval.
+        limited_range_start = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0])
+        limited_range_end = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1])
+
+        is_min_in_limited_range = (
+            self.min.version_int >= limited_range_start
+            and self.min.version_int < limited_range_end
         )
-        is_max_in_limited_range = self.max.version_int >= version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
-        ) and self.max.version_int < version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        is_max_in_limited_range = (
+            self.max.version_int >= limited_range_start
+            and self.max.version_int < limited_range_end
         )
-        is_range_bigger_than_limited_range = self.min.version_int < version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0]
-        ) and self.max.version_int >= version_int(
-            self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1]
+        is_range_bigger_than_limited_range = (
+            self.min.version_int < limited_range_start
+            and self.max.version_int >= limited_range_end
         )
+
         return (
             is_min_in_limited_range
             or is_max_in_limited_range
