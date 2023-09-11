@@ -1468,23 +1468,9 @@ class ApplicationsVersions(models.Model):
         limited_range_start = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0])
         limited_range_end = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1])
 
-        is_min_in_limited_range = (
-            self.min.version_int >= limited_range_start
-            and self.min.version_int < limited_range_end
-        )
-        is_max_in_limited_range = (
-            self.max.version_int >= limited_range_start
-            and self.max.version_int < limited_range_end
-        )
-        is_range_bigger_than_limited_range = (
-            self.min.version_int < limited_range_start
-            and self.max.version_int >= limited_range_end
-        )
-
         return (
-            is_min_in_limited_range
-            or is_max_in_limited_range
-            or is_range_bigger_than_limited_range
+            self.min.version_int < limited_range_end
+            and self.max.version_int >= limited_range_start
         )
 
     def save(self, *args, **kwargs):
