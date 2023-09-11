@@ -128,17 +128,24 @@ function initReviewActions() {
   );
 
   /* Who's currently on this page? */
-  var addon_id = $('#addon').attr('data-id');
-  var url = $('#addon').attr('data-url');
+
   function check_currently_viewing() {
-    $.post(url, { addon_id: addon_id }, function (d) {
-      var show = d.is_user != 1 && typeof d.current_name != 'undefined',
-        $current = $('.currently_viewing_warning');
+    const addon_id = $('#addon').data('id');
+    const url = $('#addon').data('url');
+    const $current = $('.currently_viewing_warning');
+
+    const updateWarning = (title) => {
+      let $current_div = $current.filter('div');
+      $current_div.find('strong').remove();
+      $current_div.prepend($('<strong>', { text: title }));
+    };
+
+    $.post(url, { addon_id: addon_id }, (d) => {
+      const show = d.is_user != 1 && typeof d.current_name != 'undefined';
 
       $current.toggle(show);
-
       if (show) {
-        var title;
+        let title;
         if (d.is_user == 2) {
           /* 2 is when the editor has reached the lock limit */
           title = d.current_name;
@@ -147,16 +154,16 @@ function initReviewActions() {
             name: d.current_name,
           });
         }
-        $current_div = $current.filter('div');
-        $current_div.find('strong').remove();
-        $current_div.prepend($('<strong>', { text: title }));
       }
-
-      setTimeout(check_currently_viewing, d.interval_seconds * 1000);
+    }).fail(() => {
+      $current.toggle(true);
+      updateWarning(gettext('Review page polling failed.'));
     });
   }
   if (!(z.capabilities.localStorage && window.localStorage.dont_poll)) {
     check_currently_viewing();
+    const interval = $('#addon').data('review-viewing-interval');
+    setInterval(check_currently_viewing, interval * 1000);
   }
 
   /* Item History */

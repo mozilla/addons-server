@@ -809,7 +809,6 @@ def review_viewing(request):
         'current': currently_viewing,
         'current_name': current_name,
         'is_user': is_user,
-        'interval_seconds': interval,
     }
 
 
