@@ -46,7 +46,6 @@ from olympia.amo.utils import remove_icons, slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
-from olympia.constants.promoted import LINE, RECOMMENDED
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon

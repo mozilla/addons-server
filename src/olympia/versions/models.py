@@ -41,10 +41,8 @@ from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import (
-    LINE,
     PROMOTED_GROUPS,
     PROMOTED_GROUPS_BY_ID,
-    RECOMMENDED,
 )
 from olympia.constants.scanners import MAD
 from olympia.files import utils
