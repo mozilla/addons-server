@@ -1526,6 +1526,25 @@ class TestExtensionQueue(QueueTest):
             '🛠️ Manual Review', tab_position=0, total_addons=4, total_queues=2
         )
 
+    def test_empty_name(self):
+        self.get_expected_addons_by_names(
+            ['Nominated One'],
+            auto_approve_disabled=True,
+        )
+        addon = self.addons['Nominated One']
+        addon.name = '  '
+        addon.save()
+
+        response = self.client.get(self.url)
+
+        url = reverse('reviewers.review', args=[addon.pk])
+        doc = pq(response.content)
+        links = doc('#addon-queue tr.addon-row td a:not(.app-icon)')
+        a_href = links.eq(0)
+
+        assert a_href.text() == f'[{addon.id}] 0.1'
+        assert a_href.attr('href') == url
+
     def test_webextension_with_auto_approval_disabled_false_filtered_out(self):
         self.generate_files(auto_approve_disabled=True)
         self.addons['Pending Two'].reviewerflags.update(auto_approval_disabled=False)
