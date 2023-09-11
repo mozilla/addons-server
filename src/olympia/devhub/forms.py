@@ -888,7 +888,7 @@ class CompatForm(AMOModelForm):
         # recommended or line.
         if app == amo.ANDROID.id and not (
             addon.promoted
-            and addon.promoted.group in (RECOMMENDED, LINE)
+            and addon.promoted.group.can_be_compatible_with_fenix
             and amo.ANDROID in addon.promoted.approved_applications
         ):
             self.fields[
