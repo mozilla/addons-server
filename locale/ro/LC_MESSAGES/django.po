@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-29 16:45+0000\n"
+"POT-Creation-Date: 2023-09-12 16:18+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -1525,6 +1525,10 @@ msgstr "Afișează versiunea actuală"
 
 msgid "Invalid version range."
 msgstr "Domeniu de versiune nevalid."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Necesită cel puțin o aplicație compatibilă."

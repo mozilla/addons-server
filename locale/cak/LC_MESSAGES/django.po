@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-29 16:45+0000\n"
+"POT-Creation-Date: 2023-09-12 16:18+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1515,6 +1515,10 @@ msgstr "Titz'et ri wakami"
 
 msgid "Invalid version range."
 msgstr "Rajilab'al man okel ta ruwäch."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "K'atzinel jun k'amonel chokoy."

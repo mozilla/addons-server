@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-29 16:45+0000\n"
+"POT-Creation-Date: 2023-09-12 16:18+0000\n"
 "PO-Revision-Date: 2023-07-31 14:24+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -1517,6 +1517,10 @@ msgstr "Lihat yang terbaru"
 
 msgid "Invalid version range."
 msgstr "Bentangan versi tidak valid."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Membutuhkan setidaknya satu aplikasi yang kompatibel."

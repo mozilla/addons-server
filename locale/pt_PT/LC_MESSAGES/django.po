@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-29 16:45+0000\n"
+"POT-Creation-Date: 2023-09-12 16:18+0000\n"
 "PO-Revision-Date: 2023-07-12 20:49+0000\n"
 "Last-Translator: lestarangel <lestarangel@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1513,6 +1513,10 @@ msgstr "Ver atual"
 
 msgid "Invalid version range."
 msgstr "Intervalo da versão inválido."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Necessita de pelo menos uma aplicação compatível."
