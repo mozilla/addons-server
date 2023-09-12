@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-08-29 16:45+0000\n"
+"POT-Creation-Date: 2023-09-12 16:18+0000\n"
 "PO-Revision-Date: 2023-06-07 16:57+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -1507,6 +1507,10 @@ msgstr "צפייה בנוכחי"
 
 msgid "Invalid version range."
 msgstr "טווח הגרסאות שגוי."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "נדרש לפחות יישום תואם אחד."
