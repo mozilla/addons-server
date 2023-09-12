@@ -1410,7 +1410,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach attributes that do not have the same name/format in ES.
         obj.tag_list = data.get('tags', [])
         obj.all_categories = [
-            CATEGORIES_BY_ID[cat_id] for cat_id in data.get('category', [])
+            CATEGORIES_BY_ID[cat_id]
+            for cat_id in data.get('category', [])
+            if cat_id in CATEGORIES_BY_ID
         ]
 
         # Not entirely accurate, but enough in the context of the search API.

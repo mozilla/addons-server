@@ -1360,6 +1360,8 @@ class Addon(OnChangeMixin, ModelBase):
         qs = AddonCategory.objects.filter(addon__in=addon_dict.values()).values_list(
             'addon_id', 'category_id'
         )
+        for addon_id in addon_dict:
+            addon_dict[addon_id].all_categories = []
 
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
@@ -1575,7 +1577,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_categories(self):
-        return [addoncat.category for addoncat in self.addoncategory_set.all()]
+        self.attach_static_categories([self], {self.id: self})
+        return self.all_categories
 
     def set_categories(self, categories):
         # Add new categories.

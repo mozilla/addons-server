@@ -1,3 +1,4 @@
+import copy
 from contextlib import ExitStack
 from unittest import mock
 
@@ -1117,6 +1118,22 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     def test_static_theme_preview_no_current_version(self):
         # add-ons with no current version aren't in the ES index, so won't be serialized
         pass
+
+    @mock.patch('olympia.addons.models.Addon.attach_static_categories')
+    def test_category_not_in_constants(self, attach_static_categories_mock):
+        def side_effect(addons, addon_dict: None):
+            addons[0].all_categories = [category, old_category]
+
+        category_name = 'music'
+        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME][category_name]
+        old_category = copy.copy(category)
+        object.__setattr__(old_category, 'id', 666666)
+        object.__setattr__(old_category, 'application', amo.ANDROID.id)
+        attach_static_categories_mock.side_effect = side_effect
+
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME, category=category)
+        result = self.serialize()
+        assert result['categories'] == {amo.FIREFOX.short: [category_name]}
 
 
 class TestVersionSerializerOutput(TestCase):
