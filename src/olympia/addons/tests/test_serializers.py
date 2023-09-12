@@ -202,10 +202,10 @@ class AddonSerializerOutputTestMixin:
         AddonUser.objects.create(user=first_author, addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='2.0.99'
+            application=amo.ANDROID.id, version='120.0'
         )[0]
         av_max = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='3.0.99'
+            application=amo.ANDROID.id, version='*'
         )[0]
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -213,9 +213,6 @@ class AddonSerializerOutputTestMixin:
             min=av_min,
             max=av_max,
         )
-        # Reset current_version.compatible_apps now that we've added an app.
-        del self.addon.current_version._compatible_apps
-
         cat2 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
         AddonCategory.objects.create(addon=self.addon, category=cat2)
         cat3 = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']

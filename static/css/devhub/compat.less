@@ -10,9 +10,10 @@
     background-position: 0 0.5em;
     .background-size(auto 24px);
     line-height: 30px;
+    width: 152px;
 }
 .devhub-form .compat-versions td.app {
-    background-position: 0 12px;
+    background-position: 0 4px;
 }
 .new-apps a.app {
     background-position: 0 50%;
@@ -49,27 +50,36 @@
     thead th {
         color: #888;
     }
+    table tbody td {
+        padding-top: 0;
+    }
     p.add-app + .new-apps {
         margin: 0 0 1em;
+    }
+    td div .errorlist {
+        font-size: 0.85em;
     }
     thead th,
     table + p,
     .errorlist {
-        font-size: 0.85em;
-    }
-    .errorlist {
         margin-bottom: 0;
     }
     td.select {
-        display: table-row;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        width: 320px;
 
         div {
-            display: table-cell;
             padding: 0 .5em 0;
+            flex: 1 auto;
 
             &:first-child {
                 padding-left: 0;
             }
+        }
+        ul.errorlist {
+
         }
         select {
             width: 120px;

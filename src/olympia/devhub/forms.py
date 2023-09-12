@@ -62,6 +62,7 @@ from olympia.users.models import (
     UserProfile,
 )
 from olympia.users.utils import RestrictionChecker
+from olympia.versions.compare import version_int
 from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
@@ -817,15 +818,44 @@ class VersionForm(TranslationFormMixin, WithSourceMixin, AMOModelForm):
 
 class AppVersionChoiceField(forms.ModelChoiceField):
     def label_from_instance(self, obj):
-        return obj.version
+        # Return the object instead of transforming into a label at this stage
+        # so that it's available in the widget. When converted to a string it
+        # will be the version number anyway.
+        return obj
+
+
+class AppVersionChoiceWidget(forms.Select):
+    def create_option(
+        self, name, value, label, selected, index, subindex=None, attrs=None
+    ):
+        obj = label  # See AppVersionChoiceField.label_from_instance()
+        disable_between = getattr(
+            self, 'disable_between', ()
+        )  # See CompatForm.__init__()
+        rval = super().create_option(
+            name, value, label, selected, index, subindex=subindex, attrs=attrs
+        )
+        if (
+            len(disable_between) == 2
+            and obj
+            and isinstance(obj, AppVersion)
+            and obj.version_int >= version_int(disable_between[0])
+            and obj.version_int < version_int(disable_between[1])
+        ):
+            rval['attrs']['disabled'] = 'disabled'
+        return rval
 
 
 class CompatForm(AMOModelForm):
     application = forms.TypedChoiceField(
         choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput
     )
-    min = AppVersionChoiceField(AppVersion.objects.none())
-    max = AppVersionChoiceField(AppVersion.objects.none())
+    min = AppVersionChoiceField(
+        AppVersion.objects.none(), widget=AppVersionChoiceWidget
+    )
+    max = AppVersionChoiceField(
+        AppVersion.objects.none(), widget=AppVersionChoiceWidget
+    )
 
     class Meta:
         model = ApplicationsVersions
@@ -835,6 +865,8 @@ class CompatForm(AMOModelForm):
         # 'version' should always be passed as a kwarg to this form. If it's
         # absent, it probably means form_kwargs={'version': version} is missing
         # from the instantiation of the formset.
+        self.version = kwargs.pop('version')
+        addon = self.version.addon
         super().__init__(*args, **kwargs)
         if self.initial:
             app = self.initial['application']
@@ -851,14 +883,54 @@ class CompatForm(AMOModelForm):
                 field.disabled = True
                 field.required = False
 
+        # On Android, disable Fenix-pre GA version range unless the add-on is
+        # recommended or line.
+        if app == amo.ANDROID.id and not (
+            addon.promoted
+            and addon.promoted.group.can_be_compatible_with_fenix
+            and amo.ANDROID in addon.promoted.approved_applications
+        ):
+            self.fields[
+                'min'
+            ].widget.disable_between = (
+                ApplicationsVersions.ANDROID_LIMITED_COMPATIBILITY_RANGE
+            )
+            self.fields[
+                'max'
+            ].widget.disable_between = (
+                ApplicationsVersions.ANDROID_LIMITED_COMPATIBILITY_RANGE
+            )
+
     def clean(self):
+        min_ = self.cleaned_data.get('min')
+        max_ = self.cleaned_data.get('max')
         if not self.instance.locked_from_manifest:
-            min_ = self.cleaned_data.get('min')
-            max_ = self.cleaned_data.get('max')
-            if not (min_ and max_ and min_.version_int <= max_.version_int):
+            if min_ and max_ and min_.version_int > max_.version_int:
                 raise forms.ValidationError(gettext('Invalid version range.'))
             if self.instance.application:
                 self.cleaned_data['application'] = self.instance.application
+        # Build a temporary instance with cleaned data to make it easier to
+        # check range validity.
+        if min_ and max_:
+            avs = ApplicationsVersions(
+                application=self.cleaned_data['application'],
+                min=min_,
+                max=max_,
+                version=self.version,
+            )
+            if (
+                avs.application == amo.ANDROID.id
+                and avs.version_range_contains_forbidden_compatibility()
+            ):
+                valid_range = ApplicationsVersions.ANDROID_LIMITED_COMPATIBILITY_RANGE
+                raise forms.ValidationError(
+                    gettext(
+                        'Invalid version range. For Firefox for Android, you may only '
+                        'pick a range that starts with version %(max)s or or higher, '
+                        'or ends with lower than version %(min)s.'
+                    )
+                    % {'min': valid_range[0], 'max': valid_range[1]}
+                )
         return self.cleaned_data
 
 
@@ -867,7 +939,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         super().__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
-        version = self.form_kwargs.pop('version')
+        version = self.form_kwargs['version']
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.

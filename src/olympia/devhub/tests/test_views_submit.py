@@ -692,7 +692,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         )
         assert (
             addon.current_version.compatible_apps[amo.ANDROID].min.version
-            == amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+            == amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY
         )
 
     def test_theme_variant_has_theme_stuff_visible(self):

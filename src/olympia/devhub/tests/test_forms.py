@@ -26,6 +26,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
+from olympia.constants.promoted import RECOMMENDED
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.tags.models import AddonTag, Tag
@@ -278,12 +279,28 @@ class TestCompatForm(TestCase):
 
     def setUp(self):
         super().setUp()
-        AppVersion.objects.create(application=amo.ANDROID.id, version='50.0')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='56.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='56.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.*')
+        # Add useful AppVersions for testing. Note that some might already
+        # exist in the database because of data migrations or fixtures.
+        for version in ('56.0', '56.*', '57.0', '57.*', '*'):
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+        for version in (
+            '48.0',
+            '50.0',
+            '56.0',
+            '68.*',
+            '79.0a1',
+            '79.0',
+            '79.*',
+            '113.0',
+            '119.0a1',
+            '119.0',
+            '*',
+        ):
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def test_forms(self):
         version = Addon.objects.get(id=3615).current_version
@@ -307,25 +324,35 @@ class TestCompatForm(TestCase):
         assert form.initial['max'] == current_max.pk
 
     def _test_form_choices_expect_all_versions(self, version):
-        expected_min_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
+        expected_min_choices = [('', '---------')] + [
+            (obj.pk, obj)
+            for obj in AppVersion.objects.filter(application=amo.FIREFOX.id)
             .exclude(version__contains='*')
-            .values_list('pk', 'version')
             .order_by('version_int')
-        )
-        expected_max_choices = [('', '---------')] + list(
-            AppVersion.objects.filter(application=amo.FIREFOX.id)
-            .values_list('pk', 'version')
-            .order_by('version_int')
-        )
+        ]
+        expected_max_choices = [('', '---------')] + [
+            (obj.pk, obj)
+            for obj in AppVersion.objects.filter(application=amo.FIREFOX.id).order_by(
+                'version_int'
+            )
+        ]
 
         formset = forms.CompatFormSet(
             None, queryset=version.apps.all(), form_kwargs={'version': version}
         )
         form = formset.forms[0]
         assert form.app == amo.FIREFOX
-        assert list(form.fields['min'].choices) == expected_min_choices
-        assert list(form.fields['max'].choices) == expected_max_choices
+
+        # The choices are wrapped in ModelChoiceIterator which itself wraps the
+        # values in ModelChoiceIteratorValue - except that first empty choice.
+        assert [
+            (getattr(choice[0], 'value', choice[0]), choice[1])
+            for choice in form.fields['min'].choices
+        ] == expected_min_choices
+        assert [
+            (getattr(choice[0], 'value', choice[0]), choice[1])
+            for choice in form.fields['max'].choices
+        ] == expected_max_choices
 
     def test_form_choices(self):
         version = Addon.objects.get(id=3615).current_version
@@ -351,6 +378,130 @@ class TestCompatForm(TestCase):
         )
         assert formset.can_delete is False  # No deleting Firefox app plz.
         assert formset.extra == 0  # And lets not extra apps be added.
+
+    def test_fenix_range_disabled_range_for_regular_extensions(self):
+        version = Addon.objects.get(id=3615).current_version
+        data = None
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        content = formset.render()
+        doc = pq(content)
+        assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
+        # Versions inside the forbidden Fenix range are disabled for regular
+        assert len(doc('#id_form-1-min option')) == 11
+        assert len(doc('#id_form-1-max option')) == 14
+        # extensions.
+        assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == [
+            '79.0a1',
+            '79.0',
+            '113.0',
+        ]
+        assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == [
+            '79.0a1',
+            '79.0',
+            '79.*',
+            '113.0',
+        ]
+        data = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 1,
+            'form-MIN_NUM_FORMS': 0,
+            'form-MAX_NUM_FORMS': 1000,
+            'form-0-min': version.apps.all()[0].min.pk,
+            'form-0-max': version.apps.all()[0].max.pk,
+            'form-0-application': amo.FIREFOX.id,
+            'form-0-id': version.apps.all()[0].pk,
+            'form-1-min': AppVersion.objects.filter(application=amo.ANDROID.id).get(
+                version='48.0'
+            ),
+            'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
+                version='119.0a1'
+            ),
+            'form-1-application': amo.ANDROID.id,
+            'form-1-id': '',
+        }
+        # Range is validated at submission (even if we somehow pass disabled
+        # options).
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        assert not formset.is_valid()
+        assert formset.errors == [
+            {},
+            {
+                '__all__': [
+                    'Invalid version range. For Firefox for Android, you may only pick '
+                    'a range that starts with version 119.0a1 or or higher, or ends '
+                    'with lower than version 79.0a1.'
+                ]
+            },
+        ]
+        # That range is valid because it's entirely below Fenix.
+        data['form-1-max'] = AppVersion.objects.get(
+            application=amo.ANDROID.id, version='68.*'
+        )
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        assert formset.is_valid()
+
+        # That range is valid because it's entirely above Fenix GA
+        data['form-1-min'] = AppVersion.objects.get(
+            application=amo.ANDROID.id, version='119.0a1'
+        )
+        data['form-1-max'] = AppVersion.objects.get(
+            application=amo.ANDROID.id, version='*'
+        )
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        assert formset.is_valid()
+
+    def test_fenix_range_not_disabled_for_recommended_android_extensions(self):
+        self.addon = Addon.objects.get(id=3615)
+        version = self.addon.current_version
+        ApplicationsVersions.objects.create(
+            version=version,
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
+            max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
+        )
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        del self.addon.promoted  # Reset property
+        data = None
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        content = formset.render()
+        doc = pq(content)
+        assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
+        assert len(doc('#id_form-1-min option')) == 11
+        assert len(doc('#id_form-1-max option')) == 14
+        assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == []
+        assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == []
+        data = {
+            'form-TOTAL_FORMS': 2,
+            'form-INITIAL_FORMS': 1,
+            'form-MIN_NUM_FORMS': 0,
+            'form-MAX_NUM_FORMS': 1000,
+            'form-0-min': version.apps.all()[0].min.pk,
+            'form-0-max': version.apps.all()[0].max.pk,
+            'form-0-application': amo.FIREFOX.id,
+            'form-0-id': version.apps.all()[0].pk,
+            'form-1-min': AppVersion.objects.filter(application=amo.ANDROID.id).get(
+                version='48.0'
+            ),
+            'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
+                version='119.0a1'
+            ),
+            'form-1-application': amo.ANDROID.id,
+            'form-1-id': '',
+        }
+        formset = forms.CompatFormSet(
+            data, queryset=version.apps.all(), form_kwargs={'version': version}
+        )
+        assert formset.is_valid()
 
 
 class TestPreviewForm(TestCase):

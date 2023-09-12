@@ -58,7 +58,6 @@ from olympia.translations.models import (
     delete_translation,
 )
 from olympia.users.models import UserProfile
-from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions,
     Version,
@@ -798,28 +797,6 @@ class TestAddonModels(TestCase):
         assert addon.status == amo.STATUS_APPROVED
         log = ActivityLog.objects.latest('pk')
         assert log.action == amo.LOG.FORCE_ENABLE.id
-
-    def test_incompatible_latest_apps(self):
-        a = Addon.objects.get(pk=3615)
-        assert a.incompatible_latest_apps() == []
-
-        av = ApplicationsVersions.objects.get(pk=47881)
-        av.max = AppVersion.objects.get(pk=97)  # Firefox 2.0
-        av.save()
-
-        a = Addon.objects.get(pk=3615)
-        assert a.incompatible_latest_apps() == [
-            (amo.FIREFOX, AppVersion.objects.get(version_int=4000000200100))
-        ]
-
-    def test_incompatible_asterix(self):
-        av = ApplicationsVersions.objects.get(pk=47881)
-        av.max = AppVersion.objects.create(
-            application=amo.FIREFOX.id, version_int=version_int('5.*'), version='5.*'
-        )
-        av.save()
-        a = Addon.objects.get(pk=3615)
-        assert a.incompatible_latest_apps() == []
 
     def test_icon_url(self):
         """

@@ -734,8 +734,11 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     addon.update_version()
     if addon.current_version:
         # Override local version with fresh one fetched by update_version()
-        # so that everything is in sync.
+        # so that everything is in sync...
         version = addon.current_version
+    if hasattr(version, '_compatible_apps'):
+        del version._compatible_apps
+
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
@@ -916,6 +919,8 @@ def create_default_webext_appversion():
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
         amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+        amo.MIN_VERSION_FENIX,
+        amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
@@ -948,6 +953,11 @@ def version_factory(file_kw=None, **kw):
     promotion_approved = kw.pop('promotion_approved', False)
     kw['created'] = _get_created(kw.pop('created', 'now'))
     ver = Version.objects.create(version=version_str, **kw)
+    if file_kw is not False:
+        file_kw = file_kw or {}
+        file_factory(version=ver, **file_kw)
+    if promotion_approved:
+        kw['addon'].promotedaddon.approve_for_version(version=ver)
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )
@@ -957,11 +967,9 @@ def version_factory(file_kw=None, **kw):
     ApplicationsVersions.objects.get_or_create(
         application=application, version=ver, min=av_min, max=av_max
     )
-    if file_kw is not False:
-        file_kw = file_kw or {}
-        file_factory(version=ver, **file_kw)
-    if promotion_approved:
-        kw['addon'].promotedaddon.approve_for_version(version=ver)
+    ver._compatible_apps = ver._create_compatible_apps(
+        ver.apps.all().select_related('min', 'max')
+    )
     if 'due_date' not in kw:
         ver.inherit_due_date()
     elif ver.due_date != kw['due_date']:

@@ -40,7 +40,10 @@ from olympia.amo.utils import (
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+)
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -53,6 +56,7 @@ from olympia.translations.fields import (
 )
 from olympia.users.models import UserProfile
 from olympia.users.utils import RestrictionChecker, get_task_user
+from olympia.versions.compare import version_int
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -450,6 +454,31 @@ class Version(OnChangeMixin, ModelBase):
                     version=version, reason=NeedsHumanReview.REASON_INHERITANCE
                 ).save(_user=get_task_user())
 
+        # Record declared install origins. base_domain is set automatically.
+        if waffle.switch_is_active('record-install-origins'):
+            for origin in set(parsed_data.get('install_origins', [])):
+                version.installorigin_set.create(origin=origin)
+
+        # Create relevant file.
+        File.from_upload(
+            upload=upload,
+            version=version,
+            parsed_data=parsed_data,
+        )
+
+        version.inherit_due_date()
+        version.disable_old_files()
+
+        # After the upload has been copied to its permanent location, delete it
+        # from storage. Keep the FileUpload instance (it gets cleaned up by a
+        # cron eventually some time after its creation, in amo.cron.gc()),
+        # making sure it's associated with the add-on instance.
+        storage.delete(upload.path)
+        upload.path = ''
+        if upload.addon is None:
+            upload.addon = addon
+        upload.save()
+
         if not compatibility:
             compatibility = {
                 amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
@@ -487,31 +516,6 @@ class Version(OnChangeMixin, ModelBase):
         # Pre-generate compatible_apps property to avoid accidentally
         # triggering queries with that instance later.
         version.compatible_apps = compatible_apps
-
-        # Record declared install origins. base_domain is set automatically.
-        if waffle.switch_is_active('record-install-origins'):
-            for origin in set(parsed_data.get('install_origins', [])):
-                version.installorigin_set.create(origin=origin)
-
-        # Create relevant file.
-        File.from_upload(
-            upload=upload,
-            version=version,
-            parsed_data=parsed_data,
-        )
-
-        version.inherit_due_date()
-        version.disable_old_files()
-
-        # After the upload has been copied to its permanent location, delete it
-        # from storage. Keep the FileUpload instance (it gets cleaned up by a
-        # cron eventually some time after its creation, in amo.cron.gc()),
-        # making sure it's associated with the add-on instance.
-        storage.delete(upload.path)
-        upload.path = ''
-        if upload.addon is None:
-            upload.addon = addon
-        upload.save()
 
         version_uploaded.send(instance=version, sender=Version)
 
@@ -1361,6 +1365,10 @@ class ApplicationsVersions(models.Model):
             (amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN, 'Unknown'),
             (amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC, 'Automatically determined'),
             (
+                amo.APPVERSIONS_ORIGINATED_FROM_MIGRATION,
+                'Automatically set by a migration',
+            ),
+            (
                 amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER,
                 'Set by developer through devhub or API',
             ),
@@ -1378,6 +1386,14 @@ class ApplicationsVersions(models.Model):
         ),
         default=amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN,
         null=True,
+    )
+
+    # Range of Firefox for Android versions where compatibility should be
+    # limited to add-ons with a promoted group that can be compatible with
+    # Fenix (i.e. Line, Recommended).
+    ANDROID_LIMITED_COMPATIBILITY_RANGE = (
+        amo.MIN_VERSION_FENIX,
+        amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
     )
 
     class Meta:
@@ -1422,6 +1438,91 @@ class ApplicationsVersions(models.Model):
             return f'{pretty_application} {self.min} - {self.max}'
         except ObjectDoesNotExist:
             return pretty_application
+
+    def version_range_contains_forbidden_compatibility(self):
+        """
+        Return whether the instance contains forbidden ranges.
+
+        Used for Android to disallow non line/recommended to be compatible with
+        Fenix before General Availability.
+        """
+        if self.application != amo.ANDROID.id:
+            return False
+
+        addon = self.version.addon
+
+        if addon.type != amo.ADDON_EXTENSION:
+            # We don't care about non-extension compatibility for this.
+            return False
+
+        # Recommended/line for Android are allowed to set compatibility in the
+        # limited range.
+        if (
+            addon.promoted
+            and addon.promoted.group.can_be_compatible_with_fenix
+            and amo.ANDROID in addon.promoted.approved_applications
+        ):
+            return False
+
+        # Range is expressed as a [closed, open) interval.
+        limited_range_start = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0])
+        limited_range_end = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1])
+
+        return (
+            self.min.version_int < limited_range_end
+            and self.max.version_int >= limited_range_start
+        )
+
+    def save(self, *args, **kwargs):
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+        ):
+            # Regardless of whether the compat information came from the
+            # manifest, on Android we currently only allow non-promoted/line
+            # extensions to be compatible with Fennec or Fenix that has general
+            # availability, so we might need to override the compat data before
+            # saving it.
+            if self.version_range_contains_forbidden_compatibility():
+                # Arbitrarily pick a range that makes sense and is valid.
+                self.min = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+                ).first()
+                self.max = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+                ).first()
+
+            # In addition we need to set/clear strict compatibility.
+            # If the range max is below the first Fenix version, then we need
+            # to set strict_compatibility to True on the File to prevent that
+            # version from being installed in Fenix. If it's not, then we need
+            # to clear it if it was set.
+            #
+            # Strict compatibility also affects Desktop, so there is a slight
+            # edge case if the developer had also set a max on desktop without
+            # expecting it to be obeyed, but that should be fairly rare.
+            if self.max.version_int < version_int(amo.MIN_VERSION_FENIX):
+                strict_compatibility = True
+            else:
+                strict_compatibility = False
+            if self.version.file.strict_compatibility != strict_compatibility:
+                self.version.file.update(strict_compatibility=strict_compatibility)
+
+        rval = super().save(*args, **kwargs)
+        if hasattr(self.version, '_compatible_apps'):
+            del self.version._compatible_apps
+        return rval
+
+    def delete(self, *args, **kwargs):
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+            and self.version.file.strict_compatibility
+        ):
+            self.version.file.update(strict_compatibility=False)
+        return super().delete(*args, **kwargs)
 
 
 class InstallOrigin(ModelBase):

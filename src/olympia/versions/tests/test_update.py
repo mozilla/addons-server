@@ -26,7 +26,7 @@ class TestUpdate(TestCase):
         self.query_params = {
             'id': self.addon.guid,
             'appID': amo.FIREFOX.guid,
-            'appVersion': '99.0',
+            'appVersion': '119.0',
         }
 
     def _check_common_headers(self, response):
@@ -153,7 +153,7 @@ class TestUpdate(TestCase):
         expected_version = version_factory(
             addon=self.addon,
             application=amo.ANDROID.id,
-            min_app_version='58.0',
+            min_app_version='119.0',
             max_app_version='*',
             version='1.1',
             file_kw={'hash': 'fakehash1.1'},
@@ -164,7 +164,7 @@ class TestUpdate(TestCase):
     def test_android_compatible_with_both_android_and_firefox_on_same_version(self):
         self.query_params['appID'] = amo.ANDROID.guid
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='57.0'
+            application=amo.ANDROID.id, version='119.0'
         )
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='*'
@@ -178,7 +178,7 @@ class TestUpdate(TestCase):
         expected_version = version_factory(
             addon=self.addon,
             application=amo.ANDROID.id,
-            min_app_version='58.0',
+            min_app_version='119.0',
             max_app_version='*',
             version='1.1',
             file_kw={'hash': 'fakehash1.1', 'filename': 'webextension_no_id.zip'},
@@ -219,7 +219,7 @@ class TestUpdate(TestCase):
         expected_version = self.addon.current_version
         version_factory(
             addon=self.addon,
-            min_app_version='58.0',
+            min_app_version='119.0',
             max_app_version='*',
             application=amo.ANDROID.id,
             version='1.1',
