@@ -1,7 +1,6 @@
 import csv
 import os
 import tempfile
-from datetime import datetime
 
 from django.core.management import call_command
 from django.core.management.base import CommandError
@@ -10,7 +9,6 @@ from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import LINE, RECOMMENDED
-from olympia.files.models import File
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
 )
