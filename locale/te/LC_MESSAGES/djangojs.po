@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-01-03 14:36+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -634,6 +634,9 @@ msgstr "ఈ స్థానికీకరణను తీసివేయి"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} మొదట ఈ పేజీని చూస్తున్నారు."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} మొదట ఈ పొడగింపును స్తున్నారు."

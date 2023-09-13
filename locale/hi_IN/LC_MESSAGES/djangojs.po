@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2018-08-01 20:20+0000\n"
 "Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -647,6 +647,9 @@ msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} इस पेज को पहले देख रहे थे।"
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} पहले यह ऐड-ऑन देख रहे थे।"
