@@ -926,7 +926,7 @@ class CompatForm(AMOModelForm):
                 raise forms.ValidationError(
                     gettext(
                         'Invalid version range. For Firefox for Android, you may only '
-                        'pick a range that starts with version %(max)s or or higher, '
+                        'pick a range that starts with version %(max)s or higher, '
                         'or ends with lower than version %(min)s.'
                     )
                     % {'min': valid_range[0], 'max': valid_range[1]}
