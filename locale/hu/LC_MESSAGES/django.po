@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:18+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-08-30 13:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -1525,7 +1525,7 @@ msgid "Invalid version range."
 msgstr "Érvénytelen verziótartomány."
 
 #, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Need at least one compatible application."
@@ -4692,8 +4692,8 @@ msgstr "készítette: %(user)s, %(date)s %(stars)s"
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s jelölte meg, %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Figyelem!</strong> Egy másik felhasználó korábban már megtekintette ezt az oldalt."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:18+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-05-26 03:16+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -1496,7 +1496,7 @@ msgid "Invalid version range."
 msgstr "ช่วงเวอร์ชันไม่ถูกต้อง"
 
 #, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Need at least one compatible application."
@@ -4597,8 +4597,8 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">ตั้งค่าสถานะโดย %(user)s เมื่อ %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>คำเตือน!</strong> มีผู้ใช้คนอื่นได้เข้ามาชมหน้านี้ก่อนคุณ"
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

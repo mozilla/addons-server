@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-08-08 06:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -635,6 +635,9 @@ msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tuvo viendo esta páxina primero."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} tuvo viendo esti complementu primero."

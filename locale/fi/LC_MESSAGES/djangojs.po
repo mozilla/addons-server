@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-09-23 10:01+0000\n"
 "Last-Translator: ricky.tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -642,6 +642,9 @@ msgstr "Poista tämä lokalisointi"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} katseli tätä sivua ensin."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} katseli tätä lisäosaa ensin."

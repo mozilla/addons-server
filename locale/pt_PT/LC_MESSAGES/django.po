@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:18+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-07-12 20:49+0000\n"
 "Last-Translator: lestarangel <lestarangel@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -1515,7 +1515,7 @@ msgid "Invalid version range."
 msgstr "Intervalo da versão inválido."
 
 #, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Need at least one compatible application."
@@ -4694,8 +4694,8 @@ msgstr ""
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Marcado por %(user)s em %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Aviso!</strong> Outro utilizador estava a visualizar esta página antes de si."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"

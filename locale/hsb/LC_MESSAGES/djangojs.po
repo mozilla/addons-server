@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-08-31 08:59+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -667,6 +667,9 @@ msgstr "Tutón přełožk wotstronić"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} je sej tutu stronu jako prěni wobhladał."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} je sej tutón přidatk jako prěni wobhladał."

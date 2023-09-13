@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-06-14 18:22+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -627,6 +627,9 @@ msgstr "Xóa bản dịch này"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} đã xem trang này đầu tiên."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} đã xem tiện ích này trước tiên."

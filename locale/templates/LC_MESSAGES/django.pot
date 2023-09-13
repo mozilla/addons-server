@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:18+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2152,8 +2152,8 @@ msgstr ""
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
-"that starts with version %(max)s or or higher, or ends with lower than "
-"version %(min)s."
+"that starts with version %(max)s or higher, or ends with lower than version "
+"%(min)s."
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1015
@@ -6688,8 +6688,8 @@ msgid ""
 "%(date)s</span>"
 msgstr ""
 
-#: src/olympia/reviewers/templates/reviewers/review.html:227
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+#: src/olympia/reviewers/templates/reviewers/review.html:228
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
 #: src/olympia/reviewers/templates/reviewers/includes/history.html:6

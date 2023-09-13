@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-11-15 22:07+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -640,6 +640,9 @@ msgstr "Hiqe këtë përkthim"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} po e shihte së pari këtë faqe."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} po e shihte i pari këtë shtesë."

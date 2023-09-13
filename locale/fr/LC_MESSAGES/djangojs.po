@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-12 16:19+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-06-07 13:18+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
@@ -642,6 +642,9 @@ msgstr "Retirer cette localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."
