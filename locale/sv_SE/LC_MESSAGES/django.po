@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-12 16:18+0000\n"
-"PO-Revision-Date: 2023-09-12 23:38+0000\n"
+"PO-Revision-Date: 2023-09-12 23:52+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -1490,7 +1490,7 @@ msgstr "Ogiltigt versionsintervall."
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or or higher, or ends with lower than version %(min)s."
-msgstr "Ogiltigt versionsområde. För Firefox för Android kan du bara välja ett intervall som börjar med version %(max)s eller högre, eller slutar med lägre än version %(min)s."
+msgstr "Ogiltigt versionsområde. För Firefox för Android kan du bara välja ett intervall som börjar med version %(max)s eller högre, eller slutar med version lägre än %(min)s."
 
 msgid "Need at least one compatible application."
 msgstr "Behöver minst en kompatibel applikation."
