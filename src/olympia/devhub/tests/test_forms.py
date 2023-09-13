@@ -432,8 +432,8 @@ class TestCompatForm(TestCase):
             {
                 '__all__': [
                     'Invalid version range. For Firefox for Android, you may only pick '
-                    'a range that starts with version 119.0a1 or or higher, or ends '
-                    'with lower than version 79.0a1.'
+                    'a range that starts with version 119.0a1 or higher, or ends with '
+                    'lower than version 79.0a1.'
                 ]
             },
         ]
