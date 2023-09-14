@@ -3146,6 +3146,21 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Unknown min app version specified']}
 
+    def test_compatibility_forbidden_range_android(self):
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
         return {**parse_xpi(pkg, addon, minimal, user), 'type': addon.type}
