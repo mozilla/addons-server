@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-06-07 03:05+0000\n"
+"PO-Revision-Date: 2023-09-14 02:07+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -621,7 +621,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} 最先檢視此頁面。"
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "評論頁面 Polling 失敗。"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 先檢視了這個附加元件。"
