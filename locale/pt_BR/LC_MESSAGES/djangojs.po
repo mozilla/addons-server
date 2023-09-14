@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-07-19 14:54+0000\n"
+"PO-Revision-Date: 2023-09-14 23:04+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -638,7 +638,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} estava visualizando essa página antes."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Falha ao recuperar página de avaliação."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava vendo esta extensão primeiro."
