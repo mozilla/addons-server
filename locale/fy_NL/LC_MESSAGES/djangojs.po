@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-06-07 07:39+0000\n"
+"PO-Revision-Date: 2023-09-14 18:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -640,7 +640,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} hat earst dizze side besjoen."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Polling fan beoardielingsside mislearre."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} beseach dizze add-on earst."
