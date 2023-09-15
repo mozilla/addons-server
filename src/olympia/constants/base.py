@@ -359,6 +359,9 @@ DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID = '113.0'
 # First version we consider as "Fenix".
 MIN_VERSION_FENIX = '79.0a1'
 
+# Last version we consider as "Fennec"
+MAX_VERSION_FENNEC = '68.*'
+
 # The minimum version of Fenix where extensions are all available. Expect this
 # to be bumped to 120.0 later.
 MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '119.0a1'
