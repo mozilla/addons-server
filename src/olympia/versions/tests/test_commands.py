@@ -8,7 +8,8 @@ from django.core.management.base import CommandError
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import LINE, RECOMMENDED
+from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
+from olympia.promoted.models import PromotedAddon
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
 )
@@ -148,7 +149,18 @@ class TestForceMaxAndroidCompatibility(TestCase):
     def test_full(self):
         addons_to_ignore_promoted = [
             addon_factory(
+                # Actually recommended for both apps to start with, modified
+                # below to be only for Android.
                 name='Recommended for Android',
+                version_kw={
+                    'application': amo.ANDROID.id,
+                    'min_app_version': '48.0',
+                    'max_app_version': '*',
+                },
+                promoted=RECOMMENDED,
+            ),
+            addon_factory(
+                name='Recommended for All',
                 version_kw={
                     'application': amo.ANDROID.id,
                     'min_app_version': '48.0',
@@ -226,6 +238,26 @@ class TestForceMaxAndroidCompatibility(TestCase):
                     'max_app_version': '*',
                 },
             ),
+            addon_factory(
+                # Actually recommended for both apps to start with, modified
+                # below to be only for Desktop.
+                name='Recommended extension for Desktop compatible with Android 48',
+                version_kw={
+                    'application': amo.ANDROID.id,
+                    'min_app_version': '48.0',
+                    'max_app_version': '*',
+                },
+                promoted=RECOMMENDED,
+            ),
+            addon_factory(
+                name='Spotlight extension compatible with Android 48',
+                version_kw={
+                    'application': amo.ANDROID.id,
+                    'min_app_version': '48.0',
+                    'max_app_version': '*',
+                },
+                promoted=SPOTLIGHT,
+            ),
         ]
         addons_to_drop = [
             addon_factory(
@@ -238,6 +270,12 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 },
             ),
         ]
+        # Manually update the promoted add-ons we want to only recommend for a
+        # single app..
+        PromotedAddon.objects.get(addon=addons_to_ignore_promoted[0]).update(
+            application_id=amo.ANDROID.id
+        )
+        PromotedAddon.objects.get(addon=addons[1]).update(application_id=amo.FIREFOX.id)
         # Directly creating an add-on compatible with Firefox for Android 99.0
         # is no longer possible without being recommended, so manually update
         # some ApplicationsVersions that we couldn't set.
@@ -250,9 +288,9 @@ class TestForceMaxAndroidCompatibility(TestCase):
             .compatible_apps[amo.ANDROID]
             .pk
         ).update(min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'))
-        ApplicationsVersions.objects.filter(
-            pk=addons[0].current_version.compatible_apps[amo.ANDROID].pk
-        ).update(min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'))
+        ApplicationsVersions.objects.filter(version__addon__in=addons).update(
+            min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0')
+        )
 
         call_command('force_max_android_compatibility')
 
