@@ -154,6 +154,7 @@ function initReviewActions() {
             name: d.current_name,
           });
         }
+        updateWarning(title);
       }
     }).fail(() => {
       $current.toggle(true);
