@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-06-08 07:21+0000\n"
+"PO-Revision-Date: 2023-09-15 18:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -641,7 +641,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Impossibile recuperar le pagina del recensiones."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."

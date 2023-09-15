@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-14 06:54+0000\n"
+"PO-Revision-Date: 2023-09-15 18:39+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1501,7 +1501,7 @@ msgstr "Intervallo de version non valide."
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Intervallo de version non valide. Pro Firefox pro Android, tu pote solo seliger un campo que comencia con version %(max)s o superior, o fini con version inferior que %(min)s."
 
 msgid "Need at least one compatible application."
 msgstr "Il necesse al minus un application compatibile."
