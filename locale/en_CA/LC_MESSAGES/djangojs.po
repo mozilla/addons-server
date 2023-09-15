@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-07-26 05:02+0000\n"
-"Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
+"PO-Revision-Date: 2023-09-15 15:02+0000\n"
+"Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
 "MIME-Version: 1.0\n"
@@ -639,7 +639,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} was viewing this page first."
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "Review page polling failed."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} was viewing this add-on first."
