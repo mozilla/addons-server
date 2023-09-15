@@ -36,8 +36,12 @@ class Command(BaseCommand):
         with open(path) as file_:
             csv_reader = csv.reader(file_)
             # Format should be a single column with the add-on id.
-            # Ignore non-numeric to avoid the column header.
-            return [int(row[0]) for row in csv_reader if row[0] and row[0].isnumeric()]
+            # Ignore non-decimal to avoid the column header.
+            return [
+                int(row[0])
+                for row in csv_reader
+                if row[0] and row[0].strip().isdecimal()
+            ]
 
     def handle(self, *args, **kwargs):
         addon_ids = self.read_csv(kwargs['CSVFILE'])

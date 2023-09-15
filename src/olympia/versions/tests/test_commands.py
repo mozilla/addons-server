@@ -41,10 +41,10 @@ class TestForceMinAndroidCompatibility(TestCase):
 
     def test_init_csv_parsing(self):
         file_working_name = self._create_csv(
-            [['addon_id'], ['123456789'], ['4815162342'], ['007'], ['42']]
+            [['addon_id'], ['123456789'], ['4815162342'], ['007'], ['42'], [' 57 ']]
         )
         command = ForceMinAndroidCompatibility()
-        assert command.read_csv(file_working_name) == [123456789, 4815162342, 7, 42]
+        assert command.read_csv(file_working_name) == [123456789, 4815162342, 7, 42, 57]
 
     def test_full(self):
         addons_to_modify = [
