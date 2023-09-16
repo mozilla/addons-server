@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-15 21:15+0000\n"
-"Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
+"PO-Revision-Date: 2023-09-16 11:19+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4699,7 +4699,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Отмечено %(user)s  в %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr "<strong>Предупреждение!</strong> До вас другой пользователь просматривал эту страницу."
+msgstr "<strong>Предупреждение!</strong> До вас другой пользователь мог просматривать эту страницу."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
