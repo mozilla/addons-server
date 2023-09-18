@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-06-15 02:33+0000\n"
-"Last-Translator: nancy_hugo <nancy_hugo@yeah.net>\n"
+"PO-Revision-Date: 2023-09-18 07:37+0000\n"
+"Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -621,7 +621,7 @@ msgid "{name} was viewing this page first."
 msgstr "{name} 第一个查看了这个页面。"
 
 msgid "Review page polling failed."
-msgstr ""
+msgstr "审核页面轮询失败。"
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} 第一个查看了这个附加组件。"
