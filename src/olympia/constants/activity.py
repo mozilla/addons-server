@@ -407,7 +407,7 @@ class USER_DELETED(_LOG):
 
 class USER_AUTO_DELETED(_LOG):
     id = 62
-    format = _('Account {user} deleted, from FxaNotificationView event.')
+    format = 'Account {user} deleted, from FxaNotificationView event.'
     admin_event = True
 
 
