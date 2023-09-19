@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-19 15:51+0000\n"
+"PO-Revision-Date: 2023-09-19 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -4154,7 +4154,7 @@ msgstr "Přinjesće sej móžnosć wróćo, palcy dele widźeć!"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "Poskajće na hudźbu na YouTube bjez wobćežnych přetorhnjenjow „Widejo zastajene. Dale wobhladować?“."
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4234,7 +4234,7 @@ msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wusl
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Maskěrujće swoju e-mejlowu adresu, zo byšće swoju identitu škitał a njewitanej e-mejli zadźěwał. Nowe aktualizacije wužiwanje Firefox Relay samo wosnadnjeja."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4306,7 +4306,7 @@ msgstr "Přełožujće websydła w Firefox – priwatnje – bjeztoho, zo byšć
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Blokujće čas přečinjace websydła. Blokujće je dospołnje abo jenož za časowe wotrězki po wašej wólbje."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
