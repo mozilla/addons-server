@@ -1346,6 +1346,7 @@ DRF_API_GATES = {
         'version-files',
         'del-version-license-slug',
         'del-preview-position',
+        'categories-application',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1360,6 +1361,7 @@ DRF_API_GATES = {
         'version-files',
         'del-version-license-slug',
         'del-preview-position',
+        'categories-application',
     ),
     'v5': (
         'addons-search-_score-field',

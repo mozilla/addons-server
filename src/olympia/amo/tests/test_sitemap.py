@@ -179,18 +179,12 @@ def test_categories_sitemap():
     # without any addons we should still generate a url for each category
     empty_cats = list(CategoriesSitemap().items())
     assert empty_cats == [
-        *(
-            (category, 1)
-            for category in CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION].values()
-        ),
-        *(
-            (category, 1)
-            for category in CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME].values()
-        ),
+        *((category, 1) for category in CATEGORIES[amo.ADDON_EXTENSION].values()),
+        *((category, 1) for category in CATEGORIES[amo.ADDON_STATICTHEME].values()),
     ]
     # add some addons and check we generate extra pages when frontend would paginate
-    bookmarks_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-    shopping_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['shopping']
+    bookmarks_category = CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
+    shopping_category = CATEGORIES[amo.ADDON_EXTENSION]['shopping']
     AddonCategory.objects.create(
         addon=addon_factory(category=bookmarks_category), category=shopping_category
     )

@@ -27,7 +27,6 @@ from olympia.amo.tests import (
     TestCase,
     addon_factory,
     create_default_webext_appversion,
-    formset,
     initial,
     version_factory,
 )
@@ -1387,8 +1386,8 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(addon=addon, category_id=1).delete()
         AddonCategory.objects.filter(addon=addon, category_id=71).delete()
 
-        ctx = self.client.get(self.url).context['cat_form']
-        self.cat_initial = initial(ctx.initial_forms[0])
+        cat_form = self.client.get(self.url).context['cat_form']
+        self.cat_initial = initial(cat_form)
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=3)
 
@@ -1413,8 +1412,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
                     'support_email': 'black@hole.org',
                 }
             )
-        cat_initial = kw.pop('cat_initial', self.cat_initial)
-        cat_form = formset(cat_initial, initial_count=1)
+        cat_form = kw.pop('cat_initial', self.cat_initial)
         license_form = {'license-builtin': 3}
         policy_form = (
             {}
@@ -1533,7 +1531,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         response = self.client.post(
             self.url, self.get_dict(cat_initial=self.cat_initial)
         )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        assert response.context['cat_form'].errors['categories'] == (
             ['This field is required.']
         )
 
@@ -1543,7 +1541,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         response = self.client.post(
             self.url, self.get_dict(cat_initial=self.cat_initial)
         )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        assert response.context['cat_form'].errors['categories'] == (
             ['You can have only 2 categories.']
         )
 
@@ -1674,7 +1672,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
                     'support_email': 'black@hole.org',
                 }
             )
-        cat_form = {'category': 'abstract'}
+        cat_form = {'categories': [300]}
         license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)
@@ -1724,7 +1722,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
-        self.is_success(self.get_dict(category='firefox'))
+        self.is_success(self.get_dict(categories=[308]))
 
         addon_cats = [c.id for c in self.get_addon().all_categories]
         assert sorted(addon_cats) == [308]
@@ -1733,7 +1731,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory(addon=self.addon, category_id=300).save()
         assert sorted(cat.id for cat in self.get_addon().all_categories) == [300]
 
-        self.client.post(self.url, self.get_dict(category='firefox'))
+        self.client.post(self.url, self.get_dict(categories=[308]))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
         assert category_ids_new == [308]
@@ -2666,10 +2664,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
             'name': str(self.addon.name),
             'slug': self.addon.slug,
             'summary': str(self.addon.summary),
-            'form-0-categories': [22, 1],
-            'form-0-application': 1,
-            'form-INITIAL_FORMS': 1,
-            'form-TOTAL_FORMS': 1,
+            'categories': [22, 1],
             'license-builtin': 3,
         }
         response = self.client.post(self.url, data)

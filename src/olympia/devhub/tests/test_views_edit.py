@@ -76,7 +76,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.describe_edit_url = self.get_url('describe', edit=True)
         if self.listed:
             ctx = self.client.get(self.describe_edit_url).context
-            self.cat_initial = initial(ctx['cat_form'].initial_forms[0])
+            self.cat_initial = initial(ctx['cat_form'])
 
     def get_dict(self, **kw):
         result = {
@@ -86,9 +86,8 @@ class BaseTestEditDescribe(BaseTestEdit):
             'description': 'new description',
         }
         if self.listed:
-            fs = formset(self.cat_initial, initial_count=1)
             result.update({'is_experimental': True, 'requires_payment': True})
-            result.update(fs)
+            result.update(self.cat_initial)
 
         result.update(**kw)
         return result
@@ -540,29 +539,23 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
     def test_edit_categories_required(self):
         del self.cat_initial['categories']
-        response = self.client.post(
-            self.describe_edit_url, formset(self.cat_initial, initial_count=1)
-        )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        response = self.client.post(self.describe_edit_url, self.cat_initial)
+        assert response.context['cat_form'].errors['categories'] == (
             ['This field is required.']
         )
 
     def test_edit_categories_max(self):
         assert amo.MAX_CATEGORIES == 2
         self.cat_initial['categories'] = [22, 1, 71]
-        response = self.client.post(
-            self.describe_edit_url, formset(self.cat_initial, initial_count=1)
-        )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        response = self.client.post(self.describe_edit_url, self.cat_initial)
+        assert response.context['cat_form'].errors['categories'] == (
             ['You can have only 2 categories.']
         )
 
     def test_edit_categories_other_failure(self):
         self.cat_initial['categories'] = [73, 1]
-        response = self.client.post(
-            self.describe_edit_url, formset(self.cat_initial, initial_count=1)
-        )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        response = self.client.post(self.describe_edit_url, self.cat_initial)
+        assert response.context['cat_form'].errors['categories'] == (
             [
                 'The miscellaneous category cannot be combined with additional '
                 'categories.'
@@ -571,10 +564,8 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
     def test_edit_categories_nonexistent(self):
         self.cat_initial['categories'] = [100]
-        response = self.client.post(
-            self.describe_edit_url, formset(self.cat_initial, initial_count=1)
-        )
-        assert response.context['cat_form'].errors[0]['categories'] == (
+        response = self.client.post(self.describe_edit_url, self.cat_initial)
+        assert response.context['cat_form'].errors['categories'] == (
             ['Select a valid choice. 100 is not one of the available choices.']
         )
 
@@ -1561,7 +1552,7 @@ class TestEditDescribeStaticThemeListed(
     def test_edit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
-            self.describe_edit_url, self.get_dict(category='firefox')
+            self.describe_edit_url, self.get_dict(categories=[308])
         )
         assert response.context['addon'].all_categories == (
             self.get_addon().all_categories
@@ -1574,17 +1565,17 @@ class TestEditDescribeStaticThemeListed(
         AddonCategory(addon=self.addon, category_id=300).save()
         assert sorted(cat.id for cat in self.get_addon().all_categories) == [300]
 
-        self.client.post(self.describe_edit_url, self.get_dict(category='firefox'))
+        self.client.post(self.describe_edit_url, self.get_dict(categories=[308]))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes (per application)
         assert category_ids_new == [308]
 
     def test_edit_categories_required(self):
-        data = self.get_dict(category='')
+        data = self.get_dict(categories='')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response, 'cat_form', 'category', 'This field is required.'
+            response, 'cat_form', 'categories', 'This field is required.'
         )
 
     def test_theme_preview_shown(self):

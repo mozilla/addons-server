@@ -860,11 +860,10 @@ def addons_section(request, addon_id, addon, section, editable=False):
     whiteboard = None
 
     if section == 'describe' and show_listed:
-        category_form_class = (
-            forms.SingleCategoryForm if static_theme else forms.CategoryFormSet
-        )
-        cat_form = category_form_class(
-            request.POST or None, addon=addon, request=request
+        cat_form = forms.CategoryForm(
+            request.POST if request.method == 'POST' else None,
+            addon=addon,
+            request=request,
         )
 
     elif section == 'additional_details':
@@ -1743,10 +1742,7 @@ def _submit_details(request, addon, version):
             describe_form = forms.DescribeForm(
                 post_data, instance=addon, request=request, version=version
             )
-        cat_form_class = (
-            forms.CategoryFormSet if not static_theme else forms.SingleCategoryForm
-        )
-        cat_form = cat_form_class(post_data, addon=addon, request=request)
+        cat_form = forms.CategoryForm(post_data, addon=addon, request=request)
         policy_form = forms.PolicyForm(post_data, addon=addon)
         license_form = forms.LicenseForm(
             post_data, version=latest_version, prefix='license'

@@ -1166,77 +1166,6 @@ class TestAddonModels(TestCase):
 
         assert self.newlines_helper(before) == after
 
-    def test_app_categories(self):
-        def get_addon():
-            return Addon.objects.get(pk=3615)
-
-        # This add-on is already associated with three Firefox categories
-        # using fixtures: Bookmarks, Feeds, Social.
-        FIREFOX_EXT_CATS = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]
-        expected_firefox_cats = [
-            FIREFOX_EXT_CATS['bookmarks'],
-            FIREFOX_EXT_CATS['feeds-news-blogging'],
-            FIREFOX_EXT_CATS['social-communication'],
-        ]
-
-        addon = get_addon()
-        assert sorted(addon.all_categories) == expected_firefox_cats
-        assert addon.app_categories == {'firefox': expected_firefox_cats}
-
-        # Let's add a ANDROID category.
-        android_category = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION][
-            'sports-games'
-        ]
-        AddonCategory.objects.create(addon=addon, category_id=android_category.id)
-
-        # Reload the addon to get a fresh, uncached categories list.
-        addon = get_addon()
-
-        # Test that the ANDROID category was added correctly.
-        assert sorted(addon.all_categories) == sorted(
-            expected_firefox_cats + [android_category]
-        )
-        assert sorted(addon.app_categories.keys()) == ['android', 'firefox']
-        assert addon.app_categories['firefox'] == expected_firefox_cats
-        assert addon.app_categories['android'] == [android_category]
-
-    def test_app_categories_ignore_unknown_cats(self):
-        def get_addon():
-            return Addon.objects.get(pk=3615)
-
-        # This add-on is already associated with three Firefox categories
-        # using fixtures: Bookmarks, Feeds, Social.
-        FIREFOX_EXT_CATS = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]
-        expected_firefox_cats = [
-            FIREFOX_EXT_CATS['bookmarks'],
-            FIREFOX_EXT_CATS['feeds-news-blogging'],
-            FIREFOX_EXT_CATS['social-communication'],
-        ]
-
-        addon = get_addon()
-        assert sorted(addon.all_categories) == sorted(expected_firefox_cats)
-        assert addon.app_categories == {'firefox': expected_firefox_cats}
-
-        # Associate this add-on with a couple more categories, including
-        # one that does not exist in the constants.
-        AddonCategory.objects.create(addon=addon, category_id=12345)
-        android_static_cat = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION][
-            'sports-games'
-        ]
-        AddonCategory.objects.create(addon=addon, category=android_static_cat)
-
-        # Reload the addon to get a fresh, uncached categories list.
-        addon = get_addon()
-
-        # The sunbird category should not be present since it does not match
-        # an existing static category, android one should have been added.
-        assert sorted(addon.all_categories) == sorted(
-            expected_firefox_cats + [android_static_cat]
-        )
-        assert sorted(addon.app_categories.keys()) == ['android', 'firefox']
-        assert addon.app_categories['firefox'] == expected_firefox_cats
-        assert addon.app_categories['android'] == [android_static_cat]
-
     def test_review_replies(self):
         """
         Make sure that developer replies are not returned as if they were
@@ -1408,11 +1337,7 @@ class TestAddonModels(TestCase):
 
     def test_category_transform(self):
         addon = Addon.objects.get(id=3615)
-        cats = CATEGORIES[amo.FIREFOX.id][addon.type].values()
-        names = [c.name for c in cats]
-
-        appname = getattr(amo.APP_IDS.get(amo.FIREFOX.id), 'short', '')
-        assert addon.app_categories.get(appname)[0].name in names
+        assert addon.all_categories[0] in CATEGORIES[addon.type].values()
 
     def test_listed_has_complete_metadata_no_categories(self):
         addon = Addon.objects.get(id=3615)

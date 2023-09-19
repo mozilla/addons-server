@@ -1630,17 +1630,6 @@ class Addon(OnChangeMixin, ModelBase):
     def has_per_version_previews(self):
         return self.type == amo.ADDON_STATICTHEME
 
-    @property
-    def app_categories(self):
-        app_cats = {}
-        categories = sorted_groupby(
-            sorted(self.all_categories),
-            key=lambda x: getattr(amo.APP_IDS.get(x.application), 'short', ''),
-        )
-        for app, cats in categories:
-            app_cats[app] = list(cats)
-        return app_cats
-
     def remove_locale(self, locale):
         """NULLify strings in this locale for the add-on and versions."""
         for o in itertools.chain([self], self.versions.all()):

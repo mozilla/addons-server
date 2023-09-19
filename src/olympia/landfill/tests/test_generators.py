@@ -13,7 +13,7 @@ from olympia.versions.models import Version
 class _BaseAddonGeneratorMixin:
     def test_tinyset(self):
         size = 4
-        data = list(_yield_name_and_cat(size, self.app, self.type))
+        data = list(_yield_name_and_cat(size, self.type))
         assert len(data) == size
         # Names are unique.
         assert len({addonname for addonname, cat in data}) == size
@@ -21,21 +21,21 @@ class _BaseAddonGeneratorMixin:
         assert not any(addonname[-1].isdigit() for addonname, cat in data)
 
     def test_smallset(self):
-        size = len(CATEGORIES[self.app.id][self.type]) * 6
-        data = list(_yield_name_and_cat(size, self.app, self.type))
+        size = len(CATEGORIES[self.type]) * 6
+        data = list(_yield_name_and_cat(size, self.type))
         assert len(data) == size
         # Addons are split up equally within each categories.
         categories = collections.defaultdict(int)
         for _addonname, category in data:
             categories[category.slug] += 1
-        length = len(CATEGORIES[self.app.id][self.type])
+        length = len(CATEGORIES[self.type])
         assert set(categories.values()) == {size / length}
         assert len({addonname for addonname, cat in data}) == size
         assert not any(addonname[-1].isdigit() for addonname, cat in data)
 
     def test_bigset(self):
         size = 300
-        data = list(_yield_name_and_cat(size, self.app, self.type))
+        data = list(_yield_name_and_cat(size, self.type))
         assert len(data) == size
         categories = collections.defaultdict(int)
         for _addonname, cat in data:

@@ -303,20 +303,18 @@ class AddonCategoryQueryParam(AddonQueryParam):
 
     def __init__(self, request):
         super().__init__(request)
-        # Category slugs are only unique for a given type+app combination.
+        # Category slugs are only unique for a given type.
         # Once we have that, it's just a matter of selecting the corresponding
         # dict in the categories constants and use that as the reverse dict,
         # and make sure to use get_value_from_object_from_reverse_dict().
         try:
-            app = AddonAppQueryParam(self.query_data).get_value()
             types = AddonTypeQueryParam(self.query_data).get_values()
-            self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
+            self.reverse_dict = [CATEGORIES[type_] for type_ in types]
         except KeyError:
             raise ValueError(
                 gettext(
-                    'Invalid combination of "%s", "%s" and "%s" parameters.'
+                    'Invalid combination of %s" and "%s" parameters.'
                     % (
-                        AddonAppQueryParam.query_param,
                         AddonTypeQueryParam.query_param,
                         self.query_param,
                     )

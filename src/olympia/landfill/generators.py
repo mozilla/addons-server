@@ -20,12 +20,11 @@ from .user import generate_addon_user_and_category, generate_user
 from .version import generate_version
 
 
-def _yield_name_and_cat(num, app=None, type=None):
+def _yield_name_and_cat(num, type_=None):
     """
-    Yield `num` tuples of (addon_name, category) for the given `app`
-    and `type`.
+    Yield `num` tuples of (addon_name, category) for the given `type`.
     """
-    categories = list(CATEGORIES[app.id][type].values())
+    categories = list(CATEGORIES[type_].values())
     if num > len(generate_names()):
         base_names = islice(cycle(generate_names()), num)
         addons = [f'{name} {i}' for i, name in enumerate(base_names)]
@@ -71,7 +70,7 @@ def generate_addons(num, owner, app_name, addon_type=ADDON_EXTENSION):
     featured_categories = collections.defaultdict(int)
     user = generate_user(owner)
     app = APPS[app_name]
-    for name, category in _yield_name_and_cat(num, app=app, type=addon_type):
+    for name, category in _yield_name_and_cat(num, type_=addon_type):
         addon = create_addon(name=name, application=app, type=addon_type)
         generate_addon_user_and_category(addon, user, category)
         generate_addon_preview(addon)

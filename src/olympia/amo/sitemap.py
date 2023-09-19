@@ -229,9 +229,9 @@ class CategoriesSitemap(Sitemap):
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         page_count_max = settings.ES_MAX_RESULT_WINDOW // page_size
 
-        def additems(type):
+        def additems(type_):
             items = []
-            for category in CATEGORIES[current_app.id][type].values():
+            for category in CATEGORIES[type_].values():
                 items.append((category, 1))
                 pages_needed = min(
                     math.ceil(addon_counts.get(category.id, 1) / page_size),

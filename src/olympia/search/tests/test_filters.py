@@ -731,18 +731,8 @@ class TestSearchParameterFilter(FilterTestsBase):
             'range': {'current_version.compatible_apps.1.max': {'gte': 46000000000100}}
         } in filter_
 
-    def test_search_by_category_slug_no_app_or_type(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'category': 'other'})
-        assert context.exception.detail == ['Invalid "app" parameter.']
-
-    def test_search_by_category_id_no_app_or_type(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'category': 1})
-        assert context.exception.detail == ['Invalid "app" parameter.']
-
     def test_search_by_category_slug(self):
-        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
+        category = CATEGORIES[amo.ADDON_EXTENSION]['other']
         qs = self._filter(
             data={'category': 'other', 'app': 'firefox', 'type': 'extension'}
         )
@@ -752,8 +742,8 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'terms': {'category': [category.id]}} in filter_
 
     def test_search_by_category_slug_multiple_types(self):
-        category_a = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
-        category_b = CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other']
+        category_a = CATEGORIES[amo.ADDON_EXTENSION]['other']
+        category_b = CATEGORIES[amo.ADDON_STATICTHEME]['other']
         qs = self._filter(
             data={
                 'category': 'other',

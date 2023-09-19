@@ -15,8 +15,9 @@ from olympia.abuse.models import AbuseReport
 from olympia.addons.management.commands import (
     fix_langpacks_with_max_version_star,
     process_addons,
+    update_and_clean_categories,
 )
-from olympia.addons.models import Addon, DeniedGuid
+from olympia.addons.models import Addon, AddonCategory, DeniedGuid
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -24,6 +25,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
+from olympia.constants.categories import CATEGORIES
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
@@ -576,3 +578,105 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
+
+
+class TestUpdateAndCleanCategoriesCommand(TestCase):
+    def test_add_new_categories_for_old_android_categories(self):
+        regular_addon = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
+        )
+        addon_with_obsolete_category_and_other = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['other']
+        )
+        addon_with_obsolete_category_and_regular_one = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['shopping']
+        )
+        AddonCategory.objects.create(
+            # Obsolete category that would map to `other` which the add-on
+            # already has.
+            addon=addon_with_obsolete_category_and_other,
+            category_id=153,
+        )
+        AddonCategory.objects.create(
+            # Obsolete extra category that maps to `feeds-news-blogging`.
+            addon=addon_with_obsolete_category_and_regular_one,
+            category_id=147,
+        )
+        assert AddonCategory.objects.count() == 5
+
+        command = update_and_clean_categories.Command()
+        command.add_new_categories_for_old_android_categories()
+
+        assert AddonCategory.objects.count() == 6
+        # Existing categories unchanged (even the obsolete ones)
+        assert AddonCategory.objects.filter(
+            addon=regular_addon,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_other,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['other'].id,
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_regular_one,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['shopping'].id,
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_other, category_id=153
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_regular_one, category_id=147
+        ).exists()
+        # New category added to replace 147. No category was added for 153
+        # since it maps to `other`, which would be a duplicate.
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_regular_one,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['feeds-news-blogging'].id,
+        ).exists()
+
+    def test_delete_old_categories(self):
+        regular_addon = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
+        )
+        addon_with_obsolete_category_and_other = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['other']
+        )
+        addon_with_obsolete_category_and_regular_one = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['shopping']
+        )
+        addon_with_bad_category = addon_factory()
+        AddonCategory.objects.create(
+            # Obsolete category that would map to `other` which the add-on
+            # already has.
+            addon=addon_with_obsolete_category_and_other,
+            category_id=153,
+        )
+        AddonCategory.objects.create(
+            # Obsolete extra category that maps to `feeds-news-blogging`.
+            addon=addon_with_obsolete_category_and_regular_one,
+            category_id=147,
+        )
+        AddonCategory.objects.filter(addon=addon_with_bad_category).update(
+            # Obsolete extra category that doesn't map to anything.
+            category_id=666,
+        )
+        assert AddonCategory.objects.count() == 6
+
+        command = update_and_clean_categories.Command()
+        command.BATCH_SIZE = 1
+        command.delete_old_categories()
+
+        assert AddonCategory.objects.count() == 3
+        # Non-obsolete categories were kept.
+        assert AddonCategory.objects.filter(
+            addon=regular_addon,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['bookmarks'].id,
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_other,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['other'].id,
+        ).exists()
+        assert AddonCategory.objects.filter(
+            addon=addon_with_obsolete_category_and_regular_one,
+            category_id=CATEGORIES[amo.ADDON_EXTENSION]['shopping'].id,
+        ).exists()

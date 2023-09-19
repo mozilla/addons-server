@@ -15,15 +15,15 @@ from rest_framework import exceptions, serializers
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import ImageCheck, sorted_groupby
+from olympia.amo.utils import ImageCheck
 from olympia.api.fields import (
     ESTranslationSerializerField,
     GetTextTranslationSerializerField,
     OutgoingURLField,
     TranslationSerializerField,
 )
+from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
-from olympia.constants.applications import APPS
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSES_BY_SLUG
 from olympia.files.utils import SafeTar, SafeZip
@@ -35,51 +35,57 @@ from olympia.versions.models import (
 
 
 class CategoriesSerializerField(serializers.Field):
+    @property
+    def flat(self):
+        request = self.context.get('request', None)
+        return not is_gate_active(request, 'categories-application')
+
     def to_internal_value(self, data):
-        try:
-            categories = []
-            for app_name, category_names in data.items():
-                if len(category_names) > amo.MAX_CATEGORIES:
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'Maximum number of categories per application '
-                            '({MAX_CATEGORIES}) exceeded'
-                        ).format(MAX_CATEGORIES=amo.MAX_CATEGORIES)
-                    )
-                if len(category_names) > 1 and 'other' in category_names:
-                    raise exceptions.ValidationError(
-                        gettext(
-                            'The "other" category cannot be combined with another '
-                            'category'
-                        )
-                    )
-                app_cats = CATEGORIES[APPS[app_name].id]
-                # We don't know the addon_type at this point, so try them all and we'll
-                # drop anything that's wrong later in AddonSerializer.validate
-                all_cat_slugs = set()
-                for type_cats in app_cats.values():
-                    categories.extend(
-                        type_cats[name] for name in category_names if name in type_cats
-                    )
-                    all_cat_slugs.update(type_cats.keys())
-                # Now double-check all the category names were found
-                if not all_cat_slugs.issuperset(category_names):
-                    raise exceptions.ValidationError(gettext('Invalid category name.'))
-            if not categories and self.required:
-                self.fail('required')
-            return categories
-        except KeyError:
-            raise exceptions.ValidationError(gettext('Invalid app name.'))
+        # Basic backwards-compatibility: accept categories as a dict, but only
+        # look at the Firefox ones since we removed the Android ones.
+        if isinstance(data, dict):
+            category_names = data.get('firefox', [])
+        else:
+            category_names = data
+        if not isinstance(category_names, list):
+            raise exceptions.ValidationError(gettext('Invalid value'))
+
+        if len(category_names) > amo.MAX_CATEGORIES:
+            raise exceptions.ValidationError(
+                gettext(
+                    'Maximum number of categories per application '
+                    '({MAX_CATEGORIES}) exceeded'
+                ).format(MAX_CATEGORIES=amo.MAX_CATEGORIES)
+            )
+        if len(category_names) > 1 and 'other' in category_names:
+            raise exceptions.ValidationError(
+                gettext(
+                    'The "other" category cannot be combined with another ' 'category'
+                )
+            )
+
+        categories = []
+        # We don't know the addon_type at this point, so try them all and we'll
+        # drop anything that's wrong later in AddonSerializer.validate
+        all_cat_slugs = set()
+        for type_cats in CATEGORIES.values():
+            categories.extend(
+                type_cats[name] for name in category_names if name in type_cats
+            )
+            all_cat_slugs.update(type_cats.keys())
+        # Now double-check all the category names were found
+        if not all_cat_slugs.issuperset(category_names):
+            raise exceptions.ValidationError(gettext('Invalid category name.'))
+
+        if not categories and self.required:
+            self.fail('required')
+        return categories
 
     def to_representation(self, value):
-        grouped = sorted_groupby(
-            sorted(value),
-            key=lambda x: getattr(amo.APP_IDS.get(x.application), 'short', ''),
-        )
-        return {
-            app_name: [cat.slug for cat in categories]
-            for app_name, categories in grouped
-        }
+        if self.flat:
+            return [cat.slug for cat in value]
+        else:
+            return {amo.FIREFOX.short: [cat.slug for cat in value]}
 
 
 class ContributionSerializerField(OutgoingURLField):

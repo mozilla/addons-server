@@ -190,26 +190,16 @@
                        "exposure.")) }}
             </th>
             <td id="addon-categories-edit"
-                data-max-categories="{{ amo.MAX_CATEGORIES }}">
-              {% if editable and addon.type != amo.ADDON_STATICTHEME %}
-                {{ cat_form.non_form_errors() }}
-                {{ cat_form.management_form }}
-                {% for form in cat_form.initial_forms %}
-                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
-                {% endfor %}
-              {% elif editable and addon.type == amo.ADDON_STATICTHEME %}
-                {{ cat_form.category.errors }}
-                {{ cat_form.category }}
+                {% if cat_form %}data-max-categories="{{ cat_form.max_categories }}"{% endif %}>
+              {% if editable %}
+                {{ select_cats(cat_form) }}
               {% else %}
-                {% set categories = addon.app_categories %}
+                {% set categories = addon.all_categories %}
                 {% call empty_unless(categories) %}
                   <ul class="addon-app-cats-inline">
-                    {% for app_short_name, cats in categories.items() %}
                       <li>
-                        <b>{{ amo.APPS[app_short_name].pretty }}:</b>
-                        {{ cats|join(' &middot; ')|safe }}
+                        {{ categories|join(' &middot; ')|safe }}
                       </li>
-                    {% endfor %}
                   </ul>
                 {% endcall %}
               {% endif %}
