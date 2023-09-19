@@ -96,13 +96,6 @@ ERROR_STATUSES = {
     ERROR_STATE_MISMATCH: 400,
     ERROR_FXA_ERROR: 400,
 }
-LOGIN_ERROR_MESSAGES = {
-    ERROR_AUTHENTICATED: _('You are already logged in.'),
-    ERROR_NO_CODE: _('Your login attempt could not be parsed. Please try again.'),
-    ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
-    ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
-    ERROR_FXA_ERROR: _('You could not be logged in. Please try again.'),
-}
 
 
 def safe_redirect(request, url, action):
@@ -113,7 +106,7 @@ def safe_redirect(request, url, action):
 
 
 def find_user(identity):
-    """Try to find a user for a Firefox Accounts profile. If the account
+    """Try to find a user for a Mozilla accounts profile. If the account
     hasn't been migrated we'll need to do the lookup by email but we should
     use the ID after that so check both.
 
@@ -257,7 +250,7 @@ def with_user(f):
                 # If we're trying to enforce 2FA, we should try again without
                 # prompt=none (and a new state), maybe there is a mismatch
                 # between what user we currently have logged in and what
-                # Firefox Account the browser is logged into.
+                # Mozilla account the browser is logged into.
                 return redirect_for_login_with_2fa_enforced(
                     request,
                     config=fxa_config,
