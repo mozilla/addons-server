@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-15 21:50+0000\n"
+"PO-Revision-Date: 2023-09-19 16:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -123,7 +123,7 @@ msgstr "Njepłaśiwa minimalna nałožeńska wersija pódana"
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Informacije wó kompatibelnosći , kótarež su w manifesće za toś to nałoženje (%s) pódane, njedaju se pśepisaś"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -1507,7 +1507,7 @@ msgstr "Njepłaśiwy wersijowy wobceŕk."
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Njepłaśiwy wersijowy wobceŕk. Za Firefox za Android móžośo jano wobceŕk wubraś, kótaryž se z wersiju %(max)s abo nowšeju zachopina abo se ze staršeju ako z wersiju %(min)s kóńcy."
 
 msgid "Need at least one compatible application."
 msgstr "Nanejmjenjej jadno kompatibelne nałoženje trěbne."
