@@ -533,7 +533,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
         template = loader.get_template('users/emails/user_deleted.ltxt')
-        email_msg = template.render(context={'site_url': site_url, 'name': self.name})
+        email_msg = template.render(
+            context={
+                'site_url': site_url,
+                'name': self.name,
+                'is_mza_branding': datetime.now() >= amo.MZA_LAUNCH_DATETIME,
+            }
+        )
         return {
             'subject': f'Your account on {site_url} has been deleted',
             'message': email_msg,
