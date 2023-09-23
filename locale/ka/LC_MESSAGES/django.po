@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-19 22:53+0000\n"
+"PO-Revision-Date: 2023-09-23 18:25+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3894,7 +3894,7 @@ msgstr "საინტერესო სურათი ნახეთ ინ
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr "უბრალოდ გადააადგილეთ ტექსტი, სურათები ან ბმულები ისეთი მოქმედებების შესასრულებლად, როგორიცაა ასლის აღება, ახალ გვერდზე გახსნა, მოძიება და ა. შ."
+msgstr "მხოლოდ გადააადგილეთ ტექსტი, სურათები ან ბმულები ისეთი მოქმედებების შესასრულებლად, როგორებიცაა ასლის აღება, ახალ გვერდზე გახსნა, მოძიება და ა. შ."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -3991,7 +3991,7 @@ msgstr "შუქჩრდილებისა და სიმუქის მ
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr "აირიდეთ ყურადღების გასაფანტი გვერდები. უბრალოდ ჩამოწერეთ ვებსაიტები, რომლებიც გსურთ შეიზღუდოს. მყისიერი წესრიგი!"
+msgstr "აირიდეთ ყურადღების გასაფანტი გვერდები. მხოლოდ ჩამოწერეთ ვებსაიტები, რომელთა შეზღუდვაც გსურთ. მყისიერი წესრიგი!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
