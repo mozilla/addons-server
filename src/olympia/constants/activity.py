@@ -953,6 +953,12 @@ class CLEAR_ADMIN_REVIEW_THEME(_LOG):
     reviewer_review_action = True
     admin_event = True
 
+class ADDON_SLUG_CHANGED(_LOG):
+    id = 182
+    format = _('Addon {addon} slug changed from {old} to {new}.')
+    short = _('Addon slug changed')
+    keep = True
+    show_user_to_developer = True
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
