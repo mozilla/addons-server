@@ -1006,10 +1006,12 @@ class TestReplacementAddonList(TestCase):
 
 
 class TestAddonRegionalRestrictionsAdmin(TestCase):
+    admin_permission = '*:*'
+
     def setUp(self):
         self.list_url = reverse('admin:addons_addonregionalrestrictions_changelist')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, self.admin_permission)
         self.client.force_login(user)
 
     def test_can_see_module_in_admin(self):
@@ -1113,6 +1115,10 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f"[{restriction.addon.id}] deleted: ['FR']"
         )
         assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+
+
+class TestAddonRegionalRestrictionsAdminSpecialPerm(TestAddonRegionalRestrictionsAdmin):
+    admin_permission = 'Admin:RegionalRestrictionsEdit'
 
 
 class TestAddonBrowserMappingAdmin(TestCase):
