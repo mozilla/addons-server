@@ -93,10 +93,10 @@ constants are as follows:
     ============================  =====================================================
 
 
-.. _api-overview-maintainance:
+.. _api-overview-maintenance:
 
 ~~~~~~~~~~~~~~~~~
-Maintainance Mode
+Maintenance Mode
 ~~~~~~~~~~~~~~~~~
 
 When returning ``HTTP 503 Service Unavailable`` responses the API may be in
@@ -244,7 +244,7 @@ original url (``url``), and wrapped through ``outgoing.prod.mozaws.net`` (``outg
 
 Note, if the field is also a translated field then the ``url`` and ``outgoing``
 values could be an object rather than a string
-(See :ref:`translated fields <api-overview-translations>` for translated field represenations).
+(See :ref:`translated fields <api-overview-translations>` for translated field representations).
 
 Fields supporting some HTML, such as add-on ``description`` or ``summary``,
 always wrap any links directly inside the content (the original url is not available).
@@ -271,7 +271,7 @@ Site Status
 .. _`api-site-status`:
 
 This special endpoint returns if the site is in read only mode, and if there is a site notice currently in effect.
-See :ref:`maintainance mode <api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
+See :ref:`maintenance mode <api-overview-maintenance>` for more details of when the site is read only and how requests are affected.
 
 
 .. http:get:: /api/v5/site/
@@ -335,7 +335,7 @@ v4 API changelog
 * 2018-08-16: added ``is_developer_reply`` property to ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8993
 * 2018-09-13: added ``name`` and ``icon_url`` properties to the ``addon`` object in ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9357
 * 2018-09-27: backed out "localised field values are always returned as objects" change from 2018-07-19 from `v4` API.  This is intended to be temporary change while addons-frontend upgrades.
-  On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
+  On addons-dev and addons stage environments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
   https://github.com/mozilla/addons-server/issues/9467
 * 2018-10-04: added ``is_strict_compatibility_enabled`` to discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9520
 * 2018-10-04: added ``is_deleted`` to the ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9371
@@ -396,7 +396,7 @@ v4 API changelog
 * 2020-11-05: added endpoint to receive Stripe events. https://github.com/mozilla/addons-server/issues/15879
 * 2021-01-14: as addons-frontend now uses /v5/, v5 becomes the stable default; v4 becomes frozen; v3 is deprecated
 * 2021-02-12: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
-* 2021-02-25: ``platform`` filtering was remoed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
+* 2021-02-25: ``platform`` filtering was removed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
 
 ----------------
 v5 API changelog
@@ -422,7 +422,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2021-02-18: made ``description``, ``headline``, and ``cta.text`` in shelves/hero endpoint translated fields in the response. (They were always localized, we just didn't return them as such). https://github.com/mozilla/addons-server/issues/16515
 * 2021-02-18: added ``versions_url`` to addon detail endpoint. https://github.com/mozilla/addons-server/issues/16534
 * 2021-02-25: made ``headline`` and ``footer_text`` in shelves endpoint translated fields. Also added shelves/editorial endpoint for the localization process. https://github.com/mozilla/addons-server/issues/16514
-* 2021-02-25: ``platform`` filtering was remoed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
+* 2021-02-25: ``platform`` filtering was removed from add-on search and autocomplete endpoints. https://github.com/mozilla/addons-server/issues/16463
 * 2021-03-04: replaced ``footer_pathname`` and ``footer_text`` with ``footer`` object in shelves api response.  https://github.com/mozilla/addons-server/issues/16575
 * 2021-03-18: removed ``platform`` from file objects (it was always ``all``) in all endpoints. https://github.com/mozilla/addons-server/issues/16466
 * 2021-05-20: removed ``text`` from license objects in versions list endpoint. https://github.com/mozilla/addons-server/issues/17163
@@ -456,7 +456,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-02-23: removed ``canned-response`` from the /draft_comments/ endpoint. https://github.com/mozilla/addons-server/issues/20353
 * 2023-03-02: added specific HTTP 409 status code for add-on/version submissions that already exist
 * 2023-03-02: added support for calling the version detail endpoint using a version number instead of an ``id``.
-* 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and revieweers. https://github.com/mozilla/addons-server/issues/20142
+* 2023-03-09: added ``is_disabled`` to version detail and update endpoints, for authenticated developers and reviewers. https://github.com/mozilla/addons-server/issues/20142
 * 2023-03-08: restricted ``lang`` parameter to only alphanumeric, ``_``, ``-``. https://github.com/mozilla/addons-server/issues/20452
 * 2023-03-09: added ``host_permissions`` to the response of the version detail endpoint. https://github.com/mozilla/addons-server/issues/20418
 * 2023-04-13: removed signing api from api/v5+ in favor of addon submission api. https://github.com/mozilla/addons-server/issues/20560

@@ -6,7 +6,7 @@ Discovery
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 -----------------
 Discovery Content
@@ -39,7 +39,7 @@ If a telemetry client id is passed as a parameter to the discovery pane api
 endpoint then static curated content is amended with recommendations from the
 `recommendation service <https://github.com/mozilla/taar>`_.  The same number
 of results will be returned as a standard discovery response and only extensions
-(not themes) are recommeded.  Only valid, publicly available addons are shown.
+(not themes) are recommended.  Only valid, publicly available addons are shown.
 
 E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
 Up to 4 extensions will be replaced with recommendations; the 3 themes will not
