@@ -1416,6 +1416,16 @@ class ApplicationsVersions(models.Model):
             .first()
         )
 
+    def get_default_minimum_appversion(self):
+        return AppVersion.objects.filter(application=self.application).get(
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.APPS_ALL[self.application]]
+        )
+
+    def get_default_maximum_appversion(self):
+        return AppVersion.objects.filter(application=self.application).get(
+            version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )
+
     @property
     def locked_from_manifest(self):
         """Whether the manifest is the source of truth for this ApplicationsVersions or
@@ -1468,9 +1478,16 @@ class ApplicationsVersions(models.Model):
         limited_range_start = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0])
         limited_range_end = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1])
 
+        # Min or max could be absent if it's a partial instance we'll be
+        # completing later. Use default values in that case (increases the
+        # chance that the range would be considered forbbiden, forcing caller
+        # to provide a complete instance).
+        min_ = getattr(self, 'min', self.get_default_minimum_appversion())
+        max_ = getattr(self, 'max', self.get_default_maximum_appversion())
+
         return (
-            self.min.version_int < limited_range_end
-            and self.max.version_int >= limited_range_start
+            min_.version_int < limited_range_end
+            and max_.version_int >= limited_range_start
         )
 
     def save(self, *args, **kwargs):
