@@ -31,6 +31,7 @@ from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
     License,
+    Version,
 )
 
 
@@ -251,6 +252,7 @@ class VersionCompatibilityField(serializers.Field):
             raise exceptions.ValidationError(gettext('Invalid value'))
 
         version = self.parent.instance
+        addon = self.parent.addon
         existing = version.compatible_apps if version else {}
         internal = {}
         for app_name, min_max in data.items():
@@ -262,17 +264,15 @@ class VersionCompatibilityField(serializers.Field):
             existing_app = existing.get(app)
             # we need to copy() to avoid changing the instance before save
             apps_versions = copy.copy(existing_app) or ApplicationsVersions(
-                application=app.id
+                application=app.id, version=version or Version(addon=addon)
             )
-
             app_version_qs = AppVersion.objects.filter(application=app.id)
             try:
                 if 'max' in min_max:
                     apps_versions.max = app_version_qs.get(version=min_max['max'])
                 elif version:
-                    apps_versions.max = app_version_qs.get(
-                        version=amo.DEFAULT_WEBEXT_MAX_VERSION
-                    )
+                    apps_versions.max = apps_versions.get_default_maximum_appversion()
+
             except AppVersion.DoesNotExist:
                 raise exceptions.ValidationError(
                     gettext('Unknown max app version specified')
@@ -283,14 +283,33 @@ class VersionCompatibilityField(serializers.Field):
                 if 'min' in min_max:
                     apps_versions.min = app_version_qs.get(version=min_max['min'])
                 elif version:
-                    apps_versions.min = app_version_qs.get(
-                        version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
-                    )
+                    apps_versions.min = apps_versions.get_default_minimum_appversion()
             except AppVersion.DoesNotExist:
                 raise exceptions.ValidationError(
                     gettext('Unknown min app version specified')
                 )
 
+            # We want to validate whether or not the android range contains
+            # forbidden versions. At this point the ApplicationsVersions
+            # instance might be partial and completed by Version.from_upload()
+            # which looks at the manifest. We can't do that here, so if either
+            # the min or max provided would lead to a problematic range on its
+            # own, we force the developer to explicitly set both, even though
+            # what's in the manifest could resulted in a valid range.
+            if (
+                ('min' in min_max or 'max' in min_max)
+                and apps_versions.application == amo.ANDROID.id
+                and apps_versions.version_range_contains_forbidden_compatibility()
+            ):
+                valid_range = ApplicationsVersions.ANDROID_LIMITED_COMPATIBILITY_RANGE
+                raise exceptions.ValidationError(
+                    gettext(
+                        'Invalid version range. For Firefox for Android, you may only '
+                        'pick a range that starts with version %(max)s or higher, '
+                        'or ends with lower than version %(min)s.'
+                    )
+                    % {'min': valid_range[0], 'max': valid_range[1]}
+                )
             if existing_app and existing_app.locked_from_manifest:
                 if (
                     existing_app.min != apps_versions.min

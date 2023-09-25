@@ -3052,6 +3052,57 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
         self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
         assert not avs.version.file.reload().strict_compatibility
 
+    def test_get_default_minimum_appversion(self):
+        assert ApplicationsVersions(
+            application=amo.FIREFOX.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.FIREFOX.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.FIREFOX],
+        )
+
+        assert ApplicationsVersions(
+            application=amo.ANDROID.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.ANDROID],
+        )
+
+    def get_default_maximum_appversion(self):
+        self.star_firefox_appversion = AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )
+        assert (
+            ApplicationsVersions(
+                application=amo.FIREFOX.id
+            ).get_default_maximum_appversion()
+            == self.star_firefox_appversion
+        )
+
+        assert (
+            ApplicationsVersions(
+                application=amo.ANDROID.id
+            ).get_default_maximum_appversion()
+            == self.star_android_appversion
+        )
+
+    def test_min_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+
+    def test_max_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+
 
 class TestVersionPreview(BasePreviewMixin, TestCase):
     def get_object(self):

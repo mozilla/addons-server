@@ -3146,6 +3146,38 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Unknown min app version specified']}
 
+    def test_compatibility_forbidden_range_android(self):
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
+    def test_compatibility_forbidden_range_android_only_min_specified(self):
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
         return {**parse_xpi(pkg, addon, minimal, user), 'type': addon.type}
@@ -4266,7 +4298,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         response = self.request(
             compatibility={
                 'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
-                'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID},
+                'android': {'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             }
         )
         assert response.status_code == 400, response.content
