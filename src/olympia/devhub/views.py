@@ -907,7 +907,9 @@ def addons_section(request, addon_id, addon, section, editable=False):
                     ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
 
                 if valid_slug != addon.slug:
-                    ActivityLog.create(amo.LOG.ADDON_SLUG_CHANGED, addon, valid_slug, addon.slug)
+                    ActivityLog.create(
+                        amo.LOG.ADDON_SLUG_CHANGED, addon, valid_slug, addon.slug
+                    )
                 valid_slug = addon.slug
 
             if cat_form:
