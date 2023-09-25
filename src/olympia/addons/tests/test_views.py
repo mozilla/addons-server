@@ -3157,10 +3157,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             ]
         }
 
+        # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        response = self.request(
-            compatibility={'android': {'min': '119.0a1', 'max': '*'}}
-        )
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     def test_compatibility_forbidden_range_android_only_min_specified(self):
@@ -3174,10 +3173,9 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
             ]
         }
 
+        # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
-        response = self.request(
-            compatibility={'android': {'min': '48.0', 'max': '61.0'}}
-        )
+        response = self.request(compatibility={'android': {'min': '48.0'}})
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @staticmethod
