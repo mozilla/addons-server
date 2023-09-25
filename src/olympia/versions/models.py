@@ -1482,8 +1482,8 @@ class ApplicationsVersions(models.Model):
         # completing later. Use default values in that case (increases the
         # chance that the range would be considered forbbiden, forcing caller
         # to provide a complete instance).
-        min_ = getattr(self, 'min', self.get_default_minimum_appversion())
-        max_ = getattr(self, 'max', self.get_default_maximum_appversion())
+        min_ = getattr(self, 'min', None) or self.get_default_minimum_appversion()
+        max_ = getattr(self, 'max', None) or self.get_default_maximum_appversion()
 
         return (
             min_.version_int < limited_range_end
