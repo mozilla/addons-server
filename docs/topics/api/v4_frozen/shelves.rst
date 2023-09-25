@@ -15,7 +15,7 @@ Combined Hero Shelves
 
 .. _v4-hero-shelves:
 
-This convienence endpoint serves a single, randomly selected, primary hero shelf,
+This convenience endpoint serves a single, randomly selected, primary hero shelf,
 and a single, randomly selected secondary hero shelf.
 
 

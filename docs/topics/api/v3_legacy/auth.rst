@@ -8,7 +8,7 @@ Authentication (External)
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 To access the API as an external consumer, you need to include a
 `JSON Web Token (JWT)`_ in the ``Authorization`` header for every request.

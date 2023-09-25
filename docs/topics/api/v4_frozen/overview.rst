@@ -90,10 +90,10 @@ constants are as follows:
     ========================  =========================================================
 
 
-.. _v4-api-overview-maintainance:
+.. _v4-api-overview-maintenance:
 
 ~~~~~~~~~~~~~~~~~
-Maintainance Mode
+Maintenance Mode
 ~~~~~~~~~~~~~~~~~
 
 When returning ``HTTP 503 Service Unavailable`` responses the API may be in
@@ -224,7 +224,7 @@ original url (``url``), and wrapped through ``outgoing.prod.mozaws.net`` (``outg
 
 Note, if the field is also a translated field then the ``url`` and ``outgoing``
 values could be an object rather than a string
-(See `translated fields <v4-api-overview-translations>` for translated field represenations).
+(See `translated fields <v4-api-overview-translations>` for translated field representations).
 
 Fields supporting some HTML, such as add-on ``description`` or ``summary``,
 always wrap any links directly inside the content (the original url is not available).
@@ -248,7 +248,7 @@ Site Status
 .. _v4-api-site-status:
 
 This special endpoint returns if the site is in read only mode, and if there is a site notice currently in effect.
-See :ref:`maintainance mode <v4-api-overview-maintainance>` for more details of when the site is read only and how requests are affected.
+See :ref:`maintenance mode <v4-api-overview-maintenance>` for more details of when the site is read only and how requests are affected.
 
 
 .. http:get:: /api/v4/site/
@@ -275,7 +275,7 @@ v4 API changelog
 * 2018-08-16: added ``is_developer_reply`` property to ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8993
 * 2018-09-13: added ``name`` and ``icon_url`` properties to the ``addon`` object in ratings. This changed was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9357
 * 2018-09-27: backed out "localised field values are always returned as objects" change from 2018-07-19 from `v4` API.  This is intended to be temporary change while addons-frontend upgrades.
-  On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
+  On addons-dev and addons stage environments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
   https://github.com/mozilla/addons-server/issues/9467
 * 2018-10-04: added ``is_strict_compatibility_enabled`` to discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9520
 * 2018-10-04: added ``is_deleted`` to the ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9371
