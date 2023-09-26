@@ -2051,6 +2051,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
                 amo.LOG.ADD_VERSION.id,
                 amo.LOG.LOG_IN.id,
                 amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.ADDON_SLUG_CHANGED.id,
             )
         ).get()
         assert alog.user == self.user
