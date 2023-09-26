@@ -956,7 +956,7 @@ class CLEAR_ADMIN_REVIEW_THEME(_LOG):
 
 class ADDON_SLUG_CHANGED(_LOG):
     id = 182
-    format = _('Addon {addon} slug changed from {old} to {new}.')
+    format = _('{user_responsible} changed {addon} slug from {0} to {1}.')
     short = _('Addon slug changed')
     keep = True
     show_user_to_developer = True

@@ -1996,6 +1996,14 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200, response.content
 
+        # get the most recent ADDON_SLUG_CHANGED log entry
+        log_entry = ActivityLog.objects.filter(
+            action=amo.LOG.ADDON_SLUG_CHANGED.id
+        ).latest('pk')
+        assert log_entry.user == self.user
+        assert log_entry.arguments == [self.addon, 'denied-slug', 'denied-slug~']
+        assert 'slug from denied-slug to denied-slug~' in str(log_entry)
+
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
