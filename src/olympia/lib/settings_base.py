@@ -1509,3 +1509,9 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
+
+CINDER_SERVER_URL = env(
+    'CINDER_SERVER_URL',
+    default='https://stage.cinder.nonprod.webservices.mozgcp.net/api/v1/',
+)
+CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
