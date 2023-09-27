@@ -53,7 +53,11 @@ from olympia.amo.utils import (
     send_mail,
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
-from olympia.devhub.decorators import dev_required, no_admin_disabled
+from olympia.devhub.decorators import (
+    dev_required,
+    no_admin_disabled,
+    two_factor_auth_required_if_non_theme,
+)
 from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
@@ -1299,8 +1303,8 @@ def submit_theme(request):
     )
 
 
-@two_factor_auth_required
 @dev_required
+@two_factor_auth_required_if_non_theme
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
         request=request,
@@ -1354,8 +1358,8 @@ def submit_theme_distribution(request):
     return _submit_distribution(request, None, 'devhub.submit.theme.upload')
 
 
-@two_factor_auth_required
 @dev_required(submitting=True)
+@two_factor_auth_required_if_non_theme
 def submit_version_distribution(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
@@ -1563,8 +1567,8 @@ def submit_theme_upload(request, channel):
     )
 
 
-@two_factor_auth_required
 @dev_required(submitting=True)
+@two_factor_auth_required_if_non_theme
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1573,8 +1577,8 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
-@two_factor_auth_required
 @dev_required(submitting=True)
+@two_factor_auth_required_if_non_theme
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
