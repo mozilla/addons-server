@@ -42,6 +42,7 @@
           </div>
       </form>
   </div>
+  {% if show_android_modal_confirmation %}
   <div id="modal-confirm-android-submission" class="modal">
     <form method="POST" action="#">
       <h3> {{ _("Firefox for Android compatibility") }} </h3>
@@ -52,5 +53,6 @@
       </div>
     </form>
   </div>
+  {% endif %}
 </div>
 {% endblock content %}
