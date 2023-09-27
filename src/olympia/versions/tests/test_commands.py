@@ -6,7 +6,7 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.promoted.models import PromotedAddon
@@ -22,7 +22,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             application=amo.ANDROID.id,
             version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
         )[0]
-        self.max_version_fenix = AppVersion.objects.get_or_create(
+        self.max_version_fennec = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
         )[0]
 
@@ -139,7 +139,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
             application=amo.ANDROID.id,
             version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
         )[0]
-        self.max_version_fenix = AppVersion.objects.get_or_create(
+        self.max_version_fennec = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version=amo.MAX_VERSION_FENNEC
         )[0]
         self.some_fenix_version = AppVersion.objects.get_or_create(
@@ -365,3 +365,65 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 del addon.current_version._compatible_apps
             assert amo.ANDROID not in addon.current_version.compatible_apps
             assert not addon.current_version.file.reload().strict_compatibility
+
+
+class TestDropCompatibilityCommand(TestCase):
+    def setUp(self):
+        self.min_version_fenix = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id,
+            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+        )[0]
+        self.max_version_fenix = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )[0]
+
+    def _create_csv(self, contents):
+        with tempfile.NamedTemporaryFile(
+            mode='w', suffix='.csv', delete=False
+        ) as csv_file:
+            self.addCleanup(os.remove, csv_file.name)
+            writer = csv.writer(csv_file)
+            writer.writerows(contents)
+        return csv_file.name
+
+    def test_handle(self):
+        addons_to_drop = [
+            addon_factory(),
+            addon_factory(),
+            addon_factory(version_kw={'application': amo.ANDROID.id}),
+        ]
+        ApplicationsVersions.objects.create(
+            version=addons_to_drop[0].current_version,
+            application=amo.ANDROID.id,
+            min=self.min_version_fenix,
+            max=self.max_version_fenix,
+        )
+        version_factory(addon=addons_to_drop[-1], application=amo.ANDROID.id)
+        addons_to_ignore = [
+            addon_factory(),
+            addon_factory(version_kw={'application': amo.ANDROID.id}),
+        ]
+        ApplicationsVersions.objects.create(
+            version=addons_to_ignore[0].current_version,
+            application=amo.ANDROID.id,
+            min=self.min_version_fenix,
+            max=self.max_version_fenix,
+        )
+        version_factory(addon=addons_to_ignore[-1], application=amo.ANDROID.id)
+        csv_path = self._create_csv(
+            [
+                ['addon_id'],
+                *[[str(addon.pk)] for addon in addons_to_drop],
+            ]
+        )
+        call_command('drop_android_compatibility', csv_path)
+        for addon in addons_to_drop:
+            for version in addon.versions.all():
+                if hasattr(version, '_compatible_apps'):
+                    del version._compatible_apps
+                assert amo.ANDROID not in version.compatible_apps
+
+        for addon in addons_to_ignore:
+            if hasattr(addon.current_version, '_compatible_apps'):
+                del addon.current_version._compatible_apps
+            assert amo.ANDROID in addon.current_version.compatible_apps
