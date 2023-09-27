@@ -14,7 +14,6 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
-    webext_version_stats,
 )
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
@@ -241,9 +240,6 @@ class VersionView(APIView):
             channel=channel,
             source=amo.UPLOAD_SOURCE_SIGNING_API,
         )
-
-        webext_version_stats(request, 'signing.submission')
-
         return file_upload, created
 
     @use_primary_db
