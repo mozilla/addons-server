@@ -77,6 +77,7 @@ from .tasks import resize_icon, resize_preview
 from .utils import (
     fetch_translations_from_addon,
     validate_version_number_is_gt_latest_signed_listed_version,
+    webext_version_from_request,
 )
 from .validators import (
     AddonDefaultLocaleValidator,
@@ -645,7 +646,8 @@ class DeveloperVersionSerializer(VersionSerializer):
                 )
 
     def create(self, validated_data):
-        user = self.context['request'].user
+        request = self.context['request']
+        user = request.user
         upload = validated_data.get('upload')
         parsed_and_validated_data = {
             **self.parsed_data,
@@ -659,6 +661,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             channel=upload.channel,
             compatibility=validated_data.get('compatible_apps'),
             parsed_data=parsed_and_validated_data,
+            webext_version=webext_version_from_request(request),
         )
         if isinstance(validated_data.get('license'), dict):
             # If we got a custom license lets create it and assign it to the version.

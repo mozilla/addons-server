@@ -160,16 +160,11 @@ class DeleteTokenSigner(TimestampSigner):
         return token_payload['addon_id'] == addon_id
 
 
-def webext_version_stats(request, source):
-    log.info(f'webext_version_stats header: {request.META.get("HTTP_USER_AGENT")}')
+def webext_version_from_request(request):
     webext_version_match = re.match(
         r'web-ext/([\d\.]+)$', request.META.get('HTTP_USER_AGENT') or ''
     )
-    if webext_version_match:
-        webext_version = webext_version_match[1].replace('.', '_')
-        log.info(f'webext_version_stats webext_version: {webext_version}')
-        statsd.incr(f'{source}.webext_version.{webext_version}')
-    log.info('webext_version_stats no match')
+    return webext_version_match[0] if webext_version_match else None
 
 
 def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):

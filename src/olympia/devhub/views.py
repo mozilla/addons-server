@@ -40,6 +40,7 @@ from olympia.addons.models import (
     AddonUser,
     AddonUserPendingConfirmation,
 )
+from olympia.addons.utils import webext_version_from_request
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -593,7 +594,10 @@ def handle_upload(
         user=request.user,
     )
     if submit:
-        tasks.validate_and_submit(addon, upload, theme_specific=theme_specific)
+        webext_version = webext_version_from_request(request)
+        tasks.validate_and_submit(
+            addon, upload, theme_specific=theme_specific, webext_version=webext_version
+        )
     else:
         tasks.validate(upload, theme_specific=theme_specific)
     return upload

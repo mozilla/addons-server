@@ -346,6 +346,7 @@ class Version(OnChangeMixin, ModelBase):
         selected_apps=None,
         compatibility=None,
         parsed_data=None,
+        webext_version=None,
     ):
         """
         Create a Version instance and corresponding File(s) from a
@@ -618,6 +619,24 @@ class Version(OnChangeMixin, ModelBase):
         statsd.incr(
             'devhub.version_created_from_upload.'
             f'{amo.ADDON_TYPE_CHOICES_API.get(addon.type, "")}'
+        )
+
+        if webext_version:
+            webext_version = webext_version[1].replace('.', '_')
+            if upload.source == amo.UPLOAD_SOURCE_SIGNING_API:
+                provenance = 'signing.submission'
+            elif upload.source == amo.UPLOAD_SOURCE_ADDON_API:
+                provenance = 'addons.submission'
+            else:
+                provenance = 'other'
+            log.info(
+                'Version created from %s with webext_version %s:',
+                provenance,
+                webext_version,
+            )
+            statsd.incr(f'{provenance}.webext_version.{webext_version}')
+        VersionProvenance.objects.create(
+            version=version, source=upload.source, client_info=webext_version
         )
 
         return version
@@ -1191,6 +1210,12 @@ class VersionReviewerFlags(ModelBase):
                 ),
             ),
         ]
+
+
+class VersionProvenance(models.Model):
+    version = models.ForeignKey(Version, primary_key=True, on_delete=models.CASCADE)
+    source = models.PositiveSmallIntegerField(choices=amo.UPLOAD_SOURCE_CHOICES)
+    client_info = models.CharField(max_length=255, null=True, default=None)
 
 
 def version_review_flags_save_signal(sender, instance, **kw):
