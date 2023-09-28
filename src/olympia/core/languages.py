@@ -209,7 +209,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'native': '\u0938\u0902\u0938\u094d\u0915\u0943\u0924',
     },
     'sah': {'english': 'Sakha', 'native': '\u0421\u0430\u0445\u0430\u043b\u044b\u044b'},
-    'sat': {'english': 'Santali', 'native': '\u0938\u0902\u0924\u093e\u0932\u0940'},
+    'sat': {'english': 'Santali', 'native': '\u1c65\u1c5f\u1c71\u1c5b\u1c5f\u1c72\u1c64'},
     'si': {'english': 'Sinhala', 'native': '\u0dc3\u0dd2\u0d82\u0dc4\u0dbd'},
     'son': {'english': 'Songhai', 'native': 'So\u014bay'},
     'sr': {'english': 'Serbian', 'native': '\u0421\u0440\u043f\u0441\u043a\u0438'},
