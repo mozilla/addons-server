@@ -402,6 +402,22 @@ class AddonAbuseViewSetTestBase:
         self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
         assert report.country_code == 'YY'
 
+    def test_abuse_report_with_invalid_data(self):
+        addon = addon_factory()
+        # Prepare data with invalid field values
+        data = {
+            'addon': addon.pk,
+            'addon_install_method': {'dictionary_key': 'dictionary_val'},
+            'addon_install_source': {'dictionary_key': 'dictionary_val'},
+            'message': 'abuse!',
+        }
+
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            "addon_install_method": "Invalid type for value submitted."
+        }
+
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
