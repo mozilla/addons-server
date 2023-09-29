@@ -32,7 +32,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import NOTABLE
+from olympia.constants.promoted import NOTABLE, RECOMMENDED
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -857,6 +857,13 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    def test_android_compatibility_modal(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        modal_selector = '#modals #modal-confirm-android-compatibility.modal'
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert doc(modal_selector)
 
 
 class TestAddonSubmitSource(TestSubmitBase):
@@ -2507,6 +2514,18 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         assert pq(response.content)('ul.errorlist').text() == (
             'Version 0.0.1 must be greater than the previous approved version 0.0.1.0.'
         )
+
+    def test_android_compatibility_modal(self):
+        url = reverse('devhub.submit.version.upload', args=[self.addon.slug, 'listed'])
+        modal_selector = '#modals #modal-confirm-android-compatibility.modal'
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert doc(modal_selector)
+
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert not doc(modal_selector)
 
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):
