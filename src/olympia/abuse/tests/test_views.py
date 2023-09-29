@@ -414,9 +414,7 @@ class AddonAbuseViewSetTestBase:
 
         response = self.client.post(self.url, data=data)
         assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'addon_install_method': 'Invalid type for value submitted.'
-        }
+        assert json.loads(response.content) == {'addon_install_method': 'Invalid value'}
 
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):

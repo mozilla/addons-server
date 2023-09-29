@@ -144,7 +144,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 str(data[field_name])[:255],
             )
             raise serializers.ValidationError(
-                {field_name: _('Invalid type for value submitted.')}
+                {field_name: _('Invalid value')}
             )
 
         if is_value_unknown:
