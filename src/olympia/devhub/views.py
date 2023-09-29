@@ -1528,7 +1528,6 @@ def _submit_upload(
         wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
     else:
         wizard_url = None
-
     return TemplateResponse(
         request,
         template,
