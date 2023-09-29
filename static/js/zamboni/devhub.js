@@ -1356,21 +1356,20 @@ function initSubmitModals() {
     let confirmedOnce = false;
     let $input = $('#id_compatible_apps label.android input[type=checkbox]');
 
-    const $modalAndroidConfirm = $('#modal-confirm-android-compatibility').modal(
-      '#id_compatible_apps label.android',
-      {
-        width: 720,
-        callback: function shouldShowAndroidModal(options) {
-          if ($input.prop('disabled')) {
-            return false;
-          }
-          if (confirmedOnce) {
-            $input.prop('checked', !$input.prop('checked'));
-          }
-          return !confirmedOnce;
-        },
+    const $modalAndroidConfirm = $(
+      '#modal-confirm-android-compatibility',
+    ).modal('#id_compatible_apps label.android', {
+      width: 720,
+      callback: function shouldShowAndroidModal(options) {
+        if ($input.prop('disabled')) {
+          return false;
+        }
+        if (confirmedOnce) {
+          $input.prop('checked', !$input.prop('checked'));
+        }
+        return !confirmedOnce;
       },
-    );
+    });
 
     $('#modal-confirm-android-compatibility')
       .find('form')
