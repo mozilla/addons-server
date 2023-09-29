@@ -1,16 +1,16 @@
-{% extends "base_side_categories.html" %}
+{% extends "base.html" %}
 
 {% block title %}{{ _('Not allowed') }}{% endblock %}
 
-{% block content %}
-  <section class="primary">
+{% block main_content %}
+  <section>
     <h1>{{ _('Oops! Not allowed.') }}</h1>
     <p>
       {{ _("You tried to do something that you weren't allowed to.") }}
     </p>
   </section>
 
-  <section class="primary">
+  <section>
     {# Taken primarily from Django's CSRF page #}
     {% if no_referer %}
       <p>

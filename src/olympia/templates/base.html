@@ -118,14 +118,8 @@
       {% endblock %}
       {% block js %}{% endblock %}
       {% block footer %}
-        <div id="footer" role="contentinfo">
-          <div class="section">
-            {% block footer_extras %}
-            <img class="footerlogo" src="{{ static('img/zamboni/footer-logo-med.png') }}" alt="{{ _('Footer logo') }}">
-            {% endblock %}
-            {% include "footer.html" %}
-          </div> {# section #}
-        </div> {# footer #}
+          <div id="footer"></div>
+          {% include 'photon-footer.html' %}
       {% endblock %}
     </div>
   </body>
