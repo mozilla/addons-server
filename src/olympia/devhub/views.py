@@ -1528,15 +1528,7 @@ def _submit_upload(
         wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
     else:
         wizard_url = None
-    # Add-ons that belong to a promoted group that allows them to be compatible
-    # with all Fenix versions don't need to see that warning: they should
-    # already be aware of how to test their extension with Android.
-    show_android_modal_confirmation = not (
-        addon
-        and addon.promoted
-        and addon.promoted.group.can_be_compatible_with_fenix
-        and amo.ANDROID in addon.promoted.approved_applications
-    )
+
     return TemplateResponse(
         request,
         template,
@@ -1548,7 +1540,6 @@ def _submit_upload(
             'existing_properties': existing_properties,
             'is_admin': is_admin,
             'new_addon_form': form,
-            'show_android_modal_confirmation': show_android_modal_confirmation,
             'submit_notification_warning': submit_notification_warning,
             'submit_page': submit_page,
             'theme_specific': theme_specific,

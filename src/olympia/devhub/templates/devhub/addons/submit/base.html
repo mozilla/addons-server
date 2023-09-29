@@ -42,17 +42,8 @@
           </div>
       </form>
   </div>
-  {% if show_android_modal_confirmation %}
-  <div id="modal-confirm-android-submission" class="modal">
-    <form method="POST" action="#">
-      <h3> {{ _("Firefox for Android compatibility") }} </h3>
-      <p> {% trans %} Did you explicitly test your add-on with Firefox for Android ? See <a target="_blank" rel="noopener noreferrer" href="https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/">Developing extensions for Firefox for Android</a> for more information. {% endtrans %}</p>
-      <div class="modal-actions">
-          <button class="delete-button" type="submit">{{ _("Yes, my add-on is compatible with Firefox for Android") }}</button>
-          <a href="#" class="close">{{ _("No, I don't know or it is not compatible ") }}</a>
-      </div>
-    </form>
-  </div>
+  {% if not addon or not addon.can_be_compatible_with_all_fenix_versions %}
+    {% include 'devhub/includes/android_compatibility_modal.html' %}
   {% endif %}
 </div>
 {% endblock content %}

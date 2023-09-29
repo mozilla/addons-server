@@ -1351,15 +1351,15 @@ function initSubmitModals() {
     });
   }
 
-  // Warn about Android compatibility (if selected) during submission process
-  if ($('#modal-confirm-android-submission').length > 0) {
+  // Warn about Android compatibility (if selected).
+  if ($('#modal-confirm-android-compatibility').length > 0) {
     let confirmedOnce = false;
     let $input = $('#id_compatible_apps label.android input[type=checkbox]');
 
-    const $modalAndroidConfirm = $('#modal-confirm-android-submission').modal(
+    const $modalAndroidConfirm = $('#modal-confirm-android-compatibility').modal(
       '#id_compatible_apps label.android',
       {
-        width: 620,
+        width: 720,
         callback: function shouldShowAndroidModal(options) {
           if ($input.prop('disabled')) {
             return false;
@@ -1372,7 +1372,7 @@ function initSubmitModals() {
       },
     );
 
-    $('#modal-confirm-android-submission')
+    $('#modal-confirm-android-compatibility')
       .find('form')
       .on('submit', function onSubmit(e) {
         e.preventDefault();
