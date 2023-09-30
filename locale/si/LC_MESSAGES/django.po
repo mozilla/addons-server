@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-30 08:44+0000\n"
+"PO-Revision-Date: 2023-09-30 09:33+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -4187,7 +4187,7 @@ msgstr "දිගු යනු ෆයර්ෆොක්ස් සඳහා ය�
 
 #. editorial content for the secondary hero shelves.
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "ආරක්‍ෂිත හා විනෝදාත්මක පිරික්සීමක් උදෙසා ෆයර්ෆොක්ස් වෙත විශේෂාංග එක් කරයි."
+msgstr "ආරක්‍ෂිත හා විනෝදාත්මක පිරික්සීමකට ෆයර්ෆොක්ස් වෙත විශේෂාංග එක් කරයි."
 
 #. editorial content for the secondary hero shelves.
 msgid "See all extensions"
