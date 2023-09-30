@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-30 08:40+0000\n"
+"PO-Revision-Date: 2023-09-30 08:44+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -4195,7 +4195,7 @@ msgstr "සියළු දිගු බලන්න"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr "පෞද්ගලිකත්‍වය හා ආරක්‍ෂාව දිගු"
+msgstr "පෞද්ගලිකත්‍ව හා ආරක්‍ෂණ දිගු"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -4268,7 +4268,7 @@ msgstr "පරිවර්තන මෙවලම් සඳහා මාණ්ඩ
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr ""
+msgstr "සමාජ ප්‍රචාරණ"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
