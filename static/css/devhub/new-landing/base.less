@@ -1,17 +1,8 @@
 @import (less) '../../common/normalize.css';
-@import 'fonts';
-
-// Grid
-@grid-max: 960px;
-@medium: ~"only screen and (min-width: 700px)";
-@large: ~"only screen and (min-width: 960px)";
-@notlarge: ~"only screen and (max-width: 959px)";
-@retina: ~"only screen and (min-resolution: 1.5dppx)";
-@side-margin: 10px;
-@medium-side-margin: 24px;
+@import (less) '../../photon-site/base';
 
 // Fonts
-@font-primary: 'Fira Sans', sans-serif;
+@font-primary: Inter, sans-serif;
 
 // Colors
 @color-text: #333;
@@ -216,6 +207,3 @@ h4 {
 
 // Tooltip
 @import '../../impala/tooltips';
-
-// Site Footer
-@import '../../photon-site/footer';

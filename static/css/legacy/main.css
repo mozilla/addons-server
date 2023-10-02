@@ -329,11 +329,6 @@ input, textarea, select, button {
     line-height: inherit;
 }
 
-select {
-    background-color: #fff; /* fixes bug in Opera which inherits bgcolor from container */
-}
-
-
 button {
     overflow: visible;
     cursor: pointer;
@@ -942,7 +937,7 @@ form.favorite {
     max-width: 90em;
     min-width: 960px;
     position: relative;
-    min-height: 55em;
+    min-height: 768px; /* arbitrary high number to force the footer down */
 }
 
 /* @group Header */
