@@ -19,7 +19,9 @@
           href="{{ url('amo.opensearch') }}" />
 
     {% block site_css %}
+      {{ css('common/fonts') }}
       {{ css('zamboni/css') }}
+      {{ css('common/footer') }}
     {% endblock %}
 
     {% block extrahead %}{% endblock %}
