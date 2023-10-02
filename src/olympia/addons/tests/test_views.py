@@ -1996,6 +1996,22 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200, response.content
 
+    def test_set_slug_log(self):
+        self.addon.update(slug='first-slug')
+        response = self.request(
+            data={'slug': 'second-slug'},
+        )
+
+        log_entry = ActivityLog.objects.filter(
+            action=amo.LOG.ADDON_SLUG_CHANGED.id
+        ).latest('pk')
+
+        assert response.status_code == 200, response.content
+        assert log_entry.user == self.user
+        assert log_entry.arguments == [self.addon, 'first-slug', 'second-slug']
+        assert 'slug from first-slug to second-slug' in str(log_entry)
+        assert str(self.user.id) in str(log_entry)
+
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
@@ -2043,6 +2059,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
                 amo.LOG.ADD_VERSION.id,
                 amo.LOG.LOG_IN.id,
                 amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.ADDON_SLUG_CHANGED.id,
             )
         ).get()
         assert alog.user == self.user

@@ -1216,6 +1216,9 @@ class AddonSerializer(AMOModelSerializer):
             if instance.has_listed_versions()
             else None
         )
+
+        old_slug = instance.slug
+
         if 'icon' in validated_data:
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
@@ -1238,6 +1241,10 @@ class AddonSerializer(AMOModelSerializer):
             # When updating, always return the version we just created in the
             # representation if there was one.
             self.fields['version'].write_only = False
+        if 'slug' in validated_data:
+            ActivityLog.create(
+                amo.LOG.ADDON_SLUG_CHANGED, instance, old_slug, instance.slug
+            )
 
         self.log(instance, validated_data)
         return instance

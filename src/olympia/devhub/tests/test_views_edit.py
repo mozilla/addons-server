@@ -137,6 +137,12 @@ class BaseTestEditDescribe(BaseTestEdit):
         doc = pq(response.content)
         assert doc('form').attr('action') != old_edit
 
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.ADDON_SLUG_CHANGED.id
+        assert activity_log.user == self.user
+        assert activity_log.arguments == [self.addon, self.addon.slug, 'valid']
+        assert f'slug from {self.addon.slug} to valid' in str(activity_log)
+
     def test_edit_as_developer(self):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         data = self.get_dict()
