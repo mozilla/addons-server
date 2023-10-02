@@ -1,5 +1,5 @@
 from olympia.abuse.models import AbuseReport
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class TestAbuse(TestCase):

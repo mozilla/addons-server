@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -49,16 +50,8 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_stage'
 
-csp = 'csp.middleware.CSPMiddleware'
-
 ES_TIMEOUT = 60
-ES_HOSTS = env('ES_HOSTS')
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
-
-CEF_PRODUCT = STATSD_PREFIX
-
-NEW_FEATURES = True
 
 ALLOW_SELF_REVIEWS = True
 
@@ -81,5 +74,7 @@ EXTENSION_WORKSHOP_URL = env(
 )
 
 REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.allizom.org/v1/'
-REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.stage.mozaws.net/v1/'
+REMOTE_SETTINGS_WRITER_URL = env(
+    'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'
+)
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'

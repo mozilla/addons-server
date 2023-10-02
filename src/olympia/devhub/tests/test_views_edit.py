@@ -14,11 +14,11 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory
 from olympia.amo.tests import (
+    SQUOTE_ESCAPED,
+    TestCase,
     addon_factory,
     formset,
     initial,
-    SQUOTE_ESCAPED,
-    TestCase,
     user_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
@@ -136,6 +136,12 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.post(self.describe_edit_url, data)
         doc = pq(response.content)
         assert doc('form').attr('action') != old_edit
+
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.ADDON_SLUG_CHANGED.id
+        assert activity_log.user == self.user
+        assert activity_log.arguments == [self.addon, self.addon.slug, 'valid']
+        assert f'slug from {self.addon.slug} to valid' in str(activity_log)
 
     def test_edit_as_developer(self):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
@@ -1568,17 +1574,16 @@ class TestEditDescribeStaticThemeListed(
         )
 
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [308, 408]
+        assert sorted(addon_cats) == [308]
 
     def test_edit_categories_change(self):
         AddonCategory(addon=self.addon, category_id=300).save()
-        AddonCategory(addon=self.addon, category_id=400).save()
-        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300, 400]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300]
 
         self.client.post(self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes (per application)
-        assert category_ids_new == [308, 408]
+        assert category_ids_new == [308]
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')

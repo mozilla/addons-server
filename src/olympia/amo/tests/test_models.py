@@ -1,11 +1,12 @@
 import os
-import pytest
 from unittest.mock import Mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.urls import reverse
+
+import pytest
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -299,8 +300,8 @@ class TestModelBase(TestCase):
         assert addon.type == amo.ADDON_STATICTHEME
 
     def test_get_unfiltered_manager(self):
-        Addon.get_unfiltered_manager() == Addon.unfiltered
-        UserProfile.get_unfiltered_manager() == UserProfile.objects
+        assert Addon.get_unfiltered_manager() == Addon.unfiltered
+        assert UserProfile.get_unfiltered_manager() == UserProfile.objects
 
     def test_get_url_path(self):
         addon = Addon.objects.get(pk=3615)

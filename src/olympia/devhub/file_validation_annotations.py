@@ -1,6 +1,6 @@
-import waffle
-
 from django.utils.translation import gettext
+
+import waffle
 
 from olympia import amo
 from olympia.amo.urlresolvers import linkify_and_clean

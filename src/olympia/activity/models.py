@@ -1,6 +1,5 @@
 import json
 import uuid
-
 from collections import defaultdict
 from copy import copy
 
@@ -14,7 +13,6 @@ from django.utils.html import format_html, mark_safe
 from django.utils.translation import gettext, ngettext
 
 import olympia.core.logger
-
 from olympia import amo, constants
 from olympia.access.models import Group
 from olympia.addons.models import Addon
@@ -25,7 +23,6 @@ from olympia.blocklist.models import Block
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
-
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -688,6 +685,7 @@ class ActivityLog(ModelBase):
                 created=kw.get('created', timezone.now()),
             )
 
+        bulk_objects = defaultdict(list)
         for arg in args:
             create_kwargs = {
                 'activity_log': al,
@@ -701,17 +699,27 @@ class ActivityLog(ModelBase):
                 id_ = arg.id if isinstance(arg, ModelBase) else None
 
             if class_ == Addon:
-                AddonLog.objects.create(addon_id=id_, **create_kwargs)
+                bulk_objects[AddonLog].append(AddonLog(addon_id=id_, **create_kwargs))
             elif class_ == Version:
-                VersionLog.objects.create(version_id=id_, **create_kwargs)
+                bulk_objects[VersionLog].append(
+                    VersionLog(version_id=id_, **create_kwargs)
+                )
             elif class_ == Group:
-                GroupLog.objects.create(group_id=id_, **create_kwargs)
+                bulk_objects[GroupLog].append(GroupLog(group_id=id_, **create_kwargs))
             elif class_ == Block:
-                BlockLog.objects.create(block_id=id_, guid=arg.guid, **create_kwargs)
+                bulk_objects[BlockLog].append(
+                    BlockLog(block_id=id_, guid=arg.guid, **create_kwargs)
+                )
             elif class_ == ReviewActionReason:
-                ReviewActionReasonLog.objects.create(reason_id=id_, **create_kwargs)
+                bulk_objects[ReviewActionReasonLog].append(
+                    ReviewActionReasonLog(reason_id=id_, **create_kwargs)
+                )
             elif class_ == Rating:
-                RatingLog.objects.create(rating_id=id_, **create_kwargs)
+                bulk_objects[RatingLog].append(
+                    RatingLog(rating_id=id_, **create_kwargs)
+                )
+        for klass, instances in bulk_objects.items():
+            klass.objects.bulk_create(instances)
 
         if getattr(action, 'store_ip', False) and (
             ip_address := core.get_remote_addr()

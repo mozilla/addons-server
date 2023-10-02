@@ -1,6 +1,7 @@
 from unittest import mock
 
 from django.core import mail
+from django.core.exceptions import ValidationError
 
 from elasticsearch_dsl import Q, Search
 
@@ -39,6 +40,7 @@ class TestRatingModel(TestCase):
 
         addon.reload()
         assert addon.average_rating == 4.0  # Has been computed after deletion.
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     @mock.patch('olympia.ratings.models.log')
     def test_soft_delete_by_different_user(self, log_mock):
@@ -55,6 +57,14 @@ class TestRatingModel(TestCase):
         assert log_mock.info.call_args[0][2] == rating.pk
         assert log_mock.info.call_args[0][3] == str(rating.user)
         assert log_mock.info.call_args[0][4] == str(rating.body)
+        assert ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
+
+    def test_soft_delete_by_different_user_skip_activty_log(self):
+        different_user = user_factory()
+        core.set_user(different_user)
+        rating = Rating.objects.get(id=1)
+        rating.delete(skip_activity_log=True)
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     def test_hard_delete(self):
         # Hard deletion is only for tests, but it's still useful to make sure
@@ -63,6 +73,7 @@ class TestRatingModel(TestCase):
         Rating.objects.filter(id=1).delete(hard_delete=True)
         assert Rating.unfiltered.count() == 1
         assert Rating.objects.filter(id=2).exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
 
     def test_undelete(self):
         self.test_soft_delete()
@@ -219,7 +230,7 @@ class TestRatingModel(TestCase):
         assert email.to == [addon_author.email]
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'
 
-    def test_reply_triggers_email_but_no_logging(self):
+    def test_reply_triggers_email_and_logging(self):
         rating = Rating.objects.get(id=1)
         user = user_factory()
         core.set_user(user)
@@ -230,7 +241,11 @@ class TestRatingModel(TestCase):
             body='Rêply',
         )
 
-        assert not ActivityLog.objects.exists()
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.user == user
+        assert activity_log.arguments == [rating.addon, rating.reply]
+        assert activity_log.action == amo.LOG.REPLY_RATING.id
+
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         reply_url = jinja_helpers.absolutify(
@@ -344,16 +359,65 @@ class TestDeniedRatingWord(TestCase):
             assert DeniedRatingWord.blocked(text, moderation=False) == ['foo']
 
         with self.assertNumQueries(0):
-            text = 'BAA! with Hmm:mmm'
+            text = 'BAA! with Hmm:mmm mmm'
             assert DeniedRatingWord.blocked(text, moderation=True) == ['hmm', 'mmm']
             assert DeniedRatingWord.blocked(text, moderation=False) == ['baa']
+
+        assert DeniedRatingWord.blocked('foobar', moderation=False) == []
+        for sep in ('.', ',', '-', '_', ':', ';', ' '):
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=False) == ['foo']
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=True) == []
+            assert DeniedRatingWord.blocked(f'mmm{sep}bar', moderation=False) == []
+            assert DeniedRatingWord.blocked(f'mmm{sep}bar', moderation=True) == ['mmm']
+
+    def test_blocked_domains(self):
+        DeniedRatingWord.objects.create(word='FOO.bar', moderation=False)
+        DeniedRatingWord.objects.create(word='www.hMm.com', moderation=True)
+
+        non_mod_contents = [
+            'bazfoo.bar',
+            'foo.bar.baz',
+            'foo.barbaz',
+            'foo.bar.',
+        ]
+        mod_contents = [
+            'wwwwww.hmm.com',
+            'www.hmm.com.baz',
+            'www.hmm.comcom',
+            'www.hmm.com.',
+        ]
+        for content in non_mod_contents:
+            assert DeniedRatingWord.blocked(content, moderation=True) == []
+            assert DeniedRatingWord.blocked(content, moderation=False) == ['foo.bar']
+
+        for content in mod_contents:
+            assert DeniedRatingWord.blocked(content, moderation=True) == ['www.hmm.com']
+            assert DeniedRatingWord.blocked(content, moderation=False) == []
+
+        for sep in (',', '-', '_', ':', ';', ' ', ''):
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=False) == []
+            assert DeniedRatingWord.blocked(f'foo{sep}bar', moderation=True) == []
+            assert (
+                DeniedRatingWord.blocked(f'www{sep}hmm{sep}com', moderation=False) == []
+            )
+            assert (
+                DeniedRatingWord.blocked(f'www{sep}hmm{sep}com', moderation=True) == []
+            )
 
     def test_cache_clears_on_save(self):
         DeniedRatingWord.objects.create(word='FOO')
         with self.assertNumQueries(1):
-            DeniedRatingWord.blocked('dfdfdf')
-            DeniedRatingWord.blocked('45goih')
+            DeniedRatingWord.blocked('dfdfdf', moderation=False)
+            DeniedRatingWord.blocked('45goih', moderation=False)
         DeniedRatingWord.objects.create(word='baa')
         with self.assertNumQueries(1):
-            DeniedRatingWord.blocked('446kjsd')
-            DeniedRatingWord.blocked('ddv 989')
+            DeniedRatingWord.blocked('446kjsd', moderation=False)
+            DeniedRatingWord.blocked('ddv 989', moderation=False)
+
+    def test_word_validation(self):
+        for word in ('yes', 'foo.baa'):
+            DeniedRatingWord(word=word).full_clean()  # would raise
+
+        for word in ('sp ace', 'comma,', 'un_der', '-dash'):
+            with self.assertRaises(ValidationError):
+                DeniedRatingWord(word=word).full_clean()

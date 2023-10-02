@@ -1,12 +1,11 @@
-from unittest import mock
-
-import pytest
-
-from waffle.models import Switch
-
 # Note: unit testing custom migration operations is a pain, so we cheat and
 # test with mocks for the state and schema editor, passing current app state.
+from unittest import mock
+
 from django.apps.registry import apps
+
+import pytest
+from waffle.models import Switch
 
 from olympia.core.db.migrations import CreateWaffleSwitch, DeleteWaffleSwitch
 

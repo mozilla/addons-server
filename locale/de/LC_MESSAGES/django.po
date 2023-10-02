@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-04 18:39+0000\n"
-"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 08:58+0000\n"
+"Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -119,6 +119,10 @@ msgid "Unknown min app version specified"
 msgstr "Ungültige Min-Version der App angegeben"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Kompatibilitätsinformationen, die im Manifest für diese Anwendung festgelegt wurden, können nicht überschrieben werden (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Grafiken müssen kleiner als %d MB sein"
 
@@ -146,9 +150,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Die letzte freigeschaltete Version dieses %s-Add-ons kann nicht gelöscht werden, da die vorherige Version nicht zur %s-Empfehlung genehmigt wurde. Bitte wenden Sie sich an die AMO-Administratoren, "
 "wenn Sie Hilfe benötigen."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} passt zu {block_link} für dieses Add-on. Weitere Informationen erhalten Sie per E-Mail von {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Version {version_string} wurde zuvor schon hochgeladen und gelöscht."
@@ -347,6 +348,9 @@ msgstr "Registrieren oder anmelden"
 msgid "Email:"
 msgstr "E-Mail:"
 
+msgid "Two-factor authentication"
+msgstr "Zwei-Faktor-Authentifizierung"
+
 msgid "OK"
 msgstr "OK"
 
@@ -459,37 +463,6 @@ msgstr "Diese benutzerdefinierte Adresse kann nicht verwendet werden."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dieses Add-on gehört dieser Sammlung bereits an"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Einreichung zu GUID %(guid)s steht noch aus"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Sperre mit GUID %(guid)s nicht gefunden"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Add-on mit GUID %(guid)s existiert nicht"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Zu aktualisierende Sperren unterscheiden sich, weil sich Min- oder Max-Version geändert haben."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s enthält *"
-
-msgid "Invalid version"
-msgstr "Ungültige Version"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Die Min-Version darf nicht größer als die Max-Version sein"
-
-msgid "Review Listed"
-msgstr "Gelistete überprüfen"
-
-msgid "Review Unlisted"
-msgstr "Ungelistete überprüfen"
 
 msgid "{addon} was created."
 msgstr "{addon} wurde erstellt."
@@ -853,11 +826,32 @@ msgstr "Zurückweisung von {addon} {version} aufgehoben."
 msgid "Un-rejected"
 msgstr "Zurückweisung aufgehoben"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "{addon} Markierung „needs_human_review“ (menschliche Überprüfung erforderlich) gelöscht."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Antwort auf {rating} für {addon} verfassen."
 
-msgid "Needs Human Review cleared"
-msgstr "„Menschliche Überprüfung erforderlich“ gelöscht"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} ausstehende Ablehnung gelöscht."
+
+msgid "Pending rejection cleared"
+msgstr "Ausstehende Ablehnung gelöscht"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} zu Blockliste hinzugefügt."
+
+msgid "Version Blocked"
+msgstr "Version blockiert"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} aus Blockliste entfernt."
+
+msgid "Version Unblocked"
+msgstr "Blockierung der Version aufgehoben"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Admin-Add-on-Überprüfung zu {addon} {version} gelöscht."
+
+msgid "Admin add-on-review cleared"
+msgstr "Admin-Add-on-Überprüfung gelöscht"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1529,6 +1523,10 @@ msgstr "Aktuelles ansehen"
 msgid "Invalid version range."
 msgstr "Ungültige Versionsspanne."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Ungültige Versionsspanne. Für Firefox für Android können Sie nur einen Bereich auswählen, der mit Version %(max)s oder höher beginnt oder mit niedriger als Version %(min)s endet."
+
 msgid "Need at least one compatible application."
 msgstr "Mindestens eine kompatible Anwendung erforderlich."
 
@@ -1543,9 +1541,6 @@ msgstr "Fehlgeschlagene Validierung außer Kraft setzen"
 
 msgid "Need to select at least one application."
 msgstr "Es muss mindestens eine Anwendung ausgewählt werden."
-
-msgid "a blocklist entry"
-msgstr "ein Sperrlisteneintrag"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} wurde zuvor schon hochgeladen und gelöscht."
@@ -1600,6 +1595,9 @@ msgstr "Mozilla-Sicherheitshinweis: Ihre AMO-API-Zugangsdaten wurden widerrufen"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Die Überprüfung hat zu viele Fehler/Warnungen ergeben, daher wurden %s Nachrichten abgetrennt. Wenn Sie die sichtbaren Nachrichten abgearbeitet haben, können Sie die anderen sehen."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Dieses Add-on ist kein Theme. Verwenden Sie die Seite <a href=\"{link}\">Ein neues Add-on hochladen</a>, um Erweiterungen zu übermitteln."
 
 msgid "Updated"
 msgstr "Aktualisiert"
@@ -1663,6 +1661,9 @@ msgstr "Änderungen erfolgreich gespeichert."
 
 msgid "Validate Add-on"
 msgstr "Add-on überprüfen"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Bitte fügen Sie bei Ihrem Konto die Zwei-Faktor-Authentifizierung hinzu, um Erweiterungen einzureichen.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole (Icons) müssen im Format PNG oder JPG vorliegen."
@@ -1869,58 +1870,6 @@ msgstr "Aktivität"
 msgid "Subscribe to this feed"
 msgstr "Diesen Feed abonnieren"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Dieses Add-on ist inkompatibel mit <b>%(app_name)s %(app_version)s</b>, der neuesten Version von %(app_name)s. Bitte erwägen Sie eine Aktualisierung der Kompatibilitätsinformation Ihres Add-ons, "
-"oder das Hochladen einer neueren Version dieses Add-ons."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilität aktualisieren</a> <a href=\"%(version_url)s\" class=\"button\">Neue Version hochladen</a> oder <a "
-"href=\"#\" class=\"close\">Ignorieren</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Kompatibilität mit Anwendungen anzeigen und bearbeiten"
-
-msgid "Compatibility"
-msgstr "Kompatibilität"
-
-msgid "Update Compatibility"
-msgstr "Kompatibilität aktualisieren"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Eine Anpassung der Anwendungsinformationen hier ermöglicht es Anwendern, Ihr Add-on zu installieren, auch wenn es laut Installationsmanifest im Paket inkompatibel ist."
-
-msgid "Application"
-msgstr "Anwendung"
-
-msgid "Supported Versions"
-msgstr "Unterstützte Versionen"
-
-msgid "Remove"
-msgstr "Entfernen"
-
-msgid "Add Another Application&hellip;"
-msgstr "Eine weitere Anwendung hinzufügen &hellip;"
-
-msgid "Save Changes"
-msgstr "Änderungen speichern"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "oder"
-
-msgid "Cancel"
-msgstr "Abbrechen"
-
-msgid "Close"
-msgstr "Schließen"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1991,12 +1940,18 @@ msgstr "Autoren, die auf Bestätigung warten"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autoren, die zu diesem Add-on hinzugefügt, aber nicht bestätigt wurden."
 
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Add-ons können beliebig viele Autoren mit 2 möglichen Rollen haben:</p> <ul> <li><b>Besitzer:</b> Kann alle Aspekte des Add-on-Listeneintrags bearbeiten und auch andere Autoren hinzufügen und "
 "entfernen</li> <li><b>Entwickler:</b> Kann alle Aspekte des Add-on-Listeneintrags bearbeiten, aber keine anderen Autoren hinzufügen oder entfernen</li> </ul>"
+
+msgid "Close"
+msgstr "Schließen"
 
 msgid "Additional Details"
 msgstr "Weitere Details"
@@ -2037,6 +1992,14 @@ msgid ""
 msgstr ""
 "Wenn Ihr Add-on eine weitere Homepage besitzt, können Sie hier die Adresse eingeben. Wenn Ihre Website in mehrere Sprachen übersetzt wurde, können mehrere Übersetzungen dieses Feldes angegeben "
 "werden. Dies ist nur für gelistete Add-ons wichtig."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "oder"
+
+msgid "Cancel"
+msgstr "Abbrechen"
 
 msgid "Describe Add-on"
 msgstr "Add-on beschreiben"
@@ -3142,6 +3105,15 @@ msgstr "{0} bearbeiten"
 msgid "Files"
 msgstr "Dateien"
 
+msgid "Compatibility"
+msgstr "Kompatibilität"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Eine Anpassung der Anwendungsinformationen hier ermöglicht es Anwendern, Ihr Add-on zu installieren, auch wenn es laut Installationsmanifest im Paket inkompatibel ist."
+
+msgid "Add Another Application&hellip;"
+msgstr "Eine weitere Anwendung hinzufügen &hellip;"
+
 msgid "Version Notes"
 msgstr "Anmerkungen zur Version"
 
@@ -3474,7 +3446,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Löschen Sie Cookies automatisch nach dem Schließen eines Tabs."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Passen Sie einfach die Textgröße auf einer Seite an – oder vergrößern Sie die ganze Seite."
 
@@ -3616,7 +3587,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blockieren Sie standardmäßig alle Pop-ups und entscheiden Sie dann, welche Sie öffnen möchten."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Passen Sie das Erscheinungsbild von Websites an! Verändern Sie Farben, Seitenhintergründe und mehr."
 
@@ -3856,7 +3826,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Verschaffen Sie sich Vorteile bei Amazon. Wenn Sie Produktseiten bei anderen Online-Shops ansehen, können Sie mit einem Klick den Amazon-Eintrag sehen, wenn das Produkt dort erhältlich ist."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "So haben Sie die ultimative Kontrolle über Tabs – Schließen von doppelten Tabs, Fenster zusammenfügen, Tab-Titel kopieren und mehr."
 
@@ -3974,7 +3943,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Korrekturen für störende Klänge. Ist die Lautstärke einer Website zu leise? Zu laut? SoundFixer kann helfen."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Ändern Sie eine Webseite, die Sie drucken möchten. Machen Sie umfassende visuelle Änderungen – indem Sie Werbung oder geschmacklose Inhalte entfernen."
 
@@ -4038,7 +4006,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Genießen Sie die Unterstützung von Multithreading-Downloads. Erkennt automatisch verschiedene verfügbare Medientypen zum Herunterladen."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Grafiken ganz einfach speichern – holen Sie sie direkt aus Ihrem aktuellen Tab."
 
@@ -4123,7 +4090,6 @@ msgid "Create and customize tab groups."
 msgstr "Erstellen und verwalten Sie Tab-Gruppen."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Speichern Sie eine gesamte Webseite – einschließlich Grafiken und Stil – als einzelne HTML-Datei."
 
@@ -4208,6 +4174,14 @@ msgstr "Zeitabhängiger Theme-Wechsel. Lassen Sie Firefox die Farben ändern, we
 msgid "Declutter your Twitter experience."
 msgstr "Entrümpeln Sie Ihr Twitter-Erlebnis."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Holen Sie sich den Daumen nach unten zurück!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Hören Sie Musik auf YouTube ohne die lästigen „Video pausiert. Weiterschauen?“-Unterbrechungen."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Einige Websites haben Schwierigkeiten, Videos auf Android abzuspielen. Hier ist eine Lösung."
@@ -4215,6 +4189,14 @@ msgstr "Einige Websites haben Schwierigkeiten, Videos auf Android abzuspielen. H
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Haben Sie im Internet ein interessantes Bild gefunden? Erforschen Sie mit TinEye seine Herkunft."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Grafiken ganz einfach speichern – holen Sie sie direkt aus Ihrem aktuellen Tab."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "So haben Sie die ultimative Kontrolle über Tabs – Schließen von doppelten Tabs, Fenster zusammenfügen, Tab-Titel kopieren und mehr."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4225,12 +4207,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Anpassbare Mausgesten. Entdecken Sie mit über 50 hilfreichen Einstellungen neue Wege der Navigation."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Passen Sie das Erscheinungsbild von Websites an! Verändern Sie Farben, Seitenhintergründe und mehr."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Verwenden Sie Mausgesten, um Tabs zu schließen, durch Seiten zu navigieren und vieles mehr."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Passen Sie einfach die Textgröße auf einer Seite an – oder vergrößern Sie die ganze Seite."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Erhalten Sie Vorschaugrafiken von Websites bei den Suchergebnissen."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Speichern Sie eine gesamte Webseite – einschließlich Grafiken und Stil – als einzelne HTML-Datei."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Ändern Sie eine Webseite, die Sie drucken möchten. Machen Sie umfassende visuelle Änderungen – indem Sie Werbung oder geschmacklose Inhalte entfernen."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4261,10 +4259,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Zurück zu einfacheren Zeiten – als die wichtigsten Suchergebnisse noch über der Werbung standen (kompatibel mit den Google- und Bing-Suchmaschinen)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Geben Sie Ihre E-Mail-Adresse nicht mehr auf Websites preis. Firefox Relay schützt Ihre Identität und verhindert Spam-E-Mails. Mit einem Upgrade auf Premium haben Sie noch mehr Vorteile, "
-"beispielsweise die spezifischere Blockierung von Werbe-E-Mails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Verbergen Sie Ihre E-Mail-Adresse, um Ihre Identität zu schützen und Spam zu verhindern. Neue Updates machen die Verwendung von Firefox Relay noch einfacher."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4330,6 +4326,14 @@ msgstr "Verbessern Sie Ihr Spielerlebnis auf Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Der „Daumen runter“ ist wieder da – darauf einen Daumen hoch."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Übersetzen Sie Websites in Firefox – privat –, ohne die Cloud zu verwenden."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blockieren Sie zeitfressende Websites. Blockieren Sie diese vollständig oder nur für einen Zeitraum Ihrer Wahl."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Erweiterungen sind wie Apps für Firefox."
@@ -4343,16 +4347,17 @@ msgid "See all extensions"
 msgstr "Alle Erweiterungen anzeigen"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Datenschutz- und Sicherheitseinstellungen"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-Anpassungen"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Erweiterungen-Starterpaket"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Download-Manager"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Erweiterungen für Spiele und Unterhaltung"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4448,10 +4453,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte Werbeblocker ansehen"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-Anpassungen"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Weitere von Mitarbeitern ausgewählte YouTube-Erweiterungen ansehen"
 
@@ -4494,6 +4495,14 @@ msgstr "Kreativitäts-Erweiterungen"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Mehr von Mitarbeitern ausgewählte soziale Kreativitäts-Erweiterungen ansehen"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Erweiterungen für soziale Medien"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Mehr von Mitarbeitern ausgewählte Erweiterungen für soziale Medien ansehen"
 
 msgid "Unreviewed"
 msgstr "Nicht überprüft"
@@ -4614,6 +4623,13 @@ msgstr "Sonstiges (bitte eine Begründung angeben)"
 msgid "Auto-flagged due to word match"
 msgstr "Automatisch gemeldet wegen Wortübereinstimmung"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Automatisch gemeldet wegen Benutzereinschränkung"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s enthält ein nicht-alphanumerisches Zeichen."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Der Bewertungstext darf das folgende Wort nicht enthalten: „{0}“"
@@ -4669,15 +4685,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "von %(user)s am %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "Von %(user)s am %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markiert von %(user)s am %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Warnung!</strong> Ein anderer Benutzer hat vor Ihnen diese Seite angesehen."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Warnung!</strong> Ein anderer Benutzer schaut sich möglicherweise vor Ihnen diese Seite an."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5091,8 +5107,8 @@ msgstr "Firefox-Benutzer {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Geben Sie einen gültigen IPv4- oder IPv6-CIDR-Netzwerkbereich ein, z. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Von Ihrem Standort wurden mehrere Add-ons übermittelt, die gegen unsere Richtlinien verstoßen. Die IP-Adresse wurde gesperrt."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Von Ihrem Standort wurden mehrere Einreichungen übermittelt, die gegen unsere Richtlinien verstoßen. Die IP-Adresse wurde gesperrt."
 
 msgid "Email Pattern"
 msgstr "E-Mail-Muster"
@@ -5102,8 +5118,8 @@ msgstr ""
 "Geben Sie die vollständige E-Mail-Adresse ein, die blockiert werden soll, und verwenden Sie dabei Platzhalter im Unix-Stil wie „*@example.com“. Wenn Sie eine Domain inklusive Subdomains blockieren "
 "möchten, fügen Sie einen weiteren Eintrag wie „*@*.example.com“ hinzu."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Die E-Mail-Adresse, die Sie für Ihr Konto verwendet haben, ist für die Übermittlung von Add-ons nicht zulässig."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "Die E-Mail-Adresse, die Sie für Ihr Konto verwendet haben, ist für die Einreichung nicht zugelassen."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

@@ -1,8 +1,7 @@
 import olympia.core.logger
-
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on
-from olympia.amo.utils import resize_image, SafeStorage
+from olympia.amo.utils import SafeStorage, resize_image
 
 from .models import UserProfile
 

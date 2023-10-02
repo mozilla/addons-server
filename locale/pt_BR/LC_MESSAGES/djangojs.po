@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-02-22 20:14+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 23:04+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -66,8 +66,14 @@ msgstr "Sua extensão excede o tamanho máximo de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recebida uma resposta vazia do servidor; estado: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Sua extensão deve ser compatível com pelo menos um aplicativo."
+
 msgid "Unexpected server error while validating."
 msgstr "Erro inesperado do servidor durante a validação."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Marcado explicitamente no manifesto como compatível com Firefox para Android"
 
 msgid "Finished validating {0}"
 msgstr "Validação de {0} concluída"
@@ -185,7 +191,7 @@ msgstr "Mais info..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "Detalhes para {0}"
+msgstr "Detalhes de {0}"
 
 msgid "Collections Created"
 msgstr "Coleções criadas"
@@ -612,9 +618,6 @@ msgstr[1] "{files} arquivos"
 msgid "Image changes being processed"
 msgstr "Processando alterações na imagem"
 
-msgid "Select an application first"
-msgstr "Selecione uma aplicação antes"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> caractere"
@@ -633,6 +636,9 @@ msgstr "Remover essa localização"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} estava visualizando essa página antes."
+
+msgid "Review page polling failed."
+msgstr "Falha ao recuperar página de avaliação."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} estava vendo esta extensão primeiro."

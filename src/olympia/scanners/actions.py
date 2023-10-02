@@ -2,9 +2,9 @@ from datetime import datetime, timedelta
 
 from olympia.constants.scanners import MAD
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
 )
 
 
@@ -15,7 +15,11 @@ def _no_action(*, version, rule):
 
 def _flag_for_human_review(*, version, rule):
     """Flag the version for human review."""
-    version.update(needs_human_review=True)
+    from olympia.reviewers.models import NeedsHumanReview
+
+    NeedsHumanReview.objects.create(
+        version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
+    )
 
 
 def _delay_auto_approval(*, version, rule):

@@ -1,18 +1,17 @@
 FROM python:3.10-slim-buster
 
-ARG DJANGO_VERSION=django42
-ENV DJANGO_VERSION=$DJANGO_VERSION
-
 # Should change it to use ARG instead of ENV for OLYMPIA_UID/OLYMPIA_GID
 # once the jenkins server is upgraded to support docker >= v1.9.0
 ENV OLYMPIA_UID=9500 \
     OLYMPIA_GID=9500
 RUN groupadd -g ${OLYMPIA_GID} olympia && useradd -u ${OLYMPIA_UID} -g ${OLYMPIA_GID} -s /sbin/nologin -d /data/olympia olympia
 
-# Add support for https apt repos and gpg signed repos
+# Add support for https apt repos, gpg signed repos, curl to download packages
+# directly to build a local mirror.
 RUN apt-get update && apt-get install -y \
         apt-transport-https              \
         gnupg2                           \
+        curl                             \
     && rm -rf /var/lib/apt/lists/*
 # Add keys and repos for node and mysql
 COPY docker/*.gpg.key /etc/pki/gpg/
@@ -22,10 +21,15 @@ RUN APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn \
     apt-key add /etc/pki/gpg/mysql.gpg.key
 COPY docker/*.list /etc/apt/sources.list.d/
 
+# Override mysql repos with our own locally built one while upstream is broken.
+RUN mkdir /opt/apt-local-repository
+COPY docker/mysql/* /opt/apt-local-repository/
+RUN /opt/apt-local-repository/local-mysql-repos.sh
+
 # Allow scripts to detect we're running in our own container and install
 # packages.
 RUN touch /addons-server-docker-container \
-    && apt-get update && apt-get -t buster install -y \
+    && apt-get update && apt-get install -y \
         # General (dev-) dependencies
         bash-completion \
         build-essential \

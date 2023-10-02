@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2023-03-10 02:05+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-06-14 18:22+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Đã xảy ra sự cố khi kết nối với máy chủ."
 
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
@@ -64,8 +64,14 @@ msgstr "Tiện ích của bạn vượt quá kích thước tối đa {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Đã nhận được phản hồi trống từ máy chủ; trạng thái: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Tiện ích mở rộng của bạn phải tương thích với ít nhất một ứng dụng."
+
 msgid "Unexpected server error while validating."
 msgstr "Xảy ra lỗi khi xác nhận từ máy chủ."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Được đánh dấu là tương thích với Firefox dành cho Android trong manifest."
 
 msgid "Finished validating {0}"
 msgstr "Đã hoàn tất xác thực {0}"
@@ -605,9 +611,6 @@ msgstr[0] "{files} tập tin"
 msgid "Image changes being processed"
 msgstr "Thay đổi hình ảnh đang được xử lý"
 
-msgid "Select an application first"
-msgstr "Chọn một ứng dụng trước tiên"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ký tự"
@@ -624,6 +627,9 @@ msgstr "Xóa bản dịch này"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} đã xem trang này đầu tiên."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} đã xem tiện ích này trước tiên."

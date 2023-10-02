@@ -2,8 +2,8 @@ import json
 import os
 import re
 import sys
-
 from unittest import mock
+from unittest.mock import patch
 from urllib.parse import urlparse
 
 import django
@@ -14,9 +14,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
-
 from lxml import etree
-from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia import amo, core
@@ -67,7 +65,7 @@ class Test404(TestCase):
     def test_404_no_app(self):
         """Make sure a 404 without an app doesn't turn into a 500."""
         # That could happen if helpers or templates expect APP to be defined.
-        url = reverse('amo.monitor')
+        url = reverse('amo.services_monitor')
         response = self.client.get(url + 'nonsense')
         assert response.status_code == 404
         self.assertTemplateUsed(response, 'amo/404.html')
@@ -156,7 +154,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
@@ -178,7 +176,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
         ]
@@ -195,7 +193,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -217,7 +215,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -238,7 +236,7 @@ class TestCommon(TestCase):
         expected = [
             ('Tools', '#'),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -264,7 +262,7 @@ class TestCommon(TestCase):
             ('Tools', '#'),
             ('Manage My Submissions', reverse('devhub.addons')),
             ('Submit a New Add-on', reverse('devhub.submit.agreement')),
-            ('Submit a New Theme', reverse('devhub.submit.agreement')),
+            ('Submit a New Theme', reverse('devhub.submit.theme.agreement')),
             ('Developer Hub', reverse('devhub.index')),
             ('Manage API Keys', reverse('devhub.api_key')),
             ('Reviewer Tools', reverse('reviewers.dashboard')),
@@ -351,6 +349,51 @@ class TestOtherStuff(TestCase):
         assert e.text == 'Firefox Add-ons'
 
 
+class TestHeartbeat(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.mocks = {}
+        for check in [
+            'memcache',
+            'libraries',
+            'elastic',
+            'path',
+            'database',
+            'rabbitmq',
+            'signer',
+            'remotesettings',
+        ]:
+            patcher = mock.patch(f'olympia.amo.monitors.{check}')
+            self.mocks[check] = patcher.start()
+            self.mocks[check].return_value = ('', None)
+            self.addCleanup(patcher.stop)
+
+    def test_front_heartbeat_success(self):
+        response = self.client.get(reverse('amo.front_heartbeat'))
+        assert response.status_code == 200
+
+    def test_front_heartbeat_failure(self):
+        self.mocks['database'].return_value = ('boom', None)
+
+        response = self.client.get(reverse('amo.front_heartbeat'))
+
+        assert response.status_code >= 500
+        assert response.json()['database']['status'] == 'boom'
+
+    def test_services_heartbeat_success(self):
+        response = self.client.get(reverse('amo.services_heartbeat'))
+        assert response.status_code == 200
+
+    def test_services_heartbeat_failure(self):
+        self.mocks['rabbitmq'].return_value = ('boom', None)
+
+        response = self.client.get(reverse('amo.services_heartbeat'))
+
+        assert response.status_code >= 500
+        assert response.json()['rabbitmq']['status'] == 'boom'
+
+
 class TestCORS(TestCase):
     fixtures = ('base/addon_3615',)
 
@@ -397,11 +440,8 @@ class TestCORS(TestCase):
         assert response['Access-Control-Allow-Origin'] == '*'
         assert sorted(response['Access-Control-Allow-Headers'].lower().split(', ')) == [
             'accept',
-            'accept-encoding',
             'authorization',
             'content-type',
-            'dnt',
-            'origin',
             'user-agent',
             'x-country-code',
             'x-csrftoken',

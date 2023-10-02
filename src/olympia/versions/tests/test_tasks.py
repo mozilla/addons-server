@@ -1,19 +1,19 @@
 import os
 from base64 import b64encode
+from unittest import mock
 
 from django.conf import settings
 from django.utils.encoding import force_str
 
-from unittest import mock
 import pytest
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, root_storage, version_factory
 from olympia.versions.models import Version, VersionPreview
 from olympia.versions.tasks import (
+    UI_FIELDS,
     generate_static_theme_preview,
     hard_delete_versions,
-    UI_FIELDS,
 )
 
 

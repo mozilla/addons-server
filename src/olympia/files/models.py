@@ -3,7 +3,6 @@ import json
 import os
 import re
 import uuid
-
 from urllib.parse import urljoin
 
 from django.conf import settings
@@ -12,24 +11,23 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.urls import reverse
-from django.utils.translation import gettext
 from django.utils.crypto import get_random_string
 from django.utils.encoding import force_str
 from django.utils.functional import cached_property
 from django.utils.text import slugify
+from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
-from olympia.amo.utils import id_to_path, SafeStorage
+from olympia.amo.utils import SafeStorage, id_to_path
 from olympia.files.utils import (
-    get_sha256,
     InvalidOrUnsupportedCrx,
+    get_sha256,
     write_crx_as_xpi,
 )
 
@@ -129,12 +127,7 @@ class File(OnChangeMixin, ModelBase):
 
     @property
     def has_been_validated(self):
-        try:
-            self.validation
-        except FileValidation.DoesNotExist:
-            return False
-        else:
-            return True
+        return hasattr(self, 'validation')
 
     def get_url_path(self, attachment=False):
         # We allow requests to not specify a filename, but it's mandatory that
@@ -162,7 +155,7 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version)
-        upload_path = force_str(upload.path)
+        upload_path = force_str(upload.file_path)
         # Size in bytes.
         file_.size = storage.size(upload_path)
         file_.strict_compatibility = parsed_data.get('strict_compatibility', False)
@@ -436,7 +429,7 @@ class FileUpload(ModelBase):
 
     def write_data_to_path(self, chunks):
         hash_obj = hashlib.sha256()
-        with storage.open(self.path, 'wb') as file_destination:
+        with storage.open(self.file_path, 'wb') as file_destination:
             for chunk in chunks:
                 hash_obj.update(chunk)
                 file_destination.write(chunk)
@@ -444,7 +437,16 @@ class FileUpload(ModelBase):
 
     @classmethod
     def generate_path(cls, ext='.zip'):
-        return os.path.join(settings.ADDONS_PATH, 'temp', f'{uuid.uuid4().hex}{ext}')
+        return os.path.join('temp', f'{uuid.uuid4().hex}{ext}')
+
+    @property
+    def file_path(self):
+        if self.path.startswith('/'):
+            return self.path
+        elif self.path:
+            return os.path.join(settings.ADDONS_PATH, self.path)
+        else:
+            return self.path
 
     def add_file(self, chunks, filename, size):
         if not self.uuid:
@@ -468,7 +470,7 @@ class FileUpload(ModelBase):
         hash_obj = None
         if was_crx:
             try:
-                hash_obj = write_crx_as_xpi(chunks, self.path)
+                hash_obj = write_crx_as_xpi(chunks, self.file_path)
             except InvalidOrUnsupportedCrx:
                 # We couldn't convert the crx file. Write it to the filesystem
                 # normally, the validation process should reject this with a

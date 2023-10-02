@@ -3,7 +3,6 @@ import binascii
 import functools
 import os
 import time
-
 from urllib.parse import quote_plus
 
 from django.conf import settings
@@ -20,18 +19,16 @@ from django.views.decorators.cache import never_cache
 import jwt
 import requests
 import waffle
-
 from corsheaders.conf import conf as corsheaders_conf
 from corsheaders.middleware import (
-    ACCESS_CONTROL_ALLOW_ORIGIN,
     ACCESS_CONTROL_ALLOW_CREDENTIALS,
     ACCESS_CONTROL_ALLOW_HEADERS,
     ACCESS_CONTROL_ALLOW_METHODS,
+    ACCESS_CONTROL_ALLOW_ORIGIN,
     ACCESS_CONTROL_MAX_AGE,
 )
 from django_statsd.clients import statsd
-from rest_framework import exceptions
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
 from rest_framework.generics import GenericAPIView
@@ -49,7 +46,6 @@ from rest_framework.viewsets import GenericViewSet
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
@@ -77,7 +73,12 @@ from .serializers import (
     UserProfileSerializer,
 )
 from .tasks import clear_sessions_event, delete_user_event, primary_email_change_event
-from .utils import fxa_login_url, generate_fxa_state
+from .utils import (
+    get_fxa_config,
+    get_fxa_config_name,
+    redirect_for_login,
+    redirect_for_login_with_2fa_enforced,
+)
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -87,17 +88,13 @@ ERROR_NO_CODE = 'no-code'
 ERROR_NO_PROFILE = 'no-profile'
 ERROR_NO_USER = 'no-user'
 ERROR_STATE_MISMATCH = 'state-mismatch'
+ERROR_FXA_ERROR = 'error-fxa'
 ERROR_STATUSES = {
     ERROR_AUTHENTICATED: 400,
     ERROR_NO_CODE: 422,
     ERROR_NO_PROFILE: 401,
     ERROR_STATE_MISMATCH: 400,
-}
-LOGIN_ERROR_MESSAGES = {
-    ERROR_AUTHENTICATED: _('You are already logged in.'),
-    ERROR_NO_CODE: _('Your login attempt could not be parsed. Please try again.'),
-    ERROR_NO_PROFILE: _('Your Firefox Account could not be found. Please try again.'),
-    ERROR_STATE_MISMATCH: _('You could not be logged in. Please try again.'),
+    ERROR_FXA_ERROR: 400,
 }
 
 
@@ -109,7 +106,7 @@ def safe_redirect(request, url, action):
 
 
 def find_user(identity):
-    """Try to find a user for a Firefox Accounts profile. If the account
+    """Try to find a user for a Mozilla accounts profile. If the account
     hasn't been migrated we'll need to do the lookup by email but we should
     use the ID after that so check both.
 
@@ -180,6 +177,9 @@ def login_user(sender, request, user, identity, token_data=None):
     update_user(user, identity)
     log.info('Logging in user %s from FxA', user)
     login(request, user)
+    request.session['has_two_factor_authentication'] = identity.get(
+        'twoFactorAuthentication'
+    )
     if token_data:
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
         request.session['fxa_refresh_token'] = token_data['refresh_token']
@@ -220,30 +220,48 @@ def with_user(f):
     @functools.wraps(f)
     @use_primary_db
     def inner(self, request):
-        fxa_config = self.get_fxa_config(request)
+        # If we get an error, we want a new session without the 2FA enforcement
+        # requirement active and with a fresh state for future authentication
+        # attempts, so pop them.
+        enforce_2fa_for_this_session = request.session.pop('enforce_2fa', False)
+        fxa_state_session = request.session.pop('fxa_state', None)
+
+        fxa_config = get_fxa_config(request)
         if request.method == 'GET':
             data = request.query_params
         else:
             data = request.data
-
         state_parts = data.get('state', '').split(':', 1)
         state = state_parts[0]
         next_path = parse_next_path(state_parts, request)
-        if not data.get('code'):
-            log.info('No code provided.')
-            return safe_redirect(request, next_path, ERROR_NO_CODE)
-        elif (
-            not request.session.get('fxa_state')
-            or request.session['fxa_state'] != state
-        ):
+
+        if not fxa_state_session or fxa_state_session != state:
             log.info(
-                'State mismatch. URL: {url} Session: {session}'.format(
-                    url=data.get('state'),
-                    session=request.session.get('fxa_state'),
+                'FxA Auth State mismatch: {state} Session: {fxa_state_session}'.format(
+                    state=data.get('state'),
+                    fxa_state_session=fxa_state_session,
                 )
             )
-            return safe_redirect(request, next_path, ERROR_STATE_MISMATCH)
-        elif request.user.is_authenticated:
+            # Redirect to / as the state mismatch indicates the next path might
+            # not be reliable.
+            return safe_redirect(request, '/', ERROR_STATE_MISMATCH)
+        elif data.get('error'):
+            if enforce_2fa_for_this_session:
+                # If we're trying to enforce 2FA, we should try again without
+                # prompt=none (and a new state), maybe there is a mismatch
+                # between what user we currently have logged in and what
+                # Mozilla account the browser is logged into.
+                return redirect_for_login_with_2fa_enforced(
+                    request,
+                    config=fxa_config,
+                    next_path=next_path,
+                )
+            else:
+                return safe_redirect(request, next_path, ERROR_FXA_ERROR)
+        elif not data.get('code'):
+            log.info('No code provided.')
+            return safe_redirect(request, next_path, ERROR_NO_CODE)
+        elif request.user.is_authenticated and not enforce_2fa_for_this_session:
             return safe_redirect(request, next_path, ERROR_AUTHENTICATED)
         try:
             if use_fake_fxa() and 'fake_fxa_email' in data:
@@ -253,13 +271,16 @@ def with_user(f):
                     'email': data['fake_fxa_email'],
                     'uid': 'fake_fxa_id-%s'
                     % force_str(binascii.b2a_hex(os.urandom(16))),
+                    'twoFactorAuthentication': data.get(
+                        'fake_two_factor_authentication'
+                    ),
                 }
                 id_token, token_data = identity['email'], {}
             else:
                 identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
                 )
-                token_data['config_name'] = self.get_config_name(request)
+                token_data['config_name'] = get_fxa_config_name(request)
                 id_token = token_data.get('id_token')
         except verify.IdentificationError:
             log.info('Profile not found. Code: {}'.format(data['code']))
@@ -275,39 +296,42 @@ def with_user(f):
             # We can't use waffle.flag_is_active() wrapper, because
             # request.user isn't populated at this point (and we don't want
             # it to be).
-            flag = waffle.get_waffle_flag_model().get(
+            enforce_2fa_flag = waffle.get_waffle_flag_model().get(
                 '2fa-enforcement-for-developers-and-special-users'
             )
-            enforce_2fa_for_developers_and_special_users = flag.is_active(request) or (
-                flag.pk and flag.is_active_for_user(user)
+            enforce_2fa_flag_is_active = enforce_2fa_flag.is_active(request) or (
+                enforce_2fa_flag.pk and enforce_2fa_flag.is_active_for_user(user)
             )
             if (
                 user
                 and not identity.get('twoFactorAuthentication')
-                and enforce_2fa_for_developers_and_special_users
-                and (user.is_addon_developer or user.groups_list)
+                and enforce_2fa_flag_is_active
+                and (
+                    user.is_addon_developer
+                    or user.groups_list
+                    or enforce_2fa_for_this_session
+                )
             ):
                 # https://github.com/mozilla/addons/issues/732
-                # The user is an add-on developer (with other types of
-                # add-ons than just themes) or part of any group (so they
-                # are special in some way, may be an admin or a reviewer),
-                # but hasn't logged in with a second factor. Immediately
-                # redirect them to start the FxA flow again, this time
-                # requesting 2FA to be present - they should be
-                # automatically logged in FxA with the existing token, and
-                # should be prompted to create the second factor before
-                # coming back to AMO.
+                # https://github.com/mozilla/addons-server/issues/20943
+                # The user is an add-on developer (with other types of add-ons
+                # than just themes) or part of any group (so they are special
+                # in some way, may be an admin or a reviewer), or trying to
+                # access a page restricted to users with 2FA and they have
+                # successfully logged in from FxA, but without a second factor.
+                # Immediately redirect them to start the FxA flow again, this
+                # time requesting 2FA to be present:
+                # They should be automatically logged in FxA with the existing
+                # id_token, and should be prompted to create the second factor
+                # before coming back to AMO.
                 log.info('Redirecting user %s to enforce 2FA', user)
-                return HttpResponseRedirect(
-                    fxa_login_url(
-                        config=fxa_config,
-                        state=request.session['fxa_state'],
-                        next_path=next_path,
-                        action='signin',
-                        force_two_factor=True,
-                        request=request,
-                        id_token=id_token,
-                    )
+                # There wasn't any error, we can keep the original state.
+                request.session['fxa_state'] = fxa_state_session
+                return redirect_for_login_with_2fa_enforced(
+                    request,
+                    config=fxa_config,
+                    next_path=next_path,
+                    id_token_hint=id_token,
                 )
             return f(
                 self,
@@ -321,35 +345,13 @@ def with_user(f):
     return inner
 
 
-class FxAConfigMixin:
-    def get_config_name(self, request):
-        config_name = request.GET.get('config')
-        if config_name not in settings.FXA_CONFIG:
-            if config_name:
-                log.info(f'Using default FxA config instead of {config_name}')
-            config_name = settings.DEFAULT_FXA_CONFIG_NAME
-        return config_name
-
-    def get_fxa_config(self, request):
-        return settings.FXA_CONFIG[self.get_config_name(request)]
-
-
-class LoginStartView(FxAConfigMixin, APIView):
+class LoginStartView(APIView):
     @method_decorator(never_cache)
     def get(self, request):
-        request.session.setdefault('fxa_state', generate_fxa_state())
-        return HttpResponseRedirect(
-            fxa_login_url(
-                config=self.get_fxa_config(request),
-                state=request.session['fxa_state'],
-                next_path=request.GET.get('to'),
-                action=request.GET.get('action', 'signin'),
-                request=request,
-            )
-        )
+        return redirect_for_login(request, next_path=request.GET.get('to', ''))
 
 
-class AuthenticateView(FxAConfigMixin, APIView):
+class AuthenticateView(APIView):
     authentication_classes = (SessionAuthentication,)
 
     @method_decorator(never_cache)
@@ -739,7 +741,7 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
         return Response(serializer.data)
 
 
-class FxaNotificationView(FxAConfigMixin, APIView):
+class FxaNotificationView(APIView):
     authentication_classes = []
     permission_classes = []
 
@@ -771,7 +773,7 @@ class FxaNotificationView(FxAConfigMixin, APIView):
         return cls.fxa_verifying_keys
 
     def get_jwt_payload(self, request):
-        client_id = self.get_fxa_config(request)['client_id']
+        client_id = get_fxa_config(request)['client_id']
         authenticated_jwt = None
 
         auth_header_split = request.headers.get('Authorization', '').split('Bearer ')

@@ -192,7 +192,7 @@ def api_authentication(f):
     already have been attempted by this point so api auth will only be tried for
     anonymous (unauthenticated) requests."""
 
-    from olympia.api.authentication import SessionIDAuthentication, JWTKeyAuthentication
+    from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
 
     @functools.wraps(f)
     def wrapper(request, *args, **kw):

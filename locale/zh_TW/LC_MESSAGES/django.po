@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-10 04:26+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 02:06+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -118,6 +118,10 @@ msgid "Unknown min app version specified"
 msgstr "指定了未知的最小應用程式版本"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "無法覆蓋安裝資訊檔當中，對此應用程式（%s）的相容性資訊"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "圖片必須小於 %dMB"
 
@@ -143,9 +147,6 @@ msgstr "已停用檔案。"
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "版本 {version} 與此附加元件 {block_link} 相符。若需更多資訊，請聯絡 {amo_admins}。"
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "版本 {version_string} 之前已上傳過，且已刪除。"
@@ -332,6 +333,9 @@ msgstr "註冊或登入"
 msgid "Email:"
 msgstr "電子郵件:"
 
+msgid "Two-factor authentication"
+msgstr "雙因素驗證"
+
 msgid "OK"
 msgstr "確定"
 
@@ -442,37 +446,6 @@ msgstr "無法使用此自訂網址。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件屬於收藏集"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s 仍在準備送出中"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "找不到對 GUID %(guid)s 的封鎖紀錄"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "GUID 為 %(guid)s 的附加元件不存在"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "由於最小或最大版本變動，要更新的封鎖資訊不同。"
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s 包含 *"
-
-msgid "Invalid version"
-msgstr "版本無效"
-
-msgid "Min version can not be greater than Max version"
-msgstr "最小版本不應超過最大版本"
-
-msgid "Review Listed"
-msgstr "審核上架項目"
-
-msgid "Review Unlisted"
-msgstr "審核未上架項目"
 
 msgid "{addon} was created."
 msgstr "{addon} 已建立。"
@@ -846,11 +819,32 @@ msgstr "已取消退回 {addon} {version}。"
 msgid "Un-rejected"
 msgstr "已取消退回"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "已清除 {addon} 的 needs_human_review 旗標。"
+msgid "Reply to {rating} for {addon} written."
+msgstr "已寫下 {addon} 的 {rating}。"
 
-msgid "Needs Human Review cleared"
-msgstr "已清除「需要人工審核」"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "已清除 {addon} {version} 等待退回。"
+
+msgid "Pending rejection cleared"
+msgstr "已清除等待退回"
+
+msgid "{version} added to Blocklist."
+msgstr "已將 {version} 加入封鎖清單。"
+
+msgid "Version Blocked"
+msgstr "已封鎖版本"
+
+msgid "{version} removed from Blocklist."
+msgstr "已將 {version} 從封鎖清單刪除。"
+
+msgid "Version Unblocked"
+msgstr "已取消封鎖版本"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "已清除 {addon} {version} 管理員元件審核狀態。"
+
+msgid "Admin add-on-review cleared"
+msgstr "已清除管理員元件審核狀態"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1498,6 +1492,10 @@ msgstr "檢視目前檔案"
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
 
@@ -1512,9 +1510,6 @@ msgstr "無視驗證失敗"
 
 msgid "Need to select at least one application."
 msgstr "至少需要一套相容的應用程式。"
-
-msgid "a blocklist entry"
-msgstr "封鎖清單項目"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
@@ -1566,6 +1561,9 @@ msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s 比訊息。在處理完這些訊息所提到的問題後，您將可以看到其他的錯誤或警告訊息。"
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "此附加元件不是佈景主題。請到<a href=\"{link}\">上架新附加元件</a>來送出擴充套件。"
 
 msgid "Updated"
 msgstr "更新日期"
@@ -1629,6 +1627,9 @@ msgstr "已成功儲存變更。"
 
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">請開啟兩階段驗證，才能送審擴充套件。</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
@@ -1833,54 +1834,6 @@ msgstr "活動"
 msgid "Subscribe to this feed"
 msgstr "訂閱這個消息來源"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "此附加元件與 <b>%(app_name)s %(app_version)s</b>，最新的 %(app_name)s 正式版並不相容。請考慮更新您的附加元件相容性資訊，或上傳此附加元件較新的版本。"
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "檢視並更新應用程式相容性範圍"
-
-msgid "Compatibility"
-msgstr "相容性"
-
-msgid "Update Compatibility"
-msgstr "更新相容性"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "就算封裝檔案當中的安裝指出此附加元件並不相容，在此調整應用程式資訊將會允許使用者安裝您的附加元件。"
-
-msgid "Application"
-msgstr "應用程式"
-
-msgid "Supported Versions"
-msgstr "支援版本"
-
-msgid "Remove"
-msgstr "移除"
-
-msgid "Add Another Application&hellip;"
-msgstr "新增其他應用程式&hellip;"
-
-msgid "Save Changes"
-msgstr "儲存變更"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "或"
-
-msgid "Cancel"
-msgstr "取消"
-
-msgid "Close"
-msgstr "關閉"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1949,10 +1902,16 @@ msgstr "等待確認中的作者"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "已將作者加入此附加元件，但尚未確認。"
 
+msgid "Save Changes"
+msgstr "儲存變更"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr "<p>附加元件可以有許多作者，每位作者可擔當下列任一種角色:</p><ul><li><b>擁有者:</b>能夠管理附加元件各項上架資訊，包含新增或移除其他作者</li><li><b>開發者:</b>能夠管理附加元件各項上架資訊，但不能新增或移除其他作者。</li></ul>"
+
+msgid "Close"
+msgstr "關閉"
 
 msgid "Additional Details"
 msgstr "其他詳細資訊"
@@ -1991,6 +1950,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "若您的附加元件有自己的網站，請在此輸入網址。若您的網站有多國語系版本，亦可在此欄位新增。僅與公開上架的附加元件有關。"
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "或"
+
+msgid "Cancel"
+msgstr "取消"
 
 msgid "Describe Add-on"
 msgstr "描述附加元件"
@@ -3058,6 +3025,15 @@ msgstr "管理 {0}"
 msgid "Files"
 msgstr "檔案"
 
+msgid "Compatibility"
+msgstr "相容性"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "就算封裝檔案當中的安裝指出此附加元件並不相容，在此調整應用程式資訊將會允許使用者安裝您的附加元件。"
+
+msgid "Add Another Application&hellip;"
+msgstr "新增其他應用程式&hellip;"
+
 msgid "Version Notes"
 msgstr "版本紀錄"
 
@@ -3382,9 +3358,8 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "關閉分頁後自動清除 Cookie。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "一個輕鬆調整網頁文字大小的方法—或者甚至放大整個網頁。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3399,7 +3374,7 @@ msgstr "清除數位軌跡。讓 Firefox 針對您指定的網域，忘記 Cooki
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
-msgstr ""
+msgstr "不需要一直重複輸入同樣的東西。儲存且隨時貼上常用的文字。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3482,7 +3457,7 @@ msgstr "用偽裝的身分來匿名上網—甚至讓別人以為你在其他國
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks. Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "享受可視化的書籤。從漂亮的動態磚查看最愛的網站、最近關閉的分頁及更多。"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
@@ -3524,7 +3499,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "預設封鎖所有彈出視窗，然後再決定要開啟哪些想要的。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "自訂任何網站外觀！頁面顏色、背景等等皆可調整。"
 
@@ -3764,7 +3738,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
@@ -3881,7 +3854,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "網站的聲音太小聲或太大聲？SoundFixer 可以幫忙。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
@@ -3944,7 +3916,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4029,7 +4000,6 @@ msgid "Create and customize tab groups."
 msgstr "建立並自訂分頁群組。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。"
 
@@ -4114,6 +4084,14 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正此問題。"
@@ -4121,6 +4099,14 @@ msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4131,12 +4117,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "在搜尋結果中顯示網站畫面擷圖。"
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4167,7 +4169,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Google 及 Bing 搜尋引擎）。"
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4234,6 +4236,14 @@ msgstr "加強您在 Steam 的遊戲體驗。"
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "按下按讚按紐，即可顯示倒讚按鈕。"
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "不使用雲端服務，直接使用在 Firefox 有隱私地翻譯網站內容。"
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
@@ -4247,16 +4257,17 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "隱私權與安全性擴充套件"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "擴充套件組合包"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "下載管理員"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "遊戲與娛樂擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4352,10 +4363,6 @@ msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "自訂 YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "看員工精選的更多 YouTube 擴充套件"
 
@@ -4398,6 +4405,14 @@ msgstr "創意擴充套件"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "看員工精選的更多創意套件"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "社群媒體擴充套件"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "看更多看員工精選的社群媒體套件"
 
 msgid "Unreviewed"
 msgstr "未審核的"
@@ -4518,6 +4533,13 @@ msgstr "其他（請詳述）"
 msgid "Auto-flagged due to word match"
 msgstr "由於文字符合而自動標記"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "由於使用者限制而自動標記"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s 包含非字母與數字的字元。"
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4571,15 +4593,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "由 %(user)s 於 %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "由 %(user)s 於 %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">在 %(date)s 由 %(user)s 所標記。</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>警告！</strong> 有其他使用者在您之前檢視了此頁面。"
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>警告！</strong>可能有其他使用者在您之前檢視此頁面。"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4990,8 +5012,8 @@ msgstr "Firefox 使用者 {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "請輸入有效的 IPv4 或 IPv6 CIDR 網段，例如 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "您的所在位置有多套違反我們使用政策的附加元件。此 IP 已遭封鎖。"
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "您的所在位置多次送出違反我們使用政策的附加元件。此 IP 已遭封鎖。"
 
 msgid "Email Pattern"
 msgstr "郵件模式"
@@ -4999,8 +5021,8 @@ msgstr "郵件模式"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr "請輸入要封鎖的完整電子郵件地址，或使用 unix 格式的萬用字元（例如「*@example.com」）。若您要封鎖包含所有子網域的完整網域，請另外針對子網域加入一筆「*@*.example.com」。"
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "您的帳號不允許用來上架附加元件。"
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "您帳號的電子郵件地址不允許用來送出附加元件。"
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

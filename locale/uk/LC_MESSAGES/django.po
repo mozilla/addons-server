@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-04 17:47+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 04:20+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -127,6 +127,10 @@ msgid "Unknown min app version specified"
 msgstr "Вказано невідому мінімальну версію застосунку"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Неможливо перезаписати інформацію про сумісність, налаштовану в маніфесті для цієї програми (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Зображення мають бути меншими за %d Мб"
 
@@ -152,9 +156,6 @@ msgstr "Файл уже вимкнено."
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 "Останню затверджену версію цього %s додатка не можна видалити, оскільки попередню версію не затверджено для %s рекламування. Зв'яжіться з адміністраторами AMO, якщо вам необхідна допомога з цим."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Версія {version} збігається з {block_link} для цього додатка. Для отримання додаткової інформації ви можете зв’язатися з {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Версія {version_string} була раніше завантажена і видалена."
@@ -347,6 +348,9 @@ msgstr "Реєстрація чи вхід"
 msgid "Email:"
 msgstr "Адреса ел. пошти:"
 
+msgid "Two-factor authentication"
+msgstr "Двоетапна перевірка"
+
 msgid "OK"
 msgstr "Гаразд"
 
@@ -456,37 +460,6 @@ msgstr "Цю URL-адресу не можна використати."
 msgid "This add-on already belongs to the collection"
 msgstr "Цей додаток вже належить до цієї збірки"
 
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s очікує на затвердження"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Блокування з GUID %(guid)s не знайдено"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Додатку з GUID %(guid)s не існує"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Блокування, яке слід оновити, відрізняється тим, що змінилася мінімальна чи максимальна версія."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s містить *"
-
-msgid "Invalid version"
-msgstr "Недійсна версія"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Мінімальна версія не може бути більшою, ніж максимальна"
-
-msgid "Review Listed"
-msgstr "Перевірка оприлюдненого"
-
-msgid "Review Unlisted"
-msgstr "Перевірка не оприлюдненого"
-
 msgid "{addon} was created."
 msgstr "{addon} було створено."
 
@@ -511,7 +484,7 @@ msgid "Contributions for {addon}."
 msgstr "Внески для {addon}."
 
 msgid "{addon} disabled."
-msgstr "{addon} відключено."
+msgstr "{addon} вимкнено."
 
 msgid "{addon} enabled."
 msgstr "{addon} включено."
@@ -849,11 +822,32 @@ msgstr "Скасовано відхилення {addon} {version}."
 msgid "Un-rejected"
 msgstr "Скасовано відхилення"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Позначку needs_human_review для {addon} видалено."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Відповісти на {rating} для {addon}."
 
-msgid "Needs Human Review cleared"
-msgstr "Потрібна перевірка людиною"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} з черги відхилення видалено."
+
+msgid "Pending rejection cleared"
+msgstr "Чергу відхилення очищено"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} додано до списку блокування."
+
+msgid "Version Blocked"
+msgstr "Версія заблокована"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} вилучено зі списку блокування."
+
+msgid "Version Unblocked"
+msgstr "Версія розблокована"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "{addon} {version} - очищено розгляд додатка адміністратором."
+
+msgid "Admin add-on-review cleared"
+msgstr "Очищено розгляд додатка адміністратором"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -883,7 +877,7 @@ msgid "Awaiting Review"
 msgstr "Очікує перевірки"
 
 msgid "Disabled by Mozilla"
-msgstr "Відключено Mozilla"
+msgstr "Вимкнено Mozilla"
 
 msgid "Deleted"
 msgstr "Видалено"
@@ -1515,6 +1509,10 @@ msgstr "Переглянути поточний"
 msgid "Invalid version range."
 msgstr "Невірний діапазон версій."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Недійсний діапазон версій. Для Firefox для Android можна вибрати лише діапазон, який починається з версії %(max)s і новіших або закінчується версією, нижчою за %(min)s."
+
 msgid "Need at least one compatible application."
 msgstr "Потрібен, принаймні, один сумісний додаток."
 
@@ -1529,9 +1527,6 @@ msgstr "Ігнорувати невдалу валідацію"
 
 msgid "Need to select at least one application."
 msgstr "Необхідно обрати принаймні одну програму."
-
-msgid "a blocklist entry"
-msgstr "запис у списку блокування"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Версія {version} була раніше завантажена і видалена."
@@ -1585,6 +1580,9 @@ msgstr "Застереження безпеки від Mozilla: Ваші обл�
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Валідація згенерувала занадто багато помилок та попереджень, тому %s повідомлень не було показано. Після усунення видимих повідомлень, Ви зможете побачити інші."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Цей додаток не є темою. Перейдіть на сторінку <a href=\"{link}\">Надіслати новий додаток</a>, щоб надіслати розширення."
 
 msgid "Updated"
 msgstr "Оновлено"
@@ -1649,6 +1647,9 @@ msgstr "Зміни успішно збережені."
 msgid "Validate Add-on"
 msgstr "Валідувати додаток"
 
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Увімкніть двоетапну перевірку для свого облікового запису, щоб надсилати розширення.</a>"
+
 msgid "Icons must be either PNG or JPG."
 msgstr "Іконки повинні мати формат PNG або JPG."
 
@@ -1679,7 +1680,7 @@ msgstr ""
 
 #, python-format
 msgid "Version %s disabled."
-msgstr "Версію %s відключено."
+msgstr "Версію %s вимкнено."
 
 #, python-format
 msgid "Version %s deleted."
@@ -1853,56 +1854,6 @@ msgstr "Активність"
 msgid "Subscribe to this feed"
 msgstr "Підписатись на цю стрічку"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Цей додаток несумісний з <b>%(app_name)s %(app_version)s</b>, останньою версією %(app_name)s. Будь ласка, розгляньте можливість оновлення інформації про сумісність вашого додатка чи завантаження "
-"його нової версії."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Оновити сумісність</a> <a href=\"%(version_url)s\" class=\"button\">Завантажити нову версію</a> або <a href=\"#\" "
-"class=\"close\">Ігнорувати</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Переглянути й оновити діапазони сумісності програм"
-
-msgid "Compatibility"
-msgstr "Сумісність"
-
-msgid "Update Compatibility"
-msgstr "Оновити сумісність"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Налаштування інформації про програму тут, дозволить користувачам встановити Ваш додаток, навіть якщо маніфест встановлення в пакеті вказує, що додаток є несумісним."
-
-msgid "Application"
-msgstr "Програма"
-
-msgid "Supported Versions"
-msgstr "Підтримувані версії"
-
-msgid "Remove"
-msgstr "Вилучити"
-
-msgid "Add Another Application&hellip;"
-msgstr "Додати іншу програму&hellip;"
-
-msgid "Save Changes"
-msgstr "Зберегти зміни"
-
-msgid "or"
-msgstr "або"
-
-msgid "Cancel"
-msgstr "Скасувати"
-
-msgid "Close"
-msgstr "Закрити"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1975,12 +1926,18 @@ msgstr "Автори, які очікують підтвердження"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Автори, яких додано до цього додатка, але ще не підтверджено."
 
+msgid "Save Changes"
+msgstr "Зберегти зміни"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатка, включаючи додавання і вилучення інших "
 "авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатка, за винятком додавання і вилучення інших авторів</li> </ul>"
+
+msgid "Close"
+msgstr "Закрити"
 
 msgid "Additional Details"
 msgstr "Додаткові подробиці"
@@ -2021,6 +1978,12 @@ msgid ""
 msgstr ""
 "Якщо у вашого додатка є інша домашня сторінка, введіть її адресу тут. Якщо ваш сайт перекладений іншими мовами, для цього поля можна додати кілька перекладів. Це стосується тільки опублікованих "
 "додатків."
+
+msgid "or"
+msgstr "або"
+
+msgid "Cancel"
+msgstr "Скасувати"
 
 msgid "Describe Add-on"
 msgstr "Опишіть додаток"
@@ -3118,6 +3081,15 @@ msgstr "Впорядкувати {0}"
 msgid "Files"
 msgstr "Файли"
 
+msgid "Compatibility"
+msgstr "Сумісність"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Налаштування інформації про програму тут, дозволить користувачам встановити Ваш додаток, навіть якщо маніфест встановлення в пакеті вказує, що додаток є несумісним."
+
+msgid "Add Another Application&hellip;"
+msgstr "Додати іншу програму&hellip;"
+
 msgid "Version Notes"
 msgstr "Примітки до версії"
 
@@ -3446,7 +3418,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Автоматично стирайте куки після закриття вкладки."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Простий спосіб змінювати розмір шрифту тексту будь-якої сторінки — чи навіть збільшувати увесь текст."
 
@@ -3588,7 +3559,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Блокуйте всі спливні вікна, потім вирішуйте, які з них відкривати."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Змінюйте вигляд будь-якого вебсайту. Змінюйте кольори, тло сторінок та багато іншого."
 
@@ -3828,7 +3798,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Купуйте в Amazon. При пошуку сторінок продукту в інших онлайн-магазинах, якщо це також доступно в Amazon, ви можете просто натиснути кнопку і перевірити сторінку продукту на Amazon."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Насолоджуйтесь повним контролем керування вкладками — закривайте дублікати, об'єднуйте вікна, копіюйте заголовок вкладки та інше."
 
@@ -3947,7 +3916,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Виправте аудіо. Якщо звук на вебсайті надто тихий чи гучний, SoundFixer може допомогти."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Редагуйте вебсторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій вебсторінці, яку ви хочете роздрукувати."
 
@@ -4010,7 +3978,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Користуйтеся підтримкою багатопотокового завантаження. Автоматично виявляйте різні типи медіа, що доступні для завантаження."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Легко зберігайте зображення — просто завантажте їх з поточної вкладки."
 
@@ -4095,7 +4062,6 @@ msgid "Create and customize tab groups."
 msgstr "Створюйте та налаштовуйте групи вкладок."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Зберігайте цілі сторінки — включно з зображеннями та стилями — в одному файлі HTML."
 
@@ -4180,6 +4146,14 @@ msgstr "Зміна тем залежно від часу. Налаштуйте F
 msgid "Declutter your Twitter experience."
 msgstr "Розвантажте свою роботу в Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Поверніть можливість бачити реакцію «Не сподобалось»!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Слухайте музику на YouTube без надокучливого переривання \"Відео призупинено. Продовжити перегляд?\"."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Деякі сайти мають труднощі з відтворенням відео на Android. Перед вами розв'язувок проблеми."
@@ -4187,6 +4161,14 @@ msgstr "Деякі сайти мають труднощі з відтворен�
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Знайшли цікаве зображення в інтернеті? Скористайтеся TinEye, щоб дізнатися його джерело."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Легко зберігайте зображення — просто завантажте їх з поточної вкладки."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Насолоджуйтесь повним контролем керування вкладками — закривайте дублікати, об'єднуйте вікна, копіюйте заголовок вкладки та інше."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4197,12 +4179,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Налаштуйте рухи мишею. Ознайомтеся з новими способами навігації за допомогою понад 50 корисних налаштувань."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Змінюйте вигляд будь-якого вебсайту. Змінюйте кольори, тло сторінок і багато іншого."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Користуйтеся рухами мишею для закриття вкладок, переходів по сторінках та інших дій."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Простий спосіб змінити розмір тексту на будь-якій сторінці — або навіть збільшити саму сторінку."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Переглядайте мініатюри зображень вебсайтів поруч з результатами пошуку."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Зберігайте цілі сторінки — включно з зображеннями та стилями — в одному файлі HTML."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Редагуйте вебсторінку перед друком. Робіть кардинальні візуальні зміни — вилучайте рекламу й небажаний вміст — на будь-якій вебсторінці, яку ви хочете надрукувати."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4233,10 +4231,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Поверніться в часи, коли ваші найкращі результати пошуку стояли над оголошеннями (сумісні з пошуковою системою Google і Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Припиніть надавати сайтам свою електронну адресу. Firefox Relay захищає вашу особу і запобігає надсиланню небажаної пошти. Передплатіть преміумфункції, щоб отримати додаткові переваги, як-от "
-"блокування конкретних промоційних листів."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Маскуйте адресу електронної пошти, щоб захистити свою особу та запобігти небажаній пошті. Наші оновлення роблять користування Firefox Relay ще простішим."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4302,6 +4298,14 @@ msgstr "Розширюйте взаємодію з іграми у Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Великий палець вгору, щоб повернути великий палець вниз."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Перекладайте вебсайти у своєму Firefox — приватно — не використовуючи хмару."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Блокуйте вебсайти, на яких гаєте час. Заблокуйте їх повністю або лише на обраний вами період."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Розширення — це наче програми для вашого браузера."
@@ -4315,16 +4319,17 @@ msgid "See all extensions"
 msgstr "Переглянути всі розширення"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Розширення для приватності й безпеки"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Пристосування YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Стартовий пакунок розширень"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Менеджери завантажень"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Розширення для ігор і розваг"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4419,10 +4424,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Переглянути більше відібраних персоналом блокувальників реклами"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Пристосування YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Переглянути більше розширень YouTube відібраних персоналом"
 
@@ -4465,6 +4466,14 @@ msgstr "Розширення для творчості"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Переглядайте більше добірок для творчості"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Розширення для соціальних мереж"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Переглянути більше розширень соціальних мереж відібраних персоналом"
 
 msgid "Unreviewed"
 msgstr "Не перевірено"
@@ -4585,6 +4594,13 @@ msgstr "Інше (будь ласка, уточніть)"
 msgid "Auto-flagged due to word match"
 msgstr "Позначено автоматично у зв'язку зі збігом слів"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Позначено автоматично через обмеження для користувача"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s містить не буквено-цифровий символ."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Текст відгуку не може містити слово: \"{0}\""
@@ -4642,15 +4658,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "від %(user)s %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "від %(user)s on %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Позначено %(user)s %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Увага!</strong> Інший користувач переглядав цю сторінку перед вами."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Увага!</strong> Інший користувач можливо переглядав цю сторінку перед вами."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5063,8 +5079,8 @@ msgstr "Користувач Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Введіть дійсний діапазон CIDR-мережі IPv4 або IPv6, наприклад, 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "З вашого розташування надіслано декілька додатків, що порушують ваші правила. IP-адресу було заблоковано."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "З вашого місця перебування було надіслано кілька повідомлень, що порушують наші правила. IP-адресу заблоковано."
 
 msgid "Email Pattern"
 msgstr "Шаблон електронної пошти"
@@ -5074,8 +5090,8 @@ msgstr ""
 "Введіть повну електронну адресу, яку потрібно заблокувати, або використовуйте символи підставлення у стилі Unix, напр. \"*@example.com\". Якщо вам потрібно заблокувати домен, включно з субдоменами, "
 "додайте другий запис, напр. \"*@*.example.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Адреса електронної пошти, яку ви використовуєте в обліковому записі, не дозволена для подання додатків."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "Адреса електронної пошти, яка використовується для вашого облікового запису, не дозволена для подання."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

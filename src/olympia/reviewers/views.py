@@ -1,22 +1,22 @@
 from collections import OrderedDict
 from datetime import date, datetime
+from urllib.parse import quote
 
 from django import http
 from django.conf import settings
 from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
-from django.db.models import Q
+from django.db.models import Exists, OuterRef, Q
+from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
 import pygit2
-
-from urllib.parse import quote
-
 from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
@@ -32,7 +32,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
@@ -49,6 +48,7 @@ from olympia.amo.decorators import (
     permission_required,
     post_required,
 )
+from olympia.amo.templatetags.jinja_helpers import numberfmt
 from olympia.amo.utils import paginate
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
@@ -57,7 +57,11 @@ from olympia.api.permissions import (
     AnyOf,
     GroupPermission,
 )
-from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
+from olympia.constants.reviewers import (
+    REVIEWS_PER_PAGE,
+    REVIEWS_PER_PAGE_MAX,
+    VERSIONS_PER_REVIEW_PAGE,
+)
 from olympia.devhub import tasks as devhub_tasks
 from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
@@ -72,6 +76,7 @@ from olympia.reviewers.forms import (
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
+    NeedsHumanReview,
     ReviewerSubscription,
     Whiteboard,
     clear_reviewing_cache,
@@ -93,6 +98,7 @@ from olympia.reviewers.serializers import (
 from olympia.reviewers.utils import (
     ContentReviewTable,
     MadReviewTable,
+    ModerationQueueTable,
     NewThemesQueueTable,
     PendingManualApprovalQueueTable,
     PendingRejectionTable,
@@ -100,6 +106,11 @@ from olympia.reviewers.utils import (
     UpdatedThemesQueueTable,
 )
 from olympia.scanners.admin import formatted_matched_rules_with_files_and_data
+from olympia.stats.decorators import bigquery_api_view
+from olympia.stats.utils import (
+    VERSION_ADU_LIMIT,
+    get_average_daily_users_per_version_from_bigquery,
+)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 from olympia.zadmin.models import get_config, set_config
@@ -110,6 +121,7 @@ from .decorators import (
     permission_or_tools_listed_view_required,
     reviewer_addon_view_factory,
 )
+from .templatetags.jinja_helpers import to_dom_id
 
 
 def context(**kw):
@@ -299,46 +311,42 @@ def save_motd(request):
     return TemplateResponse(request, 'reviewers/motd.html', context=data)
 
 
-def _queue(request, tab, unlisted=False):
+def queue(request, tab):
     TableObj = reviewer_tables_registry[tab]
-    qs = TableObj.get_queryset(request=request)
-    params = {}
-    order_by = request.GET.get('sort')
-    if order_by is None and hasattr(TableObj, 'default_order_by'):
-        order_by = TableObj.default_order_by()
-    if order_by is not None:
-        params['order_by'] = order_by
-    table = TableObj(data=qs, **params)
-    per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
-    try:
-        per_page = int(per_page)
-    except ValueError:
-        per_page = REVIEWS_PER_PAGE
-    if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
-        per_page = REVIEWS_PER_PAGE
-    count = construct_count_queryset_from_queryset(qs)()
-    page = paginate(request, table.rows, per_page=per_page, count=count)
 
-    return TemplateResponse(
-        request,
-        'reviewers/queue.html',
-        context=context(
-            table=table,
-            page=page,
-            tab=tab,
-            unlisted=unlisted,
-        ),
-    )
+    @permission_or_tools_listed_view_required(TableObj.permission)
+    def _queue(request, tab):
+        qs = TableObj.get_queryset(request=request, upcoming_due_date_focus=True)
+        params = {}
+        order_by = request.GET.get('sort')
+        if order_by is None and hasattr(TableObj, 'default_order_by'):
+            order_by = TableObj.default_order_by()
+        if order_by is not None:
+            params['order_by'] = order_by
+        table = TableObj(data=qs, **params)
+        per_page = request.GET.get('per_page', REVIEWS_PER_PAGE)
+        try:
+            per_page = int(per_page)
+        except ValueError:
+            per_page = REVIEWS_PER_PAGE
+        if per_page <= 0 or per_page > REVIEWS_PER_PAGE_MAX:
+            per_page = REVIEWS_PER_PAGE
+        count = construct_count_queryset_from_queryset(qs)()
+        page = paginate(request, table.rows, per_page=per_page, count=count)
 
+        return TemplateResponse(
+            request,
+            'reviewers/queue.html',
+            context=context(
+                table=table,
+                page=page,
+                tab=tab,
+                title=TableObj.title,
+                registry=reviewer_tables_registry,
+            ),
+        )
 
-reviewer_tables_registry = {
-    'extension': PendingManualApprovalQueueTable,
-    'theme_pending': UpdatedThemesQueueTable,
-    'theme_nominated': NewThemesQueueTable,
-    'content_review': ContentReviewTable,
-    'mad': MadReviewTable,
-    'pending_rejection': PendingRejectionTable,
-}
+    return _queue(request, tab)
 
 
 def construct_count_queryset_from_queryset(qs):
@@ -366,23 +374,9 @@ def fetch_queue_counts(request):
     return {queue: count() for (queue, count) in counts.items()}
 
 
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_extension(request):
-    return _queue(request, 'extension')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
-def queue_theme_nominated(request):
-    return _queue(request, 'theme_nominated')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.STATIC_THEMES_REVIEW)
-def queue_theme_pending(request):
-    return _queue(request, 'theme_pending')
-
-
 @permission_or_tools_listed_view_required(amo.permissions.RATINGS_MODERATE)
-def queue_moderated(request):
+def queue_moderated(request, tab):
+    TableObj = reviewer_tables_registry[tab]
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
 
@@ -410,26 +404,24 @@ def queue_moderated(request):
         'reviewers/queue.html',
         context=context(
             reviews_formset=reviews_formset,
-            tab='moderated',
+            tab=tab,
             page=page,
             flags=flags,
+            registry=reviewer_tables_registry,
+            title=TableObj.title,
         ),
     )
 
 
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
-def queue_content_review(request):
-    return _queue(request, 'content_review')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.ADDONS_REVIEW)
-def queue_mad(request):
-    return _queue(request, 'mad')
-
-
-@permission_or_tools_listed_view_required(amo.permissions.REVIEWS_ADMIN)
-def queue_pending_rejection(request):
-    return _queue(request, 'pending_rejection')
+reviewer_tables_registry = {
+    'extension': PendingManualApprovalQueueTable,
+    'theme_pending': UpdatedThemesQueueTable,
+    'theme_nominated': NewThemesQueueTable,
+    'content_review': ContentReviewTable,
+    'mad': MadReviewTable,
+    'pending_rejection': PendingRejectionTable,
+    'moderated': ModerationQueueTable,
+}
 
 
 def determine_channel(channel_as_text):
@@ -488,6 +480,9 @@ def review(request, addon, channel=None):
         amo.messages.warning(request, 'Self-reviews are not allowed.')
         return redirect(reverse('reviewers.dashboard'))
 
+    needs_human_review_qs = NeedsHumanReview.objects.filter(
+        is_active=True, version=OuterRef('pk')
+    )
     # Queryset to be paginated for versions. We use the default ordering to get
     # most recently created first (Note that the template displays each page
     # in reverse order, older first).
@@ -500,6 +495,10 @@ def review(request, addon, channel=None):
         .select_related('autoapprovalsummary')
         .select_related('reviewerflags')
         .select_related('file___webext_permissions')
+        .select_related('blockversion')
+        # Prefetch needshumanreview existence into a property that the
+        # VersionsChoiceWidget will use.
+        .annotate(needs_human_review=Exists(needs_human_review_qs))
         # Prefetch scanner results and related rules...
         .prefetch_related('scannerresults')
         .prefetch_related('scannerresults__matched_rules')
@@ -625,7 +624,7 @@ def review(request, addon, channel=None):
         except AddonApprovalsCounter.DoesNotExist:
             pass
 
-    pager = paginate(request, versions_qs, 10)
+    pager = paginate(request, versions_qs, VERSIONS_PER_REVIEW_PAGE)
     num_pages = pager.paginator.num_pages
     count = pager.paginator.count
 
@@ -650,7 +649,6 @@ def review(request, addon, channel=None):
     versions_pending_rejection_qs = versions_qs.filter(
         reviewerflags__pending_rejection__isnull=False
     )
-    has_versions_pending_rejection = versions_pending_rejection_qs.exists()
     # We want to notify the reviewer if there are versions needing extra
     # attention that are not present in the versions history (which is
     # paginated).
@@ -684,6 +682,8 @@ def review(request, addon, channel=None):
     admin_changes_actions = (
         amo.LOG.FORCE_DISABLE.id,
         amo.LOG.FORCE_ENABLE.id,
+        amo.LOG.REQUEST_ADMIN_REVIEW_THEME.id,
+        amo.LOG.CLEAR_ADMIN_REVIEW_THEME.id,
     )
     important_changes_log = ActivityLog.objects.filter(
         action__in=(user_changes_actions + admin_changes_actions),
@@ -725,7 +725,6 @@ def review(request, addon, channel=None):
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,
-        has_versions_pending_rejection=has_versions_pending_rejection,
         important_changes_log=important_changes_log,
         is_admin=is_admin,
         language_dict=dict(settings.LANGUAGES),
@@ -752,6 +751,7 @@ def review(request, addon, channel=None):
         unlisted=(channel == amo.CHANNEL_UNLISTED),
         user_ratings=user_ratings,
         version=version,
+        VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
         versions_with_a_due_date_other=versions_with_a_due_date_other,
         versions_flagged_by_mad_other=versions_flagged_by_mad_other,
         versions_pending_rejection_other=versions_pending_rejection_other,
@@ -809,7 +809,6 @@ def review_viewing(request):
         'current': currently_viewing,
         'current_name': current_name,
         'is_user': is_user,
-        'interval_seconds': interval,
     }
 
 
@@ -1250,7 +1249,9 @@ class AddonReviewerViewSet(GenericViewSet):
             Version, pk=request.data.get('version'), addon_id=kwargs['pk']
         )
         status_code = status.HTTP_202_ACCEPTED
-        version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+        )
         due_date = version.reload().due_date
         due_date_string = due_date.isoformat(timespec='seconds') if due_date else None
         return Response(status=status_code, data={'due_date': due_date_string})
@@ -1517,3 +1518,45 @@ class ReviewAddonVersionCompareViewSet(
             instance=version, data={'parent_version': objs['parent_version']}
         )
         return Response(serializer.data)
+
+
+@bigquery_api_view(json_default=dict)
+@any_reviewer_required
+@reviewer_addon_view_factory
+@non_atomic_requests
+def usage_per_version(request, addon):
+    versions_avg = get_average_daily_users_per_version_from_bigquery(addon)
+    response = JsonResponse(
+        {'adus': [[version, numberfmt(adu)] for (version, adu) in versions_avg]}
+    )
+    patch_cache_control(response, max_age=5 * 60)
+    return response
+
+
+@any_reviewer_required
+@reviewer_addon_view_factory
+@non_atomic_requests
+def review_version_redirect(request, addon, version):
+    addon_versions = addon.versions(manager='unfiltered_for_relations').values_list(
+        'version', 'channel'
+    )
+
+    def index_in_versions_list(channel, value):
+        versions = (ver for ver, chan in addon_versions if chan == channel)
+        for idx, ver in enumerate(versions):
+            if value == ver:
+                return idx
+        return None
+
+    # Check each channel to calculate which # it would be in a list of versions
+    for channel, channel_text in amo.CHANNEL_CHOICES_API.items():  # noqa: B007
+        if (index := index_in_versions_list(channel, version)) is not None:
+            break
+    else:
+        raise http.Http404
+
+    page_param = (
+        f'?page={page + 1}' if (page := index // VERSIONS_PER_REVIEW_PAGE) else ''
+    )
+    url = reverse('reviewers.review', args=(channel_text, addon.pk))
+    return redirect(url + page_param + f'#version-{to_dom_id(version)}')

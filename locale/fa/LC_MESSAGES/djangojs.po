@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2020-11-28 07:08+0000\n"
 "Last-Translator: abtin <abtin@riseup.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "افزونه شما از حداکثر حجم {0} تجاوز می‌کن�
 msgid "Received an empty response from the server; status: {0}"
 msgstr "یک پاسخ خالی از سرور دریافت شد، وضعیت: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "خطای غیر منتظره در هنگام اعتبار سنجی."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "اعتبار سنجی {0} پایان یافت"
@@ -618,9 +624,6 @@ msgstr[1] "{files} فایل"
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Select an application first"
-msgstr ""
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
@@ -638,6 +641,9 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
+msgstr ""
+
+msgid "Review page polling failed."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."

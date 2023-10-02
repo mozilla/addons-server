@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-09-23 10:01+0000\n"
 "Last-Translator: ricky.tigg <ricky.tigg@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,8 +66,14 @@ msgstr "Lisäosasi ylittää enimmäiskoon {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Vastaanotettiin tyhjä vastaus palvelimelta; tila: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Odottamaton palvelinvirhe lisäosaa tarkistettaessa."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Lisäosan {0} tarkistus päätyi"
@@ -618,9 +624,6 @@ msgstr[1] "{files} tiedostoa"
 msgid "Image changes being processed"
 msgstr "Kuvamuutoksia käsitellään"
 
-msgid "Select an application first"
-msgstr "Valitse ensin sovellus"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> merkki"
@@ -639,6 +642,9 @@ msgstr "Poista tämä lokalisointi"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} katseli tätä sivua ensin."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} katseli tätä lisäosaa ensin."

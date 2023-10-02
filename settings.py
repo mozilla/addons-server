@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 """This is the standard development settings file.
 
 If you need to overload settings, please do so in a local_settings.py file (it
@@ -8,6 +9,7 @@ import os
 from urllib.parse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
+
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
@@ -134,11 +136,12 @@ REMOTE_SETTINGS_IS_TEST_SERVER = True
 try:
     from local_settings import *  # noqa
 except ImportError:
-    import warnings
     import traceback
+    import warnings
 
     warnings.warn(
-        'Could not import local_settings module. {}'.format(traceback.format_exc())
+        'Could not import local_settings module. {}'.format(traceback.format_exc()),
+        stacklevel=1,
     )
 
 SITEMAP_DEBUG_AVAILABLE = True

@@ -1,7 +1,5 @@
 from datetime import datetime, timedelta
 
-from pyquery import PyQuery as pq
-
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.messages.storage import default_storage as default_messages_storage
@@ -10,19 +8,27 @@ from django.test.client import RequestFactory
 from django.urls import reverse
 from django.utils import formats, timezone
 
+from pyquery import PyQuery as pq
+
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.admin import AddonAdmin, ReplacementAddonAdmin
-from olympia.addons.models import Addon, AddonRegionalRestrictions, ReplacementAddon
+from olympia.addons.models import (
+    Addon,
+    AddonBrowserMapping,
+    AddonRegionalRestrictions,
+    ReplacementAddon,
+)
+from olympia.amo.reverse import django_reverse
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    block_factory,
     collection_factory,
     user_factory,
     version_factory,
 )
-from olympia.amo.reverse import django_reverse
-from olympia.blocklist.models import Block
+from olympia.constants.browsers import CHROME
 from olympia.git.models import GitExtractionEntry
 
 
@@ -185,8 +191,6 @@ class TestAddonAdmin(TestCase):
         addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
-                'needs_admin_content_review': False,
                 'auto_approval_delayed_until': delay,
                 'auto_approval_delayed_until_unlisted': delay_unlisted,
             },
@@ -209,7 +213,6 @@ class TestAddonAdmin(TestCase):
             '#result_list > tbody > tr:nth-child(2) .field-reviewer_flags'
         ).text() == '\n'.join(
             [
-                'needs admin code review',
                 'auto approval delayed until',
                 formats.localize(timezone.template_localtime(delay)),
                 'auto approval delayed until unlisted',
@@ -555,12 +558,11 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
+                'needs_admin_theme_review': True,
             },
             users=[user_factory()],
         )
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -570,26 +572,23 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert doc('#id_reviewerflags-0-needs_admin_code_review')[0].value == 'on'
+        assert doc('#id_reviewerflags-0-needs_admin_theme_review')[0].value == 'on'
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
-        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
-        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        post_data['reviewerflags-0-needs_admin_theme_review'] = ''  # empty turns it off
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reviewerflags.reload()
-        assert not addon.reviewerflags.needs_admin_code_review
-        assert addon.reviewerflags.needs_admin_content_review
+        assert not addon.reviewerflags.needs_admin_theme_review
 
     def test_cannot_edit_reviewerflags_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(
             guid='@foo',
             reviewer_flags={
-                'needs_admin_code_review': True,
+                'needs_admin_theme_review': True,
             },
             users=[user_factory()],
         )
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Addons:Edit')
@@ -598,16 +597,14 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
         doc = pq(response.content)
-        assert not doc('#id_reviewerflags-0-needs_admin_code_review')
+        assert not doc('#id_reviewerflags-0-needs_admin_theme_review')
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
-        post_data['reviewerflags-0-needs_admin_code_review'] = ''  # empty turns it off
-        post_data['reviewerflags-0-needs_admin_content_review'] = 'on'
+        post_data['reviewerflags-0-needs_admin_theme_review'] = ''  # empty turns it off
         response = self.client.post(self.detail_url, post_data, follow=True)
         assert response.status_code == 200
         addon.reviewerflags.reload()
         # Unchanged.
-        assert addon.reviewerflags.needs_admin_code_review
-        assert not addon.reviewerflags.needs_admin_content_review
+        assert addon.reviewerflags.needs_admin_theme_review
 
     def test_can_not_edit_addonuser_files_if_doesnt_have_admin_advanced(self):
         addon = addon_factory(guid='@foo', users=[user_factory()])
@@ -734,15 +731,11 @@ class TestAddonAdmin(TestCase):
         assert response.status_code == 200
         assert 'Blocked' not in response.content.decode('utf-8')
 
-        block = Block.objects.create(
-            addon=addon, min_version=addon.current_version.version, updated_by=user
-        )
+        block = block_factory(addon=addon, updated_by=user)
 
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert f'Blocked ({addon.current_version.version} - *)' in (
-            response.content.decode('utf-8')
-        )
+        assert 'Blocked' in response.content.decode('utf-8')
         link = pq(response.content)('.field-version__is_blocked a')[0]
         assert link.attrib['href'] == block.get_admin_url_path()
 
@@ -753,7 +746,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, 'Addons:Edit')
         self.grant_permission(user, 'Admin:Advanced')
         self.client.force_login(user)
-        with self.assertNumQueries(22):
+        with self.assertNumQueries(20):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -762,8 +755,10 @@ class TestAddonAdmin(TestCase):
         assert addon.guid in response.content.decode('utf-8')
 
         version_factory(addon=addon)
-        with self.assertNumQueries(22):
-            # Confirm it scales
+        version_factory(addon=addon)
+        with self.assertNumQueries(20):
+            # Confirm it scales correctly by doing the same number of queries
+            # when number of versions increases.
             # FIXME: explain each query
             response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -1014,7 +1009,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:addons_addonregionalrestrictions_changelist')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'Admin:RegionalRestrictionsEdit')
         self.client.force_login(user)
 
     def test_can_see_module_in_admin(self):
@@ -1118,3 +1113,101 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
             f"[{restriction.addon.id}] deleted: ['FR']"
         )
         assert mail.outbox[0].to == ['amo-admins@mozilla.com']
+
+
+class TestAddonBrowserMappingAdmin(TestCase):
+    def setUp(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Curation')
+        self.client.force_login(user)
+        self.list_url = reverse('admin:addons_addonbrowsermapping_changelist')
+        self.add_url = reverse('admin:addons_addonbrowsermapping_add')
+
+    def test_can_see_module_in_admin(self):
+        url = reverse('admin:index')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        # Use django's reverse, since that's what the admin will use. Using our
+        # own would fail the assertion because of the locale that gets added.
+        list_url = django_reverse('admin:addons_addonbrowsermapping_changelist')
+        assert list_url in response.content.decode('utf-8')
+
+    def test_can_list(self):
+        extension_id = 'some-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(name='an-addon'),
+            browser=CHROME,
+            extension_id=extension_id,
+        )
+        response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        assert 'an-addon' in response.content.decode('utf-8')
+        assert extension_id in response.content.decode('utf-8')
+
+    def test_can_add(self):
+        addon = addon_factory(name='an-addon')
+        response = self.client.get(self.add_url, follow=True)
+        assert response.status_code == 200
+        assert pq(response.content)('#id_addon')  # addon input is editable
+
+        extension_id = 'some-extension-id'
+        response = self.client.post(
+            self.add_url,
+            {
+                'addon': addon.id,
+                'browser': CHROME,
+                'extension_id': extension_id,
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mapping = AddonBrowserMapping.objects.get(addon=addon)
+        assert mapping.browser == CHROME
+        assert mapping.extension_id == extension_id
+
+    def test_can_edit(self):
+        extension_id = 'some-extension-id'
+        addon = addon_factory(name='an-addon')
+        mapping = AddonBrowserMapping.objects.create(
+            addon=addon,
+            browser=CHROME,
+            extension_id=extension_id,
+        )
+        detail_url = reverse(
+            'admin:addons_addonbrowsermapping_change', args=(mapping.pk,)
+        )
+        response = self.client.get(detail_url, follow=True)
+        assert response.status_code == 200
+        assert extension_id in response.content.decode('utf-8')
+
+        another_extension_id = 'some-other-extension-id'
+        another_addon = addon_factory()
+        response = self.client.post(
+            detail_url,
+            {
+                'addon': another_addon.id,
+                'browser': CHROME,
+                'extension_id': another_extension_id,
+            },
+            follow=True,
+        )
+        assert response.status_code == 200
+        mapping.reload()
+        assert mapping.browser == CHROME
+        assert mapping.extension_id == another_extension_id
+        assert mapping.addon == another_addon
+
+    def test_can_delete(self):
+        mapping = AddonBrowserMapping.objects.create(
+            addon=addon_factory(name='an-addon'),
+            browser=CHROME,
+            extension_id='some-extension-id',
+        )
+        delete_url = reverse(
+            'admin:addons_addonbrowsermapping_delete', args=(mapping.pk,)
+        )
+        response = self.client.get(delete_url, follow=True)
+        assert response.status_code == 200
+        response = self.client.post(delete_url, data={'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not AddonBrowserMapping.objects.exists()

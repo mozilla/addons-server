@@ -6,7 +6,6 @@ import stat
 import tarfile
 import tempfile
 import zipfile
-
 from collections import Counter, OrderedDict
 from datetime import datetime, timedelta
 from unittest import mock
@@ -22,7 +21,6 @@ from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode
 
 import pytest
-
 from elasticsearch import Elasticsearch
 from freezegun import freeze_time
 from rest_framework.exceptions import ErrorDetail
@@ -34,9 +32,9 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    ESTestCase,
     APITestClientJWT,
     APITestClientSessionID,
+    ESTestCase,
     TestCase,
     addon_factory,
     collection_factory,
@@ -47,19 +45,19 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
-from olympia.blocklist.models import Block
+from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
     LINE,
-    SPOTLIGHT,
-    STRATEGIC,
     RECOMMENDED,
     SPONSORED,
+    SPOTLIGHT,
+    STRATEGIC,
     VERIFIED,
 )
-from olympia.files.utils import parse_addon, parse_xpi
 from olympia.files.tests.test_models import UploadMixin
+from olympia.files.utils import parse_addon, parse_xpi
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.search.utils import get_es
@@ -76,21 +74,21 @@ from olympia.versions.models import (
 
 from ..models import (
     Addon,
-    AddonCategory,
     AddonApprovalsCounter,
+    AddonBrowserMapping,
+    AddonCategory,
     AddonRegionalRestrictions,
-    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
-    ReplacementAddon,
     Preview,
+    ReplacementAddon,
 )
 from ..serializers import (
     AddonAuthorSerializer,
     AddonPendingAuthorSerializer,
-    DeveloperAddonSerializer,
     CompactLicenseSerializer,
+    DeveloperAddonSerializer,
     DeveloperVersionSerializer,
     LicenseSerializer,
 )
@@ -335,7 +333,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 401
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
@@ -358,7 +356,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 403
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_get_not_listed_simple_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -478,7 +476,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 404
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
     def test_addon_regional_restrictions(self):
         response = self.client.get(
@@ -487,7 +485,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
         AddonRegionalRestrictions.objects.create(
@@ -499,7 +497,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
         AddonRegionalRestrictions.objects.filter(addon=self.addon).update(
@@ -511,7 +509,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert response.status_code == 451
         # Response is short enough that it won't be compressed, so it doesn't
         # depend on Accept-Encoding.
-        assert response['Vary'] == 'Origin, X-Country-Code, Accept-Language'
+        assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
         assert response['Link'] == (
             '<https://www.mozilla.org/about/policy/transparency/>; rel="blocked-by"'
         )
@@ -546,7 +544,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = json.loads(force_str(response.content))
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': 'My Addôn'}
@@ -1214,7 +1212,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert data['summary'] == {'en-US': 'new summary', 'fr': 'lé summary'}
         assert addon.summary == 'new summary'
         with self.activate(locale='fr'):
-            Addon.objects.get().summary == 'lé summary'
+            assert Addon.objects.get().summary == 'lé summary'
         assert data['support_email'] == {'en-US': 'email@me.me'}
         assert addon.support_email == 'email@me.me'
         assert data['support_url']['url'] == {'en-US': 'https://my.home.page/support/'}
@@ -1258,7 +1256,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
         assert addon.summary == 'new summary'
         with self.activate(locale='fr'):
-            Addon.objects.get().summary == 'lé summary'
+            assert Addon.objects.get().summary == 'lé summary'
 
     def test_fields_max_length(self):
         data = {
@@ -1998,6 +1996,22 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200, response.content
 
+    def test_set_slug_log(self):
+        self.addon.update(slug='first-slug')
+        response = self.request(
+            data={'slug': 'second-slug'},
+        )
+
+        log_entry = ActivityLog.objects.filter(
+            action=amo.LOG.ADDON_SLUG_CHANGED.id
+        ).latest('pk')
+
+        assert response.status_code == 200, response.content
+        assert log_entry.user == self.user
+        assert log_entry.arguments == [self.addon, 'first-slug', 'second-slug']
+        assert 'slug from first-slug to second-slug' in str(log_entry)
+        assert str(self.user.id) in str(log_entry)
+
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
@@ -2045,6 +2059,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
                 amo.LOG.ADD_VERSION.id,
                 amo.LOG.LOG_IN.id,
                 amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.ADDON_SLUG_CHANGED.id,
             )
         ).get()
         assert alog.user == self.user
@@ -2615,7 +2630,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         assert (
             response['Vary']
-            == 'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            == 'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
         result = json.loads(force_str(response.content))
         assert result['id'] == self.version.pk
@@ -2852,7 +2867,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         )
         assert version.source
         assert str(version.source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
         assert log_mock.info.call_count == 4
@@ -2913,7 +2927,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         _, version = self._submit_source(self.file_path('webextension_no_id.tar.gz'))
         assert version.source
         assert str(version.source).endswith('.tar.gz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2921,7 +2934,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         _, version = self._submit_source(self.file_path('webextension_no_id.tgz'))
         assert version.source
         assert str(version.source).endswith('.tgz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2931,7 +2943,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         )
         assert version.source
         assert str(version.source).endswith('.tar.bz2')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -2946,7 +2957,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         ]
         assert not version or not version.source
         self.addon.reload()
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
@@ -2970,7 +2980,6 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data['source'] == ['Invalid or broken archive.']
         self.addon.reload()
         assert not version or not version.source
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
@@ -2990,22 +2999,16 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data['source'] == ['Invalid or broken archive.']
         self.addon.reload()
         assert not version or not version.source
-        assert not self.addon.needs_admin_code_review
         assert not ActivityLog.objects.filter(
             action=amo.LOG.SOURCE_CODE_UPLOADED.id
         ).exists()
 
     def test_activity_log_each_time(self):
-        AddonReviewerFlags.objects.create(
-            addon=self.addon, needs_admin_code_review=True
-        )
-        assert self.addon.needs_admin_code_review
         _, version = self._submit_source(
             self.file_path('webextension_with_image.zip'),
         )
         assert version.source
         assert str(version.source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(version.source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -3089,23 +3092,25 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
-            'android': {'max': '*', 'min': '48.0'},
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             'firefox': {'max': '*', 'min': '42.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
     def test_compatibility_dict(self):
         response = self.request(compatibility={})
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Invalid value']}
 
-        response = self.request(compatibility={'firefox': {'min': '65.0'}, 'foo': {}})
+        response = self.request(compatibility={'firefox': {'min': '61.0'}, 'foo': {}})
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Invalid app specified']}
 
-        # DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID is 65.0 so it exists
+        # 61.0 (DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX) should be valid.
         response = self.request(
-            compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+            compatibility={'firefox': {'min': '61.0'}, 'android': {}}
         )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         data = response.data
@@ -3113,16 +3118,23 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert self.addon.versions.count() == (1 if hasattr(self, 'version') else 2)
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
-            # android was specified but with an empty dict, so gets the defaults
-            'android': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID},
+            # android was specified but with an empty dict, so gets the default
+            # corrected to account for general availability.
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '65.0'},
+            'firefox': {'max': '*', 'min': '61.0'},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
 
-    def test_compatibility_dict_109(self):
-        # 109.0 is valid per setUpTestData()
-        response = self.request(compatibility={'firefox': {'min': '109.0'}})
+    def test_compatibility_dict_high_appversion_that_exists(self):
+        # APPVERSION_HIGHER_THAN_EVERYTHING_ELSE ('121.0') is valid per setUpTestData()
+        response = self.request(
+            compatibility={
+                'firefox': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
+            }
+        )
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         data = response.data
         self.addon.reload()
@@ -3130,7 +3142,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         version = self.addon.find_latest_version(channel=None)
         assert data['compatibility'] == {
             # firefox max wasn't specified, so is the default max app version
-            'firefox': {'max': '*', 'min': '109.0'},
+            'firefox': {'max': '*', 'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE},
         }
         assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
 
@@ -3150,6 +3162,38 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         response = self.request(compatibility={'firefox': {'min': '61.*'}})
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Unknown min app version specified']}
+
+    def test_compatibility_forbidden_range_android(self):
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
+    def test_compatibility_forbidden_range_android_only_min_specified(self):
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
@@ -3171,7 +3215,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             response = self.request(
-                compatibility={'firefox': {'min': '65.0'}, 'android': {}}
+                compatibility={'firefox': {'min': '61.0'}, 'android': {}}
             )
         assert response.status_code == 400, response.content
         assert response.data == {
@@ -3206,6 +3250,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     client_class = APITestClientSessionID
     client_request_verb = 'post'
     SUCCESS_STATUS_CODE = 201
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3214,11 +3259,12 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
             amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
-            '109.0',
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
             AppVersion.objects.get_or_create(
@@ -3437,16 +3483,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert version.approval_notes == 'This!'
         self.statsd_incr_mock.assert_any_call('addons.submission.version.unlisted')
 
-    def test_check_blocklist(self):
-        Block.objects.create(guid=self.addon.guid, updated_by=self.user)
-        response = self.client.post(
-            self.url,
-            data=self.minimal_data,
-        )
-        assert response.status_code == 400
-        assert 'Version 0.0.1 matches ' in str(response.data['non_field_errors'])
-        assert self.addon.reload().versions.count() == 1
-
     def test_cant_update_disabled_addon(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         response = self.client.post(
@@ -3598,6 +3634,28 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ],
         }
 
+    def test_compatibility_gecko_android_in_manifest(self):
+        # Only specifying firefox compatibility for an add-on that has explicit
+        # gecko_android compatibility in manifest is accepted, but we
+        # automatically add Android compatibility.
+        self.upload = self.get_upload(
+            'webextension_gecko_android.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        self.minimal_data = {'upload': self.upload.uuid}
+        response = self.request(compatibility={'firefox': {'min': '61.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+        assert data['compatibility'] == {
+            'android': {
+                'max': '*',
+                'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            },
+            'firefox': {'max': '*', 'min': '61.0'},
+        }
+
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
         src = SimpleUploadedFile(
@@ -3625,6 +3683,7 @@ class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
 class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
     client_request_verb = 'patch'
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
 
     @classmethod
     def setUpTestData(cls):
@@ -3633,18 +3692,24 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
             amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
-            '109.0',
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
         }
         for version in versions:
-            AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
-            AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super().setUp()
         self.user = user_factory(read_dev_agreement=self.days_ago(0))
+        user_factory(pk=settings.TASK_USER_ID)
         self.addon = addon_factory(
             users=(self.user,),
             guid='@webextension-guid',
@@ -3837,7 +3902,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
@@ -3868,7 +3937,13 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
         alog2 = (
             ActivityLog.objects.exclude(id=alog.id)
-            .exclude(action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id))
+            .exclude(
+                action__in=(
+                    amo.LOG.LOG_IN.id,
+                    amo.LOG.LOG_IN_API_TOKEN.id,
+                    amo.LOG.CHANGE_STATUS.id,
+                )
+            )
             .get()
         )
         assert alog2.user == self.user
@@ -3929,7 +4004,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'slug': None,
         }
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_LICENSE.id
@@ -3950,7 +4029,13 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert data['license']['url'] == builtin_license.url
         alog2 = (
             ActivityLog.objects.exclude(id=alog.id)
-            .exclude(action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id))
+            .exclude(
+                action__in=(
+                    amo.LOG.LOG_IN.id,
+                    amo.LOG.LOG_IN_API_TOKEN.id,
+                    amo.LOG.CHANGE_STATUS.id,
+                )
+            )
             .get()
         )
         assert alog2.user == self.user
@@ -4007,15 +4092,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     @mock.patch('olympia.addons.views.log')
     def _test_delete_source(self, request_kw, log_mock):
-        AddonReviewerFlags.objects.create(
-            addon=self.version.addon, needs_admin_code_review=True
-        )
         self.version.update(source='src.zip')
         response = self.client.patch(self.url, **request_kw)
         assert response.status_code == 200, response.content
         self.version.reload()
         assert not self.version.source
-        assert self.addon.needs_admin_code_review  # still set
         # No logging when setting source to None.
         assert log_mock.info.call_count == 0
 
@@ -4111,8 +4192,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         response, self.version = self._submit_source(new_source)
         self.addon.reload()
         assert self.version.source
-        assert self.addon.needs_admin_code_review
-        assert self.version.needs_human_review
+        assert self.version.needshumanreview_set.filter(is_active=True).exists()
         log = ActivityLog.objects.get(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
         assert log.user == self.user
         assert log.details is None
@@ -4137,7 +4217,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.version.is_user_disabled
         assert self.version.file.status == amo.STATUS_DISABLED
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.DISABLE_VERSION.id
@@ -4168,7 +4252,11 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert self.version.is_user_disabled
         assert self.version.file.status == amo.STATUS_DISABLED
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.DISABLE_VERSION.id
@@ -4182,10 +4270,59 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         self.version.file.reload()
         assert not self.version.is_user_disabled
         alog = ActivityLog.objects.exclude(
-            action__in=(amo.LOG.LOG_IN.id, amo.LOG.LOG_IN_API_TOKEN.id)
+            action__in=(
+                amo.LOG.LOG_IN.id,
+                amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.CHANGE_STATUS.id,
+            )
         ).get()
         assert alog.user == self.user
         assert alog.action == amo.LOG.ENABLE_VERSION.id
+
+    def test_compatibility_with_appversion_locked_from_manifest(self):
+        # Add a 114.0 for Android coming from manifest. It shouldn't be
+        # possible for the developer to remove it in any way.
+        self.version.apps.create(
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
+            ),
+            max=AppVersion.objects.get(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+            ),
+            originated_from=amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+        )
+        response = self.request(compatibility=['firefox'])
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
+
+        response = self.request(
+            compatibility={
+                'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX}
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
+
+        response = self.request(
+            compatibility={
+                'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
+                'android': {'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data['compatibility'] == [
+            'Can not override compatibility information set in the manifest for this '
+            'application (Firefox for Android)'
+        ]
 
 
 class TestVersionViewSetUpdateJWTAuth(TestVersionViewSetUpdate):
@@ -4505,6 +4642,49 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.client.login_api(user)
 
         self._test_url_contains_all(filter='all_with_unlisted')
+
+    def test_all_with_unlisted_when_no_unlisted_versions(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        # delete the unlisted version so only the listed versions remain.
+        self.unlisted_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 2
+        result_version = result['results'][0]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
+
+    def test_all_with_unlisted_when_no_unlisted_versions_viewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.client.login_api(user)
+        # delete the unlisted version so only the listed versions remain.
+        self.unlisted_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 2
+        result_version = result['results'][0]
+        assert result_version['id'] == self.version.pk
+        assert result_version['version'] == self.version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
 
     def test_deleted_version_anonymous(self):
         self.version.delete()
@@ -5057,7 +5237,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
@@ -5065,7 +5245,7 @@ class TestAddonSearchView(ESTestCase):
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '42.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
@@ -5073,14 +5253,16 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='43.0'),
+            min=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version='120.0'
+            )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
@@ -5104,7 +5286,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '42.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
             slug='my-tb-addon',
@@ -5112,7 +5294,7 @@ class TestAddonSearchView(ESTestCase):
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '42.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
@@ -5120,38 +5302,44 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '43.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
         ApplicationsVersions.objects.create(
             application=amo.ANDROID.id,
             version=both_addon.current_version,
-            min=AppVersion.objects.create(application=amo.ANDROID.id, version='43.0'),
+            min=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version='120.0'
+            )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         # Because the manually created ApplicationsVersions was created after
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '46.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'android', 'appversion': '43.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'android', 'appversion': '121.0.1'}
+        )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '42.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '119.0'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
-        data = self.perform_search(self.url, {'app': 'android', 'appversion': '42.0.1'})
+        data = self.perform_search(
+            self.url, {'app': 'android', 'appversion': '119.0.1'}
+        )
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == an_addon.pk
@@ -5595,10 +5783,12 @@ class TestAddonSearchView(ESTestCase):
         # contain a string that was causing such breakage before.
         # Populate the index with a few add-ons first (enough to trigger the
         # issue locally).
-        for i in range(0, 10):
+        for _i in range(0, 10):
             addon_factory()
         self.refresh()
-        query = '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'
+        query = (
+            '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'  # noqa: E501
+        )
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
@@ -5925,7 +6115,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 58
+        assert len(data) == 43
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -5954,7 +6144,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 58
+        assert len(data) == 43
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6305,7 +6495,7 @@ class TestLanguageToolsView(TestCase):
 
         assert response['Cache-Control'] == 'max-age=86400'
         assert response['Vary'] == (
-            'Origin, Accept-Encoding, X-Country-Code, Accept-Language'
+            'origin, Accept-Encoding, X-Country-Code, Accept-Language'
         )
 
 
@@ -6853,7 +7043,7 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.addonuser.reload()
         assert response.data['role'] == 'developer'
-        self.addonuser.role == amo.AUTHOR_ROLE_DEV
+        assert self.addonuser.role == amo.AUTHOR_ROLE_DEV
 
         log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
         assert log.user == self.user
@@ -6876,7 +7066,7 @@ class TestAddonAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.addonuser.reload()
         assert response.data['listed'] is False
-        self.addonuser.listed is False
+        assert self.addonuser.listed is False
         assert not ActivityLog.objects.filter(
             action=amo.LOG.CHANGE_USER_WITH_ROLE.id
         ).exists()
@@ -7077,7 +7267,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.status_code == 200, response.content
         self.pending_author.reload()
         assert response.data['role'] == 'developer'
-        self.pending_author.role == amo.AUTHOR_ROLE_DEV
+        assert self.pending_author.role == amo.AUTHOR_ROLE_DEV
 
         log = ActivityLog.objects.get(action=amo.LOG.CHANGE_USER_WITH_ROLE.id)
         assert log.user == self.user
@@ -7162,3 +7352,77 @@ class TestAddonPendingAuthorViewSet(TestCase):
         # and not delete either
         response = self.client.delete(self.detail_url)
         assert response.status_code == 403, response.content
+
+
+class TestBrowserMapping(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.url = reverse_ns('addon-browser-mappings', api_version='v5')
+
+    def assert_json_results(self, response, expected_results):
+        json = response.json()
+        assert 'results' in json
+        assert 'count' in json
+        assert 'page_size' in json
+        assert json['count'] == expected_results
+        assert json['page_size'] == 100  # We use `LargePageNumberPagination`.
+        return json['results']
+
+    def test_invalid_params(self):
+        for query_string in ['', '?invalid=param', '?browser=not-a-browser']:
+            res = self.client.get(f'{self.url}{query_string}')
+            assert res.status_code == 400
+            assert res['cache-control'] == 's-maxage=0'
+            assert res.json() == {'detail': 'Invalid browser parameter'}
+
+    def test_get(self):
+        addon_1 = addon_factory()
+        extension_id_1 = 'an-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_1,
+            extension_id=extension_id_1,
+            browser=CHROME,
+        )
+        addon_2 = addon_factory()
+        extension_id_2 = 'another-extension-id'
+        AddonBrowserMapping.objects.create(
+            addon=addon_2,
+            extension_id=extension_id_2,
+            browser=CHROME,
+        )
+        # Shouldn't show up because of the add-on status.
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(status=amo.STATUS_NOMINATED),
+            extension_id='some-other-extension-id-1',
+            browser=CHROME,
+        )
+        # Shouldn't show up because the browser is unrelated.
+        AddonBrowserMapping.objects.create(
+            addon=addon_1,
+            extension_id='some-other-extension-id-2',
+            browser=0,
+        )
+        # Shouldn't show up because the add-on has been disabled by the user.
+        AddonBrowserMapping.objects.create(
+            addon=addon_factory(disabled_by_user=True),
+            extension_id='some-other-extension-id-3',
+            browser=CHROME,
+        )
+        # - 1 for counting the number of results
+        # - 1 for fetching the results of the first (and only) page
+        with self.assertNumQueries(2):
+            res = self.client.get(f'{self.url}?browser=chrome')
+
+        assert res.status_code == 200
+        assert res['cache-control'] == 'max-age=86400'
+
+        results = self.assert_json_results(res, 2)
+        assert results[0] == {
+            'extension_id': extension_id_1,
+            'addon_guid': addon_1.guid,
+        }
+        assert results[1] == {
+            'extension_id': extension_id_2,
+            'addon_guid': addon_2.guid,
+        }

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-04-09 00:33+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "Utvidinga di overskrid maksimumstorleiken på {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Fekk ein tom respons frå tenaren; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Uventa tenarfeil under validering."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Fullførte validering av {0}"
@@ -619,9 +625,6 @@ msgstr[1] "{files} filer"
 msgid "Image changes being processed"
 msgstr "Endringar i bildet vert behandla"
 
-msgid "Select an application first"
-msgstr "Vel ein applikasjon først"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> teikn"
@@ -640,6 +643,9 @@ msgstr "Fjern denne omsettinga"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} såg på sida først."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} såg på utvidinga først."

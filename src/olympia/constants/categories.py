@@ -1,5 +1,4 @@
 import copy
-
 from functools import total_ordering
 
 from django.urls import reverse
@@ -8,14 +7,14 @@ from django.utils.translation import gettext_lazy as _
 
 from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
+    _ADDON_PERSONA,
+    _ADDON_SEARCH,
+    _ADDON_THEME,
     ADDON_DICT,
     ADDON_EXTENSION,
     ADDON_LPAPP,
-    _ADDON_SEARCH,
     ADDON_SLUGS,
     ADDON_STATICTHEME,
-    _ADDON_THEME,
-    _ADDON_PERSONA,
 )
 
 
@@ -481,23 +480,6 @@ CATEGORIES = {
             'sports-games': 146,
             'user-interface': 152,
             'other': 153,
-        },
-        ADDON_STATICTHEME: {
-            'abstract': 400,
-            'causes': 420,
-            'fashion': 424,
-            'film-and-tv': 426,
-            'firefox': 408,
-            'foxkeh': 410,
-            'holiday': 428,
-            'music': 422,
-            'nature': 402,
-            'other': 414,
-            'scenery': 406,
-            'seasonal': 412,
-            'solid': 418,
-            'sports': 404,
-            'websites': 416,
         },
     },
 }

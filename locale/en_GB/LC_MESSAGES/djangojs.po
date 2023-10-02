@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2020-12-15 07:08+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-15 05:57+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -66,8 +66,14 @@ msgstr "Your add-on exceeds the maximum size of {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Received an empty response from the server; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Your extension has to be compatible with at least one application."
+
 msgid "Unexpected server error while validating."
 msgstr "Unexpected server error while validating."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Explicitly marked as compatible with Firefox for Android in the manifest"
 
 msgid "Finished validating {0}"
 msgstr "Finished validating {0}"
@@ -612,9 +618,6 @@ msgstr[1] "{files} files"
 msgid "Image changes being processed"
 msgstr "Image changes being processed"
 
-msgid "Select an application first"
-msgstr "Select an application first"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> character"
@@ -633,6 +636,9 @@ msgstr "Remove this localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} was viewing this page first."
+
+msgid "Review page polling failed."
+msgstr "Review page polling failed."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} was viewing this add-on first."

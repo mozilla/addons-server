@@ -1,6 +1,7 @@
 from django.conf import settings
-from django.db.models import CharField, Value, Q
+from django.db.models import CharField, Q, Value
 from django.db.transaction import non_atomic_requests
+
 from rest_framework.exceptions import ParseError
 from rest_framework.generics import ListAPIView
 
@@ -9,13 +10,13 @@ from olympia.api.authentication import (
     JWTKeyAuthentication,
     SessionIDAuthentication,
 )
+from olympia.api.permissions import GroupPermission
 from olympia.constants.scanners import (
     LABEL_BAD,
     LABEL_GOOD,
     SCANNERS,
     TRUE_POSITIVE,
 )
-from olympia.api.permissions import GroupPermission
 
 from .models import ScannerResult
 from .serializers import ScannerResultSerializer
@@ -53,6 +54,7 @@ class ScannerResultView(ListAPIView):
             version__versionlog__activity_log__action__in=(
                 amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
                 amo.LOG.BLOCKLIST_BLOCK_EDITED.id,
+                amo.LOG.BLOCKLIST_VERSION_BLOCKED.id,
             )
         )
 

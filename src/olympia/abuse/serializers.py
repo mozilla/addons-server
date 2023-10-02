@@ -1,10 +1,9 @@
-from rest_framework import serializers
-
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
-import olympia.core.logger
+from rest_framework import serializers
 
+import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
@@ -134,7 +133,19 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     def handle_unknown_install_method_or_source(self, data, field_name):
         reversed_choices = self.fields[field_name].reversed_choices
         value = data[field_name]
-        if value not in reversed_choices:
+
+        try:
+            is_value_unknown = value not in reversed_choices
+        except TypeError:
+            # Log the invalid type and raise a validation error.
+            log.warning(
+                'Invalid type for abuse report %s value submitted: %s',
+                field_name,
+                str(data[field_name])[:255],
+            )
+            raise serializers.ValidationError({field_name: _('Invalid value')})
+
+        if is_value_unknown:
             log.warning(
                 'Unknown abuse report %s value submitted: %s',
                 field_name,

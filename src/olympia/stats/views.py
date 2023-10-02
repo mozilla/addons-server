@@ -1,8 +1,7 @@
 import csv
+import itertools
 import json
 import time
-import itertools
-
 from datetime import timedelta
 
 from django import http
@@ -17,7 +16,6 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_str
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.decorators import allow_cross_site_request
@@ -26,7 +24,7 @@ from olympia.core.languages import ALL_LANGUAGES
 from olympia.stats.decorators import addon_view_stats, bigquery_api_view
 from olympia.stats.forms import DateForm
 
-from .utils import get_updates_series, get_download_series
+from .utils import get_download_series, get_updates_series
 
 
 logger = olympia.core.logger.getLogger('z.apps.stats.views')

@@ -1,10 +1,10 @@
-import collections
 import contextlib
 import errno
+import fcntl
 import hashlib
+import io
 import json
 import os
-import io
 import re
 import shutil
 import signal
@@ -13,7 +13,7 @@ import struct
 import tarfile
 import tempfile
 import zipfile
-import fcntl
+from types import MappingProxyType
 
 from django import forms
 from django.conf import settings
@@ -25,15 +25,13 @@ from django.utils.jslex import JsLexer
 from django.utils.translation import gettext
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
-from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.lib import unicodehelper
-
+from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.versions.compare import VersionString
 
 
@@ -68,21 +66,24 @@ def get_filepath(fileorpath):
     elif isinstance(fileorpath, File):
         return fileorpath.file
     elif isinstance(fileorpath, FileUpload):
-        return fileorpath.path
+        return fileorpath.file_path
     elif hasattr(fileorpath, 'name'):  # file-like object
         return fileorpath.name
     return fileorpath
 
 
 def get_file(fileorpath):
-    """Get a file-like object, whether given a FileUpload object or a path."""
-    if hasattr(fileorpath, 'path'):  # FileUpload
+    """Get a file-like object, whether given a FileUpload, a (Django) File or
+    a path."""
+    if hasattr(fileorpath, 'file_path'):  # FileUpload
         if not fileorpath.path:
             # This upload has already been used to create a Version. Note that
             # we say "processed" but it's different than the `processed`
             # property on FileUpload, it's just used here as a generic term to
             # inform the developer this FileUpload has already been used.
             raise AlreadyUsedUpload(gettext('This upload has already been submitted.'))
+        return storage.open(fileorpath.file_path, 'rb')
+    elif hasattr(fileorpath, 'path'):
         return storage.open(fileorpath.path, 'rb')
     if hasattr(fileorpath, 'name'):
         return fileorpath
@@ -129,12 +130,10 @@ class DuplicateAddonID(forms.ValidationError):
     pass
 
 
-def get_appversions(app, min_version, max_version):
-    """Return the `AppVersion`s that correspond to the given versions."""
-    qs = AppVersion.objects.filter(application=app.id)
-    min_appver = qs.get(version=min_version)
-    max_appver = qs.get(version=max_version)
-    return min_appver, max_appver
+# Return an immutable empty dict used as the fallback value when fetching
+# manifest keys that are missing. Comparisons need to be done with the `is`
+# operator to distinguish from an empty dict specified in the manifest.
+EMPTY_FALLBACK_DICT = MappingProxyType({})
 
 
 def get_simple_version(version_string):
@@ -155,8 +154,6 @@ def get_simple_version(version_string):
 
 class ManifestJSONExtractor:
     """Extract add-on info from a manifest file."""
-
-    App = collections.namedtuple('App', 'appdata id min max')
 
     def __init__(self, manifest_data, *, certinfo=None):
         self.certinfo = certinfo
@@ -194,7 +191,7 @@ class ManifestJSONExtractor:
     def homepage(self):
         homepage_url = self.get('homepage_url')
         # `developer.url` in the manifest overrides `homepage_url`.
-        return self.get('developer', {}).get('url', homepage_url)
+        return self.get('developer', EMPTY_FALLBACK_DICT).get('url', homepage_url)
 
     @property
     def is_experiment(self):
@@ -211,9 +208,16 @@ class ManifestJSONExtractor:
         """Return the "applications|browser_specific_settings["gecko"]" part
         of the manifest."""
         parent_block = self.get(
-            'browser_specific_settings', self.get('applications', {})
+            'browser_specific_settings', self.get('applications', EMPTY_FALLBACK_DICT)
         )
-        return parent_block.get('gecko', {})
+        return parent_block.get('gecko', EMPTY_FALLBACK_DICT)
+
+    @property
+    def gecko_android(self):
+        """Return `browser_specific_settings.gecko_android` if present."""
+        return self.get('browser_specific_settings', EMPTY_FALLBACK_DICT).get(
+            'gecko_android', EMPTY_FALLBACK_DICT
+        )
 
     @property
     def guid(self):
@@ -231,13 +235,17 @@ class ManifestJSONExtractor:
             else amo.ADDON_EXTENSION
         )
 
-    @property
-    def strict_max_version(self):
-        return get_simple_version(self.gecko.get('strict_max_version'))
-
-    @property
-    def strict_min_version(self):
-        return get_simple_version(self.gecko.get('strict_min_version'))
+    def get_strict_version_for(self, *, key, application):
+        strict_key = f'strict_{key}_version'
+        if application == amo.FIREFOX:
+            strict_version_value = self.gecko.get(strict_key)
+        elif application == amo.ANDROID:
+            strict_version_value = self.gecko_android.get(
+                strict_key, self.gecko.get(strict_key)
+            )
+        else:
+            strict_version_value = None
+        return get_simple_version(strict_version_value)
 
     @property
     def install_origins(self):
@@ -252,7 +260,10 @@ class ManifestJSONExtractor:
         )
 
     def apps(self):
-        """Get `AppVersion`s for the application."""
+        """Return `ApplicationsVersion`s (without the `version` field being
+        set yet) for this manifest to be used in Version.from_upload()."""
+        from olympia.versions.models import ApplicationsVersions
+
         type_ = self.type
         if type_ == amo.ADDON_LPAPP:
             # Langpack are only compatible with Firefox desktop at the moment.
@@ -261,27 +272,27 @@ class ManifestJSONExtractor:
             # the default min version here doesn't matter much.
             apps = ((amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),)
         elif type_ == amo.ADDON_STATICTHEME:
-            # Static themes are only compatible with Firefox desktop >= 53
-            # and Firefox for Android >=65.
-            apps = (
-                (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
-                (amo.ANDROID, amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID),
-            )
+            # Static themes are only compatible with Firefox desktop >= 53.
+            # They used to be compatible with Android, but that support was
+            # removed.
+            apps = ((amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),)
         elif type_ == amo.ADDON_DICT:
             # WebExt dicts are only compatible with Firefox desktop >= 61.
             apps = ((amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),)
         else:
-            webext_min = (
+            webext_min_firefox = (
                 amo.DEFAULT_WEBEXT_MIN_VERSION
                 if self.get('browser_specific_settings', None) is None
                 else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC
             )
-            # amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC should be 48.0,
-            # which is the same as amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, so
-            # no specific treatment for Android.
+            webext_min_android = (
+                amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID
+                if self.gecko_android is not EMPTY_FALLBACK_DICT
+                else amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+            )
             apps = (
-                (amo.FIREFOX, webext_min),
-                (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
+                (amo.FIREFOX, webext_min_firefox),
+                (amo.ANDROID, webext_min_android),
             )
 
         if self.get('manifest_version') == 3:
@@ -295,9 +306,13 @@ class ManifestJSONExtractor:
                 for app, ver in apps
             )
 
+        strict_min_version_firefox = self.get_strict_version_for(
+            key='min', application=amo.FIREFOX
+        )
+
         doesnt_support_no_id = (
-            self.strict_min_version
-            and self.strict_min_version
+            strict_min_version_firefox
+            and strict_min_version_firefox
             < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID)
         )
 
@@ -309,15 +324,20 @@ class ManifestJSONExtractor:
         # If a minimum strict version is specified, it needs to be higher
         # than the version when Firefox started supporting WebExtensions.
         unsupported_no_matter_what = (
-            self.strict_min_version
-            and self.strict_min_version < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION)
+            strict_min_version_firefox
+            and strict_min_version_firefox
+            < VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION)
         )
         if unsupported_no_matter_what:
             msg = gettext('Lowest supported "strict_min_version" is 42.0.')
             raise forms.ValidationError(msg)
 
         for app, default_min_version in apps:
-            if self.guid is None and not self.strict_min_version:
+            strict_min_version_from_manifest = self.get_strict_version_for(
+                key='min', application=app
+            )
+            strict_min_version = strict_min_version_from_manifest
+            if self.guid is None and not strict_min_version:
                 strict_min_version = max(
                     VersionString(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID),
                     VersionString(default_min_version),
@@ -326,10 +346,13 @@ class ManifestJSONExtractor:
                 # strict_min_version for this app shouldn't be lower than the
                 # default min version for this app.
                 strict_min_version = max(
-                    self.strict_min_version, VersionString(default_min_version)
+                    strict_min_version, VersionString(default_min_version)
                 )
 
-            strict_max_version = self.strict_max_version or VersionString(
+            strict_max_version_from_manifest = self.get_strict_version_for(
+                key='max', application=app
+            )
+            strict_max_version = strict_max_version_from_manifest or VersionString(
                 amo.DEFAULT_WEBEXT_MAX_VERSION
             )
 
@@ -361,7 +384,20 @@ class ManifestJSONExtractor:
                 )
                 raise forms.ValidationError(msg)
 
-            yield self.App(appdata=app, id=app.id, min=min_appver, max=max_appver)
+            if app == amo.ANDROID and self.gecko_android is not EMPTY_FALLBACK_DICT:
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+            elif strict_min_version_from_manifest or strict_max_version_from_manifest:
+                # At least part of the compatibility came from the manifest.
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST
+            else:
+                originated_from = amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC
+
+            yield ApplicationsVersions(
+                application=app.id,
+                min=min_appver,
+                max=max_appver,
+                originated_from=originated_from,
+            )
 
     def target_locale(self):
         """Guess target_locale for a dictionary/langpack from manifest contents."""
@@ -369,7 +405,7 @@ class ManifestJSONExtractor:
             if langpack_id := self.get('langpack_id'):
                 return force_str(langpack_id)[:255]
 
-            dictionaries = self.get('dictionaries', {})
+            dictionaries = self.get('dictionaries', EMPTY_FALLBACK_DICT)
             key = force_str(list(dictionaries.keys())[0])
             return key[:255]
         except (IndexError, UnicodeDecodeError):
@@ -389,6 +425,9 @@ class ManifestJSONExtractor:
             'default_locale': self.get('default_locale'),
             'manifest_version': self.get('manifest_version'),
             'install_origins': self.install_origins,
+            'explicitly_compatible_with_android': (
+                self.gecko_android is not EMPTY_FALLBACK_DICT
+            ),
         }
 
         # Populate certificate information (e.g signed by mozilla or not)
@@ -397,7 +436,7 @@ class ManifestJSONExtractor:
             data.update(self.certinfo.parse())
 
         if self.type == amo.ADDON_STATICTHEME:
-            data['theme'] = self.get('theme', {})
+            data['theme'] = self.get('theme', EMPTY_FALLBACK_DICT)
 
         if not minimal:
             data.update(
@@ -1188,11 +1227,11 @@ def get_background_images(file_obj, theme_data, header_only=False):
         # we might already have theme_data, but otherwise get it from the xpi.
         try:
             parsed_data = parse_xpi(xpi, minimal=True)
-            theme_data = parsed_data.get('theme', {})
+            theme_data = parsed_data.get('theme', EMPTY_FALLBACK_DICT)
         except forms.ValidationError:
             # If we can't parse the existing manifest safely return.
             return {}
-    images_dict = theme_data.get('images', {})
+    images_dict = theme_data.get('images', EMPTY_FALLBACK_DICT)
     # Get the reference in the manifest.  headerURL is the deprecated variant.
     header_url = images_dict.get('theme_frame', images_dict.get('headerURL'))
     # And any additional backgrounds too.

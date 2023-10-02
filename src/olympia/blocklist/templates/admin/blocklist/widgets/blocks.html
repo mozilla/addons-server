@@ -1,0 +1,47 @@
+{% load humanize %}
+
+<h3>{{ blocks|length|intcomma }} Add-on GUIDs with {{ total_adu|intcomma }} users:</h3>
+ <ul class="guid_list">
+  {% for block_obj in blocks %}
+    <li>
+      {{ block_obj.guid }}.
+      {% if block_obj.addon %}
+        <span class="addon-name">{{ block_obj.addon.name }}</span>
+      {% endif %}
+
+      {% if block_obj.current_adu is not None %}
+        ({{ block_obj.current_adu }} users).
+      {% endif %}
+
+      {{ block_obj.review_listed_link }}
+      {{ block_obj.review_unlisted_link }}
+      {% if block_obj.id %}
+        <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>
+      {% endif %}
+      [<a href='#' class="select-versions-all-none all-versions">select all</a>]
+      [<a href='#' class="select-versions-all-none">select none</a>]
+      <ul>
+        {% for version in block_obj.addon_versions %}
+          <li data-version-id="{{ version.id }}">
+          {% if version.id in widget.choices %}
+            <label><input
+              type="checkbox"
+              name="changed_version_ids"
+              value="{{ version.id }}"
+              {% if version.id in widget.value %}checked{% endif %}
+            > {% if is_delete %}Unblock{% else %}Block{% endif %} {{ version.version }}</label>
+          {% else %}
+            <span title="{% if version.is_blocked %}Blocked{% else %}Not blocked{% endif %}">
+              <!-- Red Hexagonal stop sign for Blocked; Green cirle for not blocked -->
+              {% if version.is_blocked %}&#x1F6D1;{% else %}&#x1F7E2;{% endif %}{{ version.version }}
+              {% if version.blocklist_submission_id %}
+                [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
+              {% endif %}
+            </span>
+          {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>

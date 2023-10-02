@@ -13,10 +13,10 @@ updates:
   ignore:
   - dependency-name: django
     versions:
-    - ">= 4"
+    - ">= 5"
   - dependency-name: billiard
     versions:
-    - ">= 4"
+    - ">= 5"
   - dependency-name: celery
     versions:
     - ">= 6"

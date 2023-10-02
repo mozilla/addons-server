@@ -2,6 +2,7 @@ import collections
 import datetime
 import os.path
 import tempfile
+from unittest import mock
 from urllib.parse import urlparse
 
 from django.conf import settings
@@ -11,9 +12,7 @@ from django.utils.functional import cached_property
 from django.utils.http import quote_etag
 
 import freezegun
-from unittest import mock
 import pytest
-
 from babel import Locale
 
 from olympia import amo
@@ -334,7 +333,7 @@ def test_images_are_small():
     """A test that will fail if we accidentally include a large image."""
     large_images = []
     img_path = os.path.join(settings.ROOT, 'static', 'img')
-    for root, dirs, files in os.walk(img_path):
+    for root, _dirs, files in os.walk(img_path):
         large_images += [
             os.path.join(root, name)
             for name in files

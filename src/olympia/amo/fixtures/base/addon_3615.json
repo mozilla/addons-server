@@ -205,7 +205,8 @@
             "version": 81551,
             "size": 388096,
             "manifest_version": 2,
-            "datestatuschanged": "2009-10-21 09:58:40"
+            "datestatuschanged": "2009-10-21 09:58:40",
+            "is_signed": true
         }
     },
     {

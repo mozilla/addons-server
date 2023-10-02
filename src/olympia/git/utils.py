@@ -4,26 +4,23 @@ import shutil
 import sys
 import tempfile
 import uuid
-
-from datetime import datetime, timedelta
 from collections import namedtuple
-
-import pygit2
-
-from celery import current_task
-from django_statsd.clients import statsd
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db import connections
 from django.utils import translation
 from django.utils.functional import cached_property
 
-import olympia.core.logger
+import pygit2
+from celery import current_task
+from django_statsd.clients import statsd
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.utils import id_to_path
-from olympia.versions.models import Version
 from olympia.files.utils import extract_extension_to_dest, get_all_files
+from olympia.versions.models import Version
 
 from .models import GitExtractionEntry
 

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-01-21 20:37+0000\n"
-"Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-07-31 14:24+0000\n"
+"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Harap pastikan kolom ini tidak melebihi {max_length} karakter."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Nilai tidak valid"
 
 msgid "No links are allowed."
 msgstr "Tautan tidak diperbolehkan."
@@ -81,7 +81,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Hanya versi terbaru dari pengaya dapat memiliki catatan yang ditambahkan."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Konten yang diminta terlalu besar."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Angka maksimum untuk kategori per aplikasi ({MAX_CATEGORIES}) terlampaui"
@@ -105,7 +105,7 @@ msgid "URLs must start with https://."
 msgstr "URLs harus dimulai dengan https://."
 
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "Lisensi dengan slug={value} tidak ada."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tipe berkas tidak didukung, sila unggah berkas arsip lainnya ({extensions})."
@@ -123,8 +123,12 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
-msgid "Images must be smaller than %dMB"
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
+
+#, python-format
+msgid "Images must be smaller than %dMB"
+msgstr "Gambar harus lebih kecil dari %dMB"
 
 # Column name in a table.
 msgid "Listed"
@@ -134,43 +138,39 @@ msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Pratinjau tidak tersedia untuk tema."
 
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Lisensi bawaan tidak dapat diperbarui."
 
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Unggahan tidak valid."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Berkas telah dinonaktifkan."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr ""
-
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "Versi {version_string} pernah diunggah dan dihapus."
 
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "Versi {version_string} sudah ada."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Versi yang terdaftar tidak dapat dikirim saat pengaya dinonaktifkan."
 
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "Pengaya membutuhkan sekurangnya satu pemilik."
 
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
 msgid "Account not found."
-msgstr ""
+msgstr "Akun tidak ditemukan."
 
-#, fuzzy
 msgid "An author can only be present once."
 msgstr "Penulis hanya akan terdaftar sekali."
 
@@ -178,25 +178,25 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Akun ini membutuhkan nama sebelum dapat ditambahkan sebagai penulis."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Slug ini tidak dapat digunakan. Silakan pilih yang lain."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "Versi {version_string} harus lebih besar dari versi {previous_version_string} yang telah disetujui sebelumnya."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "Baik `license` dan `custom_license` tidak dapat disediakan bersamaan."
 
 msgid "This field, or custom_license, is required for listed versions."
 msgstr ""
 
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Jenis pengaya tidak sesuai dengan lisensi ini."
 
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Lisensi kustom tidak didukung untuk tema."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr ""
@@ -205,13 +205,13 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr ""
 
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "GUID harus ditentukan dalam manifes."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Ketidakcocokan GUID antara URL dan manifes."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Sumber tidak dapat diubah karena versi ini telah ditinjau oleh Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
 msgstr ""
@@ -346,9 +346,11 @@ msgstr ""
 msgid "Register or Log in"
 msgstr "Daftar atau Masuk"
 
-#, fuzzy
 msgid "Email:"
-msgstr "Surel"
+msgstr "Surel:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "Oke"
@@ -461,37 +463,6 @@ msgstr "URL ubahsuai ini tidak dapat digunakan."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Tidak ada pengaya dengan GUID %(guid)s"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-msgid "Invalid version"
-msgstr "Versi tidak valid"
-
-msgid "Min version can not be greater than Max version"
-msgstr ""
-
-msgid "Review Listed"
-msgstr "Tinjauan Terdaftar"
-
-msgid "Review Unlisted"
-msgstr "Ulasan Tidak Terdaftar"
 
 msgid "{addon} was created."
 msgstr "{addon} dibuat."
@@ -700,7 +671,7 @@ msgid "User {user} added to {group}."
 msgstr ""
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Pengguna {user} dihapus dari {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} tidak terdaftar."
@@ -710,7 +681,7 @@ msgstr "{file} telah ditandatangani."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Pengaya id {0} dengan GUID {1} telah dihapus"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} dimigrasi dari awal."
@@ -859,10 +830,31 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1526,6 +1518,10 @@ msgstr "Lihat yang terbaru"
 msgid "Invalid version range."
 msgstr "Bentangan versi tidak valid."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "Membutuhkan setidaknya satu aplikasi yang kompatibel."
 
@@ -1540,9 +1536,6 @@ msgstr "Validasi gagal dikesampingkan"
 
 msgid "Need to select at least one application."
 msgstr "Perlu memilih setidaknya satu aplikasi."
-
-msgid "a blocklist entry"
-msgstr "entri daftar blokir"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
@@ -1594,6 +1587,9 @@ msgstr "Pemberitahuan Keamanan Mozilla: Kredensial AMO API Anda telah dicabut"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validasi menghasilkan terlalu banyak kesalahan/peringatan sehingga %s pesan terpotong. Setelah menyampaikan pesan yang terlihat, Anda akan bisa melihat yang lain."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Diperbarui"
@@ -1657,6 +1653,9 @@ msgstr "Perubahan berhasil disimpan."
 
 msgid "Validate Add-on"
 msgstr "Pengaya Divalidasi"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikon harus dalam PNG atau JPG."
@@ -1862,60 +1861,6 @@ msgstr "Aktivitas"
 msgid "Subscribe to this feed"
 msgstr "Berlangganan umpan ini"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Pengaya ini tidak selaras dengan <b>%(app_name)s %(app_version)s</b>, rilis terakhir dari %(app_name)s. Harap mempertimbangkan untuk memperbarui info keselarasan pengaya anda, atau mengunggah versi "
-"terbaru pengaya ini."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitas Diperbarui</a> <a href=\"%(version_url)s\" class=\"button\">Mengunggah Versi Baru</a> atau <a href=\"#"
-"\" class=\"close\">Abaikan</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Lihat dan perbarui rentang kompatibilitas aplikasi"
-
-msgid "Compatibility"
-msgstr "Kompatibilitas"
-
-msgid "Update Compatibility"
-msgstr "Memperbarui Kompatibilitas"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Menyesuaikan informasi aplikasi di sini akan memungkinkan pengguna untuk memasang pengaya anda bahkan jika manifest pemasangan di paket mengindikasikan bahwa pengaya ini tidak kompatibel."
-
-msgid "Application"
-msgstr "Програма"
-
-msgid "Supported Versions"
-msgstr "Versi yang Didukung"
-
-msgid "Remove"
-msgstr "Hapus"
-
-msgid "Add Another Application&hellip;"
-msgstr "Tambahkan Aplikasi Lain &hellip;"
-
-msgid "Save Changes"
-msgstr "Simpan Perubahan"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "atau"
-
-msgid "Cancel"
-msgstr "Batal"
-
-msgid "Close"
-msgstr "Tutup"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1984,12 +1929,18 @@ msgstr "Konfirmasi pencipta masih ditunda"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Pencipta yang telah ditambahkan ke pengaya ini tetapi belum dikonfirmasi."
 
+msgid "Save Changes"
+msgstr "Simpan Perubahan"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Pengaya bisa memiliki sejumlah penulis dengan 2 kemungkinan peran:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, termasuk menambahkan dan menghapus penulis "
 "lainnya</li> <li><b>Pengembang:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, kecuali menambahkan dan menghapus penulis lainnya</li> </ul>"
+
+msgid "Close"
+msgstr "Tutup"
 
 msgid "Additional Details"
 msgstr "Rincian Tambahan"
@@ -2035,6 +1986,14 @@ msgstr ""
 "                          alamatnya di sini. Jika situs anda dilokalkan ke dalam bahasa\n"
 "                          lainnya, berbagai penerjemahan dari bidang ini dapat \n"
 "                          ditambahkan. Hanya berlaku untuk pengaya yang terdaftar."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "atau"
+
+msgid "Cancel"
+msgstr "Batal"
 
 msgid "Describe Add-on"
 msgstr "Menjelaskan Pengaya"
@@ -3118,6 +3077,15 @@ msgstr "Kelola {0}"
 msgid "Files"
 msgstr "Berkas"
 
+msgid "Compatibility"
+msgstr "Kompatibilitas"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Menyesuaikan informasi aplikasi di sini akan memungkinkan pengguna untuk memasang pengaya anda bahkan jika manifest pemasangan di paket mengindikasikan bahwa pengaya ini tidak kompatibel."
+
+msgid "Add Another Application&hellip;"
+msgstr "Tambahkan Aplikasi Lain &hellip;"
+
 msgid "Version Notes"
 msgstr "Catatan Versi"
 
@@ -3453,7 +3421,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Otomatis menghapus kuki selepas Anda menutup tab."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Cara simpel menyesuaikan ukuran teks laman—atau bahkan memperbesar laman itu sendiri."
 
@@ -3600,7 +3567,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blokir semua pop-up secara baku, lalu putuskan mana yang lebih Anda sukai untuk dibuka."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Kustomisasi tampilan situs web apa saja. Geser warna, latar laman, dan banyak lainnya."
 
@@ -3737,7 +3703,7 @@ msgstr "Cara yang lebih efisien untuk menyimpan markah ketika Anda menggunakan b
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Buang format yang tidak perlu dan salin teks polos saja."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -3845,7 +3811,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
@@ -3965,7 +3930,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
@@ -4029,7 +3993,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4114,7 +4077,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
@@ -4201,6 +4163,14 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4208,6 +4178,14 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Menemukan gambar yang menarik di web? Gunakan TinEye untuk menelusuri asalnya."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #, fuzzy
@@ -4220,13 +4198,29 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Temukan cara baru dalam mengarahkan dengan bantuan 50+ gestur tetikus."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 #, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Gunakan gestur tetikus untuk menutup tab, mengarahkan laman, dan banyak lagi."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Nikmati gambar keluku situs seiring tampilan hasil pencarian Anda."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4257,7 +4251,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4324,6 +4318,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -4338,15 +4340,16 @@ msgid "See all extensions"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4458,10 +4461,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "berdasarkan Versi Pengaya"
@@ -4514,6 +4513,14 @@ msgstr "Disarankan"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "berdasarkan Versi Pengaya"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4636,6 +4643,13 @@ msgstr "Lainnya (isi sendiri)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4689,15 +4703,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "oleh %(user)s pada %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ditandai oleh %(user)s pada %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Perhatian!</strong> Pengguna lain sedang menyaksikan laman ini sebelum anda."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4804,7 +4818,7 @@ msgid "by Source"
 msgstr "berdasarkan Sumber"
 
 msgid "by Medium"
-msgstr ""
+msgstr "berdasarkan Medium"
 
 #, fuzzy
 msgid "by Content"
@@ -4903,7 +4917,7 @@ msgid "Custom..."
 msgstr "Khusus..."
 
 msgid "Sorry, the statistics are temporarily unavailable."
-msgstr ""
+msgstr "Maaf, statistik saat ini tidak tersedia."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Memuat data terbaru&hellip;"
@@ -5107,7 +5121,7 @@ msgid "IP Address"
 msgstr "Alamat IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "Isi dengan alamat IPv4 atau IPv6 yang benar,contoh 127.0.0.1. Akan diubah menjadi jaringan /32."
 
 msgid "You can only enter one, either IP Address or Network."
 msgstr ""
@@ -5122,8 +5136,8 @@ msgstr "Pengguna Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Masukkan rentang jaringan IPv6 atau IPv6 CIDR yang valid, misalnya 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Beberapa pengaya yang melanggar kebijakan kami telah dikirimkan dari lokasi Anda. Alamat IP telah diblokir."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "Pola Surel"
@@ -5131,8 +5145,8 @@ msgstr "Pola Surel"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Alamat surel yang digunakan untuk akun Anda tidak diizinkan untuk penyampaian pengaya."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

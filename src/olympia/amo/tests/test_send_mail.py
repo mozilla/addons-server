@@ -1,12 +1,11 @@
 import mimetypes
 import os.path
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
 from django.core.mail import EmailMessage
 from django.utils import translation
-
-from unittest import mock
 
 from celery.exceptions import Retry
 

@@ -6,7 +6,7 @@ Accounts
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 The following API endpoints cover a users account.
 
@@ -181,7 +181,7 @@ Delete
 
 .. note::
     Accounts of users who are authors of Add-ons can't be deleted.
-    All Add-ons (and Themes) must be deleted or transfered to other users first.
+    All Add-ons (and Themes) must be deleted or transferred to other users first.
 
 This endpoint allows the account to be deleted. The reviews and ratings
 created by the user will not be deleted; but all the user's details are

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-06 02:10+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 00:10+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -119,6 +119,10 @@ msgid "Unknown min app version specified"
 msgstr "Okänd minimal appversion har angetts"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Kan inte åsidosätta kompatibilitetsinformation som ställts in i manifestet för denna applikation (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Bilder måste vara mindre än %dMB"
 
@@ -143,9 +147,6 @@ msgstr "Filen är redan inaktiverad."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Den senaste godkända versionen av detta %s-tillägg kan inte raderas eftersom den tidigare versionen inte godkändes för %s marknadsföring. Kontakta AMO Admins om du behöver hjälp med detta."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} matchar {block_link} för detta tillägg. Du kan kontakta {amo_admins} för ytterligare information."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Version {version_string} laddades upp tidigare och togs bort."
@@ -340,6 +341,9 @@ msgstr "Registrera dig eller logga in"
 msgid "Email:"
 msgstr "E-postadress:"
 
+msgid "Two-factor authentication"
+msgstr "Tvåfaktorsautentisering"
+
 msgid "OK"
 msgstr "OK"
 
@@ -448,37 +452,6 @@ msgstr "Denna anpassade URL kan inte användas."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s är en väntande inlämning"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blockera med GUID %(guid)s hittades inte"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Tillägg med GUID %(guid)s finns inte"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Block som ska uppdateras är olika eftersom Min- eller Max-versionen har ändrats."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s innehåller *"
-
-msgid "Invalid version"
-msgstr "Ogiltig version"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Min-versionen kan inte vara större än Max-versionen"
-
-msgid "Review Listed"
-msgstr "Granskning listad"
-
-msgid "Review Unlisted"
-msgstr "Granskning olistad"
 
 msgid "{addon} was created."
 msgstr "{addon} skapades."
@@ -841,11 +814,32 @@ msgstr "{addon} {version} godkänd igen."
 msgid "Un-rejected"
 msgstr "Godkänd igen"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Flaggan \"behöver mänsklig granskning\" för {addon} har rensats."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Svara på {rating} som skrivits för {addon}."
 
-msgid "Needs Human Review cleared"
-msgstr "Behöver mänsklig granskning rensad"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} väntande avslag rensad."
+
+msgid "Pending rejection cleared"
+msgstr "Väntande avslag rensad"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} har lagts till i blocklistan."
+
+msgid "Version Blocked"
+msgstr "Version blockerad"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} har tagits bort från blocklistan."
+
+msgid "Version Unblocked"
+msgstr "Version avblockerad"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "{addon} {version} admin tilläggsgranskning rensad."
+
+msgid "Admin add-on-review cleared"
+msgstr "Admin tilläggsgranskning rensad"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1494,6 +1488,10 @@ msgstr "Visa aktuell"
 msgid "Invalid version range."
 msgstr "Ogiltigt versionsintervall."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Ogiltigt versionsområde. För Firefox för Android kan du bara välja ett intervall som börjar med version %(max)s eller högre, eller slutar med lägre än version %(min)s."
+
 msgid "Need at least one compatible application."
 msgstr "Behöver minst en kompatibel applikation."
 
@@ -1508,9 +1506,6 @@ msgstr "Åsidosätt misslyckad validering"
 
 msgid "Need to select at least one application."
 msgstr "Välj åtminstone ett program."
-
-msgid "a blocklist entry"
-msgstr "en blocklistpost"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Version {version} har laddats upp innan och tas bort."
@@ -1564,6 +1559,9 @@ msgstr "Mozilla säkerhetsmeddelande: Din AMO API-behörighet har återkallats"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validering genererade för många fel/varningar så %s meddelanden trunkerades. Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se de andra."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Detta tillägg är inte ett tema. Använd sidan <a href=\"{link}\">Skicka in ett nytt tillägg</a> för att skicka in tillägg."
 
 msgid "Updated"
 msgstr "Uppdaterad"
@@ -1627,6 +1625,9 @@ msgstr "Ändringar sparade."
 
 msgid "Validate Add-on"
 msgstr "Validera tillägg"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Lägg till tvåfaktorsautentisering till ditt konto för att skicka in tillägg.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikoner måste vara antingen PNG eller JPG."
@@ -1832,56 +1833,6 @@ msgstr "Aktivitet"
 msgid "Subscribe to this feed"
 msgstr "Prenumerera på denna kanal"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Detta tillägg är inte kompatibel med <b>%(app_name)s %(app_version)s</b>, den senaste versionen av %(app_name)s. Överväg att uppdatera ditt tilläggs kompatibilitetsinfo eller ladda upp en nyare "
-"version av detta tillägg."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
-"class=\"close\">Ignorera</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Visa och uppdatera programkompatibilitetsområden"
-
-msgid "Compatibility"
-msgstr "Kompatibilitet"
-
-msgid "Update Compatibility"
-msgstr "Uppdatera kompatibilitet"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Att justera applikationens information här, kommer att tillåta användare att installera tillägget även om installationsmanifestet i paketet visar att tillägget inte är kompatibel."
-
-msgid "Application"
-msgstr "Applikation"
-
-msgid "Supported Versions"
-msgstr "Versioner som stöds"
-
-msgid "Remove"
-msgstr "Ta bort"
-
-msgid "Add Another Application&hellip;"
-msgstr "Lägg till en annan applikation&hellip;"
-
-msgid "Save Changes"
-msgstr "Spara ändringar"
-
-msgid "or"
-msgstr "eller"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "Close"
-msgstr "Stäng"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1952,12 +1903,18 @@ msgstr "Författare som väntar på bekräftelse"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Författare som har lagts till i detta tillägg men har inte bekräftats."
 
+msgid "Save Changes"
+msgstr "Spara ändringar"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Tillägg kan ha många upphovsmän, med 2 möjliga roller:</p> <ul> <li><b>Ägare:</b> Kan hantera alla aspekter av tilläggets listning, inklusive lägga till och ta bort andra upphovsmän</li> "
 "<li><b>Utvecklare:</b> Kan hantera alla aspekter av tilläggets listning, med undantag för att lägga till och ta bort andra upphovsmän</li> </ul>"
+
+msgid "Close"
+msgstr "Stäng"
 
 msgid "Additional Details"
 msgstr "Ytterligare detaljer"
@@ -2003,6 +1960,12 @@ msgstr ""
 "                          adress här. Om din webbplats är översatt till andra\n"
 "                          språk kan flera översättningar av detta fält läggas till.\n"
 "                          Detta är endast relevant för listade tillägg."
+
+msgid "or"
+msgstr "eller"
+
+msgid "Cancel"
+msgstr "Avbryt"
 
 msgid "Describe Add-on"
 msgstr "Beskriv tillägg"
@@ -3105,6 +3068,15 @@ msgstr "Hantera {0}"
 msgid "Files"
 msgstr "Filer"
 
+msgid "Compatibility"
+msgstr "Kompatibilitet"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Att justera applikationens information här, kommer att tillåta användare att installera tillägget även om installationsmanifestet i paketet visar att tillägget inte är kompatibel."
+
+msgid "Add Another Application&hellip;"
+msgstr "Lägg till en annan applikation&hellip;"
+
 msgid "Version Notes"
 msgstr "Versionsanteckningar"
 
@@ -3436,7 +3408,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Ta bort kakor automatiskt när du stänger en flik."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Ett enkelt sätt att justera storleken på sidans text—eller till och med förstora sidan själv."
 
@@ -3578,7 +3549,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blockera alla popup-fönster som standard och bestäm sedan vilka som du vill öppna."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Anpassa utseendet på vilken webbplats som helst. Byt färger, sidobakgrunder och mer."
 
@@ -3818,7 +3788,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Få en Amazon-kant. Om du tittar på produktsidor på andra onlinebutiker, om det också finns tillgängligt på Amazon, kan du helt enkelt klicka på en knapp för att kontrollera Amazons lista."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Njut av den ultimata flikkontrollen—stäng duplicerade flikar, slå samman fönster, kopiera flikens titel och mer."
 
@@ -3935,7 +3904,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Fixa irriterande ljud. Är volymen på en webbplats för tyst? För högt? SoundFixer kan hjälpa till."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Redigera en webbsida innan du skriver ut. Gör svepande visuella ändringar—ta bort annonser eller olämpligt innehåll—på vilken webbsida du vill skriva ut."
 
@@ -3998,7 +3966,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Njut av nedladdning med stöd för flera trådar. Upptäck automatiskt olika typer av media som är tillgängliga för nedladdning."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Spara bilder enkelt—ta dem från din nuvarande flik."
 
@@ -4083,7 +4050,6 @@ msgid "Create and customize tab groups."
 msgstr "Skapa och anpassa flikgrupper."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Spara en hel webbsida—inklusive bilder och styling—som en enda HTML-fil."
 
@@ -4168,6 +4134,14 @@ msgstr "Tidsbaserad temaväxlare. Få Firefox att ändra färger när tiden på 
 msgid "Declutter your Twitter experience."
 msgstr "Ta bort distraktioner från din Twitter-upplevelse."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Få tillbaka förmågan att se tummen ner!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Lyssna på musik på YouTube utan de där irriterande \"Video pausad. Fortsätt titta?\" avbrott."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är en lösning."
@@ -4175,6 +4149,14 @@ msgstr "Vissa webbplatser har svårt att spela upp videor på Android. Här är 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Hitta en intressant bild på webben? Använd TinEye för att utforska dess ursprung."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Spara bilder enkelt — hämta dem direkt från din nuvarande flik."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Njut av ultimat flikkontroll — stäng dubbletter av flikar, slå samman fönster, kopiera fliktiteln och mer."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4185,12 +4167,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 konfigurationer."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Anpassa utseendet på vilken webbplats som helst. Byt färger, sidbakgrunder och mer."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Använd musgester för att stänga flikar, navigera på sidor och mer."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Ett enkelt sätt att justera storleken på en sidas text — eller till och med förstora själva sidan."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Njut av miniatyrbilder av webbplatser vid sidan av din sökning."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Spara en hel webbsida — inklusive bilder och stil — som en enda HTML-fil."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Redigera en webbsida före utskrift. Gör genomgripande visuella ändringar — ta bort annonser eller otrevligt innehåll — på alla webbsidor du vill skriva ut."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4221,9 +4219,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Återgå till en enklare tid — när dina bästa sökresultat stod ovanför annonserna (Google och Bing-sökmotorkompatibla)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Sluta ge webbplatser din e-postadress. Firefox Relay skyddar din identitet och förhindrar skräppost. Uppgradera till premium för extra fördelar, som att blockera mer specifika reklammeddelanden."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Maskera din e-post för att skydda din identitet och förhindra skräppost. Nya uppdateringar gör Firefox Relay ännu enklare att använda."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4289,6 +4286,14 @@ msgstr "Förbättra din spelupplevelse på Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Tummen upp för att få tillbaka tummen ner."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Översätt webbplatser i Firefox — privat — utan att använda molnet."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blockera tidsödande webbplatser. Blockera dem helt eller bara under tidsramar som du väljer."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Tillägg är som appar för Firefox."
@@ -4302,16 +4307,17 @@ msgid "See all extensions"
 msgstr "Se alla tillägg"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Sekretess- och säkerhetstillägg"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-anpassning"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Tilläggsstartpaket"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Nedladdningshanterare"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Spel och underhållningstillägg"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4406,10 +4412,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Se fler utvalda annonsblockerare som valts av anställda"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-anpassning"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Se fler YouTube-tillägg som valts av anställda"
 
@@ -4452,6 +4454,14 @@ msgstr "Kreativitetstillägg"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Se fler kreativitetstillägg som valts av anställda"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Tillägg för sociala medier"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Se fler tillägg för social medier som valts av anställda"
 
 msgid "Unreviewed"
 msgstr "Ej granskad"
@@ -4572,6 +4582,13 @@ msgstr "Annat (var god ange)"
 msgid "Auto-flagged due to word match"
 msgstr "Automatiskt flaggad på grund av ordmatchning"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Automatiskt flaggad på grund av användarbegränsning"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s innehåller ett icke-alfanumeriskt tecken."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Recensionstexten får inte innehålla ordet \"{0}\""
@@ -4627,15 +4644,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "av %(user)s den %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "av %(user)s den %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Flaggad av %(user)s den %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Varning!</strong> En annan användare tittade på denna sida innan dig."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Varning!</strong> En annan användare kanske tittar på den här sidan före dig."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5048,8 +5065,8 @@ msgstr "Firefox-användare {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Ange ett giltigt IPv4 eller IPv6 CIDR-nätverksområde, t.ex. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Flera tillägg som bryter mot vår policy har skickats in från din plats. IP-adressen har blivit blockerad."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Flera bidrag som bryter mot våra policyer har skickats från din position. IP-adressen har blockerats."
 
 msgid "Email Pattern"
 msgstr "E-postmönster"
@@ -5059,8 +5076,8 @@ msgstr ""
 "Ange fullständig e-post som ska blockeras eller använd unix-stil jokertecken, t.ex. \"*@exempel.com\". Om du behöver blockera en domän inkl underdomäner, lägg till en andra post, t.ex. "
 "\"*@*.exempel.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Den e-postadress du använde för ditt konto kan inte användas för att skicka in tillägg."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "E-postadressen som används för ditt konto är inte tillåten för att skicka in bidrag."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

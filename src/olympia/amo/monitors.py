@@ -1,22 +1,33 @@
-import os
 import io
+import os
 import socket
 import traceback
 
 from django.conf import settings
 
+import celery
 import requests
-
+from django_statsd.clients import statsd
 from kombu import Connection
 from PIL import Image
 
 import olympia.core.logger
-
-from olympia.search.utils import get_es
 from olympia.amo.models import use_primary_db
+from olympia.blocklist.tasks import monitor_remote_settings
+from olympia.search.utils import get_es
 
 
 monitor_log = olympia.core.logger.getLogger('z.monitor')
+
+
+def execute_checks(checks: list[str]):
+    status_summary = {}
+    for check in checks:
+        with statsd.timer('monitor.%s' % check):
+            status, _ = globals()[check]()
+        # state is a string. If it is empty, that means everything is fine.
+        status_summary[check] = {'state': not status, 'status': status}
+    return status_summary
 
 
 def memcache():
@@ -196,4 +207,20 @@ def database():
                 status = f'Failed to connect to primary database: {e}'
                 monitor_log.critical(status)
 
+    return status, None
+
+
+def remotesettings():
+    # check Remote Settings connectivity.
+    # Since the blocklist filter task is performed by
+    # a worker, and since workers have different network
+    # configuration than the Web head, we use a task to check
+    # the connectivity to the Remote Settings server.
+    # Since we want the result immediately, bypass django-post-request-task.
+    result = monitor_remote_settings.original_apply_async()
+    try:
+        status = result.get(timeout=settings.REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS)
+    except celery.exceptions.TimeoutError as e:
+        status = f'Failed to execute task in time: {e}'
+        monitor_log.critical(status)
     return status, None

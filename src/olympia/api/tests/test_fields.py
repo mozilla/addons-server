@@ -1,10 +1,10 @@
 from collections import OrderedDict
+from unittest.mock import Mock
 
 from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-from unittest.mock import Mock
 from rest_framework import exceptions, serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory
@@ -16,10 +16,10 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.api.fields import (
     AbsoluteOutgoingURLField,
     ESTranslationSerializerField,
+    FallbackField,
     GetTextTranslationSerializerField,
     GetTextTranslationSerializerFieldFlat,
     LazyChoiceField,
-    FallbackField,
     OutgoingURLField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,

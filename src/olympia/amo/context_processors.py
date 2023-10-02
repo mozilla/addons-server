@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.urls import reverse
@@ -5,8 +7,6 @@ from django.utils.translation import get_language, get_language_bidi, gettext
 
 from olympia import amo
 from olympia.access import acl
-
-from urllib.parse import quote
 
 
 def i18n(request):
@@ -69,7 +69,7 @@ def global_settings(request):
         tools_links.append(
             {
                 'text': gettext('Submit a New Theme'),
-                'href': reverse('devhub.submit.agreement'),
+                'href': reverse('devhub.submit.theme.agreement'),
             }
         )
         tools_links.append(

@@ -27,11 +27,6 @@ $(document).ready(function () {
   // Validate addon (standalone)
   $('.validate-addon').exists(initSubmit);
 
-  // Add-on Compatibility Check
-  $('#addon-compat-upload').exists(initAddonCompatCheck, [
-    $('#addon-compat-upload'),
-  ]);
-
   // Submission > Source
   $('#submit-source').exists(initSourceSubmitOutcomes);
 
@@ -49,15 +44,19 @@ $(document).ready(function () {
   var $uploadAddon = $('#upload-addon');
   if ($('#upload-addon').length) {
     var opt = { cancel: $('.upload-file-cancel') };
-    if ($('#addon-compat-upload').length) {
-      opt.appendFormData = function (formData) {
+    opt.appendFormData = function (formData) {
+      if ($('#addon-compat-upload').length) {
         formData.append('app_id', $('#id_application option:selected').val());
         formData.append(
           'version_id',
           $('#id_app_version option:selected').val(),
         );
-      };
-    }
+      }
+      // theme_specific is a django BooleanField, so the value will be the
+      // litteral string "True" or "False". That's what the upload() view
+      // expects.
+      formData.append('theme_specific', $('#id_theme_specific').val());
+    };
     $uploadAddon.addonUploader(opt);
   }
 
@@ -1012,39 +1011,6 @@ function initCompatibility() {
       addAppRow($row);
     }),
   );
-
-  $('.compat-update-modal').modal('a.compat-update', {
-    delegate: $('.item-actions'),
-    hideme: false,
-    emptyme: true,
-    callback: compatModalCallback,
-  });
-
-  $('.compat-error-popup').popup('a.compat-error', {
-    delegate: $('.item-actions'),
-    emptyme: true,
-    width: '450px',
-    callback: function (obj) {
-      var $popup = this,
-        ct = $(obj.click_target),
-        error_url = ct.attr('data-errorurl');
-
-      if (ct.hasClass('ajax-loading')) return;
-      ct.addClass('ajax-loading');
-      $popup.load(error_url, function (e) {
-        ct.removeClass('ajax-loading');
-      });
-
-      $('.compat-update-modal').modal('a.compat-update', {
-        delegate: $('.compat-error-popup'),
-        hideme: false,
-        emptyme: true,
-        callback: compatModalCallback,
-      });
-
-      return { pointTo: $(obj.click_target) };
-    },
-  });
 }
 
 function imagePoller() {
@@ -1213,54 +1179,6 @@ function compatModalCallback(obj) {
   });
 
   return { pointTo: ct };
-}
-
-function initAddonCompatCheck($doc) {
-  var $elem = $('#id_application', $doc),
-    $form = $doc.closest('form');
-
-  $elem.change(function (e) {
-    var $appVer = $('#id_app_version', $form),
-      $sel = $(e.target),
-      appId = $('option:selected', $sel).val();
-
-    if (!appId) {
-      $('option', $appVer).remove();
-      $appVer.append(
-        format('<option value="{0}">{1}</option>', [
-          '',
-          gettext('Select an application first'),
-        ]),
-      );
-      return;
-    }
-    $.post(
-      $sel.attr('data-url'),
-      {
-        application: appId,
-        csrfmiddlewaretoken: $(
-          "input[name='csrfmiddlewaretoken']",
-          $form,
-        ).val(),
-      },
-      function (d) {
-        $('option', $appVer).remove();
-        $.each(d.choices, function (i, ch) {
-          $appVer.append(
-            format('<option value="{0}">{1}</option>', [ch[0], ch[1]]),
-          );
-        });
-      },
-    );
-  });
-
-  if (
-    $elem.children('option:selected').val() &&
-    !$('#id_app_version option:selected', $form).val()
-  ) {
-    // If an app is selected when page loads and it's not a form post.
-    $elem.trigger('change');
-  }
 }
 
 function initCCLicense() {

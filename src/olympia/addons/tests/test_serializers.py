@@ -1,3 +1,4 @@
+import copy
 from contextlib import ExitStack
 from unittest import mock
 
@@ -21,11 +22,10 @@ from olympia.addons.models import (
 )
 from olympia.addons.serializers import (
     AddonAuthorSerializer,
-    UserSerializerWithPictureUrl,
     AddonSerializer,
     DeveloperAddonSerializer,
-    DeveloperVersionSerializer,
     DeveloperListVersionSerializer,
+    DeveloperVersionSerializer,
     ESAddonAutoCompleteSerializer,
     ESAddonSerializer,
     LanguageToolsSerializer,
@@ -33,6 +33,7 @@ from olympia.addons.serializers import (
     ListVersionSerializer,
     ReplacementAddonSerializer,
     SimpleVersionSerializer,
+    UserSerializerWithPictureUrl,
     VersionSerializer,
 )
 from olympia.addons.utils import generate_addon_guid
@@ -53,11 +54,12 @@ from olympia.amo.tests import (
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.licenses import LICENSES_BY_BUILTIN, LICENSE_GPL3
+from olympia.constants.licenses import LICENSE_GPL3, LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
+from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -65,7 +67,6 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
 )
-from olympia.users.models import UserProfile
 
 
 class AddonSerializerOutputTestMixin:
@@ -202,10 +203,10 @@ class AddonSerializerOutputTestMixin:
         AddonUser.objects.create(user=first_author, addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='2.0.99'
+            application=amo.ANDROID.id, version='120.0'
         )[0]
         av_max = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='3.0.99'
+            application=amo.ANDROID.id, version='*'
         )[0]
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -213,9 +214,6 @@ class AddonSerializerOutputTestMixin:
             min=av_min,
             max=av_max,
         )
-        # Reset current_version.compatible_apps now that we've added an app.
-        del self.addon.current_version._compatible_apps
-
         cat2 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
         AddonCategory.objects.create(addon=self.addon, category=cat2)
         cat3 = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']
@@ -1121,6 +1119,22 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         # add-ons with no current version aren't in the ES index, so won't be serialized
         pass
 
+    @mock.patch('olympia.addons.models.Addon.attach_static_categories')
+    def test_category_not_in_constants(self, attach_static_categories_mock):
+        def side_effect(addons, addon_dict: None):
+            addons[0].all_categories = [category, old_category]
+
+        category_name = 'music'
+        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME][category_name]
+        old_category = copy.copy(category)
+        object.__setattr__(old_category, 'id', 666666)
+        object.__setattr__(old_category, 'application', amo.ANDROID.id)
+        attach_static_categories_mock.side_effect = side_effect
+
+        self.addon = addon_factory(type=amo.ADDON_STATICTHEME, category=category)
+        result = self.serialize()
+        assert result['categories'] == {amo.FIREFOX.short: [category_name]}
+
 
 class TestVersionSerializerOutput(TestCase):
     serializer_class = VersionSerializer
@@ -1543,7 +1557,7 @@ class TestLanguageToolsSerializerOutput(TestCase):
         # Create a new current version, just to prove that
         # current_compatible_version does not use that.
         version_factory(addon=self.addon)
-        self.addon.reload
+        self.addon.reload()
         assert self.addon.compatible_versions[0] != self.addon.current_version
         self.request = APIRequestFactory().get('/?app=firefox&appversion=57.0')
         result = self.serialize()

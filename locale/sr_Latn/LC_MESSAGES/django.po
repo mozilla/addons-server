@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -124,6 +124,12 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #, python-format
+msgid ""
+"Can not override compatibility information set in the manifest for this "
+"application (%s)"
+msgstr ""
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
@@ -151,11 +157,6 @@ msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
 "previous version was not approved for %s promotion. Please contact AMO "
 "Admins if you need help with this."
-msgstr ""
-
-msgid ""
-"Version {version} matches {block_link} for this add-on. You can contact "
-"{amo_admins} for additional information."
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
@@ -396,6 +397,9 @@ msgstr ""
 msgid "Email:"
 msgstr "E-pošta"
 
+msgid "Two-factor authentication"
+msgstr ""
+
 msgid "OK"
 msgstr ""
 
@@ -530,41 +534,6 @@ msgstr "Ovo korisničko ime ne može da se koristi."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid ""
-"Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-#, fuzzy
-msgid "Invalid version"
-msgstr "Neispravan opseg verzije."
-
-msgid "Min version can not be greater than Max version"
-msgstr ""
-
-#, fuzzy
-msgid "Review Listed"
-msgstr "Zahtevana recenzija"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "Datum recenzije"
 
 msgid "{addon} was created."
 msgstr "{addon} je kreiran."
@@ -978,10 +947,31 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1789,6 +1779,13 @@ msgstr "Vidi trenutni"
 msgid "Invalid version range."
 msgstr "Neispravan opseg verzije."
 
+#, python-format
+msgid ""
+"Invalid version range. For Firefox for Android, you may only pick a range "
+"that starts with version %(max)s or higher, or ends with lower than version "
+"%(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "Potrebna je najmanje jedna kompatibilna aplikacija."
 
@@ -1806,9 +1803,6 @@ msgstr "Prepis nije prešao validaciju"
 #, fuzzy
 msgid "Need to select at least one application."
 msgstr "Potrebna je najmanje jedna kompatibilna aplikacija."
-
-msgid "a blocklist entry"
-msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -1879,6 +1873,11 @@ msgstr ""
 "Overa je stvorila previše grešaka/upozorenja pa je %s poruka skraćeno. Nakon "
 "obraćanja vidljivim porukama, bićete u mogućnosti da pogledate ostale."
 
+msgid ""
+"This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</"
+"a> page to submit extensions."
+msgstr ""
+
 msgid "Updated"
 msgstr "Ažurirano"
 
@@ -1941,6 +1940,11 @@ msgstr "Izmene su uspešno sačuvane."
 
 msgid "Validate Add-on"
 msgstr "Overite dodatak"
+
+msgid ""
+"<a href=\"{link}\">Please add two-factor authentication to your account to "
+"submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonice moraju biti ili PNG ili JPG formata."
@@ -2182,71 +2186,6 @@ msgstr "Aktivnost"
 msgid "Subscribe to this feed"
 msgstr "Pretplatite se na ove novosti"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the "
-"latest release of %(app_name)s. Please consider updating your add-on's "
-"compatibility info, or uploading a newer version of this add-on."
-msgstr ""
-"Ovaj dodatak nije kompatibilan sa <b>%(app_name)s %(app_version)s</b>, "
-"posledneg izdanja %(app_name)s-a. Molimo Vas uzmite u obzir ažuriranje "
-"informacija kompatibilnosti Vašeg dodatka, ili otpremite noviju verziju."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s"
-"\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button"
-"\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s"
-"\">Ažuriranje kompatibilnosti</a> <a href=\"%(version_url)s\" class=\"button"
-"\">Otpremi novu verziju</a> ili <a href=\"#\" class=\"close\">Ignoriši</a>"
-
-#, fuzzy
-msgid "View and update application compatibility ranges"
-msgstr "Pogledajte i ažurirajte raspon kompatibilnosti aplikacije."
-
-msgid "Compatibility"
-msgstr "Kompatibilnost"
-
-msgid "Update Compatibility"
-msgstr "Ažuriranje kompatibilnosti"
-
-msgid ""
-"Adjusting application information here will allow users to install your add-"
-"on even if the install manifest in the package indicates that the add-on is "
-"incompatible."
-msgstr ""
-"Podešavanje informacije o aplikaciji ovde će dozvoliti korisnicima da "
-"instaliraju Vaš dodatak čak iako manifest instalacije u paketu ukazuje da je "
-"dodatak nekompatibilan."
-
-msgid "Application"
-msgstr "Aplikacija"
-
-msgid "Supported Versions"
-msgstr "Podržane verzije"
-
-msgid "Remove"
-msgstr "Ukloni"
-
-msgid "Add Another Application&hellip;"
-msgstr "Dodaj drugu aplikaciju&hellip;"
-
-msgid "Save Changes"
-msgstr "Sačuvaj izmene"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "ili"
-
-msgid "Cancel"
-msgstr "Otkaži"
-
-msgid "Close"
-msgstr "Zatvori"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2323,6 +2262,9 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Sačuvaj izmene"
+
 #, fuzzy
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> "
@@ -2337,6 +2279,9 @@ msgstr ""
 "b> Može upravljati svim aspektima listinga dodatka, osim za dodavanje i "
 "uklanjanje drugih autora i upravljanje plaćanja</li> <li><b>Posmatrač:</b> "
 "Može videti podešavanja dodatka i statistike, ali ne može da menja</li> </ul>"
+
+msgid "Close"
+msgstr "Zatvori"
 
 #, fuzzy
 msgid "Additional Details"
@@ -2386,6 +2331,14 @@ msgid ""
 "is localized into other languages multiple translations of this field can be "
 "added. It is only relevant for listed add-ons."
 msgstr ""
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "ili"
+
+msgid "Cancel"
+msgstr "Otkaži"
 
 #, fuzzy
 msgid "Describe Add-on"
@@ -3683,6 +3636,21 @@ msgstr "Upravljaj sa {0}"
 msgid "Files"
 msgstr "Datoteke"
 
+msgid "Compatibility"
+msgstr "Kompatibilnost"
+
+msgid ""
+"Adjusting application information here will allow users to install your add-"
+"on even if the install manifest in the package indicates that the add-on is "
+"incompatible."
+msgstr ""
+"Podešavanje informacije o aplikaciji ovde će dozvoliti korisnicima da "
+"instaliraju Vaš dodatak čak iako manifest instalacije u paketu ukazuje da je "
+"dodatak nekompatibilan."
+
+msgid "Add Another Application&hellip;"
+msgstr "Dodaj drugu aplikaciju&hellip;"
+
 msgid "Version Notes"
 msgstr "Beleške o verziji"
 
@@ -4093,7 +4061,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "A simple way to adjust the size of any page's text—or even enlarge the page "
 "itself."
@@ -4267,7 +4234,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
@@ -4553,7 +4519,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab "
 "title, and more."
@@ -4694,7 +4659,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Edit a web page before printing. Make sweeping visual changes—remove ads or "
 "unsavory content—to any web page you want to print."
@@ -4770,7 +4734,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4873,7 +4836,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid ""
 "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
@@ -4963,6 +4925,16 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Listen to music on YouTube without those annoying \"Video paused. Continue "
+"watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4970,6 +4942,16 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 msgid ""
 "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the "
+"tab title, and more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4984,11 +4966,34 @@ msgid ""
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid ""
+"Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid ""
+"A simple way to adjust the size of any page's text — or even enlarge the "
+"page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Save an entire web page — including images and styling — as a single HTML "
+"file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Edit a web page before printing. Make sweeping visual changes — remove ads "
+"or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5026,9 +5031,8 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid ""
-"Stop giving sites your email address. Firefox Relay protects your identity & "
-"prevents junk mail. Upgrade to premium for added benefits, like blocking "
-"more specific promotional emails."
+"Mask your email to protect your identity & prevent junk mail. New updates "
+"make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -5097,6 +5101,16 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid ""
+"Block time-wasting websites. Block them completely or just during time "
+"frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5113,15 +5127,16 @@ msgid "See all extensions"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5232,10 +5247,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Pogledajte sve dodatke"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "po verziji dodatka"
@@ -5288,6 +5299,14 @@ msgstr "Komentariši"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "po verziji dodatka"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -5421,6 +5440,13 @@ msgstr "Drugo (molimo navedite)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -5484,8 +5510,8 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr ""
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "od %(user)s dana %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5496,10 +5522,8 @@ msgstr ""
 "%(date)s</span>"
 
 msgid ""
-"<strong>Warning!</strong> Another user was viewing this page before you."
+"<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
-"<strong>Upozorenje!</strong> Drugi korisnik je pregledavao ovu stranicu pre "
-"Vas."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5961,7 +5985,7 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
 msgid ""
-"Multiple add-ons violating our policies have been submitted from your "
+"Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
@@ -5974,8 +5998,7 @@ msgid ""
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid ""
-"The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""

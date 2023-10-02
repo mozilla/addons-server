@@ -1,4 +1,4 @@
-(function () {
+$(document).ready(function () {
   if ($('.daily-message').length) {
     initDailyMessage();
   }
@@ -46,13 +46,17 @@
     initQueue();
   }
 
+  if ($('.version-adu').length > 0) {
+    initVersionsADU();
+  }
+
   // Show add-on ID when icon is clicked
   if ($('#addon[data-id], #persona[data-id]').length) {
     $('#addon .icon').click(function () {
       window.location.hash = 'id=' + $('#addon, #persona').attr('data-id');
     });
   }
-})();
+});
 
 function initReviewActions() {
   function showForm(element, pageload) {
@@ -93,7 +97,7 @@ function initReviewActions() {
 
   var review_checked = $('#review-actions [name=action]:checked');
   if (review_checked.length > 0) {
-    showForm(review_checked.closest('li'), true);
+    showForm(review_checked.parentsUntil('#id_action', 'div'), true);
   }
 
   /* Review action reason stuff */
@@ -124,17 +128,24 @@ function initReviewActions() {
   );
 
   /* Who's currently on this page? */
-  var addon_id = $('#addon').attr('data-id');
-  var url = $('#addon').attr('data-url');
+
   function check_currently_viewing() {
-    $.post(url, { addon_id: addon_id }, function (d) {
-      var show = d.is_user != 1 && typeof d.current_name != 'undefined',
-        $current = $('.currently_viewing_warning');
+    const addon_id = $('#addon').data('id');
+    const url = $('#addon').data('url');
+    const $current = $('.currently_viewing_warning');
+
+    const updateWarning = (title) => {
+      let $current_div = $current.filter('div');
+      $current_div.find('strong').remove();
+      $current_div.prepend($('<strong>', { text: title }));
+    };
+
+    $.post(url, { addon_id: addon_id }, (d) => {
+      const show = d.is_user != 1 && typeof d.current_name != 'undefined';
 
       $current.toggle(show);
-
       if (show) {
-        var title;
+        let title;
         if (d.is_user == 2) {
           /* 2 is when the editor has reached the lock limit */
           title = d.current_name;
@@ -143,16 +154,17 @@ function initReviewActions() {
             name: d.current_name,
           });
         }
-        $current_div = $current.filter('div');
-        $current_div.find('strong').remove();
-        $current_div.prepend($('<strong>', { text: title }));
+        updateWarning(title);
       }
-
-      setTimeout(check_currently_viewing, d.interval_seconds * 1000);
+    }).fail(() => {
+      $current.toggle(true);
+      updateWarning(gettext('Review page polling failed.'));
     });
   }
   if (!(z.capabilities.localStorage && window.localStorage.dont_poll)) {
     check_currently_viewing();
+    const interval = $('#addon').data('review-viewing-interval');
+    setInterval(check_currently_viewing, interval * 1000);
   }
 
   /* Item History */
@@ -253,20 +265,6 @@ function initExtraReviewActions() {
       var data = { due_date: $input.val(), version: $input.data('api-data') };
       callReviewersAPI(apiUrl, 'post', data, function (response) {
         $input.prop('disabled', false);
-      });
-    }),
-  );
-
-  $('#set_needs_human_review').click(
-    _pd(function () {
-      var $button = $(this).prop('disabled', true); // Prevent double-send.
-      var apiUrl = $button.data('api-url');
-      var data = $button.data('api-data') || null;
-      var $due_date_update_input = $('#due_date_update');
-      callReviewersAPI(apiUrl, 'post', data, function (response) {
-        $button.remove();
-        $due_date_update_input.parents('li').removeClass('hidden').show();
-        $due_date_update_input.val(response.due_date);
       });
     }),
   );
@@ -496,4 +494,74 @@ function initScrollingSidebar() {
       setSticky(window.scrollY > addon_top);
     }, 20),
   );
+}
+
+function initVersionsADU() {
+  function fillVersionsTable(versionAduPairs) {
+    versionAduPairs.forEach(([version, adu]) => {
+      $(
+        format(
+          '.version-adu[data-version-string="{0}"] .version-adu-value',
+          version,
+        ),
+      ).text(adu);
+    });
+    let missingAduText;
+    const queryLimit = $('#addon').data('versions-adu-max-results');
+    if (versionAduPairs.length === queryLimit) {
+      // if we've got max results we may have hit the limit of the query
+      const [_, min_adu] = versionAduPairs[queryLimit - 1];
+      missingAduText = format('<= {0}', min_adu);
+    } else {
+      // otherwise these are just 0 ADU versions
+      missingAduText = '0';
+    }
+    $('.version-adu-value:contains("\u2014")').text(missingAduText);
+  }
+
+  function fillTopTenBox(versionAduPairs) {
+    const review_version_url = $('#addon').data('review-version-url');
+
+    versionAduPairs.slice(0, 10).forEach(([version, adu]) => {
+      const versionEntryId = '#version-' + version.replaceAll('.', '_');
+      let versionLink;
+      if ($(versionEntryId).length) {
+        versionLink = format(
+          '<a href="{0}">\u2B07&nbsp;{1}</a>',
+          versionEntryId,
+          version,
+        );
+      } else {
+        versionLink = format(
+          '<a href="{0}">\u2794&nbsp;{1}</a>',
+          review_version_url.replace('__', version),
+          version,
+        );
+      }
+      $('#version-adu-top-ten ol').append(
+        format('<li>{0}: {1}</li>', versionLink, adu),
+      );
+    });
+    if (!versionAduPairs.length) {
+      $('#version-adu-top-ten div').append(
+        'No average daily user values found.',
+      );
+    }
+  }
+
+  function loadVersionsADU() {
+    const aduUrl = $('#addon').data('versions-adu-url');
+    $.get(aduUrl, function (data) {
+      const versionAduPairs = data.adus;
+      if (versionAduPairs !== undefined) {
+        fillVersionsTable(versionAduPairs);
+        fillTopTenBox(versionAduPairs);
+      } else {
+        $('#version-adu-top-ten div').append(
+          'No average daily user values because BigQuery disabled.',
+        );
+      }
+    });
+  }
+  loadVersionsADU();
 }

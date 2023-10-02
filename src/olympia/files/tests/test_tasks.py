@@ -2,18 +2,18 @@ import json
 import os
 import tempfile
 import zipfile
-
-import pytest
 from unittest import mock
-from waffle.testutils import override_switch
 
 from django.conf import settings
+
+import pytest
+from waffle.testutils import override_switch
 
 from olympia.amo.tests import TestCase
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.files.utils import SafeZip
 from olympia.files.tests.test_utils import AppVersionsMixin
+from olympia.files.utils import SafeZip
 
 
 class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
@@ -71,7 +71,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         assert upload.hash != original_hash
 
         # Test zip contents
-        with zipfile.ZipFile(upload.path) as z:
+        with zipfile.ZipFile(upload.file_path) as z:
             contents = sorted(z.namelist())
             assert contents == [
                 'index.js',
@@ -101,13 +101,13 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
             "description": "haupt\\u005fstra\\u00dfe"
         }
         """
-        with zipfile.ZipFile(upload.path, 'w') as z:
+        with zipfile.ZipFile(upload.file_path, 'w') as z:
             z.writestr('manifest.json', manifest_with_comments)
 
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.path) as z:
+        with zipfile.ZipFile(upload.file_path) as z:
             with z.open('manifest.json') as manifest:
                 assert manifest.read().decode() == manifest_with_comments
 
@@ -115,14 +115,14 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     def test_does_not_normalize_manifest_json_when_addon_is_signed(self):
         upload = self.get_upload('webextension_signed_already.xpi')
         fake_results = {'errors': 0}
-        with zipfile.ZipFile(upload.path, 'r') as z:
+        with zipfile.ZipFile(upload.file_path, 'r') as z:
             with z.open('manifest.json') as manifest:
                 original_manifest = manifest.read().decode()
 
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.path) as z:
+        with zipfile.ZipFile(upload.file_path) as z:
             with z.open('manifest.json') as manifest:
                 assert manifest.read().decode() == original_manifest
 
@@ -130,14 +130,14 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     def test_normalize_manifest_json_with_bom(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
-        with zipfile.ZipFile(upload.path, 'w') as z:
+        with zipfile.ZipFile(upload.file_path, 'w') as z:
             manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
             z.writestr('manifest.json', manifest)
 
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.path) as z:
+        with zipfile.ZipFile(upload.file_path) as z:
             with z.open('manifest.json') as manifest:
                 # Make sure it is valid JSON
                 assert json.loads(manifest.read())
@@ -168,7 +168,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     def test_normalize_manifest_json_with_syntax_error(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
-        with zipfile.ZipFile(upload.path, 'w') as z:
+        with zipfile.ZipFile(upload.file_path, 'w') as z:
             manifest = b'{"manifest_version": 2, THIS_IS_INVALID }'
             z.writestr('manifest.json', manifest)
 
@@ -182,7 +182,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     def test_normalize_manifest_json(self):
         upload = self.get_upload('webextension.xpi')
         fake_results = {'errors': 0}
-        with zipfile.ZipFile(upload.path, 'w') as z:
+        with zipfile.ZipFile(upload.file_path, 'w') as z:
             manifest_with_comments = """
             {
                 // Required
@@ -198,7 +198,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.path) as z:
+        with zipfile.ZipFile(upload.file_path) as z:
             with z.open('manifest.json') as manifest:
                 # Make sure it is valid JSON
                 assert json.loads(manifest.read())

@@ -1,15 +1,13 @@
 import os.path
-
 from datetime import datetime, timedelta
+from unittest import mock
 
-from django.db import transaction
 from django.conf import settings
+from django.db import transaction
 from django.test.testcases import TransactionTestCase
 
-from unittest import mock
 import pytest
 import waffle
-
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -19,6 +17,7 @@ from olympia.amo.tests import (
     AMOPaths,
     TestCase,
     addon_factory,
+    create_default_webext_appversion,
     license_factory,
     user_factory,
     version_factory,
@@ -27,37 +26,37 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.promoted import (
     LINE,
-    NOTABLE,
     NOT_PROMOTED,
+    NOTABLE,
     RECOMMENDED,
     SPOTLIGHT,
     STRATEGIC,
 )
-from olympia.constants.scanners import CUSTOMS, YARA, MAD
+from olympia.constants.scanners import CUSTOMS, MAD, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
 from olympia.promoted.models import PromotedAddon, PromotedApproval
-from olympia.reviewers.models import AutoApprovalSummary
+from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.scanners.models import ScannerResult
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
-    RESTRICTION_TYPES,
     UserProfile,
 )
 from olympia.users.utils import get_task_user
 from olympia.zadmin.models import set_config
 
-from ..compare import version_int, VersionString
+from ..compare import VersionString, version_int
 from ..models import (
     ApplicationsVersions,
     DeniedInstallOrigin,
-    License,
     InstallOrigin,
+    License,
     Version,
     VersionCreateError,
     VersionPreview,
@@ -230,13 +229,13 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         addon = addon_factory(
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '57.0',
+                'min_app_version': '119.0',
                 'max_app_version': '*',
             },
         )
         appversions = {
-            'min': version_int('58.0'),
-            'max': version_int('58.0'),
+            'min': version_int('120.0'),
+            'max': version_int('120.0'),
         }
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
@@ -246,18 +245,18 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         assert qs.exists()
         assert str(qs.query).count('JOIN') == 4
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '57.0'
+        assert qs[0].min_compatible_version == '119.0'
         assert qs[0].max_compatible_version == '*'
 
         # Add a Firefox version, but don't let it be compatible with what we're
         # requesting yet.
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='59.0'
+            application=amo.FIREFOX.id, version='121.0'
         )
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*'
         )
-        ApplicationsVersions.objects.get_or_create(
+        avs, _ = ApplicationsVersions.objects.get_or_create(
             application=amo.FIREFOX.id,
             version=addon.current_version,
             min=av_min,
@@ -266,15 +265,16 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
 
-        av_min.version = '58.0'
-        av_min.version_int = None
-        av_min.save()  # Will deal with version_intification behind the scenes.
+        avs.min = AppVersion.objects.get_or_create(
+            application=amo.FIREFOX.id, version='120.0'
+        )[0]
+        avs.save()
 
         # Now it should work!
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert qs.exists()
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '58.0'
+        assert qs[0].min_compatible_version == '120.0'
         assert qs[0].max_compatible_version == '*'
 
     def test_latest_public_compatible_with_no_max_argument(self):
@@ -372,8 +372,8 @@ class TestVersionManager(TestCase):
         assert addon.versions.count() == 0
 
         # But we should be able to see it using unfiltered_for_relations.
-        addon.versions(manager='unfiltered_for_relations').count() == 1
-        addon.versions(manager='unfiltered_for_relations').get() == version
+        assert addon.versions(manager='unfiltered_for_relations').count() == 1
+        assert addon.versions(manager='unfiltered_for_relations').get() == version
 
     def test_version_still_accessible_from_foreign_key_after_deletion(self):
         """Test that a version that has been deleted should still be accessible
@@ -399,6 +399,7 @@ class TestVersion(AMOPaths, TestCase):
     def setUp(self):
         super().setUp()
         self.version = Version.objects.get(pk=81551)
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
 
     def target_mobile(self):
         app = amo.ANDROID.id
@@ -435,22 +436,16 @@ class TestVersion(AMOPaths, TestCase):
         version = Version.objects.get(pk=81551)
         assert not version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert not AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         assert not ActivityLog.objects.exists()
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         activity = ActivityLog.objects.for_versions(version).get()
         assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
         assert activity.user == user
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.count()
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -463,22 +458,24 @@ class TestVersion(AMOPaths, TestCase):
         )
         assert not version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert not AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
         assert not ActivityLog.objects.exists()
-        assert not version.needs_human_review
+        assert not version.needshumanreview_set.count()
 
         version.source = self.file_fixture_path('webextension_no_id.zip')
         assert version.sources_provided
         version.flag_if_sources_were_provided(user)
-        assert AddonReviewerFlags.objects.filter(
-            addon=version.addon, needs_admin_code_review=True
-        ).exists()
-        activity = ActivityLog.objects.for_versions(version).get()
-        assert activity.action == amo.LOG.SOURCE_CODE_UPLOADED.id
+        assert ActivityLog.objects.for_versions(version).count() == 2
+        activity = (
+            ActivityLog.objects.for_versions(version)
+            .filter(action=amo.LOG.SOURCE_CODE_UPLOADED.id)
+            .get()
+        )
         assert activity.user == user
-        assert version.needs_human_review
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+        )
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_version_delete(self, delete_preview_files_mock):
@@ -513,7 +510,6 @@ class TestVersion(AMOPaths, TestCase):
         assert not VersionPreview.objects.filter(version=version).exists()
 
     def test_version_delete_logs(self):
-        task_user = UserProfile.objects.create(pk=settings.TASK_USER_ID)
         user = UserProfile.objects.get(pk=55021)
         core.set_user(user)
         version = Version.objects.get(pk=81551)
@@ -522,7 +518,7 @@ class TestVersion(AMOPaths, TestCase):
         version.delete()
         assert qs.count() == 2
         assert qs[0].action == amo.LOG.CHANGE_STATUS.id
-        assert qs[0].user == task_user
+        assert qs[0].user == self.task_user
         assert qs[1].action == amo.LOG.DELETE_VERSION.id
         assert qs[1].user == user
 
@@ -887,11 +883,11 @@ class TestVersion(AMOPaths, TestCase):
 
         assert not version.should_have_due_date
         # having the needs_human_review flag means a due dute is needed
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.should_have_due_date
 
         # Just a version awaiting review will be auto approved so won't need a due date
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
@@ -958,12 +954,12 @@ class TestVersion(AMOPaths, TestCase):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
         version.update(channel=channel)
-        assert not version.needs_human_review
+        assert version.needshumanreview_set.count() == 0
         assert not version.should_have_due_date
 
         # Any non-disabled status with needs_human_review is enough to get a
         # due date, even if not signed.
-        version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=version)
         version.file.update(is_signed=False, status=amo.STATUS_AWAITING_REVIEW)
         assert version.should_have_due_date
 
@@ -995,17 +991,22 @@ class TestVersion(AMOPaths, TestCase):
 
         assert not version.should_have_due_date
         # having the needs_human_review flag means a due dute is needed
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.should_have_due_date
 
         # Just a version awaiting review will be auto approved so won't need a due date
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         assert not version.should_have_due_date
 
         # Promoted groups that are pre-review for unlisted get a due date.
         promo = PromotedAddon.objects.create(addon=addon, group_id=NOTABLE.id)
-        version.update(needs_human_review=False)  # adding Notable sets this, so clear.
+        # Adding Notable creates another NeedsHumanReview instance with
+        # is_active=True, so clear that.
+        needs_human_review = NeedsHumanReview.objects.filter(is_active=True).latest(
+            'pk'
+        )
+        needs_human_review.update(is_active=False)
         assert version.should_have_due_date
 
         # Not if it's a group that is only pre-review for listed though.
@@ -1120,10 +1121,10 @@ class TestVersion(AMOPaths, TestCase):
         version = addon.current_version
         assert not version.due_date
 
-        version.update(needs_human_review=True)
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
         assert version.reload().due_date
 
-        version.update(needs_human_review=False)
+        needs_human_review.update(is_active=False)
         assert not version.reload().due_date
 
     def test_transformer_license(self):
@@ -1242,17 +1243,18 @@ class TestVersion(AMOPaths, TestCase):
             assert not addon.current_version.can_be_disabled_and_deleted()
 
     def test_is_blocked(self):
-        addon = Addon.objects.get(id=3615)
-        assert addon.current_version.is_blocked is False
+        version = Addon.objects.get(id=3615).current_version
+        assert version.is_blocked is False
 
-        block = Block.objects.create(addon=addon, updated_by=user_factory())
-        assert Addon.objects.get(id=3615).current_version.is_blocked is True
+        block = Block.objects.create(addon=version.addon, updated_by=user_factory())
+        assert version.reload().is_blocked is False
 
-        block.update(min_version='999999999')
-        assert Addon.objects.get(id=3615).current_version.is_blocked is False
+        blockversion = BlockVersion.objects.create(block=block, version=version)
+        assert version.reload().is_blocked is True
 
-        block.update(min_version='0')
-        assert Addon.objects.get(id=3615).current_version.is_blocked is True
+        blockversion.update(version=version_factory(addon=version.addon))
+        version.refresh_from_db()
+        assert version.is_blocked is False
 
     def test_pending_rejection_property(self):
         addon = Addon.objects.get(id=3615)
@@ -1849,23 +1851,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=parsed_data,
             )
-        # Add an extra ApplicationsVersions. It should *not* appear in
-        # version.compatible_apps, because that's a cached_property.
-        new_app_vr_min = AppVersion.objects.create(
-            application=amo.ANDROID.id, version='1.0'
-        )
-        new_app_vr_max = AppVersion.objects.create(
-            application=amo.ANDROID.id, version='2.0'
-        )
-        ApplicationsVersions.objects.create(
-            version=version,
-            application=amo.ANDROID.id,
-            min=new_app_vr_min,
-            max=new_app_vr_max,
+        # Alter the ApplicationsVersions through an objects.update() so that
+        # the custom save() method is not used - compatible_apps should not be
+        # updated.
+        ApplicationsVersions.objects.filter(version=version).update(
+            application=amo.ANDROID.id
         )
         assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
+        assert app.min.version == '42.0'
+        assert app.max.version == '*'
+
+        # Clear cache and check again, it should be updated.
+        del version._compatible_apps
+        assert amo.ANDROID in version.compatible_apps
+        assert amo.FIREFOX not in version.compatible_apps
+        app = version.compatible_apps[amo.ANDROID]
         assert app.min.version == '42.0'
         assert app.max.version == '*'
 
@@ -2036,7 +2038,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.assertCloseToNow(upload_version.due_date, now=get_review_due_date())
 
     def test_do_not_inherit_needs_human_review_from_other_addon(self):
-        addon_factory(version_kw={'needs_human_review': True})
+        extra_addon = addon_factory()
+        NeedsHumanReview.objects.create(version=extra_addon.current_version)
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2047,15 +2050,17 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         upload_version.reload()
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
+        assert upload_version.needshumanreview_set.count() == 0
 
     def test_inherit_needs_human_review_with_due_date(self):
-        due_date = datetime.now() + timedelta(days=15)
-        self.addon.current_version.update(needs_human_review=True, due_date=due_date)
+        user = user_factory()
+        core.set_user(user)
+        due_date = get_review_due_date()
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=due_date)
         upload_version = Version.from_upload(
             self.upload,
             self.addon,
@@ -2066,16 +2071,68 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
         upload_version.reload()
-        assert upload_version.needs_human_review
         self.assertCloseToNow(upload_version.due_date, now=due_date)
+        assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            upload_version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_INHERITANCE
+        )
+
+        activity_log = (
+            ActivityLog.objects.for_versions(upload_version)
+            .filter(action=amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id)
+            .first()
+        )
+        assert core.get_user() == user
+        assert activity_log.user == get_task_user()
+
+    def test_dont_inherit_due_date_far_in_future(self):
+        standard_due_date = get_review_due_date()
+        due_date = datetime.now() + timedelta(days=15)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=due_date)
+        upload_version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        # Because the due date from the previous version is so far in the
+        # future we don't inherit from it and get the default one.
+        self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
+        upload_version.reload()
+        assert upload_version.needshumanreview_set.filter(is_active=True).count() == 1
+        self.assertCloseToNow(upload_version.due_date, now=standard_due_date)
+
+    def test_dont_inherit_due_date_if_one_already_exists(self):
+        previous_version_due_date = datetime.now() + timedelta(days=30)
+        existing_due_date = datetime.now() + timedelta(days=15)
+        NeedsHumanReview.objects.create(version=self.addon.current_version)
+        self.addon.current_version.update(due_date=previous_version_due_date)
+        new_version = version_factory(addon=self.addon)
+        NeedsHumanReview.objects.create(version=new_version)
+        new_version.update(due_date=existing_due_date)
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
+        new_version.inherit_due_date()
+        # Check twice: on the returned instance and in the database, in case
+        # a signal acting on the same version but different instance updated
+        # it.
+        # Because the due date from the previous version is so far in the
+        # future we don't inherit from it and keep the existing one.
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
+        new_version.reload()
+        self.assertCloseToNow(new_version.due_date, now=existing_due_date)
 
     def test_dont_inherit_needs_human_review_from_different_channel(self):
         old_version = self.addon.current_version
         self.make_addon_unlisted(self.addon)
-        old_version.update(needs_human_review=True)
+        NeedsHumanReview.objects.create(version=old_version)
         assert old_version.due_date
 
         upload_version = Version.from_upload(
@@ -2088,11 +2145,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Check twice: on the returned instance and in the database, in case
         # a signal acting on the same version but different instance updated
         # it.
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
         upload_version.reload()
-        assert not upload_version.needs_human_review
         assert not upload_version.due_date
+        assert upload_version.needshumanreview_set.count() == 0
 
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
@@ -2533,7 +2589,7 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         super().setUp()
         # We can't use `setUpTestData` here because it doesn't play well with
         # the behavior of `TransactionTestCase`
-        amo.tests.create_default_webext_appversion()
+        create_default_webext_appversion()
 
     @mock.patch('olympia.git.utils.create_git_extraction_entry')
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
@@ -2604,25 +2660,50 @@ class TestExtensionVersionFromUploadTransactional(TransactionTestCase, UploadMix
         create_entry_mock.assert_not_called()
 
 
-class TestStatusFromUpload(TestVersionFromUpload):
+class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
     filename = 'webextension.xpi'
 
     def setUp(self):
         super().setUp()
-        self.current = self.addon.current_version
+        self.old_version = self.addon.current_version
 
-    def test_status(self):
-        self.current.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        Version.from_upload(
+    def test_disable_old_files_waiting_review(self):
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
             self.upload,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
-        assert File.objects.filter(version=self.current)[0].status == (
-            amo.STATUS_DISABLED
+        assert self.old_version.file.reload().status == amo.STATUS_DISABLED
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_disable_old_files_waiting_review_not_for_unlisted_channel(self):
+        self.old_version.update(channel=amo.CHANNEL_UNLISTED)
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_UNLISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
         )
+        assert self.old_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
+
+    def test_disable_old_files_waiting_review_not_for_langpacks(self):
+        self.old_version.addon.update(type=amo.ADDON_LPAPP)
+        self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.old_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert version.file.status == amo.STATUS_AWAITING_REVIEW
 
 
 class TestPermissionsFromUpload(TestVersionFromUpload):
@@ -2654,7 +2735,6 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     def setUpTestData(cls):
         versions = {
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
             amo.DEFAULT_WEBEXT_MAX_VERSION,
         }
         for version in versions:
@@ -2742,6 +2822,286 @@ class TestApplicationsVersions(TestCase):
         )
         version = addon.current_version
         assert str(version.apps.all()[0]) == 'Firefox ك - ك'
+
+
+class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+        cls.fennec_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        )
+        cls.fenix_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+        )
+        cls.fenix_ga_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+        )
+        cls.fenix_min_version = AppVersion.objects.get(
+            application=amo.ANDROID.id, version=amo.MIN_VERSION_FENIX
+        )
+        cls.star_android_appversion = AppVersion.objects.get(
+            application=amo.ANDROID.id, version='*'
+        )
+        # Extra not created by create_default_webext_appversion():
+        cls.fennec_appversion_star = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='68.*'
+        )[0]
+        cls.fenix_appversion_star = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='117.*'
+        )[0]
+
+    def assert_min_and_max_unchanged_on_save(self, avs):
+        old_min = avs.min
+        old_max = avs.max
+        avs.save()
+        assert avs.min == old_min
+        assert avs.max == old_max
+
+    def assert_min_and_max_are_set_to_fenix_ga_on_save(self, avs):
+        avs.save()
+        assert avs.min == self.fenix_ga_appversion
+        assert avs.max == self.star_android_appversion
+
+    def test_not_android(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions.objects.get(
+            application=amo.FIREFOX.id, version=addon.current_version
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_not_extension(self):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # We don't care about allowing that non-extensions, they are filtered
+        # elsewhere.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_recommended_for_android(self):
+        addon = addon_factory(promoted=RECOMMENDED)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_line_for_android(self):
+        addon = addon_factory(promoted=LINE)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_other_promotion_for_android(self):
+        addon = addon_factory(promoted=NOTABLE)
+        assert amo.ANDROID in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # Not recommended/line and is using a forbidden range.
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_recommended_or_line_for_desktop(self):
+        addon = addon_factory(promoted=RECOMMENDED)
+        android_approval = (
+            addon.current_version.promoted_approvals.all()
+            .filter(application_id=amo.ANDROID.id)
+            .get()
+        )
+        android_approval.delete()
+        assert amo.ANDROID not in addon.promoted.approved_applications
+        assert amo.FIREFOX in addon.promoted.approved_applications
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.star_android_appversion,
+        )
+        # Not recommended/line and is using a forbidden range.
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_below_forbidden_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fennec_appversion_star,
+        )
+        # Entirely below range is allowed.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        # This triggers the file to have strict compatibility enabled though
+        # (so that this extension is only seen by Fennec, not Fenix).
+        assert avs.version.file.reload().strict_compatibility
+        # Deleting Android compatibility resets it though.
+        avs.delete()
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_above_forbidden_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_ga_appversion,
+            max=self.star_android_appversion,
+        )
+        # Entirely above range is allowed.
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_min_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_appversion,
+            max=self.star_android_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_max_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fenix_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_both_min_and_max_in_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_appversion,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_min_below_and_max_above_limited_range(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+            max=self.fenix_ga_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_both_min_and_max_above_limited_end_but_equal(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_ga_appversion,
+            max=self.fenix_ga_appversion,
+        )
+        assert not avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_unchanged_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_both_min_and_max_above_limited_start(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fenix_min_version,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+        self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
+        assert not avs.version.file.reload().strict_compatibility
+
+    def test_get_default_minimum_appversion(self):
+        assert ApplicationsVersions(
+            application=amo.FIREFOX.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.FIREFOX.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.FIREFOX],
+        )
+
+        assert ApplicationsVersions(
+            application=amo.ANDROID.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.ANDROID],
+        )
+
+    def get_default_maximum_appversion(self):
+        self.star_firefox_appversion = AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )
+        assert (
+            ApplicationsVersions(
+                application=amo.FIREFOX.id
+            ).get_default_maximum_appversion()
+            == self.star_firefox_appversion
+        )
+
+        assert (
+            ApplicationsVersions(
+                application=amo.ANDROID.id
+            ).get_default_maximum_appversion()
+            == self.star_android_appversion
+        )
+
+    def test_min_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+
+    def test_max_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
 
 
 class TestVersionPreview(BasePreviewMixin, TestCase):

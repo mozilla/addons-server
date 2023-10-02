@@ -1,9 +1,21 @@
-from django.urls import re_path
 from django.shortcuts import redirect
+from django.urls import include, re_path
 
 from olympia.addons.urls import ADDON_ID
 from olympia.reviewers import views
 from olympia.users.urls import USER_ID
+
+
+def queue_urls():
+    return [
+        re_path(
+            views.reviewer_tables_registry[queue].url,
+            getattr(views, views.reviewer_tables_registry[queue].view_name),
+            kwargs={'tab': queue},
+            name='reviewers.' + views.reviewer_tables_registry[queue].urlname,
+        )
+        for queue in views.reviewer_tables_registry
+    ]
 
 
 # All URLs under /reviewers/
@@ -12,33 +24,7 @@ urlpatterns = (
     re_path(
         r'^dashboard$', lambda request: redirect('reviewers.dashboard', permanent=True)
     ),
-    re_path(
-        r'^queue/extension$', views.queue_extension, name='reviewers.queue_extension'
-    ),
-    re_path(
-        r'^queue/theme_new$',
-        views.queue_theme_nominated,
-        name='reviewers.queue_theme_nominated',
-    ),
-    re_path(
-        r'^queue/theme_updates$',
-        views.queue_theme_pending,
-        name='reviewers.queue_theme_pending',
-    ),
-    re_path(
-        r'^queue/reviews$', views.queue_moderated, name='reviewers.queue_moderated'
-    ),
-    re_path(
-        r'^queue/content_review',
-        views.queue_content_review,
-        name='reviewers.queue_content_review',
-    ),
-    re_path(r'^queue/mad', views.queue_mad, name='reviewers.queue_mad'),
-    re_path(
-        r'queue/pending_rejection',
-        views.queue_pending_rejection,
-        name='reviewers.queue_pending_rejection',
-    ),
+    re_path(r'^queue/', include(queue_urls())),
     re_path(
         r'^moderationlog$',
         views.ratings_moderation_log,
@@ -70,6 +56,11 @@ urlpatterns = (
         name='reviewers.review',
     ),
     re_path(
+        r'^review-version/%s/(?P<version>[^/<>]+)' % ADDON_ID,
+        views.review_version_redirect,
+        name='reviewers.review_version_redirect',
+    ),
+    re_path(
         r'^whiteboard/(?P<channel>listed|unlisted|content)/%s$' % ADDON_ID,
         views.whiteboard,
         name='reviewers.whiteboard',
@@ -97,5 +88,10 @@ urlpatterns = (
         r'^developer_profile/%s$' % USER_ID,
         views.developer_profile,
         name='reviewers.developer_profile',
+    ),
+    re_path(
+        r'^usage_per_version/%s$' % ADDON_ID,
+        views.usage_per_version,
+        name='reviewers.usage_per_version',
     ),
 )

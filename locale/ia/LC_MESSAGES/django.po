@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-11 08:05+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-15 18:39+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgid "License with slug={value} does not exist."
 msgstr "Il non existe licentia con alias breve={value}."
 
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr "Typo de file non supportate, per favor incarga un file de archivo ({extensions})."
+msgstr "Typo incompatibile de file, per favor incarga un file de archivo ({extensions})."
 
 msgid "Invalid or broken archive."
 msgstr "Archivo non valide o rupte."
@@ -118,6 +118,10 @@ msgstr "Max-version del app specificate incognite"
 
 msgid "Unknown min app version specified"
 msgstr "Minime version del app specificate incognite"
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Impossibile reimplaciar le informationes de compatibilitate definite in le manifesto pro ce application (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -144,10 +148,8 @@ msgstr "Le file es jam disactivate."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Le ultime version approbate de iste additivo %s non pote esser delite perque le previe version non era approbate pro promotion a %s. Contacta le administratores de AMO si te besonia adjuta pro isto."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Version {version} corresponde a {block_link} pro iste additivo. Tu pote contactar {amo_admins} pro plus informationes."
+"Le ultime version approbate de iste additivo %s non pote esser delite perque le previe version non ha essite approbate pro promotion a %s. Contacta le administratores de AMO si tu ha besonio de "
+"adjuta pro isto."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Le version {version_string} ha jam essite incargate e delite."
@@ -192,7 +194,7 @@ msgid "Wrong add-on type for this license."
 msgstr "Errate typo de additivo pro iste licentia."
 
 msgid "Custom licenses are not supported for themes."
-msgstr "Le licentias personalisate non es supportate pro themas."
+msgstr "Le licentias personalisate non es compatibile con themas."
 
 msgid "This field is required for add-ons with listed versions."
 msgstr "Iste campo es necesse pro additivos con versiones publicate."
@@ -234,7 +236,7 @@ msgid "Log out"
 msgstr "Clauder le session"
 
 msgid "Manage My Submissions"
-msgstr "Gerer mi submissiones"
+msgstr "Gerer mi invios"
 
 msgid "Submit a New Add-on"
 msgstr "Inviar un nove additivo"
@@ -342,6 +344,9 @@ msgstr "Crear conto o aperir session"
 
 msgid "Email:"
 msgstr "Email:"
+
+msgid "Two-factor authentication"
+msgstr "Authentication a duo factores"
 
 msgid "OK"
 msgstr "OK"
@@ -451,37 +456,6 @@ msgstr "Iste URL personalisate non pote esser usate."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Le GUID %(guid)s es in un invio pendente"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blocada con GUID %(guid)s non trovate"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Le additivo con GUID %(guid)s non existe"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Le blocadas a actualisar es differente perque le version minime o maxime ha cambiate."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s contine *"
-
-msgid "Invalid version"
-msgstr "Version non valide."
-
-msgid "Min version can not be greater than Max version"
-msgstr "Le version Minime non pote haber un numero major del version Maxime"
-
-msgid "Review Listed"
-msgstr "Revision listate"
-
-msgid "Review Unlisted"
-msgstr "Revision non listate"
 
 msgid "{addon} was created."
 msgstr "{addon} esseva create."
@@ -845,11 +819,32 @@ msgstr "{addon} {version} reapprobate."
 msgid "Un-rejected"
 msgstr "Reapprobate"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Bandiera needs_human_review removite pro {addon}."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Responsa a {rating} pro {addon} scribite."
 
-msgid "Needs Human Review cleared"
-msgstr "Necessitate de revision human removite"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "Removite rejection pendente pro {addon} {version}."
+
+msgid "Pending rejection cleared"
+msgstr "Removite rejection pendente"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} addite al Lista del blocadas."
+
+msgid "Version Blocked"
+msgstr "Version blocate"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} removite del Lista del blocadas."
+
+msgid "Version Unblocked"
+msgstr "Version disblocate"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Un administrator clarava le revision de additivo pro {version} {addon}."
+
+msgid "Admin add-on-review cleared"
+msgstr "Revision de additivo clarate per administrator"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1409,10 +1404,10 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Recente cambiamentos pro mi additivos"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr "Le additivos de recerca aperte {blog_link_open}non es plus supportate sur AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
+msgstr "Le additivos de recerca aperte {blog_link_open}non es plus compatibile con AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifesto V3 non es actualmente supportate pro incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
+msgstr "Manifesto V3 non es compatibile actualmente con incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
 
 msgid "Manifest V3 compatibility warning"
 msgstr "Aviso de compatibilitate del File manifesto V3"
@@ -1496,13 +1491,17 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Typo de file non supportate, per favor incarga un file de archivo {extensions}."
+msgstr "Typo incompatibile de file, per favor incarga un file de archivo {extensions}."
 
 msgid "View current"
 msgstr "Vider version actual"
 
 msgid "Invalid version range."
 msgstr "Intervallo de version non valide."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Intervallo de version non valide. Pro Firefox pro Android, tu pote solo seliger un campo que comencia con version %(max)s o superior, o fini con version inferior que %(min)s."
 
 msgid "Need at least one compatible application."
 msgstr "Il necesse al minus un application compatibile."
@@ -1518,9 +1517,6 @@ msgstr "Supplantar validation mancate"
 
 msgid "Need to select at least one application."
 msgstr "Il es necesse al minus eliger un application compatibile."
-
-msgid "a blocklist entry"
-msgstr "un entrata de lista del blocadas"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Le version {version} ha jam essite incargate e delite."
@@ -1574,6 +1570,9 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Le validation ha producite troppo de errores/avisos, dunque %s messages ha essite truncate. Post haber corrigite le messages visibile, tu potera vider le alteres."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Iste additivo non es un thema. Usa le pagina <a href=\"{link}\">Inviar un nove additivo</a> pro inviar extensiones."
 
 msgid "Updated"
 msgstr "Actualisate"
@@ -1638,6 +1637,9 @@ msgstr "Cambios salvate con successo."
 msgid "Validate Add-on"
 msgstr "Validar additivo"
 
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Activa le authentication a duo factores in tu conto pro inviar extensiones.</a>"
+
 msgid "Icons must be either PNG or JPG."
 msgstr "Le icones debe esser in formato PNG o JPG."
 
@@ -1663,8 +1665,8 @@ msgstr "Error durante le incargamento de tu vista preliminar."
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"Le ultime version approbate de iste additivo %s non pote esser delite o disactivate perque le previe version non era approbate pro promotion a %s. Contacta le administratores de AMO si te besonia "
-"adjuta pro isto."
+"Le ultime version approbate de iste additivo %s non pote esser delite o disactivate perque le previe version non ha essite approbate pro promotion a %s. Contacta le administratores de AMO si tu ha "
+"besonio de adjuta pro isto."
 
 #, python-format
 msgid "Version %s disabled."
@@ -1844,56 +1846,6 @@ msgstr "Activitate"
 msgid "Subscribe to this feed"
 msgstr "Subscriber se a iste alimentation de novas"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Iste additivo es incompatibile con <b>%(app_name)s %(app_version)s</b>, le ultime version de %(app_name)s. Considera actualisar le information de compatibilitate del additivo, o incargar un version "
-"plus recente."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar compatibilitate</a> <a href=\"%(version_url)s\" class=\"button\">Incargar nove version</a> o <a href=\"#\" "
-"class=\"close\">Ignorar</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Vide e actualisa le intervallos de compatibilitate del application"
-
-msgid "Compatibility"
-msgstr "Compatibilitate"
-
-msgid "Update Compatibility"
-msgstr "Actualisar le compatibilitate"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Adjustar le informationes del application hic permittera al usatores de installar tu additivo mesmo si le manifesto de installation in le pacchetto indica que le additivo es incompatibile."
-
-msgid "Application"
-msgstr "Application"
-
-msgid "Supported Versions"
-msgstr "Versiones supportate"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Add Another Application&hellip;"
-msgstr "Adder un altere application&hellip;"
-
-msgid "Save Changes"
-msgstr "Salvar le cambiamentos"
-
-msgid "or"
-msgstr "o"
-
-msgid "Cancel"
-msgstr "Cancellar"
-
-msgid "Close"
-msgstr "Clauder"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1964,6 +1916,9 @@ msgstr "Autores attendente confirmation"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autores que ha essite addite a iste additivo ma non ha confirmate."
 
+msgid "Save Changes"
+msgstr "Salvar le cambiamentos"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
@@ -1971,11 +1926,14 @@ msgstr ""
 "<p>Le additivos pote haber un numero illimitate de autores con 2 possibile rolos:</p> <ul><li><b>Proprietario:</b> Pote gerer tote le aspectos listate del additivo, includite le addition e remotion "
 "de altere autores</li> <li><b>Disveloppator:</b> Pote gerer tote le aspectos listate del additivo, excepte le addition e remotion de altere autores</li> </ul>"
 
+msgid "Close"
+msgstr "Clauder"
+
 msgid "Additional Details"
 msgstr "Detalios additional"
 
 msgid "Edit"
-msgstr "Edition"
+msgstr "Modificar"
 
 msgid "Additional Details for {0}"
 msgstr "Detalios additional pro {0}"
@@ -2010,6 +1968,12 @@ msgid ""
 msgstr ""
 "Si tu additivo ha un altere pagina principal, insere su adresse ci. Si tu sito web es localisate in altere linguas le multiple traductiones de iste campo pote esser addite. Illo es pertinente solo "
 "pro le additivos listate."
+
+msgid "or"
+msgstr "o"
+
+msgid "Cancel"
+msgstr "Cancellar"
 
 msgid "Describe Add-on"
 msgstr "Describer additivo"
@@ -2179,7 +2143,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Incargar un icone personalisate..."
 
 msgid "PNG and JPG supported."
-msgstr "PNG e JPG supportate."
+msgstr "PNG e JPG es compatibile."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Le icone debe esser quadrate con un dimension minime de 128x128 pixels."
@@ -2200,7 +2164,7 @@ msgid "Add a Screenshot..."
 msgstr "Adder un captura de schermo..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate pro capturas de schermo es 2400x1800 pixels."
+msgstr "Le formatos PNG e JPG es compatibile, ma PNG es le recommendate. Le formato maxime e recommendate pro capturas de schermo es 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
@@ -2287,7 +2251,7 @@ msgid "Actions"
 msgstr "Actiones"
 
 msgid "Resume the submission process for this add-on"
-msgstr "Resumer le processo de submission pro iste additivo"
+msgstr "Resumer le processo de invio pro iste additivo"
 
 msgid "Resume"
 msgstr "Resumer"
@@ -2367,7 +2331,7 @@ msgid ""
 "submission process is complete."
 msgstr ""
 "Attention: tu ha valores de nomine/summario in altere linguas que essera automaticamente truncate pro restar sub le limite de %(max_length)s characteres.  Pro modificar istes, va al pagina Modificar"
-" Producto post que le processo de submission es concludite."
+" Producto post que le processo de invio es concludite."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -2462,7 +2426,7 @@ msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</
 msgstr "Tote le additivos debe conformar se al <a %(a_attrs)s>politica de additivos de Mozilla</a> e pote esser subjecte a un revision manual a omne momento post le invio."
 
 msgid "Submission Complete"
-msgstr "Submission complete"
+msgstr "Invio complete"
 
 msgid "Version Submitted"
 msgstr "Version inviate"
@@ -2504,7 +2468,7 @@ msgid "As a reminder, your add-on is subject to manual review at any time."
 msgstr "Non oblida que tu additivo pote esser subjecte a un revision manual a omne momento."
 
 msgid "Go to My Submissions"
-msgstr "Ir a mi submissiones"
+msgstr "Ir a mi invios"
 
 msgid "Source Code Upload"
 msgstr "Incargamento de codice fonte"
@@ -2600,7 +2564,7 @@ msgid "Theme generator"
 msgstr "Generator de thema"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Aviso: le sequente proprietates usate in le manifesto de tu ultime version incargate non es supportate per iste assistente e essera ignorate:"
+msgstr "Aviso: le sequente proprietates usate in le manifesto de tu ultime version incargate non es compatibile con iste assistente e essera ignorate:"
 
 msgid "Theme name"
 msgstr "Nomine del thema"
@@ -2784,8 +2748,8 @@ msgstr "Tu additivo ha essite disactivate per un administrator del sito e non es
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Tu additivo non essera includite in le resultatos del recerca, e le pagina de su lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le lista de presentation "
-"non essera acceptate in iste stato."
+"Tu additivo non essera includite in le resultatos del recerca, e le pagina de su lista de presentation indicara que tu disactivava illo. Le invio de nove versiones pro le lista de presentation non "
+"essera acceptate in iste stato."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -2885,7 +2849,7 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr "Tags HTML permittite: %(allowed_html)s"
 
 msgid "Some HTML supported."
-msgstr "Alcun HTML supportate."
+msgstr "Alcun HTML es compatibile."
 
 msgid "Remove this application"
 msgstr "Remover iste application"
@@ -3033,7 +2997,7 @@ msgstr "Listate sur iste sito post passate le revision del codice. Le actualisat
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
-msgstr "Vide tote le submissiones"
+msgstr "Vide tote le invios"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Isto es ubi tu vide e gere tu additivos e themas. Pro publicar tu prime additivo, clicca \"Inviar tu prime additivo\" o \"Inviar tu prime thema\"."
@@ -3092,6 +3056,15 @@ msgstr "Gere {0}"
 
 msgid "Files"
 msgstr "Files"
+
+msgid "Compatibility"
+msgstr "Compatibilitate"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Adjustar le informationes del application hic permittera al usatores de installar tu additivo mesmo si le manifesto de installation in le pacchetto indica que le additivo es incompatibile."
+
+msgid "Add Another Application&hellip;"
+msgstr "Adder un altere application&hellip;"
 
 msgid "Version Notes"
 msgstr "Notas de version"
@@ -3177,7 +3150,7 @@ msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e inc
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina de producto indicara que tu disactivava illo. Le submission de nove versiones pro le lista de "
+"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina de producto indicara que tu disactivava illo. Le invio de nove versiones pro le lista de "
 "presentation non essera acceptate in iste stato."
 
 msgid "Listed versions"
@@ -3239,8 +3212,8 @@ msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
-"Le ultime version approbate de iste additivo de %(promoted_group_name)s non pote esser delite o disactivate perque le previe version non era approbate pro le promotion de %(promoted_group_name)s. "
-"Contacta le administratores de AMO si te besonia adjuta pro isto."
+"Le ultime version approbate de iste additivo de %(promoted_group_name)s non pote esser delite o disactivate perque le previe version non ha essite approbate pro le promotion de "
+"%(promoted_group_name)s. Contacta le administratores de AMO si tu ha besonio de adjuta pro isto."
 
 msgid "Hide Add-on"
 msgstr "Celar le additivo"
@@ -3424,7 +3397,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Rade automaticamente le cookies post que tu claude un scheda."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Un simple maniera pro adjustar le dimension del texto de qualcunque pagina – o mesmo aggrandir le pagina mesme."
 
@@ -3496,7 +3468,7 @@ msgstr "Meliora tu experientia de vision per adjustar le velocitate del video e 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
-msgstr "Adde securitate cryptographic a omne sito que supporta HTTPS. Naviga con securitate."
+msgstr "Adde securitate cryptographic a omne sito compatibile con HTTPS. Naviga con securitate."
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
@@ -3566,7 +3538,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Bloca tote le fenestras emergente primo, postea decide quales tu vole aperir."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Personalisa le apparentia de qualcunque sito web. Altera le colores, le fundos de pagina e multo plus."
 
@@ -3808,7 +3779,6 @@ msgstr ""
 "vider le pagina Amazon que presenta le producto."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Gaude de un controlo total de schedas: claude schedas duplicate, combina fenestras, copia le titulo de schedas, e multo plus."
 
@@ -3925,7 +3895,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Remedia enoiose problemas audio. Es le volumine sur un sito web troppo quiete? Troppo alte? SoundFixer pote adjutar."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Modifica un pagina web ante de imprimer lo. Apporta cambios visual drastic (p.ex. le elimination de publicitate o contento disagradabile) a qualcunque pagina web que tu vole imprimer."
 
@@ -3988,7 +3957,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Gaude del supporto de discargamento plure-filos. Detege automaticamente le differente typos de medios disponibile a discargar."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Salva facilemente le imagines: basta los sasir ab le scheda actual."
 
@@ -4073,7 +4041,6 @@ msgid "Create and customize tab groups."
 msgstr "Crea e personalisa gruppos de schedas."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Salva un integre pagina web, con imagines e stilos, como singule file HTML."
 
@@ -4097,7 +4064,7 @@ msgstr "Salta le portiones sponsorisate del videos sur YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
-msgstr "Ascolta le contento del paginas web. Plus de 40 linguas supportate."
+msgstr "Ascolta le contento del paginas web. Plus de 40 linguas es compatibile."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4158,6 +4125,14 @@ msgstr "Cambiator de thema basate sur tempore. Face cambiar colores de Firefox a
 msgid "Declutter your Twitter experience."
 msgstr "Reordina tu experientia in Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Reporta le capacitate de vider pollices a basso!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Ascolta musica sur YouTube sin le enoiose interruptiones “Video in pausa. Reguardar ancora?\"."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android. Iste extension forni un remedio."
@@ -4165,6 +4140,14 @@ msgstr "Alcun sitos ha difficultate a reproducer videos sur Firefox pro Android.
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Trova tu sur le web un imagine interessante? Usa TinEye pro explorar su origines."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Salva facilemente le imagines: basta sasir los ab le scheda actual."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Gaude del controlo de schedas melior: claude, duplica schedas, funde insimul fenestras, copia le titulo de scheda, e plus."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4175,16 +4158,32 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Personalisa le gestos del mus. Discoperi nove manieras pro navigar con plus de 50 e plus configurationes."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Personalisa le apparentia de ulle sito web. Displacia colores, fundos de pagina, e altero ancora."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Usa gestos del mus pro clauder schedas, navigar inter paginas, e plus."
+
+#. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Un simple maniera de adjustar le dimension del texto de ulle pagina, o mesmo aggrandir le pagina mesme."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Gaude del imagines in miniatura del sitos web al latere de tu retornos de recerca."
 
 #. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Salva como singule file HTML un integre pagina web, includite imagines e stilos."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Redige un pagina web ante imprimer lo. Apporta cambiamentos visual radical e remove avisos publicitari o contentos disagradabile a ulle pagina web que tu vole imprimer."
+
+#. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Paginas web legite in alte voce. Plus de 40 linguas supportate."
+msgstr "Paginas web legite in alte voce. Plus de 40 linguas es compatibile."
 
 #. editorial content for the primary hero shelves.
 msgid "Removes those long tracking parameters from Google search result URL's."
@@ -4211,10 +4210,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Retornar a un tempore plus simple: quando tu melior resultatos del recerca stava supra le avisos publicitari (compatibile con le motores de recerca Google e Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Cessa de donar al sitos tu adresse email. Firefox Relay protege tu identitate e impedi le posta immunditia. Promove lo al version premio pro beneficios additional, qual blocar emails promotional "
-"plus specific."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Masca tu email pro proteger tu identitate & impedir posta immunditia. Nove actualisationes rende Firefox Relay mesmo plus facile a usar."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4280,6 +4277,14 @@ msgstr "Meliora tu experientia de joco sur Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Approbation pro reintroducer disapprobationes."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Traduce sitos web in Firefox, privatemente, sin usar le nube."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Bloca le sitos web dilapida tempore. Bloca los completemente o justo durante le periodos de tu election."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Le extensiones es como applicationes pro Firefox."
@@ -4293,16 +4298,17 @@ msgid "See all extensions"
 msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Extensiones de securitate e confidentialitate"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalisationes de YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Pacchetto initial de extensiones"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Gestores de discargamento"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Extensiones de joco e de divertimento"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4397,10 +4403,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Vide altere blocatores de avisos seligite per nostre equipa"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalisationes de YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Vide altere extensiones YouTube seligite per nostre equipa"
 
@@ -4443,6 +4445,14 @@ msgstr "Extensiones de creativitate"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Vide altere utensile de creativitate eligite per nostre equipa"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Extensiones de medios social"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Vide altere medios social seligite per nostre equipa"
 
 msgid "Unreviewed"
 msgstr "Non revidite"
@@ -4563,6 +4573,13 @@ msgstr "Altere (specificar)"
 msgid "Auto-flagged due to word match"
 msgstr "Auto-etiquettate per concordantia de parolas"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Auto-etiquettate per restriction de usator"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s contine un character non alphanumeric."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Le texto del recension non pote continer le parola: \"{0}\""
@@ -4618,15 +4635,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "de %(user)s le %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "per %(user)s le %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Signalate per %(user)s le %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>ATTENTION!</strong> Un altere usator videva iste pagina ante te."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Attention!</strong> Un altere usator pote vider iste pagina ante te."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5039,8 +5056,8 @@ msgstr "Usator de Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Insere un campo de rete CIDR IPv4 o IPv6 valide, e.g. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Plure additivos que viola nostre politicas ha essite inviate ab tu position. Le adresse IP ha essite blocate."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Plure invios que viola nostre criterios ha essite inviate de tu position. Le adresse IP ha essite blocate."
 
 msgid "Email Pattern"
 msgstr "Modello de email"
@@ -5050,8 +5067,8 @@ msgstr ""
 "Insere le adresse e-mail complete que debe esser blocate o usa le characteres generic stilo Unix, per exemplo: \"*@example.com\". Si tu debe blocar un dominio, con su sub-dominios, adde un secunde "
 "entrata, per exemplo \"*@*.example.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Le adresse de e-mail de tu conto non es autorisate pro le submission de additivos."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "Le adresse email usate pro tu conto non es autorisate pro invios."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

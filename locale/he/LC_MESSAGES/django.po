@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-03-24 13:38+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-06-07 16:57+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -86,10 +86,10 @@ msgid "Request content length is too large."
 msgstr ""
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "חרגת מהמספר המרבי של קטגוריות לכל יישום ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "לא ניתן לשלב את הקטגוריה ״אחר״ עם קטגוריה אחרת"
 
 msgid "Invalid category name."
 msgstr "שם הקטגוריה שגוי."
@@ -125,6 +125,10 @@ msgid "Unknown min app version specified"
 msgstr "גרסת היישום המזערית שצוינה אינה ידועה"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "לא ניתן לעקוף את פרטי התאימות שהוגדרו ב־manifest עבור יישום זה (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "התמונות חייבות להיות קטנות מ־%dMB"
 
@@ -149,10 +153,7 @@ msgstr "הקובץ כבר מושבת."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "הגרסה {version} תואמת ל־{block_link} עבור תוספת זו. באפשרותך ליצור קשר עם {amo_admins} לקבלת מידע נוסף."
+msgstr "לא ניתן למחוק את הגרסה המאושרת האחרונה של התוספת %s הזאת מכיוון שהגרסה הקודמת לא אושרה עבור קידום של %s. נא ליצור קשר עם מנהלי AMO אם יש לך צורך בעזרה לגבי לזה."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "הגרסה {version_string} הועלתה בעבר ונמחקה."
@@ -185,7 +186,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "שמות התוספות לא יכולים להכיל את סימני המסחר Mozilla או Firefox."
 
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "הגרסה {version_string} חייבת להיות גדולה מהגרסה הקודמת שאושרה {previous_version_string}."
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr "לא ניתן לספק גם `license` וגם `custom_license` יחד."
@@ -299,7 +300,7 @@ msgstr "ניסית לבצע משהו שאין לך הרשאה לבצע."
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr ""
+msgstr "הודעה זו מוצגת מכיוון שאתר HTTPS זה מחייב שליחת ’כותרת מפנה’ על־ידי דפדפן האינטרנט שלך, אך אף אחת לא נשלחה. כותרת זו נדרשת מטעמי אבטחה, כדי להבטיח שהדפדפן שלך לא נחטף על ידי גורם צד שלישי."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
@@ -320,6 +321,11 @@ msgid ""
 "</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
 "\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>אנו מצטערים, אך איננו יכולים למצוא את מה שחיפשת.</h1> <p> הדף או הקובץ שביקשת לא נמצאו באתר שלנו. ייתכן שלחצת על קישור שאינו מעודכן, או שהקלדת את הכתובת בצורה שגויה. </p> <ul> <li>אם הקלדת את "
+"הכתובת, נא לבדוק שוב את האיות.</li> <li> אם עקבת אחר קישור ממקום כלשהו, נא %(open_bug_link)sלדווח לנו על כך%(close_bug_link)s. בדיווח יש לציין מאיפה הגעת ומה חיפשת, ואנו נעשה כמיטב יכולתנו לתקן את "
+"זה. </li> </ul> <p>או שבאפשרותך פשוט לקפוץ לכמה מהדפים הפופולריים באתר שלנו.</p> <ul> <li>נוכל לעניין אותך <a href=\"%(rec)s\">ברשימה של תוספות מומלצות</a>?</li> <li> או אולי ברצונך <a href="
+"\"%(search)s\">לחפש תוספות</a>? ניתן לעבור אל <a href=\"%(search)s\">דף החיפוש</a> או פשוט להשתמש בשדה החיפוש שלמעלה. </li> <li> אם עדיף לך להתחיל מחדש, אפשר לעבור אל <a href=\"%(home)s\">דף הראשי "
+"של התוספות</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "אוי"
@@ -337,6 +343,9 @@ msgstr "הרשמה או התחברות"
 
 msgid "Email:"
 msgstr "דוא״ל:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "אישור"
@@ -449,39 +458,6 @@ msgstr "לא ניתן להשתמש בכתובת המותאמת אישית הזא
 
 msgid "This add-on already belongs to the collection"
 msgstr "תוספת זו כבר שייכת לאוסף"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr ""
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-msgid "Invalid version"
-msgstr "גרסה שגויה"
-
-msgid "Min version can not be greater than Max version"
-msgstr "הגרסה המזערית לא יכול להיות גדולה מהגרסה המרבית"
-
-#, fuzzy
-msgid "Review Listed"
-msgstr "נוספה בקשה לסקירה"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "סקירה"
 
 msgid "{addon} was created."
 msgstr "התוספת {addon} נוצרה"
@@ -850,10 +826,31 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1511,6 +1508,10 @@ msgstr "צפייה בנוכחי"
 msgid "Invalid version range."
 msgstr "טווח הגרסאות שגוי."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "נדרש לפחות יישום תואם אחד."
 
@@ -1525,9 +1526,6 @@ msgstr "בדיקת האימות על המעקף נכשלה"
 
 msgid "Need to select at least one application."
 msgstr "יש לבחור ביישום אחד לפחות."
-
-msgid "a blocklist entry"
-msgstr ""
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "הגרסה {version} הועלתה בעבר ונמחקה."
@@ -1579,6 +1577,9 @@ msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API �
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "תאריך עדכון"
@@ -1646,6 +1647,9 @@ msgstr "השינויים נשמרו בהצלחה."
 
 msgid "Validate Add-on"
 msgstr "אימות תוספת"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "צלמיות חייבות להיות בתבנית PNG או JPG."
@@ -1855,58 +1859,6 @@ msgstr "פעילות"
 msgid "Subscribe to this feed"
 msgstr "הרשמה להזנה זו"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "תוספת זו אינה נתמכת ב־<b>%(app_name)s %(app_version)s</b>, הגרסה העדכנית ביותר של %(app_name)s. מוטב לעדכן את פרטי התאימות של התוספת שלך או להעלות גרסה חדשה יותר של תוספת זו."
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">עדכון תאימות</a> <a href=\"%(version_url)s\" class=\"button\">העלאת גרסה חדשה</a> או <a href=\"#\" class=\"close"
-"\">התעלמות</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "הצגה ועדכון טווחי תאימות יישום"
-
-msgid "Compatibility"
-msgstr "תאימות"
-
-msgid "Update Compatibility"
-msgstr "עדכון תאימות"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-
-msgid "Application"
-msgstr "יישום"
-
-msgid "Supported Versions"
-msgstr "גרסאות נתמכות"
-
-msgid "Remove"
-msgstr "הסרה"
-
-msgid "Add Another Application&hellip;"
-msgstr "הוספת יישום נוסף&hellip;"
-
-msgid "Save Changes"
-msgstr "שמירת שינויים"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "או"
-
-msgid "Cancel"
-msgstr "ביטול"
-
-msgid "Close"
-msgstr "סגירה"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1977,10 +1929,16 @@ msgstr "יוצרים הממתינים לאישור"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "יוצרים שנוספו לתוספת זו אך לא אישרו."
 
+msgid "Save Changes"
+msgstr "שמירת שינויים"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "סגירה"
 
 msgid "Additional Details"
 msgstr "פרטים נוספים"
@@ -2020,6 +1978,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "אם לתוספת שלך יש אתר בית נוסף, יש להקליד את הכתובת שלו כאן. אם האתר שלך מתורגם לשפות נוספות ניתן להוסיף את השדה הזה בשפות נוספות. תקף רק לתוספות מוצגות."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "או"
+
+msgid "Cancel"
+msgstr "ביטול"
 
 # 75%
 # 100%
@@ -3077,6 +3043,15 @@ msgstr "ניהול {0}"
 msgid "Files"
 msgstr "קבצים"
 
+msgid "Compatibility"
+msgstr "תאימות"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Add Another Application&hellip;"
+msgstr "הוספת יישום נוסף&hellip;"
+
 msgid "Version Notes"
 msgstr "הערות גרסה"
 
@@ -3411,7 +3386,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "מחיקת עוגיות באופן אוטומטי לאחר סגירת לשונית."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "דרך פשוטה לשנות את גודל הטקסט בכל דף — או אפילו להגדיל את הדף עצמו."
 
@@ -3554,7 +3528,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "חסימת כל החלונות הקופצים כברירת מחדל, ולאחר מכן בחירה באלו שברצונך לפתוח."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "התאמה אישית של המראה של כל אתר. שינוי צבעים, רקעים לדפים ועוד."
 
@@ -3794,7 +3767,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "להנות משליטה על לשוניות — סגירת לשוניות כפולות, מיזוג חלונות, העתקת כותרת הלשונית ועוד."
 
@@ -3913,7 +3885,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "תיקון אודיו מעצבן. האם עוצמת השמע באתר שקטה מידי? חזקה מידי? SoundFixer יכול לעזור."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
@@ -3977,7 +3948,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4062,7 +4032,6 @@ msgid "Create and customize tab groups."
 msgstr "יצירה והתאמה אישית של קבוצות לשוניות."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "שמירת דף אינטרנט שלם — כולל תמונות ועיצוב — כקובץ HTML בודד."
 
@@ -4148,6 +4117,14 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Android. הרחבה זו מספקת את התיקון."
@@ -4155,6 +4132,14 @@ msgstr "ישנם אתרים המתקשים בהפעלת סרטונים ב־Andro
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "מצאת תמונה מעניינת ברשת? ניתן להשתמש ב־TinEye כדי לחקור את מקורותיה."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4165,11 +4150,27 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "מחוות עכבר מותאמות אישית. גלו דרכים חדשות לניווט עם למעלה מ־50 תצורות שונות."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "שימוש במחוות עכבר כדי לסגור לשוניות, לעבור בין דפים ועוד."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4201,7 +4202,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4268,6 +4269,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "הרחבות הן כמו יישומים ל־Firefox."
@@ -4281,15 +4290,16 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4386,10 +4396,6 @@ msgid "See more ad blocker staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr ""
 
@@ -4431,6 +4437,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4552,6 +4566,13 @@ msgstr "אחר (נא לפרט)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4610,15 +4631,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "מאת %(user)s בתאריך %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">סומן בדגל על־ידי %(user)s בתאריך %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>אזהרה!</strong> משתמש אחר צפה בעמוד הזה לפניך."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5041,7 +5062,7 @@ msgstr "משתמש Firefox‏ {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "נא להזין רשת IP4 או IP6 חוקית."
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5050,8 +5071,8 @@ msgstr ""
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "כתובת הדוא״ל המשמשת לחשבון שלך אינה מותרת להגשת תוספת."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

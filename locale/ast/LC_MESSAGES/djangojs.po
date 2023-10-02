@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-08-08 06:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "El complementu perpasa'l tamañu máximu de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recibióse una rempuesta balera del sirvidor. Estáu: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Nun s'esperaba'l fallu del sirvidor mentanto se validaba."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr ""
@@ -611,9 +617,6 @@ msgstr[1] "{files} ficheros"
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Select an application first"
-msgstr ""
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> caráuter"
@@ -632,6 +635,9 @@ msgstr ""
 
 msgid "{name} was viewing this page first."
 msgstr "{name} tuvo viendo esta páxina primero."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} tuvo viendo esti complementu primero."

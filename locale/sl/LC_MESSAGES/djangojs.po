@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-06-15 16:25+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-30 20:13+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -70,8 +70,14 @@ msgstr "Dodatek presega največjo velikost {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prejet prazen odziv s strežnika; stanje: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Vaša razširitev mora biti združljiva z vsaj enim programom."
+
 msgid "Unexpected server error while validating."
 msgstr "Nepričakovana napaka strežnika med preverjanjem veljavnosti."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "V manifestu izrecno označena kot združljiva s Firefoxom za Android"
 
 msgid "Finished validating {0}"
 msgstr "Preverjanje veljavnosti {0} končano"
@@ -112,8 +118,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se "
-"izognete zavrnitvi svoje oddaje."
+"Zmanjšani, skrajšani ali drugače strojno ustvarjeni skripti (razen znanih knjižnic) morajo biti za pregled oddani ločeno. Prepričajte se, da uporabite polje za nalaganje izvorne kode, da se izognete"
+" zavrnitvi svoje oddaje."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Postopek preverjanja veljavnosti je odkril te težave, ki lahko vodi do zavrnitev:"
@@ -471,14 +477,12 @@ msgid "Download Sources from {0} to {1}"
 msgstr "Viri prenosa od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Mediums, last {0} days"
-msgstr "Prenosi zadnjih {0} dni"
+msgstr "Prenosi medijev, zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Mediums from {0} to {1}"
-msgstr "Prenosi od {0} do {1}"
+msgstr "Prenosi medijev od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Contents, last {0} days"
@@ -489,14 +493,12 @@ msgid "Download Contents from {0} to {1}"
 msgstr "Prenesena vsebina od {0} do {1}"
 
 #. L10n: {0} is an integer.
-#, fuzzy
 msgid "Download Campaigns, last {0} days"
-msgstr "Prenosi zadnjih {0} dni"
+msgstr "Prenosi kampanij, zadnjih {0} dni"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
-#, fuzzy
 msgid "Download Campaigns from {0} to {1}"
-msgstr "Prenosi od {0} do {1}"
+msgstr "Prenosi kampanij od {0} do {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -642,9 +644,6 @@ msgstr[3] "{files} datotek"
 msgid "Image changes being processed"
 msgstr "Obdelovanje sprememb slike"
 
-msgid "Select an application first"
-msgstr "Najprej izberite program"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znak"
@@ -667,6 +666,9 @@ msgstr "Odstrani to lokalizacijo"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} si je prvi ogledoval to stran."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "Prvi si je ogledal ta dodatek {name}."

@@ -1,7 +1,7 @@
 import re
+from unittest.mock import patch
 
 import django
-
 from django.conf import settings
 from django.db import connections, reset_queries
 from django.test import TransactionTestCase
@@ -11,8 +11,6 @@ from django.utils.functional import lazy
 
 import jinja2
 import pytest
-
-from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.models import use_primary_db
@@ -31,9 +29,9 @@ from olympia.translations.tests.testapp.models import (
     ContainsTranslatedThrough,
     FancyModel,
     TranslatedModel,
-    UntranslatedModel,
-    TranslatedModelWithDefaultNull,
     TranslatedModelLinkedAsForeignKey,
+    TranslatedModelWithDefaultNull,
+    UntranslatedModel,
 )
 
 
@@ -593,7 +591,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         # that early as well.
         for con in django.db.connections:
             connections[con].cursor()
-            connections[con].mysql_version
+            connections[con].mysql_version  # noqa: B018
         reset_queries()
 
     @property
@@ -839,8 +837,8 @@ def test_translation_unicode():
 
 def test_comparison_with_lazy():
     lazy_u = lazy(lambda s: s, str)
-    Translation(localized_string='xxx') == lazy_u('xxx')
-    lazy_u('xxx') == Translation(localized_string='xxx')
+    assert Translation(localized_string='xxx') == lazy_u('xxx')
+    assert lazy_u('xxx') == Translation(localized_string='xxx')
 
 
 def test_translated_field_default_null():

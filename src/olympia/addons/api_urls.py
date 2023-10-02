@@ -9,11 +9,12 @@ from olympia.tags.views import TagListView
 
 from .views import (
     AddonAuthorViewSet,
-    AddonPendingAuthorViewSet,
     AddonAutoCompleteSearchView,
+    AddonBrowserMappingView,
     AddonFeaturedView,
-    AddonRecommendationView,
+    AddonPendingAuthorViewSet,
     AddonPreviewViewSet,
+    AddonRecommendationView,
     AddonSearchView,
     AddonVersionViewSet,
     AddonViewSet,
@@ -66,6 +67,11 @@ urls = [
         r'^recommendations/$',
         AddonRecommendationView.as_view(),
         name='addon-recommendations',
+    ),
+    re_path(
+        r'^browser-mappings/$',
+        AddonBrowserMappingView.as_view(),
+        name='addon-browser-mappings',
     ),
 ]
 

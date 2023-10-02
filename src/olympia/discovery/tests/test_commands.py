@@ -9,6 +9,7 @@ import responses
 
 from olympia.amo.tests import TestCase
 
+
 disco_fake_data = {
     'results': [
         {'custom_description': 'greât custom description'},

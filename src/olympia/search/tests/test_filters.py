@@ -1,5 +1,4 @@
 import copy
-
 from unittest.mock import Mock, patch
 
 from django.test.client import RequestFactory
@@ -15,11 +14,11 @@ from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import (
     BADGED_GROUPS,
+    LINE,
     PROMOTED_API_NAME_TO_IDS,
     RECOMMENDED,
-    LINE,
-    STRATEGIC,
     SPONSORED,
+    STRATEGIC,
     VERIFIED,
 )
 from olympia.search.filters import (
@@ -52,7 +51,7 @@ class FilterTestsBase(TestCase):
 class TestQueryFilter(FilterTestsBase):
     filter_classes = [SearchQueryFilter]
 
-    def _test_q(self, qs):
+    def _test_q(self, qs, query):
         should = qs['query']['function_score']['query']['bool']['should']
 
         assert len(should) == 8
@@ -64,10 +63,10 @@ class TestQueryFilter(FilterTestsBase):
                 'Term(name_l10n_en-gb.raw))',
                 'boost': 100.0,
                 'queries': [
-                    {'term': {'name.raw': 'tea pot'}},
-                    {'term': {'name_l10n_en-us.raw': 'tea pot'}},
-                    {'term': {'name_l10n_en-ca.raw': 'tea pot'}},
-                    {'term': {'name_l10n_en-gb.raw': 'tea pot'}},
+                    {'term': {'name.raw': query}},
+                    {'term': {'name_l10n_en-us.raw': query}},
+                    {'term': {'name_l10n_en-ca.raw': query}},
+                    {'term': {'name_l10n_en-gb.raw': query}},
                 ],
             }
         }
@@ -80,7 +79,7 @@ class TestQueryFilter(FilterTestsBase):
                 'boost': 5.0,
                 'fields': ['name_l10n_en-us', 'name_l10n_en-ca', 'name_l10n_en-gb'],
                 'operator': 'and',
-                'query': 'tea pot',
+                'query': query,
             }
         }
 
@@ -89,7 +88,7 @@ class TestQueryFilter(FilterTestsBase):
                 'name': {
                     '_name': 'MatchPhrase(name)',
                     'boost': 8.0,
-                    'query': 'tea pot',
+                    'query': query,
                     'slop': 1,
                 }
             }
@@ -100,7 +99,7 @@ class TestQueryFilter(FilterTestsBase):
                 'name': {
                     '_name': 'Match(name)',
                     'analyzer': 'standard',
-                    'query': 'tea pot',
+                    'query': query,
                     'boost': 6.0,
                     'operator': 'and',
                 }
@@ -108,9 +107,7 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         assert should[4] == {
-            'prefix': {
-                'name': {'_name': 'Prefix(name)', 'value': 'tea pot', 'boost': 3.0}
-            }
+            'prefix': {'name': {'_name': 'Prefix(name)', 'value': query, 'boost': 3.0}}
         }
 
         assert should[5] == {
@@ -124,7 +121,7 @@ class TestQueryFilter(FilterTestsBase):
                                 'fuzziness': 'AUTO',
                                 'minimum_should_match': '2<2 3<-25%',
                                 'prefix_length': 2,
-                                'query': 'tea pot',
+                                'query': query,
                             }
                         }
                     },
@@ -132,7 +129,7 @@ class TestQueryFilter(FilterTestsBase):
                         'match': {
                             'name.trigrams': {
                                 'minimum_should_match': '66%',
-                                'query': 'tea pot',
+                                'query': query,
                             }
                         }
                     },
@@ -146,7 +143,7 @@ class TestQueryFilter(FilterTestsBase):
                 'Match(summary_l10n_en-us), '
                 'Match(summary_l10n_en-ca), '
                 'Match(summary_l10n_en-gb))',
-                'query': 'tea pot',
+                'query': query,
                 'fields': [
                     'summary',
                     'summary_l10n_en-us',
@@ -164,7 +161,7 @@ class TestQueryFilter(FilterTestsBase):
                 'Match(description_l10n_en-us), '
                 'Match(description_l10n_en-ca), '
                 'Match(description_l10n_en-gb))',
-                'query': 'tea pot',
+                'query': query,
                 'fields': [
                     'description',
                     'description_l10n_en-us',
@@ -201,11 +198,13 @@ class TestQueryFilter(FilterTestsBase):
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
-        qs = self._test_q(self._filter(data={'q': 'tea pot', 'sort': 'rating'}))
+        query = 'tea pot'
+        qs = self._test_q(self._filter(data={'q': query, 'sort': 'ratings'}), query)
         assert 'rescore' not in qs
 
     def test_q(self):
-        qs = self._test_q(self._filter(data={'q': 'tea pot'}))
+        query = 'tea pot'
+        qs = self._test_q(self._filter(data={'q': query}), query)
 
         expected_rescore = {
             'bool': {
@@ -258,6 +257,13 @@ class TestQueryFilter(FilterTestsBase):
             'window_size': 10,
             'query': {'rescore_query': expected_rescore},
         }
+
+    def test_q_single_word_no_phrase(self):
+        qs = self._filter(data={'q': 'blah'})
+        should = qs['query']['function_score']['query']['bool']['should']
+        assert len(should) == 7
+        for conditions in should:
+            assert 'match_phrase' not in conditions
 
     def test_q_too_long(self):
         with self.assertRaises(serializers.ValidationError):
@@ -473,13 +479,13 @@ class TestSortingFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "sort" parameter.']
 
     def test_sort_query_multiple(self):
-        qs = self._filter(data={'sort': ['rating,created']})
+        qs = self._filter(data={'sort': ['ratings,created']})
         assert qs['sort'] == [
             self._reformat_order('-bayesian_rating'),
             self._reformat_order('-created'),
         ]
 
-        qs = self._filter(data={'sort': 'created,rating'})
+        qs = self._filter(data={'sort': 'created,ratings'})
         assert qs['sort'] == [
             self._reformat_order('-created'),
             self._reformat_order('-bayesian_rating'),
@@ -494,7 +500,7 @@ class TestSortingFilter(FilterTestsBase):
         expected = 'The "random" "sort" parameter can not be combined.'
 
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'sort': ['rating,random']})
+            self._filter(data={'sort': ['ratings,random']})
         assert context.exception.detail == [expected]
 
         with self.assertRaises(serializers.ValidationError) as context:
@@ -541,6 +547,15 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {'seed': 737482, 'field': 'id'}}
         ]
+
+    def test_sort_ratings(self):
+        # "ratings" sort parameter is the officially supported one, for consistency.
+        qs = self._filter(data={'sort': 'ratings'})
+        assert qs['sort'] == [self._reformat_order('-bayesian_rating')]
+
+        # "rating" sort parameter is still supported for backwards compatibility.
+        qs = self._filter(data={'sort': 'rating'})
+        assert qs['sort'] == [self._reformat_order('-bayesian_rating')]
 
     def test_sort_recommended_only(self):
         # If you try to sort by just recommended it gets ignored

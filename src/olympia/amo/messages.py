@@ -5,7 +5,6 @@ from django.template import loader
 from django.utils import safestring
 
 import markupsafe
-
 from rest_framework.request import Request
 
 

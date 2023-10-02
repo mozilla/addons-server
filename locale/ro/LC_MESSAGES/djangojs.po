@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2018-10-19 07:16+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,8 +69,14 @@ msgstr "Suplimentul depășește dimensiunea maximă de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S-a primit un răspuns gol de la server; stare: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Eroare neașteptată de server la validare."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Validarea {0} s-a terminat"
@@ -626,9 +632,6 @@ msgstr[2] "{files} de fișiere"
 msgid "Image changes being processed"
 msgstr "Se procesează schimbările imaginii"
 
-msgid "Select an application first"
-msgstr "Selectează o aplicație mai întâi"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> caracter"
@@ -649,6 +652,9 @@ msgstr "Elimină această localizare"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} a vizualizat mai întâi această pagină."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} a vizualizat mai întâi acest supliment."

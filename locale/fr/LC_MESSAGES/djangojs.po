@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-12-08 09:43+0000\n"
-"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-06-07 13:18+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -70,8 +70,14 @@ msgstr "Votre module dépasse la taille maximale de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Réception d’une réponse vide depuis le serveur ; état : {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Votre extension doit être compatible avec au moins une application."
+
 msgid "Unexpected server error while validating."
 msgstr "Erreur serveur inattendue lors de la validation."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Marqué explicitement comme compatible avec Firefox pour Android dans le manifeste"
 
 msgid "Finished validating {0}"
 msgstr "Validation de {0} terminée"
@@ -618,9 +624,6 @@ msgstr[1] "{files} fichiers"
 msgid "Image changes being processed"
 msgstr "Changements d’images en cours"
 
-msgid "Select an application first"
-msgstr "Sélectionnez d’abord une application"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> caractère"
@@ -639,6 +642,9 @@ msgstr "Retirer cette localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."

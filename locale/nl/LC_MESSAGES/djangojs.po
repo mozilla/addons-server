@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2015-12-15 21:55+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 09:03+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -66,8 +66,14 @@ msgstr "Uw add-on overschrijdt de maximale grootte van {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Lege respons van server ontvangen; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Uw extensie moet compatibel zijn met ten minste één toepassing."
+
 msgid "Unexpected server error while validating."
 msgstr "Onverwachte serverfout tijdens validatie."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Expliciet gemarkeerd als compatibel met Firefox voor Android in het manifest"
 
 msgid "Finished validating {0}"
 msgstr "Validatie van {0} voltooid"
@@ -372,8 +378,8 @@ msgstr "Downloads en dagelijkse gebruikers van {0} tot {1}"
 msgid "Installs and Daily Users, last {0} days"
 msgstr "Installaties en dagelijkse gebruikers, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 msgid "Installs and Daily Users from {0} to {1}"
 msgstr "Installaties en dagelijkse gebruikers van {0} tot {1}"
 
@@ -485,8 +491,8 @@ msgstr "Bijdragen van {0} tot {1}"
 msgid "Site Metrics, last {0} days"
 msgstr "Websitegegevens, laatste {0} dagen"
 
-# why not localize the date format?
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
+# why not localize the date format?
 msgid "Site Metrics from {0} to {1}"
 msgstr "Websitegegevens van {0} tot {1}"
 
@@ -616,9 +622,6 @@ msgstr[1] "{files} bestanden"
 msgid "Image changes being processed"
 msgstr "Afbeeldingswijzigingen worden verwerkt"
 
-msgid "Select an application first"
-msgstr "Selecteer eerst een toepassing"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> teken"
@@ -637,6 +640,9 @@ msgstr "Deze vertaling verwijderen"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} heeft eerst deze pagina bekeken."
+
+msgid "Review page polling failed."
+msgstr "Polling van beoordelingspagina mislukt."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} bekeek deze add-on eerst."

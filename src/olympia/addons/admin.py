@@ -1,7 +1,7 @@
 import functools
 from urllib.parse import urlencode, urljoin
 
-from django import http, forms
+from django import forms, http
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.utils import display_for_field
@@ -29,6 +29,7 @@ from olympia.amo.utils import send_mail
 from olympia.files.models import File
 from olympia.git.models import GitExtractionEntry
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 from olympia.zadmin.admin import related_content_link, related_single_content_link
 
@@ -117,17 +118,18 @@ class FileInline(admin.TabularInline):
     version__deleted.boolean = True
 
     def version__is_blocked(self, obj):
-        block = self.instance.block
-        if not (block and block.is_version_blocked(obj.version.version)):
+        blockversion = getattr(obj.version, 'blockversion', None)
+        if not blockversion:
             return ''
-        url = block.get_admin_url_path()
-        template = '<a href="{}">Blocked ({} - {})</a>'
-        return format_html(template, url, block.min_version, block.max_version)
+        url = blockversion.block.get_admin_url_path()
+        template = '<a href="{}">Blocked</a>'
+        return format_html(template, url)
 
     version__is_blocked.short_description = 'Block status'
 
     def version__needs_human_review(self, obj):
-        return obj.version.needs_human_review
+        # Set by the prefetch_related() call below.
+        return obj.needs_human_review
 
     version__needs_human_review.short_description = 'Needs human review'
     version__needs_human_review.boolean = True
@@ -162,7 +164,12 @@ class FileInline(admin.TabularInline):
             .filter(version__in=versions)
             .order_by('-version__id')
         )
-        return qs.select_related('version')
+        sub_qs = NeedsHumanReview.objects.filter(
+            is_active=True, version=OuterRef('version')
+        )
+        return qs.select_related('version', 'version__blockversion').annotate(
+            needs_human_review=Exists(sub_qs)
+        )
 
 
 class AddonAdmin(AMOModelAdmin):
@@ -252,6 +259,7 @@ class AddonAdmin(AMOModelAdmin):
         'text_ratings_count',
         'weekly_downloads',
         'average_daily_users',
+        'hotness',
     )
 
     fieldsets = (
@@ -301,6 +309,7 @@ class AddonAdmin(AMOModelAdmin):
                     'text_ratings_count',
                     'weekly_downloads',
                     'average_daily_users',
+                    'hotness',
                 ),
             },
         ),
@@ -620,6 +629,7 @@ class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
     fields = ('created', 'modified', 'addon', 'excluded_regions')
     raw_id_fields = ('addon',)
     readonly_fields = ('created', 'modified')
+    view_on_site = False
 
     def get_readonly_fields(self, request, obj=None):
         return self.readonly_fields + (('addon',) if obj else ())
@@ -647,6 +657,19 @@ class AddonRegionalRestrictionsAdmin(AMOModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         self._send_mail(obj, 'changed' if change else 'added')
+
+
+@admin.register(models.AddonBrowserMapping)
+class AddonBrowserMappingAdmin(AMOModelAdmin):
+    list_display = ('addon__name', 'browser', 'extension_id', 'created', 'modified')
+    fields = ('addon', 'browser', 'extension_id')
+    raw_id_fields = ('addon',)
+    readonly_fields = ('created', 'modified')
+
+    def addon__name(self, obj):
+        return str(obj.addon)
+
+    addon__name.short_description = 'Addon'
 
 
 admin.site.register(models.DeniedGuid)

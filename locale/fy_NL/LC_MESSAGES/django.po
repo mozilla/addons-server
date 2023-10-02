@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-05 08:04+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 18:18+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -123,6 +123,10 @@ msgid "Unknown min app version specified"
 msgstr "Unbekende minimale app-ferzje opjûn"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Kin de kompatibiliteitsynformaasje ynsteld yn it manifest foar dizze tapassing net oerskriuwe (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Ofbyldingen moatte lytser wêze as %dMB"
 
@@ -150,9 +154,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "De nijste goedkarre ferzje fan dizze %s add-on kin net fuortsmiten of útskeakele wurde, omdat de foarige ferzje net goedkard is foar promoasje as %s. Nim kontakt op mei AMO-behearders as jo hjir "
 "help by nedich hawwe."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Ferzje {version} komt oerien mei {block_link} foar dizze add-on. Jo kinne kontakt opnimme mei {amo_admins} foar oanfoljende ynformaasje."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Ferzje {version_string} is earder al opladen fuortsmiten."
@@ -349,6 +350,9 @@ msgstr "Registrearje of oanmelde"
 msgid "Email:"
 msgstr "E-mailadres:"
 
+msgid "Two-factor authentication"
+msgstr "Twafaktorautentikaasje"
+
 msgid "OK"
 msgstr "OK"
 
@@ -459,37 +463,6 @@ msgstr "Dizze oanpaste URL kin net brûkt wurde."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dizze add-on heart al by de kolleksje"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s is yn behanneling"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokkearring mei GUID %(guid)s net fûn"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Add-on mei GUID %(guid)s bestiet net"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "By te wurkjen blokkearringen binne ferskillend, omdat de minimum- of maksimumferzje wizige is."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s befettet *"
-
-msgid "Invalid version"
-msgstr "Unjildige ferzje"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimumferzje kin net grutter wêze as de maksimumferzje"
-
-msgid "Review Listed"
-msgstr "Fermeldingen beoardiele"
-
-msgid "Review Unlisted"
-msgstr "Net-fermelde items beoardiele"
 
 msgid "{addon} was created."
 msgstr "{addon} is makke."
@@ -853,11 +826,32 @@ msgstr "Ofwizing {addon} {version} ûngedien makke."
 msgid "Un-rejected"
 msgstr "Ofwizing ûngedien makke"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "needs_human_review-markering fan {addon} wiske."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Antwurd op {rating} foar {addon} skreaun."
 
-msgid "Needs Human Review cleared"
-msgstr "Markearring ‘Persoanlike beoardieling nedich’ wiske"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} wachtsjende ôfwizing wiske."
+
+msgid "Pending rejection cleared"
+msgstr "Wachtsjende ôfwizing wiske"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} tafoege oan blokkearlist."
+
+msgid "Version Blocked"
+msgstr "Ferzje blokkearre"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} fuortsmiten fan blokkearlist."
+
+msgid "Version Unblocked"
+msgstr "Ferzje deblokkearre"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Add-on-beoardieling troch behearder foar {addon} {version} wiske."
+
+msgid "Admin add-on-review cleared"
+msgstr "Add-on-beoardieling troch behearder wiske"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1516,6 +1510,10 @@ msgstr "Aktuele werjaan"
 msgid "Invalid version range."
 msgstr "Unjildich ferzjeberik."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Unjildich ferzjeberik. Foar Firefox foar Android meie jo allinnich in berik kieze dat begjint mei ferzje %(max)s of heger, of einiget mei leger as ferzje %(min)s."
+
 msgid "Need at least one compatible application."
 msgstr "Der moat op syn minst ien kompatibele tapassing wêze."
 
@@ -1530,9 +1528,6 @@ msgstr "Mislearre falidaasje negearje"
 
 msgid "Need to select at least one application."
 msgstr "Jo moatte op syn minst ien tapassing selektearje."
-
-msgid "a blocklist entry"
-msgstr "in blokkearringslistitem"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Ferzje {version} is earder al opladen fuortsmiten."
@@ -1586,6 +1581,9 @@ msgstr "Mozilla-befeiligingsmelding: jo API-referinsjes foar AMO binne ynlutsen"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "De falidaasje levere te folle flaters/warskôgingen op, dus %s berjochten binne ynkoarte. Neidat de sichtbere berjochten adressearre binne kinne jo de oare lêze."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Dizze add-on is gjin tema. Brûk de side <a href=\"{link}\">In nije add-on yntsjinje</a> om útwreidingen yn te tsjinjen."
 
 msgid "Updated"
 msgstr "Bywurke"
@@ -1649,6 +1647,9 @@ msgstr "Wizigingen mei sukses bewarre."
 
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Foegje twafaktorautentikaasje ta oan jo account om útwreidingen yn te tsjinjen.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
@@ -1855,58 +1856,6 @@ msgstr "Aktiviteit"
 msgid "Subscribe to this feed"
 msgstr "Op dizze feed abonnearje"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Dizze add-on is net kompatibel mei <b>%(app_name)s %(app_version)s</b>, de nijste útjefte fan %(app_name)s. Oerwaach de kompatibiliteitsynformaasje fan jo add-on by te wurkjen of in nijere ferzje "
-"fan dizze add-on op te laden."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibiliteit bywurkje</a> <a href=\"%(version_url)s\" class=\"button\">Nije ferzje oplade</a> of <a href=\"#\" "
-"class=\"close\">Negearje</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Tapassingskompatibiliteitsberik besjen en bywurkje"
-
-msgid "Compatibility"
-msgstr "Kompatibiliteit"
-
-msgid "Update Compatibility"
-msgstr "Kompatibiliteit bywurkje"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Troch hjir tapassingsynformaasje oan te passen kinne brûkers jo add-on ynstallearje, sels as it ynstallaasjemanifest yn it pakket oanjout dat de add-on net kompatibel is."
-
-msgid "Application"
-msgstr "Tapassing"
-
-msgid "Supported Versions"
-msgstr "Stipe ferzjes"
-
-msgid "Remove"
-msgstr "Fuortsmite"
-
-msgid "Add Another Application&hellip;"
-msgstr "Noch in tapassing tafoegje…"
-
-msgid "Save Changes"
-msgstr "Wizigingen bewarje"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "of"
-
-msgid "Cancel"
-msgstr "Annulearje"
-
-msgid "Close"
-msgstr "Slute"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1977,6 +1926,9 @@ msgstr "Auteurs wachtsje op befêstiging"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Auteurs dy’t oan dizze add-on tafoege binne, mar noch net befêstige hawwe."
 
+msgid "Save Changes"
+msgstr "Wizigingen bewarje"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
@@ -1984,6 +1936,9 @@ msgstr ""
 "<p>Add-ons kinne mear skriuwers hawwe mei twa mooglike rollen:</p> <ul> <li><b>Eigener:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, ynklusyf tafoegjen en fuortsmiten fan oare "
 "skriuwers</li> <li><b>Untwikkeler:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, mei útsûndering fan tafoegjen en fuortsmiten fan oare skriuwers en behearen fan betellingen</li> "
 "</ul>"
+
+msgid "Close"
+msgstr "Slute"
 
 msgid "Additional Details"
 msgstr "Oanfoljende details"
@@ -2023,6 +1978,14 @@ msgid ""
 "ons."
 msgstr ""
 "As jo add-on in oare startside hat, fier dan hjir it adres yn. As jo website nei oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde add-ons."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "of"
+
+msgid "Cancel"
+msgstr "Annulearje"
 
 msgid "Describe Add-on"
 msgstr "Beskriuw jo add-on"
@@ -3119,6 +3082,15 @@ msgstr "{0} beheare"
 msgid "Files"
 msgstr "Bestannen"
 
+msgid "Compatibility"
+msgstr "Kompatibiliteit"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Troch hjir tapassingsynformaasje oan te passen kinne brûkers jo add-on ynstallearje, sels as it ynstallaasjemanifest yn it pakket oanjout dat de add-on net kompatibel is."
+
+msgid "Add Another Application&hellip;"
+msgstr "Noch in tapassing tafoegje…"
+
 msgid "Version Notes"
 msgstr "Ferzjeopmerkingen"
 
@@ -3453,7 +3425,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Wiskje automatysk cookies nei't jo in ljepblêd slute."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "In ienfâldige manier om de tekstgrutte fan siden oan te passen – of sels de side sels te fergrutsjen."
 
@@ -3595,7 +3566,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blokkearje standert alle pop-ups en beslis dêrnei hokker jo iepenje wolle."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Wizigje de foarmjouwing fan websites. Pas kleuren, side-eftergrûnen en mear oan."
 
@@ -3835,7 +3805,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Krij in foarsprong by Amazon. By it besjen fan produktsiden op oare onlinewinkels, kinne jo op ien knop klikke om de fermelding derfan op Amazon te besjen as it dêr beskikber is."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Genietsje fan ultym ljepblêdbehear – slút dûbele ljepblêden, foegje finsters tegearre, kopiearje de ljepblêdtitel en mear."
 
@@ -3954,7 +3923,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Fiks ferfelend lûd. Is it folume op in website te leech? Te heech? SoundFixer kin helpe."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Bewurkje in webside eardat jo dizze ôfdrukke. Meitsje bûtengewoane fisuele oanpassingen – smyt advertinsjes of ûnsmaaklike ynhâld fuort – foar websiden dy’t jo ôfdrukke wolle."
 
@@ -4017,7 +3985,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Genietsje fan stipe foar multi-threading-downloads. Detektearje automatysk ferskate soarten media dy’t te downloaden binne."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Bewarje ôfbyldingen maklik - sleep se gewoan fan jo aktive ljepblêd."
 
@@ -4102,7 +4069,6 @@ msgid "Create and customize tab groups."
 msgstr "Meitsje ljepblêdgroepen en pas se oan."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Bewarje folsleine siden – ynklusyf ôfbyldingen en opmaak – as ien HTML-bestân."
 
@@ -4187,6 +4153,14 @@ msgstr "Tiidbasearre temawikseler. Lit Firefox ôfhinklik fan de tiid fan de dei
 msgid "Declutter your Twitter experience."
 msgstr "Romje jo Twitter-ûnderfining op."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Bring de mooglikheid werom om ôfkarreaksjes te sjen!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Harkje nei muzyk op YouTube sûnder dy ferfelende ‘Video gepauzeerd. Doorgaan met kijken?’-ûnderbrekkingen."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo’s op Android. Dizze útwreiding biedt in oplossing."
@@ -4194,6 +4168,14 @@ msgstr "Guon websites hawwe muoite mei it ôfspyljen fan fideo’s op Android. D
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "In ynteressante ôfbylding op it web fûn? Brûk TinEye om de werkomst derfan te efterheljen."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Bewarje ôfbyldingen maklik – sleep se ienfâldichwei fan jo aktive ljepblêd."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Genietsje fan ultym ljepblêdbehear – dûbele ljepblêden slúte, finsters gearfoegje, de ljepblêdtitel kopiearje en mear."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4204,12 +4186,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Pas jo mûsbewegingen oan. Untdek in nije manier fan navigearjen mei mear as 50 ynstellingen."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Wizigje de foarmjouwing fan websites. Pas kleuren, side-eftergrûnen en mear oan."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Brûk mûsbewegingen om ljepblêden te sluten, nei siden te navigearjen, en mear."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "In ienfâldige manier om de tekstgrutte fan siden oan te passen – of sels de side sels te fergrutsjen."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Genietsje fan miniatuerôfbyldingen fan websites by jo sykresultaten."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Bewarje folsleine siden – ynklusyf ôfbyldingen en opmaak – as ien HTML-bestân."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Bewurkje in webside eardat jo dizze ôfdrukke. Meitsje bûtengewoane fisuele oanpassingen – smyt advertinsjes of ûnsmaaklike ynhâld fuort – foar websiden dy’t jo ôfdrukke wolle."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4240,10 +4238,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Gean werom nei in ienfâldiger tiden – doe’t jo bêste sykresultaten boppe de advertinsjes stiene (kompatibel mei de sykmasinen fan Google en Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Stopje mei it jaan fan jo e-mailadres. Firefox Relay beskermet jo identiteit en foarkomt net-winske berjochten. Wurdearje op nij premium foar ekstra foardielen, lykas it blokkearjen fan mear "
-"spesifike promoasje-e-mailberjochten."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Maskearje jo e-mailadres om jo identiteit te beskermjen en net-winske berjochten foar te kommen. Nije fernijingen meitsje Firefox Relay noch brûksfreonliker."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4309,6 +4305,14 @@ msgstr "Ferbetterje jo game-ûnderfining op Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Tomme omheech foar it werombringen fan de tomme omleech."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Set websites oer yn Firefox – privee – sûnder de cloud te brûken."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blokkearje tiidfergriemjende websites. Blokkearje se folslein of gewoan yn in keazen tiidrek."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Utwreidingen binne as apps foar Firefox."
@@ -4322,16 +4326,17 @@ msgid "See all extensions"
 msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Privacy- & befeiligngsútwreidingen"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube-oanpassingen"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Utwreiding-startpakket"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Downloadbehearders"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Game & Ferdivedaasje-útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4427,10 +4432,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Mear stêfkarren foar advertinsjeblokkearring besjen"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube-oanpassingen"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Mear stêfkarren foar YouTube-útwreidingen besjen"
 
@@ -4473,6 +4474,14 @@ msgstr "Kreativiteitsútwreidingen"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Mear stêfkarren foar kreativiteit besjen"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Sosjale mediaútwreidingen"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Mear stêfkarren foar sosjale media besjen"
 
 msgid "Unreviewed"
 msgstr "Net beoardiele"
@@ -4593,6 +4602,13 @@ msgstr "Oars (spesifisearje dizze)"
 msgid "Auto-flagged due to word match"
 msgstr "Automatysk labele fanwegen wurdoerienkomst"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Automatysk labele fanwegen brûkersbeheining"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s befettet in net-alfanumeryk teken."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "De beoardielingstekst mei it de wurd ‘{0}’ net befetsje"
@@ -4648,15 +4664,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "troch %(user)s op %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "troch %(user)s op %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Markearre troch %(user)s op %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Warskôging!</strong> In oare brûker hat dizze side earder as jo besjoen."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Warskôging!</strong> In oare brûker besjocht dizze side mooglik earder as jo."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5070,8 +5086,8 @@ msgstr "Firefox-brûker {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Fier in jildige IPv4- of IPv6-CIDR-netwurkreeks yn, byg. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Fan jo lokaasje ôf binne mear add-ons dy’t stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Fan jo lokaasje ôf binne mear ynstjoeringen dy’t stridich binne mei ús belied yntsjinne. It IP-adres is blokkearre."
 
 msgid "Email Pattern"
 msgstr "E-mailpatroan"
@@ -5081,8 +5097,8 @@ msgstr ""
 "Fier it folsleine e-mailadres yn dat blokkearre wurde moat of brûk wildcards yn Unix-styl, byg. ‘*@foarbyld.com’. As jo in domein ynklusyf subdomeinen blokkearje wolle, foegje dan in twadde item ta,"
 " byg. ‘*@*.foarbyld.com’."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar it yntsjinjen fan add-ons."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "It e-mailadres dat jo foar jo account brûkt hawwe is net tastien foar ynstjoeringen."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

@@ -1,7 +1,7 @@
 from unittest import mock
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
     CollectionAddonSerializer,

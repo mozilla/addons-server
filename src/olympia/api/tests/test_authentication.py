@@ -1,6 +1,5 @@
 import json
 import time
-
 from calendar import timegm
 from datetime import datetime, timedelta
 from unittest import mock
@@ -10,7 +9,6 @@ from django.test import RequestFactory
 from django.urls import reverse
 
 import jwt
-
 from freezegun import freeze_time
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.permissions import IsAuthenticated
@@ -22,8 +20,8 @@ from olympia.accounts.verify import IdentificationError
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    APITestClientSessionID,
     APITestClientJWT,
+    APITestClientSessionID,
     TestCase,
     WithDynamicEndpoints,
     user_factory,
@@ -198,7 +196,9 @@ class TestJWTKeyAuthProtectedView(WithDynamicEndpoints, JWTAuthKeyTester, TestCa
         return handler(reverse('test-dynamic-endpoint'), *args, **kw)
 
     def jwt_request(self, token, method, *args, **kw):
-        return self.request(method, HTTP_AUTHORIZATION=f'JWT {token}', *args, **kw)
+        return self.request(
+            method, *args, **{'HTTP_AUTHORIZATION': f'JWT {token}', **kw}
+        )
 
     def test_get_requires_auth(self):
         res = self.request('get')
@@ -289,7 +289,7 @@ class TestSessionIDAuthentication(TestCase):
 
     def test_no_token(self):
         request = self.factory.post('/api/v4/whatever/')
-        self.auth.authenticate(request) is None
+        assert self.auth.authenticate(request) is None
         self.update_token_mock.assert_not_called()
 
     def test_still_valid_token(self):

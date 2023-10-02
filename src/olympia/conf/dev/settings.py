@@ -1,3 +1,4 @@
+# ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
 
 
@@ -52,16 +53,8 @@ CELERY_WORKER_PREFETCH_MULTIPLIER = 1
 # Update the logger name used for mozlog
 LOGGING['formatters']['json']['logger_name'] = 'http_app_addons_dev'
 
-csp = 'csp.middleware.CSPMiddleware'
-
 ES_TIMEOUT = 60
-ES_HOSTS = env('ES_HOSTS')
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
-
-CEF_PRODUCT = STATSD_PREFIX
-
-NEW_FEATURES = True
 
 # --enable-background-service-worker linter flag value
 ADDONS_LINTER_ENABLE_SERVICE_WORKER = True

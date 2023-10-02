@@ -893,12 +893,17 @@ pre.email_comment {
     margin-top: 1em;
 }
 
-#upload-file .compatible-apps ul {
+#upload-file #id_compatible_apps {
     margin-top: 0.5em;
 }
 
-#upload-file .compatible-apps li {
+#upload-file #id_compatible_apps>* {
     float: none;
+}
+
+#upload-file .compatible-apps {
+    /* hidden by default, shown by JavaScript for extensions */
+    display: none;
 }
 
 #upload-file .compatible-apps label.app {
@@ -1536,30 +1541,6 @@ button.search-button {
   float: left;
   -moz-transform: scalex(-1);
   -webkit-transform: scalex(-1);
-}
-
-#addon-compat-upload {
-    margin: 1em 0;
-}
-#addon-compat-upload label, #addon-compat-upload span {
-    display: block;
-    float: left;
-}
-#addon-compat-upload label {
-    margin-right: .3em;
-}
-#addon-compat-upload span {
-    margin-right: 3em;
-}
-
-.html-rtl #addon-compat-upload label, .html-rtl #addon-compat-upload span {
-    float: right;
-}
-.html-rtl #addon-compat-upload label {
-    margin: 0 0 0 .3em;
-}
-.html-rtl #addon-compat-upload span {
-    margin: 0 0 0 3em;
 }
 
 span.distribution-tag-listed, span.distribution-tag-unlisted {

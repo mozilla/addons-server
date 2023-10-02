@@ -1,5 +1,5 @@
-from django.core.exceptions import PermissionDenied
 from django import http, shortcuts
+from django.core.exceptions import PermissionDenied
 from django.utils.crypto import constant_time_compare
 from django.utils.translation import gettext
 
@@ -9,7 +9,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
@@ -46,12 +45,12 @@ def serve_file_upload(request, uuid):
         log.error('Denying access to %s, token invalid.', upload.id)
         raise PermissionDenied
 
-    if not upload.path:
+    if not upload.file_path:
         log.info('Preventing access to %s, upload path is falsey.' % upload.id)
         return http.HttpResponseGone('upload path does not exist anymore')
 
     return HttpResponseXSendFile(
-        request, upload.path, content_type='application/octet-stream'
+        request, upload.file_path, content_type='application/octet-stream'
     )
 
 
@@ -97,7 +96,7 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
             user=request.user,
         )
 
-        devhub_tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
+        devhub_tasks.validate(upload)
         headers = self.get_success_headers({})
         data = self.get_serializer(instance=upload).data
         return Response(data, status=status.HTTP_201_CREATED, headers=headers)

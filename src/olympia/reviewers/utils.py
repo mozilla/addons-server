@@ -1,16 +1,19 @@
 import random
-from collections import defaultdict, OrderedDict
+from collections import OrderedDict, defaultdict
 from datetime import datetime, timedelta
 
-import django_tables2 as tables
-import olympia.core.logger
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.db.models import Count, F, Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.http import urlencode
 
+import django_tables2 as tables
+import markupsafe
+
+import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -22,14 +25,12 @@ from olympia.constants.promoted import RECOMMENDED
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     AutoApprovalSummary,
-    ReviewerSubscription,
+    NeedsHumanReview,
     get_flags,
 )
 from olympia.reviewers.templatetags.jinja_helpers import format_score
 from olympia.users.utils import get_task_user
 from olympia.versions.models import VersionReviewerFlags
-
-import markupsafe
 
 
 log = olympia.core.logger.getLogger('z.mailer')
@@ -40,7 +41,9 @@ def is_admin_reviewer(user):
 
 
 class AddonQueueTable(tables.Table):
-    addon_name = tables.Column(verbose_name='Add-on', accessor='name', orderable=False)
+    addon_name = tables.Column(
+        verbose_name='Add-on', accessor='name', orderable=False, empty_values=()
+    )
     # Override empty_values for flags so that they can be displayed even if the
     # model does not have a flags attribute.
     flags = tables.Column(verbose_name='Flags', empty_values=(), orderable=False)
@@ -65,6 +68,7 @@ class AddonQueueTable(tables.Table):
         accessor='_current_version__autoapprovalsummary__score',
     )
     show_count_in_dashboard = True
+    view_name = 'queue'
 
     class Meta:
         fields = (
@@ -104,13 +108,10 @@ class AddonQueueTable(tables.Table):
 
     def render_addon_name(self, record):
         url = self._get_addon_name_url(record)
+        name = markupsafe.escape(str(record.name or '').strip() or f'[{record.id}]')
         return markupsafe.Markup(
             '<a href="%s">%s <em>%s</em></a>'
-            % (
-                url,
-                markupsafe.escape(record.name),
-                markupsafe.escape(self.get_version(record).version),
-            )
+            % (url, name, markupsafe.escape(self.get_version(record).version))
         )
 
     def render_last_human_review(self, value):
@@ -142,6 +143,10 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         verbose_name='Maliciousness Score',
         accessor='first_pending_version__autoapprovalsummary__score',
     )
+    title = '🛠️ Manual Review'
+    urlname = 'queue_extension'
+    url = r'^extension$'
+    permission = amo.permissions.ADDONS_REVIEW
 
     class Meta:
         fields = ('addon_name', 'addon_type', 'due_date', 'flags', 'score')
@@ -153,12 +158,16 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
         )
 
     @classmethod
-    def get_queryset(self, request):
+    def get_queryset(self, request, *, upcoming_due_date_focus=False, **kw):
+        show_only_upcoming = upcoming_due_date_focus and not acl.action_allowed_for(
+            request.user, amo.permissions.ADDONS_ALL_DUE_DATES
+        )
         qs = Addon.unfiltered.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user),
             show_temporarily_delayed=acl.action_allowed_for(
                 request.user, amo.permissions.ADDONS_TRIAGE_DELAYED
             ),
+            show_only_upcoming=show_only_upcoming,
         )
         return qs
 
@@ -185,6 +194,11 @@ class PendingManualApprovalQueueTable(AddonQueueTable):
 
 
 class NewThemesQueueTable(PendingManualApprovalQueueTable):
+    title = '🎨 New'
+    urlname = 'queue_theme_nominated'
+    url = r'^theme_new$'
+    permission = amo.permissions.STATIC_THEMES_REVIEW
+
     class Meta(AddonQueueTable.Meta):
         exclude = (
             'score',
@@ -196,15 +210,19 @@ class NewThemesQueueTable(PendingManualApprovalQueueTable):
         )
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_NOMINATED,))
 
 
 class UpdatedThemesQueueTable(NewThemesQueueTable):
+    title = '🎨 Updates'
+    urlname = 'queue_theme_pending'
+    url = r'^theme_updates$'
+
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_queryset_for_pending_queues(
             admin_reviewer=is_admin_reviewer(request.user), theme_review=True
         ).filter(status__in=(amo.STATUS_APPROVED,))
@@ -231,6 +249,10 @@ class PendingRejectionTable(AddonQueueTable):
         verbose_name='Maliciousness Score',
         accessor='first_pending_version__autoapprovalsummary__score',
     )
+    title = 'Pending Rejection'
+    urlname = 'queue_pending_rejection'
+    url = r'^pending_rejection$'
+    permission = amo.permissions.REVIEWS_ADMIN
 
     class Meta(PendingManualApprovalQueueTable.Meta):
         fields = (
@@ -246,7 +268,7 @@ class PendingRejectionTable(AddonQueueTable):
         exclude = ('due_date',)
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_pending_rejection_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         )
@@ -262,6 +284,10 @@ class PendingRejectionTable(AddonQueueTable):
 
 class ContentReviewTable(AddonQueueTable):
     last_updated = tables.DateTimeColumn(verbose_name='Last Updated')
+    title = 'Content Review'
+    urlname = 'queue_content_review'
+    url = r'^content_review$'
+    permission = amo.permissions.ADDONS_CONTENT_REVIEW
 
     class Meta(AddonQueueTable.Meta):
         fields = ('addon_name', 'flags', 'last_updated')
@@ -275,7 +301,7 @@ class ContentReviewTable(AddonQueueTable):
         orderable = False
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_content_review_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         )
@@ -291,6 +317,10 @@ class MadReviewTable(AddonQueueTable):
     listed_text = 'Listed version'
     unlisted_text = 'Unlisted versions ({0})'
     show_count_in_dashboard = False
+    title = 'Flagged by MAD for Human Review'
+    urlname = 'queue_mad'
+    url = r'^mad$'
+    permission = amo.permissions.ADDONS_REVIEW
 
     def render_addon_name(self, record):
         rval = [markupsafe.escape(record.name)]
@@ -322,7 +352,7 @@ class MadReviewTable(AddonQueueTable):
         return markupsafe.Markup(''.join(rval))
 
     @classmethod
-    def get_queryset(cls, request):
+    def get_queryset(cls, request, **kw):
         return Addon.objects.get_mad_queue(
             admin_reviewer=is_admin_reviewer(request.user)
         ).annotate(
@@ -337,6 +367,15 @@ class MadReviewTable(AddonQueueTable):
                 '_current_version__reviewerflags__needs_human_review_by_mad'
             ),
         )
+
+
+class ModerationQueueTable:
+    title = 'Rating Reviews'
+    urlname = 'queue_moderated'
+    url = r'^reviews$'
+    permission = amo.permissions.RATINGS_MODERATE
+    show_count_in_dashboard = False
+    view_name = 'queue_moderated'
 
 
 class ReviewHelper:
@@ -420,23 +459,18 @@ class ReviewHelper:
         # code review, nothing fancy.
         permission = amo.permissions.ADDONS_REVIEW
         permission_post_review = amo.permissions.ADDONS_REVIEW
-        is_admin_needed = (
-            self.addon.needs_admin_content_review or self.addon.needs_admin_code_review
-        )
-        is_admin_needed_post_review = is_admin_needed
+        is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
         if promoted_group == RECOMMENDED:
             permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
             permission_post_review = permission
         elif version_is_unlisted:
-            is_admin_needed = self.addon.needs_admin_code_review
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
         elif promoted_group.admin_review:
             is_admin_needed = is_admin_needed_post_review = True
         elif self.content_review:
-            is_admin_needed = self.addon.needs_admin_content_review
             permission = amo.permissions.ADDONS_CONTENT_REVIEW
         elif is_static_theme:
             is_admin_needed = self.addon.needs_admin_theme_review
@@ -470,6 +504,7 @@ class ReviewHelper:
             self.user
         )
 
+        addon_is_not_disabled = self.addon.status != amo.STATUS_DISABLED
         addon_is_not_disabled_or_deleted = self.addon.status not in (
             amo.STATUS_DELETED,
             amo.STATUS_DISABLED,
@@ -517,13 +552,6 @@ class ReviewHelper:
                 or not self.human_review
             )
             can_approve_multiple = False
-
-        has_needs_human_review = (
-            self.version
-            and self.addon.versions(manager='unfiltered_for_relations')
-            .filter(needs_human_review=True, channel=self.version.channel)
-            .exists()
-        )
 
         # Definitions for all actions.
         boilerplate_for_approve = 'Thank you for your contribution.'
@@ -700,6 +728,41 @@ class ReviewHelper:
                 not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
         }
+        actions['clear_pending_rejection_multiple_versions'] = {
+            'method': self.handler.clear_pending_rejection_multiple_versions,
+            'label': 'Clear pending rejection',
+            'details': (
+                'Clear pending rejection from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'comments': False,
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['clear_needs_human_review_multiple_versions'] = {
+            'method': self.handler.clear_needs_human_review_multiple_versions,
+            'label': 'Clear Needs Human Review',
+            'details': (
+                'Clear needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'comments': False,
+            'available': is_appropriate_admin_reviewer,
+        }
+        actions['set_needs_human_review_multiple_versions'] = {
+            'method': self.handler.set_needs_human_review_multiple_versions,
+            'label': 'Set Needs Human Review',
+            'details': (
+                'Set needs human review flag from selected versions, but '
+                "otherwise don't change the version(s) or add-on statuses."
+            ),
+            'multiple_versions': True,
+            'minimal': True,
+            'available': addon_is_not_disabled and is_appropriate_reviewer,
+        }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
             'label': 'Reviewer reply',
@@ -716,9 +779,9 @@ class ReviewHelper:
             'allows_reasons': not is_static_theme,
             'requires_reasons': False,
         }
-        actions['super'] = {
-            'method': self.handler.process_super_review,
-            'label': 'Request super-review',
+        actions['request_admin_review'] = {
+            'method': self.handler.request_admin_review,
+            'label': 'Request review from admin',
             'details': (
                 'If you have concerns about this add-on that '
                 'an admin reviewer should look into, enter '
@@ -726,7 +789,15 @@ class ReviewHelper:
                 'not be sent to the developer.'
             ),
             'minimal': True,
-            'available': (self.version is not None and is_reviewer),
+            'available': (self.version is not None and is_reviewer and is_static_theme),
+        }
+        actions['clear_admin_review'] = {
+            'method': self.handler.clear_admin_review,
+            'label': 'Clear admin review',
+            'details': ('Clear needs admin review flag on the add-on.'),
+            'minimal': True,
+            'comments': False,
+            'available': is_appropriate_admin_reviewer and is_static_theme,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -736,28 +807,22 @@ class ReviewHelper:
                 "won't be able to see this."
             ),
             'minimal': True,
-            'available': (is_reviewer),
-        }
-        actions['clear_needs_human_review'] = {
-            'method': self.handler.clear_needs_human_review,
-            'label': 'Clear Needs Human Review',
-            'details': (
-                'Clear needs human review flag from all versions in this channel, but '
-                "otherwise don't change the version(s) or add-on statuses."
-            ),
-            'minimal': True,
-            'comments': False,
-            'available': (is_appropriate_admin_reviewer and has_needs_human_review),
+            'available': is_reviewer,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
         )
 
     def process(self):
-        action = self.handler.data.get('action', '')
-        if not action:
+        if not (action := self.actions.get(self.handler.data.get('action'))):
             raise NotImplementedError
-        return self.actions[action]['method']()
+        # Clear comments in data before processing if the action isn't supposed
+        # to have any, because the reviewer might have submitted some by
+        # accident after switching between tabs, and the logging methods will
+        # automatically include them if some are present.
+        if not action.get('comments', True):
+            self.handler.data['comments'] = ''
+        return action['method']()
 
 
 class ReviewBase:
@@ -831,13 +896,13 @@ class ReviewBase:
         reviewers are approving is always the latest listed one, and then users
         are supposed to automatically get the update to that version, so we
         don't need to care about older ones anymore.
-
-        Also used by clear_needs_human_review action for unlisted too.
         """
         # Do a mass UPDATE.
-        self.addon.versions(manager='unfiltered_for_relations').filter(
-            needs_human_review=True, channel=self.version.channel
-        ).update(needs_human_review=False)
+        NeedsHumanReview.objects.filter(
+            version__addon=self.addon,
+            version__channel=self.version.channel,
+            is_active=True,
+        ).update(is_active=False)
         if mad_too:
             # Another one for the needs_human_review_by_mad flag.
             VersionReviewerFlags.objects.filter(
@@ -847,15 +912,16 @@ class ReviewBase:
         # Trigger a check of all due dates on the add-on since we mass-updated
         # versions.
         self.addon.update_all_due_dates()
-        # Also reset it on self.version in case this instance is saved later.
-        self.version.needs_human_review = False
 
     def clear_specific_needs_human_review_flags(self, version):
         """Clear needs_human_review flags on a specific version."""
-        if version.needs_human_review:
-            version.update(needs_human_review=False)
+        version.needshumanreview_set.filter(is_active=True).update(is_active=False)
         if version.needs_human_review_by_mad:
             version.reviewerflags.update(needs_human_review_by_mad=False)
+        # Because the updating of needs human review was made with a queryset
+        # the post_save signal was not triggered so let's recheck the due date
+        # explicitly.
+        version.reset_due_date()
 
     def log_action(
         self,
@@ -1071,26 +1137,22 @@ class ReviewBase:
         self.log_sandbox_message()
         log.info('Sending email for %s' % (self.addon))
 
-    def process_super_review(self):
-        """Mark an add-on as needing admin code, content, or theme review."""
-        addon_type = self.addon.type
+    def request_admin_review(self):
+        """Mark an add-on as needing admin theme review."""
+        if self.addon.type == amo.ADDON_STATICTHEME:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_theme_review': True}
+            )
+            self.log_action(amo.LOG.REQUEST_ADMIN_REVIEW_THEME)
+            log.info(f'{amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
-        if addon_type == amo.ADDON_STATICTHEME:
-            needs_admin_property = 'needs_admin_theme_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_THEME
-        elif self.content_review:
-            needs_admin_property = 'needs_admin_content_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT
-        else:
-            needs_admin_property = 'needs_admin_code_review'
-            log_action_type = amo.LOG.REQUEST_ADMIN_REVIEW_CODE
-
-        AddonReviewerFlags.objects.update_or_create(
-            addon=self.addon, defaults={needs_admin_property: True}
-        )
-
-        self.log_action(log_action_type)
-        log.info(f'{log_action_type.short} for {self.addon}')
+    def clear_admin_review(self):
+        if self.addon.type == amo.ADDON_STATICTHEME:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.addon, defaults={'needs_admin_theme_review': False}
+            )
+            self.log_action(amo.LOG.CLEAR_ADMIN_REVIEW_THEME)
+            log.info(f'{amo.LOG.CLEAR_ADMIN_REVIEW_THEME.short} for {self.addon}')
 
     def approve_content(self):
         """Approve content of an add-on."""
@@ -1102,12 +1164,6 @@ class ReviewBase:
 
         # Doesn't make sense for unlisted versions.
         assert channel == amo.CHANNEL_LISTED
-
-        # Like confirm auto approval, the approve content action should not
-        # show the comment box, so override the text in case the reviewer
-        # switched between actions and accidently submitted some comments from
-        # another action.
-        self.data['comments'] = ''
 
         # When doing a content review, don't increment the approvals counter,
         # just record the date of the content approval and log it.
@@ -1130,10 +1186,6 @@ class ReviewBase:
         else:
             # For unlisted, we just use self.version.
             version = self.version
-        # The confirm auto-approval action should not show the comment box,
-        # so override the text in case the reviewer switched between actions
-        # and accidently submitted some comments from another action.
-        self.data['comments'] = ''
 
         self.log_action(amo.LOG.CONFIRM_AUTO_APPROVED, version=version)
 
@@ -1310,12 +1362,6 @@ class ReviewBase:
             log.info('Sending email for %s' % (self.addon))
             self.notify_email(template, subject, version=latest_version)
 
-            # The reviewer should be automatically subscribed to any new
-            # versions posted to the same channel.
-            ReviewerSubscription.objects.get_or_create(
-                user=self.user, addon=self.addon, channel=latest_version.channel
-            )
-
     def unreject_latest_version(self):
         """Un-reject the latest version."""
         # we're only supporting non-automated reviews right now:
@@ -1342,13 +1388,50 @@ class ReviewBase:
     def unreject_multiple_versions(self):
         raise NotImplementedError  # only implemented for unlisted below.
 
-    def clear_needs_human_review(self):
-        """clears human review all versions in this channel."""
-        self.clear_all_needs_human_review_flags_in_channel(mad_too=False)
-        channel = amo.CHANNEL_CHOICES_API.get(self.version.channel)
-        self.version = None  # we don't want to associate the log with a version
+    def clear_needs_human_review_multiple_versions(self):
+        """Clear human review on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save().
+            self.clear_specific_needs_human_review_flags(version)
+        # Record a single activity log.
         self.log_action(
-            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEWS, extra_details={'channel': channel}
+            amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
+        )
+
+    def set_needs_human_review_multiple_versions(self):
+        """Record human review flag on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save(), but avoid the
+            # individual activity logs: we'll record a single one ourselves.
+            NeedsHumanReview(
+                version=version, reason=NeedsHumanReview.REASON_MANUALLY_SET_BY_REVIEWER
+            ).save(_no_automatic_activity_log=True)
+        # Record a single activity log.
+        self.log_action(
+            action=amo.LOG.NEEDS_HUMAN_REVIEW,
+            versions=self.data['versions'],
+        )
+
+    def clear_pending_rejection_multiple_versions(self):
+        """Clear pending rejection on selected versions."""
+        self.file = None
+        self.version = None
+        for version in self.data['versions']:
+            # Do it one by one to trigger the post_save().
+            if version.pending_rejection:
+                version.reviewerflags.update(
+                    pending_rejection=None,
+                    pending_rejection_by=None,
+                    pending_content_rejection=None,
+                )
+        # Record a single activity log.
+        self.log_action(
+            action=amo.LOG.CLEAR_PENDING_REJECTION,
+            versions=self.data['versions'],
         )
 
 
@@ -1405,12 +1488,15 @@ class ReviewUnlisted(ReviewBase):
             )
             self.set_human_review_date()
         elif (
-            not self.version.needs_human_review
+            not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
             and delay < datetime.now()
         ):
             # if we're auto-approving because its past the approval delay, flag it.
-            self.version.update(needs_human_review=True)
+            NeedsHumanReview.objects.create(
+                version=self.version,
+                reason=NeedsHumanReview.REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY,
+            )
 
         self.notify_email(template, subject, perm_setting=None)
 
@@ -1421,24 +1507,14 @@ class ReviewUnlisted(ReviewBase):
         log.info('Sending email for %s' % (self.addon))
 
     def block_multiple_versions(self):
-        min_version = ('0', None)
-        max_version = ('*', None)
-        for version in self.data['versions']:
-            version_str = version.version
-            if not min_version[1] or version_str < min_version[1]:
-                min_version = (version, version_str)
-            if not max_version[1] or version_str > max_version[1]:
-                max_version = (version, version_str)
-
-        params = f'?min={min_version[0].pk}&max={max_version[0].pk}'
+        versions = self.data['versions']
+        params = '?' + urlencode((('v', v.id) for v in versions), doseq=True)
         self.redirect_url = (
             reverse('admin:blocklist_block_addaddon', args=(self.addon.pk,)) + params
         )
 
     def confirm_multiple_versions(self):
         """Confirm approval on a list of versions."""
-        # There shouldn't be any comments for this action.
-        self.data['comments'] = ''
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None so that the action is
         # recorded against the specific versions we are confirming approval of.
@@ -1519,7 +1595,6 @@ class ReviewUnlisted(ReviewBase):
         # versions.
         self.version = None
         self.file = None
-        now = datetime.now()
         # we're only supporting non-automated reviews right now:
         assert self.human_review
 
@@ -1534,7 +1609,6 @@ class ReviewUnlisted(ReviewBase):
         self.log_action(
             action=amo.LOG.UNREJECT_VERSION,
             versions=self.data['versions'],
-            timestamp=now,
             user=self.user,
         )
 

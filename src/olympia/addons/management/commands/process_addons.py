@@ -1,19 +1,17 @@
 from datetime import datetime
 
 from django.db.models import Exists, F, OuterRef, Q
-from django.db.models.functions import Collate
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     delete_addons,
-    disable_addons,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
     recreate_theme_previews,
 )
-from olympia.blocklist.models import Block
+from olympia.amo.management import ProcessObjectsCommand
 from olympia.constants.base import (
     _ADDON_LPADDON,
     _ADDON_PERSONA,
@@ -21,7 +19,6 @@ from olympia.constants.base import (
     _ADDON_THEME,
     _ADDON_WEBAPP,
 )
-from olympia.amo.management import ProcessObjectsCommand
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
 from olympia.ratings.tasks import addon_rating_aggregates
@@ -149,21 +146,6 @@ class Command(ProcessObjectsCommand):
             'update_rating_aggregates': {
                 'task': addon_rating_aggregates,
                 'queryset_filters': [Q(status=amo.STATUS_APPROVED)],
-            },
-            'disable_blocked_addons': {
-                'task': disable_addons,
-                'queryset_filters': [
-                    Q(
-                        status__in=(
-                            amo.STATUS_NULL,
-                            amo.STATUS_NOMINATED,
-                            amo.STATUS_APPROVED,
-                        ),
-                        guid__in=Block.objects.filter(
-                            min_version=Block.MIN, max_version=Block.MAX
-                        ).values(guidc=Collate('guid', 'utf8mb4_unicode_ci')),
-                    )
-                ],
             },
         }
 

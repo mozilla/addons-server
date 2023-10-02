@@ -1,7 +1,7 @@
+import io
 import re
 import threading
 import time
-import io
 from unittest import mock
 
 from django.conf import settings
@@ -13,7 +13,7 @@ from celery import group, shared_task
 from celery.canvas import _chain
 
 from olympia.addons.models import Addon
-from olympia.amo.tests import addon_factory, ESTestCaseMixin, PatchMixin, reverse_ns
+from olympia.amo.tests import ESTestCaseMixin, PatchMixin, addon_factory, reverse_ns
 from olympia.amo.utils import urlparams
 from olympia.search.management.commands import reindex
 from olympia.search.models import Reindexing

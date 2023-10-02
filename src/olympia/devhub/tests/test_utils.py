@@ -7,15 +7,14 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-
 from celery import chord
 from celery.result import AsyncResult
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
-    addon_factory,
     TestCase,
+    addon_factory,
     user_factory,
     version_factory,
 )
@@ -24,7 +23,7 @@ from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.tasks import repack_fileupload
 from olympia.files.tests.test_models import UploadMixin
-from olympia.scanners.tasks import run_customs, run_yara, call_mad_api
+from olympia.scanners.tasks import call_mad_api, run_customs, run_yara
 from olympia.versions.models import Version
 
 
@@ -53,34 +52,32 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
         self.addCleanup(patcher.stop)
         return patcher.start()
 
-    def check_upload(self, file_upload, listed=True):
+    def test_check_upload(self):
         """Check that the given new file upload is validated properly."""
         # Run validator.
-        utils.Validator(file_upload, listed=listed)
-
-        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
+        utils.Validator(self.file_upload)
 
         # Make sure we setup the correct validation task.
         self.mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
-            repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
-            tasks.check_for_api_keys_in_file.s(file_upload.pk),
+            repack_fileupload.s(self.file_upload.pk),
+            tasks.validate_upload.s(self.file_upload.pk),
+            tasks.check_for_api_keys_in_file.s(self.file_upload.pk),
             chord(
-                [tasks.forward_linter_results.s(file_upload.pk)],
-                call_mad_api.s(file_upload.pk),
+                [tasks.forward_linter_results.s(self.file_upload.pk)],
+                call_mad_api.s(self.file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(self.file_upload.pk, False),
         )
 
-    def check_file(self, file_):
+    def test_check_file(self):
         """Check that the given file is validated properly."""
         # Mock tasks that we should not execute.
         repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
         validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
 
         # Run validator.
-        utils.Validator(file_)
+        utils.Validator(self.file)
 
         # We shouldn't be attempting to call the `validate_upload` tasks when
         # dealing with a file.
@@ -90,9 +87,18 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
         # Make sure we setup the correct validation task.
         self.mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
-            tasks.validate_file.s(file_.pk),
-            tasks.handle_file_validation_result.s(file_.pk),
+            tasks.validate_file.s(self.file.pk),
+            tasks.handle_file_validation_result.s(self.file.pk),
         )
+
+    def test_validate_non_theme_passing_theme_specific_arg(self):
+        repack_fileupload = self.patch('olympia.files.tasks.repack_fileupload')
+        validate_upload = self.patch('olympia.devhub.tasks.validate_upload')
+
+        with self.assertRaises(utils.InvalidAddonType):
+            utils.Validator(self.file_upload, theme_specific=True)
+        assert not repack_fileupload.called
+        assert not validate_upload.called
 
     @mock.patch.object(utils.Validator, 'get_task')
     def test_run_once_per_file(self, get_task_mock):
@@ -115,10 +121,10 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
         upload."""
         get_task_mock.return_value.delay.return_value = mock.Mock(task_id='42')
 
-        assert isinstance(tasks.validate(self.file_upload, listed=True), mock.Mock)
+        assert isinstance(tasks.validate(self.file_upload), mock.Mock)
         assert get_task_mock.return_value.delay.call_count == 1
 
-        assert isinstance(tasks.validate(self.file_upload, listed=True), AsyncResult)
+        assert isinstance(tasks.validate(self.file_upload), AsyncResult)
         assert get_task_mock.return_value.delay.call_count == 1
 
     def test_cache_key(self):
@@ -126,12 +132,19 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
 
         assert (
             utils.Validator(self.file).cache_key
-            == f'validation-task:files.File:{self.file.pk}:None'
+            == f'validation-task:files.File:{self.file.pk}:2'
         )
 
         assert utils.Validator(
-            self.file_upload, listed=False
-        ).cache_key == 'validation-task:files.FileUpload:{}:False'.format(
+            self.file_upload
+        ).cache_key == 'validation-task:files.FileUpload:{}:2'.format(
+            self.file_upload.pk
+        )
+
+        self.file_upload.update(channel=amo.CHANNEL_UNLISTED)
+        assert utils.Validator(
+            self.file_upload
+        ).cache_key == 'validation-task:files.FileUpload:{}:1'.format(
             self.file_upload.pk
         )
 
@@ -251,7 +264,6 @@ def test_extract_theme_properties(zip_file):
     versions = {
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
-        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
     }
     for version in versions:
         AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
@@ -318,20 +330,19 @@ class TestValidator(UploadMixin, TestCase):
     def test_appends_final_task_for_file_uploads(self, mock_chain):
         final_task = mock.Mock()
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True, final_task=final_task)
+        utils.Validator(file_upload, final_task=final_task)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
             final_task,
         )
 
@@ -353,14 +364,13 @@ class TestValidator(UploadMixin, TestCase):
     def test_adds_run_yara_when_enabled(self, mock_chain):
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
@@ -369,41 +379,39 @@ class TestValidator(UploadMixin, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_does_not_add_run_yara_when_disabled(self, mock_chain):
         self.create_switch('enable-yara', active=False)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_adds_run_customs_when_enabled(self, mock_chain):
         self.create_switch('enable-customs', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
@@ -412,27 +420,26 @@ class TestValidator(UploadMixin, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
     def test_does_not_add_run_customs_when_disabled(self, mock_chain):
         self.create_switch('enable-customs', active=False)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [tasks.forward_linter_results.s(file_upload.pk)],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -440,14 +447,13 @@ class TestValidator(UploadMixin, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
@@ -457,7 +463,7 @@ class TestValidator(UploadMixin, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     @mock.patch('olympia.devhub.utils.chain')
@@ -465,14 +471,13 @@ class TestValidator(UploadMixin, TestCase):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
 
-        utils.Validator(file_upload, listed=True)
+        utils.Validator(file_upload)
 
         mock_chain.assert_called_once_with(
             tasks.create_initial_validation_results.si(),
             repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk, channel),
+            tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             chord(
                 [
@@ -482,18 +487,17 @@ class TestValidator(UploadMixin, TestCase):
                 ],
                 call_mad_api.s(file_upload.pk),
             ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, channel, False),
+            tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
     def test_create_file_upload_tasks(self):
         self.create_switch('enable-customs', active=True)
         self.create_switch('enable-yara', active=True)
         file_upload = self.get_upload('webextension.xpi', with_validation=False)
-        channel = amo.CHANNEL_LISTED
-        validator = utils.Validator(file_upload, listed=True)
+        validator = utils.Validator(file_upload)
 
         tasks = validator.create_file_upload_tasks(
-            upload_pk=file_upload.pk, channel=channel, is_mozilla_signed=False
+            upload_pk=file_upload.pk, is_mozilla_signed=False
         )
 
         assert isinstance(tasks, list)

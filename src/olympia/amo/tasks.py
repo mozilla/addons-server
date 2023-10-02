@@ -4,7 +4,6 @@ from django.apps import apps
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.utils import get_email_backend

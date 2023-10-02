@@ -1,7 +1,7 @@
 from ipaddress import IPv4Address, IPv6Address
 
 from django.core import exceptions
-from django.db import connection, DataError
+from django.db import DataError, connection
 from django.test.utils import override_settings
 
 from olympia.access.models import Group

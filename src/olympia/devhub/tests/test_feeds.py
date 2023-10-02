@@ -1,5 +1,4 @@
 import uuid
-
 from urllib.parse import urlencode
 
 from django.urls import reverse
@@ -32,18 +31,18 @@ class TestActivity(HubTest):
     def log_creates(self, num, addon=None):
         if not addon:
             addon = self.addon
-        for i in range(num):
+        for _i in range(num):
             ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num, version_string='1'):
         version = Version.objects.create(version=version_string, addon=self.addon)
 
-        for i in range(num):
+        for _i in range(num):
             with core.override_remote_addr('127.0.0.1'):
                 ActivityLog.create(amo.LOG.ADD_VERSION, self.addon, version)
 
     def log_status(self, num):
-        for i in range(num):
+        for _i in range(num):
             ActivityLog.create(amo.LOG.USER_DISABLE, self.addon)
 
     def log_collection(self, num, prefix='foo'):
@@ -58,7 +57,7 @@ class TestActivity(HubTest):
 
     def log_rating(self, num):
         rating = Rating(addon=self.addon)
-        for i in range(num):
+        for _i in range(num):
             ActivityLog.create(amo.LOG.ADD_RATING, self.addon, rating)
 
     def get_response(self, **kwargs):

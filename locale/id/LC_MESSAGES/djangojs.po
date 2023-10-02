@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-11-26 05:10+0000\n"
-"Last-Translator: srifqi <muhammadrifqipriyosusanto@gmail.com>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-07-30 11:25+0000\n"
+"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "There was a problem contacting the server."
-msgstr "Ada masalah menghubungi server."
+msgstr "Terjadi masalah dalam menghubungi server."
 
 msgid "Select a file..."
 msgstr "Pilih berkas..."
@@ -64,8 +64,14 @@ msgstr "Penggaya anda melebihi ukuran maksimum {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Menerima balasan kosong dari server; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Kesalahan server tidak terduga saat mengesahkan."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Selesai validasi {0}"
@@ -607,9 +613,6 @@ msgstr[0] "{files} berkas"
 msgid "Image changes being processed"
 msgstr "Perubahan gambar sedang diproses"
 
-msgid "Select an application first"
-msgstr "Pilih aplikasi terlebih dulu"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> karakter"
@@ -626,6 +629,9 @@ msgstr "Hapus pelokalan ini"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} melihat laman ini terlebih dahulu."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} melihat pengaya ini terlebih dulu."

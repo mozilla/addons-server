@@ -5,25 +5,24 @@ import io
 import json
 import os
 import zipfile
+from unittest import mock
 
-from django.db import transaction
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.test.utils import override_settings
+from django.db import transaction
 from django.test.testcases import TransactionTestCase
+from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_str
 
-from unittest import mock
 import pytest
-import responses
 import pytz
-
+import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
-from olympia.amo.tests import addon_factory, TestCase, version_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
@@ -229,7 +228,6 @@ class TestSigning(TestCase):
             'Digest-Algorithms: SHA1 SHA256\n'
         )
 
-    @override_switch('add-guid-to-manifest', active=True)
     def test_call_signing_add_guid(self):
         file_ = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'}
@@ -265,10 +263,7 @@ class TestSigning(TestCase):
     def _test_add_guid_existing_guid(self, file_):
         with open(file_.file.path, 'rb') as fobj:
             contents = fobj.read()
-        with override_switch('add-guid-to-manifest', active=False):
-            assert signing.add_guid(file_) == contents
-        with override_switch('add-guid-to-manifest', active=True):
-            assert signing.add_guid(file_) == contents
+        assert signing.add_guid(file_) == contents
 
     def test_add_guid_existing_guid_applications(self):
         # self.file_ is "webextension.xpi", which already has a guid, as "applications"
@@ -287,14 +282,9 @@ class TestSigning(TestCase):
         ).file
         with open(file_.file.path, 'rb') as fobj:
             contents = fobj.read()
-        # with the waffle off it's the same as with an existing guid
-        with override_switch('add-guid-to-manifest', active=False):
-            assert signing.add_guid(file_) == contents
 
-        # if it's on though, it's different
-        with override_switch('add-guid-to-manifest', active=True):
-            zip_blob = signing.add_guid(file_)
-            assert zip_blob != contents
+        zip_blob = signing.add_guid(file_)
+        assert zip_blob != contents
         # compare the zip contents
         with (
             zipfile.ZipFile(file_.file.path) as orig_zip,
@@ -303,9 +293,10 @@ class TestSigning(TestCase):
             for info in orig_zip.filelist:
                 if info.filename != 'manifest.json':
                     # all other files should be the same
-                    orig_zip.open(info.filename).read() == new_zip.open(
-                        info.filename
-                    ).read()
+                    assert (
+                        orig_zip.open(info.filename).read()
+                        == new_zip.open(info.filename).read()
+                    )
                 else:
                     # only manifest.json should have been updated
                     orig_manifest = json.load(orig_zip.open(info.filename))

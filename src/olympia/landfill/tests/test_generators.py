@@ -26,7 +26,7 @@ class _BaseAddonGeneratorMixin:
         assert len(data) == size
         # Addons are split up equally within each categories.
         categories = collections.defaultdict(int)
-        for addonname, category in data:
+        for _addonname, category in data:
             categories[category.slug] += 1
         length = len(CATEGORIES[self.app.id][self.type])
         assert set(categories.values()) == {size / length}
@@ -38,7 +38,7 @@ class _BaseAddonGeneratorMixin:
         data = list(_yield_name_and_cat(size, self.app, self.type))
         assert len(data) == size
         categories = collections.defaultdict(int)
-        for addonname, cat in data:
+        for _addonname, cat in data:
             categories[cat.id] += 1
         # Addons are spread between categories evenly - the difference
         # between the largest and smallest category is less than 2.

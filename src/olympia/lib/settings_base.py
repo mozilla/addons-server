@@ -1,12 +1,11 @@
 # Django settings for addons-server project.
 
-import environ
 import logging
 import os
 import socket
-
 from datetime import datetime
 
+import environ
 import sentry_sdk
 from corsheaders.defaults import default_headers
 from kombu import Queue
@@ -28,6 +27,8 @@ if os.path.exists(ENVIRON_SETTINGS_FILE_PATH):
 
 ALLOWED_HOSTS = [
     '.allizom.org',
+    '.amo.nonprod.webservices.mozgcp.net',
+    '.amo.prod.webservices.mozgcp.net',
     '.mozilla.org',
     '.mozilla.com',
     '.mozilla.net',
@@ -839,6 +840,7 @@ CELERY_TASK_ROUTES = {
     'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
+    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
@@ -903,6 +905,12 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
     'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
     'olympia.promoted.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
+    'olympia.abuse.tasks.flag_high_abuse_reports_addons_according_to_review_tier': {
+        'queue': 'cron'
+    },
+    'olympia.addons.tasks.flag_high_hotness_according_to_review_tier': {
+        'queue': 'cron'
+    },
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'cron'},
     # Reviewers.
     'olympia.lib.crypto.tasks.sign_addons': {'queue': 'reviewers'},
@@ -1141,12 +1149,19 @@ FILE_UNZIP_SIZE_LIMIT = 104857600
 NFS_LAG_DELAY = 3
 
 # Elasticsearch
-ES_HOSTS = [os.environ.get('ELASTICSEARCH_LOCATION', '127.0.0.1:9200')]
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
+# The ES_HOST should be be any sort of valid URL, like:
+# - host e.g. 'localhost'
+# - host:port e.g. 'localhost:9200'
+# - scheme://host:port e.g. 'https://localhost:9200'
+# - scheme://user:password@host:port e.g. https://foo:bar@localhost:9200
+ES_HOST = env('ELASTICSEARCH_LOCATION', default=None)
+if not ES_HOST:
+    # Fallback to previous env var name, or the actual default used by CI.
+    # It's pluralized but actually contains a single host.
+    ES_HOST = env('ES_HOSTS', default='127.0.0.1:9200')
 ES_INDEXES = {
     'default': 'addons',
 }
-
 ES_TIMEOUT = 30
 ES_DEFAULT_NUM_REPLICAS = 2
 ES_DEFAULT_NUM_SHARDS = 5
@@ -1175,11 +1190,6 @@ STATSD_PORT = 8125
 
 # The django statsd client to use, see django-statsd for more.
 STATSD_CLIENT = 'django_statsd.clients.normal'
-
-GRAPHITE_HOST = env('GRAPHITE_HOST', default='localhost')
-GRAPHITE_PREFIX = env('GRAPHITE_PREFIX', default='amo')
-GRAPHITE_PORT = 2003
-GRAPHITE_TIMEOUT = 1
 
 # Blog URL
 DEVELOPER_BLOG_URL = 'https://blog.mozilla.org/addons/wp-json/wp/v2/posts'
@@ -1479,6 +1489,7 @@ DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
 REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'blocklists'
+REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS = 10
 
 # The remote settings test server needs accounts and setting up before using.
 REMOTE_SETTINGS_IS_TEST_SERVER = False
@@ -1498,3 +1509,9 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
+
+CINDER_SERVER_URL = env(
+    'CINDER_SERVER_URL',
+    default='https://stage.cinder.nonprod.webservices.mozgcp.net/api/v1/',
+)
+CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)

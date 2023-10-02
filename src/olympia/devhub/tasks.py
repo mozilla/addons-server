@@ -3,13 +3,10 @@ import json
 import os
 import subprocess
 import tempfile
-
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
 from zipfile import BadZipFile
-
-import waffle
 
 from django.conf import settings
 from django.core.cache import cache
@@ -21,11 +18,11 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
+import waffle
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
@@ -42,19 +39,19 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.devhub import file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
+    InvalidArchiveFile,
     InvalidManifest,
     NoManifestFound,
-    parse_addon,
     SafeZip,
     UnsupportedFileType,
-    InvalidArchiveFile,
+    parse_addon,
 )
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
 
 
-def validate(file_, listed=None, final_task=None):
+def validate(file_, *, final_task=None, theme_specific=False):
     """Run the validator on the given File or FileUpload object. If a task has
     already begun for this file, instead return an AsyncResult object for that
     task.
@@ -69,7 +66,7 @@ def validate(file_, listed=None, final_task=None):
     # Import loop.
     from .utils import Validator
 
-    validator = Validator(file_, listed=listed, final_task=final_task)
+    validator = Validator(file_, theme_specific=theme_specific, final_task=final_task)
 
     task_id = cache.get(validator.cache_key)
 
@@ -81,23 +78,23 @@ def validate(file_, listed=None, final_task=None):
         return result
 
 
-def validate_and_submit(addon, file_, channel):
+def validate_and_submit(addon, file_, *, theme_specific=False):
     return validate(
         file_,
-        listed=(channel == amo.CHANNEL_LISTED),
-        final_task=submit_file.si(addon.pk, file_.pk, channel),
+        theme_specific=theme_specific,
+        final_task=submit_file.si(addon.pk, file_.pk),
     )
 
 
 @task
 @use_primary_db
-def submit_file(addon_pk, upload_pk, channel):
+def submit_file(addon_pk, upload_pk):
     from olympia.devhub.utils import create_version_for_upload
 
     addon = Addon.unfiltered.get(pk=addon_pk)
     upload = FileUpload.objects.get(pk=upload_pk)
     if upload.passed_all_validations:
-        create_version_for_upload(addon, upload, channel)
+        create_version_for_upload(addon, upload, upload.channel)
     else:
         log.info(
             'Skipping version creation for {upload_uuid} that failed '
@@ -198,12 +195,12 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_upload(results, upload_pk, channel):
+def validate_upload(results, upload_pk):
     """Validate a FileUpload instance.
 
     Should only be called directly by Validator."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    data = validate_file_path(upload.path, channel)
+    data = validate_file_path(upload.file_path, upload.channel)
     return {**results, **json.loads(force_str(data))}
 
 
@@ -274,7 +271,7 @@ def forward_linter_results(results, upload_pk):
 
 @task
 @use_primary_db
-def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_signed):
+def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
     """Save a set of validation results to a FileUpload instance corresponding
     to the given upload_pk."""
     upload = FileUpload.objects.get(pk=upload_pk)
@@ -289,16 +286,16 @@ def handle_upload_validation_result(results, upload_pk, channel, is_mozilla_sign
     delta = now_ts - upload_start
     statsd.timing('devhub.validation_results_processed', delta)
 
-    if not storage.exists(upload.path):
+    if not storage.exists(upload.file_path):
         # TODO: actually fix this so we can get stats. It seems that
         # the file maybe gets moved but it needs more investigation.
         log.warning(
             'Scaled upload stats were not tracked. File is '
-            'missing: {}'.format(upload.path)
+            'missing: {}'.format(upload.file_path)
         )
         return
 
-    size = Decimal(storage.size(upload.path))
+    size = Decimal(storage.size(upload.file_path))
     megabyte = Decimal(1024 * 1024)
 
     # Stash separate metrics for small / large files.
@@ -363,7 +360,7 @@ def check_for_api_keys_in_file(results, upload_pk):
 
     try:
         if len(keys) > 0:
-            zipfile = SafeZip(source=upload.path)
+            zipfile = SafeZip(source=upload.file_path)
             for zipinfo in zipfile.info_list:
                 if zipinfo.file_size >= 64:
                     file_ = zipfile.read(zipinfo)

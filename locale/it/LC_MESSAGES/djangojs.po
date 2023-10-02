@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-07-03 08:15+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 05:08+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -66,8 +66,14 @@ msgstr "Il componente aggiuntivo supera la dimensione massima di {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Ricevuta una risposta vuota dal server; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "L’estensione deve essere compatibile con almeno un’applicazione."
+
 msgid "Unexpected server error while validating."
 msgstr "Errore inatteso del server durante il controllo."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Contrassegnata esplicitamente come compatibile con Firefox per Android nel file manifesto"
 
 msgid "Finished validating {0}"
 msgstr "Validazione di {0} completata"
@@ -618,9 +624,6 @@ msgstr[1] "{files} file"
 msgid "Image changes being processed"
 msgstr "Elaborazione in corso delle modifiche alle immagini"
 
-msgid "Select an application first"
-msgstr "Selezionare un’applicazione"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> carattere"
@@ -639,6 +642,9 @@ msgstr "Rimuovi questa localizzazione"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} stava visualizzando questa pagina per primo."
+
+msgid "Review page polling failed."
+msgstr "Polling della pagina recensioni non riuscito."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} stava visualizzando questo componente aggiuntivo per primo."

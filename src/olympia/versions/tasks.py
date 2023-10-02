@@ -1,21 +1,20 @@
+import itertools
 import operator
 import os
-import itertools
 import tempfile
 from io import BytesIO
 
-from django.db import transaction
 from django.conf import settings
+from django.db import transaction
 from django.template import loader
 
 from PIL import Image
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import extract_colors_from_image, pngcrush_image, SafeStorage
+from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images

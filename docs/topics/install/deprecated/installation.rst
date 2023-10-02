@@ -80,7 +80,7 @@ Use the Source
 
 Grab olympia from github with::
 
-    git clone git://github.com/mozilla/olympia.git
+    git clone https://github.com/mozilla/olympia.git
     cd olympia
 
 ``olympia.git`` is all the source code.  :ref:`updating` is detailed later on.

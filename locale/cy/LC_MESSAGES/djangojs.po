@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-06-28 10:43+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -74,7 +74,13 @@ msgstr ""
 msgid "Received an empty response from the server; status: {0}"
 msgstr ""
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
+msgstr ""
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr ""
 
 msgid "Finished validating {0}"
@@ -662,9 +668,6 @@ msgstr[5] ""
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Select an application first"
-msgstr ""
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
@@ -690,6 +693,9 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
+msgstr ""
+
+msgid "Review page polling failed."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."

@@ -1,5 +1,4 @@
 import re
-
 from datetime import datetime
 from email.utils import formataddr
 from html import unescape
@@ -12,18 +11,19 @@ from django.urls import reverse
 from django.utils import translation
 
 import waffle
-
 from email_reply_parser import EmailReplyParser
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, ActivityLogToken
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
+from olympia.constants.reviewers import REVIEWER_STANDARD_REPLY_TIME
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
+from olympia.versions.utils import get_review_due_date
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')
@@ -250,6 +250,16 @@ def log_and_notify(
     if detail_kwargs:
         log_kwargs['details'] = detail_kwargs
 
+    if action == amo.LOG.DEVELOPER_REPLY_VERSION:
+        had_due_date = bool(version.due_date)
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASON_DEVELOPER_REPLY
+        )
+        if not had_due_date:
+            version.update(
+                due_date=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
+            )
+
     note = ActivityLog.create(action, version.addon, version, **log_kwargs)
     if not note:
         return
@@ -259,7 +269,7 @@ def log_and_notify(
 
 
 def notify_about_activity_log(
-    addon, version, note, perm_setting=None, send_to_reviewers=True, send_to_staff=True
+    addon, version, note, perm_setting=None, send_to_staff=True
 ):
     """Notify relevant users about an ActivityLog note."""
     comments = (note.details or {}).get('comments')
@@ -312,7 +322,7 @@ def notify_about_activity_log(
         perm_setting,
     )
 
-    if send_to_reviewers or send_to_staff:
+    if send_to_staff:
         # If task_user doesn't exist that's no big issue (i.e. in tests)
         try:
             task_user = {get_task_user()}
@@ -321,19 +331,14 @@ def notify_about_activity_log(
         # Update the author and from_email to use the real name because it will
         # be used in emails to reviewers and staff, and not add-on developers.
         from_email = formataddr((note.user.name, NOTIFICATIONS_FROM_EMAIL))
-        reviewer_context_dict = author_context_dict.copy()
-        reviewer_context_dict['author'] = note.user.name
 
-    if send_to_reviewers:
-        # Collect reviewers on the thread (excl. the email sender and task user
-        # for automated messages) and send them their copy.
-        log_users = {
-            alog.user
-            for alog in ActivityLog.objects.for_versions(version)
-            if acl.is_user_any_kind_of_reviewer(alog.user)
-        }
-        reviewers = log_users - addon_authors - task_user - {note.user}
-        reviewer_context_dict['url'] = absolutify(
+        # Collect staff that want a copy of the email, build the context for
+        # them and send them their copy.
+        staff = set(UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
+        staff_cc = staff - addon_authors - task_user - {note.user}
+        staff_cc_context_dict = author_context_dict.copy()
+        staff_cc_context_dict['author'] = note.user.name
+        staff_cc_context_dict['url'] = absolutify(
             reverse(
                 'reviewers.review',
                 kwargs={
@@ -343,23 +348,6 @@ def notify_about_activity_log(
                 add_prefix=False,
             )
         )
-        reviewer_context_dict['email_reason'] = 'you reviewed this add-on'
-        send_activity_mail(
-            reviewer_subject,
-            template.render(reviewer_context_dict),
-            version,
-            reviewers,
-            from_email,
-            note.id,
-            perm_setting,
-        )
-
-    if send_to_staff:
-        # Collect staff that want a copy of the email, build the context for
-        # them and send them their copy.
-        staff = set(UserProfile.objects.filter(groups__name=ACTIVITY_MAIL_GROUP))
-        staff_cc = staff - reviewers - addon_authors - task_user - {note.user}
-        staff_cc_context_dict = reviewer_context_dict.copy()
         staff_cc_context_dict[
             'email_reason'
         ] = 'you are member of the activity email cc group'

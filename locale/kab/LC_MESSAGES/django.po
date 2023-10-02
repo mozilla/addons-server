@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-12 14:56+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-07-31 07:36+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -120,6 +120,10 @@ msgid "Unknown min app version specified"
 msgstr "Lqem adday arusin n usnas i yettwafernen"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Tugniwin ilaq ad ilint meẓẓiyit ɣef %d MAṬ"
 
@@ -144,9 +148,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Lqem {version} yemṣada {block_link} i uzegrir-a. Tzemreḍ ad tremseḍ {amo_admins} i wugar n talɣut."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Lqem {version_string} yuli yakan sakin yettwakkes."
@@ -313,10 +314,10 @@ msgstr "Ulac-it"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel-nneɣ. Ahat tsiteḍ ɣef useɣwen yemmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
 "tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif %(open_bug_link)sazen-d abug%(close_bug_link)s.. Ini-aɣ-d ansa d-tekkiḍ d wayen tettnadiḍ, ad neg ayen nezmer  akken ad nefru "
@@ -340,6 +341,9 @@ msgstr "Jerred neɣ kcem"
 
 msgid "Email:"
 msgstr "Imayl:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "IH"
@@ -449,37 +453,6 @@ msgstr "Tansa-agi URL ur tezmir ara ad tettwaseqdec."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Azegrir-agi ittekkayakan ar tegrumma"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Guid %(guid)s ha-t-an deg tuzzna yettraǧu"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Ur yettwaf ara yiḥder s GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Ulac azegrir s GUID %(guid)s"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Iḥedren ara yettwaleqmen mgaraden acku lqem n Min neɣ n Max ibeddel."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s deg-s*"
-
-msgid "Invalid version"
-msgstr "Lqem armeɣtu"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Lqem n Min ur yezmir ara ad yager lqem n Max"
-
-msgid "Review Listed"
-msgstr "Aceggir yettwabder"
-
-msgid "Review Unlisted"
-msgstr "Aceggir ur yettwabder ara"
 
 msgid "{addon} was created."
 msgstr "{addon} yettwarna."
@@ -841,10 +814,31 @@ msgstr "{addon} {version} ur yettwagi ara."
 msgid "Un-rejected"
 msgstr "Ur yettwagi ara"
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1493,6 +1487,10 @@ msgstr "Wal lqem amiran"
 msgid "Invalid version range."
 msgstr "Azilal n lqem mačči d ameɣtu."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "Yesra xaṛsum yiwen n usnas amṣadan."
 
@@ -1507,9 +1505,6 @@ msgstr "Zgel asentem yeccḍen"
 
 msgid "Need to select at least one application."
 msgstr "Fren xarṣum yiwen n usnas."
-
-msgid "a blocklist entry"
-msgstr "anekcum n wumuɣ nusewḥel"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Lqem {version} yuli yakan sakin yettwakkes"
@@ -1561,6 +1556,9 @@ msgstr "Ulqu n tɣellist n Mozilla: Inekcam-ik AMOAPI ttwaḥwin"
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Asentem yegla-d s ddeqs n tuccḍiwin /warnings ihi %s n yiznan ttwagezmen. Seld aseɣti n yiznan umanen, ad tizmireḍ ad twaliḍ wiyaḍ."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "Yettusnifel"
@@ -1624,6 +1622,9 @@ msgstr "Isnifal ttwakelsen akken iwata."
 
 msgid "Validate Add-on"
 msgstr "Sentem azegrir"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Tiginitin zemrent kan ad ilint PNG neɣ JPG."
@@ -1828,52 +1829,6 @@ msgstr "Armud"
 msgid "Subscribe to this feed"
 msgstr "Jerred ar usuddem-agi"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "Azegrir-a ur imṣada ara akked <b>%(app_name)s%(app_version)s</b>, lqem aneggaru n %(app_name)s. Ma ulac aɣilif, leqqem talɣut n umṣada n uzegrir inek neq azen lqem amaynut."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close\">Anef</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen"
-
-msgid "Compatibility"
-msgstr "Amṣada"
-
-msgid "Update Compatibility"
-msgstr "Aleqqem n umṣada"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Aseggem n telɣut n yisnasen dagi ad yeǧǧ iseqdacen ad sbedden azegrir-ik, ɣas akken ameskan n usebeddi deg ukemmus yemmal-d d akken azegrir ur yemṣada ara."
-
-msgid "Application"
-msgstr "Asnas"
-
-msgid "Supported Versions"
-msgstr "Ileqman yettwasefraken"
-
-msgid "Remove"
-msgstr "Kkes"
-
-msgid "Add Another Application&hellip;"
-msgstr "Rnu asnas nniḍen&hellip;"
-
-msgid "Save Changes"
-msgstr "Sekles asnifel"
-
-msgid "or"
-msgstr "neγ"
-
-msgid "Cancel"
-msgstr "Sefsex"
-
-msgid "Close"
-msgstr "Mdel"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1944,12 +1899,18 @@ msgstr "Imeskaren yettraǧun asentem"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Imeskaren yettwarnan ɣer uzegrir-a maca ur ttwasnetmen ara yakan."
 
+msgid "Save Changes"
+msgstr "Sekles asnifel"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> "
-"<li><b>Aneflay :</b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
+"<p>Izegrar zemren ad sɛun ugar n yiwen n umeskar s snat n twuriwin:</p> <ul> <li><b>Bab-is :</b> yezmer ad isefrek meṛṛa anaḍen n uzegrir, am timerna neɣ tukksa n yimeskaren</li> <li><b>Aneflay :</"
+"b> yezmer ad isefrek meṛṛa anaḍen, ala timerna neɣ tukksa n yimeskaren akked usefrek n usellek</li> </ul>"
+
+msgid "Close"
+msgstr "Mdel"
 
 msgid "Additional Details"
 msgstr "Talqayt-nniḍen"
@@ -1990,6 +1951,12 @@ msgid ""
 msgstr ""
 "MA yella γur-k asebter nniḍen i uzegrir inek, sekcem tansa yines. Ma yella asmel inek yeb yettusuqel ar deqs n tutlayin, tisuqilin yemgaraden n wurti-agi zemrent ad ttwarnunt. Urti-agi "
 "yettwaseqdackani yizegrar yettwasnen."
+
+msgid "or"
+msgstr "neγ"
+
+msgid "Cancel"
+msgstr "Sefsex"
 
 msgid "Describe Add-on"
 msgstr "Seglem azegrir"
@@ -2064,8 +2031,8 @@ msgid "Email"
 msgstr "Imayl"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Ma tebɣiḍ ad teskneḍ tansa n yimayl i usuter n tallelt, sekcem-itt dagi. Ma ɣur-k tansiwin-nniḍen i yal tutlayt, tzemreḍ ad ternuḍ tisuqilin-nniḍen n wurti-agi. Urti-agi ilaq kan i yizegrar "
 "yettwabedren."
@@ -2113,8 +2080,8 @@ msgid "Whiteboard"
 msgstr "Tafelwit tamellalt"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Tafelwit d amḍiq ara yeǧǧen ad d-nmudd talɣut icudden ar uzegrir-ik, akken yebɣu yella lqem, i yimceggiren. Aseqdec-is ad d-imudd tarrayin n usekyed n uzegrir, akked yal talɣut-nniḍen izemren ad "
 "tmudd afus. Tafelwit-a ad izmiren ad ttbeddlen imceggiren."
@@ -2637,8 +2604,8 @@ msgstr "Sser JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Akken ad tegeḍ tuttriwin AP, azen <a href=\"%(jwt_url)s\">Ajiṭun JSON Web</a> deg uqerru n tsiregt. Ilaq-ak ad tsirweḍ JWT i yal tuttra, am akken i d-yettwammel deg <a href=\"%(docs_url)s\">tsemlit "
 "API</a>."
@@ -2740,7 +2707,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2750,7 +2718,8 @@ msgstr ""
 "Nger tamawt, talɣut n yinekcam-inek ibaḍniyen AMO API ddan-d deg yiwen n uzegrir i yettwaznen ɣer addons.mozilla.org. Akken ad neḥrez amiḍan-inek d yizegrar-inek, nekkes inekcam i d-ibanen.\n"
 "Tzemreḍ ad tesirweḍ inekcam imaynuten n API deg %(api_keys_url)s\n"
 "\n"
-"Ma ulac aɣilif, wali akken ilaq ma yella inekcam-inek n tuqqna ur ten-tebdiḍ ula d yiwen. Ur ten-sekcam ara deg ukufi azayaz, neɣ deg yizegrar, neɣ deg wadeg-nniḍen azayaz. Nekkni ad ak-nsebɣes ad tesneqdeḍ ikufa-inek n tengalt d yiseɣzaf-inek akken ad tekkseḍ yal tamsisɣalt n yinekcam-inek AMO.\n"
+"Ma ulac aɣilif, wali akken ilaq ma yella inekcam-inek n tuqqna ur ten-tebdiḍ ula d yiwen. Ur ten-sekcam ara deg ukufi azayaz, neɣ deg yizegrar, neɣ deg wadeg-nniḍen azayaz. Nekkni ad ak-nsebɣes ad "
+"tesneqdeḍ ikufa-inek n tengalt d yiseɣzaf-inek akken ad tekkseḍ yal tamsisɣalt n yinekcam-inek AMO.\n"
 "\n"
 "Tanemmirt,\n"
 "Tarbaεt n yizegrar n Mozilla"
@@ -3073,6 +3042,15 @@ msgstr "Sefrek {0}"
 
 msgid "Files"
 msgstr "Ifuyla"
+
+msgid "Compatibility"
+msgstr "Amṣada"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Aseggem n telɣut n yisnasen dagi ad yeǧǧ iseqdacen ad sbedden azegrir-ik, ɣas akken ameskan n usebeddi deg ukemmus yemmal-d d akken azegrir ur yemṣada ara."
+
+msgid "Add Another Application&hellip;"
+msgstr "Rnu asnas nniḍen&hellip;"
 
 msgid "Version Notes"
 msgstr "Tizmilin n lqem"
@@ -3401,7 +3379,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Sfeḍ swudem awurman inagan n tuqqna ticki tmedleḍ iccer."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Tifrat fessusen akken ad tṣeggmeḍ teɣzi n uḍris deg usebter —neɣ daɣen akken ad tesmeɣreḍ asebter meṛṛa."
 
@@ -3543,7 +3520,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Sewḥel meṛṛa isfuyal udhimen s wudem amezwer, sakin fren tid i tebɣiḍ ad d-teldiḍ."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Mudd udem n yal asmel web. Beddel initen, agilal n yisebtar, atg."
 
@@ -3783,7 +3759,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Awi asenɣes n ssuma seg Amazone. Ticki tettnadiḍ deg yisebtar n yifarisen deg tḥuna srid, yella daɣen deg Amazone, tekki kan ɣef tqeffalt akken ad twaliḍ asebter anida yella ufaris-a."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Faṛes tagnit seg tuṭṭfa n yicarren-ik gar ifassen-ik — mdel iccaren usligen, sdukel isfuyla, nɣel azwel n yiccer, d wayen-nniḍen."
 
@@ -3901,7 +3876,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Fru uguren n umeslaw. Ableɣ deg usmel web meẓẓi aṭas? Meqqer aṭas? SoundFixer izmer ad yefru aya."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Beddel asebter web uqbel asiggez-is. Beddel igburen i d-yettbanen — kkes adellel neɣ yir agbur — i yal asebter wab i tebɣiḍ ad siggẓeḍ."
 
@@ -3964,7 +3938,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Faṛes tagnit seg usefrek n usader n tnelli n usqerdec. Af-d s wudem awurman anawen yemgaraden n yimidyaten yellan i usader."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Sekles tugniwin s wudem fessusen — awi-d kan tugniwin ɣer yiccer-ik amiran."
 
@@ -4049,7 +4022,6 @@ msgid "Create and customize tab groups."
 msgstr "Rnu tsagneḍ igrawen n yiccaren."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Sekles asebtar web i meṛṛa— ula d tugniwin akked ufeṣṣel— deg yiwen ufaylu HTML."
 
@@ -4134,6 +4106,14 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i tella tifrat."
@@ -4141,6 +4121,14 @@ msgstr "Kra n yismal ur ssawaḍen ara ad d-ɣren tividyutin deg Android. Dagi i
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Tufid-d tawlaft yelhan deg web? Seqdec TinEye akken ad tafeḍ ansa i d-tekka."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4151,12 +4139,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Mudd udem i uḥerrek n tɣerdayt. Snirem tarrayin timaynutin n tunigin s wugar n 50 twila."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Seqdec ambiwel n tɣerdayt i umdal n waccaren, isebter n tunigin d wugar n wayen-nniḍen."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Cudd tignitin n yismal web ɣer yigmaḍ-ik n unadi."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4187,7 +4191,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Uɣal ɣer tallit tafessast — makken igmaḍ ufrinen n unadi ttbanen-d nnig n yiberriḥen (imṣada d yimseddayen n unadi Google akked Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4254,6 +4258,14 @@ msgstr "Semɣer tirmit-ik•im n wurar deg usuddem."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Isiɣzaf am yisnasen i Firefox."
@@ -4267,15 +4279,16 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Isiɣzaf n Tbaḍnit d Tɣellist"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Asagen n YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Imsefraken n usader"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4371,10 +4384,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Asagen n YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Wali ugar n yisiɣzaf i YouTube n usuqel yettwafernen sɣur terbaεt"
 
@@ -4417,6 +4426,14 @@ msgstr "Isiɣzaf n usnulfu"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Wali ugar n usumer n terbaεt n usnulfu"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Ur yettwasenqed ara"
@@ -4537,6 +4554,13 @@ msgstr "Ayen nniḍen (ini-d)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4592,15 +4616,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "sɣuṛ %(user)s di %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Yettwasezmel sɣuṛ %(user)s di %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Ɣur-k!</strong> Aseqdac-nniḍen iwala asebter-a uqbel-ik."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5013,8 +5037,8 @@ msgstr "Aseqdac Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Sekcem tansa IPv4 tameɣtut neɣ azilal n uzeṭṭa IPv6 CIDR, amedya. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "DDeqs n yizegrar ur iqudṛen ara ilugan-nneɣ ttwaznen-d seg tensa-ik. Tansa IP tewḥel."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr ""
 
 msgid "Email Pattern"
 msgstr "Taneɣruft n yimayl"
@@ -5022,19 +5046,19 @@ msgstr "Taneɣruft n yimayl"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Tansa n yimayl i yettwasqedcen i yumiḍan-ik ur tettwaqbal ara i tuzna n yizegrar."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr ""
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Sekcem isem n taɣult n yimayl ara tesweḥleḍ. Isekkilen imuta ur ttwasefraken ara. Ma tesriḍ-ten, neɣ ma tebɣiḍ ad tgeḍ amṣada i tansa-ik n yimayl yemmden mačči kan d isem n taɣult, seqdec \"Tamara n"
-" useqdec n yimayl\" deg umḍiq-is."
+"Sekcem isem n taɣult n yimayl ara tesweḥleḍ. Isekkilen imuta ur ttwasefraken ara. Ma tesriḍ-ten, neɣ ma tebɣiḍ ad tgeḍ amṣada i tansa-ik n yimayl yemmden mačči kan d isem n taɣult, seqdec \"Tamara "
+"n useqdec n yimayl\" deg umḍiq-is."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Send ad tebduḍ, ɣer syen qbel ma ulac aɣilif amtawa n uzuzer n yizegrar n Firefox akked tsertit tabaḍnit d yilugan n ucegger. Amtawa n uzuzer i yizegrar Firefox yegber aseɣwen ar tsertit-nneɣ "
 "tabaḍnit i d-yessegzayen amek i nessefrak talɣut i ak-yeɛnan."
@@ -5095,7 +5119,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

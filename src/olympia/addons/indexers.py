@@ -1,11 +1,10 @@
 from django.conf import settings
-from olympia.constants.promoted import RECOMMENDED
 
 import olympia.core.logger
 from olympia import amo
-from olympia.amo.utils import attach_trans_dict
 from olympia.amo.celery import create_chunked_tasks_signatures
-from olympia.amo.utils import to_language
+from olympia.amo.utils import attach_trans_dict, to_language
+from olympia.constants.promoted import RECOMMENDED
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.search.utils import create_index
 from olympia.versions.compare import version_int
@@ -247,7 +246,7 @@ class AddonIndexer:
                     # helping users looking for 'tab password' find that addon.
                     'type': 'dictionary_decompounder',
                     'word_list': [
-                        'all',
+                        # Avoid "all" to prevent decompounding "wallet".
                         'auto',
                         'ball',
                         'bar',

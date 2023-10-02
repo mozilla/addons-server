@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-07-23 20:38+0000\n"
-"Last-Translator: adrian <adrian@familyverhulst.com>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-17 18:54+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -68,8 +68,14 @@ msgstr "Velkosti vašeho doplňku překračuje limit ({0})."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Obdržena prázdná odpověď ze serveru; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Vaše rozšíření musí být kompatibilní s alespoň jednou aplikací."
+
 msgid "Unexpected server error while validating."
 msgstr "Při kontrole nastala neočekávaná chyba serveru."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "V manifestu explicitně označené jako kompatibilní s Firefoxem pro Android"
 
 msgid "Finished validating {0}"
 msgstr "Dokončena kontrola {0}"
@@ -625,9 +631,6 @@ msgstr[2] "{files} souborů"
 msgid "Image changes being processed"
 msgstr "Jsou prováděny změny obrázku"
 
-msgid "Select an application first"
-msgstr "Prvně zvolte aplikaci"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znak"
@@ -648,6 +651,9 @@ msgstr "Odebrat lokalizaci"
 
 msgid "{name} was viewing this page first."
 msgstr "Uživatel {name} shlédl tuto stránku jako první."
+
+msgid "Review page polling failed."
+msgstr "Hlasování na stránce s recenzemi selhalo."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} prohlédl tento doplněk jako první."

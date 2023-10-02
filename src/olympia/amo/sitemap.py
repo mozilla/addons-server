@@ -10,17 +10,17 @@ from django.contrib.sitemaps import Sitemap as DjangoSitemap
 from django.core.paginator import PageNotAnInteger
 from django.db.models import Count, Max, Q
 from django.template import loader
-from django.utils.functional import cached_property
 from django.urls import reverse
+from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory
 from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import id_to_path
+from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED
-from olympia.bandwagon.models import Collection
 from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile

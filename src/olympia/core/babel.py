@@ -1,5 +1,6 @@
 import django
 from django.conf import settings
+
 from jinja2.ext import babel_extract
 
 

@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2021-10-13 17:52+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 04:16+0000\n"
 "Last-Translator: Іhor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -68,8 +68,14 @@ msgstr "Ваш додаток перевищує максимально допу
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Отримано порожню відповідь від сервера; стан: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Ваше розширення має бути сумісним принаймні з однією програмою."
+
 msgid "Unexpected server error while validating."
 msgstr "Під час засвідчення сталася неочікувана помилка сервера."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Явно позначено сумісним із Firefox для Android у маніфесті"
 
 msgid "Finished validating {0}"
 msgstr "Завершено перевірку {0}"
@@ -625,9 +631,6 @@ msgstr[2] "{files} файлів"
 msgid "Image changes being processed"
 msgstr "Обробка змін зображень"
 
-msgid "Select an application first"
-msgstr "Спочатку виберіть програму"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> символ"
@@ -648,6 +651,9 @@ msgstr "Вилучити цю локалізацію"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} переглядав цю сторінку першим."
+
+msgid "Review page polling failed."
+msgstr "Помилка опитування сторінки розгляду."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} переглядав цей додаток першим."

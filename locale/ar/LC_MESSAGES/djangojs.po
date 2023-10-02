@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2020-10-09 05:46+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -75,8 +75,14 @@ msgstr "تخطت إضافتك الحجم المسموح به بقيمة {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "استقبلتُ استجابة فارغة من الخادوم، الحالة: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "خطأ في الخادوم غير متوقّع أثناء التثبّت."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "انتهى التثبّت من {0}"
@@ -671,9 +677,6 @@ msgstr[5] "{files} ملف"
 msgid "Image changes being processed"
 msgstr "يُعالج التغييرات على الصورة"
 
-msgid "Select an application first"
-msgstr "اختر تطبيقًا أولًا"
-
 #, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
@@ -702,6 +705,9 @@ msgstr "أزِل هذا التوطين"
 
 msgid "{name} was viewing this page first."
 msgstr "كان {name} أوّل من يطالع هذه الصفحة."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "كان {name} أوّل من يطالع هذه الإضافة."

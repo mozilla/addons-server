@@ -13,7 +13,11 @@ form ul.guid_list {
     padding: 5px 20px;
 }
 
-form ul.guid_list li {
+form .guid_list li ul {
+    margin: 0;
+}
+
+form ul.guid_list >li {
     list-style-type: disc;
 }
 
@@ -41,4 +45,14 @@ form ul.guid_list .addon-name {
 .field-blocks div.readonly {
     margin-left: 0 !important;
     margin-right: 0;
+}
+
+#id_reason:disabled,
+#id_canned_reasons:disabled,
+#id_url:disabled {
+    background-color:#eeeeee;
+}
+label[for="id_reason"],
+label[for="id_url"] {
+    display: inline-block;
 }

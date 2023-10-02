@@ -9,17 +9,17 @@ from freezegun import freeze_time
 
 from olympia import amo
 from olympia.amo.tests import (
-    APITestClientSessionID,
     APITestClientJWT,
+    APITestClientSessionID,
+    TestCase,
     get_random_ip,
     reverse_ns,
-    TestCase,
     user_factory,
 )
 
-from .test_models import UploadMixin
 from ..models import FileUpload
 from ..views import FileUploadViewSet
+from .test_models import UploadMixin
 
 
 files_fixtures = 'src/olympia/files/fixtures/files/'
@@ -50,7 +50,7 @@ class TestServeFileUpload(UploadMixin, TestCase):
 
         assert resp.status_code == 200
         assert resp['content-type'] == 'application/octet-stream'
-        assert resp[settings.XSENDFILE_HEADER] == self.upload.path
+        assert resp[settings.XSENDFILE_HEADER] == self.upload.file_path
 
     def test_returns_410_when_upload_path_is_falsey(self):
         self.upload.path = ''

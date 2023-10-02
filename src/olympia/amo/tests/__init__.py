@@ -9,9 +9,9 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
-from urllib.parse import parse_qs, urlparse
-from unittest import mock
 from tempfile import NamedTemporaryFile
+from unittest import mock
+from urllib.parse import parse_qs, urlparse
 
 from django import forms, test
 from django.conf import settings
@@ -46,13 +46,14 @@ from olympia.addons.models import (
     AddonReviewerFlags,
     update_search_index as addon_update_search_index,
 )
+from olympia.addons.tasks import compute_last_updated
 from olympia.amo.reverse import get_url_prefix, set_url_prefix
 from olympia.amo.urlresolvers import Prefixer
 from olympia.amo.utils import SafeStorage, use_fake_fxa
-from olympia.addons.tasks import compute_last_updated
 from olympia.api.tests import JWTAuthKeyTester
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File
 from olympia.promoted.models import (
@@ -64,13 +65,13 @@ from olympia.promoted.models import (
 from olympia.search.utils import get_es, timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
+from olympia.users.models import UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
     Version,
     VersionReviewerFlags,
 )
-from olympia.users.models import UserProfile
 
 from . import dynamic_urls
 
@@ -284,6 +285,17 @@ class TestClient(Client):
         else:
             raise AttributeError
 
+    def force_login_with_2fa(self, user, backend=None):
+        self.force_login(user, backend=backend)
+        # https://docs.djangoproject.com/en/dev/topics/testing/tools/
+        # #django.test.Client.session
+        # To modify the session and then save it, it must be stored in a
+        # variable first (because a new SessionStore is created every time this
+        # property is accessed)
+        session = self.session
+        session['has_two_factor_authentication'] = True
+        session.save()
+
 
 class APITestClientSessionID(APIClient):
     def create_session(self, user, **overrides):
@@ -392,7 +404,6 @@ def fxa_login_link(response=None, to=None, request=None):
         config=settings.FXA_CONFIG['default'],
         state=state,
         next_path=to,
-        action='signin',
     )
 
 
@@ -556,7 +567,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         middleware = SessionMiddleware(request)
         middleware.process_request(request)
         messages = FallbackStorage(request)
-        setattr(request, '_messages', messages)
+        request._messages = messages
         request.session.save()
         return request
 
@@ -723,8 +734,11 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     addon.update_version()
     if addon.current_version:
         # Override local version with fresh one fetched by update_version()
-        # so that everything is in sync.
+        # so that everything is in sync...
         version = addon.current_version
+    if hasattr(version, '_compatible_apps'):
+        del version._compatible_apps
+
     # version_changed task will be triggered and will update last_updated in
     # database for this add-on depending on the state of the version / files.
     # We're calling the function it uses to compute the value ourselves and=
@@ -895,15 +909,18 @@ def create_default_webext_appversion():
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.FIREFOX.id, version=version)
 
     versions = {
         amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
-        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+        amo.MIN_VERSION_FENIX,
+        amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
     }
     for version in versions:
         AppVersion.objects.get_or_create(application=amo.ANDROID.id, version=version)
@@ -936,6 +953,11 @@ def version_factory(file_kw=None, **kw):
     promotion_approved = kw.pop('promotion_approved', False)
     kw['created'] = _get_created(kw.pop('created', 'now'))
     ver = Version.objects.create(version=version_str, **kw)
+    if file_kw is not False:
+        file_kw = file_kw or {}
+        file_factory(version=ver, **file_kw)
+    if promotion_approved:
+        kw['addon'].promotedaddon.approve_for_version(version=ver)
     av_min, _ = AppVersion.objects.get_or_create(
         application=application, version=min_app_version
     )
@@ -945,11 +967,9 @@ def version_factory(file_kw=None, **kw):
     ApplicationsVersions.objects.get_or_create(
         application=application, version=ver, min=av_min, max=av_max
     )
-    if file_kw is not False:
-        file_kw = file_kw or {}
-        file_factory(version=ver, **file_kw)
-    if promotion_approved:
-        kw['addon'].promotedaddon.approve_for_version(version=ver)
+    ver._compatible_apps = ver._create_compatible_apps(
+        ver.apps.all().select_related('min', 'max')
+    )
     if 'due_date' not in kw:
         ver.inherit_due_date()
     elif ver.due_date != kw['due_date']:
@@ -957,6 +977,18 @@ def version_factory(file_kw=None, **kw):
         # intended, even if that's not consistent with should_have_due_date().
         ver.update(due_date=kw['due_date'], _signal=False)
     return ver
+
+
+def block_factory(*, version_ids=None, **kwargs):
+    block = Block.objects.create(**kwargs)
+    if version_ids is None and block.addon:
+        version_ids = list(block.addon.versions.values_list('id', flat=True))
+    if version_ids is not None:
+        BlockVersion.objects.bulk_create(
+            BlockVersion(block=block, version_id=version_id)
+            for version_id in version_ids
+        )
+    return block
 
 
 @pytest.mark.es_tests

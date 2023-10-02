@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-06-23 20:43+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -66,8 +66,14 @@ msgstr "Din tilføjelse overstiger maximumstørrelsen på {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Modtog et tomt svar fra serveren, status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Uventet serverfejl under valideringen."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Færdiggjort validering af {0}"
@@ -618,9 +624,6 @@ msgstr[1] "{files} filer"
 msgid "Image changes being processed"
 msgstr ""
 
-msgid "Select an application first"
-msgstr "Vælg et program først"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> tegn"
@@ -638,6 +641,9 @@ msgid "Remove this localization"
 msgstr ""
 
 msgid "{name} was viewing this page first."
+msgstr ""
+
+msgid "Review page polling failed."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."

@@ -1,13 +1,13 @@
-import requests
-
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand, CommandError
 from django.db.transaction import atomic
 
+import requests
+
 from olympia import amo
-from olympia.amo.tests import version_factory
 from olympia.addons.models import Addon
+from olympia.amo.tests import version_factory
 
 
 class KeyboardInterruptError(Exception):

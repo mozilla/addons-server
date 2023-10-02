@@ -1,5 +1,5 @@
-from django.urls import include, re_path
 from django.shortcuts import redirect
+from django.urls import include, re_path
 
 from olympia.addons.urls import ADDON_ID
 from olympia.amo.decorators import use_primary_db
@@ -137,21 +137,6 @@ detail_patterns = [
 ]
 # These will all start with /ajax/addon/<addon_id>/
 ajax_patterns = [
-    re_path(
-        r'^versions/compatibility/status$',
-        views.ajax_compat_status,
-        name='devhub.ajax.compat.status',
-    ),
-    re_path(
-        r'^versions/compatibility/error$',
-        views.ajax_compat_error,
-        name='devhub.ajax.compat.error',
-    ),
-    re_path(
-        r'^versions/(?P<version_id>\d+)/compatibility$',
-        views.ajax_compat_update,
-        name='devhub.ajax.compat.update',
-    ),
     re_path(r'^image/status$', views.image_status, name='devhub.ajax.image.status'),
 ]
 redirect_patterns = [
@@ -197,6 +182,22 @@ urlpatterns = decorate(
             r'^addon/submit/upload-(?P<channel>listed|unlisted)$',
             views.submit_addon_upload,
             name='devhub.submit.upload',
+        ),
+        # Theme-specific submission pages
+        re_path(
+            r'^addon/submit/theme/agreement$',
+            views.submit_theme,
+            name='devhub.submit.theme.agreement',
+        ),
+        re_path(
+            r'^addon/submit/theme/distribution$',
+            views.submit_theme_distribution,
+            name='devhub.submit.theme.distribution',
+        ),
+        re_path(
+            r'^addon/submit/theme/upload-(?P<channel>listed|unlisted)$',
+            views.submit_theme_upload,
+            name='devhub.submit.theme.upload',
         ),
         re_path(
             r'^addon/submit/wizard-(?P<channel>listed|unlisted)$',
@@ -256,8 +257,8 @@ urlpatterns = decorate(
         # Old LWT Theme submission.
         re_path(
             r'^theme/submit/?$',
-            lambda r: redirect('devhub.submit.agreement'),
-            name='devhub.themes.submit',
+            lambda r: redirect('devhub.submit.theme.agreement'),
+            name='devhub.submit.theme.old_lwt_flow',
         ),
         # Add-on SDK page
         re_path(r'builder$', lambda r: redirect(views.MDN_BASE)),

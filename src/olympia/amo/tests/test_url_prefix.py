@@ -1,14 +1,14 @@
 from django import shortcuts
 from django.conf import settings
-from django.urls import resolve, reverse, set_script_prefix
 from django.test.client import Client, RequestFactory
+from django.urls import resolve, reverse, set_script_prefix
 
 import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
 from olympia.amo.reverse import clean_url_prefixes, set_url_prefix
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 
 
 pytestmark = pytest.mark.django_db
@@ -374,6 +374,6 @@ def test_parse_accept_language(test_input, expected):
 
 class TestShorter(TestCase):
     def test_no_shorter_language(self):
-        urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
+        assert urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
         with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
-            urlresolvers.lang_from_accept_header('zh') == 'en-US'
+            assert urlresolvers.lang_from_accept_header('zh') == 'en-US'

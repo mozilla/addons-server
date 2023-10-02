@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2020-12-07 11:42+0000\n"
-"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 09:11+0000\n"
+"Last-Translator: Philipp Fischbeck <pfischbeck@googlemail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -66,8 +66,14 @@ msgstr "Ihr Add-on überschreitet die maximale Größe von {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Leere Antwort vom Server erhalten; Status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Ihre Erweiterung muss mit mindestens einer Anwendung kompatibel sein."
+
 msgid "Unexpected server error while validating."
 msgstr "Unerwarteter Server-Fehler bei der Überprüfung."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Im Manifest explizit als kompatibel mit Firefox für Android gekennzeichnet"
 
 msgid "Finished validating {0}"
 msgstr "Überprüfung abgeschlossen {0}"
@@ -106,8 +112,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie "
-"unbedingt das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
+"Von minifizierten, verkürzten oder anderweitig maschinengenerierten Skripten (außer bekannten Bibliotheken) müssen die Quelltexte getrennt zur Überprüfung eingereicht werden. Verwenden Sie unbedingt"
+" das Feld zum Hochladen von Quelltext, damit Ihre Einreichung nicht abgelehnt wird."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Der Validierungsprozess stellte folgende Probleme fest, die zur Ablehnung führen könnten:"
@@ -614,9 +620,6 @@ msgstr[1] "{files} Dateien"
 msgid "Image changes being processed"
 msgstr "Grafikänderungen werden angewendet"
 
-msgid "Select an application first"
-msgstr "Wählen Sie zuerst eine Anwendung aus"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> Zeichen"
@@ -635,6 +638,9 @@ msgstr "Diese Übersetzung entfernen"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} hat diese Seite zuerst angesehen."
+
+msgid "Review page polling failed."
+msgstr "Abrufen der Bewertungsseite fehlgeschlagen."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} hat sich dieses Add-on zuerst angesehen."

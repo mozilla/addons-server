@@ -7,7 +7,6 @@ from django.core.exceptions import BadRequest
 import requests
 
 import olympia.core.logger
-
 from olympia.devhub.models import BlogPost
 
 

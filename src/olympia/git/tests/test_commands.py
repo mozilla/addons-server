@@ -1,11 +1,10 @@
 import datetime
-
 from pathlib import Path
 from unittest import mock
 
-import pytest
-
 from django.test.utils import override_settings
+
+import pytest
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -14,18 +13,17 @@ from olympia.amo.tests import (
     create_switch,
     version_factory,
 )
-from olympia.git.utils import AddonGitRepository, BrokenRefError
+from olympia.git.management.commands.git_extraction import (
+    SWITCH_NAME,
+    Command as GitExtractionCommand,
+)
 from olympia.git.models import GitExtractionEntry
 from olympia.git.tasks import (
     continue_git_extraction,
     extract_versions_to_git,
     remove_git_extraction_entry,
 )
-
-from olympia.git.management.commands.git_extraction import (
-    SWITCH_NAME,
-    Command as GitExtractionCommand,
-)
+from olympia.git.utils import AddonGitRepository, BrokenRefError
 
 from .test_utils import update_git_repo_creation_time
 
@@ -151,7 +149,7 @@ class TestGitExtraction(TestCase):
             ),
             remove_git_extraction_entry.si(self.addon.pk),
         )
-        chain_mock.call_count == 1
+        assert chain_mock.call_count == 1
 
     @mock.patch('olympia.git.management.commands.git_extraction.chain')
     def test_extract_addon_with_multiple_versions(self, chain_mock):
@@ -278,7 +276,7 @@ class TestGitExtraction(TestCase):
         version = self.addon.current_version
         repo = AddonGitRepository(self.addon)
         # Force the creation of the git repository.
-        repo.git_repository
+        repo.git_repository  # noqa: B018
         assert repo.is_extracted
         # Set the "creation time" of the git repository to something older than
         # 1 hour.

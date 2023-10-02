@@ -14,17 +14,15 @@ import subprocess
 import tempfile
 import time
 import unicodedata
-
 from urllib.parse import (
-    parse_qsl,
     ParseResult,
+    parse_qsl,
     unquote_to_bytes,
     urlencode as urllib_urlencode,
     urlparse,
 )
 
 import django.core.mail
-
 from django.conf import settings
 from django.core.exceptions import FieldDoesNotExist
 from django.core.files.storage import FileSystemStorage, default_storage as storage
@@ -36,21 +34,20 @@ from django.http.response import HttpResponseRedirectBase
 from django.template import engines, loader
 from django.urls import reverse
 from django.utils import translation
-from django.utils.functional import cached_property
 from django.utils.encoding import force_bytes, force_str
+from django.utils.functional import cached_property
 from django.utils.http import (
     _urlparse as django_urlparse,
     quote_etag,
     url_has_allowed_host_and_scheme,
 )
 
+import basket
 import bleach
 import colorgram
 import html5lib
 import markupsafe
 import pytz
-import basket
-
 from babel import Locale
 from django_statsd.clients import statsd
 from html5lib.serializer import HTMLSerializer
@@ -58,12 +55,12 @@ from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
-from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing
+from olympia.core.logger import getLogger
+from olympia.lib import unicodehelper
 from olympia.translations.models import Translation
 from olympia.users.utils import UnsubscribeCode
-from olympia.lib import unicodehelper
 
 
 log = getLogger('z.amo')
@@ -126,7 +123,7 @@ def sorted_groupby(seq, key, *, reverse=False):
 
     key should be a string (used with attrgetter) or a function.
     """
-    if not hasattr(key, '__call__'):
+    if not callable(key):
         key = operator.attrgetter(key)
     return itertools.groupby(sorted(seq, key=key, reverse=reverse), key=key)
 
@@ -187,8 +184,8 @@ def send_mail(
 
     Adds deny checking and error logging.
     """
-    from olympia.amo.templatetags.jinja_helpers import absolutify
     from olympia.amo.tasks import send_email
+    from olympia.amo.templatetags.jinja_helpers import absolutify
     from olympia.users import notifications
     from olympia.users.models import UserNotification
 
@@ -345,9 +342,8 @@ def send_html_mail_jinja(
     msg = send_mail(
         subject,
         text_template.render(context),
-        html_message=html_template.render(context),
         *args,
-        **kwargs,
+        **{'html_message': html_template.render(context), **kwargs},
     )
     return msg
 
@@ -944,7 +940,7 @@ class SafeStorage(FileSystemStorage):
         """
         empty_dirs = []
         # Delete all files first then all empty directories.
-        for root, dirs, files in self.walk(dir_path):
+        for root, _dirs, files in self.walk(dir_path):
             for fn in files:
                 self.delete(f'{root}/{fn}')
             empty_dirs.insert(0, root)

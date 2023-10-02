@@ -4,7 +4,6 @@ import os
 import re
 import time
 import uuid
-
 from datetime import datetime
 from urllib.parse import urlsplit
 
@@ -26,12 +25,11 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils import translation
 from django.utils.functional import cached_property
-from django.utils.translation import trans_real, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _, trans_real
 
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.decorators import use_primary_db
@@ -57,6 +55,7 @@ from olympia.amo.utils import (
     timer,
     to_language,
 )
+from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import NOT_PROMOTED, RECOMMENDED
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -73,7 +72,6 @@ from olympia.translations.fields import (
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
-from olympia.versions.compare import version_int
 from olympia.versions.models import (
     Version,
     VersionPreview,
@@ -81,6 +79,7 @@ from olympia.versions.models import (
     inherit_due_date_if_nominated,
 )
 from olympia.versions.utils import get_review_due_date
+from olympia.zadmin.models import get_config
 
 from . import signals
 
@@ -91,6 +90,8 @@ log = olympia.core.logger.getLogger('z.addons')
 MAX_SLUG_INCREMENT = 999
 SLUG_INCREMENT_SUFFIXES = set(range(1, MAX_SLUG_INCREMENT + 1))
 GUID_REUSE_FORMAT = 'guid-reused-by-pk-{}'
+UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY = 'upcoming-due-date-cut-off-days'
+UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT = 2
 
 
 class GuidAlreadyDeniedError(RuntimeError):
@@ -295,17 +296,17 @@ class AddonManager(ManagerBase):
             )
         qs = qs.select_related(*select_related_fields)
 
-        if not admin_reviewer:
-            if content_review:
-                qs = qs.exclude(reviewerflags__needs_admin_content_review=True)
-            elif theme_review:
-                qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
-            else:
-                qs = qs.exclude(reviewerflags__needs_admin_code_review=True)
+        if theme_review and not admin_reviewer:
+            qs = qs.exclude(reviewerflags__needs_admin_theme_review=True)
         return qs
 
     def get_queryset_for_pending_queues(
-        self, *, admin_reviewer=False, theme_review=False, show_temporarily_delayed=True
+        self,
+        *,
+        admin_reviewer=False,
+        theme_review=False,
+        show_temporarily_delayed=True,
+        show_only_upcoming=False,
     ):
         if theme_review:
             filters = {
@@ -331,6 +332,18 @@ class AddonManager(ManagerBase):
             .no_transforms()
             .order_by('due_date')
         )
+        if show_only_upcoming:
+            try:
+                days = int(
+                    get_config(
+                        UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_KEY,
+                        UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT,
+                    )
+                )
+            except (ValueError, TypeError):
+                days = UPCOMING_DUE_DATE_CUT_OFF_DAYS_CONFIG_DEFAULT
+            upcoming_cutoff_date = get_review_due_date(default_days=days)
+            versions_due_qs = versions_due_qs.filter(due_date__lte=upcoming_cutoff_date)
         if not show_temporarily_delayed:
             # If we were asked not to show temporarily delayed, we need to
             # exclude versions from the channel of the corresponding addon auto
@@ -625,6 +638,8 @@ class Addon(OnChangeMixin, ModelBase):
         clean_slug(self, slug_field)
 
     def force_disable(self):
+        from olympia.reviewers.models import NeedsHumanReview
+
         activity.log_create(amo.LOG.FORCE_DISABLE, self)
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_DISABLED
@@ -632,9 +647,10 @@ class Addon(OnChangeMixin, ModelBase):
         self.update(status=amo.STATUS_DISABLED)
         self.update_version()
         # https://github.com/mozilla/addons-server/issues/20507
-        self.versions(manager='unfiltered_for_relations').update(
-            due_date=None, needs_human_review=False
-        )
+        NeedsHumanReview.objects.filter(
+            version__in=self.versions(manager='unfiltered_for_relations').all()
+        ).update(is_active=False)
+        self.update_all_due_dates()
         # https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
@@ -668,6 +684,39 @@ class Addon(OnChangeMixin, ModelBase):
 
     def disable_all_files(self):
         File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
+
+    def set_needs_human_review_on_latest_versions(self, *, reason, due_date=None):
+        set_listed = self._set_needs_human_review_on_latest_signed_version(
+            channel=amo.CHANNEL_LISTED, due_date=due_date, reason=reason
+        )
+        set_unlisted = self._set_needs_human_review_on_latest_signed_version(
+            channel=amo.CHANNEL_UNLISTED, due_date=due_date, reason=reason
+        )
+        return set_listed or set_unlisted
+
+    def _set_needs_human_review_on_latest_signed_version(
+        self, *, channel, reason, due_date=None
+    ):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        version = (
+            self.versions(manager='unfiltered_for_relations')
+            .filter(file__is_signed=True, channel=channel)
+            .only_translations()
+            .first()
+        )
+        if (
+            not version
+            or version.human_review_date
+            or version.needshumanreview_set.filter(is_active=True).exists()
+        ):
+            return False
+        had_due_date_already = bool(version.due_date)
+        NeedsHumanReview.objects.create(version=version, reason=reason)
+        if not had_due_date_already and due_date:
+            # If we have a specific due_date, override the default
+            version.reset_due_date(due_date)
+        return True
 
     @property
     def is_guid_denied(self):
@@ -722,8 +771,9 @@ class Addon(OnChangeMixin, ModelBase):
     @transaction.atomic
     def delete(self, msg='', reason='', send_delete_email=True):
         # To avoid a circular import
-        from . import tasks
         from olympia.versions import tasks as version_tasks
+
+        from . import tasks
 
         # Check for soft deletion path. Happens only if the addon status isn't
         # 0 (STATUS_INCOMPLETE) with no versions.
@@ -770,7 +820,8 @@ class Addon(OnChangeMixin, ModelBase):
 
             # Update or NULL out various fields.
             models.signals.pre_delete.send(sender=Addon, instance=self)
-            self._ratings.all().delete()
+            for rating in self._ratings.all():
+                rating.delete(skip_activity_log=True)
             # We avoid triggering signals for Version & File on purpose to
             # avoid extra work.
             self.disable_all_files()
@@ -1257,8 +1308,8 @@ class Addon(OnChangeMixin, ModelBase):
         for addon_id, addonusers in groupby:
             authors = []
             for addonuser in addonusers:
-                setattr(addonuser.user, 'role', addonuser.role)
-                setattr(addonuser.user, 'listed', addonuser.listed)
+                addonuser.user.role = addonuser.role
+                addonuser.user.listed = addonuser.listed
                 authors.append(addonuser.user)
             setattr(addon_dict[addon_id], to_attr, authors)
             seen.add(addon_id)
@@ -1309,6 +1360,8 @@ class Addon(OnChangeMixin, ModelBase):
         qs = AddonCategory.objects.filter(addon__in=addon_dict.values()).values_list(
             'addon_id', 'category_id'
         )
+        for addon_id in addon_dict:
+            addon_dict[addon_id].all_categories = []
 
         for addon_id, cats_iter in itertools.groupby(qs, key=lambda x: x[0]):
             # The second value of each tuple in cats_iter are the category ids
@@ -1492,22 +1545,6 @@ class Addon(OnChangeMixin, ModelBase):
     def can_set_compatibility(self):
         return self.type_can_set_compatibility(self.type)
 
-    def incompatible_latest_apps(self):
-        """Returns a list of applications with which this add-on is
-        incompatible (based on the latest version of each app).
-        """
-        apps = []
-
-        for application, version in self.compatible_apps.items():
-            if not version:
-                continue
-
-            latest_version = version.get_latest_application_version()
-
-            if version_int(version.max.version) < version_int(latest_version):
-                apps.append((application, latest_version))
-        return apps
-
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""
         if user is None or user.is_anonymous:
@@ -1540,7 +1577,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_categories(self):
-        return [addoncat.category for addoncat in self.addoncategory_set.all()]
+        self.attach_static_categories([self], {self.id: self})
+        return self.all_categories
 
     def set_categories(self, categories):
         # Add new categories.
@@ -1612,21 +1650,6 @@ class Addon(OnChangeMixin, ModelBase):
     # AddonReviewerFlags does not exist for this add-on: they are also used
     # by reviewer tools get_flags() function to return flags shown to reviewers
     # in both the review queues and the review page.
-
-    @property
-    def needs_admin_code_review(self):
-        try:
-            return self.reviewerflags.needs_admin_code_review
-        except AddonReviewerFlags.DoesNotExist:
-            return None
-
-    @property
-    def needs_admin_content_review(self):
-        try:
-            return self.reviewerflags.needs_admin_content_review
-        except AddonReviewerFlags.DoesNotExist:
-            return None
-
     @property
     def needs_admin_theme_review(self):
         try:
@@ -1771,12 +1794,11 @@ class Addon(OnChangeMixin, ModelBase):
         # Block.guid is unique so it's either on the list or not.
         return Block.objects.filter(guid=self.addonguid_guid).last()
 
-    @cached_property
-    def blocklistsubmission(self):
+    @property
+    def blocklistsubmissions(self):
         from olympia.blocklist.models import BlocklistSubmission
 
-        # GUIDs should only exist in one (active) submission at once.
-        return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid).last()
+        return BlocklistSubmission.get_submissions_from_guid(self.addonguid_guid)
 
     @property
     def git_extraction_is_in_progress(self):
@@ -1909,8 +1931,8 @@ class AddonReviewerFlags(ModelBase):
     addon = models.OneToOneField(
         Addon, primary_key=True, on_delete=models.CASCADE, related_name='reviewerflags'
     )
-    needs_admin_code_review = models.BooleanField(default=False)
-    needs_admin_content_review = models.BooleanField(default=False)
+    needs_admin_code_review = models.BooleanField(default=False, null=True)
+    needs_admin_content_review = models.BooleanField(default=False, null=True)
     needs_admin_theme_review = models.BooleanField(default=False)
     auto_approval_disabled = models.BooleanField(default=False)
     auto_approval_disabled_unlisted = models.BooleanField(default=None, null=True)
@@ -2337,3 +2359,24 @@ class AddonGUID(ModelBase):
     def save(self, *args, **kwargs):
         self.hashed_guid = hashlib.sha256(self.guid.encode()).hexdigest()
         super().save(*args, **kwargs)
+
+
+class AddonBrowserMapping(ModelBase):
+    """
+    Mapping between an extension ID for a different browser to a Firefox add-on
+    on AMO.
+    """
+
+    addon = models.ForeignKey(
+        Addon,
+        on_delete=models.CASCADE,
+        help_text='Add-on id this item will point to. If you do not know the '
+        'id, paste the slug instead and it will be transformed automatically '
+        'for you. You can also use the magnifying glass to see all the '
+        'available add-ons if you have access to the add-on admin page.',
+    )
+    browser = models.PositiveSmallIntegerField(choices=BROWSERS.items())
+    extension_id = models.CharField(max_length=255, null=False, db_index=True)
+
+    class Meta:
+        unique_together = ('browser', 'extension_id')

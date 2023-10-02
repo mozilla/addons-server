@@ -1,12 +1,12 @@
+import io
 import json
 import os
-import io
 import stat
 import tarfile
 import zipfile
-
 from datetime import datetime, timedelta
 from ipaddress import IPv4Address
+from unittest import mock
 from urllib.parse import urlencode
 
 from django.conf import settings
@@ -15,13 +15,12 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.urls import reverse
 
-from unittest import mock
 import responses
-
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -30,11 +29,10 @@ from olympia.amo.tests import (
     create_default_webext_appversion,
     formset,
     initial,
-    user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.constants.promoted import NOTABLE
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -65,9 +63,10 @@ class TestSubmitBase(TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.client.force_login(self.user)
-        self.user.update(last_login_ip='192.168.1.1')
+        self.client.force_login_with_2fa(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         self.addon = self.get_addon()
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def get_addon(self):
         return Addon.objects.get(pk=3615)
@@ -107,15 +106,38 @@ class TestSubmitBase(TestCase):
 
 
 class TestAddonSubmitAgreement(TestSubmitBase):
+    def setUp(self):
+        self.url = reverse('devhub.submit.agreement')
+        self.next_url = reverse('devhub.submit.distribution')
+        super().setUp()
+
     def test_set_read_dev_agreement(self):
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             {
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-        assert response.status_code == 302
+        self.assert3xx(response, self.next_url)
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+
+    def test_set_read_dev_agreement_theme(self):
+        self.client.logout()  # Shouldn't need 2FA.
+        self.client.force_login(self.user)
+        # Make sure we still have a last login ip though.
+        self.user.update(last_login_ip='192.0.2.1')
+        self.url = reverse('devhub.submit.theme.agreement')
+        self.next_url = reverse('devhub.submit.theme.distribution')
+        response = self.client.post(
+            self.url,
+            {
+                'distribution_agreement': 'on',
+                'review_policy': 'on',
+            },
+        )
+        self.assert3xx(response, self.next_url)
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
 
@@ -123,7 +145,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.post(reverse('devhub.submit.agreement'))
+        response = self.client.post(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
         form = response.context['agreement_form']
@@ -141,21 +163,21 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         after_agreement_last_changed = datetime(2019, 6, 10) + timedelta(days=1)
         self.user.update(read_dev_agreement=after_agreement_last_changed)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     @override_settings(DEV_AGREEMENT_CHANGE_FALLBACK=datetime(2019, 6, 10, 12, 00))
     def test_read_dev_agreement_fallback_with_config_set_to_future(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_fallback_with_conf_future_and_not_agreed(self):
         set_config('last_dev_agreement_change_date', '2099-12-31 00:00')
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
@@ -164,30 +186,30 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         set_config('last_dev_agreement_change_date', '2099-25-75 00:00')
         read_dev_date = datetime(2019, 6, 11)
         self.user.update(read_dev_agreement=read_dev_date)
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_invalid_date_not_agreed_post_fallback(self):
         set_config('last_dev_agreement_change_date', '2099,31,12,0,0')
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         self.assertRaises(ValueError)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
     def test_read_dev_agreement_no_date_configured_agreed_post_fallback(self):
-        response = self.client.get(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
     def test_read_dev_agreement_no_date_configured_not_agreed_post_fallb(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
     def test_read_dev_agreement_captcha_inactive(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' not in form.fields
@@ -198,12 +220,12 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' in form.fields
 
-        response = self.client.post(reverse('devhub.submit.agreement'))
+        response = self.client.post(self.url)
 
         # Captcha is properly rendered
         doc = pq(response.content)
@@ -214,7 +236,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_success(self):
         self.user.update(read_dev_agreement=None)
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'recaptcha' in form.fields
@@ -237,22 +259,20 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         )
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'g-recaptcha-response': 'test',
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-
-        assert response.status_code == 302
-        assert response['Location'] == reverse('devhub.submit.distribution')
+        self.assert3xx(response, self.next_url)
 
     def test_cant_submit_agreement_if_restricted_functional(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
         self.user.update(read_dev_agreement=None)
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -273,23 +293,23 @@ class TestAddonSubmitAgreement(TestSubmitBase):
 
     def test_display_name_already_set_not_asked_again(self):
         self.user.update(read_dev_agreement=None, display_name='Foo')
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         form = response.context['agreement_form']
         assert 'display_name' not in form.fields
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
             },
         )
-        assert response.status_code == 302
+        self.assert3xx(response, self.next_url)
         assert self.user.reload().read_dev_agreement
 
     def test_display_name_required(self):
         self.user.update(read_dev_agreement=None, display_name='')
-        response = self.client.get(reverse('devhub.submit.agreement'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         form = response.context['agreement_form']
@@ -299,7 +319,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             in doc('.addon-submission-process').text()
         )
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -317,7 +337,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
     def test_display_name_submission(self):
         self.user.update(read_dev_agreement=None, display_name='')
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -331,7 +351,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         }
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
@@ -345,17 +365,31 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         }
 
         response = self.client.post(
-            reverse('devhub.submit.agreement'),
+            self.url,
             data={
                 'distribution_agreement': 'on',
                 'review_policy': 'on',
                 'display_name': 'Fôä',
             },
         )
-        assert response.status_code == 302
+        self.assert3xx(response, self.next_url)
         self.user.reload()
         self.assertCloseToNow(self.user.read_dev_agreement)
         assert self.user.display_name == 'Fôä'
+
+    def test_enforce_2fa(self):
+        self.user.update(read_dev_agreement=None)
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestAddonSubmitDistribution(TestCase):
@@ -363,14 +397,18 @@ class TestAddonSubmitDistribution(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.user.update(last_login_ip='192.168.1.1')
+        self.user.update(last_login_ip='192.0.2.1')
+        self.url = reverse('devhub.submit.distribution')
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def test_check_agreement_okay(self):
         response = self.client.post(reverse('devhub.submit.agreement'))
-        self.assert3xx(response, reverse('devhub.submit.distribution'))
-        response = self.client.get(reverse('devhub.submit.distribution'))
+        self.assert3xx(response, self.url)
+        response = self.client.get(self.url)
         assert response.status_code == 200
         # No error shown for a redirect from previous step.
         assert b'This field is required' not in response.content
@@ -380,7 +418,7 @@ class TestAddonSubmitDistribution(TestCase):
             key='submit_notification_warning',
             value='Text with <a href="http://example.com">a link</a>.',
         )
-        response = self.client.get(reverse('devhub.submit.distribution'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.notification-box.warning').html().strip() == config.value
@@ -388,7 +426,7 @@ class TestAddonSubmitDistribution(TestCase):
     def test_redirect_back_to_agreement(self):
         self.user.update(read_dev_agreement=None)
 
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
         # read_dev_agreement needs to be a more recent date than
@@ -396,28 +434,48 @@ class TestAddonSubmitDistribution(TestCase):
         set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
         before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
         self.user.update(read_dev_agreement=before_agreement_last_changed)
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
+
+    def test_redirect_back_to_agreement_theme(self):
+        self.user.update(read_dev_agreement=None)
+
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
+
+        # read_dev_agreement needs to be a more recent date than
+        # the setting.
+        set_config('last_dev_agreement_change_date', '2019-06-10 00:00')
+        before_agreement_last_changed = datetime(2019, 6, 10) - timedelta(days=1)
+        self.user.update(read_dev_agreement=before_agreement_last_changed)
+        response = self.client.get(
+            reverse('devhub.submit.theme.distribution'), follow=True
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.agreement'))
 
     def test_redirect_back_to_agreement_if_restricted(self):
         IPNetworkUserRestriction.objects.create(network='127.0.0.1/32')
-        response = self.client.get(reverse('devhub.submit.distribution'), follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assert3xx(response, reverse('devhub.submit.agreement'))
 
     def test_listed_redirects_to_next_step(self):
-        response = self.client.post(
-            reverse('devhub.submit.distribution'), {'channel': 'listed'}
-        )
+        response = self.client.post(self.url, {'channel': 'listed'})
         self.assert3xx(response, reverse('devhub.submit.upload', args=['listed']))
 
     def test_unlisted_redirects_to_next_step(self):
-        response = self.client.post(
-            reverse('devhub.submit.distribution'), {'channel': 'unlisted'}
-        )
+        response = self.client.post(self.url, {'channel': 'unlisted'})
         self.assert3xx(response, reverse('devhub.submit.upload', args=['unlisted']))
 
+    def test_listed_redirects_to_next_step_theme(self):
+        response = self.client.post(
+            reverse('devhub.submit.theme.distribution'), {'channel': 'listed'}
+        )
+        self.assert3xx(response, reverse('devhub.submit.theme.upload', args=['listed']))
+
     def test_channel_selection_error_shown(self):
-        url = reverse('devhub.submit.distribution')
+        url = self.url
         # First load should have no error
         assert b'This field is required' not in self.client.get(url).content
 
@@ -430,6 +488,19 @@ class TestAddonSubmitDistribution(TestCase):
         # A post submission without channel selection should be an error
         assert b'This field is required' in self.client.post(url).content
 
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
 
 @override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadMixin, TestCase):
@@ -441,12 +512,14 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.user.update(last_login_ip='192.168.1.1')
-        self.client.post(reverse('devhub.submit.agreement'))
+        self.user.update(last_login_ip='192.0.2.1')
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(
         self,
@@ -455,6 +528,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         listed=True,
         status_code=200,
         url=None,
+        theme=False,
         extra_kwargs=None,
     ):
         if compatible_apps is None:
@@ -463,9 +537,8 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'upload': self.upload.uuid.hex,
             'compatible_apps': [p.id for p in compatible_apps],
         }
-        url = url or reverse(
-            'devhub.submit.upload', args=['listed' if listed else 'unlisted']
-        )
+        urlname = 'devhub.submit.upload' if not theme else 'devhub.submit.theme.upload'
+        url = url or reverse(urlname, args=['listed' if listed else 'unlisted'])
         response = self.client.post(url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
         if not expect_errors:
@@ -533,30 +606,12 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # We're not passing `expected_errors=True`, so if there was any errors
         # like "This name is already in use. Please choose another one", the
         # test would fail.
-        response = self.post()
+        response = self.post(theme=True)
         # Kind of redundant with the `self.post()` above: we just want to make
         # really sure there's no errors raised by posting an add-on with a name
         # that is already used by an unlisted add-on.
         assert 'new_addon_form' not in response.context
         assert get_addon_count('Beastify') == 2
-
-    def test_new_addon_is_already_blocked(self):
-        self.upload = self.get_upload('webextension.xpi', user=self.user)
-        guid = '@webextension-guid'
-        block = Block.objects.create(guid=guid, updated_by=user_factory())
-
-        response = self.post(expect_errors=True)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 matches a blocklist entry for this add-on. '
-            'You can contact AMO Admins for additional information.'
-        )
-        assert pq(response.content)('ul.errorlist a').attr('href') == (
-            reverse('blocklist.block', args=[guid])
-        )
-
-        # Though we allow if the version is outside of the specified range
-        block.update(min_version='0.0.2')
-        response = self.post(expect_errors=False)
 
     def test_success_listed(self):
         assert Addon.objects.count() == 0
@@ -611,9 +666,42 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'Need to select at least one application.'
         )
 
-    def test_static_theme_wizard_button_shown(self):
+    def test_compatible_apps_gecko_android_in_manifest(self):
+        # Only specifying firefox compatibility for an add-on that has explicit
+        # gecko_android compatibility in manifest is accepted, but we
+        # automatically add Android compatibility.
+        self.upload = self.get_upload('webextension_gecko_android.xpi', user=self.user)
+        url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.post(
+            url,
+            {
+                'upload': self.upload.uuid.hex,
+                'compatible_apps': [amo.FIREFOX.id],
+            },
+        )
+        assert response.status_code == 302
+        addon = Addon.objects.latest('pk')
+        assert addon.current_version.apps.count() == 2
+        assert (
+            addon.current_version.compatible_apps[amo.FIREFOX].originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+        )
+        assert (
+            addon.current_version.compatible_apps[amo.ANDROID].originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+        assert (
+            addon.current_version.compatible_apps[amo.ANDROID].min.version
+            == amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY
+        )
+
+    def test_theme_variant_has_theme_stuff_visible(self):
+        self.client.logout()  # Shouldn't need 2FA.
+        self.client.force_login(self.user)
+        # Make sure we still have a last login ip though.
+        self.user.update(last_login_ip='192.0.2.1')
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['listed']), follow=True
+            reverse('devhub.submit.theme.upload', args=['listed']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -621,9 +709,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['listed'])
         )
+        assert doc('#id_theme_specific').attr('value') == 'True'
 
         response = self.client.get(
-            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+            reverse('devhub.submit.theme.upload', args=['unlisted']), follow=True
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -631,6 +720,24 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted'])
         )
+        assert doc('#id_theme_specific').attr('value') == 'True'
+
+    def test_non_theme_variant_has_theme_stuff_hidden(self):
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['listed']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert doc('#id_theme_specific').attr('value') == 'False'
+
+        response = self.client.get(
+            reverse('devhub.submit.upload', args=['unlisted']), follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#wizardlink')
+        assert doc('#id_theme_specific').attr('value') == 'False'
 
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
@@ -638,7 +745,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post()
+        response = self.post(theme=True)
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         assert addon.current_version.file.file.name.endswith(
@@ -656,7 +763,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
         self.upload = self.get_upload(abspath=path, user=self.user)
-        response = self.post(listed=False)
+        response = self.post(listed=False, theme=True)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         self.assert3xx(response, reverse('devhub.submit.finish', args=[addon.slug]))
@@ -726,6 +833,31 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.url = reverse('devhub.submit.upload', args=['listed'])
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
+        self.url = reverse('devhub.submit.upload', args=['unlisted'])
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+
 
 class TestAddonSubmitSource(TestSubmitBase):
     def setUp(self):
@@ -755,7 +887,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.zip')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -823,7 +954,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tar.gz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -835,7 +965,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tgz')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -847,7 +976,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.addon = self.addon.reload()
         assert self.get_version().source
         assert str(self.get_version().source).endswith('.tar.bz2')
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -861,7 +989,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_say_yes_but_dont_submit_source_fails(self):
         response = self.post(has_source=True, source=None, expect_errors=True)
@@ -870,7 +997,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2**22)
     def test_submit_source_in_memory_upload(self):
@@ -881,7 +1007,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -894,7 +1019,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
-        assert self.addon.needs_admin_code_review
         mode = '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE])
         assert mode == '0100644'
 
@@ -912,7 +1036,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_non_compressed_tar(self):
         response = self.post(
@@ -926,7 +1049,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_not_an_actual_archive(self):
         response = self.post(
@@ -939,7 +1061,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive(self):
         source = self.generate_source_zip(
@@ -958,7 +1079,6 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
         source = self.generate_source_tar()
@@ -974,14 +1094,12 @@ class TestAddonSubmitSource(TestSubmitBase):
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_no_source(self):
         response = self.post(has_source=False, source=None)
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert not self.get_version().source
-        assert not self.addon.needs_admin_code_review
 
     def test_non_extension_redirects_past_to_details(self):
         # static themes should redirect
@@ -1529,6 +1647,9 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def setUp(self):
         super().setUp()
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.0.2.0.1')
         self.url = reverse('devhub.submit.details', args=['a3615'])
 
         addon = self.get_addon()
@@ -1606,17 +1727,16 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         self.is_success(self.get_dict(category='firefox'))
 
         addon_cats = [c.id for c in self.get_addon().all_categories]
-        assert sorted(addon_cats) == [308, 408]
+        assert sorted(addon_cats) == [308]
 
     def test_submit_categories_change(self):
         AddonCategory(addon=self.addon, category_id=300).save()
-        AddonCategory(addon=self.addon, category_id=400).save()
-        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300, 400]
+        assert sorted(cat.id for cat in self.get_addon().all_categories) == [300]
 
         self.client.post(self.url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308, 408]
+        assert category_ids_new == [308]
 
     def test_creative_commons_licenses(self):
         response = self.client.get(self.url)
@@ -1806,7 +1926,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         assert response.status_code == 200
         doc = pq(response.content)
         channel_input = doc('form.addon-submit-distribute input.channel')
-        channel_input[0].attrib == {
+        assert channel_input[0].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'listed',
@@ -1815,7 +1935,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             'id': 'id_channel_0',
             'checked': 'checked',
         }
-        channel_input[1].attrib == {
+        assert channel_input[1].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'unlisted',
@@ -1836,7 +1956,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         doc = pq(response.content)
         channel_input = doc('form.addon-submit-distribute input.channel')
         assert len(channel_input) == 1
-        channel_input[0].attrib == {
+        assert channel_input[0].attrib == {
             'type': 'radio',
             'name': 'channel',
             'value': 'unlisted',
@@ -1859,6 +1979,19 @@ class TestVersionSubmitDistribution(TestSubmitBase):
         self.assert3xx(
             response, reverse('devhub.submit.version.agreement', args=[self.addon.slug])
         )
+
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
@@ -1923,8 +2056,8 @@ class VersionSubmitUploadMixin:
         self.version = self.addon.current_version
         self.addon.update(guid='@webextension-guid')
         self.user = UserProfile.objects.get(email='del@icio.us')
-        self.client.force_login(self.user)
-        self.user.update(last_login_ip='192.168.1.1')
+        self.client.force_login_with_2fa(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         self.addon.versions.update(channel=self.channel, version='0.0.0.99')
         channel = 'listed' if self.channel == amo.CHANNEL_LISTED else 'unlisted'
         self.url = reverse(
@@ -1934,6 +2067,7 @@ class VersionSubmitUploadMixin:
         self.version.save()
         self.upload = self.get_upload('webextension.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
 
     def post(
         self,
@@ -2009,21 +2143,6 @@ class VersionSubmitUploadMixin:
                 'devhub.submit.version.details', args=[self.addon.slug, self.version.pk]
             )
         )
-
-    def test_addon_version_is_blocked(self):
-        block = Block.objects.create(guid=self.addon.guid, updated_by=user_factory())
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'Version 0.0.1 matches a blocklist entry for this add-on. '
-            'You can contact AMO Admins for additional information.'
-        )
-        assert pq(response.content)('ul.errorlist a').attr('href') == (
-            reverse('blocklist.block', args=[self.addon.guid])
-        )
-
-        # Though we allow if the version is outside of the specified range
-        block.update(min_version='0.2')
-        response = self.post(expected_status=302), response.content
 
     def test_distribution_link(self):
         response = self.client.get(self.url)
@@ -2181,23 +2300,67 @@ class VersionSubmitUploadMixin:
         else:
             assert version.previews.all().count() == 0
 
-    def test_admin_override(self):
-        self.grant_permission(self.user, ':'.join(amo.permissions.REVIEWS_ADMIN))
-        assert not AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
-        response = self.post(override_validation=True)
-        assert response.status_code == 302
-        assert AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
+    def test_submit_notification_warning(self):
+        config = Config.objects.create(
+            key='submit_notification_warning',
+            value='Text with <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
 
-    def test_admin_override_no_permission(self):
-        response = self.post(override_validation=True)
-        assert response.status_code == 302
-        assert not AddonReviewerFlags.objects.filter(
-            addon=self.addon, needs_admin_code_review=True
-        ).exists()
+    def test_submit_notification_warning_pre_review_ignore_if_not_promoted_group(self):
+        Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.notification-box.warning')
+
+    def test_submit_notification_warning_pre_review(self):
+        self.make_addon_promoted(self.addon, group=NOTABLE)
+        config = Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
+
+    def test_submit_notification_warning_pre_review_generic_test_already_present(self):
+        self.make_addon_promoted(self.addon, group=NOTABLE)
+        config = Config.objects.create(
+            key='submit_notification_warning',
+            value='Warning with <a href="http://example.com">a link</a>.',
+        )
+        Config.objects.create(
+            key='submit_notification_warning_pre_review',
+            value='Warning for pre_review and <a href="http://example.com">a link</a>.',
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.notification-box.warning')
+        assert doc('.notification-box.warning').html().strip() == config.value
+
+    def test_enforce_2fa(self):
+        self.client.logout()
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):

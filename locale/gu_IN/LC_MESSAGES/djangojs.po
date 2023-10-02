@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-07-05 07:54+0000\n"
 "Last-Translator: jainilprajapati9 <jainilprajapati9@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "તમારા ઍડ-ઑન {0}ના મહત્તમ કદ કર
 msgid "Received an empty response from the server; status: {0}"
 msgstr "સર્વરમાંથી ખાલી પ્રતિભાવ મળ્યો; સ્થિતિ: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "માન્ય કરતી વખતે અનપેક્ષિત સર્વર ભૂલ."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "માન્ય કરવાનું સમાપ્ત કર્યું {0}"
@@ -622,9 +628,6 @@ msgstr[1] "{files} ફાઇલ્સ"
 msgid "Image changes being processed"
 msgstr "છબી ફેરફારની પ્રક્રિયા થઈ રહી છે"
 
-msgid "Select an application first"
-msgstr "પ્રથમ એપ્લિકેશન પસંદ કરો"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
@@ -642,6 +645,9 @@ msgid "Remove this localization"
 msgstr "આ સ્થાનિકીકરણ દૂર કરો"
 
 msgid "{name} was viewing this page first."
+msgstr ""
+
+msgid "Review page polling failed."
 msgstr ""
 
 msgid "{name} was viewing this add-on first."

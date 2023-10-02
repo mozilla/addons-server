@@ -32,7 +32,7 @@
 
   $.fn.addonUploader = function (options) {
     var settings = {
-      filetypes: ['zip', 'xpi', 'crx', 'xml'],
+      filetypes: ['zip', 'xpi', 'crx'],
       getErrors: getErrors,
       cancel: $(),
       maxSize: 200 * 1024 * 1024, // 200M
@@ -382,8 +382,34 @@
         });
       $('.addon-upload-failure-dependant').prop('disabled', true);
 
+      function setCompatibilityCheckboxesValidity() {
+        if (
+          compatibilityCheckboxes.length === 0 ||
+          !compatibilityCheckboxes.is(':visible') ||
+          compatibilityCheckboxes.is(':checked')
+        ) {
+          // If there are no compatibility checkboxes or they aren't visible or
+          // at least one is checked: remove custom validity on them.
+          compatibilityCheckboxes.each(function (idx, item) {
+            item.setCustomValidity('');
+          });
+        } else {
+          // We need a least a visible checkbox checked to continue. Add an error
+          // message to the first one.
+          compatibilityCheckboxes[0].setCustomValidity(
+            gettext(
+              'Your extension has to be compatible with at least one application.',
+            ),
+          );
+        }
+      }
+
+      var compatibilityCheckboxes = $('.compatible-apps input[type=checkbox]');
       var $newForm = $('.new-addon-file');
       var $channelChoice = $('input[name="channel"]');
+
+      compatibilityCheckboxes.on('change', setCompatibilityCheckboxesValidity);
+      setCompatibilityCheckboxesValidity(); // Initialize.
 
       function isUnlisted() {
         // True if there's radio input with 'name="channel"' with 'value="unlisted"' checked, or a
@@ -469,14 +495,47 @@
             });
           }, 1000);
         } else {
-          if (results.addon_type == 10) {
-            // No source or compat app selection for static themes.
+          // Remove hidden android compatibility input if present (it will
+          // be re-added if necessary)
+          $('#id_compatible_apps_hidden_android').remove();
+          if (results.addon_type != 1) {
+            // No source or compat app selection for themes/dicts/langpacks.
             $('.binary-source').hide();
             $('.compatible-apps').hide();
           } else {
+            // Pre-check Android or not depending on what we detected in the
+            // manifest.
+            let $checkbox = $('#id_compatible_apps .android input');
+            $checkbox
+              .prop('checked', results.explicitly_compatible_with_android)
+              .prop('disabled', results.explicitly_compatible_with_android)
+              .parent()
+              .prop(
+                'title',
+                results.explicitly_compatible_with_android === true
+                  ? gettext(
+                      'Explicitly marked as compatible with Firefox for Android in the manifest',
+                    )
+                  : '',
+              );
+            // In addition, if we automatically ticked and disabled the Android
+            // checkbox, the browser won't submit the value. It's fine if
+            // Firefox was also checked, but if not then we'd not submit
+            // anything and the validation would fail server-side, so we
+            // add/remove an hidden input to compensate.
+            if (results.explicitly_compatible_with_android === true) {
+              $checkbox
+                .clone()
+                .prop('id', 'id_compatible_apps_hidden_android')
+                .prop('disabled', false)
+                .prop('type', 'hidden')
+                .insertAfter($checkbox);
+            }
             $('.binary-source').show();
             $('.compatible-apps').show();
           }
+          setCompatibilityCheckboxesValidity();
+
           var errors = getErrors(results),
             v = results.validation,
             timeout = checkTimeout(v);

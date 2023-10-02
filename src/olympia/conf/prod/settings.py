@@ -1,5 +1,13 @@
+# ruff: noqa: F405
 from olympia.lib.settings_base import *  # noqa
 
+ALLOWED_HOSTS = [
+    '.amo.prod.webservices.mozgcp.net',
+    '.mozilla.org',
+    '.mozilla.com',
+    '.mozilla.net',
+    '.mozaws.net',
+]
 
 ENGAGE_ROBOTS = True
 
@@ -42,14 +50,7 @@ REPLICA_DATABASES = ['replica']
 CELERY_BROKER_CONNECTION_TIMEOUT = 0.5
 
 ES_TIMEOUT = 60
-ES_HOSTS = env('ES_HOSTS')
-ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = {k: f'{v}_{ENV}' for k, v in ES_INDEXES.items()}
-
-CEF_PRODUCT = STATSD_PREFIX
-
-NEW_FEATURES = True
-
 ES_DEFAULT_NUM_SHARDS = 10
 
 RECOMMENDATION_ENGINE_URL = env(
@@ -67,7 +68,9 @@ EXTENSION_WORKSHOP_URL = env(
 )
 
 REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.mozilla.com/v1/'
-REMOTE_SETTINGS_WRITER_URL = 'https://settings-writer.prod.mozaws.net/v1/'
+REMOTE_SETTINGS_WRITER_URL = env(
+    'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.mozilla.org/v1/'
+)
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746

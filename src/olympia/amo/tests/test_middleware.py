@@ -1,3 +1,6 @@
+import os
+from unittest.mock import Mock, PropertyMock, patch
+
 from django import test
 from django.conf import settings
 from django.contrib.auth import SESSION_KEY
@@ -8,8 +11,6 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 import pytest
-
-from unittest.mock import patch, Mock, PropertyMock
 from pyquery import PyQuery as pq
 
 from olympia.accounts.utils import fxa_login_url, path_with_query
@@ -22,7 +23,7 @@ from olympia.amo.middleware import (
     SetRemoteAddrFromForwardedFor,
     TokenValidMiddleware,
 )
-from olympia.amo.tests import addon_factory, reverse_ns, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.zadmin.models import Config
 
 
@@ -168,6 +169,22 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
         self.middleware.process_request(request)
         assert request.META['REMOTE_ADDR'] == '4.8.15.16'
 
+    @patch.dict(os.environ, {'DEPLOY_PLATFORM': 'gcp'})
+    def test_request_not_from_cdn_on_gcp(self):
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='2.3.4.2', HTTP_X_FORWARDED_FOR='4.8.15.16,2.3.4.2'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
+        request = RequestFactory().get(
+            '/', REMOTE_ADDR='2.3.4.2', HTTP_X_FORWARDED_FOR='1.1.1.1,4.8.15.16,2.3.4.2'
+        )
+        assert not self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '4.8.15.16'
+
     @override_settings(SECRET_CDN_TOKEN=None)
     def test_request_not_from_cdn_because_setting_is_none(self):
         request = RequestFactory().get(
@@ -228,6 +245,19 @@ class TestSetRemoteAddrFromForwardedFor(TestCase):
         self.middleware.process_request(request)
         assert request.META['REMOTE_ADDR'] == '2.3.4.2'
 
+    @override_settings(SECRET_CDN_TOKEN='foo')
+    @patch.dict(os.environ, {'DEPLOY_PLATFORM': 'gcp'})
+    def test_request_from_cdn_pick_third_to_last_ip_in_x_forwarded_for_on_gcp(self):
+        request = RequestFactory().get(
+            '/',
+            REMOTE_ADDR='1.1.1.1',
+            HTTP_X_FORWARDED_FOR=',, 2.3.4.2, 1.1.1.1, 4.8.15.16',
+            HTTP_X_REQUEST_VIA_CDN='foo',
+        )
+        assert self.middleware.is_request_from_cdn(request)
+        self.middleware.process_request(request)
+        assert request.META['REMOTE_ADDR'] == '2.3.4.2'
+
 
 class TestCacheControlMiddleware(TestCase):
     def setUp(self):
@@ -253,8 +283,7 @@ class TestCacheControlMiddleware(TestCase):
         request.is_api = True
         for method in ('POST', 'DELETE', 'PUT', 'PATCH'):
             request.method = method
-            response = HttpResponse()
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(lambda x: HttpResponse())(request)
             assert response['Cache-Control'] == 's-maxage=0'
 
     def test_disable_caching_arg_should_not_cache(self):
@@ -292,19 +321,19 @@ class TestCacheControlMiddleware(TestCase):
     def test_non_success_status_code_should_not_cache(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
-        response = HttpResponse()
         for status_code in (400, 401, 403, 404, 429, 500, 502, 503, 504):
-            response.status_code = status_code
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 's-maxage=0'
 
     def test_everything_ok_should_cache_for_3_minutes(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True
-        response = HttpResponse()
         for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
-            response.status_code = status_code
-            response = CacheControlMiddleware(lambda x: response)(request)
+            response = CacheControlMiddleware(
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
             assert response['Cache-Control'] == 'max-age=180'
 
     def test_functional_should_cache(self):
@@ -353,7 +382,6 @@ class TestTokenValidMiddleware(TestCase):
             config=settings.FXA_CONFIG['default'],
             state=request.session['fxa_state'],
             next_path=path_with_query(request),
-            action='signin',
         )
 
     def test_anonymous_user(self):

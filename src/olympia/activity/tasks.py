@@ -1,5 +1,4 @@
 import olympia.core.logger
-
 from olympia.activity.models import ActivityLog, ActivityLogEmails, RatingLog
 from olympia.activity.utils import add_email_to_activity_log_wrapper
 from olympia.amo.celery import task

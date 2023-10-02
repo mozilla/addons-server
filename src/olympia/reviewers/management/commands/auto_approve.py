@@ -5,17 +5,15 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import waffle
-
 from django_statsd.clients import statsd
 from post_request_task.task import (
     _discard_tasks,
-    _start_queuing_tasks,
     _send_tasks_and_stop_queuing,
+    _start_queuing_tasks,
     _stop_queuing_tasks,
 )
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.amo.decorators import use_primary_db
 from olympia.files.utils import lock

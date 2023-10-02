@@ -1,16 +1,8 @@
 {% extends "reviewers/base.html" %}
 
 {% block title %}
-  {% if tab == "content_review" %}
-    Content Review – Add-ons for Firefox
-  {% elif tab == "auto_approved" %}
-    Auto-approved Add-ons – Add-ons for Firefox
-  {% elif tab == "moderated" %}
-    Review Moderation – Add-ons for Firefox
-  {% elif tab == "unlisted_queue_all" %}
-    Unlisted Add-ons – Add-ons for Firefox
-  {% elif tab == "pending_rejection" %}
-    Pending Rejection – Add-ons for Firefox
+  {% if title %}
+    {{ title }} - Add-ons for Firefox
   {% else %}
     {{ super() }}
   {% endif %}
@@ -21,7 +13,7 @@
 {% block content %}
 
 <ul class="tabnav">
-  {% for this, loc, text in queue_tabnav() %}
+  {% for this, loc, text in queue_tabnav(registry) %}
   <li class="{% if tab==this %}selected{% endif %}"><a href="{{ url('reviewers.%s' % loc) }}">{{ text }}</a></li>
   {% endfor %}
 </ul>
@@ -56,7 +48,7 @@
             {% trans user=review.instance.user|user_link, date=review.instance.created|date,
                      stars=review.instance.rating|stars, locale=review.instance.body.locale %}
               by {{ user }} on {{ date }}
-              {{ stars }} ({{ locale }})
+              {{ stars }}
             {% endtrans %}
             </p>
             <p class="description">{{ review.instance.body|nl2br }}</p>

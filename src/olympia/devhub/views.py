@@ -1,7 +1,7 @@
 import datetime
 import os
 import time
-
+from copy import deepcopy
 from urllib.parse import quote
 from uuid import UUID, uuid4
 
@@ -21,27 +21,30 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
 import waffle
-
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
-from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.decorators import two_factor_auth_required
+from olympia.accounts.utils import (
+    redirect_for_login,
+    redirect_for_login_with_2fa_enforced,
+)
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import (
     Addon,
+    AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
 )
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.reverse import get_url_prefix
+from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.utils import (
     MenuItem,
     StopWatch,
@@ -51,6 +54,7 @@ from olympia.amo.utils import (
 )
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.devhub.decorators import dev_required, no_admin_disabled
+from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     extract_theme_properties,
@@ -166,52 +170,6 @@ def dashboard(request, theme=False):
         data['sort_opts'] = data['filter'].opts
 
     return TemplateResponse(request, 'devhub/addons/dashboard.html', context=data)
-
-
-@dev_required
-def ajax_compat_status(request, addon_id, addon):
-    if not (addon.can_set_compatibility and addon.current_version):
-        raise http.Http404()
-    return TemplateResponse(
-        request, 'devhub/addons/ajax_compat_status.html', context={'addon': addon}
-    )
-
-
-@dev_required
-def ajax_compat_error(request, addon_id, addon):
-    if not (addon.can_set_compatibility and addon.current_version):
-        raise http.Http404()
-    return TemplateResponse(
-        request, 'devhub/addons/ajax_compat_error.html', context={'addon': addon}
-    )
-
-
-@dev_required
-def ajax_compat_update(request, addon_id, addon, version_id):
-    if not addon.can_set_compatibility:
-        raise http.Http404()
-    version = get_object_or_404(addon.versions.all(), pk=version_id)
-    compat_form = forms.CompatFormSet(
-        request.POST or None,
-        queryset=version.apps.all().select_related('min', 'max'),
-        form_kwargs={'version': version},
-    )
-    if request.method == 'POST' and compat_form.is_valid():
-        for compat in compat_form.save(commit=False):
-            compat.version = version
-            compat.save()
-
-        for compat in compat_form.deleted_objects:
-            compat.delete()
-
-        for form in compat_form.forms:
-            if isinstance(form, forms.CompatForm) and 'max' in form.changed_data:
-                _log_max_version_change(addon, version, form.instance)
-    return TemplateResponse(
-        request,
-        'devhub/addons/ajax_compat_update.html',
-        context={'addon': addon, 'version': version, 'compat_form': compat_form},
-    )
 
 
 def _get_addons(request, addons, addon_id, action):
@@ -601,6 +559,7 @@ def validate_addon(request):
 
 
 def handle_upload(
+    *,
     filedata,
     request,
     channel,
@@ -608,6 +567,7 @@ def handle_upload(
     is_standalone=False,
     submit=False,
     source=amo.UPLOAD_SOURCE_DEVHUB,
+    theme_specific=False,
 ):
     upload = FileUpload.from_post(
         filedata,
@@ -618,27 +578,69 @@ def handle_upload(
         source=source,
         user=request.user,
     )
-
     if submit:
-        tasks.validate_and_submit(addon, upload, channel=channel)
+        tasks.validate_and_submit(addon, upload, theme_specific=theme_specific)
     else:
-        tasks.validate(upload, listed=(channel == amo.CHANNEL_LISTED))
-
+        tasks.validate(upload, theme_specific=theme_specific)
     return upload
 
 
 @login_required
 @post_required
 def upload(request, channel='listed', addon=None, is_standalone=False):
+    channel_as_text = channel
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     filedata = request.FILES['upload']
-    upload = handle_upload(
-        filedata=filedata,
-        request=request,
-        addon=addon,
-        is_standalone=is_standalone,
-        channel=channel,
+    theme_specific = django_forms.BooleanField().to_python(
+        request.POST.get('theme_specific')
     )
+    if (
+        not theme_specific
+        and not is_standalone
+        and not request.session.get('has_two_factor_authentication')
+        and waffle.flag_is_active(
+            request, '2fa-enforcement-for-developers-and-special-users'
+        )
+    ):
+        # This shouldn't happen: it means the user attempted to use the add-on
+        # submission flow that is behind @two_factor_auth_required decorator
+        # but didn't log in with 2FA. Because this view is used to serve an XHR
+        # we return a fake validation error suggesting to enable 2FA instead of
+        # redirecting.
+        next_path = (
+            reverse('devhub.submit.version.upload', args=[addon.slug, channel_as_text])
+            if addon
+            else reverse('devhub.submit.upload', args=[channel_as_text])
+        )
+        url = redirect_for_login_with_2fa_enforced(request, next_path=next_path)[
+            'location'
+        ]
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        insert_validation_message(
+            results,
+            message=_(
+                '<a href="{link}">Please add two-factor authentication to your account '
+                'to submit extensions.</a>'
+            ).format(link=absolutify(url)),
+        )
+        return JsonResponse({'validation': results}, status=400)
+
+    try:
+        upload = handle_upload(
+            filedata=filedata,
+            request=request,
+            addon=addon,
+            is_standalone=is_standalone,
+            channel=channel,
+            theme_specific=theme_specific,
+        )
+    except django_forms.ValidationError as exc:
+        # handle_upload() should be firing tasks to do validation. If it raised
+        # a ValidationError, that means we failed before even reaching those
+        # tasks, and need to return an error response immediately.
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        insert_validation_message(results, message=exc.message)
+        return JsonResponse({'validation': results}, status=400)
     if addon:
         return redirect('devhub.upload_detail_for_version', addon.slug, upload.uuid.hex)
     elif is_standalone:
@@ -680,8 +682,10 @@ def file_validation(request, addon_id, addon, file_id):
     file_ = get_object_or_404(File, version__addon=addon, id=file_id)
 
     validate_url = reverse('devhub.json_file_validation', args=[addon.slug, file_.id])
-    file_url = code_manager_url(
-        'browse', addon_id=addon.pk, version_id=file_.version.pk
+    file_url = (
+        code_manager_url('browse', addon_id=addon.pk, version_id=file_.version.pk)
+        if acl.is_user_any_kind_of_reviewer(request.user)
+        else None
     )
 
     context = {
@@ -760,6 +764,9 @@ def json_upload_detail(request, upload, addon_slug=None):
             return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
+            result['explicitly_compatible_with_android'] = pkg.get(
+                'explicitly_compatible_with_android', False
+            )
     return result
 
 
@@ -899,7 +906,12 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 else:
                     ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
 
+                if valid_slug != addon.slug:
+                    ActivityLog.create(
+                        amo.LOG.ADDON_SLUG_CHANGED, addon, valid_slug, addon.slug
+                    )
                 valid_slug = addon.slug
+
             if cat_form:
                 if cat_form.is_valid():
                     cat_form.save()
@@ -1094,8 +1106,10 @@ def version_edit(request, addon_id, addon, version_id):
             timer.log_interval('2.form_validated')
         if 'compat_form' in data:
             for compat in data['compat_form'].save(commit=False):
-                compat.version = version
-                compat.save()
+                if data['compat_form'].has_changed():
+                    compat.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+                    compat.version = version
+                    compat.save()
 
             for compat in data['compat_form'].deleted_objects:
                 compat.delete()
@@ -1216,8 +1230,6 @@ def check_validation_override(request, form, addon, version):
         helper = ReviewHelper(addon=addon, version=version, user=request.user)
         helper.set_data(
             {
-                'operating_systems': '',
-                'applications': '',
                 'comments': gettext(
                     'This upload has failed validation, and may '
                     'lack complete validation results. Please '
@@ -1225,7 +1237,11 @@ def check_validation_override(request, form, addon, version):
                 ),
             }
         )
-        helper.handler.process_super_review()
+        helper.handler.process_comment()
+        flag = 'auto_approval_disabled_until_next_approval'
+        if version.channel == amo.CHANNEL_UNLISTED:
+            flag = 'auto_approval_disabled_until_next_approval_unlisted'
+        AddonReviewerFlags.objects.update_or_create(addon=addon, defaults={flag: True})
 
 
 @dev_required
@@ -1269,6 +1285,7 @@ def version_stats(request, addon_id, addon):
     return data
 
 
+@two_factor_auth_required
 @login_required
 def submit_addon(request):
     return render_agreement(
@@ -1278,6 +1295,16 @@ def submit_addon(request):
     )
 
 
+@login_required
+def submit_theme(request):
+    return render_agreement(
+        request=request,
+        template='devhub/addons/submit/start.html',
+        next_step='devhub.submit.theme.distribution',
+    )
+
+
+@two_factor_auth_required
 @dev_required
 def submit_version_agreement(request, addon_id, addon):
     return render_agreement(
@@ -1317,6 +1344,7 @@ def _submit_distribution(request, addon, next_view):
     )
 
 
+@two_factor_auth_required
 @login_required
 def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1324,6 +1352,14 @@ def submit_addon_distribution(request):
     return _submit_distribution(request, None, 'devhub.submit.upload')
 
 
+@login_required
+def submit_theme_distribution(request):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    return _submit_distribution(request, None, 'devhub.submit.theme.upload')
+
+
+@two_factor_auth_required
 @dev_required(submitting=True)
 def submit_version_distribution(request, addon_id, addon):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1402,7 +1438,9 @@ WIZARD_COLOR_FIELDS = [
 
 
 @transaction.atomic
-def _submit_upload(request, addon, channel, next_view, wizard=False):
+def _submit_upload(
+    request, addon, channel, next_view, wizard=False, theme_specific=False
+):
     """If this is a new addon upload `addon` will be None.
 
     next_view is the view that will be redirected to.
@@ -1414,6 +1452,7 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
     form = forms.NewUploadForm(
         request.POST or None, request.FILES or None, addon=addon, request=request
     )
+    form.fields['theme_specific'].initial = theme_specific
     channel_text = amo.CHANNEL_CHOICES_API[channel]
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -1469,25 +1508,48 @@ def _submit_upload(request, addon, channel, next_view, wizard=False):
         if existing_properties
         else []
     )
+    submit_notification_warning = get_config('submit_notification_warning')
+    if not submit_notification_warning and addon:
+        # If we're not showing the generic submit notification warning, show
+        # one specific to pre review if the developer would be affected because
+        # of its promoted group.
+        promoted_group = addon.promoted_group(currently_approved=False)
+        if (channel == amo.CHANNEL_LISTED and promoted_group.listed_pre_review) or (
+            channel == amo.CHANNEL_UNLISTED and promoted_group.unlisted_pre_review
+        ):
+            submit_notification_warning = get_config(
+                'submit_notification_warning_pre_review'
+            )
+    if addon and addon.type == amo.ADDON_STATICTHEME:
+        wizard_url = reverse(
+            'devhub.submit.version.wizard', args=[addon.slug, channel_text]
+        )
+    elif not addon and theme_specific:
+        wizard_url = reverse('devhub.submit.wizard', args=[channel_text])
+    else:
+        wizard_url = None
     return TemplateResponse(
         request,
         template,
         context={
-            'new_addon_form': form,
-            'is_admin': is_admin,
             'addon': addon,
-            'submit_notification_warning': get_config('submit_notification_warning'),
-            'submit_page': submit_page,
             'channel': channel,
             'channel_choice_text': channel_choice_text,
-            'existing_properties': existing_properties,
             'colors': WIZARD_COLOR_FIELDS,
+            'existing_properties': existing_properties,
+            'is_admin': is_admin,
+            'new_addon_form': form,
+            'submit_notification_warning': submit_notification_warning,
+            'submit_page': submit_page,
+            'theme_specific': theme_specific,
             'unsupported_properties': unsupported_properties,
             'version_number': get_next_version_number(addon) if wizard else None,
+            'wizard_url': wizard_url,
         },
     )
 
 
+@two_factor_auth_required
 @login_required
 def submit_addon_upload(request, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
@@ -1496,6 +1558,17 @@ def submit_addon_upload(request, channel):
     return _submit_upload(request, None, channel_id, 'devhub.submit.source')
 
 
+@login_required
+def submit_theme_upload(request, channel):
+    if not RestrictionChecker(request=request).is_submission_allowed():
+        return redirect('devhub.submit.theme.agreement')
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    return _submit_upload(
+        request, None, channel_id, 'devhub.submit.source', theme_specific=True
+    )
+
+
+@two_factor_auth_required
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_upload(request, addon_id, addon, channel):
@@ -1505,6 +1578,7 @@ def submit_version_upload(request, addon_id, addon, channel):
     return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
 
 
+@two_factor_auth_required
 @dev_required(submitting=True)
 @no_admin_disabled
 def submit_version_auto(request, addon_id, addon):
@@ -1866,6 +1940,7 @@ def render_agreement(request, template, next_step, **extra_context):
         return response
 
 
+@two_factor_auth_required
 @login_required
 @transaction.atomic
 def api_key(request):

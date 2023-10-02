@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.constants.promoted import RECOMMENDED

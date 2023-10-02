@@ -2,7 +2,6 @@ from django.template import loader
 
 import jinja2
 import markupsafe
-
 from django_jinja import library
 
 from olympia.addons.models import Addon

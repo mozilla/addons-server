@@ -8,7 +8,14 @@ Want the easiest way to start contributing to AMO? Try our Docker-based
 development environment.
 
 First you'll need to install Docker_. Please read their docs for
-the installation steps specific to your operating system.
+the installation steps specific to your operating system. 
+
+.. note::
+    If you're running Linux, make sure the ``compose`` package is installed.
+    The best way to do this is to follow the `official docker installation docs
+    <https://docs.docker.com/desktop/install/linux-install/#generic-installation-steps>`_
+    and use the official docker package repository instead of your distribution's
+    package.
 
 There are two options for running docker depending on the platform
 you are running.
@@ -39,12 +46,6 @@ Setting up the containers
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note::
-    docker-toolbox, docker-for-mac and docker-for-windows will install ``docker-compose``
-    for you. If you're on Linux and you need it, you can install it manually with::
-
-        pip install docker-compose
-
-.. note::
     On Windows, ensure that Docker Desktop is running as Linux Container.
     You can double-check this by ensuring you see "Switch to Windows containers..."
     in the resulting context menu when right-clicking on the Docker Desktop icon in
@@ -64,15 +65,15 @@ Next once you have Docker up and running follow these steps
 on your host machine::
 
     # Checkout the addons-server sourcecode.
-    git clone git://github.com/mozilla/addons-server.git
+    git clone https://github.com/mozilla/addons-server.git
     cd addons-server
     # Download the containers
-    docker-compose pull  # Can take a while depending on your internet bandwidth.
+    docker compose pull  # Can take a while depending on your internet bandwidth.
     make initialize_docker  # Answer yes, and create your superuser when asked.
     # On Windows you can substitute `make initialize_docker` by the following commands:
-    docker-compose run --rm --user olympia web make update_deps
-    docker-compose up -d
-    docker-compose exec --user olympia web make initialize
+    docker compose run --rm --user olympia web make update_deps
+    docker compose up -d
+    docker compose exec --user olympia web make initialize
 
 .. note::
 
@@ -81,7 +82,7 @@ on your host machine::
 
    Because the containers need to match the user/group permissions from your
    host machine, on Mac and Linux machines make sure to run ``make initialize_docker``
-   once before running ``docker-compose up -d`` for the first time. That will
+   once before running ``docker compose up -d`` for the first time. That will
    create a ``.env`` file containing the user and group id the container needs
    to use to match your host permissions, and ensure dependencies are set up
    properly.
@@ -90,7 +91,7 @@ on your host machine::
 Accessing the web server
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-By default our docker-compose config exposes the web-server on port 80 of localhost.
+By default our ``docker-compose.yml`` config exposes the web-server on port 80 of localhost.
 
 We use ``olympia.test`` as the default hostname to access your container server (e.g. for
 Firefox Accounts). To be able access the development environment using ``http://olympia.test``
@@ -108,9 +109,9 @@ By default we configure `OLYMPIA_SITE_URL` to point to `http://olympia.test`.
 If you choose a different hostname you'll need to set that environment variable
 and restart the Docker containers::
 
-    docker-compose stop # only needed if running
+    docker compose stop # only needed if running
     export OLYMPIA_SITE_URL=http://[YOUR_HOSTNAME}
-    docker-compose up -d
+    docker compose up -d
 
 
 Running common commands
@@ -120,13 +121,13 @@ Run the tests using ``make``, *outside* of the Docker container::
 
     make test
     # or
-    docker-compose exec --user olympia web pytest src/olympia/
+    docker compose exec --user olympia web pytest src/olympia/
 
 You can run commands inside the Docker container by ``ssh``\ing into it using::
 
     make shell
     # or
-    docker-compose exec --user olympia web bash
+    docker compose exec --user olympia web bash
 
 Then to run the tests inside the Docker container you can run::
 
@@ -152,15 +153,15 @@ Any time you update addons-server (e.g., by running ``git pull``), you should ma
 sure to update your Docker image and database with any new requirements or
 migrations::
 
-    docker-compose stop
-    docker-compose pull
-    docker-compose up -d
+    docker compose stop
+    docker compose pull
+    docker compose up -d
     make update_docker  # Runs database migrations and rebuilds assets.
     # On Windows you can substitute `make update_docker` for the following commands:
-    docker-compose exec --user olympia worker make update_deps
-    docker-compose exec --user olympia web make update
-    docker-compose restart web
-    docker-compose restart worker
+    docker compose exec --user olympia worker make update_deps
+    docker compose exec --user olympia web make update
+    docker compose restart web
+    docker compose restart worker
 
 Gotchas!
 ~~~~~~~~
@@ -173,10 +174,10 @@ Can't access the web server?
 Check you've created a hosts file entry pointing ``olympia.test`` to the
 relevant IP address.
 
-If containers are failing to start use ``docker-compose ps`` to check their
+If containers are failing to start use ``docker compose ps`` to check their
 running status.
 
-Another way to find out what's wrong is to run ``docker-compose logs``.
+Another way to find out what's wrong is to run ``docker compose logs``.
 
 Getting "Programming error [table] doesn't exist"?
 --------------------------------------------------
@@ -188,7 +189,7 @@ the initial setup instructions.
 ConnectionError during initialize (elasticsearch container fails to start)
 ---------------------------------------------------------------------------------
 When running ``make initialize_docker`` without a working elasticsearch container,
-you'll get a ConnectionError. Check the logs with ``docker-compose logs``.
+you'll get a ConnectionError. Check the logs with ``docker compose logs``.
 If elasticsearch is complaining about ``vm.max_map_count``, run this command on your computer
 or your docker-machine VM:
 
@@ -200,9 +201,9 @@ This allows processes to allocate more `memory map areas`_.
 Connection to elasticsearch timed out (elasticsearch container exits with code 137)
 ------------------------------------------------------------------------------------
 
-``docker-compose up -d`` brings up all containers, but running
+``docker compose up -d`` brings up all containers, but running
 ``make initialize_docker`` causes the elasticsearch container to go down. Running
-``docker-compose ps`` shows ``Exited (137)`` against it.
+``docker compose ps`` shows ``Exited (137)`` against it.
 
 Update default settings in Docker Desktop - we suggest increasing RAM limit to at least 4 GB in the Resources/Advanced section and click on "Apply and Restart".
 
@@ -241,8 +242,8 @@ For example if you create a file called ``docker-compose-ports.yml``::
 
 Next you would stop and start the containers with the following::
 
-    docker-compose stop # only needed if running
-    docker-compose -f docker-compose.yml -f docker-compose-ports.yml up -d
+    docker compose stop # only needed if running
+    docker compose -f docker-compose.yml -f docker-compose-ports.yml up -d
 
 Now the container ``nginx`` is listening on 8880 on the host. You can now proxy
 to the container ``nginx`` from the host ``nginx`` with the following ``nginx`` config::
@@ -279,7 +280,7 @@ to start again using::
 You'll then need to :ref:`export the variables <creating-the-docker-vm>` again,
 and start the services::
 
-    docker-compose up -d
+    docker compose up -d
 
 Hacking on the Docker image
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -290,7 +291,7 @@ such as this to build a new image::
 
     cd addons-server
     docker build -t addons/addons-server .
-    docker-compose up -d
+    docker compose up -d
 
 After you test your new image, commit to master and the image will be published
 to Docker Hub for other developers to use after they pull image changes.

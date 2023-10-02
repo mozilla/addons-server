@@ -3,23 +3,28 @@ import os
 from datetime import datetime, timedelta
 from unittest import mock
 
-import pytest
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
+import pytest
 from freezegun import freeze_time
 from waffle.testutils import override_switch
 
-from olympia.amo.tests import addon_factory, TestCase, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    block_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.blocklist.cron import (
-    process_blocklistsubmissions,
     get_blocklist_last_modified_time,
+    process_blocklistsubmissions,
     upload_mlbf_to_remote_settings,
 )
 from olympia.blocklist.mlbf import MLBF
 from olympia.blocklist.models import Block, BlocklistSubmission
-from olympia.constants.blocklist import MLBF_TIME_CONFIG_KEY, MLBF_BASE_ID_CONFIG_KEY
+from olympia.constants.blocklist import MLBF_BASE_ID_CONFIG_KEY, MLBF_TIME_CONFIG_KEY
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 
@@ -34,7 +39,7 @@ class TestUploadToRemoteSettings(TestCase):
         addon = addon_factory()
         version_factory(addon=addon)
         version_factory(addon=addon)
-        self.block = Block.objects.create(
+        self.block = block_factory(
             addon=addon_factory(
                 version_kw={'version': '1.2b3'},
                 file_kw={'is_signed': True},
@@ -60,7 +65,9 @@ class TestUploadToRemoteSettings(TestCase):
         self.cleanup_files_mock = cleanup_files_patcher.start()
 
     def test_no_previous_mlbf(self):
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(16):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
         self.publish_attachment_mock.assert_called_with(
@@ -105,7 +112,9 @@ class TestUploadToRemoteSettings(TestCase):
         with storage.open(prev_blocked_path, 'w') as blocked_file:
             json.dump(['madeup@guid:123'], blocked_file)
 
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(8):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 
@@ -201,7 +210,9 @@ class TestUploadToRemoteSettings(TestCase):
         with storage.open(base_blocked_path, 'w') as blocked_file:
             json.dump([], blocked_file)
 
-        upload_mlbf_to_remote_settings()
+        with self.assertNumQueries(10):
+            # Mainly config gets/saves and savepoints; regression check.
+            upload_mlbf_to_remote_settings()
 
         generation_time = int(datetime(2020, 1, 1, 12, 34, 56).timestamp() * 1000)
 
@@ -317,7 +328,7 @@ class TestUploadToRemoteSettings(TestCase):
         self.cleanup_files_mock.assert_not_called()
 
         # But if we add a new Block a new filter is needed
-        Block.objects.create(
+        block_factory(
             addon=addon_factory(file_kw={'is_signed': True}),
             updated_by=user_factory(),
         )
@@ -338,8 +349,8 @@ class TestUploadToRemoteSettings(TestCase):
         assert last_modified == get_blocklist_last_modified_time()
         upload_mlbf_to_remote_settings()
         self.publish_attachment_mock.assert_not_called()
-        self.publish_record_mock.call_count == 2
-        self.cleanup_files_mock.call_count == 2
+        assert self.publish_record_mock.call_count == 2
+        assert self.cleanup_files_mock.call_count == 2
 
         self.statsd_incr_mock.assert_has_calls(
             [
@@ -370,32 +381,48 @@ def test_process_blocklistsubmissions():
     past_guid = 'past@'
     past_signoff_guid = 'signoff@'
     future_guid = 'future@'
-    addon_factory(
-        guid=past_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD - 1,
-    )
+
     past = BlocklistSubmission.objects.create(
         input_guids=past_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        changed_version_ids=[
+            addon_factory(
+                guid=past_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                - 1,
+            ).current_version.id
+        ],
     )
-    addon_factory(
-        guid=past_signoff_guid,
-        average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
-    )
+
     past_signoff = BlocklistSubmission.objects.create(
         input_guids=past_signoff_guid,
         updated_by=user,
         delayed_until=datetime.now() - timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_APPROVED,
         signoff_by=user_factory(),
+        changed_version_ids=[
+            addon_factory(
+                guid=past_signoff_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                + 1,
+            ).current_version.id
+        ],
     )
+
     future = BlocklistSubmission.objects.create(
         input_guids=future_guid,
         updated_by=user,
         delayed_until=datetime.now() + timedelta(days=1),
         signoff_state=BlocklistSubmission.SIGNOFF_AUTOAPPROVED,
+        changed_version_ids=[
+            addon_factory(
+                guid=future_guid,
+                average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
+                - 1,
+            ).current_version.id
+        ],
     )
 
     process_blocklistsubmissions()

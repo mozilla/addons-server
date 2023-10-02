@@ -47,6 +47,8 @@ STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
 ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
 # Can triage (and therefore see in the queues) add-ons with a temporary delay
 ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
+# Can see add-ons with all due dates in the queue, rather than just upcoming ones
+ADDONS_ALL_DUE_DATES = AclPermission('Addons', 'AllDueDates')
 
 # Can edit all collections.
 COLLECTIONS_EDIT = AclPermission('Collections', 'Edit')
@@ -115,6 +117,9 @@ BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
 # Can signoff a Block creation/edit submission
 BLOCKLIST_SIGNOFF = AclPermission('Blocklist', 'Signoff')
 
+# Can create/edit regional restrictions for add-ons
+ADMIN_REGIONALRESTRICTIONS = AclPermission('Admin', 'RegionalRestrictionsEdit')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [x for x in vars().values() if isinstance(x, AclPermission)]
 
@@ -144,6 +149,13 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'addons.change_replacementaddon': ADMIN_CURATION,
         'addons.add_replacementaddon': ADMIN_CURATION,
         'addons.delete_replacementaddon': ADMIN_CURATION,
+        'addons.change_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
+        'addons.add_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
+        'addons.delete_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
+        # Users with Admin:Curation can do anything to AddonBrowserMapping.
+        'addons.add_addonbrowsermapping': ADMIN_CURATION,
+        'addons.change_addonbrowsermapping': ADMIN_CURATION,
+        'addons.delete_addonbrowsermapping': ADMIN_CURATION,
         'bandwagon.change_collection': COLLECTIONS_EDIT,
         'bandwagon.delete_collection': ADMIN_ADVANCED,
         'blocklist.add_block': BLOCKLIST_CREATE,
@@ -212,6 +224,8 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'users.view_userhistory': ADMIN_ADVANCED,
         'ratings.change_rating': RATINGS_MODERATE,
         'ratings.delete_rating': ADMIN_ADVANCED,
+        'reviewers.add_needshumanreview': ADMIN_ADVANCED,
+        'reviewers.change_needshumanreview': ADMIN_ADVANCED,
         'versions.change_version': ADMIN_ADVANCED,
         'versions.change_versionreviewerflags': ADMIN_ADVANCED,
     }

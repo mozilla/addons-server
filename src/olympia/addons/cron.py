@@ -1,12 +1,15 @@
 from datetime import date
 
-from django.db.models import Value, IntegerField
+from django.db.models import IntegerField, Value
 
 import olympia.core.logger
-
 from olympia import amo
+from olympia.abuse.tasks import (
+    flag_high_abuse_reports_addons_according_to_review_tier,
+)
 from olympia.addons.models import Addon, FrozenAddon
 from olympia.addons.tasks import (
+    flag_high_hotness_according_to_review_tier,
     update_addon_average_daily_users as _update_addon_average_daily_users,
     update_addon_hotness as _update_addon_hotness,
     update_addon_weekly_downloads as _update_addon_weekly_downloads,
@@ -52,6 +55,7 @@ def update_addon_average_daily_users(chunk_size=250):
             _update_addon_average_daily_users, counts, chunk_size
         )
         | add_high_adu_extensions_to_notable.si()
+        | flag_high_abuse_reports_addons_according_to_review_tier.si()
     ).apply_async()
 
 
@@ -131,8 +135,11 @@ def update_addon_hotness(chunk_size=300):
     averages.update(bq_averages)
     log.info('Preparing update of `hotness` for %s add-ons.', len(averages))
 
-    create_chunked_tasks_signatures(
-        _update_addon_hotness, averages.items(), chunk_size
+    (
+        create_chunked_tasks_signatures(
+            _update_addon_hotness, averages.items(), chunk_size
+        )
+        | flag_high_hotness_according_to_review_tier.si()
     ).apply_async()
 
 

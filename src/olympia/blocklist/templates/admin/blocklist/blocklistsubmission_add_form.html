@@ -3,6 +3,7 @@
 
 {% block extrahead %}{{ block.super }}
 <script type="text/javascript" src="{% static 'js/i18n/en-US.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/admin/blocklist_blocklistsubmission.js' %}"></script>
 {{ media }}
 {% endblock %}
 
@@ -27,23 +28,23 @@
 {% block content %}<div id="content-main">
   <form action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>
   {% csrf_token %}
-  {{ form.action }}
-  {{ form.input_guids }}
-  {% if not existing_guids|length == 0 or not invalid_guids|length == 0 %}
+  {{ adminform.form.action }}
+  {{ adminform.form.input_guids }}
+  {% if not adminform.form.existing_guids|length == 0 or not adminform.form.invalid_guids|length == 0 %}
   <div>
     <div class="form-row horizontal-grid">
       <div>
-        <h3>{{ existing_guids|length }} Add-on GUIDs are already blocked for {{ form.min_version.value }} to {{ form.max_version.value }}:</h3>
+        <h3>{{ adminform.form.existing_guids|length }} Add-on GUIDs already completely blocked:</h3>
         <ul class="guid_list field-existing-guids">
-          {% for guid in existing_guids %}
+          {% for guid in adminform.form.existing_guids %}
           <li>{{ guid }}</li>
           {% endfor %}
         </ul>
       </div>
       <div>
-        <h3>{{ invalid_guids|length }} Add-on GUIDs were not found:</h3>
+        <h3>{{ adminform.form.invalid_guids|length }} Add-on GUIDs were not found:</h3>
         <ul class="guid_list">
-          {% for guid in invalid_guids %}
+          {% for guid in adminform.form.invalid_guids %}
           <li>{{ guid }}</li>
           {% endfor %}
         </ul>
@@ -55,52 +56,52 @@
     <h2>{{ fieldsets.2.0 }}</h2>
     <div class="form-row field-blocks-to-add">
       <div>
-        {% include 'admin/blocklist/includes/enhanced_blocks.html' %}
+        {{ adminform.form.changed_version_ids }}
       </div>
+      {{ adminform.form.changed_version_ids.errors }}
     </div>
     {% if block_history %}
     <div class="form-row field-block_history">
-      <label for="id_min_version">Block History:</label>
+      <label>Block History:</label>
       <div class="readonly">{{ block_history }}</div>
     </div>
     {% endif %}
-    {% if form.non_field_errors %}
+    {% if adminform.form.non_field_errors %}
     <div class="form-row">
-      {{ form.non_field_errors }}
+      {{ adminform.form.non_field_errors }}
     </div>
     {% endif %}
     <div class="form-row">
-      <div>
-        {{ form.min_version.errors }}
-        {{ form.min_version.label_tag }}
-        {{ form.min_version }}
-        {{ form.existing_min_version }}
-      </div>
+      {{ adminform.form.disable_addon.errors }}
+      {{ adminform.form.disable_addon.label_tag }}
+      {{ adminform.form.disable_addon }}
+      <p class="help">{{ adminform.form.disable_addon.help_text }}</p>
     </div>
     <div class="form-row">
-      {{ form.max_version.errors }}
-      {{ form.max_version.label_tag }}
-      {{ form.max_version }}
-      {{ form.existing_max_version }}
+      {{ adminform.form.update_url_value }}
+      {{ adminform.form.update_url_value.errors }}
+      {{ adminform.form.url.errors }}
+      {{ adminform.form.url.label_tag }}
+      {{ adminform.form.url }}
+      <p class="help">{{ adminform.form.url.help_text }}</p>
     </div>
     <div class="form-row">
-      {{ form.url.errors }}
-      {{ form.url.label_tag }}
-      {{ form.url }}
-      <p class="help">{{ form.url.help_text }}</p>
+      {{ adminform.form.update_reason_value }}
+      {{ adminform.form.canned_reasons.label_tag }}
+      {{ adminform.form.canned_reasons }}
+      {{ adminform.form.canned_reasons.errors }}
+      {{ adminform.form.update_reason_value.errors }}
+      {{ adminform.form.reason.errors }}
+      {{ adminform.form.reason.label_tag }}
+      {{ adminform.form.reason }}
+      <p class="help">{{ adminform.form.reason.help_text }}</p>
     </div>
     <div class="form-row">
-      {{ form.reason.errors }}
-      {{ form.reason.label_tag }}
-      {{ form.reason }}
-      <p class="help">{{ form.reason.help_text }}</p>
-    </div>
-    <div class="form-row">
-      {{ form.delay_days.errors }}
-      {{ form.delayed_until.errors }}
-      {{ form.delay_days.label_tag }}
-      {{ form.delay_days }}
-      <p class="help">{{ form.delay_days.help_text }}</p>
+      {{ adminform.form.delay_days.errors }}
+      {{ adminform.form.delayed_until.errors }}
+      {{ adminform.form.delay_days.label_tag }}
+      {{ adminform.form.delay_days }}
+      <p class="help">{{ adminform.form.delay_days.help_text }}</p>
     </div>
     {% block submit_buttons_bottom %}
     <div class="submit-row">

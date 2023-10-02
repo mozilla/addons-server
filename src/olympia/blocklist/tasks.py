@@ -15,8 +15,8 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
 from olympia.constants.blocklist import (
-    MLBF_TIME_CONFIG_KEY,
     MLBF_BASE_ID_CONFIG_KEY,
+    MLBF_TIME_CONFIG_KEY,
     REMOTE_SETTINGS_COLLECTION_MLBF,
 )
 from olympia.lib.remote_settings import RemoteSettings
@@ -62,6 +62,28 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
             change_message=message,
         )
         raise exc
+
+
+# We rarely care about task results and ignore them by default
+# (CELERY_TASK_IGNORE_RESULT=True) but here we need the result of that task to
+# return it to the monitor view.
+@task(ignore_result=False)
+def monitor_remote_settings():
+    # check Remote Settings connection
+    client = RemoteSettings(
+        settings.REMOTE_SETTINGS_WRITER_BUCKET,
+        REMOTE_SETTINGS_COLLECTION_MLBF,
+    )
+    status = ''
+    try:
+        client.heartbeat()
+    except Exception as e:
+        status = f'Failed to contact Remote Settings server: {e}'
+    if not status and not client.authenticated():
+        status = 'Invalid credentials for Remote Settings server'
+    if status:
+        log.critical(status)
+    return status
 
 
 @task

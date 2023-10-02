@@ -1,5 +1,9 @@
 {% extends "admin/change_form.html" %}
-{% load admin_urls %}
+{% load admin_urls static %}
+{% block admin_change_form_document_ready %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'js/admin/blocklist_blocklistsubmission.js' %}"></script>
+{% endblock %}
 
 {% block submit_buttons_bottom %}
   <div class="submit-row">

@@ -1,42 +1,40 @@
-from datetime import date, datetime, timedelta
-from ipaddress import IPv4Address
-
 import django  # noqa
-
+from datetime import date, datetime, timedelta
 from django import forms
-from django.db import models
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
+from django.db import models
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
+from ipaddress import IPv4Address
 
 import pytest
 import responses
+from freezegun import freeze_time
 
 import olympia  # noqa
-
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, collection_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     DeniedName,
     DisposableEmailDomainRestriction,
-    generate_auth_id,
-    get_anonymized_username,
     EmailReputationRestriction,
     EmailUserRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
-    RESTRICTION_TYPES,
     UserEmailField,
     UserProfile,
+    generate_auth_id,
+    get_anonymized_username,
 )
 from olympia.zadmin.models import set_config
 
@@ -185,6 +183,24 @@ class TestUserProfile(TestCase):
             user=rating_writer, addon=addon, version=addon.current_version
         )
         assert rating_writer.should_send_delete_email()
+
+    @freeze_time(amo.MZA_LAUNCH_DATETIME - timedelta(minutes=1), as_arg=True)
+    def test_delete_email_says_fxa_before_mza_date_and_mza_after(frozen_time, self):
+        user = UserProfile.objects.get(pk=4043307)
+        user.delete()
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.to == [user.email]
+        assert 'deleted your Firefox Account.' in email.body
+
+        frozen_time.move_to(amo.MZA_LAUNCH_DATETIME)
+        user.update(deleted=False, display_name='somebody')
+        mail.outbox.clear()
+        user.delete()
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert email.to == [user.email]
+        assert 'deleted your Mozilla account (we renamed Firefox Accounts' in email.body
 
     def test_ban_and_disable_related_content_bulk(self):
         user_sole = user_factory(
@@ -1230,7 +1246,7 @@ class TestUserManager(TestCase):
             'test@test.com',
         )
         assert user.pk is not None
-        Group.objects.get(name='Admins') in user.groups.all()
+        assert Group.objects.get(name='Admins') in user.groups.all()
         assert not user.is_staff  # Not a mozilla.com email...
         assert user.is_superuser
 

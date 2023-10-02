@@ -88,15 +88,22 @@ class AutoApproveTestsMixin:
         # Even add an empty reviewer flags instance, that should not matter.
         AddonReviewerFlags.objects.create(addon=new_addon)
 
-        # Add langpack: it should be considered.
+        # Add langpack with 2 listed versions awaiting review: both should be
+        # considered.
         langpack = addon_factory(
             name='Langpack',
             type=amo.ADDON_LPAPP,
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        langpack_version = langpack.versions.all()[0]
-        langpack_version.update(created=self.days_ago(3), due_date=self.days_ago(0))
+        langpack_version_one = langpack.versions.all()[0]
+        langpack_version_one.update(created=self.days_ago(3), due_date=self.days_ago(0))
+        langpack_version_two = version_factory(
+            addon=langpack,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            created=self.days_ago(4),
+            due_date=self.days_ago(0),
+        )
 
         # Add a dictionary: it should also be considered.
         dictionary = addon_factory(
@@ -106,7 +113,7 @@ class AutoApproveTestsMixin:
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         dictionary_version = dictionary.versions.all()[0]
-        dictionary_version.update(created=self.days_ago(4), due_date=self.days_ago(1))
+        dictionary_version.update(created=self.days_ago(5), due_date=self.days_ago(1))
 
         # Some recommended add-ons - one nominated and one update.
         # They should be considered by fetch_candidates(), so that they get a
@@ -258,7 +265,8 @@ class AutoApproveTestsMixin:
                 recommended_addon_version,
                 recommendable_addon_nominated.current_version,
                 dictionary.current_version,
-                langpack.current_version,
+                langpack_version_two,
+                langpack_version_one,
                 new_addon.current_version,
                 self.version,
             ]
@@ -306,7 +314,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # Simple integration test with as few mocks as possible.
         assert not AutoApprovalSummary.objects.exists()
         assert not self.file.approval_date
-        ActivityLog.objects.all().delete()
         self.author = user_factory()
         self.addon.addonuser_set.create(user=self.author)
 
@@ -318,7 +325,12 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.version.update(created=self.days_ago(2))
         self.addon.update_status()
 
+        ActivityLog.objects.all().delete()
+
         call_command('auto_approve', '--dry-run')
+
+        assert ActivityLog.objects.count() == 0
+
         call_command('auto_approve')
 
         self.addon.reload()
@@ -339,6 +351,29 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # transactions so on_commit never fires. It's tested in
         # TestAutoApproveCommandTransactions below.
         return summary
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_multiple_langpacks_awaiting_review_are_both_approved(self, sign_file_mock):
+        # Spot check langpack versions in particular, they both should be
+        # approved.
+        self.author = user_factory()
+        self.addon.addonuser_set.create(user=self.author)
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        FileValidation.objects.create(
+            file=version_factory(
+                addon=self.addon,
+                file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            ).file,
+            validation='{}',
+        )
+
+        call_command('auto_approve')
+
+        assert (
+            self.addon.versions.filter(file__status=amo.STATUS_APPROVED).count()
+            == self.addon.versions.count()
+        )
 
     def test_full_with_weights_and_score(self):
         ScannerResult.objects.create(score=0.314, scanner=MAD, version=self.version)

@@ -1,17 +1,17 @@
 import json
 from datetime import datetime
+from unittest import mock
 
 from django.core.files.storage import default_storage as storage
 from django.urls import reverse
 
 import waffle
-from unittest import mock
 from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_addon_file
-from olympia.amo.tests import addon_factory, TestCase, user_factory
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.tests.test_models import UploadMixin
@@ -26,7 +26,7 @@ class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         self.validation = {
             'errors': 1,
             'detected_type': 'extension',
@@ -351,6 +351,13 @@ class TestFileValidation(TestCase):
         assert link.attrib['href'] == 'https://bugzilla.mozilla.org/'
 
     def test_file_url(self):
+        response = self.client.get(self.url, follow=False)
+        doc = pq(response.content)
+        assert doc('#addon-validator-suite').attr['data-file-url'] is None
+
+    def test_file_url_reviewer(self):
+        self.client.logout()
+        self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         file_url = code_manager_url(
             'browse', addon_id=self.addon.pk, version_id=self.file.version.pk
         )
@@ -393,7 +400,9 @@ class TestValidateAddon(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
 
     def test_login_required(self):
         self.client.logout()
@@ -407,6 +416,9 @@ class TestValidateAddon(TestCase):
         assert b'this tool only works with legacy' not in response.content
 
         doc = pq(response.content)
+
+        assert doc('#id_theme_specific').attr('value') == 'false'
+
         assert doc('#upload-addon').attr('data-upload-url') == (
             reverse('devhub.standalone_upload')
         )
@@ -442,8 +454,10 @@ class TestValidateAddon(TestCase):
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
         with open(fpath, 'rb') as file_:
-            self.client.post(url, {'upload': file_})
+            response = self.client.post(url, {'upload': file_})
 
+        assert response.status_code == 302
+        assert validate_mock.call_count == 1
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_LISTED
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().channel == amo.CHANNEL_LISTED
@@ -457,8 +471,10 @@ class TestValidateAddon(TestCase):
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
         with open(fpath, 'rb') as file_:
-            self.client.post(url, {'upload': file_})
+            response = self.client.post(url, {'upload': file_})
 
+        assert response.status_code == 302
+        assert validate_mock.call_count == 1
         assert validate_mock.call_args[1]['channel'] == amo.CHANNEL_UNLISTED
         # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().channel == amo.CHANNEL_UNLISTED
@@ -470,7 +486,9 @@ class TestUploadURLs(TestCase):
     def setUp(self):
         super().setUp()
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='regular@mozilla.com')
+        )
 
         self.addon = Addon.objects.create(
             guid='thing@stuff', slug='thing-stuff', status=amo.STATUS_APPROVED

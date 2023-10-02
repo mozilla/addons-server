@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2023-03-04 21:44+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,8 +64,14 @@ msgstr "ส่วนเสริมของคุณเกินขนาดส
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "เกิดข้อผิดพลาดเซิร์ฟเวอร์ที่ไม่คาดคิดขณะตรวจสอบ"
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
@@ -598,9 +604,6 @@ msgstr[0] "{files} ไฟล์"
 msgid "Image changes being processed"
 msgstr "ภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
-msgid "Select an application first"
-msgstr "เลือกแอปพลิเคชันก่อน"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ตัวอักษร"
@@ -617,6 +620,9 @@ msgstr "เอาการแปลนี้ออก"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"

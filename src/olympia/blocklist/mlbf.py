@@ -1,7 +1,6 @@
 import json
 import os
 import secrets
-from collections import defaultdict
 
 from django.conf import settings
 from django.utils.functional import cached_property
@@ -48,39 +47,18 @@ def generate_mlbf(stats, blocked, not_blocked):
 
 
 def fetch_blocked_from_db():
-    from olympia.files.models import File
-    from olympia.blocklist.models import Block
+    from olympia.blocklist.models import BlockVersion
 
-    blocks = Block.objects.all()
-    blocks_guids = [block.guid for block in blocks]
-
-    file_qs = (
-        File.objects.filter(
-            version__addon__addonguid__guid__in=blocks_guids,
-            is_signed=True,
-        )
-        .order_by('version_id')
-        .values('version__addon__addonguid__guid', 'version__version', 'version_id')
+    qs = BlockVersion.objects.filter(version__file__is_signed=True).values_list(
+        'block__guid', 'version__version', 'version_id', named=True
     )
-    addons_versions = defaultdict(list)
-    for file_ in file_qs:
-        addon_key = file_['version__addon__addonguid__guid']
-        addons_versions[addon_key].append(
-            (file_['version__version'], file_['version_id'])
+    all_versions = {
+        block_version.version_id: (
+            block_version.block__guid,
+            block_version.version__version,
         )
-
-    all_versions = {}
-    # collect all the blocked versions
-    for block in blocks:
-        is_all_versions = (
-            block.min_version == Block.MIN and block.max_version == Block.MAX
-        )
-        versions = {
-            version_id: (block.guid, version)
-            for version, version_id in addons_versions[block.guid]
-            if is_all_versions or block.is_version_blocked(version)
-        }
-        all_versions.update(versions)
+        for block_version in qs
+    }
     return all_versions
 
 
@@ -250,11 +228,11 @@ class DatabaseMLBF(MLBF):
     @cached_property
     def not_blocked_items(self):
         # see blocked_items - we need self._version_excludes populated
-        self.blocked_items
+        blocked_items = self.blocked_items
         # even though we exclude all the version ids in the query there's an
         # edge case where the version string occurs twice for an addon so we
         # ensure not_blocked_items doesn't contain any blocked_items.
         return list(
             self.hash_filter_inputs(fetch_all_versions_from_db(self._version_excludes))
-            - set(self.blocked_items)
+            - set(blocked_items)
         )

@@ -1,5 +1,4 @@
 import olympia.core.logger
-
 from olympia.amo.celery import task
 
 

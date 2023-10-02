@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-06 12:34+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-16 09:06+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -127,6 +127,10 @@ msgid "Unknown min app version specified"
 msgstr "Ismeretlen minimális alkalmazásverzió van megadva"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Nem írható felül a leírófájlban beállított kompatibilitási információ ennél az alkalmazásnál (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "A képeknek %d MB-nál kisebbnek kell lenniük"
 
@@ -154,9 +158,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "A(z) %s kiegészítő legutóbbi jóváhagyott verzióját nem lehet törölni, mert az előző verzió nem lett promotáltként elfogadva a(z) %s csoportban. Lépjen kapcsolatba az AMO adminisztrátorokkal, ha "
 "segítségre van szüksége."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "A(z) {version} egyezik ezzel ennék a kiegészítőnél: {block_link}. További információkért lépjen kapcsolatba az adminisztrátorokkal: {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "A(z) {version_string} verzió már korábban fel lett töltve, és törölve lett."
@@ -348,6 +349,9 @@ msgstr "Regisztráció vagy bejelentkezés"
 msgid "Email:"
 msgstr "E-mail:"
 
+msgid "Two-factor authentication"
+msgstr "Kétlépcsős hitelesítés"
+
 msgid "OK"
 msgstr "OK"
 
@@ -459,37 +463,6 @@ msgstr "Ez az egyéni URL nem használható."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ez a kiegészítő már egy másik gyűjtemény része"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "A(z) %(guid)s GUID szerepel egy függőben lévő beküldésben"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "A(z) %(guid)s GUID azonosítójú blokkolás nem található"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "A(z) %(guid)s GUID azonosítójú kiegészítő nem található"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "A frissítendő blokkolások különböznek, mert a Min vagy Max verzió megváltozott."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s *-ot tartalmaz"
-
-msgid "Invalid version"
-msgstr "Érvénytelen verzió"
-
-msgid "Min version can not be greater than Max version"
-msgstr "A Min verzió nem lehet nagyobb, mint a Max verzió"
-
-msgid "Review Listed"
-msgstr "Listázottak értékelése"
-
-msgid "Review Unlisted"
-msgstr "Nem listázottak értékelése"
 
 msgid "{addon} was created."
 msgstr "{addon} létrehozva."
@@ -606,7 +579,7 @@ msgid "{addon} removed from {collection}."
 msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
 
 msgid "{rating} for {addon} written."
-msgstr "{rating} érkezett a(z) {addon} kiegészítőhöz."
+msgstr "{rating} értékelés érkezett a(z) {addon} kiegészítőhöz."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -853,11 +826,32 @@ msgstr "{addon} {version} elutasítása visszavonva."
 msgid "Un-rejected"
 msgstr "Elutasítás visszavonva"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "A(z) {addon} „needs_human_review” jelzője törölve."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Válasz készült a(z) {rating} értékeléshez a(z) {addon} kiegészítőnél."
 
-msgid "Needs Human Review cleared"
-msgstr "Az „emberi felülvizsgálat szükséges” jelző törölve"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "{addon} {version} függőben lévő elutasítása törölve."
+
+msgid "Pending rejection cleared"
+msgstr "Függőben lévő elutasítás törölve"
+
+msgid "{version} added to Blocklist."
+msgstr "{version} hozzáadva a tiltólistához."
+
+msgid "Version Blocked"
+msgstr "Verzió tiltva"
+
+msgid "{version} removed from Blocklist."
+msgstr "{version} eltávolítva a tiltólistáról."
+
+msgid "Version Unblocked"
+msgstr "Verzió feloldva"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "{addon} {version} adminisztrátori kiegészítőértékelése törölve."
+
+msgid "Admin add-on-review cleared"
+msgstr "Adminisztrátori kiegészítőértékelés törölve"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1530,6 +1524,10 @@ msgstr "Jelenlegi megjelenítése"
 msgid "Invalid version range."
 msgstr "Érvénytelen verziótartomány."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Érvénytelen verziótartomány. A Firefox for Android esetén csak olyan tartományt választhat, amely %(max)s vagy magasabb verzióval kezdődik, vagy %(min)s vagy alacsonyabb verzióval végződik."
+
 msgid "Need at least one compatible application."
 msgstr "Legalább egy kompatibilis alkalmazásra szükség van."
 
@@ -1544,9 +1542,6 @@ msgstr "Sikertelen vizsgálat felülbírálása"
 
 msgid "Need to select at least one application."
 msgstr "Legalább egy alkalmazást ki kell választania."
-
-msgid "a blocklist entry"
-msgstr "egy blokklistabejegyzés"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A(z) {version} verzió már korábban fel lett töltve, és törölve lett."
@@ -1601,6 +1596,9 @@ msgstr "Mozilla biztonsági közlemény: Az AMO API engedélyei vissza lettek vo
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Az ellenőrzés túl sok hibát/figyelmeztetést generált, így %s üzenet csonkítva lett. A látható üzenetek megoldása után láthatja a többit is."
 
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Ez a kiegészítő nem téma. Használja az <a href=\"{link}\">Új kiegészítő benyújtása</a> oldalt a kiegészítők beküldéséhez."
+
 msgid "Updated"
 msgstr "Frissítve"
 
@@ -1614,7 +1612,7 @@ msgid "Downloads"
 msgstr "Letöltések"
 
 msgid "Rating"
-msgstr "Osztályzat"
+msgstr "Értékelés"
 
 msgid "All My Add-ons"
 msgstr "Összes saját kiterjesztés"
@@ -1663,6 +1661,9 @@ msgstr "A változások sikeresen elmentve."
 
 msgid "Validate Add-on"
 msgstr "Kiegészítő ellenőrzése"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">A kiegészítő beküldéséhez adjon hozzá kétlépcsős hitelesítést a fiókjához.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
@@ -1869,60 +1870,6 @@ msgstr "Tevékenység"
 msgid "Subscribe to this feed"
 msgstr "Feliratkozás a hírforrásra"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Ez a kiegészítő nem kompatibilis a <b>%(app_name)s %(app_version)s</b> verziójával, ami a %(app_name)s legfrissebb verziója. Frissítse a kiegészítő kompatibilitása információját, vagy töltse fel a "
-"kiegészítő újabb verzióját."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitás frissítése</a> <a href=\"%(version_url)s\" class=\"button\">Új verzió feltöltése</a> or <a href=\"#\" "
-"class=\"close\">Kihagyás</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Alkalmazás kompatibilitási tartományának áttekintése és frissítése"
-
-msgid "Compatibility"
-msgstr "Kompatibilitás"
-
-msgid "Update Compatibility"
-msgstr "Kompatibilitás frissítése"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Az alkalmazás információjának beállításával a felhasználóknak lehetőségük van a kiegészítők telepítésére, abban az esetben is, ha a telepítéskor a kiegészítő azt jelzi, hogy nem kompatibilis az "
-"adott rendszerrel."
-
-msgid "Application"
-msgstr "Alkalmazás"
-
-msgid "Supported Versions"
-msgstr "Támogatott verziók"
-
-msgid "Remove"
-msgstr "Eltávolítás"
-
-msgid "Add Another Application&hellip;"
-msgstr "Másik alkalmazás hozzáadása&hellip;"
-
-msgid "Save Changes"
-msgstr "Változások mentése"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "vagy"
-
-msgid "Cancel"
-msgstr "Mégsem"
-
-msgid "Close"
-msgstr "Bezárás"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1993,12 +1940,18 @@ msgstr "Megerősítendő szerzők"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Azok a szerzők, akiket hozzáadtak ehhez a kiegészítőhöz, de nem erősítették azt meg."
 
+msgid "Save Changes"
+msgstr "Változások mentése"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>A kiegészítőknek tetszőleges számú készítője lehet, akik 2 különböző csoportba sorolhatók:</p> <ul> <li><b>Tulajdonos:</b> kezelheti a kiegészítő megjelenésének tulajdonságait, beleértve a "
 "szerzők hozzáadását és eltávolítását.</li> <li><b>Fejlesztő:</b> kezelheti a kiegészítő minden tulajdonságát, kivéve a szerzők hozzáadását és eltávolítását.</li> </ul>"
+
+msgid "Close"
+msgstr "Bezárás"
 
 msgid "Additional Details"
 msgstr "További részletek"
@@ -2039,6 +1992,14 @@ msgid ""
 msgstr ""
 "Ha a kiegészítőhöz másik honlap is tartozik, annak a címét itt adja meg. Ha a weboldala más nyelvekre történt fordításokat is tartalmaz, az egyes nyelvi verziókat itt adhatja hozzá. Mindez csak a "
 "listázott kiegészítőkre vonatkozik."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "vagy"
+
+msgid "Cancel"
+msgstr "Mégsem"
 
 msgid "Describe Add-on"
 msgstr "Kiegészítő leírása"
@@ -3140,6 +3101,17 @@ msgstr "{0} kezelése"
 msgid "Files"
 msgstr "Fájlok"
 
+msgid "Compatibility"
+msgstr "Kompatibilitás"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+"Az alkalmazás információjának beállításával a felhasználóknak lehetőségük van a kiegészítők telepítésére, abban az esetben is, ha a telepítéskor a kiegészítő azt jelzi, hogy nem kompatibilis az "
+"adott rendszerrel."
+
+msgid "Add Another Application&hellip;"
+msgstr "Másik alkalmazás hozzáadása&hellip;"
+
 msgid "Version Notes"
 msgstr "Megjegyzések a verzióhoz"
 
@@ -3472,7 +3444,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Automatikusan törölje a sütiket a lapok bezárása után."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Egy egyszerű mód tetszőleges oldalak szövegméretének módosítására – vagy akár a teljes lap nagyítására."
 
@@ -3614,7 +3585,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blokkolja alapértelmezetten az összes felugró ablakot, és döntse el melyeket akar megnyitni."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Szabja testre bármely weboldal kinézetét! Állítsa át a színeket, oldalhátteret, és így tovább."
 
@@ -3854,7 +3824,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Szerezzen előnyt az Amazonon. Ha termékoldalakat néz más online boltokban, és ha az Amazonon is kaphatóm akkor egy gombnyomással megnézheti az amazonos listázását."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Élvezze a lapok feletti teljes irányítást – duplán megnyitott lapok bezárása, ablakok egyesítése, lapcím másolása, és még sok más."
 
@@ -3971,7 +3940,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Javítsa ki a zavaró hangot. Egy weboldal hangereje túl halk? Túl hangos? A SoundFixer segíthet."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Szerkesszen egy weboldalt nyomtatás előtt. Végezzen átfogó vizuális módosításokat – távolítsa el a reklámokat vagy nem kívánt tartalmat – bármely kinyomtatandó weboldalon."
 
@@ -4034,7 +4002,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Élvezze a többszálas letöltés támogatását. Automatikusan felismeri a különböző letölthető médiák típusait."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Mentsen képeket könnyedén – csak fogja és vigye el őket a jelenlegi lapról."
 
@@ -4119,7 +4086,6 @@ msgid "Create and customize tab groups."
 msgstr "Lapcsoportok létrehozása és testreszabása."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Teljes oldal – vagy csak a képek és stílusok – letöltése egyetlen HTML-fájlként."
 
@@ -4204,6 +4170,14 @@ msgstr "Idő alapú témaváltó. Módosítsa a Firefox színeit a napszak vált
 msgid "Declutter your Twitter experience."
 msgstr "Távolítsa el a zavaró tényezőket a Twitter-élményéből."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Hozza vissza a lepontozások megtekintésének képességét!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Hallgasson zenét a YouTube-on a bosszantó „Videó szüneteltetve. Folytatja a nézését?” megszakítások nélkül."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy javítás."
@@ -4211,6 +4185,14 @@ msgstr "Egyes webhelyek nehezen tudnak videókat lejátszani Androidon. Itt egy 
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Talált egy érdekes képet a weben? Használja a TinEye-t az eredete felfedezéséhez."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Mentsen képeket könnyedén – csak fogja és vigye el őket a jelenlegi lapról."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Élvezze a lapok feletti teljes irányítást – duplán megnyitott lapok bezárása, ablakok egyesítése, lapcím másolása, és még sok más."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4221,12 +4203,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módjait több mint 50 konfigurációval."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Szabja testre bármely weboldal kinézetét! Állítsa át a színeket, az oldalhátteret és egyebeket."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Használjon egérgesztusokat a lapok bezárásához, a lapok közti navigációhoz, és egyebekhez."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Egy egyszerű mód tetszőleges oldalak szövegméretének módosítására – vagy akár a teljes lap nagyítására."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Élvezze a weboldalak bélyegképeit a keresési találatok mellett."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Teljes oldal – vagy csak a képek és stílusok – letöltése egyetlen HTML-fájlként."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Szerkesszen egy weboldalt nyomtatás előtt. Végezzen átfogó vizuális módosításokat – távolítsa el a reklámokat vagy nem kívánt tartalmat – bármely kinyomtatandó weboldalon."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4257,10 +4255,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Térjen vissza egy egyszerűbb időbe – amikor a keresési találatok a reklámok felett jelentek meg (a Google és a Bing keresővel kompatibilis)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Ne adja meg az oldalaknak az e-mail-címét. A Firefox Relay védi személyazonosságát és megakadályozza a levélszemetet. Frissítsen a prémium verzióra a további előnyökért, mint a promóciós levelek "
-"blokkolása."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Rejtse el az e-mail-címét, hogy megvédje személyazonosságát és megakadályozza a kéretlen leveleket. Az új frissítések még könnyebbé teszik a Firefox Relay használatát."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4326,6 +4322,14 @@ msgstr "Emelje a következő szintre a játékélményét a Steamen."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Mondjon igent arra, hogy visszahozzuk a leszavazás gombot."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Fordítson le weboldalakat a Firefoxban – privátan – a felhő használata nélkül."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blokkolja az időpazarló weboldalakat. Blokkolja őket teljesen, vagy csak az Ön által kiválasztott időszakokban."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "A kiegészítők olyanok, mintha alkalmazások lennének a Firefoxhoz."
@@ -4339,16 +4343,17 @@ msgid "See all extensions"
 msgstr "Összes kiegészítő megtekintése"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Adatvédelmi és biztonsági kiegészítők"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube testreszabás"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Kiegészítő kezdőcsomag"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Letöltéskezelők"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Játékok és szórakoztatási bővítmények"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4444,10 +4449,6 @@ msgid "See more ad blocker staff picks"
 msgstr "További, stáb által javasolt reklámblokkoló kiegészítők megtekintése"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube testreszabás"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "További, stáb által javasolt YouTube-kiegészítők megtekintése"
 
@@ -4490,6 +4491,14 @@ msgstr "Kreatív kiegészítők"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "További, stáb által javasolt kreatív eszközök megtekintése"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Közösségi médiás kiegészítők"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "További, stáb által javasolt közösségi médiás kiegészítők megtekintése"
 
 msgid "Unreviewed"
 msgstr "Ellenőrizetlen"
@@ -4610,6 +4619,13 @@ msgstr "Egyéb (adja meg)"
 msgid "Auto-flagged due to word match"
 msgstr "Szóegyezés miatt automatikusan megjelölve"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Felhasználói korlátozás miatt automatikusan megjelölve"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "A(z) %(value)s nem alfanumerikus karaktert tartalmaz."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Az értékelés szövege nem tartalmazhatja a következő szót: „{0}”"
@@ -4665,15 +4681,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "készítette: %(user)s, %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "készítette: %(user)s, %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">%(user)s jelölte meg, %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Figyelem!</strong> Egy másik felhasználó korábban már megtekintette ezt az oldalt."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Figyelem!</strong> Lehet, hogy egy másik felhasználó már korábban megtekinti ezt az oldalt."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5087,8 +5103,8 @@ msgstr "Firefox felhasználó {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Adjon meg érvényes IPv4 vagy IPv6 CIDR hálózati tartományt, például 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Több, a szabályzatunkat sértő kiegészítőt küldtek be az Ön tartózkodási helyéről. Az IP-címe blokkolásra került."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Több, a szabályzatunkat sértő elemet küldtek be az Ön tartózkodási helyéről. Az IP-címe blokkolásra került."
 
 msgid "Email Pattern"
 msgstr "E-mail minta"
@@ -5098,8 +5114,8 @@ msgstr ""
 "Írja be a letiltandó teljes e-mail-címet, vagy használjon unix-stílusú helyettesítő karaktereket, például „*@example.com”. Ha le kell tiltania egy domaint, beleértve az összes aldomaint, akkor adjon"
 " hozzá egy második bejegyzést is, például „*@*.example.com”."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "A fiókjához használt e-mail-cím nem használható kiegészítők beküldéséhez."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "A fiókjához használt e-mail-cím nem használható a beküldésekhez."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

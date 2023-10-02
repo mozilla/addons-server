@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2021-01-18 00:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,8 +67,14 @@ msgstr "Ri atz'aqat xik'o chuwa ri nïm runimilem {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Xk'ulutäj jun kowöl tzolin rutzij k'uxasamaj; rub'anikil: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Man oyob'en ta ri sachoj toq nijikib'äx."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Xk'is richin nijikib'äx {0}"
@@ -616,9 +622,6 @@ msgstr[1] "{files} taq yakb'äl"
 msgid "Image changes being processed"
 msgstr "Yesamajïx ri taq jaloj pa ri wachib'äl"
 
-msgid "Select an application first"
-msgstr "Nab'ey ticha' jun chokoy"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> tz'ib'."
@@ -637,6 +640,9 @@ msgstr "Tiyuj re k'ojlemal re'"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} rutz'eton chik wi re ruxaq re'."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} rutz'eton chik wi re tz'aqat re'."

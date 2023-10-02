@@ -1,19 +1,19 @@
 from decimal import Decimal
 from unittest import mock
 
-import requests
-
 from django.conf import settings
 from django.test.utils import override_settings
 
+import requests
+
 from olympia import amo
 from olympia.amo.tests import (
-    addon_factory,
     TestCase,
+    addon_factory,
+    block_factory,
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -534,11 +534,11 @@ class TestRunYara(UploadMixin, TestCase):
     @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     def test_throws_errors(self, incr_mock, yara_compile_mock):
-        yara_compile_mock.side_effect = Exception()
+        yara_compile_mock.side_effect = RuntimeError()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
         # `@validation_task`, which gracefully handles exceptions.
-        with self.assertRaises(Exception):
+        with self.assertRaises(RuntimeError):
             _run_yara(self.results, self.upload.pk)
 
         assert incr_mock.called
@@ -647,7 +647,7 @@ class TestRunYaraQueryRule(TestCase):
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(
             status=amo.STATUS_DISABLED, file_kw={'filename': 'webextension.xpi'}
-        ).current_version
+        )
         # Unlisted extension without a File instance
         Version.objects.create(
             addon=other_addon, channel=amo.CHANNEL_UNLISTED, version='42.42.42.42'
@@ -749,7 +749,7 @@ class TestRunYaraQueryRule(TestCase):
 
     def test_run_on_chunk_was_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
-        Block.objects.create(guid=self.version.addon.guid, updated_by=user_factory())
+        block_factory(addon=self.version.addon, updated_by=user_factory())
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
         yara_results = ScannerQueryResult.objects.all()
@@ -761,13 +761,16 @@ class TestRunYaraQueryRule(TestCase):
     def test_run_on_chunk_not_blocked(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         self.version.update(version='2.0')
-        Block.objects.create(
-            guid=self.version.addon.guid,
-            updated_by=user_factory(),
-            max_version='1.0',
+        another_version = version_factory(
+            addon=self.version.addon, channel=amo.CHANNEL_UNLISTED
         )
-        Block.objects.create(
-            guid='@differentguid',
+        block_factory(
+            addon=self.version.addon,
+            updated_by=user_factory(),
+            version_ids=[another_version.id],
+        )
+        block_factory(
+            addon=addon_factory(guid='@differentguid'),
             updated_by=user_factory(),
         )
         run_yara_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)

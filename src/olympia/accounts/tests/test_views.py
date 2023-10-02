@@ -1,7 +1,6 @@
 import base64
 import json
 import time
-
 from datetime import datetime
 from ipaddress import IPv4Address
 from os import path
@@ -12,9 +11,8 @@ from django import http
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import AnonymousUser
-from django.urls import reverse
-from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils.encoding import force_str
 
 import freezegun
@@ -23,6 +21,7 @@ import responses
 from rest_framework import exceptions
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
+from rest_framework.views import APIView
 from waffle.models import Switch
 from waffle.testutils import override_switch
 
@@ -79,7 +78,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         self.initialize_session({})
         assert 'fxa_state' not in self.client.session
         state = 'somerandomstate'
-        with mock.patch('olympia.accounts.views.generate_fxa_state', lambda: state):
+        with mock.patch('olympia.accounts.utils.generate_fxa_state', lambda: state):
             self.client.get(self.url)
         assert 'fxa_state' in self.client.session
         assert self.client.session['fxa_state'] == state
@@ -87,7 +86,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
     def test_redirect_url_is_correct(self):
         self.initialize_session({})
         with mock.patch(
-            'olympia.accounts.views.generate_fxa_state', lambda: 'arandomstring'
+            'olympia.accounts.utils.generate_fxa_state', lambda: 'arandomstring'
         ):
             response = self.client.get(self.url)
         assert response.status_code == 302
@@ -102,7 +101,6 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert parse_qs(url.query) == {
             'access_type': ['offline'],
-            'action': ['signin'],
             'client_id': ['amodefault'],
             'scope': ['profile openid'],
             'state': ['arandomstring'],
@@ -124,7 +122,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         assert b'=' in base64.urlsafe_b64encode(path)
         state = 'somenewstatestring'
         self.initialize_session({})
-        with mock.patch('olympia.accounts.views.generate_fxa_state', lambda: state):
+        with mock.patch('olympia.accounts.utils.generate_fxa_state', lambda: state):
             response = self.client.get(self.url, data={'to': path})
         assert self.client.session['fxa_state'] == state
         url = urlparse(response['location'])
@@ -523,28 +521,35 @@ class TestWithUser(TestCase):
             ),
         }
         response = self.fn(self.request)
-        self.assertRedirects(response, '/next', fetch_redirect_response=False)
+        # next path is ignored as state is not reliable.
+        self.assertRedirects(response, '/', fetch_redirect_response=False)
 
-    def test_dynamic_configuration(self):
-        fxa_config = {'some': 'config'}
-
-        class LoginView:
-            def get_fxa_config(self, request):
-                return fxa_config
-
-            def get_config_name(self, request):
-                return 'some_config_name'
-
+    @override_settings(
+        FXA_CONFIG={'a_conf': {'client_id': 'clientid', 'client_secret': 'supersikret'}}
+    )
+    def test_non_default_fxa_configuration_with_actual_apiview(self):
+        class LoginView(APIView):
             @views.with_user
-            def post(*args, **kwargs):
-                return args, kwargs
+            def get(*args, **kwargs):
+                return super().get(*args, **kwargs)
 
+        fxa_config_name = 'a_conf'
+        fxa_state = 'someblob'
+        fxa_code = 'foo'
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
         self.fxa_identify.return_value = identity, self.token_data
         self.find_user.return_value = self.user
-        self.request.data = {'code': 'foo', 'state': 'some-blob'}
-        LoginView().post(self.request)
-        self.fxa_identify.assert_called_with('foo', config=fxa_config)
+        # We're emulating an APIView, so we have to provide a true request
+        # object and let DRF processing make a DRF Request out of it by calling
+        # dispatch().
+        self.request = APIRequestFactory().get(
+            f'/?config={fxa_config_name}&code={fxa_code}&state={fxa_state}'
+        )
+        self.request.session = {'fxa_state': fxa_state}
+        LoginView().dispatch(self.request)
+        self.fxa_identify.assert_called_with(
+            fxa_code, config={'client_id': 'clientid', 'client_secret': 'supersikret'}
+        )
 
     def _test_should_redirect_for_two_factor_auth(self):
         identity = {'uid': '1234', 'email': 'hey@yo.it'}
@@ -577,7 +582,6 @@ class TestWithUser(TestCase):
         assert query == {
             'access_type': ['offline'],
             'acr_values': ['AAL2'],
-            'action': ['signin'],
             'client_id': [fxa_config['client_id']],
             'id_token_hint': ['someopenidtoken'],
             'prompt': ['none'],
@@ -658,12 +662,42 @@ class TestWithUser(TestCase):
             identity=identity
         )
 
+    def test_2fa_enforced_already_using_two_factor_should_continue(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        identity = {
+            'uid': '1234',
+            'email': 'hey@yo.it',
+            'twoFactorAuthentication': True,
+        }
+        self.request.session['enforce_2fa'] = True
+        self._test_should_continue_without_redirect_for_two_factor_auth(
+            identity=identity
+        )
+        # Since the authentication was successful and satistified our 2FA
+        # requirement, we removed the property from the session.
+        assert 'enforce_2fa' not in self.request.session
+
+    def test_2fa_enforced_on_this_view_should_redirect_for_two_factor_auth(self):
+        self.create_flag('2fa-enforcement-for-developers-and-special-users')
+        self.user = user_factory()
+        self.request.session['enforce_2fa'] = True
+        self._test_should_redirect_for_two_factor_auth()
+
     def test_waffle_flag_off_developer_without_2fa_should_continue(self):
         self.create_flag(
             '2fa-enforcement-for-developers-and-special-users', everyone=False
         )
         self.user = user_factory()
         addon_factory(users=[self.user])
+        self._test_should_continue_without_redirect_for_two_factor_auth()
+
+    def test_waffle_flag_off_enforced_2fa_should_have_no_effect(self):
+        self.create_flag(
+            '2fa-enforcement-for-developers-and-special-users', everyone=False
+        )
+        self.user = user_factory()
+        self.request.session['enforce_2fa'] = True
         self._test_should_continue_without_redirect_for_two_factor_auth()
 
     @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
@@ -683,33 +717,31 @@ class TestWithUser(TestCase):
         assert kwargs['identity']['email'] == self.user.email
         assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
         assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['identity']['twoFactorAuthentication'] is None
         assert kwargs['next_path'] == '/a/path/?'
         assert self.fxa_identify.call_count == 0
 
-
-@override_settings(
-    FXA_CONFIG={
-        'foo': {'FOO': 123},
-        'bar': {'BAR': 456},
-        'baz': {'BAZ': 789},
-    },
-    DEFAULT_FXA_CONFIG_NAME='baz',
-)
-class TestFxAConfigMixin(TestCase):
-    def test_no_config(self):
-        request = RequestFactory().get('/login')
-        config = views.FxAConfigMixin().get_fxa_config(request)
-        assert config == {'BAZ': 789}
-
-    def test_config_alternate(self):
-        request = RequestFactory().get('/login?config=bar')
-        config = views.FxAConfigMixin().get_fxa_config(request)
-        assert config == {'BAR': 456}
-
-    def test_config_is_default(self):
-        request = RequestFactory().get('/login?config=baz')
-        config = views.FxAConfigMixin().get_fxa_config(request)
-        assert config == {'BAZ': 789}
+    @override_settings(DEBUG=True, USE_FAKE_FXA_AUTH=True)
+    def test_fake_fxa_auth_with_2fa(self):
+        self.user = user_factory()
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'fake_fxa_email': self.user.email,
+            'fake_two_factor_authentication': 'true',
+            'state': 'some-blob:{next_path}'.format(
+                next_path=force_str(base64.urlsafe_b64encode(b'/a/path/?'))
+            ),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs['user'] == self.user
+        assert kwargs['identity']['email'] == self.user.email
+        assert kwargs['identity']['uid'].startswith('fake_fxa_id-')
+        assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
+        assert kwargs['identity']['twoFactorAuthentication'] == 'true'
+        assert kwargs['next_path'] == '/a/path/?'
+        assert self.fxa_identify.call_count == 0
 
 
 def empty_view(*args, **kwargs):
@@ -757,7 +789,8 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert_url_equal(response['location'], '/en-US/firefox/')
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
@@ -769,7 +802,21 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
             response['Cache-Control']
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
-        assert_url_equal(response['location'], '/en-US/firefox/')
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
+        assert not self.login_user.called
+        assert not self.register_user.called
+        assert not self.reregister_user.called
+
+    def test_error_from_fxa(self):
+        response = self.client.get(self.url, {'error': 'foo', 'state': '9f865be0'})
+        assert response.status_code == 302
+        assert (
+            response['Cache-Control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+        # next path is ignored as state is not reliable.
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
         assert not self.reregister_user.called
@@ -2292,7 +2339,7 @@ class TestFxaNotificationView(TestCase):
             *self.JWKS_RESPONSE['keys'],
         ]
         decode_mock.return_value = self.FXA_EVENT
-        request_factory = RequestFactory()
+        request_factory = APIRequestFactory()
 
         authd_jwt = FxaNotificationView().get_jwt_payload(
             request_factory.get('/', HTTP_AUTHORIZATION='Bearer fooo')

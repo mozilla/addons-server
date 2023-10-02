@@ -1,21 +1,21 @@
-import pytest
-
 from django.contrib.auth.models import AnonymousUser
+
+import pytest
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import addon_factory, TestCase, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.users.models import UserProfile
 
 from .acl import (
     action_allowed_for,
     check_addon_ownership,
     is_listed_addons_reviewer,
+    is_reviewer,
     is_static_theme_reviewer,
     is_unlisted_addons_reviewer,
     is_unlisted_addons_viewer_or_reviewer,
-    is_reviewer,
     is_user_any_kind_of_reviewer,
     match_rules,
     reserved_guid_addon_submission_allowed,

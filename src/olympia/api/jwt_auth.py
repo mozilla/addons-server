@@ -19,11 +19,9 @@ from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
 import jwt
-
 from rest_framework import exceptions
 
 import olympia.core.logger
-
 from olympia.api.models import APIKey
 
 

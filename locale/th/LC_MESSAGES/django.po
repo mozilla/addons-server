@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2018-03-24 06:30+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-05-26 03:16+0000\n"
+"Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -102,7 +102,7 @@ msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "URL ต้องขึ้นต้นด้วย https://"
 
 msgid "License with slug={value} does not exist."
 msgstr ""
@@ -120,6 +120,10 @@ msgid "Unknown max app version specified"
 msgstr ""
 
 msgid "Unknown min app version specified"
+msgstr ""
+
+#, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
 msgstr ""
 
 #, python-format
@@ -147,9 +151,6 @@ msgstr ""
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "รุ่น {version} ตรงกับ {block_link} สำหรับส่วนเสริมนี้ คุณสามารถติดต่อ {amo_admins} สำหรับข้อมูลเพิ่มเติมได้"
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
@@ -339,6 +340,9 @@ msgstr "ลงทะเบียนหรือเข้าสู่ระบบ
 msgid "Email:"
 msgstr "อีเมล:"
 
+msgid "Two-factor authentication"
+msgstr ""
+
 msgid "OK"
 msgstr "ตกลง"
 
@@ -447,39 +451,6 @@ msgstr "ไม่สามารถใช้ URL ที่กำหนดเอ�
 
 msgid "This add-on already belongs to the collection"
 msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s กำลังดำเนินการตรวจสอบการเสนอที่ส่งเข้ามา"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "ไม่พบบล็อกที่ระบุด้วย GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr ""
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "บล็อกที่จะอัปเดตนั้นแตกต่างกันเนื่องจากรุ่นต่ำสุดหรือรุ่นสูงสุดได้ถูกเปลี่ยนแปลง"
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr ""
-
-msgid "Invalid version"
-msgstr "รุ่นไม่ถูกต้อง"
-
-msgid "Min version can not be greater than Max version"
-msgstr "รุ่นต่ำสุดต้องไม่มากกว่ารุ่นสูงสุด"
-
-#, fuzzy
-msgid "Review Listed"
-msgstr "ร้องขอการพิจารณาแล้ว"
-
-#, fuzzy
-msgid "Review Unlisted"
-msgstr "หมายเหตุบทวิจารณ์"
 
 msgid "{addon} was created."
 msgstr "สร้าง {addon} แล้ว"
@@ -847,10 +818,31 @@ msgstr ""
 msgid "Un-rejected"
 msgstr ""
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1005,7 +997,7 @@ msgid "Games & Entertainment"
 msgstr "เกมและความบันเทิง"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยาย Firefox เพื่อเพิ่มประสบการณ์ความบันเทิงของคุณ หมวดหมู่นี้มีส่วนขยายที่ช่วยเสริมพลังในเรื่องการเล่นเกม การควบคุมการเล่นวิดีโอ และอื่น ๆ อีกมากมาย"
 
 msgid "Language Support"
 msgstr "การรองรับภาษา"
@@ -1017,13 +1009,13 @@ msgid "Photos, Music & Videos"
 msgstr "รูปถ่าย, เพลง และวิดีโอ"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยายของ Firefox ที่ช่วยเสริมแต่งประสบการณ์ใช้งานในเรื่องภาพ เพลง และวิดีโอ ส่วนขยายในหมวดหมู่นี้สามารถแก้ไขเสียงและวิดีโอ ค้นหาภาพแบบย้อนกลับ และอื่น ๆ อีกมากมาย"
 
 msgid "Privacy & Security"
 msgstr "ความเป็นส่วนตัวและความปลอดภัย"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "ดาวน์โหลดส่วนขยายของ Firefox เพื่อท่องเว็บอย่างเป็นส่วนตัวและปลอดภัย หมวดหมู่นี้มีส่วนขยายที่จะช่วยปิดกั้นโฆษณาที่น่ารำคาญ ป้องกันการติดตาม จัดการการเปลี่ยนเส้นทาง และอื่น ๆ อีกมากมาย"
 
 msgid "Search Tools"
 msgstr "เครื่องมือค้นหา"
@@ -1503,6 +1495,10 @@ msgstr "ดูปัจจุบัน"
 msgid "Invalid version range."
 msgstr "ช่วงเวอร์ชันไม่ถูกต้อง"
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr "ต้องมีแอปพลิเคชันที่เข้ากันได้อย่างน้อยหนึ่งตัว"
 
@@ -1517,9 +1513,6 @@ msgstr "เขียนทับการตรวจสอบความถู
 
 msgid "Need to select at least one application."
 msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
-
-msgid "a blocklist entry"
-msgstr "รายการในรายการปิดกั้น"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "มีการอัปโหลดรุ่น {version} ก่อนหน้าและลบแล้ว"
@@ -1571,6 +1564,9 @@ msgstr "ประกาศเกี่ยวกับความปลอดภ
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "เกิดข้อผิดพลาด/คำเตือนหลายข้อในการตรวจสอบความถูกต้อง %s ข้อความจึงถูกตัดทอน หลังจากที่จัดการกับข้อความที่มองเห็นได้แล้ว คุณจะสามารถเห็นข้อความอื่น ๆ ได้"
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr ""
 
 msgid "Updated"
 msgstr "อัปเดตแล้ว"
@@ -1635,6 +1631,9 @@ msgstr "การเปลี่ยนแปลงถูกบันทึกเ
 
 msgid "Validate Add-on"
 msgstr "ตรวจสอบส่วนเสริม"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "ไอคอนต้องเป็น PNG หรือ JPG"
@@ -1838,56 +1837,6 @@ msgstr "กิจกรรม"
 msgid "Subscribe to this feed"
 msgstr "บอกรับฟีดนี้"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr "ส่วนเสริมนี้ไม่สามารถเข้ากันได้กับ <b>%(app_name)s %(app_version)s</b> ซึ่งเป็นรุ่นล่าสุดของ %(app_name)s กรุณาพิจารณาการปรับปรุงความเข้ากันได้ของส่วนเสริมหรืออัปโหลดส่วนเสริมรุ่นใหม่"
-
-#, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">อัปเดตความเข้ากันได้</a> <a href=\"%(version_url)s\" class=\"button\">อัปโหลดรุ่นใหม่</a> หรือ <a href=\"#\" class=\"close"
-"\">ไม่สนใจ</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr ""
-
-msgid "Compatibility"
-msgstr "ความเข้ากันได้"
-
-msgid "Update Compatibility"
-msgstr "อัปเดตความเข้ากันได้"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "การปรับเปลี่ยนข้อมูลแอปพลิเคชันที่นี่จะทำให้ผู้ใช้สามารถติดตั้งส่วนเสริมของคุณได้แม้ว่าข้อมูลกำกับการติดตั้งในแพกเกจจะระบุว่าส่วนเสริมเข้ากันไม่ได้"
-
-msgid "Application"
-msgstr "แอปพลิเคชัน"
-
-msgid "Supported Versions"
-msgstr "รุ่นที่รองรับ"
-
-msgid "Remove"
-msgstr "เอาออก"
-
-msgid "Add Another Application&hellip;"
-msgstr "เพิ่มแอปพลิเคชันอื่น&hellip;"
-
-msgid "Save Changes"
-msgstr "บันทึกการเปลี่ยนแปลง"
-
-msgid "or"
-msgstr "หรือ"
-
-msgid "Cancel"
-msgstr "ยกเลิก"
-
-msgid "Close"
-msgstr "ปิด"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1957,10 +1906,16 @@ msgstr ""
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "บันทึกการเปลี่ยนแปลง"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "ปิด"
 
 msgid "Additional Details"
 msgstr "รายละเอียดเพิ่มเติม"
@@ -2000,6 +1955,12 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+msgid "or"
+msgstr "หรือ"
+
+msgid "Cancel"
+msgstr "ยกเลิก"
 
 msgid "Describe Add-on"
 msgstr "อธิบายส่วนเสริม"
@@ -3034,6 +2995,15 @@ msgstr "จัดการ {0}"
 msgid "Files"
 msgstr "ไฟล์"
 
+msgid "Compatibility"
+msgstr "ความเข้ากันได้"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "การปรับเปลี่ยนข้อมูลแอปพลิเคชันที่นี่จะทำให้ผู้ใช้สามารถติดตั้งส่วนเสริมของคุณได้แม้ว่าข้อมูลกำกับการติดตั้งในแพกเกจจะระบุว่าส่วนเสริมเข้ากันไม่ได้"
+
+msgid "Add Another Application&hellip;"
+msgstr "เพิ่มแอปพลิเคชันอื่น&hellip;"
+
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
@@ -3357,7 +3327,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "ล้างคุกกี้โดยอัตโนมัติหลังจากคุณปิดแท็บ"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr ""
 
@@ -3407,7 +3376,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "อ่านไฟล์ ePub ใน Firefox—เพิ่มขนาดฟอนต์ ขนาดหน้า และอื่นๆ"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3501,7 +3470,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr ""
 
@@ -3602,7 +3570,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "ตรงไปที่เว็บไซต์ที่คุณต้องการเข้าถึงโดยไม่ถูกเปลี่ยนเส้นทางระหว่างนั้น"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -3649,7 +3617,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters from web links. Works automatically."
-msgstr ""
+msgstr "แยกหน้าเปลี่ยนเส้นทางและพารามิเตอร์ติดตาม URL ออกจากลิงก์เว็บ ทำงานโดยอัตโนมัติ"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -3748,7 +3716,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr ""
 
@@ -3778,7 +3745,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "หยุดการเปลี่ยนเส้นทางเพื่อให้คุณเข้าถึงไซต์ที่คุณต้องการ—ได้เร็วขึ้น"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
@@ -3866,7 +3833,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
@@ -3929,7 +3895,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr ""
 
@@ -4014,7 +3979,6 @@ msgid "Create and customize tab groups."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr ""
 
@@ -4100,6 +4064,14 @@ msgstr ""
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr ""
@@ -4109,11 +4081,23 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgid "Save images easily — just grab them from your current tab."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
+msgstr "อ่านไฟล์ ePUB ใน Firefox—เพิ่มขนาดฟอนต์ ขนาดหน้า และอื่นๆ"
+
+#. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4121,7 +4105,19 @@ msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4153,7 +4149,7 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
@@ -4220,6 +4216,14 @@ msgstr ""
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "ส่วนขยายเป็นเหมือนแอปสำหรับ Firefox"
@@ -4233,15 +4237,16 @@ msgid "See all extensions"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4344,10 +4349,6 @@ msgid "See more ad blocker staff picks"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more YouTube extension staff picks"
 msgstr "ตัวตรวจสอบส่วนเสริม"
@@ -4400,6 +4401,14 @@ msgstr "แสดงความคิดเห็นแล้ว"
 #, fuzzy
 msgid "See more creativity staff picks"
 msgstr "ตัวตรวจสอบส่วนเสริม"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr ""
@@ -4456,7 +4465,7 @@ msgid "No manifest.json found"
 msgstr ""
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "ไฟล์ไม่ถูกต้องหรือเสียหาย"
 
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4520,6 +4529,13 @@ msgstr "อื่น ๆ (โปรดระบุ)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4574,15 +4590,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "โดย %(user)s เมื่อ %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">ตั้งค่าสถานะโดย %(user)s เมื่อ %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>คำเตือน!</strong> มีผู้ใช้คนอื่นได้เข้ามาชมหน้านี้ก่อนคุณ"
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr ""
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4997,7 +5013,7 @@ msgstr "ผู้ใช้ Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "ป้อนเครือข่าย IP4 หรือ IP6 ที่ถูกต้อง"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -5006,7 +5022,7 @@ msgstr ""
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""

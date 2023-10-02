@@ -1,10 +1,8 @@
 import datetime
 
 import jinja2
-
 from django_jinja import library
 
-from olympia import amo
 from olympia.access import acl
 from olympia.amo.templatetags.jinja_helpers import new_context
 from olympia.ratings.permissions import user_can_delete_rating
@@ -13,53 +11,33 @@ from olympia.reviewers.templatetags import code_manager
 
 @library.global_function
 @jinja2.pass_context
-def queue_tabnav(context):
+def queue_tabnav(context, reviewer_tables_registry):
     """Returns tuple of tab navigation for the queue pages.
 
     Each tuple contains three elements: (tab_code, page_url, tab_text)
     """
     request = context['request']
     tabnav = []
-    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
-        tabnav.extend(
-            (
-                (
-                    'extension',
-                    'queue_extension',
-                    '🛠️ Manual Review',
-                ),
-                ('mad', 'queue_mad', 'Flagged by MAD for Human Review'),
-            )
-        )
-    if acl.action_allowed_for(request.user, amo.permissions.STATIC_THEMES_REVIEW):
-        tabnav.extend(
-            (
-                (
-                    'theme_nominated',
-                    'queue_theme_nominated',
-                    '🎨 New',
-                ),
-                (
-                    'theme_pending',
-                    'queue_theme_pending',
-                    '🎨 Updates',
-                ),
-            )
-        )
-    if acl.action_allowed_for(request.user, amo.permissions.RATINGS_MODERATE):
-        tabnav.append(('moderated', 'queue_moderated', 'Rating Reviews'))
 
-    if acl.action_allowed_for(request.user, amo.permissions.ADDONS_CONTENT_REVIEW):
-        tabnav.append(('content_review', 'queue_content_review', 'Content Review'))
-
-    if acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
-        tabnav.append(
-            (
-                'pending_rejection',
-                'queue_pending_rejection',
-                'Pending Rejection',
+    for queue in (
+        'extension',
+        'mad',
+        'theme_nominated',
+        'theme_pending',
+        'moderated',
+        'content_review',
+        'pending_rejection',
+    ):
+        if acl.action_allowed_for(
+            request.user, reviewer_tables_registry[queue].permission
+        ):
+            tabnav.append(
+                (
+                    queue,
+                    reviewer_tables_registry[queue].urlname,
+                    reviewer_tables_registry[queue].title,
+                )
             )
-        )
 
     return tabnav
 
@@ -103,3 +81,8 @@ def check_review_delete(context, rating):
 @library.filter
 def format_score(value):
     return f'{value:0.0f}%' if value and value >= 0 else 'n/a'
+
+
+@library.filter
+def to_dom_id(string):
+    return string.replace('.', '_')

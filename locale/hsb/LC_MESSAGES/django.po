@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-17 22:39+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-19 16:02+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -122,6 +122,10 @@ msgid "Unknown min app version specified"
 msgstr "Njepłaćiwa minimalna nałoženska wersija podata"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Informacije wo kompatibelnosći , kotrež su w manifesće za tute nałoženje (%s) podate, njedadźa so přepisać"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Wobrazy dyrbja mjeńše hač %d MB być"
 
@@ -148,9 +152,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Najnowša schwalena wersija tutoho rozšěrjenja %s njeda so zhašeć, dokelž předchadna wersija njeje so za doporučenje %s schwaliła. Prošu stajće so z administratorami AMO do zwiska, jeli pomoc wo tym "
 "trjebaće."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Wersija {version} {block_link} za tutón přidatk wotpowěduje. Móžeće so z {amo_admins} za přidatne informacije do zwiska stajić."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Wersija {version_string} je so prjedy nahrała a zhašała."
@@ -344,6 +345,9 @@ msgstr "Registrować abo přizjewić"
 msgid "Email:"
 msgstr "E-mejlowa adresa:"
 
+msgid "Two-factor authentication"
+msgstr "Dwufaktorowa awtentifikacija"
+
 msgid "OK"
 msgstr "W porjadku"
 
@@ -452,37 +456,6 @@ msgstr "Tutón swójski URL njeda so wužiwać."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tutón přidatk hižo k zběrce słuša"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s je we wustejacym zapodaću"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokowanje z GUID %(guid)s njeje so namakało"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Přidatk z GUID %(guid)s njeeksistuje"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokjowanja, kotrež maja so aktualizować, su rozdźělne, dokelž minimalna abo maksimalna wersija je so změniła."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s * wobsahuje"
-
-msgid "Invalid version"
-msgstr "Njepłaćiwa wersija"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimalna wersija njemóže wjetša hač maksimalna wersija być"
-
-msgid "Review Listed"
-msgstr "Nalistowane přepruwować"
-
-msgid "Review Unlisted"
-msgstr "Njenalistowane přepruwować"
 
 msgid "{addon} was created."
 msgstr "{addon} je so wutworił."
@@ -846,11 +819,32 @@ msgstr "Wotpokazanje přidatka {addon} {version} je zběhnjene."
 msgid "Un-rejected"
 msgstr "Wotpokazanje zběhnjene"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Marka needs_human_review za přidatk {addon} je so zhašała."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Wotmołwa na {rating} za {addon} napisana."
 
-msgid "Needs Human Review cleared"
-msgstr "„Čłowjeske přepruwowanje trěbne“ je so zhašało"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "Wustejace wotpokazanje za {addon} {version} je so zhašało."
+
+msgid "Pending rejection cleared"
+msgstr "Wustejace wotpokazanje je so zhašało"
+
+msgid "{version} added to Blocklist."
+msgstr "Wersija {version} je so lisćinje blokowanjow přidała."
+
+msgid "Version Blocked"
+msgstr "Wersija je so blokowała"
+
+msgid "{version} removed from Blocklist."
+msgstr "Wersija {version} je so z lisćiny blokowanjow wotstroniła."
+
+msgid "Version Unblocked"
+msgstr "Blokowanje wersije je zběhnjene"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Přepruwowanje přidatka {addon} {version} wot administratora je so zhašało."
+
+msgid "Admin add-on-review cleared"
+msgstr "Přepruwowanje přidatka wot administratora je so zhašało"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1509,6 +1503,10 @@ msgstr "Aktualne pokazać"
 msgid "Invalid version range."
 msgstr "Njepłaćiwy wersijowy rozsah."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Njepłaćiwy wersijowy wobłuk. Za Firefox za Android móžeće jenož wobłuk wubrać, kotryž so z wersiju %(max)s abo nowšej započina abo so ze staršej hač z wersiju %(min)s kónči."
+
 msgid "Need at least one compatible application."
 msgstr "Znajmjeńša jedne kompatibelne nałoženje trěbne."
 
@@ -1523,9 +1521,6 @@ msgstr "Njeporadźene přepruwowanje přepisać"
 
 msgid "Need to select at least one application."
 msgstr "Dyrbiće znajmjeńša jedne nałoženje wubrać."
-
-msgid "a blocklist entry"
-msgstr "zapisk blokowanskeje lisćiny"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Wersija {version} je so prjedy nahrała a zhašała."
@@ -1579,6 +1574,9 @@ msgstr "Wěstotna zdźělenka Mozilla: Waše přizjewjenske daty za API AMO su s
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Přepruwowanje je přewjele zmylkow/warnowanjow wunjesło, tohodla je so %s powěsćow wotdźěliło. Po wobdźěłowanju widźomnych powěsćow móžeće druhe widźeć."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Tutón přidatk drasta njeje. Wužiwajće město toho stronu <a href=\"{link}\">Nowy přidatk zapodać</a>, zo byšće rozšerjenja zapodał."
 
 msgid "Updated"
 msgstr "Zaktualizowany"
@@ -1642,6 +1640,9 @@ msgstr "Změny su so wuspěšnje składowali."
 
 msgid "Validate Add-on"
 msgstr "Přidatk přepruwować"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Prošu přidajće swojemu kontu dwufaktorowu awtentifikaciju, zo byšće rozšěrjenja zapodał.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Symbole dyrbja pak we formaće PNG pak JPG być."
@@ -1847,56 +1848,6 @@ msgstr "Aktiwita"
 msgid "Subscribe to this feed"
 msgstr "Tutón kanal abonować"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Tutón přidatk je inkompatibelny z <b>%(app_name)s%(app_version)s</b>, najnowšej wersiju %(app_name)s. Prošu rozwažće aktualizowanje informacijow kompatibelnosće swojeho přidatka, abo nahrawanje "
-"nowšeje wersije tutoho přidatka."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a href=\"#\" "
-"class=\"close\">Ignorować</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Wobłuki kompatibelnosće z nałoženjemi pokazać a aktualizować"
-
-msgid "Compatibility"
-msgstr "Kompatibelnosć"
-
-msgid "Update Compatibility"
-msgstr "Kompatibelnosć aktualizować"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Přiměrjenje nałoženskich informacijow tu wužiwarjam zmóžnja, waš přidatk instalować, samo hdyž instalowanski manifest w pakćiku podawa, zo přidatk je inkompatibelny."
-
-msgid "Application"
-msgstr "Nałoženje"
-
-msgid "Supported Versions"
-msgstr "Podpěrane wersije"
-
-msgid "Remove"
-msgstr "Wotstronić"
-
-msgid "Add Another Application&hellip;"
-msgstr "Druhe nałoženje přidać&hellip;"
-
-msgid "Save Changes"
-msgstr "Změny składować"
-
-msgid "or"
-msgstr "abo"
-
-msgid "Cancel"
-msgstr "Přetorhnyć"
-
-msgid "Close"
-msgstr "Začinić"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1971,12 +1922,18 @@ msgstr "Awtorojo, kotřiž na wobkrućenje čakaja"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Awtorojo, kotřiž su so přidatkej přidali, ale njejsu so wobkrućili."
 
+msgid "Save Changes"
+msgstr "Změny składować"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Přidatki móža kelkožkuli awtorow z 2 móžnymaj rólpmaj měć:</p> <ul> <li><b>Wobsedźer:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, inkluziwnje přidawanje a wotstronjenje druhich "
 "awtorow</li> <li><b>Wuwiwar:</b> Móže wšě aspekty nalistowanja přidatkow rjadować, nimo přidawanja a wotstronjenja druhich awtorow</li> </ul>"
+
+msgid "Close"
+msgstr "Začinić"
 
 msgid "Additional Details"
 msgstr "Dalše podrobnosće"
@@ -2017,6 +1974,12 @@ msgid ""
 msgstr ""
 "Jeli waš přidatk ma druhu startowu stronu, zapodajće tu jeje adresu. Jeli waše websydło je so do druhich rěčow přełožili, móžeće wjacore přełožki tutoho pola přidać. To je jenož za nalistowane "
 "přidatki relewantne."
+
+msgid "or"
+msgstr "abo"
+
+msgid "Cancel"
+msgstr "Přetorhnyć"
 
 msgid "Describe Add-on"
 msgstr "Přidatk wopisać"
@@ -3112,6 +3075,15 @@ msgstr "Přidatk {0} rjadować"
 msgid "Files"
 msgstr "Dataje"
 
+msgid "Compatibility"
+msgstr "Kompatibelnosć"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Přiměrjenje nałoženskich informacijow tu wužiwarjam zmóžnja, waš přidatk instalować, samo hdyž instalowanski manifest w pakćiku podawa, zo přidatk je inkompatibelny."
+
+msgid "Add Another Application&hellip;"
+msgstr "Druhe nałoženje přidać&hellip;"
+
 msgid "Version Notes"
 msgstr "Wersijowe pokazy"
 
@@ -3447,7 +3419,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Zhašejće placki awtomatisce, po tym zo sće rajtark začinił."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Jednora móžnosć za přiměrjenje tekstoweje wulkosće strony - abo powjetšće prosće stronu."
 
@@ -3589,7 +3560,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Blokujće po standardźe wšě wuskakowace wokna a rozsudźće potom, kotre chceće wočinić."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Přiměrće napohlad websydłow. Změńće barby, pozadki stronow a wjace."
 
@@ -3831,7 +3801,6 @@ msgstr ""
 "Amazon widźał."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami - dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
@@ -3949,7 +3918,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Porjedźće mylace zynki. Je sylnosć zwuka na websydle přećicha? Přehłósna? SoundFixer móže pomhać."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Wobdźěłajće webstronu před ćišćenjom. Čińće skutkowne widźomne změny - wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
 
@@ -4012,7 +3980,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Wužiwajće wjacenitkowu sćehnjensku podpěru. Wotkryjće rozdźělne typy medijow za sćehnjenje."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Składujće wobrazy cyle lochko - hrabńće je ze swojeho aktualneho rajtarka."
 
@@ -4097,7 +4064,6 @@ msgid "Create and customize tab groups."
 msgstr "Wutworće a přiměrće rajtarkowe skupiny."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Składujće cyłu webstronu - mjez nimi wobrazy a stile - jako jeničku HTML-dataju."
 
@@ -4182,6 +4148,14 @@ msgstr "Wot časa wotwisne wuměnjenje drastow. Dajće Firefox barby po času dn
 msgid "Declutter your Twitter experience."
 msgstr "Wurjedźće swoje dožiwjenje Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Přinjesće sej móžnosć wróćo, palcy dele widźeć!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Poskajće na hudźbu na YouTube bjez wobćežnych přetorhnjenjow „Widejo zastajene. Dale wobhladować?“."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je rozrisanje."
@@ -4189,6 +4163,14 @@ msgstr "Někotre sydła maja ćežkosće, wideja na Android wothrawać. Tu je ro
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Sće zajimawy wobraz w interneće namakał? Wužiwajće TinEye, zo byšće wuslědźił, zwotkelž pochadźa."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Składujće wobrazy cyle lochko – hrabńće je ze swojeho aktualneho rajtarka."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Mějće ultimatiwnu kontrolu nad rajtarkami – dwójne rajtarki začinić, wokna zjednoćić, rajtarkowy titul kopěrować a wjace."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4199,12 +4181,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Přiměrće gesty myški. Wotkryjće nowe móžnosće, zo byšće z přez 50 konfiguracijemi nawigował."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Přiměrće napohlad websydła. Změńće barby, pozadki stronow a wjace."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Wužiwajće gesty myški, zo byšće rajtarki začinił, přez strony nawigował a wjace."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Jednora móžnosć za přiměrjenje tekstoweje wulkosće strony – abo powjetšće prosće stronu."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Wužiwajće miniaturki websydłow z pytanskimi wuslědkami."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Składujće cyłu webstronu – mjez nimi wobrazy a stile – jako jeničku HTML-dataju."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Wobdźěłajće webstronu před ćišćenjom. Čińće skutkowne widźomne změny – wotstrońće wabjenje abo grawoćiwy wobsah, zo byšće napohlad webstrony polěpšił, kotruž chceće ćišćeć."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4235,10 +4233,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Wróćo k jednorišemu časej – hdyž waše najwažniše pytanske wuslědki nad wabjenjom stejachu (kompatibelne z pytawomaj Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Njedajće hižo sydłam swoju e-mejlowu adresu. Firefox Relay wašu identitu škita a spamowym mejlkam zadźěwa. Aktualizujće na płaćomnu wersiju za dalše lěpšiny, kaž na přikład blokowanje dalšich "
-"specifiskich wabjenskich mejlkow."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Maskěrujće swoju e-mejlowu adresu, zo byšće swoju identitu škitał a njewitanej e-mejli zadźěwał. Nowe aktualizacije wužiwanje Firefox Relay samo wosnadnjeja."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4304,6 +4300,14 @@ msgstr "Polěpšće swoje hrajne dožiwjenje na Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Palc dele je so wróćił – na to palc horje."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Přełožujće websydła w Firefox – priwatnje – bjeztoho, zo byšće cloud wužiwał."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blokujće čas přečinjace websydła. Blokujće je dospołnje abo jenož za časowe wotrězki po wašej wólbje."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšěrjenja su za Firefox kaž nałoženja."
@@ -4317,16 +4321,17 @@ msgid "See all extensions"
 msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Rozšěrjenja priwatnosće a wěstoty"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Přiměrjenje YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Spočatny pakćik rozšěrjenjow"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Zrjadowaki sćehnjenjow"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Rozšěrjenja za hry a zabawjenje"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4421,10 +4426,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja wo rjadowanju blokowakow wabjenja pokazać"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Přiměrjenje YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja YouTube pokazać"
 
@@ -4467,6 +4468,14 @@ msgstr "Rozšěrjenja za kreatiwnosć"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Wjace wot sobudźěłaćerjow wubrane rozšěrjenja kreatiwnosće socialneho prudźenja pokazać"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Rozšěrjenja za socialne medije"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Dalše wot sobudźěłaćerjow wubrane rozšěrjenja za socialne medije pokazać"
 
 msgid "Unreviewed"
 msgstr "Njepřepruwowany"
@@ -4587,6 +4596,13 @@ msgstr "Druhe (prošu podać)"
 msgid "Auto-flagged due to word match"
 msgstr "Awtomatisce woznamjenjene wotpowědowanja słowa dla"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Wužiwarskeho wobmjezowanja dla awtomatisce woznamjenjeny"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s njealfanumeriske znamješko wobsahuje."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Pohódnoćenski tekst njesmě slědowace słowo wobsahować: „{0}“"
@@ -4646,15 +4662,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "wot %(user)s dnja %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "wot %(user)s dnja %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong><span class=\"light\">Markěrowany wot %(user)s %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Warnowanje!</strong> Druhi wužiwar je sej tutu stronu před wami wobhladał."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Warnowanje!</strong> Druhi wužiwar sej snano tutu stronu před wami wobhladuje."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5067,8 +5083,8 @@ msgstr "Wužiwar Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zapodajće płaćiwy IPv4 abo syćowy wobwod CIDR IPv6, na př. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Wot wašeho stejnišća su so wjacore přidatki zapodali, kotrež so přećiwo našim prawidłam přeńdu. IP-adresa je so zablokowała."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Wot wašeho stejnišća su so wjacore zapodaća pósłali, kotrež so přećiwo našim prawidłam přeńdu. IP-adresa je so zablokowała."
 
 msgid "Email Pattern"
 msgstr "E-mejlowy muster"
@@ -5078,8 +5094,8 @@ msgstr ""
 "Zapodajće dospołnu e-mejlowu adresu, kotraž ma so blokować abo wužiwajće zastupowace symbole w stilu Unix, na př. „*@example.com“. Jeli dyrbiće domenu inkluziwnje poddomeny blokować, přidajće dalši "
 "zapisk, na př. „*@*.example.com“."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodawanje přidatkow dowolena njeje."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "E-mejlowa adresa, kotruž sće za swoje konto wužił, za zapodaća dowolena njeje."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

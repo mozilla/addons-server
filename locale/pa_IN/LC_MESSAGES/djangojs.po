@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2020-08-31 09:09+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2018-09-17 11:02+0000\n"
 "Last-Translator: Satnam S Virdi <pika10singh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -66,8 +66,14 @@ msgstr "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਦੀ ਵੱਧੋ-ਵੱਧ ਹ�
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "ਪ੍ਰਮਾਣਿਕਤਾ ਦੌਰਾਨ ਅਣਚਾਹੀ ਸਰਵਰ ਗਲਤੀ।"
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "{0} ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਮੁਕੰਮਲ ਹੋਈ"
@@ -105,8 +111,8 @@ msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
-"ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ "
+"ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
@@ -137,7 +143,7 @@ msgstr[1] "{0} ਡਾਊਨਲੋਡ"
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
-msgstr[1] "{0} ਉਪਭੋਗੀ"
+msgstr[1] "{0} ਵਰਤੋਂਕਾਰ"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -618,9 +624,6 @@ msgstr[1] "{files} ਫਾਈਲਾਂ"
 msgid "Image changes being processed"
 msgstr "ਚਿੱਤਰ ਬਦਲਾਓ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ"
 
-msgid "Select an application first"
-msgstr "ਪਹਿਲਾਂ ਐਪਲੀਕੇਸ਼ਨ ਚੁੁਣੋ"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ਅੱਖਰ"
@@ -639,6 +642,9 @@ msgstr "ਇਹ ਭਾਸ਼ਾ ਹਟਾਓ"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"

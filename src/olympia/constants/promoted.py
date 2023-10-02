@@ -22,6 +22,7 @@ _PromotedSuperClass = namedtuple(
         'can_primary_hero',
         'immediate_approval',
         'flag_for_human_review',
+        'can_be_compatible_with_fenix',  # Note: we also check it's promoted for Android
     ],
     defaults=(
         # "Since fields with a default value must come after any fields without
@@ -37,6 +38,7 @@ _PromotedSuperClass = namedtuple(
         False,  # can_primary_hero - can be added to a primary hero shelf
         False,  # immediate_approval - will addon be auto-approved once added
         False,  # flag_for_human_review - will be add-on be flagged for another review
+        False,  # can_be_compatible_with_fenix
     ),
 )
 
@@ -67,6 +69,7 @@ RECOMMENDED = PromotedClass(
         applications.ANDROID.short: 'recommended-android',
     },
     can_primary_hero=True,
+    can_be_compatible_with_fenix=True,
 )
 
 SPONSORED = PromotedClass(
@@ -110,6 +113,7 @@ LINE = PromotedClass(
         applications.ANDROID.short: 'line',
     },
     can_primary_hero=True,
+    can_be_compatible_with_fenix=True,
 )
 
 SPOTLIGHT = PromotedClass(
@@ -137,7 +141,6 @@ NOTABLE = PromotedClass(
     warning=False,
     listed_pre_review=True,
     unlisted_pre_review=True,
-    can_primary_hero=True,
     flag_for_human_review=True,
 )
 

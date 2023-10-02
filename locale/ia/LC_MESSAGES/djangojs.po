@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2022-10-21 23:27+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-15 18:38+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -67,8 +67,14 @@ msgstr "Tu additivo excede le maxime dimension de {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Recipite un responsa vacue ab le servitor; stato: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Tu extension debe esser compatibile con al minus un application."
+
 msgid "Unexpected server error while validating."
 msgstr "Error impreviste del servitor durante le validation."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "Explicitemente marcate como compatibile con Firefox pro Android in le manifesto"
 
 msgid "Finished validating {0}"
 msgstr "Validation de {0} completate"
@@ -98,7 +104,7 @@ msgstr ""
 "isto in le proxime passo)."
 
 msgid "Add-on submission checklist"
-msgstr "Lista de controlo del submission del additivo"
+msgstr "Lista de controlo del invio del additivo"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr "Per favor verifica le punctos sequente ante de completar tu invio. Isto minimisara retardos o mal interpretation durante le processo de revision:"
@@ -108,7 +114,7 @@ msgid ""
 "field to avoid having your submission rejected."
 msgstr ""
 "Le scripts minimisate, concatenate o generate automaticamente (excepte le bibliothecas cognoscite) debe haber lor codice fonte submittite separatemente pro revision. Assecura te de usar le campo de "
-"incargamento de codice fonte pro evitar que tu submission es rejectate."
+"incargamento de codice fonte pro evitar que tu invio es rejectate."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Le processo de validation trovava iste problemas, que pote ducer al rejectiones:"
@@ -615,9 +621,6 @@ msgstr[1] "{files} files"
 msgid "Image changes being processed"
 msgstr "Cambios de imagines in elaboration"
 
-msgid "Select an application first"
-msgstr "Elige antea un application"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> character"
@@ -636,6 +639,9 @@ msgstr "Remover iste localisation"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} visualisava antea iste pagina."
+
+msgid "Review page polling failed."
+msgstr "Impossibile recuperar le pagina del recensiones."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} visualisava antea iste additivo."

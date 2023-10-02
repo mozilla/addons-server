@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-05 11:52+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 01:39+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -119,6 +119,10 @@ msgid "Unknown min app version specified"
 msgstr "Καθορίστηκε άγνωστη ελάχιστη έκδοση εφαρμογής"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο μανιφέστο για αυτήν την εφαρμογή (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Οι εικόνες πρέπει να είναι μικρότερες από %dΜΒ"
 
@@ -146,9 +150,6 @@ msgid "The latest approved version of this %s add-on cannot be deleted because t
 msgstr ""
 "Η τελευταία εγκεκριμένη έκδοση του προσθέτου %s δεν μπορεί να διαγραφεί, επειδή η προηγούμενη έκδοση δεν εγκρίθηκε για προώθηση %s. Παρακαλούμε επικοινωνήστε με τους διαχειριστές του AMO αν "
 "χρειάζεστε βοήθεια."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Η έκδοση {version} ταιριάζει με το {block_link} για αυτό το πρόσθετο. Μπορείτε να επικοινωνήσετε με τους {amo_admins} για περισσότερες πληροφορίες."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Η έκδοση {version_string} μεταφορτώθηκε πριν και διαγράφηκε."
@@ -346,6 +347,9 @@ msgstr "Εγγραφή ή σύνδεση"
 msgid "Email:"
 msgstr "Email:"
 
+msgid "Two-factor authentication"
+msgstr "Ταυτοποίηση δύο παραγόντων"
+
 msgid "OK"
 msgstr "OK"
 
@@ -459,37 +463,6 @@ msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χ
 
 msgid "This add-on already belongs to the collection"
 msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "Το GUID %(guid)s είναι σε εκκρεμούσα κατάσταση υποβολής"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Δεν βρέθηκε το μπλοκ με GUID %(guid)s"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Το πρόσθετο με GUID %(guid)s δεν υπάρχει"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Τα μπλοκ προς ενημέρωση είναι διαφορετικά επειδή έχει αλλάξει η ελάχιστη ή η μέγιστη έκδοση."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "Το %(value)s περιέχει *"
-
-msgid "Invalid version"
-msgstr "Μη έγκυρη έκδοση"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Η ελάχιστη έκδοση δεν μπορεί να είναι μεγαλύτερη από τη μέγιστη έκδοση"
-
-msgid "Review Listed"
-msgstr "Αναρτημένη αξιολόγηση"
-
-msgid "Review Unlisted"
-msgstr "Μη αναρτημένη αξιολόγηση"
 
 msgid "{addon} was created."
 msgstr "Το {addon} δημιουργήθηκε."
@@ -853,11 +826,32 @@ msgstr "Αναιρέθηκε η απόρριψη του {addon} {version}."
 msgid "Un-rejected"
 msgstr "Αναιρέθηκε η απόρριψη"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Η επισήμανση «needs_human_review» του {addon} απαλείφθηκε."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Έγινε σύνταξη απάντησης στο {rating} για το {addon}."
 
-msgid "Needs Human Review cleared"
-msgstr "Καταργήθηκε η επισήμανση «Απαιτείται έλεγχος από άνθρωπο»"
+msgid "{addon} {version} pending rejection cleared."
+msgstr "Η εκκρεμής απόρριψη του {addon} {version} καταργήθηκε."
+
+msgid "Pending rejection cleared"
+msgstr "Η εκκρεμής απόρριψη διαγράφηκε"
+
+msgid "{version} added to Blocklist."
+msgstr "Η έκδοση {version} προστέθηκε στη λίστα αποκλεισμού."
+
+msgid "Version Blocked"
+msgstr "Η έκδοση αποκλείστηκε"
+
+msgid "{version} removed from Blocklist."
+msgstr "Η έκδοση {version} αφαιρέθηκε από τη λίστα αποκλεισμού."
+
+msgid "Version Unblocked"
+msgstr "Αναιρέθηκε ο αποκλεισμός της έκδοσης"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Η αξιολόγηση διαχειριστή για το πρόσθετο {addon}{version} καταργήθηκε."
+
+msgid "Admin add-on-review cleared"
+msgstr "Η αξιολόγηση διαχειριστή για το πρόσθετο καταργήθηκε"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -978,7 +972,7 @@ msgid "Site Permissions"
 msgstr "Άδειες ιστοτόπων"
 
 msgid "Alerts & Updates"
-msgstr "Ειδοποιήσεις & ενημερώσεις"
+msgstr "Ειδοποιήσεις και ενημερώσεις"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
@@ -1008,7 +1002,7 @@ msgstr ""
 " και πολλά άλλα."
 
 msgid "Feeds, News & Blogging"
-msgstr "Ροές, ειδήσεις & blog"
+msgstr "Ροές, ειδήσεις και ιστολόγια"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
@@ -1016,7 +1010,7 @@ msgstr ""
 "και πολλά άλλα."
 
 msgid "Games & Entertainment"
-msgstr "Παιχνίδια & ψυχαγωγία"
+msgstr "Παιχνίδια και ψυχαγωγία"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr "Κάντε λήψη επεκτάσεων του Firefox για ενίσχυση της ψυχαγωγικής σας εμπειρίας. Αυτή η κατηγορία περιέχει επεκτάσεις που μπορούν να βελτιώσουν το gaming, την αναπαραγωγή βίντεο και πολλά άλλα."
@@ -1028,7 +1022,7 @@ msgid "Download Firefox extensions that offer language support like grammar chec
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν υποστήριξη γλωσσών, όπως γραμματικό έλεγχο, αναζήτηση λέξεων σε λεξικό, μετάφραση κειμένου, μηχανισμό ανάγνωσης κειμένου και πολλά άλλα."
 
 msgid "Photos, Music & Videos"
-msgstr "Εικόνες & πολυμέσα"
+msgstr "Φωτογραφίες, μουσική και βίντεο"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
@@ -1036,7 +1030,7 @@ msgstr ""
 "εικόνων και πολλά άλλα."
 
 msgid "Privacy & Security"
-msgstr "Απόρρητο & ασφάλεια"
+msgstr "Απόρρητο και ασφάλεια"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
@@ -1056,7 +1050,7 @@ msgid "Download Firefox extensions that can enhance your online shopping experie
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορούν να βελτιώσουν την εμπειρία των διαδικτυακών σας αγορών με εύρεση κουπονιών και προσφορών, ανάλυση κριτικών και πολλά άλλα."
 
 msgid "Social & Communication"
-msgstr "Κοινωνικά δίκτυα & επικοινωνία"
+msgstr "Κοινωνικά δίκτυα και επικοινωνία"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
@@ -1086,7 +1080,7 @@ msgid "Download Firefox extensions that can be unpredictable and creative, yet u
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορεί να είναι απρόβλεπτες και δημιουργικές, αλλά και χρήσιμες για περίεργες εργασίες."
 
 msgid "Device Features & Location"
-msgstr "Λειτουργίες συσκευής & τοποθεσία"
+msgstr "Λειτουργίες συσκευής και τοποθεσία"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
 msgstr "Κάντε λήψη επεκτάσεων για βελτίωση του Firefox για Android. Εκτελέστε γρήγορες αναζητήσεις, απελευθερώστε πόρους συστήματος, δημιουργήστε σημειώσεις και πολλά άλλα."
@@ -1106,7 +1100,7 @@ msgstr ""
 "Κάντε λήψη επεκτάσεων που ενισχύουν τις επιδόσεις του Firefox. Βρείτε επεκτάσεις που σας βοηθούν να είστε πιο παραγωγικοί και αποτελεσματικοί, αποκλείοντας ενοχλητικές διαφημίσεις και πολλά άλλα."
 
 msgid "Photos & Media"
-msgstr "Εικόνες & πολυμέσα"
+msgstr "Φωτογραφίες και πολυμέσα"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
@@ -1114,7 +1108,7 @@ msgstr ""
 "πολλά άλλα."
 
 msgid "Security & Privacy"
-msgstr "Ασφάλεια & απόρρητο"
+msgstr "Ασφάλεια και απόρρητο"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
@@ -1128,7 +1122,7 @@ msgid "Download Firefox extensions to enhance your experience on popular social 
 msgstr "Κάντε λήψη επεκτάσεων του Firefox για βελτίωση της εμπειρίας σας σε δημοφιλείς ιστοτόπους κοινωνικής δικτύωσης, όπως το YouTube, το GitHub, το Reddit και πολλά άλλα."
 
 msgid "Sports & Games"
-msgstr "Αθλητισμός & παιχνίδια"
+msgstr "Αθλητισμός και παιχνίδια"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr "Κάντε λήψη επεκτάσεων του Firefox που ενισχύουν την ψυχαγωγική σας εμπειρία με βελτιώσεις ζωντανών ροών, αθλητικές ενημερώσεις και πολλά άλλα."
@@ -1187,7 +1181,7 @@ msgid "Download Firefox themes that celebrate style of all forms—patterns, flo
 msgstr "Κάντε λήψη θεμάτων για το Firefox, που εκφράζουν όλα τα είδη του στυλ — μοτίβα, φλοράλ, υφές, μοντέλα και πολλά άλλα."
 
 msgid "Film and TV"
-msgstr "Ταινίες & τηλεόραση"
+msgstr "Κινηματογράφος και τηλεόραση"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
@@ -1268,7 +1262,7 @@ msgid "Business"
 msgstr "Επιχειρήσεις"
 
 msgid "Dictionaries & Encyclopedias"
-msgstr "Λεξικά & εγκυκλοπαίδειες"
+msgstr "Λεξικά και εγκυκλοπαίδειες"
 
 msgid "Kids"
 msgstr "Παιδιά"
@@ -1277,16 +1271,16 @@ msgid "Multiple Search"
 msgstr "Πολλαπλή αναζήτηση"
 
 msgid "News & Blogs"
-msgstr "Ειδήσεις & blog"
+msgstr "Ειδήσεις και ιστολόγια"
 
 msgid "Photos & Images"
-msgstr "Φωτογραφίες & εικόνες"
+msgstr "Φωτογραφίες και εικόνες"
 
 msgid "Shopping & E-Commerce"
-msgstr "Αγορές & ηλεκτρονικό εμπόριο"
+msgstr "Αγορές και ηλεκτρονικό εμπόριο"
 
 msgid "Social & People"
-msgstr "Κοινωνικά δίκτυα & άτομα"
+msgstr "Κοινωνικά δίκτυα και άνθρωποι"
 
 msgid "Travel"
 msgstr "Ταξίδια"
@@ -1550,6 +1544,11 @@ msgstr "Προβολή τρέχοντος"
 msgid "Invalid version range."
 msgstr "Μη έγκυρο εύρος εκδόσεων."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+"Μη έγκυρο εύρος εκδόσεων. Για το Firefox για Android, μπορείτε να επιλέξετε μόνο ένα εύρος που ξεκινά με την έκδοση %(max)s ή νεότερη, ή που τελειώνει με κάποια έκδοση, παλαιότερη της %(min)s."
+
 msgid "Need at least one compatible application."
 msgstr "Απαιτείται τουλάχιστον μία συμβατή εφαρμογή."
 
@@ -1564,9 +1563,6 @@ msgstr "Η παράκαμψη απέτυχε να επικυρωθεί"
 
 msgid "Need to select at least one application."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μια εφαρμογή."
-
-msgid "a blocklist entry"
-msgstr "μια καταχώριση λίστας μπλοκ"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Η έκδοση {version} μεταφορτώθηκε πριν και διαγράφηκε."
@@ -1621,6 +1617,9 @@ msgstr "Σημείωση ασφαλείας της Mozilla: Τα διαπιστ�
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά σφάλματα/προειδοποιήσεις, επομένως κρύφτηκαν %s μηνύματα. Αφού διορθώσετε τα ορατά μηνύματα, θα μπορέσετε να δείτε τα υπόλοιπα."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Αυτό το πρόσθετο δεν είναι θέμα. Χρησιμοποιήστε τη σελίδα <a href=\"{link}\">Υποβολή νέου πρόσθετου</a> για να υποβάλετε νέες επεκτάσεις."
 
 msgid "Updated"
 msgstr "Ενημερώσεις"
@@ -1684,6 +1683,9 @@ msgstr "Οι αλλαγές αποθηκεύτηκαν επιτυχώς."
 
 msgid "Validate Add-on"
 msgstr "Επικύρωση προσθέτου"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Παρακαλούμε προσθέστε την ταυτοποίηση δύο παραγόντων στον λογαριασμό σας για να υποβάλετε επεκτάσεις.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
@@ -1828,7 +1830,7 @@ msgid "Development Add-ons"
 msgstr "Δημιουργικά πρόσθετα"
 
 msgid "Community & Support"
-msgstr "Κοινότητα & υποστήριξη"
+msgstr "Κοινότητα και υποστήριξη"
 
 msgid "Add-ons Blog"
 msgstr "Blog πρόσθετων"
@@ -1890,60 +1892,6 @@ msgstr "Δραστηριότητα"
 msgid "Subscribe to this feed"
 msgstr "Εγγραφή στο αρχείο ροής"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Αυτό το πρόσθετο δεν είναι συμβατό με το <b>%(app_name)s %(app_version)s</b>, δηλαδή την πιο πρόσφατη έκδοση του %(app_name)s. Παρακαλούμε ενημερώστε τις πληροφορίες συμβατότητας του προσθέτου σας ή"
-" μεταφορτώστε μια νεότερη έκδοσή του."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Αναβάθμιση συμβατότητας</a> <a href=\"%(version_url)s\" class=\"button\">Αποστολή νέας έκδοσης</a> ή <a href=\"#\" "
-"class=\"close\">αγνόηση</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Προβολή και ενημέρωση εύρους συμβατότητας εφαρμογής"
-
-msgid "Compatibility"
-msgstr "Συμβατότητα"
-
-msgid "Update Compatibility"
-msgstr "Ενημέρωση συμβατότητας"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-"Η προσαρμογή των πληροφοριών για την εφαρμογή από εδώ, θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετο σας ακόμη κι αν το αρχείο install manifest του πακέτου υποδεικνύει ότι δεν είναι "
-"συμβατό."
-
-msgid "Application"
-msgstr "Εφαρμογή"
-
-msgid "Supported Versions"
-msgstr "Υποστηριζόμενες εκδόσεις"
-
-msgid "Remove"
-msgstr "Αφαίρεση"
-
-msgid "Add Another Application&hellip;"
-msgstr "Προσθήκη κι άλλης εφαρμογής&hellip;"
-
-msgid "Save Changes"
-msgstr "Αποθήκευση αλλαγών"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "ή"
-
-msgid "Cancel"
-msgstr "Ακύρωση"
-
-msgid "Close"
-msgstr "Κλείσιμο"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -2000,7 +1948,7 @@ msgid "Decline"
 msgstr "Απόρριψη"
 
 msgid "Manage Authors & License"
-msgstr "Διαχείριση προγραμματιστών & άδειας χρήσης"
+msgstr "Διαχείριση προγραμματιστών και άδειας χρήσης"
 
 msgid "Authors"
 msgstr "Δημιουργοί"
@@ -2014,12 +1962,18 @@ msgstr "Εκκρεμεί επιβεβαίωση των δημιουργών"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Δημιουργοί που έχουν προστεθεί σε αυτό το πρόσθετο αλλά δεν έχουν επιβεβαιωθεί."
 
+msgid "Save Changes"
+msgstr "Αποθήκευση αλλαγών"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό δημιουργών με 2 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, όπως προσθήκη "
 "και αφαίρεση άλλων δημιουργών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, εκτός από προσθήκη και αφαίρεση άλλων δημιουργών</li> </ul>"
+
+msgid "Close"
+msgstr "Κλείσιμο"
 
 msgid "Additional Details"
 msgstr "Επιπρόσθετες λεπτομέρειες"
@@ -2060,6 +2014,14 @@ msgid ""
 msgstr ""
 "Αν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνσή της εδώ. Αν ο ιστότοπός σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
 "καταχωρημένα πρόσθετα."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "ή"
+
+msgid "Cancel"
+msgstr "Ακύρωση"
 
 msgid "Describe Add-on"
 msgstr "Περιγραφή προσθέτου"
@@ -2367,7 +2329,7 @@ msgid "More"
 msgstr "Περισσότερα"
 
 msgid "Manage Status & Versions"
-msgstr "Διαχείριση κατάστασης & έκδοσης"
+msgstr "Διαχείριση κατάστασης και εκδόσεων"
 
 msgid "View Recent Changes"
 msgstr "Προβολή πρόσφατων αλλαγών"
@@ -2925,7 +2887,7 @@ msgid "Developer News"
 msgstr "Ειδήσεις προγραμματιστών"
 
 msgid "View the blog &#9658;"
-msgstr "Προβολή του blog &#9658;"
+msgstr "Προβολή ιστολογίου &#9658;"
 
 msgid "Version Signature Pending"
 msgstr "Εκκρεμεί η υπογραφή έκδοσης"
@@ -3046,7 +3008,7 @@ msgid "WebExtensions API"
 msgstr "WebExtensions API"
 
 msgid "Web-Ext: build & test extensions"
-msgstr "Web-Ext: ανάπτυξη & δοκιμή επεκτάσεων"
+msgstr "Web-Ext: ανάπτυξη και δοκιμή επεκτάσεων"
 
 msgid "Promote"
 msgstr "Προώθηση"
@@ -3166,6 +3128,17 @@ msgstr "Διαχείριση {0}"
 msgid "Files"
 msgstr "Αρχεία"
 
+msgid "Compatibility"
+msgstr "Συμβατότητα"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+"Η προσαρμογή των πληροφοριών για την εφαρμογή από εδώ, θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετο σας ακόμη κι αν το αρχείο install manifest του πακέτου υποδεικνύει ότι δεν είναι "
+"συμβατό."
+
+msgid "Add Another Application&hellip;"
+msgstr "Προσθήκη άλλης εφαρμογής&hellip;"
+
 msgid "Version Notes"
 msgstr "Σημειώσεις έκδοσης"
 
@@ -3203,7 +3176,7 @@ msgid "Created on %(created)s and changed to %(status)s"
 msgstr "Δημιουργήθηκε στις %(created)s και άλλαξε σε %(status)s"
 
 msgid "Status & Versions"
-msgstr "Κατάσταση & εκδόσεις"
+msgstr "Κατάσταση και εκδόσεις"
 
 msgid "Edit this version"
 msgstr "Επεξεργασία έκδοσης"
@@ -3500,7 +3473,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Αυτόματη διαγραφή cookies αφού κλείσετε μια καρτέλα."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Ένας απλός τρόπος για να προσαρμόσετε το μέγεθος του κειμένου οποιασδήποτε σελίδας—ή ακόμη και να μεγεθύνετε την ίδια τη σελίδα."
 
@@ -3642,7 +3614,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Αποκλείστε όλα τα αναδυόμενα από προεπιλογή και αποφασίστε έπειτα ποια θέλετε να ανοίξετε."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοτόπων! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
@@ -3882,7 +3853,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Αποκτήστε το πλεονέκτημα στο Amazon. Όταν κοιτάζετε σελίδες προϊόντων σε άλλα διαδικτυακά καταστήματα, μπορείτε να δείτε το ίδιο προϊόν στο Amazon, αν υπάρχει."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Απολαύστε τον απόλυτο έλεγχο καρτελών — κλείστε τις διπλές καρτέλες, συγχωνεύστε παράθυρα, αντιγράψτε τον τίτλο της καρτέλας και άλλα."
 
@@ -4000,7 +3970,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Διόρθωση ενοχλητικού ήχου. Είναι πολύ χαμηλή η ένταση σε κάποιον ιστότοπο; Πολύ υψηλή; Το SoundFixer μπορεί να βοηθήσει."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Επεξεργασία ιστοσελίδας πριν από την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — αφαιρέστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
 
@@ -4063,7 +4032,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Απολαύστε την υποστήριξη λήψεων με πολλαπλά thread. Αυτόματη ανίχνευση διαφορετικών τύπων πολυμέσων που διατίθενται για λήψη."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Εύκολη αποθήκευση εικόνων — απλά \"αρπάξτε\" τις από την τρέχουσα καρτέλα σας."
 
@@ -4148,7 +4116,6 @@ msgid "Create and customize tab groups."
 msgstr "Δημιουργήστε και προσαρμόστε ομάδες καρτελών."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
 
@@ -4181,7 +4148,7 @@ msgstr "Κάντε διπλό κλικ σε οποιαδήποτε λέξη γι
 
 #. editorial content for the discovery pane.
 msgid "Blues & Yellows"
-msgstr "Μπλε & κίτρινα"
+msgstr "Μπλε και κίτρινα"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4233,6 +4200,14 @@ msgstr "Αλλαγή θεμάτων με βάση την ώρα. Ρυθμίστ�
 msgid "Declutter your Twitter experience."
 msgstr "Τακτοποιήστε την εμπειρία σας στο Twitter."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Επαναφέρετε τη δυνατότητα εμφάνισης του κουμπιού «Δεν μου αρέσει»!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Ακούστε μουσική στο YouTube χωρίς τις ενοχλητικές διακοπές «Βίντεο σε παύση. Συνέχεια παρακολούθησης;»."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Ορισμένοι ιστότοποι δυσκολεύονται με την αναπαραγωγή βίντεο στο Firefox για Android. Αυτή η επέκταση διορθώνει το σφάλμα."
@@ -4240,6 +4215,14 @@ msgstr "Ορισμένοι ιστότοποι δυσκολεύονται με τ
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Βρήκατε μια ενδιαφέρουσα εικόνα στο web; Εξερευνήστε την προέλευσή της με το TinEye."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Εύκολη αποθήκευση εικόνων — απλά «αρπάξτε» τις από την τρέχουσα καρτέλα σας."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Απολαύστε τον απόλυτο έλεγχο καρτελών — κλείστε τις διπλές καρτέλες, συγχωνεύστε παράθυρα, αντιγράψτε τον τίτλο της καρτέλας και άλλα."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4250,12 +4233,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Προσαρμογή κινήσεων ποντικιού. Ανακαλύψτε νέους τρόπους πλοήγησης με 50+ ρυθμίσεις."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Προσαρμόστε την εμφάνιση όλων των ιστοτόπων. Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, πλοήγηση σε σελίδες και πολλά άλλα."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Ένας απλός τρόπος για να προσαρμόσετε το μέγεθος του κειμένου οποιασδήποτε σελίδας — ή ακόμη και να μεγεθύνετε την ίδια τη σελίδα."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Απολαύστε μικρογραφίες ιστοτόπων δίπλα στα αποτελέσματα αναζήτησής σας."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Αποθήκευση ολόκληρης ιστοσελίδας — μαζί με τις εικόνες και το στυλ της — σε αρχείο HTML."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Επεξεργασία ιστοσελίδας πριν από την εκτύπωση. Πραγματοποιήστε οπτικές αλλαγές — αφαιρέστε τις διαφημίσεις ή το ανεπιθύμητο περιεχόμενο — από οποιαδήποτε ιστοσελίδα θέλετε να εκτυπώσετε."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4286,10 +4285,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Επιστρέψτε σε πιο απλές εποχές — όταν τα κορυφαία αποτελέσματα αναζήτησης βρίσκονταν πάνω από τις διαφημίσεις (συμβατό με τις μηχανές αναζήτησης Google και Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Σταματήστε να δίνετε στους ιστοτόπους τη διεύθυνση email σας. Το Firefox Relay προστατεύει την ταυτότητά σας και εμποδίζει την ανεπιθύμητη αλληλογραφία. Αναβαθμίστε στο Premium για περισσότερα "
-"οφέλη, όπως η φραγή πιο συγκεκριμένων διαφημιστικών email."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Κρύψτε το email σας για να προστατέψετε την ταυτότητά σας και να αποτρέψετε την ανεπιθύμητη αλληλογραφία. Οι νέες ενημερώσεις κάνουν το Firefox Relay ακόμα πιο εύκολο στη χρήση."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4355,6 +4352,14 @@ msgstr "Βελτιώστε την εμπειρία σας με τα παιχνί
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "«Μου αρέσει» η επιστροφή του «Δεν μου αρέσει»."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Μετάφραση ιστοτόπων στο Firefox — ιδιωτικά — χωρίς τη χρήση του cloud."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Αποκλεισμός ιστοτόπων που σπαταλούν τον χρόνο σας. Αποκλείστε τους εντελώς ή μόνο με χρονικό περιορισμό της επιλογής σας."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Οι επεκτάσεις είναι σαν εφαρμογές για το Firefox."
@@ -4368,16 +4373,17 @@ msgid "See all extensions"
 msgstr "Προβολή όλων των επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Επεκτάσεις απορρήτου και ασφάλειας"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Προσαρμογή YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Βασικό πακέτο επεκτάσεων"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Επεκτάσεις διαχείρισης λήψεων"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Επεκτάσεις παιχνιδιών και ψυχαγωγίας"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4473,10 +4479,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις φραγής διαφημίσεων"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Προσαρμογή YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Περισσότερες επιλεγμένες επεκτάσεις YouTube"
 
@@ -4519,6 +4521,14 @@ msgstr "Επεκτάσεις δημιουργικότητας"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Περισσότερες επιλογές συντακτών για δημιουργικότητα"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Επεκτάσεις κοινωνικών δικτύων"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Περισσότερες επιλογές συντακτών για κοινωνικά δίκτυα"
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"
@@ -4639,6 +4649,13 @@ msgstr "Άλλος (παρακαλούμε εξηγήστε)"
 msgid "Auto-flagged due to word match"
 msgstr "Αυτόματη σήμανση λόγω αντιστοίχισης λέξεων"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Αυτόματη σήμανση λόγω περιορισμού χρήστη"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "Το %(value)s περιέχει μη αλφαριθμητικό χαρακτήρα."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Το κείμενο της κριτικής δεν μπορεί να περιέχει τη λέξη: «{0}»"
@@ -4694,15 +4711,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "από %(user)s στις %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "από τον/την %(user)s στις %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Επισημάνθηκε από τον/την %(user)s στις %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστη έβλεπε τη σελίδα αυτή πριν από εσάς."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Προειδοποίηση!</strong> Κάποιος άλλος χρήστης ενδέχεται να έβλεπε τη σελίδα αυτήν πριν από εσάς."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4958,19 +4975,19 @@ msgid "Top Applications"
 msgstr "Κορυφαίες εφαρμογές"
 
 msgid "See more applications&hellip;"
-msgstr "Δείτε περισσότερες εφαρμογές&hellip;"
+msgstr "Περισσότερες εφαρμογές&hellip;"
 
 msgid "Top Languages"
 msgstr "Κορυφαίες γλώσσες"
 
 msgid "See more languages&hellip;"
-msgstr "Δείτε περισσότερες γλώσσες&hellip;"
+msgstr "Περισσότερες γλώσσες&hellip;"
 
 msgid "Top Platforms"
 msgstr "Κορυφαίες πλατφόρμες"
 
 msgid "See more platforms&hellip;"
-msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
+msgstr "Περισσότερες πλατφόρμες&hellip;"
 
 msgid "Download sources by Date"
 msgstr "Πηγές λήψεων κατά ημερομηνία"
@@ -5120,8 +5137,8 @@ msgstr "Χρήστης Firefox {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Εισαγάγετε ένα έγκυρο εύρος CIDR δικτύου IPv4 ή IPv6, π.χ. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Έχουν υποβληθεί πολλαπλά πρόσθετα που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Έχουν αποσταλεί πολλαπλές υποβολές που παραβιάζουν τις πολιτικές μας από την τοποθεσία σας. Η διεύθυνση IP έχει αποκλειστεί."
 
 msgid "Email Pattern"
 msgstr "Μοτίβο email"
@@ -5131,8 +5148,8 @@ msgstr ""
 "Εισαγάγετε το πλήρες email που θα πρέπει να αποκλειστεί ή χρησιμοποιήστε χαρακτήρες αναπλήρωσης τύπου Unix, π.χ. «*@paradeigma.com». Αν θέλετε να αποκλείσετε έναν τομέα και τους υποτομείς του, "
 "προσθέστε μια δευτερεύουσα καταχώρηση, π.χ. «*@*.paradeigma.com»."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "Δεν επιτρέπεται η υποβολή προσθέτου στη διεύθυνση email του λογαριασμού σας."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "Δεν επιτρέπονται υποβολές από τη διεύθυνση email του λογαριασμού σας."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

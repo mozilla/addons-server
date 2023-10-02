@@ -5,7 +5,6 @@ x-env-mapping: &env
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
     - CELERY_RESULT_BACKEND=redis://redis:6379/1
     - DATABASES_DEFAULT_URL=mysql://root:@mysqld/olympia
-    - DJANGO_VERSION=django32
     - ELASTICSEARCH_LOCATION=elasticsearch:9200
     - MEMCACHE_LOCATION=memcached:11211
     - MYSQL_DATABASE=olympia
@@ -14,14 +13,12 @@ x-env-mapping: &env
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - TERM=xterm-256color
-    - UITEST_FXA_EMAIL
-    - UITEST_FXA_PASSWORD=uitester
     - CIRCLECI=${CIRCLECI}
     - HISTFILE=/data/olympia/docker/artifacts/bash_history
     - HISTSIZE=50000
     - HISTIGNORE=ls:exit:"cd .."
     - HISTCONTROL=erasedups
-    # Note: docker-compose uses the values exported from .env for GID/UID if
+    # Note: docker compose uses the values exported from .env for GID/UID if
     # they exist. ./docker/fix_olympia_user.sh uses those variables to fix
     # the uid/gid of the user to match the host if necessary.
     - UID=${UID:-9500}

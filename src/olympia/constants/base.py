@@ -1,5 +1,6 @@
 import re
 from collections import namedtuple
+from datetime import datetime
 
 from django.utils.translation import gettext_lazy as _
 
@@ -343,17 +344,28 @@ DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC = '48.0'
 # The version of desktop Firefox that first supported static themes.
 DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
 
-# The version of Android that first minimally supported static themes.
-DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
-
 # The version of Firefox that first supported webext dictionaries.
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
 # The version of Firefox that first supported manifest version 3 (MV3)
 DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX = '109.0a1'
+
 # We don't know if the Android min version will be different, but assume it might be.
 DEFAULT_WEBEXT_MIN_VERSION_MV3_ANDROID = DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX
+
+# The version of Firefox for Android that first supported `gecko_android` key.
+DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID = '113.0'
+
+# First version we consider as "Fenix".
+MIN_VERSION_FENIX = '79.0a1'
+
+# Last version we consider as "Fennec"
+MAX_VERSION_FENNEC = '68.*'
+
+# The minimum version of Fenix where extensions are all available. Expect this
+# to be bumped to 120.0 later.
+MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '119.0a1'
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
@@ -455,3 +467,12 @@ DOWNLOAD_SOURCES_PREFIX = ('external-', 'mozcom-', 'discovery-', 'cb-btn-', 'cb-
 # Regexp for Firefox client IDs passed to our APIs, just to avoid sending
 # garbage to underlying services.
 VALID_CLIENT_ID = re.compile('^[a-zA-Z0-9]{64}$')
+
+APPVERSIONS_ORIGINATED_FROM_UNKNOWN = 0
+APPVERSIONS_ORIGINATED_FROM_AUTOMATIC = 1
+APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
+APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
+APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4
+APPVERSIONS_ORIGINATED_FROM_MIGRATION = 5
+
+MZA_LAUNCH_DATETIME = datetime(2023, 11, 1, 19, 0, 0)

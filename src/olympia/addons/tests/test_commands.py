@@ -1,22 +1,22 @@
 import random
 from contextlib import contextmanager
 from datetime import timedelta
+from unittest import mock
 
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-from freezegun import freeze_time
-from unittest import mock
 import pytest
+from freezegun import freeze_time
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport
 from olympia.addons.management.commands import (
     fix_langpacks_with_max_version_star,
     process_addons,
 )
 from olympia.addons.models import Addon, DeniedGuid
-from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -24,11 +24,9 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating, RatingAggregate
 from olympia.reviewers.models import AutoApprovalSummary
-from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version, VersionPreview
 
 
@@ -432,7 +430,7 @@ class TestDeleteObsoleteAddons(TestCase):
     def test_hard(self):
         # add it already to check that the conflict is ignored
         DeniedGuid.objects.create(guid=self.xul_theme.guid)
-        DeniedGuid.objects.all().count() == 1
+        assert DeniedGuid.objects.all().count() == 1
 
         call_command('process_addons', task='delete_obsolete_addons', with_deleted=True)
 
@@ -578,35 +576,3 @@ def test_delete_list_theme_previews():
     assert VersionPreview.objects.filter(id=other_firefox_preview.id).exists()
     assert VersionPreview.objects.filter(id=other_amo_preview.id).exists()
     assert not VersionPreview.objects.filter(id=other_old_list_preview.id).exists()
-
-
-@pytest.mark.django_db
-def test_disable_blocked_addons():
-    UserProfile.objects.create(pk=settings.TASK_USER_ID)
-    user = user_factory()
-    incomplete = addon_factory(status=amo.STATUS_NULL)
-    Block.objects.create(guid=incomplete.guid, updated_by=user)
-    nominated = addon_factory(status=amo.STATUS_NOMINATED)
-    Block.objects.create(guid=nominated.guid, updated_by=user)
-    approved = addon_factory(status=amo.STATUS_APPROVED)
-    Block.objects.create(guid=approved.guid, updated_by=user)
-    deleted = addon_factory(status=amo.STATUS_DELETED)
-    Block.objects.create(guid=deleted.guid, updated_by=user)
-    only_partially_blocked = addon_factory(status=amo.STATUS_APPROVED)
-    Block.objects.create(
-        guid=only_partially_blocked.guid, min_version='1', updated_by=user
-    )
-    addon_factory()  # just a random addon
-    assert Addon.unfiltered.filter(status=amo.STATUS_DISABLED).count() == 0
-
-    call_command('process_addons', task='disable_blocked_addons')
-
-    # these should have changed
-    assert incomplete.reload().status == amo.STATUS_DISABLED
-    assert nominated.reload().status == amo.STATUS_DISABLED
-    assert approved.reload().status == amo.STATUS_DISABLED
-    # these shouldn't have been changed
-    assert deleted.reload().status == amo.STATUS_DELETED
-    assert only_partially_blocked.reload().status == amo.STATUS_APPROVED
-
-    assert Addon.unfiltered.filter(status=amo.STATUS_DISABLED).count() == 3

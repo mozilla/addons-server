@@ -1,23 +1,23 @@
 from datetime import datetime, timedelta
+
 from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.constants.activity import RETENTION_DAYS
 from olympia.addons.models import Addon
 from olympia.addons.tasks import delete_addons
+from olympia.amo.models import FakeEmail
 from olympia.amo.utils import chunked
+from olympia.constants.activity import RETENTION_DAYS
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
-from olympia.amo.models import FakeEmail
 
 from . import tasks
 from .sitemap import (
     get_sitemap_path,
-    get_sitemaps,
     get_sitemap_section_pages,
+    get_sitemaps,
     render_index_xml,
 )
 
@@ -55,12 +55,12 @@ def gc(test_result=True):
     for file_upload in stale_uploads:
         log.info(
             '[FileUpload:{uuid}] Removing file: {path}'.format(
-                uuid=file_upload.uuid, path=file_upload.path
+                uuid=file_upload.uuid, path=file_upload.file_path
             )
         )
-        if file_upload.path:
+        if file_upload.file_path:
             try:
-                storage.delete(file_upload.path)
+                storage.delete(file_upload.file_path)
             except OSError:
                 pass
         file_upload.delete()

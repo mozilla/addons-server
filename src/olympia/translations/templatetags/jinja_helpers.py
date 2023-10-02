@@ -6,7 +6,6 @@ from django.utils.translation.trans_real import to_language
 
 import jinja2
 import markupsafe
-
 from django_jinja import library
 
 

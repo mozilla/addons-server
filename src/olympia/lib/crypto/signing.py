@@ -3,24 +3,21 @@ import io
 import json
 import os
 import zipfile
-
 from base64 import b64decode, b64encode
 
-from django.db import transaction
 from django.conf import settings
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage as storage
+from django.db import transaction
 from django.utils.encoding import force_bytes, force_str
 
 import requests
 import waffle
-
+from asn1crypto import cms
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
-from asn1crypto import cms
 
 import olympia.core.logger
-
 from olympia import amo
 
 
@@ -65,39 +62,37 @@ def use_promoted_signer(file_obj, promo_group):
 
 def add_guid(file_obj):
     with storage.open(file_obj.file.path) as fobj:
-        # Get the file data and add the guid to the manifest if waffle switch is enabled
-        if waffle.switch_is_active('add-guid-to-manifest'):
-            with zipfile.ZipFile(fobj, mode='r') as existing_zip:
-                manifest_json = json.loads(existing_zip.read('manifest.json'))
-                if (
-                    'browser_specific_settings' not in manifest_json
-                    and manifest_json.get('applications', {}).get('gecko')
-                ):
-                    gecko_root = manifest_json['applications']['gecko']
-                else:
-                    if 'browser_specific_settings' not in manifest_json:
-                        manifest_json['browser_specific_settings'] = {}
-                    if 'gecko' not in manifest_json['browser_specific_settings']:
-                        manifest_json['browser_specific_settings']['gecko'] = {}
-                    gecko_root = manifest_json['browser_specific_settings']['gecko']
+        # Get the file data and add the guid to the manifest.
+        with zipfile.ZipFile(fobj, mode='r') as existing_zip:
+            manifest_json = json.loads(existing_zip.read('manifest.json'))
+            if 'browser_specific_settings' not in manifest_json and manifest_json.get(
+                'applications', {}
+            ).get('gecko'):
+                gecko_root = manifest_json['applications']['gecko']
+            else:
+                if 'browser_specific_settings' not in manifest_json:
+                    manifest_json['browser_specific_settings'] = {}
+                if 'gecko' not in manifest_json['browser_specific_settings']:
+                    manifest_json['browser_specific_settings']['gecko'] = {}
+                gecko_root = manifest_json['browser_specific_settings']['gecko']
 
-                if 'id' not in gecko_root:
-                    gecko_root['id'] = file_obj.version.addon.guid
-                    new_zip_buffer = io.BytesIO()
-                    with zipfile.ZipFile(new_zip_buffer, mode='w') as new_zip:
-                        for info in existing_zip.filelist:
-                            if info.filename == 'manifest.json':
-                                new_zip.writestr(
-                                    'manifest.json',
-                                    json.dumps(manifest_json, indent=2).encode('utf-8'),
-                                )
-                            else:
-                                with new_zip.open(info.filename, mode='w') as new_file:
-                                    new_file.write(existing_zip.read(info))
-                    return new_zip_buffer.getvalue()
-                else:
-                    # we don't need to add a guid, so just return fobj as normal
-                    fobj.seek(0)
+            if 'id' not in gecko_root:
+                gecko_root['id'] = file_obj.version.addon.guid
+                new_zip_buffer = io.BytesIO()
+                with zipfile.ZipFile(new_zip_buffer, mode='w') as new_zip:
+                    for info in existing_zip.filelist:
+                        if info.filename == 'manifest.json':
+                            new_zip.writestr(
+                                'manifest.json',
+                                json.dumps(manifest_json, indent=2).encode('utf-8'),
+                            )
+                        else:
+                            with new_zip.open(info.filename, mode='w') as new_file:
+                                new_file.write(existing_zip.read(info))
+                return new_zip_buffer.getvalue()
+            else:
+                # we don't need to add a guid, so just return fobj as normal
+                fobj.seek(0)
 
         return fobj.read()
 

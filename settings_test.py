@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# ruff: noqa: F405
 from settings import *  # noqa
 
 

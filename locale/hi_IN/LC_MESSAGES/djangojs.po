@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2018-08-01 20:20+0000\n"
 "Last-Translator: Mohit Bansal <philomath@disroot.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,8 +68,14 @@ msgstr "आपका ऐड-ऑन अधिकतम आकार {0} से �
 msgid "Received an empty response from the server; status: {0}"
 msgstr "सर्वर से एक खाली प्रतिक्रिया प्राप्त हुयी; स्थिति: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "सत्यापन करते समय अप्रत्याशित सर्वर त्रुटि."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "मान्य क्रिया समाप्त {0}"
@@ -623,9 +629,6 @@ msgstr[1] "{files} फ़ाइलें"
 msgid "Image changes being processed"
 msgstr "छवि परिवर्तनो को संसाधित किया जा रहा है"
 
-msgid "Select an application first"
-msgstr "पहले एक अनुप्रयोग का चयन करें"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> अक्षर"
@@ -644,6 +647,9 @@ msgstr "इस स्थानीयकरण को निकालें"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} इस पेज को पहले देख रहे थे।"
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} पहले यह ऐड-ऑन देख रहे थे।"

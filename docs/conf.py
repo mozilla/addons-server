@@ -15,6 +15,8 @@
 import sys
 import os
 
+import sphinx_rtd_theme
+
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -28,11 +30,11 @@ sys.path.append(os.path.abspath('..'))
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'extensions.src_role',
     'sphinxcontrib.httpdomain',
+    'sphinxcontrib.jquery',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -110,11 +112,8 @@ pygments_style = 'sphinx'
 # from docs.readthedocs.io
 on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # otherwise, readthedocs.org uses their theme by default, so no need to specify
 # it
@@ -184,7 +183,7 @@ html_static_path = ['_static']
 # html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'olympiadoc'
+htmlhelp_basename = 'addons-server-doc'
 
 
 # -- Options for LaTeX output -------------------------------------------------
@@ -200,9 +199,9 @@ htmlhelp_basename = 'olympiadoc'
 latex_documents = [
     (
         'index',
-        'olympia.tex',
-        u'olympia Documentation',
-        u'Mozilla Addons Team',
+        'addons-server.tex',
+        'addons-server Documentation',
+        'Mozilla Addons Team',
         'manual',
     ),
 ]
@@ -224,19 +223,8 @@ latex_documents = [
 # If false, no module index is generated.
 # latex_use_modindex = True
 
-# Intersphinx links to the local _intersphinx cache.
-intersphinx_mapping = {
-    'http://docs.python.org/': 'python.inv',
-    'http://docs.djangoproject.com/en/dev': 'django.inv',
-    'http://jinja.pocoo.org/2/documentation/': 'jinja.inv',
-    'http://sphinx.pocoo.org/': 'jinja.inv',
-}
-
-for key, val in intersphinx_mapping.items():
-    intersphinx_mapping[key] = '_intersphinx/' + val
-
 # Root url where source files can be browsed online.
-src_base_url = 'http://github.com/mozilla/olympia/tree/master/'
+src_base_url = 'http://github.com/mozilla/addons-server/tree/master/'
 
 # Ignore missing targets for the http:obj <type>, it's how we declare the types
 # for input/output fields in the API docs.

@@ -4,7 +4,6 @@ from datetime import datetime
 from waffle import switch_is_active
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.celery import task

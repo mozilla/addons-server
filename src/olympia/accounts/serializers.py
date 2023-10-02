@@ -4,16 +4,15 @@ from django.utils.translation import gettext
 from rest_framework import serializers
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
-    clean_nl,
-    has_links,
     ImageCheck,
     SafeStorage,
+    clean_nl,
+    has_links,
     subscribe_newsletter,
     unsubscribe_newsletter,
     urlparams,

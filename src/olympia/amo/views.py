@@ -15,7 +15,6 @@ from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
-from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -27,31 +26,39 @@ from olympia.api.serializers import SiteStatusSerializer
 from olympia.users.models import UserProfile
 
 from . import monitors
-from .sitemap import get_sitemap_path, get_sitemaps, InvalidSection, render_index_xml
+from .sitemap import InvalidSection, get_sitemap_path, get_sitemaps, render_index_xml
 
 
 @never_cache
 @non_atomic_requests
-def heartbeat(request):
+def front_heartbeat(request):
     # For each check, a boolean pass/fail status to show in the template
-    status_summary = {}
+    status_summary = monitors.execute_checks(
+        [
+            'memcache',
+            'libraries',
+            'elastic',
+            'path',
+            'database',
+        ]
+    )
+    # If anything broke, send HTTP 500.
+    status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
-    checks = [
-        'memcache',
-        'libraries',
-        'elastic',
-        'path',
-        'rabbitmq',
-        'signer',
-        'database',
-    ]
+    return JsonResponse(status_summary, status=status_code)
 
-    for check in checks:
-        with statsd.timer('monitor.%s' % check):
-            status, _ = getattr(monitors, check)()
-        # state is a string. If it is empty, that means everything is fine.
-        status_summary[check] = {'state': not status, 'status': status}
 
+@never_cache
+@non_atomic_requests
+def services_heartbeat(request):
+    # For each check, a boolean pass/fail status to show in the template
+    status_summary = monitors.execute_checks(
+        [
+            'rabbitmq',
+            'signer',
+            'remotesettings',
+        ]
+    )
     # If anything broke, send HTTP 500.
     status_code = 200 if all(a['state'] for a in status_summary.values()) else 500
 
@@ -140,7 +147,7 @@ def handler500(request, **kwargs):
 
 @non_atomic_requests
 def csrf_failure(request, reason=''):
-    from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+    from django.middleware.csrf import REASON_NO_CSRF_COOKIE, REASON_NO_REFERER
 
     ctx = {
         'reason': reason,

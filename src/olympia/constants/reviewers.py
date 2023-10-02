@@ -27,6 +27,7 @@ REPUTATION_CHOICES = {
 # Review queue pagination
 REVIEWS_PER_PAGE = 200
 REVIEWS_PER_PAGE_MAX = 400
+VERSIONS_PER_REVIEW_PAGE = 10
 
 ACTION_MOREINFO = 0
 ACTION_FLAG = 1
@@ -65,3 +66,8 @@ REASON_ADDON_TYPE_CHOICES = {
     ADDON_EXTENSION: _('Extension'),
     ADDON_STATICTHEME: _('Theme'),
 }
+
+
+# Target number of reviews each task that adds extra versions to the review
+# queue will add per day.
+EXTRA_REVIEW_TARGET_PER_DAY_CONFIG_KEY = 'extra-review-target-per-day'

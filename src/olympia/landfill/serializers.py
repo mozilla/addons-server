@@ -1,32 +1,28 @@
-import collections
 import mimetypes
 import os
 import uuid
 
 from django.conf import settings
-from django.utils.translation import activate
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test.client import RequestFactory
-from fxa.constants import ENVIRONMENT_URLS
-from fxa.core import Client
-from fxa.tests.utils import TestEmailAccount
+from django.utils.translation import activate
+
 from rest_framework import serializers
 
 import olympia.core.logger
-
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import AddonUser, Preview, Addon
+from olympia.addons.models import Addon, AddonUser, Preview
 from olympia.addons.utils import generate_addon_guid
-from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
+from olympia.amo.tests import addon_factory, copy_file_to_temp, user_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
+from olympia.constants.promoted import RECOMMENDED
+from olympia.devhub.utils import create_version_for_upload
+from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.landfill.collection import generate_collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
-from olympia.devhub.utils import create_version_for_upload
-from olympia.hero.models import PrimaryHero, SecondaryHero
-from olympia.constants.promoted import RECOMMENDED
 
 from .version import generate_version
 
@@ -38,35 +34,9 @@ class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
 
     def __init__(self):
-        self.fxa_email = os.environ.get('UITEST_FXA_EMAIL')
-        self.fxa_password = os.environ.get('UITEST_FXA_PASSWORD', 'uitester')
-        if self.fxa_email:
-            self.fxa_id = self._create_fxa_user()
-        else:
-            # If UITEST_FXA_EMAIL was empty/absent, skip creating the fxa
-            # account: we won't need to log in with that user through FxA.
-            log.info('UITEST_FXA_EMAIL is empty, skipping FxA user creation')
-            # We still need those to be set for the content to be created.
-            self.fxa_id = None
-            self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
+        self.fxa_id = None
+        self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
         self.user = self._create_addon_user()
-
-    def _create_fxa_user(self):
-        """Create fxa user for logging in."""
-        fxa_client = Client(ENVIRONMENT_URLS['stable']['authentication'])
-        account = TestEmailAccount(email=self.fxa_email)
-        password = self.fxa_password
-        FxAccount = collections.namedtuple('FxAccount', 'email password')
-        fxa_account = FxAccount(email=account.email, password=password)
-        session = fxa_client.create_account(fxa_account.email, fxa_account.password)
-        account.fetch()
-        message = account.wait_for_email(
-            lambda m: 'x-verify-code' in m['headers']
-            and session.uid == m['headers']['x-uid']
-        )
-        session.verify_email_code(message['headers']['x-verify-code'])
-        log.info(f'fxa account created: {fxa_account}')
-        return session.uid
 
     def _create_addon_user(self):
         """Create addon user with fxa information assigned."""

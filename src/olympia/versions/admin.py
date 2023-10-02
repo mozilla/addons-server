@@ -1,8 +1,11 @@
+from django import forms
 from django.contrib import admin
 
 from olympia.amo.admin import AMOModelAdmin
+from olympia.reviewers.models import NeedsHumanReview
 
 from .models import (
+    ApplicationsVersions,
     DeniedInstallOrigin,
     InstallOrigin,
     License,
@@ -11,12 +14,42 @@ from .models import (
 )
 
 
+class NeedsHumanReviewInlineForm(forms.ModelForm):
+    # Work around for https://code.djangoproject.com/ticket/29947
+    # Django admin checks whether each form has changed when saving, and
+    # ignores forms with no changes. But for NeedsHumanReviewInline, there
+    # might be no changes compared to the default, if the user is adding an
+    # active NeedsHumanReview instance. So, always pretend there are changes
+    # if the instance is new.
+    def has_changed(self):
+        if not self.instance or not self.instance.pk:
+            return True
+        return super().has_changed()
+
+
 class VersionReviewerFlagsInline(admin.StackedInline):
     model = VersionReviewerFlags
     fields = ('pending_rejection', 'needs_human_review_by_mad')
     verbose_name_plural = 'Version Reviewer Flags'
     can_delete = False
     view_on_site = False
+
+
+class ApplicationsVersionsInline(admin.TabularInline):
+    model = ApplicationsVersions
+    fields = ('application', 'min', 'max', 'originated_from')
+    view_on_site = False
+    extra = 0
+
+
+class NeedsHumanReviewInline(admin.TabularInline):
+    model = NeedsHumanReview
+    form = NeedsHumanReviewInlineForm
+    fields = ('created', 'modified', 'reason', 'is_active')
+    readonly_fields = ('reason', 'created', 'modified')
+    can_delete = False
+    view_on_site = False
+    extra = 0
 
 
 class LicenseAdmin(AMOModelAdmin):
@@ -52,9 +85,13 @@ class VersionAdmin(AMOModelAdmin):
                 )
             },
         ),
-        ('Flags', {'fields': ('deleted', 'needs_human_review', 'due_date')}),
+        ('Flags', {'fields': ('deleted', 'due_date')}),
     )
-    inlines = (VersionReviewerFlagsInline,)
+    inlines = (
+        VersionReviewerFlagsInline,
+        NeedsHumanReviewInline,
+        ApplicationsVersionsInline,
+    )
 
 
 class InstallOriginAdmin(AMOModelAdmin):

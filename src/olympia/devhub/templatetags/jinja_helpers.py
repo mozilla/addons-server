@@ -1,7 +1,6 @@
 from django.utils.translation import gettext, ngettext
 
 import jinja2
-
 from django_jinja import library
 
 from olympia import amo

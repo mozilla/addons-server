@@ -214,7 +214,7 @@ class TestAddManifestVersionMessages(TestCase):
 
     def test_add_manifest_version_message(self):
         results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-        len(results['messages']) == 1
+        assert len(results['messages']) == 1
 
         # Add the error message when the manifest_version is 3 and the switch to
         # enable mv3 submissions is off (the default).

@@ -8,7 +8,6 @@ from django.test import RequestFactory
 from django.utils.encoding import force_str
 
 import pytest
-
 from rest_framework import exceptions as drf_exceptions
 
 from olympia import amo

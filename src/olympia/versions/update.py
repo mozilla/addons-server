@@ -1,12 +1,12 @@
 from django.db.models import F
 from django.db.transaction import non_atomic_requests
 from django.http import JsonResponse
-from django.views.decorators.cache import cache_control
 from django.urls import reverse
+from django.views.decorators.cache import cache_control
 
 from olympia.addons.models import Addon
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.reverse import override_url_prefix
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.constants import applications
 from olympia.versions.compare import version_int
 from olympia.versions.models import Version
@@ -18,7 +18,7 @@ COMPAT_MODE_STRICT = 'strict'
 COMPAT_MODE_NORMAL = 'normal'
 COMPAT_MODE_IGNORE = 'ignore'
 
-# Pref in Firefox: sextensions.update.url
+# Pref in Firefox: extensions.update.url
 # A typical request looks like:
 # https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=2
 # &id=uBlock0@raymondhill.net&version=1.45.2&maxAppVersion=*&status=userEnabled

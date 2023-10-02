@@ -1,12 +1,10 @@
 import os
-from datetime import datetime, timedelta
-
 from base64 import b64encode
-from urllib.parse import urlparse
+from datetime import datetime, timedelta
 from fnmatch import fnmatch
+from urllib.parse import urlparse
 
 import django.dispatch
-
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models, transaction
@@ -18,14 +16,11 @@ from django.utils.functional import cached_property
 from django.utils.translation import gettext, gettext_lazy as _
 
 import markupsafe
-from olympia.constants.applications import APP_IDS
 import waffle
-
 from django_statsd.clients import statsd
 from publicsuffix2 import get_sld
 
 import olympia.core.logger
-
 from olympia import activity, amo, core
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
@@ -37,26 +32,31 @@ from olympia.amo.models import (
     OnChangeMixin,
 )
 from olympia.amo.utils import (
+    SafeStorage,
     id_to_path,
     sorted_groupby,
-    SafeStorage,
     utc_millesecs_from_epoch,
 )
 from olympia.applications.models import AppVersion
+from olympia.constants.applications import APP_IDS
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUPS, PROMOTED_GROUPS_BY_ID
+from olympia.constants.promoted import (
+    PROMOTED_GROUPS,
+    PROMOTED_GROUPS_BY_ID,
+)
 from olympia.constants.scanners import MAD
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
+from olympia.scanners.models import ScannerResult
 from olympia.translations.fields import (
     LinkifiedField,
     PurifiedField,
     TranslatedField,
     save_signal,
 )
-from olympia.scanners.models import ScannerResult
 from olympia.users.models import UserProfile
-from olympia.users.utils import RestrictionChecker
+from olympia.users.utils import RestrictionChecker, get_task_user
+from olympia.versions.compare import version_int
 from olympia.zadmin.models import get_config
 
 from .fields import VersionStringField
@@ -221,9 +221,13 @@ class VersionManager(ManagerBase):
         # dropped on various reviewer actions).
         is_needs_human_review = Q(
             ~Q(file__status=amo.STATUS_DISABLED) | Q(file__is_signed=True),
-            needs_human_review=True,
+            needshumanreview__is_active=True,
         )
-        return method(is_needs_human_review | is_pre_review_version).using('default')
+        return (
+            method(is_needs_human_review | is_pre_review_version)
+            .using('default')
+            .distinct()
+        )
 
 
 class UnfilteredVersionManagerForRelations(VersionManager):
@@ -302,8 +306,6 @@ class Version(OnChangeMixin, ModelBase):
 
     git_hash = models.CharField(max_length=40, blank=True)
 
-    needs_human_review = models.BooleanField(default=False)
-
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)
@@ -364,6 +366,7 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.addons.models import AddonReviewerFlags
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.git.utils import create_git_extraction_entry
+        from olympia.reviewers.models import NeedsHumanReview
 
         assert parsed_data is not None
 
@@ -415,7 +418,7 @@ class Version(OnChangeMixin, ModelBase):
 
         previous_version_had_needs_human_review = (
             addon.versions(manager='unfiltered_for_relations')
-            .filter(channel=channel, needs_human_review=True)
+            .filter(channel=channel, needshumanreview__is_active=True)
             .exists()
         )
 
@@ -426,7 +429,6 @@ class Version(OnChangeMixin, ModelBase):
             license_id=license_id,
             channel=channel,
             release_notes=parsed_data.get('release_notes'),
-            needs_human_review=previous_version_had_needs_human_review,
         )
         with core.override_remote_addr(upload.ip_address):
             # The following log statement is used by foxsec-pipeline.
@@ -447,31 +449,10 @@ class Version(OnChangeMixin, ModelBase):
                 },
             )
             activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=upload.user)
-
-        if not compatibility:
-            compatibility = {
-                amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
-                for app_id in selected_apps
-            }
-
-        compatible_apps = {}
-        for parsed_app in parsed_data.get('apps', []):
-            if parsed_app.appdata not in compatibility:
-                # If the user chose to explicitly deselect Firefox for Android
-                # we're not creating the respective `ApplicationsVersions`
-                # which will have this add-on then be listed only for
-                # Firefox specifically.
-                continue
-            avs = compatibility[parsed_app.appdata]
-            avs.version = version
-            avs.min = getattr(avs, 'min', parsed_app.min)
-            avs.max = getattr(avs, 'max', parsed_app.max)
-            avs.save()
-            compatible_apps[parsed_app.appdata] = avs
-
-        # Pre-generate compatible_apps property to avoid accidentally
-        # triggering queries with that instance later.
-        version.compatible_apps = compatible_apps
+            if previous_version_had_needs_human_review:
+                NeedsHumanReview(
+                    version=version, reason=NeedsHumanReview.REASON_INHERITANCE
+                ).save(_user=get_task_user())
 
         # Record declared install origins. base_domain is set automatically.
         if waffle.switch_is_active('record-install-origins'):
@@ -498,6 +479,44 @@ class Version(OnChangeMixin, ModelBase):
             upload.addon = addon
         upload.save()
 
+        if not compatibility:
+            compatibility = {
+                amo.APP_IDS[app_id]: ApplicationsVersions(application=app_id)
+                for app_id in selected_apps
+            }
+
+        compatible_apps = {}
+        for avs_from_parsed_data in parsed_data.get('apps', []):
+            application = APP_IDS.get(avs_from_parsed_data.application)
+            if avs_from_parsed_data.locked_from_manifest:
+                # In that case, the manifest takes precedence.
+                avs = avs_from_parsed_data
+            elif application not in compatibility:
+                # In that case, the developer didn't include compatibility
+                # information we have to follow, and they didn't select this
+                # app at upload time, so we ignore that app.
+                continue
+            else:
+                # They selected the app we're currently dealing with, so let's
+                # try to build some compatibility info from what we have.
+                avs = compatibility[application]
+                # Start by considering the data is coming from the manifest,
+                # but override if min or max were provided.
+                avs.originated_from = avs_from_parsed_data.originated_from
+                if avs.min_id is None:
+                    avs.min = avs_from_parsed_data.min
+                    avs.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+                if avs.max_id is None:
+                    avs.max = avs_from_parsed_data.max
+                    avs.originated_from = amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+            avs.version = version
+            avs.save()
+            compatible_apps[application] = avs
+
+        # Pre-generate compatible_apps property to avoid accidentally
+        # triggering queries with that instance later.
+        version.compatible_apps = compatible_apps
+
         version_uploaded.send(instance=version, sender=Version)
 
         if (
@@ -520,10 +539,7 @@ class Version(OnChangeMixin, ModelBase):
         # admin code review if the package has already been signed by mozilla.
         reviewer_flags_defaults = {}
         is_mozilla_signed = parsed_data.get('is_mozilla_signed_extension')
-        if upload.validation_timeout:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
         if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
-            reviewer_flags_defaults['needs_admin_code_review'] = True
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
         # Check if the approval should be restricted
@@ -759,19 +775,16 @@ class Version(OnChangeMixin, ModelBase):
 
     def flag_if_sources_were_provided(self, user):
         from olympia.activity.utils import log_and_notify
-        from olympia.addons.models import AddonReviewerFlags
+        from olympia.reviewers.models import NeedsHumanReview
 
         if self.source:
-            AddonReviewerFlags.objects.update_or_create(
-                addon=self.addon, defaults={'needs_admin_code_review': True}
-            )
-
             # Add Activity Log, notifying staff, relevant reviewers and
             # other authors of the add-on.
             log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None, user, self)
 
             if self.pending_rejection:
-                self.update(needs_human_review=True)
+                reason = NeedsHumanReview.REASON_PENDING_REJECTION_SOURCES_PROVIDED
+                NeedsHumanReview.objects.create(version=self, reason=reason)
 
     @classmethod
     def transformer(cls, versions):
@@ -903,9 +916,10 @@ class Version(OnChangeMixin, ModelBase):
         Disable files from versions older than the current one in the same
         channel and awaiting review. Used when uploading a new version.
 
-        Does nothing if the current instance is unlisted.
+        Does nothing if the add-on is a langpack or if the current instance is
+        unlisted.
         """
-        if self.channel == amo.CHANNEL_LISTED:
+        if self.channel == amo.CHANNEL_LISTED and self.addon.type != amo.ADDON_LPAPP:
             qs = File.objects.filter(
                 version__addon=self.addon_id,
                 version__lt=self.id,
@@ -941,6 +955,11 @@ class Version(OnChangeMixin, ModelBase):
 
     @use_primary_db
     def inherit_due_date(self):
+        """
+        Inherit the earliest due date possible from any other version in the
+        same channel, but only if the result would be at at earlier date than
+        the default/existing one on the instance.
+        """
         qs = (
             Version.unfiltered.filter(addon=self.addon, channel=self.channel)
             .exclude(due_date=None)
@@ -948,10 +967,11 @@ class Version(OnChangeMixin, ModelBase):
             .values_list('due_date', flat=True)
             .order_by('-due_date')
         )
-        # If no matching due_date is found, we end up passing due_date=None
-        # which will set the due date to standard review time if it wasn't
-        # already set on the instance.
-        self.reset_due_date(due_date=qs.first())
+        standard_or_existing_due_date = self.due_date or get_review_due_date()
+        due_date = qs.first()
+        if not due_date or due_date > standard_or_existing_due_date:
+            due_date = standard_or_existing_due_date
+        self.reset_due_date(due_date=due_date)
 
     @cached_property
     def is_ready_for_auto_approval(self):
@@ -1019,8 +1039,22 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_blocked(self):
-        block = self.addon.block
-        return bool(block and block.is_version_blocked(self.version))
+        return hasattr(self, 'blockversion')
+
+    @cached_property
+    def blocklist_submission_id(self):
+        from olympia.blocklist.models import BlocklistSubmission
+
+        return (
+            submission.id
+            if self.id
+            and (
+                submission := BlocklistSubmission.get_submissions_from_version_id(
+                    self.id
+                ).last()
+            )
+            else 0
+        )
 
     @property
     def pending_rejection(self):
@@ -1102,18 +1136,6 @@ class Version(OnChangeMixin, ModelBase):
             and self.get_review_status_for_auto_approval_and_delay_reject()
             or status
         )
-
-
-@receiver(
-    models.signals.post_save,
-    sender=Version,
-    dispatch_uid='version',
-)
-def update_due_date_for_needs_human_review_change(
-    sender, instance=None, update_fields=None, **kwargs
-):
-    if update_fields is None or 'needs_human_review' in update_fields:
-        instance.reset_due_date()
 
 
 class VersionReviewerFlags(ModelBase):
@@ -1338,6 +1360,41 @@ class ApplicationsVersions(models.Model):
     max = models.ForeignKey(
         AppVersion, db_column='max', related_name='max_set', on_delete=models.CASCADE
     )
+    originated_from = models.PositiveSmallIntegerField(
+        choices=(
+            (amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN, 'Unknown'),
+            (amo.APPVERSIONS_ORIGINATED_FROM_AUTOMATIC, 'Automatically determined'),
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_MIGRATION,
+                'Automatically set by a migration',
+            ),
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER,
+                'Set by developer through devhub or API',
+            ),
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST,
+                'Set in the manifest (gecko key)',
+            ),
+            # Special case for Android, where compatibility information in the
+            # manifest can come from the `gecko_android` key (with `gecko` as a
+            # fallback).
+            (
+                amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID,
+                'Set in the manifest (gecko_android key)',
+            ),
+        ),
+        default=amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN,
+        null=True,
+    )
+
+    # Range of Firefox for Android versions where compatibility should be
+    # limited to add-ons with a promoted group that can be compatible with
+    # Fenix (i.e. Line, Recommended).
+    ANDROID_LIMITED_COMPATIBILITY_RANGE = (
+        amo.MIN_VERSION_FENIX,
+        amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+    )
 
     class Meta:
         db_table = 'applications_versions'
@@ -1359,15 +1416,130 @@ class ApplicationsVersions(models.Model):
             .first()
         )
 
+    def get_default_minimum_appversion(self):
+        return AppVersion.objects.filter(application=self.application).get(
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.APPS_ALL[self.application]]
+        )
+
+    def get_default_maximum_appversion(self):
+        return AppVersion.objects.filter(application=self.application).get(
+            version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )
+
+    @property
+    def locked_from_manifest(self):
+        """Whether the manifest is the source of truth for this ApplicationsVersions or
+        not.
+
+        Currently only True if `gecko_android` is present in manifest.
+        """
+        return (
+            self.originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
+
     def __str__(self):
+        pretty_application = self.get_application_display() if self.application else '?'
         try:
             if self.version.is_compatible_by_default:
                 return gettext('{app} {min} and later').format(
-                    app=self.get_application_display(), min=self.min
+                    app=pretty_application, min=self.min
                 )
-            return f'{self.get_application_display()} {self.min} - {self.max}'
+            return f'{pretty_application} {self.min} - {self.max}'
         except ObjectDoesNotExist:
-            return self.get_application_display()
+            return pretty_application
+
+    def version_range_contains_forbidden_compatibility(self):
+        """
+        Return whether the instance contains forbidden ranges.
+
+        Used for Android to disallow non line/recommended to be compatible with
+        Fenix before General Availability.
+        """
+        if self.application != amo.ANDROID.id:
+            return False
+
+        addon = self.version.addon
+
+        if addon.type != amo.ADDON_EXTENSION:
+            # We don't care about non-extension compatibility for this.
+            return False
+
+        # Recommended/line for Android are allowed to set compatibility in the
+        # limited range.
+        if (
+            addon.promoted
+            and addon.promoted.group.can_be_compatible_with_fenix
+            and amo.ANDROID in addon.promoted.approved_applications
+        ):
+            return False
+
+        # Range is expressed as a [closed, open) interval.
+        limited_range_start = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[0])
+        limited_range_end = version_int(self.ANDROID_LIMITED_COMPATIBILITY_RANGE[1])
+
+        # Min or max could be absent if it's a partial instance we'll be
+        # completing later. Use default values in that case (increases the
+        # chance that the range would be considered forbbiden, forcing caller
+        # to provide a complete instance).
+        min_ = getattr(self, 'min', None) or self.get_default_minimum_appversion()
+        max_ = getattr(self, 'max', None) or self.get_default_maximum_appversion()
+
+        return (
+            min_.version_int < limited_range_end
+            and max_.version_int >= limited_range_start
+        )
+
+    def save(self, *args, **kwargs):
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+        ):
+            # Regardless of whether the compat information came from the
+            # manifest, on Android we currently only allow non-promoted/line
+            # extensions to be compatible with Fennec or Fenix that has general
+            # availability, so we might need to override the compat data before
+            # saving it.
+            if self.version_range_contains_forbidden_compatibility():
+                # Arbitrarily pick a range that makes sense and is valid.
+                self.min = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+                ).first()
+                self.max = AppVersion.objects.filter(
+                    application=amo.ANDROID.id,
+                    version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+                ).first()
+
+            # In addition we need to set/clear strict compatibility.
+            # If the range max is below the first Fenix version, then we need
+            # to set strict_compatibility to True on the File to prevent that
+            # version from being installed in Fenix. If it's not, then we need
+            # to clear it if it was set.
+            #
+            # Strict compatibility also affects Desktop, so there is a slight
+            # edge case if the developer had also set a max on desktop without
+            # expecting it to be obeyed, but that should be fairly rare.
+            if self.max.version_int < version_int(amo.MIN_VERSION_FENIX):
+                strict_compatibility = True
+            else:
+                strict_compatibility = False
+            if self.version.file.strict_compatibility != strict_compatibility:
+                self.version.file.update(strict_compatibility=strict_compatibility)
+
+        rval = super().save(*args, **kwargs)
+        if hasattr(self.version, '_compatible_apps'):
+            del self.version._compatible_apps
+        return rval
+
+    def delete(self, *args, **kwargs):
+        if (
+            self.application == amo.ANDROID.id
+            and self.version.addon.type == amo.ADDON_EXTENSION
+            and self.version.file.strict_compatibility
+        ):
+            self.version.file.update(strict_compatibility=False)
+        return super().delete(*args, **kwargs)
 
 
 class InstallOrigin(ModelBase):

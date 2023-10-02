@@ -2,6 +2,7 @@ from datetime import date
 from unittest import mock
 
 from django.test.utils import override_settings
+
 from google.cloud import bigquery
 
 from olympia.amo.tests import TestCase, addon_factory
@@ -13,6 +14,7 @@ from olympia.stats.utils import (
     AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING,
     get_addons_and_average_daily_users_from_bigquery,
     get_addons_and_weekly_downloads_from_bigquery,
+    get_average_daily_users_per_version_from_bigquery,
     get_averages_by_addon_from_bigquery,
     get_download_series,
     get_updates_series,
@@ -627,3 +629,61 @@ GROUP BY hashed_addon_id"""
 
         returned_results = get_addons_and_weekly_downloads_from_bigquery()
         assert returned_results == [(1, 123)]
+
+
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetAverageDailyUsersPerVersionFromBigquery(BigQueryTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.addon = addon_factory()
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        expected_query = f"""
+SELECT `dau_by_version_struct`.`key` AS `version`,
+cast(round(avg(`dau_by_version_struct`.`value`)) as BIGINT) AS `adu`
+FROM `project.dataset.{AMO_STATS_DAU_VIEW}`,
+unnest(`dau_by_addon_version`) as `dau_by_version_struct`
+WHERE addon_id = @addon_id
+AND submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
+GROUP BY `version`
+ORDER BY `adu` DESC
+LIMIT 100;"""
+
+        get_average_daily_users_per_version_from_bigquery(addon=self.addon)
+
+        client.query.assert_called_once_with(expected_query, job_config=mock.ANY)
+        parameters = self.get_job_config_named_parameters(client.query)
+        assert parameters == [
+            {
+                'parameterType': {'type': 'STRING'},
+                'parameterValue': {'value': self.addon.guid},
+                'name': 'addon_id',
+            },
+        ]
+
+    @mock.patch('google.cloud.bigquery.Client')
+    def test_create_query_with_limit(self, bigquery_client_mock):
+        client = self.create_mock_client()
+        bigquery_client_mock.from_service_account_json.return_value = client
+        limit = 666
+
+        expected_query = f"""
+SELECT `dau_by_version_struct`.`key` AS `version`,
+cast(round(avg(`dau_by_version_struct`.`value`)) as BIGINT) AS `adu`
+FROM `project.dataset.{AMO_STATS_DAU_VIEW}`,
+unnest(`dau_by_addon_version`) as `dau_by_version_struct`
+WHERE addon_id = @addon_id
+AND submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
+GROUP BY `version`
+ORDER BY `adu` DESC
+LIMIT {limit};"""
+
+        get_average_daily_users_per_version_from_bigquery(
+            addon=self.addon,
+            limit=limit,
+        )
+
+        client.query.assert_called_with(expected_query, job_config=mock.ANY)

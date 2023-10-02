@@ -1,8 +1,9 @@
+from unittest.mock import Mock
+
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.urls import reverse
 
-from unittest.mock import Mock
 from rest_framework.exceptions import MethodNotAllowed
 from rest_framework.permissions import AllowAny, BasePermission
 from rest_framework.response import Response
@@ -23,11 +24,11 @@ from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
     AllowIfNotMozillaDisabled,
     AllowIfPublic,
+    AllowListedViewerOrReviewer,
     AllowNone,
     AllowOwner,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
-    AllowListedViewerOrReviewer,
     AllowUnlistedViewerOrReviewer,
     AnyOf,
     ByHttpMethod,

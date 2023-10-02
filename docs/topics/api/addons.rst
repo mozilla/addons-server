@@ -53,7 +53,8 @@ This endpoint allows you to search through public add-ons.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
                     passed and when filtering to only return promoted add-ons.
-            rating  Bayesian rating, descending.
+           ratings  Bayesian rating, descending.
+            rating  Bayesian rating, descending (deprecated, backwards-compatibility only).
        recommended  Promoted addons in the recommended category above
                     non-recommended add-ons. Only available combined with
                     another sort - ignored on its own.
@@ -570,7 +571,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     ==============  ==========================================================
             public  Approved
           disabled  Rejected, disabled, or not reviewed
-         nominated  Awaiting Review
+        unreviewed  Awaiting Review
     ==============  ==========================================================
 
 
@@ -973,3 +974,23 @@ Four recommendations are fetched, but only valid, publicly available addons are 
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
     :>json array results: An array of :ref:`add-ons <addon-detail-object>`. The following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` and ``current_beta_version``, as well as ``picture_url`` from ``authors``.
+
+
+----------------
+Browser Mappings
+----------------
+
+.. _addon-browser-mappings:
+
+This endpoint provides browser mappings of non-Firefox and Firefox extensions.  Added to support the extensions import feature in Firefox.
+
+.. http:get:: /api/v5/addons/browser-mappings/
+
+    .. note::
+        This endpoint uses a larger ``page_size`` than most other API endpoints.
+
+    :query string browser: The browser identifier for this query (required). Must be one of these: ``chrome``.
+    :query int page_size: Maximum number of results to return for the requested page. Defaults to 100.
+    :>json array results: An array containing a mapping of non-Firefox and Firefox extension IDs for a given browser.
+    :>json string results[].extension_id: A non-Firefox extension ID.
+    :>json string results[].addon_guid: The corresponding Firefox add-on ``guid``.

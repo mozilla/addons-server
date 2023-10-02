@@ -13,7 +13,7 @@ from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import remove_icons, SafeStorage, slug_validator
+from olympia.amo.utils import SafeStorage, remove_icons, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,
@@ -28,12 +28,11 @@ from olympia.api.fields import (
     SplitField,
     TranslationSerializerField,
 )
-from olympia.api.serializers import BaseESSerializer, AMOModelSerializer
+from olympia.api.serializers import AMOModelSerializer, BaseESSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block
-from olympia.constants.applications import APPS_ALL, APP_IDS
+from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import PROMOTED_GROUPS, RECOMMENDED
@@ -41,10 +40,10 @@ from olympia.core.languages import AMO_LANGUAGES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedAddon
-from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.ratings.utils import get_grouped_ratings
+from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
-from olympia.users.models import EmailUserRestriction, RESTRICTION_TYPES, UserProfile
+from olympia.users.models import RESTRICTION_TYPES, EmailUserRestriction, UserProfile
 from olympia.versions.models import (
     ApplicationsVersions,
     License,
@@ -65,6 +64,7 @@ from .fields import (
 from .models import (
     Addon,
     AddonApprovalsCounter,
+    AddonBrowserMapping,
     AddonUser,
     AddonUserPendingConfirmation,
     DeniedSlug,
@@ -77,15 +77,15 @@ from .utils import (
     validate_version_number_is_gt_latest_signed_listed_version,
 )
 from .validators import (
-    AddonMetadataValidator,
     AddonDefaultLocaleValidator,
+    AddonMetadataValidator,
     CanSetCompatibilityValidator,
     MatchingGuidValidator,
-    ReviewedSourceFileValidator,
-    VersionAddonMetadataValidator,
     NoFallbackDefaultLocaleValidator,
-    VersionLicenseValidator,
+    ReviewedSourceFileValidator,
     VerifyMozillaTrademark,
+    VersionAddonMetadataValidator,
+    VersionLicenseValidator,
 )
 
 
@@ -342,13 +342,16 @@ class LanguageToolVersionSerializer(MinimalVersionSerializer):
 
 class SimpleVersionSerializer(MinimalVersionSerializer):
     compatibility = VersionCompatibilityField(
-        # default to just Desktop Firefox; most of the times developers don't develop
-        # their WebExtensions for Android.  See https://bit.ly/2QaMicU
+        # Default to just Desktop Firefox as most of the times developers don't
+        # develop their WebExtensions for Android.  See https://bit.ly/2QaMicU
+        # Note that if the manifest contains `gecko_android`, an
+        # ApplicationsVersions will automatically be created for Android at
+        # submission time in addition to Firefox in Version.from_upload().
         source='compatible_apps',
         default=serializers.CreateOnlyDefault(
             {
                 amo.APPS['firefox']: ApplicationsVersions(
-                    application=amo.APPS['firefox'].id
+                    application=amo.APPS['firefox'].id,
                 )
             }
         ),
@@ -521,22 +524,6 @@ class DeveloperVersionSerializer(VersionSerializer):
                 raise exceptions.ValidationError(msg)
         return disable
 
-    def _check_blocklist(self, guid, version_string):
-        # check the guid/version isn't in the addon blocklist
-        block_qs = Block.objects.filter(guid=guid) if guid else ()
-        if block_qs and block_qs.first().is_version_blocked(version_string):
-            msg = gettext(
-                'Version {version} matches {block_link} for this add-on. '
-                'You can contact {amo_admins} for additional information.'
-            )
-            raise exceptions.ValidationError(
-                msg.format(
-                    version=version_string,
-                    block_link=absolutify(reverse('blocklist.block', args=[guid])),
-                    amo_admins='amo-admins@mozilla.com',
-                ),
-            )
-
     def _check_for_existing_versions(self, version_string):
         # Make sure we don't already have this version.
         existing_versions = Version.unfiltered.filter(
@@ -553,9 +540,7 @@ class DeveloperVersionSerializer(VersionSerializer):
 
     def validate(self, data):
         if not self.instance:
-            guid = self.addon.guid if self.addon else self.parsed_data.get('guid')
             version_string = self.parsed_data.get('version')
-            self._check_blocklist(guid, version_string)
             if self.addon:
                 self._check_for_existing_versions(version_string)
 
@@ -732,7 +717,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             # but we want {'min': min, 'max': max}.
             value = AddonAppVersionQueryParam(request.GET).get_values()
             application = value[0]
-            appversions = dict(zip(('min', 'max'), value[1:]))
+            appversions = dict(zip(('min', 'max'), value[1:], strict=True))
         except ValueError as exc:
             raise exceptions.ParseError(str(exc))
 
@@ -1231,6 +1216,9 @@ class AddonSerializer(AMOModelSerializer):
             if instance.has_listed_versions()
             else None
         )
+
+        old_slug = instance.slug
+
         if 'icon' in validated_data:
             self._save_icon(validated_data['icon'])
         instance = super().update(instance, validated_data)
@@ -1253,6 +1241,10 @@ class AddonSerializer(AMOModelSerializer):
             # When updating, always return the version we just created in the
             # representation if there was one.
             self.fields['version'].write_only = False
+        if 'slug' in validated_data:
+            ActivityLog.create(
+                amo.LOG.ADDON_SLUG_CHANGED, instance, old_slug, instance.slug
+            )
 
         self.log(instance, validated_data)
         return instance
@@ -1425,7 +1417,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         # Attach attributes that do not have the same name/format in ES.
         obj.tag_list = data.get('tags', [])
         obj.all_categories = [
-            CATEGORIES_BY_ID[cat_id] for cat_id in data.get('category', [])
+            CATEGORIES_BY_ID[cat_id]
+            for cat_id in data.get('category', [])
+            if cat_id in CATEGORIES_BY_ID
         ]
 
         # Not entirely accurate, but enough in the context of the search API.
@@ -1645,3 +1639,15 @@ class ReplacementAddonSerializer(AMOModelSerializer):
                 coll_match.group('user_id'), coll_match.group('coll_slug')
             )
         return []
+
+
+class AddonBrowserMappingSerializer(AMOModelSerializer):
+    # The source is an annotated field defined in `AddonBrowserMappingView`.
+    addon_guid = serializers.CharField(source='addon__guid')
+
+    class Meta:
+        model = AddonBrowserMapping
+        fields = (
+            'addon_guid',
+            'extension_id',
+        )

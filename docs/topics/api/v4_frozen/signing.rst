@@ -19,7 +19,7 @@ Client Libraries
 
 The following libraries will make it easier to use the signing API:
 
-* `sign-addon <https://github.com/mozilla/sign-addon/>`_, for general programattic use in
+* `sign-addon <https://github.com/mozilla/sign-addon/>`_, for general programmatic use in
   `NodeJS <https://nodejs.org/>`_
 * `web-ext sign <https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext#Signing_your_extension_for_distribution>`_,
   for developing `Web Extensions <https://developer.mozilla.org/en-US/Add-ons/WebExtensions>`_

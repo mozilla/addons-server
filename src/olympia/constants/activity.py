@@ -3,6 +3,7 @@ from inspect import isclass
 
 from django.utils.translation import gettext_lazy as _
 
+
 RETENTION_DAYS = 365
 
 __all__ = (
@@ -406,7 +407,8 @@ class USER_DELETED(_LOG):
 
 class USER_AUTO_DELETED(_LOG):
     id = 62
-    format = _('Account {user} deleted, from Firefox Accounts event.')
+    format = 'Account {user} deleted, from FxaNotificationView event.'
+    admin_event = True
 
 
 class CUSTOM_TEXT(_LOG):
@@ -868,13 +870,96 @@ class LOG_IN_API_TOKEN(_LOG):
     format = '{user_responsible} authenticated through an API token.'
 
 
-class CLEAR_NEEDS_HUMAN_REVIEWS(_LOG):
+# Obsolete now that this is done per version.
+class CLEAR_NEEDS_HUMAN_REVIEWS_LEGACY(_LOG):
     id = 173
-    format = _('{addon} needs_human_review flag cleared.')
-    short = _('Needs Human Review cleared')
+    format = '{addon} no longer flagged for human review.'
+    short = 'Needs Human Review cleared'
     admin_event = True
     review_queue = True
     reviewer_review_action = True
+
+
+class NEEDS_HUMAN_REVIEW_AUTOMATIC(_LOG):
+    id = 174
+    format = '{version} flagged for human review.'
+    short = 'Flagged for human review'
+    keep = True
+    hide_developer = True
+
+
+class REPLY_RATING(_LOG):
+    id = 175
+    action_class = 'review'
+    format = _('Reply to {rating} for {addon} written.')
+    show_user_to_developer = True
+    store_ip = True
+
+
+class CLEAR_NEEDS_HUMAN_REVIEW(_LOG):
+    id = 176
+    format = '{addon} {version} no longer flagged for human review.'
+    short = 'Needs Human Review cleared'
+    admin_event = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
+
+
+class CLEAR_PENDING_REJECTION(_LOG):
+    id = 177
+    format = _('{addon} {version} pending rejection cleared.')
+    short = _('Pending rejection cleared')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    # Not hidden to developers.
+
+
+class NEEDS_HUMAN_REVIEW(_LOG):
+    id = 178
+    format = '{addon} {version} flagged for human review.'
+    short = 'Flagged for human review'
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    hide_developer = True
+
+
+class BLOCKLIST_VERSION_BLOCKED(_LOG):
+    id = 179
+    keep = True
+    action_class = 'add'
+    hide_developer = True
+    format = _('{version} added to Blocklist.')
+    short = _('Version Blocked')
+
+
+class BLOCKLIST_VERSION_UNBLOCKED(_LOG):
+    id = 180
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = _('{version} removed from Blocklist.')
+    short = _('Version Unblocked')
+
+
+class CLEAR_ADMIN_REVIEW_THEME(_LOG):
+    id = 181
+    format = _('{addon} {version} admin add-on-review cleared.')
+    short = _('Admin add-on-review cleared')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+    admin_event = True
+
+
+class ADDON_SLUG_CHANGED(_LOG):
+    id = 182
+    format = _('{user_responsible} changed {addon} slug from {0} to {1}.')
+    short = _('Addon slug changed')
+    keep = True
+    show_user_to_developer = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

@@ -1,8 +1,8 @@
 from django import forms
 from django.utils import translation
 from django.utils.encoding import force_str
-from django.utils.translation.trans_real import to_language
 from django.utils.safestring import mark_safe
+from django.utils.translation.trans_real import to_language
 
 from .models import Translation
 

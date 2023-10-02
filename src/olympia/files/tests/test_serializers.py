@@ -6,8 +6,8 @@ from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.amo.reverse import reverse
+from olympia.amo.tests import TestCase
 
 from ..models import FileUpload
 from ..serializers import FileUploadSerializer

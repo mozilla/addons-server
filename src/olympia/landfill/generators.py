@@ -1,6 +1,5 @@
 import collections
 import random
-
 from datetime import datetime
 from itertools import cycle, islice
 

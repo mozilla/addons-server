@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
-"PO-Revision-Date: 2020-12-07 12:06+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-19 16:30+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -71,8 +71,14 @@ msgstr "Waš dodank pśekšacujo maksimalnu wjelikosć {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Prozne wótegrono jo se wót serwera dostało; status: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr "Wašo rozšyrjenje musy z nanejmjenjej jadnym nałoženim kompatibelne byś."
+
 msgid "Unexpected server error while validating."
 msgstr "Njewótcakana serwerowa zmólka pśi pśeglědowanju."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr "W manifesće eksplicitnje ako kompatibelny z Firefox za Android markěrowany"
 
 msgid "Finished validating {0}"
 msgstr "Pśeglědowanje {0} dokóńcone"
@@ -639,9 +645,6 @@ msgstr[3] "{files} datajow"
 msgid "Image changes being processed"
 msgstr "Wobrazowe změny se pśeźěłuju"
 
-msgid "Select an application first"
-msgstr "Wubjeŕśo nejpjerwjej nałoženje"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> znamuško"
@@ -664,6 +667,9 @@ msgstr "Toś ten pśełožk wótpóraś"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} jo se toś ten bok ako prědny woglědał."
+
+msgid "Review page polling failed."
+msgstr "Głosowanje na boku pógódnośenjow njejo se raźiło."
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} jo se toś ten dodank ako prědny woglědał."

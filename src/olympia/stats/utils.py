@@ -1,10 +1,12 @@
 from datetime import timedelta
 
 from django.conf import settings
+
 from django_statsd.clients import statsd
 from google.cloud import bigquery
 
 from olympia.constants.applications import ANDROID, FIREFOX
+
 
 # This is the mapping between the AMO usage stats `sources` and the BigQuery
 # columns.
@@ -267,3 +269,32 @@ GROUP BY hashed_addon_id"""
         for row in rows
         if row['hashed_addon_id'] and row['count']
     ]
+
+
+VERSION_ADU_LIMIT = 100
+
+
+def get_average_daily_users_per_version_from_bigquery(addon, limit=VERSION_ADU_LIMIT):
+    """This function is used by the reviewer tools to show per-version adu to
+    reviewers inline."""
+    client = create_client()
+
+    query = f"""
+SELECT `dau_by_version_struct`.`key` AS `version`,
+cast(round(avg(`dau_by_version_struct`.`value`)) as BIGINT) AS `adu`
+FROM `{get_amo_stats_dau_view_name()}`,
+unnest(`dau_by_addon_version`) as `dau_by_version_struct`
+WHERE addon_id = @addon_id
+AND submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
+GROUP BY `version`
+ORDER BY `adu` DESC
+LIMIT {limit};"""
+
+    return client.query(
+        query,
+        job_config=bigquery.QueryJobConfig(
+            query_parameters=[
+                bigquery.ScalarQueryParameter('addon_id', 'STRING', addon.guid),
+            ]
+        ),
+    ).result()

@@ -1,12 +1,11 @@
 import datetime
 import os
-
 from copy import deepcopy
 
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import Elasticsearch, helpers, transport, TransportError
+from elasticsearch import Elasticsearch, TransportError, helpers, transport
 
 from .models import Reindexing
 
@@ -24,7 +23,7 @@ class AlreadyVerifiedTransport(transport.Transport):
 def get_es():
     """Create an ES object and return it."""
     return Elasticsearch(
-        settings.ES_HOSTS,
+        settings.ES_HOST,
         timeout=settings.ES_TIMEOUT,
         transport_class=AlreadyVerifiedTransport,
     )

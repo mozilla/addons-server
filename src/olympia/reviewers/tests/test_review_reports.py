@@ -1,9 +1,9 @@
 from datetime import date, timedelta
 
-from freezegun import freeze_time
-import pytest
-
 from django.core import mail
+
+import pytest
+from freezegun import freeze_time
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -402,7 +402,7 @@ class TestReviewReports:
         self.reviewer1 = user_factory(display_name='Volunteer A')
 
         with freeze_time(self.last_week_begin) as frozen_time:
-            for i in range(3):
+            for _i in range(3):
                 frozen_time.tick()
                 ActivityLog.create(
                     amo.LOG.APPROVE_CONTENT,

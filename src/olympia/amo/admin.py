@@ -3,17 +3,15 @@ import ipaddress
 import operator
 from collections import OrderedDict
 
-from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
-
 from django import forms
 from django.contrib import admin
 from django.contrib.admin.options import IncorrectLookupParameters
 from django.contrib.admin.views.main import (
-    ChangeList,
-    ChangeListSearchForm,
     ERROR_FLAG,
     PAGE_VAR,
     SEARCH_VAR,
+    ChangeList,
+    ChangeListSearchForm,
 )
 from django.core.exceptions import FieldDoesNotExist
 from django.core.paginator import InvalidPage
@@ -22,9 +20,12 @@ from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 
+from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
+
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
 from olympia.constants.activity import LOG_BY_ID
+
 from .models import FakeEmail
 
 
@@ -261,9 +262,10 @@ class AMOModelAdmin(admin.ModelAdmin):
         """
         # The utility function was admin.utils.lookup_needs_distinct in django3.2;
         # it was renamed to admin.utils.lookup_spawns_duplicates in django4.0
-        lookup_function = getattr(
-            admin.utils, 'lookup_spawns_duplicates', None
-        ) or getattr(admin.utils, 'lookup_needs_distinct')
+        lookup_function = (
+            getattr(admin.utils, 'lookup_spawns_duplicates', None)
+            or admin.utils.lookup_needs_distinct
+        )
         rval = lookup_function(opts, lookup_path)
         lookup_fields = lookup_path.split(LOOKUP_SEP)
         # Not pretty but looking up the actual field would require truly

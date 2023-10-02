@@ -1,23 +1,23 @@
-import json
 import io
+import json
+from datetime import datetime, timedelta
 from unittest import mock
 
-from datetime import datetime, timedelta
-
+from django.conf import settings
 from django.test.utils import override_settings
 
 from rest_framework.exceptions import ErrorDetail
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, ActivityLogToken, GENERIC_USER_NAME
+from olympia.activity.models import GENERIC_USER_NAME, ActivityLog, ActivityLogToken
 from olympia.activity.tests.test_serializers import LogMixin
 from olympia.activity.tests.test_utils import sample_message_content
-from olympia.activity.views import inbound_email, InboundEmailIPPermission
+from olympia.activity.views import InboundEmailIPPermission, inbound_email
 from olympia.addons.models import (
-    AddonUser,
     AddonRegionalRestrictions,
     AddonReviewerFlags,
+    AddonUser,
 )
 from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import (
@@ -399,6 +399,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         }
 
     def _test_developer_reply(self):
+        user_factory(id=settings.TASK_USER_ID)
         self.user = user_factory()
         self.user.addonuser_set.create(addon=self.addon)
         self.client.login_api(self.user)
@@ -422,7 +423,11 @@ class TestReviewNotesViewSetCreate(TestCase):
 
         # Version was set as needing human review for a developer reply.
         self.version.reload()
-        assert self.version.needs_human_review
+        assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            self.version.needshumanreview_set.get().reason
+            == self.version.needshumanreview_set.model.REASON_DEVELOPER_REPLY
+        )
 
     def test_developer_reply_listed(self):
         self._test_developer_reply()
@@ -472,7 +477,7 @@ class TestReviewNotesViewSetCreate(TestCase):
 
         # Version wasn't set as needing human review for a reviewer reply.
         self.version.reload()
-        assert not self.version.needs_human_review
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
         assert not self.version.due_date
 
     def test_reviewer_reply_listed(self):

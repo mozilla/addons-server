@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-24 17:48+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-14 17:07+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -46,13 +46,13 @@ msgid "You are already logged in."
 msgstr "Už ste prihlásení."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Váš pokus o prihlásenie sa nepodarilo spracovať. Skúste to prosím znovu."
+msgstr "Váš pokus o prihlásenie sa nepodarilo spracovať. Prosím skúste to znova."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Váš účet Firefox Account nebol nájdený. Skúste to prosím znovu."
+msgstr "Váš účet Firefox Account nebol nájdený. Prosím skúste to znova."
 
 msgid "You could not be logged in. Please try again."
-msgstr "Prihlásenie sa nepodarilo. Skúste to prosím znovu."
+msgstr "Prihlásenie sa nepodarilo. Prosím skúste to znova."
 
 msgid "Need help?"
 msgstr "Potrebujete pomoc?"
@@ -122,6 +122,10 @@ msgid "Unknown min app version specified"
 msgstr "Bola zadaná neznáma minimálna verzia aplikácie"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr "Nie je možné prepísať informácie o kompatibilite nastavené v manifeste pre túto aplikáciu (%s)"
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Obrázky musia byť menšie ako %dMB"
 
@@ -147,9 +151,6 @@ msgstr "Súbor je už zakázaný."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovšia schválená verzia doplnku %s sa nedá odstrániť, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
-msgstr "Verzia {version} sa zhoduje s {block_link} pre tento doplnok. Ďalšie informácie vám poskytne {amo_admins}."
 
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr "Verzia {version_string} už bola v minulosti nahraná a odstránená."
@@ -267,7 +268,7 @@ msgid "Incorrect, please try again."
 msgstr "Nesprávne, skúste to znova."
 
 msgid "Error verifying input, please try again."
-msgstr "Chyba pri kontrole vstupu, skúste to prosím znovu."
+msgstr "Chyba pri kontrole vstupu, skúste to prosím znova."
 
 msgid "Enter a valid IP4 or IP6 network."
 msgstr "Zadajte platnú IP4 alebo IP6 sieť."
@@ -345,6 +346,9 @@ msgstr "Zaregistrujte sa alebo sa prihláste"
 
 msgid "Email:"
 msgstr "E-mailová adresa:"
+
+msgid "Two-factor authentication"
+msgstr "Dvojstupňové overenie"
 
 msgid "OK"
 msgstr "OK"
@@ -457,37 +461,6 @@ msgstr "Túto vlastnú URL adresu nie je možné použiť."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
-
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr "GUID %(guid)s sa nachádza v doplnku čakajúcom na kontrolu"
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokovanie s GUID %(guid)s sa nenašlo"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Doplnok s GUID %(guid)s neexistuje"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr "Blokovanie, ktoré sa má aktualizovať, je odlišné, pretože sa zmenila minimálna alebo maximálna verzia."
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s obsahuje hviezdičku"
-
-msgid "Invalid version"
-msgstr "Neplatná verzia"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Minimálna verzia nemôže byť väčšia ako maximálna verzia"
-
-msgid "Review Listed"
-msgstr "Kontrola verejných verzií"
-
-msgid "Review Unlisted"
-msgstr "Kontrola neverejných verzií"
 
 msgid "{addon} was created."
 msgstr "Doplnok {addon} bol vytvorený."
@@ -851,11 +824,32 @@ msgstr "Pre doplnok {addon} {version} bolo zrušené zamietnutie."
 msgid "Un-rejected"
 msgstr "Zrušené zamietnutie"
 
-msgid "{addon} needs_human_review flag cleared."
-msgstr "Príznak needs_human_review bol pre doplnok {addon} odstránený."
+msgid "Reply to {rating} for {addon} written."
+msgstr "Pre doplnok {addon} bola napísaná odpoveď na hodnotenie {rating}."
 
-msgid "Needs Human Review cleared"
-msgstr "Príznak Needs human review bol odstránený."
+msgid "{addon} {version} pending rejection cleared."
+msgstr "Čakajúce odmietnutie pre {addon} {version} bolo vymazané."
+
+msgid "Pending rejection cleared"
+msgstr "Čakajúce odmietnutie bolo vymazané"
+
+msgid "{version} added to Blocklist."
+msgstr "Verzia {version} pridaná do zoznamu blokovaných."
+
+msgid "Version Blocked"
+msgstr "Verzia zablokovaná"
+
+msgid "{version} removed from Blocklist."
+msgstr "Verzia {version} bola odstránená zo zoznamu blokovaných."
+
+msgid "Version Unblocked"
+msgstr "Verzia odblokovaná"
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr "Žiadosť o kontrolu správcom pre doplnok {addon} {version} zrušená."
+
+msgid "Admin add-on-review cleared"
+msgstr "Žiadosť o kontrolu doplnku správcom zrušená"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1514,6 +1508,10 @@ msgstr "Zobraziť aktuálne"
 msgid "Invalid version range."
 msgstr "Neplatný rozsah verzií."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Neplatný rozsah verzií. Pre Firefox pre Android si môžete vybrať iba rozsah, ktorý začína verziou %(max)s alebo vyššou, alebo končí nižšou ako verziou %(min)s."
+
 msgid "Need at least one compatible application."
 msgstr "Vyžaduje aspoň jednu kompatibilnú aplikáciu."
 
@@ -1528,9 +1526,6 @@ msgstr "Prepísať neúspešnú kontrolu"
 
 msgid "Need to select at least one application."
 msgstr "Musíte vybrať aspoň jednu aplikáciu."
-
-msgid "a blocklist entry"
-msgstr "záznam v zozname blokovaných položiek"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzia {version} už bola v minulosti nahraná a odstránená."
@@ -1585,6 +1580,9 @@ msgstr "Bezpečnostné upozornenie Mozilly: vaše prihlasovacie údaje k AMO API
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Kontrola vygenerovala príliš veľa chýb/varovaní. %s správ tak nie je zobrazených. Po opravení zobrazených nedostatkov budete môcť vidieť ďalšie."
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
+msgstr "Tento doplnok nie je témou. Na odoslanie rozšírení použite stránku <a href=\"{link}\">Pridať nový doplnok</a>."
 
 msgid "Updated"
 msgstr "Posledná aktualizácia"
@@ -1648,6 +1646,9 @@ msgstr "Zmeny boli úspešne uložené."
 
 msgid "Validate Add-on"
 msgstr "Overiť doplnok"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr "<a href=\"{link}\">Ak chcete odosielať rozšírenia, zapnite vo svojom účte dvojstupňové overenie.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikony musia byť vo formáte .png alebo .jpg."
@@ -1853,57 +1854,6 @@ msgstr "Aktivita"
 msgid "Subscribe to this feed"
 msgstr "Odoberať tento kanál"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-"Tento doplnok nie je kompatibilný s <b>%(app_name)s %(app_version)s</b>, najnovšou verziou aplikácie %(app_name)s. Zvážte aktualizáciu kompatibility doplnku alebo odošlite novú verziu tohto doplnku."
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovať kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Odoslať novú verziu</a> alebo <a href=\"#\""
-" class=\"close\">Ignorovať</a>"
-
-msgid "View and update application compatibility ranges"
-msgstr "Zobrazenie a aktualizácia rozsahov kompatibility aplikácií"
-
-msgid "Compatibility"
-msgstr "Kompatibilita"
-
-msgid "Update Compatibility"
-msgstr "Aktualizovať kompatibilitu"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Tu zadané informácie o aplikácií umožňujú používateľom nainštalovať doplnok aj vtedy, keď inštalačný manifest v balíku uvádza, že doplnok nie je kompatibilný."
-
-msgid "Application"
-msgstr "Aplikácia"
-
-msgid "Supported Versions"
-msgstr "Podporované verzie"
-
-msgid "Remove"
-msgstr "Odstrániť"
-
-msgid "Add Another Application&hellip;"
-msgstr "Pridať ďalšiu aplikáciu&hellip;"
-
-msgid "Save Changes"
-msgstr "Uložiť zmeny"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "alebo"
-
-msgid "Cancel"
-msgstr "Zrušiť"
-
-msgid "Close"
-msgstr "Zavrieť"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1976,12 +1926,18 @@ msgstr "Autori čakajúci na ich potvrdenie"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "Autori, ktorí boli pridaní do tohto doplnku, ale neboli potvrdení."
 
+msgid "Save Changes"
+msgstr "Uložiť zmeny"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 "<p>Doplnky môžu mať ľubovoľný počet autorov s 2 možnými rolami:</p> <ul> <li><b>Vlastník:</b> Môže spravovať všetky aspekty doplnku vrátane pridávania a odstraňovania iných autorov</li> "
 "<li><b>Vývojár:</b> Môže spravovať všetky aspekty doplnku okrem pridávania a odstraňovania iných autorov</li> </ul>"
+
+msgid "Close"
+msgstr "Zavrieť"
 
 msgid "Additional Details"
 msgstr "Podrobnosti"
@@ -2020,6 +1976,14 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr "Ak má váš doplnok inú domovskú stránku, zadajte sem jej adresu. Ak je váš web lokalizovaný do iných jazykov, je možné pridať viacero prekladov tohto poľa. Týka sa to len uvedených doplnkov."
+
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "alebo"
+
+msgid "Cancel"
+msgstr "Zrušiť"
 
 msgid "Describe Add-on"
 msgstr "Popis doplnku"
@@ -3114,6 +3078,15 @@ msgstr "Spravovať {0}"
 msgid "Files"
 msgstr "Súbory"
 
+msgid "Compatibility"
+msgstr "Kompatibilita"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr "Tu zadané informácie o aplikácií umožňujú používateľom nainštalovať doplnok aj vtedy, keď inštalačný manifest v balíku uvádza, že doplnok nie je kompatibilný."
+
+msgid "Add Another Application&hellip;"
+msgstr "Pridať ďalšiu aplikáciu&hellip;"
+
 msgid "Version Notes"
 msgstr "Poznámky k verzii"
 
@@ -3447,7 +3420,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Automaticky vymaže súbory cookie po zatvorení karty."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Jednoduchý spôsob, ako upraviť veľkosť textu ľubovoľnej stránky – alebo dokonca zväčšiť samotnú stránku."
 
@@ -3589,7 +3561,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "V predvolenom nastavení blokujte všetky kontextové okná a potom sa rozhodnite, ktoré z nich chcete otvoriť."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Prispôsobte vzhľad akejkoľvek webovej stránky. Posuňte farby, pozadie stránky a ďalšie."
 
@@ -3829,7 +3800,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr "Získajte výhody Amazonu. Ak si prezeráte stránky produktov v iných online obchodoch, ak sú dostupné aj na Amazone, môžete jednoducho kliknúť na tlačidlo a pozrieť si ich stránku na Amazone."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Užite si dokonalé ovládanie kariet – zatvorte duplicitné karty, zlúčte okná, skopírujte názov karty a ďalšie."
 
@@ -3946,7 +3916,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Opravte nepríjemný zvuk. Je hlasitosť na webovej stránke príliš tichá? Príliš nahlas? SoundFixer môže pomôcť."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Pred tlačou upravte webovú stránku. Vykonajte rozsiahle vizuálne zmeny – odstráňte reklamy alebo nevhodný obsah – na ľubovoľnej webovej stránke, ktorú chcete vytlačiť."
 
@@ -4009,7 +3978,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Užite si viacvláknovú podporu sťahovania. Automaticky zisťuje rôzne typy médií dostupných na stiahnutie."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Ukladajte obrázky jednoducho – jednoducho ich uchopte z aktuálnej karty."
 
@@ -4094,7 +4062,6 @@ msgid "Create and customize tab groups."
 msgstr "Vytvárajte a prispôsobujte skupiny kariet."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Uložte celú webovú stránku vrátane obrázkov a štýlu ako jeden súbor HTML."
 
@@ -4179,6 +4146,14 @@ msgstr "Menič tém vzhľadu založený na čase. Nechajte Firefox meniť farby 
 msgid "Declutter your Twitter experience."
 msgstr "Sprehľadnite si prostredie Twitteru."
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr "Prineste si naspäť možnosť vidieť palec dole!"
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr "Počúvajte hudbu na YouTube bez otravného prerušovania „Video pozastavené. Pokračovať v pozeraní?“."
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Niektoré webové stránky majú problémy s prehrávaním videí v systéme Android. Tu je oprava."
@@ -4186,6 +4161,14 @@ msgstr "Niektoré webové stránky majú problémy s prehrávaním videí v syst
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Našli ste na webe zaujímavý obrázok? Použite TinEye na preskúmanie jeho pôvodu."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr "Ukladajte obrázky jednoducho — jednoducho ich uchopte z aktuálnej karty."
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Užite si dokonalé ovládanie kariet — zatvorte duplicitné karty, zlúčte okná, skopírujte názov karty a ďalšie."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4196,12 +4179,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Prispôsobte si gestá myši. Objavte nové spôsoby navigácie s viac ako 50 konfiguráciami."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr "Prispôsobte vzhľad akejkoľvek webovej stránky. Zmeňte si farby, pozadie stránky a či ďalšie položky."
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Pomocou gest myši zatvárajte karty, prechádzajte stránkami a podobne."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr "Jednoduchý spôsob, ako upraviť veľkosť textu ľubovoľnej stránky — alebo dokonca zväčšiť samotnú stránku."
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Vychutnajte si miniatúrne obrázky webových stránok spolu s výsledkami vyhľadávania."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr "Uložte celú webovú stránku vrátane obrázkov a štýlu ako jeden súbor HTML."
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr "Pred tlačou upravte webovú stránku. Vykonajte rozsiahle vizuálne zmeny — odstráňte reklamy alebo nevhodný obsah — na ľubovoľnej webovej stránke, ktorú chcete vytlačiť."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4232,10 +4231,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Vráťte sa do jednoduchšieho obdobia – keď vaše najlepšie výsledky vyhľadávania stáli nad reklamami (kompatibilné s vyhľadávacími nástrojmi Google a Bing)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
-msgstr ""
-"Prestaňte dávať stránkam svoju e-mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte. Inovujte na prémiovú službu a získajte ďalšie výhody, ako je špecifickejšie "
-"blokovanie reklamných e-mailov."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
+msgstr "Zamaskujte svoj e-mail, aby ste ochránili svoju identitu a zabránili nevyžiadanej pošte. Vďaka novinkám je používanie služby Firefox Relay ešte jednoduchšie."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4301,6 +4298,14 @@ msgstr "Vylepšite svoj herný zážitok v službe Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "Palec hore po návrat palca dole."
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr "Prekladajte webové stránky vo Firefoxe — súkromne — bez použitia cloudu."
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr "Blokujte webové stránky, ktoré vás oberajú o čas. Zablokujte ich úplne alebo len v časových rámcoch podľa vášho výberu."
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Rozšírenia sú ako aplikácie pre Firefox."
@@ -4314,16 +4319,17 @@ msgid "See all extensions"
 msgstr "Zobraziť všetky rozšírenia"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr "Rozšírenia zamerané na bezpečnosť a súkromie"
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Prispôsobenie YouTube"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Štartovací balíček rozšírení"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Správcovia sťahovania súborov"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Rozšírenia Hry a zábava"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4419,10 +4425,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Ďalšie tipy od znalcov na blokovanie reklám"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Prispôsobenie YouTube"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Ďalšie tipy na rozšírenia pre YouTube"
 
@@ -4465,6 +4467,14 @@ msgstr "Rozšírenia pre kreativitu"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Ďalšie tipy od znalcov pre kreativitu"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr "Rozšírenia zamerané na sociálne médiá"
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr "Ďalšie tipy od znalcov pre sociálne médiá"
 
 msgid "Unreviewed"
 msgstr "Neskontrolované"
@@ -4585,6 +4595,13 @@ msgstr "Iný (popíšte)"
 msgid "Auto-flagged due to word match"
 msgstr "Automaticky označené na kontrolu z dôvodu zhody slov"
 
+msgid "Auto-flagged due to user restriction"
+msgstr "Automaticky označené z dôvodu obmedzenia používateľa"
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr "%(value)s obsahuje nealfanumerický znak."
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] "Text recenzie nemôže obsahovať slovo: \"{0}\""
@@ -4643,15 +4660,15 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "od %(user)s dňa %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr "od %(user)s dňa %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dňa %(date)s</span>"
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr "<strong>Upozornenie!</strong> Iný používateľ pred vami túto stránku prezeral."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
+msgstr "<strong>Upozornenie!</strong> Túto stránku si mohol pred vami prezrieť iný používateľ."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5065,8 +5082,8 @@ msgstr "Používateľ Firefoxu - {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Zadajte platný rozsah siete IPv4 alebo IPv6 CIDR, napr. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
-msgstr "Z vašej lokality bolo odoslaných viacero doplnkov, ktoré porušujú naše pravidlá. Adresa IP bola zablokovaná."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
+msgstr "Z vašej lokality bolo odoslaných viacero príspevkov porušujúcich naše pravidlá. Adresa IP bola zablokovaná."
 
 msgid "Email Pattern"
 msgstr "Formát e-mailovej adresy"
@@ -5076,8 +5093,8 @@ msgstr ""
 "Zadajte celý e-mail, ktorý má byť zablokovaný, alebo použite zástupné znaky v štýle unix, napr. \"*@example.com\". Ak potrebujete zablokovať doménu vrátane subdomén, pridajte druhú položku, napr. "
 "\"*@*.example.com\"."
 
-msgid "The email address used for your account is not allowed for add-on submission."
-msgstr "E-mailová adresa použitá pre váš účet nemá povolené odosielanie doplnkov."
+msgid "The email address used for your account is not allowed for submissions."
+msgstr "E-mailová adresa použitá pre váš účet nemá povolené odosielanie príspevkov."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "

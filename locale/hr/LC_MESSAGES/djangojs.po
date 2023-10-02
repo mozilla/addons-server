@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:50+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
 "PO-Revision-Date: 2022-12-19 12:38+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -71,8 +71,14 @@ msgstr "Tvoj dodatak premašuje maksimalnu veličinu od {0}."
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Primljen prazni odgovor od servera; stanje: {0}"
 
+msgid "Your extension has to be compatible with at least one application."
+msgstr ""
+
 msgid "Unexpected server error while validating."
 msgstr "Neočekivana greška poslužitelja tijekom provjere."
+
+msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
+msgstr ""
 
 msgid "Finished validating {0}"
 msgstr "Završavanje provjere {0}"
@@ -628,9 +634,6 @@ msgstr[2] "{files} datoteka"
 msgid "Image changes being processed"
 msgstr "Obrađuju se izmjene na slici"
 
-msgid "Select an application first"
-msgstr "Najprije odaberite aplikaciju"
-
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> slovo"
@@ -651,6 +654,9 @@ msgstr "Ukloni ovaj prijevod"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} je prvi pregledao stranicu."
+
+msgid "Review page polling failed."
+msgstr ""
 
 msgid "{name} was viewing this add-on first."
 msgstr "{name} je pregledao ovaj dodatak prvi."

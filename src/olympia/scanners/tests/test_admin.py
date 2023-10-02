@@ -1,7 +1,7 @@
 import json
-
 from datetime import datetime
 from unittest import mock
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.contrib.admin.sites import AdminSite
@@ -13,7 +13,6 @@ from django.utils.html import format_html
 from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
-from urllib.parse import urljoin
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -39,7 +38,6 @@ from olympia.constants.scanners import (
 from olympia.files.models import FileUpload
 from olympia.reviewers.templatetags.code_manager import code_manager_url
 from olympia.scanners.admin import (
-    formatted_matched_rules_with_files_and_data,
     ExcludeMatchedRulesFilter,
     MatchesFilter,
     ScannerQueryResultAdmin,
@@ -47,6 +45,7 @@ from olympia.scanners.admin import (
     ScannerRuleAdmin,
     StateFilter,
     WithVersionFilter,
+    formatted_matched_rules_with_files_and_data,
 )
 from olympia.scanners.models import (
     ScannerQueryResult,

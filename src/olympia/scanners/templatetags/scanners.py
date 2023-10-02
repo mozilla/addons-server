@@ -1,8 +1,8 @@
-from django.utils.html import conditional_escape, format_html, format_html_join
-
 from django import template
 from django.conf import settings
 from django.urls import reverse
+from django.utils.html import conditional_escape, format_html, format_html_join
+
 
 register = template.Library()
 

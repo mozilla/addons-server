@@ -3,8 +3,8 @@ import os
 import subprocess
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
 from django.contrib.staticfiles.finders import find as find_static_path
+from django.core.management.base import BaseCommand, CommandError
 
 from olympia.lib.jingo_minify_helpers import ensure_path_exists
 

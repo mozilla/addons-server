@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-04-04 16:48+0000\n"
-"PO-Revision-Date: 2023-04-17 11:15+0000\n"
+"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"PO-Revision-Date: 2023-09-09 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -78,7 +78,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "Aðeins nýjustu útgáfur af viðbótum geta bætt athugasemdum við."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Lengd umbeðins efnis er of mikil."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "Farið er yfir hámarksfjölda flokka á hvert forrit ({MAX_CATEGORIES})"
@@ -120,6 +120,10 @@ msgid "Unknown min app version specified"
 msgstr "Óþekkt lágmarksútgáfa forrits tilgreind"
 
 #, python-format
+msgid "Can not override compatibility information set in the manifest for this application (%s)"
+msgstr ""
+
+#, python-format
 msgid "Images must be smaller than %dMB"
 msgstr "Myndir verða að vera minni en %dMB"
 
@@ -139,13 +143,10 @@ msgid "Upload is not valid."
 msgstr "Innsending er ekki gild."
 
 msgid "File is already disabled."
-msgstr ""
+msgstr "Skráin er þegar óvirk."
 
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
-
-msgid "Version {version} matches {block_link} for this add-on. You can contact {amo_admins} for additional information."
 msgstr ""
 
 msgid "Version {version_string} was uploaded before and deleted."
@@ -314,17 +315,17 @@ msgstr "Fannst ekki"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Því miður getum við ekki fundið það sem þú ert að leita að.</h1> <p>Síðan eða skjalið sem þú baðst um fannst ekki á vefsvæðinu okkar. Það er mögulegt að þú hafir smellt á tengil sem er úreltur "
 "eða sett inn rangt skrifað vistsfang.</p> <ul> <li>Ef þú skrifaðir inn vistfangið skaltu athuga vel stafsetninguna.</li> <li>Ef þú smelltir á tengil einhvers staðar ættirðu að %(open_bug_link)s "
 "tilkynna vandamálið %(close_bug_link)s. Segðu okkur hvaðan þú komst, að hverju þú leitaðir og við munum gera okkar besta til að laga þetta. </li> </ul> <p>Eða þú getur bara hoppað yfir á nokkrar af "
 "vinsælustu síðunum á vefsvæðinu okkar. </p> <ul> <li>Hefur þú áhuga á <a href=\"%(rec)s\">lista með úrvali viðbóta </a>? </li> <li> Viltu <a href=\"%(search)s\">leita að viðbótum </a>? Þú getur "
-"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. "
-"</li> </ul>"
+"farið á <a href=\"%(search)s\"> leitarsíðuna </a> eða bara notað leitarreitinn hér fyrir ofan. </li> <li> Ef þú vilt frekar byrja aftur, skaltu fara á <a href=\"%(home)s\">heimasíðu viðbóta</a>. </"
+"li> </ul>"
 
 msgid "Oops"
 msgstr "Úbbs"
@@ -334,14 +335,17 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur líka"
-" hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
+"<h1>Úbbs! Þarna fengum við villu.</h1> <p>Lögum hana eins fljótt og auðið er.</p> <p>Þú getur reynt að endurlesa síðuna eða farið til baka á <a href=\"%(home)s\">heimasíðu viðbóta</a>. Þú getur "
+"líka hjálpað okkur að laga þetta með því að <a href=\"https://github.com/mozilla/addons/issues/new\">senda inn verkbeiðni</a> með nákvæmri lýsingu á hvernig þú komst inn á þessa síðu. </p>"
 
 msgid "Register or Log in"
 msgstr "Nýskráðu þig eða skráðu inn"
 
 msgid "Email:"
 msgstr "Tölvupóstfang:"
+
+msgid "Two-factor authentication"
+msgstr ""
 
 msgid "OK"
 msgstr "Í lagi"
@@ -452,37 +456,6 @@ msgstr "Ekki er hægt að nota þessa sérsniðnu slóð."
 msgid "This add-on already belongs to the collection"
 msgstr "Þessi viðbót tilheyrir nú þegar safninu"
 
-#, python-format
-msgid "GUID %(guid)s is in a pending Submission"
-msgstr ""
-
-#, python-format
-msgid "Block with GUID %(guid)s not found"
-msgstr "Blokk með GUID %(guid)s fannst ekki"
-
-#, python-format
-msgid "Add-on with GUID %(guid)s does not exist"
-msgstr "Viðbót með GUID %(guid)s er ekki til"
-
-msgid "Blocks to be updated are different because Min or Max version has changed."
-msgstr ""
-
-#, python-format
-msgid "%(value)s contains *"
-msgstr "%(value)s inniheldur *"
-
-msgid "Invalid version"
-msgstr "Ógild útgáfa"
-
-msgid "Min version can not be greater than Max version"
-msgstr "Lágmarksútgáfa má ekki vera hærri en hámarksútgáfa"
-
-msgid "Review Listed"
-msgstr "Yfirfara í lista"
-
-msgid "Review Unlisted"
-msgstr "Yfirfara ekki í lista"
-
 msgid "{addon} was created."
 msgstr "{addon} var búin til."
 
@@ -497,11 +470,11 @@ msgstr "Flokkum breytt fyrir {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) bætt við {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) fjarlægður úr {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Framlög til {addon}."
@@ -527,7 +500,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "Útgáfu {0} eytt úr {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "Skránni {file} bætt við {version} af {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "Skránni {0} eytt úr {version} af {addon}."
@@ -618,7 +591,7 @@ msgstr "{0} {1} bætt við"
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Hlutverki notandans {user} breytt í {0} fyrir {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} er nú með notkunarleyfi samkvæmt {0}."
@@ -684,10 +657,10 @@ msgid "User {user} picture deleted."
 msgstr "Mynd notandans {user} eytt."
 
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "Notandanum {user} bætt við {group}."
 
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "Notandinn {user} fjarlægður úr {group}."
 
 msgid "{addon} unlisted."
 msgstr "{addon} afskráð."
@@ -843,10 +816,31 @@ msgstr ""
 msgid "Un-rejected"
 msgstr "Höfnun afturkölluð"
 
-msgid "{addon} needs_human_review flag cleared."
+msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
-msgid "Needs Human Review cleared"
+msgid "{addon} {version} pending rejection cleared."
+msgstr ""
+
+msgid "Pending rejection cleared"
+msgstr ""
+
+msgid "{version} added to Blocklist."
+msgstr ""
+
+msgid "Version Blocked"
+msgstr ""
+
+msgid "{version} removed from Blocklist."
+msgstr ""
+
+msgid "Version Unblocked"
+msgstr ""
+
+msgid "{addon} {version} admin add-on-review cleared."
+msgstr ""
+
+msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "Firefox"
@@ -1016,8 +1010,8 @@ msgstr "Friðhelgi og öryggi"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Sæktu Firefox-forritsauka til að vafra öruggar og í friði fyrir eftirliti. Þessi flokkur inniheldur forritsauka til að loka á auglýsingar, koma í veg fyrir eftirlit, stýra endurbeiningum og ýmislegt"
-" fleira."
+"Sæktu Firefox-forritsauka til að vafra öruggar og í friði fyrir eftirliti. Þessi flokkur inniheldur forritsauka til að loka á auglýsingar, koma í veg fyrir eftirlit, stýra endurbeiningum og "
+"ýmislegt fleira."
 
 msgid "Search Tools"
 msgstr "Leitarverkfæri"
@@ -1495,6 +1489,10 @@ msgstr "Skoða núverandi"
 msgid "Invalid version range."
 msgstr "Ógilt bil útgáfa."
 
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
+
 msgid "Need at least one compatible application."
 msgstr ""
 
@@ -1509,9 +1507,6 @@ msgstr ""
 
 msgid "Need to select at least one application."
 msgstr ""
-
-msgid "a blocklist entry"
-msgstr "færsla í blokkalista"
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -1562,6 +1557,9 @@ msgstr ""
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
+msgstr ""
+
+msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
 msgid "Updated"
@@ -1626,6 +1624,9 @@ msgstr "Tókst að vista breytingar."
 
 msgid "Validate Add-on"
 msgstr "Fullgilda viðbót"
+
+msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
+msgstr ""
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Táknmyndir verða að vera annað hvort PNG eða JPG."
@@ -1829,52 +1830,6 @@ msgstr "Virkni"
 msgid "Subscribe to this feed"
 msgstr "Gerast áskrifandi að þessu streymi"
 
-#, python-format
-msgid ""
-"This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
-"this add-on."
-msgstr ""
-
-#, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
-msgstr ""
-
-msgid "View and update application compatibility ranges"
-msgstr ""
-
-msgid "Compatibility"
-msgstr "Samhæfni"
-
-msgid "Update Compatibility"
-msgstr "Samhæfni uppfærslu"
-
-msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr ""
-
-msgid "Application"
-msgstr "Forrit"
-
-msgid "Supported Versions"
-msgstr "Studdar útgáfur"
-
-msgid "Remove"
-msgstr "Fjarlægja"
-
-msgid "Add Another Application&hellip;"
-msgstr "Bæta við öðru forriti&hellip;"
-
-msgid "Save Changes"
-msgstr "Vista breytingar"
-
-msgid "or"
-msgstr "eða"
-
-msgid "Cancel"
-msgstr "Hætta við"
-
-msgid "Close"
-msgstr "Loka"
-
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
@@ -1945,10 +1900,16 @@ msgstr "Höfundar sem bíða eftir staðfestingu"
 msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
+msgid "Save Changes"
+msgstr "Vista breytingar"
+
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+
+msgid "Close"
+msgstr "Loka"
 
 msgid "Additional Details"
 msgstr "Viðbótaratriði"
@@ -1987,6 +1948,12 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+
+msgid "or"
+msgstr "eða"
+
+msgid "Cancel"
+msgstr "Hætta við"
 
 msgid "Describe Add-on"
 msgstr "Lýstu viðbótinni"
@@ -2058,8 +2025,8 @@ msgid "Email"
 msgstr "Tölvupóstur"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2101,8 +2068,8 @@ msgid "Whiteboard"
 msgstr ""
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2165,13 +2132,13 @@ msgid "Add a Screenshot..."
 msgstr "Bæta við skjámynd..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Stuðningur við PNG og JPG, mælt með PNG. Hámarks- og ráðlögð stærð fyrir skjámyndir er 2400x1800 mynddílar."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Lágmarksstærðin er 1000x750 og krafist er stærðarhlutfallana 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Að hafa skjámyndir á kynningarsíðunni þinni eykur til muna líkurnar á að forritsaukinn verði settur upp."
 
 msgid "Continue"
 msgstr "Halda áfram"
@@ -2463,7 +2430,7 @@ msgid "Go to My Submissions"
 msgstr "Fara í innsendingarnar mínar"
 
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Innsending grunnkóða"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -2613,8 +2580,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2686,7 +2653,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -3009,6 +2977,15 @@ msgstr "Sýsla með {0}"
 
 msgid "Files"
 msgstr "Skrár"
+
+msgid "Compatibility"
+msgstr "Samhæfni"
+
+msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
+msgstr ""
+
+msgid "Add Another Application&hellip;"
+msgstr "Bæta við öðru forriti&hellip;"
 
 msgid "Version Notes"
 msgstr "Útgáfuskýringar"
@@ -3333,7 +3310,6 @@ msgid "Automatically erase cookies after you close a tab."
 msgstr "Eyddu vefkökum sjálfvirkt eftir að þú lokar flipum."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
 msgstr "Einföld leið til að stilla stærð hvaða texta sem er – eða jafnvel stækka síðuna sjálfa."
 
@@ -3476,7 +3452,6 @@ msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Lokaðu sjálfgefið fyrir alla sprettiglugga og ákveddu síðan hverja þeirra þú vilt opna."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds, and more."
 msgstr "Sérsníddu útlit hvaða vefsíðu sem er. Breyttu litum, bakgrunni og fleira."
 
@@ -3716,7 +3691,6 @@ msgid "Gain an Amazon edge. When looking at product pages on other online shops,
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
 msgstr "Njóttu fullkominnar flipastýringar - lokaðu tvíteknum flipum, sameinaðu glugga, afritaðu titil flipa og fleira."
 
@@ -3833,7 +3807,6 @@ msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? Sound
 msgstr "Lagaðu leiðindi með hljóð. Er hljóðstyrkur á einhverju vefsvæði of lítill? Of hár? SoundFixer getur hjálpað."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
 msgstr "Breyttu vefsíðum áður en þær eru prentaðar. Gerðu víðtækar sjónrænar breytingar - fjarlægðu auglýsingar eða ósmekklegt efni - á hverri þeirri vefsíðu sem þú vilt prenta."
 
@@ -3896,7 +3869,6 @@ msgid "Enjoy multi-threading download support. Automatically detect different ty
 msgstr "Nýttu þér stuðning við niðurhal á mörgum örgjörvaþráðum. Greindu sjálfvirkt mismunandi tegundir niðurhals í boði."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save images easily—just grab them from your current tab."
 msgstr "Vistaðu myndir auðveldlega - gríptu þær bara af viðkomandi flipa."
 
@@ -3981,7 +3953,6 @@ msgid "Create and customize tab groups."
 msgstr "Búðu til og sérsníddu flipahópa."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
 msgid "Save an entire web page—including images and styling—as a single HTML file."
 msgstr "Vistaðu heilar vefsíður – þar á meðal myndir og stíl – sem eina HTML-skrá."
 
@@ -4066,6 +4037,14 @@ msgstr "Tímahaður þemaskiptir. Láttu Firefox breyta um lit eftir tíma dagsi
 msgid "Declutter your Twitter experience."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Bring back the ability to see thumbs down!"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
+msgstr ""
+
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Sum vefsvæði eiga í erfiðleikum með að spila myndskeið á Android. Hér er lausn á því."
@@ -4073,6 +4052,14 @@ msgstr "Sum vefsvæði eiga í erfiðleikum með að spila myndskeið á Android
 #. editorial content for the primary hero shelves.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr "Fannstu áhugaverða mynd á vefnum? Notaðu TinEye til að finna hvaðan hún er upprunnin."
+
+#. editorial content for the primary hero shelves.
+msgid "Save images easily — just grab them from your current tab."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4083,12 +4070,28 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata með meira en 50 uppsetningum."
 
 #. editorial content for the primary hero shelves.
+msgid "Customize the look of any website. Shift colors, page backgrounds & more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Notaðu músarbendingar til að loka flipum, rata um vefsíður og fleira."
 
 #. editorial content for the primary hero shelves.
+msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Sjáðu smámyndir af vefsíðum við hlið leitarniðurstaðna."
+
+#. editorial content for the primary hero shelves.
+msgid "Save an entire web page — including images and styling — as a single HTML file."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4119,10 +4122,8 @@ msgid "Return to a simpler time — when your top search results stood above the
 msgstr "Farðu til baka í einfaldari tíma - þegar mikilvægustu leitarniðurstöðurnar komu fyrir ofan allar auglýsingar (samhæft við Google og Bing leitarvélarnar)."
 
 #. editorial content for the primary hero shelves.
-msgid "Stop giving sites your email address. Firefox Relay protects your identity & prevents junk mail. Upgrade to premium for added benefits, like blocking more specific promotional emails."
+msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
-"Hættu að gefa vefsvæðum tölvupóstfangið þitt. Firefox Relay verndar persónuauðkennin þín og kemur í veg fyrir ruslpóstsendingar. Uppfærðu í premium-áskrift til að fá fleiri eiginleika, eins og að "
-"geta lokað nákvæmar á sértæka kynningarpósta."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4188,6 +4189,14 @@ msgstr "Bættu upplifun þína af leikjaspilun á Steam."
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Translate websites in Firefox — privately — without using the cloud."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
+msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
@@ -4201,16 +4210,17 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
+msgid "Privacy & Security extensions"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Gerðu YouTube að þínu"
+
+#. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
 msgstr "Byrjunarpakki forritsauka"
-
-#. editorial content for the secondary hero shelves.
-msgid "Download Managers"
-msgstr "Umsýsla niðurhals"
-
-#. editorial content for the secondary hero shelves.
-msgid "Games & Entertainment extensions"
-msgstr "Forritsaukar fyrir leiki og afþreyingu"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4305,10 +4315,6 @@ msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Gerðu YouTube að þínu"
-
-#. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
 msgstr "Skoðaðu fleiri YouTube-forritsauka sem starfsfólk hefur valið"
 
@@ -4351,6 +4357,14 @@ msgstr "Forritsaukar fyrir sköpunargleði"
 #. editorial content for the homepage shelves.
 msgid "See more creativity staff picks"
 msgstr "Skoðaðu fleiri sköpunartól sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "Social media extensions"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more social media staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Óyfirfarið"
@@ -4471,6 +4485,13 @@ msgstr "Annað (tilgreindu nákvæmlega)"
 msgid "Auto-flagged due to word match"
 msgstr ""
 
+msgid "Auto-flagged due to user restriction"
+msgstr ""
+
+#, python-format
+msgid "%(value)s contains a non-alphanumeric character."
+msgstr ""
+
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
@@ -4526,14 +4547,14 @@ msgid "<dd>%(review_author)s</dd>"
 msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
-msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr "eftir %(user)s þann %(date)s %(stars)s (%(locale)s)"
+msgid "by %(user)s on %(date)s %(stars)s"
+msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr ""
 
-msgid "<strong>Warning!</strong> Another user was viewing this page before you."
+msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
 msgstr ""
 
 #, python-format
@@ -4945,7 +4966,7 @@ msgstr "Firefox-notandi {id}"
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "Settu inn gilt IPv4- eða IPv6-CIDR netkerfissvið, t.d. 127.0.0.1/28"
 
-msgid "Multiple add-ons violating our policies have been submitted from your location. The IP address has been blocked."
+msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
 msgid "Email Pattern"
@@ -4954,7 +4975,7 @@ msgstr "Mynstur tölvupóstfanga"
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-msgid "The email address used for your account is not allowed for add-on submission."
+msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
 msgid ""
@@ -4963,8 +4984,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5020,7 +5041,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"

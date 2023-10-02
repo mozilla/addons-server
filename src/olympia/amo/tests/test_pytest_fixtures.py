@@ -1,8 +1,7 @@
 """Testing the pytest fixtures themselves which are declared in conftest.py."""
 import pytest
-import responses
 import requests
-
+import responses
 from requests.exceptions import ConnectionError
 
 from olympia.access.models import Group

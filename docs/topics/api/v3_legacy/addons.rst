@@ -6,7 +6,7 @@ Add-ons
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 .. note::
     The only authentication method available at
@@ -477,7 +477,7 @@ Compat Override
 .. _v3-addon-compat-override:
 
 This endpoint allows compatibility overrides specified by AMO admins to be searched.
-Compatibilty overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
+Compatibility overrides are used within Firefox i(and other toolkit applications e.g. Thunderbird) to change compatibility of installed add-ons where they have stopped working correctly in new release of Firefox, etc.
 
 .. http:get:: /api/v3/addons/compat-override/
 
