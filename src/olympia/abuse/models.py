@@ -308,7 +308,9 @@ class CinderReport(ModelBase):
     )
 
     job_id = models.CharField(max_length=36)
-    abuse_report = models.ForeignKey(AbuseReport, on_delete=models.CASCADE)
+    abuse_report = models.OneToOneField(
+        AbuseReport, on_delete=models.CASCADE, primary_key=True
+    )
     decision_action = models.PositiveSmallIntegerField(
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
     )
