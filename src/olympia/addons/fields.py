@@ -31,7 +31,6 @@ from olympia.versions.models import (
     VALID_SOURCE_EXTENSIONS,
     ApplicationsVersions,
     License,
-    Version,
 )
 
 
