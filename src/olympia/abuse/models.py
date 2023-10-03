@@ -58,6 +58,7 @@ class AbuseReport(ModelBase):
         ('PRIVILEGED', 12, 'Privileged'),
     )
     REASONS = APIChoicesWithNone(
+        # Reporting reasons used in Firefox
         ('DAMAGE', 1, 'Damages computer and/or data'),
         ('SPAM', 2, 'Creates spam or advertising'),
         (
@@ -74,6 +75,17 @@ class AbuseReport(ModelBase):
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
         # `10` was previously "Other". We avoid re-using the value.
+
+        # Reporting reasons used in AMO Feedback flow - DSA categories
+        ('HATE_SPEECH', 11, 'DSA: Contains hate speech'),
+        ('CSAM', 12, 'DSA: Contains child sexual abuse material'),
+        # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
+        (
+            'DOES_NOT_WORK',
+            20,
+            'Feedback: Doesn’t work, breaks websites, or slows Firefox down',
+        ),
+        ('NOT_WANTED', 21, "Feedback: Wasn't wanted or can't be uninstalled"),
         ('OTHER', 127, 'Other'),
     )
 
@@ -150,7 +162,7 @@ class AbuseReport(ModelBase):
         ('DELETED', 4, 'Deleted'),
     )
 
-    # NULL if the reporter is anonymous.
+    # NULL if the reporter was not authenticated.
     reporter = models.ForeignKey(
         UserProfile,
         null=True,
@@ -158,6 +170,9 @@ class AbuseReport(ModelBase):
         related_name='abuse_reported',
         on_delete=models.SET_NULL,
     )
+    # name and/or email can be provided instead for unauthenticated reporters
+    reporter_email = models.CharField(max_length=255, default=None, null=True)
+    reporter_name = models.CharField(max_length=255, default=None, null=True)
     country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is set then guid should be null.
@@ -171,6 +186,8 @@ class AbuseReport(ModelBase):
     state = models.PositiveSmallIntegerField(
         default=STATES.UNTRIAGED, choices=STATES.choices
     )
+    # if this report has been submitted to cinder this is the job reference there
+    cinder_job_id = models.CharField(max_length=36, default=None, null=True)
 
     # Extra optional fields for more information, giving some context that is
     # meant to be extracted automatically by the client (i.e. Firefox) and
