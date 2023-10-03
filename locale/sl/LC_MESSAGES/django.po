@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-30 20:14+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2023-10-03 08:52+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1215,7 +1215,7 @@ msgid "Websites"
 msgstr "Spletne strani"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Prenesite teme za Firefox, ki odsevajo bistvo spleta – očarljive, nenavadne in drugačne."
 
 msgid "General"
 msgstr "Splošno"
@@ -1514,7 +1514,7 @@ msgstr "Neveljavno območje različic."
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Neveljaven obseg različic. Za Firefox za Android lahko izberete le obseg, ki se začne z različico %(max)s ali novejšo ali konča z različico, starejšo od %(min)s."
 
 msgid "Need at least one compatible application."
 msgstr "Potrebujem vsaj eno združljivo aplikacijo."
@@ -3460,7 +3460,7 @@ msgstr "Samodejno ponovno naloži zavihke v izbranih časovnih presledkih."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "Ločite svoja spletna življenja po barvno označenih zavihkih, ki ločujejo tudi piškotke. Za dodatno plast zasebnosti zdaj integriran z Mozilla VPN."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3727,7 +3727,7 @@ msgstr "Ustvarite zapiske, splošne ali za določena spletna mesta, za kasnejši
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Drsenje po računalniku kot na telefonu. Omogoča poteze z miško v slogu \"zgrabi in povleci\"."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
