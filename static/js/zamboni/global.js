@@ -305,7 +305,7 @@ $.fn.modal = function (click_target, o) {
 
     $modal.detach().appendTo('body');
     let toX = offset.x || ($(window).width() - $modal.outerWidth(false)) / 2,
-        toY = offset.y || 160;
+      toY = offset.y || 160;
     $modal.css({
       left: toX + 'px',
       top: toY + 'px',
