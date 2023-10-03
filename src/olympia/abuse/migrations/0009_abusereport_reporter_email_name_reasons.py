@@ -11,11 +11,6 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddField(
             model_name='abusereport',
-            name='cinder_job_id',
-            field=models.CharField(default=None, max_length=36, null=True),
-        ),
-        migrations.AddField(
-            model_name='abusereport',
             name='reporter_email',
             field=models.CharField(default=None, max_length=255, null=True),
         ),

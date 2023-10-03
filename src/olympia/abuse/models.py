@@ -4,7 +4,7 @@ from extended_choices import Choices
 
 from olympia import amo
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.api.utils import APIChoicesWithNone
+from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
 
 
@@ -185,8 +185,6 @@ class AbuseReport(ModelBase):
     state = models.PositiveSmallIntegerField(
         default=STATES.UNTRIAGED, choices=STATES.choices
     )
-    # if this report has been submitted to cinder this is the job reference there
-    cinder_job_id = models.CharField(max_length=36, default=None, null=True)
 
     # Extra optional fields for more information, giving some context that is
     # meant to be extracted automatically by the client (i.e. Firefox) and
@@ -295,3 +293,23 @@ class AbuseReport(ModelBase):
     def __str__(self):
         name = self.guid if self.guid else self.user
         return f'Abuse Report for {self.type} {name}'
+
+
+class CinderReport(ModelBase):
+    DECISION_ACTIONS = APIChoices(
+        ('NO_DECISION', 0, 'No decision'),
+        ('AMO_BAN_USER', 1, 'User ban'),
+        ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
+        ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
+        ('AMO_ESCALATE_USER', 4, 'Escalate add-on to reviewers'),
+        ('AMO_DELETE_RATING', 5, 'Rating delete'),
+        ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
+        ('AMO_APPROVE', 7, 'Approved (no action)'),
+    )
+
+    job_id = models.CharField(max_length=36)
+    abuse_report = models.ForeignKey(AbuseReport, on_delete=models.CASCADE)
+    decision_action = models.PositiveSmallIntegerField(
+        default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
+    )
+    decision_id = models.CharField(max_length=36, default=None, null=True)
