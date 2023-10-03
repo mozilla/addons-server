@@ -860,6 +860,29 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     client_class = APITestClientSessionID
     client_request_verb = 'post'
     SUCCESS_STATUS_CODE = 201
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
+
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
+        }
+        for version in versions:
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super().setUp()
@@ -1614,6 +1637,72 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             response = self.request()
             assert response.status_code == 201, response.content
             assert response.data['type'] == 'dictionary'
+
+    def test_compatibility_dict(self):
+        request_data = {'version': {'upload': self.upload.uuid, 'compatibility': {}}}
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data == {'version': {'compatibility': ['Invalid value']}}
+
+        request_data['version']['compatibility'] = {
+            'firefox': {'min': '61.0'},
+            'foo': {},
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {'compatibility': ['Invalid app specified']}
+        }
+
+        # 61.0 (DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX) should be valid.
+        request_data['version']['compatibility'] = {
+            'firefox': {'min': '61.0'},
+            'android': {},
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+
+        addon = Addon.objects.get()
+        assert addon.versions.count() == 1
+        version = addon.find_latest_version(channel=None)
+        assert data['version']['compatibility'] == {
+            # android was specified but with an empty dict, so gets the default
+            # corrected to account for general availability.
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '61.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+
+    def test_compatibility_forbidden_range_android(self):
+        request_data = {
+            'version': {
+                'upload': self.upload.uuid,
+                'compatibility': {'android': {'min': '48.0', 'max': '*'}},
+            }
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data['version'] == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 119.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Allowed range should work.
+        request_data = {
+            'version': {
+                'upload': self.upload.uuid,
+                'compatibility': {'android': {'min': '119.0a1', 'max': '*'}},
+            }
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 201, response.content
 
 
 class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
@@ -3654,6 +3743,27 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
                 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             },
             'firefox': {'max': '*', 'min': '61.0'},
+        }
+
+    def test_compatibility_with_appversion_locked_from_manifest(self):
+        self.upload = self.get_upload(
+            'webextension_gecko_android.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        self.minimal_data = {'upload': self.upload.uuid}
+        response = self.request(
+            compatibility={
+                'android': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
+            }
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'compatibility': [
+                'Can not override compatibility information set in the manifest for '
+                'this application (Firefox for Android)'
+            ]
         }
 
     def _submit_source(self, filepath, error=False):

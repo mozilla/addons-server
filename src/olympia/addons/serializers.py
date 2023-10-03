@@ -1,3 +1,4 @@
+import copy
 import os
 import re
 
@@ -566,7 +567,68 @@ class DeveloperVersionSerializer(VersionSerializer):
             except exceptions.ValidationError as exc:
                 raise exceptions.ValidationError({'source': exc.detail})
 
+        if 'compatible_apps' in data:
+            try:
+                self._post_validate_compatibility(data['compatible_apps'])
+            except exceptions.ValidationError as exc:
+                raise exceptions.ValidationError({'compatibility': exc.detail})
+
         return data
+
+    def _post_validate_compatibility(self, compatible_apps_data):
+        # VersionCompatibilityField().to_internal_value() or a custom
+        # validate_compatibility() method can't validate version range
+        # completely, because we need the addon type, and therefore parsed_data
+        # to exist for new uploads. So this is called manually from validate()
+        # above (after internal value transformation, so we are dealing with
+        # ApplicationsVersions instances).
+        if not self.instance:
+            compatible_apps_from_manifest = {
+                APP_IDS.get(avs.application): avs
+                for avs in self.parsed_data.get('apps', [])
+            }
+        for app, avs in compatible_apps_data.items():
+            # Work on a copy as we're altering the instance fields below.
+            avs_copy = copy.copy(avs)
+            if not self.instance:
+                avs_from_parsed_data = compatible_apps_from_manifest[app]
+                # Add in fake Version() instance so that we can call
+                # version_range_contains_forbidden_compatibility().
+                avs_copy.version = Version(
+                    addon=self.addon or Addon(type=self.parsed_data['type'])
+                )
+                # Add in min and max from manifest if necessary.
+                if avs_copy.min_id is None:
+                    avs_copy.min = avs_from_parsed_data.min
+                if avs.max_id is None:
+                    avs_copy.max = avs_from_parsed_data.max
+
+                if avs_from_parsed_data.locked_from_manifest and (
+                    avs_from_parsed_data.min != avs_copy.min
+                    or avs_from_parsed_data.max != avs_copy.max
+                ):
+                    raise exceptions.ValidationError(
+                        gettext(
+                            'Can not override compatibility information set in the '
+                            'manifest for this application (%s)'
+                        )
+                        % app.pretty
+                    )
+
+            if (
+                avs_copy.application == amo.ANDROID.id
+                and hasattr(avs_copy, 'min_or_max_explicitly_set')
+                and avs_copy.version_range_contains_forbidden_compatibility()
+            ):
+                valid_range = ApplicationsVersions.ANDROID_LIMITED_COMPATIBILITY_RANGE
+                raise exceptions.ValidationError(
+                    gettext(
+                        'Invalid version range. For Firefox for Android, you may only '
+                        'pick a range that starts with version %(max)s or higher, '
+                        'or ends with lower than version %(min)s.'
+                    )
+                    % {'min': valid_range[0], 'max': valid_range[1]}
+                )
 
     def create(self, validated_data):
         user = self.context['request'].user
