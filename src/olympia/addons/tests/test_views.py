@@ -3728,6 +3728,27 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             'firefox': {'max': '*', 'min': '61.0'},
         }
 
+    def test_compatibility_with_appversion_locked_from_manifest(self):
+        self.upload = self.get_upload(
+            'webextension_gecko_android.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        self.minimal_data = {'upload': self.upload.uuid}
+        response = self.request(
+            compatibility={
+                'android': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
+            }
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'compatibility': [
+                'Can not override compatibility information set in the manifest for '
+                'this application (Firefox for Android)'
+            ]
+        }
+
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
         src = SimpleUploadedFile(
