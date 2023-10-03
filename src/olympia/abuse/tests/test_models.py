@@ -46,6 +46,10 @@ class TestAbuse(TestCase):
             (6, 'Hateful, violent, or illegal content'),
             (7, 'Pretends to be something it’s not'),
             (9, "Wasn't wanted / impossible to get rid of"),
+            (11, 'DSA: Contains hate speech'),
+            (12, 'DSA: Contains child sexual abuse material'),
+            (20, 'Feedback: Doesn’t work, breaks websites, or slows Firefox down'),
+            (21, "Feedback: Wasn't wanted or can't be uninstalled"),
             (127, 'Other'),
         )
         assert AbuseReport.REASONS.api_choices == (
@@ -57,6 +61,10 @@ class TestAbuse(TestCase):
             (6, 'policy'),
             (7, 'deceptive'),
             (9, 'unwanted'),
+            (11, 'hate_speech'),
+            (12, 'csam'),
+            (20, 'does_not_work'),
+            (21, 'not_wanted'),
             (127, 'other'),
         )
 
