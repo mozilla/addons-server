@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-19 16:02+0000\n"
+"PO-Revision-Date: 2023-10-03 22:24+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1295,7 +1295,7 @@ msgid "Recommended"
 msgstr "Doporučeny"
 
 msgid "Sponsored"
-msgstr "Sponsorowany"
+msgstr "Sponserowany"
 
 msgid "Verified"
 msgstr "Přepruwowany"
@@ -4083,7 +4083,7 @@ msgstr "Wobhladajće sej prudźace medije z přećelemi a swójbu wšudźe."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Skip over sponsored portions of YouTube videos."
-msgstr "Sponsorowane dźěle widejow YouTube přeskočić."
+msgstr "Sponserowane dźěle widejow YouTube přeskočić."
 
 #. editorial content for the discovery pane.
 msgid "Have web pages read aloud to you. 40+ languages supported."
