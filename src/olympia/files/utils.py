@@ -1217,7 +1217,15 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
         # See https://github.com/mozilla/addons-server/issues/3485
         return default['message']
 
-    return message['message']
+    resolved_message = message['message']
+    # Check if the message has placeholders
+    if 'placeholders' in message:
+        for placeholder, content in message['placeholders'].items():
+            # Replace the placeholder with its content
+            resolved_message = re.sub(f'\\${placeholder}\\$', content['content'], resolved_message, flags=re.IGNORECASE)
+
+    return resolved_message
+
 
 
 def get_background_images(file_obj, theme_data, header_only=False):
