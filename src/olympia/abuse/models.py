@@ -75,7 +75,6 @@ class AbuseReport(ModelBase):
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
         # `10` was previously "Other". We avoid re-using the value.
-
         # Reporting reasons used in AMO Feedback flow - DSA categories
         ('HATE_SPEECH', 11, 'DSA: Contains hate speech'),
         ('CSAM', 12, 'DSA: Contains child sexual abuse material'),
