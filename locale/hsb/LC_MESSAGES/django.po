@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-04 10:40+0000\n"
+"PO-Revision-Date: 2023-10-04 10:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2832,7 +2832,7 @@ msgid "More information on Developer Accounts"
 msgstr "Dalše informacije wo wuwiwarskich kontach"
 
 msgid "Firefox Android compatibility"
-msgstr ""
+msgstr "Kompatibelnosć Firefox Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
@@ -2840,10 +2840,10 @@ msgid ""
 msgstr ""
 
 msgid "Yes, I’ve tested my Firefox Android extension"
-msgstr ""
+msgstr "Haj, sym swoje rozšěrjenje Firefox Android testował"
 
 msgid "No, I have not tested for Android compatibility"
-msgstr ""
+msgstr "Ně, njejsym kompatibelnosć z Android testował"
 
 msgid "Developer News"
 msgstr "Nowinki wuwiwarjow"
@@ -4328,7 +4328,7 @@ msgstr "Wšě rozšěrjenja pokazać"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Nowe rozšěrjenja Android testować"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
