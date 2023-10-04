@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -39,18 +39,6 @@ msgstr "చిత్రాలను యానిమేట్ చేయడం స
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "దయచేసి %d MB కంటే చిన్నదిగా ఉన్న చిత్రాలను ఉపయోగించండి."
-
-msgid "You are already logged in."
-msgstr "మీరు ఇప్పటికే ప్రవేశించారు."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "మీ ప్రవేశ ప్రయత్నాన్ని విశ్లేషించలేకపొతున్నాము. దయచేసి మళ్ళీ ప్రయత్నించండి."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "మీ Firefox ఖాతా కనబడలేదు. మళ్ళీ ప్రయత్నించండి."
-
-msgid "You could not be logged in. Please try again."
-msgstr "మీరు ప్రవేశించలేకపోయారు. దయచేసి మళ్ళీ ప్రయత్నించండి."
 
 msgid "Need help?"
 msgstr "సహాయం కావాలా?"
@@ -155,6 +143,10 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -293,9 +285,7 @@ msgstr "మీరు అనుమతి లేనిది ఏదో చేయ�
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
-msgstr ""
-"మీరు ఈ సందేశాన్ని చూస్తున్నారు ఎందుకంటే మీ జాల విహారిణి 'రిఫరర్ హెడర్' పంపించడం  ఈ HTTPS సైటుకు అవసరం, కానీ ఏదీ పంపబడలేదు. భద్రతా కారణాల దృష్ట్యా, మీ విహారిణి మూడవ పక్షాలచే హైజాక్ చేయబడలేదని "
-"నిర్ధారించడానికి ఈ హెడర్ తప్పనిసరి."
+msgstr "మీరు ఈ సందేశాన్ని చూస్తున్నారు ఎందుకంటే మీ జాల విహారిణి 'రిఫరర్ హెడర్' పంపించడం  ఈ HTTPS సైటుకు అవసరం, కానీ ఏదీ పంపబడలేదు. భద్రతా కారణాల దృష్ట్యా, మీ విహారిణి మూడవ పక్షాలచే హైజాక్ చేయబడలేదని నిర్ధారించడానికి ఈ హెడర్ తప్పనిసరి."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr "'రిఫరర్' శీర్షికలను నిలిపివేయడానికి మీ విహారిణిని అమర్చుకొని ఉంటే, దయచేసి వాటిని కనీసం ఈ సైటుకి, లేదా HTTPS అనుసంధానాలకు, లేదా 'అదే-మూల' అభ్యర్థనలకు తిరిగి చేతనించండి."
@@ -303,9 +293,7 @@ msgstr "'రిఫరర్' శీర్షికలను నిలిపి�
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
-"ఫారాలను సమర్పించేటప్పుడు ఈ సైటు CSRF కుకీని తప్పనిసరి చేస్తుంది కాబట్టి మీరు ఈ సందేశాన్ని చూస్తున్నారు. భద్రతా కారణాల దృష్ట్యా, మీ విహారిణిని మూడవ-పక్షాలు హైజాక్ చేయలేదని నిర్ధారించడానికి ఈ కుకీ "
-"అవసరం."
+msgstr "ఫారాలను సమర్పించేటప్పుడు ఈ సైటు CSRF కుకీని తప్పనిసరి చేస్తుంది కాబట్టి మీరు ఈ సందేశాన్ని చూస్తున్నారు. భద్రతా కారణాల దృష్ట్యా, మీ విహారిణిని మూడవ-పక్షాలు హైజాక్ చేయలేదని నిర్ధారించడానికి ఈ కుకీ అవసరం."
 
 msgid "Not Found"
 msgstr "కనబడలేదు"
@@ -313,10 +301,10 @@ msgstr "కనబడలేదు"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 msgid "Oops"
@@ -623,9 +611,6 @@ msgstr "ఖాతా నవీకరించబడింది."
 msgid "Account {user} deleted."
 msgstr "{user} ఖాతా తొలగించబడింది."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr ""
-
 msgid "Created: {0}."
 msgstr "రూపొందించబడింది: {0}."
 
@@ -834,6 +819,12 @@ msgstr ""
 msgid "Admin add-on-review cleared"
 msgstr ""
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -952,9 +943,7 @@ msgid "Alerts & Updates"
 msgstr "హెచ్చరికలు మరియు నవీకరణలు"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
-"తాజా వార్తల కోసం, పనులను చక్కబెట్టుకోడానికి, సామర్థ్యాన్ని మెరుగుపరుచుకోడానికి Firefox పొడగింతలను దించుకోండి. ట్యాబులను రీలోడ్ చేయడానికి, ఉత్పాదకతను సంభాళించడానికి, ఇంకా మరెన్నో చేసే పొడగింతలను "
-"కనుగొనండి."
+msgstr "తాజా వార్తల కోసం, పనులను చక్కబెట్టుకోడానికి, సామర్థ్యాన్ని మెరుగుపరుచుకోడానికి Firefox పొడగింతలను దించుకోండి. ట్యాబులను రీలోడ్ చేయడానికి, ఉత్పాదకతను సంభాళించడానికి, ఇంకా మరెన్నో చేసే పొడగింతలను కనుగొనండి."
 
 msgid "Appearance"
 msgstr "రూపురేఖలు"
@@ -1479,10 +1468,6 @@ msgstr "ప్రస్తుతంది చూడండి"
 
 msgid "Invalid version range."
 msgstr "చెల్లని వెర్షను అవధి."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "కనీసం ఒక అనుగుణ్య అనువర్తనం కావాలి."
@@ -2016,8 +2001,8 @@ msgid "Email"
 msgstr "ఇమెయిల్"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2059,8 +2044,8 @@ msgid "Whiteboard"
 msgstr "వైట్‌బోర్డ్"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
 
 msgid "Add-on Media for {0}"
@@ -2571,8 +2556,8 @@ msgstr "JWT రహస్యము"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 #, python-format
@@ -2644,7 +2629,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2736,6 +2722,20 @@ msgstr "లేదా <a href=\"{0}\"> రద్దు చేయి </a>"
 
 msgid "More information on Developer Accounts"
 msgstr "డెవలపర్ ఖాతాలపై మరింత సమాచారం"
+
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
 
 msgid "Developer News"
 msgstr "డెవలపర్ వార్తలు"
@@ -2882,6 +2882,7 @@ msgstr "కొంత కోడ్ను వ్రాయండి"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "మీ కోడింగ్ నైపుణ్యాలను అందించడం ద్వారా పొడగింతలను మెరుగుపరచడంలో తోడ్పడండి."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "మొదలుపెట్టండి"
 
@@ -4199,12 +4200,11 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4308,6 +4308,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "మరిన్ని ట్యాబు నిర్వహణ పొడగింతలను చూడండి"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4855,9 +4859,6 @@ msgstr "మొజిల్లా వారి పొడగింతలు"
 msgid "Back to Add-ons"
 msgstr "పొడిగింతకు తిరిగి వెళ్ళు"
 
-msgid "Footer logo"
-msgstr "పాదపీఠిక చిహ్నం"
-
 msgid "Legal Notices"
 msgstr "చట్టపరమైన గమనికలు"
 
@@ -4872,44 +4873,64 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
-msgid "get to know <b>add-ons</b>"
-msgstr "<b>పొడగింతల</b> గురించి తెలుసుకోండి"
-
-msgid "About"
-msgstr "గురించి"
-
-msgid "Forum"
-msgstr "ఫోరమ్"
-
-msgid "Download Firefox"
-msgstr "Firefoxను దింపుకోండి"
-
-msgid "Android Browser"
-msgstr "Android విహారిణి"
-
-msgid "iOS Browser"
-msgstr "iOS విహారిణి"
-
-msgid "Focus Browser"
-msgstr "Focus విహారిణి"
-
-msgid "Desktop Browser"
-msgstr "డెస్కుటాపు విహారిణి"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "బీటా, నైట్లీ, డెపలపర్ ఎడిషన్"
-
-msgid "Other languages"
-msgstr "ఇతర భాషలు"
-
-msgid "Go"
-msgstr "వెళ్ళు"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "తిరిగి {0} పొడగింతల ముంగిలి పేజీకి వెళ్ళండి"
 
 msgid "Add-ons"
 msgstr "పొడిగింతలు"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "గురించి"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "ఫోరమ్"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4920,6 +4941,12 @@ msgstr "అవసరమైన ఖాళీలు"
 
 msgid "(optional)"
 msgstr "(ఇష్ట ప్రకారమైన)"
+
+msgid "Other languages"
+msgstr "ఇతర భాషలు"
+
+msgid "Go"
+msgstr "వెళ్ళు"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -4987,8 +5014,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5044,7 +5071,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5068,6 +5096,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

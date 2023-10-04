@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-06-23 07:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,18 +39,6 @@ msgstr "Bilder kan ikke være animerte."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Bruk bilder mindre enn %d MB."
-
-msgid "You are already logged in."
-msgstr "Du er allerede innlogget."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Klarte ikke å tolke innloggingsforsøket ditt. Prøv igjen."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Fant ikke Firefox-kontoen din. Prøv på nytt."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Du kunne ikke logges inn. Prøv på nytt."
 
 msgid "Need help?"
 msgstr "Trenger du hjelp?"
@@ -156,6 +144,10 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -634,10 +626,6 @@ msgstr "Konto oppdatert."
 msgid "Account {user} deleted."
 msgstr "Konto oppdatert."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Konto oppdatert."
-
 msgid "Created: {0}."
 msgstr "Opprettet: {0}."
 
@@ -844,6 +832,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1494,10 +1488,6 @@ msgstr "Vis gjeldende"
 
 msgid "Invalid version range."
 msgstr "Feil versjonsområde."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Trenger minst ett kompatibelt program."
@@ -2784,6 +2774,20 @@ msgstr "eller <a href=\"{0}\">Avbryt</a>"
 msgid "More information on Developer Accounts"
 msgstr "Mer informasjon om utviklerkontoer"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Nyheter for utviklere"
 
@@ -2929,6 +2933,7 @@ msgstr "Skriv litt kode"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Hjelp til med å gjøre tillegg bedre med å bidra med kodeferdighetene dine."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Kom i gang"
 
@@ -4252,12 +4257,11 @@ msgid "See all extensions"
 msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4364,6 +4368,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Vis flere anbefalte utvidelser"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4912,9 +4920,6 @@ msgstr ""
 msgid "Back to Add-ons"
 msgstr "Tilbake til utvidelser"
 
-msgid "Footer logo"
-msgstr ""
-
 msgid "Legal Notices"
 msgstr ""
 
@@ -4929,44 +4934,64 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
-msgid "get to know <b>add-ons</b>"
-msgstr ""
-
-msgid "About"
-msgstr "Om"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Download Firefox"
-msgstr "Last ned Firefox"
-
-msgid "Android Browser"
-msgstr "Nettleser for Android"
-
-msgid "iOS Browser"
-msgstr "Nettleser for iOS"
-
-msgid "Focus Browser"
-msgstr "Nettleseren Focus"
-
-msgid "Desktop Browser"
-msgstr "Nettleser for datamaskiner"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr ""
-
-msgid "Other languages"
-msgstr ""
-
-msgid "Go"
-msgstr "Gå"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Gå tilbake til hjemmesiden til {0}-utvidelser"
 
 msgid "Add-ons"
 msgstr "Utvidelser"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Om"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4977,6 +5002,12 @@ msgstr ""
 
 msgid "(optional)"
 msgstr "(valgfritt)"
+
+msgid "Other languages"
+msgstr ""
+
+msgid "Go"
+msgstr "Gå"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5139,6 +5170,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

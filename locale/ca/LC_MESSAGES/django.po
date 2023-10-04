@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-08-13 15:30+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -46,18 +46,6 @@ msgstr "Les imatges no poden ser animades."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Utilitzeu imatges amb una mida inferior a %d MB."
-
-msgid "You are already logged in."
-msgstr "Ja heu iniciat la sessió."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Ha fallat l'intent d'inici de sessió. Torneu-ho a provar."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "No s’ha trobat el vostre compte del Firefox. Torneu-ho a provar."
-
-msgid "You could not be logged in. Please try again."
-msgstr "No s'ha pogut iniciar la sessió. Torneu-ho a provar."
 
 msgid "Need help?"
 msgstr "Necessiteu ajuda?"
@@ -165,6 +153,10 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -645,10 +637,6 @@ msgstr "S'ha actualitzat el compte."
 msgid "Account {user} deleted."
 msgstr "El complement s'ha suprimit."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "El complement s'ha suprimit."
-
 msgid "Created: {0}."
 msgstr "Creat: {0}."
 
@@ -891,6 +879,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1551,10 +1545,6 @@ msgstr ""
 
 msgid "Invalid version range."
 msgstr "Número de versió invàlid. "
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Es necessita com a mínim una aplicació compatible."
@@ -2898,6 +2888,20 @@ msgstr "o <a href=\"{0}\">Cancel·la</a>"
 msgid "More information on Developer Accounts"
 msgstr "S'ha sol·licitat més informació"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr ""
 
@@ -3053,6 +3057,7 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Primers passos"
 
@@ -4398,12 +4403,11 @@ msgid "See all extensions"
 msgstr "Mostra tots els complements"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4517,6 +4521,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Mostra tots els complements"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5072,9 +5080,6 @@ msgstr "Complements de Mozilla"
 msgid "Back to Add-ons"
 msgstr "Torna als complements"
 
-msgid "Footer logo"
-msgstr ""
-
 msgid "Legal Notices"
 msgstr "Avís legal"
 
@@ -5091,51 +5096,65 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
-msgid "get to know <b>add-ons</b>"
-msgstr "per saber-ne més dels <b>complements</b>"
-
-msgid "About"
-msgstr "Quant a"
-
-msgid "Forum"
-msgstr "Fòrum"
-
-# This is the text that appears on buttons to download add-ons.
-# %$1s is an optional string that only appears if the add-on is only available for
-# a certain platform.  Examples:  (Windows)  or  (Linux)
-# Note that the parentheses are included in the string. :(
-#, fuzzy
-msgid "Download Firefox"
-msgstr "Baixa'l ara"
-
-#, fuzzy
-msgid "Android Browser"
-msgstr "Android"
-
-msgid "iOS Browser"
-msgstr ""
-
-msgid "Focus Browser"
-msgstr ""
-
-msgid "Desktop Browser"
-msgstr ""
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr ""
-
-msgid "Other languages"
-msgstr "Altres idiomes"
-
-msgid "Go"
-msgstr "D'acord"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Torna a la pàgina principal dels complements {0}"
 
 msgid "Add-ons"
 msgstr "Complements"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Quant a"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Fòrum"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5146,6 +5165,12 @@ msgstr "Camps obligatoris"
 
 msgid "(optional)"
 msgstr "(opcional)"
+
+msgid "Other languages"
+msgstr "Altres idiomes"
+
+msgid "Go"
+msgstr "D'acord"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5297,6 +5322,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

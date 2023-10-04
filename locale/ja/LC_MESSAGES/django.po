@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-05-03 02:10+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -42,18 +42,6 @@ msgstr "アニメーションする画像は使用できません。"
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "画像のサイズは %dMB 以下にしてください。"
-
-msgid "You are already logged in."
-msgstr "あなたは既にログインしています。"
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "あなたのログイン試行は解析できませんでした。再度お試しください。"
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "あなたの Firefox アカウントが見つかりませんでした。再度お試しください。"
-
-msgid "You could not be logged in. Please try again."
-msgstr "ログインできませんでした。再度お試しください。"
 
 msgid "Need help?"
 msgstr "サポートが必要ですか？"
@@ -158,6 +146,10 @@ msgid "Version {version_string} already exists."
 msgstr "バージョン {version_string} は既に存在します。"
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -636,9 +628,6 @@ msgstr "アカウントが更新されました。"
 msgid "Account {user} deleted."
 msgstr "{user} のアカウントが削除されました。"
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "{user} のアカウントが Firefox アカウントイベントから削除されました。"
-
 msgid "Created: {0}."
 msgstr "{0}が作成されました。"
 
@@ -845,6 +834,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1493,10 +1488,6 @@ msgstr "最新版を表示"
 
 msgid "Invalid version range."
 msgstr "不正なバージョン範囲です。"
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "対応アプリケーションが少なくともひとつは必要です。"
@@ -2769,6 +2760,20 @@ msgstr "または <a href=\"{0}\">キャンセル</a>"
 msgid "More information on Developer Accounts"
 msgstr "開発者アカウントに関する詳しい情報"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "開発者向けニュース"
 
@@ -2916,6 +2921,7 @@ msgstr "何かコードを書く"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "コーディングスキルを提供することで、アドオンの改善に協力してください。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "ここからスタート"
 
@@ -4304,12 +4310,11 @@ msgid "See all extensions"
 msgstr "すべての拡張機能を見る"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4416,6 +4421,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "おすすめの拡張機能をもっと見る"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4964,9 +4973,6 @@ msgstr "Mozilla アドオン"
 msgid "Back to Add-ons"
 msgstr "アドオンのページへ戻る"
 
-msgid "Footer logo"
-msgstr "フッターロゴ"
-
 msgid "Legal Notices"
 msgstr "法的通知"
 
@@ -4983,46 +4989,65 @@ msgstr ""
 "<a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons 表示-継承ラ"
 "イセンス 3.0</a> 以降に定めがある場合を除きます。"
 
-# フッタ左端
-msgid "get to know <b>add-ons</b>"
-msgstr "<b>アドオン</b> について知る"
-
-msgid "About"
-msgstr "概要"
-
-msgid "Forum"
-msgstr "フォーラム"
-
-msgid "Download Firefox"
-msgstr "Firefox をダウンロード"
-
-msgid "Android Browser"
-msgstr "Android ブラウザー"
-
-msgid "iOS Browser"
-msgstr "iOS ブラウザー"
-
-msgid "Focus Browser"
-msgstr "Focus ブラウザー"
-
-msgid "Desktop Browser"
-msgstr "デスクトップブラウザー"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta、Nightly、Developer Edition"
-
-msgid "Other languages"
-msgstr "他の言語"
-
-msgid "Go"
-msgstr "移動"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0}アドオンのホームページへ戻る"
 
 msgid "Add-ons"
 msgstr "アドオン"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "概要"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "フォーラム"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5033,6 +5058,12 @@ msgstr "入力必須項目"
 
 msgid "(optional)"
 msgstr "(任意)"
+
+msgid "Other languages"
+msgstr "他の言語"
+
+msgid "Go"
+msgstr "移動"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5185,6 +5216,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format
