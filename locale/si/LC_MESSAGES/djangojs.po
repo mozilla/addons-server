@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2022-09-23 08:26+0000\n"
+"PO-Revision-Date: 2023-10-04 22:09+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -68,7 +68,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "සේවාදායකයෙන් හිස් ප්‍රතිචාරයක් ලැබුණි; තත්‍වය: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "ඔබේ දිගුව අවම වශයෙන් එක් යෙදුමකට ගැළපිය යුතුය."
 
 msgid "Unexpected server error while validating."
 msgstr "වලංගුකරණය අතරතුර අනපේක්‍ෂිත සේවාදායක දෝෂයකි."
