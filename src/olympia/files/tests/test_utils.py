@@ -1459,6 +1459,25 @@ class TestResolvei18nMessage:
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result is None
 
+    def test_resolve_placeholders_in_message(self):
+        """Test that placeholders in the message string are correctly replaced."""
+        messages = {
+            'en-US': {
+                'app_desc': {
+                    'message': '$test_placeholder$ tests whether placeholder is correctly replaced.',
+                    'placeholders': {
+                        'test_placeholder': {'content': 'Test Placeholder'}
+                    },
+                }
+            }
+        }
+
+        result = utils.resolve_i18n_message('__MSG_app_desc__', messages, 'en')
+        assert (
+            result
+            == 'Test Placeholder tests whether placeholder is correctly replaced.'
+        )
+
 
 class TestGetBackgroundImages(TestCase):
     file_obj = os.path.join(
