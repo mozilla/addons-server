@@ -131,12 +131,12 @@ ADDON_TYPE = {
     _ADDON_THEME: _('Deprecated Complete Theme'),
     ADDON_DICT: _('Dictionary'),
     _ADDON_SEARCH: _('Deprecated Search Engine'),
-    ADDON_LPAPP: _('Language Pack (Application)'),
+    ADDON_LPAPP: _('Language Pack'),
     _ADDON_LPADDON: _('Deprecated Language Pack (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
-    _ADDON_SITE_PERMISSION: _('Site Permission'),
+    _ADDON_SITE_PERMISSION: _('Deprecated Site Permission'),
 }
 
 # Plural
@@ -145,12 +145,12 @@ ADDON_TYPES = {
     _ADDON_THEME: _('Deprecated Complete Themes'),
     ADDON_DICT: _('Dictionaries'),
     _ADDON_SEARCH: _('Deprecated Search Tools'),
-    ADDON_LPAPP: _('Language Packs (Application)'),
+    ADDON_LPAPP: _('Language Packs'),
     _ADDON_LPADDON: _('Deprecated Language Packs (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
-    _ADDON_SITE_PERMISSION: _('Site Permissions'),
+    _ADDON_SITE_PERMISSION: _('Deprecated Site Permissions'),
 }
 
 # Searchable Add-on Types

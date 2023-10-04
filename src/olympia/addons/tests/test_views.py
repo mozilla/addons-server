@@ -1612,6 +1612,34 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert version.file.strict_compatibility is True
         assert version.apps.get().application == amo.FIREFOX.id
 
+    def test_compatibility_langpack(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
+        upload = self.get_upload(
+            'webextension_langpack.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        self.minimal_data = {'version': {'upload': upload.uuid}}
+        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
+        response = self.request(
+            data={
+                'version': {
+                    **self.minimal_data['version'],
+                    'compatibility': ['android'],
+                }
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {
+                'compatibility': [
+                    'Language Packs are not supported by Firefox for Android'
+                ]
+            }
+        }
+
     def test_dictionary_compat(self):
         def _parse_xpi_mock(pkg, addon, minimal, user):
             return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
@@ -1731,6 +1759,10 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
     def test_langpack(self):
         self.set_guid('langpack-de@firefox.mozilla.org')
         return super().test_langpack()
+
+    def test_compatibility_langpack(self):
+        self.set_guid('langpack-de@firefox.mozilla.org')
+        return super().test_compatibility_langpack()
 
     def test_guid_mismatch(self):
         def parse_xpi_mock(pkg, addon, minimal, user):
@@ -3317,6 +3349,17 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         self.addon.update(type=amo.ADDON_DICT)
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             self.test_basic()
+
+    def test_compatibility_langpack(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(
+                compatibility={'firefox': {'min': '61.0'}, 'android': {}}
+            )
+        # This is allowed for the moment but should be prevented by
+        # https://github.com/mozilla/addons-server/issues/21275
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @override_settings(API_THROTTLING=False)
     def test_cannot_specify_invalid_license_slug(self):

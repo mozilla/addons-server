@@ -13,6 +13,7 @@ from rest_framework import exceptions, serializers
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
+from olympia.amo import ADDON_TYPES
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import SafeStorage, remove_icons, slug_validator
 from olympia.amo.validators import (
@@ -591,12 +592,25 @@ class DeveloperVersionSerializer(VersionSerializer):
             # Work on a copy as we're altering the instance fields below.
             avs_copy = copy.copy(avs)
             if not self.instance:
-                avs_from_parsed_data = compatible_apps_from_manifest[app]
+                avs_from_parsed_data = compatible_apps_from_manifest.get(app)
+                if not avs_from_parsed_data:
+                    # If there was no compatibility data for that app in the
+                    # parsed data then it shouldn't be possible to set it.
+                    raise exceptions.ValidationError(
+                        gettext(
+                            '%(addon_type_plural)s are not supported by %(app_name)s'
+                        )
+                        % {
+                            'addon_type_plural': ADDON_TYPES[self.parsed_data['type']],
+                            'app_name': app.pretty,
+                        }
+                    )
                 # Add in fake Version() instance so that we can call
                 # version_range_contains_forbidden_compatibility().
                 avs_copy.version = Version(
                     addon=self.addon or Addon(type=self.parsed_data['type'])
                 )
+
                 # Add in min and max from manifest if necessary.
                 if avs_copy.min_id is None:
                     avs_copy.min = avs_from_parsed_data.min
