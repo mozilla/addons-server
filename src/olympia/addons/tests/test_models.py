@@ -1847,6 +1847,25 @@ class TestAddonModels(TestCase):
         AddonGUID.objects.create(addon=addon, guid='not-a-guid')
         assert list(addon.blocklistsubmissions) == [submission]
 
+    def test_can_be_compatible_with_all_fenix_versions_property(self):
+        addon = addon_factory()
+        assert not addon.can_be_compatible_with_all_fenix_versions
+
+        # It's promoted but nothing has been approved.
+        promoted = PromotedAddon.objects.create(addon=addon, group_id=LINE.id)
+        assert not addon.can_be_compatible_with_all_fenix_versions
+
+        # The latest version is approved.
+        promoted.approve_for_version(addon.current_version)
+        del addon.promoted
+        assert addon.can_be_compatible_with_all_fenix_versions
+
+        addon.promoted.update(application_id=amo.FIREFOX.id)
+        assert not addon.can_be_compatible_with_all_fenix_versions
+
+        addon.promoted.update(application_id=amo.ANDROID.id)
+        assert addon.can_be_compatible_with_all_fenix_versions
+
 
 class TestAddonUser(TestCase):
     def test_delete(self):

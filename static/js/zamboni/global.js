@@ -304,10 +304,10 @@ $.fn.modal = function (click_target, o) {
     offset = offset || $modal.o.offset;
 
     $modal.detach().appendTo('body');
-    var toX = ($(window).width() - $modal.outerWidth(false)) / 2,
-      toY = $(window).scrollTop() + 26; //distance from top of the window
+    let toX = offset.x || ($(window).width() - $modal.outerWidth(false)) / 2,
+      toY = offset.y || 160;
     $modal.css({
-      left: toX,
+      left: toX + 'px',
       top: toY + 'px',
       right: 'inherit',
       bottom: 'inherit',

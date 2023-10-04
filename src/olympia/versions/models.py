@@ -1467,11 +1467,7 @@ class ApplicationsVersions(models.Model):
 
         # Recommended/line for Android are allowed to set compatibility in the
         # limited range.
-        if (
-            addon.promoted
-            and addon.promoted.group.can_be_compatible_with_fenix
-            and amo.ANDROID in addon.promoted.approved_applications
-        ):
+        if addon.can_be_compatible_with_all_fenix_versions:
             return False
 
         # Range is expressed as a [closed, open) interval.

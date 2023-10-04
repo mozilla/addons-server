@@ -62,13 +62,10 @@ class Command(BaseCommand):
         count = 0
         skipped = 0
         for addon in addons:
-            if (
-                addon.promoted
-                and addon.promoted.group.can_be_compatible_with_fenix
-                and amo.ANDROID in addon.promoted.approved_applications
-            ):
+            if addon.can_be_compatible_with_all_fenix_versions:
                 log.info(
-                    'Skipping add-on id %d because of its promoted group.', addon.pk
+                    'Skipping add-on id %d because it can be compatible with Fenix.',
+                    addon.pk,
                 )
                 skipped += 1
                 continue

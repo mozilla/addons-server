@@ -1350,4 +1350,34 @@ function initSubmitModals() {
       return false; // don't follow the a.href link
     });
   }
+
+  // Warn about Android compatibility (if selected).
+  if ($('#modal-confirm-android-compatibility').length > 0) {
+    let confirmedOnce = false;
+    let $input = $('#id_compatible_apps label.android input[type=checkbox]');
+
+    const $modalAndroidConfirm = $(
+      '#modal-confirm-android-compatibility',
+    ).modal('#id_compatible_apps label.android', {
+      width: 630,
+      callback: function shouldShowAndroidModal(options) {
+        if ($input.prop('disabled')) {
+          return false;
+        }
+        if (confirmedOnce) {
+          $input.prop('checked', !$input.prop('checked'));
+        }
+        return !confirmedOnce;
+      },
+    });
+
+    $('#modal-confirm-android-compatibility')
+      .find('form')
+      .on('submit', function onSubmit(e) {
+        e.preventDefault();
+        $input.prop('checked', true);
+        $modalAndroidConfirm.trigger('close');
+        confirmedOnce = true;
+      });
+  }
 }

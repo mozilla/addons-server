@@ -37,7 +37,7 @@ class Command(BaseCommand):
             application=amo.ANDROID.id, version=amo.MAX_VERSION_FENNEC
         )
         promoted_groups_ids = [
-            p.id for p in PROMOTED_GROUPS if p.can_be_compatible_with_fenix
+            p.id for p in PROMOTED_GROUPS if p.can_be_compatible_with_all_fenix_versions
         ]
         qs = (
             # We only care about listed extensions already marked as compatible
