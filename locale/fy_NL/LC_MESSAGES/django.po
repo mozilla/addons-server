@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-04 11:54+0000\n"
+"PO-Revision-Date: 2023-10-04 14:17+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -2841,10 +2841,10 @@ msgid ""
 msgstr ""
 
 msgid "Yes, I’ve tested my Firefox Android extension"
-msgstr ""
+msgstr "Ja, ik haw myn Firefox Android-útwreiding test"
 
 msgid "No, I have not tested for Android compatibility"
-msgstr ""
+msgstr "Nee, ik haw Android-kompatibiliteit net test"
 
 msgid "Developer News"
 msgstr "Untwikkelersnijs"
@@ -4333,7 +4333,7 @@ msgstr "Alle útwreidingen besjen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Test nije Android-útwreidingen"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -5003,7 +5003,7 @@ msgid "Add-ons"
 msgstr "Add-ons"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Gean nei Mozilla’s startside"
 
 msgid "About"
 msgstr "Oer"
@@ -5054,6 +5054,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
 "sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
+"Utsein wêr oars <a href=\"https://www.mozilla.org/en-US/about/legal/\">fermeld</a>, is op de ynhâld fan dizze website de <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Attribution Share-Alike License v3.0 </a> of lettere ferzje fan tapassing."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
