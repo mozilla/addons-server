@@ -58,6 +58,8 @@ to if necessary.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.username: The username of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
+    :>json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :>json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object addon: The add-on reported for abuse.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json int|null addon.id: The add-on id on AMO, or ``null`` if the ``addon`` submitted was a guid.
@@ -227,6 +229,8 @@ so reports can be responded to if necessary.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
     :>json string reporter.username: The username of the user who submitted the report.
+    :>json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :>json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object user: The user reported for abuse.
     :>json int user.id: The id of the user reported.
     :>json string user.name: The name of the user reported.

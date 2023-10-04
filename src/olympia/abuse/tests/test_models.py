@@ -1,5 +1,11 @@
-from olympia.abuse.models import AbuseReport
+from django.conf import settings
+
+import responses
+
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+
+from ..cinder import CinderAddon
+from ..models import AbuseReport, CinderReport
 
 
 class TestAbuse(TestCase):
@@ -237,3 +243,36 @@ class TestAbuseManager(TestCase):
         addon.update(guid='guid-reused-by-pk-42')
         report = AbuseReport.objects.create(guid='foo@bar')
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
+
+
+class TestCinderReport(TestCase):
+    def test_get_helper(self):
+        addon = addon_factory()
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon.guid, reason=AbuseReport.REASONS.CSAM
+            )
+        )
+        helper = cinder_report.get_helper()
+        assert isinstance(helper, CinderAddon)
+        assert helper.addon == addon
+
+        cinder_report.abuse_report.update(guid=None, user=user_factory())
+        assert cinder_report.get_helper() is None
+
+    def test_report(self):
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+            )
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+
+        cinder_report.report()
+
+        assert cinder_report.job_id == '1234-xyz'

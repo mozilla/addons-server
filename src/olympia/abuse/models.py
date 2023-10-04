@@ -3,9 +3,12 @@ from django.db import models
 from extended_choices import Choices
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
+
+from .cinder import CinderAddon, CinderNonFxaUser, CinderUser
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -87,6 +90,7 @@ class AbuseReport(ModelBase):
         ('NOT_WANTED', 21, "Feedback: Wasn't wanted or can't be uninstalled"),
         ('OTHER', 127, 'Other'),
     )
+    REPORTABLE_REASONS = (REASONS.HATE_SPEECH, REASONS.CSAM)
 
     # https://searchfox.org
     # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
@@ -315,3 +319,21 @@ class CinderReport(ModelBase):
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
     )
     decision_id = models.CharField(max_length=36, default=None, null=True)
+
+    def get_helper(self):
+        if (guid := self.abuse_report.guid) and (
+            addon := Addon.unfiltered.filter(guid=guid).first()
+        ):
+            return CinderAddon(addon)
+        # TODO: More helpers here
+
+    def report(self):
+        abuse = self.abuse_report
+        reporter = None
+        if abuse.reporter and not abuse.report.is_anonymous():
+            reporter = CinderUser(abuse.reporter)
+        elif abuse.reporter_name or abuse.reporter_email:
+            reporter = CinderNonFxaUser(abuse.reporter_name, abuse.reporter_email)
+        reason = AbuseReport.REASONS.for_value(abuse.reason)
+        job_id = self.get_helper().report(reason.api_value, reporter)
+        self.update(job_id=job_id)

@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+from unittest import mock
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -260,6 +261,8 @@ class AddonAbuseViewSetTestBase:
             'addon_install_origin': 'http://example.com/',
             'addon_install_method': 'url',
             'report_entry_point': None,
+            'reporter_name': 'Somebody',
+            'reporter_email': 'some@body.com',
         }
         response = self.client.post(
             self.url,
@@ -281,6 +284,8 @@ class AddonAbuseViewSetTestBase:
             'addon_version',
             'operating_system',
             'addon_install_origin',
+            'reporter_name',
+            'reporter_email',
         ):
             assert getattr(report, field) == data[field], field
         # More complex comparisons:
@@ -315,6 +320,8 @@ class AddonAbuseViewSetTestBase:
             'addon_install_source': 'Something not in install source choices',
             'addon_install_source_url': 'http://%s' % 'a' * 249,
             'report_entry_point': 'Something not in entrypoint choices',
+            'reporter_name': 'n' * 256,
+            'reporter_email': 'not an email address',
         }
         response = self.client.post(
             self.url,
@@ -347,6 +354,8 @@ class AddonAbuseViewSetTestBase:
             'report_entry_point': [
                 expected_choices_message % data['report_entry_point']
             ],
+            'reporter_name': [expected_max_length_message % 255],
+            'reporter_email': ['Enter a valid email address.'],
         }
         # Note: addon_install_method and addon_install_source silently convert
         # unknown values to "other", so the values submitted here, despite not
@@ -415,6 +424,26 @@ class AddonAbuseViewSetTestBase:
         response = self.client.post(self.url, data=data)
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon_install_method': 'Invalid value'}
+
+    def _setup_reportable_reason(self, reason):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={'addon': addon.guid, 'reason': reason},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hate_speech')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
+        self._setup_reportable_reason('not_wanted')
+        task_mock.assert_not_called()
 
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):

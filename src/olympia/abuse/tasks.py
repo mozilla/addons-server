@@ -3,10 +3,11 @@ from datetime import datetime, timedelta
 from django.db.models import Count, F, OuterRef, Q, Subquery
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
+
+from .models import AbuseReport, CinderReport
 
 
 @task
@@ -47,3 +48,12 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     NeedsHumanReview.set_on_addons_latest_signed_versions(
         qs, NeedsHumanReview.REASON_ABUSE_REPORTS_THRESHOLD
     )
+
+
+@task
+def report_to_cinder(abuse_report_id):
+    abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
+    if not abuse_report:
+        return
+    cinder_report = CinderReport.objects.create(abuse_report=abuse_report)
+    cinder_report.report()
