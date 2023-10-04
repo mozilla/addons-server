@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-04 19:11+0000\n"
+"PO-Revision-Date: 2023-10-04 19:20+0000\n"
 "Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -845,7 +845,7 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Addon slug changed"
-msgstr ""
+msgstr "Slug (část adresy URL) doplňku byl změněný"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2827,7 +2827,7 @@ msgid "More information on Developer Accounts"
 msgstr "Další informace o účtech pro vývojáře"
 
 msgid "Firefox Android compatibility"
-msgstr ""
+msgstr "Kompatibilita s Firefoxem pro Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
@@ -5003,43 +5003,43 @@ msgid "Firefox Add-ons Blog"
 msgstr "Blog o doplňcích pro Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Komunitní blog"
 
 msgid "Forum"
 msgstr "Fórum"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Příručka recenzenta"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Prohlížeče"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Počítač"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Podniky"
 
 msgid "VPN"
-msgstr ""
+msgstr "VPN"
 
 msgid "Relay"
-msgstr ""
+msgstr "Relay"
 
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 msgid "Pocket"
-msgstr ""
+msgstr "Pocket"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Soukromí"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Soubory cookie"
 
 msgid "Legal"
-msgstr ""
+msgstr "Právní informace"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
