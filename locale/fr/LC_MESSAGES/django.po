@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-04 10:22+0000\n"
-"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
+"PO-Revision-Date: 2023-10-04 10:40+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -157,7 +157,7 @@ msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque le mod
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Plage de versions invalide. Pour Firefox pour Android, vous ne pouvez choisir qu’une plage qui commence au moins à la version %(max)s ou se termine par une version inférieure à %(min)s."
 
 msgid "Add-ons need at least one owner."
 msgstr "Les modules ont besoin d’au moins un propriétaire."
@@ -851,10 +851,10 @@ msgid "Admin add-on-review cleared"
 msgstr "« Revue du module par un administrateur » effacé"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} a changé l’adresse courte du module {addon} de {0} en {1}."
 
 msgid "Addon slug changed"
-msgstr ""
+msgstr "Adresse courte du module modifiée"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2884,18 +2884,21 @@ msgid "More information on Developer Accounts"
 msgstr "Informations supplémentaires sur les comptes de développeur"
 
 msgid "Firefox Android compatibility"
-msgstr ""
+msgstr "Compatibilité avec Firefox pour Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Avez-vous testé votre extension pour vous assurer qu’elle fonctionne comme prévu avec Firefox pour Android ? Si ce n’est pas le cas, veuillez consulter <a target=\"_blank\" rel=\"noopener "
+"noreferrer\" href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Développement d’extensions pour Firefox pour Android</a> afin d’obtenir des "
+"conseils de tests avant de la soumettre."
 
 msgid "Yes, I’ve tested my Firefox Android extension"
-msgstr ""
+msgstr "Oui, j’ai testé mon extension avec Firefox pour Android"
 
 msgid "No, I have not tested for Android compatibility"
-msgstr ""
+msgstr "Non, je n’ai pas testé la compatibilité avec Android"
 
 msgid "Developer News"
 msgstr "Nouvelles développeur"
