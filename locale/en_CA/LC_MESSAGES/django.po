@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-09-15 15:02+0000\n"
 "Last-Translator: chutten <chutten@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,18 +40,6 @@ msgstr "Images cannot be animated."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Please use images smaller than %dMB."
-
-msgid "You are already logged in."
-msgstr "You are already signed in."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Your sign-in attempt could not be parsed. Please try again."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Your Firefox Account could not be found. Please try again."
-
-msgid "You could not be logged in. Please try again."
-msgstr "You could not be signed in. Please try again."
 
 msgid "Need help?"
 msgstr "Need help?"
@@ -157,6 +145,10 @@ msgstr "Version {version_string} already exists."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Listed versions cannot be submitted while add-on is disabled."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 
 msgid "Add-ons need at least one owner."
 msgstr "Add-ons need at least one owner."
@@ -314,16 +306,16 @@ msgstr "Not Found"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>We’re sorry, but we can’t find what you’re looking for.</h1> <p> The page or file you requested wasn’t found on our site. It’s possible that you clicked a link that’s out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we’ll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we’ll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Oops"
@@ -630,9 +622,6 @@ msgstr "Account updated."
 msgid "Account {user} deleted."
 msgstr "Account {user} deleted."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Account {user} deleted, from Firefox Accounts event."
-
 msgid "Created: {0}."
 msgstr "Created: {0}."
 
@@ -840,6 +829,12 @@ msgstr "{addon} {version} admin add-on-review cleared."
 
 msgid "Admin add-on-review cleared"
 msgstr "Admin add-on-review cleared"
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1487,10 +1482,6 @@ msgstr "View current"
 msgid "Invalid version range."
 msgstr "Invalid version range."
 
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-
 msgid "Need at least one compatible application."
 msgstr "Need at least one compatible application."
 
@@ -2032,11 +2023,11 @@ msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 
 msgid "Website"
 msgstr "Website"
@@ -2081,11 +2072,11 @@ msgid "Whiteboard"
 msgstr "Whiteboard"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 msgstr ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
-" help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
+"may help. This whiteboard is also editable by reviewers."
 
 msgid "Add-on Media for {0}"
 msgstr "Add-on Media for {0}"
@@ -2604,11 +2595,11 @@ msgstr "JWT secret"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You’ll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You’ll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
@@ -2707,7 +2698,8 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2717,7 +2709,8 @@ msgstr ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
+"your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2808,6 +2801,20 @@ msgstr "or <a href=\"{0}\">Cancel</a>"
 
 msgid "More information on Developer Accounts"
 msgstr "More information on Developer Accounts"
+
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
 
 msgid "Developer News"
 msgstr "Developer News"
@@ -2954,6 +2961,7 @@ msgstr "Write Some Code"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Help make add-ons better by contributing your coding skills."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Get started"
 
@@ -4277,13 +4285,12 @@ msgid "See all extensions"
 msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Privacy & Security extensions"
+msgid "Test new Android extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube customization"
+msgid "Privacy & Security extensions"
+msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4380,6 +4387,10 @@ msgstr "Elite ad blockers"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "See more ad blocker staff picks"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube customization"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4920,9 +4931,6 @@ msgstr "Mozilla Add-ons"
 msgid "Back to Add-ons"
 msgstr "Back to Add-ons"
 
-msgid "Footer logo"
-msgstr "Footer logo"
-
 msgid "Legal Notices"
 msgstr "Legal Notices"
 
@@ -4939,44 +4947,64 @@ msgstr ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "get to know <b>add-ons</b>"
-
-msgid "About"
-msgstr "About"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Download Firefox"
-msgstr "Download Firefox"
-
-msgid "Android Browser"
-msgstr "Android Browser"
-
-msgid "iOS Browser"
-msgstr "iOS Browser"
-
-msgid "Focus Browser"
-msgstr "Focus Browser"
-
-msgid "Desktop Browser"
-msgstr "Desktop Browser"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Developer Edition"
-
-msgid "Other languages"
-msgstr "Other languages"
-
-msgid "Go"
-msgstr "Go"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Return to the {0} Add-ons homepage"
 
 msgid "Add-ons"
 msgstr "Add-ons"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "About"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4987,6 +5015,12 @@ msgstr "Required fields"
 
 msgid "(optional)"
 msgstr "(optional)"
+
+msgid "Other languages"
+msgstr "Other languages"
+
+msgid "Go"
+msgstr "Go"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5055,11 +5089,11 @@ msgstr ""
 "restrictions” instead."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
@@ -5117,7 +5151,8 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5130,7 +5165,8 @@ msgid ""
 msgstr ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
+"website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5160,6 +5196,20 @@ msgstr ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
 
 #, python-format
 msgid ""

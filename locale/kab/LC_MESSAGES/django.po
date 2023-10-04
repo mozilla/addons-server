@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-07-31 07:36+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,18 +40,6 @@ msgstr "Tugniwin ur zmirent ara ad mbawlent."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Ttxil seqdec tugniwin meẓẓiyen ɣef %d MAṬ."
-
-msgid "You are already logged in."
-msgstr "Teqqneḍ yakan."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Aɛraḍ-ik akken ad teqqneḍ ur yettwaswaḍ ara. Ma ulac aɣilif ɛreḍ tikkelt-nniḍen."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Amiḍan-inek Firefox ur yettwaf ara. Ma ulac  aɣilif, ɛreḍ tikkelt-nniḍen."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Tuqqna-inek ur teddi ara. Ma ulac aɣilif, ɛreḍ tikkelt-nniḍen."
 
 msgid "Need help?"
 msgstr "Tesriḍ tallelt?"
@@ -157,6 +145,10 @@ msgstr "Lqem {version_string} yella yakan."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Ileqman yettwabdaren ur zmirent ara ad ttwaznent mi ara yens uzegrir."
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Add-ons need at least one owner."
 msgstr "Azegrir yessefk ad yegber xaṛsum yiwen n bab."
@@ -630,9 +622,6 @@ msgstr "Amiḍa yettusnifel."
 msgid "Account {user} deleted."
 msgstr "Amiḍan {user} yettwakkes."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Amiḍan {user} yettwakkes, seg tedyanin n yimiḍanen n Firefox."
-
 msgid "Created: {0}."
 msgstr "Yettwarna: {0}."
 
@@ -839,6 +828,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1486,10 +1481,6 @@ msgstr "Wal lqem amiran"
 
 msgid "Invalid version range."
 msgstr "Azilal n lqem mačči d ameɣtu."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Yesra xaṛsum yiwen n usnas amṣadan."
@@ -2811,6 +2802,20 @@ msgstr "neɣ <a href=\"{0}\">Sefsex</a>"
 msgid "More information on Developer Accounts"
 msgstr "Ugar n telɣut ɣef yimiḍanen n uneflay"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Isallen n uneflay"
 
@@ -2957,6 +2962,7 @@ msgstr "Aru kra n tengalt"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Mudd tallalt i usnerni n izegrar s uttekki s twezza-inek n tneflit."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Bdu"
 
@@ -4279,13 +4285,12 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Isiɣzaf n Tbaḍnit d Tɣellist"
+msgid "Test new Android extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Asagen n YouTube"
+msgid "Privacy & Security extensions"
+msgstr "Isiɣzaf n Tbaḍnit d Tɣellist"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4382,6 +4387,10 @@ msgstr "Ẓreg amsewḥel n yizegrar"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Wali ugar n yisiɣzaf i usewḥel n udellel yettwafernen sɣur terbaεt"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Asagen n YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4922,9 +4931,6 @@ msgstr "Izegrar n Mozilla"
 msgid "Back to Add-ons"
 msgstr "Uɣal ar izegrar"
 
-msgid "Footer logo"
-msgstr "Alugu n uḍaṛ"
-
 msgid "Legal Notices"
 msgstr "Alγu usḍif"
 
@@ -4941,44 +4947,64 @@ msgstr ""
 "Arama kan ur yeddi ara akked <a href=\"https://www.mozilla.org/about/legal/\">tizmilin tusdifin</a>, agbur n usmel-agi yella daw n turagt<br /> <a href=\"https://creativecommons.org/licenses/by-"
 "sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> neɣ ileqman imaynuten."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "wali <b>izegrar</b>"
-
-msgid "About"
-msgstr "Γef"
-
-msgid "Forum"
-msgstr "Anmager"
-
-msgid "Download Firefox"
-msgstr "Sader Firefox"
-
-msgid "Android Browser"
-msgstr "Iminig Android"
-
-msgid "iOS Browser"
-msgstr "Iminig iOS"
-
-msgid "Focus Browser"
-msgstr "Iminig Focus"
-
-msgid "Desktop Browser"
-msgstr "Iminig n uselkim"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Developer Edition"
-
-msgid "Other languages"
-msgstr "Tutlayin nniḍen"
-
-msgid "Go"
-msgstr "Bdu"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Uɣal ar usebter n uzegrir n {0}"
 
 msgid "Add-ons"
 msgstr "Izegrar"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Γef"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Anmager"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4989,6 +5015,12 @@ msgstr "Urtan yettwasran"
 
 msgid "(optional)"
 msgstr "(afrayan)"
+
+msgid "Other languages"
+msgstr "Tutlayin nniḍen"
+
+msgid "Go"
+msgstr "Bdu"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5163,6 +5195,20 @@ msgstr ""
 "Ameskar-agi yettwakkes seg uzegrir %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
 
 #, python-format
 msgid ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2021-11-24 10:53+0000\n"
 "Last-Translator: ravi <ravi.103151@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,18 +40,6 @@ msgstr "चित्रों को एनिमेट नहीं किय�
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "कृपया %d MB से छोटे चित्रों का उपयोग करें।"
-
-msgid "You are already logged in."
-msgstr "आपने पहले से ही लॉग इन किया है।"
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "आपके लॉगिन प्रयास को पूरा नहीं किया जा सका। कृपया पुन: प्रयास करें।"
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "आपका Firefox खाता नहीं मिल सका। कृपया पुन: प्रयास करें।"
-
-msgid "You could not be logged in. Please try again."
-msgstr "आप लॉग इन नहीं कर सके। कृपया पुन: प्रयास करें।"
 
 msgid "Need help?"
 msgstr "मदद चाहिए?"
@@ -158,6 +146,10 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -632,10 +624,6 @@ msgstr "खाते का अद्यतन किया गया."
 msgid "Account {user} deleted."
 msgstr "खाते का अद्यतन किया गया."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "खाते का अद्यतन किया गया."
-
 msgid "Created: {0}."
 msgstr "बनाया गया: {0}."
 
@@ -850,6 +838,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1509,10 +1503,6 @@ msgstr "वर्तमान देखें"
 
 msgid "Invalid version range."
 msgstr "अमान्य संस्करण विस्तार।"
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "कम से कम एक संगत अनुप्रयोग की आवश्यकता है।"
@@ -2774,6 +2764,20 @@ msgstr "या <a href=\"{0}\">रद्द करें</a>"
 msgid "More information on Developer Accounts"
 msgstr "डेवलपर खातों पर अधिक जानकारी"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "डेवलेपर समाचार"
 
@@ -2927,6 +2931,7 @@ msgstr "कुछ कोड लिखें"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "शुरू करें"
 
@@ -4249,12 +4254,11 @@ msgid "See all extensions"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4367,6 +4371,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "सभी एक्सटेंशन ब्राउज करें"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -4918,9 +4926,6 @@ msgstr "Mozilla ऐड-ऑन"
 msgid "Back to Add-ons"
 msgstr "ऐड-ऑन्स पर वापस जाएँ"
 
-msgid "Footer logo"
-msgstr ""
-
 msgid "Legal Notices"
 msgstr "वैध सूचना"
 
@@ -4935,44 +4940,64 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
 
-msgid "get to know <b>add-ons</b>"
-msgstr ""
-
-msgid "About"
-msgstr "के बारे में"
-
-msgid "Forum"
-msgstr "फोरम"
-
-msgid "Download Firefox"
-msgstr "Firefox डाउनलोड करें"
-
-msgid "Android Browser"
-msgstr "Android ब्राउज़र"
-
-msgid "iOS Browser"
-msgstr "iOS ब्राउज़र"
-
-msgid "Focus Browser"
-msgstr "Focus ब्राउज़र"
-
-msgid "Desktop Browser"
-msgstr "डेस्कटॉप ब्राउज़र"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr ""
-
-msgid "Other languages"
-msgstr "अन्य भाषाएँ"
-
-msgid "Go"
-msgstr "जाएँ"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} ऐड-ऑन मुखपृष्ठ पर वापस लौटें"
 
 msgid "Add-ons"
 msgstr "ऐड-ऑन्स"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "के बारे में"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "फोरम"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4983,6 +5008,12 @@ msgstr ""
 
 msgid "(optional)"
 msgstr "(वैकल्पिक)"
+
+msgid "Other languages"
+msgstr "अन्य भाषाएँ"
+
+msgid "Go"
+msgstr "जाएँ"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5133,6 +5164,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

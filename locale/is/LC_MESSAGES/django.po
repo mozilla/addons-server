@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-09-09 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,18 +40,6 @@ msgstr "Myndir mega ekki vera með hreyfingu."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Notaðu myndir minni en %dMB."
-
-msgid "You are already logged in."
-msgstr "Þú ert þegar innskráð/ur."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Ekki var hægt að þátta innskráningartilraun þína. Reyndu aftur."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox-reikningurinn þinn fannst ekki. Reyndu aftur."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Ekki var hægt að skrá þig inn. Reyndu aftur."
 
 msgid "Need help?"
 msgstr "Þarftu hjálp?"
@@ -156,6 +144,10 @@ msgid "Version {version_string} already exists."
 msgstr "Útgáfa {version_string} er þegar til."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -632,9 +624,6 @@ msgstr "Aðgangur uppfærður."
 msgid "Account {user} deleted."
 msgstr "Reikningnum {user} eytt."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Reikningnum {user} eytt, með atburði í Firefox Accounts reikningaumsýslunni."
-
 msgid "Created: {0}."
 msgstr "Búið til: {0}."
 
@@ -841,6 +830,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1488,10 +1483,6 @@ msgstr "Skoða núverandi"
 
 msgid "Invalid version range."
 msgstr "Ógilt bil útgáfa."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr ""
@@ -2747,6 +2738,20 @@ msgstr "eða <a href=\"{0}\">Hætta við</a>"
 msgid "More information on Developer Accounts"
 msgstr ""
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Fréttir fyrir þróunaraðila"
 
@@ -2892,6 +2897,7 @@ msgstr "Skrifaðu einhvern kóða"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Komast í gang"
 
@@ -4210,13 +4216,12 @@ msgid "See all extensions"
 msgstr "Skoða alla forritsauka"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Gerðu YouTube að þínu"
+msgid "Privacy & Security extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4313,6 +4318,10 @@ msgstr "Auglýsingabanar fyrir elítuna"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Gerðu YouTube að þínu"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4851,9 +4860,6 @@ msgstr "Mozilla-viðbætur"
 msgid "Back to Add-ons"
 msgstr "Til baka í viðbætur"
 
-msgid "Footer logo"
-msgstr "Táknmerki á síðufót"
-
 msgid "Legal Notices"
 msgstr "Lögfræðilegar athugasemdir"
 
@@ -4870,44 +4876,64 @@ msgstr ""
 "Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annað er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <br /> <a href=\"https://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "náðu að kynnast <b>viðbótum</b>"
-
-msgid "About"
-msgstr "Um hugbúnaðinn"
-
-msgid "Forum"
-msgstr "Vefspjall"
-
-msgid "Download Firefox"
-msgstr "Sækja Firefox"
-
-msgid "Android Browser"
-msgstr "Android vafra"
-
-msgid "iOS Browser"
-msgstr "iOS vafra"
-
-msgid "Focus Browser"
-msgstr "Focus vafra"
-
-msgid "Desktop Browser"
-msgstr "Borðtölvuvafra"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta-prófunar, daglegar, þróunarútgáfur"
-
-msgid "Other languages"
-msgstr "Önnur tungumál"
-
-msgid "Go"
-msgstr "Fara"
-
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Fara til baka á heimasíðu {0} viðbótarinnar"
 
 msgid "Add-ons"
 msgstr "Viðbætur"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Um hugbúnaðinn"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Vefspjall"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4918,6 +4944,12 @@ msgstr "Nauðsynlegir reitir"
 
 msgid "(optional)"
 msgstr "(valfrjálst)"
+
+msgid "Other languages"
+msgstr "Önnur tungumál"
+
+msgid "Go"
+msgstr "Fara"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5066,6 +5098,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

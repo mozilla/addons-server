@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-04 08:58+0000\n"
 "PO-Revision-Date: 2023-06-14 18:28+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -39,18 +39,6 @@ msgstr "Hình ảnh không được chuyển động."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Vui lòng dùng hình ảnh nhỏ hơn %dMB."
-
-msgid "You are already logged in."
-msgstr "Bạn đã đăng nhập từ trước."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Không thể xử lý phiên đăng nhập của bạn. Vui lòng thử lại."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Không tìm thấy tài khoản Firefox của bạn. Hãy thử lại."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Bạn không thể đăng nhập. Vui lòng thử lại."
 
 msgid "Need help?"
 msgstr "Cần trợ giúp?"
@@ -156,6 +144,10 @@ msgid "Version {version_string} already exists."
 msgstr "Phiên bản {version_string} đã tồn tại."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -635,9 +627,6 @@ msgstr "Đã cập nhật tài khoản."
 msgid "Account {user} deleted."
 msgstr "Tài khoản {user} đã bị xóa."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Tài khoản {user} đã bị xóa, khỏi sự kiện Tài khoản Firefox."
-
 msgid "Created: {0}."
 msgstr "Đã tạo: {0}."
 
@@ -846,6 +835,12 @@ msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -1504,10 +1499,6 @@ msgstr "Xem hiện tại"
 
 msgid "Invalid version range."
 msgstr "Khoảng phiên bản bất hợp lệ."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Cần ít nhất một ứng dụng tương thích."
@@ -2838,6 +2829,20 @@ msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
 msgid "More information on Developer Accounts"
 msgstr "Thông tin thêm về tài khoản nhà phát triển"
 
+msgid "Firefox Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
+"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my Firefox Android extension"
+msgstr ""
+
+msgid "No, I have not tested for Android compatibility"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Tin tức nhà phát triển"
 
@@ -2989,6 +2994,7 @@ msgstr "Viết một số đoạn mã"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Giúp cải thiện các tiện ích bằng cách đóng góp các kỹ năng viết mã của bạn."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Bắt đầu"
 
@@ -4317,13 +4323,12 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
+msgid "Test new Android extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Tùy chỉnh YouTube"
+msgid "Privacy & Security extensions"
+msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4421,6 +4426,10 @@ msgstr "Trình chặn quảng cáo ưu tú"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Xem thêm các trình chặn quảng cáo được lựa chọn bởi biên tập viên"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Tùy chỉnh YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4963,9 +4972,6 @@ msgstr "Tiện ích Mozilla"
 msgid "Back to Add-ons"
 msgstr "Trở lại Tiện ích"
 
-msgid "Footer logo"
-msgstr "Logo Footer"
-
 msgid "Legal Notices"
 msgstr "Lưu ý Pháp lí"
 
@@ -4982,45 +4988,65 @@ msgstr ""
 "Ngoại trừ những trường hợp khác được <a href=\"https://www.mozilla.org/about/legal/\">lưu ý</a>, nội dung trên trang web này được cấp phép theo <br /> <a href=\"https://creativecommons.org/licenses/"
 "by-sa/3.0/\"> giấy phép Creative Commons Attribution Share-Alike License v3.0 </a> hoặc bất kỳ phiên bản nào mới hơn."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "biết thêm về <b>tiện ích</b>"
-
-msgid "About"
-msgstr "Giới thiệu"
-
-msgid "Forum"
-msgstr "Diễn đàn"
-
-msgid "Download Firefox"
-msgstr "Tải xuống Firefox"
-
-msgid "Android Browser"
-msgstr "Trình duyệt Android"
-
-msgid "iOS Browser"
-msgstr "Trình duyệt iOS"
-
-msgid "Focus Browser"
-msgstr "Trình duyệt Focus"
-
-msgid "Desktop Browser"
-msgstr "Trình duyệt trên máy tính"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Phiên bản Beta, Nightly, nhà phát triển"
-
-msgid "Other languages"
-msgstr "Ngôn ngữ khác"
-
-msgid "Go"
-msgstr "Đi"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Trở lại trang chủ Tiện ích {0}"
 
 msgid "Add-ons"
 msgstr "Tiện ích"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Diễn đàn"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "VPN"
+msgstr ""
+
+msgid "Relay"
+msgstr ""
+
+msgid "Monitor"
+msgstr ""
+
+msgid "Pocket"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
+"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5031,6 +5057,12 @@ msgstr "Trường bắt buộc"
 
 msgid "(optional)"
 msgstr "(không bắt buộc)"
+
+msgid "Other languages"
+msgstr "Ngôn ngữ khác"
+
+msgid "Go"
+msgstr "Đi"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5204,6 +5236,20 @@ msgstr ""
 "Tác giả sau đã bị xóa khỏi tiện ích %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
 
 #, python-format
 msgid ""
