@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-05 07:22+0000\n"
+"PO-Revision-Date: 2023-10-05 07:29+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2836,12 +2836,14 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"გამოცადეთ თქვენი გაფართოება და დარწმუნდით, რომ სათანადოდ მუშაობს Firefox Android-ზე? თუ არა, გთხოვთ იხილოთ <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">გაფართოებების შემუშავება Firefox Android-ზე</a> შემოწმების მითითებებისთვის წარდგენამდე."
 
 msgid "Yes, I’ve tested my Firefox Android extension"
-msgstr ""
+msgstr "დიახ, გამოვცადე ჩემი გაფართოება Firefox Android-ზე"
 
 msgid "No, I have not tested for Android compatibility"
-msgstr ""
+msgstr "არა, არ გამომიცდია Android-თან თავსებადობა"
 
 msgid "Developer News"
 msgstr "შემმუშავებლის სიახლეები"
@@ -4320,7 +4322,7 @@ msgstr "ყველა გაფართოების ნახვა"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "გამოცადეთ Android-ის ახალი გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4988,57 +4990,59 @@ msgid "Add-ons"
 msgstr "დამატებები"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Mozilla-ს მთავარ გვერდზე გადასვლა"
 
 msgid "About"
 msgstr "საიტის შესახებ"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Firefox-დამატებების სვეტი"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "ერთობის სვეტი"
 
 msgid "Forum"
 msgstr "ფორუმი"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "მიმოხილვის სახელმძღვანელო"
 
 msgid "Browsers"
-msgstr ""
+msgstr "ბრაუზერები"
 
 msgid "Desktop"
-msgstr ""
+msgstr "კომპიუტერი"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "დაწესებულება"
 
 msgid "VPN"
-msgstr ""
+msgstr "VPN"
 
 msgid "Relay"
-msgstr ""
+msgstr "Relay"
 
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 msgid "Pocket"
-msgstr ""
+msgstr "Pocket"
 
 msgid "Privacy"
-msgstr ""
+msgstr "პირადულობა"
 
 msgid "Cookies"
-msgstr ""
+msgstr "ფუნთუშები"
 
 msgid "Legal"
-msgstr ""
+msgstr "სამართლებრივი"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
 "sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
+"გარდა მოცემული <a href=\"https://www.mozilla.org/en-US/about/legal/\">შენიშვნებისა</a>, საიტის მასალა ვრცელდება <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Attribution Share-Alike v3.0 ლიცენზიით</a> ან უფრო ახალი ვერსიით."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5242,6 +5246,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"გამარჯობა,\n"
+"\n"
+"ეს წერილი მიიღეთ იმიტომ, რომ თქვენი ანგარიში %(name)s საიტზე %(site_url)s წაიშალა. შესაძლოა თავისთავად მომხდარიყო, თუ ახლახან Mozilla-ანგარიში წაშალეთ (Firefox-ანგარიშებს გადაერქვა სახელი და გახდა Mozilla-ანგარიშები).\n"
+"\n"
+"თუ თქვენ არაფერი მოგიმოქმედებიათ ან მიგაჩნიათ, რომ ვიღაცას უნებართვოდ ჰქონდა წვდომა თქვენს ანგარიშთან, გთხოვთ უპასუხოთ ამ წერილს. წინააღმდეგ შემთხვევაში არაფრის გაკეთება არაა საჭირო.\n"
+"\n"
+"პატივისცემით,\n"
+"\n"
+"Firefox-დამატებების გუნდი"
 
 #, python-format
 msgid ""
