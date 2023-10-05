@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-04 08:58+0000\n"
+"POT-Creation-Date: 2023-10-05 21:31+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -146,6 +146,10 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
 #, python-format
@@ -914,8 +918,8 @@ msgstr "Dicționar"
 msgid "Deprecated Search Engine"
 msgstr ""
 
-msgid "Language Pack (Application)"
-msgstr "Pachet lingvistic (Aplicație)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Pachet lingvistic învechit (supliment)"
@@ -929,9 +933,8 @@ msgstr "LWT perimat"
 msgid "Theme (Static)"
 msgstr "Temă (statică)"
 
-#, fuzzy
-msgid "Site Permission"
-msgstr "Permisiuni:"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -947,9 +950,8 @@ msgstr "Dicționare"
 msgid "Deprecated Search Tools"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "Pachete lingvistice (Aplicație)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Pachete lingvistice învechite (supliment)"
@@ -963,9 +965,8 @@ msgstr "LWT perimate"
 msgid "Themes (Static)"
 msgstr "Teme (Statice)"
 
-#, fuzzy
-msgid "Site Permissions"
-msgstr "Permisiuni:"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Alerte și actualizări"
@@ -2861,18 +2862,18 @@ msgstr "sau <a href=\"{0}\">Anulează</a>"
 msgid "More information on Developer Accounts"
 msgstr "Mai multe informații despre conturile de dezvoltatori"
 
-msgid "Firefox Android compatibility"
+msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
-"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
-msgid "Yes, I’ve tested my Firefox Android extension"
+msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr ""
 
-msgid "No, I have not tested for Android compatibility"
+msgid "No, I have not tested"
 msgstr ""
 
 msgid "Developer News"
@@ -5096,16 +5097,7 @@ msgstr ""
 msgid "Enterprise"
 msgstr ""
 
-msgid "VPN"
-msgstr ""
-
-msgid "Relay"
-msgstr ""
-
-msgid "Monitor"
-msgstr ""
-
-msgid "Pocket"
+msgid "Products"
 msgstr ""
 
 msgid "Privacy"
@@ -5118,8 +5110,8 @@ msgid "Legal"
 msgstr ""
 
 msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

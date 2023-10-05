@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-04 08:58+0000\n"
+"POT-Creation-Date: 2023-10-05 21:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:67 src/olympia/addons/serializers.py:1196
+#: src/olympia/addons/fields.py:67 src/olympia/addons/serializers.py:1210
 msgid "Invalid category name."
 msgstr ""
 
@@ -143,7 +143,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:298 src/olympia/addons/fields.py:316
-#: src/olympia/addons/serializers.py:611
+#: src/olympia/addons/serializers.py:625
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -164,23 +164,23 @@ msgstr ""
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
-#: src/olympia/addons/serializers.py:219
+#: src/olympia/addons/serializers.py:220
 msgid "Previews cannot be created for themes."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:306
+#: src/olympia/addons/serializers.py:307
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:501
+#: src/olympia/addons/serializers.py:502
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:517
+#: src/olympia/addons/serializers.py:518
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:520 src/olympia/addons/views.py:715
+#: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:715
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -188,19 +188,24 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:535
+#: src/olympia/addons/serializers.py:536
 msgid "Version {version_string} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:539
+#: src/olympia/addons/serializers.py:540
 msgid "Version {version_string} already exists."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:558
+#: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:625 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:600
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
+
+#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:926
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -208,28 +213,28 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:860
+#: src/olympia/addons/serializers.py:874
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:875
+#: src/olympia/addons/serializers.py:889
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:895
+#: src/olympia/addons/serializers.py:909
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:908 src/olympia/devhub/forms.py:436
+#: src/olympia/addons/serializers.py:922 src/olympia/devhub/forms.py:436
 #: src/olympia/devhub/forms.py:506
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:918 src/olympia/devhub/forms.py:447
+#: src/olympia/addons/serializers.py:932 src/olympia/devhub/forms.py:447
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1176
+#: src/olympia/addons/serializers.py:1190
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
@@ -1267,7 +1272,7 @@ msgid "Deprecated Search Engine"
 msgstr ""
 
 #: src/olympia/constants/base.py:134
-msgid "Language Pack (Application)"
+msgid "Language Pack"
 msgstr ""
 
 #: src/olympia/constants/base.py:135
@@ -1287,7 +1292,7 @@ msgid "Theme (Static)"
 msgstr ""
 
 #: src/olympia/constants/base.py:139
-msgid "Site Permission"
+msgid "Deprecated Site Permission"
 msgstr ""
 
 #: src/olympia/constants/base.py:144
@@ -1308,7 +1313,7 @@ msgid "Deprecated Search Tools"
 msgstr ""
 
 #: src/olympia/constants/base.py:148
-msgid "Language Packs (Application)"
+msgid "Language Packs"
 msgstr ""
 
 #: src/olympia/constants/base.py:149
@@ -1328,7 +1333,7 @@ msgid "Themes (Static)"
 msgstr ""
 
 #: src/olympia/constants/base.py:153
-msgid "Site Permissions"
+msgid "Deprecated Site Permissions"
 msgstr ""
 
 #: src/olympia/constants/categories.py:70
@@ -4084,12 +4089,12 @@ msgid "More information on Developer Accounts"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:3
-msgid "Firefox Android compatibility"
+msgid "Firefox for Android compatibility"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:4
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox "
+"Did you test your extension to ensure it works as expected on Firefox for "
 "Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-"
 "extensions-for-firefox-for-android/\">Developing extensions for Firefox "
@@ -4097,11 +4102,11 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:6
-msgid "Yes, I’ve tested my Firefox Android extension"
+msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/android_compatibility_modal.html:7
-msgid "No, I have not tested for Android compatibility"
+msgid "No, I have not tested"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/blog_posts.html:3
@@ -7188,20 +7193,8 @@ msgstr ""
 msgid "Enterprise"
 msgstr ""
 
-#: src/olympia/templates/photon-footer.html:38
-msgid "VPN"
-msgstr ""
-
-#: src/olympia/templates/photon-footer.html:39
-msgid "Relay"
-msgstr ""
-
-#: src/olympia/templates/photon-footer.html:40
-msgid "Monitor"
-msgstr ""
-
-#: src/olympia/templates/photon-footer.html:41
-msgid "Pocket"
+#: src/olympia/templates/photon-footer.html:34
+msgid "Products"
 msgstr ""
 
 #: src/olympia/templates/photon-footer.html:52
@@ -7218,10 +7211,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/en-"
-"US/about/legal/\">noted</a>, content on this site is licensed under the <a "
-"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
-"Attribution Share-Alike Licence v3.0</a> or any later version."
+"Except where otherwise <a "
+"href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site"
+" is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any "
+"later version."
 msgstr ""
 
 #: src/olympia/templates/user_login.html:24
