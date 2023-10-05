@@ -30,7 +30,7 @@ data-default-locale="{{ request.LANG|lower }}"
           <legend>{{ _('My Account') }}</legend>
           <p class="sub_legend">
             {% trans -%}
-              Manage basic account information, such as your username and Firefox Accounts settings.
+              Manage basic account information.
             {%- endtrans %}
           </p>
           <ul class="formfields">
@@ -51,7 +51,7 @@ data-default-locale="{{ request.LANG|lower }}"
             </li>
             <li>
                 <a href="{{ manage_fxa_link() }}">
-                  {{ _('Manage Firefox Account...') }}
+                  {{ _('Manage other account details...') }}
                 </a>
             </li>
           </ul>

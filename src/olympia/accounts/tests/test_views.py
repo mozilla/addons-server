@@ -314,7 +314,7 @@ class TestRenderErrorHTML(TestCase):
         assert response.status_code == 302
         messages = get_messages(request)
         assert len(messages) == 1
-        assert ('Firefox Account could not be found'
+        assert ('account could not be found'
                 in next(iter(messages)).message)
         assert_url_equal(response['location'], self.login_url())
 
@@ -663,7 +663,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         assert response.status_code == 302
-        assert ('Your Firefox Account could not be found'
+        assert ('Your account could not be found'
                 in response.context['title'])
         assert_url_equal(response['location'], self.login_url())
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)

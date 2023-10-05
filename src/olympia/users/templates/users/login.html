@@ -8,8 +8,10 @@
 
 <div class="primary">
   <section class="island hero primary grid prettyform fxa-login-prompt">
-    <h1>{{ _('Log in with Firefox Accounts') }}</h1>
-    {% include 'users/fxa_login_prompt_content.html' %}
+    <h1>{{ _('Log in') }}</h1>
+    <a href="{{ login_link() }}" class="fxa-login button prominent">
+      {{ _('Continue') }}
+    </a>
   </section>
 </div>
 {% endblock content %}

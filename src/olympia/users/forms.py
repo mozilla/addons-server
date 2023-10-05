@@ -75,7 +75,7 @@ class UserEditForm(forms.ModelForm):
     email = forms.EmailField(
         required=False,
         help_text=fxa_error_message(
-            _(u'You can change your email address on Firefox Accounts.'),
+            _(u'See this help article for information on how to change your email address.'),
             LOGIN_HELP_URL),
         widget=forms.EmailInput(attrs={'readonly': 'readonly'}))
     photo = forms.FileField(label=_(u'Profile Photo'), required=False)

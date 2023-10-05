@@ -191,11 +191,14 @@ def _clean_next_url(request):
 
 
 def login(request):
+    from olympia.accounts import utils
+
     if request.user.is_authenticated:
         request = _clean_next_url(request)
         return http.HttpResponseRedirect(request.GET['to'])
     else:
-        return render(request, 'users/login.html')
+        # Just redirect to the accounts login screen
+        return redirect(utils.default_fxa_login_url(request))
 
 
 def logout(request):

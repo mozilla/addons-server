@@ -70,7 +70,7 @@ LOGIN_ERROR_MESSAGES = {
     ERROR_NO_CODE:
         _(u'Your login attempt could not be parsed. Please try again.'),
     ERROR_NO_PROFILE:
-        _(u'Your Firefox Account could not be found. Please try again.'),
+        _(u'Your account could not be found. Please try again.'),
     ERROR_STATE_MISMATCH: _(u'You could not be logged in. Please try again.'),
 }
 
