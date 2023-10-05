@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-04 08:58+0000\n"
-"PO-Revision-Date: 2023-10-05 11:40+0000\n"
+"PO-Revision-Date: 2023-10-05 11:56+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -836,10 +836,10 @@ msgid "Admin add-on-review cleared"
 msgstr "Revision de additivo clarate per administrator"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} cambiava le alias breve de {addon} ab {0} a {1}."
 
 msgid "Addon slug changed"
-msgstr ""
+msgstr "Alias breve de additivo cambiate"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2812,18 +2812,20 @@ msgid "More information on Developer Accounts"
 msgstr "Altere informationes sur Creative Commons licenses"
 
 msgid "Firefox Android compatibility"
-msgstr ""
+msgstr "Compatibilitate con Firefox pro Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Habeva tu verificate tu extension pro esser secur que illo functiona como expectate sur Firefox pro Android? Si non, vide <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Disveloppar extensiones de Firefox pro Android</a> pro verificar le guida ante le invio."
 
 msgid "Yes, I’ve tested my Firefox Android extension"
-msgstr ""
+msgstr "No, io non ha testate pro compatibilitate con Android"
 
 msgid "No, I have not tested for Android compatibility"
-msgstr ""
+msgstr "No, io non ha testate pro compatibilitate con Android"
 
 msgid "Developer News"
 msgstr "Novas de disveloppator"
@@ -4305,7 +4307,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Verificar le nove extensiones de Android"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
