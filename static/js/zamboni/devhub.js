@@ -1359,7 +1359,7 @@ function initSubmitModals() {
     const $modalAndroidConfirm = $(
       '#modal-confirm-android-compatibility',
     ).modal('#id_compatible_apps label.android', {
-      width: 630,
+      width: 525,
       callback: function shouldShowAndroidModal(options) {
         if ($input.prop('disabled')) {
           return false;
