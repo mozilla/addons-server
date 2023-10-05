@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-04 08:58+0000\n"
+"POT-Creation-Date: 2023-10-05 21:31+0000\n"
 "PO-Revision-Date: 2023-09-14 06:09+0000\n"
 "Last-Translator: Grk <gu0townkg@relay.firefox.com>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -149,6 +149,10 @@ msgstr "{version_string} sürümü zaten var."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Eklenti devre dışıyken listelenen sürümler gönderilemez."
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -917,8 +921,8 @@ msgstr "Sözlükler"
 msgid "Deprecated Search Engine"
 msgstr "Kullanımdan kaldırılan arama motoru"
 
-msgid "Language Pack (Application)"
-msgstr "Dil Paketi (Uygulama)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Kullanımdan kaldırılan dil paketi (Uzantı)"
@@ -932,8 +936,8 @@ msgstr "Kullanımdan kaldırılan LWT"
 msgid "Theme (Static)"
 msgstr "Tema (Sabit)"
 
-msgid "Site Permission"
-msgstr "Site izni"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -949,9 +953,8 @@ msgstr "Sözlükler"
 msgid "Deprecated Search Tools"
 msgstr "Kullanımdan kaldırılan arama araçları"
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "Dil Paketleri (Uygulama)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Kullanımdan kaldırılan dil paketleri (Eklenti)"
@@ -965,8 +968,8 @@ msgstr "Kullanımdan kaldırılan LWT'ler"
 msgid "Themes (Static)"
 msgstr "Tema (Sabit)"
 
-msgid "Site Permissions"
-msgstr "Site izinleri"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Uyarılar ve Güncellemeler"
@@ -2816,18 +2819,18 @@ msgstr "veya <a href=\"{0}\">vazgeç</a>"
 msgid "More information on Developer Accounts"
 msgstr "Geliştirici hesapları hakkında daha fazla bilgi"
 
-msgid "Firefox Android compatibility"
+msgid "Firefox for Android compatibility"
 msgstr ""
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/"
-"develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
 
-msgid "Yes, I’ve tested my Firefox Android extension"
+msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr ""
 
-msgid "No, I have not tested for Android compatibility"
+msgid "No, I have not tested"
 msgstr ""
 
 msgid "Developer News"
@@ -5020,16 +5023,7 @@ msgstr ""
 msgid "Enterprise"
 msgstr ""
 
-msgid "VPN"
-msgstr ""
-
-msgid "Relay"
-msgstr ""
-
-msgid "Monitor"
-msgstr ""
-
-msgid "Pocket"
+msgid "Products"
 msgstr ""
 
 msgid "Privacy"
@@ -5042,8 +5036,8 @@ msgid "Legal"
 msgstr ""
 
 msgid ""
-"Except where otherwise <a href=\"https://www.mozilla.org/en-US/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
 
 #, python-format
