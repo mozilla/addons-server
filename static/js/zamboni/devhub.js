@@ -1365,14 +1365,14 @@ function initSubmitModals() {
           return false;
         }
         if (confirmedOnce) {
-          setTimeout((function() {
+          setTimeout(function () {
             // $().modal() calls preventDefault() before firing the callback
             // but the checkbox is temporarily checked anyway when clicking on
             // it (not the label). To work around this, we wrap our toggling
             // in a setTimeout() to force it to wait for the event to be
             // processed.
             $input.prop('checked', !$input.prop('checked'));
-          }), 0);
+          }, 0);
         }
         return !confirmedOnce;
       },
