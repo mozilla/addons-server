@@ -1219,15 +1219,19 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
 
     resolved_message = message['message']
     # Check if the message has placeholders
-    if 'placeholders' in message:
-        for placeholder, content in message['placeholders'].items():
-            # Replace the placeholder with its content
-            resolved_message = re.sub(
-                f'\\${placeholder}\\$',
-                content['content'],
-                resolved_message,
-                flags=re.IGNORECASE,
-            )
+    try:
+        if 'placeholders' in message and isinstance(message['placeholders'], dict):
+            for placeholder, content in message['placeholders'].items():
+                if 'content' in content:
+                    # Replace the placeholder with its content
+                    resolved_message = re.sub(
+                        f'\\${placeholder}\\$',
+                        content['content'],
+                        resolved_message,
+                        flags=re.IGNORECASE,
+                    )
+    except (AttributeError, KeyError):
+        pass
 
     return resolved_message
 

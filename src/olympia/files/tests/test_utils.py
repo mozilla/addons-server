@@ -1470,6 +1470,50 @@ class TestResolvei18nMessage:
         result = utils.resolve_i18n_message('__MSG_app_desc__', messages, 'en')
         assert result == 'Test Placeholder is replaced!'
 
+    def test_app_without_content(self):
+        """Test message with a placeholder but no content."""
+        app_without_content_message = {
+            'message': 'This $placeholder$ should not be replaced.',
+            'placeholders': {'placeholder': {}},
+        }
+        messages = {'en-US': {'app_without_content': app_without_content_message}}
+
+        result = utils.resolve_i18n_message(
+            '__MSG_app_without_content__', messages, 'en-US'
+        )
+        assert result == 'This $placeholder$ should not be replaced.'
+
+    def test_app_without_placeholder(self):
+        """Test message without any placeholders."""
+        app_without_placeholder_message = {
+            'message': 'This message has no placeholders.',
+        }
+        messages = {
+            'en-US': {'app_without_placeholder': app_without_placeholder_message}
+        }
+
+        result = utils.resolve_i18n_message(
+            '__MSG_app_without_placeholder__', messages, 'en-US'
+        )
+        assert result == 'This message has no placeholders.'
+
+    def test_app_with_invalid_placeholder(self):
+        """Test message with invalid placeholder format."""
+        app_with_invalid_placeholder_message = {
+            'message': 'This $placeholder$ might cause issues.',
+            'placeholders': 'Invalid format',
+        }
+        messages = {
+            'en-US': {
+                'app_with_invalid_placeholder': app_with_invalid_placeholder_message
+            }
+        }
+
+        result = utils.resolve_i18n_message(
+            '__MSG_app_with_invalid_placeholder__', messages, 'en-US'
+        )
+        assert result == 'This $placeholder$ might cause issues.'
+
 
 class TestGetBackgroundImages(TestCase):
     file_obj = os.path.join(
