@@ -311,7 +311,7 @@ $.fn.modal = function (click_target, o) {
       top: toY + 'px',
       right: 'inherit',
       bottom: 'inherit',
-      position: 'absolute',
+      position: 'fixed',
     });
     return $modal;
   };
