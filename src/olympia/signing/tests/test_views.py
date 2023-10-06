@@ -149,6 +149,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             .count()
             == 1
         )
+        assert list(latest_version.compatible_apps.keys()) == [amo.FIREFOX]
         statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_new_addon_random_slug_unlisted_channel(self):
@@ -233,7 +234,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.CHANNEL_LISTED
         assert not version.file.is_mozilla_signed_extension
-
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX]
         statsd_incr_mock.assert_any_call('signing.submission.webext_version.12_34')
 
     def test_version_already_uploaded(self):
@@ -934,6 +935,44 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert latest_version
         assert latest_version.channel == amo.CHANNEL_UNLISTED
+        assert list(latest_version.compatible_apps.keys()) == [amo.FIREFOX]
+
+    def test_addon_with_gecko_android_in_manifest(self):
+        self.guid = '@webextension-guid'
+        version = '0.0.1'
+        assert not Addon.objects.filter(guid=self.guid).exists()
+        response = self.request(
+            'PUT',
+            url=self.url(self.guid, version),
+            guid=self.guid,
+            filename='src/olympia/files/fixtures/files/webextension_gecko_android.xpi',
+            version=version,
+            extra_kwargs={'REMOTE_ADDR': '127.0.3.1'},
+        )
+        assert response.status_code == 201, response.content
+
+        assert self.guid == response.data['guid']
+        addon = Addon.unfiltered.get(guid=self.guid)
+
+        assert addon.guid == self.guid
+
+        upload = FileUpload.objects.latest('pk')
+        assert upload.version == version
+        assert upload.user == self.user
+        assert upload.source == amo.UPLOAD_SOURCE_SIGNING_API
+        assert upload.ip_address == '127.0.3.1'
+
+        assert addon.has_author(self.user)
+        assert addon.status == amo.STATUS_NULL
+        latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+        assert latest_version
+        assert latest_version.version == version
+        assert latest_version.channel == amo.CHANNEL_UNLISTED
+        assert list(latest_version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        assert (
+            latest_version.compatible_apps[amo.ANDROID].originated_from
+            == amo.APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID
+        )
 
     def test_post_addon_restricted(self):
         Addon.objects.all().get().delete()
