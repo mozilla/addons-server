@@ -259,6 +259,7 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
     'about',
+    'abuse',
     'admin',
     'apps',
     'contribute.json',

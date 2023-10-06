@@ -4,7 +4,7 @@ import responses
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
-from ..cinder import CinderAddon
+from ..cinder import CinderAddon, CinderUser
 from ..models import AbuseReport, CinderReport
 
 
@@ -208,6 +208,17 @@ class TestAbuse(TestCase):
         report.save()
         assert report.reason == AbuseReport.REASONS.SPAM
 
+    def test_target(self):
+        report = AbuseReport.objects.create(guid='@lol')
+        assert report.target is None
+
+        addon = addon_factory(guid='@lol')
+        assert report.target == addon
+
+        user = user_factory()
+        report.update(guid=None, user=user)
+        assert report.target == user
+
 
 class TestAbuseManager(TestCase):
     def test_deleted(self):
@@ -248,6 +259,7 @@ class TestAbuseManager(TestCase):
 class TestCinderReport(TestCase):
     def test_get_helper(self):
         addon = addon_factory()
+        user = user_factory()
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
                 guid=addon.guid, reason=AbuseReport.REASONS.CSAM
@@ -257,8 +269,10 @@ class TestCinderReport(TestCase):
         assert isinstance(helper, CinderAddon)
         assert helper.addon == addon
 
-        cinder_report.abuse_report.update(guid=None, user=user_factory())
-        assert cinder_report.get_helper() is None
+        cinder_report.abuse_report.update(guid=None, user=user)
+        helper = cinder_report.get_helper()
+        assert isinstance(helper, CinderUser)
+        assert helper.user == user
 
     def test_report(self):
         cinder_report = CinderReport.objects.create(
@@ -276,3 +290,51 @@ class TestCinderReport(TestCase):
         cinder_report.report()
 
         assert cinder_report.job_id == '1234-xyz'
+
+    def test_can_be_appealed(self):
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+            ),
+            decision_id='4815162342-lost',
+            decision_date=self.days_ago(179),
+        )
+        assert cinder_report.can_be_appealed()
+
+        cinder_report.update(decision_date=None)
+        assert not cinder_report.can_be_appealed()
+
+        cinder_report.update(decision_date=self.days_ago(185))
+        assert not cinder_report.can_be_appealed()
+
+        cinder_report.update(decision_date=self.days_ago(179), decision_id=None)
+        assert not cinder_report.can_be_appealed()
+
+        cinder_report.update(decision_id='some-decision-id', appeal_id='some-appeal-id')
+        assert not cinder_report.can_be_appealed()
+
+        cinder_report.update(appeal_id=None)
+        assert cinder_report.can_be_appealed()
+
+        user = user_factory()
+        cinder_report.abuse_report.update(user=user, guid=None)
+        assert cinder_report.can_be_appealed()
+
+    def test_appeal(self):
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+            ),
+            decision_id='4815162342-lost',
+            decision_date=self.days_ago(179),
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        cinder_report.appeal('appeal text', user_factory())
+
+        assert cinder_report.appeal_id == '2432615184-tsol'

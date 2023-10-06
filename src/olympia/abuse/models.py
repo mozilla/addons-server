@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from django.db import models
 
 from extended_choices import Choices
@@ -298,6 +300,22 @@ class AbuseReport(ModelBase):
         name = self.guid if self.guid else self.user
         return f'Abuse Report for {self.type} {name}'
 
+    @property
+    def target(self):
+        """Return the target of the abuse report (Addon, UserProfile...).
+        Can return None if it could not be found."""
+        from olympia.addons.models import Addon
+
+        if self.guid:
+            return Addon.unfiltered.filter(guid=self.guid).first()
+        elif self.user:
+            return self.user
+        return None
+
+
+class CantBeAppealed(Exception):
+    pass
+
 
 class CinderReport(ModelBase):
     DECISION_ACTIONS = APIChoices(
@@ -305,7 +323,7 @@ class CinderReport(ModelBase):
         ('AMO_BAN_USER', 1, 'User ban'),
         ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
         ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
-        ('AMO_ESCALATE_USER', 4, 'Escalate add-on to reviewers'),
+        ('AMO_ESCALATE_USER', 4, 'Escalate user to reviewers'),
         ('AMO_DELETE_RATING', 5, 'Rating delete'),
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
@@ -318,16 +336,29 @@ class CinderReport(ModelBase):
     decision_action = models.PositiveSmallIntegerField(
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
     )
-    decision_id = models.CharField(max_length=36, default=None, null=True)
+    decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
+    decision_date = models.DateTimeField(default=None, null=True)
+    appeal_id = models.CharField(max_length=36, default=None, null=True)
+
+    def can_be_appealed(self):
+        return (
+            self.decision_id
+            and self.decision_date
+            and not self.appeal_id
+            and self.decision_date >= datetime.now() - timedelta(days=184)
+        )
 
     def get_helper(self):
-        if (guid := self.abuse_report.guid) and (
-            addon := Addon.unfiltered.filter(guid=guid).first()
-        ):
-            return CinderAddon(addon)
+        target = self.abuse_report.target
+        if target:
+            if isinstance(target, Addon):
+                return CinderAddon(target)
+            elif isinstance(target, UserProfile):
+                return CinderUser(target)
         # TODO: More helpers here
+        return None
 
-    def report(self):
+    def get_cinder_reporter(self):
         abuse = self.abuse_report
         reporter = None
         if abuse.reporter and not abuse.report.is_anonymous():
@@ -336,6 +367,25 @@ class CinderReport(ModelBase):
             reporter = CinderUnauthenticatedReporter(
                 abuse.reporter_name, abuse.reporter_email
             )
+        return reporter
+
+    def report(self):
+        abuse = self.abuse_report
+        reporter = self.get_cinder_reporter()
         reason = AbuseReport.REASONS.for_value(abuse.reason)
-        job_id = self.get_helper().report(reason.api_value, reporter)
+        job_id = self.get_helper().report(
+            report_text=abuse.message, category=reason.api_value, reporter=reporter
+        )
         self.update(job_id=job_id)
+
+    def appeal(self, appeal_text, user):
+        if not self.can_be_appealed():
+            raise CantBeAppealed
+        if user:
+            appealer = CinderUser(user)
+        else:
+            appealer = self.get_cinder_reporter()
+        appeal_id = self.get_helper().appeal(
+            decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
+        )
+        self.update(appeal_id=appeal_id)

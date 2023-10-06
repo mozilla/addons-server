@@ -30,7 +30,7 @@ class Cinder:
             'relationship_type': relationship_type,
         }
 
-    def build_report_payload(self, reason, reporter):
+    def build_report_payload(self, *, report_text, category, reporter):
         context = self.get_context()
         if reporter:
             context['entities'] += [reporter.get_entity_data()]
@@ -41,12 +41,13 @@ class Cinder:
             'queue_slug': self.QUEUE,
             'entity_type': self.type,
             'entity': self.get_attributes(),
-            'reasoning': reason,
+            'reasoning': report_text,
+            # FIXME: pass category in report_metadata ?
             # 'report_metadata': ??
             'context': context,
         }
 
-    def report(self, reason, reporter):
+    def report(self, *, report_text, category, reporter):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -56,10 +57,35 @@ class Cinder:
             'content-type': 'application/json',
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
-        data = self.build_report_payload(reason, reporter)
+        data = self.build_report_payload(
+            report_text=report_text, category=category, reporter=reporter
+        )
         response = requests.post(url, json=data, headers=headers)
         if response.status_code == 201:
             return response.json().get('job_id')
+        else:
+            raise ConnectionError(response.content)
+
+    def appeal(self, *, decision_id, appeal_text, appealer):
+        if self.type is None:
+            # type needs to be defined by subclasses
+            raise NotImplementedError
+        url = f'{settings.CINDER_SERVER_URL}appeal'
+        headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+        data = {
+            'queue_slug': self.QUEUE,
+            'appealer_entity_type': appealer.type,
+            'appealer_entity': appealer.get_attributes(),
+            'reasoning': appeal_text,
+            'decision_to_appeal_id': decision_id,
+        }
+        response = requests.post(url, json=data, headers=headers)
+        if response.status_code == 201:
+            return response.json().get('external_id')
         else:
             raise ConnectionError(response.content)
 
@@ -109,7 +135,11 @@ class CinderUnauthenticatedReporter(Cinder):
     def get_context(self):
         return {}
 
-    def report(self, reason, reporter):
+    def report(self, *args, **kwargs):
+        # It doesn't make sense to report a non fxa user
+        raise NotImplementedError
+
+    def appeal(self, *args, **kwargs):
         # It doesn't make sense to report a non fxa user
         raise NotImplementedError
 

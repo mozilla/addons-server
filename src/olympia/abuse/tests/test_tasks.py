@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from django.conf import settings
 
@@ -16,7 +17,7 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
 from ..models import AbuseReport, CinderReport
-from ..tasks import report_to_cinder
+from ..tasks import appeal_to_cinder, report_to_cinder
 
 
 def addon_factory_with_abuse_reports(*args, **kwargs):
@@ -191,7 +192,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
 def test_addon_report_to_cinder():
     addon = addon_factory()
     abuse_report = AbuseReport.objects.create(
-        guid=addon.guid, reason=AbuseReport.REASONS.CSAM
+        guid=addon.guid, reason=AbuseReport.REASONS.CSAM, message='This is bad'
     )
     assert not CinderReport.objects.exists()
     responses.add(
@@ -203,7 +204,108 @@ def test_addon_report_to_cinder():
 
     report_to_cinder.delay(abuse_report.id)
 
+    request = responses.calls[0].request
+    assert request.headers['authorization'] == 'Bearer fake-test-token'
+    assert json.loads(request.body) == {
+        'context': {'entities': [], 'relationships': []},
+        'entity': {
+            'guid': addon.guid,
+            'id': str(addon.pk),
+            'name': str(addon.name),
+            'slug': addon.slug,
+        },
+        'entity_type': 'amo_addon',
+        'queue_slug': 'amo-content-infringement',
+        'reasoning': 'This is bad',
+    }
+
     assert CinderReport.objects.count() == 1
     cinder_report = CinderReport.objects.get()
     assert cinder_report.abuse_report == abuse_report
     assert cinder_report.job_id == '1234-xyz'
+
+
+@pytest.mark.django_db
+def test_addon_appeal_to_cinder():
+    addon = addon_factory()
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.CSAM,
+        reporter_name='It is me',
+        reporter_email='m@r.io',
+    )
+    cinder_report = CinderReport.objects.create(
+        abuse_report=abuse_report,
+        decision_id='4815162342-abc',
+        decision_date=datetime.now(),
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}appeal',
+        json={'external_id': '2432615184-xyz'},
+        status=201,
+    )
+
+    appeal_to_cinder.delay(
+        decision_id='4815162342-abc', appeal_text='I appeal', user_id=None
+    )
+
+    request = responses.calls[0].request
+    assert request.headers['authorization'] == 'Bearer fake-test-token'
+    assert json.loads(request.body) == {
+        'appealer_entity': {
+            'email': 'm@r.io',
+            'id': 'It is me : m@r.io',
+            'name': 'It is me',
+        },
+        'appealer_entity_type': 'amo_unauthenticated_reporter',
+        'decision_to_appeal_id': '4815162342-abc',
+        'queue_slug': 'amo-content-infringement',
+        'reasoning': 'I appeal',
+    }
+
+    cinder_report = CinderReport.objects.get()
+    assert cinder_report.appeal_id == '2432615184-xyz'
+
+
+@pytest.mark.django_db
+def test_addon_appeal_to_cinder_authenticated():
+    user = user_factory(fxa_id='fake-fxa-id')
+    addon = addon_factory(users=[user])
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.CSAM,
+    )
+    cinder_report = CinderReport.objects.create(
+        abuse_report=abuse_report,
+        decision_id='4815162342-abc',
+        decision_date=datetime.now(),
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}appeal',
+        json={'external_id': '2432615184-xyz'},
+        status=201,
+    )
+
+    appeal_to_cinder.delay(
+        decision_id='4815162342-abc', appeal_text='I appeal', user_id=user.pk
+    )
+
+    request = responses.calls[0].request
+    assert request.headers['authorization'] == 'Bearer fake-test-token'
+    assert json.loads(request.body) == {
+        'appealer_entity': {
+            'email': user.email,
+            'id': str(user.pk),
+            'name': '',
+            'fxa_id': user.fxa_id,
+        },
+        'appealer_entity_type': 'amo_user',
+        'decision_to_appeal_id': '4815162342-abc',
+        'queue_slug': 'amo-content-infringement',
+        'reasoning': 'I appeal',
+    }
+
+    cinder_report = CinderReport.objects.get()
+    assert cinder_report.appeal_id == '2432615184-xyz'

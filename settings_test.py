@@ -99,3 +99,5 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 ADDONS_FRONTEND_PROXY_PORT = None
 
 VERIFY_FXA_ACCESS_TOKEN = False
+
+CINDER_API_TOKEN = 'fake-test-token'

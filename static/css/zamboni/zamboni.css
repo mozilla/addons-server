@@ -3247,3 +3247,9 @@ ul.errorlist li progress {
 ul.errorlist li.strength {
     color: #444444;
 }
+
+.generic-content {
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 960px;
+}
