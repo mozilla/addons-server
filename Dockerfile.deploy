@@ -99,5 +99,5 @@ RUN npm install \
     && make -f Makefile-docker copy_node_js \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
     && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
-RUN npm cache clean -f && npm install -g n && n 14.21
+RUN npm cache clean -f && npm install -g n && n 16
 RUN rm -f settings_local.py settings_local.pyc

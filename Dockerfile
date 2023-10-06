@@ -90,4 +90,4 @@ ENV CLEANCSS_BIN /deps/node_modules/.bin/cleancss
 ENV LESS_BIN /deps/node_modules/.bin/lessc
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
-RUN npm cache clean -f && npm install -g n && n 14.21
+RUN npm cache clean -f && npm install -g n && n 16

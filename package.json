@@ -3,10 +3,10 @@
   "version": "0.0.17",
   "private": true,
   "engines": {
-    "node": ">= 14.21"
+    "node": ">= 16"
   },
   "dependencies": {
-    "addons-linter": "5.25.0",
+    "addons-linter": "~6.15.0",
     "clean-css": "4.2.3",
     "clean-css-cli": "4.3.0",
     "jqmodal": "1.4.2",
