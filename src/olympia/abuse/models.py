@@ -8,7 +8,7 @@ from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddon, CinderNonFxaUser, CinderUser
+from .cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -333,7 +333,9 @@ class CinderReport(ModelBase):
         if abuse.reporter and not abuse.report.is_anonymous():
             reporter = CinderUser(abuse.reporter)
         elif abuse.reporter_name or abuse.reporter_email:
-            reporter = CinderNonFxaUser(abuse.reporter_name, abuse.reporter_email)
+            reporter = CinderUnauthenticatedReporter(
+                abuse.reporter_name, abuse.reporter_email
+            )
         reason = AbuseReport.REASONS.for_value(abuse.reason)
         job_id = self.get_helper().report(reason.api_value, reporter)
         self.update(job_id=job_id)

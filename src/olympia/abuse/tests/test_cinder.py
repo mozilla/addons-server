@@ -4,7 +4,7 @@ import responses
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
-from ..cinder import CinderAddon, CinderNonFxaUser, CinderUser
+from ..cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
 
 
 class BaseTestCinderCase:
@@ -37,7 +37,7 @@ class BaseTestCinderCase:
         assert cinder_class.report('reason', CinderUser(user_factory())) == '1234-xyz'
         assert (
             cinder_class.report(
-                'reason', CinderNonFxaUser(name='name', email='e@ma.il')
+                'reason', CinderUnauthenticatedReporter(name='name', email='e@ma.il')
             )
             == '1234-xyz'
         )
@@ -71,7 +71,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         # if we have an email or name
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
-        data = cinder_addon.build_report_payload(reason, CinderNonFxaUser(name, email))
+        data = cinder_addon.build_report_payload(
+            reason, CinderUnauthenticatedReporter(name, email)
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -219,7 +221,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         # if we have an email or name
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
-        data = cinder_user.build_report_payload(reason, CinderNonFxaUser(name, email))
+        data = cinder_user.build_report_payload(
+            reason, CinderUnauthenticatedReporter(name, email)
+        )
         assert data['context'] == {
             'entities': [
                 {

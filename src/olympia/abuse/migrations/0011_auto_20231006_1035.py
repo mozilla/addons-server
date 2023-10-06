@@ -2,6 +2,7 @@
 
 from django.db import migrations
 
+
 def create_waffle_switch_if_it_doesnt_already_exist(apps, schema_editor):
     Switch = apps.get_model('waffle', 'Switch')
     Switch.objects.get_or_create(
@@ -16,6 +17,9 @@ def create_waffle_switch_if_it_doesnt_already_exist(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ('abuse', '0010_cinderreport'),
+        ('waffle', '0001_initial'),
     ]
 
-    operations = [create_waffle_switch_if_it_doesnt_already_exist]
+    operations = [
+        migrations.RunPython(create_waffle_switch_if_it_doesnt_already_exist)
+    ]

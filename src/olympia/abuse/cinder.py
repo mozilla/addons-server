@@ -92,7 +92,7 @@ class CinderUser(Cinder):
         }
 
 
-class CinderNonFxaUser(Cinder):
+class CinderUnauthenticatedReporter(Cinder):
     type = 'amo_unauthenticated_reporter'
 
     def __init__(self, name, email):
