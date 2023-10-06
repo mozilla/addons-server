@@ -46,15 +46,10 @@ class Cinder:
             'context': context,
         }
 
-    def report(self, reason, reporter_user):
+    def report(self, reason, reporter):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
-        reporter = (
-            reporter_user
-            and not reporter_user.is_anonymous()
-            and CinderUser(reporter_user)
-        )
         url = f'{settings.CINDER_SERVER_URL}create_report'
         headers = {
             'accept': 'application/json',
@@ -62,7 +57,6 @@ class Cinder:
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
         data = self.build_report_payload(reason, reporter)
-        print(data)
         response = requests.post(url, json=data, headers=headers)
         if response.status_code == 201:
             return response.json().get('job_id')
@@ -96,6 +90,28 @@ class CinderUser(Cinder):
                 self.get_relationship_data(addon, 'amo_author_of') for addon in addons
             ],
         }
+
+
+class CinderUnauthenticatedReporter(Cinder):
+    type = 'amo_unauthenticated_reporter'
+
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+    def get_attributes(self):
+        return {
+            'id': f'{self.name} : {self.email}',
+            'name': self.name,
+            'email': self.email,
+        }
+
+    def get_context(self):
+        return {}
+
+    def report(self, reason, reporter):
+        # It doesn't make sense to report a non fxa user
+        raise NotImplementedError
 
 
 class CinderAddon(Cinder):

@@ -36,6 +36,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report, context=context)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': addon.guid, 'id': addon.pk, 'slug': addon.slug},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -63,6 +65,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': addon.guid, 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -89,6 +93,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': '@guid', 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -252,6 +258,8 @@ class TestUserAbuseReportSerializer(TestCase):
         serialized_user = BaseUserSerializer(user).data
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'user': serialized_user,
             'message': 'bad stuff',
         }

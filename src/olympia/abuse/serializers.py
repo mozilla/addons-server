@@ -1,14 +1,17 @@
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
+import waffle
 from rest_framework import serializers
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
+
+from .models import AbuseReport
+from .tasks import report_to_cinder
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -16,10 +19,11 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 class BaseAbuseReportSerializer(AMOModelSerializer):
     reporter = BaseUserSerializer(read_only=True)
+    reporter_email = serializers.EmailField(required=False)
 
     class Meta:
         model = AbuseReport
-        fields = ('message', 'reporter')
+        fields = ('message', 'reporter', 'reporter_name', 'reporter_email')
 
     def validate_target(self, data, target_name):
         if target_name not in data:
@@ -193,6 +197,16 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 # want to reveal the slug or id of those add-ons.
                 pass
         return output
+
+    def create(self, validated_data):
+        instance = super().create(validated_data)
+        if (
+            waffle.switch_is_active('enable-cinder-reporting')
+            and validated_data.get('reason') in AbuseReport.REPORTABLE_REASONS
+        ):
+            # call task to fire off cinder report
+            report_to_cinder.delay(instance.id)
+        return instance
 
 
 class UserAbuseReportSerializer(BaseAbuseReportSerializer):
