@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-06 06:20+0000\n"
+"PO-Revision-Date: 2023-10-06 07:34+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2774,12 +2774,14 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"您是否已测试过自己的附加组件能否在 Android 版 Firefox 上正常使用？如果没有，请在提交前参阅<a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-"
+"for-android/\">开发 Android 版 Firefox 附加组件</a>中的测试指南。"
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "是的，我已在 Android 版 Firefox 中测试过我的扩展"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "我尚未测试"
 
 msgid "Developer News"
 msgstr "开发者新闻"
@@ -4249,7 +4251,7 @@ msgstr "浏览所有扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "测试新版 Android 扩展"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4914,16 +4916,16 @@ msgid "Add-ons"
 msgstr "附加组件"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "前往 Mozilla 主页"
 
 msgid "About"
 msgstr "关于"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Firefox 附加组件博客"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "社区博客"
 
 msgid "Forum"
 msgstr "论坛"
@@ -4932,30 +4934,30 @@ msgid "Review Guide"
 msgstr ""
 
 msgid "Browsers"
-msgstr ""
+msgstr "浏览器"
 
 msgid "Desktop"
-msgstr ""
+msgstr "桌面版"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "企业版"
 
 msgid "Products"
-msgstr ""
+msgstr "产品"
 
 msgid "Privacy"
-msgstr ""
+msgstr "隐私"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookie"
 
 msgid "Legal"
-msgstr ""
+msgstr "法律"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike Licence v3.0</a> or any later version."
-msgstr ""
+msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">注明</a>，否则本站内容以<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">知识共享 署名-相同方式共享 v3.0</a> 或任何更新版本授权。"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5154,6 +5156,13 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"我们此次致信是希望告知您，您在 %(site_url)s 上的用户账户“%(name)s”已被删除。若您最近删除了自己的 Mozilla 账户，则此操作可能会自动完成。（Firefox 账户已更名为 Mozilla 账户）\n"
+"\n"
+"若您并没有这样做，或认为是有未经授权的人操作了您的账户，请回复此邮件，否则无需采取更多措施。\n"
+"\n"
+"Firefox 附加组件团队谨启"
 
 #, python-format
 msgid ""
