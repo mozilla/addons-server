@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-06 05:52+0000\n"
+"PO-Revision-Date: 2023-10-06 06:00+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -150,7 +150,7 @@ msgstr "Navedenih različic ni mogoče predložiti, ko je dodatek onemogočen."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s v %(app_name)s niso podprti"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -967,7 +967,7 @@ msgid "Themes (Static)"
 msgstr "Teme (statične)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Zastarela dovoljenja strani"
 
 msgid "Alerts & Updates"
 msgstr "Opozorila in posodobitve"
@@ -2835,18 +2835,20 @@ msgid "More information on Developer Accounts"
 msgstr "Več informacij o razvijalskih računih"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Združljivost s Firefoxom za Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Ste svojo razširitev preizkusili in se prepričali, da deluje po pričakovanjih v Firefoxu za Android? Če niste, si pred predložitvijo preberite navodila za preskušanje <a target=\"_blank\" "
+"rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a>."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Da, razširitev je preizkušena v Firefoxu za Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Ne, v Firefoxu za Android ni preizkušena"
 
 msgid "Developer News"
 msgstr "Novice za razvijalce"
@@ -4330,7 +4332,7 @@ msgstr "Prikaži vse razširitve"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Preskusite nove razširitve za Android"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4681,7 +4683,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Označil %(user)s dne %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>Opozorilo!</strong> To stran si bo morda pred vami ogledal drug uporabnik."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -5015,48 +5017,50 @@ msgid "Add-ons"
 msgstr "Dodatki"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Pojdi na domačo stran Mozille"
 
 msgid "About"
 msgstr "Vizitka"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blog Dodatkov za Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Blog skupnosti"
 
 msgid "Forum"
 msgstr "Forum"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Smernice za mnenja"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Brskalniki"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Namizje"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Podjetja"
 
 msgid "Products"
-msgstr ""
+msgstr "Izdelki"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Zasebnost"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Piškotki"
 
 msgid "Legal"
-msgstr ""
+msgstr "Pravno"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
+"Če ni drugače <a href=\"https://www.mozilla.org/about/legal/\">navedeno</a>, je vsebina te strani na voljo pod licenco <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Attribution Share-Alike Licence v3.0</a> ali novejšo različico."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
