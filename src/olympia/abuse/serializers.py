@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
+import waffle
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -199,7 +200,10 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
 
     def create(self, validated_data):
         instance = super().create(validated_data)
-        if validated_data.get('reason') in AbuseReport.REPORTABLE_REASONS:
+        if (
+            waffle.switch_is_active('enable-cinder-reporting')
+            and validated_data.get('reason') in AbuseReport.REPORTABLE_REASONS
+        ):
             # call task to fire off cinder report
             report_to_cinder.delay(instance.id)
         return instance

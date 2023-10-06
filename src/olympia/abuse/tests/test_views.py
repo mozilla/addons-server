@@ -2,6 +2,8 @@ import json
 from datetime import datetime
 from unittest import mock
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.amo.tests import (
@@ -436,11 +438,19 @@ class AddonAbuseViewSetTestBase:
         assert response.status_code == 201, response.content
 
     @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hate_speech')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hate_speech')
+        task_mock.assert_not_called()
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
     def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
         self._setup_reportable_reason('not_wanted')
         task_mock.assert_not_called()
