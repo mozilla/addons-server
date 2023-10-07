@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-07 19:12+0000\n"
+"PO-Revision-Date: 2023-10-07 19:22+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -697,7 +697,7 @@ msgid "Source code uploaded"
 msgstr "קוד מקור הועלה"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "האישור האוטומטי של התוספת {addon} {version} אומת."
 
 msgid "Auto-Approval confirmed"
 msgstr "אומת אישור אוטומטי"
@@ -813,7 +813,7 @@ msgid "Version re-signed"
 msgstr "הגרסה נחתמה מחדש"
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "‏בוטלה הדחייה של התוספת {addon} {version}."
 
 msgid "Un-rejected"
 msgstr ""
@@ -828,16 +828,16 @@ msgid "Pending rejection cleared"
 msgstr ""
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "הגרסה {version} נוספה אל הרשימה השחורה."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "הגרסה נחסמה"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "הגרסה {version} הוסרה מהרשימה השחורה."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "בוטלה החסימה של הגרסה"
 
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
@@ -920,16 +920,16 @@ msgid "Dictionary"
 msgstr "מילון"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "מנוע חיפוש שהוצא משימוש"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "חבילת שפה"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "חבילת שפה שהוצאה משימוש (תוספת)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "תוסף חיצוני שהוצא משימוש"
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -938,7 +938,7 @@ msgid "Theme (Static)"
 msgstr "ערכת נושא (סטטית)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "הרשאת אתר שהוצאה משימוש"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -953,16 +953,16 @@ msgid "Dictionaries"
 msgstr "מילונים"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "כלי חיפוש שהוצאו משימוש"
 
 msgid "Language Packs"
-msgstr ""
+msgstr "חבילות שפה"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "חבילות שפה שהוצאו משימוש (תוספת)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "תוספים חיצוניים שהוצא משימוש"
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -971,7 +971,7 @@ msgid "Themes (Static)"
 msgstr "ערכות נושא (סטטיות)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "הרשאות אתר שהוצאו משימוש"
 
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
@@ -1415,10 +1415,10 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "תוספות של Open Search {blog_link_open}אינן נתמכות עוד ב־AMO{blog_link_close}. באפשרותך ליצור {doc_link_open}הרחבת חיפוש במקום{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3‏ אינו נתמך כרגע להעלאה. {start_href}מידע נוסף על ציר הזמן של התמיכה{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "אזהרת תאימות של Manifest V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
