@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-06 13:19+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2023-10-07 20:38+0000\n"
+"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -155,7 +155,7 @@ msgstr "Veřejné verze není možné odeslat, když je doplněk zakázaný."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s nejsou podporované aplikací %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -934,7 +934,7 @@ msgid "Theme (Static)"
 msgstr "Vzhled (statický)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Zastaralé oprávnění serveru"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -966,7 +966,7 @@ msgid "Themes (Static)"
 msgstr "Vzhledy (statické)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Zastaralá oprávnění serveru"
 
 msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"
@@ -2836,6 +2836,8 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Otestovali jste své rozšíření, abyste se ujistili, že ve Firefoxu pro Android funguje podle očekávání? Pokud ne, přečtěte si prosím článek <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Vývoj rozšíření pro Firefox Android</a>, kde najdete návod na testování před odesláním."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr "Ano, otestoval(a) jsem své rozšíření s Firefoxem pro Android"
