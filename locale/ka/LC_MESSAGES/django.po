@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-07 05:22+0000\n"
+"PO-Revision-Date: 2023-10-07 05:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -148,7 +148,7 @@ msgstr "გამოქვეყნებული ვერსიები ვ�
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s და %(app_name)s შეუთავსებლებია"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -923,7 +923,7 @@ msgid "Theme (Static)"
 msgstr "თემა (უცვლელი)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "საიტის მოძველებული ნებართვა"
 
 msgid "Extensions"
 msgstr "გაფართოებები"
@@ -953,7 +953,7 @@ msgid "Themes (Static)"
 msgstr "თემა (უცვლელი)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "საიტის მოძველებული ნებართვები"
 
 msgid "Alerts & Updates"
 msgstr "უწყებები და განახლებები"
