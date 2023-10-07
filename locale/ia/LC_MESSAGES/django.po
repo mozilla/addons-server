@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-07 22:23+0000\n"
+"PO-Revision-Date: 2023-10-07 22:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -150,7 +150,7 @@ msgstr "Le versiones publicate non pote esser inviate durante que le additivo es
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s non es supportate per %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -927,7 +927,7 @@ msgid "Theme (Static)"
 msgstr "Thema (Static)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Autorisation de sito obsolete"
 
 msgid "Extensions"
 msgstr "Extensiones"
@@ -957,7 +957,7 @@ msgid "Themes (Static)"
 msgstr "Themas (Static)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Autorisationes de sito obsolete"
 
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
@@ -2826,10 +2826,10 @@ msgstr ""
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Disveloppar extensiones de Firefox pro Android</a> pro verificar le guida ante le invio."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Si, io verificava mi extension con Firefox pro Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "No, io non lo ha testate"
 
 msgid "Developer News"
 msgstr "Novas de disveloppator"
