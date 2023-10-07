@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-07 19:31+0000\n"
+"PO-Revision-Date: 2023-10-07 20:35+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -1574,7 +1574,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "תוספת זו אינה ערכת נושא. יש להשתמש בדף <a href=\"{link}\">הגשת תוספת חדשה</a> כדי להגיש הרחבות."
 
 msgid "Updated"
 msgstr "תאריך עדכון"
@@ -1644,7 +1644,7 @@ msgid "Validate Add-on"
 msgstr "אימות תוספת"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">נא להוסיף אימות דו־שלבי לחשבון שלך כדי להגיש הרחבות.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "צלמיות חייבות להיות בתבנית PNG או JPG."
@@ -1670,7 +1670,7 @@ msgstr "אירעה שגיאה בהעלאת התצוגה המקדימה שלך."
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "לא ניתן למחוק או להשבית את הגרסה המאושרת האחרונה של התוספת %s הזאת מכיוון שהגרסה הקודמת לא אושרה עבור קידום של %s. נא ליצור קשר עם מנהלי AMO אם יש לך צורך בעזרה לגבי לזה."
 
 #, python-format
 msgid "Version %s disabled."
@@ -4511,10 +4511,10 @@ msgid "Invalid archive."
 msgstr "ארכיון שגוי."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "לא נמצא manifest.json"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "קובץ פגום או לא תקין."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4524,7 +4524,7 @@ msgid "Duplicate add-on ID found."
 msgstr "נמצא מזהה תוספת כפול."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "מספרי הגרסאות חייבים להיות באורך של {max_length} תווים לכל היותר."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, מספרים ואת הסימנים הבאים: +*.-_."
@@ -4545,7 +4545,7 @@ msgid "You cannot submit a language pack"
 msgstr "לא ניתן להגיש ערכת שפה"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "לא ניתן לשנות את השפה של מילון או חבילת שפה קיימת"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "סוג הקובץ אינו נתמך, נא להעלות קובץ {extensions} נתמך."
@@ -4561,7 +4561,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "ארגומנט ״channel״ חסר."
 
 msgid "Spam or otherwise non-review content"
 msgstr "ספאם או תוכן שאינו שייך לסקירה"
@@ -4583,12 +4583,12 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "הערך %(value)s מכיל תו שאינו אות או מספר."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "טקסט הסקירה אינו יכול להכיל את המילה: ״{0}״"
+msgstr[1] "טקסט הסקירה אינו יכול להכיל אף אחד מהמילים: ״{0}״"
 
 msgid "This field is required."
 msgstr "שדה זה נדרש."
@@ -4644,14 +4644,14 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "מאת %(user)s ב־%(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">סומן בדגל על־ידי %(user)s בתאריך %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>אזהרה!</strong> ייתכן שמשתמש אחר צפה בעמוד הזה לפניך."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4666,38 +4666,38 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "גרסה %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "זהו השם המדויק של הכלל שבו משתמש סורק."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "שם אנושי קריא לכלל הסורק"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "שם אנושי קריא"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "תיאור אנושי קריא לכלל הסורק"
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "לחוקי Yara צריכים להיות הגדרה"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "שם הכלל בהגדרה צריך להיות תואם לשם כלל הסורק"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "רק כלל Yara אחד מותר בהגדרה"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
 msgstr "ההגדרה הזו אינה תקינה: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "אירעה שגיאה בעת הידור ההגדרה"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "כאשר לא מסומן, תוצאות הסורק לא יהיו קשורות לכלל זה והפעולה לא תבוצע."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "הפעלת הכלל הזה גם על תוספות שהושבתו בכוח."
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
