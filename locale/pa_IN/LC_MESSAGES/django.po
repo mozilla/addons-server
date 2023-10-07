@@ -80,7 +80,7 @@ msgid "Invalid app name."
 msgstr "ਗਲਤ ਐਪ ਨਾਂ ਹੈ।"
 
 msgid "URL domain must be one of [{domains}]."
-msgstr "URL ਡੋਮਨ [[domains}] ਵਿੱਚੋਂ ਇੱਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
+msgstr "URL ਡੋਮਨ [{domains}] ਵਿੱਚੋਂ ਇੱਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
