@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-05 21:31+0000\n"
-"PO-Revision-Date: 2023-10-08 21:10+0000\n"
+"PO-Revision-Date: 2023-10-08 21:14+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -2866,12 +2866,15 @@ msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Вы протестировали свое расширение, чтобы убедиться, что оно работает в Firefox для Android? Если нет, пожалуйста, обратитесь<a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">к разделу Разработка расширений к Firefox для Android</a>, чтобы получить рекомендации по "
+"тестированию перед отправкой."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Да, я протестировал свое расширение в Firefox для Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Нет, я не тестировал"
 
 msgid "Developer News"
 msgstr "Новости разработчиков"
@@ -4361,7 +4364,7 @@ msgstr "Посмотреть все расширения"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Тестирование новых Android-расширений"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -5033,48 +5036,50 @@ msgid "Add-ons"
 msgstr "Дополнения"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Перейти на домашнюю страницу Mozilla"
 
 msgid "About"
 msgstr "О сайте"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Блог о дополнениях для Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Блог сообщества"
 
 msgid "Forum"
 msgstr "Форум"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Руководство по написанию отзывов"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Браузеры"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Настольный компьютер"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Предприятие"
 
 msgid "Products"
-msgstr ""
+msgstr "Продукты"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Приватность"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Куки"
 
 msgid "Legal"
-msgstr ""
+msgstr "Юридическая информация"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike Licence v3.0</a> or any later version."
 msgstr ""
+"Если <a href=\"https://www.mozilla.org/about/legal/\">не указано явно</a>, содержание данного сайта лицензировано в соответствии с <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> или любой более поздней версией."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5279,6 +5284,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Здравствуйте,\n"
+"\n"
+"Вы получили это сообщение, потому что ваша учетная запись %(имя)s на %(site_url)s была удалена. Это могло произойти автоматически, если Вы недавно удалили свою учетную запись Mozilla (мы переименовали учетные записи Firefox в учетные записи Mozilla).\n"
+"\n"
+"Если вы этого не делали или предполагаете, что доступ к вашей учетной записи получил посторонний человек, пожалуйста, ответьте на это письмо. В остальных случаях никаких дополнительных действий предпринимать не нужно.\n"
+"\n"
+"С уважением,\n"
+"\n"
+"Команда разработчиков дополнений для Firefox"
 
 #, python-format
 msgid ""
