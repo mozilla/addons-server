@@ -1515,3 +1515,6 @@ CINDER_SERVER_URL = env(
     default='https://stage.cinder.nonprod.webservices.mozgcp.net/api/v1/',
 )
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
+CINDER_WEBHOOK_TOKEN = env(
+    'CINDER_WEBHOOK_TOKEN', default='bda7b666732109417960b14b4dcd581de3374df4'
+)
