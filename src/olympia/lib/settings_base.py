@@ -841,6 +841,7 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
+    'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
     'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
