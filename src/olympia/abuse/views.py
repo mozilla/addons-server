@@ -14,8 +14,8 @@ from olympia.abuse.serializers import (
     UserAbuseReportSerializer,
 )
 from olympia.abuse.tasks import appeal_to_cinder
-from olympia.accounts.views import AccountViewSet
 from olympia.accounts.utils import redirect_for_login
+from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 

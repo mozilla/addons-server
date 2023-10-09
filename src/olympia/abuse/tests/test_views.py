@@ -2,10 +2,10 @@ import json
 from datetime import datetime
 from unittest import mock
 
+from django.urls import reverse
+
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
-
-from django.urls import reverse
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderReport
