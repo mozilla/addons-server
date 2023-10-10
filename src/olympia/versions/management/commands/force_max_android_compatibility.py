@@ -55,8 +55,8 @@ class Command(BaseCommand):
                     version__addon__promotedaddon__application_id=amo.FIREFOX.id
                 )  # Promoted, but for Firefox only (not Android / not both)
             )
-            # If they are already marked as compatible with 119.0a1, we don't
-            # care.
+            # If they are already marked as compatible with GA version, we
+            # don't care.
             .filter(min__version_int__lt=min_version_fenix.version_int)
         )
         # If the min is also over 68.* then it means the developer marked it

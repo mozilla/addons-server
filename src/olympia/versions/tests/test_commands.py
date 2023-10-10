@@ -2,14 +2,17 @@ import csv
 import os
 import tempfile
 
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import LINE, RECOMMENDED, SPOTLIGHT
 from olympia.promoted.models import PromotedAddon
+from olympia.versions.compare import version_int
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
 )
@@ -104,7 +107,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '119.0a1'
+                == '120.0a1'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
@@ -183,7 +186,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 name='Recommended for Android 119',
                 version_kw={
                     'application': amo.ANDROID.id,
-                    'min_app_version': '119.0a1',
+                    'min_app_version': '120.0a1',
                     'max_app_version': '*',
                 },
                 promoted=RECOMMENDED,
@@ -192,7 +195,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 name='Normal for Android 119',
                 version_kw={
                     'application': amo.ANDROID.id,
-                    'min_app_version': '119.0a1',
+                    'min_app_version': '120.0a1',
                     'max_app_version': '*',
                 },
                 promoted=RECOMMENDED,
@@ -314,7 +317,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '119.0a1'
+                == '120.0a1'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
@@ -427,3 +430,86 @@ class TestDropCompatibilityCommand(TestCase):
             if hasattr(addon.current_version, '_compatible_apps'):
                 del addon.current_version._compatible_apps
             assert amo.ANDROID in addon.current_version.compatible_apps
+
+
+class TestBumpMinAndroidCompatibility(TestCase):
+    # Force MIN_VERSION_FENIX_GENERAL_AVAILABILITY to 119.0a1 so that we can
+    # set the ApplicationsVersions to that value in the test data we're
+    # creating. It's overridden below when triggering call_command().
+    @override_settings(MIN_VERSION_FENIX_GENERAL_AVAILABILITY='119.0a1')
+    def test_basic(self):
+        AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id,
+            version=settings.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+        )
+        new_min_android_ga_version = '120.0a1'
+        AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id,
+            version=new_min_android_ga_version,
+        )
+
+        recommended_addon_with_multiple_versions = addon_factory(
+            version_kw={
+                'application': amo.ANDROID.id,
+                'min_app_version': '119.0a1',
+                'max_app_version': '*',
+            },
+            promoted=RECOMMENDED,
+        )
+
+        to_bump = [
+            # Higher than new_min_android_ga_version, will be adjusted down.
+            addon_factory(
+                version_kw={
+                    'application': amo.ANDROID.id,
+                    'min_app_version': '121.0a1',
+                    'max_app_version': '*',
+                }
+            ).current_version,
+            # Lower than new_min_android_ga_version, will be adjusted up.
+            addon_factory(
+                version_kw={
+                    'application': amo.ANDROID.id,
+                    'min_app_version': '119.0a1',
+                    'max_app_version': '*',
+                }
+            ).current_version,
+            recommended_addon_with_multiple_versions.current_version,
+        ]
+
+        to_ignore = [
+            # Not even compatible with Android.
+            addon_factory().current_version,
+            # That version of not compatible with a version high enough for us
+            # to care.
+            version_factory(
+                addon=recommended_addon_with_multiple_versions,
+                application=amo.ANDROID.id,
+                min_app_version='113.0',
+                max_app_version='*',
+                promotion_approved=True,
+            ),
+        ]
+
+        with override_settings(
+            MIN_VERSION_FENIX_GENERAL_AVAILABILITY=new_min_android_ga_version
+        ):
+            call_command('bump_min_android_compatibility')
+
+        for version in to_bump:
+            if hasattr(version, '_compatible_apps'):
+                del version._compatible_apps
+            assert amo.ANDROID in version.compatible_apps
+        assert version.compatible_apps[amo.ANDROID].min.application == amo.ANDROID.id
+        assert (
+            version.compatible_apps[amo.ANDROID].min.version
+            == new_min_android_ga_version
+        )
+
+        for version in to_ignore:
+            if hasattr(version, '_compatible_apps'):
+                del version._compatible_apps
+            if amo.ANDROID in version.compatible_apps:
+                assert version.compatible_apps[
+                    amo.ANDROID
+                ].min.version_int < version_int(new_min_android_ga_version)
