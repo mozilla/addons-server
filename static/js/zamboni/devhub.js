@@ -1372,6 +1372,7 @@ function initSubmitModals() {
             // in a setTimeout() to force it to wait for the event to be
             // processed.
             $input.prop('checked', !$input.prop('checked'));
+            $input.trigger('change');
           }, 0);
         }
         return !confirmedOnce;
@@ -1383,6 +1384,7 @@ function initSubmitModals() {
       .on('submit', function onSubmit(e) {
         e.preventDefault();
         $input.prop('checked', true);
+        $input.trigger('change');
         $modalAndroidConfirm.trigger('close');
         confirmedOnce = true;
       });
