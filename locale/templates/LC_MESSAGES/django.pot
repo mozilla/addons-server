@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-05 21:31+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: src/olympia/abuse/serializers.py:40
+#: src/olympia/abuse/serializers.py:44
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:130 src/olympia/abuse/serializers.py:146
+#: src/olympia/abuse/serializers.py:134 src/olympia/abuse/serializers.py:150
 #: src/olympia/addons/fields.py:251
 msgid "Invalid value"
 msgstr ""
