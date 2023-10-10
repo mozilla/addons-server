@@ -119,7 +119,7 @@ class CinderInboundPermission:
     """Permit if the payload hash matches."""
 
     def has_permission(self, request, view):
-        header = request.META.get('x-cinder-signature')
+        header = request.META.get('x-cinder-signature', '')
         key = force_bytes(settings.CINDER_WEBHOOK_TOKEN)
         digest = hmac.new(key, msg=request.body, digestmod=hashlib.sha256).hexdigest()
         return hmac.compare_digest(header, digest)
