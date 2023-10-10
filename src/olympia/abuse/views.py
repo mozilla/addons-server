@@ -149,4 +149,4 @@ def cinder_webhook(request):
             str(request.data)[:255],
         )
 
-    return Response(data={'received': True}, status=status.HTTP_201_CREATED)
+    return Response(data={'amo-received': True}, status=status.HTTP_201_CREATED)
