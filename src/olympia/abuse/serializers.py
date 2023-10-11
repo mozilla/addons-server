@@ -19,7 +19,7 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 class BaseAbuseReportSerializer(AMOModelSerializer):
     reporter = BaseUserSerializer(read_only=True)
-    reporter_email = serializers.EmailField(required=False)
+    reporter_email = serializers.EmailField(required=False, allow_null=True)
 
     class Meta:
         model = AbuseReport
