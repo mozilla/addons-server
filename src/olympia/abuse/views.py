@@ -1,12 +1,25 @@
+import hashlib
+import hmac
+
 from django import forms
+from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
+from django.utils.encoding import force_bytes
 
+from rest_framework import status
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+)
 from rest_framework.mixins import CreateModelMixin
+from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
+import olympia.core.logger
 from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
 from olympia.abuse.models import CinderReport
 from olympia.abuse.serializers import (
@@ -18,6 +31,11 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
+
+from .cinder import Cinder
+
+
+log = olympia.core.logger.getLogger('z.abuse')
 
 
 class AbuseUserThrottle(GranularUserRateThrottle):
@@ -103,6 +121,43 @@ class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
             permission_classes=[],
             kwargs={'pk': self.kwargs['user_pk']},
         ).get_object()
+
+
+class CinderInboundPermission:
+    """Permit if the payload hash matches."""
+
+    def has_permission(self, request, view):
+        header = request.META.get('HTTP_X_CINDER_SIGNATURE', '')
+        key = force_bytes(settings.CINDER_WEBHOOK_TOKEN)
+        digest = hmac.new(key, msg=request.body, digestmod=hashlib.sha256).hexdigest()
+        return hmac.compare_digest(header, digest)
+
+
+@api_view(['POST'])
+@authentication_classes(())
+@permission_classes((CinderInboundPermission,))
+def cinder_webhook(request):
+    if request.data.get('event') == 'decision.created' and (
+        payload := request.data.get('payload', {})
+    ):
+        source_queue = payload.get('source', {}).get('job', {}).get('queue')
+        if source_queue == Cinder.QUEUE:
+            log.info(
+                'Valid Payload from AMO queue: %s',
+                payload,
+            )
+        else:
+            log.info(
+                'Payload from other queue: %s',
+                payload,
+            )
+    else:
+        log.info(
+            'Invalid payload received: %s',
+            str(request.data)[:255],
+        )
+
+    return Response(data={'amo-received': True}, status=status.HTTP_201_CREATED)
 
 
 def appeal(request, *, decision_id, **kwargs):
