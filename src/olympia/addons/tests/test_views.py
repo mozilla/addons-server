@@ -5439,15 +5439,15 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '121.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
-            slug='my-tb-addon',
+            slug='my-android-addon',
             name='My ANd Addøn',
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '119.0',
+                'min_app_version': '121.0',
                 'max_app_version': '*',
             },
         )
@@ -5455,7 +5455,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '122.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
@@ -5463,7 +5463,7 @@ class TestAddonSearchView(ESTestCase):
             application=amo.ANDROID.id,
             version=both_addon.current_version,
             min=AppVersion.objects.get_or_create(
-                application=amo.ANDROID.id, version='120.0'
+                application=amo.ANDROID.id, version='122.0'
             )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
@@ -5471,27 +5471,27 @@ class TestAddonSearchView(ESTestCase):
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '123.0'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
         data = self.perform_search(
-            self.url, {'app': 'android', 'appversion': '121.0.1'}
+            self.url, {'app': 'android', 'appversion': '122.0.1'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '119.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
         data = self.perform_search(
-            self.url, {'app': 'android', 'appversion': '119.0.1'}
+            self.url, {'app': 'android', 'appversion': '121.0.1'}
         )
         assert data['count'] == 1
         assert len(data['results']) == 1
