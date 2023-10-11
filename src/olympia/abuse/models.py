@@ -328,6 +328,7 @@ class CinderReport(ModelBase):
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
     )
+    APPEAL_EXPIRATION_DAYS = 184
 
     job_id = models.CharField(max_length=36)
     abuse_report = models.OneToOneField(
@@ -345,7 +346,8 @@ class CinderReport(ModelBase):
             self.decision_id
             and self.decision_date
             and not self.appeal_id
-            and self.decision_date >= datetime.now() - timedelta(days=184)
+            and self.decision_date
+            >= datetime.now() - timedelta(days=self.APPEAL_EXPIRATION_DAYS)
         )
 
     def get_helper(self):
