@@ -1,15 +1,8 @@
-from django.urls import include, re_path
+from django.urls import path
 
-from rest_framework.routers import SimpleRouter
+from olympia.abuse.views import appeal
 
-from .views import AddonAbuseViewSet, UserAbuseViewSet, cinder_webhook
-
-
-reporting = SimpleRouter()
-reporting.register(r'addon', AddonAbuseViewSet, basename='abusereportaddon')
-reporting.register(r'user', UserAbuseViewSet, basename='abusereportuser')
 
 urlpatterns = [
-    re_path(r'report/', include(reporting.urls)),
-    re_path(r'response/', cinder_webhook, name='cinder-webhook'),
+    path('appeal/<str:decision_id>/', appeal, name='abuse.appeal'),
 ]

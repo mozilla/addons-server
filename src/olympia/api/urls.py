@@ -7,7 +7,7 @@ from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 
 v3_api_urls = [
-    re_path(r'^abuse/', include('olympia.abuse.urls')),
+    re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v3)),
     re_path(r'^addons/', include(addons_v3)),
     re_path(r'^', include('olympia.discovery.api_urls')),
@@ -18,7 +18,7 @@ v3_api_urls = [
 ]
 
 v4_api_urls = [
-    re_path(r'^abuse/', include('olympia.abuse.urls')),
+    re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v4)),
     re_path(r'^activity/', include('olympia.activity.urls')),
     re_path(r'^addons/', include(addons_v4)),
@@ -34,7 +34,7 @@ v4_api_urls = [
 ]
 
 v5_api_urls = [
-    re_path(r'^abuse/', include('olympia.abuse.urls')),
+    re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v4)),
     re_path(r'^activity/', include('olympia.activity.urls')),
     re_path(r'^addons/', include(addons_v5)),

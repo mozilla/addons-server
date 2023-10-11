@@ -8,7 +8,7 @@ from ..cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
 
 
 class BaseTestCinderCase:
-    def _test_report(self, cinder_class):
+    def _test_report(self, cinder_instance):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_report',
@@ -33,28 +33,78 @@ class BaseTestCinderCase:
             json={'job_id': '1234-xyz'},
             status=400,
         )
-        assert cinder_class.report('reason', None) == '1234-xyz'
-        assert cinder_class.report('reason', CinderUser(user_factory())) == '1234-xyz'
         assert (
-            cinder_class.report(
-                'reason', CinderUnauthenticatedReporter(name='name', email='e@ma.il')
+            cinder_instance.report(report_text='reason', category=None, reporter=None)
+            == '1234-xyz'
+        )
+        assert (
+            cinder_instance.report(
+                report_text='reason', category=None, reporter=CinderUser(user_factory())
+            )
+            == '1234-xyz'
+        )
+        assert (
+            cinder_instance.report(
+                report_text='reason',
+                category=None,
+                reporter=CinderUnauthenticatedReporter(name='name', email='e@ma.il'),
             )
             == '1234-xyz'
         )
         with self.assertRaises(ConnectionError):
-            cinder_class.report('reason', None)
+            cinder_instance.report(report_text='reason', category=None, reporter=None)
 
     def test_report(self):
         raise NotImplementedError
 
+    def _test_appeal(self, appealer):
+        fake_decision_id = 'decision-id-to-appeal-666'
+        cinder_instance = self.cinder_class(self._create_dummy_target())
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '67890-abc'},
+            status=201,
+        )
+        assert (
+            cinder_instance.appeal(
+                decision_id=fake_decision_id, appeal_text='reason', appealer=appealer
+            )
+            == '67890-abc'
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}appeal',
+            json={'external_id': '67890-abc'},
+            status=400,
+        )
+        with self.assertRaises(ConnectionError):
+            cinder_instance.appeal(
+                decision_id=fake_decision_id, appeal_text='reason', appealer=appealer
+            )
+
+    def test_appeal_anonymous(self):
+        self._test_appeal(CinderUser(user_factory()))
+
+    def test_appeal_logged_in(self):
+        self._test_appeal(CinderUnauthenticatedReporter('itsme', 'm@r.io'))
+
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
-    def test_build_report_payload(self):
-        addon = addon_factory()
-        reason = 'bad addon!'
-        cinder_addon = CinderAddon(addon)
+    cinder_class = CinderAddon
 
-        data = cinder_addon.build_report_payload(reason, None)
+    def _create_dummy_target(self, **kwargs):
+        return addon_factory(**kwargs)
+
+    def test_build_report_payload(self):
+        addon = self._create_dummy_target()
+        reason = 'bad addon!'
+        cinder_addon = self.cinder_class(addon)
+
+        data = cinder_addon.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
         assert data == {
             'queue_slug': 'amo-content-infringement',
             'entity_type': 'amo_addon',
@@ -72,7 +122,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
         data = cinder_addon.build_report_payload(
-            reason, CinderUnauthenticatedReporter(name, email)
+            report_text=reason,
+            category=None,
+            reporter=CinderUnauthenticatedReporter(name, email),
         )
         assert data['context'] == {
             'entities': [
@@ -98,7 +150,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
-        data = cinder_addon.build_report_payload(reason, CinderUser(reporter_user))
+        data = cinder_addon.build_report_payload(
+            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -124,11 +178,13 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
     def test_build_report_payload_with_author(self):
         author = user_factory()
-        addon = addon_factory(users=[author])
+        addon = self._create_dummy_target(users=[author])
         reason = 'bad addon!'
-        cinder_addon = CinderAddon(addon)
+        cinder_addon = self.cinder_class(addon)
 
-        data = cinder_addon.build_report_payload(reason, None)
+        data = cinder_addon.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -154,7 +210,9 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
-        data = cinder_addon.build_report_payload(reason, CinderUser(reporter_user))
+        data = cinder_addon.build_report_payload(
+            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -195,16 +253,23 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         }
 
     def test_report(self):
-        self._test_report(CinderAddon(addon_factory()))
+        self._test_report(self.cinder_class(self._create_dummy_target()))
 
 
 class TestCinderUser(BaseTestCinderCase, TestCase):
-    def test_build_report_payload(self):
-        user = user_factory()
-        reason = 'bad person!'
-        cinder_user = CinderUser(user)
+    cinder_class = CinderUser
 
-        data = cinder_user.build_report_payload(reason, None)
+    def _create_dummy_target(self, **kwargs):
+        return user_factory(**kwargs)
+
+    def test_build_report_payload(self):
+        user = self._create_dummy_target()
+        reason = 'bad person!'
+        cinder_user = self.cinder_class(user)
+
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
         assert data == {
             'queue_slug': 'amo-content-infringement',
             'entity_type': 'amo_user',
@@ -222,7 +287,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
         data = cinder_user.build_report_payload(
-            reason, CinderUnauthenticatedReporter(name, email)
+            report_text=reason,
+            category=None,
+            reporter=CinderUnauthenticatedReporter(name, email),
         )
         assert data['context'] == {
             'entities': [
@@ -248,7 +315,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
-        data = cinder_user.build_report_payload(reason, CinderUser(reporter_user))
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -273,12 +342,14 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         }
 
     def test_build_report_payload_addon_author(self):
-        user = user_factory()
+        user = self._create_dummy_target()
         addon = addon_factory(users=[user])
-        cinder_user = CinderUser(user)
+        cinder_user = self.cinder_class(user)
         reason = 'bad person!'
 
-        data = cinder_user.build_report_payload(reason, None)
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -304,7 +375,9 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
-        data = cinder_user.build_report_payload(reason, CinderUser(reporter_user))
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+        )
         assert data['context'] == {
             'entities': [
                 {
@@ -345,4 +418,4 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         }
 
     def test_report(self):
-        self._test_report(CinderUser(user_factory()))
+        self._test_report(self.cinder_class(self._create_dummy_target()))

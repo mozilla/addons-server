@@ -28,6 +28,10 @@ urlpatterns = [
     ),
     # Home.
     re_path(r'^$', frontend_view, name='home'),
+    # Abuse.
+    # FIXME: modify nginx config to route /<locale>/abuse/ to addons-server
+    # This will need to not clash with new frontend reporting pages !
+    re_path(r'abuse/', include('olympia.abuse.urls')),
     # Add-ons.
     re_path(r'', include('olympia.addons.urls')),
     # Browse pages.

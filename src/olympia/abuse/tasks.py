@@ -7,6 +7,7 @@ from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
+from olympia.users.models import UserProfile
 
 from .models import AbuseReport, CinderReport
 
@@ -59,3 +60,18 @@ def report_to_cinder(abuse_report_id):
         return
     cinder_report = CinderReport.objects.create(abuse_report=abuse_report)
     cinder_report.report()
+
+
+@task
+@use_primary_db
+def appeal_to_cinder(*, decision_id, appeal_text, user_id):
+    cinder_report = CinderReport.objects.get(decision_id=decision_id)
+    if user_id:
+        user = UserProfile.objects.get(pk=user_id)
+    else:
+        # If no user is passed then they were anonymous, caller should have
+        # verified appeal was allowed, so the appeal is coming from the
+        # anonymous reporter and we have their name/email in the abuse report
+        # already.
+        user = None
+    cinder_report.appeal(appeal_text, user)
