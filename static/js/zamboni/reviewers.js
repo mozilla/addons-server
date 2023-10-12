@@ -480,7 +480,9 @@ function initQueue() {
 function initScrollingSidebar() {
   var $window = $(window),
     $sb = $('#scroll_sidebar'),
+    $parent = $('.scroll_sidebar_parent'),
     addon_top = $('#addon').offset().top,
+    addon_bottom = $('#addon').height() + addon_top,
     current_state = false;
 
   function setSticky(state) {
@@ -491,8 +493,21 @@ function initScrollingSidebar() {
 
   $window.scroll(
     _.throttle(function () {
-      setSticky(window.scrollY > addon_top);
-    }, 20),
+      var sidebar_height = $sb.height();
+      var scroll_position = $window.scrollTop();
+      var sidebar_bottom = sidebar_height + scroll_position;
+
+      if (scroll_position > addon_top && sidebar_bottom < addon_bottom) {
+        setSticky(true);
+        $sb.css('top', '10px');
+      } else if (sidebar_bottom >= addon_bottom) {
+        setSticky(false);
+        $sb.css('top', (addon_bottom - sidebar_height - $parent.offset().top) - 10 + 'px');
+      } else {
+        setSticky(false);
+        $sb.css('top', '0');
+      }
+    }, 20)
   );
 }
 
