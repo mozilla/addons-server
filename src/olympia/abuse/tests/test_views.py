@@ -305,6 +305,33 @@ class AddonAbuseViewSetTestBase:
         assert report.addon_install_source_url is None
         assert report.report_entry_point is None
 
+    def test_reporter_name_email_reason_fields_can_be_null(self):
+        data = {
+            'addon': '@mysteryaddon',
+            'message': 'This is abusé!',
+            'reason': None,
+            'reporter_name': None,
+            'reporter_email': None,
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+        assert AbuseReport.objects.filter(guid=data['addon']).exists()
+        report = AbuseReport.objects.get(guid=data['addon'])
+        self.check_report(report, 'Abuse Report for Addon %s' % data['addon'])
+        # Straightforward comparisons:
+        for field in (
+            'reason',
+            'reporter_name',
+            'reporter_email',
+        ):
+            assert getattr(report, field) is None
+
     def test_optional_fields_errors(self):
         data = {
             'addon': '@mysteryaddon',
