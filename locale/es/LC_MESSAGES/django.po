@@ -56,8 +56,8 @@ msgstr "Ya estás conectado."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "No se ha podido analizar tu intento de iniciar sesión. Inténtalo de nuevo."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "No pudimos encontrar tu cuenta de Firefox. Inténtalo de nuevo."
+msgid "Your account could not be found. Please try again."
+msgstr "No pudimos encontrar tu cuenta. Inténtalo de nuevo."
 
 msgid "You could not be logged in. Please try again."
 msgstr "No pudiste conectar. Inténtalo de nuevo."
@@ -8077,8 +8077,8 @@ msgstr "Ubicación"
 msgid "Occupation"
 msgstr "Ocupación"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Puedes cambiar tu dirección de correo en tu Cuenta de Firefox."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Esta URL tiene un formato no válido. Las URLs válidas tienen un aspecto como este http://example.com/my_page."
@@ -8206,8 +8206,8 @@ msgstr "Por favor, indique su nombre"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Por favor, indique su nombre o usuario para completar el proceso de registro."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Administrar información básica de la cuenta, como el nombre de usuario y la configuración de la cuenta de Firefox."
+msgid "Manage basic account information."
+msgstr "Administrar información básica de la cuenta, como el nombre de usuario y la configuración de la cuenta."
 
 msgid "Username"
 msgstr "Nombre de usuario"
@@ -8215,8 +8215,8 @@ msgstr "Nombre de usuario"
 msgid "Email Address"
 msgstr "Dirección de correo"
 
-msgid "Manage Firefox Account..."
-msgstr "Administrar cuenta de Firefox..."
+msgid "Manage other account details..."
+msgstr "Administrar cuenta..."
 
 msgid "Profile"
 msgstr "Perfil"
@@ -8270,14 +8270,11 @@ msgstr "ninguno"
 msgid "all"
 msgstr "todos"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Ahora se accede a los complementos de Mozilla con las cuentas de Firefox. Continúa para completar el inicio de sesión."
-
 msgid "User Login"
 msgstr "Identificación de usuario"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Iniciar sesión con la cuenta de Firefox"
+msgid "Log in"
+msgstr "Iniciar sesión con la cuenta"
 
 msgid "Password Reset"
 msgstr "Reiniciar contraseña"

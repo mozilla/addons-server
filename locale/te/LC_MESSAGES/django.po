@@ -49,8 +49,8 @@ msgstr "మీరు ఇప్పటికే ప్రవేశించార�
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "మీ Firefox ఖాతా కనబడలేదు. మళ్ళీ ప్రయత్నించండి."
+msgid "Your account could not be found. Please try again."
+msgstr "మీ ఖాతా కనబడలేదు. మళ్ళీ ప్రయత్నించండి."
 
 msgid "You could not be logged in. Please try again."
 msgstr "మీరు ప్రవేశించలేకపోయారు. దయచేసి మళ్ళీ ప్రయత్నించండి."
@@ -7818,8 +7818,8 @@ msgstr "స్థానం"
 msgid "Occupation"
 msgstr "వృత్తి"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "మీ ఈమెయిలు చిరునామాని Firefox ఖాతాలలో మార్చుకోవచ్చు."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
@@ -7944,7 +7944,7 @@ msgstr "దయచేసి మీ ప్రదర్శన పేరుని �
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr ""
 
 msgid "Username"
@@ -7953,8 +7953,8 @@ msgstr "వాడుకరి పేరు"
 msgid "Email Address"
 msgstr "ఈమెయిల్ చిరునామా"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox ఖాతాను నిర్వహించండి..."
+msgid "Manage other account details..."
+msgstr "ఖాతాను నిర్వహించండి..."
 
 msgid "Profile"
 msgstr "ప్రొఫైల్"
@@ -8008,14 +8008,11 @@ msgstr "ఏమీలేవు"
 msgid "all"
 msgstr "అన్నీ"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "వాడుకరి ప్రవేశం"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox ఖాతాతో ప్రవేశించండి"
+msgid "Log in"
+msgstr "ఖాతాతో ప్రవేశించండి"
 
 msgid "Password Reset"
 msgstr "సంకేతపదం రీసెట్"

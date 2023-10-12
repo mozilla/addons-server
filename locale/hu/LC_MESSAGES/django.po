@@ -57,8 +57,8 @@ msgstr "Már be van jelentkezve."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Belépési kísérlete nem értelmezhető. Próbálja meg újra."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox-fiókja nem található. Kérjük, próbálja meg újra."
+msgid "Your account could not be found. Please try again."
+msgstr "Fiókja nem található. Kérjük, próbálja meg újra."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Bejelentkezése sikertelen volt. Kérjük, próbálja meg újra."
@@ -7985,8 +7985,8 @@ msgstr "Hely"
 msgid "Occupation"
 msgstr "Foglalkozás"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Módosíthatja az e-mail címét a Firefox fiókokban."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Ez az URL érvénytelen formátumban van. Az érvényes URL-ek formátuma ehhez hasonló: http://pelda.hu/sajat_oldal."
@@ -8113,8 +8113,8 @@ msgstr "Kérjük, adja meg a megjelenítendő nevét"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Kérjük, állítsa be a megjelenítendő nevet vagy felhasználónevet a regisztráció befejezéséhez."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Alapvető fiókinformációk kezelése, mint a felhasználóneve és a Firefox fiókok beállítása."
+msgid "Manage basic account information."
+msgstr "Alapvető fiókinformációk kezelése, mint a felhasználóneve és a fiókok beállítása."
 
 msgid "Username"
 msgstr "Felhasználónév"
@@ -8122,8 +8122,8 @@ msgstr "Felhasználónév"
 msgid "Email Address"
 msgstr "E-mail cím"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox-fiók kezelése…"
+msgid "Manage other account details..."
+msgstr "Fiók kezelése…"
 
 msgid "Profile"
 msgstr "Profil"
@@ -8177,14 +8177,11 @@ msgstr "nincs"
 msgid "all"
 msgstr "mind"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "A Mozilla Kiegészítők áttért a Firefox fiókokra a bejelentkezéshez. Folytassa az egyszerű bejelentkezési folyamat befejezéséhez."
-
 msgid "User Login"
 msgstr "Felhasználónév"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Bejelentkezés Firefox fiókkal"
+msgid "Log in"
+msgstr "Bejelentkezés fiókkal"
 
 msgid "Password Reset"
 msgstr "Jelszó beállítása"

@@ -53,8 +53,8 @@ msgstr "Anda telah masuk."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Upaya Anda untuk masuk tidak bisa diuraikan. Silakan coba lagi."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Akun Firefox tidak dapat ditemukan. Silakan coba lagi."
+msgid "Your account could not be found. Please try again."
+msgstr "Akun tidak dapat ditemukan. Silakan coba lagi."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Anda bisa tidak bisa masuk. Silakan coba lagi."
@@ -7982,8 +7982,8 @@ msgstr "Lokasi"
 msgid "Occupation"
 msgstr "Pekerjaan"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Anda dapat mengubah alamat suret Anda di Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL ini formatnya tidak valid. Contoh URL yang valid adalah http://example.com/namahalaman."
@@ -8110,8 +8110,8 @@ msgstr "Harap menetapkan nama yang ditampilkan"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Silakan menetapkan nama yang ditampilkan atau nama pengguna untuk melengkapi proses registrasi."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Mengelola informasi akun dasar, misalnya nama pengguna dan setelan Firefox Accounts Anda."
+msgid "Manage basic account information."
+msgstr "Mengelola informasi akun dasar, misalnya nama pengguna dan setelan Accounts Anda."
 
 msgid "Username"
 msgstr "Nama pengguna"
@@ -8119,8 +8119,8 @@ msgstr "Nama pengguna"
 msgid "Email Address"
 msgstr "Alamat Email"
 
-msgid "Manage Firefox Account..."
-msgstr "Kelola Akun Firefox..."
+msgid "Manage other account details..."
+msgstr "Kelola Akun..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8174,14 +8174,11 @@ msgstr "tidak ada"
 msgid "all"
 msgstr "semua"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses masuk sederhana."
-
 msgid "User Login"
 msgstr "Masuk"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Masuk dengan Firefox Accounts"
+msgid "Log in"
+msgstr "Masuk dengan account"
 
 msgid "Password Reset"
 msgstr "Setel Ulang Sandi"

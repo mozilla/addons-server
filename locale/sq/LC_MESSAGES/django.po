@@ -52,8 +52,8 @@ msgstr "Jeni i futur."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Përpjekja juaj për hyrje s’u kuptua dot. Ju lutemi, riprovoni."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "S’u gjet dot Llogaria juaj Firefox. Ju lutemi, riprovoni."
+msgid "Your account could not be found. Please try again."
+msgstr "S’u gjet dot Llogaria juaj. Ju lutemi, riprovoni."
 
 msgid "You could not be logged in. Please try again."
 msgstr "S’u futët dot. Ju lutemi, riprovoni."
@@ -8088,7 +8088,7 @@ msgstr "Vend"
 msgid "Occupation"
 msgstr "Punësim"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8216,8 +8216,8 @@ msgstr "Ju lutemi, caktoni emrin tuaj të ekranit"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Ju lutemi, caktoni emrin tuaj në ekran ose atë të përdoruesit që të plotësohet procesi i regjistrimit."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i përdoruesit dhe rregullimet për Llogarinë Firefox."
+msgid "Manage basic account information."
+msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i përdoruesit dhe rregullimet për Llogarinë."
 
 msgid "Username"
 msgstr "Emër përdoruesi"
@@ -8225,8 +8225,8 @@ msgstr "Emër përdoruesi"
 msgid "Email Address"
 msgstr "Adresë Email"
 
-msgid "Manage Firefox Account..."
-msgstr "Administroni Llogari Firefox-i…"
+msgid "Manage other account details..."
+msgstr "Administroni Llogari…"
 
 msgid "Profile"
 msgstr "Profil"
@@ -8280,14 +8280,11 @@ msgstr "asnjë"
 msgid "all"
 msgstr "krejt"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Shtesat Mozilla kanë adoptuar Llogaritë Firefox për hyrjet. Vazhdoni, që të plotësohet procesi i thjeshtë i hyrjes."
-
 msgid "User Login"
 msgstr "Hyrje Përdoruesi"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Hyni me Llogari Firefox-i"
+msgid "Log in"
+msgstr "Hyni me Llogari"
 
 msgid "Password Reset"
 msgstr "Ricaktim Fjalëkalimi"

@@ -48,8 +48,8 @@ msgstr ".uı pǝƃƃoʅ ʎpɐǝɹʅɐ ǝɹɐ no⅄"
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .pǝsɹɐd ǝq ʇou pʅnoɔ ʇdɯǝʇʇɐ uıƃoʅ ɹno⅄"
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .punoɟ ǝq ʇou pʅnoɔ ʇunoɔɔ∀ xoɟǝɹıℲ ɹno⅄"
+msgid "Your account could not be found. Please try again."
+msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .punoɟ ǝq ʇou pʅnoɔ xoɟǝɹıℲ ɹno⅄"
 
 msgid "You could not be logged in. Please try again."
 msgstr ".uıɐƃɐ ʎɹʇ ǝsɐǝʅԀ .uı pǝƃƃoʅ ǝq ʇou pʅnoɔ no⅄"
@@ -7916,8 +7916,8 @@ msgstr "uoıʇɐɔo⅂"
 msgid "Occupation"
 msgstr "uoıʇɐdnɔɔO"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr ".sʇunoɔɔ∀ xoɟǝɹıℲ uo ssǝɹppɐ ʅıɐɯǝ ɹnoʎ ǝƃuɐɥɔ uɐɔ no⅄"
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ".ǝƃɐd_ʎɯ/ɯoɔ.ǝʅdɯɐxǝ//:dʇʇɥ ǝʞıʅ ʞooʅ s⅂ᴚ∩ pıʅɐɅ .ʇɐɯɹoɟ pıʅɐʌuı uɐ sɐɥ ⅂ᴚ∩ sıɥ⊥"
@@ -8044,8 +8044,8 @@ msgstr "ǝɯɐu ʎɐʅdsıp ɹnoʎ ʇǝs ǝsɐǝʅԀ"
 msgid "Please set your display name or username to complete the registration process."
 msgstr ".ssǝɔoɹd uoıʇɐɹʇsıƃǝɹ ǝɥʇ ǝʇǝʅdɯoɔ oʇ ǝɯɐuɹǝsn ɹo ǝɯɐu ʎɐʅdsıp ɹnoʎ ʇǝs ǝsɐǝʅԀ"
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ".sƃuıʇʇǝs sʇunoɔɔ∀ xoɟǝɹıℲ puɐ ǝɯɐuɹǝsn ɹnoʎ sɐ ɥɔns ´uoıʇɐɯɹoɟuı ʇunoɔɔɐ ɔısɐq ǝƃɐuɐW"
+msgid "Manage basic account information."
+msgstr ".sƃuıʇʇǝs sʇunoɔɔ∀ puɐ ǝɯɐuɹǝsn ɹnoʎ sɐ ɥɔns ´uoıʇɐɯɹoɟuı ʇunoɔɔɐ ɔısɐq ǝƃɐuɐW"
 
 msgid "Username"
 msgstr "ǝɯɐuɹǝs∩"
@@ -8053,8 +8053,8 @@ msgstr "ǝɯɐuɹǝs∩"
 msgid "Email Address"
 msgstr "ssǝɹpp∀ ʅıɐɯƎ"
 
-msgid "Manage Firefox Account..."
-msgstr "...ʇunoɔɔ∀ xoɟǝɹıℲ ǝƃɐuɐW"
+msgid "Manage other account details..."
+msgstr "...ʇunoɔɔ∀ ǝƃɐuɐW"
 
 msgid "Profile"
 msgstr "ǝʅıɟoɹԀ"
@@ -8108,14 +8108,11 @@ msgstr "ǝuou"
 msgid "all"
 msgstr "ʅʅɐ"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ".ssǝɔoɹd uıƃoʅ ǝʅdɯıs ǝɥʇ ǝʇǝʅdɯoɔ oʇ ǝnuıʇuoↃ .uıƃoʅ ɹoɟ sʇunoɔɔ∀ xoɟǝɹıℲ oʇ pǝuoıʇısuɐɹʇ sɐɥ suo-pp∀ ɐʅʅızoW"
-
 msgid "User Login"
 msgstr "uıƃo⅂ ɹǝs∩"
 
-msgid "Log in with Firefox Accounts"
-msgstr "sʇunoɔɔ∀ xoɟǝɹıℲ ɥʇıʍ uı ƃo⅂"
+msgid "Log in"
+msgstr "uı ƃo⅂"
 
 msgid "Password Reset"
 msgstr "ʇǝsǝᴚ pɹoʍssɐԀ"

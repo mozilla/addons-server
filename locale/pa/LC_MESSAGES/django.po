@@ -46,7 +46,7 @@ msgstr ""
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your Firefox Account could not be found. Please try again."
+msgid "Your account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
@@ -8193,7 +8193,7 @@ msgstr "ਸਥਿਤੀ"
 msgid "Occupation"
 msgstr "ਕਿੱਤਾ"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8326,7 +8326,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 #, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "ਬੁਨਿਆਦੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਸੰਭਾਲੋ, ਜਿਵੇਂ ਕਿ ਉਪਭੋਗੀ ਨਾਂ ਅਤੇ ਈਮੇਲ ਪਤਾ।"
 
 msgid "Username"
@@ -8335,7 +8335,7 @@ msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 msgid "Email Address"
 msgstr "ਈਮੇਲ ਪਤਾ"
 
-msgid "Manage Firefox Account..."
+msgid "Manage other account details..."
 msgstr ""
 
 msgid "Profile"
@@ -8390,13 +8390,10 @@ msgstr "ਕੁੱਝ ਨਹੀਂ"
 msgid "all"
 msgstr "ਸਾਰੇ"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
 
-msgid "Log in with Firefox Accounts"
+msgid "Log in"
 msgstr ""
 
 msgid "Password Reset"

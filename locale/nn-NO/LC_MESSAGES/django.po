@@ -50,8 +50,8 @@ msgstr "Du er allereie innlogga."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Klarte ikkje å tolke innloggingsforsøket ditt. Prøv igjen."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Fann ikkje Firefox-kontoen din. Prøv på nytt."
+msgid "Your account could not be found. Please try again."
+msgstr "Fann ikkje kontoen din. Prøv på nytt."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Du kunne ikkje loggast inn. Prøv på nytt."
@@ -8048,7 +8048,7 @@ msgstr "Plassering"
 msgid "Occupation"
 msgstr "Yrke"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8175,8 +8175,8 @@ msgstr "Vel visingsnamn"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Vel visingsnamn eller brukarnamn for å fullføre registreringsprosessen."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Handsam grunnleggande kontoinformasjon, slik som brukarnamnet ditt og innstillingar for Firefox-kontoen din."
+msgid "Manage basic account information."
+msgstr "Handsam grunnleggande kontoinformasjon, slik som brukarnamnet ditt og innstillingar for kontoen din."
 
 msgid "Username"
 msgstr "Brukarnamn"
@@ -8184,8 +8184,8 @@ msgstr "Brukarnamn"
 msgid "Email Address"
 msgstr "E-postadresse"
 
-msgid "Manage Firefox Account..."
-msgstr "Handsam Firefox-kontoen..."
+msgid "Manage other account details..."
+msgstr "Handsam kontoen..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8239,14 +8239,11 @@ msgstr "ingen"
 msgid "all"
 msgstr "alle"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla-utvidingar har gått over til Firefox-kontoar for å logge inn. Fortset for å fullføre den enkle innloggingsprosessen."
-
 msgid "User Login"
 msgstr "Brukarinnlogging"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Logg inn med Firefox-kontoar"
+msgid "Log in"
+msgstr "Logg inn med kontoar"
 
 msgid "Password Reset"
 msgstr "Tilbakestilling av passord"

@@ -52,8 +52,8 @@ msgstr "U bent al aangemeld."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Uw aanmeldpoging kon niet worden verwerkt. Probeer het opnieuw."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Uw Firefox-account kon niet worden gevonden. Probeer het opnieuw."
+msgid "Your account could not be found. Please try again."
+msgstr "Uw account kon niet worden gevonden. Probeer het opnieuw."
 
 msgid "You could not be logged in. Please try again."
 msgstr "U kon niet worden aangemeld. Probeer het opnieuw."
@@ -7997,8 +7997,8 @@ msgstr "Locatie"
 msgid "Occupation"
 msgstr "Beroep"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "U kunt uw e-mailadres wijzigen bij Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Deze URL heeft een ongeldige opmaak. Geldige URL’s lijken op http://voorbeeld.com/mijn_pagina."
@@ -8125,8 +8125,8 @@ msgstr "Stel uw schermnaam in"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Stel uw schermnaam of gebruikersnaam in om het registratieproces te voltooien."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Basale accountgegevens beheren, zoals uw gebruikersnaam en instellingen van Firefox Accounts."
+msgid "Manage basic account information."
+msgstr "Basale accountgegevens beheren, zoals uw gebruikersnaam en instellingen van Accounts."
 
 msgid "Username"
 msgstr "Gebruikersnaam"
@@ -8134,8 +8134,8 @@ msgstr "Gebruikersnaam"
 msgid "Email Address"
 msgstr "E-mailadres"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox-account beheren…"
+msgid "Manage other account details..."
+msgstr "Account beheren…"
 
 msgid "Profile"
 msgstr "Profiel"
@@ -8189,14 +8189,11 @@ msgstr "geen"
 msgid "all"
 msgstr "alles"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla Add-ons is voor aanmelding overgegaan op Firefox Accounts. Ga verder om het eenvoudige aanmeldingsproces te voltooien."
-
 msgid "User Login"
 msgstr "Gebruiker aanmelden"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Aanmelden met Firefox Accounts"
+msgid "Log in"
+msgstr "Aanmelden met account"
 
 msgid "Password Reset"
 msgstr "Wachtwoord opnieuw instellen"

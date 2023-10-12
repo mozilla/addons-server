@@ -50,8 +50,8 @@ msgstr "Teqqneḍ yakan."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Awraḍ inek akken ad teqqneḍ ur yettwaswaḍ ara. Ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Amiḍan inek Firefox ur yettwaf ara. Ma ulac  aɣilif, ɛreḍ tikelt nniḍen."
+msgid "Your account could not be found. Please try again."
+msgstr "Amiḍan inek ur yettwaf ara. Ma ulac  aɣilif, ɛreḍ tikelt nniḍen."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Tuqqna yinek ur teddi ara. Ma ulac aɣilif, ɛreḍ tikelt nniḍen."
@@ -8066,8 +8066,8 @@ msgstr "Adig"
 msgid "Occupation"
 msgstr "Axeddim"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Tzemreḍ ad tbeddleḍ imayl-ik di Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr ""
@@ -8195,8 +8195,8 @@ msgstr "Ma ulac aɣilif fren isem ara d-sekneḍ"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Ma ulac aɣilif, mudd-d isem-ik neɣ isem n useqdac akken ad tfakeḍ akala n ujerred."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen Firefox."
+msgid "Manage basic account information."
+msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen."
 
 msgid "Username"
 msgstr "Isem n useqdac"
@@ -8204,8 +8204,8 @@ msgstr "Isem n useqdac"
 msgid "Email Address"
 msgstr "Tansa imayl"
 
-msgid "Manage Firefox Account..."
-msgstr "Seqdec amiḍan Firefox..."
+msgid "Manage other account details..."
+msgstr "Seqdec amiḍan..."
 
 msgid "Profile"
 msgstr "Amaɣnu"
@@ -8259,14 +8259,11 @@ msgstr "ulac"
 msgid "all"
 msgstr "akk"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Asmel n izegrar n Mozilla iseqdac akka tura imiḍanen Firefox di tuqqna. Kemmel akken ad fakeḍ akala n uleqqem."
-
 msgid "User Login"
 msgstr "Tuqqna n useqdac"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Qqen s umiḍan Firefox"
+msgid "Log in"
+msgstr "Qqen s umiḍan"
 
 msgid "Password Reset"
 msgstr "Awal uffir ittuwennez"

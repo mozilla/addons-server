@@ -54,8 +54,8 @@ msgstr "Již jste přihlášeni."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Váš pokus o přihlášení se nepodařilo zpracovat. Zkuste to prosím znovu."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Váš účet Firefoxu nebyl nalezen. Zkuste to prosím znovu."
+msgid "Your account could not be found. Please try again."
+msgstr "Váš účet nebyl nalezen. Zkuste to prosím znovu."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Přihlášení se nezdařilo. Zkuste to prosím znovu."
@@ -8011,8 +8011,8 @@ msgstr "Umístění"
 msgid "Occupation"
 msgstr "Zaměstnání"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Svou e-mailovou adresu můžete změnit v nastevení účtu Firefoxu."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Tato URL adresa nemá platný formát. Platné adresy mají tvar http://moje.domena.cz/moje-stranka/."
@@ -8139,8 +8139,8 @@ msgstr "Nastavte prosím své zobrazované jméno"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Pro dokončení registrace prosím zadejte své jméno pro zobrazení nebo uživatelské jméno."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Správa základních informací o účtu, jako je uživatelské jméno či nastavení Firefox Accounts."
+msgid "Manage basic account information."
+msgstr "Správa základních informací o účtu, jako je uživatelské jméno či nastavení Accounts."
 
 msgid "Username"
 msgstr "Uživatelské jméno"
@@ -8148,8 +8148,8 @@ msgstr "Uživatelské jméno"
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
-msgid "Manage Firefox Account..."
-msgstr "Spravovat účet Firefoxu..."
+msgid "Manage other account details..."
+msgstr "Spravovat účet..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8203,14 +8203,11 @@ msgstr "nic"
 msgid "all"
 msgstr "vše"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Server s doplňky nyní pro přihlášení využívá účty Firefoxu. Pokračujte prosím pro dokončení jednoduchého přihlašovacího procesu."
-
 msgid "User Login"
 msgstr "Přihlášení uživatele"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Přihlásit se účtem Firefoxu"
+msgid "Log in"
+msgstr "Přihlásit se účtem"
 
 msgid "Password Reset"
 msgstr "Obnovení hesla"

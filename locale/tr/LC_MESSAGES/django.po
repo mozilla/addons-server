@@ -52,8 +52,8 @@ msgstr "Giriş yapmış durumdasınız."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Oturum açma girişiminiz işlenemedi. Lütfen tekrar deneyin."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox hesabınız bulunamadı. Lütfen tekrar deneyin."
+msgid "Your account could not be found. Please try again."
+msgstr "hesabınız bulunamadı. Lütfen tekrar deneyin."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Oturumunuz açılamadı. Lütfen tekrar deneyin."
@@ -8159,7 +8159,7 @@ msgstr "Konum"
 msgid "Occupation"
 msgstr "Meslek"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8294,8 +8294,8 @@ msgstr "Lütfen görünen adınızı ayarlayın"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Kayıt işlemini tamamlamak için lütfen görünen adınızı veya kullanıcı adınızı ayarlayın."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Kullanıcı adı ve Firefox Hesabı ayarları gibi temel hesap bilgilerini yönet."
+msgid "Manage basic account information."
+msgstr "Kullanıcı adı ve Hesabı ayarları gibi temel hesap bilgilerini yönet."
 
 msgid "Username"
 msgstr "Kullanıcı Adı"
@@ -8303,8 +8303,8 @@ msgstr "Kullanıcı Adı"
 msgid "Email Address"
 msgstr "E-posta Adresi"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox Hesabını Yönet..."
+msgid "Manage other account details..."
+msgstr "Hesabını Yönet..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8360,14 +8360,11 @@ msgstr "hiçbiri"
 msgid "all"
 msgstr "tümü"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Kullanıcı Girişi"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox Hesabı ile Giriş"
+msgid "Log in"
+msgstr "Hesabı ile Giriş"
 
 msgid "Password Reset"
 msgstr "Parola Sıfırlama"

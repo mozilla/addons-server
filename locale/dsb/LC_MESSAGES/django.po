@@ -50,8 +50,8 @@ msgstr "Sćo južo pśizjawjony."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Waš pśizjawjeński wopyt njejo dał se analyzěrowaś. Pšosym wopytajśo hyšći raz."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Wašo konto Firefox njedajo se namakaś. Pšosym wopytajśo hyšći raz."
+msgid "Your account could not be found. Please try again."
+msgstr "Wašo konto njedajo se namakaś. Pšosym wopytajśo hyšći raz."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Njejsćo mógał se pśizjawiś. Pšosym wopytajśo hyšći raz."
@@ -8025,8 +8025,8 @@ msgstr "Městno"
 msgid "Occupation"
 msgstr "Pówołanje"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Móžośo swóju e-mailowu adresu na Firefox Accounts změniś."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Toś ten URL ma njepłaśiwy format. Płaśiwe URL tak wuglědaju: http://example.com/mój_bok."
@@ -8153,8 +8153,8 @@ msgstr "Pšosym nastajśo swójo pokazowane mě"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Pšosym nastajśo swójo pokazowane mě abo wužywarske mě, aby registrěrowański proces dokóńcył."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Zastojśo zakładne kontowe informacije, na pśikład swóje wužywarske mě a nastajenja Firefox Accounts."
+msgid "Manage basic account information."
+msgstr "Zastojśo zakładne kontowe informacije, na pśikład swóje wužywarske mě a nastajenja Accounts."
 
 msgid "Username"
 msgstr "Wužywarske mě"
@@ -8162,8 +8162,8 @@ msgstr "Wužywarske mě"
 msgid "Email Address"
 msgstr "E-mailowa adresa"
 
-msgid "Manage Firefox Account..."
-msgstr "Konto Firefox zastojaś..."
+msgid "Manage other account details..."
+msgstr "Konto zastojaś..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8217,14 +8217,11 @@ msgstr "žedno"
 msgid "all"
 msgstr "wšykne"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Dodanki Mozilla wužywaju se něnto Firefox Accounts za pśizjawjenja. Pókšacujśo, aby jadnory pśizjawjeński proces dokóńcył."
-
 msgid "User Login"
 msgstr "Wužywarske pśizjawjenje"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Z Firefox Accounts pśizjawiś"
+msgid "Log in"
+msgstr "Z account pśizjawiś"
 
 msgid "Password Reset"
 msgstr "Gronidło slědk stajiś"

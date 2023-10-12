@@ -50,8 +50,8 @@ msgstr "You are already signed in."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Your sign-in attempt could not be parsed. Please try again."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Your Firefox Account could not be found. Please try again."
+msgid "Your account could not be found. Please try again."
+msgstr "Your account could not be found. Please try again."
 
 msgid "You could not be logged in. Please try again."
 msgstr "You could not be signed in. Please try again."
@@ -7917,8 +7917,8 @@ msgstr "Location"
 msgid "Occupation"
 msgstr "Occupation"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
+msgstr "See this help article for information on how to change your email address."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8045,8 +8045,8 @@ msgstr "Please set your display name"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Please set your display name or username to complete the registration process."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
+msgstr "Manage basic account information."
 
 msgid "Username"
 msgstr "Username"
@@ -8054,8 +8054,8 @@ msgstr "Username"
 msgid "Email Address"
 msgstr "Email Address"
 
-msgid "Manage Firefox Account..."
-msgstr "Manage Firefox Account..."
+msgid "Manage other account details..."
+msgstr "Manage other account details..."
 
 msgid "Profile"
 msgstr "Profile"
@@ -8109,14 +8109,11 @@ msgstr "none"
 msgid "all"
 msgstr "all"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla Add-ons has transitioned to Firefox Accounts for sign-in. Continue to complete the simple sign-in process."
-
 msgid "User Login"
 msgstr "User Sign-in"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Sign in with Firefox Accounts"
+msgid "Log in"
+msgstr ""
 
 msgid "Password Reset"
 msgstr "Password Reset"

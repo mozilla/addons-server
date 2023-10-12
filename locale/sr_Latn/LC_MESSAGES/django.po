@@ -52,7 +52,7 @@ msgstr ""
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your Firefox Account could not be found. Please try again."
+msgid "Your account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
@@ -9284,7 +9284,7 @@ msgstr "Lokacija"
 msgid "Occupation"
 msgstr "Zanimanje"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid ""
@@ -9447,8 +9447,7 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Manage basic account information, such as your username and Firefox Accounts "
-"settings."
+"Manage basic account information."
 msgstr ""
 "Upravljajte sa osnovnim informacijama o nalogu, kao što su korisničko ime i "
 "adresa e-pošte."
@@ -9459,7 +9458,7 @@ msgstr "Korisničko ime"
 msgid "Email Address"
 msgstr "Adresa e-pošte"
 
-msgid "Manage Firefox Account..."
+msgid "Manage other account details..."
 msgstr ""
 
 msgid "Profile"
@@ -9531,15 +9530,10 @@ msgstr "nijedna"
 msgid "all"
 msgstr "sve"
 
-msgid ""
-"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
-"complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Prijava korisnika"
 
-msgid "Log in with Firefox Accounts"
+msgid "Log in"
 msgstr ""
 
 msgid "Password Reset"

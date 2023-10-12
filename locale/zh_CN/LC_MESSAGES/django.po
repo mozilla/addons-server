@@ -49,8 +49,8 @@ msgstr "您已成功登录。"
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "您的登录尝试无法解析。请重试。"
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "您的 Firefox 账号未找到。请重试。"
+msgid "Your account could not be found. Please try again."
+msgstr "您的 账号未找到。请重试。"
 
 msgid "You could not be logged in. Please try again."
 msgstr "您尚未登录。请重试。"
@@ -7814,8 +7814,8 @@ msgstr "位置"
 msgid "Occupation"
 msgstr "职业"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "您可以到“Firefox 账户”更改电子邮件地址。"
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "网址格式无效。有效的网址看上去应该类似于 http://example.com/my_page。"
@@ -7940,8 +7940,8 @@ msgstr "请设置您的显示名称"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "请设置您的显示名称或用户名以完成注册流程。"
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "管理基本的账户信息，例如您的用户名和 Firefox 账号设置。"
+msgid "Manage basic account information."
+msgstr "管理基本的账户信息，例如您的用户名和 账号设置。"
 
 msgid "Username"
 msgstr "用户名"
@@ -7949,8 +7949,8 @@ msgstr "用户名"
 msgid "Email Address"
 msgstr "电子邮件地址"
 
-msgid "Manage Firefox Account..."
-msgstr "管理 Firefox 账号..."
+msgid "Manage other account details..."
+msgstr "管理 账号..."
 
 msgid "Profile"
 msgstr "个人资料"
@@ -8004,14 +8004,11 @@ msgstr "无"
 msgid "all"
 msgstr "所有"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla 附加组件已转为采用 Firefox 账号进行登录。继续以完成登录过程。"
-
 msgid "User Login"
 msgstr "用户登录"
 
-msgid "Log in with Firefox Accounts"
-msgstr "使用 Firefox 账号登录"
+msgid "Log in"
+msgstr "使用 账号登录"
 
 msgid "Password Reset"
 msgstr "密码重置"

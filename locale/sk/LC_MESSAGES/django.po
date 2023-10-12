@@ -51,8 +51,8 @@ msgstr "Už ste prihlásení."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Váš pokus o prihlásenie sa nepodarilo spracovať. Skúste to prosím znovu."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Váš účet Firefox Account nebol nájdený. Skúste to prosím znovu."
+msgid "Your account could not be found. Please try again."
+msgstr "Váš účet Account nebol nájdený. Skúste to prosím znovu."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Prihlásenie sa nepodarilo. Skúste to prosím znovu."
@@ -8325,7 +8325,7 @@ msgstr "Umiestnenie"
 msgid "Occupation"
 msgstr "Povolenie"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8458,7 +8458,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 #, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "Správa základných informácií o účte, ako napr. používateľské meno a e-mailová adresa."
 
 msgid "Username"
@@ -8467,8 +8467,8 @@ msgstr "Používateľské meno"
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
-msgid "Manage Firefox Account..."
-msgstr "Spravovať účet Firefox Account..."
+msgid "Manage other account details..."
+msgstr "Spravovať účet Account..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8522,14 +8522,11 @@ msgstr "žiadne"
 msgid "all"
 msgstr "všetky"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Prihlásenie používateľa"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Prihlásiť sa účtom Firefox Accounts"
+msgid "Log in"
+msgstr "Prihlásiť sa účtom account"
 
 msgid "Password Reset"
 msgstr "Vynulovanie hesla"

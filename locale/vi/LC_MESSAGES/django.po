@@ -49,8 +49,8 @@ msgstr "Bạn đã đăng nhập từ trước."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Không tìm thấy tài khoản Firefox của bạn. Hãy thử lại."
+msgid "Your account could not be found. Please try again."
+msgstr "Không tìm thấy tài khoản của bạn. Hãy thử lại."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Bạn không thể đăng nhập. Vui lòng thử lại."
@@ -8055,7 +8055,7 @@ msgstr "Địa điểm"
 msgid "Occupation"
 msgstr "Nghề nghiệp"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8187,7 +8187,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 #, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "Quản lý thông tin tài khoản cơ bản, ví dụ như tên đăng nhập và địa chỉ thư điện tử."
 
 msgid "Username"
@@ -8196,8 +8196,8 @@ msgstr "Tên đăng nhập"
 msgid "Email Address"
 msgstr "Địa chỉ Email"
 
-msgid "Manage Firefox Account..."
-msgstr "Quản lý tài khoản Firefox..."
+msgid "Manage other account details..."
+msgstr "Quản lý tài khoản..."
 
 msgid "Profile"
 msgstr ""
@@ -8251,14 +8251,11 @@ msgstr "không"
 msgid "all"
 msgstr "tất cả"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Đăng nhập Người dùng"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Đăng nhập với tài khoản Firefox"
+msgid "Log in"
+msgstr "Đăng nhập với tài khoản"
 
 msgid "Password Reset"
 msgstr "Khôi phục Mật khẩu"

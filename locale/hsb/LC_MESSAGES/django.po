@@ -50,8 +50,8 @@ msgstr "Sće hižo přizjewjeny."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Waš přizjewjenski posypt njeda so analyzować. Prošu spytajće hišće raz."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Waše konto Firefox njeda so namakać. Prošu spytajće hišće raz."
+msgid "Your account could not be found. Please try again."
+msgstr "Waše konto njeda so namakać. Prošu spytajće hišće raz."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Waše přizjewjenje je so nimokuliło. Prošu spytajće hišće raz."
@@ -8028,8 +8028,8 @@ msgstr "Městno"
 msgid "Occupation"
 msgstr "Powołanje"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Móžeće swoju e-mejlowu adresu na Firefox Accounts změnić."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Tutón URL ma njepłaćiwy format. Płaćiwe URL tak wupadaja: http://example.com/moja_strona."
@@ -8156,8 +8156,8 @@ msgstr "Prošu nastajće swoje pokazowane mjeno"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Prošu nastajće swoje pokazowane mjeno abo wužiwarske mjeno, zo byšće registrowanski proces dokónčił."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Zrjadujće zakładne kontowe informacije, na přikład swoje wužiwarske mjeno a nastajenja Firefox Accounts."
+msgid "Manage basic account information."
+msgstr "Zrjadujće zakładne kontowe informacije, na přikład swoje wužiwarske mjeno a nastajenja Accounts."
 
 msgid "Username"
 msgstr "Wužiwarske mjeno"
@@ -8165,8 +8165,8 @@ msgstr "Wužiwarske mjeno"
 msgid "Email Address"
 msgstr "E-mejlowa adresa"
 
-msgid "Manage Firefox Account..."
-msgstr "Konto Firefox rjadować..."
+msgid "Manage other account details..."
+msgstr "Konto rjadować..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8220,14 +8220,11 @@ msgstr "žane"
 msgid "all"
 msgstr "wšě"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Přidatki Mozilla nětko Firefox Accounts za přizjewjenja wužiwaja. Pokročujće, zo byšće jednory aktualizowanski proces dokónčił."
-
 msgid "User Login"
 msgstr "Wužiwarske přizjewjenje"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Z Firefox Accounts přizjewić"
+msgid "Log in"
+msgstr "Z account přizjewić"
 
 msgid "Password Reset"
 msgstr "Hesło wróćo stajić"

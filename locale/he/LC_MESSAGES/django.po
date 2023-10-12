@@ -53,8 +53,8 @@ msgstr "כבר נכנסת."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "לא ניתן לפענח את נסיון ההתחברות שלך. נא לנסות שוב."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
+msgid "Your account could not be found. Please try again."
+msgstr "לא ניתן למצוא את חשבון ה־ שלך. נא לנסות שנית."
 
 msgid "You could not be logged in. Please try again."
 msgstr "לא הייתה אפשרות להכניס אותך. נא לנסות שוב."
@@ -8096,8 +8096,8 @@ msgstr "מיקום"
 msgid "Occupation"
 msgstr "עיסוק"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "ניתן לשנות את כתובת הדוא״ל שלך ב־Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "לכתובת URL זו תבנית שגויה. כתובות URL תקינות נראות בסגנון של http://example.com/my_page."
@@ -8232,8 +8232,8 @@ msgstr "נא להגדיר את שם התצוגה שלך"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "נא להגדיר את שם התצוגה שלך או שם משתמש כדי להשלים את תהליך ההרשמה."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ניהול מידע חשבון בסיסי, כמו שם המשתמש שלך והגדרות Firefox Accounts."
+msgid "Manage basic account information."
+msgstr "ניהול מידע חשבון בסיסי, כמו שם המשתמש שלך והגדרות Accounts."
 
 msgid "Username"
 msgstr "שם משתמש"
@@ -8241,8 +8241,8 @@ msgstr "שם משתמש"
 msgid "Email Address"
 msgstr "כתובת דוא״ל"
 
-msgid "Manage Firefox Account..."
-msgstr "ניהול חשבון Firefox..."
+msgid "Manage other account details..."
+msgstr "ניהול חשבון..."
 
 msgid "Profile"
 msgstr "פרופיל"
@@ -8296,14 +8296,11 @@ msgstr "ללא"
 msgid "all"
 msgstr "הכל"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "‏Mozilla Add-ons עבר ל־Firefox Accounts לצורך התחברות. יש להמשיך כדי להשלים את תהליך ההתחברות."
-
 msgid "User Login"
 msgstr "כניסת משתמש"
 
-msgid "Log in with Firefox Accounts"
-msgstr "התחברות באמצעות Firefox Accounts"
+msgid "Log in"
+msgstr "התחברות באמצעות account"
 
 msgid "Password Reset"
 msgstr "איפוס ססמה"

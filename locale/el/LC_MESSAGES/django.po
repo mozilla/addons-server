@@ -49,8 +49,8 @@ msgstr "Έχετε συνδεθεί ήδη."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Αδυναμία λήψης της απόπειρας σύνδεσής σας. Παρακαλώ δοκιμάστε ξανά."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Δεν ήταν δυνατή η εύρεση του Λογαριασμού Firefox σας. Παρακαλώ δοκιμάστε ξανά."
+msgid "Your account could not be found. Please try again."
+msgstr "Δεν ήταν δυνατή η εύρεση του Λογαριασμού σας. Παρακαλώ δοκιμάστε ξανά."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Δεν ήταν δυνατή η σύνδεσή σας. Παρακαλώ δοκιμάστε ξανά."
@@ -7986,8 +7986,8 @@ msgstr "Τοποθεσία"
 msgid "Occupation"
 msgstr "Απασχόληση"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Μπορείτε να αλλάξετε τη διεύθυνση email σας στους Λογαριασμούς Firefox."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
@@ -8114,8 +8114,8 @@ msgstr "Παρακαλώ ορίστε το όνομα προβολής σας"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Παρακαλώ ορίστε το όνομα προβολής ή το όνομα χρήστη σας για να ολοκληρώσετε τη διαδικασία εγγραφής."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Διαχειριστείτε βασικές πληροφορίες λογαριασμού, όπως το όνομα χρήστη και οι ρυθμίσεις του Λογαριασμού Firefox."
+msgid "Manage basic account information."
+msgstr "Διαχειριστείτε βασικές πληροφορίες λογαριασμού, όπως το όνομα χρήστη και οι ρυθμίσεις του Λογαριασμού."
 
 msgid "Username"
 msgstr "Όνομα χρήστη"
@@ -8123,8 +8123,8 @@ msgstr "Όνομα χρήστη"
 msgid "Email Address"
 msgstr "Διεύθυνση email"
 
-msgid "Manage Firefox Account..."
-msgstr "Διαχείριση λογαριασμού Firefox..."
+msgid "Manage other account details..."
+msgstr "Διαχείριση λογαριασμού..."
 
 msgid "Profile"
 msgstr "Προφίλ"
@@ -8178,14 +8178,11 @@ msgstr "κανένα"
 msgid "all"
 msgstr "όλα"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Τα Πρόσθετα Mozilla έχουν κάνει μετάβαση στους Λογαριασμούς Firefox για σύνδεση. Συνεχίστε για να ολοκληρώσετε την απλή διαδικασία σύνδεσης."
-
 msgid "User Login"
 msgstr "Σύνδεση χρήστη"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Σύνδεση με Λογαριασμό Firefox"
+msgid "Log in"
+msgstr "Σύνδεση με Λογαριασμό"
 
 msgid "Password Reset"
 msgstr "Επαναφορά κωδικού"

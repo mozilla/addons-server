@@ -50,8 +50,8 @@ msgstr "Tu es ja authenticate."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Tu tentativa de connexion non pote ser processate. Per favor prova de novo."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Tu conto de Firefox non pote ser trovate. Per favor prova de novo."
+msgid "Your account could not be found. Please try again."
+msgstr "Tu conto non pote ser trovate. Per favor prova de novo."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Tu non pote ser authenticate. Per favor prova de novo."
@@ -7956,8 +7956,8 @@ msgstr "Position"
 msgid "Occupation"
 msgstr "Occupation"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Tu pote cambiar tu adresse de email sur tu contos de Firefox."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Iste URL ha un formato non valide. Le URLs valide pare como http://example.com/my_page."
@@ -8084,8 +8084,8 @@ msgstr "Per favor defini tu nomine a monstrar"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Per favor defini tu nomine a monstrar o tu nomine de usator pro completar le processo de registration."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Gerer informationes basic del conto, tal como tu nomine de usator e le parametros de contos de Firefox."
+msgid "Manage basic account information."
+msgstr "Gerer informationes basic del conto, tal como tu nomine de usator e le parametros de contos."
 
 msgid "Username"
 msgstr "Nomine del usator"
@@ -8093,8 +8093,8 @@ msgstr "Nomine del usator"
 msgid "Email Address"
 msgstr "Adresse de email"
 
-msgid "Manage Firefox Account..."
-msgstr "Gestion de conto de Firefox..."
+msgid "Manage other account details..."
+msgstr "Gestion de conto..."
 
 msgid "Profile"
 msgstr "Profilo"
@@ -8148,14 +8148,11 @@ msgstr "nulle"
 msgid "all"
 msgstr "toto"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Le additivos de Mozilla ha transite al contos de Firefox pro connexion. Continuar pro completar le processo de connexion simple."
-
 msgid "User Login"
 msgstr "Connexion del usator"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Connecte te con le contos de Firefox"
+msgid "Log in"
+msgstr "Connecte te con le contos"
 
 msgid "Password Reset"
 msgstr "Restabilir le contrasigno"

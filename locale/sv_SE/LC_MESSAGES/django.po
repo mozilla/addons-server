@@ -49,8 +49,8 @@ msgstr "Du är redan inloggad."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Ditt inloggningsförsök kunde inte tolkas. Var god försök igen."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Ditt Firefox-konto kunde inte hittas. Var god försök igen."
+msgid "Your account could not be found. Please try again."
+msgstr "Ditt konto kunde inte hittas. Var god försök igen."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Du kan inte logga in. Försök igen."
@@ -7982,8 +7982,8 @@ msgstr "Plats"
 msgid "Occupation"
 msgstr "Yrke"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Du kan ändra din e-postadress i ditt Firefox-konto."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URLen har ett ogiltigt format. Giltiga URLer ser ut som http://example.com/my_page."
@@ -8110,8 +8110,8 @@ msgstr "Vänligen ange ditt visningsnamn"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Vänligen ange ditt visningsnamn eller användarnamn för att slutföra registreringen."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Hantera grundläggande kontoinformation, såsom ditt användarnamn och inställningar för ditt Firefox-konto."
+msgid "Manage basic account information."
+msgstr "Hantera grundläggande kontoinformation, såsom ditt användarnamn och inställningar för ditt konto."
 
 msgid "Username"
 msgstr "Användarnamn"
@@ -8119,8 +8119,8 @@ msgstr "Användarnamn"
 msgid "Email Address"
 msgstr "E-postadress"
 
-msgid "Manage Firefox Account..."
-msgstr "Hantera Firefox konto..."
+msgid "Manage other account details..."
+msgstr "Hantera konto..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8174,14 +8174,11 @@ msgstr "Inga"
 msgid "all"
 msgstr "Alla"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla tillägg har övergått till Firefox-konton för att logga in. Fortsätt för att slutföra den enkla inloggningsprocessen."
-
 msgid "User Login"
 msgstr "Användarinloggning"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Logga in med Firefox-konton"
+msgid "Log in"
+msgstr "Logga in med konton"
 
 msgid "Password Reset"
 msgstr "Återställ lösenord"

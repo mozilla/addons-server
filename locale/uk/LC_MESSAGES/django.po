@@ -56,8 +56,8 @@ msgstr "Ви вже увійшли."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Ваша спроба входу не може бути оброблена. Будь ласка, спробуйте знову."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Не вдалося знайти Ваш обліковий запис Firefox. Будь ласка, спробуйте ще раз."
+msgid "Your account could not be found. Please try again."
+msgstr "Не вдалося знайти Ваш обліковий запис. Будь ласка, спробуйте ще раз."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Не вдається виконати вхід. Будь ласка, спробуйте знову."
@@ -8000,8 +8000,8 @@ msgstr "Місцезнаходження"
 msgid "Occupation"
 msgstr "Заняття"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Ви можете змінити свою адресу е-пошти в обліковому записі Firefox."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Цей URL має недійсний формат. Дійсні URLи виглядають http://example.com/my_page."
@@ -8128,7 +8128,7 @@ msgstr "Будь ласка, вкажіть Ваше ім’я відображ�
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Будь ласка, вкажіть ім’я відображення або ім’я користувача для завершення реєстрації."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "Керувати основною інформацією облікового запису, такою як ім'я користувача і налаштування."
 
 msgid "Username"
@@ -8137,8 +8137,8 @@ msgstr "Ім'я користувача"
 msgid "Email Address"
 msgstr "Адреса електронної пошти"
 
-msgid "Manage Firefox Account..."
-msgstr "Налаштувати обліковий запис Firefox..."
+msgid "Manage other account details..."
+msgstr "Налаштувати обліковий запис..."
 
 msgid "Profile"
 msgstr "Профіль"
@@ -8192,14 +8192,11 @@ msgstr "нічого"
 msgid "all"
 msgstr "все"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Сайт додатків Mozilla тепер використовує для входу облікові записи Firefox. Продовжіть для завершення простого процесу авторизації."
-
 msgid "User Login"
 msgstr "Вхід до аккаунту"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Вхід з обліковим записом Firefox"
+msgid "Log in"
+msgstr "Вхід з обліковим записом"
 
 msgid "Password Reset"
 msgstr "Скидання пароля"

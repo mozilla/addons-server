@@ -49,8 +49,8 @@ msgstr "Ste že prijavljeni."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Vašega poskusa prijave ni bilo mogoče razčleniti. Poskusite znova."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Vašega Firefox Računa ni bilo mogoče najti. Poskusite znova."
+msgid "Your account could not be found. Please try again."
+msgstr "Vašega Računa ni bilo mogoče najti. Poskusite znova."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Ni vas bilo mogoče prijaviti. Poskusite znova."
@@ -8093,8 +8093,8 @@ msgstr "Lokacija"
 msgid "Occupation"
 msgstr "Poklic"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Svoj e-poštni naslov lahko spremenite v Firefox Računih."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Oblika tega spletnega naslova je neveljavna. Veljaven URL je videti takole: http://primer.com/moja_stran."
@@ -8221,8 +8221,8 @@ msgstr "Nastavite svoje prikazno ime"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Za dokončanje postopka registracije nastavite svoje prikazno ime ali uporabniško ime."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Urejanje osnovnih podatkov o računu, kot so uporabniško ime in nastavitve Firefox Računa."
+msgid "Manage basic account information."
+msgstr "Urejanje osnovnih podatkov o računu, kot so uporabniško ime in nastavitve Računa."
 
 msgid "Username"
 msgstr "Uporabniško ime"
@@ -8230,8 +8230,8 @@ msgstr "Uporabniško ime"
 msgid "Email Address"
 msgstr "E-poštni naslov"
 
-msgid "Manage Firefox Account..."
-msgstr "Urejanje Firefox Računa ..."
+msgid "Manage other account details..."
+msgstr "Urejanje Računa ..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8285,14 +8285,11 @@ msgstr "nič"
 msgid "all"
 msgstr "vse"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Dodatki Mozilla so se za prijavljanje preselili na Firefox Račune. Nadaljujte za dokončanje procesa preproste prijave."
-
 msgid "User Login"
 msgstr "Prijava uporabnika"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Prijava s Firefox Računi"
+msgid "Log in"
+msgstr "Prijava s Računi"
 
 msgid "Password Reset"
 msgstr "Ponastavitev gesla"

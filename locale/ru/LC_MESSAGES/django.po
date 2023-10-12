@@ -55,8 +55,8 @@ msgstr "Вы уже вошли."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Ваша попытка входа не может быть обработана. Пожалуйста, попробуйте снова."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Ваш Firefox аккаунт не найден. Пожалуйста, попробуйте снова."
+msgid "Your account could not be found. Please try again."
+msgstr "Ваш аккаунт не найден. Пожалуйста, попробуйте снова."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Не удалось войти. Пожалуйста, попробуйте снова."
@@ -8049,8 +8049,8 @@ msgstr "Местонахождение"
 msgid "Occupation"
 msgstr "Род деятельности"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Вы можете изменить свой адрес электронной почты в Аккаунтах Firefox."
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."
@@ -8177,8 +8177,8 @@ msgstr "Пожалуйста, введите свое отображаемое �
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Пожалуйста, введите отображаемое имя или имя пользователя, чтобы завершить процесс регистрации."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Управление базовой информацией учётной записи, такой как имя пользователя и настройки Аккаунтов Firefox."
+msgid "Manage basic account information."
+msgstr "Управление базовой информацией учётной записи, такой как имя пользователя и настройки Аккаунтов."
 
 msgid "Username"
 msgstr "Имя пользователя"
@@ -8186,8 +8186,8 @@ msgstr "Имя пользователя"
 msgid "Email Address"
 msgstr "Адрес эл. почты"
 
-msgid "Manage Firefox Account..."
-msgstr "Управление аккаунтом Firefox..."
+msgid "Manage other account details..."
+msgstr "Управление аккаунтом..."
 
 msgid "Profile"
 msgstr "Профиль"
@@ -8241,14 +8241,11 @@ msgstr "нет"
 msgid "all"
 msgstr "все"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Сайт дополнений Mozilla теперь использует для входа Аккаунты Firefox. Продолжите для завершения простого процесса входа."
-
 msgid "User Login"
 msgstr "Вход пользователя"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Войти через Аккаунты Firefox"
+msgid "Log in"
+msgstr "Войти через Аккаунты"
 
 msgid "Password Reset"
 msgstr "Сброс пароля"

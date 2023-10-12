@@ -63,7 +63,7 @@ msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
 #: src/olympia/accounts/views.py:73
-msgid "Your Firefox Account could not be found. Please try again."
+msgid "Your account could not be found. Please try again."
 msgstr ""
 
 #: src/olympia/accounts/views.py:74
@@ -11565,7 +11565,7 @@ msgid "Occupation"
 msgstr ""
 
 #: src/olympia/users/forms.py:78
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 #: src/olympia/users/forms.py:101
@@ -11745,9 +11745,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:32
-msgid ""
-"Manage basic account information, such as your username and Firefox Accounts "
-"settings."
+msgid "Manage basic account information."
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:38
@@ -11759,7 +11757,7 @@ msgid "Email Address"
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:54
-msgid "Manage Firefox Account..."
+msgid "Manage other account details..."
 msgstr ""
 
 #: src/olympia/users/templates/users/edit.html:61
@@ -11839,18 +11837,12 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-#: src/olympia/users/templates/users/fxa_login_prompt_content.html:3
-msgid ""
-"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
-"complete the simple login process."
-msgstr ""
-
 #: src/olympia/users/templates/users/login.html:3
 msgid "User Login"
 msgstr ""
 
 #: src/olympia/users/templates/users/login.html:11
-msgid "Log in with Firefox Accounts"
+msgid "Log in"
 msgstr ""
 
 #: src/olympia/users/templates/users/newpw_sent.html:3

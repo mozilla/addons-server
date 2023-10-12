@@ -52,8 +52,8 @@ msgstr "あなたは既にログインしています。"
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "あなたのログイン試行は解析できませんでした。再度お試しください。"
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "あなたの Firefox アカウントが見つかりませんでした。再度お試しください。"
+msgid "Your account could not be found. Please try again."
+msgstr "あなたの アカウントが見つかりませんでした。再度お試しください。"
 
 msgid "You could not be logged in. Please try again."
 msgstr "ログインできませんでした。再度お試しください。"
@@ -7923,8 +7923,8 @@ msgstr "所在地"
 msgid "Occupation"
 msgstr "職業"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Firefox アカウントでメールアドレスを変更できます。"
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
@@ -8052,8 +8052,8 @@ msgstr "表示名を設定してください"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "登録プロセスを完了するには表示名もしくはユーザー名を設定してください。"
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ユーザー名や Firefox アカウントの設定など、基本的なアカウント情報を管理します。"
+msgid "Manage basic account information."
+msgstr "ユーザー名や アカウントの設定など、基本的なアカウント情報を管理します。"
 
 msgid "Username"
 msgstr "ユーザー名"
@@ -8061,8 +8061,8 @@ msgstr "ユーザー名"
 msgid "Email Address"
 msgstr "メールアドレス"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox アカウントを管理..."
+msgid "Manage other account details..."
+msgstr "アカウントを管理..."
 
 msgid "Profile"
 msgstr "プロファイル"
@@ -8116,14 +8116,11 @@ msgstr "なし"
 msgid "all"
 msgstr "すべて"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
-
 msgid "User Login"
 msgstr "ログイン"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox アカウントでログイン"
+msgid "Log in"
+msgstr "アカウントでログイン"
 
 msgid "Password Reset"
 msgstr "パスワードの変更"

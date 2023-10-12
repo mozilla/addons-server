@@ -49,8 +49,8 @@ msgstr "您已經登入。"
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "無法剖析您的登入請求，請再試一次。"
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "找不到您的 Firefox 帳號，請再試一次。"
+msgid "Your account could not be found. Please try again."
+msgstr "找不到您的 帳號，請再試一次。"
 
 msgid "You could not be logged in. Please try again."
 msgstr "無法登入，請再試一次。"
@@ -7908,8 +7908,8 @@ msgstr "地點"
 msgid "Occupation"
 msgstr "職業"
 
-msgid "You can change your email address on Firefox Accounts."
-msgstr "您可以到 Firefox Accounts 修改電子郵件地址。"
+msgid "See this help article for information on how to change your email address."
+msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "URL 格式無效，有效的 URL 像這樣: http://example.com/my_page。"
@@ -8034,8 +8034,8 @@ msgstr "請設定顯示名稱"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "請設定顯示名稱或帳號以完成註冊。"
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "管理基本帳號資訊，像是使用者名稱和 Firefox 帳號設定。"
+msgid "Manage basic account information."
+msgstr "管理基本帳號資訊，像是使用者名稱和 帳號設定。"
 
 msgid "Username"
 msgstr "使用者名稱"
@@ -8043,8 +8043,8 @@ msgstr "使用者名稱"
 msgid "Email Address"
 msgstr "電子郵件地址"
 
-msgid "Manage Firefox Account..."
-msgstr "管理 Firefox 帳號…"
+msgid "Manage other account details..."
+msgstr "管理 帳號…"
 
 msgid "Profile"
 msgstr "個人檔案"
@@ -8098,14 +8098,11 @@ msgstr "全不勾選"
 msgid "all"
 msgstr "全部勾選"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla 附加元件站已改用 Firefox 帳號登入。請繼續完成簡單的登入流程。"
-
 msgid "User Login"
 msgstr "使用者登入"
 
-msgid "Log in with Firefox Accounts"
-msgstr "使用 Firefox 帳號登入"
+msgid "Log in"
+msgstr "使用 帳號登入"
 
 msgid "Password Reset"
 msgstr "重設密碼"

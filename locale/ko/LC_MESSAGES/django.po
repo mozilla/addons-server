@@ -52,8 +52,8 @@ msgstr "이미 로그인 하셨습니다."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "로그인 시도를 해석할 수 없습니다. 다시 시도해 주세요."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox Account를 찾을 수 없습니다. 다시 시도해 주세요."
+msgid "Your account could not be found. Please try again."
+msgstr "Account를 찾을 수 없습니다. 다시 시도해 주세요."
 
 msgid "You could not be logged in. Please try again."
 msgstr "로그인에 실패하였습니다. 다시 시도 하십시오."
@@ -7982,7 +7982,7 @@ msgstr "사는 곳"
 msgid "Occupation"
 msgstr "직업"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8112,7 +8112,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 #, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "사용자 이름이나 이메일 주소와 같은 기본 계정 정보를 관리합니다."
 
 msgid "Username"
@@ -8121,8 +8121,8 @@ msgstr "사용자 이름"
 msgid "Email Address"
 msgstr "이메일 주소"
 
-msgid "Manage Firefox Account..."
-msgstr "Firefox 계정 관리..."
+msgid "Manage other account details..."
+msgstr "계정 관리..."
 
 msgid "Profile"
 msgstr "프로필"
@@ -8176,14 +8176,11 @@ msgstr "없음"
 msgid "all"
 msgstr "전부"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "사용자 로그인"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox 계정으로 로그인"
+msgid "Log in"
+msgstr "계정으로 로그인"
 
 msgid "Password Reset"
 msgstr "비밀번호 초기화"

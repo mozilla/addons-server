@@ -14,10 +14,10 @@ function usage() {
 # check if file and dir are there
 if [[ ($# -ne 1) || (! -d "$1") ]]; then usage; fi
 
-hash dennis-cmd 2>/dev/null || source $VENV/bin/activate
+#hash dennis-cmd 2>/dev/null || source $VENV/bin/activate
 
 echo "compiling django.po..."
-for pofile in `find $1 -type f -name "django.po"`; do
+for pofile in `gfind $1 -type f -name "django.po"`; do
     dir=`dirname $pofile`
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`
@@ -36,7 +36,7 @@ done
 
 echo
 echo "compiling djangojs.po..."
-for pofile in `find $1 -type f -name "djangojs.po"`; do
+for pofile in `gfind $1 -type f -name "djangojs.po"`; do
     dir=`dirname $pofile`
     lang=`echo $pofile | cut -d "/" -f2`
     stem=`basename $pofile .po`

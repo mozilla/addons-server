@@ -52,8 +52,8 @@ msgstr "Olet jo kirjautunut."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox-tiliäsi ei löydy. Yritä uudelleen."
+msgid "Your account could not be found. Please try again."
+msgstr "Tiliäsi ei löydy. Yritä uudelleen."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Sinua ei voitu kirjata sisään. Yritä uudelleen."
@@ -8172,7 +8172,7 @@ msgstr "Sijainti"
 msgid "Occupation"
 msgstr "Ammatti"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8307,7 +8307,7 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Viimeistele rekisteröinti asettamalla näyttönimesi tai käyttäjätunnuksesi."
 
 #, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr "Hallitse tunnuksesi perustietoja, kuten käyttäjätunnusta ja sähköpostiosoitetta."
 
 msgid "Username"
@@ -8316,8 +8316,8 @@ msgstr "Käyttäjätunnus"
 msgid "Email Address"
 msgstr "Sähköpostiosoite"
 
-msgid "Manage Firefox Account..."
-msgstr "Hallitse Firefox-tiliä..."
+msgid "Manage other account details..."
+msgstr "Hallitse tiliä..."
 
 msgid "Profile"
 msgstr "Profiili"
@@ -8371,14 +8371,11 @@ msgstr "ei mitään"
 msgid "all"
 msgstr "kaikki"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Käyttäjäkirjautuminen"
 
-msgid "Log in with Firefox Accounts"
-msgstr "Kirjaudu käyttäen Firefox-tiliä"
+msgid "Log in"
+msgstr "Kirjaudu käyttäen tiliä"
 
 msgid "Password Reset"
 msgstr "Salasanan nollaaminen"

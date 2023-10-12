@@ -52,7 +52,7 @@ msgstr ""
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your Firefox Account could not be found. Please try again."
+msgid "Your account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
@@ -8139,7 +8139,7 @@ msgstr "Kokapena"
 msgid "Occupation"
 msgstr "Lanbidea"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8266,7 +8266,7 @@ msgstr ""
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgid "Manage basic account information."
 msgstr ""
 
 msgid "Username"
@@ -8275,7 +8275,7 @@ msgstr "Erabiltzaile-izena"
 msgid "Email Address"
 msgstr "Helbide elektronikoa"
 
-msgid "Manage Firefox Account..."
+msgid "Manage other account details..."
 msgstr ""
 
 msgid "Profile"
@@ -8330,13 +8330,10 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr "Erabiltzailearen saio-hasiera"
 
-msgid "Log in with Firefox Accounts"
+msgid "Log in"
 msgstr ""
 
 msgid "Password Reset"

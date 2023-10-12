@@ -52,8 +52,8 @@ msgstr "Вече сте вписани."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Опитът ви за вписване но може да бъде разчетен. Моля, опитайте отново."
 
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Вашият Firefox Account не може да бъде намерен. Моля, опитайте отново."
+msgid "Your account could not be found. Please try again."
+msgstr "Вашият account не може да бъде намерен. Моля, опитайте отново."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Не можахте да бъдете вписани. Моля, опитайте отново."
@@ -8015,7 +8015,7 @@ msgstr "Местоположение"
 msgid "Occupation"
 msgstr "Професия"
 
-msgid "You can change your email address on Firefox Accounts."
+msgid "See this help article for information on how to change your email address."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -8145,8 +8145,8 @@ msgstr "Моля, изберете име"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Моля, изберете име, което да бъде показвано или потребителско име, за да завършите регистрацията."
 
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Управление на основна информация за сметката като потребителско име и настройки на Firefox Account."
+msgid "Manage basic account information."
+msgstr "Управление на основна информация за сметката като потребителско име и настройки на Account."
 
 msgid "Username"
 msgstr "Потребителско име"
@@ -8154,7 +8154,7 @@ msgstr "Потребителско име"
 msgid "Email Address"
 msgstr "Имейл адрес"
 
-msgid "Manage Firefox Account..."
+msgid "Manage other account details..."
 msgstr ""
 
 msgid "Profile"
@@ -8209,14 +8209,11 @@ msgstr "никои"
 msgid "all"
 msgstr "всички"
 
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
 msgid "User Login"
 msgstr ""
 
-msgid "Log in with Firefox Accounts"
-msgstr "Вписване с Firefox Account"
+msgid "Log in"
+msgstr "Вписване"
 
 msgid "Password Reset"
 msgstr "Нулиране на парола"
