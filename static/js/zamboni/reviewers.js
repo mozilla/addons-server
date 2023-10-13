@@ -502,12 +502,15 @@ function initScrollingSidebar() {
         $sb.css('top', '10px');
       } else if (sidebar_bottom >= addon_bottom) {
         setSticky(false);
-        $sb.css('top', (addon_bottom - sidebar_height - $parent.offset().top) - 10 + 'px');
+        $sb.css(
+          'top',
+          addon_bottom - sidebar_height - $parent.offset().top - 10 + 'px',
+        );
       } else {
         setSticky(false);
         $sb.css('top', '0');
       }
-    }, 20)
+    }, 20),
   );
 }
 
