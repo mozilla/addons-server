@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-14 16:09+0000\n"
+"PO-Revision-Date: 2023-10-14 16:15+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -61,22 +61,22 @@ msgstr "Viôt di segnalâ cualsisei probleme relatîf al linting su GitHub"
 #: static/js/common/upload-addon.js:244
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Il component adizionâl nol à superât la convalide cun {0} erôr."
+msgstr[1] "Il component adizionâl nol à superât la convalide cun {0} erôrs."
 
 #: static/js/common/upload-addon.js:262
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "&hellip;e {0} altri"
+msgstr[1] "&hellip;e altris {0}"
 
 #: static/js/common/upload-addon.js:283 static/js/common/upload-addon.js:718
 msgid "See full validation report"
-msgstr ""
+msgstr "Viôt il rapuart complet de convalide"
 
 #: static/js/common/upload-addon.js:296
 msgid "Validating {0}"
-msgstr ""
+msgstr "Daûr a convalidâ {0}"
 
 #: static/js/common/upload-addon.js:347
 msgid "Your add-on exceeds the maximum size of {0}."
