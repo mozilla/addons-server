@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-14 16:15+0000\n"
+"PO-Revision-Date: 2023-10-14 16:36+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -80,7 +80,7 @@ msgstr "Daûr a convalidâ {0}"
 
 #: static/js/common/upload-addon.js:347
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Il to component adizionâl al supere la dimension massime di {0}."
 
 #: static/js/common/upload-addon.js:355
 msgid "Received an empty response from the server; status: {0}"
