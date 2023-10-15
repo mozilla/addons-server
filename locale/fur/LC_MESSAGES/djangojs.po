@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 16:25+0000\n"
+"PO-Revision-Date: 2023-10-15 18:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -167,83 +167,83 @@ msgstr "Tu âs anulât il cjariament in rêt."
 
 #: static/js/common/upload-image.js:99
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Lis imagjins a scugnin jessi in formât PNG o JPG."
 
 #: static/js/common/upload-image.js:103
 msgid "Videos must be in WebM."
-msgstr ""
+msgstr "I videos a scugnin jessi in formât WebM."
 
 #: static/js/stats/chart.js:289
 msgid "Week of {0}"
-msgstr ""
+msgstr "Setemane dal {0}"
 
 #: static/js/stats/chart.js:298
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} discjariament"
+msgstr[1] "{0} discjariaments"
 
 #: static/js/stats/chart.js:304
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} utent"
+msgstr[1] "{0} utents"
 
 #: static/js/stats/chart.js:310
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} component adizionâl"
+msgstr[1] "{0} components adizionâi"
 
 #: static/js/stats/chart.js:316
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} racuelte"
+msgstr[1] "{0} racueltis"
 
 #: static/js/stats/chart.js:322
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} recension"
+msgstr[1] "{0} recensions"
 
 #: static/js/stats/chart.js:331
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} vendite"
+msgstr[1] "{0} venditis"
 
 #: static/js/stats/chart.js:337
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} rimbors"
+msgstr[1] "{0} rimbors"
 
 #: static/js/stats/chart.js:343
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} instalazion"
+msgstr[1] "{0} instalazions"
 
 #: static/js/stats/chart.js:444 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:109
 msgid "Downloads"
-msgstr ""
+msgstr "Discjamâts"
 
 #: static/js/stats/chart.js:456 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:110
 msgid "Daily Users"
-msgstr ""
+msgstr "Utents zornalîrs"
 
 #: static/js/stats/chart.js:489
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Impuart in USD"
 
 #: static/js/stats/chart.js:501 static/js/stats/csv_keys.js:104
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Numar di donazions"
 
 #: static/js/stats/chart.js:528
 msgid "More Info..."
-msgstr ""
+msgstr "Altris informazions..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/stats/chart.js:534
