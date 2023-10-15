@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 07:46+0000\n"
+"PO-Revision-Date: 2023-10-15 15:51+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -115,16 +115,16 @@ msgstr[1] "Il to component adizionâl al è stât convalidât cence erôrs e cun
 #: static/js/common/upload-addon.js:579
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Il to component adizionâl al è stât convalidât cence erôrs e cun {0} messaç."
+msgstr[1] "Il to component adizionâl al è stât convalidât cence erôrs e cun {0} messaçs."
 
 #: static/js/common/upload-addon.js:587
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Il to component adizionâl al è stât convalidât cence erôrs o avertiments."
 
 #: static/js/common/upload-addon.js:664
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Inclût notis di version detaiadis (al è pussibil inserîlis tal prossim passaç)."
 
 #: static/js/common/upload-addon.js:667
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
