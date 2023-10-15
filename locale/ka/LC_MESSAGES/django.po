@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2022-01-23 05:50+0000\n"
+"PO-Revision-Date: 2023-10-15 06:29+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1146,7 +1146,7 @@ msgid "Sports"
 msgstr "სპორტი"
 
 msgid "Abstract"
-msgstr "აბსტრაქტული"
+msgstr "წარმოსახვითი"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
 msgstr ""
@@ -4042,7 +4042,7 @@ msgstr "შეარჩიეთ, დაალაგეთ და წამო�
 
 #. editorial content for the discovery pane.
 msgid "Get weather updates right in the browser."
-msgstr "ამინდის პროგნოზის სიახლეები, პირდაპირ ბრაუზერში."
+msgstr "ამინდის პროგნოზის სიახლეები პირდაპირ ბრაუზერში."
 
 #. editorial content for the discovery pane.
 msgid "Delete cookies, browsing history, and cached files with just a single click."
@@ -4218,7 +4218,7 @@ msgstr "აცილებს ამ ვრცელ მეთვალყურ
 
 #. editorial content for the primary hero shelves.
 msgid "Get weather updates directly from Firefox."
-msgstr "ამინდის პროგნოზის სიახლეები, პირდაპირ Firefox-იდან."
+msgstr "ამინდის პროგნოზის სიახლეები პირდაპირ Firefox-იდან."
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
@@ -4334,7 +4334,7 @@ msgstr "პირადულობისა და უსაფრთხოე�
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr "საწყისი გაფართოებების ნაკრები"
+msgstr "გაფართოებების საწყისი ნაკრები"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
