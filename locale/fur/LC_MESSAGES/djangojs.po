@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 16:14+0000\n"
+"PO-Revision-Date: 2023-10-15 16:25+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -155,15 +155,15 @@ msgstr "Il procès di convalide al à cjatât chescj problemis che a puedin puar
 
 #: static/js/common/upload-base.js:75
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "Il gjenar di file che tu âs cjariât nol è ricognossût."
 
 #: static/js/common/upload-base.js:85
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Il to file al supere la dimension massime di {0}."
 
 #: static/js/common/upload-base.js:111
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Tu âs anulât il cjariament in rêt."
 
 #: static/js/common/upload-image.js:99
 msgid "Images must be either PNG or JPG."
