@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-14 16:36+0000\n"
+"PO-Revision-Date: 2023-10-15 07:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -84,19 +84,19 @@ msgstr "Il to component adizionâl al supere la dimension massime di {0}."
 
 #: static/js/common/upload-addon.js:355
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Ricevude une rispueste vueide dal servidôr; stât: {0}"
 
 #: static/js/common/upload-addon.js:400
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "La estension e cugne jessi compatibile cun almancul une aplicazion."
 
 #: static/js/common/upload-addon.js:470
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Erôr dal servidôr inspietât dilunc la convalide."
 
 #: static/js/common/upload-addon.js:516
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "Segnât in mût esplicit come compatibil cun Firefox par Android tal file manifest"
 
 #: static/js/common/upload-addon.js:558
 msgid "Finished validating {0}"
