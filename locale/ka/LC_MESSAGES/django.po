@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 06:29+0000\n"
+"PO-Revision-Date: 2023-10-15 06:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -4398,11 +4398,11 @@ msgstr "თარგმნის სხვა ხელსაწყოები,
 
 #. editorial content for the homepage shelves.
 msgid "Social streaming"
-msgstr "სოციალური ნაკადი"
+msgstr "გადაცემები სოცქსელში"
 
 #. editorial content for the homepage shelves.
 msgid "See more social streaming staff picks"
-msgstr "სოციალური ნაკადისთვის, თანამშრომლების შერჩეული"
+msgstr "გადაცემებისთვის სოცქსელში, თანამშრომლების შერჩეული"
 
 #. editorial content for the homepage shelves.
 msgid "Tab managers"
@@ -4414,11 +4414,11 @@ msgstr "ჩანართის სხვა მმართველები,
 
 #. editorial content for the homepage shelves.
 msgid "“{tag}” tagged extensions"
-msgstr "გაფართოებები „{tag}“ მონიშვნით"
+msgstr "გაფართოებები „{tag}“ აღნიშვნით"
 
 #. editorial content for the homepage shelves.
 msgid "See more extensions tagged \"{tag}\""
-msgstr "სხვა გავრცელებული, მონიშვნით „{tag}“"
+msgstr "სხვა გავრცელებული „{tag}“ აღნიშვნით"
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
