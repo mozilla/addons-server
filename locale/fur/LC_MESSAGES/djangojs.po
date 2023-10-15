@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 18:10+0000\n"
+"PO-Revision-Date: 2023-10-15 18:17+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -300,15 +300,15 @@ msgstr "No cognossût"
 
 #: static/js/stats/csv_keys.js:43
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Gjestôr components adizionâi"
 
 #: static/js/stats/csv_keys.js:44
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promozions su Gjestôr components adizionâi"
 
 #: static/js/stats/csv_keys.js:45
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "In risalt su Gjestôr components adizionâi"
 
 #: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
