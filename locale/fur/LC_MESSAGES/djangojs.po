@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 15:51+0000\n"
+"PO-Revision-Date: 2023-10-15 16:04+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -129,20 +129,25 @@ msgstr "Inclût notis di version detaiadis (al è pussibil inserîlis tal prossi
 #: static/js/common/upload-addon.js:667
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Se par podê fâ une prove complete il component adizionâl al à bisugne di un account a un sît web, inclût un non utent e une password di prove tes Notis pal revisôr (al è pussibil fâlu tal prossim "
+"passaç)."
 
 #: static/js/common/upload-addon.js:673
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Pro memoria pal cjariament in rêt dal component adizionâl"
 
 #: static/js/common/upload-addon.js:677
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
+"Prime di confermâ il cjariament in rêt, verifiche che il component adizionâl al sodisfi chescj recuisîts, cussì di ridusi al minim eventuâi ritarts o malintindiments dilunc il procès di revision:"
 
 #: static/js/common/upload-addon.js:684
 msgid ""
 "Minified, concatenated or otherwise machine-generated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"I scripts minimizâts, concatenâts o gjenerâts in automatic (gjavadis lis librariis cognossudis) a scugnin vê i lôr files sorzint cjariâts in rêt in mût separât pe revision. Par evitâ che il "
+"cjariament in rêt al vegni refudât, controle di doprâ il cjamp di cjariament in rêt pal codiç sorzint."
 
 #: static/js/common/upload-addon.js:697
 msgid "The validation process found these issues that can lead to rejections:"
