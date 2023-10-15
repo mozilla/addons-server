@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 07:41+0000\n"
+"PO-Revision-Date: 2023-10-15 07:46+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -100,17 +100,17 @@ msgstr "Segnât in mût esplicit come compatibil cun Firefox par Android tal fil
 
 #: static/js/common/upload-addon.js:558
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Convalide di {0} completade"
 
 #: static/js/common/upload-addon.js:565
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Il timp pe convalide dal component adizionâl al è scjadût, al vignarà revisionât a man."
 
 #: static/js/common/upload-addon.js:570
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Il to component adizionâl al è stât convalidât cence erôrs e cun {0} avertiment."
+msgstr[1] "Il to component adizionâl al è stât convalidât cence erôrs e cun {0} avertiments."
 
 #: static/js/common/upload-addon.js:579
 msgid "Your add-on was validated with no errors and {0} message."
