@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 18:01+0000\n"
+"PO-Revision-Date: 2023-10-15 18:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -248,55 +248,55 @@ msgstr "Altris informazions..."
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/stats/chart.js:534
 msgid "Details for {0}"
-msgstr ""
+msgstr "Detais par {0}"
 
 #: static/js/stats/csv_keys.js:9
 msgid "Collections Created"
-msgstr ""
+msgstr "Racueltis creadis"
 
 #: static/js/stats/csv_keys.js:12
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Components adizionâi in ûs"
 
 #: static/js/stats/csv_keys.js:15
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Components adizionâi creâts"
 
 #: static/js/stats/csv_keys.js:18
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Components adizionâi discjariâts"
 
 #: static/js/stats/csv_keys.js:21
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Components adizionâi inzornâts"
 
 #: static/js/stats/csv_keys.js:24
 msgid "Reviews Written"
-msgstr ""
+msgstr "Recensions scritis"
 
 #: static/js/stats/csv_keys.js:27
 msgid "User Signups"
-msgstr ""
+msgstr "Regjistrazions utent"
 
 #: static/js/stats/csv_keys.js:30
 msgid "Subscribers"
-msgstr ""
+msgstr "Iscrits"
 
 #: static/js/stats/csv_keys.js:33
 msgid "Ratings"
-msgstr ""
+msgstr "Valutazions"
 
 #: static/js/stats/csv_keys.js:36 static/js/stats/csv_keys.js:114
 msgid "Sales"
-msgstr ""
+msgstr "Venditis"
 
 #: static/js/stats/csv_keys.js:39 static/js/stats/csv_keys.js:113
 msgid "Installs"
-msgstr ""
+msgstr "Instalazions"
 
 #: static/js/stats/csv_keys.js:42
 msgid "Unknown"
-msgstr ""
+msgstr "No cognossût"
 
 #: static/js/stats/csv_keys.js:43
 msgid "Add-ons Manager"
