@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-16 06:19+0000\n"
+"PO-Revision-Date: 2023-10-16 06:33+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -621,12 +621,12 @@ msgstr "Campagnis di discjariament di {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:213
 msgid "Contributions, last {0} days"
-msgstr ""
+msgstr "Donazions, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:215
 msgid "Contributions from {0} to {1}"
-msgstr ""
+msgstr "Donazions di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:219
