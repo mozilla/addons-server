@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-15 18:17+0000\n"
+"PO-Revision-Date: 2023-10-16 05:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -312,55 +312,55 @@ msgstr "In risalt su Gjestôr components adizionâi"
 
 #: static/js/stats/csv_keys.js:46
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Plui informazions su Gjestôr components adizionâi"
 
 #: static/js/stats/csv_keys.js:47
 msgid "Search Suggestions"
-msgstr ""
+msgstr "Sugjeriments di ricercje"
 
 #: static/js/stats/csv_keys.js:48
 msgid "Search Results"
-msgstr ""
+msgstr "Risultâts de ricercje"
 
 #: static/js/stats/csv_keys.js:49 static/js/stats/csv_keys.js:50 static/js/stats/csv_keys.js:51
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Pagjine principâl des promozions"
 
 #: static/js/stats/csv_keys.js:52 static/js/stats/csv_keys.js:53
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Pagjine principâl dai “in risalt”"
 
 #: static/js/stats/csv_keys.js:54 static/js/stats/csv_keys.js:55
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "Pagjine principâl dai “daûr a rivâ”"
 
 #: static/js/stats/csv_keys.js:56
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Pagjine principâl dai plui popolârs"
 
 #: static/js/stats/csv_keys.js:57 static/js/stats/csv_keys.js:59
 msgid "Detail Page"
-msgstr ""
+msgstr "Pagjine dai detais"
 
 #: static/js/stats/csv_keys.js:58 static/js/stats/csv_keys.js:60
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Pagjine dai detais (in bas)"
 
 #: static/js/stats/csv_keys.js:61
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Pagjine dai detais (canâl di disvilup)"
 
 #: static/js/stats/csv_keys.js:62 static/js/stats/csv_keys.js:63 static/js/stats/csv_keys.js:64
 msgid "Often Used With"
-msgstr ""
+msgstr "Dispès doprât cun"
 
 #: static/js/stats/csv_keys.js:65 static/js/stats/csv_keys.js:66
 msgid "Others By Author"
-msgstr ""
+msgstr "Altris dal stes autôr"
 
 #: static/js/stats/csv_keys.js:67 static/js/stats/csv_keys.js:68
 msgid "Dependencies"
-msgstr ""
+msgstr "Dipendencis"
 
 #: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
 msgid "Upsell"
