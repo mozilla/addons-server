@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-16 05:44+0000\n"
+"PO-Revision-Date: 2023-10-16 06:09+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -440,15 +440,15 @@ msgstr ""
 
 #: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Totâl donazions"
 
 #: static/js/stats/csv_keys.js:106
 msgid "Average Contribution"
-msgstr ""
+msgstr "Donazion medie"
 
 #: static/js/stats/csv_keys.js:115
 msgid "Usage"
-msgstr ""
+msgstr "Ûs"
 
 #: static/js/stats/csv_keys.js:118
 msgid "Firefox"
