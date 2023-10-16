@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-16 06:12+0000\n"
+"PO-Revision-Date: 2023-10-16 06:19+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -541,82 +541,82 @@ msgstr "Nazions di {0} a {1}"
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:165
 msgid "Platforms, last {0} days"
-msgstr ""
+msgstr "Plateformis, ultims {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:167
 msgid "Platforms from {0} to {1}"
-msgstr ""
+msgstr "Plateformis di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:171
 msgid "Languages, last {0} days"
-msgstr ""
+msgstr "Lenghis, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:173
 msgid "Languages from {0} to {1}"
-msgstr ""
+msgstr "Lenghis di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:177
 msgid "Add-on Versions, last {0} days"
-msgstr ""
+msgstr "Versions components adizionâi, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:179
 msgid "Add-on Versions from {0} to {1}"
-msgstr ""
+msgstr "Versions components adizionâi di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:183
 msgid "Add-on Status, last {0} days"
-msgstr ""
+msgstr "Stât components adizionâi, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:185
 msgid "Add-on Status from {0} to {1}"
-msgstr ""
+msgstr "Stât components adizionâi di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:189
 msgid "Download Sources, last {0} days"
-msgstr ""
+msgstr "Sorzints di discjariament, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:191
 msgid "Download Sources from {0} to {1}"
-msgstr ""
+msgstr "Sorzints di discjariament di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:195
 msgid "Download Mediums, last {0} days"
-msgstr ""
+msgstr "Supuarts di discjariaments, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:197
 msgid "Download Mediums from {0} to {1}"
-msgstr ""
+msgstr "Supuarts di discjariament di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:201
 msgid "Download Contents, last {0} days"
-msgstr ""
+msgstr "Contignûts dai discjariaments, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:203
 msgid "Download Contents from {0} to {1}"
-msgstr ""
+msgstr "Contignûts dai discjariaments di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:207
 msgid "Download Campaigns, last {0} days"
-msgstr ""
+msgstr "Campagnis di discjariament, ultins {0} dîs"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:209
 msgid "Download Campaigns from {0} to {1}"
-msgstr ""
+msgstr "Campagnis di discjariament di {0} a {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:213
