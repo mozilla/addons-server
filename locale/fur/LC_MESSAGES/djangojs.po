@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-16 05:41+0000\n"
+"PO-Revision-Date: 2023-10-16 05:44+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -364,31 +364,31 @@ msgstr "Dipendencis"
 
 #: static/js/stats/csv_keys.js:69 static/js/stats/csv_keys.js:70
 msgid "Upsell"
-msgstr ""
+msgstr "Promozion"
 
 #: static/js/stats/csv_keys.js:71
 msgid "Meet the Developer"
-msgstr ""
+msgstr "Cognòs il svilupadôr"
 
 #: static/js/stats/csv_keys.js:72
 msgid "User Profile"
-msgstr ""
+msgstr "Profîl utent"
 
 #: static/js/stats/csv_keys.js:73
 msgid "Version History"
-msgstr ""
+msgstr "Cronologjie versions"
 
 #: static/js/stats/csv_keys.js:75
 msgid "Sharing"
-msgstr ""
+msgstr "Condivision"
 
 #: static/js/stats/csv_keys.js:76
 msgid "Category Pages"
-msgstr ""
+msgstr "Pagjinis des categoriis"
 
 #: static/js/stats/csv_keys.js:77
 msgid "Collections"
-msgstr ""
+msgstr "Racueltis"
 
 #: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
