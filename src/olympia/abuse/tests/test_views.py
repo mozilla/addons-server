@@ -1,14 +1,19 @@
+import hashlib
+import hmac
 import json
-from datetime import datetime
+import os
+from datetime import datetime, timezone
 from unittest import mock
 
+from django.test.utils import override_settings
 from django.urls import reverse
+from django.utils.encoding import force_bytes
 
 from pyquery import PyQuery as pq
+from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderReport
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -17,6 +22,12 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
 )
+
+from ..models import AbuseReport, CinderReport
+from ..views import CinderInboundPermission, cinder_webhook
+
+
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class AddonAbuseViewSetTestBase:
@@ -661,6 +672,105 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
+
+
+@override_settings(CINDER_WEBHOOK_TOKEN='webhook-token')
+class TestCinderWebhook(TestCase):
+    def get_data(self):
+        webhook_file = os.path.join(TESTS_DIR, 'assets', 'cinder_webhook.json')
+        with open(webhook_file) as file_object:
+            return json.loads(file_object.read())
+
+    def get_request(self, **kwargs):
+        data = kwargs.get('data', self.get_data())
+        digest = hmac.new(
+            b'webhook-token',
+            msg=force_bytes(json.dumps(data, separators=(',', ':'))),
+            digestmod=hashlib.sha256,
+        ).hexdigest()
+        req = APIRequestFactory().post(
+            reverse_ns('cinder-webhook'),
+            data,
+            format='json',
+            headers={'X_CINDER_SIGNATURE': digest},
+        )
+        return req
+
+    def test_cinder_inbound_permission(self):
+        permission = CinderInboundPermission()
+        data = {'a': 'b'}
+        digest = hmac.new(
+            b'webhook-token', msg=b'{"a":"b"}', digestmod=hashlib.sha256
+        ).hexdigest()
+
+        assert not permission.has_permission(
+            APIRequestFactory().post('/', data, format='json'), None
+        )
+
+        assert permission.has_permission(
+            APIRequestFactory().post(
+                '/',
+                data,
+                format='json',
+                headers={'X_CINDER_SIGNATURE': digest},
+            ),
+            None,
+        )
+
+        assert not permission.has_permission(
+            APIRequestFactory().post(
+                '/',
+                {**data, 'a': 'c'},
+                format='json',
+                headers={'X_CINDER_SIGNATURE': digest},
+            ),
+            None,
+        )
+
+    def _setup_report(self):
+        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
+        abuse_report = AbuseReport.objects.create(
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid='1234'
+        )
+        CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
+
+    def test_process_decision_called(self):
+        self._setup_report()
+        req = self.get_request()
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_called()
+            process_mock.assert_called_with(
+                decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                decision_date=datetime(
+                    2023, 10, 12, 9, 8, 37, 4789, tzinfo=timezone.utc
+                ),
+                decision_actions=['delete-status', 'freeze-account'],
+            )
+
+    def test_wrong_queue(self):
+        self._setup_report()
+        data = self.get_data()
+        data['payload']['source']['job']['queue']['slug'] = 'another-queue'
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
+
+    def test_not_decision_event(self):
+        self._setup_report()
+        data = self.get_data()
+        data['event'] = 'report.created'
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
+
+    def test_no_cinder_report(self):
+        req = self.get_request()
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
 
 
 class TestAppeal(TestCase):

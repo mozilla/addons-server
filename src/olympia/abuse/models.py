@@ -11,6 +11,13 @@ from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
 
 from .cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
+from .utils import (
+    CinderActionApprove,
+    CinderActionBanUser,
+    CinderActionDisableAddon,
+    CinderActionEscalateAddon,
+    CinderActionNotImplemented,
+)
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -351,7 +358,7 @@ class CinderReport(ModelBase):
         ('AMO_BAN_USER', 1, 'User ban'),
         ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
         ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
-        ('AMO_ESCALATE_USER', 4, 'Escalate user to reviewers'),
+        # 4 is unused
         ('AMO_DELETE_RATING', 5, 'Rating delete'),
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
@@ -378,7 +385,7 @@ class CinderReport(ModelBase):
             >= datetime.now() - timedelta(days=self.APPEAL_EXPIRATION_DAYS)
         )
 
-    def get_helper(self):
+    def get_entity_helper(self):
         target = self.abuse_report.target
         if target:
             if isinstance(target, Addon):
@@ -387,6 +394,15 @@ class CinderReport(ModelBase):
                 return CinderUser(target)
         # TODO: More helpers here
         return None
+
+    def get_action_helper(self):
+        CinderActionClass = {
+            self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+            self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApprove,
+        }.get(self.decision_action, CinderActionNotImplemented)
+        return CinderActionClass(self)
 
     def get_cinder_reporter(self):
         abuse = self.abuse_report
@@ -403,10 +419,18 @@ class CinderReport(ModelBase):
         abuse = self.abuse_report
         reporter = self.get_cinder_reporter()
         reason = AbuseReport.REASONS.for_value(abuse.reason)
-        job_id = self.get_helper().report(
+        job_id = self.get_entity_helper().report(
             report_text=abuse.message, category=reason.api_value, reporter=reporter
         )
         self.update(job_id=job_id)
+
+    def process_decision(self, *, decision_id, decision_date, decision_actions):
+        self.update(
+            decision_id=decision_id,
+            decision_date=decision_date,
+            **({'decision_action': decision_actions[0]} if decision_actions else {}),
+        )
+        self.get_action_helper().process()
 
     def appeal(self, appeal_text, user):
         if not self.can_be_appealed():
@@ -415,7 +439,7 @@ class CinderReport(ModelBase):
             appealer = CinderUser(user)
         else:
             appealer = self.get_cinder_reporter()
-        appeal_id = self.get_helper().appeal(
+        appeal_id = self.get_entity_helper().appeal(
             decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
         )
         self.update(appeal_id=appeal_id)
