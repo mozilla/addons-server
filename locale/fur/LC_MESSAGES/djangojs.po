@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-17 06:32+0000\n"
+"PO-Revision-Date: 2023-10-17 06:47+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -781,27 +781,27 @@ msgstr "Modifichis salvadis"
 
 #: static/js/zamboni/devhub.js:286
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Inserî la direzion e-mail di un gnûf autôr"
 
 #: static/js/zamboni/devhub.js:412
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Al è vignût fûr un erôr tal cjariâ in rêt il to file."
 
 #: static/js/zamboni/devhub.js:568
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{files} file"
+msgstr[1] "{files} files"
 
 #: static/js/zamboni/devhub.js:1094
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Elaborazion in cors des modifichis aes imagjins"
 
 #: static/js/zamboni/global.js:460
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> caratar"
+msgstr[1] "<b>{0}</b> caratars"
 
 #: static/js/zamboni/global.js:469
 msgid "<b>{0}</b> character left"
