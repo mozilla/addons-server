@@ -80,19 +80,39 @@ class AbuseReport(ModelBase):
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
         # `10` was previously "Other". We avoid re-using the value.
+        #
         # Reporting reasons used in AMO Feedback flow - DSA categories
-        ('HATE_SPEECH', 11, 'DSA: Contains hate speech'),
-        ('CSAM', 12, 'DSA: Contains child sexual abuse material'),
+        (
+            'HATE_SPEECH',
+            11,
+            'DSA: It contains hateful, violent, deceptive, or other inappropriate '
+            'content',
+        ),
+        (
+            'ILLEGAL',
+            12,
+            'DSA: It violates the law or contains content that violates the law',
+        ),
+        ('POLICY_VIOLATION', 13, 'DSA: It violates Add-on Policies'),
         # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
         (
             'DOES_NOT_WORK',
             20,
-            'Feedback: Doesn’t work, breaks websites, or slows Firefox down',
+            'Feedback: It does not work, breaks websites, or slows down Firefox',
         ),
-        ('NOT_WANTED', 21, "Feedback: Wasn't wanted or can't be uninstalled"),
+        (
+            'NOT_WANTED',
+            21,
+            "Feedback: It's spam. Wasn't wanted or can't be uninstalled",
+        ),
         ('OTHER', 127, 'Other'),
     )
-    REPORTABLE_REASONS = (REASONS.HATE_SPEECH, REASONS.CSAM)
+    REPORTABLE_REASONS = (
+        REASONS.HATE_SPEECH,
+        REASONS.ILLEGAL,
+        REASONS.POLICY_VIOLATION,
+        REASONS.OTHER,
+    )
 
     # https://searchfox.org
     # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131

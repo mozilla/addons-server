@@ -192,7 +192,7 @@ def test_flag_high_abuse_reports_addons_according_to_review_tier():
 def test_addon_report_to_cinder():
     addon = addon_factory()
     abuse_report = AbuseReport.objects.create(
-        guid=addon.guid, reason=AbuseReport.REASONS.CSAM, message='This is bad'
+        guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL, message='This is bad'
     )
     assert not CinderReport.objects.exists()
     responses.add(
@@ -230,7 +230,7 @@ def test_addon_appeal_to_cinder():
     addon = addon_factory()
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
-        reason=AbuseReport.REASONS.CSAM,
+        reason=AbuseReport.REASONS.ILLEGAL,
         reporter_name='It is me',
         reporter_email='m@r.io',
     )
@@ -274,7 +274,7 @@ def test_addon_appeal_to_cinder_authenticated():
     addon = addon_factory(users=[user])
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
-        reason=AbuseReport.REASONS.CSAM,
+        reason=AbuseReport.REASONS.ILLEGAL,
     )
     cinder_report = CinderReport.objects.create(
         abuse_report=abuse_report,
