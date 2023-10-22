@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 18:20+0000\n"
+"PO-Revision-Date: 2023-10-22 18:26+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -233,27 +233,27 @@ msgstr "I nons dai components adizionâi no puedin contignî lis marchis regjist
 
 #: src/olympia/addons/utils.py:189
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
-msgstr ""
+msgstr "La version {version_string} e scugne jessi plui grande de version aprovade prime {previous_version_string}."
 
 #: src/olympia/addons/validators.py:40
 msgid "Both `license` and `custom_license` cannot be provided together."
-msgstr ""
+msgstr "“license” e “custom_license” no puedin jessi specificâts adun."
 
 #: src/olympia/addons/validators.py:63
 msgid "This field, or custom_license, is required for listed versions."
-msgstr ""
+msgstr "Chest cjamp, o custom_license, al è obligatori pes versions listadis."
 
 #: src/olympia/addons/validators.py:91
 msgid "Wrong add-on type for this license."
-msgstr ""
+msgstr "Gjenar di component adizionâl sbaliât par cheste licence."
 
 #: src/olympia/addons/validators.py:97
 msgid "Custom licenses are not supported for themes."
-msgstr ""
+msgstr "Lis licencis personalizadis no son supuartadis pai temis."
 
 #: src/olympia/addons/validators.py:131
 msgid "This field is required for add-ons with listed versions."
-msgstr ""
+msgstr "Chest cjamp al è obligatori pai components adizionâi cu lis versions listadis."
 
 #: src/olympia/addons/validators.py:157
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
