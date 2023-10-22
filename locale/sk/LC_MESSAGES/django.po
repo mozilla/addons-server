@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-08 11:57+0000\n"
+"PO-Revision-Date: 2023-10-22 18:02+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -315,16 +315,16 @@ msgstr "Nebolo nájdené"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Je nám ľúto, ale nemôžeme nájsť to, čo hľadáte.</h1> <p> Stránka alebo súbor, ktorý ste požadovali, sa na našej stránke nenašli. Je možné, že ste klikli na odkaz, ktorý je zastaraný, alebo ste "
-"nesprávne zadali adresu. </p> <ul> <li>Ak ste zadali adresu, skontrolujte pravopis.</li> <li> Ak ste klikli na odkaz na inej stránke, prosím, %(open_bug_link)snahláste nám tento problém"
-"%(close_bug_link)s. Povedzte nám, odkiaľ ste prišli a čo ste hľadali, a my sa pokúsime to napraviť. </li> </ul> <p>Alebo môžete prejsť na niektoré z obľúbených stránok na našej webovej lokalite.</"
-"p> <ul> <li>Máte záujem o <a href=\"%(rec)s\">zoznam odporúčaných doplnkov</a>?</li> <li> Chcete <a href=\"%(search)s\">hľadať doplnky</a>? Môžete prejsť na <a href=\"%(search)s\">stránku "
-"vyhľadávania</a> alebo použiť vyhľadávacie pole vyššie. </li> <li> Ak chcete začať odznova, prejdite na <a href=\"%(home)s\">úvodnú stránku doplnkov</a>. </li> </ul>"
+"nesprávne zadali adresu. </p> <ul> <li>Ak ste zadali adresu, skontrolujte pravopis.</li> <li> Ak ste klikli na odkaz na inej stránke, prosím, %(open_bug_link)snahláste nám tento "
+"problém%(close_bug_link)s. Povedzte nám, odkiaľ ste prišli a čo ste hľadali, a my sa pokúsime to napraviť. </li> </ul> <p>Alebo môžete prejsť na niektoré z obľúbených stránok na našej webovej "
+"lokalite.</p> <ul> <li>Máte záujem o <a href=\"%(rec)s\">zoznam odporúčaných doplnkov</a>?</li> <li> Chcete <a href=\"%(search)s\">hľadať doplnky</a>? Môžete prejsť na <a href=\"%(search)s\">stránku"
+" vyhľadávania</a> alebo použiť vyhľadávacie pole vyššie. </li> <li> Ak chcete začať odznova, prejdite na <a href=\"%(home)s\">úvodnú stránku doplnkov</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -341,7 +341,7 @@ msgid "Register or Log in"
 msgstr "Zaregistrujte sa alebo sa prihláste"
 
 msgid "Email:"
-msgstr "E-mailová adresa:"
+msgstr "E‑mailová adresa:"
 
 msgid "Two-factor authentication"
 msgstr "Dvojstupňové overenie"
@@ -419,7 +419,7 @@ msgid "Invalid token or hash."
 msgstr "Neplatný token alebo hash."
 
 msgid "Email address not found."
-msgstr "E-mailová adresa sa nenašla."
+msgstr "E‑mailová adresa sa nenašla."
 
 msgid "Unavailable for legal reasons."
 msgstr "Z právnych dôvodov nedostupné."
@@ -614,10 +614,10 @@ msgid "Application max version for {version} updated."
 msgstr "Maximálna verzia aplikácie pre {version} bola aktualizovaná."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Autori boli informovaní e-mailom o kompatibilite verzie {version}."
+msgstr "Autori boli informovaní e‑mailom o kompatibilite verzie {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr "E-mail o kompatibilite doplnku bol odoslaný autorovi."
+msgstr "E‑mail o kompatibilite doplnku bol odoslaný autorovi."
 
 msgid "Password changed."
 msgstr "Heslo bolo zmenené."
@@ -1421,8 +1421,8 @@ msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
-"Firefox pridáva podporu pre rozšírenia s manifestom verzie 3 (MV3) od Firefoxu {version}, avšak staršie verzie Firefoxu sú kompatibilné iba s rozšíreniami manifestu verzie 2 (MV2). Odporúčame "
-"zatiaľ nahrávať rozšírenia s manifestom verzie 3 len na vlastnú stránku, aby sa nenarušila kompatibilita pre vašich používateľov."
+"Firefox pridáva podporu pre rozšírenia s manifestom verzie 3 (MV3) od Firefoxu {version}, avšak staršie verzie Firefoxu sú kompatibilné iba s rozšíreniami manifestu verzie 2 (MV2). Odporúčame zatiaľ"
+" nahrávať rozšírenia s manifestom verzie 3 len na vlastnú stránku, aby sa nenarušila kompatibilita pre vašich používateľov."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
 msgstr "Ďalšie informácie o zavádzaní rozšírení s manifestom verzie 3 alebo rozšírení s manifestom verzie 3 a s vlastným hosťovaním nájdete na https://mzl.la/3hIwQXX"
@@ -1633,7 +1633,7 @@ msgid "Invitation declined."
 msgstr "Pozvánka bolo odmietnutá."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr "Potvrdzovací e-mail bol odoslaný na adresu {email}"
+msgstr "Potvrdzovací e‑mail bol odoslaný na adresu {email}"
 
 msgid "Changes successfully saved."
 msgstr "Zmeny boli úspešne uložené."
@@ -2048,12 +2048,12 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategórie sú hlavným spôsobom, akým používatelia prehliadajú doplnky. Vyberte si akýkoľvek, ktorý vyhovuje funkciám vášho doplnku, aby ste boli čo najviac vystavení."
 
 msgid "Email"
-msgstr "E-mailová adresa"
+msgstr "E‑mailová adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
-msgstr "Ak chcete zobraziť e-mailovú adresu pre otázky podpory, zadajte ju sem. Ak máte rôzne adresy pre každý jazyk, je možné pridať viacero prekladov tohto poľa. Týka sa to len uvedených doplnkov."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
+msgstr "Ak chcete zobraziť e‑mailovú adresu pre otázky podpory, zadajte ju sem. Ak máte rôzne adresy pre každý jazyk, je možné pridať viacero prekladov tohto poľa. Týka sa to len uvedených doplnkov."
 
 msgid "Website"
 msgstr "Webová stránka"
@@ -2062,8 +2062,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantné "
-"len pre uverejnené doplnky."
+"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantné len"
+" pre uverejnené doplnky."
 
 msgid "Images"
 msgstr "Obrázky"
@@ -2098,8 +2098,8 @@ msgid "Whiteboard"
 msgstr "Nástenka"
 
 msgid ""
-"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that "
-"may help. This whiteboard is also editable by reviewers."
+"The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
+" help. This whiteboard is also editable by reviewers."
 msgstr ""
 "Nástenka je miesto, kde môžete kontrolórom poskytnúť informácie relevantné pre váš doplnok, bez ohľadu na jeho verziu. Použite ju na poskytnutie spôsobov testovania doplnku a akýchkoľvek ďalších "
 "informácií, ktoré môžu byť užitočné. Túto nástenku môžu upravovať aj redaktori."
@@ -2114,8 +2114,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Nahrajte ikonu svojho doplnku alebo si vyberte niektorú z našich. Ikona sa zobrazuje takmer všade, kde sa nachádza váš doplnok. Nahrané obrázky musia byť jedného z nasledujúcich typov obrázkov: ."
-"png, .jpg. Týka sa to len verejných doplnkov."
+"Nahrajte ikonu svojho doplnku alebo si vyberte niektorú z našich. Ikona sa zobrazuje takmer všade, kde sa nachádza váš doplnok. Nahrané obrázky musia byť jedného z nasledujúcich typov obrázkov: "
+".png, .jpg. Týka sa to len verejných doplnkov."
 
 msgid "Select an icon for your add-on:"
 msgstr "Zvoľte ikonu pre váš doplnok:"
@@ -2368,7 +2368,7 @@ msgid "Select a category for this add-on:"
 msgstr "Vyberte kategóriu pre tento doplnok:"
 
 msgid "Support email:"
-msgstr "E-mail podpory:"
+msgstr "E‑mail podpory:"
 
 msgid "Support website:"
 msgstr "Stránka podpory:"
@@ -2448,8 +2448,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Hotovo! ✨ Keď bude táto verzia zverejnená na stránkach %(site_domain)s, dostanete potvrdzujúci e-mail. Upozorňujeme, že zverejnenie môže trvať až 24 hodín alebo dlhšie, ak je váš doplnok vybratý na "
-"manuálnu kontrolu. Ak e-mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
+"Hotovo! ✨ Keď bude táto verzia zverejnená na stránkach %(site_domain)s, dostanete potvrdzujúci e‑mail. Upozorňujeme, že zverejnenie môže trvať až 24 hodín alebo dlhšie, ak je váš doplnok vybratý na "
+"manuálnu kontrolu. Ak e‑mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Váš doplnok bude úspešnejší, ak pridáte jeho podrobný popis. Pripravte sa na zverejnenie:"
@@ -2627,8 +2627,8 @@ msgstr "Kľúč JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
 "Ak chcete zadať požiadavky cez rozhranie API, odošlite ako autorizačnú hlavičku <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a>. Pre každú požiadavku budete musieť vygenerovať JWT, ako je "
 "vysvetlené v <a href=\"%(docs_url)s\">dokumentácii API</a>."
@@ -2638,7 +2638,7 @@ msgid "Please click the confirm button below to generate API credentials for use
 msgstr "Kliknutím na tlačidlo potvrdenia nižšie vygenerujete prihlasovacie údaje k API pre používateľa <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "Na vašu e-mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
+msgstr "Na vašu e‑mailovú adresu bude odoslaný potvrdzovací odkaz. Po potvrdení nájdete svoje API kľúče na tejto stránke."
 
 msgid "You don't have any API credentials."
 msgstr "Nemáte žiadne prihlasovacie údaje k API."
@@ -2730,8 +2730,7 @@ msgid ""
 "We noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. In order to protect your account and your add-on(s), we revoked the leaked credentials.\n"
 "You can generate new API credentials at %(api_keys_url)s\n"
 "\n"
-"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and "
-"your extensions to remove any references to your AMO credentials.\n"
+"Please make sure you never share your credentials with anyone. Never include them in a public repository, add-on or any other public place. We encourage you to review your code repositories and your extensions to remove any references to your AMO credentials.\n"
 "\n"
 "Thank you,\n"
 "The Mozilla Add-ons team"
@@ -2741,8 +2740,7 @@ msgstr ""
 "všimli sme si, že vaše tajné prihlasovacie údaje k AMO API boli zahrnuté v doplnku odoslanom na addons.mozilla.org. V záujme ochrany vášho účtu a vašich doplnkov sme odvolali uniknuté údaje.\n"
 "Nové poverenia API môžete vygenerovať tu: %(api_keys_url)s\n"
 "\n"
-"Uistite sa, že svoje prihlasovacie údaje nikdy s nikým nezdieľate. Nikdy ich neumiestňujte do verejného úložiska, doplnku ani na iné verejné miesto. Odporúčame vám skontrolovať svoje úložiská kódu "
-"a rozšírenia a odstrániť všetky odkazy na vaše prihlasovacie údaje k AMO.\n"
+"Uistite sa, že svoje prihlasovacie údaje nikdy s nikým nezdieľate. Nikdy ich neumiestňujte do verejného úložiska, doplnku ani na iné verejné miesto. Odporúčame vám skontrolovať svoje úložiská kódu a rozšírenia a odstrániť všetky odkazy na vaše prihlasovacie údaje k AMO.\n"
 "\n"
 "Ďakujeme,\n"
 "Tím doplnkov Mozilly"
@@ -2754,13 +2752,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Dokončite svoj doplnok pridaním verzie alebo chýbajúcich metadát."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Po dokončení kontroly dostanete e-mail. Dovtedy sa váš doplnok nenachádza v našej galérii, ale môžete k nemu pristupovať priamo zo stránky s jeho detailami."
+msgstr "Po dokončení kontroly dostanete e‑mail. Dovtedy sa váš doplnok nenachádza v našej galérii, ale môžete k nemu pristupovať priamo zo stránky s jeho detailami."
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Váš doplnok je zobrazený v našej galérii a používatelia automaticky prijímajú aktualizácie."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
-msgstr "Váš doplnok bol zakázaný správcom stránky a už sa nezobrazuje v našej galérii. Ak máte nejaké otázky, pošlite e-mail na adresu amo-admins@mozilla.com."
+msgstr "Váš doplnok bol zakázaný správcom stránky a už sa nezobrazuje v našej galérii. Ak máte nejaké otázky, pošlite e‑mail na adresu amo-admins@mozilla.com."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Váš doplnok nebude zahrnutý do výsledkov vyhľadávania a jeho stránka bude indikovať, že ste ho deaktivovali. V tomto stave nebudú akceptované nové verzie na zaradenie do zoznamu."
@@ -2838,11 +2836,12 @@ msgid "Firefox for Android compatibility"
 msgstr "Kompatibilita s Firefoxom pre Android"
 
 msgid ""
-"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
-"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
-"Otestovali ste svoje rozšírenie, aby ste sa uistili, že vo Firefoxe pre Android funguje podľa očakávania? Ak nie, pozrite si stránku <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://"
-"extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Vývoj rozšírení pre Firefox pre Android</a>, kde nájdete pokyny na testovanie pred odoslaním."
+"Otestovali ste svoje rozšírenie, aby ste sa uistili, že vo Firefoxe pre Android funguje podľa očakávania? Ak nie, pozrite si stránku <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Vývoj rozšírení pre Firefox pre Android</a>, kde nájdete pokyny na testovanie pred "
+"odoslaním."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
 msgstr "Áno, testoval som svoje rozšírenie s Firefoxom pre Android"
@@ -2860,7 +2859,7 @@ msgid "Version Signature Pending"
 msgstr "Čaká sa na podpis verzie"
 
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "Hotovo! ✨ Keď bude podpísaný súbor pripravený na stiahnutie z Centra pre vývojárov, dostanete upozornenie e-mailom. Ak e-mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
+msgstr "Hotovo! ✨ Keď bude podpísaný súbor pripravený na stiahnutie z Centra pre vývojárov, dostanete upozornenie e‑mailom. Ak e‑mail nevidíte ani po 24 hodinách, skontrolujte si priečinok so spamom."
 
 msgid "License"
 msgstr "Licencia"
@@ -2947,7 +2946,7 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr "Buďte informovaní o novinkách a udalostiach pre vývojárov rozšírení Firefoxu."
 
 msgid "Email Address"
-msgstr "E-mailová adresa"
+msgstr "E‑mailová adresa"
 
 #, python-format
 msgid "I’m okay with Mozilla handling my info as explained in this %(link_open)sPrivacy Notice%(link_close)s."
@@ -2961,8 +2960,8 @@ msgstr "Ďakujeme!"
 
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
 msgstr ""
-"Ak ste v minulosti nepotvrdili odber noviniek Mozilly, mali by ste tak urobiť teraz. Pozrite sa, prosím, do vašej e-mailovej schránky, prípadne i do priečinku s nevyžiadanou poštou, či sa tam "
-"nenachádza e-mail od nás."
+"Ak ste v minulosti nepotvrdili odber noviniek Mozilly, mali by ste tak urobiť teraz. Pozrite sa, prosím, do vašej e‑mailovej schránky, prípadne i do priečinku s nevyžiadanou poštou, či sa tam "
+"nenachádza e‑mail od nás."
 
 msgid "Resources"
 msgstr "Zdroje"
@@ -3083,8 +3082,8 @@ msgstr "Zaregistrujte si účet vývojára alebo sa prihláste do Centra pre vý
 msgid "Manage Version {0}"
 msgstr "Spravovať verziu {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Spravovať {0}"
 
@@ -3265,16 +3264,16 @@ msgstr "Zrušenie vašej žiadosti o kontrolu označí váš doplnok za neúpln�
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Naozaj chcete zrušiť vašu žiadosť o kontrolu?"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chýb"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} upozornenie"
@@ -3389,7 +3388,7 @@ msgstr "Zastavte škodlivé webové stránky vo využívaní výkonu vášho po�
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr "Získajte pomoc s gramatikou kdekoľvek na webe – sociálne médiá, e-mail, dokumenty a ďalšie."
+msgstr "Získajte pomoc s gramatikou kdekoľvek na webe – sociálne médiá, e‑mail, dokumenty a ďalšie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3454,7 +3453,7 @@ msgstr "Netreba písať to isté stále dookola. Uložte si často zadávaný te
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr "Získajte viac miesta na obrazovke odstránením reklám zo svojej e-mailovej schránky na webe."
+msgstr "Získajte viac miesta na obrazovke odstránením reklám zo svojej e‑mailovej schránky na webe."
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
@@ -3661,7 +3660,7 @@ msgstr "Otvorte novú kartu napravo od aktuálnej karty, nie na konci riadku."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr "Zvíťazte nad spamom. Používajte chytré dočasné e-mailové adresy, aby ste zostali v anonymite a vyhli sa spamu."
+msgstr "Zvíťazte nad spamom. Používajte chytré dočasné e‑mailové adresy, aby ste zostali v anonymite a vyhli sa spamu."
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -4149,7 +4148,7 @@ msgstr "Všetky vaše emotikony, ktoré potrebujete – vždy len na jedno klikn
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr "Zamaskujte svoju e-mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte."
+msgstr "Zamaskujte svoju e‑mailovú adresu. Firefox Relay chráni vašu identitu a zabraňuje nevyžiadanej pošte."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4245,7 +4244,7 @@ msgstr "Vráťte sa do jednoduchšieho obdobia – keď vaše najlepšie výsled
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr "Zamaskujte svoj e-mail, aby ste ochránili svoju identitu a zabránili nevyžiadanej pošte. Vďaka novinkám je používanie služby Firefox Relay ešte jednoduchšie."
+msgstr "Zamaskujte svoj e‑mail, aby ste ochránili svoju identitu a zabránili nevyžiadanej pošte. Vďaka novinkám je používanie služby Firefox Relay ešte jednoduchšie."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4371,8 +4370,8 @@ msgstr "Rozšírenia zamerané na zvýšenie súkromia"
 msgid "See more recommended privacy extensions"
 msgstr "Ďalšie odporúčané rozšírenia pre ochranu súkromia"
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
+# Plural in this context means many of the add-on type
 msgid "Popular extensions"
 msgstr "Populárne rozšírenia"
 
@@ -5106,7 +5105,7 @@ msgid "You can only enter one, either IP Address or Network."
 msgstr "Môžete zadať iba jednu adresu IP alebo sieť."
 
 msgid "No user with that email."
-msgstr "Používateľ s touto e-mailovou adresou neexistuje."
+msgstr "Používateľ s touto e‑mailovou adresou neexistuje."
 
 msgid "Firefox user {id}"
 msgstr "Používateľ Firefoxu - {id}"
@@ -5118,26 +5117,26 @@ msgid "Multiple submissions violating our policies have been sent from your loca
 msgstr "Z vašej lokality bolo odoslaných viacero príspevkov porušujúcich naše pravidlá. Adresa IP bola zablokovaná."
 
 msgid "Email Pattern"
-msgstr "Formát e-mailovej adresy"
+msgstr "Formát e‑mailovej adresy"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
-"Zadajte celý e-mail, ktorý má byť zablokovaný, alebo použite zástupné znaky v štýle unix, napr. \"*@example.com\". Ak potrebujete zablokovať doménu vrátane subdomén, pridajte druhú položku, napr. "
+"Zadajte celý e‑mail, ktorý má byť zablokovaný, alebo použite zástupné znaky v štýle unix, napr. \"*@example.com\". Ak potrebujete zablokovať doménu vrátane subdomén, pridajte druhú položku, napr. "
 "\"*@*.example.com\"."
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr "E-mailová adresa použitá pre váš účet nemá povolené odosielanie príspevkov."
+msgstr "E‑mailová adresa použitá pre váš účet nemá povolené odosielanie príspevkov."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
 "restrictions\" instead."
 msgstr ""
-"Zadajte úplnú jednorazovú e-mailovú doménu, ktorá má byť zablokovaná. Zástupné znaky nie sú podporované: ak ich potrebujete alebo potrebujete zadať celú e-mailovú adresu a nielen časť domény, "
-"použite namiesto toho položku „Obmedzenia na e-mailové adresy“."
+"Zadajte úplnú jednorazovú e‑mailovú doménu, ktorá má byť zablokovaná. Zástupné znaky nie sú podporované: ak ich potrebujete alebo potrebujete zadať celú e‑mailovú adresu a nielen časť domény, "
+"použite namiesto toho položku „Obmedzenia na e‑mailové adresy“."
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Skôr ako začnete, prečítajte si a prijmite našu Distribučnú zmluvu pre doplnky Firefoxu, ako aj naše Zásady a pravidlá kontroly. Distribučná zmluva pre doplnky Firefoxu tiež odkazuje na naše "
 "Vyhlásenie o ochrane osobných údajov, ktoré vysvetľuje, ako narábame s vašimi informáciami."
@@ -5198,8 +5197,7 @@ msgstr ""
 msgid ""
 "Greetings %(author_name)s,\n"
 "\n"
-"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the "
-"website.\n"
+"You have been invited to become an author of %(addon_name)s on %(domain)s. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.\n"
 "\n"
 "Click on the link below to respond if you want to be added as an author for %(addon_name)s.\n"
 "\n"
@@ -5212,14 +5210,13 @@ msgid ""
 msgstr ""
 "Dobrý deň, %(author_name)s,\n"
 "\n"
-"boli ste pozvaní stať sa autorom doplnku %(addon_name)s na stránkach %(domain)s. Prijatím pozvánky získate prístup na úpravu doplnku a vaše meno sa môže zobraziť v zozname autorov na webovej "
-"stránke.\n"
+"boli ste pozvaní stať sa autorom doplnku %(addon_name)s na stránkach %(domain)s. Prijatím pozvánky získate prístup na úpravu doplnku a vaše meno sa môže zobraziť v zozname autorov na webovej stránke.\n"
 "\n"
 "Ak chcete byť pridaný ako autor doplnku %(addon_name)s, kliknite na odkaz nižšie.\n"
 "\n"
 "%(author_confirmation_link)s\n"
 "\n"
-"Ak ste neočakávali, že dostanete túto pozvánku, pošlite e-mail na adresu amo-admins@mozilla.com.\n"
+"Ak ste neočakávali, že dostanete túto pozvánku, pošlite e‑mail na adresu amo-admins@mozilla.com.\n"
 "\n"
 "S priateľským pozdravom,\n"
 "Tím doplnkov Mozilly"
@@ -5248,8 +5245,7 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
-"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
-"Firefox Accounts to Mozilla accounts).\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed Firefox Accounts to Mozilla accounts).\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
 "\n"
@@ -5259,10 +5255,9 @@ msgid ""
 msgstr ""
 "Dobrý deň,\n"
 "\n"
-"túto správu ste dostali, pretože váš používateľský účet %(name)s na stránkach %(site_url)s bol odstránený. Mohlo sa to stať, ak ste nedávno odstránili svoj účet Mozilla (účty Firefox sme "
-"premenovali na účty Mozilla).\n"
+"túto správu ste dostali, pretože váš používateľský účet %(name)s na stránkach %(site_url)s bol odstránený. Mohlo sa to stať, ak ste nedávno odstránili svoj účet Mozilla (účty Firefox sme premenovali na účty Mozilla).\n"
 "\n"
-"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e-mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
+"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e‑mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
 "\n"
 "S pozdravom,\n"
 "\n"
@@ -5284,7 +5279,7 @@ msgstr ""
 "\n"
 "túto správu ste dostali, pretože váš používateľský účet %(name)s na stránkach %(site_url)s bol odstránený. Mohlo to byť vykonané automaticky, ak ste nedávno odstránili svoj účet Firefox.\n"
 "\n"
-"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e-mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
+"Ak ste tak neurobili alebo sa domnievate, že do vášho účtu vstúpila neoprávnená osoba, odpovedzte na tento e‑mail. V opačnom prípade nie je potrebné podniknúť žiadne ďalšie kroky.\n"
 "\n"
 "S pozdravom,\n"
 "\n"
