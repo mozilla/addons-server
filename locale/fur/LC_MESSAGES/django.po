@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 16:56+0000\n"
+"PO-Revision-Date: 2023-10-22 17:42+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -86,47 +86,47 @@ msgstr "Dome lis ultimis versions dai components adizionâi a puedin vê zontadi
 
 #: src/olympia/activity/views.py:126
 msgid "Request content length is too large."
-msgstr ""
+msgstr "La lungjece dal contignût de richieste al è masse grant."
 
 #: src/olympia/addons/fields.py:44
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Numar massim di categoriis par aplicazion ({MAX_CATEGORIES}) superât"
 
 #: src/olympia/addons/fields.py:51
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Nol è pussibil cumbinâ la categorie “altri” cuntune altre categorie"
 
 #: src/olympia/addons/fields.py:67 src/olympia/addons/serializers.py:1210
 msgid "Invalid category name."
-msgstr ""
+msgstr "Non di categorie no valit."
 
 #: src/olympia/addons/fields.py:72
 msgid "Invalid app name."
-msgstr ""
+msgstr "Non de aplicazion no valit."
 
 #: src/olympia/addons/fields.py:112
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "Il domini dal URL al scugne jessi un tra [{domains}]."
 
 #: src/olympia/addons/fields.py:121 src/olympia/devhub/forms.py:304
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "Il percors dal URL pai sponsors GitHub al scugne contignî /sponsors/."
 
 #: src/olympia/addons/fields.py:124 src/olympia/devhub/forms.py:307
 msgid "URLs must start with https://."
-msgstr ""
+msgstr "I URLs a scugnin scomençâ cun https://."
 
 #: src/olympia/addons/fields.py:183
 msgid "License with slug={value} does not exist."
-msgstr ""
+msgstr "La licence cun slug={value} no esist."
 
 #: src/olympia/addons/fields.py:205
 msgid "Unsupported file type, please upload an archive file ({extensions})."
-msgstr ""
+msgstr "Gjenar di file no supuartât. cjame in rêt un file archivi ({extensions})."
 
 #: src/olympia/addons/fields.py:228 src/olympia/devhub/forms.py:774 src/olympia/files/utils.py:781
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "Archivi no valit o ruvinât."
 
 #: src/olympia/addons/fields.py:260
 msgid "Invalid app specified"
