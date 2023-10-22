@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 18:42+0000\n"
+"PO-Revision-Date: 2023-10-22 18:47+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -357,31 +357,31 @@ msgstr "Inserìs une rêt IP4 o IP6 valide."
 
 #: src/olympia/amo/fields.py:108
 msgid "CIDR"
-msgstr ""
+msgstr "CIDR"
 
 #: src/olympia/amo/middleware.py:243 src/olympia/devhub/templates/devhub/index.html:59 src/olympia/templates/base.html:65
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Cualchi funzion pal moment e je disativade par lavôrs di manutenzion. Ca di pôc o tornarìn ae normâl funzionalitât."
 
 #: src/olympia/amo/validators.py:14
 msgid "Must contain at least one printable character."
-msgstr ""
+msgstr "Al scugne contignî almancul un caratar stampabil."
 
 #: src/olympia/amo/validators.py:34
 msgid "Ensure this field contains at least one letter or number character."
-msgstr ""
+msgstr "Siguriti che chest cjamp al contegni almancul une letare o un numar."
 
 #: src/olympia/amo/templates/amo/403.html:3
 msgid "Not allowed"
-msgstr ""
+msgstr "Operazion no consintude"
 
 #: src/olympia/amo/templates/amo/403.html:8
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Orpo! Operazion no consintude."
 
 #: src/olympia/amo/templates/amo/403.html:10
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Tu âs cirût di fâ alc che no tu podevis fâ."
 
 #: src/olympia/amo/templates/amo/403.html:18
 msgid ""
