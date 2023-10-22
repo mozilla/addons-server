@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 18:47+0000\n"
+"PO-Revision-Date: 2023-10-22 19:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -388,20 +388,24 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Tu stâs viodint chest messaç parcè che chest sît HTTPS al domande che il navigadôr Web al mandi un 'Referer header', ma nol è stât mandât. Cheste intestazion e je necessarie par resons di sigurece, "
+"il so fin al è chel di garantî che il navigadôr nol vegni dirotât di tiercis parts."
 
 #: src/olympia/amo/templates/amo/403.html:26
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Se tal navigadôr tu âs disativât lis intestazions 'Referer', torne ativilis, almancul par chest sît o pes conession HTTPS, o pes richiestis 'same-origin'."
 
 #: src/olympia/amo/templates/amo/403.html:36
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Tu stâs viodint chest messaç parcè che chest sît al domande un cookie CSRF cuant che tu inviis formularis. Chest cookie al è necessari par resons di sigurece, il so fin al è chel di garantî che il "
+"to navigadôr nol vegni dirotât di tiercis parts."
 
 #: src/olympia/amo/templates/amo/404.html:3
 msgid "Not Found"
-msgstr ""
+msgstr "No cjatât"
 
 #: src/olympia/amo/templates/amo/404.html:7
 #, python-format
@@ -426,67 +430,67 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
-msgstr ""
+msgstr "Regjistriti o jentre"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:13
 msgid "Email:"
-msgstr ""
+msgstr "E-mail:"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:14
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Autenticazion a doi fatôrs"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
 msgid "OK"
-msgstr ""
+msgstr "Va ben"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:63 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:76
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:89 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:102
 msgid "Prev"
-msgstr ""
+msgstr "Precedente"
 
 #: src/olympia/amo/templates/amo/paginator.html:25 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:51
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:65 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:78
 #: src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:91 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:104
 #: src/olympia/stats/templates/stats/stats.html:158
 msgid "Next"
-msgstr ""
+msgstr "Sucessive"
 
 #: src/olympia/amo/templates/amo/paginator.html:31 src/olympia/reviewers/templates/reviewers/includes/paginator_history.html:11
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
-msgstr ""
+msgstr "Risultâts <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> di <strong>%(count)s</strong>"
 
 #: src/olympia/amo/templates/amo/read-only.html:3 src/olympia/amo/templates/amo/read-only.html:7
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Manutenzion in cors"
 
 #: src/olympia/amo/templates/amo/read-only.html:9
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Cheste funzion e je pal moment disativade intant che o fasìn lavôrs di manutenzion sul sît web. Dopre il boton Indaûr dal to navigadôr e torne prove plui tart."
 
 #: src/olympia/amo/templates/amo/read-only.html:14
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Cualchi funzion su cheste pagjine e je disativade in mût temporani intant che o fasìn lavôrs di manutenzion sul sît web. Torne prove plui tart."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:144
 msgid "Add-ons for {0}"
-msgstr ""
+msgstr "Components adizionâi par {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/templatetags/jinja_helpers.py:177
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} indaûr"
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Title"
-msgstr ""
+msgstr "Titul"
 
 #: src/olympia/amo/tests/test_messages.py:54 src/olympia/amo/tests/test_messages.py:55
 msgid "Body"
-msgstr ""
+msgstr "Cuarp"
 
 #: src/olympia/amo/tests/test_messages.py:56
 msgid "Another Title"
