@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 18:26+0000\n"
+"PO-Revision-Date: 2023-10-22 18:42+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -257,103 +257,103 @@ msgstr "Chest cjamp al è obligatori pai components adizionâi cu lis versions l
 
 #: src/olympia/addons/validators.py:157
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr ""
+msgstr "Al è necessari specificâ i metadâts dal component adizionâl par creâ une version listade: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:272
 msgid "A GUID must be specified in the manifest."
-msgstr ""
+msgstr "Al è necessari specificâ un GUID tal manifest."
 
 #: src/olympia/addons/validators.py:276
 msgid "GUID mismatch between the URL and manifest."
-msgstr ""
+msgstr "Mancjade corispondence dal GUID tra URL e manifest."
 
 #: src/olympia/addons/validators.py:290
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "Nol è pussibil cambiâ il codiç sorzint parcè che cheste version e je stade revisionade di Mozilla."
 
 #: src/olympia/addons/validators.py:314
 msgid "This type of add-on does not allow custom compatibility."
-msgstr ""
+msgstr "Chest gjenar di component adizionâl nol amet compatibilitâts personalizadis."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:14 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:15
 msgid "My Add-ons"
-msgstr ""
+msgstr "I miei components adizionâi"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 msgid "My Themes"
-msgstr ""
+msgstr "I miei temis"
 
 #: src/olympia/amo/context_processors.py:30 src/olympia/devhub/templates/devhub/nav.html:48 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:16
 msgid "Tools"
-msgstr ""
+msgstr "Struments"
 
 #: src/olympia/amo/context_processors.py:39
 msgid "My Profile"
-msgstr ""
+msgstr "Il gno profîl"
 
 #: src/olympia/amo/context_processors.py:43
 msgid "Account Settings"
-msgstr ""
+msgstr "Impostazions account"
 
 #: src/olympia/amo/context_processors.py:46
 msgid "My Collections"
-msgstr ""
+msgstr "Lis mês racueltis"
 
 #: src/olympia/amo/context_processors.py:51 src/olympia/templates/user_login.html:15 src/olympia/templates/user_login.html:17
 msgid "Log out"
-msgstr ""
+msgstr "Disconet"
 
 #: src/olympia/amo/context_processors.py:59 src/olympia/devhub/templates/devhub/addons/dashboard.html:4
 msgid "Manage My Submissions"
-msgstr ""
+msgstr "Gjestìs i miei cjariaments in rêt"
 
 #: src/olympia/amo/context_processors.py:65 src/olympia/devhub/templates/devhub/addons/dashboard.html:24 src/olympia/devhub/templates/devhub/addons/submit/base.html:8
 #: src/olympia/devhub/templates/devhub/nav.html:27 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:97
 msgid "Submit a New Add-on"
-msgstr ""
+msgstr "Cjame in rêt un gnûf component adizionâl"
 
 #: src/olympia/amo/context_processors.py:71 src/olympia/devhub/templates/devhub/addons/dashboard.html:28 src/olympia/devhub/templates/devhub/addons/submit/base.html:6
 #: src/olympia/devhub/templates/devhub/nav.html:29 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:98
 msgid "Submit a New Theme"
-msgstr ""
+msgstr "Cjame in rêt un gnûf teme"
 
 #: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:85 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
-msgstr ""
+msgstr "Centri di svilup"
 
 #: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2009
 msgid "Manage API Keys"
-msgstr ""
+msgstr "Gjestion clâfs API"
 
 #: src/olympia/amo/context_processors.py:85
 msgid "Reviewer Tools"
-msgstr ""
+msgstr "Struments par revisôrs"
 
 #: src/olympia/amo/context_processors.py:91
 msgid "Admin Tools"
-msgstr ""
+msgstr "Struments di aministrazion"
 
 #: src/olympia/amo/fields.py:23
 msgid "Positive integer"
-msgstr ""
+msgstr "Numar intîr positîf"
 
 #: src/olympia/amo/fields.py:77 src/olympia/api/fields.py:395
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Al è pussibil doprâ chest cjamp dome par colegâsi a sîts web esternis. I URLs di %(domain)s no son consintûts."
 
 #: src/olympia/amo/fields.py:92
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Sbaliât, torne prove."
 
 #: src/olympia/amo/fields.py:93
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Erôr tal verificâ i dâts inserîts, torne prove."
 
 #: src/olympia/amo/fields.py:102 src/olympia/amo/fields.py:109
 msgid "Enter a valid IP4 or IP6 network."
-msgstr ""
+msgstr "Inserìs une rêt IP4 o IP6 valide."
 
 #: src/olympia/amo/fields.py:108
 msgid "CIDR"
