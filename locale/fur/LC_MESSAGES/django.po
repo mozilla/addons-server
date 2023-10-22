@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 17:42+0000\n"
+"PO-Revision-Date: 2023-10-22 17:51+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -130,49 +130,49 @@ msgstr "Archivi no valit o ruvinât."
 
 #: src/olympia/addons/fields.py:260
 msgid "Invalid app specified"
-msgstr ""
+msgstr "Specificade aplicazion no valide"
 
 #: src/olympia/addons/fields.py:277
 msgid "Unknown max app version specified"
-msgstr ""
+msgstr "Specificade version massime di aplicazion no cognossude"
 
 #: src/olympia/addons/fields.py:289
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "Specificade version minime di aplicazion no cognossude"
 
 #: src/olympia/addons/fields.py:298 src/olympia/addons/fields.py:316 src/olympia/addons/serializers.py:625
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr ""
+msgstr "Nol è pussibil sorescrivi lis informazions di compatibilitât stabilidis tal manifest par cheste aplicazion (%s)"
 
 #: src/olympia/addons/fields.py:367
 #, python-format
 msgid "Images must be smaller than %dMB"
-msgstr ""
+msgstr "Lis imagjins a scugnin jessi plui piçulis di %dMB"
 
 #: src/olympia/addons/models.py:2067 src/olympia/addons/models.py:2127 src/olympia/constants/base.py:67
 msgid "Listed"
-msgstr ""
+msgstr "Listât"
 
 #: src/olympia/addons/models.py:2310
 msgid "Add-on and collection paths need to end with \"/\""
-msgstr ""
+msgstr "I percors di components adizionâi e di racueltis a scugnin finî cul caratar “/”"
 
 #: src/olympia/addons/serializers.py:220
 msgid "Previews cannot be created for themes."
-msgstr ""
+msgstr "Nol è pussibil creâ anteprimis pai temis."
 
 #: src/olympia/addons/serializers.py:307
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "Nol è pussibil inzornâ lis licencis integradis."
 
 #: src/olympia/addons/serializers.py:502
 msgid "Upload is not valid."
-msgstr ""
+msgstr "Il cjariament in rêt nol è valit."
 
 #: src/olympia/addons/serializers.py:518
 msgid "File is already disabled."
-msgstr ""
+msgstr "Il file al è za disativât."
 
 #: src/olympia/addons/serializers.py:521 src/olympia/addons/views.py:715
 #, python-format
