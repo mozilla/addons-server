@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 17:51+0000\n"
+"PO-Revision-Date: 2023-10-22 18:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -178,18 +178,20 @@ msgstr "Il file al è za disativât."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nol è pussibil eliminâ la ultime version aprovade di chest component adizionâl %s parcè che chê precedente no jere stade aprovade pe promozion ae categorie %s. Par assistence contate un aministradôr"
+" di AMO."
 
 #: src/olympia/addons/serializers.py:536
 msgid "Version {version_string} was uploaded before and deleted."
-msgstr ""
+msgstr "La version {version_string} e je za stade cjariade e po eliminade."
 
 #: src/olympia/addons/serializers.py:540
 msgid "Version {version_string} already exists."
-msgstr ""
+msgstr "La version {version_string} e esist bielzà."
 
 #: src/olympia/addons/serializers.py:559
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr ""
+msgstr "Nol è pussibil mandâ lis version listadis intant che il component adizionâl al è disativât."
 
 #: src/olympia/addons/serializers.py:600
 #, python-format
