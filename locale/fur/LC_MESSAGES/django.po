@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 18:11+0000\n"
+"PO-Revision-Date: 2023-10-22 18:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -201,35 +201,35 @@ msgstr "%(addon_type_plural)s no son supuartâts di %(app_name)s"
 #: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:926
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Interval di versions no valit. Par Firefox par Android tu puedis selezionâ dome un interval che al tache cu la version %(max)s o superiôr o che al finìs cuntune version inferiôr a %(min)s."
 
 #: src/olympia/addons/serializers.py:874
 msgid "Add-ons need at least one owner."
-msgstr ""
+msgstr "I components adizionâi a àn bisugne di almancul un proprietari."
 
 #: src/olympia/addons/serializers.py:889
 msgid "Add-ons need at least one listed author."
-msgstr ""
+msgstr "I components adizionâi a àn bisugne di almancul un autôr listât."
 
 #: src/olympia/addons/serializers.py:909
 msgid "Account not found."
-msgstr ""
+msgstr "Account no cjatât."
 
 #: src/olympia/addons/serializers.py:922 src/olympia/devhub/forms.py:436 src/olympia/devhub/forms.py:506
 msgid "An author can only be present once."
-msgstr ""
+msgstr "Ogni autôr al pues vê dome une sole presince."
 
 #: src/olympia/addons/serializers.py:932 src/olympia/devhub/forms.py:447
 msgid "The account needs a display name before it can be added as an author."
-msgstr ""
+msgstr "Par jessi zontât come autôr, l’account al à di jessi dotât di un non di visualizazion."
 
 #: src/olympia/addons/serializers.py:1190
 msgid "This slug cannot be used. Please choose another."
-msgstr ""
+msgstr "Nol è pussibil doprâchest slug. Sielç un altri."
 
 #: src/olympia/addons/utils.py:43
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "I nons dai components adizionâi no puedin contignî lis marchis regjistradis di Mozilla o Firefox."
 
 #: src/olympia/addons/utils.py:189
 msgid "Version {version_string} must be greater than the previous approved version {previous_version_string}."
