@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 16:50+0000\n"
+"PO-Revision-Date: 2023-10-22 16:56+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -38,51 +38,51 @@ msgstr "Nol è pussibil doprâ chest non pe visualizazion."
 
 #: src/olympia/accounts/serializers.py:144
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Al è pussibil doprâ il cjamp de pagjine iniziâl dome par colegâsi ai sîts web esternis."
 
 #: src/olympia/accounts/serializers.py:156 src/olympia/addons/fields.py:358 src/olympia/devhub/views.py:999
 msgid "Images must be either PNG or JPG."
-msgstr ""
+msgstr "Lis imagjins a scugnin jessi in formât PNG o JPG."
 
 #: src/olympia/accounts/serializers.py:160 src/olympia/addons/fields.py:363 src/olympia/devhub/views.py:1005
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Lis imagjins no puedin jessi animadis."
 
 #: src/olympia/accounts/serializers.py:166 src/olympia/devhub/views.py:1014
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr ""
+msgstr "Dopre imagjins plui piçulis di %dMB."
 
 #: src/olympia/accounts/views.py:193
 msgid "Need help?"
-msgstr ""
+msgstr "Ti covential jutori?"
 
 #: src/olympia/accounts/views.py:739
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "La notifiche [%s] no esist"
 
 #: src/olympia/activity/models.py:36
 msgid "Add-ons Review Team"
-msgstr ""
+msgstr "Grup di revision dai components adizionâi"
 
 #: src/olympia/activity/models.py:533
 msgid "Review"
-msgstr ""
+msgstr "Recension"
 
 #: src/olympia/activity/models.py:611 src/olympia/devhub/templates/devhub/versions/list.html:41
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Version {0}"
+msgstr[1] "Versions {0}"
 
 #: src/olympia/activity/serializers.py:40
 msgid "Review note"
-msgstr ""
+msgstr "Note di revision"
 
 #: src/olympia/activity/views.py:94
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Dome lis ultimis versions dai components adizionâi a puedin vê zontadis lis notis."
 
 #: src/olympia/activity/views.py:126
 msgid "Request content length is too large."
