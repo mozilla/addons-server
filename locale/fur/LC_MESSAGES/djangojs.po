@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 16:41+0000\n"
+"PO-Revision-Date: 2023-10-22 16:47+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -871,86 +871,86 @@ msgstr "Dopli"
 
 #: static/js/zamboni/themes_review.js:197
 msgid "Rejected"
-msgstr ""
+msgstr "Refudât"
 
 #: static/js/zamboni/themes_review.js:198
 msgid "Approved"
-msgstr ""
+msgstr "Aprovât"
 
 #: static/js/zamboni/themes_review.js:487
 msgid "No results found"
-msgstr ""
+msgstr "Nissun risultât cjatât"
 
 #: static/js/zamboni/themes_review_templates.js:37
 msgid "Theme"
-msgstr ""
+msgstr "Teme"
 
 #: static/js/zamboni/themes_review_templates.js:39
 msgid "Reviewer"
-msgstr ""
+msgstr "Revisôr"
 
 #: static/js/zamboni/themes_review_templates.js:41
 msgid "Status"
-msgstr ""
+msgstr "Stât"
 
 #: static/js/zamboni/validator.js:85
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Dutis lis provis a son stadis superadis cun sucès."
 
 #: static/js/zamboni/validator.js:88 static/js/zamboni/validator.js:383
 msgid "These tests were not run."
-msgstr ""
+msgstr "No son stadis fatis chestis provis."
 
 #: static/js/zamboni/validator.js:151 static/js/zamboni/validator.js:173
 msgid "Tests"
-msgstr ""
+msgstr "Provis"
 
 #: static/js/zamboni/validator.js:255 static/js/zamboni/validator.js:487 static/js/zamboni/validator.js:511
 msgid "Error"
-msgstr ""
+msgstr "Erôr"
 
 #: static/js/zamboni/validator.js:255
 msgid "Warning"
-msgstr ""
+msgstr "Avertiment"
 
 #: static/js/zamboni/validator.js:327
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} rie {1} colone {2}"
 
 #: static/js/zamboni/validator.js:334
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} rie {1}"
 
 #: static/js/zamboni/validator.js:371
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Il component adizionâl nol à superât la convalide."
 
 #: static/js/zamboni/validator.js:373
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Il component adizionâl al à passât la convalide."
 
 #: static/js/zamboni/validator.js:386
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} erôr"
+msgstr[1] "{0} erôrs"
 
 #: static/js/zamboni/validator.js:389
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} avertimet"
+msgstr[1] "{0} avertiments"
 
 #: static/js/zamboni/validator.js:392
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} avîs"
+msgstr[1] "{0} avîs"
 
 #: static/js/zamboni/validator.js:489
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Impussibil completâ la convalide opûr e je stade completade cun erôrs"
 
 #: static/js/zamboni/validator.js:512
 msgid "Internal server error"
-msgstr ""
+msgstr "Erôr interni dal servidôr"
