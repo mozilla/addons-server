@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-23 18:48+0000\n"
+"PO-Revision-Date: 2023-10-23 19:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -519,19 +519,19 @@ msgstr "Intestazion di autorizazion no valide. La stringhe des credenziâls no �
 
 #: src/olympia/api/authentication.py:107
 msgid "Valid user session not found matching the provided session key."
-msgstr ""
+msgstr "No je stade cjatade une session utent valide che e corispuint ae clâf di session furnide."
 
 #: src/olympia/api/authentication.py:121
 msgid "Access token refresh failed; user needs to login to FxA again."
-msgstr ""
+msgstr "Inzornament falît dal gjeton di acès; l’utent al à di jentrâ di gnûf su FxA."
 
 #: src/olympia/api/authentication.py:187
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Une o plui clâfs dal contignût a son di gjenar sbaliât"
 
 #: src/olympia/api/authentication.py:190
 msgid "Signature has expired."
-msgstr ""
+msgstr "La firme e je scjadude."
 
 #: src/olympia/api/authentication.py:193
 msgid "Error decoding signature."
