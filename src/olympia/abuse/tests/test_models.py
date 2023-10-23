@@ -52,10 +52,15 @@ class TestAbuse(TestCase):
             (6, 'Hateful, violent, or illegal content'),
             (7, 'Pretends to be something it’s not'),
             (9, "Wasn't wanted / impossible to get rid of"),
-            (11, 'DSA: Contains hate speech'),
-            (12, 'DSA: Contains child sexual abuse material'),
-            (20, 'Feedback: Doesn’t work, breaks websites, or slows Firefox down'),
-            (21, "Feedback: Wasn't wanted or can't be uninstalled"),
+            (
+                11,
+                'DSA: It contains hateful, violent, deceptive, or other inappropriate '
+                'content',
+            ),
+            (12, 'DSA: It violates the law or contains content that violates the law'),
+            (13, "DSA: It violates Mozilla's Add-on Policies"),
+            (20, 'Feedback: It does not work, breaks websites, or slows down Firefox'),
+            (21, "Feedback: It's spam"),
             (127, 'Other'),
         )
         assert AbuseReport.REASONS.api_choices == (
@@ -67,10 +72,11 @@ class TestAbuse(TestCase):
             (6, 'policy'),
             (7, 'deceptive'),
             (9, 'unwanted'),
-            (11, 'hate_speech'),
-            (12, 'csam'),
+            (11, 'hateful_violent_deceptive'),
+            (12, 'illegal'),
+            (13, 'policy_violation'),
             (20, 'does_not_work'),
-            (21, 'not_wanted'),
+            (21, 'feedback_spam'),
             (127, 'other'),
         )
 
@@ -262,7 +268,7 @@ class TestCinderReport(TestCase):
         user = user_factory()
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon.guid, reason=AbuseReport.REASONS.CSAM
+                guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
             )
         )
         helper = cinder_report.get_helper()
@@ -277,7 +283,7 @@ class TestCinderReport(TestCase):
     def test_report(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
             )
         )
         responses.add(
@@ -294,7 +300,7 @@ class TestCinderReport(TestCase):
     def test_can_be_appealed(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
             ),
             decision_id='4815162342-lost',
             decision_date=self.days_ago(179),
@@ -323,7 +329,7 @@ class TestCinderReport(TestCase):
     def test_appeal(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.CSAM
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
             ),
             decision_id='4815162342-lost',
             decision_date=self.days_ago(179),
