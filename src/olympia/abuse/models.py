@@ -101,7 +101,7 @@ class AbuseReport(ModelBase):
             'Feedback: It does not work, breaks websites, or slows down Firefox',
         ),
         (
-            'NOT_WANTED',
+            'SPAM',
             21,
             "Feedback: It's spam",
         ),
