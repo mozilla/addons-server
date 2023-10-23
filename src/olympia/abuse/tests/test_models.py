@@ -58,12 +58,9 @@ class TestAbuse(TestCase):
                 'content',
             ),
             (12, 'DSA: It violates the law or contains content that violates the law'),
-            (13, 'DSA: It violates Add-on Policies'),
+            (13, "DSA: It violates Mozilla's Add-on Policies"),
             (20, 'Feedback: It does not work, breaks websites, or slows down Firefox'),
-            (
-                21,
-                "Feedback: It's spam",
-            ),
+            (21, "Feedback: It's spam"),
             (127, 'Other'),
         )
         assert AbuseReport.REASONS.api_choices == (
@@ -75,11 +72,11 @@ class TestAbuse(TestCase):
             (6, 'policy'),
             (7, 'deceptive'),
             (9, 'unwanted'),
-            (11, 'hate_speech'),
+            (11, 'hateful_violent_deceptive'),
             (12, 'illegal'),
             (13, 'policy_violation'),
             (20, 'does_not_work'),
-            (21, 'not_wanted'),
+            (21, 'feedback_spam'),
             (127, 'other'),
         )
 
