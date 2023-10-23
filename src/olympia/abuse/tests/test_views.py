@@ -470,19 +470,19 @@ class AddonAbuseViewSetTestBase:
     @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
-        self._setup_reportable_reason('hate_speech')
+        self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
     @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
-        self._setup_reportable_reason('hate_speech')
+        self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
 
     @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=True)
     def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
-        self._setup_reportable_reason('not_wanted')
+        self._setup_reportable_reason('feedback_spam')
         task_mock.assert_not_called()
 
 
