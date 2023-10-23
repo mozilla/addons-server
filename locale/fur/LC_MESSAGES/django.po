@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-23 17:15+0000\n"
+"PO-Revision-Date: 2023-10-23 17:32+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -433,6 +433,9 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
+"<h1>Orpo! Al è vignût fûr un erôr.</h1> <p>Lu risolvarìn daurman.</p> <p>Intant tu puedis tornâ a cjariâ la pagjine, opûr tornâ ae <a href=\"%(home)s\">pagjine principâl di Mozilla Add-ons</a>. Tu "
+"Puedis ancje judânus a risolvi chest erôr <a href=\"https://github.com/mozilla/addons/issues/new\">vierzint un erôr (issue) su GitHub</a>, includint i detais su cemût che tu sês rivât/rivade a "
+"cheste pagjine.</p>"
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:4
 msgid "Register or Log in"
@@ -500,11 +503,11 @@ msgstr "Cuarp"
 
 #: src/olympia/amo/tests/test_messages.py:56
 msgid "Another Title"
-msgstr ""
+msgstr "Altri titul"
 
 #: src/olympia/amo/tests/test_messages.py:56
 msgid "Another Body"
-msgstr ""
+msgstr "Altri cuarp"
 
 #: src/olympia/api/authentication.py:63 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
