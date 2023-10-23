@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 19:02+0000\n"
+"PO-Revision-Date: 2023-10-23 17:15+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -416,10 +416,16 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
+"<h1>Nus displâs, no rivìn a cjatâ ce che tu stâs cirint.</h1> <p> La pagjine o il file domandâts no son disponibii su chest sît. Al è pussibil che tu vedis doprât un colegament scjadût o fat un erôr"
+" di scriture de direzion.</p> <ul> <li>Se tu âs inserît la direzion a man, verifiche che no vedi erôrs di scriture.</li> <li> Se invezit tu âs viert un colegament su chest sît, "
+"%(open_bug_link)svierç une segnalazion di erôr%(close_bug_link)s. Spieghinus il percors fat e ce che tu stavis cirint, o fasarìn di dut par comedâ l'erôr.</li></ul><p>In alternative, tu puedis "
+"visitâ cualchidune des pagjinis plui popolârs dal nestri sît.</p><ul><li>Desideristu cognossi <a href=\"%(rec)s\">i components adizionâi conseâts di nô</a>?</li><li>Opûr preferissistu <a "
+"href=\"%(search)s\">cirînt un par to cont</a>? Tu puedis fâlu sedi de  <a href=\"%(search)s\">pagjine di ricercje</a>, sedi midiant il cjamp di ricercje chi sore.</li><li> Se tu preferissis tornâ a "
+"partî dal inizi, tu puedis tornâ ae <a href=\"%(home)s\">pagjine principâl</a>.</li></ul>"
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr ""
+msgstr "Orpo"
 
 #: src/olympia/amo/templates/amo/500.html:11
 #, python-format
