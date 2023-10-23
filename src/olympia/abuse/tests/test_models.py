@@ -62,7 +62,7 @@ class TestAbuse(TestCase):
             (20, 'Feedback: It does not work, breaks websites, or slows down Firefox'),
             (
                 21,
-                "Feedback: It's spam. Wasn't wanted or can't be uninstalled",
+                "Feedback: It's spam",
             ),
             (127, 'Other'),
         )

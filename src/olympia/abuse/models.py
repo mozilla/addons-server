@@ -83,7 +83,7 @@ class AbuseReport(ModelBase):
         #
         # Reporting reasons used in AMO Feedback flow - DSA categories
         (
-            'HATE_SPEECH',
+            'HATEFUL_VIOLENT_DECEPTIVE',
             11,
             'DSA: It contains hateful, violent, deceptive, or other inappropriate '
             'content',
@@ -93,7 +93,7 @@ class AbuseReport(ModelBase):
             12,
             'DSA: It violates the law or contains content that violates the law',
         ),
-        ('POLICY_VIOLATION', 13, 'DSA: It violates Add-on Policies'),
+        ('POLICY_VIOLATION', 13, 'DSA: It violates Mozilla's Add-on Policies'),
         # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
         (
             'DOES_NOT_WORK',
@@ -103,12 +103,12 @@ class AbuseReport(ModelBase):
         (
             'NOT_WANTED',
             21,
-            "Feedback: It's spam. Wasn't wanted or can't be uninstalled",
+            "Feedback: It's spam",
         ),
         ('OTHER', 127, 'Other'),
     )
     REPORTABLE_REASONS = (
-        REASONS.HATE_SPEECH,
+        REASONS.HATEFUL_VIOLENT_DECEPTIVE,
         REASONS.ILLEGAL,
         REASONS.POLICY_VIOLATION,
         REASONS.OTHER,
