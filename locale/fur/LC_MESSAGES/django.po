@@ -511,7 +511,7 @@ msgstr "Altri cuarp"
 
 #: src/olympia/api/authentication.py:63 src/olympia/api/authentication.py:247
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Intestazion di autorizazion no valide. Nissune credenziâl indicade."
 
 #: src/olympia/api/authentication.py:71 src/olympia/api/authentication.py:250
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
