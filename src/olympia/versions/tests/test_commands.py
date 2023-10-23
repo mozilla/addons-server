@@ -1,11 +1,10 @@
 import csv
 import os
 import tempfile
+from unittest import mock
 
-from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.test.utils import override_settings
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, version_factory
@@ -436,11 +435,11 @@ class TestBumpMinAndroidCompatibility(TestCase):
     # Force MIN_VERSION_FENIX_GENERAL_AVAILABILITY to 119.0a1 so that we can
     # set the ApplicationsVersions to that value in the test data we're
     # creating. It's overridden below when triggering call_command().
-    @override_settings(MIN_VERSION_FENIX_GENERAL_AVAILABILITY='119.0a1')
+    @mock.patch.object(amo, 'MIN_VERSION_FENIX_GENERAL_AVAILABILITY', '119.0a1')
     def test_basic(self):
         AppVersion.objects.get_or_create(
             application=amo.ANDROID.id,
-            version=settings.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
         )
         new_min_android_ga_version = '120.0a1'
         AppVersion.objects.get_or_create(
@@ -491,8 +490,8 @@ class TestBumpMinAndroidCompatibility(TestCase):
             ),
         ]
 
-        with override_settings(
-            MIN_VERSION_FENIX_GENERAL_AVAILABILITY=new_min_android_ga_version
+        with mock.patch.object(
+            amo, 'MIN_VERSION_FENIX_GENERAL_AVAILABILITY', new_min_android_ga_version
         ):
             call_command('bump_min_android_compatibility')
 

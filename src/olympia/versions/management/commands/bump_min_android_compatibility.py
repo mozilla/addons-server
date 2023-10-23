@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
@@ -24,7 +23,7 @@ class Command(BaseCommand):
     def handle(self, **kwargs):
         new_minimum = AppVersion.objects.get(
             application=amo.ANDROID.id,
-            version=settings.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
         )
         qs = ApplicationsVersions.objects.filter(
             application=amo.ANDROID.id,
