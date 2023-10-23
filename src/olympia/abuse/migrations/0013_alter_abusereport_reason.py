@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                         12,
                         'DSA: It violates the law or contains content that violates the law',
                     ),
-                    (13, 'DSA: It violates Mozilla's Add-on Policies'),
+                    (13, "DSA: It violates Mozilla's Add-on Policies"),
                     (
                         20,
                         'Feedback: It does not work, breaks websites, or slows down Firefox',
