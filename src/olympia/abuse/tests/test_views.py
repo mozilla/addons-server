@@ -663,7 +663,7 @@ class TestAppeal(TestCase):
     def setUp(self):
         self.addon = addon_factory()
         self.abuse_report = AbuseReport.objects.create(
-            reason=AbuseReport.REASONS.HATE_SPEECH,
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
             guid=self.addon.guid,
             created=self.days_ago(2),
         )
