@@ -93,7 +93,7 @@ class AbuseReport(ModelBase):
             12,
             'DSA: It violates the law or contains content that violates the law',
         ),
-        ('POLICY_VIOLATION', 13, 'DSA: It violates Mozilla's Add-on Policies'),
+        ('POLICY_VIOLATION', 13, "DSA: It violates Mozilla's Add-on Policies"),
         # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
         (
             'DOES_NOT_WORK',
