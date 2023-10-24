@@ -268,6 +268,7 @@ class AddonAbuseViewSetTestBase:
             'report_entry_point': None,
             'reporter_name': 'Somebody',
             'reporter_email': 'some@body.com',
+            'location': 'addon',
         }
         response = self.client.post(
             self.url,
@@ -304,6 +305,7 @@ class AddonAbuseViewSetTestBase:
         assert report.addon_install_source is None
         assert report.addon_install_source_url is None
         assert report.report_entry_point is None
+        assert report.location == 2
 
     def test_reporter_name_email_reason_fields_can_be_null(self):
         data = {
@@ -354,6 +356,7 @@ class AddonAbuseViewSetTestBase:
             'report_entry_point': 'Something not in entrypoint choices',
             'reporter_name': 'n' * 256,
             'reporter_email': 'not an email address',
+            'location': 'A location not in location choices',
         }
         response = self.client.post(
             self.url,
@@ -388,6 +391,7 @@ class AddonAbuseViewSetTestBase:
             ],
             'reporter_name': [expected_max_length_message % 255],
             'reporter_email': ['Enter a valid email address.'],
+            'location': [expected_choices_message % data['location']],
         }
         # Note: addon_install_method and addon_install_source silently convert
         # unknown values to "other", so the values submitted here, despite not

@@ -57,6 +57,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report_addon_exists_doesnt_matter(self):
@@ -86,6 +87,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report(self):
@@ -114,6 +116,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report_to_internal_value_with_some_fancy_parameters(self):
