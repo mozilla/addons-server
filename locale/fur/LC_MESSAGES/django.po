@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-23 19:50+0000\n"
+"PO-Revision-Date: 2023-10-24 09:12+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -535,52 +535,52 @@ msgstr "La firme e je scjadude."
 
 #: src/olympia/api/authentication.py:193
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Erôr te decodifiche de firme."
 
 #: src/olympia/api/authentication.py:196
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Gjeton JWT no valit."
 
 #: src/olympia/api/authentication.py:273
 msgid "Invalid token or hash."
-msgstr ""
+msgstr "Gjeton o hash no valits."
 
 #: src/olympia/api/authentication.py:275
 msgid "Email address not found."
-msgstr ""
+msgstr "Direzion e-mail no cjatade."
 
 #: src/olympia/api/exceptions.py:16
 msgid "Unavailable for legal reasons."
-msgstr ""
+msgstr "No disponibil par motîfs legâi."
 
 #: src/olympia/api/fields.py:90
 msgid "The language code \"{lang_code}\" is invalid."
-msgstr ""
+msgstr "Il codiç de lenghe “{lang_code}” nol è valit."
 
 #: src/olympia/api/fields.py:91
 msgid "You must provide an object of {{lang-code:value}}."
-msgstr ""
+msgstr "Tu scugnis indicâ un ogjet di {{lang-code:value}}."
 
 #: src/olympia/api/fields.py:92
 msgid "A value in the default locale of \"{lang_code}\" is required."
-msgstr ""
+msgstr "Al covente un valôr te localizazion predefinide di “{lang_code}”."
 
 #: src/olympia/api/fields.py:95
 msgid "A value in the default locale of \"{lang_code}\" is required if other translations are set."
-msgstr ""
+msgstr "Al covente un valôr te localizazion predefinide di “{lang_code}” se a son configuradis altris traduzions."
 
 #: src/olympia/api/fields.py:377
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "\"%s\" nol è un pk o un slug valit - l’ogjet nol esist."
 
 #: src/olympia/api/models.py:148
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "Conferme par clâfs API di svilupadôr"
 
 #: src/olympia/bandwagon/serializers.py:71
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Chest URL personalizât al è za doprât di une altre des tôs racueltis."
 
 #: src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."

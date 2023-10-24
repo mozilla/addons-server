@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:02+0000\n"
+"PO-Revision-Date: 2023-10-24 09:05+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -392,7 +392,7 @@ msgstr "Racueltis"
 
 #: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
-msgstr "Categorie di benvignût carosel di In risalt"
+msgstr "Categorie di benvignût carosel di ce che al è in risalt"
 
 #: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
@@ -408,35 +408,35 @@ msgstr "Categorie di benvignût zontâts di resint"
 
 #: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Listis ordenadis par ce che al è in risalt"
 
 #: static/js/stats/csv_keys.js:88 static/js/stats/csv_keys.js:89
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Listis ordenadis par utents"
 
 #: static/js/stats/csv_keys.js:90 static/js/stats/csv_keys.js:91
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Listis ordenadis par vôt"
 
 #: static/js/stats/csv_keys.js:92 static/js/stats/csv_keys.js:93
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Listis ordenadis par date di creazion"
 
 #: static/js/stats/csv_keys.js:94 static/js/stats/csv_keys.js:95
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Listis ordenadis par non"
 
 #: static/js/stats/csv_keys.js:96 static/js/stats/csv_keys.js:97
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Listis ordenadis par popolaritât"
 
 #: static/js/stats/csv_keys.js:98 static/js/stats/csv_keys.js:99
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Listis ordenadis par date di inzornament"
 
 #: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:101
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Listis ordenadis par ce che al è daûr a rivâ"
 
 #: static/js/stats/csv_keys.js:105
 msgid "Total Amount Contributed"
