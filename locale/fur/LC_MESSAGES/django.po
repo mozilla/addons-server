@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:20+0000\n"
+"PO-Revision-Date: 2023-10-24 09:30+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -652,51 +652,51 @@ msgstr "{version} modificade par {addon}."
 #. L10n: {0} is the version number
 #: src/olympia/constants/activity.py:117
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Version {0} eliminade di {addon}."
 
 #: src/olympia/constants/activity.py:125
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "File {file} zontât a {addon} {version}."
 
 #: src/olympia/constants/activity.py:137
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "File {0} eliminât di {addon} {version}."
 
 #: src/olympia/constants/activity.py:143
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} aprovât."
 
 #: src/olympia/constants/activity.py:144 src/olympia/constants/base.py:26 src/olympia/constants/base.py:33
 msgid "Approved"
-msgstr ""
+msgstr "Aprovât"
 
 #: src/olympia/constants/activity.py:154
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Revision preliminâr dade par {addon} {version}."
 
 #: src/olympia/constants/activity.py:155
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Aprovazion preliminâr"
 
 #: src/olympia/constants/activity.py:166
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} refudât."
 
 #: src/olympia/constants/activity.py:167 src/olympia/files/models.py:292
 msgid "Rejected"
-msgstr ""
+msgstr "Refudât"
 
 #: src/olympia/constants/activity.py:177
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "{addon} {version} mantignût in code."
 
 #: src/olympia/constants/activity.py:178
 msgid "Retained"
-msgstr ""
+msgstr "Mantignût in code"
 
 #: src/olympia/constants/activity.py:188
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} mandât indenant par progression."
 
 #: src/olympia/constants/activity.py:189 src/olympia/constants/activity.py:223
 msgid "Super review requested"
