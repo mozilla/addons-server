@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 10:03+0000\n"
+"PO-Revision-Date: 2023-10-24 10:07+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1052,55 +1052,55 @@ msgstr "Refudament contignûts programât"
 
 #: src/olympia/constants/activity.py:798
 msgid "{addon} {version} reject scheduled."
-msgstr ""
+msgstr "Programât refudament di {addon} {version}."
 
 #: src/olympia/constants/activity.py:799
 msgid "Rejection scheduled"
-msgstr ""
+msgstr "Refudament programât"
 
 #: src/olympia/constants/activity.py:809
 msgid "{addon} {version} re-signed (previously {0})."
-msgstr ""
+msgstr "{addon} {version} tornât a firmâ (prime {0})."
 
 #: src/olympia/constants/activity.py:810
 msgid "Version re-signed"
-msgstr ""
+msgstr "Version tornade a firmâ"
 
 #: src/olympia/constants/activity.py:856
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "Gjavât refût par {addon} {version}."
 
 #: src/olympia/constants/activity.py:857
 msgid "Un-rejected"
-msgstr ""
+msgstr "Gjavât refût"
 
 #: src/olympia/constants/activity.py:894
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "Scrite rispueste a {rating} par {addon}."
 
 #: src/olympia/constants/activity.py:911
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Cancelât refudament in spiete par {addon} {version}."
 
 #: src/olympia/constants/activity.py:912
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Cancelât refudament in spiete"
 
 #: src/olympia/constants/activity.py:934
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "{version} zontade ae liste di bloc."
 
 #: src/olympia/constants/activity.py:935
 msgid "Version Blocked"
-msgstr ""
+msgstr "Version blocade"
 
 #: src/olympia/constants/activity.py:943
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "{version} gjavade de liste di bloc."
 
 #: src/olympia/constants/activity.py:944
 msgid "Version Unblocked"
-msgstr ""
+msgstr "Version sblocade"
 
 #: src/olympia/constants/activity.py:949
 msgid "{addon} {version} admin add-on-review cleared."
