@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:52+0000\n"
+"PO-Revision-Date: 2023-10-24 10:03+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -924,131 +924,131 @@ msgstr "Aprovazion automatiche di {addon} {version} confermade."
 
 #: src/olympia/constants/activity.py:620
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "Aprovazion automatiche confermade"
 
 #: src/olympia/constants/activity.py:629
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} riativât."
 
 #: src/olympia/constants/activity.py:635
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} disativât."
 
 #: src/olympia/constants/activity.py:641
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "Contignûts di {addon} {version} aprovâts."
 
 #: src/olympia/constants/activity.py:642
 msgid "Content approved"
-msgstr ""
+msgstr "Contignûts aprovâts"
 
 #: src/olympia/constants/activity.py:652
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Contignûts di {addon} {version} refudâts."
 
 #: src/olympia/constants/activity.py:653
 msgid "Content rejected"
-msgstr ""
+msgstr "Contignûts refudâts"
 
 #: src/olympia/constants/activity.py:662
 msgid "{addon} information request altered or removed by admin."
-msgstr ""
+msgstr "Richieste informazions par {addon} alterade o gjavade dal aministradôr."
 
 #: src/olympia/constants/activity.py:663
 msgid "Information request altered"
-msgstr ""
+msgstr "Richieste informazions alterade"
 
 #: src/olympia/constants/activity.py:671
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr ""
+msgstr "Richieste informazions risolte dal svilupadôr su {addon} {version}."
 
 #: src/olympia/constants/activity.py:672
 msgid "Information request removed"
-msgstr ""
+msgstr "Richieste informazions gjavade"
 
 #: src/olympia/constants/activity.py:679
 msgid "{addon} {version} admin add-on-review requested."
-msgstr ""
+msgstr "Richieste revision de bande di un aministradôr par {addon} {version}."
 
 #: src/olympia/constants/activity.py:680
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "Richieste revision de bande di un aministradôr pal component adizionâl"
 
 #: src/olympia/constants/activity.py:689
 msgid "{addon} {version} admin content-review requested."
-msgstr ""
+msgstr "Richieste revision contignûts de bande di un aministradôr par {addon} {version}."
 
 #: src/olympia/constants/activity.py:690
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "Richieste revision contignûts de bande di un aministradôr"
 
 #: src/olympia/constants/activity.py:699
 msgid "{addon} {version} admin theme-review requested."
-msgstr ""
+msgstr "Richieste revision teme de bande di un aministradôr par {addon} {version}."
 
 #: src/olympia/constants/activity.py:700
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "Richieste revision teme de bande di un aministradôr"
 
 #: src/olympia/constants/activity.py:710
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "{addon} al à fat la migrazion di un teme lizêr."
 
 #: src/olympia/constants/activity.py:716
 msgid "User {user} api key reset."
-msgstr ""
+msgstr "La clâf API dal utent {user} e je stade ripristinade."
 
 #: src/olympia/constants/activity.py:725
 msgid "Block for {0} added to Blocklist."
-msgstr ""
+msgstr "Bloc par {0} zontât ae liste di bloc."
 
 #: src/olympia/constants/activity.py:726
 msgid "Block added"
-msgstr ""
+msgstr "Bloc zontât"
 
 #: src/olympia/constants/activity.py:734
 msgid "Block for {0} edited in Blocklist."
-msgstr ""
+msgstr "Bloc par {0} modificât te liste di bloc."
 
 #: src/olympia/constants/activity.py:735
 msgid "Block edited"
-msgstr ""
+msgstr "Bloc modificât"
 
 #: src/olympia/constants/activity.py:743
 msgid "Block for {0} deleted from Blocklist."
-msgstr ""
+msgstr "Bloc par {0} eliminât de liste di bloc."
 
 #: src/olympia/constants/activity.py:744
 msgid "Block deleted"
-msgstr ""
+msgstr "Bloc eliminât"
 
 #: src/olympia/constants/activity.py:752
 msgid "GUID for {addon} added to DeniedGuid."
-msgstr ""
+msgstr "GUID par {addon} zontât a DeniedGuid."
 
 #: src/olympia/constants/activity.py:760
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr ""
+msgstr "GUID par {addon} gjavât di DeniedGuid."
 
 #: src/olympia/constants/activity.py:767
 msgid "Block {1} action for {0} signed off."
-msgstr ""
+msgstr "Bloche azion {1} par {0} firmât."
 
 #: src/olympia/constants/activity.py:768
 msgid "Block action signoff"
-msgstr ""
+msgstr "Bloche azion di firme"
 
 #: src/olympia/constants/activity.py:773
 msgid "User {user} session(s) reset."
-msgstr ""
+msgstr "Session(s) utent {user} ripristinade/is."
 
 #: src/olympia/constants/activity.py:786
 msgid "{addon} {version} content reject scheduled."
-msgstr ""
+msgstr "Programât refudament contignûts di {addon} {version}."
 
 #: src/olympia/constants/activity.py:787
 msgid "Content reject scheduled"
-msgstr ""
+msgstr "Refudament contignûts programât"
 
 #: src/olympia/constants/activity.py:798
 msgid "{addon} {version} reject scheduled."
