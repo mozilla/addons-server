@@ -201,6 +201,19 @@ class TestAbuse(TestCase):
             (5, 'unified_context_menu'),
         )
 
+        assert AbuseReport.LOCATION.choices == (
+            (None, 'None'),
+            (1, 'Add-on page on AMO'),
+            (2, 'Inside Add-on'),
+            (3, 'Both on AMO and inside Add-on'),
+        )
+        assert AbuseReport.LOCATION.api_choices == (
+            (None, None),
+            (1, 'amo'),
+            (2, 'addon'),
+            (3, 'both'),
+        )
+
     def test_type(self):
         report = AbuseReport.objects.create(guid='@lol')
         assert report.type == 'Addon'

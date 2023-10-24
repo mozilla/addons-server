@@ -186,6 +186,11 @@ class AbuseReport(ModelBase):
         ('SUSPICIOUS', 3, 'Suspicious'),
         ('DELETED', 4, 'Deleted'),
     )
+    LOCATION = APIChoicesWithNone(
+        ('AMO', 1, 'Add-on page on AMO'),
+        ('ADDON', 2, 'Inside Add-on'),
+        ('BOTH', 3, 'Both on AMO and inside Add-on'),
+    )
 
     # NULL if the reporter was not authenticated.
     reporter = models.ForeignKey(
@@ -270,6 +275,9 @@ class AbuseReport(ModelBase):
     )
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True, null=True
+    )
+    location = models.PositiveSmallIntegerField(
+        default=None, choices=LOCATION.choices, blank=True, null=True
     )
 
     unfiltered = AbuseReportManager(include_deleted=True)

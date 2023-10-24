@@ -48,6 +48,7 @@ to if necessary.
     :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
     :<json string|null appversion: The application version used by the client.
     :<json string|null lang: The language code of the locale used by the client for the application.
+    :<json string|null location: Where the content being reported is located - on AMO or inside the add-on. The accepted values are documented in the :ref:`table below <abuse-location-parameter>`.
     :<json string|null client_id: The client's hashed telemetry ID.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
@@ -77,6 +78,7 @@ to if necessary.
     :>json string|null app: The application used by the client.
     :>json string|null appversion: The application version used by the client.
     :>json string|null lang: The language code of the locale used by the client for the application.
+    :>json string|null location: Where the content being reported is located - on AMO or inside the add-on.
     :>json string|null client_id: The client's hashed telemetry ID.
     :>json string|null install_date: The add-on install date.
     :>json string|null operating_system: The client's operating system.
@@ -206,6 +208,18 @@ to if necessary.
                        other  Something else
  ===========================  ================================================================
 
+
+.. _abuse-location-parameter:
+
+ Accepted values for the ``location`` parameter:
+
+ ===========================  ===================================================
+                       Value  Description
+ ===========================  ===================================================
+                         amo  Offending content is on add-on's detail page on AMO
+                       addon  Offending content is inside the add-on
+                        both  Offending content is in both locations
+ ===========================  ===================================================
 
 
 ------------------------------

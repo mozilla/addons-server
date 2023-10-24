@@ -90,6 +90,11 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         required=False,
         allow_null=True,
     )
+    location = ReverseChoiceField(
+        choices=list(AbuseReport.LOCATION.api_choices),
+        required=False,
+        allow_null=True,
+    )
 
     class Meta:
         model = AbuseReport
@@ -112,6 +117,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'operating_system_version',
             'reason',
             'report_entry_point',
+            'location',
         )
 
     def validate(self, data):
