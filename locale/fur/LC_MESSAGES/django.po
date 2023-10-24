@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:41+0000\n"
+"PO-Revision-Date: 2023-10-24 09:52+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -802,125 +802,125 @@ msgstr "Recension {rating} par {addon} eliminade."
 
 #: src/olympia/constants/activity.py:369
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Version massime inzornade par {version}."
 
 #: src/olympia/constants/activity.py:375
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "E-mail mandade ai autôrs in merit ae compatibilitât di {version}."
 
 #: src/olympia/constants/activity.py:380
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "E-mail mandade al autôr in merit ae compatibilitât dal component adizionâl."
 
 #: src/olympia/constants/activity.py:385
 msgid "Password changed."
-msgstr ""
+msgstr "Password modificade."
 
 #: src/olympia/constants/activity.py:391
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} al è stât aprovât ma al è in spiete di jessi rindût public."
 
 #: src/olympia/constants/activity.py:392
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Aprovât ma in spiete"
 
 #: src/olympia/constants/activity.py:400
 msgid "Account updated."
-msgstr ""
+msgstr "Account inzornât."
 
 #: src/olympia/constants/activity.py:405
 msgid "Account {user} deleted."
-msgstr ""
+msgstr "Account {user} eliminât."
 
 #: src/olympia/constants/activity.py:426
 msgid "Created: {0}."
-msgstr ""
+msgstr "Creât: {0}."
 
 #: src/olympia/constants/activity.py:432
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Modificât cjamp: {2} metût a: {0}."
 
 #: src/olympia/constants/activity.py:438
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Eliminât: {1}."
 
 #: src/olympia/constants/activity.py:471
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} par {addon} inzornade."
 
 #: src/olympia/constants/activity.py:479
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} revisionât."
 
 #: src/olympia/constants/activity.py:485
 msgid "User {user} banned."
-msgstr ""
+msgstr "Utent {user} bandît."
 
 #: src/olympia/constants/activity.py:492
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Foto utent di {user} eliminade."
 
 #: src/olympia/constants/activity.py:499
 msgid "User {user} added to {group}."
-msgstr ""
+msgstr "L’utent {user} al è stât zontât al grup {group}."
 
 #: src/olympia/constants/activity.py:507
 msgid "User {user} removed from {group}."
-msgstr ""
+msgstr "L’utent {user} al è stât gjavât dal grup {group}."
 
 #: src/olympia/constants/activity.py:514
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} no listât."
 
 #: src/olympia/constants/activity.py:520 src/olympia/constants/activity.py:527 src/olympia/constants/activity.py:542 src/olympia/constants/activity.py:548 src/olympia/constants/activity.py:555
 #: src/olympia/constants/activity.py:563 src/olympia/constants/activity.py:571
 msgid "{file} was signed."
-msgstr ""
+msgstr "Il file {file} al è stât firmât."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:535
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "L’id dal component adizionâl {0} cun GUID {1} al è stât eliminât"
 
 #: src/olympia/constants/activity.py:577
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} migrât de revision preliminâr."
 
 #: src/olympia/constants/activity.py:584
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Rispueste dal svilupadôr su {addon} {version}."
 
 #: src/olympia/constants/activity.py:585
 msgid "Developer Reply"
-msgstr ""
+msgstr "Rispueste dal svilupadôr"
 
 #: src/olympia/constants/activity.py:593
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Rispueste dal revisôr su {addon} {version}."
 
 #: src/olympia/constants/activity.py:594
 msgid "Reviewer Reply"
-msgstr ""
+msgstr "Rispueste dal revisôr"
 
 #: src/olympia/constants/activity.py:601
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Lis notis pe aprovazion di {addon} {version} a son stadis modificadis."
 
 #: src/olympia/constants/activity.py:602
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Notis di aprovazion modificadis"
 
 #: src/olympia/constants/activity.py:610
 msgid "Source code uploaded for {addon} {version}."
-msgstr ""
+msgstr "Il codiç sorzint di {addon} {version} al è stât cjariât in rêt."
 
 #: src/olympia/constants/activity.py:611
 msgid "Source code uploaded"
-msgstr ""
+msgstr "Codiç sorzint cjariât in rêt"
 
 #: src/olympia/constants/activity.py:619
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "Aprovazion automatiche di {addon} {version} confermade."
 
 #: src/olympia/constants/activity.py:620
 msgid "Auto-Approval confirmed"
