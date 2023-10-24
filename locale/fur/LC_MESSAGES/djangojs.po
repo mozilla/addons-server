@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-22 16:47+0000\n"
+"PO-Revision-Date: 2023-10-24 09:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -392,19 +392,19 @@ msgstr "Racueltis"
 
 #: static/js/stats/csv_keys.js:78 static/js/stats/csv_keys.js:79
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Categorie di benvignût carosel di In risalt"
 
 #: static/js/stats/csv_keys.js:80 static/js/stats/csv_keys.js:81
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Categorie di benvignût plui preseâts"
 
 #: static/js/stats/csv_keys.js:82 static/js/stats/csv_keys.js:83
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Categorie di benvignût plui popolârs"
 
 #: static/js/stats/csv_keys.js:84 static/js/stats/csv_keys.js:85
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Categorie di benvignût zontâts di resint"
 
 #: static/js/stats/csv_keys.js:86 static/js/stats/csv_keys.js:87
 msgid "Browse Listing Featured Sort"
