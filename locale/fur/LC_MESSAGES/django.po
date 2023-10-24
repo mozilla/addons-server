@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:30+0000\n"
+"PO-Revision-Date: 2023-10-24 09:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -700,103 +700,105 @@ msgstr "{addon} {version} mandât indenant par progression."
 
 #: src/olympia/constants/activity.py:189 src/olympia/constants/activity.py:223
 msgid "Super review requested"
-msgstr ""
+msgstr "Domandade super-revision"
 
 #: src/olympia/constants/activity.py:199
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "Domandade revision par {addon} {version}."
 
 #: src/olympia/constants/activity.py:200
 msgid "Review requested"
-msgstr ""
+msgstr "Domandade revision"
 
 #: src/olympia/constants/activity.py:209
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "Domandadis informazions in plui par {addon} {version}."
 
 #: src/olympia/constants/activity.py:210
 msgid "More information requested"
-msgstr ""
+msgstr "Domandadis informazions in plui"
 
 #: src/olympia/constants/activity.py:222
 msgid "{addon} {version} super review requested."
-msgstr ""
+msgstr "Domandade super-revision par {addon} {version}."
 
 #: src/olympia/constants/activity.py:226
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Par chest component adizionâl e je stade domandade la super-revision di un revisôr cun privileçs di aministradôr. Il component al è simpri te code di revision, ma la operazion e podarès puartâ vie "
+"plui timp dal solit."
 
 #: src/olympia/constants/activity.py:238
 msgid "Commented"
-msgstr ""
+msgstr "Comentât"
 
 #: src/olympia/constants/activity.py:248
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} zontât a {addon}."
 
 #: src/olympia/constants/activity.py:255
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} gjavât di {addon}."
 
 #: src/olympia/constants/activity.py:262
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} zontât a {collection}."
 
 #: src/olympia/constants/activity.py:269
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} gjavât di {collection}."
 
 #: src/olympia/constants/activity.py:276
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "Scrite {rating} par {addon}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/constants/activity.py:285
 msgid "{addon} featured in {0}."
-msgstr ""
+msgstr "{addon} in risalt in {0}."
 
 #. L10n: {0} is a category name.
 #: src/olympia/constants/activity.py:292
 msgid "{addon} no longer featured in {0}."
-msgstr ""
+msgstr "{addon} nol è plui in risalt in {0}."
 
 #: src/olympia/constants/activity.py:297
 msgid "{addon} is now featured."
-msgstr ""
+msgstr "{addon} cumò al è in risalt."
 
 #: src/olympia/constants/activity.py:303
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} nol è plui in risalt."
 
 #. L10n: {0} is the application, {1} is the version of the app
 #: src/olympia/constants/activity.py:311
 msgid "{0} {1} added."
-msgstr ""
+msgstr "Zontât {0} {1}."
 
 #. L10n: {0} is the user role
 #: src/olympia/constants/activity.py:319
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "Rôl di {user} cambiât a {0} par {addon}."
 
 #: src/olympia/constants/activity.py:329
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} cumò al è disponibil sot de licence {0}."
 
 #: src/olympia/constants/activity.py:336
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "{addon} al à cambiât politiche."
 
 #: src/olympia/constants/activity.py:343
 msgid "{addon} icon or previews changed."
-msgstr ""
+msgstr "La icone o lis anteprimis di {addon} a son cambiadis."
 
 #: src/olympia/constants/activity.py:350
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "Aprovade {rating} par {addon}."
 
 #: src/olympia/constants/activity.py:361
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "Recension {rating} par {addon} eliminade."
 
 #: src/olympia/constants/activity.py:369
 msgid "Application max version for {version} updated."
