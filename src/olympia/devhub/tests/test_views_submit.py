@@ -381,6 +381,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         self.user.update(read_dev_agreement=None)
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -397,10 +398,8 @@ class TestAddonSubmitDistribution(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login_with_2fa(
-            UserProfile.objects.get(email='regular@mozilla.com')
-        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.url = reverse('devhub.submit.distribution')
         self.create_flag('2fa-enforcement-for-developers-and-special-users')
@@ -491,6 +490,7 @@ class TestAddonSubmitDistribution(TestCase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.42.43')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -512,10 +512,8 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login_with_2fa(
-            UserProfile.objects.get(email='regular@mozilla.com')
-        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
@@ -836,6 +834,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.45.47')
         self.url = reverse('devhub.submit.upload', args=['listed'])
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
@@ -1990,6 +1989,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -1999,6 +1999,14 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    def test_dont_enforce_2fa_for_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
@@ -2368,6 +2376,14 @@ class VersionSubmitUploadMixin:
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    def test_dont_enforce_2fa_for_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):

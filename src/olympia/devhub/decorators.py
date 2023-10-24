@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 
 from olympia import amo
 from olympia.access import acl
+from olympia.accounts.decorators import two_factor_auth_required
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
@@ -108,5 +109,22 @@ def no_admin_disabled(f):
         if addon and addon.status == amo.STATUS_DISABLED:
             raise http.Http404()
         return f(*args, **kw)
+
+    return wrapper
+
+
+def two_factor_auth_required_if_non_theme(f):
+    """Require the user to be authenticated and have 2FA enabled but only if
+    the addon passed to the function is not a theme.
+
+    Needs to be applied after @dev_required or similar decorator that ensures
+    the addon is passed as a keyword argument to the decorated function."""
+
+    @functools.wraps(f)
+    def wrapper(*args, **kw):
+        addon = kw.get('addon')
+        if addon and addon.type == amo.ADDON_STATICTHEME:
+            return f(*args, **kw)
+        return two_factor_auth_required(f)(*args, **kw)
 
     return wrapper
