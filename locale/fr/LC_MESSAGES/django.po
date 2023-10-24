@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-24 16:17+0000\n"
 "PO-Revision-Date: 2023-10-06 11:43+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
@@ -22,11 +22,32 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Assurez-vous que ce champ ne comporte pas plus de {max_length} caractères."
 
 msgid "Invalid value"
 msgstr "Valeur invalide"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Les liens ne sont pas autorisés."
@@ -353,9 +374,6 @@ msgstr "Adresse e-mail :"
 
 msgid "Two-factor authentication"
 msgstr "Authentification à deux facteurs"
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -5113,10 +5131,8 @@ msgstr "Mentions légales"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Sauf mention contraire aux <a href=\"https://www.mozilla.org/about/legal/\">mentions légales</a>, le contenu de ce site est disponible sous licence <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> ou toute version supérieure."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

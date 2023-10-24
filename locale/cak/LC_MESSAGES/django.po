@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-24 16:17+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,32 @@ msgstr ""
 "Generated-By: Babel 2.5.1\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Tatz'eta' chi re k'ojlib'äl re' man nik'o ta chi re ri {max_length} taq tz'ib'."
 
 msgid "Invalid value"
 msgstr "Man okel ta ri retal"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "ÜTZ"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Majun ximonel ya'on q'ij chi re."
@@ -343,9 +364,6 @@ msgstr "Taqoya'l:"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "ÜTZ"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -5102,7 +5120,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

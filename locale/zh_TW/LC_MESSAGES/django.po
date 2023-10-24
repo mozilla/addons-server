@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-24 16:17+0000\n"
 "PO-Revision-Date: 2023-10-08 12:02+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -15,11 +15,32 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "請確保此欄位長度不超過 {max_length} 字元。"
 
 msgid "Invalid value"
 msgstr "無效值"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "確定"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "不允許加入鏈結。"
@@ -334,9 +355,6 @@ msgstr "電子郵件:"
 
 msgid "Two-factor authentication"
 msgstr "雙因素驗證"
-
-msgid "OK"
-msgstr "確定"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -4989,10 +5007,8 @@ msgstr "法律資訊"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>，此網站的內容依照<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新版本授"
-"權使用。"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

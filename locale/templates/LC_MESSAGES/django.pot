@@ -8,22 +8,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-24 16:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.12.1\n"
+"Generated-By: Babel 2.13.0\n"
+
+#: src/olympia/abuse/forms.py:8
+msgid "Email address"
+msgstr ""
+
+#: src/olympia/abuse/forms.py:16
+msgid "Invalid email provided."
+msgstr ""
 
 #: src/olympia/abuse/serializers.py:44
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:134 src/olympia/abuse/serializers.py:150
+#: src/olympia/abuse/serializers.py:140 src/olympia/abuse/serializers.py:156
 #: src/olympia/addons/fields.py:251
 msgid "Invalid value"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:10
+#: src/olympia/abuse/templates/abuse/appeal.html:15
+msgid "Appeal reviewer decision"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:16
+msgid "Decision {0}"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:20
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:31
+#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
+msgid "OK"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:33
+msgid "This decision can't be appealed."
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:131 src/olympia/bandwagon/serializers.py:98
@@ -489,10 +519,6 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:14
 msgid "Two-factor authentication"
-msgstr ""
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
-msgid "OK"
 msgstr ""
 
 #. abbreviation of 'previous'
@@ -7214,7 +7240,7 @@ msgid ""
 "Except where otherwise <a "
 "href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site"
 " is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any "
+"sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> or any "
 "later version."
 msgstr ""
 

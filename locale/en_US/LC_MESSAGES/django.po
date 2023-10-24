@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-24 16:17+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,11 +17,32 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+msgid "Email address"
+msgstr "Email address"
+
+msgid "Invalid email provided."
+msgstr "Invalid email provided."
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Please ensure this field has no more than {max_length} characters."
 
 msgid "Invalid value"
 msgstr "Invalid value"
+
+msgid "Appeal reviewer decision"
+msgstr "Appeal reviewer decision"
+
+msgid "Decision {0}"
+msgstr "Decision {0}"
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr "Thank you. Your appeal has been recorded."
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr "This decision can't be appealed."
 
 msgid "No links are allowed."
 msgstr "No links are allowed."
@@ -353,9 +374,6 @@ msgstr "Email"
 
 msgid "Two-factor authentication"
 msgstr "Two-factor authentication"
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -5440,10 +5458,10 @@ msgstr "Legal"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
