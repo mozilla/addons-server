@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-24 09:12+0000\n"
+"PO-Revision-Date: 2023-10-24 09:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -584,70 +584,70 @@ msgstr "Chest URL personalizât al è za doprât di une altre des tôs racueltis
 
 #: src/olympia/bandwagon/serializers.py:92
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Impussibil doprâ chest non."
 
 #: src/olympia/bandwagon/serializers.py:104
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Dopre letaris, numars, tratuts e tratuts bas par inserî un URL personalizât valit."
 
 #: src/olympia/bandwagon/serializers.py:113
 msgid "This custom URL cannot be used."
-msgstr ""
+msgstr "Nol è pussibil doprâ chest URL personalizât."
 
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Chest component adizionâl al aparten za ae racuelte"
 
 #: src/olympia/constants/activity.py:23
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} al è stât creât."
 
 #: src/olympia/constants/activity.py:33
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Proprietâts di {addon} modificadis."
 
 #: src/olympia/constants/activity.py:40
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Descrizion di {addon} modificade."
 
 #: src/olympia/constants/activity.py:47
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Categoriis modificadis par {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:55
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "{user} ({0}) zontât a {addon}."
 
 #. L10n: {0} is the user role.
 #: src/olympia/constants/activity.py:64
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "{user} ({0}) gjavât di {addon}."
 
 #: src/olympia/constants/activity.py:72
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Donazions par {addon}."
 
 #: src/olympia/constants/activity.py:77
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} disativât."
 
 #: src/olympia/constants/activity.py:84
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} ativât."
 
 #. L10n: {status} is the status
 #: src/olympia/constants/activity.py:92
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "Stât di {addon} cambiât a {status}"
 
 #: src/olympia/constants/activity.py:99
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} zontade a {addon}."
 
 #: src/olympia/constants/activity.py:108
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} modificade par {addon}."
 
 #. L10n: {0} is the version number
 #: src/olympia/constants/activity.py:117
