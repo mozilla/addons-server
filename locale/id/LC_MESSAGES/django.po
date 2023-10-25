@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
 "PO-Revision-Date: 2023-07-31 14:24+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -43,18 +43,6 @@ msgstr "Gambar tidak dapat dijadikan animasi."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Gunakan gambar lebih kecil dari %d MB."
-
-msgid "You are already logged in."
-msgstr "Anda telah masuk."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Upaya Anda untuk masuk tidak bisa diuraikan. Silakan coba lagi."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Akun Firefox tidak dapat ditemukan. Silakan coba lagi."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Anda bisa tidak bisa masuk. Silakan coba lagi."
 
 msgid "Need help?"
 msgstr "Perlu bantuan?"
@@ -161,6 +149,14 @@ msgstr "Versi {version_string} sudah ada."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Versi yang terdaftar tidak dapat dikirim saat pengaya dinonaktifkan."
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Add-ons need at least one owner."
 msgstr "Pengaya membutuhkan sekurangnya satu pemilik."
@@ -642,10 +638,6 @@ msgstr "Akun diperbarui."
 msgid "Account {user} deleted."
 msgstr "Akun diperbarui."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Akun diperbarui."
-
 msgid "Created: {0}."
 msgstr "Dibuat: {0}."
 
@@ -857,6 +849,12 @@ msgstr ""
 msgid "Admin add-on-review cleared"
 msgstr ""
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -924,8 +922,8 @@ msgstr "Словник"
 msgid "Deprecated Search Engine"
 msgstr ""
 
-msgid "Language Pack (Application)"
-msgstr "Paket Bahasa (Aplikasi)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
@@ -939,9 +937,8 @@ msgstr "LWT Usang"
 msgid "Theme (Static)"
 msgstr "Tema (Statis)"
 
-#, fuzzy
-msgid "Site Permission"
-msgstr "Hak Akses:"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -957,9 +954,8 @@ msgstr "Kamus"
 msgid "Deprecated Search Tools"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "Paket Bahasa (Aplikasi)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -973,9 +969,8 @@ msgstr "LWTs Usang"
 msgid "Themes (Static)"
 msgstr "Tema (Statis)"
 
-#, fuzzy
-msgid "Site Permissions"
-msgstr "Hak Akses:"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Alarm dan Pemutakhiran"
@@ -1517,10 +1512,6 @@ msgstr "Lihat yang terbaru"
 
 msgid "Invalid version range."
 msgstr "Bentangan versi tidak valid."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Membutuhkan setidaknya satu aplikasi yang kompatibel."
@@ -2832,6 +2823,20 @@ msgstr "or <a href=\"{0}\">Batal</a>"
 msgid "More information on Developer Accounts"
 msgstr "Informasi lebih lanjut mengenai Akun Pengembang"
 
+msgid "Firefox for Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr ""
+
+msgid "No, I have not tested"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Berita Pengembang"
 
@@ -2986,6 +2991,7 @@ msgstr "Tulis Sejumlah Kode"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Bantu membuat pengaya jadi lebih baik dengan menyumbangkan keterampilan Anda menulis kode."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Bersiap"
 
@@ -4340,12 +4346,11 @@ msgid "See all extensions"
 msgstr "Lihat semua ekstensi"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4459,6 +4464,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Lihat semua ekstensi"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5019,9 +5028,6 @@ msgstr "Pengaya Mozilla"
 msgid "Back to Add-ons"
 msgstr "Kembali ke Pengaya"
 
-msgid "Footer logo"
-msgstr "Logo catatan kaki"
-
 msgid "Legal Notices"
 msgstr "Pernyataan Hukum"
 
@@ -5038,45 +5044,56 @@ msgstr ""
 "Terkecuali saat <a href=\"http://www.mozilla.org/about/legal.html#site\">dicatat sebaliknya</a>, konten dalam situs ini dilisensikan pada <br /> <a href=\"http://creativecommons.org/licenses/by-"
 "sa/3.0/\"> Lisensi Atribusi Share-Alike Creative Commons v3.0 </a> atau versi berikutnya."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "mengenal <b>pengaya</b>"
-
-msgid "About"
-msgstr "Tentang"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Download Firefox"
-msgstr "Unduh Firefox"
-
-msgid "Android Browser"
-msgstr "Peramban Android"
-
-msgid "iOS Browser"
-msgstr "Peramban iOS"
-
-msgid "Focus Browser"
-msgstr "Peramban Focus"
-
-msgid "Desktop Browser"
-msgstr "Peramban Desktop"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Developer Edition"
-
-msgid "Other languages"
-msgstr "Bahasa lainnya"
-
-msgid "Go"
-msgstr "Buka"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Kembali ke Beranda Pengaya {0}"
 
 msgid "Add-ons"
 msgstr "Pengaya"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Tentang"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5087,6 +5104,12 @@ msgstr "Bidang Yang Diperlukan"
 
 msgid "(optional)"
 msgstr "(opsional)"
+
+msgid "Other languages"
+msgstr "Bahasa lainnya"
+
+msgid "Go"
+msgstr "Buka"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5241,6 +5264,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

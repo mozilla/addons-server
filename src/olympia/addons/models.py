@@ -1545,6 +1545,16 @@ class Addon(OnChangeMixin, ModelBase):
     def can_set_compatibility(self):
         return self.type_can_set_compatibility(self.type)
 
+    @property
+    def can_be_compatible_with_all_fenix_versions(self):
+        """Whether or not the addon is allowed to be compatible with all Fenix
+        versions (i.e. it's a recommended/line extension for Android)."""
+        return (
+            self.promoted
+            and self.promoted.group.can_be_compatible_with_all_fenix_versions
+            and amo.ANDROID in self.promoted.approved_applications
+        )
+
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""
         if user is None or user.is_anonymous:

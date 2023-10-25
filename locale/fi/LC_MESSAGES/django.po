@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-05-03 09:50+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"PO-Revision-Date: 2023-10-08 14:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -42,18 +42,6 @@ msgstr "Animoituja kuvia ei voi käyttää."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Käytä kuvia, joiden koko on alle %d Mt."
-
-msgid "You are already logged in."
-msgstr "Olet jo kirjautunut."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Kirjautumisyritystäsi ei voitu käsitellä. Yritä uudelleen."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox-tiliäsi ei löydy. Yritä uudelleen."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Sinua ei voitu kirjata sisään. Yritä uudelleen."
 
 msgid "Need help?"
 msgstr "Tarvitsetko apua?"
@@ -163,6 +151,14 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -339,7 +335,7 @@ msgid "Email:"
 msgstr "Sähköposti:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Kaksivaiheinen todennus"
 
 msgid "OK"
 msgstr "OK"
@@ -632,10 +628,6 @@ msgstr "Tili päivitetty."
 msgid "Account {user} deleted."
 msgstr "Tili {user} poistettu."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Tili päivitetty."
-
 msgid "Created: {0}."
 msgstr "Luotu: {0}."
 
@@ -856,6 +848,12 @@ msgstr ""
 msgid "Admin add-on-review cleared"
 msgstr ""
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -928,8 +926,8 @@ msgstr "Oikolukusanasto"
 msgid "Deprecated Search Engine"
 msgstr ""
 
-msgid "Language Pack (Application)"
-msgstr "Kielipaketti (ohjelman)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
@@ -943,9 +941,8 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr "Teema (staattinen)"
 
-#, fuzzy
-msgid "Site Permission"
-msgstr "Oikeudet:"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -962,9 +959,8 @@ msgstr "Oikolukusanastot"
 msgid "Deprecated Search Tools"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "Kielipaketit (ohjelman)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -978,9 +974,8 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr ""
 
-#, fuzzy
-msgid "Site Permissions"
-msgstr "Oikeudet:"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "Ilmoitukset ja päivitykset"
@@ -1523,10 +1518,6 @@ msgstr "Näytä nykyinen"
 
 msgid "Invalid version range."
 msgstr "Virheellinen versioalue."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Tarvitset vähintään yhden yhteensopivan sovelluksen."
@@ -2837,6 +2828,20 @@ msgstr "tai <a href=\"{0}\">peruuta</a>"
 msgid "More information on Developer Accounts"
 msgstr "Lisätietoja kehittäjätileistä"
 
+msgid "Firefox for Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr ""
+
+msgid "No, I have not tested"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Kehitysuutiset"
 
@@ -2991,9 +2996,9 @@ msgstr "Kirjoita hieman koodia"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
-msgstr "Aloittaminen"
+msgstr "Aloitetaan"
 
 msgid "More Ways to Participate"
 msgstr "Muita tapoja osallistua"
@@ -4328,13 +4333,12 @@ msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr ""
+msgid "Test new Android extensions"
+msgstr "Testaa uusia Android-laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTuben mukauttaminen"
+msgid "Privacy & Security extensions"
+msgstr "Tietosuoja- ja turvallisuuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4436,6 +4440,10 @@ msgstr "Ensiluokkaiset mainosestäjät"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Katso lisää valittuja mainosestäjiä"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTuben mukauttaminen"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -5003,9 +5011,6 @@ msgstr "Mozilla-lisäosat"
 msgid "Back to Add-ons"
 msgstr "Takaisin lisäosiin"
 
-msgid "Footer logo"
-msgstr ""
-
 msgid "Legal Notices"
 msgstr "Lakiasiat"
 
@@ -5023,46 +5028,56 @@ msgstr ""
 "Osa kuvista on <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a> -kokoelmasta, joka on lisensoitu <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 -lisenssillä</a>."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "opi tuntemaan <b>lisäosat</b>"
-
-msgid "About"
-msgstr "Tietoja"
-
-msgid "Forum"
-msgstr "Keskustelu"
-
-msgid "Download Firefox"
-msgstr "Lataa Firefox"
-
-msgid "Android Browser"
-msgstr "Android-selain"
-
-msgid "iOS Browser"
-msgstr "iOS-selain"
-
-msgid "Focus Browser"
-msgstr "Focus-selain"
-
-msgid "Desktop Browser"
-msgstr "Työpöytäselain"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr ""
-
-msgid "Other languages"
-msgstr "Muut kielet"
-
-# 100%
-msgid "Go"
-msgstr "Mene"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Palaa {0}-lisäosien etusivulle"
 
 msgid "Add-ons"
 msgstr "Lisäosat"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Tietoja"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Keskustelu"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr "Selaimet"
+
+msgid "Desktop"
+msgstr "Tietokone"
+
+msgid "Enterprise"
+msgstr "Yrityksille"
+
+msgid "Products"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5073,6 +5088,13 @@ msgstr "Vaaditut kentät"
 
 msgid "(optional)"
 msgstr "(valinnainen)"
+
+msgid "Other languages"
+msgstr "Muut kielet"
+
+# 100%
+msgid "Go"
+msgstr "Mene"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5229,6 +5251,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

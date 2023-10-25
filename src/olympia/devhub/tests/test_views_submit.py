@@ -31,7 +31,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import NOTABLE
+from olympia.constants.promoted import NOTABLE, RECOMMENDED
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -380,6 +380,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
         self.user.update(read_dev_agreement=None)
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.0.2.1')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -396,10 +397,8 @@ class TestAddonSubmitDistribution(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login_with_2fa(
-            UserProfile.objects.get(email='regular@mozilla.com')
-        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.url = reverse('devhub.submit.distribution')
         self.create_flag('2fa-enforcement-for-developers-and-special-users')
@@ -490,6 +489,7 @@ class TestAddonSubmitDistribution(TestCase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.42.43')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -511,10 +511,8 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login_with_2fa(
-            UserProfile.objects.get(email='regular@mozilla.com')
-        )
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
         self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
@@ -835,6 +833,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.45.47')
         self.url = reverse('devhub.submit.upload', args=['listed'])
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
@@ -856,6 +855,13 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    def test_android_compatibility_modal(self):
+        url = reverse('devhub.submit.upload', args=['listed'])
+        modal_selector = '#modals #modal-confirm-android-compatibility.modal'
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert doc(modal_selector)
 
 
 class TestAddonSubmitSource(TestSubmitBase):
@@ -1981,6 +1987,7 @@ class TestVersionSubmitDistribution(TestSubmitBase):
     def test_enforce_2fa(self):
         self.client.logout()
         self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
         response = self.client.get(self.url)
         expected_location = fxa_login_url(
             config=settings.FXA_CONFIG['default'],
@@ -1990,6 +1997,14 @@ class TestVersionSubmitDistribution(TestSubmitBase):
             login_hint=self.user.email,
         )
         self.assert3xx(response, expected_location)
+
+    def test_dont_enforce_2fa_for_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
 
 class TestVersionSubmitAutoChannel(TestSubmitBase):
@@ -2360,6 +2375,14 @@ class VersionSubmitUploadMixin:
         )
         self.assert3xx(response, expected_location)
 
+    def test_dont_enforce_2fa_for_static_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        self.client.logout()
+        self.client.force_login(self.user)
+        self.user.update(last_login_ip='192.168.48.50')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestCase):
     channel = amo.CHANNEL_LISTED
@@ -2505,6 +2528,18 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         assert pq(response.content)('ul.errorlist').text() == (
             'Version 0.0.1 must be greater than the previous approved version 0.0.1.0.'
         )
+
+    def test_android_compatibility_modal(self):
+        url = reverse('devhub.submit.version.upload', args=[self.addon.slug, 'listed'])
+        modal_selector = '#modals #modal-confirm-android-compatibility.modal'
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert doc(modal_selector)
+
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.client.get(url)
+        doc = pq(response.content)
+        assert not doc(modal_selector)
 
 
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, TestCase):

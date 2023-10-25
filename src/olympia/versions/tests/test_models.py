@@ -229,13 +229,13 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         addon = addon_factory(
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '119.0',
+                'min_app_version': '121.0',
                 'max_app_version': '*',
             },
         )
         appversions = {
-            'min': version_int('120.0'),
-            'max': version_int('120.0'),
+            'min': version_int('121.0'),
+            'max': version_int('121.0'),
         }
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert not qs.exists()
@@ -245,13 +245,13 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         assert qs.exists()
         assert str(qs.query).count('JOIN') == 4
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '119.0'
+        assert qs[0].min_compatible_version == '121.0'
         assert qs[0].max_compatible_version == '*'
 
         # Add a Firefox version, but don't let it be compatible with what we're
         # requesting yet.
         av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='121.0'
+            application=amo.FIREFOX.id, version='122.0'
         )
         av_max, _ = AppVersion.objects.get_or_create(
             application=amo.FIREFOX.id, version='*'
@@ -266,7 +266,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         assert not qs.exists()
 
         avs.min = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='120.0'
+            application=amo.FIREFOX.id, version='121.0'
         )[0]
         avs.save()
 
@@ -274,7 +274,7 @@ class TestVersionManagerLatestPublicCompatibleWith(TestCase):
         qs = Version.objects.latest_public_compatible_with(amo.FIREFOX.id, appversions)
         assert qs.exists()
         assert qs[0] == addon.current_version
-        assert qs[0].min_compatible_version == '120.0'
+        assert qs[0].min_compatible_version == '121.0'
         assert qs[0].max_compatible_version == '*'
 
     def test_latest_public_compatible_with_no_max_argument(self):
@@ -3051,6 +3051,57 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
         assert avs.version_range_contains_forbidden_compatibility()
         self.assert_min_and_max_are_set_to_fenix_ga_on_save(avs)
         assert not avs.version.file.reload().strict_compatibility
+
+    def test_get_default_minimum_appversion(self):
+        assert ApplicationsVersions(
+            application=amo.FIREFOX.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.FIREFOX.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.FIREFOX],
+        )
+
+        assert ApplicationsVersions(
+            application=amo.ANDROID.id
+        ).get_default_minimum_appversion() == AppVersion.objects.get(
+            application=amo.ANDROID.id,
+            version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[amo.ANDROID],
+        )
+
+    def get_default_maximum_appversion(self):
+        self.star_firefox_appversion = AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
+        )
+        assert (
+            ApplicationsVersions(
+                application=amo.FIREFOX.id
+            ).get_default_maximum_appversion()
+            == self.star_firefox_appversion
+        )
+
+        assert (
+            ApplicationsVersions(
+                application=amo.ANDROID.id
+            ).get_default_maximum_appversion()
+            == self.star_android_appversion
+        )
+
+    def test_min_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            max=self.fenix_appversion_star,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
+
+    def test_max_not_set_fallback_to_default(self):
+        addon = addon_factory()
+        avs = ApplicationsVersions(
+            application=amo.ANDROID.id,
+            version=addon.current_version,
+            min=self.fennec_appversion,
+        )
+        assert avs.version_range_contains_forbidden_compatibility()
 
 
 class TestVersionPreview(BasePreviewMixin, TestCase):

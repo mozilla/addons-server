@@ -36,6 +36,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report, context=context)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': addon.guid, 'id': addon.pk, 'slug': addon.slug},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -55,6 +57,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report_addon_exists_doesnt_matter(self):
@@ -63,6 +66,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': addon.guid, 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -82,6 +87,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report(self):
@@ -89,6 +95,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         serialized = self.serialize(report)
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'addon': {'guid': '@guid', 'id': None, 'slug': None},
             'message': 'bad stuff',
             'addon_install_method': None,
@@ -108,6 +116,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'operating_system_version': None,
             'reason': None,
             'report_entry_point': None,
+            'location': None,
         }
 
     def test_guid_report_to_internal_value_with_some_fancy_parameters(self):
@@ -252,6 +261,8 @@ class TestUserAbuseReportSerializer(TestCase):
         serialized_user = BaseUserSerializer(user).data
         assert serialized == {
             'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
             'user': serialized_user,
             'message': 'bad stuff',
         }

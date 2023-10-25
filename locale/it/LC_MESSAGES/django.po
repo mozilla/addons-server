@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-14 05:09+0000\n"
-"Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"PO-Revision-Date: 2023-10-22 18:11+0000\n"
+"Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -43,18 +43,6 @@ msgstr "Le immagini non possono essere animate."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Utilizzare un’immagine inferiore a %dMB."
-
-msgid "You are already logged in."
-msgstr "Hai già effettuato l’accesso."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "Impossibile analizzare il tentativo di accesso appena effettuato. Riprova."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Impossibile associare questo utente a un account Firefox. Riprova."
-
-msgid "You could not be logged in. Please try again."
-msgstr "Impossibile effettuare l’accesso. Riprova."
 
 msgid "Need help?"
 msgstr "Hai bisogno di aiuto?"
@@ -163,6 +151,14 @@ msgstr "La versione {version_string} esiste già."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "Le versioni elencate non possono essere caricate mentre il componente aggiuntivo è disattivato."
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr "%(addon_type_plural)s non sono supportati da %(app_name)s"
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "Intervallo di versioni non valido. Per Firefox per Android è possibile selezionare solo un intervallo che inizia con versione %(max)s o superiore, o termina con versione inferiore a %(min)s."
 
 msgid "Add-ons need at least one owner."
 msgstr "I componenti aggiuntivi richiedono almeno un proprietario."
@@ -645,9 +641,6 @@ msgstr "L’account è stato aggiornato."
 msgid "Account {user} deleted."
 msgstr "Account {user} eliminato."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Account {user} eliminato da un evento Firefox Accounts."
-
 msgid "Created: {0}."
 msgstr "Creato: {0}."
 
@@ -856,6 +849,12 @@ msgstr "Un amministratore ha rimosso add-on-review per {addon} {version}"
 msgid "Admin add-on-review cleared"
 msgstr "Un amministratore ha rimosso add-on-review"
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr "{user_responsible} ha modificato lo slug per {addon} da {0} a {1}."
+
+msgid "Addon slug changed"
+msgstr "Lo slug del componente aggiuntivo è stato modificato"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -923,8 +922,8 @@ msgstr "Dizionario"
 msgid "Deprecated Search Engine"
 msgstr "Motore di ricerca deprecato"
 
-msgid "Language Pack (Application)"
-msgstr "language pack (applicazione)"
+msgid "Language Pack"
+msgstr "Language pack"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Language Pack deprecato (componente aggiuntivo)"
@@ -938,8 +937,8 @@ msgstr "LWT obsoleto"
 msgid "Theme (Static)"
 msgstr "Tema (statico)"
 
-msgid "Site Permission"
-msgstr "Permesso siti"
+msgid "Deprecated Site Permission"
+msgstr "“Permessi siti\" deprecato"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -955,9 +954,8 @@ msgstr "dizionari"
 msgid "Deprecated Search Tools"
 msgstr "Strumenti di ricerca deprecati"
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "language pack (applicazione)"
+msgid "Language Packs"
+msgstr "Language Pack"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Language Pack deprecati (componenti aggiuntivi)"
@@ -971,8 +969,8 @@ msgstr "LWT obsoleti"
 msgid "Themes (Static)"
 msgstr "Temi (Statici)"
 
-msgid "Site Permissions"
-msgstr "Permessi siti"
+msgid "Deprecated Site Permissions"
+msgstr "“Permessi siti\" deprecati"
 
 msgid "Alerts & Updates"
 msgstr "Notifiche e aggiornamenti"
@@ -1545,10 +1543,6 @@ msgstr "Mostra versione corrente"
 
 msgid "Invalid version range."
 msgstr "Intervallo di versioni non valido."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr "Intervallo di versioni non valido. Per Firefox per Android è possibile selezionare solo un intervallo che inizia con versione %(max)s o superiore, o termina con versione inferiore a %(min)s."
 
 msgid "Need at least one compatible application."
 msgstr "È necessaria almeno un’applicazione compatibile."
@@ -2902,6 +2896,23 @@ msgstr "o <a href=\"{0}\">Annulla</a>"
 msgid "More information on Developer Accounts"
 msgstr "Ulteriori informazioni sugli account sviluppatore"
 
+msgid "Firefox for Android compatibility"
+msgstr "Compatibilità con Firefox per Android"
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+"Hai verificato la tua estensione per assicurarti che funzioni come previsto con Firefox per Android? In caso contrario, consulta la pagina <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> per ottenere informazioni sui test da "
+"eseguire prima dell’invio."
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr "Sì, ho verificato la mia estensione con Firefox per Android"
+
+msgid "No, I have not tested"
+msgstr "No, non ho effettuato test"
+
 msgid "Developer News"
 msgstr "Notizie per sviluppatori"
 
@@ -3055,6 +3066,7 @@ msgstr "Scrivi qualche riga di codice"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Aiuta a migliorare i componenti aggiuntivi mentre affini le tue abilità di programmatore."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Per iniziare"
 
@@ -4392,13 +4404,12 @@ msgid "See all extensions"
 msgstr "Visualizza tutte le estensioni"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "Estensioni per privacy e sicurezza"
+msgid "Test new Android extensions"
+msgstr "Prova nuove estensioni per Android"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "Personalizzazione di YouTube"
+msgid "Privacy & Security extensions"
+msgstr "Estensioni per privacy e sicurezza"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4496,6 +4507,10 @@ msgstr "Strumenti esclusivi per il blocco delle pubblicità"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "Visualizza altri strumenti per il blocco delle pubblicità scelti dallo staff"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "Personalizzazione di YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -5037,9 +5052,6 @@ msgstr "Mozilla Add-ons"
 msgid "Back to Add-ons"
 msgstr "Ritorna ai componenti aggiuntivi"
 
-msgid "Footer logo"
-msgstr "Logo a piè di pagina"
-
 msgid "Legal Notices"
 msgstr "Note legali"
 
@@ -5056,45 +5068,58 @@ msgstr ""
 "Salvo ove diversamente <a href=\"https://www.mozilla.org/about/legal/\">indicato</a>, i contenuti del sito sono da considerarsi distribuiti secondo la licenza <br /> <a "
 "href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribuzione - Condividi allo stesso modo versione 3.0</a> o successive."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "Scopri i <b>componenti aggiuntivi</b>"
-
-msgid "About"
-msgstr "Informazioni su"
-
-msgid "Forum"
-msgstr "Forum"
-
-msgid "Download Firefox"
-msgstr "Scarica Firefox"
-
-msgid "Android Browser"
-msgstr "Browser Android"
-
-msgid "iOS Browser"
-msgstr "Browser iOS"
-
-msgid "Focus Browser"
-msgstr "Browser Focus"
-
-msgid "Desktop Browser"
-msgstr "Browser per computer"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta, Nightly, Developer Edition"
-
-msgid "Other languages"
-msgstr "Altre lingue"
-
-msgid "Go"
-msgstr "Vai"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Ritorna alla pagina principale di {0} Add-ons"
 
 msgid "Add-ons"
 msgstr "Componenti aggiuntivi"
+
+msgid "Go to Mozilla's homepage"
+msgstr "Vai alla pagina principale del sito Mozilla"
+
+msgid "About"
+msgstr "Informazioni su"
+
+msgid "Firefox Add-ons Blog"
+msgstr "Blog sui componenti aggiuntivi per Firefox"
+
+msgid "Community Blog"
+msgstr "Blog della comunità"
+
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Review Guide"
+msgstr "Guida per revisori"
+
+msgid "Browsers"
+msgstr "Browser"
+
+msgid "Desktop"
+msgstr "Desktop"
+
+msgid "Enterprise"
+msgstr "Aziende"
+
+msgid "Products"
+msgstr "Prodotti"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "Cookies"
+msgstr "Cookie"
+
+msgid "Legal"
+msgstr "Note legali"
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
+"Eccetto dove diversamente <a href=\"https://www.mozilla.org/about/legal/\">indicato</a>, i contenuti del sito sono da considerarsi distribuiti secondo la licenza <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribuzione - Condividi allo stesso modo versione 3.0</a> o successive."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5105,6 +5130,12 @@ msgstr "Campi richiesti"
 
 msgid "(optional)"
 msgstr "(facoltativo)"
+
+msgid "Other languages"
+msgstr "Altre lingue"
+
+msgid "Go"
+msgstr "Vai"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5280,6 +5311,26 @@ msgstr ""
 "Dal tuo componente aggiuntivo %(addon_name)s (%(addon_url)s) è stato rimosso il seguente autore:\n"
 "\n"
 "%(author_name)s (%(author_url)s)"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
+"Salve,\n"
+"ricevi questo messaggio perché il tuo account utente %(name)s su %(site_url)s è stato eliminato. Potrebbe essere stato rimosso automaticamente se hai eliminato di recente il tuo account Mozilla (precedentemente chiamato account Firefox).\n"
+"\n"
+"Se non hai eseguito questa operazione o ritieni che una persona non autorizzata abbia ottenuto accesso al tuo account, rispondi a questa email. In caso contrario, non sono richieste ulteriori azioni da parte tua.\n"
+"\n"
+"Saluti,\n"
+"Il team di Firefox Add-ons"
 
 #, python-format
 msgid ""

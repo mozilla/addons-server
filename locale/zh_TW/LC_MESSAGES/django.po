@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-09-14 02:06+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"PO-Revision-Date: 2023-04-05 04:04+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -40,18 +40,6 @@ msgstr "不能使用動畫圖片。"
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
 
-msgid "You are already logged in."
-msgstr "您已經登入。"
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "無法剖析您的登入請求，請再試一次。"
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "找不到您的 Firefox 帳號，請再試一次。"
-
-msgid "You could not be logged in. Please try again."
-msgstr "無法登入，請再試一次。"
-
 msgid "Need help?"
 msgstr "需要幫助嗎？"
 
@@ -67,7 +55,7 @@ msgstr "評論"
 
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] ""
+msgstr[0] "版本 {0}"
 
 msgid "Review note"
 msgstr "審核註記"
@@ -156,6 +144,14 @@ msgstr "版本 {version_string} 已存在。"
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "停用附加元件時，無法送出上架的版本。"
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr "%(app_name)s 不支援 %(addon_type_plural)s"
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "版本號碼範圍無效。對 Firefox for Android 來說，您僅能挑選從 %(max)s 或更新版本起，或結束於小於 %(min)s 或更舊的版本。"
 
 msgid "Add-ons need at least one owner."
 msgstr "附加元件至少要有一位擁有者。"
@@ -626,9 +622,6 @@ msgstr "帳號已更新。"
 msgid "Account {user} deleted."
 msgstr "帳號 {user} 已刪除。"
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "帳號 {user} 已從 Firefox 帳號事件中刪除。"
-
 msgid "Created: {0}."
 msgstr "已建立： {0}。"
 
@@ -846,6 +839,12 @@ msgstr "已清除 {addon} {version} 管理員元件審核狀態。"
 msgid "Admin add-on-review cleared"
 msgstr "已清除管理員元件審核狀態"
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr "{user_responsible} 已將 {addon} 的 slug 從 {0} 更改為 {1}。"
+
+msgid "Addon slug changed"
+msgstr "已更改附加元件 slug"
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -913,8 +912,8 @@ msgstr "字典檔"
 msgid "Deprecated Search Engine"
 msgstr "已淘汰的搜尋引擎"
 
-msgid "Language Pack (Application)"
-msgstr "語言套件（應用程式）"
+msgid "Language Pack"
+msgstr "語言套件"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "已淘汰的語言套件（附加元件）"
@@ -928,8 +927,8 @@ msgstr "已棄用的 LWT"
 msgid "Theme (Static)"
 msgstr "主題（靜態）"
 
-msgid "Site Permission"
-msgstr "網站權限"
+msgid "Deprecated Site Permission"
+msgstr "棄用的網站權限"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -945,9 +944,8 @@ msgstr "字典"
 msgid "Deprecated Search Tools"
 msgstr "已淘汰的搜尋工具"
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "語言套件（應用程式）"
+msgid "Language Packs"
+msgstr "語言套件"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "已淘汰的語言套件（附加元件）"
@@ -961,8 +959,8 @@ msgstr "已棄用的 LWTs"
 msgid "Themes (Static)"
 msgstr "主題（靜態）"
 
-msgid "Site Permissions"
-msgstr "網站權限"
+msgid "Deprecated Site Permissions"
+msgstr "棄用的網站權限"
 
 msgid "Alerts & Updates"
 msgstr "警示與更新"
@@ -1491,10 +1489,6 @@ msgstr "檢視目前檔案"
 
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
@@ -2791,6 +2785,22 @@ msgstr "或<a href=\"{0}\">取消</a>"
 msgid "More information on Developer Accounts"
 msgstr "關於開發者帳號的更多資訊"
 
+msgid "Firefox for Android compatibility"
+msgstr "Firefox for Android 相容性"
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+"您測試過擴充套件，確認其能在 Firefox for Android 上正常運作嗎？若還沒有測試過，請先參考 <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-"
+"for-android/\">Developing extensions for Firefox Android</a> 一文當中的測試指南後再送審。"
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr "是，我已經在 Firefox for Android 測試過我的擴充套件"
+
+msgid "No, I have not tested"
+msgstr "否，我還沒有測試過"
+
 msgid "Developer News"
 msgstr "開發者新聞"
 
@@ -2936,6 +2946,7 @@ msgstr "寫點程式"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "貢獻您的寫程式能力，幫助讓附加元件變得更好。"
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "開始使用"
 
@@ -4257,13 +4268,12 @@ msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
-msgstr "隱私權與安全性擴充套件"
+msgid "Test new Android extensions"
+msgstr "測試新的 Android 擴充套件"
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "自訂 YouTube"
+msgid "Privacy & Security extensions"
+msgstr "隱私權與安全性擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4361,6 +4371,10 @@ msgstr "菁英級廣告封鎖工具"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "自訂 YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4542,7 +4556,7 @@ msgstr "%(value)s 包含非字母與數字的字元。"
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
+msgstr[0] "評論內容不得包含下列字詞：「{0}」"
 
 msgid "This field is required."
 msgstr "此欄位必填。"
@@ -4898,9 +4912,6 @@ msgstr "Mozilla 附加元件"
 msgid "Back to Add-ons"
 msgstr "返回附加元件網站"
 
-msgid "Footer logo"
-msgstr "頁尾圖示"
-
 msgid "Legal Notices"
 msgstr "法律聲明"
 
@@ -4915,45 +4926,56 @@ msgid ""
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>，此網站的內容依照<br /><a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新版本授權使用。"
 
-msgid "get to know <b>add-ons</b>"
-msgstr "了解<b>附加元件</b>"
-
-msgid "About"
-msgstr "關於"
-
-msgid "Forum"
-msgstr "討論區"
-
-msgid "Download Firefox"
-msgstr "下載 Firefox"
-
-msgid "Android Browser"
-msgstr "Android 瀏覽器"
-
-msgid "iOS Browser"
-msgstr "iOS 瀏覽器"
-
-msgid "Focus Browser"
-msgstr "Focus 瀏覽器"
-
-msgid "Desktop Browser"
-msgstr "桌面版瀏覽器"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "Beta、Nightly、Developer Edition"
-
-msgid "Other languages"
-msgstr "其他語言"
-
-msgid "Go"
-msgstr "衝"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "回到 {0} 附加元件首頁"
 
 msgid "Add-ons"
 msgstr "附加元件"
+
+msgid "Go to Mozilla's homepage"
+msgstr "前往 Mozilla 官網"
+
+msgid "About"
+msgstr "關於"
+
+msgid "Firefox Add-ons Blog"
+msgstr "Firefox 附加元件部落格"
+
+msgid "Community Blog"
+msgstr "社群部落格"
+
+msgid "Forum"
+msgstr "討論區"
+
+msgid "Review Guide"
+msgstr "評論撰寫指南"
+
+msgid "Browsers"
+msgstr "瀏覽器"
+
+msgid "Desktop"
+msgstr "桌面版"
+
+msgid "Enterprise"
+msgstr "企業版"
+
+msgid "Products"
+msgstr "產品"
+
+msgid "Privacy"
+msgstr "隱私權"
+
+msgid "Cookies"
+msgstr "Cookie"
+
+msgid "Legal"
+msgstr "法律資訊"
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr "除非另有<a href=\"https://www.mozilla.org/about/legal/\">提及</a>，此網站的內容依照<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">創用 CC 姓名標示-相同方式分享 3.0</a> 或任何更新版本授權使用。"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4964,6 +4986,12 @@ msgstr "必填欄位"
 
 msgid "(optional)"
 msgstr "(選填)"
+
+msgid "Other languages"
+msgstr "其他語言"
+
+msgid "Go"
+msgstr "衝"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5133,6 +5161,28 @@ msgstr ""
 "已將下列作者從您的附加元件「%(addon_name)s」（%(addon_url)s）移除：\n"
 "\n"
 "%(author_name)s（%(author_url)s）"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
+"您好，\n"
+"\n"
+"會收到這封信是因為您在 %(site_url)s 的使用者帳號 %(name)s 已被刪除。若您最近刪除了 Mozilla 帳號（原 Firefox 帳號），此帳號也會自動刪除。\n"
+"\n"
+"若您沒有這樣做，或認為有未經授權的人員操作您的帳號，請回覆本郵件給我們；否則無需採取更多行動。\n"
+"\n"
+"感謝您，\n"
+"\n"
+"Firefox 附加元件團隊"
 
 #, python-format
 msgid ""

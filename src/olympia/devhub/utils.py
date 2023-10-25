@@ -354,7 +354,7 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
             upload,
             addon,
             channel,
-            selected_apps=[x[0] for x in amo.APPS_CHOICES],
+            selected_apps=[amo.FIREFOX.id],
             parsed_data=parsed_data,
         )
         channel_name = amo.CHANNEL_CHOICES_API[channel]

@@ -268,17 +268,16 @@ class VersionCompatibilityField(serializers.Field):
             existing_app = existing.get(app)
             # we need to copy() to avoid changing the instance before save
             apps_versions = copy.copy(existing_app) or ApplicationsVersions(
-                application=app.id
+                application=app.id, version=version
             )
-
             app_version_qs = AppVersion.objects.filter(application=app.id)
             try:
                 if 'max' in min_max:
                     apps_versions.max = app_version_qs.get(version=min_max['max'])
+                    apps_versions.min_or_max_explicitly_set = True
                 elif version:
-                    apps_versions.max = app_version_qs.get(
-                        version=amo.DEFAULT_WEBEXT_MAX_VERSION
-                    )
+                    apps_versions.max = apps_versions.get_default_maximum_appversion()
+
             except AppVersion.DoesNotExist:
                 raise exceptions.ValidationError(
                     gettext('Unknown max app version specified')
@@ -288,10 +287,9 @@ class VersionCompatibilityField(serializers.Field):
                 app_version_qs = app_version_qs.filter(~Q(version__contains='*'))
                 if 'min' in min_max:
                     apps_versions.min = app_version_qs.get(version=min_max['min'])
+                    apps_versions.min_or_max_explicitly_set = True
                 elif version:
-                    apps_versions.min = app_version_qs.get(
-                        version=amo.DEFAULT_WEBEXT_MIN_VERSIONS[app]
-                    )
+                    apps_versions.min = apps_versions.get_default_minimum_appversion()
             except AppVersion.DoesNotExist:
                 raise exceptions.ValidationError(
                     gettext('Unknown min app version specified')

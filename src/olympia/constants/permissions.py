@@ -117,6 +117,9 @@ BLOCKLIST_CREATE = AclPermission('Blocklist', 'Create')
 # Can signoff a Block creation/edit submission
 BLOCKLIST_SIGNOFF = AclPermission('Blocklist', 'Signoff')
 
+# Can create/edit regional restrictions for add-ons
+ADMIN_REGIONALRESTRICTIONS = AclPermission('Admin', 'RegionalRestrictionsEdit')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [x for x in vars().values() if isinstance(x, AclPermission)]
 
@@ -146,6 +149,9 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'addons.change_replacementaddon': ADMIN_CURATION,
         'addons.add_replacementaddon': ADMIN_CURATION,
         'addons.delete_replacementaddon': ADMIN_CURATION,
+        'addons.change_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
+        'addons.add_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
+        'addons.delete_addonregionalrestrictions': ADMIN_REGIONALRESTRICTIONS,
         # Users with Admin:Curation can do anything to AddonBrowserMapping.
         'addons.add_addonbrowsermapping': ADMIN_CURATION,
         'addons.change_addonbrowsermapping': ADMIN_CURATION,

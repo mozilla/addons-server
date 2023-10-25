@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block extrameta %}
+    {# This page needs to display correctly on mobile devices #}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+{% endblock %}
+
+{% block bodyclass %}fluid{% endblock %}
+
+{% block title %}{{ _('Appeal reviewer decision') }}{% endblock %}
+
+{% block main_content %}
+<div role="main" class="generic-content">
+    <section>
+        <h2>{{ _('Appeal reviewer decision') }}</h2>
+        <h3>{{ _('Decision {0}')|format_html(decision_id) }}</h3>
+    </section>
+    <section>
+        {% if appeal_processed %}
+            <p id="appeal-thank-you">{{ _('Thank you. Your appeal has been recorded.') }}</p>
+        {% else %}
+            <form method="post">
+                <div>{% csrf_token %}</div>
+                {% if appeal_email_form %}
+                    {{ appeal_email_form.as_div() }}
+                {% endif %}
+                {% if appeal_form %}
+                    {{ appeal_form.as_div() }}
+                {% endif %}
+                {% if appeal_email_form or appeal_form %}
+                    <p> <input id="appeal-submit" type="submit" value="{{ _('OK') }}"> </p>
+                {% else %}
+                    <p> {{ _("This decision can't be appealed.") }} </p>
+                {% endif %}
+            </form>
+        {% endif %}
+    </section>
+</div>
+{% endblock %}

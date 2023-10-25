@@ -270,8 +270,9 @@ class TestSafeStorage(TestCase):
     [
         (
             '<script>alert("BALL SO HARD")</script>',
-            '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;',
+            '&lt;script&gt;alert(&#34;BALL SO HARD&#34;)&lt;/script&gt;',
         ),
+        ('Foo"', 'Foo&#34;'),
         ('Bän...g (bang)', 'Bän...g (bang)'),
         (u, u),
         ('-'.join([u, u]), '-'.join([u, u])),

@@ -25,7 +25,7 @@ Firefox (about:addons).
     endpoint then static curated content is amended with recommendations from the
     `recommendation service <https://github.com/mozilla/taar>`_.  The same number
     of results will be returned as a standard discovery response and only extensions
-    (not themes) are recommeded.  Only valid, publicly available addons are shown.
+    (not themes) are recommended.  Only valid, publicly available addons are shown.
 
     E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
     Up to 4 extensions will be replaced with recommendations; the 3 themes will not

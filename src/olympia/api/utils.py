@@ -1,6 +1,7 @@
 from django.conf import settings
 
 from extended_choices import Choices
+from extended_choices.helpers import ChoiceEntry
 
 
 def is_gate_active(request, name):
@@ -16,10 +17,18 @@ def is_gate_active(request, name):
     return name in gates
 
 
+class APIChoiceEntry(ChoiceEntry):
+    @property
+    def api_value(self):
+        return str(self.value).lower() if self.value else self.value
+
+
 class APIChoices(Choices):
     """Like a regular extended_choices.Choices class, with an extra api_choices
     property that exposes constants in lower-case, meant to be used as choices
     in an API."""
+
+    ChoiceEntryClass = APIChoiceEntry
 
     @property
     def api_choices(self):

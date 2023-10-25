@@ -1,11 +1,10 @@
-@import (less) '../common/fonts';
 // Needed for hovercards
 @import (less) '../impala/hovercards';
 
 // Colors
 @primary-blue: rgba(12, 153, 213, 1);
 @primary-link: #6ac3e2;
-@primary-font: 'Open Sans', X-LocaleSpecific, sans-serif;
+@primary-font: Inter, sans-serif;
 @link-on-white-bg: #0996F8;
 @link-on-color-bg: #fff;
 @header-font-color: #c63717;
@@ -36,6 +35,8 @@ h5 {
 // Styles
 html {
   font-size: 13px;
+  background: #051818;
+  color: #fff;
 }
 
 body.restyle {
@@ -46,6 +47,13 @@ body.restyle {
   line-height: 1.5;
   min-width: @containerWidth;
   overflow-x: hidden;
+}
+
+body.restyle.fluid, .fluid .section, .fluid .header-bg {
+  min-width: auto;
+  min-height: auto;
+  max-width: none;
+  width: auto;
 }
 
 h1,
@@ -603,7 +611,7 @@ body:not(.home) .amo-header,
   * {
       // This sucks, but there is a font-family: @primary-font !important on
       // * at the top of this file...
-      font-family: 'Fira Sans', sans-serif !important;
+      font-family: Inter, sans-serif !important;
   }
 }
 
@@ -1163,17 +1171,9 @@ body:not(.developer-hub) section.secondary {
 }
 
 #footer {
-  background-color: #fff;
-  background-image: linear-gradient(to bottom,
-    #fff 0,
-    #fff 123px,
-    rgba(12, 153, 213, 1) 123px,
-    rgba(12, 153, 213, 1) 200px,
-    #FFF 200px,
-    rgba(12, 153, 213, 0.0) 400px);
+  background-color: rgba(12, 153, 213, 1);
   color: #666;
-  font-family: inherit;
-  font-style: normal;
+  padding: 60px 0 5px 0;
   width: 100%;
 
   .links-footer a {
@@ -1895,7 +1895,7 @@ h3.author .transfer-ownership {
 
 .contrib-overlay,
 .modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .primary.island {

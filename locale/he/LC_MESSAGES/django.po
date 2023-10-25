@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-06-07 16:57+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"PO-Revision-Date: 2023-10-07 20:48+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -43,18 +43,6 @@ msgstr "אי אפשר להנפיש תמונות."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "נא להשתמש בתמונות הקטנות מ־%d מ״ב."
-
-msgid "You are already logged in."
-msgstr "כבר נכנסת."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "לא ניתן לפענח את נסיון ההתחברות שלך. נא לנסות שוב."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "לא ניתן למצוא את חשבון ה־Firefox שלך. נא לנסות שנית."
-
-msgid "You could not be logged in. Please try again."
-msgstr "לא הייתה אפשרות להכניס אותך. נא לנסות שוב."
 
 msgid "Need help?"
 msgstr "יש לך צורך בעזרה?"
@@ -163,6 +151,14 @@ msgstr "הגרסה {version_string} כבר קיימת."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr "%(addon_type_plural)s אינם נתמכים על־ידי %(app_name)s"
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr "טווח גרסאות לא חוקי. בשביל Firefox עבור Android, ניתן לבחור רק בטווח שמתחיל בגרסה %(max)s ומעלה, או מסתיים בגרסה הנמוכה מ־%(min)s."
 
 msgid "Add-ons need at least one owner."
 msgstr ""
@@ -345,7 +341,7 @@ msgid "Email:"
 msgstr "דוא״ל:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "אימות דו־שלבי"
 
 msgid "OK"
 msgstr "אישור"
@@ -473,11 +469,11 @@ msgstr "הקטגוריות עבור {addon} נערכו."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) added to {addon}."
-msgstr ""
+msgstr "המשתמש {user} ({0}) נוסף לתוספת {addon}."
 
 #. L10n: {0} is the user role.
 msgid "{user} ({0}) removed from {addon}."
-msgstr ""
+msgstr "המשתמש {user} ({0}) הוסר מהתוספת {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "תרומות עבור {addon}."
@@ -503,7 +499,7 @@ msgid "Version {0} deleted from {addon}."
 msgstr "הגרסה {0} נמחקה מהתוספת {addon}."
 
 msgid "File {file} added to {version} of {addon}."
-msgstr ""
+msgstr "הקובץ {file} נוסף לגרסה {version} של התוספת {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
 msgstr "הקובץ {0} נמחק מגרסה {version} של התוספת {addon}."
@@ -594,7 +590,7 @@ msgstr "{0} {1} נוסף."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr ""
+msgstr "התפקיד של המשתמש {user} השתנה ל־{0} עבור התוספת {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "הרישיון של {addon} הוא {0} כעת."
@@ -634,10 +630,6 @@ msgstr "החשבון עודכן."
 
 #, fuzzy
 msgid "Account {user} deleted."
-msgstr "החשבון עודכן."
-
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
 msgstr "החשבון עודכן."
 
 msgid "Created: {0}."
@@ -705,7 +697,7 @@ msgid "Source code uploaded"
 msgstr "קוד מקור הועלה"
 
 msgid "{addon} {version} auto-approval confirmed."
-msgstr ""
+msgstr "האישור האוטומטי של התוספת {addon} {version} אומת."
 
 msgid "Auto-Approval confirmed"
 msgstr "אומת אישור אוטומטי"
@@ -821,7 +813,7 @@ msgid "Version re-signed"
 msgstr "הגרסה נחתמה מחדש"
 
 msgid "{addon} {version} un-rejected."
-msgstr ""
+msgstr "‏בוטלה הדחייה של התוספת {addon} {version}."
 
 msgid "Un-rejected"
 msgstr ""
@@ -836,21 +828,27 @@ msgid "Pending rejection cleared"
 msgstr ""
 
 msgid "{version} added to Blocklist."
-msgstr ""
+msgstr "הגרסה {version} נוספה אל הרשימה השחורה."
 
 msgid "Version Blocked"
-msgstr ""
+msgstr "הגרסה נחסמה"
 
 msgid "{version} removed from Blocklist."
-msgstr ""
+msgstr "הגרסה {version} הוסרה מהרשימה השחורה."
 
 msgid "Version Unblocked"
-msgstr ""
+msgstr "בוטלה החסימה של הגרסה"
 
 msgid "{addon} {version} admin add-on-review cleared."
 msgstr ""
 
 msgid "Admin add-on-review cleared"
+msgstr ""
+
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -922,16 +920,16 @@ msgid "Dictionary"
 msgstr "מילון"
 
 msgid "Deprecated Search Engine"
-msgstr ""
+msgstr "מנוע חיפוש שהוצא משימוש"
 
-msgid "Language Pack (Application)"
-msgstr "חבילת שפה (יישום)"
+msgid "Language Pack"
+msgstr "חבילת שפה"
 
 msgid "Deprecated Language Pack (Add-on)"
-msgstr ""
+msgstr "חבילת שפה שהוצאה משימוש (תוספת)"
 
 msgid "Deprecated Plugin"
-msgstr ""
+msgstr "תוסף חיצוני שהוצא משימוש"
 
 msgid "Deprecated LWT"
 msgstr ""
@@ -939,8 +937,8 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr "ערכת נושא (סטטית)"
 
-msgid "Site Permission"
-msgstr "הרשאת אתר"
+msgid "Deprecated Site Permission"
+msgstr "הרשאת אתר שהוצאה משימוש"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -955,17 +953,16 @@ msgid "Dictionaries"
 msgstr "מילונים"
 
 msgid "Deprecated Search Tools"
-msgstr ""
+msgstr "כלי חיפוש שהוצאו משימוש"
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "חבילות שפה (יישום)"
+msgid "Language Packs"
+msgstr "חבילות שפה"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "חבילות שפה שהוצאו משימוש (תוספת)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "תוספים חיצוניים שהוצא משימוש"
 
 msgid "Deprecated LWTs"
 msgstr ""
@@ -973,8 +970,8 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr "ערכות נושא (סטטיות)"
 
-msgid "Site Permissions"
-msgstr "הרשאות אתר"
+msgid "Deprecated Site Permissions"
+msgstr "הרשאות אתר שהוצאו משימוש"
 
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
@@ -1418,18 +1415,20 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "תוספות של Open Search {blog_link_open}אינן נתמכות עוד ב־AMO{blog_link_close}. באפשרותך ליצור {doc_link_open}הרחבת חיפוש במקום{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "Manifest V3‏ אינו נתמך כרגע להעלאה. {start_href}מידע נוסף על ציר הזמן של התמיכה{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "אזהרת תאימות של Manifest V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox‏ מוסיף תמיכה עבור הרחבות manifest בגרסה 3 (MV3) ב־Firefox {version}, אך עם זאת, גרסאות ישנות יותר של Firefox תואמות רק עם הרחבות manifest בגרסה 2 (MV2). אנו ממליצים להעלות הרחבות של Manifest "
+"V3 באופן עצמאי לעת עתה כדי לא לשבור את התאימות למשתמשים שלך."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "למידע נוסף על השקת הרחבות MV3 או אירוח עצמי של הרחבות MV3, ניתן לבקר בכתובת https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
 msgstr ""
@@ -1508,10 +1507,6 @@ msgstr "צפייה בנוכחי"
 msgid "Invalid version range."
 msgstr "טווח הגרסאות שגוי."
 
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
-
 msgid "Need at least one compatible application."
 msgstr "נדרש לפחות יישום תואם אחד."
 
@@ -1552,7 +1547,7 @@ msgid "Ensure name and summary combined are at most {limit_value} characters (th
 msgstr ""
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "באתר הזה. <span class=\"helptext\">ההגשה שלך מופיעה באופן ציבורי ב־{site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
@@ -1579,7 +1574,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "בדיקת האימות ייצרה יותר מדי שגיאות/אזהרות כך ש־%s הודעות נחתכו. לאחר התייחסות להודעות שמופיעות, תינתן לך האפשרות לראות את השאר."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "תוספת זו אינה ערכת נושא. יש להשתמש בדף <a href=\"{link}\">הגשת תוספת חדשה</a> כדי להגיש הרחבות."
 
 msgid "Updated"
 msgstr "תאריך עדכון"
@@ -1649,7 +1644,7 @@ msgid "Validate Add-on"
 msgstr "אימות תוספת"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">נא להוסיף אימות דו־שלבי לחשבון שלך כדי להגיש הרחבות.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "צלמיות חייבות להיות בתבנית PNG או JPG."
@@ -1675,7 +1670,7 @@ msgstr "אירעה שגיאה בהעלאת התצוגה המקדימה שלך."
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
-msgstr ""
+msgstr "לא ניתן למחוק או להשבית את הגרסה המאושרת האחרונה של התוספת %s הזאת מכיוון שהגרסה הקודמת לא אושרה עבור קידום של %s. נא ליצור קשר עם מנהלי AMO אם יש לך צורך בעזרה לגבי לזה."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2803,6 +2798,20 @@ msgstr "או <a href=\"{0}\">ביטול</a>"
 msgid "More information on Developer Accounts"
 msgstr "מידע נוסף על חשבונות מפתחים"
 
+msgid "Firefox for Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr ""
+
+msgid "No, I have not tested"
+msgstr ""
+
 msgid "Developer News"
 msgstr "חדשות המפתחים"
 
@@ -2952,6 +2961,7 @@ msgstr "כתיבת קוד"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "ניתן לסייע בשיפור תוספות על־ידי תרומה עם מיומנויות הפיתוח שלך."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "תחילת עבודה"
 
@@ -4290,13 +4300,12 @@ msgid "See all extensions"
 msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "התאמה אישית של YouTube"
+msgid "Privacy & Security extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4394,6 +4403,10 @@ msgstr ""
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "התאמה אישית של YouTube"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4499,10 +4512,10 @@ msgid "Invalid archive."
 msgstr "ארכיון שגוי."
 
 msgid "No manifest.json found"
-msgstr ""
+msgstr "לא נמצא manifest.json"
 
 msgid "Invalid or corrupted file."
-msgstr ""
+msgstr "קובץ פגום או לא תקין."
 
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4512,7 +4525,7 @@ msgid "Duplicate add-on ID found."
 msgstr "נמצא מזהה תוספת כפול."
 
 msgid "Version numbers should have at most {max_length} characters."
-msgstr ""
+msgstr "מספרי הגרסאות חייבים להיות באורך של {max_length} תווים לכל היותר."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "מספרי גרסאות אמורים להכיל אך ורק תווים, מספרים ואת הסימנים הבאים: +*.-_."
@@ -4533,7 +4546,7 @@ msgid "You cannot submit a language pack"
 msgstr "לא ניתן להגיש ערכת שפה"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
-msgstr ""
+msgstr "לא ניתן לשנות את השפה של מילון או חבילת שפה קיימת"
 
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "סוג הקובץ אינו נתמך, נא להעלות קובץ {extensions} נתמך."
@@ -4549,7 +4562,7 @@ msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 msgid "Missing \"channel\" arg."
-msgstr ""
+msgstr "ארגומנט ״channel״ חסר."
 
 msgid "Spam or otherwise non-review content"
 msgstr "ספאם או תוכן שאינו שייך לסקירה"
@@ -4571,12 +4584,12 @@ msgstr ""
 
 #, python-format
 msgid "%(value)s contains a non-alphanumeric character."
-msgstr ""
+msgstr "הערך %(value)s מכיל תו שאינו אות או מספר."
 
 msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "טקסט הסקירה אינו יכול להכיל את המילה: ״{0}״"
+msgstr[1] "טקסט הסקירה אינו יכול להכיל אף אחד מהמילים: ״{0}״"
 
 msgid "This field is required."
 msgstr "שדה זה נדרש."
@@ -4632,14 +4645,14 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "מאת %(user)s ב־%(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">סומן בדגל על־ידי %(user)s בתאריך %(date)s</span>"
 
 msgid "<strong>Warning!</strong> Another user may be viewing this page before you."
-msgstr ""
+msgstr "<strong>אזהרה!</strong> ייתכן שמשתמש אחר צפה בעמוד הזה לפניך."
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
@@ -4654,38 +4667,38 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr "גרסה %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "This is the exact name of the rule used by a scanner."
-msgstr ""
+msgstr "זהו השם המדויק של הכלל שבו משתמש סורק."
 
 msgid "Human-readable name for the scanner rule"
-msgstr ""
+msgstr "שם אנושי קריא לכלל הסורק"
 
 msgid "Human-readable name"
-msgstr ""
+msgstr "שם אנושי קריא"
 
 msgid "Human readable description for the scanner rule"
-msgstr ""
+msgstr "תיאור אנושי קריא לכלל הסורק"
 
 msgid "Yara rules should have a definition"
-msgstr ""
+msgstr "לחוקי Yara צריכים להיות הגדרה"
 
 msgid "The name of the rule in the definition should match the name of the scanner rule"
-msgstr ""
+msgstr "שם הכלל בהגדרה צריך להיות תואם לשם כלל הסורק"
 
 msgid "Only one Yara rule is allowed in the definition"
-msgstr ""
+msgstr "רק כלל Yara אחד מותר בהגדרה"
 
 #, python-format
 msgid "The definition is not valid: %(error)s"
 msgstr "ההגדרה הזו אינה תקינה: %(error)s"
 
 msgid "An error occurred when compiling the definition"
-msgstr ""
+msgstr "אירעה שגיאה בעת הידור ההגדרה"
 
 msgid "When unchecked, the scanner results will not be bound to this rule and the action will not be executed."
-msgstr ""
+msgstr "כאשר לא מסומן, תוצאות הסורק לא יהיו קשורות לכלל זה והפעולה לא תבוצע."
 
 msgid "Run this rule on add-ons that have been force-disabled as well."
-msgstr ""
+msgstr "הפעלת הכלל הזה גם על תוספות שהושבתו בכוח."
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -4944,9 +4957,6 @@ msgstr "Mozilla Add-ons"
 msgid "Back to Add-ons"
 msgstr "חזרה לתוספות"
 
-msgid "Footer logo"
-msgstr "לוגו תחתון"
-
 msgid "Legal Notices"
 msgstr "הצהרה משפטית"
 
@@ -4963,46 +4973,58 @@ msgstr ""
 "למעט היכן ש<a href=\"https://www.mozilla.org/about/legal/\">צוין</a> אחרת, התוכן באתר זה מוגש בכפוף ל<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">גרסה 3.0 של הרשיון Creative Commons "
 "Attribution Share-Alike</a> או כל גרסה עדכנית יותר."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "היכרות עם <b>תוספות</b>"
-
-msgid "About"
-msgstr "על אודות"
-
-msgid "Forum"
-msgstr "פורום"
-
-msgid "Download Firefox"
-msgstr "הורדת Firefox"
-
-msgid "Android Browser"
-msgstr "דפדפן לאנדרואיד"
-
-msgid "iOS Browser"
-msgstr "דפדפן ל־iOS"
-
-msgid "Focus Browser"
-msgstr "דפדפן Focus"
-
-msgid "Desktop Browser"
-msgstr "דפדפן שולחני"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "‏Beta‏, Nightly ומהדורת מפתחים"
-
-msgid "Other languages"
-msgstr "שפות אחרות"
-
-# 100%
-msgid "Go"
-msgstr "לך"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "חזרה לדף הבית של תוספות עבור {0}"
 
 msgid "Add-ons"
 msgstr "תוספות"
+
+msgid "Go to Mozilla's homepage"
+msgstr "מעבר לדף הבית של Mozilla"
+
+msgid "About"
+msgstr "על אודות"
+
+msgid "Firefox Add-ons Blog"
+msgstr "בלוג התוספות של Firefox"
+
+msgid "Community Blog"
+msgstr "בלוג קהילה"
+
+msgid "Forum"
+msgstr "פורום"
+
+msgid "Review Guide"
+msgstr "מדריך סקירה"
+
+msgid "Browsers"
+msgstr "דפדפנים"
+
+msgid "Desktop"
+msgstr "שולחן עבודה"
+
+msgid "Enterprise"
+msgstr "ארגוני"
+
+msgid "Products"
+msgstr "מוצרים"
+
+msgid "Privacy"
+msgstr "פרטיות"
+
+msgid "Cookies"
+msgstr "עוגיות"
+
+msgid "Legal"
+msgstr "מידע משפטי"
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
+"למעט היכן ש<a href=\"https://www.mozilla.org/about/legal/\">צוין</a> אחרת, התוכן באתר זה מוגש בכפוף ל<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">גרסה 3.0 של הרשיון Creative Commons "
+"Attribution Share-Alike</a> או כל גרסה עדכנית יותר."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5013,6 +5035,13 @@ msgstr "שדות נדרשות"
 
 msgid "(optional)"
 msgstr "(אופציונלי)"
+
+msgid "Other languages"
+msgstr "שפות אחרות"
+
+# 100%
+msgid "Go"
+msgstr "לך"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5047,7 +5076,7 @@ msgid "IP Address"
 msgstr "כתובת IP"
 
 msgid "Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1. Will be converted into a /32 network."
-msgstr ""
+msgstr "יש להכניס כתובת IPv4 או IPv6 חוקית, למשל 127.0.0.1. הכתובת תומר לרשת ‎/32."
 
 msgid "You can only enter one, either IP Address or Network."
 msgstr ""
@@ -5063,16 +5092,16 @@ msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr "נא להזין רשת IP4 או IP6 חוקית."
 
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
-msgstr ""
+msgstr "מספר הגשות שמפרות את המדיניות שלנו נשלחו מהמיקום שלך. כתובת ה־IP נחסמה."
 
 msgid "Email Pattern"
-msgstr ""
+msgstr "תבנית דוא״ל"
 
 msgid "Enter full email that should be blocked or use unix-style wildcards, e.g. \"*@example.com\". If you need to block a domain incl subdomains, add a second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
 msgid "The email address used for your account is not allowed for submissions."
-msgstr ""
+msgstr "כתובת הדוא״ל המשמשת לחשבון שלך אינה מותרת להגשות."
 
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not supported: if you need those, or need to match against the entire email and not just the domain part, use \"Email user "
@@ -5192,6 +5221,29 @@ msgstr ""
 msgid ""
 "Hello,\n"
 "\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
+msgstr ""
+"שלום,\n"
+"\n"
+"הודעה זו נשלחה אליך מכיוון שחשבון המשתמש שלך %(name)s ב־%(site_url)s נמחק. ייתכן שזה בוצע באופן אוטומטי אם מחקת לאחרונה את חשבון ה־Mozilla שלך (שינינו את חשבונות Firefox לחשבונות Mozilla).\n"
+"\n"
+"אם פעולה זו לא בוצעה על ידיך או שלפי דעתך גורם לא מורשה קיבל גישה לחשבון שלך, נא להשיב לדוא״ל זה. אחרת, אין צורך לנקוט בפעולות נוספות.\n"
+"\n"
+"בברכה,\n"
+"\n"
+"צוות התוספות של Firefox"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
 "You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Firefox Account.\n"
 "\n"
 "If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
@@ -5224,7 +5276,7 @@ msgid "Approved, Manual"
 msgstr ""
 
 msgid "Disabled by Developer"
-msgstr ""
+msgstr "מושבת על־ידי המפתח"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ומעלה"

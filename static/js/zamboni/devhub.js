@@ -1350,4 +1350,43 @@ function initSubmitModals() {
       return false; // don't follow the a.href link
     });
   }
+
+  // Warn about Android compatibility (if selected).
+  if ($('#modal-confirm-android-compatibility').length > 0) {
+    let confirmedOnce = false;
+    let $input = $('#id_compatible_apps label.android input[type=checkbox]');
+
+    const $modalAndroidConfirm = $(
+      '#modal-confirm-android-compatibility',
+    ).modal('#id_compatible_apps label.android', {
+      width: 525,
+      callback: function shouldShowAndroidModal(options) {
+        if ($input.prop('disabled')) {
+          return false;
+        }
+        if (confirmedOnce) {
+          setTimeout(function () {
+            // $().modal() calls preventDefault() before firing the callback
+            // but the checkbox is temporarily checked anyway when clicking on
+            // it (not the label). To work around this, we wrap our toggling
+            // in a setTimeout() to force it to wait for the event to be
+            // processed.
+            $input.prop('checked', !$input.prop('checked'));
+            $input.trigger('change');
+          }, 0);
+        }
+        return !confirmedOnce;
+      },
+    });
+
+    $('#modal-confirm-android-compatibility')
+      .find('form')
+      .on('submit', function onSubmit(e) {
+        e.preventDefault();
+        $input.prop('checked', true);
+        $input.trigger('change');
+        $modalAndroidConfirm.trigger('close');
+        confirmedOnce = true;
+      });
+  }
 }

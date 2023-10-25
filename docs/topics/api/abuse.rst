@@ -48,6 +48,7 @@ to if necessary.
     :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
     :<json string|null appversion: The application version used by the client.
     :<json string|null lang: The language code of the locale used by the client for the application.
+    :<json string|null location: Where the content being reported is located - on AMO or inside the add-on. The accepted values are documented in the :ref:`table below <abuse-location-parameter>`.
     :<json string|null client_id: The client's hashed telemetry ID.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
@@ -58,6 +59,8 @@ to if necessary.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.username: The username of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
+    :>json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :>json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object addon: The add-on reported for abuse.
     :>json string addon.guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
     :>json int|null addon.id: The add-on id on AMO, or ``null`` if the ``addon`` submitted was a guid.
@@ -75,6 +78,7 @@ to if necessary.
     :>json string|null app: The application used by the client.
     :>json string|null appversion: The application version used by the client.
     :>json string|null lang: The language code of the locale used by the client for the application.
+    :>json string|null location: Where the content being reported is located - on AMO or inside the add-on.
     :>json string|null client_id: The client's hashed telemetry ID.
     :>json string|null install_date: The add-on install date.
     :>json string|null operating_system: The client's operating system.
@@ -205,6 +209,18 @@ to if necessary.
  ===========================  ================================================================
 
 
+.. _abuse-location-parameter:
+
+ Accepted values for the ``location`` parameter:
+
+ ===========================  ===================================================
+                       Value  Description
+ ===========================  ===================================================
+                         amo  Offending content is on add-on's detail page on AMO
+                       addon  Offending content is inside the add-on
+                        both  Offending content is in both locations
+ ===========================  ===================================================
+
 
 ------------------------------
 Submitting a user abuse report
@@ -227,6 +243,8 @@ so reports can be responded to if necessary.
     :>json string reporter.name: The name of the user who submitted the report.
     :>json string reporter.url: The link to the profile page for of the user who submitted the report.
     :>json string reporter.username: The username of the user who submitted the report.
+    :>json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :>json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object user: The user reported for abuse.
     :>json int user.id: The id of the user reported.
     :>json string user.name: The name of the user reported.

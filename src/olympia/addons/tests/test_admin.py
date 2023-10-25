@@ -1009,7 +1009,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:addons_addonregionalrestrictions_changelist')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'Admin:RegionalRestrictionsEdit')
         self.client.force_login(user)
 
     def test_can_see_module_in_admin(self):

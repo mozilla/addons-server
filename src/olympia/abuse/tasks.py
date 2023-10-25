@@ -3,10 +3,13 @@ from datetime import datetime, timedelta
 from django.db.models import Count, F, OuterRef, Q, Subquery
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
+from olympia.amo.decorators import use_primary_db
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
+from olympia.users.models import UserProfile
+
+from .models import AbuseReport, CinderReport
 
 
 @task
@@ -47,3 +50,28 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
     NeedsHumanReview.set_on_addons_latest_signed_versions(
         qs, NeedsHumanReview.REASON_ABUSE_REPORTS_THRESHOLD
     )
+
+
+@task
+@use_primary_db
+def report_to_cinder(abuse_report_id):
+    abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
+    if not abuse_report:
+        return
+    cinder_report = CinderReport.objects.create(abuse_report=abuse_report)
+    cinder_report.report()
+
+
+@task
+@use_primary_db
+def appeal_to_cinder(*, decision_id, appeal_text, user_id):
+    cinder_report = CinderReport.objects.get(decision_id=decision_id)
+    if user_id:
+        user = UserProfile.objects.get(pk=user_id)
+    else:
+        # If no user is passed then they were anonymous, caller should have
+        # verified appeal was allowed, so the appeal is coming from the
+        # anonymous reporter and we have their name/email in the abuse report
+        # already.
+        user = None
+    cinder_report.appeal(appeal_text, user)

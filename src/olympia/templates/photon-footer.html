@@ -1,39 +1,40 @@
 <footer class="Footer">
     <div class="Footer-wrapper">
         <div class="Footer-mozilla-link-wrapper">
-            <a class="Footer-mozilla-link" href="https://mozilla.org/" title="Go to Mozilla's homepage"><span class="Icon Icon-mozilla Footer-mozilla-logo"><span class="visually-hidden">Go to Mozilla's homepage</span></span></a>
+            <a class="Footer-mozilla-link" href="https://mozilla.org/" title="{% trans %}Go to Mozilla's homepage{% endtrans %}"><span class="Icon Icon-mozilla Footer-mozilla-logo"><span class="visually-hidden">{{ _("Go to Mozilla's homepage") }}</span></span></a>
         </div>
 
         <section class="Footer-amo-links">
-            <h4 class="Footer-links-header"><a href="{{ url('home') }}">Add-ons</a></h4>
+            <h4 class="Footer-links-header"><a href="{{ url('home') }}">{{ _('Add-ons') }}</a></h4>
 
             <ul class="Footer-links">
-                <li><a href="{{ url('pages.about') }}">About</a></li>
-                <li><a href="https://blog.mozilla.com/addons">Blog</a></li>
-                <li><a class="Footer-extension-workshop-link" href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=footer-link">Extension Workshop</a></li>
-                <li><a href="{{ url('devhub.index') }}">Developer Hub</a></li>
-                <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/add-on-policies/?utm_source=addons.mozilla.org&utm_medium=photon-footer">Developer Policies</a></li>
-                <li><a href="https://discourse.mozilla-community.org/c/add-ons">Forum</a></li>
-                <li><a class="Footer-bug-report-link" href="https://addons.mozilla.org/about">Report a bug</a></li>
-                <li><a href="{{ url('pages.review_guide') }}">Review Guide</a></li>
+                <li><a href="{{ url('pages.about') }}">{{ _('About') }}</a></li>
+                <li><a href="{{ settings.EXTERNAL_SITE_URL }}/blog/">{{ _('Firefox Add-ons Blog') }}</a></li>
+                <li><a class="Footer-extension-workshop-link" href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=footer-link">{{ _('Extension Workshop') }}</a></li>
+                <li><a href="{{ url('devhub.index') }}">{{ _('Developer Hub') }}</a></li>
+                <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/documentation/publish/add-on-policies/?utm_source=addons.mozilla.org&utm_medium=photon-footer">{{ _('Developer Policies') }}</a></li>
+                <li><a href="https://blog.mozilla.com/addons">{{ _('Community Blog') }}</a></li>
+                <li><a href="https://discourse.mozilla-community.org/c/add-ons">{{ _('Forum') }}</a></li>
+                <li><a class="Footer-bug-report-link" href="https://addons.mozilla.org/about">{{ _('Report a bug') }}</a></li>
+                <li><a href="{{ url('pages.review_guide') }}">{{ _('Review Guide') }}</a></li>
             </ul>
         </section>
 
         <section class="Footer-browsers-links">
-            <h4 class="Footer-links-header">Browsers</h4>
+            <h4 class="Footer-links-header">{{ _('Browsers') }}</h4>
 
             <ul class="Footer-links">
-                <li><a href="https://www.mozilla.org/firefox/new/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Desktop</a></li>
-                <li><a href="https://www.mozilla.org/firefox/mobile/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Mobile</a></li>
-                <li><a href="https://www.mozilla.org/firefox/enterprise/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Enterprise</a></li>
+                <li><a href="https://www.mozilla.org/firefox/new/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Desktop') }}</a></li>
+                <li><a href="https://www.mozilla.org/firefox/mobile/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Mobile') }}</a></li>
+                <li><a href="https://www.mozilla.org/firefox/enterprise/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Enterprise') }}</a></li>
             </ul>
         </section>
 
         <section class="Footer-products-links">
-            <h4 class="Footer-links-header">Products</h4>
+            <h4 class="Footer-links-header">{{ _('Products') }}</h4>
 
             <ul class="Footer-links">
-                <li><a href="https://www.mozilla.org/firefox/browsers/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Browsers</a></li>
+                <li><a href="https://www.mozilla.org/firefox/browsers/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Browsers') }}</a></li>
                 <li><a href="https://www.mozilla.org/products/vpn/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link#pricing">VPN</a></li>
                 <li><a href="https://relay.firefox.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Relay</a></li>
                 <li><a href="https://monitor.firefox.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Monitor</a></li>
@@ -48,12 +49,12 @@
         </section>
 
         <ul class="Footer-legal-links">
-            <li><a class="Footer-privacy-link" href="https://www.mozilla.org/privacy/websites/">Privacy</a></li>
-            <li><a class="Footer-cookies-link" href="https://www.mozilla.org/privacy/websites/">Cookies</a></li>
-            <li><a class="Footer-legal-link" href="https://www.mozilla.org/about/legal/terms/mozilla/">Legal</a></li>
+            <li><a class="Footer-privacy-link" href="https://www.mozilla.org/privacy/websites/">{{ _('Privacy') }}</a></li>
+            <li><a class="Footer-cookies-link" href="https://www.mozilla.org/privacy/websites/">{{ _('Cookies') }}</a></li>
+            <li><a class="Footer-legal-link" href="https://www.mozilla.org/about/legal/terms/mozilla/">{{ _('Legal') }}</a></li>
         </ul>
 
-        <p class="Footer-copyright">Except where otherwise <a href="https://www.mozilla.org/en-US/about/legal/">noted</a>, content on this site is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution Share-Alike Licence v3.0</a> or any later version.</p>
+        <p class="Footer-copyright">{% trans %}Except where otherwise <a href="https://www.mozilla.org/about/legal/">noted</a>, content on this site is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution Share-Alike License v3.0</a> or any later version.{% endtrans %}</p>
 
         <div class="Footer-language-picker">
             <div class="LanguagePicker">

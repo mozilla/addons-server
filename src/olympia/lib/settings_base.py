@@ -259,6 +259,7 @@ SUPPORTED_NONAPPS_NONLOCALES_REGEX = DRF_API_REGEX
 # https://github.com/mozilla/addons-frontend/blob/master/config/default-amo.js
 SUPPORTED_NONAPPS = (
     'about',
+    'abuse',
     'admin',
     'apps',
     'contribute.json',
@@ -564,12 +565,12 @@ EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
 # and js files that can be bundled together by the minify app.
 MINIFY_BUNDLES = {
     'css': {
+        'common/fonts': ('css/common/fonts.less',),
+        'common/footer': ('css/common/footer.less',),
         'restyle/css': ('css/restyle/restyle.less',),
         # CSS files our DevHub (currently only required for the
         # new landing page)
         'devhub/new-landing/css': ('css/devhub/new-landing/base.less',),
-        # Responsive error page styling.
-        'errors/css': ('css/errors/base.less',),
         # CSS files common to the entire site.
         'zamboni/css': (
             'css/legacy/main.css',
@@ -582,7 +583,6 @@ MINIFY_BUNDLES = {
             'css/impala/suggestions.less',
             'css/impala/header.less',
             'css/impala/moz-tab.css',
-            'css/impala/footer.less',
             'css/impala/faux-zamboni.less',
         ),
         'zamboni/stats': ('css/zamboni/stats.less',),
@@ -841,6 +841,8 @@ CELERY_TASK_ROUTES = {
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     # Misc AMO tasks.
     'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
+    'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
+    'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
@@ -1511,3 +1513,12 @@ BIGQUERY_AMO_DATASET = 'amo_dev'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 SITEMAP_DEBUG_AVAILABLE = False
+
+CINDER_SERVER_URL = env(
+    'CINDER_SERVER_URL',
+    default='https://stage.cinder.nonprod.webservices.mozgcp.net/api/v1/',
+)
+CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
+CINDER_WEBHOOK_TOKEN = env(
+    'CINDER_WEBHOOK_TOKEN', default='bda7b666732109417960b14b4dcd581de3374df4'
+)

@@ -860,6 +860,29 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     client_class = APITestClientSessionID
     client_request_verb = 'post'
     SUCCESS_STATUS_CODE = 201
+    APPVERSION_HIGHER_THAN_EVERYTHING_ELSE = '121.0'
+
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_MV3_FIREFOX,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID,
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            cls.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE,
+        }
+        for version in versions:
+            AppVersion.objects.get_or_create(
+                application=amo.FIREFOX.id, version=version
+            )
+            AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id, version=version
+            )
 
     def setUp(self):
         super().setUp()
@@ -1568,6 +1591,34 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert version.file.strict_compatibility is True
         assert version.apps.get().application == amo.FIREFOX.id
 
+    def test_compatibility_langpack(self):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
+        upload = self.get_upload(
+            'webextension_langpack.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        self.minimal_data = {'version': {'upload': upload.uuid}}
+        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+
+        response = self.request(
+            data={
+                'version': {
+                    **self.minimal_data['version'],
+                    'compatibility': ['android'],
+                }
+            }
+        )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {
+                'compatibility': [
+                    'Language Packs are not supported by Firefox for Android'
+                ]
+            }
+        }
+
     def test_dictionary_compat(self):
         def _parse_xpi_mock(pkg, addon, minimal, user):
             return {**parse_xpi(pkg, addon, minimal, user), 'type': amo.ADDON_DICT}
@@ -1593,6 +1644,72 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             response = self.request()
             assert response.status_code == 201, response.content
             assert response.data['type'] == 'dictionary'
+
+    def test_compatibility_dict(self):
+        request_data = {'version': {'upload': self.upload.uuid, 'compatibility': {}}}
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data == {'version': {'compatibility': ['Invalid value']}}
+
+        request_data['version']['compatibility'] = {
+            'firefox': {'min': '61.0'},
+            'foo': {},
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'version': {'compatibility': ['Invalid app specified']}
+        }
+
+        # 61.0 (DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX) should be valid.
+        request_data['version']['compatibility'] = {
+            'firefox': {'min': '61.0'},
+            'android': {},
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+        data = response.data
+
+        addon = Addon.objects.get()
+        assert addon.versions.count() == 1
+        version = addon.find_latest_version(channel=None)
+        assert data['version']['compatibility'] == {
+            # android was specified but with an empty dict, so gets the default
+            # corrected to account for general availability.
+            'android': {'max': '*', 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
+            # firefox max wasn't specified, so is the default max app version
+            'firefox': {'max': '*', 'min': '61.0'},
+        }
+        assert list(version.compatible_apps.keys()) == [amo.FIREFOX, amo.ANDROID]
+        for avs in version.compatible_apps.values():
+            assert avs.originated_from == amo.APPVERSIONS_ORIGINATED_FROM_DEVELOPER
+
+    def test_compatibility_forbidden_range_android(self):
+        request_data = {
+            'version': {
+                'upload': self.upload.uuid,
+                'compatibility': {'android': {'min': '48.0', 'max': '*'}},
+            }
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 400, response.content
+        assert response.data['version'] == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Allowed range should work.
+        request_data = {
+            'version': {
+                'upload': self.upload.uuid,
+                'compatibility': {'android': {'min': '120.0a1', 'max': '*'}},
+            }
+        }
+        response = self.request(data=request_data)
+        assert response.status_code == 201, response.content
 
 
 class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
@@ -1621,6 +1738,10 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
     def test_langpack(self):
         self.set_guid('langpack-de@firefox.mozilla.org')
         return super().test_langpack()
+
+    def test_compatibility_langpack(self):
+        self.set_guid('langpack-de@firefox.mozilla.org')
+        return super().test_compatibility_langpack()
 
     def test_guid_mismatch(self):
         def parse_xpi_mock(pkg, addon, minimal, user):
@@ -1975,6 +2096,22 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200, response.content
 
+    def test_set_slug_log(self):
+        self.addon.update(slug='first-slug')
+        response = self.request(
+            data={'slug': 'second-slug'},
+        )
+
+        log_entry = ActivityLog.objects.filter(
+            action=amo.LOG.ADDON_SLUG_CHANGED.id
+        ).latest('pk')
+
+        assert response.status_code == 200, response.content
+        assert log_entry.user == self.user
+        assert log_entry.arguments == [self.addon, 'first-slug', 'second-slug']
+        assert 'slug from first-slug to second-slug' in str(log_entry)
+        assert str(self.user.id) in str(log_entry)
+
     def test_set_extra_data(self):
         self.addon.description = 'Existing description'
         self.addon.save()
@@ -2022,6 +2159,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
                 amo.LOG.ADD_VERSION.id,
                 amo.LOG.LOG_IN.id,
                 amo.LOG.LOG_IN_API_TOKEN.id,
+                amo.LOG.ADDON_SLUG_CHANGED.id,
             )
         ).get()
         assert alog.user == self.user
@@ -3125,6 +3263,38 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.status_code == 400, response.content
         assert response.data == {'compatibility': ['Unknown min app version specified']}
 
+    def test_compatibility_forbidden_range_android(self):
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0', 'max': '*'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
+    def test_compatibility_forbidden_range_android_only_min_specified(self):
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'compatibility': [
+                'Invalid version range. For Firefox for Android, you may only pick a '
+                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'than version 79.0a1.'
+            ]
+        }
+
+        # Recommended add-ons for Android don't have that restriction.
+        self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
+        response = self.request(compatibility={'android': {'min': '48.0'}})
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
+
     @staticmethod
     def _parse_xpi_mock(pkg, addon, minimal, user):
         return {**parse_xpi(pkg, addon, minimal, user), 'type': addon.type}
@@ -3158,6 +3328,17 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         self.addon.update(type=amo.ADDON_DICT)
         with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
             self.test_basic()
+
+    def test_compatibility_langpack(self):
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=self._parse_xpi_mock):
+            response = self.request(
+                compatibility={'firefox': {'min': '61.0'}, 'android': {}}
+            )
+        # This is allowed for the moment but should be prevented by
+        # https://github.com/mozilla/addons-server/issues/21275
+        assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
 
     @override_settings(API_THROTTLING=False)
     def test_cannot_specify_invalid_license_slug(self):
@@ -3584,6 +3765,27 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
                 'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
             },
             'firefox': {'max': '*', 'min': '61.0'},
+        }
+
+    def test_compatibility_with_appversion_locked_from_manifest(self):
+        self.upload = self.get_upload(
+            'webextension_gecko_android.xpi',
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        self.minimal_data = {'upload': self.upload.uuid}
+        response = self.request(
+            compatibility={
+                'android': {'min': self.APPVERSION_HIGHER_THAN_EVERYTHING_ELSE}
+            }
+        )
+        assert response.status_code == 400
+        assert response.data == {
+            'compatibility': [
+                'Can not override compatibility information set in the manifest for '
+                'this application (Firefox for Android)'
+            ]
         }
 
     def _submit_source(self, filepath, error=False):
@@ -4245,7 +4447,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         response = self.request(
             compatibility={
                 'firefox': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
-                'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_GECKO_ANDROID},
+                'android': {'min': amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY},
             }
         )
         assert response.status_code == 400, response.content
@@ -5216,15 +5418,15 @@ class TestAddonSearchView(ESTestCase):
             slug='my-addon',
             name='My Addôn',
             popularity=33,
-            version_kw={'min_app_version': '119.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '121.0', 'max_app_version': '*'},
         )
         an_addon = addon_factory(
-            slug='my-tb-addon',
+            slug='my-android-addon',
             name='My ANd Addøn',
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '119.0',
+                'min_app_version': '121.0',
                 'max_app_version': '*',
             },
         )
@@ -5232,7 +5434,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '122.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
@@ -5240,7 +5442,7 @@ class TestAddonSearchView(ESTestCase):
             application=amo.ANDROID.id,
             version=both_addon.current_version,
             min=AppVersion.objects.get_or_create(
-                application=amo.ANDROID.id, version='120.0'
+                application=amo.ANDROID.id, version='122.0'
             )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
@@ -5248,27 +5450,27 @@ class TestAddonSearchView(ESTestCase):
         # the initial save, we need to reindex and not just refresh.
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '123.0'})
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
         data = self.perform_search(
-            self.url, {'app': 'android', 'appversion': '121.0.1'}
+            self.url, {'app': 'android', 'appversion': '122.0.1'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert data['results'][0]['id'] == an_addon.pk
         assert data['results'][1]['id'] == both_addon.pk
 
-        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '119.0'})
+        data = self.perform_search(self.url, {'app': 'firefox', 'appversion': '121.0'})
         assert data['count'] == 1
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == addon.pk
 
         data = self.perform_search(
-            self.url, {'app': 'android', 'appversion': '119.0.1'}
+            self.url, {'app': 'android', 'appversion': '121.0.1'}
         )
         assert data['count'] == 1
         assert len(data['results']) == 1

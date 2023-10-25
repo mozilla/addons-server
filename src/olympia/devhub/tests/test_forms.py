@@ -296,6 +296,9 @@ class TestCompatForm(TestCase):
             '113.0',
             '119.0a1',
             '119.0',
+            '120.0a1',
+            '120.0',
+            '121.0',
             '*',
         ):
             AppVersion.objects.get_or_create(
@@ -389,19 +392,23 @@ class TestCompatForm(TestCase):
         doc = pq(content)
         assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
         # Versions inside the forbidden Fenix range are disabled for regular
-        assert len(doc('#id_form-1-min option')) == 11
-        assert len(doc('#id_form-1-max option')) == 14
+        assert len(doc('#id_form-1-min option')) == 12
+        assert len(doc('#id_form-1-max option')) == 15
         # extensions.
         assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == [
             '79.0a1',
             '79.0',
             '113.0',
+            '119.0a1',
+            '119.0',
         ]
         assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == [
             '79.0a1',
             '79.0',
             '79.*',
             '113.0',
+            '119.0a1',
+            '119.0',
         ]
         data = {
             'form-TOTAL_FORMS': 2,
@@ -416,7 +423,7 @@ class TestCompatForm(TestCase):
                 version='48.0'
             ),
             'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='119.0a1'
+                version='120.0a1'
             ),
             'form-1-application': amo.ANDROID.id,
             'form-1-id': '',
@@ -432,7 +439,7 @@ class TestCompatForm(TestCase):
             {
                 '__all__': [
                     'Invalid version range. For Firefox for Android, you may only pick '
-                    'a range that starts with version 119.0a1 or higher, or ends with '
+                    'a range that starts with version 120.0a1 or higher, or ends with '
                     'lower than version 79.0a1.'
                 ]
             },
@@ -448,7 +455,7 @@ class TestCompatForm(TestCase):
 
         # That range is valid because it's entirely above Fenix GA
         data['form-1-min'] = AppVersion.objects.get(
-            application=amo.ANDROID.id, version='119.0a1'
+            application=amo.ANDROID.id, version='120.0a1'
         )
         data['form-1-max'] = AppVersion.objects.get(
             application=amo.ANDROID.id, version='*'
@@ -476,8 +483,8 @@ class TestCompatForm(TestCase):
         content = formset.render()
         doc = pq(content)
         assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
-        assert len(doc('#id_form-1-min option')) == 11
-        assert len(doc('#id_form-1-max option')) == 14
+        assert len(doc('#id_form-1-min option')) == 12
+        assert len(doc('#id_form-1-max option')) == 15
         assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == []
         assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == []
         data = {
@@ -493,7 +500,7 @@ class TestCompatForm(TestCase):
                 version='48.0'
             ),
             'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='119.0a1'
+                version='120.0a1'
             ),
             'form-1-application': amo.ANDROID.id,
             'form-1-id': '',

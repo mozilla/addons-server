@@ -1,11 +1,16 @@
+from datetime import datetime, timedelta
+
 from django.db import models
 
 from extended_choices import Choices
 
 from olympia import amo
+from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.api.utils import APIChoicesWithNone
+from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
+
+from .cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -58,6 +63,7 @@ class AbuseReport(ModelBase):
         ('PRIVILEGED', 12, 'Privileged'),
     )
     REASONS = APIChoicesWithNone(
+        # Reporting reasons used in Firefox
         ('DAMAGE', 1, 'Damages computer and/or data'),
         ('SPAM', 2, 'Creates spam or advertising'),
         (
@@ -74,7 +80,38 @@ class AbuseReport(ModelBase):
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
         # `10` was previously "Other". We avoid re-using the value.
+        #
+        # Reporting reasons used in AMO Feedback flow - DSA categories
+        (
+            'HATEFUL_VIOLENT_DECEPTIVE',
+            11,
+            'DSA: It contains hateful, violent, deceptive, or other inappropriate '
+            'content',
+        ),
+        (
+            'ILLEGAL',
+            12,
+            'DSA: It violates the law or contains content that violates the law',
+        ),
+        ('POLICY_VIOLATION', 13, "DSA: It violates Mozilla's Add-on Policies"),
+        # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
+        (
+            'DOES_NOT_WORK',
+            20,
+            'Feedback: It does not work, breaks websites, or slows down Firefox',
+        ),
+        (
+            'FEEDBACK_SPAM',
+            21,
+            "Feedback: It's spam",
+        ),
         ('OTHER', 127, 'Other'),
+    )
+    REPORTABLE_REASONS = (
+        REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+        REASONS.ILLEGAL,
+        REASONS.POLICY_VIOLATION,
+        REASONS.OTHER,
     )
 
     # https://searchfox.org
@@ -149,8 +186,13 @@ class AbuseReport(ModelBase):
         ('SUSPICIOUS', 3, 'Suspicious'),
         ('DELETED', 4, 'Deleted'),
     )
+    LOCATION = APIChoicesWithNone(
+        ('AMO', 1, 'Add-on page on AMO'),
+        ('ADDON', 2, 'Inside Add-on'),
+        ('BOTH', 3, 'Both on AMO and inside Add-on'),
+    )
 
-    # NULL if the reporter is anonymous.
+    # NULL if the reporter was not authenticated.
     reporter = models.ForeignKey(
         UserProfile,
         null=True,
@@ -158,6 +200,9 @@ class AbuseReport(ModelBase):
         related_name='abuse_reported',
         on_delete=models.SET_NULL,
     )
+    # name and/or email can be provided instead for unauthenticated reporters
+    reporter_email = models.CharField(max_length=255, default=None, null=True)
+    reporter_name = models.CharField(max_length=255, default=None, null=True)
     country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is set then guid should be null.
@@ -231,6 +276,9 @@ class AbuseReport(ModelBase):
     report_entry_point = models.PositiveSmallIntegerField(
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True, null=True
     )
+    location = models.PositiveSmallIntegerField(
+        default=None, choices=LOCATION.choices, blank=True, null=True
+    )
 
     unfiltered = AbuseReportManager(include_deleted=True)
     objects = AbuseReportManager()
@@ -279,3 +327,95 @@ class AbuseReport(ModelBase):
     def __str__(self):
         name = self.guid if self.guid else self.user
         return f'Abuse Report for {self.type} {name}'
+
+    @property
+    def target(self):
+        """Return the target of the abuse report (Addon, UserProfile...).
+        Can return None if it could not be found."""
+        from olympia.addons.models import Addon
+
+        if self.guid:
+            return Addon.unfiltered.filter(guid=self.guid).first()
+        elif self.user:
+            return self.user
+        return None
+
+
+class CantBeAppealed(Exception):
+    pass
+
+
+class CinderReport(ModelBase):
+    DECISION_ACTIONS = APIChoices(
+        ('NO_DECISION', 0, 'No decision'),
+        ('AMO_BAN_USER', 1, 'User ban'),
+        ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
+        ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
+        ('AMO_ESCALATE_USER', 4, 'Escalate user to reviewers'),
+        ('AMO_DELETE_RATING', 5, 'Rating delete'),
+        ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
+        ('AMO_APPROVE', 7, 'Approved (no action)'),
+    )
+    APPEAL_EXPIRATION_DAYS = 184
+
+    job_id = models.CharField(max_length=36)
+    abuse_report = models.OneToOneField(
+        AbuseReport, on_delete=models.CASCADE, primary_key=True
+    )
+    decision_action = models.PositiveSmallIntegerField(
+        default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
+    )
+    decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
+    decision_date = models.DateTimeField(default=None, null=True)
+    appeal_id = models.CharField(max_length=36, default=None, null=True)
+
+    def can_be_appealed(self):
+        return (
+            self.decision_id
+            and self.decision_date
+            and not self.appeal_id
+            and self.decision_date
+            >= datetime.now() - timedelta(days=self.APPEAL_EXPIRATION_DAYS)
+        )
+
+    def get_helper(self):
+        target = self.abuse_report.target
+        if target:
+            if isinstance(target, Addon):
+                return CinderAddon(target)
+            elif isinstance(target, UserProfile):
+                return CinderUser(target)
+        # TODO: More helpers here
+        return None
+
+    def get_cinder_reporter(self):
+        abuse = self.abuse_report
+        reporter = None
+        if abuse.reporter and not abuse.report.is_anonymous():
+            reporter = CinderUser(abuse.reporter)
+        elif abuse.reporter_name or abuse.reporter_email:
+            reporter = CinderUnauthenticatedReporter(
+                abuse.reporter_name, abuse.reporter_email
+            )
+        return reporter
+
+    def report(self):
+        abuse = self.abuse_report
+        reporter = self.get_cinder_reporter()
+        reason = AbuseReport.REASONS.for_value(abuse.reason)
+        job_id = self.get_helper().report(
+            report_text=abuse.message, category=reason.api_value, reporter=reporter
+        )
+        self.update(job_id=job_id)
+
+    def appeal(self, appeal_text, user):
+        if not self.can_be_appealed():
+            raise CantBeAppealed
+        if user:
+            appealer = CinderUser(user)
+        else:
+            appealer = self.get_cinder_reporter()
+        appeal_id = self.get_helper().appeal(
+            decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
+        )
+        self.update(appeal_id=appeal_id)

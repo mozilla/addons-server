@@ -42,5 +42,8 @@
           </div>
       </form>
   </div>
+  {% if not addon or not addon.can_be_compatible_with_all_fenix_versions %}
+    {% include 'devhub/includes/android_compatibility_modal.html' %}
+  {% endif %}
 </div>
 {% endblock content %}

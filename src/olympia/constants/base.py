@@ -1,5 +1,6 @@
 import re
 from collections import namedtuple
+from datetime import datetime
 
 from django.utils.translation import gettext_lazy as _
 
@@ -130,12 +131,12 @@ ADDON_TYPE = {
     _ADDON_THEME: _('Deprecated Complete Theme'),
     ADDON_DICT: _('Dictionary'),
     _ADDON_SEARCH: _('Deprecated Search Engine'),
-    ADDON_LPAPP: _('Language Pack (Application)'),
+    ADDON_LPAPP: _('Language Pack'),
     _ADDON_LPADDON: _('Deprecated Language Pack (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugin'),
     _ADDON_PERSONA: _('Deprecated LWT'),
     ADDON_STATICTHEME: _('Theme (Static)'),
-    _ADDON_SITE_PERMISSION: _('Site Permission'),
+    _ADDON_SITE_PERMISSION: _('Deprecated Site Permission'),
 }
 
 # Plural
@@ -144,12 +145,12 @@ ADDON_TYPES = {
     _ADDON_THEME: _('Deprecated Complete Themes'),
     ADDON_DICT: _('Dictionaries'),
     _ADDON_SEARCH: _('Deprecated Search Tools'),
-    ADDON_LPAPP: _('Language Packs (Application)'),
+    ADDON_LPAPP: _('Language Packs'),
     _ADDON_LPADDON: _('Deprecated Language Packs (Add-on)'),
     _ADDON_PLUGIN: _('Deprecated Plugins'),
     _ADDON_PERSONA: _('Deprecated LWTs'),
     ADDON_STATICTHEME: _('Themes (Static)'),
-    _ADDON_SITE_PERMISSION: _('Site Permissions'),
+    _ADDON_SITE_PERMISSION: _('Deprecated Site Permissions'),
 }
 
 # Searchable Add-on Types
@@ -364,7 +365,7 @@ MAX_VERSION_FENNEC = '68.*'
 
 # The minimum version of Fenix where extensions are all available. Expect this
 # to be bumped to 120.0 later.
-MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '119.0a1'
+MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '120.0a1'
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
@@ -473,3 +474,5 @@ APPVERSIONS_ORIGINATED_FROM_DEVELOPER = 2
 APPVERSIONS_ORIGINATED_FROM_MANIFEST = 3
 APPVERSIONS_ORIGINATED_FROM_MANIFEST_GECKO_ANDROID = 4
 APPVERSIONS_ORIGINATED_FROM_MIGRATION = 5
+
+MZA_LAUNCH_DATETIME = datetime(2023, 11, 1, 19, 0, 0)

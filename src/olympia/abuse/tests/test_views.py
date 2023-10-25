@@ -1,8 +1,14 @@
 import json
 from datetime import datetime
+from unittest import mock
+
+from django.urls import reverse
+
+from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderReport
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -260,6 +266,9 @@ class AddonAbuseViewSetTestBase:
             'addon_install_origin': 'http://example.com/',
             'addon_install_method': 'url',
             'report_entry_point': None,
+            'reporter_name': 'Somebody',
+            'reporter_email': 'some@body.com',
+            'location': 'addon',
         }
         response = self.client.post(
             self.url,
@@ -281,6 +290,8 @@ class AddonAbuseViewSetTestBase:
             'addon_version',
             'operating_system',
             'addon_install_origin',
+            'reporter_name',
+            'reporter_email',
         ):
             assert getattr(report, field) == data[field], field
         # More complex comparisons:
@@ -294,6 +305,34 @@ class AddonAbuseViewSetTestBase:
         assert report.addon_install_source is None
         assert report.addon_install_source_url is None
         assert report.report_entry_point is None
+        assert report.location == 2
+
+    def test_reporter_name_email_reason_fields_can_be_null(self):
+        data = {
+            'addon': '@mysteryaddon',
+            'message': 'This is abusé!',
+            'reason': None,
+            'reporter_name': None,
+            'reporter_email': None,
+        }
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+        assert AbuseReport.objects.filter(guid=data['addon']).exists()
+        report = AbuseReport.objects.get(guid=data['addon'])
+        self.check_report(report, 'Abuse Report for Addon %s' % data['addon'])
+        # Straightforward comparisons:
+        for field in (
+            'reason',
+            'reporter_name',
+            'reporter_email',
+        ):
+            assert getattr(report, field) is None
 
     def test_optional_fields_errors(self):
         data = {
@@ -315,6 +354,9 @@ class AddonAbuseViewSetTestBase:
             'addon_install_source': 'Something not in install source choices',
             'addon_install_source_url': 'http://%s' % 'a' * 249,
             'report_entry_point': 'Something not in entrypoint choices',
+            'reporter_name': 'n' * 256,
+            'reporter_email': 'not an email address',
+            'location': 'A location not in location choices',
         }
         response = self.client.post(
             self.url,
@@ -347,6 +389,9 @@ class AddonAbuseViewSetTestBase:
             'report_entry_point': [
                 expected_choices_message % data['report_entry_point']
             ],
+            'reporter_name': [expected_max_length_message % 255],
+            'reporter_email': ['Enter a valid email address.'],
+            'location': [expected_choices_message % data['location']],
         }
         # Note: addon_install_method and addon_install_source silently convert
         # unknown values to "other", so the values submitted here, despite not
@@ -401,6 +446,48 @@ class AddonAbuseViewSetTestBase:
         report = AbuseReport.objects.get(guid=addon.guid)
         self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
         assert report.country_code == 'YY'
+
+    def test_abuse_report_with_invalid_data(self):
+        addon = addon_factory()
+        # Prepare data with invalid field values
+        data = {
+            'addon': addon.pk,
+            'addon_install_method': {'dictionary_key': 'dictionary_val'},
+            'addon_install_source': {'dictionary_key': 'dictionary_val'},
+            'message': 'abuse!',
+        }
+
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'addon_install_method': 'Invalid value'}
+
+    def _setup_reportable_reason(self, reason):
+        addon = addon_factory(guid='@badman')
+        response = self.client.post(
+            self.url,
+            data={'addon': addon.guid, 'reason': reason},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_not_called()
+
+    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
+        self._setup_reportable_reason('feedback_spam')
+        task_mock.assert_not_called()
 
 
 class TestAddonAbuseViewSetLoggedOut(AddonAbuseViewSetTestBase, TestCase):
@@ -574,3 +661,271 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )
         assert response.status_code == 429
+
+
+class TestAppeal(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.abuse_report = AbuseReport.objects.create(
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            guid=self.addon.guid,
+            created=self.days_ago(2),
+        )
+        self.cinder_report = CinderReport.objects.create(
+            abuse_report=self.abuse_report,
+            decision_id='my-decision-id',
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE,
+            decision_date=self.days_ago(1),
+            created=self.abuse_report.created,
+        )
+        self.url = reverse(
+            'abuse.appeal', kwargs={'decision_id': self.cinder_report.decision_id}
+        )
+        patcher = mock.patch('olympia.abuse.views.appeal_to_cinder')
+        self.addCleanup(patcher.stop)
+        self.appeal_mock = patcher.start()
+
+    def test_no_decision_yet(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.NO_DECISION
+        )
+        assert self.client.get(self.url).status_code == 404
+
+    def test_no_such_decision(self):
+        url = reverse('abuse.appeal', kwargs={'decision_id': '1234-5678-9000'})
+        assert self.client.get(url).status_code == 404
+
+    def test_appeal_approval_anonymous_report_with_no_email(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_appeal_approval_anonymous_report_with_email(self):
+        self.abuse_report.update(reporter_email='me@example.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'email'
+        assert email_input.label.text == 'Email address:'
+        assert not doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+    def test_appeal_approval_anonymous_report_with_email_post_invalid(self):
+        self.abuse_report.update(reporter_email='me@example.com')
+        response = self.client.post(self.url, {'email': 'absolutelynotme@example.com'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'email'
+        assert doc('ul.errorlist').text() == 'Invalid email provided.'
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+    def test_appeal_approval_anonymous_report_with_email_post(self):
+        self.abuse_report.update(reporter_email='me@example.com')
+        response = self.client.post(self.url, {'email': 'me@example.com'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'hidden'
+        assert doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+        response = self.client.post(
+            self.url, {'email': 'me@example.com', 'reason': 'I dont like this'}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert self.appeal_mock.delay.call_count == 1
+        assert self.appeal_mock.delay.call_args_list[0][0] == ()
+        assert self.appeal_mock.delay.call_args_list[0][1] == {
+            'appeal_text': 'I dont like this',
+            'decision_id': self.cinder_report.decision_id,
+            'user_id': None,
+        }
+
+    def test_appeal_approval_anonymous_report_with_email_post_cant_be_appealed(self):
+        self.cinder_report.update(decision_date=self.days_ago(200))
+        self.abuse_report.update(reporter_email='me@example.com')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'email'
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        # Before an email has been entered and checked, we don't reveal whether
+        # the decision can be appealed.
+        assert "This decision can't be appealed" not in doc.text()
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+        response = self.client.post(self.url, {'email': 'me@example.com'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert "This decision can't be appealed" in doc.text()
+        assert self.appeal_mock.call_count == 0
+
+    def test_appeal_approval_logged_in_report_redirect_to_login(self):
+        self.user = user_factory()
+        self.abuse_report.update(reporter=self.user)
+        response = self.client.get(self.url)
+        self.assertLoginRedirects(response, self.url)
+
+    def test_appeal_approval_logged_in_report_wrong_user(self):
+        self.user = user_factory()
+        self.abuse_report.update(reporter=self.user)
+        self.user2 = user_factory()
+        self.client.force_login(self.user2)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_appeal_approval_loggued_in_user(self):
+        self.user = user_factory()
+        self.abuse_report.update(reporter=self.user)
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert doc('#id_reason')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+    def test_appeal_approval_logged_in_report_cant_be_appealed(self):
+        self.cinder_report.update(decision_date=self.days_ago(200))
+        self.user = user_factory()
+        self.abuse_report.update(reporter=self.user)
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert "This decision can't be appealed" in doc.text()
+        assert self.appeal_mock.call_count == 0
+
+    def test_appeal_rejection_not_logged_in(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        response = self.client.get(self.url)
+        self.assertLoginRedirects(response, self.url)
+
+    def test_appeal_rejection_not_author(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        user = user_factory()
+        self.client.force_login(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_appeal_rejection_author(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        user = user_factory()
+        self.addon.authors.add(user)
+        self.client.force_login(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert doc('#id_reason')
+        assert doc('#appeal-submit')
+
+        response = self.client.post(
+            self.url, {'email': 'me@example.com', 'reason': 'I dont like this'}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert self.appeal_mock.delay.call_count == 1
+        assert self.appeal_mock.delay.call_args_list[0][0] == ()
+        assert self.appeal_mock.delay.call_args_list[0][1] == {
+            'appeal_text': 'I dont like this',
+            'decision_id': self.cinder_report.decision_id,
+            'user_id': user.pk,
+        }
+
+    def test_appeal_banned_user(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER
+        )
+        self.abuse_report.update(guid=None, user=user_factory())
+        response = self.client.post(self.url, {'email': self.abuse_report.user.email})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'hidden'
+        assert doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+        response = self.client.post(
+            self.url,
+            {'email': self.abuse_report.user.email, 'reason': 'I am not a bad guy'},
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert self.appeal_mock.delay.call_count == 1
+        assert self.appeal_mock.delay.call_args_list[0][0] == ()
+        assert self.appeal_mock.delay.call_args_list[0][1] == {
+            'appeal_text': 'I am not a bad guy',
+            'decision_id': self.cinder_report.decision_id,
+            'user_id': None,
+        }
+
+    def test_appeal_banned_user_wrong_email(self):
+        self.cinder_report.update(
+            decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER
+        )
+        self.abuse_report.update(guid=None, user=user_factory())
+        response = self.client.post(self.url, {'email': 'me@example.com'})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'email'
+        assert doc('ul.errorlist').text() == 'Invalid email provided.'
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0
+
+        response = self.client.post(
+            self.url,
+            {'email': 'me@example.com', 'reason': 'I am a bad guy'},
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        email_input = doc('#id_email')[0]
+        assert email_input.type == 'email'
+        assert doc('ul.errorlist').text() == 'Invalid email provided.'
+        assert not doc('#id_reason')
+        assert not doc('#appeal-thank-you')
+        assert doc('#appeal-submit')
+        assert self.appeal_mock.call_count == 0

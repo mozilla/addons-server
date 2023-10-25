@@ -6,7 +6,7 @@ Abuse Reports
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 The following API endpoint covers abuse reporting
 
@@ -19,7 +19,7 @@ Submitting an add-on abuse report
 The following API endpoint allows an abuse report to be submitted for an Add-on,
 either listed on https://addons.mozilla.org or not.
 Authentication is not required, but is recommended so reports can be responded
-to if nessecary.
+to if necessary.
 
 .. http:post:: /api/v3/abuse/report/addon/
 
@@ -47,7 +47,7 @@ Submitting a user abuse report
 
 The following API endpoint allows an abuse report to be submitted for a user account
 on https://addons.mozilla.org.  Authentication is not required, but is recommended
-so reports can be responded to if nessecary.
+so reports can be responded to if necessary.
 
 .. http:post:: /api/v3/abuse/report/user/
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -39,18 +39,6 @@ msgstr "Слике не могу бити покретне."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Молимо Вас користите слике мање од %dMB."
-
-msgid "You are already logged in."
-msgstr ""
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr ""
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr ""
-
-msgid "You could not be logged in. Please try again."
-msgstr ""
 
 msgid "Need help?"
 msgstr ""
@@ -160,6 +148,14 @@ msgid "Version {version_string} already exists."
 msgstr ""
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
+msgstr ""
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
 
 msgid "Add-ons need at least one owner."
@@ -653,10 +649,6 @@ msgstr "Налог ажуриран."
 msgid "Account {user} deleted."
 msgstr "Налог ажуриран."
 
-#, fuzzy
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Налог ажуриран."
-
 msgid "Created: {0}."
 msgstr "Направљено: {0}."
 
@@ -905,6 +897,12 @@ msgstr ""
 msgid "Admin add-on-review cleared"
 msgstr ""
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -974,8 +972,8 @@ msgstr "Речник"
 msgid "Deprecated Search Engine"
 msgstr ""
 
-msgid "Language Pack (Application)"
-msgstr "Језички пакет (Апликација)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
@@ -990,9 +988,8 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr "Детаљи теме"
 
-#, fuzzy
-msgid "Site Permission"
-msgstr "Верзије"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -1009,9 +1006,8 @@ msgstr "Речници"
 msgid "Deprecated Search Tools"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "Језички пакети (Апликација)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -1026,9 +1022,8 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr "Уметник за теме"
 
-#, fuzzy
-msgid "Site Permissions"
-msgstr "Верзије"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 #, fuzzy
 msgid "Alerts & Updates"
@@ -1593,10 +1588,6 @@ msgstr "Види тренутни"
 
 msgid "Invalid version range."
 msgstr "Неисправан опсег верзије."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "Потребна је најмање једна компатибилна апликација."
@@ -2952,6 +2943,20 @@ msgstr "или <a href=\"{0}\">Откажи</a>"
 msgid "More information on Developer Accounts"
 msgstr "Захтеване додатне информације"
 
+msgid "Firefox for Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr ""
+
+msgid "No, I have not tested"
+msgstr ""
+
 msgid "Developer News"
 msgstr "Програмерске вести"
 
@@ -3109,6 +3114,7 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
+#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Get started"
 msgstr "Како почети"
@@ -4463,12 +4469,11 @@ msgid "See all extensions"
 msgstr "Погледајте све додатке"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
+msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4581,6 +4586,10 @@ msgstr ""
 #, fuzzy
 msgid "See more ad blocker staff picks"
 msgstr "Погледајте све додатке"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr ""
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5143,9 +5152,6 @@ msgstr "Mozilla додаци"
 msgid "Back to Add-ons"
 msgstr "Назад на додатке"
 
-msgid "Footer logo"
-msgstr ""
-
 msgid "Legal Notices"
 msgstr "Правна обавештења"
 
@@ -5165,47 +5171,56 @@ msgstr ""
 "Неке иконице које су са <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>, lсу линценциране под <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative "
 "Commons Attribution 2.5 лиценцом</a>."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "сазнајте више о <b>додацима</b>"
-
-msgid "About"
-msgstr "Више информација"
-
-msgid "Forum"
-msgstr "Форум"
-
-#, fuzzy
-msgid "Download Firefox"
-msgstr "Преузми датотеке"
-
-#, fuzzy
-msgid "Android Browser"
-msgstr "Додаци за Android"
-
-msgid "iOS Browser"
-msgstr ""
-
-msgid "Focus Browser"
-msgstr ""
-
-msgid "Desktop Browser"
-msgstr ""
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr ""
-
-msgid "Other languages"
-msgstr "Други језици"
-
-msgid "Go"
-msgstr "Крени"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Вратите се на почетну страницу {0} додатака"
 
 msgid "Add-ons"
 msgstr "Додаци"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "Више информација"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "Форум"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5216,6 +5231,12 @@ msgstr "Потребна поља"
 
 msgid "(optional)"
 msgstr "(изборно)"
+
+msgid "Other languages"
+msgstr "Други језици"
+
+msgid "Go"
+msgstr "Крени"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5369,6 +5390,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

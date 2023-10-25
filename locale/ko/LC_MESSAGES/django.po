@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-09-13 21:35+0000\n"
-"PO-Revision-Date: 2023-07-03 22:55+0000\n"
-"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
+"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"PO-Revision-Date: 2023-07-07 09:40+0000\n"
+"Last-Translator: infinitesc <infinitesc@naver.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -42,18 +42,6 @@ msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB보다 작은 이미지를 사용해 주세요."
-
-msgid "You are already logged in."
-msgstr "이미 로그인 하셨습니다."
-
-msgid "Your login attempt could not be parsed. Please try again."
-msgstr "로그인 시도를 해석할 수 없습니다. 다시 시도해 주세요."
-
-msgid "Your Firefox Account could not be found. Please try again."
-msgstr "Firefox 계정을 찾을 수 없습니다. 다시 시도해 주세요."
-
-msgid "You could not be logged in. Please try again."
-msgstr "로그인에 실패하였습니다. 다시 시도 하십시오."
 
 msgid "Need help?"
 msgstr "도움말"
@@ -160,6 +148,14 @@ msgstr "{version_string} 버전이 이미 존재합니다."
 
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "부가 기능이 비활성화된 상태일 때에는 나열된 버전을 제출할 수 없습니다."
+
+#, python-format
+msgid "%(addon_type_plural)s are not supported by %(app_name)s"
+msgstr ""
+
+#, python-format
+msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
+msgstr ""
 
 msgid "Add-ons need at least one owner."
 msgstr "부가 기능은 적어도 한명의 소유자가 있어야 합니다."
@@ -636,9 +632,6 @@ msgstr "계좌가 업데이트됐습니다."
 msgid "Account {user} deleted."
 msgstr "{user} 계정이 삭제되었습니다."
 
-msgid "Account {user} deleted, from Firefox Accounts event."
-msgstr "Firefox 계정 이벤트에서 {user} 계정이 삭제되었습니다."
-
 msgid "Created: {0}."
 msgstr "생성: {0}."
 
@@ -849,6 +842,12 @@ msgstr ""
 msgid "Admin add-on-review cleared"
 msgstr ""
 
+msgid "{user_responsible} changed {addon} slug from {0} to {1}."
+msgstr ""
+
+msgid "Addon slug changed"
+msgstr ""
+
 msgid "Firefox"
 msgstr "Firefox"
 
@@ -916,8 +915,8 @@ msgstr "맞춤법 사전"
 msgid "Deprecated Search Engine"
 msgstr "사용되지 않는 검색 엔진"
 
-msgid "Language Pack (Application)"
-msgstr "언어팩(애플리케이션)"
+msgid "Language Pack"
+msgstr ""
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr ""
@@ -931,9 +930,8 @@ msgstr "비추천 LWT"
 msgid "Theme (Static)"
 msgstr "테마(정적)"
 
-#, fuzzy
-msgid "Site Permission"
-msgstr "권한:"
+msgid "Deprecated Site Permission"
+msgstr ""
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -949,9 +947,8 @@ msgstr "사전"
 msgid "Deprecated Search Tools"
 msgstr ""
 
-# Plural in this context means many of the add-on type
-msgid "Language Packs (Application)"
-msgstr "언어팩(애플리케이션)"
+msgid "Language Packs"
+msgstr ""
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -965,8 +962,8 @@ msgstr "비추천 LWTs"
 msgid "Themes (Static)"
 msgstr "테마(정적)"
 
-msgid "Site Permissions"
-msgstr "사이트 권한"
+msgid "Deprecated Site Permissions"
+msgstr ""
 
 msgid "Alerts & Updates"
 msgstr "알림 및 업데이트"
@@ -1499,10 +1496,6 @@ msgstr "현재 보기"
 
 msgid "Invalid version range."
 msgstr "잘못된 버전 범위입니다."
-
-#, python-format
-msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
 
 msgid "Need at least one compatible application."
 msgstr "호환되는 애플리케이션이 최소 한개는 있어야 합니다."
@@ -2804,6 +2797,20 @@ msgstr "또는 <a href=\"{0}\">취소</a>"
 msgid "More information on Developer Accounts"
 msgstr "개발자 계정에 대한 추가 정보"
 
+msgid "Firefox for Android compatibility"
+msgstr ""
+
+msgid ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://extensionworkshop.com/"
+"documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
+msgstr ""
+
+msgid "Yes, I’ve tested my extension with Firefox for Android"
+msgstr ""
+
+msgid "No, I have not tested"
+msgstr ""
+
 msgid "Developer News"
 msgstr "개발자 뉴스"
 
@@ -2950,6 +2957,7 @@ msgstr "코드 작성"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "코딩 기술로 부가 기능을 개선하는 데 도움을 주세요."
 
+#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "시작하기"
 
@@ -4136,7 +4144,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr ""
+msgstr "Firefox에서 바로 ePub 파일을 읽어보세요. 글꼴 크기, 페이지 크기 등을 늘릴 수 있습니다."
 
 #. editorial content for the primary hero shelves.
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
@@ -4283,13 +4291,12 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
-msgid "Privacy & Security extensions"
+msgid "Test new Android extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "YouTube customization"
-msgstr "YouTube 사용자 지정"
+msgid "Privacy & Security extensions"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
@@ -4388,6 +4395,10 @@ msgstr "엘리트 광고 차단기"
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
 msgstr "광고 차단기 직원 추천 더보기"
+
+#. editorial content for the homepage shelves.
+msgid "YouTube customization"
+msgstr "YouTube 사용자 지정"
 
 #. editorial content for the homepage shelves.
 msgid "See more YouTube extension staff picks"
@@ -4948,9 +4959,6 @@ msgstr "Mozilla 부가 기능"
 msgid "Back to Add-ons"
 msgstr "부가 기능으로 돌아가기"
 
-msgid "Footer logo"
-msgstr "푸터 로고"
-
 msgid "Legal Notices"
 msgstr "법적 고지"
 
@@ -4968,45 +4976,56 @@ msgstr ""
 "일부 아이콘은 <a href=\"http://www.famfamfam.com/lab/icons/silk/\">famfamfam Silk Icon Set</a>의 것을 사용하고 있으며, <a href=\"http://creativecommons.org/licenses/by/2.5/\">Creative Commons "
 "Attribution 2.5 License</a>를 따르고 있습니다."
 
-msgid "get to know <b>add-ons</b>"
-msgstr "<b>부가 기능</b> 안내"
-
-msgid "About"
-msgstr "소개"
-
-msgid "Forum"
-msgstr "포럼"
-
-msgid "Download Firefox"
-msgstr "Firefox 다운로드"
-
-msgid "Android Browser"
-msgstr "Android 브라우저"
-
-msgid "iOS Browser"
-msgstr "iOS 브라우저"
-
-msgid "Focus Browser"
-msgstr "Focus 브라우저"
-
-msgid "Desktop Browser"
-msgstr "데스크톱 브라우저"
-
-msgid "Beta, Nightly, Developer Edition"
-msgstr "베타, 나이틀리, 개발자 버전"
-
-msgid "Other languages"
-msgstr "다른 언어 보기"
-
-msgid "Go"
-msgstr "실행"
-
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
 msgstr "{0} 부가 기능 대문으로 돌아가기"
 
 msgid "Add-ons"
 msgstr "부가 기능"
+
+msgid "Go to Mozilla's homepage"
+msgstr ""
+
+msgid "About"
+msgstr "소개"
+
+msgid "Firefox Add-ons Blog"
+msgstr ""
+
+msgid "Community Blog"
+msgstr ""
+
+msgid "Forum"
+msgstr "포럼"
+
+msgid "Review Guide"
+msgstr ""
+
+msgid "Browsers"
+msgstr ""
+
+msgid "Desktop"
+msgstr ""
+
+msgid "Enterprise"
+msgstr ""
+
+msgid "Products"
+msgstr ""
+
+msgid "Privacy"
+msgstr ""
+
+msgid "Cookies"
+msgstr ""
+
+msgid "Legal"
+msgstr ""
+
+msgid ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5017,6 +5036,12 @@ msgstr "필수 입력 사항"
 
 msgid "(optional)"
 msgstr "(선택사항)"
+
+msgid "Other languages"
+msgstr "다른 언어 보기"
+
+msgid "Go"
+msgstr "실행"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -5168,6 +5193,20 @@ msgid ""
 "The following author has been removed from add-on %(addon_name)s ( %(addon_url)s ):\n"
 "\n"
 "%(author_name)s ( %(author_url)s )"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed "
+"Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 msgstr ""
 
 #, python-format

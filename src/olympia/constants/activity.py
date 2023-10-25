@@ -407,7 +407,8 @@ class USER_DELETED(_LOG):
 
 class USER_AUTO_DELETED(_LOG):
     id = 62
-    format = _('Account {user} deleted, from Firefox Accounts event.')
+    format = 'Account {user} deleted, from FxaNotificationView event.'
+    admin_event = True
 
 
 class CUSTOM_TEXT(_LOG):
@@ -951,6 +952,14 @@ class CLEAR_ADMIN_REVIEW_THEME(_LOG):
     review_queue = True
     reviewer_review_action = True
     admin_event = True
+
+
+class ADDON_SLUG_CHANGED(_LOG):
+    id = 182
+    format = _('{user_responsible} changed {addon} slug from {0} to {1}.')
+    short = _('Addon slug changed')
+    keep = True
+    show_user_to_developer = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

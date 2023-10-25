@@ -6,7 +6,7 @@ Signing
 
     These v3 APIs are now deprecated and you should switch to a newer version before
     it is removed. See :ref:`the API versions available<api-versions-list>` for details
-    of the different API versions available and the deprection timeline.
+    of the different API versions available and the deprecation timeline.
 
 .. note::
     This API requires :doc:`authentication <auth>`.
@@ -22,7 +22,7 @@ Client Libraries
 
 The following libraries will make it easier to use the signing API:
 
-* `sign-addon <https://github.com/mozilla/sign-addon/>`_, for general programattic use in
+* `sign-addon <https://github.com/mozilla/sign-addon/>`_, for general programmatic use in
   `NodeJS <https://nodejs.org/>`_
 * `web-ext sign <https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Getting_started_with_web-ext#Signing_your_extension_for_distribution>`_,
   for developing `Web Extensions <https://developer.mozilla.org/en-US/Add-ons/WebExtensions>`_

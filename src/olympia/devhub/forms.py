@@ -854,10 +854,9 @@ class CompatForm(AMOModelForm):
 
         # On Android, disable Fenix-pre GA version range unless the add-on is
         # recommended or line.
-        if app == amo.ANDROID.id and not (
-            addon.promoted
-            and addon.promoted.group.can_be_compatible_with_fenix
-            and amo.ANDROID in addon.promoted.approved_applications
+        if (
+            app == amo.ANDROID.id
+            and not addon.can_be_compatible_with_all_fenix_versions
         ):
             self.fields[
                 'min'
