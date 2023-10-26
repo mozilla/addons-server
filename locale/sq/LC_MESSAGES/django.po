@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-07-11 11:28+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -18,11 +18,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Ju lutemi, garantoni që kjo fushë të mos ketë më shumë se {max_length} shenja."
 
 msgid "Invalid value"
 msgstr "Vlerë e pavlefshme"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "S’lejohen lidhje."
@@ -78,9 +105,6 @@ msgstr "Kategoria “tjetër” s’mund të ndërthuret me një kategori tjetë
 
 msgid "Invalid category name."
 msgstr "Emër i pavlefshëm drejtorie."
-
-msgid "Invalid app name."
-msgstr "Emër i pavlefshëm aplikacioni."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Përkatësia URL duhet të jetë një nga [{domains}]."
@@ -346,9 +370,6 @@ msgstr "Email:"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1060,82 +1081,6 @@ msgstr "Tjetër"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Shkarkoni zgjerime Firefox-i që mund të jenë të paparashikueshme dhe me frymë krijuese, por ende të dobishme për këto punë të dikurshme."
 
-msgid "Device Features & Location"
-msgstr "Veçori & Vend Pajisjeje"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Shkarkoni zgjerime për thellim të Firefox-it për Android. Bëni kërkime të shpejta, lironi burime sistemi, mbani shënime, etj."
-
-msgid "Experimental"
-msgstr "Eksperimentale"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Shkarkoni zgjerime Firefox-i që përditësohen rregullisht dhe janë gati për testim nga publiku. Mendimet tuaja ndihmojnë zhvilluesit të vendosin për ndryshimet në versione të ardhshëm."
-
-msgid "Performance"
-msgstr "Punim"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Shkarkoni zgjerime Firefox-i që e ngrenë funksionimin në një shkallë të re. Gjeni zgjerime që ju ndihmojnë të jeni më prodhimtar dhe efikas, përmes bllokimit të reklamave bezdisëse, etj."
-
-msgid "Photos & Media"
-msgstr "Foto & Media"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Shkarkoni zgjerime Firefox-i për t’u marrë më thellë me foto dhe media. Kjo kategori përfshin zgjerime për kërkim figurash së prapthi, për të bërë foto ekrani të plota, etj."
-
-msgid "Security & Privacy"
-msgstr "Siguri & Privatësi"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Shkarkoni zgjerime Firefox-i për të shfletuar pa rrezik dhe privatisht. Zbuloni zgjerime që mund të ndalin gjurmues të bezdisur reklamash, të spastrojnë lehtësisht historikun e shfletimit, etj."
-
-msgid "Social Networking"
-msgstr "Rrjetëzim Shoqëror"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Shkarkoni zgjerime Firefox-i për të thelluar përdorimin që u bëni sajteve popullorë të mediave shoqërore, si YouTube, GitHub, Reddit, etj."
-
-msgid "Sports & Games"
-msgstr "Sport & Lojëra"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Shkarkoni zgjerime Firefox-i për ta ngritur një shkallë më lart dëfrimin tuaj, përmes përmirësuesish të punës me transmetime të drejtpërdrejta, lajme sportive, etj."
-
-msgid "User Interface"
-msgstr "Ndërfaqe Përdoruesi"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Shkarkoni zgjerime Firefox-i për ndërfaqen e përdoruesit, për ndryshim faqesh web për lexim, kërkim dhe shfletim më të lehtë të tyre, etj."
-
-msgid "Animals"
-msgstr "Kafshë"
-
-msgid "Compact"
-msgstr "Të përkora"
-
-msgid "Large"
-msgstr "Të mëdha"
-
-msgid "Miscellaneous"
-msgstr "Të ndryshme"
-
-msgid "Modern"
-msgstr "Moderne"
-
-msgid "Nature"
-msgstr "Natyrë"
-
-msgid "OS Integration"
-msgstr "Integrim OS-i"
-
-msgid "Retro"
-msgstr "Retro"
-
-msgid "Sports"
-msgstr "Sporte"
-
 msgid "Abstract"
 msgstr "Abstrakte"
 
@@ -1182,6 +1127,9 @@ msgstr "Muzikë"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Shkarkoni tema Firefox-i që lidhen me interesa muzikore dhe muzikantë. Në këtë kategori përfshihen grupe të tillë popullorë si Nirvana dhe BTS, instrumente, video muzikore, etj."
 
+msgid "Nature"
+msgstr "Natyrë"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Shkarkoni tema Firefox-i me kafshë dhe peizazhe natyrore. Në këtë kategori përfshihen lule, perëndime dielli, kunadhe, stinë, planete, kotele, zoçka, etj."
 
@@ -1206,6 +1154,9 @@ msgstr "Solide"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Shkarkoni tema Firefox-i me ngjyra të plota dhe me gradientë për personalizimin e shfletuesit tuaj. Në këtë kategori përfshihen të kuqe të forta, pastele, gri të buta dhe plotë të tjera."
 
+msgid "Sports"
+msgstr "Sporte"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Shkarkoni tema Firefox-i që përmbajnë një larmi sportesh. Në këtë kategori përfshihen flamuj vendesh, ekipe sportive, futboll, hokej, etj."
 
@@ -1217,36 +1168,6 @@ msgstr "Shkarkoni tema Firefox-i që përqendrojnë thelbin e web-it — tërheq
 
 msgid "General"
 msgstr "Të përgjithshme"
-
-msgid "Business"
-msgstr "Biznes"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Fjalorë & Enciklopedi"
-
-msgid "Kids"
-msgstr "Fëmijë"
-
-msgid "Multiple Search"
-msgstr "Kërkime të Shumëfishta"
-
-msgid "News & Blogs"
-msgstr "Lajme & Blogje"
-
-msgid "Photos & Images"
-msgstr "Foto & Pamje"
-
-msgid "Shopping & E-Commerce"
-msgstr "Blerje & E-Tregti"
-
-msgid "Social & People"
-msgstr "Shoqëri & Njerëz"
-
-msgid "Travel"
-msgstr "Udhëtime"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
@@ -2363,9 +2284,6 @@ msgstr ""
 "I vini shenjë kësaj mundësie, nëse shtesa juaj është eksperimentale apo jo ende gati për përdorim të përgjithshëm.  Shtesa do të paraqitet te listat, por do të ketë dukshmëri të reduktuar.  Këtë "
 "rregullim mund ta ndryshoni më vonë."
 
-msgid "Select a category for this add-on:"
-msgstr "Përzgjidhni një kategori për këtë shtesë:"
-
 msgid "Support email:"
 msgstr "Email asistence:"
 
@@ -2884,12 +2802,12 @@ msgstr "Lejohet ca HTML."
 msgid "Remove this application"
 msgstr "Hiqe këtë aplikacion"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Përzgjidhni për këtë shtesë <b>deri në {0}</b> {1} kategori:"
-msgstr[1] "Përzgjidhni për këtë shtesë <b>deri në {0}</b> {1} kategori:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Përzgjidhni një kategori për këtë shtesë:"
+msgstr[1] "Përzgjidhni një kategori për këtë shtesë:"
 
 msgid "End-User License Agreement"
 msgstr "EULA"
@@ -4753,8 +4671,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Kthim i Pavlefshëm te guid AMO (jo në format base64url?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Ndërthurje e pavlefshme e parametrave \"%s\", \"%s\" dhe \"%s\"."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "U tejkalua gjatësia maksimum e kërkesave."
@@ -5052,7 +4970,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

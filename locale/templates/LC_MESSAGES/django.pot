@@ -8,22 +8,62 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.12.1\n"
+"Generated-By: Babel 2.13.0\n"
+
+#: src/olympia/abuse/forms.py:8
+msgid "Email address"
+msgstr ""
+
+#: src/olympia/abuse/forms.py:16
+msgid "Invalid email provided."
+msgstr ""
+
+#: src/olympia/abuse/forms.py:23
+msgid "Reason for appeal"
+msgstr ""
+
+#: src/olympia/abuse/forms.py:24
+msgid ""
+"Please explain why you believe that this decision was made in error, and/or "
+"does not align with the applicable policy or law."
+msgstr ""
 
 #: src/olympia/abuse/serializers.py:44
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
-#: src/olympia/abuse/serializers.py:134 src/olympia/abuse/serializers.py:150
-#: src/olympia/addons/fields.py:251
+#: src/olympia/abuse/serializers.py:140 src/olympia/abuse/serializers.py:156
+#: src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:10
+#: src/olympia/abuse/templates/abuse/appeal.html:15
+msgid "Appeal reviewer decision"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:16
+msgid "Decision {0}"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:20
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:31
+#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
+msgid "OK"
+msgstr ""
+
+#: src/olympia/abuse/templates/abuse/appeal.html:33
+msgid "This decision can't be appealed."
 msgstr ""
 
 #: src/olympia/accounts/serializers.py:131 src/olympia/bandwagon/serializers.py:98
@@ -38,17 +78,17 @@ msgstr ""
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:156 src/olympia/addons/fields.py:358
-#: src/olympia/devhub/views.py:999
+#: src/olympia/accounts/serializers.py:156 src/olympia/addons/fields.py:364
+#: src/olympia/devhub/views.py:1002
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:160 src/olympia/addons/fields.py:363
-#: src/olympia/devhub/views.py:1005
+#: src/olympia/accounts/serializers.py:160 src/olympia/addons/fields.py:369
+#: src/olympia/devhub/views.py:1008
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:166 src/olympia/devhub/views.py:1014
+#: src/olympia/accounts/serializers.py:166 src/olympia/devhub/views.py:1017
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr ""
@@ -89,60 +129,56 @@ msgstr ""
 msgid "Request content length is too large."
 msgstr ""
 
-#: src/olympia/addons/fields.py:44
+#: src/olympia/addons/fields.py:55
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr ""
 
-#: src/olympia/addons/fields.py:51
+#: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:67 src/olympia/addons/serializers.py:1210
+#: src/olympia/addons/fields.py:78 src/olympia/addons/serializers.py:1210
 msgid "Invalid category name."
 msgstr ""
 
-#: src/olympia/addons/fields.py:72
-msgid "Invalid app name."
-msgstr ""
-
-#: src/olympia/addons/fields.py:112
+#: src/olympia/addons/fields.py:118
 msgid "URL domain must be one of [{domains}]."
 msgstr ""
 
-#: src/olympia/addons/fields.py:121 src/olympia/devhub/forms.py:304
+#: src/olympia/addons/fields.py:127 src/olympia/devhub/forms.py:273
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr ""
 
-#: src/olympia/addons/fields.py:124 src/olympia/devhub/forms.py:307
+#: src/olympia/addons/fields.py:130 src/olympia/devhub/forms.py:276
 msgid "URLs must start with https://."
 msgstr ""
 
-#: src/olympia/addons/fields.py:183
+#: src/olympia/addons/fields.py:189
 msgid "License with slug={value} does not exist."
 msgstr ""
 
-#: src/olympia/addons/fields.py:205
+#: src/olympia/addons/fields.py:211
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:228 src/olympia/devhub/forms.py:774
+#: src/olympia/addons/fields.py:234 src/olympia/devhub/forms.py:743
 #: src/olympia/files/utils.py:781
 msgid "Invalid or broken archive."
 msgstr ""
 
-#: src/olympia/addons/fields.py:260
+#: src/olympia/addons/fields.py:266
 msgid "Invalid app specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:277
+#: src/olympia/addons/fields.py:283
 msgid "Unknown max app version specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:289
+#: src/olympia/addons/fields.py:295
 msgid "Unknown min app version specified"
 msgstr ""
 
-#: src/olympia/addons/fields.py:298 src/olympia/addons/fields.py:316
+#: src/olympia/addons/fields.py:304 src/olympia/addons/fields.py:322
 #: src/olympia/addons/serializers.py:625
 #, python-format
 msgid ""
@@ -150,17 +186,17 @@ msgid ""
 "application (%s)"
 msgstr ""
 
-#: src/olympia/addons/fields.py:367
+#: src/olympia/addons/fields.py:373
 #, python-format
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2067 src/olympia/addons/models.py:2127
+#: src/olympia/addons/models.py:2056 src/olympia/addons/models.py:2116
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2310
+#: src/olympia/addons/models.py:2299
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -205,7 +241,7 @@ msgstr ""
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:926
+#: src/olympia/addons/serializers.py:639 src/olympia/devhub/forms.py:895
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -225,12 +261,12 @@ msgstr ""
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:922 src/olympia/devhub/forms.py:436
-#: src/olympia/devhub/forms.py:506
+#: src/olympia/addons/serializers.py:922 src/olympia/devhub/forms.py:405
+#: src/olympia/devhub/forms.py:475
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:932 src/olympia/devhub/forms.py:447
+#: src/olympia/addons/serializers.py:932 src/olympia/devhub/forms.py:416
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
@@ -489,10 +525,6 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/fake_fxa_authorization.html:14
 msgid "Two-factor authentication"
-msgstr ""
-
-#: src/olympia/amo/templates/amo/fake_fxa_authorization.html:15
-msgid "OK"
 msgstr ""
 
 #. abbreviation of 'previous'
@@ -1182,7 +1214,7 @@ msgstr ""
 msgid "Addon slug changed"
 msgstr ""
 
-#: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:303
+#: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr ""
 
@@ -1336,29 +1368,29 @@ msgstr ""
 msgid "Deprecated Site Permissions"
 msgstr ""
 
-#: src/olympia/constants/categories.py:70
+#: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
 msgstr ""
 
-#: src/olympia/constants/categories.py:71
+#: src/olympia/constants/categories.py:69
 msgid ""
 "Download Firefox extensions that help you stay up-to-date, track tasks, "
 "improve efficiency. Find extensions that reload tabs, manage productivity, "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:79
+#: src/olympia/constants/categories.py:78
 msgid "Appearance"
 msgstr ""
 
-#: src/olympia/constants/categories.py:80
+#: src/olympia/constants/categories.py:79
 msgid ""
 "Download extensions that modify the appearance of websites and the browser "
 "Firefox. This category includes extensions for dark themes, tab management, "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:88 src/olympia/constants/categories.py:392
+#: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
 msgstr ""
 
@@ -1368,440 +1400,286 @@ msgid ""
 "searching for duplicates, finding broken bookmarks, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:96
+#: src/olympia/constants/categories.py:97
 msgid "Download Management"
 msgstr ""
 
-#: src/olympia/constants/categories.py:97
+#: src/olympia/constants/categories.py:98
 msgid ""
 "Download Firefox extensions that can help download web, music and video "
 "content. You can also find extensions to manage downloads, share files, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:104
+#: src/olympia/constants/categories.py:106
 msgid "Feeds, News & Blogging"
 msgstr ""
 
-#: src/olympia/constants/categories.py:105
+#: src/olympia/constants/categories.py:107
 msgid ""
 "Download Firefox extensions that remove clutter so you can stay up-to-date on"
 " social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:112
+#: src/olympia/constants/categories.py:115
 msgid "Games & Entertainment"
 msgstr ""
 
-#: src/olympia/constants/categories.py:113
+#: src/olympia/constants/categories.py:116
 msgid ""
 "Download Firefox extensions to boost your entertainment experience. This "
 "category includes extensions that can enhance gaming, control video playback,"
 " and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:120
+#: src/olympia/constants/categories.py:124
 msgid "Language Support"
 msgstr ""
 
-#: src/olympia/constants/categories.py:121
+#: src/olympia/constants/categories.py:125
 msgid ""
 "Download Firefox extensions that offer language support like grammar check, "
 "look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:128
+#: src/olympia/constants/categories.py:133
 msgid "Photos, Music & Videos"
 msgstr ""
 
-#: src/olympia/constants/categories.py:129
+#: src/olympia/constants/categories.py:134
 msgid ""
 "Download Firefox extensions that enhance photo, music and video experiences. "
 "Extensions in this category modify audio and video, reverse image search, and"
 " more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:136
+#: src/olympia/constants/categories.py:142
 msgid "Privacy & Security"
 msgstr ""
 
-#: src/olympia/constants/categories.py:137
+#: src/olympia/constants/categories.py:143
 msgid ""
 "Download Firefox extensions to browse privately and securely. This category "
 "includes extensions to block annoying ads, prevent tracking, manage "
 "redirects, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:145
+#: src/olympia/constants/categories.py:152
 msgid "Search Tools"
 msgstr ""
 
-#: src/olympia/constants/categories.py:146
+#: src/olympia/constants/categories.py:153
 msgid ""
 "Download Firefox extensions for search and look-up. This category includes "
 "extensions that highlight and search text, lookup IP addresses/domains, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:153
+#: src/olympia/constants/categories.py:161
 msgid "Shopping"
 msgstr ""
 
-#: src/olympia/constants/categories.py:154
+#: src/olympia/constants/categories.py:162
 msgid ""
 "Download Firefox extensions that can enhance your online shopping experience "
 "with coupon finders, deal finders, review analyzers, more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:161
+#: src/olympia/constants/categories.py:170
 msgid "Social & Communication"
 msgstr ""
 
-#: src/olympia/constants/categories.py:162
+#: src/olympia/constants/categories.py:171
 msgid ""
 "Download Firefox extensions to enhance social media and instant messaging. "
 "This category includes improved tab notifications, video downloaders, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:169
+#: src/olympia/constants/categories.py:179
 msgid "Tabs"
 msgstr ""
 
-#: src/olympia/constants/categories.py:170
+#: src/olympia/constants/categories.py:180
 msgid ""
 "Download Firefox extension to customize tabs and the new tab page. Discover "
 "extensions that can control tabs, change the way you interact with them, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:177
+#: src/olympia/constants/categories.py:188
 msgid "Web Development"
 msgstr ""
 
-#: src/olympia/constants/categories.py:178
+#: src/olympia/constants/categories.py:189
 msgid ""
 "Download Firefox extensions that feature web development tools. This category"
 " includes extensions for GitHub, user agent switching, cookie management, and"
 " more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:186 src/olympia/constants/categories.py:344
-#: src/olympia/devhub/forms.py:618
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290
+#: src/olympia/devhub/forms.py:587
 msgid "Other"
 msgstr ""
 
-#: src/olympia/constants/categories.py:188
+#: src/olympia/constants/categories.py:200
 msgid ""
 "Download Firefox extensions that can be unpredictable and creative, yet "
 "useful for those odd tasks."
 msgstr ""
 
-#: src/olympia/constants/categories.py:195
-msgid "Device Features & Location"
-msgstr ""
-
-#: src/olympia/constants/categories.py:196
-msgid ""
-"Download extensions to enhance Firefox for Android. Perform quick searches, "
-"free up system resources, take notes, and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:203
-msgid "Experimental"
-msgstr ""
-
-#: src/olympia/constants/categories.py:204
-msgid ""
-"Download Firefox extensions that are regularly updated and ready for public "
-"testing. Your feedback informs developers on changes to make in upcoming "
-"versions."
-msgstr ""
-
-#: src/olympia/constants/categories.py:211
-msgid "Performance"
-msgstr ""
-
-#: src/olympia/constants/categories.py:212
-msgid ""
-"Download extensions that give Firefox a performance boost. Find extensions "
-"that help you be more productive and efficient by blocking annoying ads and "
-"more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:219
-msgid "Photos & Media"
-msgstr ""
-
-#: src/olympia/constants/categories.py:220
-msgid ""
-"Download Firefox extensions to enhance photos and media. This category "
-"includes extensions to reverse search images, capture full page screenshots, "
-"and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:227
-msgid "Security & Privacy"
-msgstr ""
-
-#: src/olympia/constants/categories.py:228
-msgid ""
-"Download Firefox extensions to surf safely and privately. Discover extensions"
-" that can stop sneaky ad trackers in their tracks, easily clear browsing "
-"history, and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:236
-msgid "Social Networking"
-msgstr ""
-
-#: src/olympia/constants/categories.py:237
-msgid ""
-"Download Firefox extensions to enhance your experience on popular social "
-"networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:244
-msgid "Sports & Games"
-msgstr ""
-
-#: src/olympia/constants/categories.py:245
-msgid ""
-"Download Firefox extensions to give your entertainment experience a boost "
-"with live stream enhancers, sports updates, and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:252
-msgid "User Interface"
-msgstr ""
-
-#: src/olympia/constants/categories.py:253
-msgid ""
-"Download user interface Firefox extensions to alter web pages for easier "
-"reading, searching, browsing, and more."
-msgstr ""
-
-#: src/olympia/constants/categories.py:260
-msgid "Animals"
-msgstr ""
-
-#: src/olympia/constants/categories.py:261
-msgid "Compact"
-msgstr ""
-
-#: src/olympia/constants/categories.py:262
-msgid "Large"
-msgstr ""
-
-#: src/olympia/constants/categories.py:263
-msgid "Miscellaneous"
-msgstr ""
-
-#: src/olympia/constants/categories.py:264
-msgid "Modern"
-msgstr ""
-
-#: src/olympia/constants/categories.py:265 src/olympia/constants/categories.py:336
-msgid "Nature"
-msgstr ""
-
-#: src/olympia/constants/categories.py:266
-msgid "OS Integration"
-msgstr ""
-
-#: src/olympia/constants/categories.py:267
-msgid "Retro"
-msgstr ""
-
-#: src/olympia/constants/categories.py:268 src/olympia/constants/categories.py:375
-#: src/olympia/constants/categories.py:405
-msgid "Sports"
-msgstr ""
-
-#: src/olympia/constants/categories.py:272
+#: src/olympia/constants/categories.py:209
 msgid "Abstract"
 msgstr ""
 
-#: src/olympia/constants/categories.py:273
+#: src/olympia/constants/categories.py:210
 msgid ""
 "Download Firefox artistic and conceptual themes. This category includes "
 "colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic "
 "flowers."
 msgstr ""
 
-#: src/olympia/constants/categories.py:280
+#: src/olympia/constants/categories.py:218
 msgid "Causes"
 msgstr ""
 
-#: src/olympia/constants/categories.py:281
+#: src/olympia/constants/categories.py:219
 msgid ""
 "Download Firefox themes for niche interests and topics. This category "
 "includes sports themes, holidays, philanthropic causes, nationalities, and "
 "much more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:288
+#: src/olympia/constants/categories.py:227
 msgid "Fashion"
 msgstr ""
 
-#: src/olympia/constants/categories.py:289
+#: src/olympia/constants/categories.py:228
 msgid ""
 "Download Firefox themes that celebrate style of all forms—patterns, florals, "
 "textures, models, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:295
+#: src/olympia/constants/categories.py:235
 msgid "Film and TV"
 msgstr ""
 
-#: src/olympia/constants/categories.py:296
+#: src/olympia/constants/categories.py:236
 msgid ""
 "Download Firefox themes with movies and television. This category includes "
 "anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), "
 "and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:304
+#: src/olympia/constants/categories.py:245
 msgid ""
 "Download Firefox themes with the Firefox browser theme. This category "
 "includes colorful, diverse depictions of the Firefox logo, including more "
 "general fox themes."
 msgstr ""
 
-#: src/olympia/constants/categories.py:311
+#: src/olympia/constants/categories.py:253
 msgid "Foxkeh"
 msgstr ""
 
-#: src/olympia/constants/categories.py:312
+#: src/olympia/constants/categories.py:254
 msgid ""
 "Download Firefox themes with the Japanese Firefox. This category includes "
 "themes that depict the cute Foxkeh mascot in various poses on diverse "
 "landscapes."
 msgstr ""
 
-#: src/olympia/constants/categories.py:319
+#: src/olympia/constants/categories.py:262
 msgid "Holiday"
 msgstr ""
 
-#: src/olympia/constants/categories.py:320
+#: src/olympia/constants/categories.py:263
 msgid ""
 "Download Firefox themes with holidays. This category includes Christmas, "
 "Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:327 src/olympia/constants/categories.py:400
+#: src/olympia/constants/categories.py:271
 msgid "Music"
 msgstr ""
 
-#: src/olympia/constants/categories.py:328
+#: src/olympia/constants/categories.py:272
 msgid ""
 "Download Firefox themes for musical interests and artists. This category "
 "includes popular bands like Nirvana and BTS, instruments, music videos, and "
 "much more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:337
+#: src/olympia/constants/categories.py:281
+msgid "Nature"
+msgstr ""
+
+#: src/olympia/constants/categories.py:282
 msgid ""
 "Download Firefox themes with animals and natural landscapes. This category "
 "includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:346
+#: src/olympia/constants/categories.py:292
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr ""
 
-#: src/olympia/constants/categories.py:351
+#: src/olympia/constants/categories.py:298
 msgid "Scenery"
 msgstr ""
 
-#: src/olympia/constants/categories.py:352
+#: src/olympia/constants/categories.py:299
 msgid ""
 "Download Firefox themes that feature the environment and the natural world. "
 "This category includes sunsets, beaches, illustrations, city skylines, and "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:359
+#: src/olympia/constants/categories.py:307
 msgid "Seasonal"
 msgstr ""
 
-#: src/olympia/constants/categories.py:360
+#: src/olympia/constants/categories.py:308
 msgid ""
 "Download Firefox themes for all four seasons—fall, winter, spring, and "
 "summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring "
 "flowers."
 msgstr ""
 
-#: src/olympia/constants/categories.py:367
+#: src/olympia/constants/categories.py:316
 msgid "Solid"
 msgstr ""
 
-#: src/olympia/constants/categories.py:368
+#: src/olympia/constants/categories.py:317
 msgid ""
 "Download Firefox themes with solid and gradient colors to personalize your "
 "browser. This category includes bold reds, pastels, soft greys, and much "
 "more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:376
+#: src/olympia/constants/categories.py:325
+msgid "Sports"
+msgstr ""
+
+#: src/olympia/constants/categories.py:326
 msgid ""
 "Download Firefox themes that feature a variety of sports. This category "
 "includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
-#: src/olympia/constants/categories.py:383
+#: src/olympia/constants/categories.py:334
 msgid "Websites"
 msgstr ""
 
-#: src/olympia/constants/categories.py:384
+#: src/olympia/constants/categories.py:335
 msgid ""
 "Download Firefox themes that capture the essence of the web—captivating, "
 "unusual, and distinctive."
 msgstr ""
 
-#: src/olympia/constants/categories.py:390 src/olympia/constants/categories.py:397
-#: src/olympia/constants/categories.py:409
+#: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
 msgid "General"
-msgstr ""
-
-#: src/olympia/constants/categories.py:393
-msgid "Business"
-msgstr ""
-
-#: src/olympia/constants/categories.py:395
-msgid "Dictionaries & Encyclopedias"
-msgstr ""
-
-#: src/olympia/constants/categories.py:398
-msgid "Kids"
-msgstr ""
-
-#: src/olympia/constants/categories.py:399
-msgid "Multiple Search"
-msgstr ""
-
-#: src/olympia/constants/categories.py:401
-msgid "News & Blogs"
-msgstr ""
-
-#: src/olympia/constants/categories.py:402
-msgid "Photos & Images"
-msgstr ""
-
-#: src/olympia/constants/categories.py:403
-msgid "Shopping & E-Commerce"
-msgstr ""
-
-#: src/olympia/constants/categories.py:404
-msgid "Social & People"
-msgstr ""
-
-#: src/olympia/constants/categories.py:406
-msgid "Travel"
-msgstr ""
-
-#: src/olympia/constants/categories.py:407
-msgid "Video"
 msgstr ""
 
 #: src/olympia/constants/licenses.py:15
@@ -2048,179 +1926,179 @@ msgid ""
 "extensions, visit https://mzl.la/3hIwQXX"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:83
+#: src/olympia/devhub/forms.py:82
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:86
+#: src/olympia/devhub/forms.py:85
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr ""
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:176
+#: src/olympia/devhub/forms.py:186
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/devhub/forms.py:186
+#: src/olympia/devhub/forms.py:196
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:298
+#: src/olympia/devhub/forms.py:267
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:313
+#: src/olympia/devhub/forms.py:282
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/devhub/forms.py:332
+#: src/olympia/devhub/forms.py:301
 #, python-format
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:418
+#: src/olympia/devhub/forms.py:387
 msgid "Users can not be added directly"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:483
+#: src/olympia/devhub/forms.py:452
 msgid "Must have at least one owner."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:485
+#: src/olympia/devhub/forms.py:454
 msgid "At least one author must be listed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:533
+#: src/olympia/devhub/forms.py:502
 msgid "Slug incorrect."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:568
+#: src/olympia/devhub/forms.py:537
 #: src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:589
+#: src/olympia/devhub/forms.py:558
 msgid "What is your license's name?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:591 src/olympia/devhub/forms.py:629
+#: src/olympia/devhub/forms.py:560 src/olympia/devhub/forms.py:598
 msgid "Custom License"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:596
+#: src/olympia/devhub/forms.py:565
 msgid "Provide the text of your license."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:637
+#: src/olympia/devhub/forms.py:606
 msgid "License text is required when choosing Other."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:693
+#: src/olympia/devhub/forms.py:662
 msgid "This add-on has an End-User License Agreement"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:698
+#: src/olympia/devhub/forms.py:667
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:701
+#: src/olympia/devhub/forms.py:670
 msgid "This add-on has a Privacy Policy"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:706
+#: src/olympia/devhub/forms.py:675
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:745
+#: src/olympia/devhub/forms.py:714
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:785
+#: src/olympia/devhub/forms.py:754
 msgid "View current"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:908
+#: src/olympia/devhub/forms.py:877
 msgid "Invalid version range."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1014
+#: src/olympia/devhub/forms.py:983
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1062
+#: src/olympia/devhub/forms.py:1031
 msgid ""
 "You have submitted too many uploads recently. Please try again after some "
 "time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1075 src/olympia/devhub/forms.py:1122
+#: src/olympia/devhub/forms.py:1044 src/olympia/devhub/forms.py:1091
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1081
+#: src/olympia/devhub/forms.py:1050
 msgid "Override failed validation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1091
+#: src/olympia/devhub/forms.py:1060
 msgid "Need to select at least one application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1133 src/olympia/signing/views.py:153
+#: src/olympia/devhub/forms.py:1102 src/olympia/signing/views.py:153
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1142 src/olympia/devhub/forms.py:1148
+#: src/olympia/devhub/forms.py:1111 src/olympia/devhub/forms.py:1117
 #: src/olympia/signing/views.py:155
 msgid "Version {version} already exists."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1144
+#: src/olympia/devhub/forms.py:1113
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1177
+#: src/olympia/devhub/forms.py:1146
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1177
+#: src/olympia/devhub/forms.py:1146
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1192
+#: src/olympia/devhub/forms.py:1161
 msgid "You have not uploaded a source file."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1195
+#: src/olympia/devhub/forms.py:1164
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1258
+#: src/olympia/devhub/forms.py:1227
 msgid ""
 "Ensure name and summary combined are at most {limit_value} characters (they "
 "have {show_value})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1377
+#: src/olympia/devhub/forms.py:1346
 msgid ""
 "On this site. <span class=\"helptext\">Your submission is publicly listed on "
 "{site_domain}.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1384
+#: src/olympia/devhub/forms.py:1353
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by "
 "Mozilla, you can download the .xpi file from the Developer Hub and distribute"
@@ -2229,7 +2107,7 @@ msgid ""
 "updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1424
+#: src/olympia/devhub/forms.py:1393
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:15
 msgid "Display Name"
 msgstr ""
@@ -2267,129 +2145,129 @@ msgid ""
 "on</a> page to submit extensions."
 msgstr ""
 
-#: src/olympia/devhub/views.py:104
+#: src/olympia/devhub/views.py:108
 msgid "Updated"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:75
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:105 src/olympia/devhub/views.py:115
+#: src/olympia/devhub/views.py:109 src/olympia/devhub/views.py:119
 msgid "Name"
 msgstr ""
 
-#: src/olympia/devhub/views.py:106 src/olympia/devhub/views.py:114
+#: src/olympia/devhub/views.py:110 src/olympia/devhub/views.py:118
 msgid "Created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:107 src/olympia/devhub/views.py:116
+#: src/olympia/devhub/views.py:111 src/olympia/devhub/views.py:120
 #: src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr ""
 
-#: src/olympia/devhub/views.py:108 src/olympia/devhub/views.py:117
+#: src/olympia/devhub/views.py:112 src/olympia/devhub/views.py:121
 msgid "Rating"
 msgstr ""
 
-#: src/olympia/devhub/views.py:181
+#: src/olympia/devhub/views.py:185
 msgid "All My Add-ons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:209
+#: src/olympia/devhub/views.py:213
 msgid "All Activity"
 msgstr ""
 
-#: src/olympia/devhub/views.py:210
+#: src/olympia/devhub/views.py:214
 msgid "Add-on Updates"
 msgstr ""
 
-#: src/olympia/devhub/views.py:211
+#: src/olympia/devhub/views.py:215
 msgid "Add-on Status"
 msgstr ""
 
-#: src/olympia/devhub/views.py:212
+#: src/olympia/devhub/views.py:216
 msgid "User Collections"
 msgstr ""
 
-#: src/olympia/devhub/views.py:213
+#: src/olympia/devhub/views.py:217
 msgid "User Reviews"
 msgstr ""
 
-#: src/olympia/devhub/views.py:357
+#: src/olympia/devhub/views.py:361
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
-#: src/olympia/devhub/views.py:368
+#: src/olympia/devhub/views.py:372
 msgid "Theme deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:368
+#: src/olympia/devhub/views.py:372
 msgid "Add-on deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:374
+#: src/olympia/devhub/views.py:378
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:376
+#: src/olympia/devhub/views.py:380
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:448
+#: src/olympia/devhub/views.py:452
 msgid "Invitation accepted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:451
+#: src/olympia/devhub/views.py:455
 msgid "Invitation declined."
 msgstr ""
 
-#: src/olympia/devhub/views.py:519
+#: src/olympia/devhub/views.py:523
 msgid "A confirmation email has been sent to {email}"
 msgstr ""
 
-#: src/olympia/devhub/views.py:535 src/olympia/devhub/views.py:1142
+#: src/olympia/devhub/views.py:539 src/olympia/devhub/views.py:1145
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:555
+#: src/olympia/devhub/views.py:559
 msgid "Validate Add-on"
 msgstr ""
 
-#: src/olympia/devhub/views.py:621
+#: src/olympia/devhub/views.py:625
 msgid ""
 "<a href=\"{link}\">Please add two-factor authentication to your account to "
 "submit extensions.</a>"
 msgstr ""
 
-#: src/olympia/devhub/views.py:997
+#: src/olympia/devhub/views.py:1000
 msgid "Icons must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1003
+#: src/olympia/devhub/views.py:1006
 msgid "Icons cannot be animated."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1028
+#: src/olympia/devhub/views.py:1031
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1033
+#: src/olympia/devhub/views.py:1036
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1041
+#: src/olympia/devhub/views.py:1044
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1046
+#: src/olympia/devhub/views.py:1049
 msgid "Icon must be square (same width and height)."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1052
+#: src/olympia/devhub/views.py:1055
 msgid "There was an error uploading your preview."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1195
+#: src/olympia/devhub/views.py:1198
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled "
@@ -2397,92 +2275,92 @@ msgid ""
 "contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1203
+#: src/olympia/devhub/views.py:1206
 #, python-format
 msgid "Version %s disabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1207
+#: src/olympia/devhub/views.py:1210
 #, python-format
 msgid "Version %s deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1218
+#: src/olympia/devhub/views.py:1221
 #, python-format
 msgid "Version %s re-enabled."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1233
+#: src/olympia/devhub/views.py:1236
 msgid ""
 "This upload has failed validation, and may lack complete validation results. "
 "Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1373
+#: src/olympia/devhub/views.py:1376
 msgid "Header area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1374
+#: src/olympia/devhub/views.py:1377
 msgid ""
 "The color of the header area background, displayed in the part of the header "
 "not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1383
+#: src/olympia/devhub/views.py:1386
 msgid "Header area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1384
+#: src/olympia/devhub/views.py:1387
 msgid ""
 "The color of the text and icons in the header area, except the active tab. "
 "Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1392
+#: src/olympia/devhub/views.py:1395
 msgid "Toolbar area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1393
+#: src/olympia/devhub/views.py:1396
 msgid ""
 "The background color for the navigation bar, the bookmarks bar, and the "
 "active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1401
+#: src/olympia/devhub/views.py:1404
 msgid "Toolbar area text and icons"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1402
+#: src/olympia/devhub/views.py:1405
 msgid ""
 "The color of the text and icons in the toolbar and the active tab. Manifest "
 "field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1410
+#: src/olympia/devhub/views.py:1413
 msgid "Toolbar field area background"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1411
+#: src/olympia/devhub/views.py:1414
 msgid ""
 "The background color for fields in the toolbar, such as the URL bar. Manifest"
 " field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1419
+#: src/olympia/devhub/views.py:1422
 msgid "Toolbar field area text"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1420
+#: src/olympia/devhub/views.py:1423
 msgid ""
 "The color of text in fields in the toolbar, such as the URL bar. Manifest "
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1429
+#: src/olympia/devhub/views.py:1432
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1430
+#: src/olympia/devhub/views.py:1433
 msgid ""
 "The highlight color of the active tab. Implemented as a border around the tab"
 " on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:"
@@ -2766,7 +2644,7 @@ msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:270
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/owner.html:78
@@ -2856,7 +2734,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:270
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:260
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
@@ -2870,7 +2748,7 @@ msgid "or"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:273
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:263
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
@@ -2998,22 +2876,22 @@ msgid ""
 "fit your add-on's functionality for the most exposure."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:221
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:211
 msgid "Email"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:223
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:213
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it "
 "here. If you have different addresses for each language multiple translations"
 " of this field can be added. It is only relevant for listed add-ons."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:244
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:234
 msgid "Website"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:236
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If "
 "your website is localized into other languages, multiple translations of this"
@@ -3374,7 +3252,7 @@ msgid "Submit a New Version"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:33
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:246
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:236
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:50
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:87
 msgid "Cancel and Disable Version"
@@ -3399,8 +3277,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:16
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:102
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:154
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:174
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:65
@@ -3457,50 +3334,46 @@ msgid ""
 "You can change this setting later."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:154
-msgid "Select a category for this add-on:"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:161
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:151
 msgid "Support email:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:168
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:158
 msgid "Support website:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:174
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:164
 msgid "License:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:180
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:170
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:204
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:194
 msgid ""
 "If your add-on transmits any data from the user's computer, a privacy policy "
 "is required that explains what data is sent and how it is used."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:217
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:207
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:22
 msgid "Notes to Reviewer:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:220
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:210
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:25
 msgid ""
 "Is there anything our reviewers should bear in mind when reviewing this add-"
 "on?"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:223
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:28
 msgid "Remember"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:29
 #, python-format
 msgid ""
@@ -3510,12 +3383,12 @@ msgid ""
 "requirements%(policy_requirements_close)s."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:234
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:39
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:239
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:229
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:43
 msgid "Submit Version"
 msgstr ""
@@ -4157,11 +4030,10 @@ msgstr ""
 msgid "Remove this application"
 msgstr ""
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-#: src/olympia/devhub/templates/devhub/includes/macros.html:70
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
+#. {0} is the maximum number of add-on categories allowed
+#: src/olympia/devhub/templates/devhub/includes/macros.html:69
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -6781,7 +6653,7 @@ msgstr ""
 
 #: src/olympia/search/filters.py:47 src/olympia/search/filters.py:60
 #: src/olympia/search/filters.py:92 src/olympia/search/filters.py:155
-#: src/olympia/search/filters.py:195 src/olympia/search/filters.py:340
+#: src/olympia/search/filters.py:195 src/olympia/search/filters.py:338
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr ""
@@ -6799,12 +6671,12 @@ msgstr ""
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:318
+#: src/olympia/search/filters.py:317
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
-#: src/olympia/search/filters.py:900
+#: src/olympia/search/filters.py:898
 msgid "Maximum query length exceeded."
 msgstr ""
 
@@ -7214,7 +7086,7 @@ msgid ""
 "Except where otherwise <a "
 "href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site"
 " is licensed under the <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">Creative Commons Attribution Share-Alike Licence v3.0</a> or any "
+"sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> or any "
 "later version."
 msgstr ""
 

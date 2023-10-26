@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-06 06:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -15,11 +15,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Hãy đảm bảo rằng trường này không vượt quá {max_length} ký tự."
 
 msgid "Invalid value"
 msgstr "Giá trị không hợp lệ"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "Đồng ý"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Không có liên kết được cho phép."
@@ -74,9 +101,6 @@ msgstr "Danh mục \"khác\" không thể được kết hợp với một danh 
 
 msgid "Invalid category name."
 msgstr "Tên danh mục không hợp lệ."
-
-msgid "Invalid app name."
-msgstr "Tên ứng dụng không hợp lệ."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Tên miền URL phải là một trong [{domains}]."
@@ -341,9 +365,6 @@ msgstr "Email:"
 
 msgid "Two-factor authentication"
 msgstr "Xác thực hai bước"
-
-msgid "OK"
-msgstr "Đồng ý"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1057,87 +1078,6 @@ msgstr "Khác"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Tải xuống các tiện ích mở rộng của Firefox có thể khó đoán và sáng tạo, nhưng sẽ hữu ích cho những tác vụ kỳ lạ."
 
-msgid "Device Features & Location"
-msgstr "Địa điểm & Tính năng Thiết bị"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Tải xuống các tiện ích mở rộng để nâng cao Firefox dành cho Android. Thực hiện tìm kiếm nhanh, giải phóng tài nguyên hệ thống, ghi chú và hơn thế nữa."
-
-msgid "Experimental"
-msgstr "Thử nghiệm"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-"Tải xuống các tiện ích mở rộng Firefox thường xuyên được cập nhật và sẵn sàng để thử nghiệm công khai. Phản hồi của bạn thông báo cho các nhà phát triển về những thay đổi để thực hiện trong các "
-"phiên bản sắp tới."
-
-msgid "Performance"
-msgstr "Hiệu suất"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Tải xuống các tiện ích mở rộng giúp Firefox tăng hiệu suất. Tìm các tiện ích mở rộng giúp bạn làm việc hiệu quả và hiệu quả hơn bằng cách chặn quảng cáo gây phiền nhiễu và hơn thế nữa."
-
-msgid "Photos & Media"
-msgstr "Hình ảnh & Đa phương tiện"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn "
-"thế nữa."
-
-msgid "Security & Privacy"
-msgstr "Bảo mật & Riêng tư"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Tải xuống tiện ích mở rộng Firefox để lướt web an toàn và riêng tư. Khám phá các tiện ích mở rộng có thể ngăn chặn trình theo dõi quảng cáo lén lút trong các trình theo dõi của chúng, dễ dàng xóa "
-"lịch sử duyệt web và hơn thế nữa."
-
-msgid "Social Networking"
-msgstr "Mạng xã hội"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Tải xuống các tiện ích mở rộng Firefox để nâng cao trải nghiệm của bạn trên các trang web mạng xã hội phổ biến như YouTube, GitHub, Reddit và hơn thế nữa."
-
-msgid "Sports & Games"
-msgstr "Thể thao & Trò chơi"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Tải xuống các tiện ích mở rộng Firefox để tăng trải nghiệm giải trí của bạn với các cải tiến phát trực tiếp, cập nhật thể thao và hơn thế nữa."
-
-msgid "User Interface"
-msgstr "Giao diện Người dùng"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Tải xuống các giao diện người dùng cho các tiện ích mở rộng của Firefox để thay đổi các trang web để đọc, tìm kiếm, duyệt web và hơn thế nữa dễ dàng hơn."
-
-msgid "Animals"
-msgstr "Động vật"
-
-msgid "Compact"
-msgstr "Tinh gọn"
-
-msgid "Large"
-msgstr "Lớn"
-
-msgid "Miscellaneous"
-msgstr "Linh tinh"
-
-msgid "Modern"
-msgstr "Hiện đại"
-
-msgid "Nature"
-msgstr "Thiên nhiên"
-
-msgid "OS Integration"
-msgstr "Tích hợp HĐH"
-
-msgid "Retro"
-msgstr "Hoài niệm"
-
-msgid "Sports"
-msgstr "Thể thao"
-
 msgid "Abstract"
 msgstr "Trừu tượng"
 
@@ -1183,6 +1123,9 @@ msgstr "Âm nhạc"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Tải xuống các chủ đề Firefox cho sở thích âm nhạc và nghệ sĩ. Danh mục này bao gồm các ban nhạc nổi tiếng như Nirvana và BTS, nhạc cụ, video âm nhạc, v.v."
 
+msgid "Nature"
+msgstr "Thiên nhiên"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Tải xuống các chủ đề của Firefox với động vật và phong cảnh thiên nhiên. Danh mục này bao gồm hoa, hoàng hôn, cáo, các mùa, hành tinh, mèo con, chim, v.v."
 
@@ -1207,6 +1150,9 @@ msgstr "Màu đồng nhất"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Tải xuống chủ đề Firefox với các màu đồng nhất và gradient để cá nhân hóa trình duyệt của bạn. Danh mục này bao gồm màu đỏ đậm, phấn màu, xám dịu và nhiều hơn nữa."
 
+msgid "Sports"
+msgstr "Thể thao"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Tải xuống chủ đề Firefox có nhiều môn thể thao. Danh mục này bao gồm cờ quốc gia, đội thể thao, bóng đá, khúc côn cầu, v.v."
 
@@ -1218,36 +1164,6 @@ msgstr "Tải xuống chủ đề Firefox nắm bắt được bản chất củ
 
 msgid "General"
 msgstr "Tổng quát"
-
-msgid "Business"
-msgstr "Kinh doanh"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Từ điển & Bách khoa Toàn thư"
-
-msgid "Kids"
-msgstr "Trẻ em"
-
-msgid "Multiple Search"
-msgstr "Tìm kiếm Nhiều nguồn"
-
-msgid "News & Blogs"
-msgstr "Tin tức & Blog"
-
-msgid "Photos & Images"
-msgstr "Hình & Ảnh"
-
-msgid "Shopping & E-Commerce"
-msgstr "Mua sắm & Thương mại Điện tử"
-
-msgid "Social & People"
-msgstr "Giao lưu & Con người"
-
-msgid "Travel"
-msgstr "Du lịch"
-
-msgid "Video"
-msgstr "Phim"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
@@ -2354,9 +2270,6 @@ msgstr "Tiện ích này là thử nghiệm"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "Chọn tùy chọn này nếu tiện ích của bạn là thử nghiệm hoặc không sẵn sàng để sử dụng chung.  Tiện ích sẽ được liệt kê nhưng sẽ bị giảm khả năng hiển thị.  Bạn có thể thay đổi cài đặt này sau."
 
-msgid "Select a category for this add-on:"
-msgstr "Chọn một danh mục cho tiện ích mở rộng này:"
-
 msgid "Support email:"
 msgstr "Email hỗ trợ:"
 
@@ -2881,11 +2794,11 @@ msgstr "Một số HTML được hỗ trợ."
 msgid "Remove this application"
 msgstr "Loại bỏ ứng dụng này"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Chọn <b>nhiều nhất {0}</b> {1} phân mục cho tiện ích này:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Chọn một danh mục cho tiện ích mở rộng này:"
 
 msgid "End-User License Agreement"
 msgstr "Thỏa thuận Giấy phép Người dùng Cuối"
@@ -4738,8 +4651,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Guid Quay lại AMO không hợp lệ (không phải ở định dạng base64url?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Kết hợp các tham số \"%s\", \"%s\" và \"%s\" không hợp lệ."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Độ dài truy vấn đã đạt giới hạn."
@@ -5041,10 +4954,8 @@ msgstr "Pháp lý"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Ngoại trừ những trường hợp khác được <a href=\"https://www.mozilla.org/about/legal/\">lưu ý</a>, nội dung trên trang web này được cấp phép theo <a href=\"https://creativecommons.org/licenses/by-"
-"sa/3.0/\">giấy phép Creative Commons Attribution Share-Alike License v3.0</a> hoặc bất kỳ phiên bản nào mới hơn."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

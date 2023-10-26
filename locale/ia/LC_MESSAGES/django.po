@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-07 22:41+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,38 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Assecura te que iste campo non ha plus de {max_length} characteres."
 
 msgid "Invalid value"
 msgstr "Valor invalide"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Le ligamines non es permittite."
@@ -76,9 +103,6 @@ msgstr "Le categoria \"altere\" non pote esser combinate con un altere categoria
 
 msgid "Invalid category name."
 msgstr "Nomine de categoria non valide."
-
-msgid "Invalid app name."
-msgstr "Nomine de app non valide."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Le dominio de URL debe esser un de [{domains}]."
@@ -343,9 +367,6 @@ msgstr "Email:"
 
 msgid "Two-factor authentication"
 msgstr "Authentication a duo factores"
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1054,83 +1075,6 @@ msgstr "Altere"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Discarga extensiones de Firefox que pote esser surprendente e creative, ma utile pro ille travalios peculiar."
 
-msgid "Device Features & Location"
-msgstr "Functiones e position del apparato"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque recercas rapide, libera ressources de systema, prende notas, e multo plus."
-
-msgid "Experimental"
-msgstr "Experimental"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Discarga extensiones de Firefox que es regularmente actualisate e preste pro le test public. Tu commentarios informa le disveloppatores sur le cambios a facer in le versiones approchante."
-
-msgid "Performance"
-msgstr "Prestationes"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Discarga extensiones que rende Firefox plus rapide. Trova extensiones que te adjuta a esser plus productive e efficiente per le blocage de annuncios moleste e multo plus."
-
-msgid "Photos & Media"
-msgstr "Photos & medios"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Discarga extensiones de Firefox pro meliorar photos e multimedia. Iste categoria include extensiones pro inverter imagines cercate, facer capturas de schermo de tote le pagina, e plus."
-
-msgid "Security & Privacy"
-msgstr "Securitate & confidentialitate"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Discarga extensiones de Firefox pro navigar secur- e privatemente. Discoperi extensiones que pote stoppar le publicitate furtive que te tracia, rader facilemente le chronologia de navigation, e "
-"multo plus."
-
-msgid "Social Networking"
-msgstr "Retes social"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de retes social popular como YouTube, GitHub, Reddit e multo plus."
-
-msgid "Sports & Games"
-msgstr "Sports & jocos"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Discarga extensiones de Firefox que meliora tu experientia de intertenimento con optimisation de transmission in vivo, actualitates de sport, e multo plus."
-
-msgid "User Interface"
-msgstr "Interface de usator"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Discarga extensiones de Firefox que optimisa paginas web pro lectura, recerca e navigation plus facile, e multo plus."
-
-msgid "Animals"
-msgstr "Animales"
-
-msgid "Compact"
-msgstr "Compactar"
-
-msgid "Large"
-msgstr "Grande"
-
-msgid "Miscellaneous"
-msgstr "Miscellanea"
-
-msgid "Modern"
-msgstr "Moderne"
-
-msgid "Nature"
-msgstr "Natura"
-
-msgid "OS Integration"
-msgstr "Integration de OS"
-
-msgid "Retro"
-msgstr "Retro"
-
-msgid "Sports"
-msgstr "Sports"
-
 msgid "Abstract"
 msgstr "Abstracte"
 
@@ -1176,6 +1120,9 @@ msgstr "Musica"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include gruppos popular como Nirvana e BTS, instrumentos, videos musical e multo plus."
 
+msgid "Nature"
+msgstr "Natura"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e multo plus."
 
@@ -1200,6 +1147,9 @@ msgstr "Colores uniforme"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo plus."
 
+msgid "Sports"
+msgstr "Sports"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Discarga themas de Firefox que presenta un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e multo plus."
 
@@ -1211,36 +1161,6 @@ msgstr "Discarga themas de Firefox que captura le essentia del Web: captivante, 
 
 msgid "General"
 msgstr "General"
-
-msgid "Business"
-msgstr "Negotios"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dictionarios & encyclopedias"
-
-msgid "Kids"
-msgstr "Pueros"
-
-msgid "Multiple Search"
-msgstr "Recercas multiple"
-
-msgid "News & Blogs"
-msgstr "Novas & blogs"
-
-msgid "Photos & Images"
-msgstr "Photos & imagines"
-
-msgid "Shopping & E-Commerce"
-msgstr "Compras & E-Commerce"
-
-msgid "Social & People"
-msgstr "Social & personas"
-
-msgid "Travel"
-msgstr "Viages"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Licentia public Mozilla 2.0"
@@ -2353,9 +2273,6 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Controla iste option si tu additivo es experimental o alias non preste pro uso general. Le additivo sera listate ma habera reducite visibilitate. Tu pote cambiar iste configuration plus tarde."
 
-msgid "Select a category for this add-on:"
-msgstr "Selige un cathegoria pro iste additivo:"
-
 msgid "Support email:"
 msgstr "Email de supporto:"
 
@@ -2866,12 +2783,12 @@ msgstr "Alcun HTML es compatibile."
 msgid "Remove this application"
 msgstr "Remover iste application"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Elige <b>non plus de {0}</b> {1} categoria pro iste additivo:"
-msgstr[1] "Elige <b>non plus de {0}</b> {1} categorias pro iste additivo:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Selige un cathegoria pro iste additivo:"
+msgstr[1] "Selige un cathegoria pro iste additivo:"
 
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
@@ -4722,8 +4639,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Guida de retorno al AMO non valide (formato de url non in base 64?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Combination de parametros \"%s\", \"%s\" e \"%s\" non valide."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Maxime longitude del consulta excedite."
@@ -5020,10 +4937,8 @@ msgstr "Legal"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es publicate sub le licentia <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\">Creative Commons Attribution Share-Alike v3.0</a> o ulle version plus recente."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-08 12:20+0000\n"
 "Last-Translator: 你我皆凡人 <yuanbingyan@mail.ee>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -15,11 +15,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "请确保此字段未超过 {max_length} 个字符。"
 
 msgid "Invalid value"
 msgstr "无效值"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "确定"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
@@ -74,9 +101,6 @@ msgstr "“其他”分类不能与其他分类组合"
 
 msgid "Invalid category name."
 msgstr "分类名无效。"
-
-msgid "Invalid app name."
-msgstr "应用名称无效。"
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL 的域名须为 [{domains}] 中其一。"
@@ -334,9 +358,6 @@ msgstr "邮箱："
 
 msgid "Two-factor authentication"
 msgstr "双因子验证"
-
-msgid "OK"
-msgstr "确定"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1044,81 +1065,6 @@ msgstr "其他"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "下载 Firefox 扩展，天马行空，独辟蹊径，但对于部分奇怪的任务非常有用。"
 
-msgid "Device Features & Location"
-msgstr "设备特性和位置"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "下载 Firefox 扩展，增强 Android 版。执行快速搜索、释放系统资源、作笔记等。"
-
-msgid "Experimental"
-msgstr "实验性"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "下载 Firefox 扩展，参与发布前的公开测试。您的反馈将通知开发者在即将到来的版本中进行更改。"
-
-msgid "Performance"
-msgstr "性能"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "下载 Firefox 扩展，提升浏览器的性能。找到扩展来拦截恼人的广告、提高您的工作效率等。"
-
-msgid "Photos & Media"
-msgstr "照片和媒体"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "下载 Firefox 扩展，增强图片和媒体体验。此分类包括以图搜图、截取整个页面等功能的扩展。"
-
-msgid "Security & Privacy"
-msgstr "安全和隐私"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "下载 Firefox 扩展，安全私密地遨游网络。找到扩展阻止鬼祟的广告跟踪器、轻松清除历史记录等。"
-
-msgid "Social Networking"
-msgstr "社交网络"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "下载 Firefox 扩展，增强您在 YouTube、GitHub、Reddit 等热门社交网站上的体验。"
-
-msgid "Sports & Games"
-msgstr "体育和游戏"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "下载 Firefox 扩展，提升您观看视频直播、体育赛事的娱乐体验。"
-
-msgid "User Interface"
-msgstr "用户界面"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "下载 Firefox 扩展，更改用户界面。修改网页使之更易于阅读、搜索和浏览等。"
-
-msgid "Animals"
-msgstr "动物"
-
-msgid "Compact"
-msgstr "紧凑"
-
-msgid "Large"
-msgstr "大型"
-
-msgid "Miscellaneous"
-msgstr "杂项"
-
-msgid "Modern"
-msgstr "前卫"
-
-msgid "Nature"
-msgstr "自然"
-
-msgid "OS Integration"
-msgstr "系统集成"
-
-msgid "Retro"
-msgstr "复古"
-
-msgid "Sports"
-msgstr "运动"
-
 msgid "Abstract"
 msgstr "抽象"
 
@@ -1164,6 +1110,9 @@ msgstr "音乐"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "下载 Firefox 主题，音乐兴趣和艺术家篇。此分类包括 Nirvana 和 BTS 等流行乐队、乐器、音乐视频等内容的主题。"
 
+msgid "Nature"
+msgstr "自然"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "下载 Firefox 主题，动物和自然景观篇。此分类包括鲜花、日落、狐狸、季节、行星、小猫、鸟类等内容的主题。"
 
@@ -1188,6 +1137,9 @@ msgstr "纯色"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "下载 Firefox 主题，纯色和渐变色篇，个性化您的浏览器。此分类包括亮红色、淡色、柔和的灰色等内容的主题。"
 
+msgid "Sports"
+msgstr "运动"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "下载 Firefox 主题，体育运动篇。此分类包括国旗、运动队、足球、曲棍球等内容的主题。"
 
@@ -1199,36 +1151,6 @@ msgstr "下载 Firefox 主题，捕捉网络的精髓 - 引人入胜，与众不
 
 msgid "General"
 msgstr "一般"
-
-msgid "Business"
-msgstr "商务"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "字典和百科全书"
-
-msgid "Kids"
-msgstr "儿童"
-
-msgid "Multiple Search"
-msgstr "多重搜索"
-
-msgid "News & Blogs"
-msgstr "新闻和博客"
-
-msgid "Photos & Images"
-msgstr "照片和图片"
-
-msgid "Shopping & E-Commerce"
-msgstr "购物和电子商务"
-
-msgid "Social & People"
-msgstr "社交和人脉"
-
-msgid "Travel"
-msgstr "旅行"
-
-msgid "Video"
-msgstr "视频"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla 公共许可证 2.0"
@@ -2317,9 +2239,6 @@ msgstr "这个附加组件为实验性"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "如果您的附加组件还在实验测试中，或者尚未准备好供用户日常使用，请勾选此项。这仍将公开上架此附加组件，但曝光度会被降低。您可稍后修改此设置。"
 
-msgid "Select a category for this add-on:"
-msgstr "为此附加组件选择一个分类："
-
 msgid "Support email:"
 msgstr "用户支持邮箱："
 
@@ -2825,11 +2744,11 @@ msgstr "支持某些 HTML。"
 msgid "Remove this application"
 msgstr "移除此应用程序"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "为此附加组件选择<b>至多 {0} 个</b> {1} 的分类："
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "为此附加组件选择一个分类："
 
 msgid "End-User License Agreement"
 msgstr "最终用户许可协议"
@@ -4670,8 +4589,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Return To AMO GUID 无效（不是以 base64URL 格式？）"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "“%s”，“%s”和“%s”参数的组合无效。"
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "超出最大查询长度。"
@@ -4969,9 +4888,8 @@ msgstr "法律"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"除非另有<a href=\"https://www.mozilla.org/about/legal/\">注明</a>，否则本站内容以<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">知识共享 署名-相同方式共享 v3.0</a> 或任何更新版本授权。"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

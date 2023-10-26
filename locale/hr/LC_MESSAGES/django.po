@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2022-12-23 00:24+0000\n"
 "Last-Translator: Milo <mail@milotype.de>\n"
 "Language-Team: Croatian\n"
@@ -18,11 +18,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Provjeri da ovo polje ne sadrži više od {max_length} znakova."
 
 msgid "Invalid value"
 msgstr "Neispravna vrijednost"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "U redu"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Poveznice nisu dopuštene."
@@ -85,9 +112,6 @@ msgstr ""
 
 msgid "Invalid category name."
 msgstr "Neispravno ime kategorije."
-
-msgid "Invalid app name."
-msgstr "Neispravno ime aplikacije."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL domena mora biti jedna od [{domains}]."
@@ -350,9 +374,6 @@ msgstr "E-pošta:"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "U redu"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1061,85 +1082,6 @@ msgstr "Ostalo"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Preuzmi Firefox proširenja, koja mogu biti nepredvidiva i kreativna, ali korisne za čudne zadatke."
 
-msgid "Device Features & Location"
-msgstr "Mogućnosti uređaja i lokacija"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Preuzmi proširenja za poboljšavanje Firefoxa za Android. Vrši brze pretrage, oslobodi resurse sustava, pravi bilješke i još mnogo toga."
-
-msgid "Experimental"
-msgstr "Eksperimentalno"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-"Preuzmi proširenja za Firefox koja se redovito aktualiziraju i koja su spremna za javno testiranje. Tvoje povratne informacije obavještavaju programere o promjenama koje trebaju uvesti u "
-"nadolazećim verzijama."
-
-msgid "Performance"
-msgstr "Performansa"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Preuzmi proširenja koja poboljšavaju performanse Firefoxa. Pronađi proširenja koja ti pomažu povećati produktivnost i učinkovitost, blokirajući dosadne oglase i drugo."
-
-msgid "Photos & Media"
-msgstr "Slike i multimedija"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Preuzmi Firefox proširenja za poboljšanje fotografija i medija. Ova kategorija uključuje proširenja za obrnuto pretraživanje slika, snimanje ekrana cijelih stranica i još mnogo toga."
-
-msgid "Security & Privacy"
-msgstr "Sigurnost i privatnost"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Preuzmi Firefox proširenja za sigurno i privatno pregledavanje interneta. Otkrij proširenja, koja mogu zaustaviti tajne programe za praćenje u oglasima, jednostavno uklanjanju povijest "
-"pregledavanja i još mnogo toga."
-
-msgid "Social Networking"
-msgstr "Društvene mreže"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Preuzmi Firefox proširenja i poboljšaj doživljaj na popularnim web stranicama društvenih mreža kao što su YouTube, GitHub, Reddit, itd."
-
-msgid "Sports & Games"
-msgstr "Sport i igre"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Preuzmi Firefox proširenja za bolji doživljaj prijenosa u živo, sportske novosti i još mnogo toga."
-
-msgid "User Interface"
-msgstr "Korisničko sučelje"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Preuzmi Firefox proširenja korisničkog sučelja, za mijenjanje izgleda web stranica radi lakšeg čitanja, pretraživanje, pregledavanje i još mnogo toga."
-
-msgid "Animals"
-msgstr "Životinje"
-
-msgid "Compact"
-msgstr "Kompaktno"
-
-msgid "Large"
-msgstr "Veliko"
-
-msgid "Miscellaneous"
-msgstr "Razno"
-
-msgid "Modern"
-msgstr "Moderno"
-
-msgid "Nature"
-msgstr "Priroda"
-
-msgid "OS Integration"
-msgstr "Integracija s OS-om"
-
-msgid "Retro"
-msgstr "Retro"
-
-msgid "Sports"
-msgstr "Sport"
-
 msgid "Abstract"
 msgstr "Abstraktno"
 
@@ -1185,6 +1127,9 @@ msgstr "Glazba"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Preuzmi glazbene i umjetničke teme za Firefox. Ova kategorija uključuje popularne bendove poput Nirvane i BTS-a, instrumente, muzičke spotove i još mnogo toga."
 
+msgid "Nature"
+msgstr "Priroda"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Preuzmi teme za Firefox sa životinjama i prirodnim krajolicima. Ova kategorija uključuje cvijeće, zalaske sunca, lisice, godišnja doba, planete, mačiće, ptice i još mnogo toga."
 
@@ -1209,6 +1154,9 @@ msgstr "Jednobojne"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Preuzmi teme za Firefox s punim i prijelaznim bojama za individualiziranje preglednika. Ova kategorija uključuje jake crvene boje, pastelne boje, meke sive boje i još mnogo toga."
 
+msgid "Sports"
+msgstr "Sport"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Preuzmi teme za Firefox s različitim sportovima. Ova kategorija uključuje zastave država, sportske momčadi, nogomet, hokej i još mnogo toga."
 
@@ -1220,36 +1168,6 @@ msgstr "Preuzmi teme za Firefox koje otkrivaju bit interneta – zadivljujuće, 
 
 msgid "General"
 msgstr "Opće"
-
-msgid "Business"
-msgstr "Posao"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Rječnici i enciklopedije"
-
-msgid "Kids"
-msgstr "Djeca"
-
-msgid "Multiple Search"
-msgstr "Višestruko pretraživanje"
-
-msgid "News & Blogs"
-msgstr "Vijesti i blogovi"
-
-msgid "Photos & Images"
-msgstr "Fotografije i slike"
-
-msgid "Shopping & E-Commerce"
-msgstr "Shopping i e-komerc"
-
-msgid "Social & People"
-msgstr "Društveno i ljudi"
-
-msgid "Travel"
-msgstr "Putovanje"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2359,9 +2277,6 @@ msgstr ""
 "Označi ovu opciju, ako je tvoj dodatak eksperimentalan ili na neki drugi način nije spreman za opću upotrebu. Dodatak će biti naveden, ali će biti manje vidljiv. Tu postavku možeš kasnije "
 "promijeniti."
 
-msgid "Select a category for this add-on:"
-msgstr "Odaberi kategoriju za ovaj dodatak:"
-
 msgid "Support email:"
 msgstr "E-adresa podrške:"
 
@@ -2835,13 +2750,13 @@ msgstr "Neki HTML podržan."
 msgid "Remove this application"
 msgstr "Ukloni ovaj program"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Odaberi <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
-msgstr[1] "Odaberi <b>do {0}</b> {1} kategorije za ovaj dodatak:"
-msgstr[2] "Odaberi <b>do {0}</b> {1} kategorija za ovaj dodatak:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Odaberi kategoriju za ovaj dodatak:"
+msgstr[1] "Odaberi kategoriju za ovaj dodatak:"
+msgstr[2] "Odaberi kategoriju za ovaj dodatak:"
 
 msgid "End-User License Agreement"
 msgstr "End_User Ugovor o licenci"
@@ -4701,8 +4616,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Neispravna guid oznaka za povratak na AMO (nije base64url formata?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Neispravna kombinacija parametara „%s” , „%s” i „%s”."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Prekoračena je maksimalna duljina upita."
@@ -4999,7 +4914,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

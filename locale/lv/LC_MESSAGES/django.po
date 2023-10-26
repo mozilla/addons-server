@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,10 +13,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Invalid value"
+msgstr ""
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "No links are allowed."
@@ -72,9 +99,6 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
-
-msgid "Invalid app name."
 msgstr ""
 
 msgid "URL domain must be one of [{domains}]."
@@ -325,9 +349,6 @@ msgid "Email:"
 msgstr ""
 
 msgid "Two-factor authentication"
-msgstr ""
-
-msgid "OK"
 msgstr ""
 
 #. abbreviation of 'previous'
@@ -1030,81 +1051,6 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
-msgid "Device Features & Location"
-msgstr ""
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr ""
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Performance"
-msgstr ""
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr ""
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr ""
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr ""
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Animals"
-msgstr ""
-
-msgid "Compact"
-msgstr ""
-
-msgid "Large"
-msgstr ""
-
-msgid "Miscellaneous"
-msgstr ""
-
-msgid "Modern"
-msgstr ""
-
-msgid "Nature"
-msgstr ""
-
-msgid "OS Integration"
-msgstr ""
-
-msgid "Retro"
-msgstr ""
-
-msgid "Sports"
-msgstr ""
-
 msgid "Abstract"
 msgstr ""
 
@@ -1150,6 +1096,9 @@ msgstr ""
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
 
+msgid "Nature"
+msgstr ""
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
 
@@ -1174,6 +1123,9 @@ msgstr ""
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
 
+msgid "Sports"
+msgstr ""
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
@@ -1184,36 +1136,6 @@ msgid "Download Firefox themes that capture the essence of the web—captivating
 msgstr ""
 
 msgid "General"
-msgstr ""
-
-msgid "Business"
-msgstr ""
-
-msgid "Dictionaries & Encyclopedias"
-msgstr ""
-
-msgid "Kids"
-msgstr ""
-
-msgid "Multiple Search"
-msgstr ""
-
-msgid "News & Blogs"
-msgstr ""
-
-msgid "Photos & Images"
-msgstr ""
-
-msgid "Shopping & E-Commerce"
-msgstr ""
-
-msgid "Social & People"
-msgstr ""
-
-msgid "Travel"
-msgstr ""
-
-msgid "Video"
 msgstr ""
 
 msgid "Mozilla Public License 2.0"
@@ -2300,9 +2222,6 @@ msgstr ""
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-msgid "Select a category for this add-on:"
-msgstr ""
-
 msgid "Support email:"
 msgstr ""
 
@@ -2770,10 +2689,9 @@ msgstr ""
 msgid "Remove this application"
 msgstr ""
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
+#. {0} is the maximum number of add-on categories allowed
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -4612,7 +4530,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
@@ -4906,7 +4824,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

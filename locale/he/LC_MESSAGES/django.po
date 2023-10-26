@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-07 20:48+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -19,10 +19,37 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "נא לוודא ששדה זה לא כולל יותר מ־{max_length} תווים."
 
 msgid "Invalid value"
+msgstr ""
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "אישור"
+
+msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "No links are allowed."
@@ -81,9 +108,6 @@ msgstr "לא ניתן לשלב את הקטגוריה ״אחר״ עם קטגור�
 
 msgid "Invalid category name."
 msgstr "שם הקטגוריה שגוי."
-
-msgid "Invalid app name."
-msgstr "שם היישום שגוי."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "שמות התחום של הכתובת אמורים להיות אחד מאלה: [{domains}]."
@@ -342,9 +366,6 @@ msgstr "דוא״ל:"
 
 msgid "Two-factor authentication"
 msgstr "אימות דו־שלבי"
-
-msgid "OK"
-msgstr "אישור"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1063,83 +1084,6 @@ msgstr "אחר"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
-# 80%
-# 100%
-msgid "Device Features & Location"
-msgstr "תכונות מכשיר ומיקום"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "ניסיוני"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Performance"
-msgstr "ביצועים"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "תמונות ומדיה"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "אבטחה ופרטיות"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "רשתות חברתיות"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "ספורט ומשחקים"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "ממשק משתמש"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Animals"
-msgstr "חיות"
-
-msgid "Compact"
-msgstr "קומפקטי"
-
-msgid "Large"
-msgstr "גדול"
-
-msgid "Miscellaneous"
-msgstr "שונות"
-
-msgid "Modern"
-msgstr "מודרני"
-
-msgid "Nature"
-msgstr "טבע"
-
-msgid "OS Integration"
-msgstr "שילוב מערכת ההפעלה"
-
-msgid "Retro"
-msgstr "רטרו"
-
-msgid "Sports"
-msgstr "ספורט"
-
 msgid "Abstract"
 msgstr "מופשט"
 
@@ -1185,6 +1129,9 @@ msgstr "מוזיקה"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
 
+msgid "Nature"
+msgstr "טבע"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
 
@@ -1209,6 +1156,9 @@ msgstr "אחיד"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
 
+msgid "Sports"
+msgstr "ספורט"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
@@ -1220,36 +1170,6 @@ msgstr ""
 
 msgid "General"
 msgstr "כללי"
-
-msgid "Business"
-msgstr "עסקים"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "מילונים ואינציקלופדיות"
-
-msgid "Kids"
-msgstr "ילדים"
-
-msgid "Multiple Search"
-msgstr "חיפוש משולב"
-
-msgid "News & Blogs"
-msgstr "חדשות ובלוגים"
-
-msgid "Photos & Images"
-msgstr "צילום ותמונות"
-
-msgid "Shopping & E-Commerce"
-msgstr "קניות ומסחר אלקטרוני"
-
-msgid "Social & People"
-msgstr "חברתי"
-
-msgid "Travel"
-msgstr "טיולים"
-
-msgid "Video"
-msgstr "וידאו"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2359,9 +2279,6 @@ msgstr "תוספת זו הינה ניסיונית"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "יש לסמן אפשרות זו אם התוספת שלך ניסיונית או שאינה מוכנה לשימוש הכלל.  התוספת תוצג אך לא במקום בולט.  ניתן לשנות הגדרה זו בהמשך."
 
-msgid "Select a category for this add-on:"
-msgstr "נא לבחור בקטגוריה לתוספת זו:"
-
 msgid "Support email:"
 msgstr "כתובת דוא״ל לתמיכה:"
 
@@ -2844,12 +2761,12 @@ msgstr "ישנה תמיכה חלקית ב־HTML."
 msgid "Remove this application"
 msgstr "הסרת יישום זה"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "נא לבחור <b>עד קטגורית {1} אחת</b> לתוספת זו:"
-msgstr[1] "נא לבחור <b>עד {0} קטגוריות {1}</b> לתוספת זו:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "נא לבחור בקטגוריה לתוספת זו:"
+msgstr[1] "נא לבחור בקטגוריה לתוספת זו:"
 
 msgid "End-User License Agreement"
 msgstr "הסכם רישיון למשתמש קצה"
@@ -4715,8 +4632,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "חרגת מאורך השאילתה המרבי."
@@ -5021,10 +4938,8 @@ msgstr "מידע משפטי"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"למעט היכן ש<a href=\"https://www.mozilla.org/about/legal/\">צוין</a> אחרת, התוכן באתר זה מוגש בכפוף ל<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">גרסה 3.0 של הרשיון Creative Commons "
-"Attribution Share-Alike</a> או כל גרסה עדכנית יותר."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
