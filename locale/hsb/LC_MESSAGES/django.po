@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-26 21:14+0000\n"
+"PO-Revision-Date: 2023-10-26 21:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -23,7 +23,7 @@ msgid "Invalid email provided."
 msgstr "Njepłaćiwa e-mejlowa adresa podata."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Přičina za wotprěće"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
@@ -35,19 +35,19 @@ msgid "Invalid value"
 msgstr "Njepłaćiwa hódnota"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Rozsud přepruwowaceho wotprěć"
 
 msgid "Decision {0}"
 msgstr "Rozsud {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Wulki dźak. Waše wotprěće je zregistrowane."
 
 msgid "OK"
 msgstr "W porjadku"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Tutón rozsud wotprějny njeje."
 
 msgid "No links are allowed."
 msgstr "Wotkazy dowolene njejsu."
