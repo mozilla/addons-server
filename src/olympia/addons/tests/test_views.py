@@ -959,7 +959,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.upload.update(channel=amo.CHANNEL_LISTED)
         response = self.request(
             data={
-                'categories': {'firefox': ['bookmarks']},
+                'categories': ['bookmarks'],
                 'version': {
                     'upload': self.upload.uuid,
                     'license': self.license.slug,
@@ -1044,7 +1044,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             data={
                 'summary': {'en-US': None},
                 'name': {'en-US': None},
-                'categories': {'firefox': ['bookmarks']},
+                'categories': ['bookmarks'],
                 'version': {
                     'upload': self.upload.uuid,
                     'license': self.license.slug,
@@ -1091,7 +1091,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
 
     def test_missing_version(self):
         self.minimal_data = {}
-        response = self.request(data={'categories': {'firefox': ['bookmarks']}})
+        response = self.request(data={'categories': ['bookmarks']})
         assert response.status_code == 400, response.content
         assert response.data == {'version': ['This field is required.']}
         assert not Addon.objects.all()
@@ -1099,23 +1099,21 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def test_invalid_categories(self):
         response = self.request(
             # performance is an android category
-            data={'categories': {'firefox': ['performance']}},
+            data={'categories': ['performance']},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'categories': ['Invalid category name.']}
 
         response = self.request(
             # general is an firefox category but for dicts and lang packs
-            data={'categories': {'firefox': ['general']}}
+            data={'categories': ['general']}
         )
         assert response.status_code == 400, response.content
         assert response.data == {'categories': ['Invalid category name.']}
         assert not Addon.objects.all()
 
     def test_other_category_cannot_be_combined(self):
-        response = self.request(
-            data={'categories': {'firefox': ['bookmarks', 'other']}}
-        )
+        response = self.request(data={'categories': ['bookmarks', 'other']})
         assert response.status_code == 400, response.content
         assert response.data == {
             'categories': [
@@ -1124,33 +1122,15 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
         assert not Addon.objects.all()
 
-        # but it's only enforced per app though.
-        response = self.request(
-            data={'categories': {'firefox': ['bookmarks'], 'android': ['other']}}
-        )
-        assert response.status_code == 201
-
     def test_too_many_categories(self):
         response = self.request(
-            data={
-                'categories': {'android': ['performance', 'shopping', 'experimental']}
-            },
+            data={'categories': ['appearance', 'download-management', 'shopping']},
         )
         assert response.status_code == 400, response.content
         assert response.data == {
             'categories': ['Maximum number of categories per application (2) exceeded']
         }
-
-        # check the limit is only applied per app - more than 2 in total is okay.
-        response = self.request(
-            data={
-                'categories': {
-                    'android': ['performance', 'experimental'],
-                    'firefox': ['bookmarks'],
-                },
-            },
-        )
-        assert response.status_code == 201, response.content
+        assert not Addon.objects.all()
 
     def test_set_slug(self):
         # Check for slugs with invalid characters in it
@@ -1192,7 +1172,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     def test_set_extra_data(self):
         self.upload.update(channel=amo.CHANNEL_LISTED)
         data = {
-            'categories': {'firefox': ['bookmarks']},
+            'categories': ['bookmarks'],
             'description': {'en-US': 'new description'},
             'developer_comments': {'en-US': 'comments'},
             'homepage': {'en-US': 'https://my.home.page/'},
@@ -1214,10 +1194,9 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.status_code == 201, response.content
         addon = Addon.objects.get()
         data = response.data
-        assert data['categories'] == {'firefox': ['bookmarks']}
-        assert addon.all_categories == [
-            CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-        ]
+        assert data['categories'] == ['bookmarks']  # v5 representation
+        assert addon.all_categories == [CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']]
+        response = {'lol': 'blah'}
         assert data['description'] == {'en-US': 'new description'}
         assert addon.description == 'new description'
         assert data['developer_comments'] == {'en-US': 'comments'}
@@ -1546,7 +1525,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         response = self.request(
             data={
                 'version': {'upload': upload.uuid, 'license': self.license.slug},
-                'categories': {'firefox': ['other']},
+                'categories': ['other'],
                 'support_email': {  # this field has the required locales
                     'it': 'rusiczki.ioana@gmail.com',
                     'ro': 'rusiczki.ioana@gmail.com',
@@ -1573,7 +1552,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         response = self.request(
             data={
                 'version': {'upload': upload.uuid, 'license': self.license.slug},
-                'categories': {'firefox': ['other']},
+                'categories': ['other'],
                 'support_email': {
                     'it': 'rusiczki.ioana@gmail.com',
                     'ro': 'rusiczki.ioana@gmail.com',
@@ -2038,47 +2017,47 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert self.addon.current_version.reload().release_notes != 'new notes'
 
     def test_update_categories(self):
-        bookmarks_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
-        tabs_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs']
-        other_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
+        bookmarks_cat = CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
+        tabs_cat = CATEGORIES[amo.ADDON_EXTENSION]['tabs']
+        other_cat = CATEGORIES[amo.ADDON_EXTENSION]['other']
         AddonCategory.objects.filter(addon=self.addon).update(category_id=tabs_cat.id)
-        assert self.addon.app_categories == {'firefox': [tabs_cat]}
+        assert self.addon.all_categories == [tabs_cat]
 
-        response = self.request(data={'categories': {'firefox': ['bookmarks']}})
+        response = self.request(data={'categories': ['bookmarks']})
         assert response.status_code == 200, response.content
-        assert response.data['categories'] == {'firefox': ['bookmarks']}
+        assert response.data['categories'] == ['bookmarks']
         self.addon = Addon.objects.get()
-        assert self.addon.reload().app_categories == {'firefox': [bookmarks_cat]}
+        assert self.addon.reload().all_categories == [bookmarks_cat]
         self.addon.versions.first().update(version='0.123.1')
 
         # repeat, but with the `other` category
-        response = self.request(data={'categories': {'firefox': ['other']}})
+        response = self.request(data={'categories': ['other']})
         assert response.status_code == 200, response.content
-        assert response.data['categories'] == {'firefox': ['other']}
+        assert response.data['categories'] == ['other']
         self.addon = Addon.objects.get()
-        assert self.addon.reload().app_categories == {'firefox': [other_cat]}
+        assert self.addon.reload().all_categories == [other_cat]
 
     def test_invalid_categories(self):
-        tabs_cat = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs']
+        tabs_cat = CATEGORIES[amo.ADDON_EXTENSION]['tabs']
         AddonCategory.objects.filter(addon=self.addon).update(category_id=tabs_cat.id)
-        assert self.addon.app_categories == {'firefox': [tabs_cat]}
+        assert self.addon.all_categories == [tabs_cat]
         del self.addon.all_categories
 
         response = self.request(
             # performance is an android category
-            data={'categories': {'firefox': ['performance']}}
+            data={'categories': ['performance']}
         )
         assert response.status_code == 400, response.content
         assert response.data == {'categories': ['Invalid category name.']}
-        assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
+        assert self.addon.reload().all_categories == [tabs_cat]
 
         response = self.request(
             # general is a firefox category, but for langpacks and dicts only
-            data={'categories': {'firefox': ['general']}},
+            data={'categories': ['general']},
         )
         assert response.status_code == 400, response.content
         assert response.data == {'categories': ['Invalid category name.']}
-        assert self.addon.reload().app_categories == {'firefox': [tabs_cat]}
+        assert self.addon.reload().all_categories == [tabs_cat]
 
     def test_set_slug_invalid(self):
         response = self.request(
@@ -5517,13 +5496,13 @@ class TestAddonSearchView(ESTestCase):
         assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_category(self):
-        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
+        category = CATEGORIES[amo.ADDON_EXTENSION]['alerts-updates']
         addon = addon_factory(slug='my-addon', name='My Addôn', category=category)
 
         self.refresh()
 
         # Create an add-on in a different category.
-        other_category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['tabs']
+        other_category = CATEGORIES[amo.ADDON_EXTENSION]['tabs']
         addon_factory(slug='different-addon', category=other_category)
 
         self.refresh()
@@ -5538,7 +5517,7 @@ class TestAddonSearchView(ESTestCase):
 
     def test_filter_by_category_multiple_types(self):
         def get_category(type_, name):
-            return CATEGORIES[amo.FIREFOX.id][type_][name]
+            return CATEGORIES[type_][name]
 
         addon_ext = addon_factory(
             slug='my-addon-ext',
@@ -6268,7 +6247,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 43
+        assert len(data) == 32
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6278,7 +6257,6 @@ class TestStaticCategoryView(TestCase):
             'weight': 0,
             'misc': False,
             'id': 1,
-            'application': 'firefox',
             'description': (
                 'Download Firefox extensions that remove clutter so you '
                 'can stay up-to-date on social media, catch up on blogs, '
@@ -6297,7 +6275,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
 
-        assert len(data) == 43
+        assert len(data) == 32
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -6307,7 +6285,6 @@ class TestStaticCategoryView(TestCase):
             'weight': 0,
             'misc': False,
             'id': 1,
-            'application': 'firefox',
             'description': 'does stuff',
             'type': 'extension',
             'slug': 'feeds-news-blogging',
@@ -6327,6 +6304,16 @@ class TestStaticCategoryView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response['cache-control'] == 'max-age=21600'
+
+    @override_settings(DRF_API_GATES={'v5': ('categories-application',)})
+    def test_with_application(self):
+        with self.assertNumQueries(0):
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert len(data) == 32
+        for entry in data:
+            assert entry['application'] == 'firefox'
 
 
 class TestLanguageToolsView(TestCase):

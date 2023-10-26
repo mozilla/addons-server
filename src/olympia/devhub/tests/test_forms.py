@@ -1232,12 +1232,11 @@ class TestIconForm(TestCase):
 
 
 class TestCategoryForm(TestCase):
-    def test_no_possible_categories(self):
+    def test_only_one_possible_category_for_dicts(self):
         addon = addon_factory(type=amo.ADDON_DICT)
         request = req_factory_factory('/')
-        form = forms.CategoryFormSet(addon=addon, request=request)
-        apps = [f.app for f in form.forms]
-        assert apps == [amo.FIREFOX]
+        form = forms.CategoryForm(addon=addon, request=request)
+        assert form.fields['categories'].choices == [(95, 'General')]
 
 
 class TestVersionForm(TestCase):

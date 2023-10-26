@@ -234,18 +234,6 @@ form .char-count b {
     margin: 0;
 }
 
-#edit-addon-describe .addon-app-cats {
-    border-top: 1px dotted #add0dc;
-    margin: 8px 0 0;
-    padding-top: 8px;
-}
-#edit-addon-describe input + .addon-app-cats,
-#edit-addon-describe p.addon-app-cats:first-child {
-    border-top-width: 0;
-    margin-top: 0;
-    padding-top: 0;
-}
-
 .addon-categories {
     -moz-column-count: 3;
     -webkit-column-count: 3;

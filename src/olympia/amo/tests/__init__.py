@@ -758,9 +758,9 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     for user in users:
         addon.addonuser_set.create(user=user)
 
-    application = version_kw.get('application', amo.FIREFOX.id)
-    if not category and addon.type in CATEGORIES[application]:
-        category = random.choice(list(CATEGORIES[application][addon.type].values()))
+    version_kw.get('application', amo.FIREFOX.id)
+    if not category and addon.type in CATEGORIES:
+        category = random.choice(list(CATEGORIES[addon.type].values()))
     if category:
         AddonCategory.objects.create(addon=addon, category=category)
 

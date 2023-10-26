@@ -117,11 +117,11 @@ class Command(BaseCommand):
         else:
             category = None
 
-        if category not in CATEGORIES[amo.FIREFOX.id][addon_type]:
+        if category not in CATEGORIES[addon_type]:
             category = None
             print('Category %s' % category, 'not found')
         else:
-            category = CATEGORIES[amo.FIREFOX.id][addon_type][category]
+            category = CATEGORIES[addon_type][category]
 
         print('Creating add-on %s' % addon_data['slug'])
 

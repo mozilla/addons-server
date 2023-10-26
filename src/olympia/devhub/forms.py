@@ -7,7 +7,6 @@ from django import forms
 from django.conf import settings
 from django.core.validators import MinLengthValidator
 from django.db.models import Q
-from django.forms.formsets import BaseFormSet, formset_factory
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
 from django.urls import reverse
@@ -45,7 +44,7 @@ from olympia.amo.messages import DoubleSafe
 from olympia.amo.utils import remove_icons, slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
-from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID, CATEGORIES_NO_APP
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
@@ -139,45 +138,56 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
 
 
 class CategoryForm(forms.Form):
-    application = forms.TypedChoiceField(
-        choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput, required=True
-    )
     categories = forms.MultipleChoiceField(choices=(), widget=CategoriesSelectMultiple)
 
-    def save(self, addon):
-        application = self.cleaned_data.get('application')
+    def __init__(self, *args, **kw):
+        self.addon = kw.pop('addon')
+        self.request = kw.pop('request', None)
+        super().__init__(*args, **kw)
+        cats = sorted(
+            CATEGORIES.get(self.addon.type, {}).values(),
+            key=lambda x: x.name,
+        )
+        if self.addon.type == amo.ADDON_STATICTHEME:
+            self.max_categories = 1
+            self.fields['categories'] = forms.ChoiceField(widget=forms.RadioSelect)
+        else:
+            self.max_categories = amo.MAX_CATEGORIES
+        self.fields['categories'].choices = [(c.id, c.name) for c in cats]
+        self.fields['categories'].initial = [c.id for c in self.addon.all_categories]
+
+    def save(self):
         categories_new = [int(c) for c in self.cleaned_data['categories']]
-        categories_old = [
-            c.id for c in addon.app_categories.get(amo.APP_IDS[application].short, [])
-        ]
+        categories_old = [c.id for c in self.addon.all_categories]
 
         # Add new categories.
         for c_id in set(categories_new) - set(categories_old):
-            AddonCategory(addon=addon, category_id=c_id).save()
+            AddonCategory(addon=self.addon, category_id=c_id).save()
 
         # Remove old categories.
         for c_id in set(categories_old) - set(categories_new):
-            AddonCategory.objects.filter(addon=addon, category_id=c_id).delete()
+            AddonCategory.objects.filter(addon=self.addon, category_id=c_id).delete()
 
         # Remove old, outdated categories cache on the model.
-        del addon.all_categories
+        del self.addon.all_categories
 
         # Make sure the add-on is properly re-indexed
-        addons_tasks.index_addons.delay([addon.id])
+        addons_tasks.index_addons.delay([self.addon.id])
 
     def clean_categories(self):
         categories = self.cleaned_data['categories']
+        if isinstance(categories, str):
+            categories = [categories]
         total = len(categories)
-        max_cat = amo.MAX_CATEGORIES
 
-        if total > max_cat:
+        if total > self.max_categories:
             # L10n: {0} is the number of categories.
             raise forms.ValidationError(
                 ngettext(
                     'You can have only {0} category.',
                     'You can have only {0} categories.',
-                    max_cat,
-                ).format(max_cat)
+                    self.max_categories,
+                ).format(self.max_categories)
             )
 
         has_misc = list(filter(lambda x: CATEGORIES_BY_ID.get(int(x)).misc, categories))
@@ -190,47 +200,6 @@ class CategoryForm(forms.Form):
             )
 
         return categories
-
-
-class BaseCategoryFormSet(BaseFormSet):
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        self.request = kw.pop('request', None)
-        super().__init__(*args, **kw)
-        self.initial = []
-        apps = sorted(self.addon.compatible_apps.keys(), key=lambda x: x.id)
-
-        # Drop any apps that don't have appropriate categories.
-        for app in list(apps):
-            if app and not CATEGORIES.get(app.id, {}).get(self.addon.type):
-                apps.remove(app)
-
-        if not CATEGORIES_NO_APP.get(self.addon.type):
-            apps = []
-
-        for app in apps:
-            cats = self.addon.app_categories.get(app.short, [])
-            self.initial.append({'categories': [c.id for c in cats]})
-
-        for app, form in zip(apps, self.forms, strict=True):
-            key = app.id if app else None
-            form.request = self.request
-            form.initial['application'] = key
-            form.app = app
-            cats = sorted(
-                CATEGORIES.get(key, {}).get(self.addon.type, {}).values(),
-                key=lambda x: x.name,
-            )
-            form.fields['categories'].choices = [(c.id, c.name) for c in cats]
-
-    def save(self):
-        for f in self.forms:
-            f.save(self.addon)
-
-
-CategoryFormSet = formset_factory(
-    form=CategoryForm, formset=BaseCategoryFormSet, extra=0
-)
 
 
 ICON_TYPES = [('', 'default'), ('image/jpeg', 'jpeg'), ('image/png', 'png')]
@@ -1448,31 +1417,3 @@ class AgreementForm(forms.Form):
         if not checker.is_submission_allowed(check_dev_agreement=False):
             raise forms.ValidationError(checker.get_error_message())
         return self.cleaned_data
-
-
-class SingleCategoryForm(forms.Form):
-    category = forms.ChoiceField(widget=forms.RadioSelect)
-
-    def __init__(self, *args, **kw):
-        self.addon = kw.pop('addon')
-        self.request = kw.pop('request', None)
-        if len(self.addon.all_categories) > 0:
-            kw['initial'] = {'category': self.addon.all_categories[0].slug}
-        super().__init__(*args, **kw)
-
-        sorted_cats = sorted(
-            CATEGORIES_NO_APP[self.addon.type].items(), key=lambda slug_cat: slug_cat[0]
-        )
-        self.fields['category'].choices = [(slug, c.name) for slug, c in sorted_cats]
-
-    def save(self):
-        category_slug = self.cleaned_data['category']
-        # Clear any old categor[y|ies]
-        AddonCategory.objects.filter(addon=self.addon).delete()
-        # Add new categor[y|ies]
-        for app in CATEGORIES.keys():
-            category = CATEGORIES[app].get(self.addon.type, {}).get(category_slug, None)
-            if category:
-                AddonCategory(addon=self.addon, category_id=category.id).save()
-        # Remove old, outdated categories cache on the model.
-        del self.addon.all_categories

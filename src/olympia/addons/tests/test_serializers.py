@@ -145,7 +145,7 @@ class AddonSerializerOutputTestMixin:
         assert data['version'] == version.version
 
     def test_basic(self):
-        cat1 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['bookmarks']
+        cat1 = CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
         license = License.objects.create(
             name={
                 'en-US': 'My License',
@@ -214,20 +214,15 @@ class AddonSerializerOutputTestMixin:
             min=av_min,
             max=av_max,
         )
-        cat2 = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['alerts-updates']
+        cat2 = CATEGORIES[amo.ADDON_EXTENSION]['alerts-updates']
         AddonCategory.objects.create(addon=self.addon, category=cat2)
-        cat3 = CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games']
-        AddonCategory.objects.create(addon=self.addon, category=cat3)
 
         result = self.serialize()
 
         assert result['id'] == self.addon.pk
 
         assert result['average_daily_users'] == self.addon.average_daily_users
-        assert result['categories'] == {
-            'firefox': ['alerts-updates', 'bookmarks'],
-            'android': ['sports-games'],
-        }
+        assert result['categories'] == ['bookmarks', 'alerts-updates']
 
         # In this serializer latest_unlisted_version is omitted.
         assert 'latest_unlisted_version' not in result
@@ -793,6 +788,18 @@ class AddonSerializerOutputTestMixin:
             'url': 'http://www.gnu.org/licenses/gpl-3.0.html',
         }
 
+    def test_categories_as_object(self):
+        self.addon = addon_factory(
+            category=CATEGORIES[amo.ADDON_EXTENSION]['bookmarks']
+        )
+        result = self.serialize()
+        assert result['categories'] == ['bookmarks']
+
+        gates = {self.request.version: ('categories-application',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert result['categories'] == {'firefox': ['bookmarks']}
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
@@ -1125,7 +1132,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             addons[0].all_categories = [category, old_category]
 
         category_name = 'music'
-        category = CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME][category_name]
+        category = CATEGORIES[amo.ADDON_STATICTHEME][category_name]
         old_category = copy.copy(category)
         object.__setattr__(old_category, 'id', 666666)
         object.__setattr__(old_category, 'application', amo.ANDROID.id)
@@ -1133,7 +1140,7 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
 
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME, category=category)
         result = self.serialize()
-        assert result['categories'] == {amo.FIREFOX.short: [category_name]}
+        assert result['categories'] == [category_name]
 
 
 class TestVersionSerializerOutput(TestCase):

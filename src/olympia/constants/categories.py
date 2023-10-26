@@ -1,15 +1,10 @@
-import copy
 from functools import total_ordering
 
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.translation import gettext_lazy as _
 
-from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
-    _ADDON_PERSONA,
-    _ADDON_SEARCH,
-    _ADDON_THEME,
     ADDON_DICT,
     ADDON_EXTENSION,
     ADDON_LPAPP,
@@ -27,9 +22,10 @@ class StaticCategory:
     to hard to debug sporadic test-failures.
     """
 
-    def __init__(self, name=None, description=None, weight=0):
+    def __init__(self, *, id, name=None, description=None, weight=0):
         # Avoid triggering our own __setattr__ implementation
         # to keep immutability intact but set initial values.
+        object.__setattr__(self, 'id', id)
         object.__setattr__(self, 'name', name)
         object.__setattr__(self, 'weight', weight)
         object.__setattr__(self, 'description', description)
@@ -38,10 +34,9 @@ class StaticCategory:
         return str(self.name)
 
     def __repr__(self):
-        return '<{}: {} ({})>'.format(
+        return '<{}: {}>'.format(
             self.__class__.__name__,
             force_bytes(self),
-            self.application,
         )
 
     def __eq__(self, other):
@@ -64,9 +59,12 @@ class StaticCategory:
         return self.id
 
 
-CATEGORIES_NO_APP = {
+# The category ids are used in AddonCategory. To add a category you can pick
+# any unused id.
+CATEGORIES = {
     ADDON_EXTENSION: {
         'alerts-updates': StaticCategory(
+            id=72,
             name=_('Alerts & Updates'),
             description=_(
                 'Download Firefox extensions that help you stay '
@@ -76,6 +74,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'appearance': StaticCategory(
+            id=14,
             name=_('Appearance'),
             description=_(
                 'Download extensions that modify the appearance of '
@@ -85,6 +84,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'bookmarks': StaticCategory(
+            id=22,
             name=_('Bookmarks'),
             description=_(
                 'Download extensions that enhance bookmarks by '
@@ -93,6 +93,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'download-management': StaticCategory(
+            id=5,
             name=_('Download Management'),
             description=_(
                 'Download Firefox extensions that can help download web, '
@@ -101,6 +102,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'feeds-news-blogging': StaticCategory(
+            id=1,
             name=_('Feeds, News & Blogging'),
             description=_(
                 'Download Firefox extensions that remove clutter so you '
@@ -109,6 +111,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'games-entertainment': StaticCategory(
+            id=142,
             name=_('Games & Entertainment'),
             description=_(
                 'Download Firefox extensions to boost your entertainment '
@@ -117,6 +120,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'language-support': StaticCategory(
+            id=37,
             name=_('Language Support'),
             description=_(
                 'Download Firefox extensions that offer language support '
@@ -125,6 +129,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'photos-music-videos': StaticCategory(
+            id=38,
             name=_('Photos, Music & Videos'),
             description=_(
                 'Download Firefox extensions that enhance photo, music '
@@ -133,6 +138,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'privacy-security': StaticCategory(
+            id=12,
             name=_('Privacy & Security'),
             description=_(
                 'Download Firefox extensions to browse privately and '
@@ -142,6 +148,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'search-tools': StaticCategory(
+            id=13,
             name=_('Search Tools'),
             description=_(
                 'Download Firefox extensions for search and look-up. '
@@ -150,6 +157,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'shopping': StaticCategory(
+            id=141,
             name=_('Shopping'),
             description=_(
                 'Download Firefox extensions that can enhance your '
@@ -158,6 +166,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'social-communication': StaticCategory(
+            id=71,
             name=_('Social & Communication'),
             description=_(
                 'Download Firefox extensions to enhance social media and '
@@ -166,6 +175,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'tabs': StaticCategory(
+            id=93,
             name=_('Tabs'),
             description=_(
                 'Download Firefox extension to customize tabs and the '
@@ -174,6 +184,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'web-development': StaticCategory(
+            id=4,
             name=_('Web Development'),
             description=_(
                 'Download Firefox extensions that feature web '
@@ -183,6 +194,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'other': StaticCategory(
+            id=73,
             name=_('Other'),
             weight=333,
             description=_(
@@ -190,85 +202,10 @@ CATEGORIES_NO_APP = {
                 'and creative, yet useful for those odd tasks.'
             ),
         ),
-        # Android only categories:
-        'device-features-location': StaticCategory(
-            name=_('Device Features & Location'),
-            description=_(
-                'Download extensions to enhance Firefox for Android. '
-                'Perform quick searches, free up system resources, take '
-                'notes, and more.'
-            ),
-        ),
-        'experimental': StaticCategory(
-            name=_('Experimental'),
-            description=_(
-                'Download Firefox extensions that are regularly updated '
-                'and ready for public testing. Your feedback informs '
-                'developers on changes to make in upcoming versions.'
-            ),
-        ),
-        'performance': StaticCategory(
-            name=_('Performance'),
-            description=_(
-                'Download extensions that give Firefox a performance '
-                'boost. Find extensions that help you be more productive '
-                'and efficient by blocking annoying ads and more.'
-            ),
-        ),
-        'photos-media': StaticCategory(
-            name=_('Photos & Media'),
-            description=_(
-                'Download Firefox extensions to enhance photos and '
-                'media. This category includes extensions to reverse '
-                'search images, capture full page screenshots, and more.'
-            ),
-        ),
-        'security-privacy': StaticCategory(
-            name=_('Security & Privacy'),
-            description=_(
-                'Download Firefox extensions to surf safely and '
-                'privately. Discover extensions that can stop sneaky ad '
-                'trackers in their tracks, easily clear browsing '
-                'history, and more.'
-            ),
-        ),
-        'social-networking': StaticCategory(
-            name=_('Social Networking'),
-            description=_(
-                'Download Firefox extensions to enhance your experience '
-                'on popular social networking websites such as YouTube, '
-                'GitHub, Reddit, and more.'
-            ),
-        ),
-        'sports-games': StaticCategory(
-            name=_('Sports & Games'),
-            description=_(
-                'Download Firefox extensions to give your entertainment '
-                'experience a boost with live stream enhancers, sports '
-                'updates, and more.'
-            ),
-        ),
-        'user-interface': StaticCategory(
-            name=_('User Interface'),
-            description=_(
-                'Download user interface Firefox extensions to alter web '
-                'pages for easier reading, searching, browsing, and more.'
-            ),
-        ),
-    },
-    _ADDON_THEME: {
-        'animals': StaticCategory(name=_('Animals')),
-        'compact': StaticCategory(name=_('Compact')),
-        'large': StaticCategory(name=_('Large')),
-        'miscellaneous': StaticCategory(name=_('Miscellaneous')),
-        'modern': StaticCategory(name=_('Modern')),
-        'nature': StaticCategory(name=_('Nature')),
-        'os-integration': StaticCategory(name=_('OS Integration')),
-        'retro': StaticCategory(name=_('Retro')),
-        'sports': StaticCategory(name=_('Sports')),
     },
     ADDON_STATICTHEME: {
         'abstract': StaticCategory(
+            id=300,
             name=_('Abstract'),
             description=_(
                 'Download Firefox artistic and conceptual themes. This '
@@ -277,6 +214,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'causes': StaticCategory(
+            id=320,
             name=_('Causes'),
             description=_(
                 'Download Firefox themes for niche interests and topics. '
@@ -285,6 +223,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'fashion': StaticCategory(
+            id=324,
             name=_('Fashion'),
             description=_(
                 'Download Firefox themes that celebrate style of all '
@@ -292,6 +231,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'film-and-tv': StaticCategory(
+            id=326,
             name=_('Film and TV'),
             description=_(
                 'Download Firefox themes with movies and television. '
@@ -300,6 +240,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'firefox': StaticCategory(
+            id=308,
             name=_('Firefox'),
             description=_(
                 'Download Firefox themes with the Firefox browser theme. '
@@ -308,6 +249,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'foxkeh': StaticCategory(
+            id=310,
             name=_('Foxkeh'),
             description=_(
                 'Download Firefox themes with the Japanese Firefox. This '
@@ -316,6 +258,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'holiday': StaticCategory(
+            id=328,
             name=_('Holiday'),
             description=_(
                 'Download Firefox themes with holidays. This category '
@@ -324,6 +267,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'music': StaticCategory(
+            id=322,
             name=_('Music'),
             description=_(
                 'Download Firefox themes for musical interests and '
@@ -333,6 +277,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'nature': StaticCategory(
+            id=302,
             name=_('Nature'),
             description=_(
                 'Download Firefox themes with animals and natural '
@@ -341,6 +286,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'other': StaticCategory(
+            id=314,
             name=_('Other'),
             weight=333,
             description=_(
@@ -348,6 +294,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'scenery': StaticCategory(
+            id=306,
             name=_('Scenery'),
             description=_(
                 'Download Firefox themes that feature the environment '
@@ -356,6 +303,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'seasonal': StaticCategory(
+            id=312,
             name=_('Seasonal'),
             description=_(
                 'Download Firefox themes for all four seasons—fall, '
@@ -364,6 +312,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'solid': StaticCategory(
+            id=318,
             name=_('Solid'),
             description=_(
                 'Download Firefox themes with solid and gradient colors '
@@ -372,6 +321,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'sports': StaticCategory(
+            id=304,
             name=_('Sports'),
             description=_(
                 'Download Firefox themes that feature a variety of '
@@ -380,6 +330,7 @@ CATEGORIES_NO_APP = {
             ),
         ),
         'websites': StaticCategory(
+            id=316,
             name=_('Websites'),
             description=_(
                 'Download Firefox themes that capture the essence of the '
@@ -387,34 +338,12 @@ CATEGORIES_NO_APP = {
             ),
         ),
     },
-    ADDON_DICT: {'general': StaticCategory(name=_('General'))},
-    _ADDON_SEARCH: {
-        'bookmarks': StaticCategory(name=_('Bookmarks')),
-        'business': StaticCategory(name=_('Business')),
-        'dictionaries-encyclopedias': StaticCategory(
-            name=_('Dictionaries & Encyclopedias')
-        ),
-        'general': StaticCategory(name=_('General')),
-        'kids': StaticCategory(name=_('Kids')),
-        'multiple-search': StaticCategory(name=_('Multiple Search')),
-        'music': StaticCategory(name=_('Music')),
-        'news-blogs': StaticCategory(name=_('News & Blogs')),
-        'photos-images': StaticCategory(name=_('Photos & Images')),
-        'shopping-e-commerce': StaticCategory(name=_('Shopping & E-Commerce')),
-        'social-people': StaticCategory(name=_('Social & People')),
-        'sports': StaticCategory(name=_('Sports')),
-        'travel': StaticCategory(name=_('Travel')),
-        'video': StaticCategory(name=_('Video')),
-    },
-    ADDON_LPAPP: {'general': StaticCategory(name=_('General'))},
+    ADDON_DICT: {'general': StaticCategory(id=95, name=_('General'))},
+    ADDON_LPAPP: {'general': StaticCategory(id=98, name=_('General'))},
 }
 
-CATEGORIES_NO_APP[_ADDON_PERSONA] = {
-    slug: copy.copy(cat) for slug, cat in CATEGORIES_NO_APP[ADDON_STATICTHEME].items()
-}
-
-for type_ in CATEGORIES_NO_APP:
-    for slug, cat in CATEGORIES_NO_APP[type_].items():
+for type_ in CATEGORIES:
+    for slug, cat in CATEGORIES[type_].items():
         # Flatten some values and set them, avoiding immutability
         # of `StaticCategory` by calling `object.__setattr__` directly.
         object.__setattr__(cat, 'slug', slug)
@@ -422,78 +351,8 @@ for type_ in CATEGORIES_NO_APP:
         object.__setattr__(cat, 'misc', slug in ('miscellaneous', 'other'))
 
 
-# These category ids are used in AddonCategory. To add a category to an app you can use
-# any unused id.
-CATEGORIES = {
-    FIREFOX.id: {
-        ADDON_EXTENSION: {
-            'alerts-updates': 72,
-            'appearance': 14,
-            'bookmarks': 22,
-            'download-management': 5,
-            'feeds-news-blogging': 1,
-            'games-entertainment': 142,
-            'language-support': 37,
-            'photos-music-videos': 38,
-            'privacy-security': 12,
-            'search-tools': 13,
-            'shopping': 141,
-            'social-communication': 71,
-            'tabs': 93,
-            'web-development': 4,
-            'other': 73,
-        },
-        ADDON_STATICTHEME: {
-            'abstract': 300,
-            'causes': 320,
-            'fashion': 324,
-            'film-and-tv': 326,
-            'firefox': 308,
-            'foxkeh': 310,
-            'holiday': 328,
-            'music': 322,
-            'nature': 302,
-            'other': 314,
-            'scenery': 306,
-            'seasonal': 312,
-            'solid': 318,
-            'sports': 304,
-            'websites': 316,
-        },
-        ADDON_LPAPP: {
-            'general': 98,
-        },
-        ADDON_DICT: {
-            'general': 95,
-        },
-    },
-    ANDROID.id: {
-        ADDON_EXTENSION: {
-            'device-features-location': 145,
-            'experimental': 151,
-            'feeds-news-blogging': 147,
-            'performance': 144,
-            'photos-media': 143,
-            'security-privacy': 149,
-            'shopping': 150,
-            'social-networking': 148,
-            'sports-games': 146,
-            'user-interface': 152,
-            'other': 153,
-        },
-    },
-}
-
-
 CATEGORIES_BY_ID = {}
 
-for app in CATEGORIES:
-    for type_ in CATEGORIES[app]:
-        for slug, id_ in CATEGORIES[app][type_].items():
-            cat = copy.copy(CATEGORIES_NO_APP[type_][slug])
-            # Flatten some values and set them, avoiding immutability
-            # of `StaticCategory` by calling `object.__setattr__` directly.
-            object.__setattr__(cat, 'id', id_)
-            object.__setattr__(cat, 'application', app)
-            CATEGORIES_BY_ID[id_] = cat
-            CATEGORIES[app][type_][slug] = cat
+for type_ in CATEGORIES:
+    for cat in CATEGORIES[type_].values():
+        CATEGORIES_BY_ID[cat.id] = cat

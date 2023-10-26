@@ -1613,8 +1613,16 @@ class StaticCategorySerializer(serializers.Serializer):
     weight = serializers.IntegerField()
     description = serializers.CharField()
 
+    def to_representation(self, obj):
+        data = super().to_representation(obj)
+        request = self.context['request']
+        if request and not is_gate_active(request, 'categories-application'):
+            data.pop('application', None)
+        return data
+
     def get_application(self, obj):
-        return APPS_ALL[obj.application].short
+        # Fake application for API < v5
+        return amo.FIREFOX.short
 
     def get_type(self, obj):
         return ADDON_TYPE_CHOICES_API[obj.type]

@@ -466,6 +466,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-07-06: added ``is_all_versions`` to blocklist block endpoint. https://github.com/mozilla/addons-server/issues/20857
 * 2023-10-12: added ``reporter_name`` and ``reporter_email`` as two optional alternatives to an authenticated reporter in the abuse api. https://github.com/mozilla/addons-server/issues/21268
 * 2023-10-26: added ``location`` to abuse api. https://github.com/mozilla/addons-server/issues/21330
+* 2023-11-02: removed ``application`` from categories endpoint, flattened ``categories`` in addon detail/search endpoint. https://github.com/mozilla/addons-server/issues/5989
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
