@@ -18,4 +18,11 @@ class AbuseAppealEmailForm(forms.Form):
 
 
 class AbuseAppealForm(forms.Form):
-    reason = forms.CharField(widget=forms.Textarea())
+    reason = forms.CharField(
+        widget=forms.Textarea(),
+        label=_('Reason for appeal'),
+        help_text=_(
+            'Please explain why you believe that this decision was made in error, '
+            'and/or does not align with the applicable policy or law.'
+        ),
+    )
