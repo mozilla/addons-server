@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-10 19:40+0000\n"
-"PO-Revision-Date: 2023-10-04 22:09+0000\n"
+"PO-Revision-Date: 2023-10-26 13:02+0000\n"
 "Last-Translator: හෙළබස සමූහය (HelaBasa Group) <firefox-helabasa@yalu.lk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: si\n"
@@ -271,7 +271,7 @@ msgid "Often Used With"
 msgstr ""
 
 msgid "Others By Author"
-msgstr ""
+msgstr "කර්තෘගේ වෙනත්"
 
 msgid "Dependencies"
 msgstr "පරායත්ත"
