@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-06-13 17:48+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -15,10 +15,37 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Te rugăm să te asiguri că acest câmp nu are mai mult de {max_length} de caractere."
 
 msgid "Invalid value"
+msgstr ""
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "No links are allowed."
@@ -77,9 +104,6 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
-
-msgid "Invalid app name."
 msgstr ""
 
 msgid "URL domain must be one of [{domains}]."
@@ -344,9 +368,6 @@ msgstr "E-mail"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1067,87 +1088,6 @@ msgstr "Altele"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Descarcă extensii Firefox care pot fi imprevizibile și creative, dar utile pentru sarcini neobișnuite."
 
-msgid "Device Features & Location"
-msgstr "Funcționalități și poziție dispozitive"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Descarcă extensii care îmbunătățesc Firefox pentru Android. Efectuează căutări rapide, eliberează resursele sistemului, ia notițe și multe altele."
-
-msgid "Experimental"
-msgstr "Experimental"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-"Descarcă extensii Firefox care sunt actualizate periodic și sunt gata pentru a fi testate de public. Feedbackul tău informează dezvoltatorii despre modificările pe care să le facă în versiunile "
-"viitoare."
-
-msgid "Performance"
-msgstr "Performanță"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Descarcă extensii care îmbunătățesc performanța Firefox. Descoperă extensii care te ajută să fii mai productiv și mai eficient prin blocarea reclamelor sâcâitoare și multe altele."
-
-msgid "Photos & Media"
-msgstr "Foto și video"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-"Descarcă extensii Firefox pentru a îmbunătăți fotografiile și materialele media. Această categorie include extensii pentru căutare inversă de imagini, capturi de instantanee cu toată pagina și "
-"multe altele."
-
-msgid "Security & Privacy"
-msgstr "Confidențialitate și securitate"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Descarcă extensii Firefox ca să navighezi în siguranță și confidențial. Descoperă extensii care pot opri instant elementele de urmărire insidioase din reclame, care șterg ușor istoricul de navigare "
-"și multe altele."
-
-msgid "Social Networking"
-msgstr "Rețele sociale"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Descarcă extensii Firefox pentru îmbunătățirea experienței pe site-urile web populare de rețele sociale, precum YouTube, GitHub, Reddit și multe altele."
-
-msgid "Sports & Games"
-msgstr "Jocuri și sport"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Descarcă extensii Firefox care îți amplifică experiența de divertisment cu unelte de optimizare a fluxurilor live, actualizări din sport și multe altele."
-
-msgid "User Interface"
-msgstr "Interfețe pentru utilizatori"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Descarcă extensii pentru interfața utilizatorului din Firefox ca citești, să cauți și să navighezi mai ușor și multe altele."
-
-msgid "Animals"
-msgstr "Animale"
-
-msgid "Compact"
-msgstr "Compact"
-
-msgid "Large"
-msgstr "Mare"
-
-msgid "Miscellaneous"
-msgstr "Diverse"
-
-msgid "Modern"
-msgstr "Modern"
-
-msgid "Nature"
-msgstr "Natură"
-
-msgid "OS Integration"
-msgstr "Integrare cu SO"
-
-msgid "Retro"
-msgstr "Retro"
-
-msgid "Sports"
-msgstr "Sport"
-
 msgid "Abstract"
 msgstr "Abstract"
 
@@ -1193,6 +1133,9 @@ msgstr "Muzică"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Descarcă teme Firefox pentru interese muzicale și artiști. Această categorie include trupe populare precum Nirvana și BTS, instrumente, videoclipuri muzicale și multe altele."
 
+msgid "Nature"
+msgstr "Natură"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Descarcă teme Firefox cu animale și peisaje naturale. Această categorie include flori, apusuri de soare, vulpi, anotimpuri, planete, pisici, păsări și multe altele."
 
@@ -1217,6 +1160,9 @@ msgstr "Solid"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Descarcă teme Firefox în culori uni și degradeuri pentru a-ți personaliza browserul. Această categorie include nuanțe îndrăznețe de roșu, pasteluri, tonuri estompate de gri și multe altele."
 
+msgid "Sports"
+msgstr "Sport"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Descarcă teme Firefox inspirate dintr-o varietate de sporturi. Această categorie include steaguri naționale, echipe sportive, fotbal european, hochei și multe altele."
 
@@ -1228,36 +1174,6 @@ msgstr "Descarcă teme Firefox care redau esența webului—captivante, neobișn
 
 msgid "General"
 msgstr "General"
-
-msgid "Business"
-msgstr "Afaceri"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Dicționare și enciclopedii"
-
-msgid "Kids"
-msgstr "Copii"
-
-msgid "Multiple Search"
-msgstr "Căutare multiplă"
-
-msgid "News & Blogs"
-msgstr "Știri și bloguri"
-
-msgid "Photos & Images"
-msgstr "Fotografii și imagini"
-
-msgid "Shopping & E-Commerce"
-msgstr "Cumpărături și comerț electronic"
-
-msgid "Social & People"
-msgstr "Social și uman"
-
-msgid "Travel"
-msgstr "Călătorii"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2384,9 +2300,6 @@ msgstr ""
 "Bifează această opțiune dacă suplimentul tău este experimental sau altminteri încă nu gata pentru uz general.  Suplimentul va fi listat, dar va avea vizibilitate redusă.  Poți modifica această "
 "setare mai târziu."
 
-msgid "Select a category for this add-on:"
-msgstr "Selectează o categorie pentru acest supliment:"
-
 msgid "Support email:"
 msgstr "E-mail de asistență:"
 
@@ -2908,13 +2821,13 @@ msgstr "Unele HTML sunt suportate."
 msgid "Remove this application"
 msgstr "Elimină această aplicație"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Selectează <b>până la {0}</b> {1} categorie pentru acest supliment:"
-msgstr[1] "Selectează <b>până la {0}</b> {1} categorii pentru acest supliment:"
-msgstr[2] "Selectează <b>până la {0}</b> {1} de categorii pentru acest supliment:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Selectează o categorie pentru acest supliment:"
+msgstr[1] "Selectează o categorie pentru acest supliment:"
+msgstr[2] "Selectează o categorie pentru acest supliment:"
 
 msgid "End-User License Agreement"
 msgstr "Acord de licență pentru utilizatorul final"
@@ -4812,8 +4725,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Retur nevalid către GUID AMO (nu este în format base64url?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Combinație nevalidă a parametrilor „%s\", „%s\" și „%s\"."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
@@ -5111,7 +5024,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

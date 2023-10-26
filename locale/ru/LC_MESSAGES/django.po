@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-08 21:33+0000\n"
 "Last-Translator: Valery Ledovskoy <valery@ledovskoy.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -21,11 +21,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Пожалуйста, убедитесь, что это поле имеет длину не более {max_length} символов."
 
 msgid "Invalid value"
 msgstr "Недопустимое значение"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Ссылки не разрешены."
@@ -82,9 +109,6 @@ msgstr "Категория «другое» не может сочетаться
 
 msgid "Invalid category name."
 msgstr "Недопустимое имя категории."
-
-msgid "Invalid app name."
-msgstr "Недопустимое имя приложения."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Домен URL должен быть одним из [{domains}]."
@@ -348,9 +372,6 @@ msgstr "Электронная почта:"
 
 msgid "Two-factor authentication"
 msgstr "Двухфакторная аутентификация"
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1066,84 +1087,6 @@ msgstr "Другое"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Загрузите расширения Firefox, которые могут быть непредсказуемыми и креативными, но полезными для необычных задач."
 
-msgid "Device Features & Location"
-msgstr "Возможности устройства и местоположение"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Загрузите расширения для улучшения Firefox для Android. Выполняйте быстрый поиск, освобождайте системные ресурсы, делайте заметки и многое другое."
-
-msgid "Experimental"
-msgstr "Экспериментальные"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Загрузите расширения Firefox, которые регулярно обновляются и готовы к публичному тестированию. Ваши отзывы сообщат разработчикам, какие изменения необходимо внести в следующие версии."
-
-msgid "Performance"
-msgstr "Производительность"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Загрузите расширения, которые повысят производительность Firefox. Найдите расширения, которые помогут вам быть более продуктивным и эффективным, блокируя надоедливую рекламу и многое другое."
-
-msgid "Photos & Media"
-msgstr "Фото и медиа"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-"Загрузите расширения Firefox для улучшения работы с фотографиями и мультимедиа. Эта категория включает в себя расширения для поиска по картинке, создания скриншотов всей страницы и многого другого."
-
-msgid "Security & Privacy"
-msgstr "Безопасность и приватность"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Загрузите расширения Firefox для приватного и безопасного веб-сёрфинга. Откройте для себя расширения, которые смогут остановить хитрые трекеры рекламы, легко очищать историю просмотров и многое "
-"другое."
-
-msgid "Social Networking"
-msgstr "Социальные сети"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Загрузите расширения для Firefox, чтобы расширить свои возможности на популярных сайтах социальных сетей, таких как YouTube, GitHub, Reddit и многих других."
-
-msgid "Sports & Games"
-msgstr "Спорт и игры"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Загрузите расширения Firefox, чтобы улучшить вашу развлекательную атмосферу с помощью живых трансляций, спортивных обновлений и многого другого."
-
-msgid "User Interface"
-msgstr "Интерфейс пользователя"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Загрузите расширения пользовательского интерфейса Firefox для изменения веб-страниц, упрощения чтения, поиска, просмотра и многого другого."
-
-msgid "Animals"
-msgstr "Животные"
-
-msgid "Compact"
-msgstr "Компактные"
-
-msgid "Large"
-msgstr "Большие"
-
-msgid "Miscellaneous"
-msgstr "Разное"
-
-msgid "Modern"
-msgstr "Современные"
-
-msgid "Nature"
-msgstr "Природа"
-
-msgid "OS Integration"
-msgstr "Интеграция с ОС"
-
-msgid "Retro"
-msgstr "Ретро"
-
-msgid "Sports"
-msgstr "Спортивные"
-
 msgid "Abstract"
 msgstr "Абстрактные"
 
@@ -1189,6 +1132,9 @@ msgstr "Музыка"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Загрузите музыкальные темы для Firefox. В эту категорию входят популярные группы, такие как Nirvana и BTS, инструменты, музыкальные клипы и многое другое."
 
+msgid "Nature"
+msgstr "Природа"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Загрузите темы Firefox с животными и природными ландшафтами. В эту категорию входят цветы, закаты, лисы, времена года, планеты, котята, птицы и многое другое."
 
@@ -1213,6 +1159,9 @@ msgstr "Заливка"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Загрузите темы Firefox со сплошными и градиентными цветами, чтобы персонализировать свой браузер. В эту категорию входят смелые красные, пастельные, мягкие оттенки серого и многие другие."
 
+msgid "Sports"
+msgstr "Спортивные"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Загрузите спортивные темы для Firefox. В эту категорию входят флаги стран, спортивные команды, футбол, хоккей и многое другое."
 
@@ -1224,36 +1173,6 @@ msgstr "Загрузите темы Firefox, которые отражают с�
 
 msgid "General"
 msgstr "Общее"
-
-msgid "Business"
-msgstr "Бизнес"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Словари и энциклопедии"
-
-msgid "Kids"
-msgstr "Дети"
-
-msgid "Multiple Search"
-msgstr "Мультипоиск"
-
-msgid "News & Blogs"
-msgstr "Новости и блоги"
-
-msgid "Photos & Images"
-msgstr "Фотографии и картинки "
-
-msgid "Shopping & E-Commerce"
-msgstr "Шоппинг и коммерция"
-
-msgid "Social & People"
-msgstr "Социальные"
-
-msgid "Travel"
-msgstr "Путешествия"
-
-msgid "Video"
-msgstr "Видео"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Публичная лицензия Mozilla 2.0"
@@ -2387,9 +2306,6 @@ msgstr ""
 "Установите этот флажок, если ваше дополнение экспериментальное или каким-либо иным образом не готово для использования широкой публикой.  Дополнение будет опубликовано, но его видимость будет "
 "ограничена. Вы сможете изменить эту настройку позже."
 
-msgid "Select a category for this add-on:"
-msgstr "Выберите категорию для этого дополнения:"
-
 msgid "Support email:"
 msgstr "Адрес эл. почты поддержки:"
 
@@ -2911,13 +2827,13 @@ msgstr "Кое-что из HTML поддерживается."
 msgid "Remove this application"
 msgstr "Удалить это приложение"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Выберите <b>не более {0}</b> {1} категории для этого дополнения:"
-msgstr[1] "Выберите <b>не более {0}</b> {1} категорий для этого дополнения:"
-msgstr[2] "Выберите <b>не более {0}</b> {1} категорий для этого дополнения:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Выберите категорию для этого дополнения:"
+msgstr[1] "Выберите категорию для этого дополнения:"
+msgstr[2] "Выберите категорию для этого дополнения:"
 
 msgid "End-User License Agreement"
 msgstr "Лицензионное соглашение с конечным пользователем"
@@ -4780,8 +4696,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Неверное возвращение к AMO guid (не в формате base64url?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Некорректная комбинация параметров «%s», «%s» и «%s»."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Превышена максимальная длина запроса."
@@ -5079,10 +4995,8 @@ msgstr "Юридическая информация"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Если <a href=\"https://www.mozilla.org/about/legal/\">не указано явно</a>, содержание данного сайта лицензировано в соответствии с <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\">Creative Commons Attribution Share-Alike Licence v3.0</a> или любой более поздней версией."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

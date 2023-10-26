@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-09-09 10:21+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,38 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Gakktu úr skugga um að þessi reitur hafi ekki fleiri en {max_length} stafi."
 
 msgid "Invalid value"
 msgstr "Ógilt gildi"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "Í lagi"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Engir tenglar eru leyfðir."
@@ -76,9 +103,6 @@ msgstr "Ekki er hægt að sameina flokkinn „annað“ við neinn annan flokk"
 
 msgid "Invalid category name."
 msgstr "Ógilt heiti flokks."
-
-msgid "Invalid app name."
-msgstr "Ógilt heiti forrits."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "Slóð léns verður að vera ein af [{domains}]."
@@ -342,9 +366,6 @@ msgstr "Tölvupóstfang:"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "Í lagi"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1048,81 +1069,6 @@ msgstr "Annað"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Sæktu Firefox-forritsauka sem geta verið ófyrirsjáanlegir og skapandi en samt gagnlegir fyrir ýmis skrngileg verk."
 
-msgid "Device Features & Location"
-msgstr "Eiginleikar tækja og staðsetning"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Sæktu forritsauka sem endurbæta Firefox fyrir Android. Flýtileit, losa um kerfistilföng, skrifa minnispunkta og ýmislegt fleira."
-
-msgid "Experimental"
-msgstr "Á tilraunastigi"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Sæktu Firefox-forritsauka sem eru uppfærðir reglulega og tilbúnir til opinberrar prófunar. Umsagnir þínar upplýsa þróunaraðila um breytingar sem þarf að gera í væntanlegum útgáfum."
-
-msgid "Performance"
-msgstr "Afköst"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Sæktu forritsauka sem gefa Firefox aukin afköst. Finndu forritsauka sem hjálpa þér við að vera einbeittari og í friði fyrir truflandi auglýsingum og fleiru slíku."
-
-msgid "Photos & Media"
-msgstr "Ljósmyndir og margmiðlun"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Sæktu Firefox-forritsauka sem endurbæta myndir og margmiðlunargögn. Þessi flokkur inniheldur forritsauka til að leita afturkvæmt að myndum, taka skjámyndir af heilum síðum og ýmislegt fleira."
-
-msgid "Security & Privacy"
-msgstr "Öryggi og friðhelgi"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "Sæktu Firefox-forritsauka til að vafra á öruggan hátt og án eftirlits. Finndu forritsauka sem geta stöðvað lúmskar rakningar í auglýsingum, hreinsað vafraferil á einfaldan máta og fleira."
-
-msgid "Social Networking"
-msgstr "Samfélagsmiðlar"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Sæktu Firefox-forritsauka til að bæta upplifun þína á vinsælum samfélagsmiðlasíðum eins og YouTube, GitHub, Reddit og fleira."
-
-msgid "Sports & Games"
-msgstr "Íþróttir og leikir"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Sæktu Firefox-forritsauka til að bæta upplifun þína af afþreyingu með endurbótum á beinum streymum, íþróttafréttum og fleiru."
-
-msgid "User Interface"
-msgstr "Notandaviðmót"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Sæktu Firefox-forritsauka fyrir notendaviðmót sem breyta framsetningu vefsíðna til að auðvelda lestur, leit, vafur og fleira."
-
-msgid "Animals"
-msgstr "Dýr"
-
-msgid "Compact"
-msgstr "Þjappað"
-
-msgid "Large"
-msgstr "Stórt"
-
-msgid "Miscellaneous"
-msgstr "Ýmislegt"
-
-msgid "Modern"
-msgstr "Framúrstefnulegt"
-
-msgid "Nature"
-msgstr "Náttúra"
-
-msgid "OS Integration"
-msgstr "Samþætting við stýrikerfi"
-
-msgid "Retro"
-msgstr "Retró"
-
-msgid "Sports"
-msgstr "Íþróttir"
-
 msgid "Abstract"
 msgstr "Óhlutbundið"
 
@@ -1168,6 +1114,9 @@ msgstr "Tónlist"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Sæktu Firefox-þemu fyrir tónlistaráhugamál og listamenn. Þessi flokkur inniheldur myndefni fyrir vinsælar hljómsveitir eins og Nirvana og BTS, hljóðfæri, tónlistarmyndbönd og margt fleira."
 
+msgid "Nature"
+msgstr "Náttúra"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Sæktu Firefox-þemu með dýrum og náttúrulegu landslagi. Þessi flokkur inniheldur blóm, sólsetur, refi, árstíðir, plánetur, kettlinga, fugla og fleira."
 
@@ -1192,6 +1141,9 @@ msgstr "Gegnheilt"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Sæktu Firefox-þemu meðheillitum og litstiglum til að sérsníða vafrann þinn. Þessi flokkur inniheldur feita rauða liti, pastelliti, mjúka gráa og margt fleira."
 
+msgid "Sports"
+msgstr "Íþróttir"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Sæktu Firefox-þemu sem innihalda ýmsar íþróttir. Þessi flokkur inniheldur landsfána, íþróttalið, fótbolta, íshokkí og fleira."
 
@@ -1203,36 +1155,6 @@ msgstr "Sæktu Firefox-þemu sem fanga kjarna vefsins - grípandi, óvenjuleg og
 
 msgid "General"
 msgstr "Almennt"
-
-msgid "Business"
-msgstr "Viðskipti"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Orðasöfn og alfræði"
-
-msgid "Kids"
-msgstr "Krakkar"
-
-msgid "Multiple Search"
-msgstr "Fjölþætt leit"
-
-msgid "News & Blogs"
-msgstr "Fréttir og blogg"
-
-msgid "Photos & Images"
-msgstr "Myndefni"
-
-msgid "Shopping & E-Commerce"
-msgstr "Verslun og netviðskipti"
-
-msgid "Social & People"
-msgstr "Fólk og samfélag"
-
-msgid "Travel"
-msgstr "Ferðalög"
-
-msgid "Video"
-msgstr "Myndskeið"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla notkunarleyfið (Public License, .. 2.0)."
@@ -2318,9 +2240,6 @@ msgstr "Þessi viðbót er á tilraunastigi"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-msgid "Select a category for this add-on:"
-msgstr "Veldu flokk fyrir þessa viðbót:"
-
 msgid "Support email:"
 msgstr "Aðstoð í tölvupósti:"
 
@@ -2788,12 +2707,12 @@ msgstr "Sum HTML-einindi studd."
 msgid "Remove this application"
 msgstr "Fjarlægja þetta forrit"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] ""
-msgstr[1] ""
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Veldu flokk fyrir þessa viðbót:"
+msgstr[1] "Veldu flokk fyrir þessa viðbót:"
 
 msgid "End-User License Agreement"
 msgstr "EULA samningur um notandaleyfi"
@@ -4631,7 +4550,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
@@ -4927,7 +4846,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

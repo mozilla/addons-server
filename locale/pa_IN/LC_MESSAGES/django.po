@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-07 03:07+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸੁਨਿਸ਼ਚਿਤ ਕਰੋ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ {max_length} ਅੱਖਰਾਂ ਤੋਂ ਵੱਧ ਨਹੀਂ ਹਨ।"
 
 msgid "Invalid value"
 msgstr "ਗਲਤ ਮੁੱਲ"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "ਠੀਕ ਹੈ"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
@@ -75,9 +102,6 @@ msgstr ""
 
 msgid "Invalid category name."
 msgstr "ਕੈਟਾਗਰੀ ਨਾਂ ਗਲਤ ਹੈ।"
-
-msgid "Invalid app name."
-msgstr "ਗਲਤ ਐਪ ਨਾਂ ਹੈ।"
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL ਡੋਮਨ [{domains}] ਵਿੱਚੋਂ ਇੱਕ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
@@ -335,9 +359,6 @@ msgstr "ਈਮੇਲ:"
 
 msgid "Two-factor authentication"
 msgstr ""
-
-msgid "OK"
-msgstr "ਠੀਕ ਹੈ"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1051,82 +1072,6 @@ msgstr "ਹੋਰ"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਅਣਹੋਣੀ ਅਤੇ ਸਿਰਜਣਾਤਮਕ ਹੋ ਸਕਦੀਆਂ ਹਨ, ਫਿਰ ਵੀ ਇਹਨਾਂ ਕਸੂਤੇ ਕੰਮਾਂ ਲਈ ਫਾਇਦੇਮੰਦ ਹਨ।"
 
-msgid "Device Features & Location"
-msgstr "ਡਿਵਾਈਸ ਫ਼ੀਚਰ ਤੇ ਟਿਕਾਣਾ"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "ਐਡਰਾਇਡ ਲਈ ਫਾਇਰਫਾਕਸ ਵਧਾਉਣ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਤੇਜ਼ ਕਰੋ। ਖੋਜਾਂ ਕਰੋ, ਸਿਸਟਮ ਸਰੋਤਾਂ ਨੂੰ ਖਾਲੀ ਕਰੋ, ਸੂਚਨਾਵਾਂ ਲਉ ਅਤੇ ਹੋਰ ਵੀ ਕਰੋ।"
-
-msgid "Experimental"
-msgstr "ਤਜਰਬੇ-ਅਧੀਨ"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਜਨਤਕ ਜਾਂਚ ਲਈ ਨਿਯਮਤ ਹਨ। ਤੁਹਾਡਾ ਫੀਡਬੈਕ ਡਿਵੈਲਪਰ ਨੂੰ ਆਗਾਮੀ ਵਰਜਨ ਵਿੱਚ ਤਬਦੀਲੀਆਂ ਲਈ ਸੂਚਿਤ ਕਰਦਾ ਹੈ।"
-
-msgid "Performance"
-msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਫਾਇਰਫਾਕਸ ਨੂੰ ਕਾਰਗੁਜ਼ਾਰੀ ਸੁਧਾਰਨ ਲਈ। ਤੰਗ ਕਰਨ ਵਾਲੇ ਇਸ਼ਤਿਹਾਰਾਂ ਨੂੰ ਰੋਕ ਕੇ ਅਤੇ ਉਹਨਾਂ ਰਾਹੀਂ ਹੋਰ ਜ਼ਿਆਦਾ ਉਤਪਾਦਕ ਅਤੇ ਕਾਰਜਸ਼ੀਲ ਹੋਣ ਵਿੱਚ ਇਕਸਟੈਨਸ਼ਨਾਂ ਲੱਭੋ।"
-
-msgid "Photos & Media"
-msgstr "ਤਸਵੀਰਾਂ ਅਤੇ ਮੀਡੀਆ"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "ਫੋਟੋਆਂ ਅਤੇ ਮੀਡੀਆ ਨੂੰ ਵਧਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਖੋਜ ਚਿੱਤਰਾਂ ਨੂੰ ਉਲਟਾਉਣ, ਪੂਰੇ ਸਫੇ ਦੇ ਸਕ੍ਰੀਨਸ਼ਾਟ ਕੈਪਚਰ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਕਰਨ ਲਈ ਇਕਸਟੈਨਸ਼ਨਾਂ ਸ਼ਾਮਲ ਹਨ।"
-
-msgid "Security & Privacy"
-msgstr "ਸੁਰੱਖਿਆ ਅਤੇ ਪਰਦੇਦਾਰੀ"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਅਤੇ ਪ੍ਰਾਈਵੇਟ ਤੌਰ ਤੇ ਵੇਖਣ ਲਈ ਡਾਊਨਲੋਡ ਕਰੋ। ਉਹਨਾਂ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਖੋਜੋ ਜਿਹੜੀਆਂ ਉਨ੍ਹਾਂ ਦੇ ਟਰੈਕਾਂ ਵਿੱਚ ਲੁਕਾਏ ਇਸ਼ਤਿਹਾਰ ਟਰੈਕਾਂ ਨੂੰ ਰੋਕ ਸਕਦੀਆਂ ਹਨ, ਬਰਾਊਜ ਕਰਨ ਦੇ ਅਤੀਤ ਨੂੰ ਆਸਾਨੀ ਨਾਲ ਸਾਫ ਕਰ ਸਕਦੀਆਂ ਹਨ, ਅਤੇ ਹੋਰ ਵੀ।"
-
-msgid "Social Networking"
-msgstr "ਸਮਾਜਕ ਮੇਲ ਮਿਲਾਪ"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "ਪ੍ਰਸਿੱਧ ਸੋਸ਼ਲ ਨੈੱਟਵਰਕਿੰਗ ਵੈੱਬਸਾਈਟ ਜਿਵੇਂ YouTube, GitHub, ਰੇਡਿਡ, ਅਤੇ ਹੋਰ ਬਾਰੇ ਆਪਣੇ ਅਨੁਭਵ ਨੂੰ ਵਧਾਉਣ ਲਈ ਫਾਇਰਫਾਕਸ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "Sports & Games"
-msgstr "ਖੇਡਾਂ"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "ਆਪਣੇ ਮਨੋਰੰਜਨ ਦੇ ਤਜਰਬੇ ਨੂੰ ਲਾਈਵ ਸਟ੍ਰੀਮ ਵਧਾਉਣ ਵਾਲੇ, ਖੇਡਾਂ ਦੇ ਨਵੀਨੀਕਰਨ, ਅਤੇ ਹੋਰ ਦੇ ਨਾਲ ਇੱਕ ਹੁਲਾਰਾ ਦੇਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨ ਨੂੰ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "User Interface"
-msgstr "ਵਰਤੋਂਕਾਰ ਇੰਟਰਫੇਸ"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "ਅਸਾਨ ਪੜ੍ਹਨਾ, ਖੋਜ, ਬਰਾਊਜ਼ ਕਰਬ ਅਤੇ ਹੋਰ ਲਈ ਵੈੱਬ ਸਫ਼ੇ ਬਦਲਣ ਲਈ ਫਾਇਰਫਾਕਸ ਇਕਸਟੈਨਸ਼ਨਾਂ ਨੂੰ ਵਰਤੋਂਕਾਰ ਇੰਟਰਫੇਸ ਡਾਊਨਲੋਡ ਕਰੋ।"
-
-msgid "Animals"
-msgstr "ਡੰਗਰ"
-
-msgid "Compact"
-msgstr "ਛੋਟਾ"
-
-msgid "Large"
-msgstr "ਵੱਡਾ"
-
-msgid "Miscellaneous"
-msgstr "ਫ਼ੁਟਕਲ"
-
-msgid "Modern"
-msgstr "ਨਵੀਨ"
-
-msgid "Nature"
-msgstr "ਕੁਦਰਤ"
-
-msgid "OS Integration"
-msgstr "OS ਏਕੀਕਰਨ"
-
-msgid "Retro"
-msgstr "ਪੁਰਾਣਾ"
-
-msgid "Sports"
-msgstr "ਖੇਡਾਂ"
-
 msgid "Abstract"
 msgstr "ਸੰਖੇਪ"
 
@@ -1172,6 +1117,9 @@ msgstr "ਸੰਗੀਤ"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "ਸੰਗੀਤ ਦੀਆਂ ਦਿਲਚਸਪੀਆਂ ਅਤੇ ਕਲਾਕਾਰਾਂ ਲਈ ਫਾਇਰਫਾਕਸ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ. ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਨਿਰਵਾਣਾ ਅਤੇ ਬੀਟੀਐਸ, ਇੰਸਟ੍ਰੂਮੈਂਟਸ, ਸੰਗੀਤ ਵਿਡੀਓ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਸ਼ਾਮਲ ਹਨ।"
 
+msgid "Nature"
+msgstr "ਕੁਦਰਤ"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਥੀਮ ਨੂੰ ਜਾਨਵਰਾਂ ਅਤੇ ਕੁਦਰਤੀ ਦ੍ਰਿਸ਼ਾਂ ਨਾਲ ਡਾਊਨਲੋਡ ਕਰੋ ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਫੁੱਲਾਂ, ਸਨਸੈਟਾਂ, ਲੂੰਬੜੀਆਂ, ਮੌਸਮ, ਗ੍ਰਹਿ, ਕੁੱਤੇ, ਪੰਛੀ ਅਤੇ ਹੋਰ ਸ਼ਾਮਲ ਹਨ।"
 
@@ -1196,6 +1144,9 @@ msgstr "ਸਖ਼ਤ"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "ਆਪਣੇ ਬਰਾਊਜ਼ਰ ਨੂੰ ਵਿਅਕਤੀਗਤ ਬਣਾਉਣ ਲਈ ਠੋਸ ਅਤੇ ਗਰੇਡੀਐਂਟ ਰੰਗ ਨਾਲ ਫਾਇਰਫਾਕਸ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ ਡੌਟ੍ਰੀ ਲਾਲ, ਪੇਸਟਲਸ, ਨਰਮ ਗ੍ਰੇਜ਼ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ।"
 
+msgid "Sports"
+msgstr "ਖੇਡਾਂ"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਉਹ ਥੀਮ ਡਾਊਨਲੋਡ ਕਰੋ ਜੋ ਕਿ ਕਈ ਤਰ੍ਹਾਂ ਦੇ ਖੇਡਾਂ ਨੂੰ ਪੇਸ਼ ਕਰਦੇ ਹਨ। ਇਸ ਸ਼੍ਰੇਣੀ ਵਿੱਚ ਦੇਸ਼ ਦੇ ਝੰਡੇ, ਸਪੋਰਟਸ ਟੀਮਾਂ, ਸੌਕਰ, ਹਾਕੀ, ਅਤੇ ਹੋਰ ਵੀ ਸ਼ਾਮਲ ਹਨ।"
 
@@ -1207,36 +1158,6 @@ msgstr "ਫਾਇਰਫਾਕਸ ਦੇ ਉਹ ਥੀਮ ਡਾਊਨਲੋਡ �
 
 msgid "General"
 msgstr "ਆਮ"
-
-msgid "Business"
-msgstr "ਵਪਾਰ"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਵਿਸ਼ਵਕੋਸ਼"
-
-msgid "Kids"
-msgstr "ਨਿਆਣੇ"
-
-msgid "Multiple Search"
-msgstr "ਬਹੁਤੀਆਂ ਖੋਜਾਂ"
-
-msgid "News & Blogs"
-msgstr "ਖ਼ਬਰਾਂ ਅਤੇ ਬਲੌਗ"
-
-msgid "Photos & Images"
-msgstr "ਤਸਵੀਰਾਂ"
-
-msgid "Shopping & E-Commerce"
-msgstr "ਖਰੀਦਦਾਰੀ ਅਤੇ ਈ-ਵਣਜ"
-
-msgid "Social & People"
-msgstr "ਸਮਾਜਿਕ ਅਤੇ ਲੋਕ"
-
-msgid "Travel"
-msgstr "ਸਫਰ"
-
-msgid "Video"
-msgstr "ਵੀਡਿਓ"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2337,9 +2258,6 @@ msgstr "ਇਹ ਐਡ-ਆਨ ਤਜਰਬੇਅਧੀਨ ਹੈ"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr "ਇਸ ਚੋਣ ਨੂੰ ਚੁਣੋ ਜੇ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਪ੍ਰਯੋਗਾਤਮਕ ਹੈ ਜਾਂ ਆਮ ਵਰਤੋਂ ਲਈ ਤਿਆਰ ਨਹੀਂ ਹੈ।  ਐਡ-ਆਨ ਨੂੰ ਸੂਚੀਬੱਧ ਕੀਤਾ ਜਾਵੇਗਾ ਪਰੰਤੂ ਦ੍ਰਿਸ਼ਟੀ ਘਟਾਈ ਹੋਵੇਗੀ।  ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਇਸ ਸੈਟਿੰਗ ਨੂੰ ਬਦਲ ਸਕਦੇ ਹੋ।"
 
-msgid "Select a category for this add-on:"
-msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ:"
-
 msgid "Support email:"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ:"
 
@@ -2819,12 +2737,12 @@ msgstr "ਕੁੱਝ HTML ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ।"
 msgid "Remove this application"
 msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਹਟਾਓ"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
-msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ:"
+msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ ਸ਼੍ਰੇਣੀ ਚੁਣੋ:"
 
 msgid "End-User License Agreement"
 msgstr "ਅੰਤ-ਵਰਤੋਂਕਾਰ ਲਸੰਸ ਸਮਝੌਤਾ"
@@ -4762,8 +4680,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "AMO guid ਲਈ ਅਯੋਗ ਵਾਪਸੀ (base64url ਫਾਰਮੈਟ ਵਿੱਚ ਨਹੀਂ?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "\"%s\", \"%s\" ਅਤੇ \"%s\" ਪੈਰਾਮੀਟਰ ਦਾ ਗਲਤ ਸੁਮੇਲ।"
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "ਵੱਧ ਤੋਂ ਵੱਧ ਪੁੱਛਗਿੱਛ ਲੰਬਾਈ ਵੱਧ ਗਈ।"
@@ -5069,7 +4987,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

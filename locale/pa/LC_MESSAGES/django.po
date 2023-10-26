@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,10 +12,37 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.2.0\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Invalid value"
+msgstr ""
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "No links are allowed."
@@ -74,9 +101,6 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
-
-msgid "Invalid app name."
 msgstr ""
 
 msgid "URL domain must be one of [{domains}]."
@@ -340,9 +364,6 @@ msgid "Email:"
 msgstr "ਈਮੇਲ"
 
 msgid "Two-factor authentication"
-msgstr ""
-
-msgid "OK"
 msgstr ""
 
 #. abbreviation of 'previous'
@@ -1111,87 +1132,6 @@ msgstr "ਦੂਜੇ"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
-#, fuzzy
-msgid "Device Features & Location"
-msgstr "ਸਮੀਖਿਅਕ ਅੱਗੇ ਵਧਣਾ"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr ""
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Performance"
-msgstr "ਕਾਰਗੁਜ਼ਾਰੀ"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr ""
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr ""
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-#, fuzzy
-msgid "User Interface"
-msgstr "ਤੋਂ ਉਪਭੋਗੀ "
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Animals"
-msgstr ""
-
-#, fuzzy
-msgid "Compact"
-msgstr "ਤੁਲਨਾ"
-
-msgid "Large"
-msgstr ""
-
-msgid "Miscellaneous"
-msgstr "ਫ਼ੁਟਕਲ"
-
-msgid "Modern"
-msgstr ""
-
-#, fuzzy
-msgid "Nature"
-msgstr "ਪੇਸ਼ ਕੀਤਾ"
-
-#, fuzzy
-msgid "OS Integration"
-msgstr "ਸਹਿਯੋਗ ਜਾਣਕਾਰੀ"
-
-msgid "Retro"
-msgstr ""
-
-#, fuzzy
-msgid "Sports"
-msgstr "ਸਹਿਯੋਗ"
-
 msgid "Abstract"
 msgstr ""
 
@@ -1237,6 +1177,10 @@ msgstr ""
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
 
+#, fuzzy
+msgid "Nature"
+msgstr "ਪੇਸ਼ ਕੀਤਾ"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
 
@@ -1262,6 +1206,10 @@ msgstr ""
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
 
+#, fuzzy
+msgid "Sports"
+msgstr "ਸਹਿਯੋਗ"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
@@ -1275,39 +1223,6 @@ msgstr ""
 #, fuzzy
 msgid "General"
 msgstr "ਆਮ ਪਰਖ"
-
-msgid "Business"
-msgstr ""
-
-#, fuzzy
-msgid "Dictionaries & Encyclopedias"
-msgstr "ਸ਼ਬਦਕੋਸ ਅਤੇ ਭਾਸ਼ਾ ਪੈਕ"
-
-msgid "Kids"
-msgstr ""
-
-#, fuzzy
-msgid "Multiple Search"
-msgstr "ਖੋਜ ਮਿਟਾਓ"
-
-msgid "News & Blogs"
-msgstr ""
-
-msgid "Photos & Images"
-msgstr ""
-
-msgid "Shopping & E-Commerce"
-msgstr ""
-
-msgid "Social & People"
-msgstr ""
-
-msgid "Travel"
-msgstr ""
-
-#, fuzzy
-msgid "Video"
-msgstr "ਵੀਡੀਓ ਬੰਦ ਕਰੋ"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2459,10 +2374,6 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 
 #, fuzzy
-msgid "Select a category for this add-on:"
-msgstr "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
-
-#, fuzzy
 msgid "Support email:"
 msgstr "ਸਹਿਯੋਗ ਈ-ਮੇਲ"
 
@@ -2976,10 +2887,10 @@ msgstr "ਕੁੱਝ HTML ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ।"
 msgid "Remove this application"
 msgstr "ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਨੂੰ ਹਟਾਓ"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 msgstr[1] "ਇਸ ਐਡ-ਆਨ ਲਈ <b>{0} ਤੱਕ</b> {1} ਸੰਗ੍ਰਹਿ ਚੁਣੋ:"
 
@@ -4889,7 +4800,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
@@ -5197,7 +5108,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

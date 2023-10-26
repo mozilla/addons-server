@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,10 +16,37 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr ""
 
 msgid "Invalid value"
+msgstr ""
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr ""
+
+msgid "This decision can't be appealed."
 msgstr ""
 
 msgid "No links are allowed."
@@ -76,9 +103,6 @@ msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
 msgid "Invalid category name."
-msgstr ""
-
-msgid "Invalid app name."
 msgstr ""
 
 msgid "URL domain must be one of [{domains}]."
@@ -341,9 +365,6 @@ msgid "Email:"
 msgstr "E-mel"
 
 msgid "Two-factor authentication"
-msgstr ""
-
-msgid "OK"
 msgstr ""
 
 #. abbreviation of 'previous'
@@ -1065,81 +1086,6 @@ msgstr "Lain-lain"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Muat turun ekstensi Firefox yang tidak dapat diramal dan kreatif, namun berguna untuk tugasan yang sukar."
 
-msgid "Device Features & Location"
-msgstr "Ciri & Lokasi Peranti"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Muat turun ekstensi yang meningkatkan Firefox untuk Android. Carian pantas, bebaskan sumber sistem, ambil nota dan banyak lagi."
-
-msgid "Experimental"
-msgstr "Eksperimen"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr "Muat turun ekstensi Firefox yang sentiasa dikemaskini dan sedia untuk ujian awam. Maklum balas anda memaklumkan pembangun mengenai perubahan untuk versi yang akan datang."
-
-msgid "Performance"
-msgstr "Prestasi"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr "Muat turun ekstensi yang memberi Firefox prestasi peningkatan. Cari ekstensi yang membantu anda menjadi lebih produktif dan cekap dengan menyekat iklan dan banyak lagi."
-
-msgid "Photos & Media"
-msgstr "Foto & Media"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Muat turun ekstensi Firefox untuk meningkatkan foto dan media. Kategori ini termasuk ekstensi untuk membalikkan imej carian, skrinyot penuh dan banyak lagi."
-
-msgid "Security & Privacy"
-msgstr "Keselamatan & Privasi"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "Muat turun ekstensi Firefox untuk melayar dengan selamat dan secara peribadi. Cari ekstensi yang boleh menghentikan penjejak iklan yang licik, sejarah pelayaran dan banyak lagi."
-
-msgid "Social Networking"
-msgstr "Rangkaian Sosial"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Muat turun ekstensi Firefox untuk meningkatkan pengalaman di laman web rangkaian sosial yang popular seperti YouTube, GitHub, Reddit dan banyak lagi."
-
-msgid "Sports & Games"
-msgstr "Sukan & Permainan"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Muat turun ekstensi Firefox untuk memberikan pengalaman hiburan dengan peningkatan penapis aliran langsung, kemas kini sukan dan banyak lagi."
-
-msgid "User Interface"
-msgstr "Antaramuka Pengguna"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Muat turun ekstensi antara muka pengguna Firefox untuk mengubah halaman web supaya lebih mudah dibaca, mencari, melayar dan banyak lagi."
-
-msgid "Animals"
-msgstr "Haiwan"
-
-msgid "Compact"
-msgstr "Padat"
-
-msgid "Large"
-msgstr "Besar"
-
-msgid "Miscellaneous"
-msgstr "Pelbagai"
-
-msgid "Modern"
-msgstr "Moden"
-
-msgid "Nature"
-msgstr "Alam"
-
-msgid "OS Integration"
-msgstr "Integrasi OS"
-
-msgid "Retro"
-msgstr "Retro"
-
-msgid "Sports"
-msgstr "Sukan"
-
 msgid "Abstract"
 msgstr "Abstrak"
 
@@ -1185,6 +1131,9 @@ msgstr "Muzik"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Muat turun tema Firefox untuk kepentingan muzik dan artis. Kategori ini termasuk kumpulan popular seperti Nirvana dan BTS, instrumen, video muzik dan banyak lagi."
 
+msgid "Nature"
+msgstr "Alam"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Muat turun tema Firefox dengan haiwan dan landskap semulajadi. Kategori ini termasuk bunga, matahari, rubah, musim, planet, anak kucing, burung dan banyak lagi."
 
@@ -1210,6 +1159,9 @@ msgstr "Padu"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Muat turun tema Firefox dengan warna pekat dan kecerunan untuk memperibadikan pelayar. Kategori ini termasuk merah terang, pastel, kelabu dan banyak lagi."
 
+msgid "Sports"
+msgstr "Sukan"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Muat turun tema Firefox yang memaparkan pelbagai jenis sukan. Kategori ini termasuk bendera negara, pasukan sukan, bola sepak, hoki dan banyak lagi."
 
@@ -1221,36 +1173,6 @@ msgstr "Muat turun tema Firefox yang mengandungi intipati web yang menawan, luar
 
 msgid "General"
 msgstr "Umum"
-
-msgid "Business"
-msgstr "Perniagaan"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Kamus & Ensiklopedia"
-
-msgid "Kids"
-msgstr "Kanak-kanak"
-
-msgid "Multiple Search"
-msgstr "Pelbagai Carian"
-
-msgid "News & Blogs"
-msgstr "Berita & Blog"
-
-msgid "Photos & Images"
-msgstr "Foto & Imej"
-
-msgid "Shopping & E-Commerce"
-msgstr "Beli-belah & E-Dagang"
-
-msgid "Social & People"
-msgstr "Sosial & Manusia"
-
-msgid "Travel"
-msgstr "Pelancongan"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr ""
@@ -2376,9 +2298,6 @@ msgid "Check this option if your add-on is experimental or otherwise not ready f
 msgstr ""
 "Tandakan pilihan ini jika add-on anda masih eksperimen ataupun belum bersedia untuk kegunaan umum.  Add-on ini akan disenaraikan tapi kurang dapat dilihat.   Anda boleh ubah tetapan ini kemudian."
 
-msgid "Select a category for this add-on:"
-msgstr "Pilih kategori untuk add-on ini:"
-
 msgid "Support email:"
 msgstr "E-mel Sokongan:"
 
@@ -2868,11 +2787,11 @@ msgstr "Beberapa HTML disokong."
 msgid "Remove this application"
 msgstr "Buang aplikasi ini"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Pilih <b>sehingga {0}</b> {1} kategori untuk add-on ini:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Pilih kategori untuk add-on ini:"
 
 msgid "End-User License Agreement"
 msgstr "Perjanjian Lesen Pengguna-Akhir"
@@ -4829,7 +4748,7 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
@@ -5137,7 +5056,7 @@ msgstr ""
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
 
 #, python-format

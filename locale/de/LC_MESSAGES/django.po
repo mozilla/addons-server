@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-10 19:40+0000\n"
+"POT-Creation-Date: 2023-10-26 20:14+0000\n"
 "PO-Revision-Date: 2023-10-06 09:38+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,11 +15,38 @@ msgstr ""
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
+msgid "Email address"
+msgstr ""
+
+msgid "Invalid email provided."
+msgstr ""
+
+msgid "Reason for appeal"
+msgstr ""
+
+msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
+msgstr ""
+
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Stellen Sie sicher, dass dieses Feld nicht mehr als {max_length} Zeichen enthält."
 
 msgid "Invalid value"
 msgstr "Ungültiger Wert"
+
+msgid "Appeal reviewer decision"
+msgstr ""
+
+msgid "Decision {0}"
+msgstr ""
+
+msgid "Thank you. Your appeal has been recorded."
+msgstr ""
+
+msgid "OK"
+msgstr "OK"
+
+msgid "This decision can't be appealed."
+msgstr ""
 
 msgid "No links are allowed."
 msgstr "Links sind nicht erlaubt."
@@ -75,9 +102,6 @@ msgstr "Die Kategorie „Sonstiges“ kann nicht mit einer weiteren Kategorie ko
 
 msgid "Invalid category name."
 msgstr "Ungültiger Kategoriename."
-
-msgid "Invalid app name."
-msgstr "Ungültiger App-Name."
 
 msgid "URL domain must be one of [{domains}]."
 msgstr "URL-Domain muss zu [{domains}] gehören."
@@ -346,9 +370,6 @@ msgstr "E-Mail:"
 
 msgid "Two-factor authentication"
 msgstr "Zwei-Faktor-Authentifizierung"
-
-msgid "OK"
-msgstr "OK"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -1070,88 +1091,6 @@ msgstr "Sonstiges"
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Laden Sie Firefox-Erweiterungen herunter, die unvorhersehbar und kreativ sein können, aber für diese ungewöhnlichen Aufgaben nützlich sind."
 
-msgid "Device Features & Location"
-msgstr "Gerätefunktionen und Ortsbestimmung"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr "Laden Sie Erweiterungen herunter, um Firefox für Android zu verbessern. Führen Sie schnelle Suchen durch, machen Sie Systemressourcen frei, machen Sie sich Notizen und vieles mehr."
-
-msgid "Experimental"
-msgstr "Experimentell"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-"Laden Sie Firefox-Erweiterungen herunter, die regelmäßig aktualisiert werden und für öffentliche Tests bereit sind. Ihr Feedback informiert Entwickler über Änderungen, die in den kommenden "
-"Versionen vorgenommen werden sollen."
-
-msgid "Performance"
-msgstr "Leistung"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-"Laden Sie Erweiterungen herunter, die Firefox eine Leistungssteigerung verleihen. Finden Sie Erweiterungen, die Ihnen helfen, produktiver und effizienter zu sein, indem Sie störende Anzeigen und "
-"mehr blockieren."
-
-msgid "Photos & Media"
-msgstr "Fotos und Medien"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-"Laden Sie Firefox-Erweiterungen herunter, um Fotos und Medien zu verbessern. Diese Kategorie enthält Erweiterungen zur umgekehrten Bildersuche, Aufnehmen ganzseitiger Bildschirmfotos und mehr."
-
-msgid "Security & Privacy"
-msgstr "Sicherheit und Privatsphäre"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-"Laden Sie die Firefox-Erweiterungen herunter, um sicher und privat zu surfen. Entdecken Sie Erweiterungen, mit denen hinterlistige Werbe-Tracker gestoppt werden, die Surf-Chronik problemlos "
-"gelöscht werden kann und vieles mehr."
-
-msgid "Social Networking"
-msgstr "Soziale Netzwerke"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr "Laden Sie Firefox-Erweiterungen herunter, um Ihre Erfahrungen auf beliebten Websites für soziale Netzwerke wie YouTube, GitHub, Reddit und anderen zu verbessern."
-
-msgid "Sports & Games"
-msgstr "Sport und Spiele"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr "Laden Sie Firefox-Erweiterungen herunter, um Ihr Unterhaltungserlebnis mit Live-Stream-Erweiterungen, Sportnachrichten und mehr zu steigern."
-
-msgid "User Interface"
-msgstr "Benutzeroberfläche"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr "Laden Sie Firefox-Erweiterungen für die Benutzeroberfläche herunter, die Webseiten ändern, sodass Sie diese leichter lesen, durchsuchen, durchstöbern und mehr tun können."
-
-msgid "Animals"
-msgstr "Tiere"
-
-msgid "Compact"
-msgstr "Kompakt"
-
-msgid "Large"
-msgstr "Große Themen"
-
-msgid "Miscellaneous"
-msgstr "Verschiedenes"
-
-msgid "Modern"
-msgstr "Moderne Themen"
-
-msgid "Nature"
-msgstr "Natur"
-
-msgid "OS Integration"
-msgstr "Betriebssystem-Integration"
-
-msgid "Retro"
-msgstr "Klassische Themen"
-
-msgid "Sports"
-msgstr "Sport"
-
 msgid "Abstract"
 msgstr "Abstrakt"
 
@@ -1199,6 +1138,9 @@ msgstr "Musik"
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr "Laden Sie Firefox-Themes für Musikinteressierte und Künstler herunter. Diese Kategorie umfasst beliebte Bands wie Nirvana und BTS, Instrumente, Musikvideos und vieles mehr."
 
+msgid "Nature"
+msgstr "Natur"
+
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr "Laden Sie Firefox-Themes mit Tieren und Naturlandschaften herunter. Diese Kategorie umfasst Blumen, Sonnenuntergänge, Füchse, Jahreszeiten, Planeten, Kätzchen, Vögel und mehr."
 
@@ -1223,6 +1165,9 @@ msgstr "Ausgefüllte Themen"
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr "Laden Sie Firefox-Themes mit Farben und Farbverläufen herunter, um Ihren Browser zu personalisieren. Diese Kategorie umfasst kräftige Rottöne, Pastelle, weiche Grautöne und vieles mehr."
 
+msgid "Sports"
+msgstr "Sport"
+
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Laden Sie Firefox-Themes herunter, die verschiedene Sportarten darstellen. Diese Kategorie umfasst Länderflaggen, Sportmannschaften, Fußball, Hockey und mehr."
 
@@ -1234,36 +1179,6 @@ msgstr "Laden Sie Firefox-Themes herunter, die die Essenz des Webs einfangen –
 
 msgid "General"
 msgstr "Allgemein"
-
-msgid "Business"
-msgstr "Geschäftliches"
-
-msgid "Dictionaries & Encyclopedias"
-msgstr "Wörterbücher und Lexika"
-
-msgid "Kids"
-msgstr "Kinder"
-
-msgid "Multiple Search"
-msgstr "Metasuchen"
-
-msgid "News & Blogs"
-msgstr "Nachrichten & Blogs"
-
-msgid "Photos & Images"
-msgstr "Fotos und Grafiken"
-
-msgid "Shopping & E-Commerce"
-msgstr "Einkaufen"
-
-msgid "Social & People"
-msgstr "Menschen und Sozialnetzwerke"
-
-msgid "Travel"
-msgstr "Reisen"
-
-msgid "Video"
-msgstr "Video"
 
 msgid "Mozilla Public License 2.0"
 msgstr "Mozilla Public License 2.0"
@@ -2381,9 +2296,6 @@ msgstr ""
 "Wählen Sie diese Option, wenn Ihr Add-on experimentell oder anderweitig nicht zur allgemeinen Verwendung geeignet ist.  Dieses Add-on wird gelistet, aber mit verringerter Sichtbarkeit.   Sie können "
 "diese Einstellung nachträglich ändern."
 
-msgid "Select a category for this add-on:"
-msgstr "Wählen eine Kategorie für dieses Add-on:"
-
 msgid "Support email:"
 msgstr "E-Mail-Adresse für Hilfestellungen:"
 
@@ -2911,12 +2823,12 @@ msgstr "HTML wird teilweise unterstützt"
 msgid "Remove this application"
 msgstr "Diese App entfernen"
 
-#. {0} is the maximum number of add-on categories allowed.                {1} is
-#. the application name.
-msgid "Select <b>up to {0}</b> {1} category for this add-on:"
-msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
-msgstr[0] "Wählen Sie <b>bis zu {0}</b> {1} Kategorie für dieses Add-on:"
-msgstr[1] "Wählen Sie <b>bis zu {0}</b> {1} Kategorien für dieses Add-on:"
+#. {0} is the maximum number of add-on categories allowed
+#, fuzzy
+msgid "Select a category for this add-on:"
+msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
+msgstr[0] "Wählen eine Kategorie für dieses Add-on:"
+msgstr[1] "Wählen eine Kategorie für dieses Add-on:"
 
 msgid "End-User License Agreement"
 msgstr "Endbenutzer-Lizenzvereinbarung"
@@ -4774,8 +4686,8 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Ungültige GUID für Zurück zu AMO (nicht im base64url-Format?)"
 
 #, python-format
-msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "Ungültige Kombination der Parameter „%s“, „%s“ und „%s“."
+msgid "Invalid combination of %s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Maximale Anfragenlänge überschritten."
@@ -5073,10 +4985,8 @@ msgstr "Rechtliches"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike Licence v3.0</a> or any later version."
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Sofern nicht anders <a href=\"https://www.mozilla.org/about/legal/\">vermerkt</a>, steht der Inhalt dieser Seite unter der <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons Attribution Share-Alike License v3.0</a> oder einer späteren Version."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
