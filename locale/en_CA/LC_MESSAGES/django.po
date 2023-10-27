@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 16:22+0000\n"
+"PO-Revision-Date: 2023-10-27 16:28+0000\n"
 "Last-Translator: pdehaan <pdehaan@mozilla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -172,7 +172,7 @@ msgstr "Listed versions cannot be submitted while add-on is disabled."
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s are not supported by %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
@@ -856,7 +856,7 @@ msgid "Admin add-on-review cleared"
 msgstr "Admin add-on-review cleared"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} changed {addon} slug from {0} to {1}."
 
 msgid "Addon slug changed"
 msgstr ""
@@ -928,7 +928,7 @@ msgid "Deprecated Search Engine"
 msgstr "Deprecated Search Engine"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Language Pack"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Deprecated Language Pack (Add-on)"
@@ -943,7 +943,7 @@ msgid "Theme (Static)"
 msgstr "Theme (Static)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Deprecated Site Permission"
 
 msgid "Extensions"
 msgstr "Extensions"
@@ -958,7 +958,7 @@ msgid "Deprecated Search Tools"
 msgstr "Deprecated Search Tools"
 
 msgid "Language Packs"
-msgstr ""
+msgstr "Language Packs"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Deprecated Language Packs (Add-on)"
@@ -973,7 +973,7 @@ msgid "Themes (Static)"
 msgstr "Themes (Static)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Deprecated Site Permissions"
 
 msgid "Alerts & Updates"
 msgstr "Alerts & Updates"
@@ -2724,18 +2724,20 @@ msgid "More information on Developer Accounts"
 msgstr "More information on Developer Accounts"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Firefox for Android compatibility"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Yes, I’ve tested my extension with Firefox for Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "No, I have not tested"
 
 msgid "Developer News"
 msgstr "Developer News"
@@ -2770,11 +2772,10 @@ msgid "Remove this application"
 msgstr "Remove this application"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Select a category for this add-on:"
-msgstr[1] "Select a category for this add-on:"
+msgstr[1] "Select <b>up to {0}</b> categories for this add-on:"
 
 msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
@@ -4207,7 +4208,7 @@ msgstr "See all extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Test new Android extensions"
-msgstr ""
+msgstr "Test new Android extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
@@ -4875,48 +4876,50 @@ msgid "Add-ons"
 msgstr "Add-ons"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Go to Mozilla's homepage"
 
 msgid "About"
 msgstr "About"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Firefox Add-ons Blog"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Community Blog"
 
 msgid "Forum"
 msgstr "Forum"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Review Guide"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Browsers"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Enterprise"
 
 msgid "Products"
-msgstr ""
+msgstr "Products"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privacy"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Cookies"
 
 msgid "Legal"
-msgstr ""
+msgstr "Legal"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike License v3.0</a> or any later version."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -5119,6 +5122,15 @@ msgid ""
 "\n"
 "The Firefox Add-ons Team"
 msgstr ""
+"Hello,\n"
+"\n"
+"You’re receiving this message because your user account %(name)s on %(site_url)s has been deleted. This could have been done automatically if you recently deleted your Mozilla account (we renamed Firefox Accounts to Mozilla accounts).\n"
+"\n"
+"If you didn’t do this or believe an unauthorized person has accessed your account, please reply to this email. Otherwise, there’s no further action to take.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Firefox Add-ons Team"
 
 #, python-format
 msgid ""
