@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 07:41+0000\n"
+"PO-Revision-Date: 2023-10-27 07:47+0000\n"
 "Last-Translator: Francesco Lodolo [:flod] <flod+pontoon@mozilla.com>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -29,7 +29,7 @@ msgid "Reason for appeal"
 msgstr "Motivo del ricorso"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Spiega perché ritieni che questa decisione sia stata presa per errore e/o non sia in linea con le regole o leggi applicabili."
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Attenzione: il campo non deve contenere più di {max_length} caratteri."
@@ -38,19 +38,19 @@ msgid "Invalid value"
 msgstr "Valore non valido"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Fai ricorso per la decisione del revisore"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "Decisione {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Grazie. Il tuo ricorso è stato registrato."
 
 msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Questa decisione non può essere impugnata."
 
 msgid "No links are allowed."
 msgstr "Non è consentito includere link."
@@ -2855,11 +2855,10 @@ msgid "Remove this application"
 msgstr "Rimuovi questa applicazione"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Seleziona una categoria per il componente aggiuntivo:"
-msgstr[1] "Seleziona una categoria per il componente aggiuntivo:"
+msgstr[1] "Seleziona <b>fino a {0}</b> categorie per il componente aggiuntivo:"
 
 msgid "End-User License Agreement"
 msgstr "Licenza per l’utente finale"
@@ -4724,7 +4723,7 @@ msgstr "GUID Ritorna su AMO non valido (possibili cause: non è in formato base6
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Combinazione dei parametri “%s” e “%s” non valida."
 
 msgid "Maximum query length exceeded."
 msgstr "Superata lunghezza massima consentita della query."
@@ -5025,6 +5024,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Eccetto dove diversamente <a href=\"https://www.mozilla.org/about/legal/\">indicato</a>, i contenuti del sito sono da considerarsi distribuiti secondo la licenza <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribuzione - Condividi allo stesso modo versione 3.0</a> o successive."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
