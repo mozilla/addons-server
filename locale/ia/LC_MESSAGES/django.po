@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 12:17+0000\n"
+"PO-Revision-Date: 2023-10-27 23:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -35,19 +35,19 @@ msgid "Invalid value"
 msgstr "Valor invalide"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Decision de revisor de appello"
 
 msgid "Decision {0}"
 msgstr "Decision {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Gratias. Tu appello ha essite registrate."
 
 msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Iste decision non pote esser appellate."
 
 msgid "No links are allowed."
 msgstr "Le ligamines non es permittite."
