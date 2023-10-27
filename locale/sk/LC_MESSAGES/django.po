@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 17:42+0000\n"
+"PO-Revision-Date: 2023-10-27 17:44+0000\n"
 "Last-Translator: wladow <valastiak@mozilla.sk>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -36,19 +36,19 @@ msgid "Invalid value"
 msgstr "Neplatná hodnota"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Odvolanie voči rozhodnutiu kontrolóra"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "Rozhodnutie {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Ďakujem. Vaše odvolanie bolo zaznamenané."
 
 msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Proti tomuto rozhodnutiu sa nemožno odvolať."
 
 msgid "No links are allowed."
 msgstr "Odkazy nie sú povolené."
@@ -2799,12 +2799,11 @@ msgid "Remove this application"
 msgstr "Odstrániť túto aplikáciu"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Vyberte kategóriu pre tento doplnok:"
-msgstr[1] "Vyberte kategóriu pre tento doplnok:"
-msgstr[2] "Vyberte kategóriu pre tento doplnok:"
+msgstr[1] "Vyberte <b>najviac {0}</b> kategórie pre tento doplnok:"
+msgstr[2] "Vyberte <b>najviac {0}</b> kategórií pre tento doplnok:"
 
 msgid "End-User License Agreement"
 msgstr "Licenčná zmluva s koncovým používateľom"
@@ -4664,7 +4663,7 @@ msgstr "Neplatný guid pre návrat na AMO (nie je vo formáte base64url?)"
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Neplatná kombinácia parametrov %s\" a \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Bola prekročená maximálna dĺžka dopytu."
@@ -4964,6 +4963,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Ak nie je <a href=\"https://www.mozilla.org/about/legal/\">uvedené</a> inak, je obsah tejto stránky dostupný na základe licencie <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons Attribution Share-Alike License v3.0</a> alebo akejkoľvek novšej verzie."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
