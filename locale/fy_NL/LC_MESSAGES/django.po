@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 13:03+0000\n"
+"PO-Revision-Date: 2023-10-27 13:05+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -50,7 +50,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Der kin gjin beswier makke wurde tsjin dizze beslissing."
 
 msgid "No links are allowed."
 msgstr "Keppelingen binne net tastien."
@@ -2802,11 +2802,10 @@ msgid "Remove this application"
 msgstr "Dizze tapassing fuortsmite"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Selektearje in kategory foar dizze add-on:"
-msgstr[1] "Selektearje in kategory foar dizze add-on:"
+msgstr[0] "Selektearje <b>oant {0}</b> kategory foar dizze add-on:"
+msgstr[1] "Selektearje <b>oant {0}</b> kategoryen foar dizze add-on:"
 
 msgid "End-User License Agreement"
 msgstr "Einbrûkerslisinsjeoerienkomst"
@@ -4666,7 +4665,7 @@ msgstr "Unjildige GUID foar Return To AMO (net yn base64url-yndieling?)"
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Unjildige kombinaasje fan parameters ‘%s’ en ‘%s’."
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
@@ -4966,6 +4965,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Utsein wêr oars <a href=\"https://www.mozilla.org/about/legal/\">fermeld</a>, is op de ynhâld fan dizze website de <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Attribution Share-Alike License v3.0 </a> of lettere ferzje fan tapassing."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
