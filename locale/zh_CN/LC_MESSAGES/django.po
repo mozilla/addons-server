@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 15:48+0000\n"
+"PO-Revision-Date: 2023-10-27 15:58+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -25,7 +25,7 @@ msgid "Reason for appeal"
 msgstr "申诉原因"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr "请说明您认为此决定有误，或是与审查规则、法律要求不符的原因。"
+msgstr "请说明您认为此决定有误，或是与适用的政策、法律要求不符的原因。"
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "请确保此字段未超过 {max_length} 个字符。"
@@ -34,19 +34,19 @@ msgid "Invalid value"
 msgstr "无效值"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "审核结果申诉"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "审核结果 {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "感谢反馈，我们已记录您的申诉。"
 
 msgid "OK"
 msgstr "确定"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "无法对此审核结果提出申诉。"
 
 msgid "No links are allowed."
 msgstr "不允许使用链接。"
@@ -4579,7 +4579,7 @@ msgstr "Return To AMO GUID 无效（不是以 base64URL 格式？）"
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "“%s”与“%s”的参数组合无效。"
 
 msgid "Maximum query length exceeded."
 msgstr "超出最大查询长度。"
