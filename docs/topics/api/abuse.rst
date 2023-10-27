@@ -54,6 +54,8 @@ to if necessary.
     :<json string|null operating_system: The client's operating system.
     :<json string|null operating_system_version: The client's operating system version.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-reason-parameter>`.
+    :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -238,6 +240,8 @@ so reports can be responded to if necessary.
 
     :<json string user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -250,4 +254,34 @@ so reports can be responded to if necessary.
     :>json string user.name: The name of the user reported.
     :>json string user.url: The link to the profile page for of the user reported.
     :>json string user.username: The username of the user reported.
+    :>json string message: The body/content of the abuse report.
+
+
+--------------------------------
+Submitting a rating abuse report
+--------------------------------
+
+.. _`ratingabusereport-create`:
+
+The following API endpoint allows an abuse report to be submitted for a rating
+on https://addons.mozilla.org.  Authentication is not required, but is recommended
+so reports can be responded to if necessary.
+
+.. http:post:: /api/v5/abuse/report/rating/
+
+    .. _ratingabusereport-create-request:
+
+    :<json string rating: The id of the rating to report for abuse (required).
+    :<json string message: The body/content of the abuse report (required).
+    :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :>json object|null reporter: The user who submitted the report, if authenticated.
+    :>json int reporter.id: The id of the user who submitted the report.
+    :>json string reporter.name: The name of the user who submitted the report.
+    :>json string reporter.url: The link to the profile page for of the user who submitted the report.
+    :>json string reporter.username: The username of the user who submitted the report.
+    :>json string|null reporter_name: The provided name of the reporter, if not authenticated.
+    :>json string|null reporter_email: The provided email of the reporter, if not authenticated.
+    :>json object rating: The user reported for abuse.
+    :>json int rating.id: The id of the rating reported.
     :>json string message: The body/content of the abuse report.

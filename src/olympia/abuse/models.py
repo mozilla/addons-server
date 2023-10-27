@@ -2,15 +2,17 @@ from datetime import datetime, timedelta
 
 from django.db import models
 
+import waffle
 from extended_choices import Choices
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
+from .cinder import CinderAddon, CinderRating, CinderUnauthenticatedReporter, CinderUser
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -107,11 +109,13 @@ class AbuseReport(ModelBase):
         ),
         ('OTHER', 127, 'Other'),
     )
-    REPORTABLE_REASONS = (
-        REASONS.HATEFUL_VIOLENT_DECEPTIVE,
-        REASONS.ILLEGAL,
-        REASONS.POLICY_VIOLATION,
-        REASONS.OTHER,
+    REASONS.add_subset(
+        'RATING_REASONS', ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'OTHER')
+    )
+    # Those reasons will be reported to Cinder.
+    REASONS.add_subset(
+        'REPORTABLE_REASONS',
+        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'OTHER'),
     )
 
     # https://searchfox.org
@@ -204,12 +208,16 @@ class AbuseReport(ModelBase):
     reporter_email = models.CharField(max_length=255, default=None, null=True)
     reporter_name = models.CharField(max_length=255, default=None, null=True)
     country_code = models.CharField(max_length=2, default=None, null=True)
-    # An abuse report can be for an addon or a user.
-    # If user is set then guid should be null.
-    # If user is null then guid should be set.
+    # An abuse report can be for an addon, a user or a rating.
+    # - If user is set then guid and rating should be null.
+    # - If guid is set then user and rating should be null.
+    # - If rating is set then user and guid should be null.
     guid = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(
         UserProfile, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
+    )
+    rating = models.ForeignKey(
+        Rating, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
     )
     message = models.TextField(blank=True)
 
@@ -295,16 +303,23 @@ class AbuseReport(ModelBase):
         ]
         constraints = [
             models.CheckConstraint(
-                name='just_one_of_guid_and_user_must_be_set',
+                name='just_one_of_guid_user_rating_must_be_set',
                 check=(
                     models.Q(
                         ~models.Q(guid=''),
                         guid__isnull=False,
                         user__isnull=True,
+                        rating__isnull=True,
                     )
                     | models.Q(
                         guid__isnull=True,
                         user__isnull=False,
+                        rating__isnull=True,
+                    )
+                    | models.Q(
+                        guid__isnull=True,
+                        user__isnull=True,
+                        rating__isnull=False,
                     )
                 ),
             ),
@@ -316,16 +331,34 @@ class AbuseReport(ModelBase):
         # soft-deleted.
         return self.update(state=self.STATES.DELETED)
 
+    def save(self, *args, **kwargs):
+        from olympia.abuse.tasks import report_to_cinder
+
+        creation = kwargs.get('force_insert', False) or bool(self.pk)
+        rval = super().save(*args, **kwargs)
+        if (
+            creation
+            and waffle.switch_is_active('enable-cinder-reporting')
+            and self.reason in AbuseReport.REASONS.REPORTABLE_REASONS
+        ):
+            # call task to fire off cinder report
+            report_to_cinder.delay(self.pk)
+        return rval
+
     @property
     def type(self):
         if self.guid:
             type_ = 'Addon'
-        else:
+        elif self.user_id:
             type_ = 'User'
+        elif self.rating_id:
+            type_ = 'Rating'
+        else:
+            type_ = 'Unknown'
         return type_
 
     def __str__(self):
-        name = self.guid if self.guid else self.user
+        name = self.guid or self.user_id or self.rating_id
         return f'Abuse Report for {self.type} {name}'
 
     @property
@@ -336,8 +369,10 @@ class AbuseReport(ModelBase):
 
         if self.guid:
             return Addon.unfiltered.filter(guid=self.guid).first()
-        elif self.user:
+        elif self.user_id:
             return self.user
+        elif self.rating_id:
+            return self.rating
         return None
 
 
@@ -385,7 +420,8 @@ class CinderReport(ModelBase):
                 return CinderAddon(target)
             elif isinstance(target, UserProfile):
                 return CinderUser(target)
-        # TODO: More helpers here
+            elif isinstance(target, Rating):
+                return CinderRating(target)
         return None
 
     def get_cinder_reporter(self):

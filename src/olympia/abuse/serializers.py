@@ -1,7 +1,6 @@
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
-import waffle
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -11,7 +10,6 @@ from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
 
 from .models import AbuseReport
-from .tasks import report_to_cinder
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -194,7 +192,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         }
         if view := self.context.get('view'):
             try:
-                addon = view.get_addon_object()
+                addon = view.get_target_object()
                 output['id'] = addon.pk
                 output['slug'] = addon.slug
             except Http404:
@@ -203,16 +201,6 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 # want to reveal the slug or id of those add-ons.
                 pass
         return output
-
-    def create(self, validated_data):
-        instance = super().create(validated_data)
-        if (
-            waffle.switch_is_active('enable-cinder-reporting')
-            and validated_data.get('reason') in AbuseReport.REPORTABLE_REASONS
-        ):
-            # call task to fire off cinder report
-            report_to_cinder.delay(instance.id)
-        return instance
 
 
 class UserAbuseReportSerializer(BaseAbuseReportSerializer):
@@ -228,9 +216,36 @@ class UserAbuseReportSerializer(BaseAbuseReportSerializer):
     def to_internal_value(self, data):
         view = self.context.get('view')
         self.validate_target(data, 'user')
-        output = {'user': view.get_user_object()}
+        output = {'user': view.get_target_object()}
         # Pop 'user' before passing it to super(), we already have the
         # output value and did the validation above.
         data.pop('user')
         output.update(super().to_internal_value(data))
         return output
+
+
+class RatingAbuseReportSerializer(BaseAbuseReportSerializer):
+    rating = serializers.SerializerMethodField()
+    reason = ReverseChoiceField(
+        choices=list(AbuseReport.REASONS.RATING_REASONS.api_choices),
+        required=True,
+        allow_null=True,
+    )
+    message = serializers.CharField(required=True, allow_blank=False, max_length=10000)
+
+    class Meta:
+        model = AbuseReport
+        fields = BaseAbuseReportSerializer.Meta.fields + ('rating', 'reason')
+
+    def to_internal_value(self, data):
+        self.validate_target(data, 'rating')
+        view = self.context.get('view')
+        output = {'rating': view.get_target_object()}
+        # Pop 'rating' before passing it to super(), we already have the
+        # output value and did the validation above.
+        data.pop('rating')
+        output.update(super().to_internal_value(data))
+        return output
+
+    def get_rating(self, obj):
+        return {'id': obj.rating.pk}

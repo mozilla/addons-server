@@ -3,11 +3,22 @@ from django.conf import settings
 import responses
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.ratings.models import Rating
 
-from ..cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
+from ..cinder import (
+    CinderAddon,
+    CinderRating,
+    CinderUnauthenticatedReporter,
+    CinderUser,
+)
 
 
 class BaseTestCinderCase:
+    cinder_class = None  # Override in child classes
+
+    def _create_dummy_target(self, **kwargs):
+        raise NotImplementedError
+
     def _test_report(self, cinder_instance):
         responses.add(
             responses.POST,
@@ -54,8 +65,11 @@ class BaseTestCinderCase:
         with self.assertRaises(ConnectionError):
             cinder_instance.report(report_text='reason', category=None, reporter=None)
 
-    def test_report(self):
+    def test_build_report_payload(self):
         raise NotImplementedError
+
+    def test_report(self):
+        self._test_report(self.cinder_class(self._create_dummy_target()))
 
     def _test_appeal(self, appealer):
         fake_decision_id = 'decision-id-to-appeal-666'
@@ -252,9 +266,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             ],
         }
 
-    def test_report(self):
-        self._test_report(self.cinder_class(self._create_dummy_target()))
-
 
 class TestCinderUser(BaseTestCinderCase, TestCase):
     cinder_class = CinderUser
@@ -417,5 +428,53 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
         }
 
-    def test_report(self):
-        self._test_report(self.cinder_class(self._create_dummy_target()))
+
+class TestCinderRating(BaseTestCinderCase, TestCase):
+    cinder_class = CinderRating
+
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory()
+
+    def _create_dummy_target(self, **kwargs):
+        return Rating.objects.create(addon=self.addon, user=self.user, **kwargs)
+
+    def test_build_report_payload(self):
+        rating = self._create_dummy_target()
+        cinder_rating = self.cinder_class(rating)
+        reason = 'bad rating!'
+
+        data = cinder_rating.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'queue_slug': 'amo-content-infringement',
+            'entity_type': 'amo_rating',
+            'entity': {
+                'id': str(rating.id),
+                'body': rating.body,
+            },
+            'reasoning': reason,
+            'context': {
+                'entities': [
+                    {
+                        'entity_type': 'amo_user',
+                        'attributes': {
+                            'id': str(self.user.id),
+                            'name': self.user.display_name,
+                            'email': self.user.email,
+                            'fxa_id': self.user.fxa_id,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': str(self.user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(rating.id),
+                        'target_type': 'amo_rating',
+                        'relationship_type': 'amo_rating_author_of',
+                    }
+                ],
+            },
+        }

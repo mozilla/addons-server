@@ -24,6 +24,7 @@ from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
 from olympia.abuse.models import CinderReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer,
+    RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
 from olympia.abuse.tasks import appeal_to_cinder
@@ -31,6 +32,7 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
+from olympia.ratings.views import RatingViewSet
 
 from .cinder import Cinder
 
@@ -48,35 +50,56 @@ class AbuseIPThrottle(GranularIPRateThrottle):
     scope = 'ip_abuse'
 
 
-class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
+class AbuseTargetMixin:
+    target_viewset_class = None  # Implement in child classes
+    target_viewset_action = None  # Implement in child classes or leave None
+    target_parameter_name = None  # Implement in child classes (must match serializer)
+
+    def get_target_viewset(self):
+        if hasattr(self, 'target_viewset'):
+            return self.target_viewset
+
+        if 'target_pk' not in self.kwargs:
+            self.kwargs['target_pk'] = self.request.data.get(
+                self.target_parameter_name
+            ) or self.request.GET.get(self.target_parameter_name)
+
+        self.target_viewset = self.target_viewset_class(
+            request=self.request,
+            permission_classes=[],
+            kwargs={'pk': self.kwargs['target_pk']},
+            action=self.target_viewset_action,
+        )
+        return self.target_viewset
+
+    # This method is used by the serializer.
+    def get_target_object(self):
+        if hasattr(self, 'target_object'):
+            return self.target_object
+
+        self.target_object = self.get_target_viewset().get_object()
+        return self.target_object
+
+
+class AddonAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = AddonAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
+    target_viewset_class = AddonViewSet
+    target_viewset_action = 'retrieve_from_related'
+    target_parameter_name = 'addon'
 
-    def get_addon_viewset(self):
-        if hasattr(self, 'addon_viewset'):
-            return self.addon_viewset
-
-        if 'addon_pk' not in self.kwargs:
-            self.kwargs['addon_pk'] = self.request.data.get(
-                'addon'
-            ) or self.request.GET.get('addon')
-        self.addon_viewset = AddonViewSet(
-            request=self.request,
-            permission_classes=[],
-            kwargs={'pk': self.kwargs['addon_pk']},
-            action='retrieve_from_related',
-        )
-        return self.addon_viewset
-
-    def get_addon_object(self):
-        if hasattr(self, 'addon_object'):
-            return self.addon_object
-
-        self.addon_object = self.get_addon_viewset().get_object()
-        if self.addon_object and not self.addon_object.is_public():
+    def get_target_object(self):
+        super().get_target_object()
+        # It's possible to submit reports against non-public add-ons via guid,
+        # but we can't reveal their slug/pk and can't accept their slug/pk as
+        # input either. We raise a 404 if get_target_object() is called for a
+        # non-public add-on: the view avoids calling it when a guid is passed
+        # (see get_guid()) and the serializer will handle the Http404 when
+        # returning the internal value (see get_addon() in serializer).
+        if self.target_object and not self.target_object.is_public():
             raise Http404
-        return self.addon_object
+        return self.target_object
 
     def get_guid(self):
         """
@@ -91,36 +114,34 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
         look like a guid and there is no public add-on with a matching slug or
         pk.
         """
-        if self.get_addon_viewset().get_lookup_field(self.kwargs['addon_pk']) == 'guid':
-            guid = self.kwargs['addon_pk']
+        if (
+            self.get_target_viewset().get_lookup_field(self.kwargs['target_pk'])
+            == 'guid'
+        ):
+            guid = self.kwargs['target_pk']
         else:
             # At this point the parameter is a slug or pk. For backwards-compatibility
             # we accept that, but ultimately record only the guid.
-            self.get_addon_object()
-            if self.addon_object:
-                guid = self.addon_object.guid
+            self.get_target_object()
+            if self.target_object:
+                guid = self.target_object.guid
         return guid
 
 
-class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
+class UserAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = UserAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
+    target_viewset_class = AccountViewSet
+    target_parameter_name = 'user'
 
-    def get_user_object(self):
-        if hasattr(self, 'user_object'):
-            return self.user_object
 
-        if 'user_pk' not in self.kwargs:
-            self.kwargs['user_pk'] = self.request.data.get(
-                'user'
-            ) or self.request.GET.get('user')
-
-        return AccountViewSet(
-            request=self.request,
-            permission_classes=[],
-            kwargs={'pk': self.kwargs['user_pk']},
-        ).get_object()
+class RatingAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
+    permission_classes = []
+    serializer_class = RatingAbuseReportSerializer
+    throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
+    target_viewset_class = RatingViewSet
+    target_parameter_name = 'rating'
 
 
 class CinderInboundPermission:
@@ -222,9 +243,10 @@ def appeal(request, *, decision_id, **kwargs):
         allowed_users = []
         if hasattr(abuse_report.target, 'authors'):
             allowed_users = abuse_report.target.authors.all()
-        # FIXME: when we implement collections in abuse reports
-        # elif hasattr(abuse_report.target, 'author'):
-        #     allowed_users = [abuse_report.target.author]
+        elif hasattr(abuse_report.target, 'author'):
+            allowed_users = [abuse_report.target.author]
+        elif hasattr(abuse_report.target, 'user'):
+            allowed_users = [abuse_report.target.user]
         valid_user_or_email_provided = request.user in allowed_users
 
     if not valid_user_or_email_provided and not appeal_email_form:

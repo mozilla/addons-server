@@ -2,11 +2,17 @@ from django.urls import include, re_path
 
 from rest_framework.routers import SimpleRouter
 
-from .views import AddonAbuseViewSet, UserAbuseViewSet, cinder_webhook
+from .views import (
+    AddonAbuseViewSet,
+    RatingAbuseViewSet,
+    UserAbuseViewSet,
+    cinder_webhook,
+)
 
 
 reporting = SimpleRouter()
 reporting.register(r'addon', AddonAbuseViewSet, basename='abusereportaddon')
+reporting.register(r'rating', RatingAbuseViewSet, basename='abusereportrating')
 reporting.register(r'user', UserAbuseViewSet, basename='abusereportuser')
 
 urlpatterns = [
