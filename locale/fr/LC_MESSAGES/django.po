@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 08:47+0000\n"
+"PO-Revision-Date: 2023-10-27 09:38+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -41,7 +41,7 @@ msgid "Invalid value"
 msgstr "Valeur invalide"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Faire un recours de la décision d’évaluation"
 
 msgid "Decision {0}"
 msgstr "Décision {0}"
@@ -181,7 +181,7 @@ msgstr "Les versions répertoriées ne peuvent pas être soumises lorsque le mod
 
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
-msgstr ""
+msgstr "%(addon_type_plural)s ne sont pas pris en charge par %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
