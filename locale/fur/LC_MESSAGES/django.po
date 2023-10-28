@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 16:27+0000\n"
+"PO-Revision-Date: 2023-10-28 16:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1003,28 +1003,34 @@ msgid "Bookmarks"
 msgstr "Segnelibris"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Discjame estensions che a miorin la gjestion di segnelibris protezintlis cuntune password, cjatant elements doplis o che no funzionin e tant altri."
 
 msgid "Download Management"
-msgstr ""
+msgstr "Gjestion files discjariâts"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Discjame estensions par Firefox che ti puedin judâ a discjariâ in mût sempliç contignûts web, musiche e videos. Tu cjatarâs ancje estensions par gjestî i files discjariâts, condividi files e ancjemò"
+" altri."
 
 msgid "Feeds, News & Blogging"
-msgstr ""
+msgstr "Feeds, notiziis e blogs"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Discjame estensions par Firefox che a gjavin i elements di disturp cussì di miorâ la esperience di navigazion sui social media, restâ inzornât cun blogs e feeds RSS, ma ancje diminuî il stracament "
+"dai voi e tant altri."
 
 msgid "Games & Entertainment"
-msgstr ""
+msgstr "Zûcs e divertiment"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Discjame estensions par Firefox che ti aumentaran la esperience di intratigniment. In cheste categorie tu cjatarâs estensions par miorâ la esperience di zûc, controlâ la riproduzion dai video e "
+"altri."
 
 msgid "Language Support"
-msgstr ""
+msgstr "Supuart lenghis"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
 msgstr ""
