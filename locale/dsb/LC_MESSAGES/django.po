@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 21:09+0000\n"
+"PO-Revision-Date: 2023-10-28 21:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -41,13 +41,13 @@ msgid "Decision {0}"
 msgstr "Rozsud {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Wjeliki źěk. Wašo pśeśiwjenje jo zregistrěrowane."
 
 msgid "OK"
 msgstr "W pórěźe"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Toś ten rozsud jo njepówalny."
 
 msgid "No links are allowed."
 msgstr "Wótkaze njejsu dowólone."
@@ -2800,13 +2800,12 @@ msgid "Remove this application"
 msgstr "Toś to nałoženje wótpóraś"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Wubjeŕśo kategoriju za toś ten dodank:"
-msgstr[1] "Wubjeŕśo kategoriju za toś ten dodank:"
-msgstr[2] "Wubjeŕśo kategoriju za toś ten dodank:"
-msgstr[3] "Wubjeŕśo kategoriju za toś ten dodank:"
+msgstr[1] "Wubjeŕśo <b>až do {0}</b> kategorijowu za toś ten dodank:"
+msgstr[2] "Wubjeŕśo <b>až do {0}</b> kategorijow za toś ten dodank:"
+msgstr[3] "Wubjeŕśo <b>až do {0}</b> kategorijow za toś ten dodank:"
 
 msgid "End-User License Agreement"
 msgstr "Licencne dojadnanje za kóńcne wužywarje"
