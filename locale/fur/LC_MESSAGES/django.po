@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 17:07+0000\n"
+"PO-Revision-Date: 2023-10-28 17:22+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1117,21 +1117,23 @@ msgstr ""
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
+"Discjame temis par Firefox che come sogjet a àn propite Firefox. In cheste categorie tu cjatarâs interpretazions coloridis e origjinâls dal logo Firefox, ma ancje temis plui gjenerics di bolps."
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Discjame temis par Firefox cu la mascotte gjaponese di Firefox. In cheste categorie tu cjatarâs temis che par rafigurin la mascotte ninine Foxkeh in varis posis e su diviers fonts."
 
 msgid "Holiday"
-msgstr ""
+msgstr "Vacancis"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
+"Discjame temis par Firefox cun sogjets di fieste. In cheste categorie tu cjatarâs Nadâl, Halloween, il dì dal ringraciament, il dì di San Patrizi, Pasche, il cuatri di Lui e tantis altris fiestis."
 
 msgid "Music"
-msgstr ""
+msgstr "Musiche"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
