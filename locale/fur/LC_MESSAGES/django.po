@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 17:22+0000\n"
+"PO-Revision-Date: 2023-10-28 17:27+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1137,18 +1137,19 @@ msgstr "Musiche"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
+"Discjame temis di Firefox su interès e artiscj musicâi. In cheste categorie tu cjatarâs temis ispirâts a famôs grups musicâi come i Nirvana e i BTS, struments musicâi, videos musicâi e tant altri."
 
 msgid "Nature"
-msgstr ""
+msgstr "Nature"
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Discjame temis par Firefox cun animâi e paisaçs naturâi. In cheste categorie tu cjatarâs rosis, tramonts, bolps, stagjons, planets, tuiuts, ucei e altris maraveis de nature."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Discjame i temis par Firefox che a son interessants, creatîfs e origjinâi."
 
 msgid "Scenery"
-msgstr ""
+msgstr "Paisaçs"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
