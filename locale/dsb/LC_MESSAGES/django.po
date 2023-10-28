@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 21:21+0000\n"
+"PO-Revision-Date: 2023-10-28 21:22+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -4664,7 +4664,7 @@ msgstr "Njepłaśiwe wrośenje k AMO-GUID (nic w URL-formaśe base64)"
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Njepłaśiwa kombinacija parametrowu %s\" a \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimalna dłujkosć napšašowanjow jo pśekšocona."
@@ -4963,6 +4963,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Jolic njejo hynac <a href=\"https://www.mozilla.org/about/legal/\">pódane</a>, jo wopśimjeśe na toś tom sedle pód licencu <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons"
+" Attribution Share-Alike v 3.0 </a> abo pód póznjejšeju wersiju licencěrowane."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
