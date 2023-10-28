@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 15:12+0000\n"
+"PO-Revision-Date: 2023-10-28 15:13+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -968,25 +968,25 @@ msgid "Deprecated Search Tools"
 msgstr "Struments di ricercje sorpassâts"
 
 msgid "Language Packs"
-msgstr ""
+msgstr "Pachets des lenghis"
 
 msgid "Deprecated Language Packs (Add-on)"
-msgstr ""
+msgstr "Pachets des lenghis sorpassâts (components adizionâi)"
 
 msgid "Deprecated Plugins"
-msgstr ""
+msgstr "Plugins sorpassâts"
 
 msgid "Deprecated LWTs"
-msgstr ""
+msgstr "LWTs sorpassâts"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Temis (statics)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "“Permès sîts\" sorpassâts"
 
 msgid "Alerts & Updates"
-msgstr ""
+msgstr "Avîs & inzornaments"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
