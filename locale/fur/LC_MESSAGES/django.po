@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 16:51+0000\n"
+"PO-Revision-Date: 2023-10-28 17:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1075,34 +1075,34 @@ msgid "Tabs"
 msgstr "Schedis"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Discjame estensions par Firefox che a personalizin schedis e la pagjine des gnovis schedis. Scuvierç estensions par gjestî lis schedis, modificâ la maniere di cun lôr e ancjemò altri."
 
 msgid "Web Development"
-msgstr ""
+msgstr "Disvilup web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Discjame estensions par Firefox che a ufrissin struments pal disvilup dal web. In cheste categorie tu cjatarâs estensions par GitHub, cambi di agjent utent, gjestion dai cookies e tant altri."
 
 msgid "Other"
-msgstr ""
+msgstr "Altri"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Discjame estension par Firefox che ti stupiran cu la lôr imprevedibilitât e creativitât, ma che a risultin ancje utilis pes ativitâts plui strambis."
 
 msgid "Abstract"
-msgstr ""
+msgstr "Astrat"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Discjame temis artistics e astrats par Firefox. In cheste categorie tu cjatarâs tonalitâts di colôr e formis, paisaçs fantastics, gjats mateons e rosis psichedelichis."
 
 msgid "Causes"
-msgstr ""
+msgstr "Iniziativis"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Discjame temis par Firefox su interès e argoments di nicje. In cheste categorie tu cjatarâs temis ispirâts a sport, fiestis, causis filantropichis, nazionalitâts e tancj altris argoments."
 
 msgid "Fashion"
-msgstr ""
+msgstr "Mode"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
 msgstr ""
