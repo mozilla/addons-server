@@ -2800,7 +2800,7 @@ msgstr "Odebrat tuto aplikaci"
 #. {0} is the maximum number of add-on categories allowed
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] ""
+msgstr[0] "Zvolte kategorii pro tento doplněk:"
 msgstr[1] "Zvolte <b>maximálně {0}</b> kategorie pro tento doplněk:"
 msgstr[2] "Zvolte <b>maximálně {0}</b> kategorií pro tento doplněk:"
 
