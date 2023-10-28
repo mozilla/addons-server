@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 01:31+0000\n"
+"PO-Revision-Date: 2023-10-28 01:34+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2797,7 +2797,7 @@ msgstr "პროგრამის ამოშლა"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "მიუთითეთ კატეგორია დამატებისთვის:"
-msgstr[1] ""
+msgstr[1] "მიუთითეთ <b>არაუმეტეს {0}</b> კატეგორია დამატებისთვის:"
 
 msgid "End-User License Agreement"
 msgstr "მომხმარებლის სალიცენზიო შეთანხმება"
@@ -4648,7 +4648,7 @@ msgstr "AMO GUID-ზე არასწორი დაბრუნება (�
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "არამართებულად შეთავსებული „%s“ და „%s“ პარამეტრები."
 
 msgid "Maximum query length exceeded."
 msgstr "მოთხოვნის სიგრძე აჭარბებს ზღვარს."
@@ -4947,6 +4947,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"გარდა მოცემული <a href=\"https://www.mozilla.org/about/legal/\">შენიშვნებისა</a>, საიტის მასალა ვრცელდება <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution "
+"Share-Alike v3.0 ლიცენზიით</a> ან უფრო ახალი ვერსიით."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
