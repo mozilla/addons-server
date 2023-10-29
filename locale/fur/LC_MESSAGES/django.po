@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 13:11+0000\n"
+"PO-Revision-Date: 2023-10-29 13:18+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1270,64 +1270,64 @@ msgid "Flag"
 msgstr "Segnale"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Dupliche"
 
 msgid "Reject"
-msgstr ""
+msgstr "Ricuse"
 
 msgid "Approve"
-msgstr ""
+msgstr "Aprove"
 
 msgid "All"
-msgstr ""
+msgstr "Dutis"
 
 msgid "Theme"
-msgstr ""
+msgstr "Teme"
 
 msgid "No action"
-msgstr ""
+msgstr "Nissune azion"
 
 msgid "Flag for human review"
-msgstr ""
+msgstr "Segne par revision umane"
 
 msgid "Delay auto-approval"
-msgstr ""
+msgstr "Intarde la aprovazion automatiche"
 
 msgid "Delay auto-approval indefinitely"
-msgstr ""
+msgstr "Intarde la aprovazion automatiche in mût indefinît"
 
 msgid "Delay auto-approval indefinitely and add restrictions"
-msgstr ""
+msgstr "Intarde la aprovazion automatiche in mût indefinît e zonte restrizions"
 
 msgid "Delay auto-approval indefinitely and add restrictions to future approvals"
-msgstr ""
+msgstr "Intarde la aprovazion automatiche in mût indefinît e zonte restrizions ae aprovazions futuris"
 
 msgid "Unknown"
-msgstr ""
+msgstr "No cognossût"
 
 msgid "True positive"
-msgstr ""
+msgstr "Vêr positîf"
 
 msgid "False positive"
-msgstr ""
+msgstr "Fals positîf"
 
 msgid "Inconclusive"
-msgstr ""
+msgstr "Inconclusîf"
 
 msgid "New"
-msgstr ""
+msgstr "Gnûf"
 
 msgid "Running"
-msgstr ""
+msgstr "In esecuzion"
 
 msgid "Aborted"
-msgstr ""
+msgstr "Interot"
 
 msgid "Aborting"
-msgstr ""
+msgstr "Interuzion in cors"
 
 msgid "Completed"
-msgstr ""
+msgstr "Completade"
 
 msgid "Scheduled"
 msgstr ""
