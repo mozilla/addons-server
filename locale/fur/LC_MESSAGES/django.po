@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 13:03+0000\n"
+"PO-Revision-Date: 2023-10-29 13:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1207,67 +1207,67 @@ msgid "Mozilla Public License 1.1"
 msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Ducj i dirits riservâts"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No comerciâl 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No comerciâl-No oparis derivadis 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No comerciâl-Condivît te stesse maniere 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-No oparis derivadis 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Atribuzion-Condivît te stesse maniere 3.0"
 
 msgid "Not Promoted"
-msgstr ""
+msgstr "No promot"
 
 msgid "Recommended"
-msgstr ""
+msgstr "Conseât"
 
 msgid "Sponsored"
-msgstr ""
+msgstr "Sponsorizât"
 
 msgid "Verified"
-msgstr ""
+msgstr "Verificât"
 
 msgid "By Firefox"
-msgstr ""
+msgstr "Di Firefox"
 
 msgid "Spotlight"
-msgstr ""
+msgstr "In evidence"
 
 msgid "Strategic"
-msgstr ""
+msgstr "Strategjic"
 
 msgid "Notable"
-msgstr ""
+msgstr "Rilevants"
 
 msgid "No Reputation"
-msgstr ""
+msgstr "Cence reputazion"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Buine (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Une vore buine (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Ecelente (3)"
 
 msgid "Request More Info"
-msgstr ""
+msgstr "Domande altris informazions"
 
 msgid "Flag"
-msgstr ""
+msgstr "Segnale"
 
 msgid "Duplicate"
 msgstr ""
