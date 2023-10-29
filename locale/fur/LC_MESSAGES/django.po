@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 17:01+0000\n"
+"PO-Revision-Date: 2023-10-29 17:07+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1641,31 +1641,31 @@ msgid "Toolbar area text and icons"
 msgstr "Iconis e test de sbare dai struments"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr ""
+msgstr "Il colôr dal test e des iconis te sbare dai struments e te schede ative. Cjamp dal manifest:  bookmark_text."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Fonts de aree dal cjamp de sbare dai struments"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
+msgstr "Il colôr di fonts pai cjamps te sbare dai struments, come la sbare dal URL. Cjamp dal manifest:  toolbar_field."
 
 msgid "Toolbar field area text"
-msgstr ""
+msgstr "Test de aree dal cjamp de sbare dai struments"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
+msgstr "Il colôr dal test tai cjamps de sbare dai struments, come la sbare dal URL. Cjamp dal manifest:  toolbar_field_text."
 
 msgid "Tab highlight"
-msgstr ""
+msgstr "Evidenziazion schede"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr ""
+msgstr "Il colôr par evidenziâ la schede ative. Implementât come un ôr tor ator de schede su Firefox 89+ e une linie sore de schede tes versions di Firefox plui vecjis. Cjamp dal manifest:  tab_line."
 
 msgid "Review requested."
-msgstr ""
+msgstr "Revision domandade."
 
 msgid "You must provide further details to proceed."
-msgstr ""
+msgstr "Tu scugnis indicâ altris detais par continuâ."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
