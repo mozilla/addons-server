@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 16:02+0000\n"
+"PO-Revision-Date: 2023-10-29 16:11+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1366,68 +1366,68 @@ msgstr "Chest slug al è za in ûs. Sielç un altri."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "Nol è pussibil che il slug al sedi “%(slug)s”. Sielç un altri."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu puedis vê dome {0} categorie."
+msgstr[1] "Tu puedis vê dome {0} categoriis."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Nol è pussibil cumbinâ la categorie Variis adun cun altris categoriis."
 
 #, python-format
 msgid "URL domain must be one of [%s]."
-msgstr ""
+msgstr "Il domini dal URL al scugne jessi un tra [%s]."
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tu âs {0} etichete di masse."
+msgstr[1] "Tu âs {0} etichetis di masse."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Prime di podê cambiâ la tô lenghe predefinide tu scugnis vê un non, un somari e une descrizion in chê lenghe. In chest moment ti mancje %s."
 
 msgid "Users can not be added directly"
-msgstr ""
+msgstr "Impussibil zontâ utents in mût diret"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Tu scugnis vê almancul un proprietari."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Al scugne jessi presint almancul un autôr."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug sbaliât."
 
 msgid "Details"
-msgstr ""
+msgstr "Detais"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Cuâl isal il non de tô licence?"
 
 msgid "Custom License"
-msgstr ""
+msgstr "Licence personalizade"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Furnìs il test de tô licence."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Tu scugnis specificâ il test de licence se tu sielzis Altri."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Chest component adizionâl al à une licence cul utent finâl (EULA)"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Specifiche la licence cul utent finâl (EULA) di chest component adizionâl:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Chest component adizionâl al à une informative su la riservatece"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Specifiche la informative su la riservatece dal to component adizionâl:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
