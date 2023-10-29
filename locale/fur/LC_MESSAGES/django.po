@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 16:49+0000\n"
+"PO-Revision-Date: 2023-10-29 17:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1617,28 +1617,28 @@ msgid "Version %s re-enabled."
 msgstr "Version %s riativade."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
-msgstr ""
+msgstr "Chest cjariament in rêt nol à passât la convalide e a podaressin mancjâ i risultâts complets de convalide. Ten iniments chest fat cuant che tu lu revisionis."
 
 msgid "Header area background"
-msgstr ""
+msgstr "Fonts de aree di intestazion"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Il colôr dal fonts de aree di intestazion, visualizât te part de intestazion che no je cuvierte de imagjin di intestazion o che si viôt par vie di trasparencis. Cjamp dal manifest:  frame."
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "Test e iconis de aree di intestazion"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "Il colôr dal test e des iconis te aree di intestazion, gjavade la schede ative. Cjamp dal manifest:  tab_background_text."
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "Fonts de aree de sbare dai struments"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr ""
+msgstr "Il colôr di fonts pe sbare di navigazion, la sbare dai segnelibris e la schede ative.  Cjamp dal manifest:  toolbar."
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Iconis e test de sbare dai struments"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
