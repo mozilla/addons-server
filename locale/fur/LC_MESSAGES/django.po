@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 13:24+0000\n"
+"PO-Revision-Date: 2023-10-29 16:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1343,24 +1343,26 @@ msgid "Recent Changes for My Add-ons"
 msgstr "Modifichis resintis pai miei components adizionâi"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
+msgstr "I components adizionâi Open Search {blog_link_open}no son plui supuartâts su AMO{blog_link_close}. Al lôr puest tu puedis creâ une {doc_link_open}estension di ricercje{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
+msgstr "In chest moment nol è pussibil cjariâ in rêt estensions cun manifest V3. {start_href}Altris informazions sui timps previodûts pe implementazion{end_href}."
 
 msgid "Manifest V3 compatibility warning"
-msgstr ""
+msgstr "Avertiment di compatibilitât cun manifest V3"
 
 msgid ""
 "Firefox is adding support for manifest version 3 (MV3) extensions in Firefox {version}, however, older versions of Firefox are only compatible with manifest version 2 (MV2) extensions. We recommend "
 "uploading Manifest V3 extensions as self-hosted for now to not break compatibility for your users."
 msgstr ""
+"Firefox al sta zontant il supuart pes estensions cun manifest version 3 (MV3) par Firefox {version}, ma lis versions precedentis di Firefox a son compatibilis dome cu lis estensions cun manifest "
+"version 2 (MV2). Ti conseìn pal moment di cjariâ in rêt lis estensions cun manifest V3 tant che self-hosted (ospitadis in autonomie), par no comprometi la compatibilitât pai tiei utents."
 
 msgid "For more information about the MV3 extension roll-out or self-hosting MV3 extensions, visit https://mzl.la/3hIwQXX"
-msgstr ""
+msgstr "Par vê altris informazions su la introduzion des estensions MV3 o sul self-hosting (ospitâ in autonomie), visite https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Chest slug al è za in ûs. Sielç un altri."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
