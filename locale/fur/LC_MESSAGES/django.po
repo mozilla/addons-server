@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 12:49+0000\n"
+"PO-Revision-Date: 2023-10-29 13:03+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1158,52 +1158,53 @@ msgid "Seasonal"
 msgstr "Stagjons"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Discjame temis par Firefox ispirâts aes cuatri stagjons—Sierade, Invier, Vierte e Istât. Fueis di Sierade, pics di montagne cuvierts di nêf, zornadis soregladis di Istât e rosutis aviertanis."
 
 msgid "Solid"
-msgstr ""
+msgstr "Colôrs uniformis"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
+"Discjame temis par Firefox che ti permetin di personalizâ il navigadôr cun tintis unidis o gradients. In cheste categorie tu cjatarâs ros ardîts, colôrs pastel, grîs lizêrs e tancj altris colôrs."
 
 msgid "Sports"
-msgstr ""
+msgstr "Sports"
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Discjame temis par Firefox ispirâts al mont dal sport. In cheste categorie tu cjatarâs bandieris nazionâls, scuadris sportivis, balon, hockey e tancj altris sports."
 
 msgid "Websites"
-msgstr ""
+msgstr "Sîts web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Discjame temis par Firefox che a caturis la sostance dal web—inmagants, fûr dal solit e unics."
 
 msgid "General"
-msgstr ""
+msgstr "Gjenerâl"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilla Public License 2.0"
 
 msgid "GNU General Public License v2.0"
-msgstr ""
+msgstr "GNU General Public License v2.0"
 
 msgid "GNU General Public License v3.0"
-msgstr ""
+msgstr "GNU General Public License v3.0"
 
 msgid "GNU Library General Public License v2.1"
-msgstr ""
+msgstr "GNU Library General Public License v2.1"
 
 msgid "GNU Library General Public License v3.0"
-msgstr ""
+msgstr "GNU Library General Public License v3.0"
 
 msgid "The MIT License"
-msgstr ""
+msgstr "Licence MIT"
 
 msgid "The BSD License"
-msgstr ""
+msgstr "Licence BSD"
 
 msgid "Mozilla Public License 1.1"
-msgstr ""
+msgstr "Mozilla Public License 1.1"
 
 msgid "All Rights Reserved"
 msgstr ""
