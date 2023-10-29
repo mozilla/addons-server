@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 13:18+0000\n"
+"PO-Revision-Date: 2023-10-29 13:24+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1330,17 +1330,17 @@ msgid "Completed"
 msgstr "Completade"
 
 msgid "Scheduled"
-msgstr ""
+msgstr "Programât"
 
 msgid "Core"
-msgstr ""
+msgstr "Fondamentâl"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Modifichis resintis par %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Modifichis resintis pai miei components adizionâi"
 
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
