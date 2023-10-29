@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 16:41+0000\n"
+"PO-Revision-Date: 2023-10-29 16:49+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1574,45 +1574,47 @@ msgid "Validate Add-on"
 msgstr "Convalide component adizionâl"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Ative la autenticazion a doi fatôrs tal to account par mandâ estensions.</a>"
 
 msgid "Icons must be either PNG or JPG."
-msgstr ""
+msgstr "Lis iconis a scugnin jessi in formât PNG o JPG."
 
 msgid "Icons cannot be animated."
-msgstr ""
+msgstr "Lis iconis no puedin jessi animadis."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "La imagjin e scugne jessi largje almancul {0} pixels e alte {1} pixels."
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr ""
+msgstr "Lis dimensions de imagjin a scugnin vê une proporzion di 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "La icone e à di vê une largjece e une altece di almancul {0} pixels."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "La icone e scugne jessi cuadrade (stesse largjece e altece)."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Al è vignût fûr un erôr tal cjariâ in rêt la anteprime."
 
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
+"Nol è pussibil eliminâ o disativâ la ultime version aprovade di chest component adizionâl %s parcè che la version prime no jere stade aprovade pe promozion ae categorie %s. Contate i aministradôrs "
+"di AMO se ti covente assistence in merit."
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Version %s disativade."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Version %s eliminade."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Version %s riativade."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
