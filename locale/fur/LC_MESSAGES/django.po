@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 16:31+0000\n"
+"PO-Revision-Date: 2023-10-29 16:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1501,77 +1501,77 @@ msgid "The developer API key of a coauthor was found in the submitted file. To p
 msgstr "La clâf API di svilupadôr di un coautôr e je stade cjatade tal file mandât. Par protezi il to component adizionâl, la clâf e vignarà revocade."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Avîs di sigurece di Mozilla: lis tôs credenziâls API di AMO a son stadis revocadis"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "La convalide e à gjenerât masse erôr/avertiments duncje %s messaçs a son stâts çoncjâts. Dopo vê risolt i messaçs visibii, tu rivarâs a viodi chei altris."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Chest component adizionâl nol è un teme. Dopre la pagjine <a href=\"{link}\">Cjame in rêt un gnûf component adizionâl</a> par mandâ estensions."
 
 msgid "Updated"
-msgstr ""
+msgstr "Inzornât"
 
 msgid "Name"
-msgstr ""
+msgstr "Non"
 
 msgid "Created"
-msgstr ""
+msgstr "Creât"
 
 msgid "Downloads"
-msgstr ""
+msgstr "Discjamâts"
 
 msgid "Rating"
-msgstr ""
+msgstr "Valutazion"
 
 msgid "All My Add-ons"
-msgstr ""
+msgstr "Ducj i miei components adizionâi"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Dutis lis ativitâts"
 
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Inzornaments dal component adizionâl"
 
 msgid "Add-on Status"
-msgstr ""
+msgstr "Stât dal component adizionâl"
 
 msgid "User Collections"
-msgstr ""
+msgstr "Racueltis dal utent"
 
 msgid "User Reviews"
-msgstr ""
+msgstr "Recensions"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr ""
+msgstr "Nol è pussibil eliminâ il component adizionâl. Tu puedis invezit disativâ chest component adizionâl."
 
 msgid "Theme deleted."
-msgstr ""
+msgstr "Teme eliminât."
 
 msgid "Add-on deleted."
-msgstr ""
+msgstr "Component adizionâl eliminât."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Il non dal URL al jere sbaliât. Il teme nol è stât eliminât."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Il non dal URL al jere sbaliât. Il component adizionâl nol è stât eliminât."
 
 msgid "Invitation accepted."
-msgstr ""
+msgstr "Invît acetât."
 
 msgid "Invitation declined."
-msgstr ""
+msgstr "Invît ricusât."
 
 msgid "A confirmation email has been sent to {email}"
-msgstr ""
+msgstr "Une e-mail di conferme e je stade mandade a {email}"
 
 msgid "Changes successfully saved."
-msgstr ""
+msgstr "Modifichis salvadis cun sucès."
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "Convalide component adizionâl"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
