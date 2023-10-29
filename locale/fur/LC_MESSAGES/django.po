@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 16:11+0000\n"
+"PO-Revision-Date: 2023-10-29 16:21+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1430,55 +1430,55 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Specifiche la informative su la riservatece dal to component adizionâl:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Gjenar di file no supuartât, cjame in rêt un file archivi {extensions}."
 
 msgid "View current"
-msgstr ""
+msgstr "Mestre version corinte"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Interval di versions sbaliât."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "E covente almancul une aplicazion compatibile."
 
 msgid "You have submitted too many uploads recently. Please try again after some time."
-msgstr ""
+msgstr "Tu âs mandât masse cjariaments in rêt di resint. Torne prove ca di un pôc di timp."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Al è vignût fûr un erôr cul to cjariament in rêt. Torne prove."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "La sostituzion sfuarçade no à passât la convalide"
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "Al covente selezionâ almancul une aplicazion."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "La version {version} e je stade za cjariade in rêt e po eliminade."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "La version {version} e esist bielzà."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Continuâ invezit cul cjariament in rêt esistent?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Sì"
 
 msgid "No"
-msgstr ""
+msgstr "No"
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "No tu âs cjariât in rêt un file sorzint."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Al è stât cjariât in rêt un file sorzint ma tu vevis indicât che nol coventave nissun file sorzint."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Verifiche che il non e il somari no suparin in dut {limit_value} caratars (a'nd àn {show_value})."
 
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "Su chest sît. <span class=\"helptext\">Il to component adizionâl inviât al è listât in maniere publiche su {site_domain}.</span>"
 
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
