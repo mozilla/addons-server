@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-26 21:12+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2023-10-30 11:36+0000\n"
+"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -2839,11 +2839,10 @@ msgstr "Remover esta aplicação"
 
 #. {0} is the maximum number of add-on categories allowed
 # {1} is the application name (Firefox, Thunderbird)
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Selecione uma categoria para esta extensão:"
-msgstr[1] "Selecione uma categoria para esta extensão:"
+msgstr[1] "Selecione <b>até {0}</b> categorias para esta extensão:"
 
 msgid "End-User License Agreement"
 msgstr "Acordo de Licença"
