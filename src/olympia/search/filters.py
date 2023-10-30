@@ -313,7 +313,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         except KeyError:
             raise ValueError(
                 gettext(
-                    'Invalid combination of %s" and "%s" parameters.'
+                    'Invalid combination of "%s" and "%s" parameters.'
                     % (
                         AddonTypeQueryParam.query_param,
                         self.query_param,

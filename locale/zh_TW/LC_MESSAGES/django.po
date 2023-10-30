@@ -4598,7 +4598,7 @@ msgstr "Return To AMO GUID 無效（base64 網址格式不正確？）"
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr "「％s」和「％s」的參數組合無效。"
+msgstr "「%s」和「%s」的參數組合無效。"
 
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
