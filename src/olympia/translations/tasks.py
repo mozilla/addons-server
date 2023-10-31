@@ -17,7 +17,7 @@ def clean_outgoing_urls(ids, meta_type, dry_run=True, **kw):
         'failed': 0,
     }
 
-    # The last known outgoing url from ticket #203 (https://github.com/thundernest/addons-server/issues/203)
+    # The last known outgoing url from ticket #203 (https://github.com/thunderbird/addons-server/issues/203)
     known_old_outgoing_url = 'outgoing.prod.mozaws.net'
     outgoing_url = settings.REDIRECT_URL
 

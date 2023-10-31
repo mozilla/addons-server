@@ -2,7 +2,7 @@ Thanks for submitting your {{ addon_name }} add-on to addons.thunderbird.net (AT
 
 Please keep in mind that while your add-on has been screened and approved for listing, other reviewers may look into it in the future and determine that it requires changes or should be removed from the gallery. If that occurs, you will receive a separate notification with details and next steps.
 
-For more information about the review process and policies, please visit https://thundernest.github.io/atn-review-policy/
+For more information about the review process and policies, please visit https://thunderbird.github.io/atn-review-policy/
 
 ********
 
