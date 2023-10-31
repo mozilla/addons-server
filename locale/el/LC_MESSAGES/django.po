@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-31 19:18+0000\n"
+"PO-Revision-Date: 2023-10-31 19:25+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -19,13 +19,13 @@ msgid "Email address"
 msgstr "Διεύθυνση email"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Δόθηκε μη έγκυρη διεύθυνση email."
 
 msgid "Reason for appeal"
 msgstr ""
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
@@ -4710,7 +4710,7 @@ msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε 
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Μη έγκυρος συνδυασμός των παραμέτρων «%s» και «%s»."
 
 msgid "Maximum query length exceeded."
 msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
