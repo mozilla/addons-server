@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 18:18+0000\n"
+"PO-Revision-Date: 2023-10-31 19:18+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2842,11 +2842,10 @@ msgid "Remove this application"
 msgstr "Αφαίρεση εφαρμογής"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
-msgstr[1] "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
+msgstr[1] "Επιλέξτε <b>έως και {0}</b> κατηγορίες για αυτό το πρόσθετο:"
 
 msgid "End-User License Agreement"
 msgstr "Συμφωνία άδειας τελικού χρήστη"
