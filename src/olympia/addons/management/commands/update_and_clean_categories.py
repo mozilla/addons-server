@@ -75,6 +75,6 @@ class Command(BaseCommand):
             count += loop_count
         log.info('Done deleting %d obsolete categories', count)
 
-    def handle(self):
+    def handle(self, *args, **kwargs):
         self.add_new_categories_for_old_android_categories()
         self.delete_old_categories()
