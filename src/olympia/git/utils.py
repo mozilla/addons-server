@@ -698,8 +698,7 @@ class AddonGitRepository:
                 or (
                     # See:
                     # https://github.com/mozilla/addons-server/issues/15966
-                    patch.delta.status == pygit2.GIT_DELTA_MODIFIED
-                    and len(hunks) == 0
+                    patch.delta.status == pygit2.GIT_DELTA_MODIFIED and len(hunks) == 0
                 )
             )
         )

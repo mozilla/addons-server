@@ -204,7 +204,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             rating=2,
             body='Apocalypse',
             user=user_factory(),
-        ),
+        )
 
         # *not considered* - current version is auto-approved but
         # has a recent rating with rating > 3
@@ -219,7 +219,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             rating=4,
             body='Apocalypse',
             user=user_factory(),
-        ),
+        )
 
         # *not considered* - current version is auto-approved but
         # has a recent rating with rating > 3
@@ -234,7 +234,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             rating=4,
             body='Apocalypse',
             user=user_factory(),
-        ),
+        )
 
         # *not considered* - current version is auto-approved but
         # has a low rating that isn't recent enough
@@ -249,7 +249,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             rating=1,
             body='Apocalypse',
             user=user_factory(),
-        ),
+        )
 
         # *considered* - current version is auto-approved and
         # has a recent abuse report
@@ -311,7 +311,7 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
             rating=2,
             body='Apocalypse',
             user=user_factory(),
-        ),
+        )
 
         # *considered* - current version is auto-approved and
         # has an abuse report through it's author that is recent enough
