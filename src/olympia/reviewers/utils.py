@@ -504,6 +504,7 @@ class ReviewHelper:
             self.user
         )
 
+        addon_is_not_deleted = self.addon.status != amo.STATUS_DELETED
         addon_is_not_disabled = self.addon.status != amo.STATUS_DISABLED
         addon_is_not_disabled_or_deleted = self.addon.status not in (
             amo.STATUS_DELETED,
@@ -798,6 +799,34 @@ class ReviewHelper:
             'minimal': True,
             'comments': False,
             'available': is_appropriate_admin_reviewer and is_static_theme,
+        }
+        actions['enable_addon'] = {
+            'method': self.handler.enable_addon,
+            'label': 'Force enable',
+            'details': (
+                'This will force enable this add-on, but not the versions. '
+                'The developer will not be notified.'
+            ),
+            'minimal': True,
+            'available': (
+                addon_is_not_deleted
+                and not addon_is_not_disabled
+                and is_appropriate_admin_reviewer
+            ),
+        }
+        actions['disable_addon'] = {
+            'method': self.handler.disable_addon,
+            'label': 'Force disable',
+            'details': (
+                "This will force disable this add-on, and all it's versions. "
+                'The comments will be sent to the developer.'
+            ),
+            'minimal': False,
+            'available': (
+                addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
+            ),
+            'allows_reasons': True,
+            'requires_reasons': not is_static_theme,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -1433,6 +1462,22 @@ class ReviewBase:
             action=amo.LOG.CLEAR_PENDING_REJECTION,
             versions=self.data['versions'],
         )
+
+    def enable_addon(self):
+        """Force enable the add-on."""
+        self.addon.force_enable(self.user)
+        log.info('Force-enabling %s' % (self.addon))
+
+    def disable_addon(self):
+        """Force disable the add-on and all versions."""
+        self.addon.force_disable(self.user)
+
+        template = 'force_disable_addon'
+        subject = 'Mozilla Add-ons: %s %s has been disabled'
+        self.notify_email(template, subject)
+
+        log.info('Force-disabling %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
 
 class ReviewAddon(ReviewBase):

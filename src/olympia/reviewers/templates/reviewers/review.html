@@ -284,17 +284,6 @@
                   id="deny_resubmission" class="toggle" type="button">Deny resubmission</button>
         </li>
       {% else %}
-        <li {% if addon.status == amo.STATUS_DISABLED %}class="hidden"{% endif %}>
-          <button data-api-url="{{ drf_url('reviewers-addon-disable', addon.pk) }}"
-                  data-toggle-button-selector="#force_enable_addon"
-                  id="force_disable_addon" class="toggle" type="button">Force-disable add-on</button>
-        </li>
-        <li {% if addon.status != amo.STATUS_DISABLED %}class="hidden"{% endif %}>
-          <button data-api-url="{{ drf_url('reviewers-addon-enable', addon.pk) }}"
-                  data-toggle-button-selector="#force_disable_addon"
-                  id="force_enable_addon" class="toggle" type="button">Force-enable add-on</button>
-        </li>
-
         {% if addon.type in (amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) %}
           {% if channel == amo.CHANNEL_LISTED and addon.promoted_group(currently_approved=False).listed_pre_review %}
           <li>

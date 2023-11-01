@@ -1118,26 +1118,6 @@ class AddonReviewerViewSet(GenericViewSet):
 
     @drf_action(
         detail=True,
-        methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
-    )
-    def disable(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        addon.force_disable()
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-    @drf_action(
-        detail=True,
-        methods=['post'],
-        permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
-    )
-    def enable(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        addon.force_enable()
-        return Response(status=status.HTTP_202_ACCEPTED)
-
-    @drf_action(
-        detail=True,
         methods=['patch'],
         permission_classes=[GroupPermission(amo.permissions.REVIEWS_ADMIN)],
     )
