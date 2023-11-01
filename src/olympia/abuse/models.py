@@ -10,7 +10,12 @@ from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddon, CinderUnauthenticatedReporter, CinderUser
+from .cinder import (
+    CinderAddon,
+    CinderAddonByReviewers,
+    CinderUnauthenticatedReporter,
+    CinderUser,
+)
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -113,6 +118,8 @@ class AbuseReport(ModelBase):
         REASONS.POLICY_VIOLATION,
         REASONS.OTHER,
     )
+    # Abuse in these locations are handled by reviewers
+    REASONS.add_subset('REVIEWER_HANDLED', ('POLICY_VIOLATION',))
 
     # https://searchfox.org
     # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
@@ -191,6 +198,8 @@ class AbuseReport(ModelBase):
         ('ADDON', 2, 'Inside Add-on'),
         ('BOTH', 3, 'Both on AMO and inside Add-on'),
     )
+    # Abuse in these locations are handled by reviewers
+    LOCATION.add_subset('REVIEWER_HANDLED', ('ADDON', 'BOTH'))
 
     # NULL if the reporter was not authenticated.
     reporter = models.ForeignKey(
@@ -340,6 +349,15 @@ class AbuseReport(ModelBase):
             return self.user
         return None
 
+    @property
+    def is_handled_by_reviewers(self):
+        return (
+            (target := self.target)
+            and isinstance(target, Addon)
+            and self.reason in AbuseReport.REASONS.REVIEWER_HANDLED
+            and self.location in AbuseReport.LOCATION.REVIEWER_HANDLED
+        )
+
 
 class CantBeAppealed(Exception):
     pass
@@ -381,7 +399,9 @@ class CinderReport(ModelBase):
     def get_helper(self):
         target = self.abuse_report.target
         if target:
-            if isinstance(target, Addon):
+            if isinstance(target, Addon) and self.abuse_report.is_handled_by_reviewers:
+                return CinderAddonByReviewers(target)
+            elif isinstance(target, Addon):
                 return CinderAddon(target)
             elif isinstance(target, UserProfile):
                 return CinderUser(target)

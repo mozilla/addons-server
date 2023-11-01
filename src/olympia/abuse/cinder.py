@@ -4,7 +4,8 @@ import requests
 
 
 class Cinder:
-    QUEUE = 'amo-content-infringement'
+    # This queue is for reports that T&S / TaskUs look at
+    queue = 'amo-content-infringement'
     type = None  # Needs to be defined by subclasses
 
     @property
@@ -38,7 +39,7 @@ class Cinder:
                 reporter.get_relationship_data(self, 'amo_reporter_of')
             ]
         return {
-            'queue_slug': self.QUEUE,
+            'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': self.get_attributes(),
             'reasoning': report_text,
@@ -77,7 +78,7 @@ class Cinder:
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
         data = {
-            'queue_slug': self.QUEUE,
+            'queue_slug': self.queue,
             'appealer_entity_type': appealer.type,
             'appealer_entity': appealer.get_attributes(),
             'reasoning': appeal_text,
@@ -171,3 +172,26 @@ class CinderAddon(Cinder):
                 for author in authors
             ],
         }
+
+
+class CinderAddonByReviewers(CinderAddon):
+    # This queue is not monitored on cinder - reports are resolved via AMO instead
+    queue = 'amo-addon-infringement'
+
+    def flag_for_human_review(self, appeal=False):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        reason = (
+            NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
+            if appeal
+            else NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+        )
+        self.addon.set_needs_human_review_on_latest_versions(reason=reason)
+
+    def report(self, *args, **kwargs):
+        self.flag_for_human_review(appeal=False)
+        return super().report(*args, **kwargs)
+
+    def appeal(self, *args, **kwargs):
+        self.flag_for_human_review(appeal=True)
+        return super().appeal(*args, **kwargs)
