@@ -53,7 +53,7 @@ to if necessary.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
     :<json string|null operating_system_version: The client's operating system version.
-    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-reason-parameter>`.
+    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-addon-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object|null reporter: The user who submitted the report, if authenticated.
@@ -193,9 +193,9 @@ to if necessary.
                   privileged  Privileged
  ===========================  =================================================
 
-.. _abuse-reason-parameter:
+.. _abuse-addon-reason-parameter:
 
- Accepted values for the ``reason`` parameter:
+ Accepted values for the ``reason`` parameter (for add-on abuse reports):
 
  ===========================  ================================================================
                        Value  Description
@@ -207,6 +207,10 @@ to if necessary.
                       policy  Hateful, violent, or illegal content
                    deceptive  Doesn't match description
                     unwanted  Wasn't wanted / impossible to get rid of
+   hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
+                     illegal  Violates the law or contains content that violates the law
+               does_not_work  Doesn’t work, breaks websites, or slows Firefox down
+               feedback_spam  Spam
                        other  Something else
  ===========================  ================================================================
 
@@ -273,6 +277,7 @@ so reports can be responded to if necessary.
 
     :<json string rating: The id of the rating to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-rating-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object|null reporter: The user who submitted the report, if authenticated.
@@ -285,3 +290,16 @@ so reports can be responded to if necessary.
     :>json object rating: The user reported for abuse.
     :>json int rating.id: The id of the rating reported.
     :>json string message: The body/content of the abuse report.
+
+
+.. _abuse-rating-reason-parameter:
+
+ Accepted values for the ``reason`` parameter (for rating abuse reports):
+
+ ===========================  ================================================================
+                       Value  Description
+ ===========================  ================================================================
+   hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
+                     illegal  Violates the law or contains content that violates the law
+                       other  Something else
+ ===========================  ================================================================
