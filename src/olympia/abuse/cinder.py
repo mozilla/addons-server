@@ -176,7 +176,7 @@ class CinderAddon(CinderEntity):
         }
 
 
-class CinderRating(Cinder):
+class CinderRating(CinderEntity):
     type = 'amo_rating'
 
     def __init__(self, rating):
