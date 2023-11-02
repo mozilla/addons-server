@@ -337,7 +337,7 @@ class TestCinderReport(TestCase):
 
         rating = Rating.objects.create(addon=addon, user=user, rating=4)
         cinder_report.abuse_report.update(user=None, rating=rating)
-        helper = cinder_report.get_helper()
+        helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderRating)
         assert helper.rating == rating
 
