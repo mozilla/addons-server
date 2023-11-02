@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-30 17:14+0000\n"
-"Last-Translator: George kitsoukakis <norhorn@gmail.com>\n"
+"PO-Revision-Date: 2023-11-02 11:38+0000\n"
+"Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgid "Invalid email provided."
 msgstr "Δόθηκε μη έγκυρη διεύθυνση email."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Λόγος ένστασης"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
@@ -34,19 +34,19 @@ msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Ένσταση στην απόφαση του ελεγκτή"
 
 msgid "Decision {0}"
 msgstr "Απόφαση {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Σας ευχαριστούμε. Η ένστασή σας έχει καταγραφεί."
 
 msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Δεν μπορεί να γίνει ένσταση σε αυτήν την απόφαση."
 
 msgid "No links are allowed."
 msgstr "Δεν επιτρέπονται σύνδεσμοι."
@@ -1846,7 +1846,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Έχετε προσκληθεί να γίνετε δημιουργός του {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει πρόσβαση για επεξεργασία του προσθέτου και ενδέχεται να εμφανίσει το όνομά σας στη λίστα δημιουργών στον ιστότοπο."
+msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει πρόσβαση για επεξεργασία του προσθέτου και ενδέχεται να εμφανίσει το όνομά σας στη λίστα δημιουργών στον ιστότοπο. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Κάντε κλικ στο κουμπί «Αποδοχή» παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
