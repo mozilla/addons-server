@@ -166,6 +166,7 @@ perf-tests: setup-ui-tests
 .PHONY: lint
 lint: ## lint the code
 	ruff check .
+	ruff format --check .
 	NODE_PATH=$(NODE_MODULES) npm exec $(NPM_ARGS) -- prettier --check '**'
 	curlylint src/
 
