@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from django.db import models
 
-import waffle
 from extended_choices import Choices
 
 from olympia import amo
@@ -330,20 +329,6 @@ class AbuseReport(ModelBase):
         # the only possible relations are to users and add-ons, which are also
         # soft-deleted.
         return self.update(state=self.STATES.DELETED)
-
-    def save(self, *args, **kwargs):
-        from olympia.abuse.tasks import report_to_cinder
-
-        creation = kwargs.get('force_insert', False) or bool(self.pk)
-        rval = super().save(*args, **kwargs)
-        if (
-            creation
-            and waffle.switch_is_active('enable-cinder-reporting')
-            and self.reason in AbuseReport.REASONS.REPORTABLE_REASONS
-        ):
-            # call task to fire off cinder report
-            report_to_cinder.delay(self.pk)
-        return rval
 
     @property
     def type(self):

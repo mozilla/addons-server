@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.utils.translation import gettext_lazy as _
 
+import waffle
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -10,6 +11,7 @@ from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
 
 from .models import AbuseReport
+from .tasks import report_to_cinder
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -35,6 +37,16 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         if request.user.is_authenticated:
             output['reporter'] = request.user
         return output
+
+    def create(self, validated_data):
+        instance = super().create(validated_data)
+        if (
+            waffle.switch_is_active('enable-cinder-reporting')
+            and validated_data.get('reason') in AbuseReport.REASONS.REPORTABLE_REASONS
+        ):
+            # call task to fire off cinder report
+            report_to_cinder.delay(instance.id)
+        return instance
 
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
