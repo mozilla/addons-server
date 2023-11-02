@@ -2,12 +2,14 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 
 import responses
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.ratings.models import Rating
 
-from ..cinder import CinderAddon, CinderUser
+from ..cinder import CinderAddon, CinderRating, CinderUser
 from ..models import AbuseReport, CinderReport
 from ..utils import (
     CinderActionApprove,
@@ -248,6 +250,36 @@ class TestAbuse(TestCase):
         report.update(guid=None, user=user)
         assert report.target == user
 
+        rating = Rating.objects.create(user=user, addon=addon, rating=5)
+        report.update(user=None, rating=rating)
+        assert report.target == rating
+
+    def test_constraint(self):
+        report = AbuseReport()
+        constraints = report.get_constraints()
+        assert len(constraints) == 1
+        constraint = constraints[0][1][0]
+
+        # ooooh addon is wrong.
+
+        with self.assertRaises(ValidationError):
+            constraint.validate(AbuseReport, report)
+
+        report.user_id = 48151
+        constraint.validate(AbuseReport, report)
+
+        report.guid = '@guid'
+        with self.assertRaises(ValidationError):
+            constraint.validate(AbuseReport, report)
+
+        report.guid = None
+        report.rating_id = 62342
+        with self.assertRaises(ValidationError):
+            constraint.validate(AbuseReport, report)
+
+        report.user_id = None
+        constraint.validate(AbuseReport, report)
+
 
 class TestAbuseManager(TestCase):
     def test_deleted(self):
@@ -302,6 +334,12 @@ class TestCinderReport(TestCase):
         helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderUser)
         assert helper.user == user
+
+        rating = Rating.objects.create(addon=addon, user=user, rating=4)
+        cinder_report.abuse_report.update(user=None, rating=rating)
+        helper = cinder_report.get_helper()
+        assert isinstance(helper, CinderRating)
+        assert helper.rating == rating
 
     def test_report(self):
         cinder_report = CinderReport.objects.create(

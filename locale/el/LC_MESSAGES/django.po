@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 18:18+0000\n"
+"PO-Revision-Date: 2023-11-02 11:38+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -19,13 +19,13 @@ msgid "Email address"
 msgstr "Διεύθυνση email"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Δόθηκε μη έγκυρη διεύθυνση email."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Λόγος ένστασης"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Παρακαλούμε εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "Παρακαλούμε βεβαιωθείτε ότι αυτό το πεδίο δεν περιέχει πάνω από {max_length} χαρακτήρες."
@@ -34,19 +34,19 @@ msgid "Invalid value"
 msgstr "Μη έγκυρη τιμή"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Ένσταση στην απόφαση του ελεγκτή"
 
 msgid "Decision {0}"
 msgstr "Απόφαση {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Σας ευχαριστούμε. Η ένστασή σας έχει καταγραφεί."
 
 msgid "OK"
 msgstr "OK"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Δεν μπορεί να γίνει ένσταση σε αυτήν την απόφαση."
 
 msgid "No links are allowed."
 msgstr "Δεν επιτρέπονται σύνδεσμοι."
@@ -1846,7 +1846,7 @@ msgid "You have been invited to become an author of {addon_name}."
 msgstr "Έχετε προσκληθεί να γίνετε δημιουργός του {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει πρόσβαση για επεξεργασία του προσθέτου και ενδέχεται να εμφανίσει το όνομά σας στη λίστα δημιουργών στον ιστότοπο."
+msgstr "Η αποδοχή της πρόσκλησης θα σας δώσει πρόσβαση για επεξεργασία του προσθέτου και ενδέχεται να εμφανίσει το όνομά σας στη λίστα δημιουργών στον ιστότοπο. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
 msgstr "Κάντε κλικ στο κουμπί «Αποδοχή» παρακάτω για να επιβεβαιώσετε ότι θέλετε να προστεθείτε ως δημιουργός του {addon_name}."
@@ -2842,11 +2842,10 @@ msgid "Remove this application"
 msgstr "Αφαίρεση εφαρμογής"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
-msgstr[1] "Επιλέξτε κατηγορία για αυτό το πρόσθετο:"
+msgstr[1] "Επιλέξτε <b>έως και {0}</b> κατηγορίες για αυτό το πρόσθετο:"
 
 msgid "End-User License Agreement"
 msgstr "Συμφωνία άδειας τελικού χρήστη"
@@ -4711,7 +4710,7 @@ msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε 
 
 #, python-format
 msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Μη έγκυρος συνδυασμός των παραμέτρων «%s» και «%s»."
 
 msgid "Maximum query length exceeded."
 msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
@@ -5012,6 +5011,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Εκτός από τα μέρη όπου υπάρχει σχετική <a href=\"https://www.mozilla.org/about/legal/\">διευκρίνιση</a>, το περιεχόμενο αυτού του ιστοτόπου διατίθεται στα πλαίσια της άδειας <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> ή οποιασδήποτε νεότερης έκδοσης."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"

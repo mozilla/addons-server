@@ -612,7 +612,8 @@ class TestRankingScenarios(ESTestCase):
                 'This addon contains Amazon 1-Click Lock in its description '
                 ' but not in its name.'
             ),
-        ),
+        )
+
         amo.tests.addon_factory(
             name='Amazon 1-Click Lock',
             type=amo.ADDON_EXTENSION,

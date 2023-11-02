@@ -1790,8 +1790,8 @@ class TestRequestReview(TestCase):
         response = self.client.post(self.public_url)
         self.assert3xx(response, self.redirect_url)
         assert self.get_addon().status == amo.STATUS_NOMINATED
-        assert self.get_version().due_date.timetuple()[0:5] != (
-            orig_date.timetuple()[0:5]
+        assert (
+            self.get_version().due_date.timetuple()[0:5] != (orig_date.timetuple()[0:5])
         )
 
 

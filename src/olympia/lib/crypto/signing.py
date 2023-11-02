@@ -187,8 +187,9 @@ def sign_file(file_obj):
         # though we didn't sign, it's not an error - we just don't need to do
         # anything in this case.
         log.info(
-            'Not signing file {}: mozilla signed extension is already '
-            'signed'.format(file_obj.pk)
+            'Not signing file {}: mozilla signed extension is already signed'.format(
+                file_obj.pk
+            )
         )
         return file_obj
 

@@ -341,8 +341,9 @@ def create_version_for_upload(addon, upload, channel, parsed_data=None):
         return None
     else:
         log.info(
-            'Creating version for {upload_uuid} that passed '
-            'validation'.format(upload_uuid=upload.uuid)
+            'Creating version for {upload_uuid} that passed validation'.format(
+                upload_uuid=upload.uuid
+            )
         )
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail

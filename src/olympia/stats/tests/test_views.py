@@ -255,9 +255,9 @@ class TestCacheControl(StatsTestCase):
         response = self.get_view_response(
             'stats.downloads_series', head=True, group='month', format='json'
         )
-        assert response.get('cache-control', '').startswith(
-            'max-age='
-        ), 'Bad or no cache-control: %r' % response.get('cache-control', '')
+        assert response.get('cache-control', '').startswith('max-age='), (
+            'Bad or no cache-control: %r' % response.get('cache-control', '')
+        )
 
 
 class TestLayout(StatsTestCase):
