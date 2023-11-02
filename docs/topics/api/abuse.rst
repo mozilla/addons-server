@@ -290,6 +290,7 @@ so reports can be responded to if necessary.
     :>json object rating: The user reported for abuse.
     :>json int rating.id: The id of the rating reported.
     :>json string message: The body/content of the abuse report.
+    :>json string|null reason: The reason for the report.
 
 
 .. _abuse-rating-reason-parameter:
