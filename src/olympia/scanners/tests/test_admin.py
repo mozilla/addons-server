@@ -800,8 +800,9 @@ class TestScannerResultAdmin(TestCase):
         assert (
             urlencode(
                 {
-                    'title': 'False positive report for '
-                    'ScannerResult {}'.format(result.pk)
+                    'title': 'False positive report for ScannerResult {}'.format(
+                        result.pk
+                    )
                 }
             )
             in response['Location']

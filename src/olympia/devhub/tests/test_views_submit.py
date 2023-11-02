@@ -1251,8 +1251,8 @@ class DetailsPageMixin:
         self.get_version().update(due_date=duedate, _signal=False)
         # Update something else in the addon:
         self.get_addon().update(slug='foobar')
-        assert self.get_version().due_date.timetuple()[0:5] == (
-            duedate.timetuple()[0:5]
+        assert (
+            self.get_version().due_date.timetuple()[0:5] == (duedate.timetuple()[0:5])
         )
 
     def test_submit_details_unlisted_should_redirect(self):

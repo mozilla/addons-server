@@ -114,8 +114,7 @@ class AddonIndexer:
             db_field = '%s_id' % field
 
         extend_with_me = {
-            '%s_translations'
-            % field: [
+            '%s_translations' % field: [
                 {'lang': to_language(lang), 'string': str(string)}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string

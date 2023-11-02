@@ -272,9 +272,8 @@ class AddonManager(ManagerBase):
             # select_related('_current_version__autoapprovalsummary') from
             # working, because it overrides the _current_version with the one
             # it fetches. We want translations though, but only for the name.
-            .only_translations().defer(
-                *[x.name for x in Addon._meta.translated_fields if x.name != 'name']
-            )
+            .only_translations()
+            .defer(*[x.name for x in Addon._meta.translated_fields if x.name != 'name'])
         )
         # Useful joins to avoid extra queries.
         select_related_fields = [

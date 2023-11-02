@@ -23,7 +23,10 @@ if __name__ == '__main__':
     parser.add_argument('--keep-runtime-typing', action='store_true')
     parser.add_argument(
         '--py38-plus',
-        action='store_const', dest='min_version', default=(3, 8), const=(3, 8),
+        action='store_const',
+        dest='min_version',
+        default=(3, 8),
+        const=(3, 8),
     )
     args = parser.parse_args()
 

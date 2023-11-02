@@ -66,23 +66,27 @@ def mock_basket(settings):
     Tests that do need basket to work should disable `responses`
     and add a passthrough.
     """
-    USER_TOKEN = u'13f64f64-1de7-42f6-8c7f-a19e2fae5021'
+    USER_TOKEN = '13f64f64-1de7-42f6-8c7f-a19e2fae5021'
     responses.add(
         responses.GET,
         settings.BASKET_URL + '/news/lookup-user/',
-        json={'status': 'ok', 'newsletters': [], 'token': USER_TOKEN})
+        json={'status': 'ok', 'newsletters': [], 'token': USER_TOKEN},
+    )
     responses.add(
         responses.POST,
         settings.BASKET_URL + '/news/subscribe/',
-        json={'status': 'ok', 'token': USER_TOKEN})
+        json={'status': 'ok', 'token': USER_TOKEN},
+    )
     responses.add(
         responses.POST,
         settings.BASKET_URL + '/news/unsubscribe/{}/'.format(USER_TOKEN),
-        json={'status': 'ok', 'token': USER_TOKEN})
+        json={'status': 'ok', 'token': USER_TOKEN},
+    )
 
 
 def pytest_configure(config):
     import django
+
     # Forcefully call `django.setup`, pytest-django tries to be very lazy
     # and doesn't call it if it has already been setup.
     # That is problematic for us since we overwrite our logging config
@@ -93,6 +97,7 @@ def pytest_configure(config):
     django.setup()
 
     from olympia.amo.tests import prefix_indexes
+
     prefix_indexes(config)
 
 
@@ -108,8 +113,7 @@ def instrument_jinja():
 
     def instrumented_render(self, *args, **kwargs):
         context = dict(*args, **kwargs)
-        test.signals.template_rendered.send(
-            sender=self, template=self, context=context)
+        test.signals.template_rendered.send(sender=self, template=self, context=context)
         return old_render(self, *args, **kwargs)
 
     jinja2.Template.render = instrumented_render
@@ -177,8 +181,7 @@ def test_pre_setup(request, tmpdir, settings):
         return path
 
     settings.STORAGE_ROOT = storage_root = _path(str(tmpdir.mkdir('storage')))
-    settings.SHARED_STORAGE = shared_storage = _path(
-        storage_root, 'shared_storage')
+    settings.SHARED_STORAGE = shared_storage = _path(storage_root, 'shared_storage')
 
     settings.ADDONS_PATH = _path(storage_root, 'files')
     settings.GUARDED_ADDONS_PATH = _path(storage_root, 'guarded-addons')
@@ -214,6 +217,7 @@ def test_pre_setup(request, tmpdir, settings):
 def admin_group(db):
     """Create the Admins group."""
     from olympia.access.models import Group
+
     return Group.objects.create(name='Admins', rules='*:*')
 
 
@@ -223,9 +227,9 @@ def mozilla_user(admin_group, settings):
     from olympia.access.models import GroupUser
     from olympia.users.models import UserProfile
 
-    user = UserProfile.objects.create(pk=settings.TASK_USER_ID,
-                                      email='admin@mozilla.com',
-                                      username='admin')
+    user = UserProfile.objects.create(
+        pk=settings.TASK_USER_ID, email='admin@mozilla.com', username='admin'
+    )
     user.save()
     GroupUser.objects.create(user=user, group=admin_group)
     return user

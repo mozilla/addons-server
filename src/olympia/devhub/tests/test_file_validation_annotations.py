@@ -173,8 +173,9 @@ class TestAddManifestVersionMessages(TestCase):
         # for an unlisted submission.
         assert len(results['messages']) == 1
         # It should be inserted at the top.
-        assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-            results['messages'][0]['message']
+        assert (
+            'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+            in (results['messages'][0]['message'])
         )
 
     def test_add_manifest_version_message_not_mv3(self):
@@ -207,9 +208,12 @@ class TestAddManifestVersionMessages(TestCase):
             assert (
                 results['messages'][0]['message'] == 'Manifest V3 compatibility warning'
             )
-            assert 'https://mzl.la/3hIwQXX' in (
-                # description is a list of strings, the link is in the second one.
-                results['messages'][0]['description'][1]
+            assert (
+                'https://mzl.la/3hIwQXX'
+                in (
+                    # description is a list of strings, the link is in the second one.
+                    results['messages'][0]['description'][1]
+                )
             )
 
     def test_add_manifest_version_message(self):
@@ -226,8 +230,9 @@ class TestAddManifestVersionMessages(TestCase):
         )
         assert len(results['messages']) == 2  # we added it
         # It should be inserted at the top.
-        assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-            results['messages'][0]['message']
+        assert (
+            'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+            in (results['messages'][0]['message'])
         )
 
     def test_add_manifest_version_message_replace(self):
@@ -248,6 +253,7 @@ class TestAddManifestVersionMessages(TestCase):
             results=results, parsed_data=data, channel=amo.CHANNEL_LISTED
         )
         assert len(results['messages']) == 1  # we replaced it and not added it.
-        assert 'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/' in (
-            results['messages'][0]['message']
+        assert (
+            'https://blog.mozilla.org/addons/2021/05/27/manifest-v3-update/'
+            in (results['messages'][0]['message'])
         )

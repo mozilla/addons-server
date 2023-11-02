@@ -453,8 +453,9 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'), version='3.0')
         assert response.status_code == 400
-        error_msg = 'cannot add versions to an add-on that has status: %s.' % (
-            amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
+        error_msg = (
+            'cannot add versions to an add-on that has status: %s.'
+            % (amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED])
         )
         assert error_msg in response.data['error']
 

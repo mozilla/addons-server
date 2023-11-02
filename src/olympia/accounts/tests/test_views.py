@@ -1033,7 +1033,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 },
             )
             self.assertRedirects(
-                response, self.user_edit_url, target_status_code=200  # No '?to=...'
+                response,
+                self.user_edit_url,  # No '?to=...'
+                target_status_code=200,
             )
             assert (
                 response['Cache-Control']
