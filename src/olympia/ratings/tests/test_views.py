@@ -2781,7 +2781,6 @@ class TestRatingViewSetFlag(TestCase):
         assert self.rating.reload().editorreview is True
         assert not ActivityLog.objects.filter(action=amo.LOG.EDIT_RATING.id).exists()
 
-
     def test_flag_logged_in(self):
         self.user = user_factory()
         self.client.login_api(self.user)
