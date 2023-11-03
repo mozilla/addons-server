@@ -438,6 +438,16 @@ class TestRatingAdmin(TestCase):
         assert Rating.objects.count() == 0
         assert Rating.unfiltered.count() == 1
 
+    def test_can_not_change_detail(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, 'Ratings:Moderate')
+        self.client.force_login(user)
+
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert b'Save' not in response.content
+
     def test_detail(self):
         user = UserProfile.objects.get(pk=999)
         self.grant_permission(user, 'Admin:Advanced')
