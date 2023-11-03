@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 17:07+0000\n"
+"PO-Revision-Date: 2023-11-03 14:21+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1668,91 +1668,91 @@ msgid "You must provide further details to proceed."
 msgstr "Tu scugnis indicâ altris detais par continuâ."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Lis tôs vecjis credenziâls a son stadis revocadis e no son plui validis."
 
 msgid "New API key created"
-msgstr ""
+msgstr "Gnove clâf API creade"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Clâf API revocade"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Il gno component adizionâl nol jentre in nissune des categoriis"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acuardi di distribuzion pai components adizionâi di Firefox"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "Components adizionâi par {0}"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Torne ae pagjine principâl dal Centri di svilup"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Centri di svilup dai <small>components adizionâi</small>"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "Altris components adizionâi..."
 
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Laboratori estensions"
 
 msgid "Documentation"
-msgstr ""
+msgstr "Documentazion"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Svilup estensions"
 
 msgid "Themes"
-msgstr ""
+msgstr "Temis"
 
 msgid "Developer Policies"
-msgstr ""
+msgstr "Politichis pal svilupadôr"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Strument di convalide components adizionâi"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Svilup components adizionâi"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunitât e supuart"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog dai components adizionâi"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Forum dai components adizionâi"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Plui risorsis"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Cîr te documentazion pai svilupadôrs"
 
 msgid "Search"
-msgstr ""
+msgstr "Cîr"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Dopre il cjamp chi sot par cjariâ in rêt il pachet dal to component adizionâl."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Terminât il cjariament in rêt, a vignarà eseguide une serie di provis automatichis sul file."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Desideristu che il to component adizionâl al vegni distribuît su chest sît?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Risultâts de convalide par {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Risultâts di convalide"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Convalidât ai:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr ""
