@@ -168,6 +168,25 @@ class AddonAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon': ['This field is required.']}
 
+    def test_reason_all_reasons_available(self):
+        addon = addon_factory()
+        reason = AbuseReport.REASONS.DOES_NOT_WORK
+
+        # Reason is not in the CONTENT_REASONS subset, but should still be
+        # accepted.
+        assert reason not in AbuseReport.REASONS.CONTENT_REASONS
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': str(addon.guid),
+                'message': 'foo',
+                'reason': reason.constant.lower(),
+            },
+        )
+        assert response.status_code == 201
+        report = AbuseReport.objects.get(guid=addon.guid)
+        assert report.reason == reason.value
+
     def test_message_required_empty(self):
         addon = addon_factory()
         response = self.client.post(
@@ -590,6 +609,34 @@ class UserAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {'message': ['This field is required.']}
 
+    def test_message_not_required_with_content_reason(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url, data={'user': str(user.username), 'reason': 'illegal'}
+        )
+        assert response.status_code == 201
+
+    def test_non_content_reason_not_accepted(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'policy_violation',
+                'message': 'some message',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'reason': ['"policy_violation" is not a valid choice.']
+        }
+
+        response = self.client.post(
+            self.url,
+            data={'user': str(user.username), 'reason': 'illegal', 'message': 'Fine!'},
+        )
+        assert response.status_code == 201
+
     def test_throttle(self):
         user = user_factory()
         for x in range(20):
@@ -623,6 +670,39 @@ class UserAbuseViewSetTestBase:
         report = AbuseReport.objects.get(user_id=user.id)
         self.check_report(report, f'Abuse Report for User {user.pk}')
         assert report.country_code == 'YY'
+
+    def _setup_reportable_reason(self, reason, message=None):
+        user = user_factory(display_name='baduser')
+        data = {'user': user.pk}
+        if message is not None:
+            data['message'] = message
+        if reason is not None:
+            data['reason'] = reason
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_not_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_no_reason_does_not_call_cinder_task(self, task_mock):
+        self._setup_reportable_reason(None, 'Some message since no reason is provided')
+        task_mock.assert_not_called()
 
 
 class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
@@ -703,13 +783,24 @@ class RatingAbuseViewSetTestBase:
         assert response.status_code == 400
         assert json.loads(response.content) == {'rating': ['This field is required.']}
 
-    def test_reason_required(self):
-        pass
+    def test_only_reasons_accepted_are_content_subset(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'foo',
+                'reason': 'does_not_work',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'reason': ['"does_not_work" is not a valid choice.']
+        }
 
-    def test_reason_only_ratings_ones(self):
-        pass
-
-    def test_message_required_empty(self):
+    def test_message_can_be_blank_if_reason_is_provided(self):
         target_rating = Rating.objects.create(
             addon=addon_factory(), user=user_factory(), body='Booh', rating=1
         )
@@ -717,18 +808,36 @@ class RatingAbuseViewSetTestBase:
             self.url,
             data={'rating': str(target_rating.pk), 'message': '', 'reason': 'illegal'},
         )
+        assert response.status_code == 201
+
+    def test_message_can_be_missing_if_reason_is_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': str(target_rating.pk), 'reason': 'illegal'},
+        )
+        assert response.status_code == 201
+
+    def test_message_required_empty_no_reason_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': str(target_rating.pk), 'message': ''},
+        )
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'message': ['This field may not be blank.']
         }
 
-    def test_message_required_missing(self):
+    def test_message_required_missing_no_reason_provided(self):
         target_rating = Rating.objects.create(
             addon=addon_factory(), user=user_factory(), body='Booh', rating=1
         )
-        response = self.client.post(
-            self.url, data={'rating': str(target_rating.pk), 'reason': 'illegal'}
-        )
+        response = self.client.post(self.url, data={'rating': str(target_rating.pk)})
         assert response.status_code == 400
         assert json.loads(response.content) == {'message': ['This field is required.']}
 

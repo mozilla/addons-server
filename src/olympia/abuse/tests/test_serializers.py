@@ -267,6 +267,7 @@ class TestUserAbuseReportSerializer(TestCase):
             'reporter_name': None,
             'user': serialized_user,
             'message': 'bad stuff',
+            'reason': None,
         }
 
 

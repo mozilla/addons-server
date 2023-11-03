@@ -67,7 +67,7 @@ class AbuseTargetMixin:
         self.target_viewset = self.target_viewset_class(
             request=self.request,
             permission_classes=[],
-            kwargs={'pk': self.kwargs['target_pk']},
+            kwargs={'pk': str(self.kwargs['target_pk'])},
             action=self.target_viewset_action,
         )
         return self.target_viewset
