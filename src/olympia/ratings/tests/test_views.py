@@ -2771,7 +2771,7 @@ class TestRatingViewSetFlag(TestCase):
         data = json.loads(force_str(response.content))
         assert data['flag'] == ['This field is required.']
         assert self.rating.reload().editorreview is False
-    
+
     def test_flag_logged_in_no_edit_log(self):
         ActivityLog.objects.all().delete()
         self.user = user_factory()
