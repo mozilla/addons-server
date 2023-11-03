@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-03 14:35+0000\n"
+"PO-Revision-Date: 2023-11-03 18:55+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1857,36 +1857,38 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>I components adizionâi a puedin vê ducj i autôrs che si vûl cun 2 pussibii rûi:</p><ul><li><b>Proprietari:</b> Al pues gjestî ducj i aspiets di visualizazion dal component adizionâl, includude la"
+" zonte e la rimozion di altris autôrs</li><li><b>Svilupadôr:</b> Al pues gjestî ducj i aspiets di visualizazion dal component adizionâl, gjavadis la zonte e la rimozion di altris autôrs</li></ul>"
 
 msgid "Close"
-msgstr ""
+msgstr "Siere"
 
 msgid "Additional Details"
-msgstr ""
+msgstr "Detais adizionâi"
 
 msgid "Edit"
-msgstr ""
+msgstr "Modifiche"
 
 msgid "Additional Details for {0}"
-msgstr ""
+msgstr "Detais adizionâi par {0}"
 
 msgid "Tags"
-msgstr ""
+msgstr "Etichetis"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Lis etichetis a judin i utents a cjatâ il to component adizionâl. Tu puedis vê un massim di {0} etichetis. Sielç dome chês pertinentis al to component adizionâl."
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Limit di {0} etichetis."
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "URL pes ufiertis"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Se tu desideris domandâ ufiertis monetariis dai utents, configure in chest cjamp un URL là che i utents a puedin fâlis."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Lenghe predefinide"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
