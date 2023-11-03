@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-03 14:21+0000\n"
+"PO-Revision-Date: 2023-11-03 14:31+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1755,91 +1755,91 @@ msgid "Validated at:"
 msgstr "Convalidât ai:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Ativitât resinte dai miei components adizionâi"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Ativitât resinte par {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> di %(user)s"
 
 msgid "No results found."
-msgstr ""
+msgstr "Nissun risultât cjatât."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Perfezione ativitât"
 
 msgid "Add-on"
-msgstr ""
+msgstr "Component adizionâl"
 
 msgid "Activity"
-msgstr ""
+msgstr "Ativitât"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Aboniti a chest feed"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> component adizionâl"
+msgstr[1] "<b>{0}</b> components adizionâi"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Ativitât resinte"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s di %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Ativitât plui vecje pai miei components adizionâi"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> teme"
+msgstr[1] "<b>{0}</b> temis"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Modifiche pagjine dal prodot"
 
 msgid "None"
-msgstr ""
+msgstr "Nissun"
 
 msgid "Preview"
-msgstr ""
+msgstr "Anteprime"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Anteprime de version listade"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "La anteprime e je ancjemò in cors di gjenerazion - torne plui tart o torne cjame la pagjine."
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Invît a un rôl di autôr par {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Al è stât ricevût un invît par deventâ un autôr di {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Se tu acetis l’invît tu varâs i permès par modificâ il component adizionâl e mostrâ il to non te liste dai autôrs sul sît web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Fâs clic sul boton Acete chi sot par confermâ che tu desideris jessi zontât tant che autôr par {addon_name}."
 
 msgid "Accept"
-msgstr ""
+msgstr "Acete"
 
 msgid "Decline"
-msgstr ""
+msgstr "Refude"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Gjestìs autôrs e licence"
 
 msgid "Authors"
-msgstr ""
+msgstr "Autôrs"
 
 msgid "About author roles"
 msgstr ""
