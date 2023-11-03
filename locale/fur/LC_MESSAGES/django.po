@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-03 14:31+0000\n"
+"PO-Revision-Date: 2023-11-03 14:35+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -616,7 +616,7 @@ msgstr "Zontât {0} {1}."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr "Rôl di {user} cambiât a {0} par {addon}."
+msgstr "Rûl di {user} cambiât a {0} par {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} cumò al è disponibil sot de licence {0}."
@@ -1818,7 +1818,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr "La anteprime e je ancjemò in cors di gjenerazion - torne plui tart o torne cjame la pagjine."
 
 msgid "Author invitation for {addon_name}"
-msgstr "Invît a un rôl di autôr par {addon_name}"
+msgstr "Invît a un rûl di autôr par {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
 msgstr "Al è stât ricevût un invît par deventâ un autôr di {addon_name}."
@@ -1842,16 +1842,16 @@ msgid "Authors"
 msgstr "Autôrs"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Informazions sui rûi dai autôrs"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autôrs cun confermis in spiete"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autôrs che a son stâts zontâts a chest component adizionâl ma no àn ancjemò dât conferme."
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Salve modifichis"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
