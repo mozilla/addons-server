@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-04 12:24+0000\n"
+"PO-Revision-Date: 2023-11-04 16:31+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -844,10 +844,10 @@ msgid "Reply to {rating} for {addon} written."
 msgstr ""
 
 msgid "{addon} {version} pending rejection cleared."
-msgstr ""
+msgstr "Hedhja poshtë pezull për {addon} {version} u hoq."
 
 msgid "Pending rejection cleared"
-msgstr ""
+msgstr "Hedhja poshtë pezull u hoq"
 
 msgid "{version} added to Blocklist."
 msgstr "{version} u shtua te Listë Bllokimesh."
@@ -956,7 +956,7 @@ msgid "Theme (Static)"
 msgstr "Temë (Statike)"
 
 msgid "Deprecated Site Permission"
-msgstr ""
+msgstr "Leje Sajti e Nxjerrë Nga Përdorimi"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
@@ -988,7 +988,7 @@ msgid "Themes (Static)"
 msgstr "Tema (Statike)"
 
 msgid "Deprecated Site Permissions"
-msgstr ""
+msgstr "Leje Sajti të Nxjerra Nga Përdorimi"
 
 msgid "Alerts & Updates"
 msgstr "Sinjalizime & Përditësime"
@@ -1494,7 +1494,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Vleftësimi prodhoi shumë gabime/sinjalizime, ndaj %s e mesazheve u prenë. Pasi të trajtoni mesazhet që duken, do të jeni në gjendje të shihni të tjerët."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr ""
+msgstr "Kjo shtesë s’është temë. Që të parashtroni zgjerime, përdorni faqen <a href=\"{link}\">Parashtroni një Shtesë të Re</a>."
 
 msgid "Updated"
 msgstr "Përditësuar më"
@@ -1560,7 +1560,7 @@ msgid "Validate Add-on"
 msgstr "Vleftëso Shtesën"
 
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
-msgstr ""
+msgstr "<a href=\"{link}\">Ju lutemi, që të parashtroni zgjerime, shtoni te llogaria juaj mirëfilltësim dyfaktorësh.</a>"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "Ikonat duhet të jenë ose PNG. ose JPG."
@@ -2752,18 +2752,20 @@ msgid "More information on Developer Accounts"
 msgstr "Më tepër të dhëna rreth Llogarish Zhvilluesish"
 
 msgid "Firefox for Android compatibility"
-msgstr ""
+msgstr "Përputhje me Firefox për Android"
 
 msgid ""
 "Did you test your extension to ensure it works as expected on Firefox for Android? If not, please see <a target=\"_blank\" rel=\"noopener noreferrer\" "
 "href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Developing extensions for Firefox Android</a> for test guidance before submitting."
 msgstr ""
+"A e testuat zgjerimin tuaj për t’u siguruar se funksionon siç pritet në Firefox për Android? Nëse jo, ju lutemi, shihni <a target=\"_blank\" rel=\"noopener noreferrer\" "
+"href=\"https://extensionworkshop.com/documentation/develop/developing-extensions-for-firefox-for-android/\">Zhvillim zgjerimesh për Firefox Android</a>, për udhëzime testimi para parashtrimit."
 
 msgid "Yes, I’ve tested my extension with Firefox for Android"
-msgstr ""
+msgstr "Po, e kam testuar zgjerimin tim me Firefox-in për Android"
 
 msgid "No, I have not tested"
-msgstr ""
+msgstr "Jo, s’e kam testuar"
 
 msgid "Developer News"
 msgstr "Lajme Zhvilluesish"
@@ -2800,11 +2802,10 @@ msgid "Remove this application"
 msgstr "Hiqe këtë aplikacion"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "Përzgjidhni një kategori për këtë shtesë:"
-msgstr[1] "Përzgjidhni një kategori për këtë shtesë:"
+msgstr[0] "Përzgjidhni për këtë shtesë një kategori:"
+msgstr[1] ""
 
 msgid "End-User License Agreement"
 msgstr "EULA"
