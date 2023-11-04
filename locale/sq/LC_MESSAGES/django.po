@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-04 12:21+0000\n"
+"PO-Revision-Date: 2023-11-04 12:24+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -181,7 +181,7 @@ msgstr "%(addon_type_plural)s nuk mbulohen nga %(app_name)s"
 
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
-msgstr ""
+msgstr "Interval i pavlefshëm versionesh. Për Firefox-in për Android, mund të zgjidhni vetëm një interval që fillon me versionin %(max)s ose më sipër, ose përfundon me më të ulët se versioni %(min)s."
 
 msgid "Add-ons need at least one owner."
 msgstr "Shtesat lypin të paktën një pronar."
@@ -369,7 +369,7 @@ msgid "Email:"
 msgstr "Email:"
 
 msgid "Two-factor authentication"
-msgstr ""
+msgstr "Mirëfilltësim dyfaktorësh"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -868,10 +868,10 @@ msgid "Admin add-on-review cleared"
 msgstr ""
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr ""
+msgstr "{user_responsible} ndryshoi identifikuesin për {addon} nga {0} në {1}."
 
 msgid "Addon slug changed"
-msgstr ""
+msgstr "U ndryshua identifikues shtese"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -941,7 +941,7 @@ msgid "Deprecated Search Engine"
 msgstr "Motor Kërkimi i nxjerrë nga përdorimi"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "Paketë Gjuhësore"
 
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Paketë Gjuhësore (Shtesë) e nxjerrë nga përdorimi"
@@ -973,7 +973,7 @@ msgid "Deprecated Search Tools"
 msgstr "Mjete Kërkimi të Nxjerra Nga Përdorimi"
 
 msgid "Language Packs"
-msgstr ""
+msgstr "Paketa Gjuhësore"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Paketa Gjuhësore (Shtesë) të Nxjerra Nga Përdorimi"
