@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-11-04 16:41+0000\n"
+"PO-Revision-Date: 2023-11-04 16:47+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -841,7 +841,7 @@ msgid "Un-rejected"
 msgstr "Iu hoq hedhja poshtë"
 
 msgid "Reply to {rating} for {addon} written."
-msgstr ""
+msgstr "U shkrua përgjigje për {rating} për {addon}."
 
 msgid "{addon} {version} pending rejection cleared."
 msgstr "Hedhja poshtë pezull për {addon} {version} u hoq."
@@ -862,10 +862,10 @@ msgid "Version Unblocked"
 msgstr "Versionit iu Hoq Bllokimi"
 
 msgid "{addon} {version} admin add-on-review cleared."
-msgstr ""
+msgstr "U hoq kërkesë shqyrtimi shtese nga përgjegjësi për {addon} {version}."
 
 msgid "Admin add-on-review cleared"
-msgstr ""
+msgstr "U hoq kërkesë shqyrtimi shtese nga përgjegjësi"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} ndryshoi identifikuesin për {addon} nga {0} në {1}."
@@ -4170,7 +4170,7 @@ msgstr "Riktheni te një kohë më e thjeshtë — kur përfundimet kryesuese tu
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "Maskoni email-in tuaj, që të mbroni identitetin tuaj & të parandaloni email-e hedhurina. Përditësimet e reja e bëjnë Firefox Relay edhe më të lehtë për t’u përdorur."
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
@@ -4238,11 +4238,11 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Përktheni sajte në Firefox — privatisht — pa përdorur renë."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "Bllokoni sajte që të harxhojnë kohën. Bllokojini plotësisht, ose gjatë intervalesh kohorë që zgjidhni vetë."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
