@@ -160,6 +160,9 @@ class RatingAdmin(AMOModelAdmin):
     def has_add_permission(self, request):
         return False
 
+    def has_change_permission(self, request, obj=None):
+        return False
+
     def truncated_body(self, obj):
         return truncate_text(obj.body, 140)[0] if obj.body else ''
 

@@ -352,5 +352,5 @@ class RatingFlagSerializer(AMOModelSerializer):
 
     def save(self, **kwargs):
         instance = super().save(**kwargs)
-        instance.rating.update(editorreview=True)
+        instance.rating.update(editorreview=True, _signal=False)
         return instance

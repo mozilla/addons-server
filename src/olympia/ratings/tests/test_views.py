@@ -2772,6 +2772,15 @@ class TestRatingViewSetFlag(TestCase):
         assert data['flag'] == ['This field is required.']
         assert self.rating.reload().editorreview is False
 
+    def test_flag_logged_in_no_edit_log(self):
+        ActivityLog.objects.all().delete()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.post(self.url, data={'flag': 'review_flag_reason_spam'})
+        assert response.status_code == 202
+        assert self.rating.reload().editorreview is True
+        assert not ActivityLog.objects.filter(action=amo.LOG.EDIT_RATING.id).exists()
+
     def test_flag_logged_in(self):
         self.user = user_factory()
         self.client.login_api(self.user)
