@@ -18,12 +18,49 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 
 class BaseAbuseReportSerializer(AMOModelSerializer):
+    error_messages = {
+        'max_length': _(
+            'Please ensure this field has no more than {max_length} characters.'
+        )
+    }
+
     reporter = BaseUserSerializer(read_only=True)
     reporter_email = serializers.EmailField(required=False, allow_null=True)
+    reason = ReverseChoiceField(
+        # Child classes may override the choices, but most only need
+        # content-related reasons so we use that as the base.
+        choices=list(AbuseReport.REASONS.CONTENT_REASONS.api_choices),
+        required=False,
+        allow_null=True,
+    )
+    # 'message' has custom validation rules below depending on whether 'reason'
+    # was provided or not. We need to not set it as required and allow blank at
+    # the field level to make that work.
+    message = serializers.CharField(
+        required=False,
+        allow_blank=True,
+        max_length=10000,
+        error_messages=error_messages,
+    )
 
     class Meta:
         model = AbuseReport
-        fields = ('message', 'reporter', 'reporter_name', 'reporter_email')
+        fields = ('reason', 'message', 'reporter', 'reporter_name', 'reporter_email')
+
+    def validate(self, data):
+        if not data.get('reason'):
+            # If reason is not provided, message is required and can not be
+            # null or blank.
+            message = data.get('message')
+            if not message:
+                if 'message' not in data:
+                    msg = serializers.Field.default_error_messages['required']
+                elif message is None:
+                    msg = serializers.Field.default_error_messages['null']
+                else:
+                    msg = serializers.CharField.default_error_messages['blank']
+                raise serializers.ValidationError({'message': [msg]})
+        return data
 
     def validate_target(self, data, target_name):
         if target_name not in data:
@@ -50,25 +87,7 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
 
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
-    error_messages = {
-        'max_length': _(
-            'Please ensure this field has no more than {max_length} characters.'
-        )
-    }
-
     addon = serializers.SerializerMethodField()
-    reason = ReverseChoiceField(
-        choices=list(AbuseReport.REASONS.api_choices), required=False, allow_null=True
-    )
-    # 'message' has custom validation rules below depending on whether 'reason'
-    # was provided or not. We need to not set it as required and allow blank at
-    # the field level to make that work.
-    message = serializers.CharField(
-        required=False,
-        allow_blank=True,
-        max_length=10000,
-        error_messages=error_messages,
-    )
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()),
         required=False,
@@ -100,6 +119,12 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         required=False,
         allow_null=True,
     )
+    reason = ReverseChoiceField(
+        # For add-ons we use the full list of reasons as choices.
+        choices=list(AbuseReport.REASONS.api_choices),
+        required=False,
+        allow_null=True,
+    )
     location = ReverseChoiceField(
         choices=list(AbuseReport.LOCATION.api_choices),
         required=False,
@@ -125,25 +150,9 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'lang',
             'operating_system',
             'operating_system_version',
-            'reason',
             'report_entry_point',
             'location',
         )
-
-    def validate(self, data):
-        if not data.get('reason'):
-            # If reason is not provided, message is required and can not be
-            # null or blank.
-            message = data.get('message')
-            if not message:
-                if 'message' not in data:
-                    msg = serializers.Field.default_error_messages['required']
-                elif message is None:
-                    msg = serializers.Field.default_error_messages['null']
-                else:
-                    msg = serializers.CharField.default_error_messages['blank']
-                raise serializers.ValidationError({'message': [msg]})
-        return data
 
     def validate_client_id(self, value):
         if value and not amo.VALID_CLIENT_ID.match(str(value)):
@@ -217,9 +226,6 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
 
 class UserAbuseReportSerializer(BaseAbuseReportSerializer):
     user = BaseUserSerializer(required=False)  # We validate it ourselves.
-    # Unlike add-on reports, for user reports we don't have a 'reason' field so
-    # the message is always required and can't be blank.
-    message = serializers.CharField(required=True, allow_blank=False, max_length=10000)
 
     class Meta:
         model = AbuseReport
@@ -238,16 +244,10 @@ class UserAbuseReportSerializer(BaseAbuseReportSerializer):
 
 class RatingAbuseReportSerializer(BaseAbuseReportSerializer):
     rating = serializers.SerializerMethodField()
-    reason = ReverseChoiceField(
-        choices=list(AbuseReport.REASONS.RATING_REASONS.api_choices),
-        required=True,
-        allow_null=True,
-    )
-    message = serializers.CharField(required=True, allow_blank=False, max_length=10000)
 
     class Meta:
         model = AbuseReport
-        fields = BaseAbuseReportSerializer.Meta.fields + ('rating', 'reason')
+        fields = BaseAbuseReportSerializer.Meta.fields + ('rating',)
 
     def to_internal_value(self, data):
         self.validate_target(data, 'rating')

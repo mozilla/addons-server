@@ -109,7 +109,7 @@ class AbuseReport(ModelBase):
         ('OTHER', 127, 'Other'),
     )
     REASONS.add_subset(
-        'RATING_REASONS', ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'OTHER')
+        'CONTENT_REASONS', ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'OTHER')
     )
     # Those reasons will be reported to Cinder.
     REASONS.add_subset(

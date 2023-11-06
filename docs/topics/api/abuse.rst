@@ -235,7 +235,7 @@ Submitting a user abuse report
 .. _`userabusereport-create`:
 
 The following API endpoint allows an abuse report to be submitted for a user account
-on https://addons.mozilla.org.  Authentication is not required, but is recommended
+on https://addons.mozilla.org. Authentication is not required, but is recommended
 so reports can be responded to if necessary.
 
 .. http:post:: /api/v5/abuse/report/user/
@@ -244,6 +244,7 @@ so reports can be responded to if necessary.
 
     :<json string user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-user-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
     :>json object|null reporter: The user who submitted the report, if authenticated.
@@ -261,6 +262,18 @@ so reports can be responded to if necessary.
     :>json string message: The body/content of the abuse report.
 
 
+.. _abuse-user-reason-parameter:
+
+ Accepted values for the ``reason`` parameter (for user abuse reports):
+
+ ===========================  ================================================================
+                       Value  Description
+ ===========================  ================================================================
+   hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
+                     illegal  Violates the law or contains content that violates the law
+                       other  Something else
+ ===========================  ================================================================
+
 --------------------------------
 Submitting a rating abuse report
 --------------------------------
@@ -268,7 +281,7 @@ Submitting a rating abuse report
 .. _`ratingabusereport-create`:
 
 The following API endpoint allows an abuse report to be submitted for a rating
-on https://addons.mozilla.org.  Authentication is not required, but is recommended
+on https://addons.mozilla.org. Authentication is not required, but is recommended
 so reports can be responded to if necessary.
 
 .. http:post:: /api/v5/abuse/report/rating/
