@@ -278,7 +278,7 @@ references:
   docker-images:
     # These versions should try to match what we run in production.
     # Note that the cimg/python:3.10-node convenience image provides
-    # nodejs 16.x, which we need to build assets and run the linter.
+    # nodejs latest lts, which we need to build assets and run the linter.
     - &python "cimg/python:3.10-node"
     - &redis "redis:6.2"
     - &memcached "memcached:1.4"
