@@ -1,0 +1,97 @@
+{
+    "event": "decision.created",
+    "payload": {
+        "appeal": {
+            "appealed_decision": {
+                "enforcement_actions": [
+                    "delete-status",
+                    "freeze-account"
+                ],
+                "id": "ae106e36-700c-4668-9618-851451dc5c2c",
+                "notes": "",
+                "policies": [
+                    {
+                        "enforcement_actions": [
+                            "delete-status",
+                            "freeze-account"
+                        ],
+                        "id": "f73ad527-54ed-430c-86ff-80e15e2a352b",
+                        "is_illegal": false,
+                        "name": "Harassment"
+                    }
+                ],
+                "type": "queue_review",
+                "user": {
+                    "email": "awilliamson@test.com",
+                    "groups": [
+                        {
+                            "name": "Admin"
+                        },
+                        {
+                            "name": "Everyone"
+                        }
+                    ],
+                    "name": "Andrew Williamson"
+                }
+            }
+        },
+        "enforcement_actions": [
+            "delete-status",
+            "freeze-account"
+        ],
+        "entity": {
+            "attributes": {
+                "guid": "@food-truck-stew",
+                "id": "1",
+                "name": "Food Truck Stew",
+                "slug": "food-truck-stew"
+            },
+            "entity_schema": "amo_addon"
+        },
+        "notes": "",
+        "policies": [
+            {
+                "enforcement_actions": [
+                    "delete-status",
+                    "freeze-account"
+                ],
+                "id": "f73ad527-54ed-430c-86ff-80e15e2a352b",
+                "is_illegal": false,
+                "name": "Harassment"
+            }
+        ],
+        "source": {
+            "decision": {
+                "id": "d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed",
+                "metadata": {},
+                "type": "override"
+            },
+            "job": {
+                "created_at": "2023-10-09T16: 35: 52.687552+00: 00",
+                "id": "d16e1ebc-b6df-4742-83c1-61f5ed3bd644",
+                "queue": {
+                    "is_multi_review": false,
+                    "slug": "amo-content-infringement"
+                },
+                "reports": [
+                    {
+                        "reasoning": "its bad"
+                    }
+                ]
+            },
+            "user": {
+                "email": "awilliamson@test.com",
+                "groups": [
+                    {
+                        "name": "Admin"
+                    },
+                    {
+                        "name": "Everyone"
+                    }
+                ],
+                "name": "Andrew Williamson"
+            }
+        },
+        "timestamp": "2023-10-12T09: 08: 37.004789+00: 00"
+    }
+}

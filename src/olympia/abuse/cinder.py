@@ -3,7 +3,7 @@ from django.conf import settings
 import requests
 
 
-class Cinder:
+class CinderEntity:
     QUEUE = 'amo-content-infringement'
     type = None  # Needs to be defined by subclasses
 
@@ -90,7 +90,7 @@ class Cinder:
             raise ConnectionError(response.content)
 
 
-class CinderUser(Cinder):
+class CinderUser(CinderEntity):
     type = 'amo_user'
 
     def __init__(self, user):
@@ -121,7 +121,7 @@ class CinderUser(Cinder):
         }
 
 
-class CinderUnauthenticatedReporter(Cinder):
+class CinderUnauthenticatedReporter(CinderEntity):
     type = 'amo_unauthenticated_reporter'
 
     def __init__(self, name, email):
@@ -147,7 +147,7 @@ class CinderUnauthenticatedReporter(Cinder):
         raise NotImplementedError
 
 
-class CinderAddon(Cinder):
+class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
     def __init__(self, addon):
@@ -176,7 +176,7 @@ class CinderAddon(Cinder):
         }
 
 
-class CinderRating(Cinder):
+class CinderRating(CinderEntity):
     type = 'amo_rating'
 
     def __init__(self, rating):

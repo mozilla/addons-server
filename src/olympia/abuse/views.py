@@ -1,5 +1,6 @@
 import hashlib
 import hmac
+from datetime import datetime
 
 from django import forms
 from django.conf import settings
@@ -34,7 +35,7 @@ from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.ratings.views import RatingViewSet
 
-from .cinder import Cinder
+from .cinder import CinderEntity
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -148,10 +149,18 @@ class CinderInboundPermission:
     """Permit if the payload hash matches."""
 
     def has_permission(self, request, view):
-        header = request.META.get('HTTP_X_CINDER_SIGNATURE', '')
+        header = request.headers.get('X-Cinder-Signature', '')
         key = force_bytes(settings.CINDER_WEBHOOK_TOKEN)
         digest = hmac.new(key, msg=request.body, digestmod=hashlib.sha256).hexdigest()
         return hmac.compare_digest(header, digest)
+
+
+def process_datestamp(date_string):
+    try:
+        return datetime.fromisoformat(date_string.replace(' ', ''))
+    except ValueError:
+        log.warn('Invalid timestamp from cinder webhook %s', date_string)
+        return datetime.now()
 
 
 @api_view(['POST'])
@@ -161,20 +170,27 @@ def cinder_webhook(request):
     if request.data.get('event') == 'decision.created' and (
         payload := request.data.get('payload', {})
     ):
-        source_queue = payload.get('source', {}).get('job', {}).get('queue')
-        if source_queue == Cinder.QUEUE:
-            log.info(
-                'Valid Payload from AMO queue: %s',
-                payload,
-            )
+        source = payload.get('source', {})
+        job = source.get('job', {})
+        if (queue_name := job.get('queue', {}).get('slug')) == CinderEntity.QUEUE:
+            log.info('Valid Payload from AMO queue: %s', payload)
+            job_id = job.get('id', '')
+            decision_id = source.get('decision', {}).get('id')
+            actions = payload.get('enforcement_actions')
+            try:
+                cinder_report = CinderReport.objects.get(job_id=job_id)
+                cinder_report.process_decision(
+                    decision_id=decision_id,
+                    decision_date=process_datestamp(payload.get('timestamp')),
+                    decision_actions=actions,
+                )
+            except CinderReport.DoesNotExist:
+                log.debug('CinderReport instance not found for job id %s', job_id)
         else:
-            log.info(
-                'Payload from other queue: %s',
-                payload,
-            )
+            log.info('Payload from other queue: %s', queue_name)
     else:
         log.info(
-            'Invalid payload received: %s',
+            'Non-decision payload received: %s',
             str(request.data)[:255],
         )
 

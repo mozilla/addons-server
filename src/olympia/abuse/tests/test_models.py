@@ -1,3 +1,6 @@
+from datetime import datetime
+from unittest import mock
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 
@@ -8,6 +11,13 @@ from olympia.ratings.models import Rating
 
 from ..cinder import CinderAddon, CinderRating, CinderUser
 from ..models import AbuseReport, CinderReport
+from ..utils import (
+    CinderActionApprove,
+    CinderActionBanUser,
+    CinderActionDisableAddon,
+    CinderActionEscalateAddon,
+    CinderActionNotImplemented,
+)
 
 
 class TestAbuse(TestCase):
@@ -308,7 +318,7 @@ class TestAbuseManager(TestCase):
 
 
 class TestCinderReport(TestCase):
-    def test_get_helper(self):
+    def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()
         cinder_report = CinderReport.objects.create(
@@ -316,18 +326,18 @@ class TestCinderReport(TestCase):
                 guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
             )
         )
-        helper = cinder_report.get_helper()
+        helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderAddon)
         assert helper.addon == addon
 
         cinder_report.abuse_report.update(guid=None, user=user)
-        helper = cinder_report.get_helper()
+        helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderUser)
         assert helper.user == user
 
         rating = Rating.objects.create(addon=addon, user=user, rating=4)
         cinder_report.abuse_report.update(user=None, rating=rating)
-        helper = cinder_report.get_helper()
+        helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderRating)
         assert helper.rating == rating
 
@@ -347,6 +357,50 @@ class TestCinderReport(TestCase):
         cinder_report.report()
 
         assert cinder_report.job_id == '1234-xyz'
+
+    def test_get_action_helper(self):
+        DECISION_ACTIONS = CinderReport.DECISION_ACTIONS
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+            )
+        )
+        assert cinder_report.get_action_helper().cinder_report == cinder_report
+        assert cinder_report.get_action_helper().__class__ == CinderActionNotImplemented
+
+        for action, ActionClass in (
+            (DECISION_ACTIONS.AMO_BAN_USER, CinderActionBanUser),
+            (DECISION_ACTIONS.AMO_DISABLE_ADDON, CinderActionDisableAddon),
+            (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
+            (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionNotImplemented),
+            (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionNotImplemented),
+            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApprove),
+        ):
+            cinder_report.update(decision_action=action)
+            helper = cinder_report.get_action_helper()
+            assert helper.__class__ == ActionClass
+            assert helper.cinder_report == cinder_report
+
+    def test_process_decision(self):
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+            )
+        )
+        new_date = datetime(2023, 1, 1)
+
+        with mock.patch.object(CinderActionApprove, 'process') as cinder_action_mock:
+            cinder_report.process_decision(
+                decision_id='12345',
+                decision_date=new_date,
+                decision_actions=[CinderReport.DECISION_ACTIONS.AMO_APPROVE],
+            )
+        assert cinder_report.decision_id == '12345'
+        assert cinder_report.decision_date == new_date
+        assert cinder_report.decision_action == (
+            CinderReport.DECISION_ACTIONS.AMO_APPROVE
+        )
+        assert cinder_action_mock.call_count == 1
 
     def test_can_be_appealed(self):
         cinder_report = CinderReport.objects.create(
