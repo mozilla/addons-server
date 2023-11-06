@@ -799,7 +799,7 @@ class NeedsHumanReview(ModelBase):
                 'Reported for abuse within the add-on',
             ),
             (
-                REASON_ABUSE_ADDON_VIOLATION,
+                REASON_ABUSE_ADDON_VIOLATION_APPEAL,
                 'Appeal about a decision on abuse reported within the add-on',
             ),
         ),
