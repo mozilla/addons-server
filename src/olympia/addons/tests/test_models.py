@@ -2063,6 +2063,40 @@ class TestAddonDueDate(TestCase):
         )
         assert version.needshumanreview_set.filter(is_active=True).count() == 0
 
+        assert addon.set_needs_human_review_on_latest_versions(
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, ignore_reviewed=False
+        )
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_PROMOTED_GROUP
+        )
+
+    def test_set_needs_human_review_on_latest_versions_unique_reason(self):
+        addon = Addon.objects.get(id=3615)
+        version = addon.current_version
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASON_SCANNER_ACTION
+        )
+
+        assert not addon.set_needs_human_review_on_latest_versions(
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=False
+        )
+        assert version.needshumanreview_set.filter(is_active=True).count() == 1
+        assert (
+            version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_SCANNER_ACTION
+        )
+
+        assert addon.set_needs_human_review_on_latest_versions(
+            reason=NeedsHumanReview.REASON_PROMOTED_GROUP, unique_reason=True
+        )
+        assert version.needshumanreview_set.filter(is_active=True).count() == 2
+        assert list(version.needshumanreview_set.values_list('reason', flat=True)) == [
+            NeedsHumanReview.REASON_SCANNER_ACTION,
+            NeedsHumanReview.REASON_PROMOTED_GROUP,
+        ]
+
     def test_set_needs_human_review_on_latest_versions_even_deleted(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version

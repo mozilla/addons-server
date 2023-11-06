@@ -2,7 +2,8 @@ from django.conf import settings
 
 import responses
 
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia import amo
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
@@ -283,6 +284,21 @@ class TestCinderAddonByReviewers(TestCinderAddon):
         self._test_report(self.cinder_class(addon))
         assert (
             addon.current_version.needshumanreview_set.get().reason
+            == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+        )
+
+    def test_report_with_version(self):
+        addon = self._create_dummy_target()
+        addon.current_version.file.update(is_signed=True)
+        other_version = version_factory(
+            addon=addon,
+            file_kw={'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self._test_report(self.cinder_class(addon, other_version))
+        assert not addon.current_version.needshumanreview_set.exists()
+        # that there's only one is required - _test_report calls report() multiple times
+        assert (
+            other_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
         )
 

@@ -9,7 +9,7 @@ import responses
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating
 
-from ..cinder import CinderAddon, CinderRating, CinderAddonByReviewers, CinderUser
+from ..cinder import CinderAddon, CinderAddonByReviewers, CinderRating, CinderUser
 from ..models import AbuseReport, CinderReport
 from ..utils import (
     CinderActionApprove,
@@ -357,20 +357,33 @@ class TestCinderReport(TestCase):
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonByReviewers)
         assert helper.addon == addon
+        assert helper.version is None
 
         cinder_report.abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
         helper = cinder_report.get_entity_helper()
         # now reason is in REVIEWER_HANDLED it will be reported differently
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonByReviewers)
+        assert helper.addon == addon
+        assert helper.version is None
+
+        cinder_report.abuse_report.update(addon_version=addon.current_version.version)
+        helper = cinder_report.get_entity_helper()
+        # if we got a version too we pass it on to the helper
+        assert isinstance(helper, CinderAddon)
+        assert isinstance(helper, CinderAddonByReviewers)
+        assert helper.addon == addon
+        assert helper.version == addon.current_version
 
         cinder_report.abuse_report.update(location=AbuseReport.LOCATION.AMO)
         helper = cinder_report.get_entity_helper()
         # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonByReviewers)
+        assert helper.addon == addon
+        assert helper.version == addon.current_version
 
-        cinder_report.abuse_report.update(guid=None, user=user)
+        cinder_report.abuse_report.update(guid=None, user=user, addon_version=None)
         helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderUser)
         assert helper.user == user

@@ -427,10 +427,18 @@ class CinderReport(ModelBase):
     def get_entity_helper(self):
         target = self.abuse_report.target
         if target:
-            if isinstance(target, Addon) and self.abuse_report.is_handled_by_reviewers:
-                return CinderAddonByReviewers(target)
-            elif isinstance(target, Addon):
-                return CinderAddon(target)
+            if isinstance(target, Addon):
+                version = (
+                    self.abuse_report.addon_version
+                    and target.versions(manager='unfiltered_for_relations')
+                    .filter(version=self.abuse_report.addon_version)
+                    .no_transforms()
+                    .first()
+                )
+                if self.abuse_report.is_handled_by_reviewers:
+                    return CinderAddonByReviewers(target, version)
+                else:
+                    return CinderAddon(target, version)
             elif isinstance(target, UserProfile):
                 return CinderUser(target)
             elif isinstance(target, Rating):

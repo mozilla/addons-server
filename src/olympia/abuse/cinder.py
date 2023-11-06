@@ -151,8 +151,9 @@ class CinderUnauthenticatedReporter(CinderEntity):
 class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
-    def __init__(self, addon):
+    def __init__(self, addon, version=None):
         self.addon = addon
+        self.version = version
 
     @property
     def id(self):
@@ -217,7 +218,14 @@ class CinderAddonByReviewers(CinderAddon):
             if appeal
             else NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
         )
-        self.addon.set_needs_human_review_on_latest_versions(reason=reason)
+        if self.version:
+            NeedsHumanReview.objects.get_or_create(
+                version=self.version, reason=reason, is_active=True
+            )
+        else:
+            self.addon.set_needs_human_review_on_latest_versions(
+                reason=reason, ignore_reviewed=False, unique_reason=True
+            )
 
     def report(self, *args, **kwargs):
         self.flag_for_human_review(appeal=False)
