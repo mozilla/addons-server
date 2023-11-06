@@ -17,12 +17,14 @@ from .cinder import (
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
+)
 from .utils import (
     CinderActionApprove,
     CinderActionBanUser,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
+)
 
 
 class AbuseReportQuerySet(BaseQuerySet):

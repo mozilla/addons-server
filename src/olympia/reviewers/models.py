@@ -794,6 +794,14 @@ class NeedsHumanReview(ModelBase):
                 REASON_CINDER_ESCALATION,
                 'Escalated for an abuse report, via cinder',
             ),
+            (
+                REASON_ABUSE_ADDON_VIOLATION,
+                'Reported for abuse within the add-on',
+            ),
+            (
+                REASON_ABUSE_ADDON_VIOLATION,
+                'Appeal about a decision on abuse reported within the add-on',
+            ),
         ),
         editable=False,
     )

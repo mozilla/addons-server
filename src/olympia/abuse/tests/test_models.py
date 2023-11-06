@@ -249,7 +249,7 @@ class TestAbuse(TestCase):
         user = user_factory()
         report.update(guid=None, user=user)
         assert report.target == user
-        
+
         rating = Rating.objects.create(user=user, addon=addon, rating=5)
         report.update(user=None, rating=rating)
         assert report.target == rating
