@@ -52,9 +52,18 @@ class CinderActionEscalateAddon(CinderAction):
 
         addon = Addon.unfiltered.filter(guid=self.abuse_report.guid).first()
         if addon:
-            addon.set_needs_human_review_on_latest_versions(
-                reason=NeedsHumanReview.REASON_CINDER_ESCALTION
+            reason = NeedsHumanReview.REASON_CINDER_ESCALATION
+            version_obj = (
+                self.abuse_report.addon_version
+                and addon.versions(manager='unfiltered_for_relations')
+                .filter(version=self.abuse_report.addon_version)
+                .no_transforms()
+                .first()
             )
+            if version_obj:
+                NeedsHumanReview.objects.create(version=version_obj, reason=reason)
+            else:
+                addon.set_needs_human_review_on_latest_versions(reason=reason)
 
 
 class CinderActionApprove(CinderAction):

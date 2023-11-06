@@ -755,7 +755,7 @@ class NeedsHumanReview(ModelBase):
     REASON_MANUALLY_SET_BY_REVIEWER = 7
     REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
     REASON_ABUSE_REPORTS_THRESHOLD = 9
-    REASON_CINDER_ESCALTION = 10
+    REASON_CINDER_ESCALATION = 10
 
     reason = models.SmallIntegerField(
         default=0,
@@ -787,6 +787,10 @@ class NeedsHumanReview(ModelBase):
             (
                 REASON_ABUSE_REPORTS_THRESHOLD,
                 'Over abuse reports threshold for usage tier',
+            ),
+            (
+                REASON_CINDER_ESCALATION,
+                'Escalated for an abuse report, via cinder',
             ),
         ),
         editable=False,

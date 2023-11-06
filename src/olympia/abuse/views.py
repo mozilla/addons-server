@@ -159,6 +159,7 @@ def process_datestamp(date_string):
     try:
         return datetime.fromisoformat(date_string.replace(' ', ''))
     except ValueError:
+        log.warn('Invalid timestamp from cinder webhook %s', date_string)
         return datetime.now()
 
 
