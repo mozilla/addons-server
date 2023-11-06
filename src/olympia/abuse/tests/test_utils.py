@@ -50,11 +50,11 @@ class TestCinderAction(TestCase):
         action.process()
         assert addon.reload().status == amo.STATUS_APPROVED
         assert (
-            listed_version.reload()needshumanreview_set.get().reason
+            listed_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
         assert (
-            unlisted_version.reload()needshumanreview_set.get().reason
+            unlisted_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
 
