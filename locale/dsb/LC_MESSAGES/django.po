@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-28 21:22+0000\n"
+"PO-Revision-Date: 2023-11-06 21:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3889,7 +3889,7 @@ msgstr "Dopołne boki - abo jano źele z nich - ako jadnučku HTML-dataju skład
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr "Pśewiniśo njezmysł typiskich wužywańskich dojadnanjow. Toś to Inteligentne rozšyrjenje wam pomaga, malsnje rozměś, do cogož zwolijośo."
+msgstr "Pśewiniśo njezmysł typiskich wužywańskich dojadnanjow. Toś to Inteligentne rozšyrjenje wam pomaga, malsnje rozměś, do cogož zwólijośo."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
