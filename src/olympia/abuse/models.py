@@ -8,14 +8,21 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
 from .cinder import (
     CinderAddon,
     CinderAddonByReviewers,
+    CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
-)
+from .utils import (
+    CinderActionApprove,
+    CinderActionBanUser,
+    CinderActionDisableAddon,
+    CinderActionEscalateAddon,
+    CinderActionNotImplemented,
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -112,11 +119,13 @@ class AbuseReport(ModelBase):
         ),
         ('OTHER', 127, 'Other'),
     )
-    REPORTABLE_REASONS = (
-        REASONS.HATEFUL_VIOLENT_DECEPTIVE,
-        REASONS.ILLEGAL,
-        REASONS.POLICY_VIOLATION,
-        REASONS.OTHER,
+    REASONS.add_subset(
+        'CONTENT_REASONS', ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'OTHER')
+    )
+    # Those reasons will be reported to Cinder.
+    REASONS.add_subset(
+        'REPORTABLE_REASONS',
+        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'OTHER'),
     )
     # Abuse in these locations are handled by reviewers
     REASONS.add_subset('REVIEWER_HANDLED', ('POLICY_VIOLATION',))
@@ -213,12 +222,16 @@ class AbuseReport(ModelBase):
     reporter_email = models.CharField(max_length=255, default=None, null=True)
     reporter_name = models.CharField(max_length=255, default=None, null=True)
     country_code = models.CharField(max_length=2, default=None, null=True)
-    # An abuse report can be for an addon or a user.
-    # If user is set then guid should be null.
-    # If user is null then guid should be set.
+    # An abuse report can be for an addon, a user or a rating.
+    # - If user is set then guid and rating should be null.
+    # - If guid is set then user and rating should be null.
+    # - If rating is set then user and guid should be null.
     guid = models.CharField(max_length=255, null=True)
     user = models.ForeignKey(
         UserProfile, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
+    )
+    rating = models.ForeignKey(
+        Rating, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
     )
     message = models.TextField(blank=True)
 
@@ -304,16 +317,23 @@ class AbuseReport(ModelBase):
         ]
         constraints = [
             models.CheckConstraint(
-                name='just_one_of_guid_and_user_must_be_set',
+                name='just_one_of_guid_user_rating_must_be_set',
                 check=(
                     models.Q(
                         ~models.Q(guid=''),
                         guid__isnull=False,
                         user__isnull=True,
+                        rating__isnull=True,
                     )
                     | models.Q(
                         guid__isnull=True,
                         user__isnull=False,
+                        rating__isnull=True,
+                    )
+                    | models.Q(
+                        guid__isnull=True,
+                        user__isnull=True,
+                        rating__isnull=False,
                     )
                 ),
             ),
@@ -329,12 +349,16 @@ class AbuseReport(ModelBase):
     def type(self):
         if self.guid:
             type_ = 'Addon'
-        else:
+        elif self.user_id:
             type_ = 'User'
+        elif self.rating_id:
+            type_ = 'Rating'
+        else:
+            type_ = 'Unknown'
         return type_
 
     def __str__(self):
-        name = self.guid if self.guid else self.user
+        name = self.guid or self.user_id or self.rating_id
         return f'Abuse Report for {self.type} {name}'
 
     @property
@@ -345,8 +369,10 @@ class AbuseReport(ModelBase):
 
         if self.guid:
             return Addon.unfiltered.filter(guid=self.guid).first()
-        elif self.user:
+        elif self.user_id:
             return self.user
+        elif self.rating_id:
+            return self.rating
         return None
 
     @property
@@ -369,7 +395,7 @@ class CinderReport(ModelBase):
         ('AMO_BAN_USER', 1, 'User ban'),
         ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
         ('AMO_ESCALATE_ADDON', 3, 'Escalate add-on to reviewers'),
-        ('AMO_ESCALATE_USER', 4, 'Escalate user to reviewers'),
+        # 4 is unused
         ('AMO_DELETE_RATING', 5, 'Rating delete'),
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
@@ -396,7 +422,7 @@ class CinderReport(ModelBase):
             >= datetime.now() - timedelta(days=self.APPEAL_EXPIRATION_DAYS)
         )
 
-    def get_helper(self):
+    def get_entity_helper(self):
         target = self.abuse_report.target
         if target:
             if isinstance(target, Addon) and self.abuse_report.is_handled_by_reviewers:
@@ -405,8 +431,18 @@ class CinderReport(ModelBase):
                 return CinderAddon(target)
             elif isinstance(target, UserProfile):
                 return CinderUser(target)
-        # TODO: More helpers here
+            elif isinstance(target, Rating):
+                return CinderRating(target)
         return None
+
+    def get_action_helper(self):
+        CinderActionClass = {
+            self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+            self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApprove,
+        }.get(self.decision_action, CinderActionNotImplemented)
+        return CinderActionClass(self)
 
     def get_cinder_reporter(self):
         abuse = self.abuse_report
@@ -423,10 +459,18 @@ class CinderReport(ModelBase):
         abuse = self.abuse_report
         reporter = self.get_cinder_reporter()
         reason = AbuseReport.REASONS.for_value(abuse.reason)
-        job_id = self.get_helper().report(
+        job_id = self.get_entity_helper().report(
             report_text=abuse.message, category=reason.api_value, reporter=reporter
         )
         self.update(job_id=job_id)
+
+    def process_decision(self, *, decision_id, decision_date, decision_actions):
+        self.update(
+            decision_id=decision_id,
+            decision_date=decision_date,
+            **({'decision_action': decision_actions[0]} if decision_actions else {}),
+        )
+        self.get_action_helper().process()
 
     def appeal(self, appeal_text, user):
         if not self.can_be_appealed():
@@ -435,7 +479,7 @@ class CinderReport(ModelBase):
             appealer = CinderUser(user)
         else:
             appealer = self.get_cinder_reporter()
-        appeal_id = self.get_helper().appeal(
+        appeal_id = self.get_entity_helper().appeal(
             decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
         )
         self.update(appeal_id=appeal_id)

@@ -543,7 +543,7 @@ class TestUploadURLs(TestCase):
         self.upload('devhub.standalone_upload')
         self.expect_validation(channel=amo.CHANNEL_LISTED)
 
-        self.upload('devhub.standalone_upload_unlisted'),
+        self.upload('devhub.standalone_upload_unlisted')
         self.expect_validation(channel=amo.CHANNEL_UNLISTED)
 
     def test_upload_submit(self):
@@ -552,7 +552,7 @@ class TestUploadURLs(TestCase):
         self.upload('devhub.upload')
         self.expect_validation(channel=amo.CHANNEL_LISTED)
 
-        self.upload('devhub.upload_unlisted'),
+        self.upload('devhub.upload_unlisted')
         self.expect_validation(channel=amo.CHANNEL_UNLISTED)
 
     def test_upload_addon_version(self):

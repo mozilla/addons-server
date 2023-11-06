@@ -1,14 +1,19 @@
+import hashlib
+import hmac
 import json
-from datetime import datetime
+import os
+from datetime import datetime, timezone
 from unittest import mock
 
+from django.test.utils import override_settings
 from django.urls import reverse
+from django.utils.encoding import force_bytes
 
 from pyquery import PyQuery as pq
+from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderReport
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -17,6 +22,13 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
 )
+from olympia.ratings.models import Rating
+
+from ..models import AbuseReport, CinderReport
+from ..views import CinderInboundPermission, cinder_webhook
+
+
+TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class AddonAbuseViewSetTestBase:
@@ -45,7 +57,7 @@ class AddonAbuseViewSetTestBase:
         # It was a public add-on, so we found its guid.
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
 
     def test_report_addon_by_slug(self):
@@ -61,7 +73,7 @@ class AddonAbuseViewSetTestBase:
         # It was a public add-on, so we found its guid.
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
 
     def test_report_addon_by_guid(self):
         addon = addon_factory(guid='@badman')
@@ -75,7 +87,7 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
 
     def test_report_addon_by_id_not_public(self):
@@ -112,7 +124,7 @@ class AddonAbuseViewSetTestBase:
         # simply inexistant (see test below) since we're not linking them
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
 
     def test_report_addon_guid_not_on_amo(self):
@@ -159,13 +171,32 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
 
     def test_no_addon_fails(self):
         response = self.client.post(self.url, data={'message': 'abuse!'})
         assert response.status_code == 400
         assert json.loads(response.content) == {'addon': ['This field is required.']}
+
+    def test_reason_all_reasons_available(self):
+        addon = addon_factory()
+        reason = AbuseReport.REASONS.DOES_NOT_WORK
+
+        # Reason is not in the CONTENT_REASONS subset, but should still be
+        # accepted.
+        assert reason not in AbuseReport.REASONS.CONTENT_REASONS
+        response = self.client.post(
+            self.url,
+            data={
+                'addon': str(addon.guid),
+                'message': 'foo',
+                'reason': reason.constant.lower(),
+            },
+        )
+        assert response.status_code == 201
+        report = AbuseReport.objects.get(guid=addon.guid)
+        assert report.reason == reason.value
 
     def test_message_required_empty(self):
         addon = addon_factory()
@@ -195,7 +226,7 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == ''
 
     def test_message_can_be_blank_if_reason_is_provided(self):
@@ -210,7 +241,7 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == ''
 
     def test_message_length_limited(self):
@@ -427,7 +458,7 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.addon_install_method == (AbuseReport.ADDON_INSTALL_METHODS.OTHER)
         assert report.addon_install_source == (AbuseReport.ADDON_INSTALL_SOURCES.OTHER)
 
@@ -444,7 +475,7 @@ class AddonAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(guid=addon.guid).exists()
         report = AbuseReport.objects.get(guid=addon.guid)
-        self.check_report(report, 'Abuse Report for Addon %s' % addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.country_code == 'YY'
 
     def test_abuse_report_with_invalid_data(self):
@@ -471,19 +502,19 @@ class AddonAbuseViewSetTestBase:
         )
         assert response.status_code == 201, response.content
 
-    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=True)
     def test_reportable_reason_calls_cinder_task(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_called()
 
-    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=False)
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
 
-    @mock.patch('olympia.abuse.serializers.report_to_cinder.delay')
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
     @override_switch('enable-cinder-reporting', active=True)
     def test_not_reportable_reason_does_not_call_cinder_task(self, task_mock):
         self._setup_reportable_reason('feedback_spam')
@@ -553,7 +584,7 @@ class UserAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report, 'Abuse Report for User %s' % user)
+        self.check_report(report, f'Abuse Report for User {user.pk}')
 
     def test_report_user_username(self):
         user = user_factory()
@@ -566,7 +597,7 @@ class UserAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report, 'Abuse Report for User %s' % user)
+        self.check_report(report, f'Abuse Report for User {user.pk}')
 
     def test_no_user_fails(self):
         response = self.client.post(self.url, data={'message': 'abuse!'})
@@ -588,6 +619,34 @@ class UserAbuseViewSetTestBase:
         response = self.client.post(self.url, data={'user': str(user.username)})
         assert response.status_code == 400
         assert json.loads(response.content) == {'message': ['This field is required.']}
+
+    def test_message_not_required_with_content_reason(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url, data={'user': str(user.username), 'reason': 'illegal'}
+        )
+        assert response.status_code == 201
+
+    def test_non_content_reason_not_accepted(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.username),
+                'reason': 'policy_violation',
+                'message': 'some message',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'reason': ['"policy_violation" is not a valid choice.']
+        }
+
+        response = self.client.post(
+            self.url,
+            data={'user': str(user.username), 'reason': 'illegal', 'message': 'Fine!'},
+        )
+        assert response.status_code == 201
 
     def test_throttle(self):
         user = user_factory()
@@ -620,8 +679,41 @@ class UserAbuseViewSetTestBase:
 
         assert AbuseReport.objects.filter(user_id=user.id).exists()
         report = AbuseReport.objects.get(user_id=user.id)
-        self.check_report(report, 'Abuse Report for User %s' % user)
+        self.check_report(report, f'Abuse Report for User {user.pk}')
         assert report.country_code == 'YY'
+
+    def _setup_reportable_reason(self, reason, message=None):
+        user = user_factory(display_name='baduser')
+        data = {'user': user.pk}
+        if message is not None:
+            data['message'] = message
+        if reason is not None:
+            data['reason'] = reason
+        response = self.client.post(
+            self.url,
+            data=data,
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_not_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_no_reason_does_not_call_cinder_task(self, task_mock):
+        self._setup_reportable_reason(None, 'Some message since no reason is provided')
+        task_mock.assert_not_called()
 
 
 class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
@@ -657,6 +749,326 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
         response = self.client.post(
             self.url,
             data={'user': str(target_user.username), 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 429
+
+
+@override_settings(CINDER_WEBHOOK_TOKEN='webhook-token')
+class TestCinderWebhook(TestCase):
+    def get_data(self):
+        webhook_file = os.path.join(TESTS_DIR, 'assets', 'cinder_webhook.json')
+        with open(webhook_file) as file_object:
+            return json.loads(file_object.read())
+
+    def get_request(self, **kwargs):
+        data = kwargs.get('data', self.get_data())
+        digest = hmac.new(
+            b'webhook-token',
+            msg=force_bytes(json.dumps(data, separators=(',', ':'))),
+            digestmod=hashlib.sha256,
+        ).hexdigest()
+        req = APIRequestFactory().post(
+            reverse_ns('cinder-webhook'),
+            data,
+            format='json',
+            headers={'X_CINDER_SIGNATURE': digest},
+        )
+        return req
+
+    def test_cinder_inbound_permission(self):
+        permission = CinderInboundPermission()
+        data = {'a': 'b'}
+        digest = hmac.new(
+            b'webhook-token', msg=b'{"a":"b"}', digestmod=hashlib.sha256
+        ).hexdigest()
+
+        assert not permission.has_permission(
+            APIRequestFactory().post('/', data, format='json'), None
+        )
+
+        assert permission.has_permission(
+            APIRequestFactory().post(
+                '/',
+                data,
+                format='json',
+                headers={'X_CINDER_SIGNATURE': digest},
+            ),
+            None,
+        )
+
+        assert not permission.has_permission(
+            APIRequestFactory().post(
+                '/',
+                {**data, 'a': 'c'},
+                format='json',
+                headers={'X_CINDER_SIGNATURE': digest},
+            ),
+            None,
+        )
+
+    def _setup_report(self):
+        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
+        abuse_report = AbuseReport.objects.create(
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid='1234'
+        )
+        CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
+
+    def test_process_decision_called(self):
+        self._setup_report()
+        req = self.get_request()
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_called()
+            process_mock.assert_called_with(
+                decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                decision_date=datetime(
+                    2023, 10, 12, 9, 8, 37, 4789, tzinfo=timezone.utc
+                ),
+                decision_actions=['delete-status', 'freeze-account'],
+            )
+
+    def test_wrong_queue(self):
+        self._setup_report()
+        data = self.get_data()
+        data['payload']['source']['job']['queue']['slug'] = 'another-queue'
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
+
+    def test_not_decision_event(self):
+        self._setup_report()
+        data = self.get_data()
+        data['event'] = 'report.created'
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
+
+    def test_no_cinder_report(self):
+        req = self.get_request()
+        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+            cinder_webhook(req)
+            process_mock.assert_not_called()
+
+
+class RatingAbuseViewSetTestBase:
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.url = reverse_ns('abusereportrating-list')
+
+    def check_reporter(self, report):
+        raise NotImplementedError
+
+    def check_report(self, report, text):
+        assert str(report) == text
+        self.check_reporter(report)
+
+    def test_report_rating_id(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(rating_id=target_rating.pk).exists()
+        report = AbuseReport.objects.get(rating=target_rating)
+        self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
+
+    def test_no_rating_fails(self):
+        response = self.client.post(
+            self.url, data={'message': 'abuse!', 'reason': 'illegal'}
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'rating': ['This field is required.']}
+
+    def test_only_reasons_accepted_are_content_subset(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'foo',
+                'reason': 'does_not_work',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'reason': ['"does_not_work" is not a valid choice.']
+        }
+
+    def test_message_can_be_blank_if_reason_is_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': str(target_rating.pk), 'message': '', 'reason': 'illegal'},
+        )
+        assert response.status_code == 201
+
+    def test_message_can_be_missing_if_reason_is_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': str(target_rating.pk), 'reason': 'illegal'},
+        )
+        assert response.status_code == 201
+
+    def test_message_required_empty_no_reason_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': str(target_rating.pk), 'message': ''},
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'message': ['This field may not be blank.']
+        }
+
+    def test_message_required_missing_no_reason_provided(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(self.url, data={'rating': str(target_rating.pk)})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'message': ['This field is required.']}
+
+    def test_throttle(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={
+                    'rating': str(target_rating.pk),
+                    'message': 'abuse!',
+                    'reason': 'illegal',
+                },
+                REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            )
+            assert response.status_code == 201, x
+
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 429
+
+    def test_report_country_code(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_COUNTRY_CODE='YY',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(rating_id=target_rating.pk).exists()
+        report = AbuseReport.objects.get(rating=target_rating)
+        self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
+        assert report.country_code == 'YY'
+
+    def _setup_reportable_reason(self, reason):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={'rating': target_rating.pk, 'reason': reason, 'message': 'bad!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_not_called()
+
+
+class TestRatingAbuseViewSetLoggedOut(RatingAbuseViewSetTestBase, TestCase):
+    def check_reporter(self, report):
+        assert not report.reporter
+
+
+class TestRatingAbuseViewSetLoggedIn(RatingAbuseViewSetTestBase, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+
+    def check_reporter(self, report):
+        assert report.reporter == self.user
+
+    def test_throttle_ip_for_authenticated_users(self):
+        user = user_factory()
+        self.client.login_api(user)
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={
+                    'rating': str(target_rating.pk),
+                    'message': 'abuse!',
+                    'reason': 'illegal',
+                },
+                REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            )
+            assert response.status_code == 201, x
+
+        # Different user, same IP: should still be blocked (> 20 / day).
+        new_user = user_factory()
+        self.client.login_api(new_user)
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
             REMOTE_ADDR='123.45.67.89',
             HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
         )

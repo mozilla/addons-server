@@ -834,8 +834,9 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             follow=True,
         )
         assert response.status_code == 200
-        assert 'There must be exactly 3 modules in this shelf.' in (
-            response.context_data['errors']
+        assert (
+            'There must be exactly 3 modules in this shelf.'
+            in (response.context_data['errors'])
         )
         assert SecondaryHero.objects.count() == 0
 

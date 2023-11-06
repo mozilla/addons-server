@@ -64,7 +64,5 @@ def test_format_scanners_data_complex():
 <li><dl>
 <dt>extensionId:</dt><dd><a href="{expected_url}">@welp</a></dd>
 </dl></li>
-</ul>""".format(
-        expected_url=expected_url
-    )
+</ul>""".format(expected_url=expected_url)
     assert format_scanners_data(data) == expected

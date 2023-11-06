@@ -755,6 +755,7 @@ class NeedsHumanReview(ModelBase):
     REASON_MANUALLY_SET_BY_REVIEWER = 7
     REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
     REASON_ABUSE_REPORTS_THRESHOLD = 9
+    REASON_CINDER_ESCALATION = 10
     REASON_ABUSE_ADDON_VIOLATION = 11
     REASON_ABUSE_ADDON_VIOLATION_APPEAL = 12
 
@@ -788,6 +789,10 @@ class NeedsHumanReview(ModelBase):
             (
                 REASON_ABUSE_REPORTS_THRESHOLD,
                 'Over abuse reports threshold for usage tier',
+            ),
+            (
+                REASON_CINDER_ESCALATION,
+                'Escalated for an abuse report, via cinder',
             ),
         ),
         editable=False,

@@ -3,7 +3,7 @@ from django.conf import settings
 import requests
 
 
-class Cinder:
+class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
     queue = 'amo-content-infringement'
     type = None  # Needs to be defined by subclasses
@@ -91,7 +91,7 @@ class Cinder:
             raise ConnectionError(response.content)
 
 
-class CinderUser(Cinder):
+class CinderUser(CinderEntity):
     type = 'amo_user'
 
     def __init__(self, user):
@@ -110,16 +110,19 @@ class CinderUser(Cinder):
         }
 
     def get_context(self):
-        addons = [CinderAddon(addon) for addon in self.user.addons.all()]
+        cinder_addons = [CinderAddon(addon) for addon in self.user.addons.all()]
         return {
-            'entities': [addon.get_entity_data() for addon in addons],
+            'entities': [
+                cinder_addon.get_entity_data() for cinder_addon in cinder_addons
+            ],
             'relationships': [
-                self.get_relationship_data(addon, 'amo_author_of') for addon in addons
+                self.get_relationship_data(cinder_addon, 'amo_author_of')
+                for cinder_addon in cinder_addons
             ],
         }
 
 
-class CinderUnauthenticatedReporter(Cinder):
+class CinderUnauthenticatedReporter(CinderEntity):
     type = 'amo_unauthenticated_reporter'
 
     def __init__(self, name, email):
@@ -145,7 +148,7 @@ class CinderUnauthenticatedReporter(Cinder):
         raise NotImplementedError
 
 
-class CinderAddon(Cinder):
+class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
     def __init__(self, addon):
@@ -164,12 +167,40 @@ class CinderAddon(Cinder):
         }
 
     def get_context(self):
-        authors = [CinderUser(author) for author in self.addon.authors.all()]
+        cinder_users = [CinderUser(author) for author in self.addon.authors.all()]
         return {
-            'entities': [author.get_entity_data() for author in authors],
+            'entities': [cinder_user.get_entity_data() for cinder_user in cinder_users],
             'relationships': [
-                author.get_relationship_data(self, 'amo_author_of')
-                for author in authors
+                cinder_user.get_relationship_data(self, 'amo_author_of')
+                for cinder_user in cinder_users
+            ],
+        }
+
+
+class CinderRating(CinderEntity):
+    type = 'amo_rating'
+
+    def __init__(self, rating):
+        self.rating = rating
+
+    @property
+    def id(self):
+        return str(self.rating.id)
+
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'body': self.rating.body,
+        }
+
+    def get_context(self):
+        # Note: we are not currently sending the add-on the rating is for as
+        # part of the context.
+        cinder_user = CinderUser(self.rating.user)
+        return {
+            'entities': [cinder_user.get_entity_data()],
+            'relationships': [
+                cinder_user.get_relationship_data(self, 'amo_rating_author_of')
             ],
         }
 

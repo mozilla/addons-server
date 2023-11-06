@@ -294,8 +294,9 @@ class TestCheckAndUpdateFxaAccessToken(TestCase):
         self.get_fxa_token_mock.assert_called_with(
             refresh_token='refreshing!', config=settings.FXA_CONFIG['default']
         )
-        assert request.session['fxa_access_token_expiry'] == (
-            self.get_fxa_token_mock.return_value['access_token_expiry']
+        assert (
+            request.session['fxa_access_token_expiry']
+            == (self.get_fxa_token_mock.return_value['access_token_expiry'])
         )
 
     @freeze_time()

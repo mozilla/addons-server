@@ -141,7 +141,7 @@ class TestNewUploadForm(TestCase):
         assert (
             'There was an error with your upload. Please try again.'
             in form.errors.get('__all__')
-        ), (form.errors)
+        ), form.errors
 
         # Admin override makes the form ignore the brokenness
         with mock.patch('olympia.access.acl.action_allowed_for') as acl:
@@ -184,7 +184,7 @@ class TestNewUploadForm(TestCase):
         assert (
             'There was an error with your upload. Please try again.'
             in form.errors.get('__all__')
-        ), (form.errors)
+        ), form.errors
 
         # Admin override can bypass
         with mock.patch('olympia.access.acl.action_allowed_for') as acl:

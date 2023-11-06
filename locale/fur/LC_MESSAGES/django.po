@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-29 17:07+0000\n"
+"PO-Revision-Date: 2023-11-03 18:55+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -616,7 +616,7 @@ msgstr "Zontât {0} {1}."
 
 #. L10n: {0} is the user role
 msgid "{user} role changed to {0} for {addon}."
-msgstr "Rôl di {user} cambiât a {0} par {addon}."
+msgstr "Rûl di {user} cambiât a {0} par {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} cumò al è disponibil sot de licence {0}."
@@ -1668,225 +1668,227 @@ msgid "You must provide further details to proceed."
 msgstr "Tu scugnis indicâ altris detais par continuâ."
 
 msgid "Your old credentials were revoked and are no longer valid."
-msgstr ""
+msgstr "Lis tôs vecjis credenziâls a son stadis revocadis e no son plui validis."
 
 msgid "New API key created"
-msgstr ""
+msgstr "Gnove clâf API creade"
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Clâf API revocade"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Il gno component adizionâl nol jentre in nissune des categoriis"
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acuardi di distribuzion pai components adizionâi di Firefox"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
-msgstr ""
+msgstr "Components adizionâi par {0}"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Torne ae pagjine principâl dal Centri di svilup"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "Centri di svilup dai <small>components adizionâi</small>"
 
 msgid "more add-ons..."
-msgstr ""
+msgstr "Altris components adizionâi..."
 
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Laboratori estensions"
 
 msgid "Documentation"
-msgstr ""
+msgstr "Documentazion"
 
 msgid "Extension Development"
-msgstr ""
+msgstr "Svilup estensions"
 
 msgid "Themes"
-msgstr ""
+msgstr "Temis"
 
 msgid "Developer Policies"
-msgstr ""
+msgstr "Politichis pal svilupadôr"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "Strument di convalide components adizionâi"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "Svilup components adizionâi"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Comunitât e supuart"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "Blog dai components adizionâi"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "Forum dai components adizionâi"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Plui risorsis"
 
 msgid "Search Developer Docs"
-msgstr ""
+msgstr "Cîr te documentazion pai svilupadôrs"
 
 msgid "Search"
-msgstr ""
+msgstr "Cîr"
 
 msgid "Use the field below to upload your add-on package."
-msgstr ""
+msgstr "Dopre il cjamp chi sot par cjariâ in rêt il pachet dal to component adizionâl."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr ""
+msgstr "Terminât il cjariament in rêt, a vignarà eseguide une serie di provis automatichis sul file."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr ""
+msgstr "Desideristu che il to component adizionâl al vegni distribuît su chest sît?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Risultâts de convalide par {0}"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Risultâts di convalide"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "Convalidât ai:"
 
 msgid "Recent Activity for My Add-ons"
-msgstr ""
+msgstr "Ativitât resinte dai miei components adizionâi"
 
 #. first parameter is the name of an Addon
 msgid "Recent Activity for {0}"
-msgstr ""
+msgstr "Ativitât resinte par {0}"
 
 #, python-format
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
-msgstr ""
+msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> di %(user)s"
 
 msgid "No results found."
-msgstr ""
+msgstr "Nissun risultât cjatât."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Perfezione ativitât"
 
 msgid "Add-on"
-msgstr ""
+msgstr "Component adizionâl"
 
 msgid "Activity"
-msgstr ""
+msgstr "Ativitât"
 
 msgid "Subscribe to this feed"
-msgstr ""
+msgstr "Aboniti a chest feed"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> component adizionâl"
+msgstr[1] "<b>{0}</b> components adizionâi"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Ativitât resinte"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr ""
+msgstr "%(ago)s di %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Ativitât plui vecje pai miei components adizionâi"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> teme"
+msgstr[1] "<b>{0}</b> temis"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Modifiche pagjine dal prodot"
 
 msgid "None"
-msgstr ""
+msgstr "Nissun"
 
 msgid "Preview"
-msgstr ""
+msgstr "Anteprime"
 
 msgid "Preview of listed version"
-msgstr ""
+msgstr "Anteprime de version listade"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "La anteprime e je ancjemò in cors di gjenerazion - torne plui tart o torne cjame la pagjine."
 
 msgid "Author invitation for {addon_name}"
-msgstr ""
+msgstr "Invît a un rûl di autôr par {addon_name}"
 
 msgid "You have been invited to become an author of {addon_name}."
-msgstr ""
+msgstr "Al è stât ricevût un invît par deventâ un autôr di {addon_name}."
 
 msgid "Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website. "
-msgstr ""
+msgstr "Se tu acetis l’invît tu varâs i permès par modificâ il component adizionâl e mostrâ il to non te liste dai autôrs sul sît web. "
 
 msgid "Click on the Accept button below to confirm you want to be added as an author for {addon_name}."
-msgstr ""
+msgstr "Fâs clic sul boton Acete chi sot par confermâ che tu desideris jessi zontât tant che autôr par {addon_name}."
 
 msgid "Accept"
-msgstr ""
+msgstr "Acete"
 
 msgid "Decline"
-msgstr ""
+msgstr "Refude"
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "Gjestìs autôrs e licence"
 
 msgid "Authors"
-msgstr ""
+msgstr "Autôrs"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Informazions sui rûi dai autôrs"
 
 msgid "Authors pending confirmation"
-msgstr ""
+msgstr "Autôrs cun confermis in spiete"
 
 msgid "Authors that have been added to this add-on but haven't confirmed."
-msgstr ""
+msgstr "Autôrs che a son stâts zontâts a chest component adizionâl ma no àn ancjemò dât conferme."
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Salve modifichis"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>I components adizionâi a puedin vê ducj i autôrs che si vûl cun 2 pussibii rûi:</p><ul><li><b>Proprietari:</b> Al pues gjestî ducj i aspiets di visualizazion dal component adizionâl, includude la"
+" zonte e la rimozion di altris autôrs</li><li><b>Svilupadôr:</b> Al pues gjestî ducj i aspiets di visualizazion dal component adizionâl, gjavadis la zonte e la rimozion di altris autôrs</li></ul>"
 
 msgid "Close"
-msgstr ""
+msgstr "Siere"
 
 msgid "Additional Details"
-msgstr ""
+msgstr "Detais adizionâi"
 
 msgid "Edit"
-msgstr ""
+msgstr "Modifiche"
 
 msgid "Additional Details for {0}"
-msgstr ""
+msgstr "Detais adizionâi par {0}"
 
 msgid "Tags"
-msgstr ""
+msgstr "Etichetis"
 
 msgid "Tags help users find your add-on. You may have a maximum of {0} tags. Only choose tags that are relevant to your add-on."
-msgstr ""
+msgstr "Lis etichetis a judin i utents a cjatâ il to component adizionâl. Tu puedis vê un massim di {0} etichetis. Sielç dome chês pertinentis al to component adizionâl."
 
 msgid "Limit {0} tags."
-msgstr ""
+msgstr "Limit di {0} etichetis."
 
 msgid "Contributions URL"
-msgstr ""
+msgstr "URL pes ufiertis"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Se tu desideris domandâ ufiertis monetariis dai utents, configure in chest cjamp un URL là che i utents a puedin fâlis."
 
 msgid "Default Locale"
-msgstr ""
+msgstr "Lenghe predefinide"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""

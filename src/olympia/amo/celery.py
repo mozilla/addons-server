@@ -101,8 +101,7 @@ def process_failure_signal(
 def start_task_timer(task_id, task, **kw):
     timer = TaskTimer()
     log.info(
-        'starting task timer; id={id}; name={name}; '
-        'current_dt={current_dt}'.format(
+        'starting task timer; id={id}; name={name}; current_dt={current_dt}'.format(
             id=task_id, name=task.name, current_dt=timer.current_datetime
         )
     )

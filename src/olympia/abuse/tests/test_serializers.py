@@ -10,10 +10,12 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer,
+    RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.ratings.models import Rating
 
 
 class TestAddonAbuseReportSerializer(TestCase):
@@ -26,8 +28,8 @@ class TestAddonAbuseReportSerializer(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         view.get_guid.return_value = addon.guid
-        view.get_addon_object.return_value.slug = addon.slug
-        view.get_addon_object.return_value.pk = addon.pk
+        view.get_target_object.return_value.slug = addon.slug
+        view.get_target_object.return_value.pk = addon.pk
         context = {
             'request': request,
             'view': view,
@@ -124,7 +126,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         view.get_guid.return_value = '@someguid'
-        view.get_addon_object.return_value = None
+        view.get_target_object.return_value = None
         context = {
             'request': request,
             'view': view,
@@ -186,7 +188,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         view.get_guid.return_value = '@someguid'
-        view.get_addon_object.return_value = None
+        view.get_target_object.return_value = None
         context = {
             'request': request,
             'view': view,
@@ -221,7 +223,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         view.get_guid.return_value = '@someguid'
-        view.get_addon_object.return_value = None
+        view.get_target_object.return_value = None
         context = {
             'request': request,
             'view': view,
@@ -239,7 +241,7 @@ class TestAddonAbuseReportSerializer(TestCase):
         request.user = AnonymousUser()
         view = Mock()
         view.get_guid.return_value = '@someguid'
-        view.get_addon_object.return_value = None
+        view.get_target_object.return_value = None
         context = {
             'request': request,
             'view': view,
@@ -264,5 +266,40 @@ class TestUserAbuseReportSerializer(TestCase):
             'reporter_email': None,
             'reporter_name': None,
             'user': serialized_user,
+            'message': 'bad stuff',
+            'reason': None,
+        }
+
+
+class TestRatingAbuseReportSerializer(TestCase):
+    def serialize(self, report, context=None):
+        return dict(RatingAbuseReportSerializer(report, context=context or {}).data)
+
+    def test_user_report(self):
+        user = user_factory()
+        addon = addon_factory()
+        rating = Rating.objects.create(
+            body='evil rating', addon=addon, user=user, rating=1
+        )
+        report = AbuseReport(
+            rating=rating, message='bad stuff', reason=AbuseReport.REASONS.ILLEGAL
+        )
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_target_object.return_value = rating
+        context = {
+            'request': request,
+            'view': view,
+        }
+        serialized = self.serialize(report, context=context)
+        assert serialized == {
+            'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
+            'rating': {
+                'id': rating.pk,
+            },
+            'reason': 'illegal',
             'message': 'bad stuff',
         }

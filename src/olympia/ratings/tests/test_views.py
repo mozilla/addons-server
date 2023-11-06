@@ -35,9 +35,7 @@ from ..views import RatingViewSet
 
 
 locmem_cache = settings.CACHES.copy()
-locmem_cache['default'][
-    'BACKEND'
-] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
+locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
 
 
 class TestRatingViewSetGet(TestCase):

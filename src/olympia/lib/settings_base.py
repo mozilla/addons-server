@@ -109,7 +109,7 @@ DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 CORS_ALLOW_ALL_ORIGINS = True
 # Exclude the `accounts/session` endpoint, see:
 # https://github.com/mozilla/addons-server/issues/11100
-CORS_URLS_REGEX = fr'{DRF_API_REGEX}(?!accounts/session/)'
+CORS_URLS_REGEX = rf'{DRF_API_REGEX}(?!accounts/session/)'
 # https://github.com/mozilla/addons-server/issues/17364
 CORS_ALLOW_HEADERS = list(default_headers) + [
     'x-country-code',
@@ -1519,6 +1519,4 @@ CINDER_SERVER_URL = env(
     default='https://stage.cinder.nonprod.webservices.mozgcp.net/api/v1/',
 )
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
-CINDER_WEBHOOK_TOKEN = env(
-    'CINDER_WEBHOOK_TOKEN', default='bda7b666732109417960b14b4dcd581de3374df4'
-)
+CINDER_WEBHOOK_TOKEN = env('CINDER_WEBHOOK_TOKEN', default=None)

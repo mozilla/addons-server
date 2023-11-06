@@ -19,10 +19,14 @@ def to_locale(language):
     p = language.find('-')
     if p >= 0:
         # Get correct locale for sr-latn
-        if len(language[p + 1:]) > 2:
-            return (language[:p].lower() + '_' + language[p + 1].upper() +
-                    language[p + 2:].lower())
-        return language[:p].lower() + '_' + language[p + 1:].upper()
+        if len(language[p + 1 :]) > 2:
+            return (
+                language[:p].lower()
+                + '_'
+                + language[p + 1].upper()
+                + language[p + 2 :].lower()
+            )
+        return language[:p].lower() + '_' + language[p + 1 :].upper()
     else:
         return language.lower()
 
@@ -52,8 +56,10 @@ def extract_translations_for_given_locale(all_translations, locale):
 
 def main():
     if not os.path.isdir('locale'):
-        print('Sorry, please run from the root of the project, '
-              'eg. ./locale/generate_category_po_files.py')
+        print(
+            'Sorry, please run from the root of the project, '
+            'eg. ./locale/generate_category_po_files.py'
+        )
         return
 
     print('Loading translations JSON dump...')
@@ -71,14 +77,16 @@ def main():
             continue
 
         translations_for_this_locale = extract_translations_for_given_locale(
-            all_translations, locale)
+            all_translations, locale
+        )
 
         if not translations_for_this_locale:
             print('Skipping locale %s, it has no translations :(' % locale)
             continue
 
-        print('Writing %d translations to %s' % (
-            len(translations_for_this_locale), fname))
+        print(
+            'Writing %d translations to %s' % (len(translations_for_this_locale), fname)
+        )
         write_po(fname, translations_for_this_locale)
 
 

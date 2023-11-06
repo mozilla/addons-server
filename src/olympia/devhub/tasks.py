@@ -290,8 +290,9 @@ def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
         # TODO: actually fix this so we can get stats. It seems that
         # the file maybe gets moved but it needs more investigation.
         log.warning(
-            'Scaled upload stats were not tracked. File is '
-            'missing: {}'.format(upload.file_path)
+            'Scaled upload stats were not tracked. File is missing: {}'.format(
+                upload.file_path
+            )
         )
         return
 
