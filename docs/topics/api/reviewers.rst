@@ -50,34 +50,6 @@ sent when a new version is submitted on a particular add-on.
 .. http:post:: /api/v5/reviewers/addon/(int:addon_id)/unsubscribe_unlisted/
 
 
--------
-Disable
--------
-
-This endpoint allows you to disable the public listing for an add-on.
-
-    .. note::
-       Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
-
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/disable/
-
-------
-Enable
-------
-
-This endpoint allows you to re-enable the public listing for an add-on. If the
-add-on can't be public because it does not have public versions, it will
-instead be changed to awaiting review or incomplete depending on the status
-of its versions.
-
-    .. note::
-        Requires authentication and the current user to have ``Reviews:Admin``
-        permission.
-
-.. http:post:: /api/v5/reviewers/addon/(int:addon_id)/enable/
-
-
 -----
 Flags
 -----
