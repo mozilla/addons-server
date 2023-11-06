@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderReport
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
@@ -42,6 +44,7 @@ class TestCinderAction(TestCase):
         assert addon.reload().status == amo.STATUS_NULL
 
     def test_escalate_addon(self):
+        user_factory(id=settings.TASK_USER_ID)
         addon = addon_factory(file_kw={'is_signed': True})
         listed_version = addon.current_version
         unlisted_version = version_factory(
