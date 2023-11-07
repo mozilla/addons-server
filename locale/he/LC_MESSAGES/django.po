@@ -44,13 +44,13 @@ msgid "Decision {0}"
 msgstr "החלטה {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "תודה. הערעור שלך נרשם."
 
 msgid "OK"
 msgstr "אישור"
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "לא ניתן לערער על החלטה זו."
 
 msgid "No links are allowed."
 msgstr "קישורים אינם מותרים."
