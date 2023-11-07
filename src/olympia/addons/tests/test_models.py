@@ -792,7 +792,6 @@ class TestAddonModels(TestCase):
     def test_force_disable_skip_activity_log(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
-        version1 = version_factory(addon=addon)
         assert addon.status != amo.STATUS_DISABLED
         ActivityLog.objects.all().delete()
         addon.force_disable(skip_activity_log=True)
