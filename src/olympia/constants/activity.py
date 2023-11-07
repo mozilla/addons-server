@@ -815,7 +815,7 @@ class FORCE_DISABLE(_LOG):
     id = 167
     keep = True
     reviewer_review_action = True
-    format = '{addon} force-disabled'
+    format = _('{addon} force-disabled')
     reviewer_format = '{addon} force-disabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force disabled'
@@ -825,7 +825,7 @@ class FORCE_ENABLE(_LOG):
     id = 168
     keep = True
     reviewer_review_action = True
-    format = '{addon} force-enabled'
+    format = _('{addon} force-enabled')
     reviewer_format = '{addon} force-enabled by {user_responsible}.'
     admin_format = reviewer_format
     short = 'Force enabled'

@@ -818,7 +818,7 @@ class ReviewHelper:
             'method': self.handler.disable_addon,
             'label': 'Force disable',
             'details': (
-                "This will force disable this add-on, and all it's versions. "
+                'This will force disable this add-on, and all its versions. '
                 'The comments will be sent to the developer.'
             ),
             'minimal': False,
