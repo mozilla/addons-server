@@ -61,9 +61,13 @@ class CinderActionEscalateAddon(CinderAction):
                 .first()
             )
             if version_obj:
-                NeedsHumanReview.objects.create(version=version_obj, reason=reason)
+                NeedsHumanReview.objects.create(
+                    version=version_obj, reason=reason, is_active=True
+                )
             else:
-                addon.set_needs_human_review_on_latest_versions(reason=reason)
+                addon.set_needs_human_review_on_latest_versions(
+                    reason=reason, ignore_reviewed=False, unique_reason=True
+                )
 
 
 class CinderActionApprove(CinderAction):

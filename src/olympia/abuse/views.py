@@ -172,7 +172,7 @@ def cinder_webhook(request):
     ):
         source = payload.get('source', {})
         job = source.get('job', {})
-        if (queue_name := job.get('queue', {}).get('slug')) == CinderEntity.QUEUE:
+        if (queue_name := job.get('queue', {}).get('slug')) == CinderEntity.queue:
             log.info('Valid Payload from AMO queue: %s', payload)
             job_id = job.get('id', '')
             decision_id = source.get('decision', {}).get('id')

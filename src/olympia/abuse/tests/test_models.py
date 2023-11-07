@@ -9,7 +9,12 @@ import responses
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating
 
-from ..cinder import CinderAddon, CinderRating, CinderUser
+from ..cinder import (
+    CinderAddon,
+    CinderAddonHandledByReviewers,
+    CinderRating,
+    CinderUser,
+)
 from ..models import AbuseReport, CinderReport
 from ..utils import (
     CinderActionApprove,
@@ -254,6 +259,30 @@ class TestAbuse(TestCase):
         report.update(user=None, rating=rating)
         assert report.target == rating
 
+    def test_is_handled_by_reviewers(self):
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            location=AbuseReport.LOCATION.BOTH,
+        )
+        # location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
+        assert not abuse_report.is_handled_by_reviewers
+
+        abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
+        # now reason is in REVIEWER_HANDLED it will be reported differently
+        assert abuse_report.is_handled_by_reviewers
+
+        abuse_report.update(location=AbuseReport.LOCATION.AMO)
+        # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
+        assert not abuse_report.is_handled_by_reviewers
+
+        # test non-addons are False regardless
+        abuse_report.update(location=AbuseReport.LOCATION.ADDON)
+        assert abuse_report.is_handled_by_reviewers
+        abuse_report.update(user=user_factory(), guid=None)
+        assert not abuse_report.is_handled_by_reviewers
+
     def test_constraint(self):
         report = AbuseReport()
         constraints = report.get_constraints()
@@ -323,14 +352,43 @@ class TestCinderReport(TestCase):
         user = user_factory()
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
+                guid=addon.guid,
+                reason=AbuseReport.REASONS.ILLEGAL,
+                location=AbuseReport.LOCATION.BOTH,
             )
         )
         helper = cinder_report.get_entity_helper()
+        # location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
         assert isinstance(helper, CinderAddon)
+        assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
+        assert helper.version is None
 
-        cinder_report.abuse_report.update(guid=None, user=user)
+        cinder_report.abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
+        helper = cinder_report.get_entity_helper()
+        # now reason is in REVIEWER_HANDLED it will be reported differently
+        assert isinstance(helper, CinderAddon)
+        assert isinstance(helper, CinderAddonHandledByReviewers)
+        assert helper.addon == addon
+        assert helper.version is None
+
+        cinder_report.abuse_report.update(addon_version=addon.current_version.version)
+        helper = cinder_report.get_entity_helper()
+        # if we got a version too we pass it on to the helper
+        assert isinstance(helper, CinderAddon)
+        assert isinstance(helper, CinderAddonHandledByReviewers)
+        assert helper.addon == addon
+        assert helper.version == addon.current_version
+
+        cinder_report.abuse_report.update(location=AbuseReport.LOCATION.AMO)
+        helper = cinder_report.get_entity_helper()
+        # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
+        assert isinstance(helper, CinderAddon)
+        assert not isinstance(helper, CinderAddonHandledByReviewers)
+        assert helper.addon == addon
+        assert helper.version == addon.current_version
+
+        cinder_report.abuse_report.update(guid=None, user=user, addon_version=None)
         helper = cinder_report.get_entity_helper()
         assert isinstance(helper, CinderUser)
         assert helper.user == user

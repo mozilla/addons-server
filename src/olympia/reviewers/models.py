@@ -756,6 +756,8 @@ class NeedsHumanReview(ModelBase):
     REASON_AUTO_APPROVED_PAST_APPROVAL_DELAY = 8
     REASON_ABUSE_REPORTS_THRESHOLD = 9
     REASON_CINDER_ESCALATION = 10
+    REASON_ABUSE_ADDON_VIOLATION = 11
+    REASON_ABUSE_ADDON_VIOLATION_APPEAL = 12
 
     reason = models.SmallIntegerField(
         default=0,
@@ -791,6 +793,14 @@ class NeedsHumanReview(ModelBase):
             (
                 REASON_CINDER_ESCALATION,
                 'Escalated for an abuse report, via cinder',
+            ),
+            (
+                REASON_ABUSE_ADDON_VIOLATION,
+                'Reported for abuse within the add-on',
+            ),
+            (
+                REASON_ABUSE_ADDON_VIOLATION_APPEAL,
+                'Appeal about a decision on abuse reported within the add-on',
             ),
         ),
         editable=False,

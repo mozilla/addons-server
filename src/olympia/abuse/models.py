@@ -11,7 +11,13 @@ from olympia.api.utils import APIChoices, APIChoicesWithNone
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddon, CinderRating, CinderUnauthenticatedReporter, CinderUser
+from .cinder import (
+    CinderAddon,
+    CinderAddonHandledByReviewers,
+    CinderRating,
+    CinderUnauthenticatedReporter,
+    CinderUser,
+)
 from .utils import (
     CinderActionApprove,
     CinderActionBanUser,
@@ -123,6 +129,8 @@ class AbuseReport(ModelBase):
         'REPORTABLE_REASONS',
         ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'OTHER'),
     )
+    # Abuse in these locations are handled by reviewers
+    REASONS.add_subset('REVIEWER_HANDLED', ('POLICY_VIOLATION',))
 
     # https://searchfox.org
     # /mozilla-central/source/toolkit/components/telemetry/Events.yaml#122-131
@@ -201,6 +209,8 @@ class AbuseReport(ModelBase):
         ('ADDON', 2, 'Inside Add-on'),
         ('BOTH', 3, 'Both on AMO and inside Add-on'),
     )
+    # Abuse in these locations are handled by reviewers
+    LOCATION.add_subset('REVIEWER_HANDLED', ('ADDON', 'BOTH'))
 
     # NULL if the reporter was not authenticated.
     reporter = models.ForeignKey(
@@ -367,6 +377,15 @@ class AbuseReport(ModelBase):
             return self.rating
         return None
 
+    @property
+    def is_handled_by_reviewers(self):
+        return (
+            (target := self.target)
+            and isinstance(target, Addon)
+            and self.reason in AbuseReport.REASONS.REVIEWER_HANDLED
+            and self.location in AbuseReport.LOCATION.REVIEWER_HANDLED
+        )
+
 
 class CantBeAppealed(Exception):
     pass
@@ -409,7 +428,17 @@ class CinderReport(ModelBase):
         target = self.abuse_report.target
         if target:
             if isinstance(target, Addon):
-                return CinderAddon(target)
+                version = (
+                    self.abuse_report.addon_version
+                    and target.versions(manager='unfiltered_for_relations')
+                    .filter(version=self.abuse_report.addon_version)
+                    .no_transforms()
+                    .first()
+                )
+                if self.abuse_report.is_handled_by_reviewers:
+                    return CinderAddonHandledByReviewers(target, version)
+                else:
+                    return CinderAddon(target, version)
             elif isinstance(target, UserProfile):
                 return CinderUser(target)
             elif isinstance(target, Rating):

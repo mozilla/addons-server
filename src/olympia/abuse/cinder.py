@@ -4,7 +4,8 @@ import requests
 
 
 class CinderEntity:
-    QUEUE = 'amo-content-infringement'
+    # This queue is for reports that T&S / TaskUs look at
+    queue = 'amo-content-infringement'
     type = None  # Needs to be defined by subclasses
 
     @property
@@ -38,7 +39,7 @@ class CinderEntity:
                 reporter.get_relationship_data(self, 'amo_reporter_of')
             ]
         return {
-            'queue_slug': self.QUEUE,
+            'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': self.get_attributes(),
             'reasoning': report_text,
@@ -77,7 +78,7 @@ class CinderEntity:
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
         data = {
-            'queue_slug': self.QUEUE,
+            'queue_slug': self.queue,
             'appealer_entity_type': appealer.type,
             'appealer_entity': appealer.get_attributes(),
             'reasoning': appeal_text,
@@ -150,8 +151,9 @@ class CinderUnauthenticatedReporter(CinderEntity):
 class CinderAddon(CinderEntity):
     type = 'amo_addon'
 
-    def __init__(self, addon):
+    def __init__(self, addon, version=None):
         self.addon = addon
+        self.version = version
 
     @property
     def id(self):
@@ -202,3 +204,33 @@ class CinderRating(CinderEntity):
                 cinder_user.get_relationship_data(self, 'amo_rating_author_of')
             ],
         }
+
+
+class CinderAddonHandledByReviewers(CinderAddon):
+    # This queue is not monitored on cinder - reports are resolved via AMO instead
+    queue = 'amo-addon-infringement'
+
+    def flag_for_human_review(self, appeal=False):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        reason = (
+            NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
+            if appeal
+            else NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
+        )
+        if self.version:
+            NeedsHumanReview.objects.get_or_create(
+                version=self.version, reason=reason, is_active=True
+            )
+        else:
+            self.addon.set_needs_human_review_on_latest_versions(
+                reason=reason, ignore_reviewed=False, unique_reason=True
+            )
+
+    def report(self, *args, **kwargs):
+        self.flag_for_human_review(appeal=False)
+        return super().report(*args, **kwargs)
+
+    def appeal(self, *args, **kwargs):
+        self.flag_for_human_review(appeal=True)
+        return super().appeal(*args, **kwargs)

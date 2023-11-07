@@ -684,17 +684,33 @@ class Addon(OnChangeMixin, ModelBase):
     def disable_all_files(self):
         File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
 
-    def set_needs_human_review_on_latest_versions(self, *, reason, due_date=None):
+    def set_needs_human_review_on_latest_versions(
+        self, *, reason, due_date=None, ignore_reviewed=True, unique_reason=False
+    ):
         set_listed = self._set_needs_human_review_on_latest_signed_version(
-            channel=amo.CHANNEL_LISTED, due_date=due_date, reason=reason
+            channel=amo.CHANNEL_LISTED,
+            due_date=due_date,
+            reason=reason,
+            ignore_reviewed=ignore_reviewed,
+            unique_reason=unique_reason,
         )
         set_unlisted = self._set_needs_human_review_on_latest_signed_version(
-            channel=amo.CHANNEL_UNLISTED, due_date=due_date, reason=reason
+            channel=amo.CHANNEL_UNLISTED,
+            due_date=due_date,
+            reason=reason,
+            ignore_reviewed=ignore_reviewed,
+            unique_reason=unique_reason,
         )
         return set_listed or set_unlisted
 
     def _set_needs_human_review_on_latest_signed_version(
-        self, *, channel, reason, due_date=None
+        self,
+        *,
+        channel,
+        reason,
+        due_date=None,
+        ignore_reviewed=True,
+        unique_reason=False,
     ):
         from olympia.reviewers.models import NeedsHumanReview
 
@@ -706,8 +722,10 @@ class Addon(OnChangeMixin, ModelBase):
         )
         if (
             not version
-            or version.human_review_date
-            or version.needshumanreview_set.filter(is_active=True).exists()
+            or (ignore_reviewed and version.human_review_date)
+            or version.needshumanreview_set.filter(
+                is_active=True, **({'reason': reason} if unique_reason else {})
+            ).exists()
         ):
             return False
         had_due_date_already = bool(version.due_date)
