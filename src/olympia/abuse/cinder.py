@@ -206,7 +206,7 @@ class CinderRating(CinderEntity):
         }
 
 
-class CinderAddonByReviewers(CinderAddon):
+class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
     queue = 'amo-addon-infringement'
 

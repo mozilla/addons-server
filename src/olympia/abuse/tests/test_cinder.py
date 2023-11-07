@@ -9,7 +9,7 @@ from olympia.reviewers.models import NeedsHumanReview
 
 from ..cinder import (
     CinderAddon,
-    CinderAddonByReviewers,
+    CinderAddonHandledByReviewers,
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
@@ -272,8 +272,8 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         }
 
 
-class TestCinderAddonByReviewers(TestCinderAddon):
-    cinder_class = CinderAddonByReviewers
+class TestCinderAddonHandledByReviewers(TestCinderAddon):
+    cinder_class = CinderAddonHandledByReviewers
 
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)

@@ -13,7 +13,7 @@ from olympia.users.models import UserProfile
 
 from .cinder import (
     CinderAddon,
-    CinderAddonByReviewers,
+    CinderAddonHandledByReviewers,
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
@@ -436,7 +436,7 @@ class CinderReport(ModelBase):
                     .first()
                 )
                 if self.abuse_report.is_handled_by_reviewers:
-                    return CinderAddonByReviewers(target, version)
+                    return CinderAddonHandledByReviewers(target, version)
                 else:
                     return CinderAddon(target, version)
             elif isinstance(target, UserProfile):
