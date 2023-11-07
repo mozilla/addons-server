@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-07 19:53+0000\n"
+"PO-Revision-Date: 2023-11-07 21:38+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -23,13 +23,13 @@ msgid "Email address"
 msgstr "כתובת דוא״ל"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "סופקה כתובת דוא״ל לא תקינה."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "סיבה לערעור"
 
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "נא להסביר מדוע לדעתך החלטה זו התקבלה בטעות ו/או אינה תואמת את המדיניות או החוק."
 
 msgid "Please ensure this field has no more than {max_length} characters."
 msgstr "נא לוודא ששדה זה לא כולל יותר מ־{max_length} תווים."
@@ -38,10 +38,10 @@ msgid "Invalid value"
 msgstr ""
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "ערעור על החלטת הסוקר"
 
 msgid "Decision {0}"
-msgstr ""
+msgstr "החלטה {0}"
 
 msgid "Thank you. Your appeal has been recorded."
 msgstr ""
