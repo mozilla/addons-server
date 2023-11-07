@@ -636,10 +636,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         clean_slug(self, slug_field)
 
-    def force_disable(self):
+    def force_disable(self, skip_activity_log=False):
         from olympia.reviewers.models import NeedsHumanReview
 
-        activity.log_create(amo.LOG.FORCE_DISABLE, self)
+        if not skip_activity_log:
+            activity.log_create(amo.LOG.FORCE_DISABLE, self)
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_DISABLED
         )
@@ -653,8 +654,9 @@ class Addon(OnChangeMixin, ModelBase):
         # https://github.com/mozilla/addons-server/issues/13194
         self.disable_all_files()
 
-    def force_enable(self):
-        activity.log_create(amo.LOG.FORCE_ENABLE, self)
+    def force_enable(self, skip_activity_log=False):
+        if not skip_activity_log:
+            activity.log_create(amo.LOG.FORCE_ENABLE, self)
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_APPROVED
         )

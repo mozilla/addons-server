@@ -76,7 +76,7 @@ class TestReviewForm(TestCase):
 
         # If an admin reviewer we also show unreject_latest_version and clear
         # pending rejection/needs human review (though the versions form would
-        # be empty for the last 2 here).
+        # be empty for the last 2 here). And disable addon.
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
@@ -85,6 +85,7 @@ class TestReviewForm(TestCase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
 
@@ -108,7 +109,7 @@ class TestReviewForm(TestCase):
         ]
 
         # If an admin reviewer we also show unreject_multiple_versions,
-        # clear pending rejections/clear needs human review.
+        # clear pending rejections/clear needs human review, disable addon.
         self.grant_permission(self.request.user, 'Reviews:Admin')
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
@@ -121,6 +122,7 @@ class TestReviewForm(TestCase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
 
@@ -132,6 +134,19 @@ class TestReviewForm(TestCase):
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'comment',
+        ]
+
+        # Having admin permission gives you some extra actions
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
+        )
+        assert list(actions.keys()) == [
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
             'comment',
@@ -151,13 +166,31 @@ class TestReviewForm(TestCase):
             'comment',
         ]
 
+        # admins have extra permssions though
+        self.grant_permission(self.request.user, 'Reviews:Admin')
+        actions = self.set_statuses_and_get_actions(
+            addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
+        )
+        assert list(actions.keys()) == [
+            'reject_multiple_versions',
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'comment',
+        ]
+
         # The add-on is already disabled so we don't show reject_multiple_versions, but
-        # reply/comment are still present.
+        # reply/comment/disable_addon and clear actions are still present.
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_DISABLED
         )
         assert list(actions.keys()) == [
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
             'reply',
+            'enable_addon',
             'comment',
         ]
 

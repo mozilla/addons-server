@@ -2411,6 +2411,7 @@ class TestReview(ReviewBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         assert choices == expected_choices
@@ -3118,8 +3119,6 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert not doc('#force_disable_addon')
-        assert not doc('#force_enable_addon')
         assert not doc('#block_addon')
         assert not doc('#edit_addon_block')
         assert not doc('#clear_admin_code_review')
@@ -3139,18 +3138,11 @@ class TestReview(ReviewBase):
         assert not doc('#deny_resubmission')
         assert not doc('#allow_resubmission')
 
-    def test_extra_actions_admin_disable_enable(self):
+    def test_extra_actions_admin(self):
         self.login_as_admin()
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#force_disable_addon')
-        elem = doc('#force_disable_addon')[0]
-        assert 'hidden' not in elem.getparent().attrib.get('class', '')
-
-        assert doc('#force_enable_addon')
-        elem = doc('#force_enable_addon')[0]
-        assert 'hidden' in elem.getparent().attrib.get('class', '')
 
         # Not present because it hasn't been set yet
         assert not doc('#clear_auto_approval_delayed_until')
@@ -6043,12 +6035,6 @@ class TestAddonReviewerViewSet(TestCase):
         self.unsubscribe_url_unlisted = reverse_ns(
             'reviewers-addon-unsubscribe-unlisted', kwargs={'pk': self.addon.pk}
         )
-        self.enable_url = reverse_ns(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk}
-        )
-        self.disable_url = reverse_ns(
-            'reviewers-addon-disable', kwargs={'pk': self.addon.pk}
-        )
         self.flags_url = reverse_ns(
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk}
         )
@@ -6261,118 +6247,6 @@ class TestAddonReviewerViewSet(TestCase):
         assert not ReviewerSubscription.objects.filter(
             addon=self.addon, user=self.user
         ).exists()
-
-    def test_enable_not_logged_in(self):
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 401
-
-    def test_enable_no_rights(self):
-        self.client.login_api(self.user)
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 403
-
-        # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 403
-
-    def test_enable_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.enable_url = reverse_ns(
-            'reviewers-addon-enable', kwargs={'pk': self.addon.pk + 42}
-        )
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 404
-
-        self.enable_url = self.enable_url.replace(f'{self.addon.pk + 42}', 'NaN')
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 404
-
-    def test_enable(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.addon.update(status=amo.STATUS_DISABLED)
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 202
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_APPROVED
-        assert ActivityLog.objects.count() == 1
-        activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
-        assert activity_log.arguments[0] == self.addon
-
-    def test_enable_already_public(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 202
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_APPROVED
-        assert ActivityLog.objects.count() == 1
-        activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
-        assert activity_log.arguments[0] == self.addon
-
-    def test_enable_no_public_versions_should_fall_back_to_incomplete(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.addon.update(status=amo.STATUS_DISABLED)
-        self.addon.versions.all().delete()
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 202
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_NULL
-
-    def test_enable_version_is_awaiting_review_fall_back_to_nominated(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.addon.update(status=amo.STATUS_DISABLED)
-        response = self.client.post(self.enable_url)
-        assert response.status_code == 202
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_NOMINATED
-
-    def test_disable_not_logged_in(self):
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 401
-
-    def test_disable_no_rights(self):
-        self.client.login_api(self.user)
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 403
-
-        # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 403
-
-    def test_disable_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.disable_url = reverse_ns(
-            'reviewers-addon-disable', kwargs={'pk': self.addon.pk + 42}
-        )
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 404
-
-        self.disable_url = self.disable_url.replace(f'{self.addon.pk + 42}', 'NaN')
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 404
-
-    def test_disable(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
-        self.client.login_api(self.user)
-        self.addon.versions.all().delete()
-        response = self.client.post(self.disable_url)
-        assert response.status_code == 202
-        self.addon.reload()
-        assert self.addon.status == amo.STATUS_DISABLED
-        assert ActivityLog.objects.count() == 1
-        activity_log = ActivityLog.objects.latest('pk')
-        assert activity_log.action == amo.LOG.FORCE_DISABLE.id
-        assert activity_log.arguments[0] == self.addon
 
     def test_patch_flags_not_logged_in(self):
         response = self.client.patch(self.flags_url, {'auto_approval_disabled': True})

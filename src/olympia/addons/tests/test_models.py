@@ -789,6 +789,15 @@ class TestAddonModels(TestCase):
                 is_active=True
             ).exists()
 
+    def test_force_disable_skip_activity_log(self):
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        addon = Addon.unfiltered.get(pk=3615)
+        assert addon.status != amo.STATUS_DISABLED
+        ActivityLog.objects.all().delete()
+        addon.force_disable(skip_activity_log=True)
+        assert addon.status == amo.STATUS_DISABLED
+        assert not ActivityLog.objects.exists()
+
     def test_force_enable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
@@ -797,6 +806,15 @@ class TestAddonModels(TestCase):
         assert addon.status == amo.STATUS_APPROVED
         log = ActivityLog.objects.latest('pk')
         assert log.action == amo.LOG.FORCE_ENABLE.id
+
+    def test_force_enable_skip_activity_log(self):
+        core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
+        addon = Addon.unfiltered.get(pk=3615)
+        addon.update(status=amo.STATUS_DISABLED)
+        ActivityLog.objects.all().delete()
+        addon.force_enable(skip_activity_log=True)
+        assert addon.status == amo.STATUS_APPROVED
+        assert not ActivityLog.objects.exists()
 
     def test_icon_url(self):
         """

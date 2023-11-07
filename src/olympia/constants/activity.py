@@ -814,20 +814,20 @@ class VERSION_RESIGNED(_LOG):
 class FORCE_DISABLE(_LOG):
     id = 167
     keep = True
-    # We don't want to notify developers, this is not a regular rejection - the
-    # add-on is likely malicious.
-    hide_developer = True
     reviewer_review_action = True
-    format = '{addon} force-disabled by {user_responsible}.'
+    format = _('{addon} force-disabled')
+    reviewer_format = '{addon} force-disabled by {user_responsible}.'
+    admin_format = reviewer_format
     short = 'Force disabled'
 
 
 class FORCE_ENABLE(_LOG):
     id = 168
     keep = True
-    hide_developer = True
     reviewer_review_action = True
-    format = '{addon} force-enabled by {user_responsible}.'
+    format = _('{addon} force-enabled')
+    reviewer_format = '{addon} force-enabled by {user_responsible}.'
+    admin_format = reviewer_format
     short = 'Force enabled'
 
 

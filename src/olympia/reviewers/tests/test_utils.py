@@ -572,6 +572,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         assert (
@@ -631,7 +632,7 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # with admin permission you should be able to unreject too
+        # with admin permission you should be able to unreject and disable too
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
             'public',
@@ -644,6 +645,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         assert (
@@ -779,6 +781,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         assert (
@@ -804,6 +807,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         self.review_version = version_factory(addon=self.addon)
@@ -833,6 +837,21 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = [
+            'clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'reply',
+            'enable_addon',
+            'comment',
+        ]
+        actions = list(
+            self.get_review_actions(
+                addon_status=amo.STATUS_DISABLED, file_status=amo.STATUS_AWAITING_REVIEW
+            ).keys()
+        )
+        assert expected == actions
+
     def test_actions_rejected_version(self):
         self.grant_permission(self.user, 'Addons:Review')
         expected = ['set_needs_human_review_multiple_versions', 'reply', 'comment']
@@ -850,6 +869,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
+            'disable_addon',
             'comment',
         ]
         actions = list(self.get_helper().actions.keys())
@@ -3030,6 +3050,58 @@ class TestReviewHelper(TestReviewHelperBase):
         assert unselected.reviewerflags.pending_content_rejection is False
         assert unselected.reviewerflags.pending_rejection_by
         assert unselected.reviewerflags.pending_rejection is not None
+
+    def test_disable_addon(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.disable_addon()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.FORCE_DISABLE.id
+        assert activity_log.arguments[0] == self.addon
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.subject == ('%s has been disabled' % self.preamble)
+        assert 'disabled' in message.body
+
+    def test_enable_addon(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
+        self.helper.handler.enable_addon()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.FORCE_ENABLE.id
+        assert activity_log.arguments[0] == self.addon
+
+        assert len(mail.outbox) == 0
+
+    def test_enable_addon_no_public_versions_should_fall_back_to_incomplete(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_APPROVED)
+        self.addon.versions.all().delete()
+
+        self.helper.handler.enable_addon()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NULL
+        assert len(mail.outbox) == 0
+
+    def test_enable_addon_version_is_awaiting_review_fall_back_to_nominated(self):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(amo.STATUS_DISABLED, file_status=amo.STATUS_AWAITING_REVIEW)
+
+        self.helper.handler.enable_addon()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_NOMINATED
+        assert len(mail.outbox) == 0
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
