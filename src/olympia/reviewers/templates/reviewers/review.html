@@ -62,7 +62,7 @@
   </h3>
   <ul>
     {% for activity in important_changes_log %}
-      <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity }}</li>
+      <li {% if activity.log.reviewer_review_action %}class="reviewer-review-action"{% endif %}>{{ activity.created|datetime }}: {{ activity.to_string('reviewer') }}</li>
     {% endfor %}
   </ul>
 </div>
