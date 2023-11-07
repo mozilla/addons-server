@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -892,6 +892,12 @@ msgstr "{addon} {version} review requested."
 msgid "Version re-signed"
 msgstr "Version %s re-enabled."
 
+msgid "{addon} force-disabled"
+msgstr "{addon} force-disabled"
+
+msgid "{addon} force-enabled"
+msgstr "{addon} force-enabled"
+
 msgid "{addon} {version} un-rejected."
 msgstr "{addon} {version} un-rejected."
 
@@ -928,8 +934,8 @@ msgstr "Admin add-on-review cleared"
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} changed {addon} slug from {0} to {1}."
 
-msgid "Addon slug changed"
-msgstr "Addon slug changed"
+msgid "Add-on slug changed"
+msgstr "Add-on slug changed"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4586,16 +4592,16 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
-msgstr "Test new Android extensions"
+msgid "Extension starter pack"
+msgstr "Extension starter pack"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Privacy & Security extensions"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Extension starter pack"
+msgid "Productivity tools"
+msgstr "Productivity tools"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4773,6 +4779,14 @@ msgstr "Social media extensions"
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
 msgstr "See more social media staff picks"
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr "Top download managers"
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
+msgstr "See more download manager staff picks"
 
 msgid "Unreviewed"
 msgstr "Unreviewed"
@@ -5035,10 +5049,6 @@ msgstr "Return To AMO is currently disabled"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Invalid Return To AMO guid (not in base64url format?)"
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr "Invalid combination of %s\" and \"%s\" parameters."
 
 msgid "Maximum query length exceeded."
 msgstr "Maximum query length exceeded."

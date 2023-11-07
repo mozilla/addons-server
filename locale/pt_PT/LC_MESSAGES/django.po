@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2023-10-18 00:01+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -830,6 +830,12 @@ msgstr "{addon} {version} reassinado (anteriormente {0})."
 msgid "Version re-signed"
 msgstr "Versão reassinada"
 
+msgid "{addon} force-disabled"
+msgstr ""
+
+msgid "{addon} force-enabled"
+msgstr ""
+
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
@@ -866,7 +872,7 @@ msgstr ""
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-msgid "Addon slug changed"
+msgid "Add-on slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -4265,16 +4271,16 @@ msgid "See all extensions"
 msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
-msgstr ""
+msgid "Extension starter pack"
+msgstr "Pacote inicial de extensão"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Pacote inicial de extensão"
+msgid "Productivity tools"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4430,6 +4436,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4683,10 +4697,6 @@ msgstr "Voltar para AMO está atualmente desativado"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Guid de retorno para o AMO inválido (não está no formato de endereço base64?)"
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Comprimento máximo de consulta excedido."
