@@ -482,12 +482,19 @@ class TestVersion(AMOPaths, TestCase):
         version = Version.objects.get(pk=81551)
         version_preview = VersionPreview.objects.create(version=version)
         assert version.file
+        version_file = version.file
         version.delete()
 
         addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert Version.unfiltered.filter(addon=addon).exists()
         assert File.objects.filter(version=version).exists()
+        version_file.reload()
+        assert version_file.original_status == amo.STATUS_APPROVED
+        assert (
+            version_file.status_disabled_reason
+            == File.STATUS_DISABLED_REASONS.VERSION_DELETE
+        )
         delete_preview_files_mock.assert_called_with(
             sender=None, instance=version_preview
         )
@@ -547,13 +554,18 @@ class TestVersion(AMOPaths, TestCase):
         version.file.reload()
         assert version.file.status == amo.STATUS_DISABLED
         assert version.file.original_status == amo.STATUS_APPROVED
+        assert (
+            version.file.status_disabled_reason
+            == File.STATUS_DISABLED_REASONS.DEVELOPER
+        )
 
         version.is_user_disabled = False
         version.file.reload()
         assert version.file.status == amo.STATUS_APPROVED
         assert version.file.original_status == amo.STATUS_NULL
+        assert version.file.status_disabled_reason == File.STATUS_DISABLED_REASONS.NONE
 
-    def test_version_disable_after_mozila_disabled(self):
+    def test_version_disable_after_mozilla_disabled(self):
         # Check that a user disable doesn't override mozilla disable
         version = Version.objects.get(pk=81551)
         version.file.update(status=amo.STATUS_DISABLED)
@@ -562,11 +574,18 @@ class TestVersion(AMOPaths, TestCase):
         version.file.reload()
         assert version.file.status == amo.STATUS_DISABLED
         assert version.file.original_status == amo.STATUS_NULL
+        assert version.file.status_disabled_reason == File.STATUS_DISABLED_REASONS.NONE
 
-        version.is_user_disabled = False
-        version.file.reload()
-        assert version.file.status == amo.STATUS_DISABLED
-        assert version.file.original_status == amo.STATUS_NULL
+        version.file.update(original_status=amo.STATUS_APPROVED)
+        for reason in File.STATUS_DISABLED_REASONS.values:
+            if reason == File.STATUS_DISABLED_REASONS.DEVELOPER:
+                # DEVELOPER is the only reason we expect to succeed
+                continue
+            version.file.update(status_disabled_reason=reason)
+            version.is_user_disabled = False
+            version.file.reload()
+            assert version.file.status == amo.STATUS_DISABLED
+            assert version.file.original_status == amo.STATUS_APPROVED
 
     def _reset_version(self, version):
         version.file.status = amo.STATUS_APPROVED
@@ -1472,7 +1491,9 @@ class TestVersion(AMOPaths, TestCase):
         assert self.version.get_review_status_display() == 'Unreviewed'
         self.version.update(human_review_date=datetime.now())
         assert self.version.get_review_status_display() == 'Rejected'
-        self.version.file.update(original_status=amo.STATUS_APPROVED)
+        self.version.file.update(
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER
+        )
         assert self.version.get_review_status_display() == 'Disabled by Developer'
         self.version.update(deleted=True)
         assert self.version.get_review_status_display() == 'Deleted'

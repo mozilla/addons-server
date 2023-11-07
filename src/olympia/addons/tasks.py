@@ -422,7 +422,7 @@ def disable_addons(addon_ids, **kw):
     for addon in addons:
         activity.log_create(amo.LOG.FORCE_DISABLE, addon, user=get_task_user())
     addons.update(status=amo.STATUS_DISABLED, _current_version=None)
-    File.objects.filter(version__addon__in=addons).update(status=amo.STATUS_DISABLED)
+    Addon.disable_all_files(addons, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
     index_addons.delay(addon_ids)
 
 

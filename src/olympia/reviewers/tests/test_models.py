@@ -25,7 +25,7 @@ from olympia.constants.promoted import (
     STRATEGIC,
 )
 from olympia.constants.scanners import CUSTOMS, MAD
-from olympia.files.models import FileValidation, WebextPermission
+from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
@@ -485,14 +485,14 @@ class TestAutoApprovalSummary(TestCase):
             },
         )
 
-        # Version disabled by the developer, not Mozilla (original_status
-        # is set to something different than STATUS_NULL), does not count.
+        # Version disabled by the developer, not Mozilla
+        # (status_disabled_reason is DEVELOPER), does not count.
         version_factory(
             addon=self.addon,
             human_review_date=self.days_ago(15),
             file_kw={
                 'status': amo.STATUS_DISABLED,
-                'original_status': amo.STATUS_APPROVED,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
             },
         )
 

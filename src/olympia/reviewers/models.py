@@ -17,7 +17,7 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
-from olympia.files.models import FileValidation
+from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -313,14 +313,13 @@ class AutoApprovalSummary(ModelBase):
             # Average daily users: value divided by 10000 is added to the
             # weight, up to a maximum of 100.
             'average_daily_users': min(addon.average_daily_users // 10000, 100),
-            # Pas rejection history: each "recent" rejected version (disabled
-            # with an original status of null, so not disabled by a developer)
+            # Past rejection history: each "recent" rejected version
             # adds 10 to the weight, up to a maximum of 100.
             'past_rejection_history': min(
                 Version.objects.filter(
                     addon=addon,
                     human_review_date__gte=one_year_ago,
-                    file__original_status=amo.STATUS_NULL,
+                    file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
                     file__status=amo.STATUS_DISABLED,
                 ).count()
                 * 10,

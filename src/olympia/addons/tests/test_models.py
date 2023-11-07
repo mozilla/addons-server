@@ -753,6 +753,10 @@ class TestAddonModels(TestCase):
         assert files
         for file_ in files:
             assert file_.status == amo.STATUS_DISABLED
+            assert (
+                file_.status_disabled_reason
+                == File.STATUS_DISABLED_REASONS.ADDON_DELETE
+            )
         for version in versions:
             assert version.deleted
 
@@ -771,6 +775,13 @@ class TestAddonModels(TestCase):
         assert files
         for file_ in files:
             assert file_.status != amo.STATUS_DISABLED
+        already_disabled_version = version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
+            },
+        )
         assert version1.due_date
         assert version2.due_date
 
@@ -784,6 +795,16 @@ class TestAddonModels(TestCase):
         assert files
         for file_ in files:
             assert file_.status == amo.STATUS_DISABLED
+            if file_.version == already_disabled_version:
+                assert (
+                    file_.status_disabled_reason
+                    == File.STATUS_DISABLED_REASONS.DEVELOPER
+                )
+            else:
+                assert (
+                    file_.status_disabled_reason
+                    == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+                )
             assert not file_.version.due_date
             assert not file_.version.needshumanreview_set.filter(
                 is_active=True
@@ -1237,6 +1258,11 @@ class TestAddonModels(TestCase):
         file_ = version.file
         file_.reload()
         assert version.file.status == amo.STATUS_DISABLED
+        assert version.file.original_status == amo.STATUS_AWAITING_REVIEW
+        assert (
+            version.file.status_disabled_reason
+            == File.STATUS_DISABLED_REASONS.DEVELOPER
+        )
         assert addon.status == amo.STATUS_NULL
         assert addon.is_disabled
 
