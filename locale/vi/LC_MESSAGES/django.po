@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2023-10-06 06:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -829,6 +829,12 @@ msgstr "{addon} {version} đã được ký lại (trước đây là {0})."
 msgid "Version re-signed"
 msgstr "Phiên bản đã được ký lại"
 
+msgid "{addon} force-disabled"
+msgstr ""
+
+msgid "{addon} force-enabled"
+msgstr ""
+
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
@@ -865,8 +871,8 @@ msgstr ""
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} đã thay đổi slug của {addon} từ {0} sang {1}."
 
-msgid "Addon slug changed"
-msgstr "Đã thay đổi slug của tiện ích"
+msgid "Add-on slug changed"
+msgstr ""
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4241,16 +4247,16 @@ msgid "See all extensions"
 msgstr "Xem tất cả các tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
-msgstr "Thử nghiệm các tiện ích mở rộng Android mới"
+msgid "Extension starter pack"
+msgstr "Gói khởi đầu tiện ích mở rộng"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Tiện ích mở rộng Quyền riêng tư & bảo mật"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Gói khởi đầu tiện ích mở rộng"
+msgid "Productivity tools"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4400,6 +4406,14 @@ msgstr "Tiện ích mở rộng xã hội"
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
 msgstr "Xem thêm tiện ích xã hội được lựa chọn bởi biên tập viên"
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
+msgstr ""
 
 msgid "Unreviewed"
 msgstr "Chưa được xét duyệt"
@@ -4649,10 +4663,6 @@ msgstr "Quay lại AMO hiện đang bị vô hiệu hóa"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Guid Quay lại AMO không hợp lệ (không phải ở định dạng base64url?)"
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
-msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Độ dài truy vấn đã đạt giới hạn."

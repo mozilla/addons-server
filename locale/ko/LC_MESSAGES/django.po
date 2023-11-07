@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2023-07-07 09:40+0000\n"
 "Last-Translator: infinitesc <infinitesc@naver.com>\n"
 "Language-Team: none\n"
@@ -830,6 +830,12 @@ msgstr "{addon} {version}의 검토가 요청되었습니다."
 msgid "Version re-signed"
 msgstr "%s 버전이 다시 활성화되었습니다."
 
+msgid "{addon} force-disabled"
+msgstr ""
+
+msgid "{addon} force-enabled"
+msgstr ""
+
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
@@ -866,7 +872,7 @@ msgstr ""
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-msgid "Addon slug changed"
+msgid "Add-on slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -4210,7 +4216,7 @@ msgid "See all extensions"
 msgstr "모든 확장 기능 보기"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4218,7 +4224,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Productivity tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4371,6 +4377,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4624,10 +4638,6 @@ msgid "Return To AMO is currently disabled"
 msgstr ""
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."

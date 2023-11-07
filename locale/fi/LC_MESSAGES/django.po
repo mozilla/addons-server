@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2023-10-08 14:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -836,6 +836,12 @@ msgstr "{addon} {version} otettu uudelleen käyttöön."
 msgid "Version re-signed"
 msgstr "Versio %s otettu käyttöön uudelleen."
 
+msgid "{addon} force-disabled"
+msgstr ""
+
+msgid "{addon} force-enabled"
+msgstr ""
+
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
@@ -872,7 +878,7 @@ msgstr ""
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-msgid "Addon slug changed"
+msgid "Add-on slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -4249,16 +4255,16 @@ msgid "See all extensions"
 msgstr "Selaa kaikkia laajennuksia"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
-msgstr "Testaa uusia Android-laajennuksia"
+msgid "Extension starter pack"
+msgstr "Laajennusten aloituspaketti"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
 msgstr "Tietosuoja- ja turvallisuuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Laajennusten aloituspaketti"
+msgid "Productivity tools"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4420,6 +4426,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4674,10 +4688,6 @@ msgid "Return To AMO is currently disabled"
 msgstr ""
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-10-26 20:14+0000\n"
+"POT-Creation-Date: 2023-11-07 18:04+0000\n"
 "PO-Revision-Date: 2023-04-30 00:34+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -831,6 +831,12 @@ msgstr "{addon} {version} xk'utüx runik'oxik."
 msgid "Version re-signed"
 msgstr "Ruwäch %s xtzij chik."
 
+msgid "{addon} force-disabled"
+msgstr ""
+
+msgid "{addon} force-enabled"
+msgstr ""
+
 msgid "{addon} {version} un-rejected."
 msgstr ""
 
@@ -867,7 +873,7 @@ msgstr ""
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
-msgid "Addon slug changed"
+msgid "Add-on slug changed"
 msgstr ""
 
 msgid "Firefox"
@@ -4270,7 +4276,7 @@ msgid "See all extensions"
 msgstr "Ketz'et ronojel ri taq k'amal"
 
 #. editorial content for the secondary hero shelves.
-msgid "Test new Android extensions"
+msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4278,7 +4284,7 @@ msgid "Privacy & Security extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "Productivity tools"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4452,6 +4458,14 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Top download managers"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "See more download manager staff picks"
 msgstr ""
 
 msgid "Unreviewed"
@@ -4707,10 +4721,6 @@ msgid "Return To AMO is currently disabled"
 msgstr ""
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
-
-#, python-format
-msgid "Invalid combination of %s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
