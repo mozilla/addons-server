@@ -1465,18 +1465,19 @@ class ReviewBase:
 
     def enable_addon(self):
         """Force enable the add-on."""
-        self.addon.force_enable(self.user)
-        log.info('Force-enabling %s' % (self.addon))
+        self.version = None
+        self.addon.force_enable(skip_activity_log=True)
+        self.log_action(action=amo.LOG.FORCE_ENABLE)
 
     def disable_addon(self):
         """Force disable the add-on and all versions."""
-        self.addon.force_disable(self.user)
+        self.addon.force_disable(skip_activity_log=True)
+        self.log_action(action=amo.LOG.FORCE_DISABLE)
 
         template = 'force_disable_addon'
         subject = 'Mozilla Add-ons: %s %s has been disabled'
         self.notify_email(template, subject)
 
-        log.info('Force-disabling %s' % (self.addon))
         log.info('Sending email for %s' % (self.addon))
 
 
