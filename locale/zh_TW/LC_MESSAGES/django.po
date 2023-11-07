@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-10-26 20:14+0000\n"
-"PO-Revision-Date: 2023-10-27 04:41+0000\n"
+"PO-Revision-Date: 2023-11-07 02:11+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1089,7 +1089,7 @@ msgid "Fashion"
 msgstr "流行"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "下載各種風格形式的 Firefox 佈景主題 — 圖案、花卉、紋理、模型等等。"
 
 msgid "Film and TV"
 msgstr "電影電視"
@@ -1149,7 +1149,7 @@ msgid "Sports"
 msgstr "體育"
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "下載包含各種體育項目的 Firefox 佈景主題。此類別包含國旗、運動團隊、足球、冰球等等。"
 
 msgid "Websites"
 msgstr "網站"
@@ -3318,7 +3318,7 @@ msgstr "在整潔的側邊欄中管理開啟的分頁標籤。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "避免暗藏的追蹤器和限制。透過隱藏瀏覽器及作業系統的身分來偽裝您的訪問。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3328,7 +3328,7 @@ msgstr "根據設定的時間，自動重新載入分頁。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
-msgstr ""
+msgstr "將您的線上生活的各個部分分成顏色編碼和 cookie 分隔的分頁。現在與 Mozilla VPN 整合後提供更上一層的隱私保護。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3987,7 +3987,7 @@ msgstr "最簡單就能管理所有 YouTube 訂閱項目的方式。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Get the mouse scrollbar you've always wanted—specify width and color."
-msgstr ""
+msgstr "選擇您想要的滑鼠捲軸樣式 — 自訂寬度和顏色。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4004,11 +4004,11 @@ msgstr "顏文字大補包 — 讓您點一下即可快速輸入。"
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "隱藏您的電子郵件地址。Firefox Relay 可保護您的身分並隔絕垃圾郵件。"
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "隨著時間轉換的主題更換器。讓 Firefox 每天變換不同的顏色。"
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
@@ -4020,7 +4020,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
-msgstr ""
+msgstr "在 YouTube 上聽音樂而不被那些惱人的「影片已暫停。要繼續觀看嗎？」打斷。"
 
 #. editorial content for the primary hero shelves.
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
@@ -4032,11 +4032,11 @@ msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源�
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "更輕鬆就能儲存照片 — 直接從您目前所在的分頁一次下載下來。"
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "享受終極分頁控制功能 — 關閉重複的分頁、合併視窗、複製分頁標題等等。"
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
