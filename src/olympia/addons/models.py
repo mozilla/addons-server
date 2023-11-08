@@ -652,7 +652,7 @@ class Addon(OnChangeMixin, ModelBase):
         ).update(is_active=False)
         self.update_all_due_dates()
         # https://github.com/mozilla/addons-server/issues/13194
-        self.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
+        Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
     def force_enable(self, skip_activity_log=False):
         if not skip_activity_log:
@@ -861,7 +861,7 @@ class Addon(OnChangeMixin, ModelBase):
                 rating.delete(skip_activity_log=True)
             # We avoid triggering signals for Version & File on purpose to
             # avoid extra work.
-            self.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DELETE)
+            Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DELETE)
 
             self.versions.all().update(deleted=True)
             VersionReviewerFlags.objects.filter(version__addon=self).update(
