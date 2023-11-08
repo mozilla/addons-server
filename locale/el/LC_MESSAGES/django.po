@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-07 21:27+0000\n"
+"PO-Revision-Date: 2023-11-08 15:18+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -836,10 +836,10 @@ msgid "Version re-signed"
 msgstr "Έγινε εκ νέου υπογραφή της έκδοσης"
 
 msgid "{addon} force-disabled"
-msgstr ""
+msgstr "Έγινε εξαναγκαστική απενεργοποίηση του {addon}"
 
 msgid "{addon} force-enabled"
-msgstr ""
+msgstr "Έγινε εξαναγκαστική ενεργοποίηση του {addon}"
 
 msgid "{addon} {version} un-rejected."
 msgstr "Αναιρέθηκε η απόρριψη του {addon} {version}."
@@ -878,7 +878,7 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "Ο/Η {user_responsible} άλλαξε το slug του {addon} από «{0}» σε «{1}»."
 
 msgid "Add-on slug changed"
-msgstr ""
+msgstr "Το slug του προσθέτου άλλαξε"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4465,11 +4465,11 @@ msgstr "Περισσότερες επιλογές συντακτών για κο
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Κορυφαίες επεκτάσεις διαχείρισης λήψεων"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Περισσότερες επιλεγμένες επεκτάσεις διαχείρισης λήψεων"
 
 msgid "Unreviewed"
 msgstr "Δεν έχει ελεγχθεί"
