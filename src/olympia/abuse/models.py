@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 
-from django.core.exceptions import ValidationError
 from django.db import models
 
 from extended_choices import Choices
@@ -475,19 +474,11 @@ class CinderReport(ModelBase):
         )
         self.update(job_id=job_id)
 
-    def process_decision(self, *, decision_id, decision_date, decision_actions):
-        if (
-            not decision_actions
-            or len(decision_actions) > 1
-            or not self.DECISION_ACTIONS.has_api_value(decision_actions[0])
-        ):
-            raise ValidationError('decision_actions malformed')
+    def process_decision(self, *, decision_id, decision_date, decision_action):
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
-            decision_action=self.DECISION_ACTIONS.for_api_value(
-                decision_actions[0]
-            ).value,
+            decision_action=decision_action,
         )
         self.get_action_helper().process()
 

@@ -2,7 +2,7 @@ import hashlib
 import hmac
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime
 from unittest import mock
 
 from django.test.utils import override_settings
@@ -823,10 +823,8 @@ class TestCinderWebhook(TestCase):
             process_mock.assert_called()
             process_mock.assert_called_with(
                 decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_date=datetime(
-                    2023, 10, 12, 9, 8, 37, 4789, tzinfo=timezone.utc
-                ),
-                decision_actions=['delete-status', 'freeze-account'],
+                decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -883,14 +881,14 @@ class TestCinderWebhook(TestCase):
         self._setup_report()
         data = self.get_data()
         data['payload']['enforcement_actions'] = []
-        req = self.get_request()
+        req = self.get_request(data=data)
         response = cinder_webhook(req)
         assert response.status_code == 200
         assert response.data == {
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': "Payload invalid: ['decision_actions malformed']",
+                'not_handled_reason': 'Payload invalid: "decision_actions" malformed',
             }
         }
 

@@ -451,7 +451,7 @@ class TestCinderReport(TestCase):
             cinder_report.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
-                decision_actions=['amo_approve'],
+                decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE.value,
             )
         assert cinder_report.decision_id == '12345'
         assert cinder_report.decision_date == new_date
@@ -459,36 +459,6 @@ class TestCinderReport(TestCase):
             CinderReport.DECISION_ACTIONS.AMO_APPROVE
         )
         assert cinder_action_mock.call_count == 1
-
-    def test_process_decision_invalid_actions(self):
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-            )
-        )
-        with self.assertRaises(ValidationError):
-            # no decision actions
-            cinder_report.process_decision(
-                decision_id='12345',
-                decision_date=datetime(2023, 1, 1),
-                decision_actions=[],
-            )
-        with self.assertRaises(ValidationError):
-            # more than one decision action
-            cinder_report.process_decision(
-                decision_id='12345',
-                decision_date=datetime(2023, 1, 1),
-                decision_actions=[
-                    'amo_approve',
-                    'amo_disable_addon',
-                ],
-            )
-        with self.assertRaises(ValidationError):
-            cinder_report.process_decision(
-                decision_id='12345',
-                decision_date=datetime(2023, 1, 1),
-                decision_actions=['some_other_action'],
-            )
 
     def test_can_be_appealed(self):
         cinder_report = CinderReport.objects.create(
