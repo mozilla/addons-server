@@ -4,7 +4,7 @@ from datetime import datetime
 
 from django import forms
 from django.conf import settings
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
@@ -167,6 +167,7 @@ def process_datestamp(date_string):
 @authentication_classes(())
 @permission_classes((CinderInboundPermission,))
 def cinder_webhook(request):
+    not_handled_reason = None
     if request.data.get('event') == 'decision.created' and (
         payload := request.data.get('payload', {})
     ):
@@ -186,15 +187,36 @@ def cinder_webhook(request):
                 )
             except CinderReport.DoesNotExist:
                 log.debug('CinderReport instance not found for job id %s', job_id)
+                not_handled_reason = 'No matching job id found'
+            except ValidationError as exc:
+                log.exception(
+                    'Cinder webhook request failed process_decision', exc_info=exc
+                )
+                not_handled_reason = f'Payload invalid: {exc}'
         else:
             log.info('Payload from other queue: %s', queue_name)
+            not_handled_reason = 'Not from a queue we process'
     else:
         log.info(
             'Non-decision payload received: %s',
             str(request.data)[:255],
         )
+        not_handled_reason = 'Not a decision'
 
-    return Response(data={'amo-received': True}, status=status.HTTP_201_CREATED)
+    return Response(
+        data={
+            'amo': {
+                'received': True,
+                'handled': not bool(not_handled_reason),
+                **(
+                    {'not_handled_reason': not_handled_reason}
+                    if not_handled_reason
+                    else {}
+                ),
+            }
+        },
+        status=status.HTTP_200_OK if not_handled_reason else status.HTTP_201_CREATED,
+    )
 
 
 def appeal(request, *, decision_id, **kwargs):
