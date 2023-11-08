@@ -805,6 +805,10 @@ class TestAddonModels(TestCase):
                     file_.status_disabled_reason
                     == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
                 )
+                assert file_.original_status in (
+                    amo.STATUS_APPROVED,
+                    amo.STATUS_AWAITING_REVIEW,
+                )
             assert not file_.version.due_date
             assert not file_.version.needshumanreview_set.filter(
                 is_active=True
@@ -822,9 +826,34 @@ class TestAddonModels(TestCase):
     def test_force_enable(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
+        v1 = addon.current_version
+        v2 = version_factory(addon=addon)
+        v3 = version_factory(addon=addon)
         addon.update(status=amo.STATUS_DISABLED)
+        v1.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # We don't want to re-enable a version the developer disabled
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
+        )
+        v2.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # we also don't want to re-enable a version we rejected
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+        v3.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            # but we do want to re-enable a version we only disabled with the addon
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+
         addon.force_enable()
-        assert addon.status == amo.STATUS_APPROVED
+        assert addon.reload().status == amo.STATUS_APPROVED
+        assert v1.file.reload().status == amo.STATUS_DISABLED
+        assert v2.file.reload().status == amo.STATUS_DISABLED
+        assert v3.file.reload().status == amo.STATUS_APPROVED
         log = ActivityLog.objects.latest('pk')
         assert log.action == amo.LOG.FORCE_ENABLE.id
 

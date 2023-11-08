@@ -660,6 +660,16 @@ class Addon(OnChangeMixin, ModelBase):
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_APPROVED
         )
+        qs = File.objects.filter(
+            version__addon=self,
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        ).exclude(original_status=amo.STATUS_NULL)
+        qs.update(status=F('original_status'))
+        qs.update(
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            original_status=amo.STATUS_NULL,
+        )
         self.update(status=amo.STATUS_APPROVED)
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
@@ -685,12 +695,13 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def disable_all_files(cls, addons, reason):
-        File.objects.filter(version__addon__in=addons).exclude(
+        qs = File.objects.filter(version__addon__in=addons).exclude(
             status=amo.STATUS_DISABLED
-        ).update(
+        )
+        qs.update(original_status=F('status'))
+        qs.update(
             status=amo.STATUS_DISABLED,
             status_disabled_reason=reason,
-            original_status=F('status'),
         )
 
     def set_needs_human_review_on_latest_versions(

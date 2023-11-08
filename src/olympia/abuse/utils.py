@@ -78,7 +78,6 @@ class CinderActionApprove(CinderAction):
         target = self.abuse_report.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
-            # TODO: renable versions
             self.notify_targets(target.authors.all())
 
         elif isinstance(target, UserProfile) and target.banned:

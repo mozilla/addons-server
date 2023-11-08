@@ -476,7 +476,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
         from olympia.bandwagon.models import Collection
-        from olympia.files.models import File
         from olympia.ratings.models import Rating
 
         # collect affected addons
@@ -498,10 +497,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
-        # collect Files that need to be disabled now the addons are disabled
-        File.objects.filter(version__addon__in=addons_sole).update(
-            status=amo.STATUS_DISABLED
-        )
 
         # Finally run Addon.force_disable to add the logging; update versions.
         addons_sole_ids = []
