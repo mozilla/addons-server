@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-08 06:54+0000\n"
+"PO-Revision-Date: 2023-11-08 07:07+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3782,7 +3782,7 @@ msgstr "支援下載多種不同格式的影音內容。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "瞭解任何網站伺服器所在的地理位置，成為資訊充足的上網者。"
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio. Is the volume on a website too quiet? Too loud? SoundFixer can help."
@@ -3794,7 +3794,7 @@ msgstr "列印網頁前先編輯內容，移除不需要的內容（廣告或不
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "追蹤 Amazon 商品的價格紀錄，當商品價格變動時接收通知，讓您做出聰明的購物決策。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4073,7 +4073,7 @@ msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "列印網頁前先編輯內容，移除不需要的內容（廣告或不希望出現的內容）。"
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
