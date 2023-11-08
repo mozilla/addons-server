@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-08 02:57+0000\n"
+"PO-Revision-Date: 2023-11-08 06:50+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -2759,10 +2759,9 @@ msgid "Remove this application"
 msgstr "移除這個應用程式"
 
 #. {0} is the maximum number of add-on categories allowed
-#, fuzzy
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
-msgstr[0] "為此附加元件選擇分類:"
+msgstr[0] "為此附加元件選擇分類："
 
 msgid "End-User License Agreement"
 msgstr "使用者授權合約"
@@ -3675,7 +3674,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "享受終極分頁控制功能 — 關閉重複的分頁、合併視窗、複製分頁標題等等。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education. Load a random Wikipedia article each time you open a new tab."
@@ -3699,7 +3698,7 @@ msgstr "簡單搜尋 Firefox 當中開啟過的分頁、書籤與上網紀錄。
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "開啟很多分頁？跳過捲動，直接透過快速鍵搜尋。"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -3727,7 +3726,7 @@ msgstr "簡單的廣告封鎖器，讓您專注於您想看到的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make informed shopping decisions."
-msgstr ""
+msgstr "追蹤 Amazon 商品價格紀錄，讓您做出最明智的購物決定。"
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence. This extension provides an extra check to ensure you're shopping on a site that's been vetted for reliability."
@@ -3853,7 +3852,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
-msgstr ""
+msgstr "更輕鬆就能儲存照片 — 直接從您目前所在的分頁一次下載下來。"
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
@@ -4018,11 +4017,11 @@ msgstr "隨著時間轉換的主題更換器。讓 Firefox 每天變換不同的
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
-msgstr ""
+msgstr "整理您的 Twitter 使用體驗。"
 
 #. editorial content for the discovery pane.
 msgid "Bring back the ability to see thumbs down!"
-msgstr ""
+msgstr "帶回倒讚功能！"
 
 #. editorial content for the discovery pane.
 msgid "Listen to music on YouTube without those annoying \"Video paused. Continue watching?\" interruptions."
@@ -4062,7 +4061,7 @@ msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "一個輕鬆調整網頁文字大小的方法 — 或者甚至放大整個網頁。"
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4070,7 +4069,7 @@ msgstr "在搜尋結果中顯示網站畫面擷圖。"
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。"
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
