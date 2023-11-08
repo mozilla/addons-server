@@ -207,6 +207,7 @@ class TestUserProfile(TestCase):
             email='sole@foo.baa', fxa_id='13579', last_login_ip='127.0.0.1'
         )
         addon_sole = addon_factory(users=[user_sole])
+        addon_sole_file = addon_sole.current_version.file
         self.setup_user_to_be_have_content_disabled(user_sole)
         user_multi = user_factory(
             email='multi@foo.baa', fxa_id='24680', last_login_ip='127.0.0.2'
@@ -215,6 +216,7 @@ class TestUserProfile(TestCase):
         addon_multi = addon_factory(
             users=UserProfile.objects.filter(id__in=[user_multi.id, innocent_user.id])
         )
+        addon_multi_file = addon_multi.current_version.file
         self.setup_user_to_be_have_content_disabled(user_multi)
 
         # Now that everything is set up, disable/delete related content.
@@ -230,17 +232,15 @@ class TestUserProfile(TestCase):
         assert list(addon_multi.authors.all()) == [innocent_user]
 
         # the File objects have been disabled
+        addon_sole_file.reload()
+        assert addon_sole_file.status == amo.STATUS_DISABLED
+        assert addon_sole_file.original_status == amo.STATUS_APPROVED
         assert (
-            not File.objects.filter(version__addon=addon_sole)
-            .exclude(status=amo.STATUS_DISABLED)
-            .exists()
+            addon_sole_file.status_disabled_reason
+            == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
         )
         # But not for the Add-on that wasn't disabled
-        assert (
-            File.objects.filter(version__addon=addon_multi)
-            .exclude(status=amo.STATUS_DISABLED)
-            .exists()
-        )
+        assert addon_multi_file.reload().status == amo.STATUS_APPROVED
 
         assert not user_sole._ratings_all.exists()  # Even replies.
         assert not user_sole.collections.exists()
