@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-08 06:50+0000\n"
+"PO-Revision-Date: 2023-11-08 06:54+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3682,7 +3682,7 @@ msgstr "當您每次開啟新分頁時，隨機開啟維基百科條目。"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
-msgstr ""
+msgstr "設定在新分頁內容顯示自動背景色與圖片。"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
@@ -3777,7 +3777,7 @@ msgstr "拖曳文字、圖片或鏈結，即可作複製、開啟、搜尋與更
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "支援下載多種不同格式的影音內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3790,7 +3790,7 @@ msgstr "網站的聲音太小聲或太大聲？SoundFixer 可以幫忙。"
 
 #. editorial content for the discovery pane.
 msgid "Edit a web page before printing. Make sweeping visual changes—remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "列印網頁前先編輯內容，移除不需要的內容（廣告或不希望出現的內容）。"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
@@ -3838,7 +3838,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
-msgstr ""
+msgstr "讓閱讀更清楚、更輕鬆。移除網頁文字周圍雜亂的部分。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4089,7 +4089,7 @@ msgstr "從 Firefox 直接取得世界各地的最新天氣資訊。"
 
 #. editorial content for the primary hero shelves.
 msgid "Manage your time better with a browser clock that charts work intervals."
-msgstr ""
+msgstr "在瀏覽器使用可繪製工作時間的時鐘，讓您更能掌握時間。"
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
