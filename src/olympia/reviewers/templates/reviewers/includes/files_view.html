@@ -4,19 +4,19 @@
   &middot;
   <a href="{{ url('devhub.file_validation', addon.slug, file.id) }}">Validation results</a>
   &middot;
+  <a 
+    class="assay"
+    href="vscode://mozilla.assay/review/{{addon.guid}}/{{version}}"
+    title="Download this version in the VS Code addon reviewer"
+    >
+      Open in VSC
+  </a>
+  &middot;
   <a
     href="{{ code_manager_url('browse', addon.pk, version.pk) }}"
     title="Browse all files in this version"
     >
       Browse contents
-  </a>
-  &middot;
-  <a 
-    class="assay"
-    href="vscode://mozilla.assay/review/{{addon.guid}}/{{version}}"
-    title="Download this version in the Assay addon reviewer"
-    >
-      Open in Assay
   </a>
   {% if base_version_pk and version == latest_not_disabled_version %}
   &middot;

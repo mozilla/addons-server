@@ -3837,9 +3837,12 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assay_info = doc('#versions-history .file-info .assay')
-        assert assay_info[0].text.strip() == "Open in Assay"
-        assert assay_info.attr['href'] == f'vscode://mozilla.assay/review/{self.addon.guid}/{self.addon.current_version.version}'
-    
+        assert assay_info[0].text.strip() == 'Open in VSC'
+        assert (
+            assay_info.attr['href']
+            == f'vscode://mozilla.assay/review/{self.addon.guid}/{self.addon.current_version.version}'
+        )
+
     def test_compare_link(self):
         first_file = self.addon.current_version.file
         first_file.update(status=amo.STATUS_APPROVED)
