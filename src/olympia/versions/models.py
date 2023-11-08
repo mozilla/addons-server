@@ -678,8 +678,8 @@ class Version(OnChangeMixin, ModelBase):
     def is_user_disabled(self, disable):
         # User wants to disable (and the File isn't already).
         if disable:
-            activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
             if (file_ := self.file) and file_.status != amo.STATUS_DISABLED:
+                activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
                 file_.update(
                     original_status=file_.status,
                     status=amo.STATUS_DISABLED,
@@ -687,12 +687,12 @@ class Version(OnChangeMixin, ModelBase):
                 )
         # User wants to re-enable (and user did the disable, not Mozilla).
         else:
-            activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
             if (
                 (file_ := self.file)
                 and file_.status_disabled_reason
                 == File.STATUS_DISABLED_REASONS.DEVELOPER
             ):
+                activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
                 file_.update(
                     status=file_.original_status,
                     original_status=amo.STATUS_NULL,
