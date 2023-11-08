@@ -2542,6 +2542,7 @@ class TestReview(ReviewBase):
                 'Validation results',
                 reverse('devhub.file_validation', args=[self.addon.slug, file_.id]),
             ),
+            ('Open in VSC', None),
             ('Browse contents', None),
         ]
         check_links(expected, items.find('a'), verify=False)
