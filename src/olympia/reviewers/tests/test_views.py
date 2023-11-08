@@ -3516,9 +3516,10 @@ class TestReview(ReviewBase):
 
         validation = doc.find('.files')
         assert validation.find('a').eq(1).text() == 'Validation results'
-        assert validation.find('a').eq(2).text() == 'Browse contents'
+        assert validation.find('a').eq(2).text() == 'Open in VSC'
+        assert validation.find('a').eq(3).text() == 'Browse contents'
 
-        assert validation.find('a').length == 3
+        assert validation.find('a').length == 4
 
     def test_version_deletion(self):
         """
