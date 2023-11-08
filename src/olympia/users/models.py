@@ -35,6 +35,7 @@ from olympia.amo.fields import CIDRField, PositiveAutoField
 from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.utils import id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
+from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
 
@@ -497,6 +498,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
+        # disable Files in bulk that need to be disabled now the addons are disabled
+        Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
         # Finally run Addon.force_disable to add the logging; update versions.
         addons_sole_ids = []
