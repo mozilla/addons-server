@@ -522,6 +522,10 @@ def test_disable_addons(index_addons_mock):
     assert addon.status == amo.STATUS_DISABLED
     assert addon.current_version is None
     assert addon.versions.all()[0].file.status == amo.STATUS_DISABLED
+    assert (
+        addon.versions.all()[0].file.status_disabled_reason
+        == File.STATUS_DISABLED_REASONS.ADDON_DISABLE
+    )
 
     assert ActivityLog.objects.filter(
         action=amo.LOG.FORCE_DISABLE.id, addonlog__addon=addon

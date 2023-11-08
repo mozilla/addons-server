@@ -18,6 +18,7 @@ from django.utils.text import slugify
 from django.utils.translation import gettext
 
 from django_statsd.clients import statsd
+from extended_choices import Choices
 
 import olympia.core.logger
 from olympia import amo, core
@@ -76,6 +77,13 @@ def files_storage():
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
+    STATUS_DISABLED_REASONS = Choices(
+        ('NONE', 0, 'None'),
+        ('DEVELOPER', 1, 'Developer disabled'),
+        ('ADDON_DISABLE', 2, 'Add-on disabled'),
+        ('ADDON_DELETE', 3, 'Add-on deleted'),
+        ('VERSION_DELETE', 4, 'Version deleted'),
+    )
     SUPPORTED_MANIFEST_VERSIONS = ((2, 'Manifest V2'), (3, 'Manifest V3'))
 
     version = models.OneToOneField('versions.Version', on_delete=models.CASCADE)
@@ -106,9 +114,12 @@ class File(OnChangeMixin, ModelBase):
     # Is the file a special "Mozilla Signed Extension"
     # see https://wiki.mozilla.org/Add-ons/InternalSigning
     is_mozilla_signed_extension = models.BooleanField(default=False)
-    # The user has disabled this file and this was its status.
-    # STATUS_NULL means the user didn't disable the File - i.e. Mozilla did.
+    # The file status has been changed to DISABLED - this was its status before.
+    # STATUS_NULL means the status hasn't been changed
     original_status = models.PositiveSmallIntegerField(default=amo.STATUS_NULL)
+    status_disabled_reason = models.PositiveSmallIntegerField(
+        choices=STATUS_DISABLED_REASONS.choices, default=STATUS_DISABLED_REASONS.NONE
+    )
     # The manifest_version defined in manifest.json
     manifest_version = models.SmallIntegerField(choices=SUPPORTED_MANIFEST_VERSIONS)
 

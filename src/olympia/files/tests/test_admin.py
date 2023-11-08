@@ -38,6 +38,7 @@ class TestFileAdmin(TestCase):
             'original_hash': 'xxx',
             'status': file_.status,
             'original_status': file_.original_status,
+            'status_disabled_reason': file_.status_disabled_reason,
             'manifest_version': 3,
         }
         response = self.client.post(detail_url, post_data, follow=True)

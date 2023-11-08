@@ -638,9 +638,13 @@ class Version(OnChangeMixin, ModelBase):
         else:
             # By default we soft delete so we can keep the files for comparison
             # and a record of the version number.
-            if hasattr(self, 'file'):
+            if hasattr(self, 'file') and self.file.status != amo.STATUS_DISABLED:
                 # .file should always exist but we don't want to break delete regardless
-                self.file.update(status=amo.STATUS_DISABLED)
+                self.file.update(
+                    status=amo.STATUS_DISABLED,
+                    original_status=self.file.status,
+                    status_disabled_reason=File.STATUS_DISABLED_REASONS.VERSION_DELETE,
+                )
             self.deleted = True
             self.save()
 
@@ -666,22 +670,33 @@ class Version(OnChangeMixin, ModelBase):
     def is_user_disabled(self):
         return (
             self.file.status == amo.STATUS_DISABLED
-            and self.file.original_status != amo.STATUS_NULL
+            and self.file.status_disabled_reason
+            == File.STATUS_DISABLED_REASONS.DEVELOPER
         )
 
     @is_user_disabled.setter
     def is_user_disabled(self, disable):
         # User wants to disable (and the File isn't already).
         if disable:
-            activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
             if (file_ := self.file) and file_.status != amo.STATUS_DISABLED:
-                file_.update(original_status=file_.status, status=amo.STATUS_DISABLED)
+                activity.log_create(amo.LOG.DISABLE_VERSION, self.addon, self)
+                file_.update(
+                    original_status=file_.status,
+                    status=amo.STATUS_DISABLED,
+                    status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
+                )
         # User wants to re-enable (and user did the disable, not Mozilla).
         else:
-            activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
-            if (file_ := self.file) and file_.original_status != amo.STATUS_NULL:
+            if (
+                (file_ := self.file)
+                and file_.status_disabled_reason
+                == File.STATUS_DISABLED_REASONS.DEVELOPER
+            ):
+                activity.log_create(amo.LOG.ENABLE_VERSION, self.addon, self)
                 file_.update(
-                    status=file_.original_status, original_status=amo.STATUS_NULL
+                    status=file_.original_status,
+                    original_status=amo.STATUS_NULL,
+                    status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
                 )
 
     @cached_property

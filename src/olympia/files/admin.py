@@ -45,7 +45,11 @@ class FileAdmin(AMOModelAdmin):
         (
             'Details',
             {
-                'fields': ('cert_serial_num', 'original_status'),
+                'fields': (
+                    'cert_serial_num',
+                    'original_status',
+                    'status_disabled_reason',
+                ),
             },
         ),
         (

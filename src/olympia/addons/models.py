@@ -652,13 +652,23 @@ class Addon(OnChangeMixin, ModelBase):
         ).update(is_active=False)
         self.update_all_due_dates()
         # https://github.com/mozilla/addons-server/issues/13194
-        self.disable_all_files()
+        Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
     def force_enable(self, skip_activity_log=False):
         if not skip_activity_log:
             activity.log_create(amo.LOG.FORCE_ENABLE, self)
         log.info(
             'Addon "%s" status force-changed to: %s', self.slug, amo.STATUS_APPROVED
+        )
+        qs = File.objects.filter(
+            version__addon=self,
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        ).exclude(original_status=amo.STATUS_NULL)
+        qs.update(status=F('original_status'))
+        qs.update(
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            original_status=amo.STATUS_NULL,
         )
         self.update(status=amo.STATUS_APPROVED)
         # Call update_status() to fix the status if the add-on is not actually
@@ -683,8 +693,16 @@ class Addon(OnChangeMixin, ModelBase):
         log.info('Allow resubmission for addon "%s"', self.slug)
         DeniedGuid.objects.filter(guid=self.guid).delete()
 
-    def disable_all_files(self):
-        File.objects.filter(version__addon=self).update(status=amo.STATUS_DISABLED)
+    @classmethod
+    def disable_all_files(cls, addons, reason):
+        qs = File.objects.filter(version__addon__in=addons).exclude(
+            status=amo.STATUS_DISABLED
+        )
+        qs.update(original_status=F('status'))
+        qs.update(
+            status=amo.STATUS_DISABLED,
+            status_disabled_reason=reason,
+        )
 
     def set_needs_human_review_on_latest_versions(
         self, *, reason, due_date=None, ignore_reviewed=True, unique_reason=False
@@ -843,7 +861,7 @@ class Addon(OnChangeMixin, ModelBase):
                 rating.delete(skip_activity_log=True)
             # We avoid triggering signals for Version & File on purpose to
             # avoid extra work.
-            self.disable_all_files()
+            Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DELETE)
 
             self.versions.all().update(deleted=True)
             VersionReviewerFlags.objects.filter(version__addon=self).update(
@@ -1912,7 +1930,11 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         # review should be disabled right away, we don't want reviewers to look
         # at it. That might in turn change the add-on status from NOMINATED
         # back to NULL, through update_status().
-        latest_version.file.update(status=amo.STATUS_DISABLED)
+        latest_version.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=latest_version.file.status,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
+        )
         instance.update_status()
     elif old_status == amo.STATUS_NOMINATED:
         # Update latest version due date if necessary for nominated add-ons.

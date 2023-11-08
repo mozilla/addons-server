@@ -26,6 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import RECOMMENDED
+from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
 from olympia.versions.models import ApplicationsVersions, Version, VersionReviewerFlags
@@ -258,7 +259,9 @@ class TestVersion(TestCase):
 
     def test_reenable_version(self):
         Version.objects.get(pk=81551).file.update(
-            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
         )
         self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
         response = self.client.post(self.reenable_url, self.delete_data, follow=True)

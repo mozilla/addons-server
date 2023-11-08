@@ -14,6 +14,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.files.models import File
 from olympia.reviewers.forms import ReviewForm
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -627,6 +628,7 @@ class TestReviewForm(TestCase):
             file_kw={
                 'status': amo.STATUS_DISABLED,
                 'original_status': amo.STATUS_APPROVED,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
                 'is_signed': True,
             },
         )
@@ -635,6 +637,7 @@ class TestReviewForm(TestCase):
             file_kw={
                 'status': amo.STATUS_DISABLED,
                 'original_status': amo.STATUS_AWAITING_REVIEW,
+                'status_disabled_reason': File.STATUS_DISABLED_REASONS.DEVELOPER,
                 'is_signed': False,
             },
         )
