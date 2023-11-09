@@ -2543,6 +2543,7 @@ class TestReview(ReviewBase):
                 'Validation results',
                 reverse('devhub.file_validation', args=[self.addon.slug, file_.id]),
             ),
+            ('Open in VSC', None),
             ('Browse contents', None),
         ]
         check_links(expected, items.find('a'), verify=False)
@@ -3508,9 +3509,10 @@ class TestReview(ReviewBase):
 
         validation = doc.find('.files')
         assert validation.find('a').eq(1).text() == 'Validation results'
-        assert validation.find('a').eq(2).text() == 'Browse contents'
+        assert validation.find('a').eq(2).text() == 'Open in VSC'
+        assert validation.find('a').eq(3).text() == 'Browse contents'
 
-        assert validation.find('a').length == 3
+        assert validation.find('a').length == 4
 
     def test_version_deletion(self):
         """
@@ -3822,6 +3824,18 @@ class TestReview(ReviewBase):
         assert info.find('a').length == 1
         assert info.find('a')[0].text == 'Download'
         assert b'Compatibility' not in response.content
+
+    def test_assay_link(self):
+        self.addon.current_version.update()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assay_info = doc('#versions-history .file-info .assay')
+        assert assay_info[0].text.strip() == 'Open in VSC'
+        assert (
+            assay_info.attr['href']
+            == f'vscode://mozilla.assay/review/{self.addon.guid}/{self.addon.current_version.version}'
+        )
 
     def test_compare_link(self):
         first_file = self.addon.current_version.file
