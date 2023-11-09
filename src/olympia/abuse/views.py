@@ -221,6 +221,8 @@ def cinder_webhook(request):
                     'not_handled_reason': exc.message,
                 }
             },
+            # cinder will retry indefinately on 4xx or 5xx so we return 200 even when
+            # it's an error
             status=status.HTTP_200_OK,
         )
     return Response(
