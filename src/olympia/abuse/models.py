@@ -8,12 +8,14 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoices, APIChoicesWithNone
+from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
 from .cinder import (
     CinderAddon,
     CinderAddonHandledByReviewers,
+    CinderCollection,
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
@@ -237,6 +239,9 @@ class AbuseReport(ModelBase):
     rating = models.ForeignKey(
         Rating, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
     )
+    collection = models.ForeignKey(
+        Collection, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
+    )
     message = models.TextField(blank=True)
 
     state = models.PositiveSmallIntegerField(
@@ -321,23 +326,37 @@ class AbuseReport(ModelBase):
         ]
         constraints = [
             models.CheckConstraint(
-                name='just_one_of_guid_user_rating_must_be_set',
+                name='just_one_of_guid_user_rating_collection_must_be_set',
                 check=(
+                    # Abuse is against...
+                    # a guid
                     models.Q(
                         ~models.Q(guid=''),
                         guid__isnull=False,
                         user__isnull=True,
                         rating__isnull=True,
+                        collection__isnull=True,
                     )
+                    # or a user
                     | models.Q(
                         guid__isnull=True,
                         user__isnull=False,
                         rating__isnull=True,
+                        collection__isnull=True,
                     )
+                    # or a rating
                     | models.Q(
                         guid__isnull=True,
                         user__isnull=True,
                         rating__isnull=False,
+                        collection__isnull=True,
+                    )
+                    # or a collection
+                    | models.Q(
+                        guid__isnull=True,
+                        user__isnull=True,
+                        rating__isnull=True,
+                        collection__isnull=False,
                     )
                 ),
             ),
@@ -357,12 +376,14 @@ class AbuseReport(ModelBase):
             type_ = 'User'
         elif self.rating_id:
             type_ = 'Rating'
+        elif self.collection_id:
+            type_ = 'Collection'
         else:
             type_ = 'Unknown'
         return type_
 
     def __str__(self):
-        name = self.guid or self.user_id or self.rating_id
+        name = self.guid or self.user_id or self.rating_id or self.collection_id
         return f'Abuse Report for {self.type} {name}'
 
     @property
@@ -377,6 +398,8 @@ class AbuseReport(ModelBase):
             return self.user
         elif self.rating_id:
             return self.rating
+        elif self.collection_id:
+            return self.collection
         return None
 
     @property
@@ -445,6 +468,8 @@ class CinderReport(ModelBase):
                 return CinderUser(target)
             elif isinstance(target, Rating):
                 return CinderRating(target)
+            elif isinstance(target, Collection):
+                return CinderCollection(target)
         return None
 
     def get_action_helper(self):

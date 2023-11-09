@@ -206,6 +206,36 @@ class CinderRating(CinderEntity):
         }
 
 
+class CinderCollection(CinderEntity):
+    type = 'amo_collection'
+
+    def __init__(self, collection):
+        self.collection = collection
+
+    @property
+    def id(self):
+        return str(self.collection.id)
+
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'slug': self.collection.slug,
+            # FIXME: locales!
+            'name': str(self.collection.name),
+            'description': str(self.collection.description),
+            'comments': self.collection.get_all_comments(),
+        }
+
+    def get_context(self):
+        cinder_user = CinderUser(self.collection.author)
+        return {
+            'entities': [cinder_user.get_entity_data()],
+            'relationships': [
+                cinder_user.get_relationship_data(self, 'amo_collection_author_of')
+            ],
+        }
+
+
 class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
     queue = 'amo-addon-infringement'

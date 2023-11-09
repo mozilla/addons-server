@@ -18,6 +18,7 @@ from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
     addon_factory,
+    collection_factory,
     get_random_ip,
     reverse_ns,
     user_factory,
@@ -1066,6 +1067,219 @@ class TestRatingAbuseViewSetLoggedIn(RatingAbuseViewSetTestBase, TestCase):
             self.url,
             data={
                 'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 429
+
+
+class CollectionAbuseViewSetTestBase:
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.url = reverse_ns('abusereportcollection-list')
+
+    def check_reporter(self, report):
+        raise NotImplementedError
+
+    def check_report(self, report, text):
+        assert str(report) == text
+        self.check_reporter(report)
+
+    def test_report_collection_id(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': 'abusé!',
+                'reason': 'hateful_violent_deceptive',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(collection_id=target_collection.pk).exists()
+        report = AbuseReport.objects.get(collection=target_collection)
+        self.check_report(report, f'Abuse Report for Collection {target_collection.pk}')
+
+    def test_no_collection_fails(self):
+        response = self.client.post(
+            self.url, data={'message': 'abusë!', 'reason': 'hateful_violent_deceptive'}
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'collection': ['This field is required.']
+        }
+
+    def test_only_reasons_accepted_are_content_subset(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': 'foo',
+                'reason': 'does_not_work',
+            },
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'reason': ['"does_not_work" is not a valid choice.']
+        }
+
+    def test_message_can_be_blank_if_reason_is_provided(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': '',
+                'reason': 'illegal',
+            },
+        )
+        assert response.status_code == 201
+
+    def test_message_can_be_missing_if_reason_is_provided(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={'collection': str(target_collection.pk), 'reason': 'illegal'},
+        )
+        assert response.status_code == 201
+
+    def test_message_required_empty_no_reason_provided(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={'collection': str(target_collection.pk), 'message': ''},
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'message': ['This field may not be blank.']
+        }
+
+    def test_message_required_missing_no_reason_provided(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url, data={'collection': str(target_collection.pk)}
+        )
+        assert response.status_code == 400
+        assert json.loads(response.content) == {'message': ['This field is required.']}
+
+    def test_throttle(self):
+        target_collection = collection_factory()
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={
+                    'collection': str(target_collection.pk),
+                    'message': 'abuse!',
+                    'reason': 'illegal',
+                },
+                REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            )
+            assert response.status_code == 201, x
+
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 429
+
+    def test_report_country_code(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_COUNTRY_CODE='YY',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(collection_id=target_collection.pk).exists()
+        report = AbuseReport.objects.get(collection=target_collection)
+        self.check_report(report, f'Abuse Report for Collection {target_collection.pk}')
+        assert report.country_code == 'YY'
+
+    def _setup_reportable_reason(self, reason):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': target_collection.pk,
+                'reason': reason,
+                'message': 'bad!',
+            },
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201, response.content
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=True)
+    def test_reportable_reason_calls_cinder_task(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_called()
+
+    @mock.patch('olympia.abuse.tasks.report_to_cinder.delay')
+    @override_switch('enable-cinder-reporting', active=False)
+    def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
+        self._setup_reportable_reason('hateful_violent_deceptive')
+        task_mock.assert_not_called()
+
+
+class TestCollectionAbuseViewSetLoggedOut(CollectionAbuseViewSetTestBase, TestCase):
+    def check_reporter(self, report):
+        assert not report.reporter
+
+
+class TestCollectionAbuseViewSetLoggedIn(CollectionAbuseViewSetTestBase, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.client.login_api(self.user)
+
+    def check_reporter(self, report):
+        assert report.reporter == self.user
+
+    def test_throttle_ip_for_authenticated_users(self):
+        user = user_factory()
+        self.client.login_api(user)
+        target_collection = collection_factory()
+        for x in range(20):
+            response = self.client.post(
+                self.url,
+                data={
+                    'collection': str(target_collection.pk),
+                    'message': 'abuse!',
+                    'reason': 'illegal',
+                },
+                REMOTE_ADDR='123.45.67.89',
+                HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            )
+            assert response.status_code == 201, x
+
+        # Different user, same IP: should still be blocked (> 20 / day).
+        new_user = user_factory()
+        self.client.login_api(new_user)
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
                 'message': 'abuse!',
                 'reason': 'illegal',
             },

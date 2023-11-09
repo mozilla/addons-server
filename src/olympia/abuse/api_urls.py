@@ -4,6 +4,7 @@ from rest_framework.routers import SimpleRouter
 
 from .views import (
     AddonAbuseViewSet,
+    CollectionAbuseViewSet,
     RatingAbuseViewSet,
     UserAbuseViewSet,
     cinder_webhook,
@@ -12,6 +13,9 @@ from .views import (
 
 reporting = SimpleRouter()
 reporting.register(r'addon', AddonAbuseViewSet, basename='abusereportaddon')
+reporting.register(
+    r'collection', CollectionAbuseViewSet, basename='abusereportcollection'
+)
 reporting.register(r'rating', RatingAbuseViewSet, basename='abusereportrating')
 reporting.register(r'user', UserAbuseViewSet, basename='abusereportuser')
 

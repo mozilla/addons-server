@@ -261,3 +261,24 @@ class RatingAbuseReportSerializer(BaseAbuseReportSerializer):
 
     def get_rating(self, obj):
         return {'id': obj.rating.pk}
+
+
+class CollectionAbuseReportSerializer(BaseAbuseReportSerializer):
+    collection = serializers.SerializerMethodField()
+
+    class Meta:
+        model = AbuseReport
+        fields = BaseAbuseReportSerializer.Meta.fields + ('collection',)
+
+    def to_internal_value(self, data):
+        self.validate_target(data, 'collection')
+        view = self.context.get('view')
+        output = {'collection': view.get_target_object()}
+        # Pop 'collection' before passing it to super(), we already have the
+        # output value and did the validation above.
+        data.pop('collection')
+        output.update(super().to_internal_value(data))
+        return output
+
+    def get_collection(self, obj):
+        return {'id': obj.collection.pk}

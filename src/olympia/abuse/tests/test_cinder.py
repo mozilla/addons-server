@@ -3,13 +3,21 @@ from django.conf import settings
 import responses
 
 from olympia import amo
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_factory,
+)
+from olympia.bandwagon.models import CollectionAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..cinder import (
     CinderAddon,
     CinderAddonHandledByReviewers,
+    CinderCollection,
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
@@ -533,4 +541,69 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                     }
                 ],
             },
+        }
+
+
+class TestCinderCollection(BaseTestCinderCase, TestCase):
+    cinder_class = CinderCollection
+
+    def setUp(self):
+        self.user = user_factory()
+
+    def _create_dummy_target(self, **kwargs):
+        collection = collection_factory(author=self.user)
+        addon = addon_factory()
+        collection_addon = CollectionAddon.objects.create(
+            collection=collection, addon=addon, comments='Fôo'
+        )
+        with self.activate('fr'):
+            collection_addon.comments = 'Bär'
+            collection_addon.save()
+        CollectionAddon.objects.create(
+            collection=collection, addon=addon_factory(), comments='Alice'
+        )
+        CollectionAddon.objects.create(collection=collection, addon=addon_factory())
+        return collection
+
+    def test_build_report_payload(self):
+        collection = self._create_dummy_target()
+        cinder_collection = self.cinder_class(collection)
+        reason = 'bad collection!'
+
+        data = cinder_collection.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'context': {
+                'entities': [
+                    {
+                        'entity_type': 'amo_user',
+                        'attributes': {
+                            'id': str(self.user.id),
+                            'name': self.user.display_name,
+                            'email': self.user.email,
+                            'fxa_id': self.user.fxa_id,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_collection_author_of',
+                        'source_id': str(self.user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(collection.id),
+                        'target_type': 'amo_collection',
+                    }
+                ],
+            },
+            'entity': {
+                'comments': ['Fôo', 'Bär', 'Alice'],
+                'description': str(collection.description),
+                'id': str(collection.pk),
+                'name': str(collection.name),
+                'slug': collection.slug,
+            },
+            'entity_type': 'amo_collection',
+            'queue_slug': 'amo-content-infringement',
+            'reasoning': 'bad collection!',
         }

@@ -6,12 +6,13 @@ from django.core.exceptions import ValidationError
 
 import responses
 
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.ratings.models import Rating
 
 from ..cinder import (
     CinderAddon,
     CinderAddonHandledByReviewers,
+    CinderCollection,
     CinderRating,
     CinderUser,
 )
@@ -232,10 +233,21 @@ class TestAbuse(TestCase):
         )
 
     def test_type(self):
-        report = AbuseReport.objects.create(guid='@lol')
+        addon = addon_factory(guid='@lol')
+        report = AbuseReport.objects.create(guid=addon.guid)
         assert report.type == 'Addon'
-        report = AbuseReport.objects.create(user=user_factory())
+
+        user = user_factory()
+        report = AbuseReport.objects.create(user=user)
         assert report.type == 'User'
+
+        report = AbuseReport.objects.create(
+            rating=Rating.objects.create(user=user, addon=addon, rating=5)
+        )
+        assert report.type == 'Rating'
+
+        report = AbuseReport.objects.create(collection=collection_factory())
+        assert report.type == 'Collection'
 
     def test_save_soft_deleted(self):
         report = AbuseReport.objects.create(guid='@foo')
@@ -258,6 +270,10 @@ class TestAbuse(TestCase):
         rating = Rating.objects.create(user=user, addon=addon, rating=5)
         report.update(user=None, rating=rating)
         assert report.target == rating
+
+        collection = collection_factory()
+        report.update(rating=None, collection=collection)
+        assert report.target == collection
 
     def test_is_handled_by_reviewers(self):
         addon = addon_factory()
@@ -399,6 +415,12 @@ class TestCinderReport(TestCase):
         assert isinstance(helper, CinderRating)
         assert helper.rating == rating
 
+        collection = collection_factory()
+        cinder_report.abuse_report.update(rating=None, collection=collection)
+        helper = cinder_report.get_entity_helper()
+        assert isinstance(helper, CinderCollection)
+        assert helper.collection == collection
+
     def test_report(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
@@ -461,9 +483,10 @@ class TestCinderReport(TestCase):
         assert cinder_action_mock.call_count == 1
 
     def test_can_be_appealed(self):
+        addon = addon_factory()
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+                guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
             ),
             decision_id='4815162342-lost',
             decision_date=self.days_ago(179),
@@ -487,6 +510,14 @@ class TestCinderReport(TestCase):
 
         user = user_factory()
         cinder_report.abuse_report.update(user=user, guid=None)
+        assert cinder_report.can_be_appealed()
+
+        rating = Rating.objects.create(addon=addon, user=user, rating=1)
+        cinder_report.abuse_report.update(user=None, rating=rating)
+        assert cinder_report.can_be_appealed()
+
+        collection = collection_factory()
+        cinder_report.abuse_report.update(rating=None, collection=collection)
         assert cinder_report.can_be_appealed()
 
     def test_appeal(self):
