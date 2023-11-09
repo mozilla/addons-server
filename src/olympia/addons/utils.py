@@ -66,11 +66,11 @@ def verify_mozilla_trademark(name, user, form=None):
 
 
 TAAR_LITE_FALLBACKS = [
-    'enhancerforyoutube@maximerf.addons.mozilla.org',  # /enhancer-for-youtube/
-    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',  # /search_by_image/
-    'uBlock0@raymondhill.net',  # /ublock-origin/
-    'newtaboverride@agenedia.com',
-]  # /new-tab-override/
+    'addon@darkreader.org',  # Dark Reader
+    'treestyletab@piro.sakura.ne.jp',  # Tree Style Tab
+    'languagetool-webextension@languagetool.org',  # LanguageTool
+    '{2e5ff8c8-32fe-46d0-9fc8-6b8986621f3c}',  # Search by Image
+]
 
 TAAR_LITE_OUTCOME_REAL_SUCCESS = 'recommended'
 TAAR_LITE_OUTCOME_REAL_FAIL = 'recommended_fallback'
