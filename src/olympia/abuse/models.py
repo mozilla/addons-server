@@ -121,8 +121,10 @@ class AbuseReport(ModelBase):
         ),
         ('OTHER', 127, 'Other'),
     )
+    # Base reasons shared by all on-AMO content using AMO Feedback flow.
     REASONS.add_subset(
-        'CONTENT_REASONS', ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'OTHER')
+        'CONTENT_REASONS',
+        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'FEEDBACK_SPAM', 'OTHER'),
     )
     # Those reasons will be reported to Cinder.
     REASONS.add_subset(
