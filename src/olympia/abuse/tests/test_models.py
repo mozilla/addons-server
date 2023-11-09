@@ -451,7 +451,7 @@ class TestCinderReport(TestCase):
             cinder_report.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
-                decision_actions=[CinderReport.DECISION_ACTIONS.AMO_APPROVE],
+                decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE.value,
             )
         assert cinder_report.decision_id == '12345'
         assert cinder_report.decision_date == new_date

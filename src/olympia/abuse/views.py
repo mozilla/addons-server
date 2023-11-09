@@ -1,10 +1,10 @@
 import hashlib
 import hmac
-from datetime import datetime
+from datetime import datetime, timezone
 
 from django import forms
 from django.conf import settings
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, ValidationError
 from django.http import Http404
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
@@ -157,7 +157,11 @@ class CinderInboundPermission:
 
 def process_datestamp(date_string):
     try:
-        return datetime.fromisoformat(date_string.replace(' ', ''))
+        return (
+            datetime.fromisoformat(date_string.replace(' ', ''))
+            .astimezone(timezone.utc)
+            .replace(tzinfo=None)
+        )
     except ValueError:
         log.warn('Invalid timestamp from cinder webhook %s', date_string)
         return datetime.now()
@@ -167,34 +171,64 @@ def process_datestamp(date_string):
 @authentication_classes(())
 @permission_classes((CinderInboundPermission,))
 def cinder_webhook(request):
-    if request.data.get('event') == 'decision.created' and (
-        payload := request.data.get('payload', {})
-    ):
+    try:
+        if request.data.get('event') != 'decision.created':
+            log.info('Non-decision payload received: %s', str(request.data)[:255])
+            raise ValidationError('Not a decision')
+
+        if not (payload := request.data.get('payload', {})):
+            log.info('No payload received: %s', str(request.data)[:255])
+            raise ValidationError('No payload')
+
         source = payload.get('source', {})
         job = source.get('job', {})
-        if (queue_name := job.get('queue', {}).get('slug')) == CinderEntity.queue:
-            log.info('Valid Payload from AMO queue: %s', payload)
-            job_id = job.get('id', '')
-            decision_id = source.get('decision', {}).get('id')
-            actions = payload.get('enforcement_actions')
-            try:
-                cinder_report = CinderReport.objects.get(job_id=job_id)
-                cinder_report.process_decision(
-                    decision_id=decision_id,
-                    decision_date=process_datestamp(payload.get('timestamp')),
-                    decision_actions=actions,
-                )
-            except CinderReport.DoesNotExist:
-                log.debug('CinderReport instance not found for job id %s', job_id)
-        else:
+        if (queue_name := job.get('queue', {}).get('slug')) != CinderEntity.queue:
             log.info('Payload from other queue: %s', queue_name)
-    else:
-        log.info(
-            'Non-decision payload received: %s',
-            str(request.data)[:255],
+            raise ValidationError('Not from a queue we process')
+
+        if (
+            not (actions := payload.get('enforcement_actions'))
+            or len(actions) > 1
+            or not CinderReport.DECISION_ACTIONS.has_api_value(actions[0])
+        ):
+            log.exception(
+                'Cinder webhook request failed: bad enforcement_actions [%s]', actions
+            )
+            raise ValidationError('Payload invalid: "decision_actions" malformed')
+
+        log.info('Valid Payload from AMO queue: %s', payload)
+        job_id = job.get('id', '')
+        try:
+            cinder_report = CinderReport.objects.get(job_id=job_id)
+        except CinderReport.DoesNotExist:
+            log.debug('CinderReport instance not found for job id %s', job_id)
+            raise ValidationError('No matching job id found')
+
+        cinder_report.process_decision(
+            decision_id=source.get('decision', {}).get('id'),
+            decision_date=process_datestamp(payload.get('timestamp')),
+            decision_action=CinderReport.DECISION_ACTIONS.for_api_value(
+                actions[0]
+            ).value,
         )
 
-    return Response(data={'amo-received': True}, status=status.HTTP_201_CREATED)
+    except ValidationError as exc:
+        return Response(
+            data={
+                'amo': {
+                    'received': True,
+                    'handled': False,
+                    'not_handled_reason': exc.message,
+                }
+            },
+            # cinder will retry indefinately on 4xx or 5xx so we return 200 even when
+            # it's an error
+            status=status.HTTP_200_OK,
+        )
+    return Response(
+        data={'amo': {'received': True, 'handled': True}},
+        status=status.HTTP_201_CREATED,
+    )
 
 
 def appeal(request, *, decision_id, **kwargs):
