@@ -76,14 +76,11 @@ class CollectionViewSet(ModelViewSet):
             CollectionSerializer if not with_addons else CollectionWithAddonsSerializer
         )
 
-    def get_object(self):
-        if not hasattr(self, 'instance') and 'pk' in self.kwargs:
-            self.lookup_field = 'pk'
-        return super().get_object()
-
     def get_queryset(self):
         qs = Collection.objects.all()
-        if 'user_pk' in self.kwargs:
+        if self.action == 'retrieve_from_pk':
+            self.lookup_field = 'pk'
+        else:
             qs = qs.filter(author=self.get_account_viewset().get_object())
         return qs.order_by('-modified')
 
@@ -159,6 +156,7 @@ class CollectionAddonViewSet(ModelViewSet):
                     'user_pk': self.kwargs['user_pk'],
                     'slug': self.kwargs['collection_slug'],
                 },
+                action='retrieve',
             ).get_object()
         return self.collection
 

@@ -153,6 +153,7 @@ class CollectionAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet)
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = CollectionViewSet
     target_parameter_name = 'collection'
+    target_viewset_action = 'retrieve_from_pk'
 
 
 class CinderInboundPermission:
