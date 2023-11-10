@@ -532,9 +532,9 @@ pymemcache==4.0.0 \
 polib==1.2.0 \
     --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
     --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
-prompt_toolkit==3.0.39 \
-    --hash=sha256:04505ade687dc26dc4284b1ad19a83be2f2afe83e7a828ace0c72f3a1df72aac \
-    --hash=sha256:9dffbe1d8acf91e3de75f3b544e4842382fc06c6babe903ac9acb74dc6e08d88
+prompt_toolkit==3.0.40 \
+    --hash=sha256:99ba3dfb23d5b5af89712f89e60a5f3d9b8b67a9482ca377c5771d0e9047a34b \
+    --hash=sha256:a371c06bb1d66cd499fecd708e50c0b6ae00acba9822ba33c586e2f16d1b739e
 # python-dateutil is required by elasticsearch-dsl
 python-dateutil==2.8.2 \
     --hash=sha256:961d03dc3453ebbc59dbdea9e4e11c5651520a876d0f4db161e8674aae935da9 \
