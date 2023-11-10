@@ -459,7 +459,7 @@ class CinderReport(ModelBase):
     def get_cinder_reporter(self):
         abuse = self.abuse_report
         reporter = None
-        if abuse.reporter and not abuse.report.is_anonymous():
+        if abuse.reporter:
             reporter = CinderUser(abuse.reporter)
         elif abuse.reporter_name or abuse.reporter_email:
             reporter = CinderUnauthenticatedReporter(
