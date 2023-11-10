@@ -1,2 +1,2 @@
-deb https://deb.nodesource.com/node_18.x buster main
-deb-src https://deb.nodesource.com/node_18.x buster main
+deb https://deb.nodesource.com/node_16.x buster main
+deb-src https://deb.nodesource.com/node_16.x buster main

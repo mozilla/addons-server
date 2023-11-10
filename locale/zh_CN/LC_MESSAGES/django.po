@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-07 22:53+0000\n"
-"Last-Translator: wxie <xiewensheng@hotmail.com>\n"
+"PO-Revision-Date: 2023-11-10 08:30+0000\n"
+"Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -3471,7 +3471,7 @@ msgstr "跟踪历史定价，查找类似商品，了解卖家评级等。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "让您的 Youtube 可做到：在弹出窗口中播放视频，只查看已订阅频道的广告，截取视频的截图等功能。"
+msgstr "让您的 YouTube 可做到：在弹出窗口中播放视频，只查看已订阅频道的广告，截取视频的截图等功能。"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."

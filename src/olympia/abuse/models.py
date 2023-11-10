@@ -484,7 +484,7 @@ class CinderReport(ModelBase):
     def get_cinder_reporter(self):
         abuse = self.abuse_report
         reporter = None
-        if abuse.reporter and not abuse.report.is_anonymous():
+        if abuse.reporter:
             reporter = CinderUser(abuse.reporter)
         elif abuse.reporter_name or abuse.reporter_email:
             reporter = CinderUnauthenticatedReporter(
@@ -501,11 +501,11 @@ class CinderReport(ModelBase):
         )
         self.update(job_id=job_id)
 
-    def process_decision(self, *, decision_id, decision_date, decision_actions):
+    def process_decision(self, *, decision_id, decision_date, decision_action):
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
-            **({'decision_action': decision_actions[0]} if decision_actions else {}),
+            decision_action=decision_action,
         )
         self.get_action_helper().process()
 

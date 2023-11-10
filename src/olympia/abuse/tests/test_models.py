@@ -14,6 +14,7 @@ from ..cinder import (
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
+    CinderUnauthenticatedReporter,
     CinderUser,
 )
 from ..models import AbuseReport, CinderReport
@@ -421,6 +422,26 @@ class TestCinderReport(TestCase):
         assert isinstance(helper, CinderCollection)
         assert helper.collection == collection
 
+    def test_get_cinder_reporter(self):
+        cinder_report = CinderReport.objects.create(
+            abuse_report=AbuseReport.objects.create(
+                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+            )
+        )
+        assert cinder_report.get_cinder_reporter() is None
+
+        cinder_report.abuse_report.update(reporter_email='mr@mr')
+        entity = cinder_report.get_cinder_reporter()
+        assert isinstance(entity, CinderUnauthenticatedReporter)
+        assert entity.email == 'mr@mr'
+        assert entity.name is None
+
+        authenticated_user = user_factory()
+        cinder_report.abuse_report.update(reporter=authenticated_user)
+        entity = cinder_report.get_cinder_reporter()
+        assert isinstance(entity, CinderUser)
+        assert entity.user == authenticated_user
+
     def test_report(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
@@ -473,7 +494,7 @@ class TestCinderReport(TestCase):
             cinder_report.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
-                decision_actions=[CinderReport.DECISION_ACTIONS.AMO_APPROVE],
+                decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE.value,
             )
         assert cinder_report.decision_id == '12345'
         assert cinder_report.decision_date == new_date

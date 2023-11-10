@@ -34,6 +34,12 @@ class APIChoices(Choices):
     def api_choices(self):
         return tuple((entry[1], entry[0].lower()) for entry in self.entries)
 
+    def has_api_value(self, value):
+        return self.has_constant(value.upper() if value else value)
+
+    def for_api_value(self, value):
+        return self.for_constant(value.upper() if value else value)
+
 
 class APIChoicesWithNone(APIChoices):
     """Like APIChoices, but also returns 'None' as a valid choice for `choices`
