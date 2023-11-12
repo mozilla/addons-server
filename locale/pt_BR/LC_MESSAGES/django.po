@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-07 18:04+0000\n"
-"PO-Revision-Date: 2023-11-12 17:19+0000\n"
+"PO-Revision-Date: 2023-11-12 17:23+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -887,7 +887,7 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr "{user_responsible} alterou o nome curto de {addon} de {0} para {1}."
 
 msgid "Add-on slug changed"
-msgstr "Slug da extensão alterado"
+msgstr "Identificador da extensão alterado"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -5021,8 +5021,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">anunciado</a>, o conteúdo neste site está licenciado sob a <a href=\"https://creativecommons.org /licenses/by-sa/3.0/\">Licença Creative "
-"Commons Atribuição-Compartilhamento pela mesma licença v3.0</a> ou qualquer versão superior."
+"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">indicado</a>, o conteúdo deste site está licenciado sob a <a href=\"https:/ /creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Attribution Share-Alike Licence v3.0</a> ou versão posterior."
 
 # %1 is the URL to the registration page
 # %2 is the URL to the login page
