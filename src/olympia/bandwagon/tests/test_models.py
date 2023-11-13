@@ -124,3 +124,46 @@ class TestCollections(TestCase):
         assert collection.addons.count() == 0
         assert index_addons_mock.call_count == 1
         assert index_addons_mock.call_args[0] == ([addon_featured.pk],)
+
+    def test_delete(self):
+        collection = Collection.objects.get(pk=512)
+        slug = collection.slug
+        collection.delete()
+
+        assert not Collection.objects.all().exists()
+        assert Collection.unfiltered.all().exists()
+        # slug is cleared
+        assert collection.reload().slug is None
+        assert collection.deleted
+
+        another = Collection(author=self.user, slug=slug)
+        another.save()
+        assert another.reload().slug == slug
+
+        another.delete(clear_slug=False)
+        assert not Collection.objects.all().exists()
+        assert Collection.unfiltered.all().exists()
+        # not if clear_slug=False
+        assert another.reload().slug == slug
+
+        # so if another collection tries to use that slug it will be fixed
+        yet_another = Collection(author=self.user, slug=slug)
+        yet_another.save()
+        assert yet_another.reload().slug == f'{slug}-1'
+
+    def test_delete_hard(self):
+        collection = Collection.objects.get(pk=512)
+        # If hard_delete the instance is gone
+        collection.delete(hard=True)
+        assert not Collection.objects.all().exists()
+        assert not Collection.unfiltered.all().exists()
+
+    def test_undelete(self):
+        collection = Collection.objects.get(pk=512)
+        collection.update(slug=None, deleted=True)
+
+        collection.undelete()
+        collection.reload()
+        assert not collection.deleted
+        # if collection had no slug (it was cleared during a delete) then generate one
+        assert collection.slug is not None
