@@ -61,6 +61,22 @@ class AddonAbuseViewSetTestBase:
         self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
 
+    def test_report_addon_by_id_int(self):
+        addon = addon_factory()
+        response = self.client.post(
+            self.url,
+            data={'addon': addon.pk, 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+        )
+        assert response.status_code == 201
+
+        # It was a public add-on, so we found its guid.
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(guid=addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
+        assert report.message == 'abuse!'
+
     def test_report_addon_by_slug(self):
         addon = addon_factory()
         response = self.client.post(
@@ -587,6 +603,19 @@ class UserAbuseViewSetTestBase:
         report = AbuseReport.objects.get(user_id=user.id)
         self.check_report(report, f'Abuse Report for User {user.pk}')
 
+    def test_report_user_id_int(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={'user': user.pk, 'message': 'abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(user_id=user.pk).exists()
+        report = AbuseReport.objects.get(user_id=user.pk)
+        self.check_report(report, f'Abuse Report for User {user.pk}')
+
     def test_report_user_username(self):
         user = user_factory()
         response = self.client.post(
@@ -926,6 +955,25 @@ class RatingAbuseViewSetTestBase:
         report = AbuseReport.objects.get(rating=target_rating)
         self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
 
+    def test_report_rating_id_int(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': target_rating.pk,
+                'message': 'abuse!',
+                'reason': 'illegal',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(rating_id=target_rating.pk).exists()
+        report = AbuseReport.objects.get(rating=target_rating)
+        self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
+
     def test_no_rating_fails(self):
         response = self.client.post(
             self.url, data={'message': 'abuse!', 'reason': 'illegal'}
@@ -1134,6 +1182,23 @@ class CollectionAbuseViewSetTestBase:
             self.url,
             data={
                 'collection': str(target_collection.pk),
+                'message': 'abusé!',
+                'reason': 'hateful_violent_deceptive',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(collection_id=target_collection.pk).exists()
+        report = AbuseReport.objects.get(collection=target_collection)
+        self.check_report(report, f'Abuse Report for Collection {target_collection.pk}')
+
+    def test_report_collection_id_int(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': target_collection.pk,
                 'message': 'abusé!',
                 'reason': 'hateful_violent_deceptive',
             },
