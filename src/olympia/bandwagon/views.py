@@ -77,9 +77,12 @@ class CollectionViewSet(ModelViewSet):
         )
 
     def get_queryset(self):
-        return Collection.objects.filter(
-            author=self.get_account_viewset().get_object()
-        ).order_by('-modified')
+        qs = Collection.objects.all()
+        if self.action == 'retrieve_from_pk':
+            self.lookup_field = 'pk'
+        else:
+            qs = qs.filter(author=self.get_account_viewset().get_object())
+        return qs.order_by('-modified')
 
     def get_addons_queryset(self):
         collection_addons_viewset = CollectionAddonViewSet(request=self.request)
@@ -153,6 +156,7 @@ class CollectionAddonViewSet(ModelViewSet):
                     'user_pk': self.kwargs['user_pk'],
                     'slug': self.kwargs['collection_slug'],
                 },
+                action='retrieve',
             ).get_object()
         return self.collection
 

@@ -109,6 +109,20 @@ class Collection(ModelBase):
     def is_public(self):
         return self.listed
 
+    def get_all_comments(self):
+        """Return a list of strings with all non-empty add-on comments in all
+        locales attached to this collection."""
+        TranslationClass = self.addons.through._meta.get_field('comments').related_model
+        return [
+            str(translation)
+            for translation in TranslationClass.objects.filter(
+                id__in=self.collectionaddon_set.filter(
+                    comments__isnull=False
+                ).values_list('comments', flat=True),
+                localized_string__isnull=False,
+            ).order_by('pk')
+        ]
+
     @staticmethod
     def transformer(collections):
         if not collections:

@@ -10,11 +10,12 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer,
+    CollectionAbuseReportSerializer,
     RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
 from olympia.ratings.models import Rating
 
 
@@ -275,7 +276,7 @@ class TestRatingAbuseReportSerializer(TestCase):
     def serialize(self, report, context=None):
         return dict(RatingAbuseReportSerializer(report, context=context or {}).data)
 
-    def test_user_report(self):
+    def test_rating_report(self):
         user = user_factory()
         addon = addon_factory()
         rating = Rating.objects.create(
@@ -302,4 +303,36 @@ class TestRatingAbuseReportSerializer(TestCase):
             },
             'reason': 'illegal',
             'message': 'bad stuff',
+        }
+
+
+class TestCollectionAbuseReportSerializer(TestCase):
+    def serialize(self, report, context=None):
+        return dict(CollectionAbuseReportSerializer(report, context=context or {}).data)
+
+    def test_collection_report(self):
+        collection = collection_factory()
+        report = AbuseReport(
+            collection=collection,
+            message='this is some spammy stûff',
+            reason=AbuseReport.REASONS.FEEDBACK_SPAM,
+        )
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        view = Mock()
+        view.get_target_object.return_value = collection
+        context = {
+            'request': request,
+            'view': view,
+        }
+        serialized = self.serialize(report, context=context)
+        assert serialized == {
+            'reporter': None,
+            'reporter_email': None,
+            'reporter_name': None,
+            'collection': {
+                'id': collection.pk,
+            },
+            'reason': 'feedback_spam',
+            'message': 'this is some spammy stûff',
         }

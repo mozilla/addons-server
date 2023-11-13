@@ -25,6 +25,7 @@ from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
 from olympia.abuse.models import CinderReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer,
+    CollectionAbuseReportSerializer,
     RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
@@ -33,6 +34,7 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
+from olympia.bandwagon.views import CollectionViewSet
 from olympia.ratings.views import RatingViewSet
 
 from .cinder import CinderEntity
@@ -143,6 +145,15 @@ class RatingAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = RatingViewSet
     target_parameter_name = 'rating'
+
+
+class CollectionAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
+    permission_classes = []
+    serializer_class = CollectionAbuseReportSerializer
+    throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
+    target_viewset_class = CollectionViewSet
+    target_parameter_name = 'collection'
+    target_viewset_action = 'retrieve_from_pk'
 
 
 class CinderInboundPermission:
