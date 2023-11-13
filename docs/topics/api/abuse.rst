@@ -34,7 +34,7 @@ to if necessary.
 
 .. http:post:: /api/v5/abuse/report/addon/
 
-    :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
+    :<json string|int addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
     :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <abuse-addon_install_method-parameter>`.
@@ -242,7 +242,7 @@ so reports can be responded to if necessary.
 
     .. _userabusereport-create-request:
 
-    :<json string user: The id or username of the user to report for abuse (required).
+    :<json string|int user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-user-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
@@ -289,7 +289,7 @@ so reports can be responded to if necessary.
 
     .. _ratingabusereport-create-request:
 
-    :<json string rating: The id of the rating to report for abuse (required).
+    :<json string|int rating: The id of the rating to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-rating-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
@@ -334,7 +334,7 @@ so reports can be responded to if necessary.
 
     .. _collectionabusereport-create-request:
 
-    :<json string collection: The id of the collection to report for abuse (required).
+    :<json string|int collection: The id of the collection to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-collection-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
