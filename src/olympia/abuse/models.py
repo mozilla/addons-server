@@ -23,6 +23,7 @@ from .cinder import (
 from .utils import (
     CinderActionApprove,
     CinderActionBanUser,
+    CinderActionDeleteCollection,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
@@ -477,6 +478,7 @@ class CinderReport(ModelBase):
             self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
             self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
             self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            self.DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
             self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApprove,
         }.get(self.decision_action, CinderActionNotImplemented)
         return CinderActionClass(self)

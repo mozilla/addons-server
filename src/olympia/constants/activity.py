@@ -962,6 +962,18 @@ class ADDON_SLUG_CHANGED(_LOG):
     show_user_to_developer = True
 
 
+class COLLECTION_DELETED(_LOG):
+    id = 183
+    format = 'Collection {collection} deleted by cinder moderator'
+    keep = True
+
+
+class COLLECTION_UNDELETED(_LOG):
+    id = 184
+    format = 'Collection {collection} un-deleted by cinder moderator'
+    keep = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

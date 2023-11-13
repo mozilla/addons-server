@@ -21,6 +21,7 @@ from ..models import AbuseReport, CinderReport
 from ..utils import (
     CinderActionApprove,
     CinderActionBanUser,
+    CinderActionDeleteCollection,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
@@ -474,7 +475,7 @@ class TestCinderReport(TestCase):
             (DECISION_ACTIONS.AMO_DISABLE_ADDON, CinderActionDisableAddon),
             (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
             (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionNotImplemented),
-            (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionNotImplemented),
+            (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionDeleteCollection),
             (DECISION_ACTIONS.AMO_APPROVE, CinderActionApprove),
         ):
             cinder_report.update(decision_action=action)

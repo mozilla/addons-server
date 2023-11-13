@@ -1,6 +1,7 @@
 from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
+from olympia.bandwagon.models import Collection
 from olympia.users.models import UserProfile
 
 
@@ -70,6 +71,17 @@ class CinderActionEscalateAddon(CinderAction):
                 )
 
 
+class CinderActionDeleteCollection(CinderAction):
+    description = 'Collection has been deleted'
+
+    def process(self):
+        if collection := self.abuse_report.collection:
+            log_create(amo.LOG.COLLECTION_DELETED, collection)
+            collection.delete(clear_slug=False)
+            self.notify_reporter()
+            self.notify_targets([collection.author])
+
+
 class CinderActionApprove(CinderAction):
     description = 'Reported content is within policy'
 
@@ -83,6 +95,11 @@ class CinderActionApprove(CinderAction):
         elif isinstance(target, UserProfile) and target.banned:
             # TODO: un-ban the user
             self.notify_targets([target])
+
+        elif isinstance(target, Collection) and target.deleted:
+            target.undelete()
+            log_create(amo.LOG.COLLECTION_UNDELETED, target)
+            self.notify_targets([target.author])
 
 
 class CinderActionNotImplemented(CinderAction):
