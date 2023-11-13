@@ -127,7 +127,8 @@ class Rating(ModelBase):
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
 
-    # will be a non-zero (truthy) value when deleted
+    # Will be a non-zero (truthy) value when deleted, and 0 (falsely) when not deleted,
+    # so assertions should work as expected. We're using an integer for the constraint.
     deleted = models.IntegerField(default=0)
 
     # Denormalized fields for easy lookup queries.
@@ -197,7 +198,7 @@ class Rating(ModelBase):
             flag.delete()
         self.update(editorreview=False, _signal=False)
 
-    def delete(self, skip_activity_log=False):
+    def delete(self, *, skip_activity_log=False, clear_flags=True):
         current_user = core.get_user()
         # Log deleting ratings to moderation log, except if the rating user deletes it,
         # or skip_activty_log=True (sent when the addon is being deleted).
@@ -213,6 +214,7 @@ class Rating(ModelBase):
                     'is_flagged': self.ratingflag_set.exists(),
                 },
             )
+        if current_user != self.user and clear_flags:
             for flag in self.ratingflag_set.all():
                 flag.delete()
 
@@ -223,6 +225,7 @@ class Rating(ModelBase):
             str(self.user),
             str(self.body),
         )
+        # a random integer would do, but using id makes sure it is unique.
         self.update(deleted=self.id)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).

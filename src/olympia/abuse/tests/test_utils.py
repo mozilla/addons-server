@@ -9,12 +9,14 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..utils import (
     CinderActionApprove,
     CinderActionBanUser,
     CinderActionDeleteCollection,
+    CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
 )
@@ -98,3 +100,19 @@ class TestCinderAction(TestCase):
         action = CinderActionApprove(self.cinder_report)
         action.process()
         assert not collection.deleted
+
+    def test_delete_rating(self):
+        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        self.cinder_report.abuse_report.update(rating=rating, guid=None)
+        action = CinderActionDeleteRating(self.cinder_report)
+        action.process()
+        assert rating.reload().deleted
+
+    def test_approve_rating(self):
+        rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), deleted=True
+        )
+        self.cinder_report.abuse_report.update(rating=rating, guid=None)
+        action = CinderActionApprove(self.cinder_report)
+        action.process()
+        assert not rating.reload().deleted
