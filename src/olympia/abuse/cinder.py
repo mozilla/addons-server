@@ -1,12 +1,17 @@
 from django.conf import settings
+from django.utils.functional import classproperty
 
 import requests
 
 
 class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
-    queue = 'amo-content-infringement'
+    _queue = 'content-infringement'
     type = None  # Needs to be defined by subclasses
+
+    @classproperty
+    def queue(cls):
+        return f'{settings.CINDER_QUEUE_PREFIX}{cls._queue}'
 
     @property
     def id(self):
@@ -238,7 +243,7 @@ class CinderCollection(CinderEntity):
 
 class CinderAddonHandledByReviewers(CinderAddon):
     # This queue is not monitored on cinder - reports are resolved via AMO instead
-    queue = 'amo-addon-infringement'
+    _queue = 'addon-infringement'
 
     def flag_for_human_review(self, appeal=False):
         from olympia.reviewers.models import NeedsHumanReview

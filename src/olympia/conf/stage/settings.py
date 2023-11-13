@@ -78,3 +78,5 @@ REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'
 )
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
+
+CINDER_QUEUE_PREFIX = 'amo-stage-'

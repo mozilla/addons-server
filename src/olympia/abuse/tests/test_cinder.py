@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.test.utils import override_settings
 
 import responses
 
@@ -26,6 +27,10 @@ from ..cinder import (
 
 class BaseTestCinderCase:
     cinder_class = None  # Override in child classes
+
+    @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
+    def test_queue(self):
+        assert self.cinder_class.queue == 'amo-env-content-infringement'
 
     def _create_dummy_target(self, **kwargs):
         raise NotImplementedError
@@ -283,6 +288,10 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
 
+    @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
+    def test_queue(self):
+        assert self.cinder_class.queue == 'amo-env-addon-infringement'
+
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
 
@@ -512,7 +521,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             report_text=reason, category=None, reporter=None
         )
         assert data == {
-            'queue_slug': 'amo-content-infringement',
+            'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_rating',
             'entity': {
                 'id': str(rating.id),
@@ -604,6 +613,6 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                 'slug': collection.slug,
             },
             'entity_type': 'amo_collection',
-            'queue_slug': 'amo-content-infringement',
+            'queue_slug': self.cinder_class.queue,
             'reasoning': 'bad collection!',
         }

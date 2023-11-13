@@ -75,3 +75,5 @@ REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_AMO_DATASET = 'amo_prod'
+
+CINDER_QUEUE_PREFIX = 'amo-'
