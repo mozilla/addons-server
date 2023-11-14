@@ -469,8 +469,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         Similar to deletion, except that the content produced by the user is
         forcibly disabled instead of being deleted where possible, and the user
-        is not fully anonymized: we keep their fxa_id and email so that they
-        are never able to log back in.
+        is not anonymized: we keep their data until hard-deletion kicks in
+        (see clear_old_user_data), including fxa_id and email so that they are
+        never able to log back in.
         """
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
