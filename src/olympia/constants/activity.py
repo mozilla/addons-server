@@ -964,13 +964,13 @@ class ADDON_SLUG_CHANGED(_LOG):
 
 class COLLECTION_DELETED(_LOG):
     id = 183
-    format = 'Collection {collection} deleted by cinder moderator'
+    format = _('Collection {collection} deleted by moderator')
     keep = True
 
 
 class COLLECTION_UNDELETED(_LOG):
     id = 184
-    format = 'Collection {collection} un-deleted by cinder moderator'
+    format = _('Collection {collection} un-deleted by moderator')
     keep = True
 
 
