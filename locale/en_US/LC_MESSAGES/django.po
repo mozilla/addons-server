@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -936,6 +936,12 @@ msgstr "{user_responsible} changed {addon} slug from {0} to {1}."
 
 msgid "Add-on slug changed"
 msgstr "Add-on slug changed"
+
+msgid "Collection {collection} deleted by moderator"
+msgstr "Collection {collection} deleted by moderator"
+
+msgid "Collection {collection} un-deleted by moderator"
+msgstr "Collection {collection} un-deleted by moderator"
 
 msgid "Firefox"
 msgstr "Firefox"

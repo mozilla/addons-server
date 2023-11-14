@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -876,6 +876,12 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
+msgstr ""
+
+msgid "Collection {collection} deleted by moderator"
+msgstr ""
+
+msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
 msgid "Firefox"

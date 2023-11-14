@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -898,6 +898,12 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
+msgstr ""
+
+msgid "Collection {collection} deleted by moderator"
+msgstr ""
+
+msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
 msgid "Firefox"
