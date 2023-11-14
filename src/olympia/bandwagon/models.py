@@ -18,8 +18,17 @@ from olympia.users.models import UserProfile
 
 
 class CollectionManager(ManagerBase):
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        super().__init__()
+        self.include_deleted = include_deleted
+
     def get_queryset(self):
         qs = super().get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(deleted=True)
         return qs.transform(Collection.transformer)
 
 
@@ -49,11 +58,16 @@ class Collection(ModelBase):
     author = models.ForeignKey(
         UserProfile, null=True, related_name='collections', on_delete=models.CASCADE
     )
+    deleted = models.BooleanField(default=False)
 
+    unfiltered = CollectionManager(include_deleted=True)
     objects = CollectionManager()
 
     class Meta(ModelBase.Meta):
         db_table = 'collections'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('created',), name='collections_created_idx'),
             models.Index(fields=('listed',), name='collections_listed_idx'),
@@ -81,7 +95,7 @@ class Collection(ModelBase):
         if not self.author:
             return
 
-        qs = self.author.collections.using('default')
+        qs = Collection.unfiltered.filter(author=self.author).using('default')
         slugs = {slug: id for slug, id in qs.values_list('slug', 'id')}
         if self.slug in slugs and slugs[self.slug] != self.id:
             for idx in range(len(slugs)):
@@ -89,6 +103,15 @@ class Collection(ModelBase):
                 if new not in slugs:
                     self.slug = new
                     return
+
+    def delete(self, *, hard=False, clear_slug=True):
+        if hard:
+            return super().delete()
+        self.update(deleted=True, **({'slug': None} if clear_slug else {}))
+
+    def undelete(self):
+        self.deleted = False
+        self.save()  # to trigger clean_slug
 
     def get_url_path(self):
         return reverse('collections.detail', args=[self.author_id, self.slug])

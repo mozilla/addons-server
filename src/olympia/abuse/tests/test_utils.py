@@ -2,12 +2,19 @@ from django.conf import settings
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderReport
-from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    user_factory,
+    version_factory,
+)
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..utils import (
     CinderActionApprove,
     CinderActionBanUser,
+    CinderActionDeleteCollection,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
 )
@@ -36,7 +43,7 @@ class TestCinderAction(TestCase):
         action.process()
         assert addon.reload().status == amo.STATUS_DISABLED
 
-    def test_approved_addon(self):
+    def test_approve_addon(self):
         addon = addon_factory(status=amo.STATUS_DISABLED)
         self.cinder_report.abuse_report.update(guid=addon.guid)
         action = CinderActionApprove(self.cinder_report)
@@ -76,3 +83,18 @@ class TestCinderAction(TestCase):
             other_version.reload().needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
+
+    def test_delete_collection(self):
+        collection = collection_factory(author=user_factory())
+        self.cinder_report.abuse_report.update(collection=collection, guid=None)
+        action = CinderActionDeleteCollection(self.cinder_report)
+        action.process()
+        assert collection.deleted
+        assert collection.slug
+
+    def test_approve_collection(self):
+        collection = collection_factory(author=user_factory(), deleted=True)
+        self.cinder_report.abuse_report.update(collection=collection, guid=None)
+        action = CinderActionApprove(self.cinder_report)
+        action.process()
+        assert not collection.deleted
