@@ -19,9 +19,23 @@ class OneOrMorePrintableCharacterValidator:
     # (Not (M)ark, (C)ontrol or (Z)-spaces/separators)
     unicode_categories = ('L', 'N', 'P', 'S')
 
+    # Those characters are considered (L)etter or (S)ymbol but are shown empty
+    # or blank, so we consider them not printable for this validator.
+    # https://en.wikipedia.org/wiki/Whitespace_character#Non-space_blanks
+    special_blank_characters = (
+        '\u2800',  # U+2800 BRAILLE PATTERN BLANK
+        '\u3164',  # U+3164 HANGUL FILLER
+        '\u115F',  # U+115F HANGUL CHOSEONG FILLER
+        '\u1160',  # U+1160 HANGUL JUNGSEONG FILLER
+        '\uFFA0',  # U+FFA0 HALFWIDTH HANGUL FILLER
+    )
+
     def __call__(self, value):
         for character in value:
-            if unicodedata.category(character)[0] in self.unicode_categories:
+            if (
+                unicodedata.category(character)[0] in self.unicode_categories
+                and character not in self.special_blank_characters
+            ):
                 return
         raise ValidationError(self.message)
 

@@ -1494,6 +1494,12 @@ class TestAccountViewSetUpdate(TestCase):
             'display_name': ['Must contain at least one printable character.']
         }
 
+        response = self.patch(data={'display_name': '\u2800\u3164\u115F\u1160\uFFA0'})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'display_name': ['Must contain at least one printable character.']
+        }
+
         response = self.patch(data={'display_name': 'a\x7F'})
         assert response.status_code == 200
 
