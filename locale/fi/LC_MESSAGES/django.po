@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: 2023-10-08 14:57+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -879,6 +879,12 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
+msgstr ""
+
+msgid "Collection {collection} deleted by moderator"
+msgstr ""
+
+msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
 msgid "Firefox"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -191,12 +191,12 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2075 src/olympia/addons/models.py:2135
+#: src/olympia/addons/models.py:2097 src/olympia/addons/models.py:2157
 #: src/olympia/constants/base.py:67
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/models.py:2318
+#: src/olympia/addons/models.py:2340
 msgid "Add-on and collection paths need to end with \"/\""
 msgstr ""
 
@@ -441,7 +441,7 @@ msgstr ""
 msgid "Must contain at least one printable character."
 msgstr ""
 
-#: src/olympia/amo/validators.py:34
+#: src/olympia/amo/validators.py:48
 msgid "Ensure this field contains at least one letter or number character."
 msgstr ""
 
@@ -775,7 +775,7 @@ msgstr ""
 msgid "{addon} {version} rejected."
 msgstr ""
 
-#: src/olympia/constants/activity.py:167 src/olympia/files/models.py:292
+#: src/olympia/constants/activity.py:167 src/olympia/files/models.py:303
 msgid "Rejected"
 msgstr ""
 
@@ -1222,6 +1222,14 @@ msgstr ""
 msgid "Add-on slug changed"
 msgstr ""
 
+#: src/olympia/constants/activity.py:967
+msgid "Collection {collection} deleted by moderator"
+msgstr ""
+
+#: src/olympia/constants/activity.py:973
+msgid "Collection {collection} un-deleted by moderator"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr ""
@@ -1263,7 +1271,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:28 src/olympia/versions/models.py:1127
+#: src/olympia/constants/base.py:28 src/olympia/versions/models.py:1142
 msgid "Deleted"
 msgstr ""
 
@@ -6337,11 +6345,11 @@ msgstr ""
 msgid "See more download manager staff picks"
 msgstr ""
 
-#: src/olympia/files/models.py:294
+#: src/olympia/files/models.py:305
 msgid "Unreviewed"
 msgstr ""
 
-#: src/olympia/files/models.py:297
+#: src/olympia/files/models.py:308
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -6738,19 +6746,19 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:12
+#: src/olympia/stats/templates/stats/addon_report_menu.html:11
 msgid "by Source"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:15
+#: src/olympia/stats/templates/stats/addon_report_menu.html:14
 msgid "by Medium"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:18
+#: src/olympia/stats/templates/stats/addon_report_menu.html:17
 msgid "by Content"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:21
+#: src/olympia/stats/templates/stats/addon_report_menu.html:20
 msgid "by Campaign"
 msgstr ""
 
@@ -6758,23 +6766,23 @@ msgstr ""
 msgid "Daily Users"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:30
+#: src/olympia/stats/templates/stats/addon_report_menu.html:29
 msgid "by Add-on Version"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:33
+#: src/olympia/stats/templates/stats/addon_report_menu.html:32
 msgid "by Application"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:36
+#: src/olympia/stats/templates/stats/addon_report_menu.html:35
 msgid "by Language"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:39
+#: src/olympia/stats/templates/stats/addon_report_menu.html:38
 msgid "by Platform"
 msgstr ""
 
-#: src/olympia/stats/templates/stats/addon_report_menu.html:42
+#: src/olympia/stats/templates/stats/addon_report_menu.html:41
 msgid "by Country"
 msgstr ""
 
@@ -7180,47 +7188,47 @@ msgstr ""
 msgid "You can only enter one, either IP Address or Network."
 msgstr ""
 
-#: src/olympia/users/models.py:66
+#: src/olympia/users/models.py:67
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:412
+#: src/olympia/users/models.py:413
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:716
+#: src/olympia/users/models.py:714
 msgid "Enter a valid IPv4 or IPv6 CIDR network range, eg. 127.0.0.1/28"
 msgstr ""
 
-#: src/olympia/users/models.py:719
+#: src/olympia/users/models.py:717
 msgid ""
 "Multiple submissions violating our policies have been sent from your "
 "location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:832
+#: src/olympia/users/models.py:830
 msgid "Email Pattern"
 msgstr ""
 
-#: src/olympia/users/models.py:834
+#: src/olympia/users/models.py:832
 msgid ""
 "Enter full email that should be blocked or use unix-style wildcards, e.g. "
 "\"*@example.com\". If you need to block a domain incl subdomains, add a "
 "second entry, e.g. \"*@*.example.com\"."
 msgstr ""
 
-#: src/olympia/users/models.py:841
+#: src/olympia/users/models.py:839
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:920
+#: src/olympia/users/models.py:918
 msgid ""
 "Enter full disposable email domain that should be blocked. Wildcards are not "
 "supported: if you need those, or need to match against the entire email and "
 "not just the domain part, use \"Email user restrictions\" instead."
 msgstr ""
 
-#: src/olympia/users/models.py:1071
+#: src/olympia/users/models.py:1069
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution "
 "Agreement as well as our Review Policies and Rules. The Firefox Add-on "
@@ -7228,13 +7236,13 @@ msgid ""
 " handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1088
+#: src/olympia/users/models.py:1086
 msgid ""
 "Please read and accept our Firefox Add-on Distribution Agreement as well as "
 "our Review Policies and Rules by visiting {url}"
 msgstr ""
 
-#: src/olympia/users/models.py:1137
+#: src/olympia/users/models.py:1135
 msgid "User Restriction History"
 msgstr ""
 
@@ -7373,32 +7381,32 @@ msgid ""
 "The Firefox Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1112
+#: src/olympia/versions/models.py:1127
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1117
+#: src/olympia/versions/models.py:1132
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1119
+#: src/olympia/versions/models.py:1134
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1122
+#: src/olympia/versions/models.py:1137
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1129
+#: src/olympia/versions/models.py:1144
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1445
+#: src/olympia/versions/models.py:1460
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1572
+#: src/olympia/versions/models.py:1587
 msgid "The install origin {origin} is not permitted."
 msgstr ""
 

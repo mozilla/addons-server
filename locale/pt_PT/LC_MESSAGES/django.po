@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-07 18:04+0000\n"
+"POT-Creation-Date: 2023-11-14 19:50+0000\n"
 "PO-Revision-Date: 2023-10-18 00:01+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -873,6 +873,12 @@ msgid "{user_responsible} changed {addon} slug from {0} to {1}."
 msgstr ""
 
 msgid "Add-on slug changed"
+msgstr ""
+
+msgid "Collection {collection} deleted by moderator"
+msgstr ""
+
+msgid "Collection {collection} un-deleted by moderator"
 msgstr ""
 
 msgid "Firefox"
