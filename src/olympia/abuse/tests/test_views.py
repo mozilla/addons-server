@@ -786,6 +786,7 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
 
 
 @override_settings(CINDER_WEBHOOK_TOKEN='webhook-token')
+@override_settings(CINDER_QUEUE_PREFIX='amo-')
 class TestCinderWebhook(TestCase):
     def get_data(self):
         webhook_file = os.path.join(TESTS_DIR, 'assets', 'cinder_webhook.json')
@@ -859,10 +860,8 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_wrong_queue(self):
+    def _test_wrong_queue(self, data):
         self._setup_report()
-        data = self.get_data()
-        data['payload']['source']['job']['queue']['slug'] = 'another-queue'
         req = self.get_request(data=data)
         with mock.patch.object(CinderReport, 'process_decision') as process_mock:
             response = cinder_webhook(req)
@@ -875,6 +874,16 @@ class TestCinderWebhook(TestCase):
                 'not_handled_reason': 'Not from a queue we process',
             }
         }
+
+    def test_wrong_queue_slug(self):
+        data = self.get_data()
+        data['payload']['source']['job']['queue']['slug'] = 'amo-another-queue'
+        self._test_wrong_queue(data)
+
+    @override_settings(CINDER_QUEUE_PREFIX='amo-stage')
+    def test_wrong_queue_prefix(self):
+        data = self.get_data()
+        self._test_wrong_queue(data)
 
     def test_not_decision_event(self):
         self._setup_report()

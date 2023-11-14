@@ -215,7 +215,7 @@ def test_addon_report_to_cinder():
             'slug': addon.slug,
         },
         'entity_type': 'amo_addon',
-        'queue_slug': 'amo-content-infringement',
+        'queue_slug': 'amo-dev-content-infringement',
         'reasoning': 'This is bad',
     }
 
@@ -260,7 +260,7 @@ def test_addon_appeal_to_cinder():
         },
         'appealer_entity_type': 'amo_unauthenticated_reporter',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-content-infringement',
+        'queue_slug': 'amo-dev-content-infringement',
         'reasoning': 'I appeal',
     }
 
@@ -303,7 +303,7 @@ def test_addon_appeal_to_cinder_authenticated():
         },
         'appealer_entity_type': 'amo_user',
         'decision_to_appeal_id': '4815162342-abc',
-        'queue_slug': 'amo-content-infringement',
+        'queue_slug': 'amo-dev-content-infringement',
         'reasoning': 'I appeal',
     }
 
