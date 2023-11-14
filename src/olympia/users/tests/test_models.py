@@ -204,13 +204,29 @@ class TestUserProfile(TestCase):
 
     def test_ban_and_disable_related_content_bulk(self):
         user_sole = user_factory(
-            email='sole@foo.baa', fxa_id='13579', last_login_ip='127.0.0.1'
+            email='sole@foo.baa',
+            fxa_id='13579',
+            last_login_ip='127.0.0.1',
+            averagerating=4.4,
+            biography='ban me',
+            bypass_upload_restrictions=True,
+            location='some where',
+            occupation='some job',
+            read_dev_agreement=datetime.now(),
         )
         addon_sole = addon_factory(users=[user_sole])
         addon_sole_file = addon_sole.current_version.file
         self.setup_user_to_be_have_content_disabled(user_sole)
         user_multi = user_factory(
-            email='multi@foo.baa', fxa_id='24680', last_login_ip='127.0.0.2'
+            email='multi@foo.baa',
+            fxa_id='24680',
+            last_login_ip='127.0.0.2',
+            averagerating=2.2,
+            biography='ban me too',
+            bypass_upload_restrictions=True,
+            location='some where too',
+            occupation='some job too',
+            read_dev_agreement=datetime.now(),
         )
         innocent_user = user_factory()
         addon_multi = addon_factory(
@@ -259,6 +275,13 @@ class TestUserProfile(TestCase):
         assert user_sole.auth_id
         assert user_sole.fxa_id == '13579'
         assert user_sole.last_login_ip == '127.0.0.1'
+        assert user_sole.averagerating == 4.4
+        assert user_sole.biography == 'ban me'
+        assert user_sole.bypass_upload_restrictions
+        assert user_sole.location == 'some where'
+        assert user_sole.occupation == 'some job'
+        assert user_sole.read_dev_agreement
+
         assert user_multi.deleted
         self.assertCloseToNow(user_multi.banned)
         self.assertCloseToNow(user_multi.modified)
@@ -266,6 +289,12 @@ class TestUserProfile(TestCase):
         assert user_multi.auth_id
         assert user_multi.fxa_id == '24680'
         assert user_multi.last_login_ip == '127.0.0.2'
+        assert user_multi.averagerating == 2.2
+        assert user_multi.biography == 'ban me too'
+        assert user_multi.bypass_upload_restrictions
+        assert user_multi.location == 'some where too'
+        assert user_multi.occupation == 'some job too'
+        assert user_multi.read_dev_agreement
 
     def setup_user_to_be_have_content_disabled(self, user):
         addon = user.addons.last()

@@ -453,17 +453,15 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.picture_type:
             self.update(picture_type=None)
 
-    @classmethod
-    def anonymize_users(cls, users):
+    def anonymize_user(self):
         fields = {
-            field_name: cls._meta.get_field(field_name)
-            for field_name in cls.ANONYMIZED_FIELDS
+            field_name: self._meta.get_field(field_name)
+            for field_name in self.ANONYMIZED_FIELDS
         }
-        for user in users:
-            log.info('Anonymizing username for %s', user.pk)
-            for field_name, field in fields.items():
-                setattr(user, field_name, field.get_default())
-            user.delete_picture()
+        log.info('Anonymizing user %s', self.pk)
+        for field_name, field in fields.items():
+            setattr(self, field_name, field.get_default())
+        self.delete_picture()
 
     @classmethod
     def ban_and_disable_related_content_bulk(cls, users, move_files=False):
@@ -478,6 +476,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.addons.tasks import index_addons
         from olympia.bandwagon.models import Collection
         from olympia.ratings.models import Rating
+        from olympia.users.tasks import delete_photo
 
         # collect affected addons
         addon_ids = set(
@@ -515,7 +514,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         ids = []
         for user in users:
             log.info(
-                'User (%s: <%s>) is being anonymized and banned.',
+                'User (%s: <%s>) is being banned.',
                 user,
                 user.email,
                 extra={'sensitive': True},
@@ -523,10 +522,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             user.banned = user.modified = datetime.now()
             user.deleted = True
             ids.append(user.pk)
-        cls.anonymize_users(users)
-        cls.objects.bulk_update(
-            users, fields=('banned', 'deleted', 'modified') + cls.ANONYMIZED_FIELDS
-        )
+            # To delete their photo, avoid delete_picture() that updates
+            # picture_type immediately.
+            delete_photo.delay(user.pk)
+        cls.objects.bulk_update(users, fields=('banned', 'deleted', 'modified'))
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
@@ -560,7 +559,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         self._delete_related_content(addon_msg=addon_msg)
         log.info('User (%s: <%s>) is being anonymized.', self, self.email)
         email = self._prepare_delete_email() if send_delete_email else None
-        self.anonymize_users((self,))
+        self.anonymize_user()
         self.deleted = True
         self.save()
         if send_delete_email:
