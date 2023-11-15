@@ -1283,3 +1283,5 @@ class BannedUserContent(ModelBase):
         Rating.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
         for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():
             addon.force_enable()
+
+        self.delete()  # Should delete the ManyToMany relationships
