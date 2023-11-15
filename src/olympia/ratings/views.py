@@ -405,7 +405,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # separate query to fetch them all.
         queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
-        return queryset.prefetch_related(Prefetch('reply', queryset=replies_qs))
+        return queryset.prefetch_related(Prefetch('replies', queryset=replies_qs))
 
     @action(
         detail=True,
@@ -420,12 +420,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # Call get_object() to trigger 404 if it does not exist.
         self.rating_object = self.get_object()
         self.set_addon_object_from_rating(self.rating_object)
-        if Rating.unfiltered.filter(reply_to=self.rating_object).exists():
-            # A reply already exists, just edit it.
-            # We set should_access_deleted_ratings so that it works even if
-            # the reply has been deleted.
+        if Rating.objects.filter(reply_to=self.rating_object).exists():
+            # A (not deleted) reply already exists, just edit it.
             self.kwargs['pk'] = kwargs['pk'] = self.rating_object.reply.pk
-            self.should_access_deleted_ratings = True
             return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 

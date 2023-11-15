@@ -58,7 +58,7 @@ class RatingManager(ManagerBase):
     def get_queryset(self):
         qs = super().get_queryset()
         if not self.include_deleted:
-            qs = qs.exclude(deleted=True).exclude(reply_to__deleted=True)
+            qs = qs.exclude(deleted__gt=0).exclude(reply_to__deleted__gt=0)
         return qs
 
 
@@ -69,8 +69,23 @@ class WithoutRepliesRatingManager(ManagerBase):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        qs = qs.exclude(deleted=True)
+        qs = qs.exclude(deleted__gt=0)
         return qs.filter(reply_to__isnull=True)
+
+
+class UnfilteredRatingManagerForRelations(RatingManager):
+    """Like RatingManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Ratings like this:
+    <Rating>.replies(manager='unfiltered_for_relations').all(), for when you
+    want to use the related manager but need to include deleted replies.
+
+    unfiltered_for_relations = UnfilteredRatingManagerForRelations() is
+    defined in Rating for this to work.
+    """
+
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
 
 
 class Rating(ModelBase):
@@ -93,10 +108,10 @@ class Rating(ModelBase):
     user = models.ForeignKey(
         'users.UserProfile', related_name='_ratings_all', on_delete=models.CASCADE
     )
-    reply_to = models.OneToOneField(
+    reply_to = models.ForeignKey(
         'self',
         null=True,
-        related_name='reply',
+        related_name='replies',
         db_column='reply_to',
         on_delete=models.CASCADE,
     )
@@ -112,7 +127,8 @@ class Rating(ModelBase):
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
 
-    deleted = models.BooleanField(default=False)
+    # will be a non-zero (truthy) value when deleted
+    deleted = models.IntegerField(default=0)
 
     # Denormalized fields for easy lookup queries.
     is_latest = models.BooleanField(
@@ -129,6 +145,7 @@ class Rating(ModelBase):
     unfiltered = RatingManager(include_deleted=True)
     objects = RatingManager()
     without_replies = WithoutRepliesRatingManager()
+    unfiltered_for_relations = UnfilteredRatingManagerForRelations()
 
     class Meta:
         db_table = 'reviews'
@@ -148,12 +165,18 @@ class Rating(ModelBase):
         ]
         constraints = [
             models.UniqueConstraint(
-                fields=('version', 'user', 'reply_to'), name='one_review_per_user'
+                fields=('version', 'user', 'reply_to', 'deleted'),
+                name='one_review_per_user',
             ),
         ]
 
     def __str__(self):
         return truncate(str(self.body), 10)
+
+    @property
+    def reply(self):
+        # could be a deleted reply
+        return self.replies(manager='unfiltered_for_relations').first()
 
     def get_url_path(self):
         return jinja_helpers.url('addons.ratings.detail', self.addon.slug, self.id)
@@ -200,13 +223,14 @@ class Rating(ModelBase):
             str(self.user),
             str(self.body),
         )
-        self.update(deleted=True)
+        self.update(deleted=self.id)
         # Force refreshing of denormalized data (it wouldn't happen otherwise
         # because we're not dealing with a creation).
         self.update_denormalized_fields()
 
     def undelete(self):
-        self.update(deleted=False, _signal=False)
+        self.update(deleted=0, _signal=False)
+        activity.log_create(amo.LOG.UNDELETE_RATING, self, self.addon)
         # We're avoiding triggering post_save signal normally because we don't
         # want to record an edit. We trigger the callback manually instead.
         rating_post_save(self.__class__, self, False, **{'undeleted': True})

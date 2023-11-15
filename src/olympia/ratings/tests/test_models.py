@@ -78,7 +78,7 @@ class TestRatingModel(TestCase):
     def test_undelete(self):
         self.test_soft_delete()
         deleted_rating = Rating.unfiltered.get(id=1)
-        assert deleted_rating.deleted is True
+        assert deleted_rating.deleted != 0
         deleted_rating.undelete()
 
         # The deleted_review was the oldest, so loading the other one we should
@@ -300,6 +300,29 @@ class TestRatingModel(TestCase):
         rating.save()
         assert not ActivityLog.objects.exists()
         assert mail.outbox == []
+
+    def test_reply_property(self):
+        rating = Rating.objects.get(pk=1)
+        user = user_factory()
+        assert rating.replies.all().count() == 0
+        assert rating.reply_to is None
+
+        # add some replies
+        deleted_rating = Rating.objects.create(
+            reply_to=rating,
+            user=user,
+            addon=rating.addon,
+            version=rating.addon.current_version,
+            deleted=123,
+        )
+        assert rating.reload().reply == deleted_rating
+        not_deleted_reply = Rating.objects.create(
+            reply_to=rating,
+            user=user,
+            addon=rating.addon,
+            version=rating.addon.current_version,
+        )
+        assert rating.reload().reply == not_deleted_reply
 
 
 class TestRefreshTest(ESTestCase):
