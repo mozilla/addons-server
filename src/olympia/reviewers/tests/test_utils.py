@@ -1880,6 +1880,31 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert activity.arguments == [self.addon, second_unlisted, first_unlisted]
 
+    def test_unlisted_manual_approval_clear_pending_rejection(self):
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.setup_data(
+            amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED, human_review=True
+        )
+        self.review_version.update(channel=amo.CHANNEL_UNLISTED)
+        flags = version_review_flags_factory(
+            version=self.review_version,
+            pending_rejection=datetime.now() + timedelta(days=7),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+
+        assert flags.pending_rejection
+        assert flags.pending_rejection_by
+        assert not flags.pending_content_rejection
+
+        self.helper.handler.approve_latest_version()
+
+        flags.refresh_from_db()
+        assert not flags.pending_rejection
+        assert not flags.pending_rejection_by
+        assert flags.pending_content_rejection is None
+
     def test_null_to_public_unlisted(self):
         self.sign_file_mock.reset()
         self.setup_data(amo.STATUS_NULL, channel=amo.CHANNEL_UNLISTED)
