@@ -622,9 +622,6 @@ class Addon(OnChangeMixin, ModelBase):
     def __str__(self):
         return f'{self.id}: {self.name}'
 
-    def __init__(self, *args, **kw):
-        super().__init__(*args, **kw)
-
     def save(self, **kw):
         self.clean_slug()
         super().save(**kw)
@@ -2072,7 +2069,17 @@ class AddonCategory(models.Model):
         return CATEGORIES_BY_ID.get(self.category_id)
 
 
+class AddonUserQuerySet(models.QuerySet):
+    def delete(self, hard_delete=False):
+        if hard_delete:
+            return super().delete()
+        else:
+            self.update(original_role=F('role'), role=amo.AUTHOR_ROLE_DELETED)
+
+
 class AddonUserManager(ManagerBase):
+    _queryset_class = AddonUserQuerySet
+
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
@@ -2094,15 +2101,16 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_OWNER, choices=amo.AUTHOR_CHOICES_UNFILTERED
     )
+    original_role = models.SmallIntegerField(
+        default=amo.AUTHOR_ROLE_DEV,
+        choices=amo.AUTHOR_CHOICES,
+        help_text='Role to assign if user is unbanned',
+    )
     listed = models.BooleanField(_('Listed'), default=True)
     position = models.IntegerField(default=0)
 
     unfiltered = AddonUserManager(include_deleted=True)
     objects = AddonUserManager()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._original_role = self.role
 
     class Meta:
         # see Addon.Meta for details of why this base_manager_name is important
@@ -2126,7 +2134,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
 
     def delete(self):
         # soft-delete
-        self.update(role=amo.AUTHOR_ROLE_DELETED)
+        self.update(original_role=self.role, role=amo.AUTHOR_ROLE_DELETED)
 
     @property
     def is_deleted(self):
@@ -2147,7 +2155,7 @@ models.signals.post_delete.connect(
 )
 
 
-class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
+class AddonUserPendingConfirmation(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
@@ -2160,10 +2168,6 @@ class AddonUserPendingConfirmation(SaveUpdateMixin, models.Model):
     # authors. Instead, authors waiting confirmation are displayed in the order
     # they have been added, and when they are confirmed they end up in the
     # last position by default.
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._original_role = self.role
 
     class Meta:
         db_table = 'addons_users_pending_confirmation'

@@ -481,7 +481,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
         # collect affected addons
         addon_ids = set(
-            Addon.unfiltered.exclude(status=amo.STATUS_DELETED)
+            Addon.unfiltered.exclude(
+                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED)
+            )
             .filter(addonuser__user__in=users)
             .values_list('id', flat=True)
         )
@@ -1193,3 +1195,41 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
 
 
 user_logged_in.connect(UserProfile.user_logged_in)
+
+
+class BannedUserContent(ModelBase):
+    """Link between a user and the content that was disabled when they were
+    banned.
+
+    That link should be removed if the user is unbanned, and the content
+    re-enabled.
+
+    FIXME: is that going to work even with deleted stuff ? Collections and
+    Ratings notably, will we be able to add them through the relation ? I think
+    so but not sure ?
+    """
+
+    user = models.OneToOneField(
+        UserProfile,
+        related_name='content_disabled_on_ban',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    collections = models.ManyToManyField('bandwagon.Collection')
+    addons = models.ManyToManyField('addons.Addon')
+    addons_users = models.ManyToManyField('addons.AddonUser')
+    ratings = models.ManyToManyField('ratings.Rating')
+
+    def restore(self):
+        from olympia.addons.models import Addon, AddonUser
+        from olympia.bandwagon.models import Collection
+        from olympia.ratings.models import Rating
+
+        # FIXME: logging
+        Collection.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
+        AddonUser.unfiltered.filter(bannedusercontent=self.pk).update(
+            role=F('original_role')
+        )
+        Rating.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
+        for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():
+            addon.force_enable()

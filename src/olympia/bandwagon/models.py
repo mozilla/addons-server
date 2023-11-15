@@ -7,7 +7,7 @@ from django.urls import reverse
 from olympia import activity, amo
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.translations.fields import (
     LinkifiedField,
     NoURLsField,
@@ -17,7 +17,17 @@ from olympia.translations.fields import (
 from olympia.users.models import UserProfile
 
 
+class CollectionQuerySet(BaseQuerySet):
+    def delete(self, hard_delete=False):
+        if hard_delete:
+            return super().delete()
+        else:
+            self.update(deleted=True)
+
+
 class CollectionManager(ManagerBase):
+    _queryset_class = CollectionQuerySet
+
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
