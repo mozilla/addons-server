@@ -479,7 +479,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         from olympia.ratings.models import Rating
         from olympia.users.tasks import delete_photo
 
-        # collect affected addons
+        BannedUserContent.objects.bulk_create(
+            [BannedUserContent(user=user) for user in users], ignore_conflicts=True
+        )
+
+        # Collect affected addons
         addon_ids = set(
             Addon.unfiltered.exclude(
                 status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED)
@@ -488,20 +492,42 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             .values_list('id', flat=True)
         )
 
-        # First addons who have other authors we aren't banning
+        # First addons who have other authors we aren't banning - we are
+        # keeping the add-ons up, but soft-deleting the relationships.
         addon_joint_ids = set(
             AddonUser.objects.filter(addon_id__in=addon_ids)
             .exclude(user__in=users)
             .values_list('addon_id', flat=True)
         )
-        AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids).delete()
+        qs = AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids)
+        # Keep track of the AddonUser we are (soft-)deleting.
+        BannedAddonsUsersModel = BannedUserContent.addons_users.through
+        BannedAddonsUsersModel.objects.bulk_create(
+            [
+                BannedAddonsUsersModel(
+                    bannedusercontent=val['user'], addonuser=val['pk']
+                )
+                for val in qs.values('user', 'pk')
+            ]
+        )
+        # (Soft-)delete them.
+        qs.delete()
 
-        # Then deal with users who are the sole author
+        # Then deal with users who are the sole author - we are disabling them.
         addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
         # disable Files in bulk that need to be disabled now the addons are disabled
         Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
+        # Keep track of the Addons and the relevant user.
+        qs = AddonUser.objects.filter(user__in=addons_sole, addon_in=addons_sole)
+        BannedAddonsModel = BannedUserContent.addons.through
+        BannedAddonsModel.objects.bulk_create(
+            [
+                BannedAddonsModel(bannedusercontent=val['user'], addon=val['addon'])
+                for val in qs.values('user', 'addon')
+            ]
+        )
 
         # Finally run Addon.force_disable to add the logging; update versions.
         addons_sole_ids = []
@@ -510,10 +536,34 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             addon.force_disable()
         index_addons.delay(addons_sole_ids)
 
-        # delete the other content associated with the user
-        Collection.objects.filter(author__in=users).delete()
+        # Soft-delete the other content associated with the user: Ratings and
+        # Collections.
+        # Keep track of the Collections
+        qs = Collection.objects.filter(author__in=users)
+        BannedCollectionsModel = BannedUserContent.collections.through
+        BannedCollectionsModel.objects.bulk_create(
+            [
+                BannedCollectionsModel(
+                    bannedusercontent=val['author'], collection=val['pk']
+                )
+                for val in qs.values('author', 'pk')
+            ]
+        )
+        # Soft-delete them
+        qs.delete()
+
+        # Keep track of the Ratings
+        qs = Rating.objects.filter(user__in=users)
+        BannedRatingsModel = BannedUserContent.ratings.through
+        BannedRatingsModel.objects.bulk_create(
+            [
+                BannedRatingsModel(bannedusercontent=val['user'], rating=val['pk'])
+                for val in qs.values('user', 'pk')
+            ]
+        )
+        # Soft-delete them
         Rating.objects.filter(user__in=users).delete()
-        # And then delete the users.
+        # And then ban the users.
         ids = []
         for user in users:
             log.info(
