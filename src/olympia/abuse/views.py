@@ -197,15 +197,22 @@ def cinder_webhook(request):
             log.info('Payload from other queue: %s', queue_name)
             raise ValidationError('Not from a queue we process')
 
-        if (
-            not (actions := payload.get('enforcement_actions'))
-            or len(actions) > 1
-            or not CinderReport.DECISION_ACTIONS.has_api_value(actions[0])
-        ):
-            log.exception(
-                'Cinder webhook request failed: bad enforcement_actions [%s]', actions
+        enforcement_actions = [
+            CinderReport.DECISION_ACTIONS.for_api_value(action)
+            for action in (payload.get('enforcement_actions') or [])
+            if CinderReport.DECISION_ACTIONS.has_api_value(action)
+        ]
+        if len(enforcement_actions) != 1:
+            reason = (
+                'more than one supported enforcement_actions'
+                if enforcement_actions
+                else 'no supported enforcement_actions'
             )
-            raise ValidationError('Payload invalid: "decision_actions" malformed')
+            log.exception(
+                f'Cinder webhook request failed: {reason} [%s]',
+                payload.get('enforcement_actions'),
+            )
+            raise ValidationError(f'Payload invalid: {reason}')
 
         log.info('Valid Payload from AMO queue: %s', payload)
         job_id = job.get('id', '')
@@ -218,9 +225,7 @@ def cinder_webhook(request):
         cinder_report.process_decision(
             decision_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
-            decision_action=CinderReport.DECISION_ACTIONS.for_api_value(
-                actions[0]
-            ).value,
+            decision_action=enforcement_actions[0].value,
         )
 
     except ValidationError as exc:
