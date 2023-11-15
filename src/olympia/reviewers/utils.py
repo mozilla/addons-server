@@ -1527,6 +1527,13 @@ class ReviewUnlisted(ReviewBase):
             self.set_promoted()
             self.clear_specific_needs_human_review_flags(self.version)
 
+            # Clear pending rejection since we approved that version.
+            VersionReviewerFlags.objects.filter(version=self.version).update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
+
             # An approval took place so we can reset this.
             AddonReviewerFlags.objects.update_or_create(
                 addon=self.addon,
