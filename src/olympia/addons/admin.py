@@ -49,7 +49,10 @@ class AddonReviewerFlagsInline(admin.TabularInline):
 
 class AddonUserBase:
     model = AddonUser
-    raw_id_fields = ('addon', 'user',)
+    raw_id_fields = (
+        'addon',
+        'user',
+    )
     readonly_fields = ('user_profile_link',)
     extra = 0
 
