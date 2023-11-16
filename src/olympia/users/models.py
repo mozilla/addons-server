@@ -1278,7 +1278,7 @@ class BannedUserContent(ModelBase):
         # FIXME: logging
         Collection.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
         AddonUser.unfiltered.filter(bannedusercontent=self.pk).update(
-            role=F('original_role')
+            role=models.F('original_role')
         )
         Rating.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
         for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():

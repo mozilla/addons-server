@@ -2104,6 +2104,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     original_role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_DEV,
         choices=amo.AUTHOR_CHOICES,
+        editable=False,
         help_text='Role to assign if user is unbanned',
     )
     listed = models.BooleanField(_('Listed'), default=True)
