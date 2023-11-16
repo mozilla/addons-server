@@ -2737,11 +2737,19 @@ class TestReview(ReviewBase):
 
     def test_item_history_compat_ordered(self):
         """Make sure that apps in compatibility are ordered."""
-        av = AppVersion.objects.all()[0]
-        v = self.addon.versions.all()[0]
+        version = self.addon.versions.all()[0]
 
         ApplicationsVersions.objects.create(
-            version=v, application=amo.ANDROID.id, min=av, max=av
+            version=version,
+            application=amo.ANDROID.id,
+            min=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id,
+                version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            )[0],
+            max=AppVersion.objects.get_or_create(
+                application=amo.ANDROID.id,
+                version=amo.DEFAULT_WEBEXT_MAX_VERSION,
+            )[0],
         )
 
         assert self.addon.versions.count() == 1

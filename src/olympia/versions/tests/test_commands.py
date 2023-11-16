@@ -106,7 +106,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '120.0a1'
+                == '121.0a1'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
@@ -185,7 +185,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 name='Recommended for Android 119',
                 version_kw={
                     'application': amo.ANDROID.id,
-                    'min_app_version': '120.0a1',
+                    'min_app_version': '121.0a1',
                     'max_app_version': '*',
                 },
                 promoted=RECOMMENDED,
@@ -194,7 +194,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
                 name='Normal for Android 119',
                 version_kw={
                     'application': amo.ANDROID.id,
-                    'min_app_version': '120.0a1',
+                    'min_app_version': '121.0a1',
                     'max_app_version': '*',
                 },
                 promoted=RECOMMENDED,
@@ -316,7 +316,7 @@ class TestForceMaxAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '120.0a1'
+                == '121.0a1'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
@@ -441,7 +441,7 @@ class TestBumpMinAndroidCompatibility(TestCase):
             application=amo.ANDROID.id,
             version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
         )
-        new_min_android_ga_version = '120.0a1'
+        new_min_android_ga_version = '121.0a1'
         AppVersion.objects.get_or_create(
             application=amo.ANDROID.id,
             version=new_min_android_ga_version,
