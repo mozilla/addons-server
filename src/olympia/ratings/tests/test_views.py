@@ -3070,7 +3070,7 @@ class TestRatingViewSetReply(TestCase):
         existing_reply.reload()
         assert str(existing_reply.body) == data['body'] == 'My réply...'
 
-    def test_reply_if_an_existing_reply_was_deleted_updates_existing(self):
+    def test_reply_if_an_existing_reply_was_deleted_creates_new(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)
         existing_reply = Rating.objects.create(
@@ -3089,13 +3089,11 @@ class TestRatingViewSetReply(TestCase):
                 'body': 'My réply...',
             },
         )
-        assert response.status_code == 200
-        data = json.loads(force_str(response.content))
-        assert Rating.objects.count() == 2  # No longer deleted.
-        assert Rating.unfiltered.count() == 2
+        assert response.status_code == 201
+        assert Rating.objects.count() == 2
+        assert Rating.unfiltered.count() == 3
         existing_reply.reload()
-        assert str(existing_reply.body) == data['body'] == 'My réply...'
-        assert existing_reply.deleted is False
+        assert existing_reply.deleted  # still deleted
 
     def test_reply_disabled_addon(self):
         self.addon_author = user_factory()

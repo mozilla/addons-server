@@ -974,6 +974,17 @@ class COLLECTION_UNDELETED(_LOG):
     keep = True
 
 
+class UNDELETE_RATING(_LOG):
+    """Requires rating.id and add-on objects."""
+
+    id = 185
+    action_class = 'review'
+    format = _('Review {rating} for {addon} un-deleted.')
+    reviewer_format = '{user_responsible} un-deleted {rating} for {addon}.'
+    keep = True
+    reviewer_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
