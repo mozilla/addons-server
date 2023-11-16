@@ -93,8 +93,8 @@ class CinderActionDeleteRating(CinderAction):
             self.notify_targets([rating.user])
 
 
-class CinderActionApprove(CinderAction):
-    description = 'Reported content is within policy'
+class CinderActionApproveAppealOverride(CinderAction):
+    description = 'Reported content is within policy, after appeal/override'
 
     def process(self):
         self.notify_reporter()
@@ -115,6 +115,14 @@ class CinderActionApprove(CinderAction):
         elif isinstance(target, Rating) and target.deleted:
             target.undelete()
             self.notify_targets([target.user])
+
+
+class CinderActionApproveInitialDecision(CinderAction):
+    description = 'Reported content is within policy, initial decision'
+
+    def process(self):
+        self.notify_reporter()
+        # If it's an initial decision approve there is nothing else to do
 
 
 class CinderActionNotImplemented(CinderAction):
