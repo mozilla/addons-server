@@ -393,9 +393,9 @@ class TestCompatForm(TestCase):
         doc = pq(content)
         assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
         # Versions inside the forbidden Fenix range are disabled for regular
+        # extensions.
         assert len(doc('#id_form-1-min option')) == 13
         assert len(doc('#id_form-1-max option')) == 16
-        # extensions.
         assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == [
             '79.0a1',
             '79.0',
