@@ -203,7 +203,7 @@ class AddonSerializerOutputTestMixin:
         AddonUser.objects.create(user=first_author, addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='120.0'
+            application=amo.ANDROID.id, version='121.0'
         )[0]
         av_max = AppVersion.objects.get_or_create(
             application=amo.ANDROID.id, version='*'
