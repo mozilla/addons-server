@@ -520,7 +520,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # disable Files in bulk that need to be disabled now the addons are disabled
         Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
         # Keep track of the Addons and the relevant user.
-        qs = AddonUser.objects.filter(user__in=addons_sole, addon_in=addons_sole)
+        qs = AddonUser.objects.filter(user__in=addons_sole, addon__in=addons_sole)
         BannedAddonsModel = BannedUserContent.addons.through
         BannedAddonsModel.objects.bulk_create(
             [
