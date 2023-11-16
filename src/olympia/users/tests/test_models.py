@@ -328,9 +328,9 @@ class TestUserProfile(TestCase):
         # Now that everything is set up, disable/delete related content.
         update_search_index.reset_mock()
         user.delete()
-        update_search_index.assert_called_with(sender=Addon, instance=addon)
+        update_search_index.assert_called_with(sender=AddonUser, instance=addon)
 
-        # The add-on should not have been touched, it has another dev.
+        # The add-on status should not have been touched, it has another dev.
         assert not user.addons.exists()
         addon.reload()
         assert addon.status == amo.STATUS_APPROVED
