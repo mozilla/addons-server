@@ -1275,12 +1275,11 @@ class BannedUserContent(ModelBase):
         from olympia.bandwagon.models import Collection
         from olympia.ratings.models import Rating
 
-        # FIXME: logging
-        Collection.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
-        AddonUser.unfiltered.filter(bannedusercontent=self.pk).update(
-            role=models.F('original_role')
-        )
-        Rating.unfiltered.filter(bannedusercontent=self.pk).update(deleted=False)
+        for model in (AddonUser, Collection, Rating):
+            # FIXME: logging
+            model.unfiltered.filter(bannedusercontent=self.pk).undelete()
+        # Add-ons are special as they are force-disabled on ban, not
+        # soft-deleted.
         for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():
             addon.force_enable()
 

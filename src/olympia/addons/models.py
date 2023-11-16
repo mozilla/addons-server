@@ -2074,7 +2074,10 @@ class AddonUserQuerySet(models.QuerySet):
         if hard_delete:
             return super().delete()
         else:
-            self.update(original_role=F('role'), role=amo.AUTHOR_ROLE_DELETED)
+            return self.update(original_role=F('role'), role=amo.AUTHOR_ROLE_DELETED)
+
+    def undelete(self):
+        return self.update(role=models.F('original_role'))
 
 
 class AddonUserManager(ManagerBase):

@@ -37,12 +37,23 @@ class RatingQuerySet(models.QuerySet):
             | Q(ratingflag__isnull=True)
         ).filter(editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
+    def update_denormalized_fields(self):
+        from . import tasks
+
+        tasks.update_denorm(tuple(self.values_list('addon_id', 'user_id')))
+
     def delete(self, hard_delete=False):
         if hard_delete:
             return super().delete()
         else:
-            for rating in self:
-                rating.delete()
+            rval = self.update(deleted=True)
+            self.update_denormalized_fields()
+            return rval
+
+    def undelete(self):
+        rval = self.update(deleted=False)
+        self.update_denormalized_fields()
+        return rval
 
 
 class RatingManager(ManagerBase):

@@ -22,7 +22,10 @@ class CollectionQuerySet(BaseQuerySet):
         if hard_delete:
             return super().delete()
         else:
-            self.update(deleted=True)
+            return self.update(deleted=True)
+
+    def undelete(self):
+        return self.update(deleted=False)
 
 
 class CollectionManager(ManagerBase):
