@@ -505,7 +505,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         BannedAddonsUsersModel.objects.bulk_create(
             [
                 BannedAddonsUsersModel(
-                    bannedusercontent=val['user'], addonuser=val['pk']
+                    bannedusercontent_id=val['user'], addonuser_id=val['pk']
                 )
                 for val in qs.values('user', 'pk')
             ]
@@ -520,11 +520,13 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         # disable Files in bulk that need to be disabled now the addons are disabled
         Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
         # Keep track of the Addons and the relevant user.
-        qs = AddonUser.objects.filter(user__in=addons_sole, addon__in=addons_sole)
+        qs = AddonUser.objects.filter(user__in=users, addon__in=addons_sole)
         BannedAddonsModel = BannedUserContent.addons.through
         BannedAddonsModel.objects.bulk_create(
             [
-                BannedAddonsModel(bannedusercontent=val['user'], addon=val['addon'])
+                BannedAddonsModel(
+                    bannedusercontent_id=val['user'], addon_id=val['addon']
+                )
                 for val in qs.values('user', 'addon')
             ]
         )
@@ -544,7 +546,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         BannedCollectionsModel.objects.bulk_create(
             [
                 BannedCollectionsModel(
-                    bannedusercontent=val['author'], collection=val['pk']
+                    bannedusercontent_id=val['author'], collection_id=val['pk']
                 )
                 for val in qs.values('author', 'pk')
             ]
@@ -557,7 +559,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         BannedRatingsModel = BannedUserContent.ratings.through
         BannedRatingsModel.objects.bulk_create(
             [
-                BannedRatingsModel(bannedusercontent=val['user'], rating=val['pk'])
+                BannedRatingsModel(
+                    bannedusercontent_id=val['user'], rating_id=val['pk']
+                )
                 for val in qs.values('user', 'pk')
             ]
         )
