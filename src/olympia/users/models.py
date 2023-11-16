@@ -1257,10 +1257,6 @@ class BannedUserContent(ModelBase):
 
     That link should be removed if the user is unbanned, and the content
     re-enabled.
-
-    FIXME: is that going to work even with deleted stuff ? Collections and
-    Ratings notably, will we be able to add them through the relation ? I think
-    so but not sure ?
     """
 
     user = models.OneToOneField(
