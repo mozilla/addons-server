@@ -1696,7 +1696,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.data['version'] == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'range that starts with version 121.0a1 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
@@ -1705,7 +1705,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request_data = {
             'version': {
                 'upload': self.upload.uuid,
-                'compatibility': {'android': {'min': '120.0a1', 'max': '*'}},
+                'compatibility': {'android': {'min': '121.0a1', 'max': '*'}},
             }
         }
         response = self.request(data=request_data)
@@ -3269,7 +3269,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'range that starts with version 121.0a1 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
@@ -3285,7 +3285,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 120.0a1 or higher, or ends with lower '
+                'range that starts with version 121.0a1 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
@@ -5377,7 +5377,7 @@ class TestAddonSearchView(ESTestCase):
             popularity=22,
             version_kw={
                 'application': amo.ANDROID.id,
-                'min_app_version': '119.0',
+                'min_app_version': '121.0',
                 'max_app_version': '*',
             },
         )
@@ -5385,7 +5385,7 @@ class TestAddonSearchView(ESTestCase):
             slug='my-both-addon',
             name='My Both Addøn',
             popularity=11,
-            version_kw={'min_app_version': '120.0', 'max_app_version': '*'},
+            version_kw={'min_app_version': '121.0', 'max_app_version': '*'},
         )
         # both_addon was created with firefox compatibility, manually add
         # android, making it compatible with both.
@@ -5393,7 +5393,7 @@ class TestAddonSearchView(ESTestCase):
             application=amo.ANDROID.id,
             version=both_addon.current_version,
             min=AppVersion.objects.get_or_create(
-                application=amo.ANDROID.id, version='120.0'
+                application=amo.ANDROID.id, version='121.0'
             )[0],
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
