@@ -40,7 +40,7 @@ class RatingQuerySet(models.QuerySet):
     def update_denormalized_fields(self):
         from . import tasks
 
-        tasks.update_denorm(tuple(self.values_list('addon_id', 'user_id')))
+        tasks.update_denorm(*tuple(self.values_list('addon_id', 'user_id')))
 
     def delete(self, hard_delete=False):
         if hard_delete:
