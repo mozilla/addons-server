@@ -37,14 +37,14 @@ class RatingQuerySet(models.QuerySet):
             | Q(ratingflag__isnull=True)
         ).filter(editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 
-    def update_denormalized_fields(self, pairs):
+    def update_ratings_and_addons_denormalized_fields(self, pairs):
         from olympia.addons.tasks import index_addons
         from olympia.ratings.tasks import addon_rating_aggregates, update_denorm
 
         update_denorm.delay(*pairs)
         addons = [pair[0] for pair in pairs]
-        addon_rating_aggregates.delay(*addons)
-        index_addons.delay(*addons)
+        addon_rating_aggregates.delay(addons)
+        index_addons.delay(addons)
 
     def delete(self, hard_delete=False):
         if hard_delete:
@@ -52,13 +52,13 @@ class RatingQuerySet(models.QuerySet):
         else:
             pairs = tuple(self.values_list('addon_id', 'user_id'))
             rval = self.update(deleted=True)
-            self.update_denormalized_fields(pairs)
+            self.update_ratings_and_addons_denormalized_fields(pairs)
             return rval
 
     def undelete(self):
         pairs = tuple(self.values_list('addon_id', 'user_id'))
         rval = self.update(deleted=False)
-        self.update_denormalized_fields(pairs)
+        self.update_ratings_and_addons_denormalized_fields(pairs)
         return rval
 
 
