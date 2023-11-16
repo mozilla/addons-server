@@ -1276,11 +1276,10 @@ class BannedUserContent(ModelBase):
         from olympia.ratings.models import Rating
 
         for model in (AddonUser, Collection, Rating):
-            # FIXME: logging
             model.unfiltered.filter(bannedusercontent=self.pk).undelete()
         # Add-ons are special as they are force-disabled on ban, not
         # soft-deleted.
         for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():
             addon.force_enable()
-
+        activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships
