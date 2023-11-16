@@ -50,7 +50,7 @@ class AddonReviewerFlagsInline(admin.TabularInline):
 class AddonUserInline(admin.TabularInline):
     model = AddonUser
     raw_id_fields = ('user',)
-    readonly_fields = ('user_profile_link', 'original_role')
+    readonly_fields = ('user_profile_link',)
     extra = 0
 
     def user_profile_link(self, obj):
