@@ -552,7 +552,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             ]
         )
         # Soft-delete them (keeping their slug - will be restored if unbanned).
-        qs.delete(clear_slug=False)
+        qs.delete()
 
         # Keep track of the Ratings
         qs = Rating.objects.filter(user__in=users)
