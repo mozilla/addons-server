@@ -2771,6 +2771,56 @@ class TestReview(ReviewBase):
         score = doc('.listing-body .maliciousness-score')
         assert score.text() == 'Maliciousness Score:\n10% ?'
 
+    def test_item_history_unreviewed_version_in_unlisted_queue(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#unreviewed-other-queue .unreviewed-versions-warning')
+    
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
+            'This add-on has 1 or more versions with a due date in other pages.')
+        
+    def test_item_history_unreviewed_version_in_listed_queue(self):
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
+
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#unreviewed-other-queue .unreviewed-versions-warning')
+
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_LISTED).count() == 1
+
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
+            'This add-on has 1 or more versions with a due date in other pages.')
+        
+
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
         version.release_notes = 'hi'

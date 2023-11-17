@@ -111,6 +111,13 @@
       {% include "reviewers/includes/paginator_history.html" %}
     </div>
   </div>
+  <div id="unreviewed-other-queue">
+    {% if has_versions_with_due_date_in_other_queue %}
+      <p class="unreviewed-versions-warning" style="color: red;">
+        This add-on has 1 or more versions with a due date in other pages.
+      </p>
+    {% endif %}
+  </div>
   <div id="versions-history" class="results">
     <div class="results-inner">
       <table class="review-files item-history">
