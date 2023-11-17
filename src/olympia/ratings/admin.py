@@ -138,7 +138,7 @@ class RatingAdmin(AMOModelAdmin):
         'known_ip_adresses',
         'body',
         'rating',
-        'deleted',
+        'is_deleted',
         'user_link',
     )
     fields = (
@@ -148,7 +148,7 @@ class RatingAdmin(AMOModelAdmin):
         'rating',
         'known_ip_adresses',
         'user_link',
-        'deleted',
+        'is_deleted',
     )
     list_display = (
         'id',
@@ -159,7 +159,7 @@ class RatingAdmin(AMOModelAdmin):
         'rating',
         'is_reply',
         'flag',
-        'deleted',
+        'is_deleted',
         'truncated_body',
     )
     list_filter = (
@@ -206,6 +206,11 @@ class RatingAdmin(AMOModelAdmin):
 
     is_reply.boolean = True
     is_reply.admin_order_field = 'reply_to'
+
+    def is_deleted(self, obj):
+        return bool(obj.deleted)
+
+    is_deleted.boolean = True
 
     def addon_link(self, obj):
         return related_single_content_link(obj, 'addon')

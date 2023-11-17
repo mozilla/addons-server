@@ -1271,15 +1271,11 @@ class BannedUserContent(ModelBase):
     ratings = models.ManyToManyField('ratings.Rating')
 
     def restore(self):
-        from olympia.addons.models import Addon, AddonUser
-        from olympia.bandwagon.models import Collection
-        from olympia.ratings.models import Rating
-
-        for model in (AddonUser, Collection, Rating):
-            model.unfiltered.filter(bannedusercontent=self.pk).undelete()
+        for relation in ('addons_users', 'collections', 'ratings'):
+            getattr(self, relation)(manager='unfiltered_for_relations').all().undelete()
         # Add-ons are special as they are force-disabled on ban, not
         # soft-deleted.
-        for addon in Addon.unfiltered.filter(bannedusercontent=self.pk).all():
+        for addon in self.addons.all():
             addon.force_enable()
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships

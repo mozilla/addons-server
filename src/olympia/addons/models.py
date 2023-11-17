@@ -2097,6 +2097,17 @@ class AddonUserManager(ManagerBase):
         return qs
 
 
+class UnfilteredAddonUserManagerForRelations(AddonUserManager):
+    """Like AddonUserManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of AddonUser that want to include
+    soft-deleted objects.
+    """
+
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
+
+
 class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
@@ -2115,6 +2126,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
 
     unfiltered = AddonUserManager(include_deleted=True)
     objects = AddonUserManager()
+    unfiltered_for_relations = UnfilteredAddonUserManagerForRelations()
 
     class Meta:
         # see Addon.Meta for details of why this base_manager_name is important

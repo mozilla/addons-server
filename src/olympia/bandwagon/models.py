@@ -45,6 +45,17 @@ class CollectionManager(ManagerBase):
         return qs.transform(Collection.transformer)
 
 
+class UnfilteredCollectionManagerForRelations(CollectionManager):
+    """Like CollectionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Collection that want to include
+    soft-deleted objects.
+    """
+
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
+
+
 class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
 
@@ -75,6 +86,7 @@ class Collection(ModelBase):
 
     unfiltered = CollectionManager(include_deleted=True)
     objects = CollectionManager()
+    unfiltered_for_relations = UnfilteredCollectionManagerForRelations()
 
     class Meta(ModelBase.Meta):
         db_table = 'collections'
