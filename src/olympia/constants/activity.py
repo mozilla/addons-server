@@ -974,8 +974,19 @@ class COLLECTION_UNDELETED(_LOG):
     keep = True
 
 
-class ADMIN_USER_CONTENT_RESTORED(_LOG):
+class UNDELETE_RATING(_LOG):
+    """Requires rating.id and add-on objects."""
+
     id = 185
+    action_class = 'review'
+    format = _('Review {rating} for {addon} un-deleted.')
+    reviewer_format = '{user_responsible} un-deleted {rating} for {addon}.'
+    keep = True
+    reviewer_event = True
+
+
+class ADMIN_USER_CONTENT_RESTORED(_LOG):
+    id = 186
     format = _('User {user} content restored.')
     keep = True
     admin_event = True

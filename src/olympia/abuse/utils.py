@@ -2,6 +2,7 @@ from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import Collection
+from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
 
@@ -82,6 +83,16 @@ class CinderActionDeleteCollection(CinderAction):
             self.notify_targets([collection.author])
 
 
+class CinderActionDeleteRating(CinderAction):
+    description = 'Rating has been deleted'
+
+    def process(self):
+        if rating := self.abuse_report.rating:
+            rating.delete(clear_flags=False)
+            self.notify_reporter()
+            self.notify_targets([rating.user])
+
+
 class CinderActionApprove(CinderAction):
     description = 'Reported content is within policy'
 
@@ -100,6 +111,10 @@ class CinderActionApprove(CinderAction):
             target.undelete()
             log_create(amo.LOG.COLLECTION_UNDELETED, target)
             self.notify_targets([target.author])
+
+        elif isinstance(target, Rating) and target.deleted:
+            target.undelete()
+            self.notify_targets([target.user])
 
 
 class CinderActionNotImplemented(CinderAction):

@@ -22,6 +22,7 @@ from ..utils import (
     CinderActionApprove,
     CinderActionBanUser,
     CinderActionDeleteCollection,
+    CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
@@ -474,8 +475,8 @@ class TestCinderReport(TestCase):
             (DECISION_ACTIONS.AMO_BAN_USER, CinderActionBanUser),
             (DECISION_ACTIONS.AMO_DISABLE_ADDON, CinderActionDisableAddon),
             (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
-            (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionNotImplemented),
             (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionDeleteCollection),
+            (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionDeleteRating),
             (DECISION_ACTIONS.AMO_APPROVE, CinderActionApprove),
         ):
             cinder_report.update(decision_action=action)

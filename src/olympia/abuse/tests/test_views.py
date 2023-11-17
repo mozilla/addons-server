@@ -919,15 +919,46 @@ class TestCinderWebhook(TestCase):
     def test_invalid_decision_action(self):
         self._setup_report()
         data = self.get_data()
+
         data['payload']['enforcement_actions'] = []
-        req = self.get_request(data=data)
-        response = cinder_webhook(req)
+        response = cinder_webhook(self.get_request(data=data))
         assert response.status_code == 200
         assert response.data == {
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'Payload invalid: "decision_actions" malformed',
+                'not_handled_reason': (
+                    'Payload invalid: no supported enforcement_actions'
+                ),
+            }
+        }
+
+        data['payload']['enforcement_actions'] = ['unknown_action']
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Payload invalid: no supported enforcement_actions'
+                ),
+            }
+        }
+
+        data['payload']['enforcement_actions'] = [
+            'amo_disable_addon',
+            'amo_escalate_addon',
+        ]
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Payload invalid: more than one supported enforcement_actions'
+                ),
             }
         }
 
