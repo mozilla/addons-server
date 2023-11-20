@@ -992,6 +992,13 @@ class ADMIN_USER_CONTENT_RESTORED(_LOG):
     admin_event = True
 
 
+class ADMIN_USER_UNBAN(_LOG):
+    id = 187
+    format = _('User {user} unbanned.')
+    keep = True
+    admin_event = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})

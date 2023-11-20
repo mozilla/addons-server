@@ -239,7 +239,12 @@ class TestUserProfile(TestCase):
         Rating.objects.create(user=user_innocent, addon=addon_multi, rating=5)
 
         # Now that everything is set up, disable/delete related content.
-        UserProfile.ban_and_disable_related_content_bulk([user_sole, user_multi])
+        UserProfile.objects.filter(
+            pk__in=(user_sole.pk, user_multi.pk)
+        ).ban_and_disable_related_content()
+
+        user_sole.reload()
+        user_multi.reload()
 
         addon_sole.reload()
         addon_multi.reload()
@@ -349,7 +354,7 @@ class TestUserProfile(TestCase):
             'user_multi': user_multi,
         }
 
-    def test_restore_banned_content(self):
+    def test_unban_and_restore_banned_content(self):
         fake_admin = user_factory(display_name='Fake Admin')
         core.set_user(fake_admin)  # Needed for activity log
         users = self.test_ban_and_disable_related_content_bulk()
@@ -358,9 +363,58 @@ class TestUserProfile(TestCase):
         assert BannedUserContent.objects.filter(user=user_sole).exists()
         assert BannedUserContent.objects.filter(user=user_multi).exists()
 
-        user_sole.content_disabled_on_ban.restore()
+        UserProfile.objects.filter(
+            pk__in=(user_sole.pk, user_multi.pk)
+        ).unban_and_reenable_related_content()
 
-        # user_sole content was restored.
+        # user_sole was unbanned and content was restored.
+        user_sole.reload()
+        assert not user_sole.banned
+        assert not user_sole.deleted
+        addon_sole = user_sole.addons.get()
+        assert addon_sole.status == amo.STATUS_APPROVED
+        assert user_sole._ratings_all.all().count() == 2  # Includes replies
+        assert user_sole.collections.count() == 1
+        assert not BannedUserContent.objects.filter(user=user_sole).exists()
+
+        # user_multi was unbanned and content was restored.
+        user_multi.reload()
+        assert not user_multi.banned
+        assert not user_multi.deleted
+        assert user_multi.addons.count() == 1
+        assert user_multi._ratings_all.count() == 2  # Includes replies
+        assert user_multi.collections.count() == 1
+
+        for action in (
+            amo.LOG.ADMIN_USER_CONTENT_RESTORED,
+            amo.LOG.ADMIN_USER_UNBAN,
+        ):
+            assert (
+                ActivityLog.objects.filter(action=action.id, user=fake_admin).count()
+                == 2
+            )
+            assert {
+                activity.arguments[0]
+                for activity in ActivityLog.objects.filter(
+                    action=action.id, user=fake_admin
+                )
+            } == {user_multi, user_sole}
+
+    def test_unban_and_restore_banned_content_single(self):
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)  # Needed for activity log
+        users = self.test_ban_and_disable_related_content_bulk()
+        user_sole = users['user_sole']
+        user_multi = users['user_multi']
+        assert BannedUserContent.objects.filter(user=user_sole).exists()
+        assert BannedUserContent.objects.filter(user=user_multi).exists()
+
+        UserProfile.objects.filter(pk=user_sole.pk).unban_and_reenable_related_content()
+
+        # user_sole was unbanned and content was restored.
+        user_sole.reload()
+        assert not user_sole.banned
+        assert not user_sole.deleted
         addon_sole = user_sole.addons.get()
         assert addon_sole.status == amo.STATUS_APPROVED
         assert user_sole._ratings_all.all().count() == 2  # Includes replies
@@ -372,7 +426,10 @@ class TestUserProfile(TestCase):
         assert activity.arguments == [user_sole]
         assert activity.user == fake_admin
 
-        # user_multi still not restored yet.
+        # user_multi was not touched.
+        user_multi.reload()
+        assert user_multi.deleted
+        assert user_multi.banned
         assert BannedUserContent.objects.filter(user=user_multi).exists()
         assert user_multi.collections.count() == 0
         assert user_multi.ratings.count() == 0
@@ -382,18 +439,6 @@ class TestUserProfile(TestCase):
             .exclude(pk=activity.pk)
             .exists()
         )
-
-        user_multi.content_disabled_on_ban.restore()
-        assert user_multi.addons.count() == 1
-        assert user_multi._ratings_all.count() == 2  # Includes replies
-        assert user_multi.collections.count() == 1
-        activity = ActivityLog.objects.filter(
-            action=amo.LOG.ADMIN_USER_CONTENT_RESTORED.id
-        ).latest('pk')
-        assert activity.arguments == [user_multi]
-        assert activity.user == fake_admin
-
-        assert not BannedUserContent.objects.exists()
 
     def setup_user_to_be_have_content_disabled(self, user):
         addon = user.addons.last()

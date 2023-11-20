@@ -177,7 +177,12 @@ class UserAdmin(AMOModelAdmin):
         ),
     )
 
-    actions = ['ban_action', 'reset_api_key_action', 'reset_session_action']
+    actions = [
+        'ban_action',
+        'unban_action',
+        'reset_api_key_action',
+        'reset_session_action',
+    ]
 
     def get_urls(self):
         def wrap(view):
@@ -192,6 +197,11 @@ class UserAdmin(AMOModelAdmin):
                 r'^(?P<object_id>.+)/ban/$',
                 wrap(self.ban_view),
                 name='users_userprofile_ban',
+            ),
+            re_path(
+                r'^(?P<object_id>.+)/unban/$',
+                wrap(self.unban_view),
+                name='users_userprofile_unban',
             ),
             re_path(
                 r'^(?P<object_id>.+)/reset_api_key/$',
@@ -214,9 +224,10 @@ class UserAdmin(AMOModelAdmin):
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
-            # You need Users:Edit to be able to ban users and reset their api
-            # key confirmation.
+            # You need Users:Edit to be able to (un)ban users and reset their
+            # api key confirmation/session.
             actions.pop('ban_action')
+            actions.pop('unban_action')
             actions.pop('reset_api_key_action')
             actions.pop('reset_session_action')
         return actions
@@ -271,10 +282,27 @@ class UserAdmin(AMOModelAdmin):
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
-        UserProfile.ban_and_disable_related_content_bulk([obj], move_files=True)
+        self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content()
         kw = {'user': force_str(obj)}
         self.message_user(request, 'The user "%(user)s" has been banned.' % kw)
+        return HttpResponseRedirect(
+            reverse('admin:users_userprofile_change', args=(obj.pk,))
+        )
+
+    def unban_view(self, request, object_id, extra_context=None):
+        if request.method != 'POST':
+            return HttpResponseNotAllowed(['POST'])
+
+        obj = self.get_object(request, unquote(object_id))
+        if obj is None:
+            raise Http404()
+
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
+            return HttpResponseForbidden()
+
+        self.model.objects.filter(pk=obj.pk).unban_and_reenable_related_content()
+        kw = {'user': force_str(obj)}
+        self.message_user(request, 'The user "%(user)s" has been unbanned.' % kw)
         return HttpResponseRedirect(
             reverse('admin:users_userprofile_change', args=(obj.pk,))
         )
@@ -336,15 +364,18 @@ class UserAdmin(AMOModelAdmin):
         )
 
     def ban_action(self, request, qs):
-        users = []
-        UserProfile.ban_and_disable_related_content_bulk(qs)
-        for obj in qs:
-            ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
-            users.append(force_str(obj))
-        kw = {'users': ', '.join(users)}
+        qs.ban_and_disable_related_content()
+        kw = {'users': ', '.join(str(user) for user in qs)}
         self.message_user(request, 'The users "%(users)s" have been banned.' % kw)
 
     ban_action.short_description = 'Ban selected users'
+
+    def unban_action(self, request, qs):
+        qs.unban_and_reenable_related_content()
+        kw = {'users': ', '.join(str(user) for user in qs)}
+        self.message_user(request, 'The users "%(users)s" have been unbanned.' % kw)
+
+    unban_action.short_description = 'Unban selected users'
 
     def reset_session_action(self, request, qs):
         users = []

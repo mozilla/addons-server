@@ -32,7 +32,7 @@ class CinderActionBanUser(CinderAction):
     def process(self):
         if user := self.abuse_report.user:
             log_create(amo.LOG.ADMIN_USER_BANNED, user)
-            UserProfile.ban_and_disable_related_content_bulk([user], move_files=True)
+            UserProfile.objects.filter(pk=user.pk).ban_and_disable_related_content()
             self.notify_reporter()
             self.notify_targets([user])
 
@@ -104,7 +104,9 @@ class CinderActionApproveAppealOverride(CinderAction):
             self.notify_targets(target.authors.all())
 
         elif isinstance(target, UserProfile) and target.banned:
-            # TODO: un-ban the user
+            UserProfile.objects.filter(
+                pk=target.pk
+            ).unban_and_reenable_related_content()
             self.notify_targets([target])
 
         elif isinstance(target, Collection) and target.deleted:

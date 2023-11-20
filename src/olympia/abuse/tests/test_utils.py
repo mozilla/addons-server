@@ -37,7 +37,16 @@ class TestCinderAction(TestCase):
         self.cinder_report.abuse_report.update(user=user, guid=None)
         action = CinderActionBanUser(self.cinder_report)
         action.process()
+        user.reload()
         self.assertCloseToNow(user.banned)
+
+    def test_approve_user(self):
+        user = user_factory(banned=self.days_ago(1), deleted=True)
+        self.cinder_report.abuse_report.update(user=user, guid=None)
+        action = CinderActionApprove(self.cinder_report)
+        action.process()
+        user.reload()
+        assert not user.banned
 
     def test_disable_addon(self):
         addon = addon_factory()

@@ -32,7 +32,13 @@ from olympia import activity, amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import CIDRField, PositiveAutoField
-from olympia.amo.models import LongNameIndex, ManagerBase, ModelBase, OnChangeMixin
+from olympia.amo.models import (
+    BaseQuerySet,
+    LongNameIndex,
+    ManagerBase,
+    ModelBase,
+    OnChangeMixin,
+)
 from olympia.amo.utils import id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.files.models import File
@@ -95,7 +101,146 @@ class UserEmailBoundField(forms.boundfield.BoundField):
         return attrs
 
 
+class UserQuerySet(BaseQuerySet):
+    def ban_and_disable_related_content(self):
+        """Admin method to ban multiple users and disable the content they
+        produced.
+
+        Similar to deletion, except that the content produced by the user is
+        forcibly soft-disabled instead of being deleted where possible, and the
+        user is not anonymized: we keep their data until hard-deletion kicks in
+        (see clear_old_user_data), including fxa_id and email so that they are
+        never able to log back in.
+        """
+        from olympia.addons.models import Addon, AddonUser
+        from olympia.addons.tasks import index_addons
+        from olympia.bandwagon.models import Collection
+        from olympia.ratings.models import Rating
+        from olympia.users.tasks import delete_photo
+
+        users = self.all()
+        BannedUserContent.objects.bulk_create(
+            [BannedUserContent(user=user) for user in users], ignore_conflicts=True
+        )
+
+        # Collect affected addons
+        addon_ids = set(
+            Addon.unfiltered.exclude(
+                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED)
+            )
+            .filter(addonuser__user__in=users)
+            .values_list('id', flat=True)
+        )
+
+        # First addons who have other authors we aren't banning - we are
+        # keeping the add-ons up, but soft-deleting the relationships.
+        addon_joint_ids = set(
+            AddonUser.objects.filter(addon_id__in=addon_ids)
+            .exclude(user__in=users)
+            .values_list('addon_id', flat=True)
+        )
+        qs = AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids)
+        # Keep track of the AddonUser we are (soft-)deleting.
+        BannedAddonsUsersModel = BannedUserContent.addons_users.through
+        BannedAddonsUsersModel.objects.bulk_create(
+            [
+                BannedAddonsUsersModel(
+                    bannedusercontent_id=val['user'], addonuser_id=val['pk']
+                )
+                for val in qs.values('user', 'pk')
+            ]
+        )
+        # (Soft-)delete them.
+        qs.delete()
+
+        # Then deal with users who are the sole author - we are disabling them.
+        addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
+        # set the status to disabled - using the manager update() method
+        addons_sole.update(status=amo.STATUS_DISABLED)
+        # disable Files in bulk that need to be disabled now the addons are disabled
+        Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
+        # Keep track of the Addons and the relevant user.
+        qs = AddonUser.objects.filter(user__in=users, addon__in=addons_sole)
+        BannedAddonsModel = BannedUserContent.addons.through
+        BannedAddonsModel.objects.bulk_create(
+            [
+                BannedAddonsModel(
+                    bannedusercontent_id=val['user'], addon_id=val['addon']
+                )
+                for val in qs.values('user', 'addon')
+            ]
+        )
+
+        # Finally run Addon.force_disable to add the logging; update versions.
+        addons_sole_ids = []
+        for addon in addons_sole:
+            addons_sole_ids.append(addon.pk)
+            addon.force_disable()
+        index_addons.delay(addons_sole_ids)
+
+        # Soft-delete the other content associated with the user: Ratings and
+        # Collections.
+        # Keep track of the Collections
+        qs = Collection.objects.filter(author__in=users)
+        BannedCollectionsModel = BannedUserContent.collections.through
+        BannedCollectionsModel.objects.bulk_create(
+            [
+                BannedCollectionsModel(
+                    bannedusercontent_id=val['author'], collection_id=val['pk']
+                )
+                for val in qs.values('author', 'pk')
+            ]
+        )
+        # Soft-delete them (keeping their slug - will be restored if unbanned).
+        qs.delete()
+
+        # Keep track of the Ratings
+        qs = Rating.objects.filter(user__in=users)
+        BannedRatingsModel = BannedUserContent.ratings.through
+        BannedRatingsModel.objects.bulk_create(
+            [
+                BannedRatingsModel(
+                    bannedusercontent_id=val['user'], rating_id=val['pk']
+                )
+                for val in qs.values('user', 'pk')
+            ]
+        )
+        # Soft-delete them
+        Rating.objects.filter(user__in=users).delete()
+        # And then ban the users.
+        ids = []
+        for user in users:
+            activity.log_create(amo.LOG.ADMIN_USER_BANNED, user)
+            log.info(
+                'User (%s: <%s>) is being banned.',
+                user,
+                user.email,
+                extra={'sensitive': True},
+            )
+            user.banned = user.modified = datetime.now()
+            user.deleted = True
+            ids.append(user.pk)
+            # To delete their photo, avoid delete_picture() that updates
+            # picture_type immediately.
+            delete_photo.delay(user.pk)
+        return self.bulk_update(users, fields=('banned', 'deleted', 'modified'))
+
+    def unban_and_reenable_related_content(self):
+        """Admin method to unban users and restore their content that was
+        disabled when they were banned."""
+        for user in self:
+            banned_user_content = BannedUserContent.objects.filter(user=user).first()
+            if banned_user_content:
+                banned_user_content.restore()
+            activity.log_create(amo.LOG.ADMIN_USER_UNBAN, user)
+            user.deleted = False
+            user.banned = None
+            user.save()
+
+
 class UserManager(BaseUserManager, ManagerBase):
+    _queryset_class = UserQuerySet
+
     def create_user(self, email, fxa_id=None, **kwargs):
         now = timezone.now()
         user = self.model(email=email, fxa_id=fxa_id, last_login=now, **kwargs)
@@ -116,6 +261,12 @@ class UserManager(BaseUserManager, ManagerBase):
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
+
+    def ban_and_disable_related_content(self):
+        return self.all().ban_and_disable_related_content()
+
+    def unban_and_reenable_related_content(self):
+        return self.all().unban_and_reenable_related_content()
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
@@ -462,127 +613,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         for field_name, field in fields.items():
             setattr(self, field_name, field.get_default())
         self.delete_picture()
-
-    @classmethod
-    def ban_and_disable_related_content_bulk(cls, users, move_files=False):
-        """Admin method to ban users and disable the content they produced.
-
-        Similar to deletion, except that the content produced by the user is
-        forcibly disabled instead of being deleted where possible, and the user
-        is not anonymized: we keep their data until hard-deletion kicks in
-        (see clear_old_user_data), including fxa_id and email so that they are
-        never able to log back in.
-        """
-        from olympia.addons.models import Addon, AddonUser
-        from olympia.addons.tasks import index_addons
-        from olympia.bandwagon.models import Collection
-        from olympia.ratings.models import Rating
-        from olympia.users.tasks import delete_photo
-
-        BannedUserContent.objects.bulk_create(
-            [BannedUserContent(user=user) for user in users], ignore_conflicts=True
-        )
-
-        # Collect affected addons
-        addon_ids = set(
-            Addon.unfiltered.exclude(
-                status__in=(amo.STATUS_DELETED, amo.STATUS_DISABLED)
-            )
-            .filter(addonuser__user__in=users)
-            .values_list('id', flat=True)
-        )
-
-        # First addons who have other authors we aren't banning - we are
-        # keeping the add-ons up, but soft-deleting the relationships.
-        addon_joint_ids = set(
-            AddonUser.objects.filter(addon_id__in=addon_ids)
-            .exclude(user__in=users)
-            .values_list('addon_id', flat=True)
-        )
-        qs = AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids)
-        # Keep track of the AddonUser we are (soft-)deleting.
-        BannedAddonsUsersModel = BannedUserContent.addons_users.through
-        BannedAddonsUsersModel.objects.bulk_create(
-            [
-                BannedAddonsUsersModel(
-                    bannedusercontent_id=val['user'], addonuser_id=val['pk']
-                )
-                for val in qs.values('user', 'pk')
-            ]
-        )
-        # (Soft-)delete them.
-        qs.delete()
-
-        # Then deal with users who are the sole author - we are disabling them.
-        addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
-        # set the status to disabled - using the manager update() method
-        addons_sole.update(status=amo.STATUS_DISABLED)
-        # disable Files in bulk that need to be disabled now the addons are disabled
-        Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
-        # Keep track of the Addons and the relevant user.
-        qs = AddonUser.objects.filter(user__in=users, addon__in=addons_sole)
-        BannedAddonsModel = BannedUserContent.addons.through
-        BannedAddonsModel.objects.bulk_create(
-            [
-                BannedAddonsModel(
-                    bannedusercontent_id=val['user'], addon_id=val['addon']
-                )
-                for val in qs.values('user', 'addon')
-            ]
-        )
-
-        # Finally run Addon.force_disable to add the logging; update versions.
-        addons_sole_ids = []
-        for addon in addons_sole:
-            addons_sole_ids.append(addon.pk)
-            addon.force_disable()
-        index_addons.delay(addons_sole_ids)
-
-        # Soft-delete the other content associated with the user: Ratings and
-        # Collections.
-        # Keep track of the Collections
-        qs = Collection.objects.filter(author__in=users)
-        BannedCollectionsModel = BannedUserContent.collections.through
-        BannedCollectionsModel.objects.bulk_create(
-            [
-                BannedCollectionsModel(
-                    bannedusercontent_id=val['author'], collection_id=val['pk']
-                )
-                for val in qs.values('author', 'pk')
-            ]
-        )
-        # Soft-delete them (keeping their slug - will be restored if unbanned).
-        qs.delete()
-
-        # Keep track of the Ratings
-        qs = Rating.objects.filter(user__in=users)
-        BannedRatingsModel = BannedUserContent.ratings.through
-        BannedRatingsModel.objects.bulk_create(
-            [
-                BannedRatingsModel(
-                    bannedusercontent_id=val['user'], rating_id=val['pk']
-                )
-                for val in qs.values('user', 'pk')
-            ]
-        )
-        # Soft-delete them
-        Rating.objects.filter(user__in=users).delete()
-        # And then ban the users.
-        ids = []
-        for user in users:
-            log.info(
-                'User (%s: <%s>) is being banned.',
-                user,
-                user.email,
-                extra={'sensitive': True},
-            )
-            user.banned = user.modified = datetime.now()
-            user.deleted = True
-            ids.append(user.pk)
-            # To delete their photo, avoid delete_picture() that updates
-            # picture_type immediately.
-            delete_photo.delay(user.pk)
-        cls.objects.bulk_update(users, fields=('banned', 'deleted', 'modified'))
 
     def _prepare_delete_email(self):
         site_url = settings.EXTERNAL_SITE_URL
