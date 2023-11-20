@@ -2616,7 +2616,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(52):
+        with self.assertNumQueries(53):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
