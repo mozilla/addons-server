@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 from olympia.ratings.models import Rating
 
 from ..models import AbuseReport, CinderReport
-from ..views import CinderInboundPermission, cinder_webhook
+from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -839,15 +839,40 @@ class TestCinderWebhook(TestCase):
             None,
         )
 
+    def test_filter_enforcement_actions(self):
+        cinder_report = self._setup_report()
+        addon_factory(guid=cinder_report.abuse_report.guid)
+        assert filter_enforcement_actions([], cinder_report) == []
+        actions_from_json = [
+            'amo_disable_addon',
+            'amo_ban_user',
+            'amo_approve',
+            'not_amo_action',  # not a valid action at all
+        ]
+        assert filter_enforcement_actions(actions_from_json, cinder_report) == [
+            CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            # no AMO_BAN_USER action because not a user target
+            CinderReport.DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
+        # check with another content type too
+        cinder_report.abuse_report.update(guid=None, user=user_factory())
+        assert filter_enforcement_actions(actions_from_json, cinder_report) == [
+            # no AMO_DISABLE_ADDON action because not an add-on target
+            CinderReport.DECISION_ACTIONS.AMO_BAN_USER,
+            CinderReport.DECISION_ACTIONS.AMO_APPROVE,
+        ]
+
     def _setup_report(self):
         job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
         abuse_report = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid='1234'
         )
-        CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
+        return CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
 
     def test_process_decision_called(self):
-        self._setup_report()
+        cinder_report = self._setup_report()
+        addon_factory(guid=cinder_report.abuse_report.guid)
         req = self.get_request()
         with mock.patch.object(CinderReport, 'process_decision') as process_mock:
             response = cinder_webhook(req)
@@ -917,7 +942,8 @@ class TestCinderWebhook(TestCase):
         }
 
     def test_invalid_decision_action(self):
-        self._setup_report()
+        cinder_report = self._setup_report()
+        addon_factory(guid=cinder_report.abuse_report.guid)
         data = self.get_data()
 
         data['payload']['enforcement_actions'] = []

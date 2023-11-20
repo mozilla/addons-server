@@ -265,6 +265,7 @@ class TestAbuse(TestCase):
         assert report.target is None
 
         addon = addon_factory(guid='@lol')
+        del report._target_addon
         assert report.target == addon
 
         user = user_factory()

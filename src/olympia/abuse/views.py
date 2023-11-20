@@ -178,6 +178,20 @@ def process_datestamp(date_string):
         return datetime.now()
 
 
+def filter_enforcement_actions(enforcement_actions, cinder_report):
+    target = cinder_report.abuse_report.target
+    if not target:
+        return []
+    return [
+        action.value
+        for action_slug in enforcement_actions
+        if CinderReport.DECISION_ACTIONS.has_api_value(action_slug)
+        and (action := CinderReport.DECISION_ACTIONS.for_api_value(action_slug))
+        and target.__class__
+        in CinderReport.get_action_helper_class(action.value).valid_targets
+    ]
+
+
 @api_view(['POST'])
 @authentication_classes(())
 @permission_classes((CinderInboundPermission,))
@@ -197,11 +211,17 @@ def cinder_webhook(request):
             log.info('Payload from other queue: %s', queue_name)
             raise ValidationError('Not from a queue we process')
 
-        enforcement_actions = [
-            CinderReport.DECISION_ACTIONS.for_api_value(action)
-            for action in (payload.get('enforcement_actions') or [])
-            if CinderReport.DECISION_ACTIONS.has_api_value(action)
-        ]
+        log.info('Valid Payload from AMO queue: %s', payload)
+        job_id = job.get('id', '')
+        try:
+            cinder_report = CinderReport.objects.get(job_id=job_id)
+        except CinderReport.DoesNotExist:
+            log.debug('CinderReport instance not found for job id %s', job_id)
+            raise ValidationError('No matching job id found')
+
+        enforcement_actions = filter_enforcement_actions(
+            payload.get('enforcement_actions') or [], cinder_report
+        )
         if len(enforcement_actions) != 1:
             reason = (
                 'more than one supported enforcement_actions'
@@ -214,18 +234,10 @@ def cinder_webhook(request):
             )
             raise ValidationError(f'Payload invalid: {reason}')
 
-        log.info('Valid Payload from AMO queue: %s', payload)
-        job_id = job.get('id', '')
-        try:
-            cinder_report = CinderReport.objects.get(job_id=job_id)
-        except CinderReport.DoesNotExist:
-            log.debug('CinderReport instance not found for job id %s', job_id)
-            raise ValidationError('No matching job id found')
-
         cinder_report.process_decision(
             decision_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
-            decision_action=enforcement_actions[0].value,
+            decision_action=enforcement_actions[0],
         )
 
     except ValidationError as exc:

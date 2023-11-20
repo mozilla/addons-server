@@ -8,6 +8,7 @@ from olympia.users.models import UserProfile
 
 class CinderAction:
     description = 'Action has been taken'
+    valid_targets = []
 
     def __init__(self, cinder_report):
         self.cinder_report = cinder_report
@@ -28,6 +29,7 @@ class CinderAction:
 
 class CinderActionBanUser(CinderAction):
     description = 'Account has been banned'
+    valid_targets = [UserProfile]
 
     def process(self):
         if user := self.abuse_report.user:
@@ -39,6 +41,7 @@ class CinderActionBanUser(CinderAction):
 
 class CinderActionDisableAddon(CinderAction):
     description = 'Add-on has been disabled'
+    valid_targets = [Addon]
 
     def process(self):
         addon = Addon.unfiltered.filter(guid=self.abuse_report.guid).first()
@@ -49,6 +52,8 @@ class CinderActionDisableAddon(CinderAction):
 
 
 class CinderActionEscalateAddon(CinderAction):
+    valid_targets = [Addon]
+
     def process(self):
         from olympia.reviewers.models import NeedsHumanReview
 
@@ -73,6 +78,7 @@ class CinderActionEscalateAddon(CinderAction):
 
 
 class CinderActionDeleteCollection(CinderAction):
+    valid_targets = [Collection]
     description = 'Collection has been deleted'
 
     def process(self):
@@ -84,6 +90,7 @@ class CinderActionDeleteCollection(CinderAction):
 
 
 class CinderActionDeleteRating(CinderAction):
+    valid_targets = [Rating]
     description = 'Rating has been deleted'
 
     def process(self):
@@ -94,6 +101,7 @@ class CinderActionDeleteRating(CinderAction):
 
 
 class CinderActionApproveAppealOverride(CinderAction):
+    valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, after appeal/override'
 
     def process(self):
@@ -118,6 +126,7 @@ class CinderActionApproveAppealOverride(CinderAction):
 
 
 class CinderActionApproveInitialDecision(CinderAction):
+    valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, initial decision'
 
     def process(self):
