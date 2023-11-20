@@ -2677,6 +2677,7 @@ class TestReview(ReviewBase):
             # 50. select all versions in channel for versions dropdown widget
             # 51. reviewer reasons for the reason dropdown
             # 52. select users by role for this add-on (?)
+            # 53. unreviewed versions in other channel
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5318,7 +5319,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(53):
+        with self.assertNumQueries(54):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
