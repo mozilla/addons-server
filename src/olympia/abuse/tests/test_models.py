@@ -19,7 +19,8 @@ from ..cinder import (
 )
 from ..models import AbuseReport, CinderReport
 from ..utils import (
-    CinderActionApprove,
+    CinderActionApproveAppealOverride,
+    CinderActionApproveInitialDecision,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -468,40 +469,53 @@ class TestCinderReport(TestCase):
                 guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
             )
         )
-        assert cinder_report.get_action_helper().cinder_report == cinder_report
-        assert cinder_report.get_action_helper().__class__ == CinderActionNotImplemented
+        helper = cinder_report.get_action_helper()
+        assert helper.cinder_report == cinder_report
+        assert helper.__class__ == CinderActionNotImplemented
 
-        for action, ActionClass in (
+        action_to_class = (
             (DECISION_ACTIONS.AMO_BAN_USER, CinderActionBanUser),
             (DECISION_ACTIONS.AMO_DISABLE_ADDON, CinderActionDisableAddon),
             (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
             (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionDeleteCollection),
             (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionDeleteRating),
-            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApprove),
+        )
+        for action, ActionClass in (
+            *action_to_class,
+            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveInitialDecision),
         ):
             cinder_report.update(decision_action=action)
             helper = cinder_report.get_action_helper()
             assert helper.__class__ == ActionClass
             assert helper.cinder_report == cinder_report
 
+        for action, ActionClass in (
+            *action_to_class,
+            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveAppealOverride),
+        ):
+            cinder_report.update(decision_action=action)
+            helper = cinder_report.get_action_helper(DECISION_ACTIONS.AMO_DISABLE_ADDON)
+            assert helper.__class__ == ActionClass
+            assert helper.cinder_report == cinder_report
+
     def test_process_decision(self):
         cinder_report = CinderReport.objects.create(
             abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+                user=user_factory(), reason=AbuseReport.REASONS.ILLEGAL
             )
         )
         new_date = datetime(2023, 1, 1)
 
-        with mock.patch.object(CinderActionApprove, 'process') as cinder_action_mock:
+        with mock.patch.object(CinderActionBanUser, 'process') as cinder_action_mock:
             cinder_report.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
-                decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE.value,
+                decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER.value,
             )
         assert cinder_report.decision_id == '12345'
         assert cinder_report.decision_date == new_date
-        assert cinder_report.decision_action == (
-            CinderReport.DECISION_ACTIONS.AMO_APPROVE
+        assert (
+            cinder_report.decision_action == CinderReport.DECISION_ACTIONS.AMO_BAN_USER
         )
         assert cinder_action_mock.call_count == 1
 

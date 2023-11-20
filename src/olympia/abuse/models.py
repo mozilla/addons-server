@@ -21,7 +21,8 @@ from .cinder import (
     CinderUser,
 )
 from .utils import (
-    CinderActionApprove,
+    CinderActionApproveAppealOverride,
+    CinderActionApproveInitialDecision,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -474,15 +475,23 @@ class CinderReport(ModelBase):
                 return CinderCollection(target)
         return None
 
-    def get_action_helper(self):
-        CinderActionClass = {
-            self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
-            self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
-            self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
-            self.DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
-            self.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-            self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApprove,
-        }.get(self.decision_action, CinderActionNotImplemented)
+    def get_action_helper(self, existing_decision=DECISION_ACTIONS.NO_DECISION):
+        if self.decision_action == self.DECISION_ACTIONS.AMO_APPROVE and (
+            existing_decision != self.DECISION_ACTIONS.NO_DECISION
+        ):
+            CinderActionClass = CinderActionApproveAppealOverride
+        else:
+            CinderActionClass = {
+                self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+                self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+                self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+                self.DECISION_ACTIONS.AMO_DELETE_COLLECTION: (
+                    CinderActionDeleteCollection
+                ),
+                self.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
+                self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+            }.get(self.decision_action, CinderActionNotImplemented)
+
         return CinderActionClass(self)
 
     def get_cinder_reporter(self):
@@ -506,12 +515,13 @@ class CinderReport(ModelBase):
         self.update(job_id=job_id)
 
     def process_decision(self, *, decision_id, decision_date, decision_action):
+        existing_decision = self.decision_action
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
             decision_action=decision_action,
         )
-        self.get_action_helper().process()
+        self.get_action_helper(existing_decision).process()
 
     def appeal(self, appeal_text, user):
         if not self.can_be_appealed():

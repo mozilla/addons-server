@@ -13,7 +13,8 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
 from ..utils import (
-    CinderActionApprove,
+    CinderActionApproveAppealOverride,
+    CinderActionApproveInitialDecision,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
@@ -45,12 +46,19 @@ class TestCinderAction(TestCase):
         action.process()
         assert addon.reload().status == amo.STATUS_DISABLED
 
-    def test_approve_addon(self):
+    def test_approve_appeal_addon(self):
         addon = addon_factory(status=amo.STATUS_DISABLED)
         self.cinder_report.abuse_report.update(guid=addon.guid)
-        action = CinderActionApprove(self.cinder_report)
+        action = CinderActionApproveAppealOverride(self.cinder_report)
         action.process()
         assert addon.reload().status == amo.STATUS_NULL
+
+    def test_approve_initial_addon(self):
+        addon = addon_factory(status=amo.STATUS_DISABLED)
+        self.cinder_report.abuse_report.update(guid=addon.guid)
+        action = CinderActionApproveInitialDecision(self.cinder_report)
+        action.process()
+        assert addon.reload().status == amo.STATUS_DISABLED
 
     def test_escalate_addon(self):
         user_factory(id=settings.TASK_USER_ID)
@@ -94,10 +102,17 @@ class TestCinderAction(TestCase):
         assert collection.deleted
         assert collection.slug
 
-    def test_approve_collection(self):
+    def test_approve_initial_collection(self):
         collection = collection_factory(author=user_factory(), deleted=True)
         self.cinder_report.abuse_report.update(collection=collection, guid=None)
-        action = CinderActionApprove(self.cinder_report)
+        action = CinderActionApproveInitialDecision(self.cinder_report)
+        action.process()
+        assert collection.deleted
+
+    def test_approve_appeal_collection(self):
+        collection = collection_factory(author=user_factory(), deleted=True)
+        self.cinder_report.abuse_report.update(collection=collection, guid=None)
+        action = CinderActionApproveAppealOverride(self.cinder_report)
         action.process()
         assert not collection.deleted
 
@@ -108,11 +123,20 @@ class TestCinderAction(TestCase):
         action.process()
         assert rating.reload().deleted
 
-    def test_approve_rating(self):
+    def test_approve_initial_rating(self):
         rating = Rating.objects.create(
             addon=addon_factory(), user=user_factory(), deleted=True
         )
         self.cinder_report.abuse_report.update(rating=rating, guid=None)
-        action = CinderActionApprove(self.cinder_report)
+        action = CinderActionApproveInitialDecision(self.cinder_report)
+        action.process()
+        assert rating.reload().deleted
+
+    def test_approve_appeal_rating(self):
+        rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), deleted=True
+        )
+        self.cinder_report.abuse_report.update(rating=rating, guid=None)
+        action = CinderActionApproveAppealOverride(self.cinder_report)
         action.process()
         assert not rating.reload().deleted
