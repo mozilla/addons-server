@@ -7,6 +7,7 @@ from rest_framework import serializers
 import olympia.core.logger
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
+from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
 
@@ -216,10 +217,11 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
                 addon = view.get_target_object()
                 output['id'] = addon.pk
                 output['slug'] = addon.slug
-            except Http404:
+            except (Http404, UnavailableForLegalReasons):
                 # We accept abuse reports against unknown guids or guids
-                # belonging to non-public/disabled/deleted add-ons, but don't
-                # want to reveal the slug or id of those add-ons.
+                # belonging to non-public/disabled/deleted/georestricted
+                # add-ons, but don't want to reveal the slug or id of those
+                # add-ons.
                 pass
         return output
 
