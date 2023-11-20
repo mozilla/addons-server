@@ -2776,7 +2776,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#unreviewed-other-queue .unreviewed-versions-warning')
-    
+
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_UNLISTED,
@@ -2790,8 +2790,9 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
-            'This add-on has 1 or more versions with a due date in other pages.')
-        
+            'This add-on has 1 or more versions with a due date in other pages.'
+        )
+
     def test_item_history_unreviewed_version_in_listed_queue(self):
         self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
         self.addon.update_version()
@@ -2818,8 +2819,8 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
-            'This add-on has 1 or more versions with a due date in other pages.')
-        
+            'This add-on has 1 or more versions with a due date in other pages.'
+        )
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
