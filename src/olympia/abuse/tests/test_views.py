@@ -14,6 +14,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.addons.models import AddonRegionalRestrictions
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -190,6 +191,23 @@ class AddonAbuseViewSetTestBase:
         report = AbuseReport.objects.get(guid=addon.guid)
         self.check_report(report, f'Abuse Report for Addon {addon.guid}')
         assert report.message == 'abuse!'
+
+    def test_addon_georestricted(self):
+        addon = addon_factory()
+        AddonRegionalRestrictions.objects.create(addon=addon, excluded_regions=['FR'])
+        response = self.client.post(
+            self.url,
+            data={'addon': str(addon.guid), 'message': 'geo abuse!'},
+            REMOTE_ADDR='123.45.67.89',
+            HTTP_X_FORWARDED_FOR=f'123.45.67.89, {get_random_ip()}',
+            HTTP_X_COUNTRY_CODE='FR',
+        )
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(guid=addon.guid).exists()
+        report = AbuseReport.objects.get(guid=addon.guid)
+        self.check_report(report, f'Abuse Report for Addon {addon.guid}')
+        assert report.message == 'geo abuse!'
 
     def test_no_addon_fails(self):
         response = self.client.post(self.url, data={'message': 'abuse!'})
