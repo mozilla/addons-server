@@ -2792,7 +2792,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
-            'This add-on has 1 or more versions with a due date in other pages.'
+            'This add-on has 1 or more versions with a due date in another channel.'
         )
 
     def test_item_history_unreviewed_version_in_listed_queue(self):
@@ -2822,7 +2822,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
         assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
-            'This add-on has 1 or more versions with a due date in other pages.'
+            'This add-on has 1 or more versions with a due date in another channel.'
         )
 
     def test_item_history_notes(self):
