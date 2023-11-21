@@ -726,7 +726,7 @@ def review(request, addon, channel=None):
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,
         has_versions_with_due_date_in_other_channel=addon.versions(
-            managers='unfiltered_for_relations'
+            manager='unfiltered_for_relations'
         )
         .exclude(channel=channel)
         .filter(due_date__isnull=False)
