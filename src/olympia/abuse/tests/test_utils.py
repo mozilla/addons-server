@@ -43,7 +43,7 @@ class TestCinderAction(TestCase):
     def test_approve_user(self):
         user = user_factory(banned=self.days_ago(1), deleted=True)
         self.cinder_report.abuse_report.update(user=user, guid=None)
-        action = CinderActionApprove(self.cinder_report)
+        action = CinderActionApproveAppealOverride(self.cinder_report)
         action.process()
         user.reload()
         assert not user.banned

@@ -573,6 +573,7 @@ class TestUserAdmin(TestCase):
         self.grant_permission(request.user, 'Users:Edit')
         assert list(user_admin.get_actions(request).keys()) == [
             'ban_action',
+            'unban_action',
             'reset_api_key_action',
             'reset_session_action',
         ]
