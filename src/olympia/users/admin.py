@@ -282,8 +282,7 @@ class UserAdmin(AMOModelAdmin):
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        ActivityLog.objects.create(amo.LOG.ADMIN_USER_BANNED, obj)
-        UserProfile.ban_and_disable_related_content_bulk([obj], move_files=True)
+        self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content()
         kw = {'user': force_str(obj)}
         self.message_user(request, 'The user "%(user)s" has been banned.' % kw)
         return HttpResponseRedirect(
