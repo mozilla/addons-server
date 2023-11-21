@@ -592,8 +592,10 @@ class TestUserAdmin(TestCase):
         another_user.reload()
         self.user.reload()
         assert another_user.deleted
+        assert another_user.banned
         assert another_user.email
         assert self.user.deleted
+        assert self.user.banned
         assert self.user.email
         # The 3rd user should be unaffected.
         assert not a_third_user.reload().deleted
@@ -603,14 +605,44 @@ class TestUserAdmin(TestCase):
             ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_BANNED.id).count() == 2
         )
 
-    def test_ban_button_in_change_view(self):
+    def test_unban_action(self):
+        self.user.update(banned=self.days_ago(1), deleted=True)
+        another_user = user_factory(banned=self.days_ago(2), deleted=True)
+        a_third_user = user_factory(banned=self.days_ago(3), deleted=True)
+        users = UserProfile.objects.filter(pk__in=(another_user.pk, self.user.pk))
+        user_admin = UserAdmin(UserProfile, admin.site)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        core.set_user(request.user)
+        request._messages = default_messages_storage(request)
+        user_admin.unban_action(request, users)
+        # Both users should be banned.
+        another_user.reload()
+        self.user.reload()
+        assert not another_user.deleted
+        assert not self.user.deleted
+        assert not another_user.banned
+        assert not self.user.banned
+        # The 3rd user should be unaffected.
+        a_third_user.reload()
+        assert a_third_user.deleted
+        assert a_third_user.banned
+
+        # We should see 2 activity logs for unbanning.
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_UNBAN.id).count() == 2
+        )
+
+    def test_ban_and_unban_buttons_in_change_view(self):
         ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk,))
+        unban_url = reverse('admin:users_userprofile_unban', args=(self.user.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Edit')
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert ban_url in response.content.decode('utf-8')
+        assert unban_url in response.content.decode('utf-8')
 
     def test_reset_api_key_action(self):
         another_user = user_factory()
@@ -736,6 +768,38 @@ class TestUserAdmin(TestCase):
         assert self.user.email
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_BANNED.id
+        assert alog.arguments == [self.user]
+
+    def test_unban(self):
+        unban_url = reverse('admin:users_userprofile_unban', args=(self.user.pk,))
+        wrong_unban_url = reverse(
+            'admin:users_userprofile_unban', args=(self.user.pk + 42,)
+        )
+        self.user.update(banned=self.days_ago(42), deleted=True)
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        core.set_user(user)
+        response = self.client.post(unban_url, follow=True)
+        assert response.status_code == 403
+        self.grant_permission(user, 'Users:Edit')
+        response = self.client.get(unban_url, follow=True)
+        assert response.status_code == 405  # Wrong http method.
+        response = self.client.post(wrong_unban_url, follow=True)
+        assert response.status_code == 404  # Wrong pk.
+
+        self.user.reload()
+        assert self.user.deleted
+
+        response = self.client.post(unban_url, follow=True)
+        assert response.status_code == 200
+        assert response.redirect_chain[-1][0].endswith(self.detail_url)
+        assert response.redirect_chain[-1][1] == 302
+        self.user.reload()
+        assert not self.user.deleted
+        assert not self.user.banned
+        assert self.user.email
+        alog = ActivityLog.objects.latest('pk')
+        assert alog.action == amo.LOG.ADMIN_USER_UNBAN.id
         assert alog.arguments == [self.user]
 
     def test_reset_api_key(self):
