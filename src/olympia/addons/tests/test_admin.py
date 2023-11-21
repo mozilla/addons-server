@@ -266,17 +266,17 @@ class TestAddonAdmin(TestCase):
 
         addon = addon_factory(guid='@foo')
         with core.override_remote_addr('4.8.15.16'):
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
             )
         version_factory(addon=addon)
         with core.override_remote_addr('4.8.15.16'):
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
             )
         second_addon = addon_factory(guid='@bar')
         with core.override_remote_addr('4.8.15.16'):
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 second_addon.current_version,
                 second_addon,
@@ -284,7 +284,7 @@ class TestAddonAdmin(TestCase):
             )
         third_addon = addon_factory(guid='@xyz')
         with core.override_remote_addr('127.0.0.1'):
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 third_addon.current_version,
                 third_addon,
@@ -846,13 +846,13 @@ class TestAddonAdmin(TestCase):
         core.set_user(user_factory())
 
         addon = addon_factory()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
-        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
-        ActivityLog.create(amo.LOG.DELETE_ADDON, addon)
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon)
+        ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
+        ActivityLog.objects.create(amo.LOG.DELETE_ADDON, addon)
 
         # Create another activity attached to a different add-on.
         unrelated_addon = addon_factory()
-        ActivityLog.create(amo.LOG.EDIT_PROPERTIES, unrelated_addon)
+        ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, unrelated_addon)
 
         admin_page = AddonAdmin(Addon, admin.site).activity(addon)
         link = pq(admin_page)('a')[0]

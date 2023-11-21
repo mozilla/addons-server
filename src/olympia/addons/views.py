@@ -756,7 +756,9 @@ class AddonPreviewViewSet(
 
     def perform_destroy(self, instance):
         super().perform_destroy(instance)
-        ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance.addon, user=self.request.user)
+        ActivityLog.objects.create(
+            amo.LOG.CHANGE_MEDIA, instance.addon, user=self.request.user
+        )
 
 
 class AddonAuthorViewSet(

@@ -144,7 +144,7 @@ class TestRatingsModerationLog(ReviewerTest):
         1/1/2011.  To not do as such would be dishonorable.
         """
         review = self.make_review(username='b')
-        ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon).update(
+        ActivityLog.objects.create(amo.LOG.APPROVE_RATING, review, review.addon).update(
             created=datetime(2011, 1, 1)
         )
 
@@ -161,8 +161,8 @@ class TestRatingsModerationLog(ReviewerTest):
         """
         review = self.make_review()
         for _i in range(2):
-            ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
-            ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
+            ActivityLog.objects.create(amo.LOG.APPROVE_RATING, review, review.addon)
+            ActivityLog.objects.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         response = self.client.get(self.url, {'filter': 'deleted'})
         assert response.status_code == 200
         assert pq(response.content)('tbody tr').length == 2
@@ -174,7 +174,7 @@ class TestRatingsModerationLog(ReviewerTest):
 
     def test_moderation_log_detail(self):
         review = self.make_review()
-        ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
+        ActivityLog.objects.create(amo.LOG.APPROVE_RATING, review, review.addon)
         id_ = ActivityLog.objects.moderation_events()[0].id
         response = self.client.get(
             reverse('reviewers.ratings_moderation_log.detail', args=[id_])
@@ -196,7 +196,7 @@ class TestReviewLog(ReviewerTest):
 
     def make_approvals(self):
         for addon in Addon.objects.all():
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION,
                 addon,
                 addon.current_version,
@@ -211,7 +211,7 @@ class TestReviewLog(ReviewerTest):
             user = self.get_user()
         if not addon:
             addon = Addon.objects.all()[0]
-        ActivityLog.create(
+        ActivityLog.objects.create(
             action,
             addon,
             addon.current_version,
@@ -273,7 +273,7 @@ class TestReviewLog(ReviewerTest):
         a = Addon.objects.all()[0]
         a.name = '<script>alert("xss")</script>'
         a.save()
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION,
             a,
             a.current_version,
@@ -333,7 +333,7 @@ class TestReviewLog(ReviewerTest):
         with freeze_time('2017-08-01 10:00'):
             addon = Addon.objects.first()
 
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION,
                 addon,
                 addon.current_version,
@@ -472,7 +472,7 @@ class TestReviewLog(ReviewerTest):
         self.make_addon_unlisted(addon)
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED, version='3.0')
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED,
             addon,
             *list(addon.versions.all()),
@@ -489,7 +489,7 @@ class TestReviewLog(ReviewerTest):
     def test_rejection_multiple_versions(self):
         addon = Addon.objects.get(pk=3615)
         version_factory(addon=addon, version='3.2.1')
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION,
             addon,
             *list(addon.versions.all()),
@@ -518,7 +518,7 @@ class TestReviewLog(ReviewerTest):
         addon = addon_factory()
         unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
 
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.APPROVE_VERSION,
             addon,
             addon.current_version,
@@ -532,7 +532,7 @@ class TestReviewLog(ReviewerTest):
         link = pq(response.content)('#log-listing tbody tr[data-addonid] a').eq(0)
         assert link.attr('href') == url
 
-        entry = ActivityLog.create(
+        entry = ActivityLog.objects.create(
             amo.LOG.APPROVE_VERSION,
             addon,
             unlisted_version,
@@ -552,7 +552,7 @@ class TestReviewLog(ReviewerTest):
         self.login_as_reviewer()
         addon = addon_factory()
 
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.FORCE_DISABLE,
             addon,
             user=self.get_user(),
@@ -2610,7 +2610,7 @@ class TestReview(ReviewBase):
         # be displayed in the "important changes" log.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.ADD_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
@@ -4553,26 +4553,26 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        activity0 = ActivityLog.create(
+        activity0 = ActivityLog.objects.create(
             amo.LOG.ADD_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        activity1 = ActivityLog.create(
+        activity1 = ActivityLog.objects.create(
             amo.LOG.CHANGE_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        activity2 = ActivityLog.create(
+        activity2 = ActivityLog.objects.create(
             amo.LOG.REMOVE_USER_WITH_ROLE,
             author.user,
             str(author.get_role_display()),
             self.addon,
         )
-        activity3 = ActivityLog.create(amo.LOG.FORCE_DISABLE, self.addon)
-        activity4 = ActivityLog.create(
+        activity3 = ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, self.addon)
+        activity4 = ActivityLog.objects.create(
             amo.LOG.FORCE_ENABLE,
             self.addon,
         )

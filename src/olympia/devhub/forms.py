@@ -649,7 +649,7 @@ class LicenseForm(AMOModelForm):
             if (changed and is_other) or license != self.version.license:
                 self.version.update(license=license)
                 if log:
-                    ActivityLog.create(
+                    ActivityLog.objects.create(
                         amo.LOG.CHANGE_LICENSE, license, self.version.addon
                     )
         return license
@@ -701,7 +701,7 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
                 delete_translation(self.instance, field)
 
         if 'privacy_policy' in self.changed_data:
-            ActivityLog.create(amo.LOG.CHANGE_POLICY, self.addon, self.instance)
+            ActivityLog.objects.create(amo.LOG.CHANGE_POLICY, self.addon, self.instance)
 
         return ob
 

@@ -96,7 +96,7 @@ class TestEmailBouncing(TestCase):
         )
         self.email_text = sample_message_content['Message']
 
-    @mock.patch('olympia.activity.utils.ActivityLog.create')
+    @mock.patch('olympia.activity.utils.ActivityLog.objects.create')
     def test_no_note_logged(self, log_mock):
         # First set everything up so it's working
         addon = addon_factory()
@@ -321,7 +321,7 @@ class TestLogAndNotify(TestCase):
             'comments': 'I spy, with my líttle €ye...',
             'version': self.version.version,
         }
-        activity = ActivityLog.create(
+        activity = ActivityLog.objects.create(
             action, self.addon, self.version, user=author, details=details
         )
         activity.update(created=self.days_ago(1))
@@ -645,7 +645,7 @@ def test_send_activity_mail():
         user,
     ]
     from_email = 'bob@bob.bob'
-    action = ActivityLog.create(amo.LOG.DEVELOPER_REPLY_VERSION, user=user)
+    action = ActivityLog.objects.create(amo.LOG.DEVELOPER_REPLY_VERSION, user=user)
     send_activity_mail(
         subject, message, latest_version, recipients, from_email, action.id
     )

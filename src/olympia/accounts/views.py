@@ -518,7 +518,7 @@ class AccountViewSet(
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        ActivityLog.create(amo.LOG.USER_DELETED, instance)
+        ActivityLog.objects.create(amo.LOG.USER_DELETED, instance)
         self.perform_destroy(instance)
         response = Response(status=HTTP_204_NO_CONTENT)
         if instance == request.user:

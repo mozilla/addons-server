@@ -260,7 +260,7 @@ class UserAdmin(AMOModelAdmin):
     def delete_model(self, request, obj):
         # Deleting a user through the admin also deletes related content
         # produced by that user.
-        ActivityLog.create(amo.LOG.ADMIN_USER_ANONYMIZED, obj)
+        ActivityLog.objects.create(amo.LOG.ADMIN_USER_ANONYMIZED, obj)
         obj.delete()
 
     def save_model(self, request, obj, form, change):
@@ -268,7 +268,7 @@ class UserAdmin(AMOModelAdmin):
             k: (form.initial.get(k), form.cleaned_data.get(k))
             for k in form.changed_data
         }
-        ActivityLog.create(amo.LOG.ADMIN_USER_EDITED, obj, details=changes)
+        ActivityLog.objects.create(amo.LOG.ADMIN_USER_EDITED, obj, details=changes)
         obj.save()
 
     def ban_view(self, request, object_id, extra_context=None):
@@ -282,7 +282,8 @@ class UserAdmin(AMOModelAdmin):
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        self.model.objects.filter(pk=obj.pk).ban_and_disable_related_content()
+        ActivityLog.objects.create(amo.LOG.ADMIN_USER_BANNED, obj)
+        UserProfile.ban_and_disable_related_content_bulk([obj], move_files=True)
         kw = {'user': force_str(obj)}
         self.message_user(request, 'The user "%(user)s" has been banned.' % kw)
         return HttpResponseRedirect(
@@ -352,7 +353,7 @@ class UserAdmin(AMOModelAdmin):
         if not acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT):
             return HttpResponseForbidden()
 
-        ActivityLog.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)
+        ActivityLog.objects.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)
         obj.delete_picture()
         kw = {'user': force_str(obj)}
         self.message_user(
@@ -381,7 +382,7 @@ class UserAdmin(AMOModelAdmin):
         users = []
         qs.update(auth_id=None)  # A new value will be generated at next login.
         for obj in qs:
-            ActivityLog.create(amo.LOG.ADMIN_USER_SESSION_RESET, obj)
+            ActivityLog.objects.create(amo.LOG.ADMIN_USER_SESSION_RESET, obj)
             users.append(force_str(obj))
         kw = {'users': ', '.join(users)}
         self.message_user(
@@ -395,7 +396,7 @@ class UserAdmin(AMOModelAdmin):
         APIKeyConfirmation.objects.filter(user__in=qs).delete()
         APIKey.objects.filter(user__in=qs).update(is_active=None)
         for user in qs:
-            ActivityLog.create(amo.LOG.ADMIN_API_KEY_RESET, user)
+            ActivityLog.objects.create(amo.LOG.ADMIN_API_KEY_RESET, user)
             users.append(force_str(user))
         kw = {'users': ', '.join(users)}
         self.message_user(

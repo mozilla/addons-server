@@ -86,7 +86,7 @@ class TestClearOldUserData(TestCase):
         # deletion - so even if we change our minds about storing ips for
         # a given action after a while, we'll still correctly clear the old
         # data when it's time to do so.
-        activity = ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi', user=user)
+        activity = ActivityLog.objects.create(amo.LOG.CUSTOM_TEXT, 'hi', user=user)
         IPLog.objects.create(activity_log=activity, ip_address_binary='127.0.0.56')
 
     def test_no_addons(self):

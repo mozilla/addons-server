@@ -52,7 +52,7 @@ class GranularUserRateThrottle(UserRateThrottle):
             request_allowed = super().allow_request(request, view)
             if not request_allowed and user and user.is_authenticated:
                 log.info('User %s throttled for scope %s', user, self.scope)
-                ActivityLog.create(amo.LOG.THROTTLED, self.scope, user=user)
+                ActivityLog.objects.create(amo.LOG.THROTTLED, self.scope, user=user)
 
             return request_allowed
         else:

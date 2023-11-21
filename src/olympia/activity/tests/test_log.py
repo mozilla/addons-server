@@ -19,7 +19,7 @@ class LogTest(TestCase):
         """
         addon = addon_factory(name='kümar is awesome')
         magic = {'title': 'nô', 'body': 'wày!'}
-        al = ActivityLog.create(amo.LOG.DELETE_RATING, 1, addon, details=magic)
+        al = ActivityLog.objects.create(amo.LOG.DELETE_RATING, 1, addon, details=magic)
 
         assert al.details == magic
         assert al._details == json.dumps(magic)

@@ -56,15 +56,15 @@ class TestActivityLogAdmin(TestCase):
         with core.override_remote_addr('127.0.0.2'):
             user2.update(email='foo@bar.com')
             # That will make user2 match our query.
-            ActivityLog.create(amo.LOG.LOG_IN, user=user2)
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=user2)
         with core.override_remote_addr('127.0.0.2'):
             # That will make user3 match our query.
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION, addon.current_version, addon, user=user3
             )
         with core.override_remote_addr('127.0.0.1'):
             extra_user = user_factory()  # Extra user that shouldn't match
-            ActivityLog.create(amo.LOG.LOG_IN, user=extra_user)
+            ActivityLog.objects.create(amo.LOG.LOG_IN, user=extra_user)
         with self.assertNumQueries(11):
             # - 2 savepoints/release
             # - 2 user and groups

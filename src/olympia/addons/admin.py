@@ -505,7 +505,9 @@ class AddonAdmin(AMOModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if 'status' in form.changed_data:
-            ActivityLog.create(amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status'])
+            ActivityLog.objects.create(
+                amo.LOG.CHANGE_STATUS, obj, form.cleaned_data['status']
+            )
             log.info(
                 'Addon "%s" status changed to: %s'
                 % (obj.slug, form.cleaned_data['status'])

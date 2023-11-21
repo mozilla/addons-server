@@ -312,6 +312,90 @@ class ActivityLogManager(ManagerBase):
         )
         return qs
 
+    def create(self, action, *args, **kw):
+        """
+        e.g. ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon),
+             ActivityLog.objects.create(amo.LOG.ADD_FILE_TO_VERSION, file, version)
+        In case of circular import you can use `olympia.activity.log_create()`
+        """
+        from olympia import core
+
+        # We might get action as an int, as that's what the model field is defined as
+        action = amo.LOG_BY_ID[action] if isinstance(action, int) else action
+        user = kw.get('user', core.get_user())
+
+        if not user:
+            log.warning('Activity log called with no user: %s' % action.id)
+            return
+
+        # We make sure that we take the timestamp if provided, instead of
+        # creating a new one, especially useful for log entries created
+        # in a loop.
+        al = super().create(
+            user=user, action=action.id, created=kw.get('created', timezone.now())
+        )
+        al.set_arguments(args)
+        if 'details' in kw:
+            al.details = kw['details']
+        al.save()
+
+        if 'details' in kw and 'comments' in al.details:
+            CommentLog.objects.create(
+                comments=al.details['comments'],
+                activity_log=al,
+                created=kw.get('created', timezone.now()),
+            )
+
+        bulk_objects = defaultdict(list)
+        for arg in args:
+            create_kwargs = {
+                'activity_log': al,
+                'created': kw.get('created', timezone.now()),
+            }
+            if isinstance(arg, tuple):
+                class_ = arg[0]
+                id_ = arg[1]
+            else:
+                class_ = arg.__class__
+                id_ = arg.id if isinstance(arg, ModelBase) else None
+
+            if class_ == Addon:
+                bulk_objects[AddonLog].append(AddonLog(addon_id=id_, **create_kwargs))
+            elif class_ == Version:
+                bulk_objects[VersionLog].append(
+                    VersionLog(version_id=id_, **create_kwargs)
+                )
+            elif class_ == Group:
+                bulk_objects[GroupLog].append(GroupLog(group_id=id_, **create_kwargs))
+            elif class_ == Block:
+                bulk_objects[BlockLog].append(
+                    BlockLog(block_id=id_, guid=arg.guid, **create_kwargs)
+                )
+            elif class_ == ReviewActionReason:
+                bulk_objects[ReviewActionReasonLog].append(
+                    ReviewActionReasonLog(reason_id=id_, **create_kwargs)
+                )
+            elif class_ == Rating:
+                bulk_objects[RatingLog].append(
+                    RatingLog(rating_id=id_, **create_kwargs)
+                )
+        for klass, instances in bulk_objects.items():
+            klass.objects.bulk_create(instances)
+
+        if getattr(action, 'store_ip', False) and (
+            ip_address := core.get_remote_addr()
+        ):
+            # Index specific actions by their IP address. Note that the caller
+            # must take care of overriding remote addr if the action is created
+            # from a task.
+            IPLog.objects.create(
+                ip_address_binary=ip_address,
+                activity_log=al,
+                created=kw.get('created', timezone.now()),
+            )
+
+        return al
+
 
 class ActivityLog(ModelBase):
     TYPES = sorted(
@@ -651,86 +735,3 @@ class ActivityLog(ModelBase):
 
     def __html__(self):
         return self
-
-    @classmethod
-    def create(cls, action, *args, **kw):
-        """
-        e.g. ActivityLog.create(amo.LOG.CREATE_ADDON, addon),
-             ActivityLog.create(amo.LOG.ADD_FILE_TO_VERSION, file, version)
-        In case of circular import you can use `olympia.activity.log_create()`
-        """
-        from olympia import core
-
-        user = kw.get('user', core.get_user())
-
-        if not user:
-            log.warning('Activity log called with no user: %s' % action.id)
-            return
-
-        # We make sure that we take the timestamp if provided, instead of
-        # creating a new one, especially useful for log entries created
-        # in a loop.
-        al = ActivityLog(
-            user=user, action=action.id, created=kw.get('created', timezone.now())
-        )
-        al.set_arguments(args)
-        if 'details' in kw:
-            al.details = kw['details']
-        al.save()
-
-        if 'details' in kw and 'comments' in al.details:
-            CommentLog.objects.create(
-                comments=al.details['comments'],
-                activity_log=al,
-                created=kw.get('created', timezone.now()),
-            )
-
-        bulk_objects = defaultdict(list)
-        for arg in args:
-            create_kwargs = {
-                'activity_log': al,
-                'created': kw.get('created', timezone.now()),
-            }
-            if isinstance(arg, tuple):
-                class_ = arg[0]
-                id_ = arg[1]
-            else:
-                class_ = arg.__class__
-                id_ = arg.id if isinstance(arg, ModelBase) else None
-
-            if class_ == Addon:
-                bulk_objects[AddonLog].append(AddonLog(addon_id=id_, **create_kwargs))
-            elif class_ == Version:
-                bulk_objects[VersionLog].append(
-                    VersionLog(version_id=id_, **create_kwargs)
-                )
-            elif class_ == Group:
-                bulk_objects[GroupLog].append(GroupLog(group_id=id_, **create_kwargs))
-            elif class_ == Block:
-                bulk_objects[BlockLog].append(
-                    BlockLog(block_id=id_, guid=arg.guid, **create_kwargs)
-                )
-            elif class_ == ReviewActionReason:
-                bulk_objects[ReviewActionReasonLog].append(
-                    ReviewActionReasonLog(reason_id=id_, **create_kwargs)
-                )
-            elif class_ == Rating:
-                bulk_objects[RatingLog].append(
-                    RatingLog(rating_id=id_, **create_kwargs)
-                )
-        for klass, instances in bulk_objects.items():
-            klass.objects.bulk_create(instances)
-
-        if getattr(action, 'store_ip', False) and (
-            ip_address := core.get_remote_addr()
-        ):
-            # Index specific actions by their IP address. Note that the caller
-            # must take care of overriding remote addr if the action is created
-            # from a task.
-            IPLog.objects.create(
-                ip_address_binary=ip_address,
-                activity_log=al,
-                created=kw.get('created', timezone.now()),
-            )
-
-        return al

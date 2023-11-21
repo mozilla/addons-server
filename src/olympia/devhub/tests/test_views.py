@@ -589,7 +589,7 @@ class TestActivityFeed(TestCase):
 
     def add_log(self, action=amo.LOG.ADD_RATING):
         core.set_user(self.action_user)
-        ActivityLog.create(action, self.addon, self.version)
+        ActivityLog.objects.create(action, self.addon, self.version)
 
     def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
         self.add_log(action=action)

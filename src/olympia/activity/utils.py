@@ -260,7 +260,7 @@ def log_and_notify(
                 due_date=get_review_due_date(default_days=REVIEWER_STANDARD_REPLY_TIME)
             )
 
-    note = ActivityLog.create(action, version.addon, version, **log_kwargs)
+    note = ActivityLog.objects.create(action, version.addon, version, **log_kwargs)
     if not note:
         return
 
