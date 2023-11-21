@@ -524,7 +524,7 @@ def ownership(request, addon_id, addon):
                         email=addon_user.user.email
                     ),
                 )
-            elif addon_user.role != addon_user._original_role:
+            elif addon_user.role != addon_user._initial_attrs.get('role'):
                 send_addon_author_change_mail(addon_user, existing_authors_emails)
             addon_user.save()
         for addon_user in source_form.deleted_objects:

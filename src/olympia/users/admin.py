@@ -32,6 +32,7 @@ from olympia.zadmin.admin import related_content_link, related_single_content_li
 
 from . import forms
 from .models import (
+    BannedUserContent,
     DeniedName,
     DisposableEmailDomainRestriction,
     EmailUserRestriction,
@@ -48,6 +49,37 @@ class GroupUserInline(admin.TabularInline):
     raw_id_fields = ('user',)
 
 
+class BannedUserContentInline(admin.TabularInline):
+    verbose_name = 'Content disabled/deleted on user ban'
+    model = BannedUserContent
+    view_on_site = False
+    fields = ('collections_link', 'addons_link', 'addons_users_link', 'ratings_link')
+    readonly_fields = (
+        'collections_link',
+        'addons_link',
+        'addons_users_link',
+        'ratings_link',
+    )
+    can_delete = False
+
+    def banned_content_link(self, obj, related_class):
+        return related_content_link(
+            obj, related_class, 'bannedusercontent', related_manager='unfiltered'
+        )
+
+    def collections_link(self, obj):
+        return self.banned_content_link(obj, Collection)
+
+    def addons_link(self, obj):
+        return self.banned_content_link(obj, Addon)
+
+    def addons_users_link(self, obj):
+        return self.banned_content_link(obj, AddonUser)
+
+    def ratings_link(self, obj):
+        return self.banned_content_link(obj, Rating)
+
+
 @admin.register(UserProfile)
 class UserAdmin(AMOModelAdmin):
     list_display = ('__str__', 'email', 'last_login', 'is_public', 'deleted')
@@ -60,7 +92,7 @@ class UserAdmin(AMOModelAdmin):
     minimum_search_terms_to_search_by_id = 1
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
-    inlines = (GroupUserInline,)
+    inlines = (GroupUserInline, BannedUserContentInline)
     search_by_ip_actions = LOG_STORE_IPS
 
     readonly_fields = (
@@ -109,7 +141,7 @@ class UserAdmin(AMOModelAdmin):
         (
             'Flags',
             {
-                'fields': ('display_collections', 'deleted', 'is_public'),
+                'fields': ('deleted', 'is_public'),
             },
         ),
         (
@@ -364,7 +396,9 @@ class UserAdmin(AMOModelAdmin):
     has_active_api_key.boolean = True
 
     def collections_authorship(self, obj):
-        return related_content_link(obj, Collection, 'author')
+        return related_content_link(
+            obj, Collection, 'author', related_manager='unfiltered'
+        )
 
     collections_authorship.short_description = 'Collections'
 
@@ -391,7 +425,7 @@ class UserAdmin(AMOModelAdmin):
     addons_authorship.short_description = 'Add-ons'
 
     def ratings_authorship(self, obj):
-        return related_content_link(obj, Rating, 'user')
+        return related_content_link(obj, Rating, 'user', related_manager='unfiltered')
 
     ratings_authorship.short_description = 'Ratings'
 

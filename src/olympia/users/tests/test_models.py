@@ -25,6 +25,7 @@ from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     RESTRICTION_TYPES,
+    BannedUserContent,
     DeniedName,
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
@@ -228,12 +229,14 @@ class TestUserProfile(TestCase):
             occupation='some job too',
             read_dev_agreement=datetime.now(),
         )
-        innocent_user = user_factory()
+        user_innocent = user_factory()
         addon_multi = addon_factory(
-            users=UserProfile.objects.filter(id__in=[user_multi.id, innocent_user.id])
+            users=UserProfile.objects.filter(id__in=[user_multi.id, user_innocent.id])
         )
         addon_multi_file = addon_multi.current_version.file
         self.setup_user_to_be_have_content_disabled(user_multi)
+
+        Rating.objects.create(user=user_innocent, addon=addon_multi, rating=5)
 
         # Now that everything is set up, disable/delete related content.
         UserProfile.ban_and_disable_related_content_bulk([user_sole, user_multi])
@@ -245,7 +248,7 @@ class TestUserProfile(TestCase):
         assert list(addon_sole.authors.all()) == [user_sole]
         # shouldn't have been disabled as it has another author
         assert addon_multi.status != amo.STATUS_DISABLED
-        assert list(addon_multi.authors.all()) == [innocent_user]
+        assert list(addon_multi.authors.all()) == [user_innocent]
 
         # the File objects have been disabled
         addon_sole_file.reload()
@@ -260,8 +263,49 @@ class TestUserProfile(TestCase):
 
         assert not user_sole._ratings_all.exists()  # Even replies.
         assert not user_sole.collections.exists()
+        assert user_sole._ratings_all(manager='unfiltered_for_relations').exists()
+        assert user_sole.collections(manager='unfiltered_for_relations').exists()
         assert not user_multi._ratings_all.exists()  # Even replies.
         assert not user_multi.collections.exists()
+        assert user_multi._ratings_all(manager='unfiltered_for_relations').exists()
+        assert user_multi.collections(manager='unfiltered_for_relations').exists()
+
+        banned_content = user_sole.content_disabled_on_ban
+        self.assertQuerySetContentsEqual(
+            banned_content.ratings(manager='unfiltered_for_relations').all(),
+            user_sole._ratings_all(manager='unfiltered_for_relations').all(),
+        )
+        # User was not removed from add-ons - they only had the one where they
+        # were a solo author, so they keep the relationship but the add-on is
+        # disabled.
+        assert banned_content.addons.get() == addon_sole
+        assert not banned_content.addons_users(
+            manager='unfiltered_for_relations'
+        ).exists()
+        assert (
+            banned_content.collections(manager='unfiltered_for_relations').get()
+            == Collection.unfiltered.filter(author=user_sole).get()
+        )
+
+        banned_content = user_multi.content_disabled_on_ban
+        self.assertQuerySetContentsEqual(
+            banned_content.ratings(manager='unfiltered_for_relations').all(),
+            user_multi._ratings_all(manager='unfiltered_for_relations').all(),
+        )
+        # User was removed from add-ons - they only had one where they were an
+        # author amongst others, so they were removed from it but the add-on
+        # wasn't banned.
+        assert not banned_content.addons.exists()
+        assert (
+            banned_content.addons_users(manager='unfiltered_for_relations').get()
+            == addon_multi.addonuser_set(manager='unfiltered_for_relations')
+            .filter(user=user_multi)
+            .get()
+        )
+        assert (
+            banned_content.collections(manager='unfiltered_for_relations').get()
+            == Collection.unfiltered.filter(author=user_multi).get()
+        )
 
         assert not self.storage.exists(user_sole.picture_path)
         assert not self.storage.exists(user_sole.picture_path_original)
@@ -296,6 +340,61 @@ class TestUserProfile(TestCase):
         assert user_multi.occupation == 'some job too'
         assert user_multi.read_dev_agreement
 
+        assert not user_innocent.deleted
+        assert user_innocent.ratings.exists()
+
+        return {
+            'user_innocent': user_innocent,
+            'user_sole': user_sole,
+            'user_multi': user_multi,
+        }
+
+    def test_restore_banned_content(self):
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)  # Needed for activity log
+        users = self.test_ban_and_disable_related_content_bulk()
+        user_sole = users['user_sole']
+        user_multi = users['user_multi']
+        assert BannedUserContent.objects.filter(user=user_sole).exists()
+        assert BannedUserContent.objects.filter(user=user_multi).exists()
+
+        user_sole.content_disabled_on_ban.restore()
+
+        # user_sole content was restored.
+        addon_sole = user_sole.addons.get()
+        assert addon_sole.status == amo.STATUS_APPROVED
+        assert user_sole._ratings_all.all().count() == 2  # Includes replies
+        assert user_sole.collections.count() == 1
+        assert not BannedUserContent.objects.filter(user=user_sole).exists()
+        activity = ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_USER_CONTENT_RESTORED.id
+        ).latest('pk')
+        assert activity.arguments == [user_sole]
+        assert activity.user == fake_admin
+
+        # user_multi still not restored yet.
+        assert BannedUserContent.objects.filter(user=user_multi).exists()
+        assert user_multi.collections.count() == 0
+        assert user_multi.ratings.count() == 0
+        assert user_multi.addons.count() == 0
+        assert not (
+            ActivityLog.objects.filter(action=amo.LOG.ADMIN_USER_CONTENT_RESTORED.id)
+            .exclude(pk=activity.pk)
+            .exists()
+        )
+
+        user_multi.content_disabled_on_ban.restore()
+        assert user_multi.addons.count() == 1
+        assert user_multi._ratings_all.count() == 2  # Includes replies
+        assert user_multi.collections.count() == 1
+        activity = ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_USER_CONTENT_RESTORED.id
+        ).latest('pk')
+        assert activity.arguments == [user_multi]
+        assert activity.user == fake_admin
+
+        assert not BannedUserContent.objects.exists()
+
     def setup_user_to_be_have_content_disabled(self, user):
         addon = user.addons.last()
 
@@ -328,9 +427,9 @@ class TestUserProfile(TestCase):
         # Now that everything is set up, disable/delete related content.
         update_search_index.reset_mock()
         user.delete()
-        update_search_index.assert_called_with(sender=Addon, instance=addon)
+        update_search_index.assert_called_with(sender=AddonUser, instance=addon)
 
-        # The add-on should not have been touched, it has another dev.
+        # The add-on status should not have been touched, it has another dev.
         assert not user.addons.exists()
         addon.reload()
         assert addon.status == amo.STATUS_APPROVED

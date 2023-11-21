@@ -167,3 +167,21 @@ class TestCollections(TestCase):
         assert not collection.deleted
         # if collection had no slug (it was cleared during a delete) then generate one
         assert collection.slug is not None
+
+    def test_delete_queryset(self):
+        collection = Collection.objects.get(pk=512)
+        original_slug = collection.slug
+        assert original_slug
+        Collection.objects.filter(pk=collection.pk).delete()
+        collection.reload()
+        assert collection.deleted
+        assert collection.slug == original_slug
+
+    def test_undelete_queryset(self):
+        collection = Collection.objects.get(pk=512)
+        collection.delete()
+        assert collection.deleted
+
+        Collection.unfiltered.filter(pk=collection.pk).undelete()
+        collection.reload()
+        assert not collection.deleted

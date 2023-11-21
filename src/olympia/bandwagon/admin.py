@@ -39,14 +39,16 @@ class CollectionAdmin(AMOModelAdmin):
         'name',
         'slug',
         'addon_count',
+        'deleted',
     )
-    list_filter = ('listed',)
+    list_filter = ('listed', 'deleted')
     fields = (
         'name',
         'slug',
         'description',
         'uuid',
         'listed',
+        'deleted',
         'default_locale',
         'author',
     )

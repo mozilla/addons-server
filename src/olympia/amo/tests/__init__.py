@@ -514,12 +514,15 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             dt_earlier_ts < now_ts < dt_later_ts
         ), f'Expected datetime to be within a minute of {now}. Got {dt!r}.'
 
-    def assertQuerySetEqual(self, qs1, qs2):
+    def assertQuerySetContentsEqual(self, qs1, qs2):
         """
-        Assertion to check the equality of two querysets
+        Assertion to check the equality of the contents of two querysets
+        by just looking at the pks without taking ordering into consideration
         """
-        return self.assertSetEqual(
-            qs1.values_list('id', flat=True), qs2.values_list('id', flat=True)
+        # assertSetEqual() uses the slightly more optimized difference() which
+        # doesn't work with MySQL backend querysets.
+        return set(qs1.values_list('pk', flat=True)) == set(
+            qs2.values_list('pk', flat=True)
         )
 
     def assertCORS(self, res, *verbs):

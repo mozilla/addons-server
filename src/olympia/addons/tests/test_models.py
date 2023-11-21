@@ -1882,10 +1882,110 @@ class TestAddonUser(TestCase):
         assert AddonUser.objects.count() == 0
         assert AddonUser.unfiltered.count() == 1
         assert addonuser.role == amo.AUTHOR_ROLE_DELETED
+        assert addonuser.original_role == amo.AUTHOR_ROLE_OWNER
         assert addonuser.addon == addon
         assert addonuser.user == user
         assert user.addons.count() == 0
         assert addon.authors.count() == 0
+
+    def test_delete_dev(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(
+            addon=addon, user=user, role=amo.AUTHOR_ROLE_DEV
+        )
+        addonuser.delete()
+        addonuser.reload()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_DELETED
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV
+
+    def test_delete_queryset(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(addon=addon, user=user)
+        assert AddonUser.objects.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_OWNER
+        assert list(addon.authors.all()) == [user]
+
+        AddonUser.objects.filter(pk=addonuser.pk).delete()
+        addonuser.reload()
+        addon.reload()
+        user.reload()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_DELETED
+        assert addonuser.original_role == amo.AUTHOR_ROLE_OWNER
+        assert addonuser.addon == addon
+        assert addonuser.user == user
+        assert user.addons.count() == 0
+        assert addon.authors.count() == 0
+
+    def test_delete_queryset_dev(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(
+            addon=addon, user=user, role=amo.AUTHOR_ROLE_DEV
+        )
+        AddonUser.objects.filter(pk=addonuser.pk).delete()
+        addonuser.reload()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_DELETED
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV
+
+    def test_undelete_queryset(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(addon=addon, user=user)
+
+        AddonUser.objects.filter(pk=addonuser.pk).delete()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+
+        AddonUser.unfiltered.filter(pk=addonuser.pk).undelete()
+        addonuser.reload()
+        addon.reload()
+        user.reload()
+
+        assert AddonUser.objects.count() == 1
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_OWNER
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV  # default value.
+        assert addonuser.addon == addon
+        assert addonuser.user == user
+        assert user.addons.count() == 1
+        assert addon.authors.count() == 1
+
+    def test_undelete_queryset_dev(self):
+        addon = addon_factory()
+        user = user_factory()
+        addonuser = AddonUser.objects.create(
+            addon=addon, user=user, role=amo.AUTHOR_ROLE_DEV
+        )
+        AddonUser.objects.filter(pk=addonuser.pk).delete()
+
+        assert AddonUser.objects.count() == 0
+        assert AddonUser.unfiltered.count() == 1
+
+        AddonUser.unfiltered.filter(pk=addonuser.pk).undelete()
+        addonuser.reload()
+        addon.reload()
+        user.reload()
+
+        assert AddonUser.objects.count() == 1
+        assert AddonUser.unfiltered.count() == 1
+        assert addonuser.role == amo.AUTHOR_ROLE_DEV
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV  # default value.
+        assert addonuser.addon == addon
+        assert addonuser.user == user
+        assert user.addons.count() == 1
+        assert addon.authors.count() == 1
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):

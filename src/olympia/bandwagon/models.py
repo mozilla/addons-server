@@ -7,7 +7,7 @@ from django.urls import reverse
 from olympia import activity, amo
 from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.translations.fields import (
     LinkifiedField,
     NoURLsField,
@@ -17,7 +17,17 @@ from olympia.translations.fields import (
 from olympia.users.models import UserProfile
 
 
+class CollectionQuerySet(BaseQuerySet):
+    def delete(self):
+        return self.update(deleted=True)
+
+    def undelete(self):
+        return self.update(deleted=False)
+
+
 class CollectionManager(ManagerBase):
+    _queryset_class = CollectionQuerySet
+
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
         # through the comment just above the Addon managers
@@ -30,6 +40,17 @@ class CollectionManager(ManagerBase):
         if not self.include_deleted:
             qs = qs.exclude(deleted=True)
         return qs.transform(Collection.transformer)
+
+
+class UnfilteredCollectionManagerForRelations(CollectionManager):
+    """Like CollectionManager, but defaults to include deleted objects.
+
+    Designed to be used in reverse relations of Collection that want to include
+    soft-deleted objects.
+    """
+
+    def __init__(self, include_deleted=True):
+        super().__init__(include_deleted=include_deleted)
 
 
 class Collection(ModelBase):
@@ -62,6 +83,7 @@ class Collection(ModelBase):
 
     unfiltered = CollectionManager(include_deleted=True)
     objects = CollectionManager()
+    unfiltered_for_relations = UnfilteredCollectionManagerForRelations()
 
     class Meta(ModelBase.Meta):
         db_table = 'collections'
