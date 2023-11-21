@@ -139,7 +139,9 @@ class UserQuerySet(BaseQuerySet):
             .exclude(user__in=users)
             .values_list('addon_id', flat=True)
         )
-        qs = AddonUser.objects.filter(user__in=users, addon_id__in=addon_joint_ids)
+        joint_addonusers_qs = AddonUser.objects.filter(
+            user__in=users, addon_id__in=addon_joint_ids
+        )
         # Keep track of the AddonUser we are (soft-)deleting.
         BannedAddonsUsersModel = BannedUserContent.addons_users.through
         BannedAddonsUsersModel.objects.bulk_create(
@@ -147,11 +149,11 @@ class UserQuerySet(BaseQuerySet):
                 BannedAddonsUsersModel(
                     bannedusercontent_id=val['user'], addonuser_id=val['pk']
                 )
-                for val in qs.values('user', 'pk')
+                for val in joint_addonusers_qs.values('user', 'pk')
             ]
         )
         # (Soft-)delete them.
-        qs.delete()
+        joint_addonusers_qs.delete()
 
         # Then deal with users who are the sole author - we are disabling them.
         addons_sole = Addon.unfiltered.filter(id__in=addon_ids - addon_joint_ids)
@@ -160,14 +162,16 @@ class UserQuerySet(BaseQuerySet):
         # disable Files in bulk that need to be disabled now the addons are disabled
         Addon.disable_all_files(addons_sole, File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
         # Keep track of the Addons and the relevant user.
-        qs = AddonUser.objects.filter(user__in=users, addon__in=addons_sole)
+        sole_addonusers_qs = AddonUser.objects.filter(
+            user__in=users, addon__in=addons_sole
+        )
         BannedAddonsModel = BannedUserContent.addons.through
         BannedAddonsModel.objects.bulk_create(
             [
                 BannedAddonsModel(
                     bannedusercontent_id=val['user'], addon_id=val['addon']
                 )
-                for val in qs.values('user', 'addon')
+                for val in sole_addonusers_qs.values('user', 'addon')
             ]
         )
 
@@ -181,32 +185,32 @@ class UserQuerySet(BaseQuerySet):
         # Soft-delete the other content associated with the user: Ratings and
         # Collections.
         # Keep track of the Collections
-        qs = Collection.objects.filter(author__in=users)
+        collections_qs = Collection.objects.filter(author__in=users)
         BannedCollectionsModel = BannedUserContent.collections.through
         BannedCollectionsModel.objects.bulk_create(
             [
                 BannedCollectionsModel(
                     bannedusercontent_id=val['author'], collection_id=val['pk']
                 )
-                for val in qs.values('author', 'pk')
+                for val in collections_qs.values('author', 'pk')
             ]
         )
         # Soft-delete them (keeping their slug - will be restored if unbanned).
-        qs.delete()
+        collections_qs.delete()
 
         # Keep track of the Ratings
-        qs = Rating.objects.filter(user__in=users)
+        ratings_qs = Rating.objects.filter(user__in=users)
         BannedRatingsModel = BannedUserContent.ratings.through
         BannedRatingsModel.objects.bulk_create(
             [
                 BannedRatingsModel(
                     bannedusercontent_id=val['user'], rating_id=val['pk']
                 )
-                for val in qs.values('user', 'pk')
+                for val in ratings_qs.values('user', 'pk')
             ]
         )
         # Soft-delete them
-        Rating.objects.filter(user__in=users).delete()
+        ratings_qs.delete()
         # And then ban the users.
         ids = []
         for user in users:
