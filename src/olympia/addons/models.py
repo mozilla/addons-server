@@ -2074,7 +2074,10 @@ class AddonUserQuerySet(models.QuerySet):
         return self.update(original_role=F('role'), role=amo.AUTHOR_ROLE_DELETED)
 
     def undelete(self):
-        return self.update(role=models.F('original_role'))
+        default_original_role = self.model._meta.get_field('original_role').default
+        return self.update(
+            role=models.F('original_role'), original_role=default_original_role
+        )
 
 
 class AddonUserManager(ManagerBase):

@@ -1956,6 +1956,7 @@ class TestAddonUser(TestCase):
         assert AddonUser.objects.count() == 1
         assert AddonUser.unfiltered.count() == 1
         assert addonuser.role == amo.AUTHOR_ROLE_OWNER
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV  # default value.
         assert addonuser.addon == addon
         assert addonuser.user == user
         assert user.addons.count() == 1
@@ -1980,6 +1981,7 @@ class TestAddonUser(TestCase):
         assert AddonUser.objects.count() == 1
         assert AddonUser.unfiltered.count() == 1
         assert addonuser.role == amo.AUTHOR_ROLE_DEV
+        assert addonuser.original_role == amo.AUTHOR_ROLE_DEV  # default value.
         assert addonuser.addon == addon
         assert addonuser.user == user
         assert user.addons.count() == 1
