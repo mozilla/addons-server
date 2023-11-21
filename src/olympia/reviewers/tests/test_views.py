@@ -2782,6 +2782,7 @@ class TestReview(ReviewBase):
             addon=self.addon,
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=datetime.now() + timedelta(hours=1, minutes=1),
         )
         self.addon.update_version()
         assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
@@ -2811,6 +2812,7 @@ class TestReview(ReviewBase):
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=datetime.now() + timedelta(hours=1, minutes=1),
         )
         self.addon.update_version()
         assert self.addon.versions.filter(channel=amo.CHANNEL_LISTED).count() == 1

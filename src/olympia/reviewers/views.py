@@ -439,19 +439,6 @@ def determine_channel(channel_as_text):
     return channel, content_review
 
 
-def other_queue_has_unreviewed_versions(addon, channel):
-    """Return True if the addon has unreviewed versions in another queue."""
-    versions = addon.versions.filter(
-        channel=amo.CHANNEL_LISTED
-        if channel == amo.CHANNEL_UNLISTED
-        else amo.CHANNEL_UNLISTED,
-    )
-    for version in versions:
-        if version.is_unreviewed:
-            return True
-    return False
-
-
 @login_required
 @any_reviewer_required  # Additional permission checks are done inside.
 @reviewer_addon_view_factory
@@ -738,9 +725,13 @@ def review(request, addon, channel=None):
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,
-        has_versions_with_due_date_in_other_queue=other_queue_has_unreviewed_versions(
-            addon, channel
-        ),
+        has_versions_with_due_date_in_other_queue=not addon.versions.exclude(
+            channel=channel
+        )
+        .filter(
+            due_date__isnull=False,
+        )
+        .exists(),
         important_changes_log=important_changes_log,
         is_admin=is_admin,
         language_dict=dict(settings.LANGUAGES),
