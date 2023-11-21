@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-21 10:51+0000\n"
+"PO-Revision-Date: 2023-11-21 11:00+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1904,30 +1904,34 @@ msgstr "Lenghe predefinide"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
+"Lis informazions sul component adizionâl a vignaran visualizadis in cheste lenghe gjavant il câs che no sedi disponibile une version specifiche pe lenghe locâl dal visitadôr. Chest al interesse dome"
+" i components adizionâi publics."
 
 msgid "Homepage"
-msgstr ""
+msgstr "Pagjine principâl"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Se il to component adizionâl al à un altri sît dedicât, inserìs la sô direzion achì. Tal câs che il sît al sedi disponibil in plui lenghis, tu puedis zontâ plui câs di chest cjamp, un par ogni "
+"lenghe che il sît al supuarte. Chest al interesse dome i components adizionâi publics."
 
 msgid "or"
-msgstr ""
+msgstr "o"
 
 msgid "Cancel"
-msgstr ""
+msgstr "Anule"
 
 msgid "Describe Add-on"
-msgstr ""
+msgstr "Descrîf il component adizionâl"
 
 #. {0} is the addon name
 msgid "Describe {0}"
-msgstr ""
+msgstr "Descrizion {0}"
 
 msgid "Name and Summary"
-msgstr ""
+msgstr "Non e somari"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
