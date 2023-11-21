@@ -396,7 +396,9 @@ class AbuseReport(ModelBase):
         from olympia.addons.models import Addon
 
         if self.guid:
-            return Addon.unfiltered.filter(guid=self.guid).first()
+            if not hasattr(self, '_target_addon'):
+                self._target_addon = Addon.unfiltered.filter(guid=self.guid).first()
+            return self._target_addon
         elif self.user_id:
             return self.user
         elif self.rating_id:
@@ -475,23 +477,24 @@ class CinderReport(ModelBase):
                 return CinderCollection(target)
         return None
 
+    @classmethod
+    def get_action_helper_class(cls, decision_action):
+        return {
+            cls.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
+            cls.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
+            cls.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
+            cls.DECISION_ACTIONS.AMO_DELETE_COLLECTION: CinderActionDeleteCollection,
+            cls.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
+            cls.DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
+        }.get(decision_action, CinderActionNotImplemented)
+
     def get_action_helper(self, existing_decision=DECISION_ACTIONS.NO_DECISION):
         if self.decision_action == self.DECISION_ACTIONS.AMO_APPROVE and (
             existing_decision != self.DECISION_ACTIONS.NO_DECISION
         ):
             CinderActionClass = CinderActionApproveAppealOverride
         else:
-            CinderActionClass = {
-                self.DECISION_ACTIONS.AMO_BAN_USER: CinderActionBanUser,
-                self.DECISION_ACTIONS.AMO_DISABLE_ADDON: CinderActionDisableAddon,
-                self.DECISION_ACTIONS.AMO_ESCALATE_ADDON: CinderActionEscalateAddon,
-                self.DECISION_ACTIONS.AMO_DELETE_COLLECTION: (
-                    CinderActionDeleteCollection
-                ),
-                self.DECISION_ACTIONS.AMO_DELETE_RATING: CinderActionDeleteRating,
-                self.DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
-            }.get(self.decision_action, CinderActionNotImplemented)
-
+            CinderActionClass = self.get_action_helper_class(self.decision_action)
         return CinderActionClass(self)
 
     def get_cinder_reporter(self):
