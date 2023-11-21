@@ -112,15 +112,6 @@ class TestRatingModel(TestCase):
         rating.refresh_from_db()
         assert rating.ratingflag_set.count() == 0
 
-    def test_hard_delete(self):
-        # Hard deletion is only for tests, but it's still useful to make sure
-        # it's working properly.
-        assert Rating.unfiltered.count() == 2
-        Rating.objects.filter(id=1).delete(hard_delete=True)
-        assert Rating.unfiltered.count() == 1
-        assert Rating.objects.filter(id=2).exists()
-        assert not ActivityLog.objects.filter(action=amo.LOG.DELETE_RATING.id).exists()
-
     def test_undelete(self):
         self.test_soft_delete()
         deleted_rating = Rating.unfiltered.get(id=1)

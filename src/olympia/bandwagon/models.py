@@ -18,11 +18,8 @@ from olympia.users.models import UserProfile
 
 
 class CollectionQuerySet(BaseQuerySet):
-    def delete(self, hard_delete=False):
-        if hard_delete:
-            return super().delete()
-        else:
-            return self.update(deleted=True)
+    def delete(self):
+        return self.update(deleted=True)
 
     def undelete(self):
         return self.update(deleted=False)

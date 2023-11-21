@@ -46,14 +46,11 @@ class RatingQuerySet(models.QuerySet):
         addon_rating_aggregates.delay(addons)
         index_addons.delay(addons)
 
-    def delete(self, hard_delete=False):
-        if hard_delete:
-            return super().delete()
-        else:
-            pairs = tuple(self.values_list('addon_id', 'user_id'))
-            rval = self.update(deleted=F('id'))
-            self.update_ratings_and_addons_denormalized_fields(pairs)
-            return rval
+    def delete(self):
+        pairs = tuple(self.values_list('addon_id', 'user_id'))
+        rval = self.update(deleted=F('id'))
+        self.update_ratings_and_addons_denormalized_fields(pairs)
+        return rval
 
     def undelete(self):
         pairs = tuple(self.values_list('addon_id', 'user_id'))
