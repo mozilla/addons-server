@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:02+0000\n"
+"PO-Revision-Date: 2023-11-22 05:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2065,39 +2065,41 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Cjarie in rêt une icone pal to component adizionâl o sielç une des nestris. La icone e ven visualizade cuasi dapardut là che al ven fûr il to component adizionâl. Lis imagjins cjariadis a scugnin "
+"jessi di un di chescj formâts: .png, .jpg. Chest al è rilevant dome pai components adizionâi."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Selezione une icone pal to component adizionâl:"
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32×32px"
 
 msgid "Used in listings of add-ons, like search results."
-msgstr ""
+msgstr "Doprât intes pagjinis che a listin i components adizionâi, come i risultâts des ricercjis."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64×64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Doprât tes pagjinis dai detais dal component adizionâl."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128×128px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Al sarà il standard tes pagjinis dai detais futuris dai components adizionâi."
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Cjame in rêt une icone personalizade..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "A son supuartâts PNG e JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Lis iconis a scugnin jessi cuadradis e vê une dimension minime di 128×128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
