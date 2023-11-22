@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 04:40+0000\n"
+"PO-Revision-Date: 2023-11-22 04:50+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1904,8 +1904,8 @@ msgstr "Lenghe predefinide"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr ""
-"Lis informazions sul component adizionâl a vignaran visualizadis in cheste lenghe gjavant il câs che no sedi disponibile une version specifiche pe lenghe locâl dal visitadôr. Chest al interesse dome"
-" i components adizionâi publics."
+"Lis informazions sul component adizionâl a vignaran visualizadis in cheste lenghe gjavant il câs che no sedi disponibile une version specifiche pe lenghe locâl dal visitadôr. Chest al è rilevant "
+"dome pai components adizionâi publics."
 
 msgid "Homepage"
 msgstr "Pagjine principâl"
@@ -1915,7 +1915,7 @@ msgid ""
 "ons."
 msgstr ""
 "Se il to component adizionâl al à un altri sît dedicât, inserìs la sô direzion achì. Tal câs che il sît al sedi disponibil in plui lenghis, tu puedis zontâ plui câs di chest cjamp, un par ogni "
-"lenghe che il sît al supuarte. Chest al interesse dome i components adizionâi publics."
+"lenghe che il sît al supuarte. Chest al è rilevant dome pai components adizionâi publics."
 
 msgid "or"
 msgstr "o"
@@ -1985,42 +1985,47 @@ msgid "This add-on requires payment, non-free services or software, or additiona
 msgstr "Chest component adizionâl al è a paiament, al conten servizis o software a paiament opûr al domande hardware in plui par funzionâ."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Chest component adizionâl nol domande paiaments adizionâi, nol conten servizis o software a paiament, ni al domande hardware in plui par funzionâ."
 
 msgid "Categories"
-msgstr ""
+msgstr "Categoriis"
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr ""
+"Lis categoriis a son la maniere principâl che i utents a àn par esplorâ i components adizionâi. Sielç ducj chei pertinents cu lis funzionalitâts dal to component par vê la massime visibilitât."
 
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Se tu desideris visualizâ une direzion e-mail pes domandis di supuart, inserissile achì. Se tu âs direzions diferentis par ogni lenghe supuartade, al è pussibil zontâ plui ocorincis di chest cjamp. "
+"Chest al è rilevant dome pai components adizionâi publics."
 
 msgid "Website"
-msgstr ""
+msgstr "Sît web"
 
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Se il to component adizionâl al à un sît o un forum di supuart dedicât, inserissilu achì. Se il sît al è voltât in altris lenghis, al è pussibil zontâ plui ocorincis di chest cjamp. Chest al è "
+"rilevant dome pai components adizionâi publics."
 
 msgid "Images"
-msgstr ""
+msgstr "Imagjins"
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Detais tecnics"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Detais tecnics par {0}"
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "Coments dal svilupadôr"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
