@@ -200,7 +200,7 @@ class TestGetUpdatesSeries(BigQueryTestMixin, TestCase):
         bigquery_client_mock.from_service_account_json.return_value = client
 
         credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY=credentials):
             get_updates_series(
                 addon=self.addon,
                 start_date=date(2020, 5, 27),
@@ -287,7 +287,7 @@ class TestGetAddonsAndAverageDailyUsersFromBigQuery(BigQueryTestMixin, TestCase)
         bigquery_client_mock.from_service_account_json.return_value = client
 
         credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY=credentials):
             get_addons_and_average_daily_users_from_bigquery()
 
         bigquery_client_mock.from_service_account_json.assert_called_once_with(
@@ -382,7 +382,7 @@ USING
         bigquery_client_mock.from_service_account_json.return_value = client
 
         credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY=credentials):
             get_averages_by_addon_from_bigquery(today=date.today())
 
         bigquery_client_mock.from_service_account_json.assert_called_once_with(
@@ -495,7 +495,7 @@ class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
         bigquery_client_mock.from_service_account_json.return_value = client
 
         credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY=credentials):
             get_download_series(
                 addon=self.addon,
                 start_date=date(2020, 5, 27),
@@ -584,7 +584,7 @@ class TestGetAddonsAndWeeklyDownloadsFromBigQuery(BigQueryTestMixin, TestCase):
         bigquery_client_mock.from_service_account_json.return_value = client
 
         credentials = 'path/to/credentials.json'
-        with override_settings(GOOGLE_APPLICATION_CREDENTIALS=credentials):
+        with override_settings(GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY=credentials):
             get_addons_and_weekly_downloads_from_bigquery()
 
         bigquery_client_mock.from_service_account_json.assert_called_once_with(

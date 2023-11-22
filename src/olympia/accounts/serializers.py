@@ -10,7 +10,6 @@ from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     ImageCheck,
-    SafeStorage,
     clean_nl,
     has_links,
     subscribe_newsletter,
@@ -22,7 +21,6 @@ from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
 from olympia.users import notifications
 from olympia.users.models import DeniedName, UserProfile
-from olympia.users.tasks import resize_photo
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -173,18 +171,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
 
         photo = validated_data.get('picture_upload')
         if photo:
-            original = instance.picture_path_original
-
-            storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
-            with storage.open(original, 'wb') as original_file:
-                for chunk in photo.chunks():
-                    original_file.write(chunk)
-            instance.update(picture_type=photo.content_type)
-            resize_photo.delay(
-                original,
-                instance.picture_path,
-                set_modified_on=instance.serializable_reference(),
-            )
+            upload_picture(instance, photo)
         return instance
 
     def to_representation(self, obj):

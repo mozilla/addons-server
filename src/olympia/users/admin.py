@@ -17,6 +17,7 @@ from django.template.response import TemplateResponse
 from django.urls import re_path, reverse
 from django.utils.encoding import force_str
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
@@ -24,6 +25,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.utils import create_signed_url_for_file_backup
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.constants.activity import LOG_STORE_IPS
@@ -53,12 +55,19 @@ class BannedUserContentInline(admin.TabularInline):
     verbose_name = 'Content disabled/deleted on user ban'
     model = BannedUserContent
     view_on_site = False
-    fields = ('collections_link', 'addons_link', 'addons_users_link', 'ratings_link')
+    fields = (
+        'collections_link',
+        'addons_link',
+        'addons_users_link',
+        'ratings_link',
+        'picture_link',
+    )
     readonly_fields = (
         'collections_link',
         'addons_link',
         'addons_users_link',
         'ratings_link',
+        'picture_link',
     )
     can_delete = False
 
@@ -78,6 +87,12 @@ class BannedUserContentInline(admin.TabularInline):
 
     def ratings_link(self, obj):
         return self.banned_content_link(obj, Rating)
+
+    def picture_link(self, obj):
+        if obj.picture_backup_name:
+            url = create_signed_url_for_file_backup(obj.picture_backup_name)
+            return mark_safe(f'<a href="{url}">{obj.picture_backup_name}</a>')
+        return ''
 
 
 @admin.register(UserProfile)

@@ -14,6 +14,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.core.cache import cache
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.template import loader
 from django.templatetags.static import static
@@ -39,11 +40,12 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import id_to_path
+from olympia.amo.utils import download_file_contents_from_backup_storage, id_to_path
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
+from olympia.users.utils import upload_picture
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -1303,6 +1305,19 @@ class BannedUserContent(ModelBase):
     addons = models.ManyToManyField('addons.Addon')
     addons_users = models.ManyToManyField('addons.AddonUser')
     ratings = models.ManyToManyField('ratings.Rating')
+    picture_backup_name = models.CharField(
+        max_length=75, default=None, null=True, blank=True
+    )
+    picture_type = models.CharField(max_length=75, default=None, null=True, blank=True)
+
+    def restore_avatar(self):
+        if self.picture_backup_name:
+            upload = SimpleUploadedFile(
+                self.picture_backup_name,
+                download_file_contents_from_backup_storage(self.picture_backup_name),
+                content_type=self.picture_type,
+            )
+            upload_picture(self.user, upload)
 
     def restore(self):
         for relation in ('addons_users', 'collections', 'ratings'):
@@ -1311,5 +1326,6 @@ class BannedUserContent(ModelBase):
         # soft-deleted.
         for addon in self.addons.all():
             addon.force_enable()
+        self.restore_avatar()
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships
