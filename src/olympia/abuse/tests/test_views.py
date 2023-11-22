@@ -811,6 +811,24 @@ class TestCinderWebhook(TestCase):
         with open(webhook_file) as file_object:
             return json.loads(file_object.read())
 
+    def _setup_reports(self):
+        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
+        guid = '1234'
+        return [
+            CinderReport.objects.create(
+                job_id=job_id,
+                abuse_report=AbuseReport.objects.create(
+                    reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid=guid
+                ),
+            ),
+            CinderReport.objects.create(
+                job_id=job_id,
+                abuse_report=AbuseReport.objects.create(
+                    reason=AbuseReport.REASONS.POLICY_VIOLATION, guid=guid
+                ),
+            ),
+        ]
+
     def get_request(self, **kwargs):
         data = kwargs.get('data', self.get_data())
         digest = hmac.new(
@@ -858,7 +876,7 @@ class TestCinderWebhook(TestCase):
         )
 
     def test_filter_enforcement_actions(self):
-        cinder_report = self._setup_report()
+        [cinder_report, _] = self._setup_reports()
         addon_factory(guid=cinder_report.abuse_report.guid)
         assert filter_enforcement_actions([], cinder_report) == []
         actions_from_json = [
@@ -881,30 +899,32 @@ class TestCinderWebhook(TestCase):
             CinderReport.DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def _setup_report(self):
-        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
-        abuse_report = AbuseReport.objects.create(
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid='1234'
-        )
-        return CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
-
     def test_process_decision_called(self):
-        cinder_report = self._setup_report()
-        addon_factory(guid=cinder_report.abuse_report.guid)
+        cinder_reports = self._setup_reports()
+        addon_factory(guid=cinder_reports[0].abuse_report.guid)
         req = self.get_request()
         with mock.patch.object(CinderReport, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_called()
-            process_mock.assert_called_with(
-                decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+            process_mock.assert_has_calls(
+                [
+                    mock.call(
+                        decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                        decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                        decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                    ),
+                    mock.call(
+                        decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                        decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+                        decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                    ),
+                ]
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
     def _test_wrong_queue(self, data):
-        self._setup_report()
+        self._setup_reports()
         req = self.get_request(data=data)
         with mock.patch.object(CinderReport, 'process_decision') as process_mock:
             response = cinder_webhook(req)
@@ -929,7 +949,7 @@ class TestCinderWebhook(TestCase):
         self._test_wrong_queue(data)
 
     def test_not_decision_event(self):
-        self._setup_report()
+        self._setup_reports()
         data = self.get_data()
         data['event'] = 'report.created'
         req = self.get_request(data=data)
@@ -960,8 +980,8 @@ class TestCinderWebhook(TestCase):
         }
 
     def test_invalid_decision_action(self):
-        cinder_report = self._setup_report()
-        addon_factory(guid=cinder_report.abuse_report.guid)
+        cinder_reports = self._setup_reports()
+        addon_factory(guid=cinder_reports[0].abuse_report.guid)
         data = self.get_data()
 
         data['payload']['enforcement_actions'] = []

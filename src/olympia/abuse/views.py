@@ -213,14 +213,14 @@ def cinder_webhook(request):
 
         log.info('Valid Payload from AMO queue: %s', payload)
         job_id = job.get('id', '')
-        try:
-            cinder_report = CinderReport.objects.get(job_id=job_id)
-        except CinderReport.DoesNotExist:
+        cinder_reports = list(CinderReport.objects.filter(job_id=job_id))
+        if not cinder_reports:
             log.debug('CinderReport instance not found for job id %s', job_id)
             raise ValidationError('No matching job id found')
 
+        # all the reports should be for the same entity, so be the same type
         enforcement_actions = filter_enforcement_actions(
-            payload.get('enforcement_actions') or [], cinder_report
+            payload.get('enforcement_actions') or [], cinder_reports[0]
         )
         if len(enforcement_actions) != 1:
             reason = (
@@ -234,11 +234,14 @@ def cinder_webhook(request):
             )
             raise ValidationError(f'Payload invalid: {reason}')
 
-        cinder_report.process_decision(
-            decision_id=source.get('decision', {}).get('id'),
-            decision_date=process_datestamp(payload.get('timestamp')),
-            decision_action=enforcement_actions[0],
-        )
+        decision_id = source.get('decision', {}).get('id')
+        decision_date = process_datestamp(payload.get('timestamp'))
+        for cinder_report in cinder_reports:
+            cinder_report.process_decision(
+                decision_id=decision_id,
+                decision_date=decision_date,
+                decision_action=enforcement_actions[0],
+            )
 
     except ValidationError as exc:
         return Response(

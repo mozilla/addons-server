@@ -441,7 +441,7 @@ class CinderReport(ModelBase):
     decision_action = models.PositiveSmallIntegerField(
         default=DECISION_ACTIONS.NO_DECISION, choices=DECISION_ACTIONS.choices
     )
-    decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
+    decision_id = models.CharField(max_length=36, default=None, null=True)
     decision_date = models.DateTimeField(default=None, null=True)
     appeal_id = models.CharField(max_length=36, default=None, null=True)
 
