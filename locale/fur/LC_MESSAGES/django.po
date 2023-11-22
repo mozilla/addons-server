@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:19+0000\n"
+"PO-Revision-Date: 2023-11-22 05:29+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2135,25 +2135,25 @@ msgid "Can others make commercial use of your Add-on?"
 msgstr "Puedino chei altris doprâ il to component adizionâl par finalitâts comerciâls?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Puedino chei altris doprâ il to component adizionâl par creâ lavôrs derivâts?"
+msgstr "Puedino chei altris doprâ il to component adizionâl par creâ oparis derivadis?"
 
 msgid "Yes, as long as they share alike"
 msgstr "Sì, a cundizion che a vegnin condividûts te stesse maniere"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
-msgstr ""
+msgstr "Chel che al concêt la licence al permet a chei altris di distribuî oparis derivadis dome se a doprin la stesse licence o une licence compatibile cun chê origjinâl."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Il to component adizionâl al vignarà distribuît cun cheste licence:"
 
 msgid "Select a different license."
-msgstr ""
+msgstr "Selezione une licence diferente."
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "Plui informazions su lis licencis Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "In chest moment il to component adizionâl al è metût come “Invisibil”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
