@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:29+0000\n"
+"PO-Revision-Date: 2023-11-22 05:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2156,73 +2156,73 @@ msgid "Your add-on is currently set to \"Invisible\"."
 msgstr "In chest moment il to component adizionâl al è metût come “Invisibil”."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
-msgstr ""
+msgstr "In chest stât, \"Par to cont\" al è l’unic metodi di distribuzion disponibil."
 
 msgid "You cannot change attached sources because this version has been reviewed by Mozilla."
-msgstr ""
+msgstr "No tu puedis cambiâ i sorzints zontâts parcè che cheste version e je stade revisionade di Mozilla."
 
 msgid "General Tests"
-msgstr ""
+msgstr "Provis gjenerâls"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Provis di sigurece"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Provis de estension"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Provis di localizazion"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Provis di compatibilitât"
 
 msgid "Hide messages not required for automated signing"
-msgstr ""
+msgstr "Plate i messaçs che no coventin pe firme digjitâl automatizade"
 
 msgid "Hide messages present in previous version and ignored"
-msgstr ""
+msgstr "Plate i messaçs presints tes versions precedentis e che a son stâts ignorâts"
 
 msgid "Top"
-msgstr ""
+msgstr "Sù"
 
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr ""
+msgstr "Eliminant il component adizionâl tu eliminarâs dutis lis versions e i files che tu âs mandât par chest component adizionâl, che a sedin listâts o mancul."
 
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
-msgstr ""
+msgstr "Nol è pussibil ripristinâ l’ID dal component adizionâl e nol podarà plui vignî doprât pal inviament."
 
 msgid "Delete Add-on"
-msgstr ""
+msgstr "Elimine component adizionâl"
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "Inserìs chest test par confermâ la tô decision: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Par plasê, continus il motîf che ti à puartât a eliminâ il to component adizionâl:"
 
 msgid "Actions"
-msgstr ""
+msgstr "Azions"
 
 msgid "Resume the submission process for this add-on"
-msgstr ""
+msgstr "Ripie il procès di cjariament in rêt di chest component adizionâl"
 
 msgid "Resume"
-msgstr ""
+msgstr "Ripie"
 
 msgid "Delete this add-on."
-msgstr ""
+msgstr "Elimine chest component adizionâl."
 
 msgid "Delete"
-msgstr ""
+msgstr "Elimine"
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "Modifiche i detais su la pagjine dal prodot di chest component adizionâl"
 
 msgid "Upload a new version of this add-on"
-msgstr ""
+msgstr "Cjame in rêt une gnove version di chest component adizionâl"
 
 msgid "New Version"
-msgstr ""
+msgstr "Gnove version"
 
 msgid "Daily statistics on downloads and users"
 msgstr ""
