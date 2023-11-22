@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:41+0000\n"
+"PO-Revision-Date: 2023-11-22 05:45+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2225,37 +2225,37 @@ msgid "New Version"
 msgstr "Gnove version"
 
 msgid "Daily statistics on downloads and users"
-msgstr ""
+msgstr "Statistichis par dì su discjariaments e utents"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistichis"
 
 msgid "More"
-msgstr ""
+msgstr "Altri"
 
 msgid "Manage Status & Versions"
-msgstr ""
+msgstr "Gjestìs stât e versions"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Visualize modifichis resintis"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr ""
+msgstr "Par completâ la publicazion dal component adizionâl sul sît, zonte lis informazions domandadis."
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "Chest component adizionâl nol à a disposizion nissune version."
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> discjariament setemanâl"
+msgstr[1] "<strong>{0}</strong> discjariaments setemanâi"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<strong>{0}</strong> utent atîf"
+msgstr[1] "<strong>{0}</strong> utents atîfs"
 
 msgid "Submit a New Version"
 msgstr ""
