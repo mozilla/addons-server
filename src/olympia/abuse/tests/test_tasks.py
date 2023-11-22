@@ -16,7 +16,7 @@ from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..models import AbuseReport, CinderReport
+from ..models import AbuseReport, CinderJob, CinderJobAppeal
 from ..tasks import appeal_to_cinder, report_to_cinder
 
 
@@ -194,7 +194,7 @@ def test_addon_report_to_cinder():
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL, message='This is bad'
     )
-    assert not CinderReport.objects.exists()
+    assert not CinderJob.objects.exists()
     responses.add(
         responses.POST,
         f'{settings.CINDER_SERVER_URL}create_report',
@@ -219,25 +219,25 @@ def test_addon_report_to_cinder():
         'reasoning': 'This is bad',
     }
 
-    assert CinderReport.objects.count() == 1
-    cinder_report = CinderReport.objects.get()
-    assert cinder_report.abuse_report == abuse_report
-    assert cinder_report.job_id == '1234-xyz'
+    assert CinderJob.objects.count() == 1
+    cinder_job = CinderJob.objects.get()
+    assert abuse_report.reload().cinder_job == cinder_job
+    assert cinder_job.job_id == '1234-xyz'
 
 
 @pytest.mark.django_db
 def test_addon_appeal_to_cinder():
     addon = addon_factory()
+    cinder_job = CinderJob.objects.create(
+        decision_id='4815162342-abc',
+        decision_date=datetime.now(),
+    )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
         reason=AbuseReport.REASONS.ILLEGAL,
         reporter_name='It is me',
         reporter_email='m@r.io',
-    )
-    cinder_report = CinderReport.objects.create(
-        abuse_report=abuse_report,
-        decision_id='4815162342-abc',
-        decision_date=datetime.now(),
+        cinder_job=cinder_job,
     )
     responses.add(
         responses.POST,
@@ -247,7 +247,7 @@ def test_addon_appeal_to_cinder():
     )
 
     appeal_to_cinder.delay(
-        decision_id='4815162342-abc', appeal_text='I appeal', user_id=None
+        abuse_report_id=abuse_report.id, appeal_text='I appeal', user_id=None
     )
 
     request = responses.calls[0].request
@@ -264,22 +264,23 @@ def test_addon_appeal_to_cinder():
         'reasoning': 'I appeal',
     }
 
-    cinder_report = CinderReport.objects.get()
-    assert cinder_report.appeal_id == '2432615184-xyz'
+    appeal = CinderJobAppeal.objects.get()
+    assert appeal.appeal_id == '2432615184-xyz'
+    assert appeal.abuse_report == abuse_report
 
 
 @pytest.mark.django_db
 def test_addon_appeal_to_cinder_authenticated():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory(users=[user])
+    cinder_job = CinderJob.objects.create(
+        decision_id='4815162342-abc',
+        decision_date=datetime.now(),
+    )
     abuse_report = AbuseReport.objects.create(
         guid=addon.guid,
         reason=AbuseReport.REASONS.ILLEGAL,
-    )
-    cinder_report = CinderReport.objects.create(
-        abuse_report=abuse_report,
-        decision_id='4815162342-abc',
-        decision_date=datetime.now(),
+        cinder_job=cinder_job,
     )
     responses.add(
         responses.POST,
@@ -289,7 +290,7 @@ def test_addon_appeal_to_cinder_authenticated():
     )
 
     appeal_to_cinder.delay(
-        decision_id='4815162342-abc', appeal_text='I appeal', user_id=user.pk
+        abuse_report_id=abuse_report.id, appeal_text='I appeal', user_id=user.pk
     )
 
     request = responses.calls[0].request
@@ -307,5 +308,6 @@ def test_addon_appeal_to_cinder_authenticated():
         'reasoning': 'I appeal',
     }
 
-    cinder_report = CinderReport.objects.get()
-    assert cinder_report.appeal_id == '2432615184-xyz'
+    appeal = CinderJobAppeal.objects.get()
+    assert appeal.appeal_id == '2432615184-xyz'
+    assert appeal.abuse_report == abuse_report

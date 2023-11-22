@@ -21,14 +21,6 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
-from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
-from olympia.abuse.models import CinderReport
-from olympia.abuse.serializers import (
-    AddonAbuseReportSerializer,
-    CollectionAbuseReportSerializer,
-    RatingAbuseReportSerializer,
-    UserAbuseReportSerializer,
-)
 from olympia.abuse.tasks import appeal_to_cinder
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
@@ -38,6 +30,14 @@ from olympia.bandwagon.views import CollectionViewSet
 from olympia.ratings.views import RatingViewSet
 
 from .cinder import CinderEntity
+from .forms import AbuseAppealEmailForm, AbuseAppealForm
+from .models import AbuseReport, CinderJob
+from .serializers import (
+    AddonAbuseReportSerializer,
+    CollectionAbuseReportSerializer,
+    RatingAbuseReportSerializer,
+    UserAbuseReportSerializer,
+)
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -179,16 +179,16 @@ def process_datestamp(date_string):
 
 
 def filter_enforcement_actions(enforcement_actions, cinder_report):
-    target = cinder_report.abuse_report.target
+    target = cinder_report.target
     if not target:
         return []
     return [
         action.value
         for action_slug in enforcement_actions
-        if CinderReport.DECISION_ACTIONS.has_api_value(action_slug)
-        and (action := CinderReport.DECISION_ACTIONS.for_api_value(action_slug))
+        if CinderJob.DECISION_ACTIONS.has_api_value(action_slug)
+        and (action := CinderJob.DECISION_ACTIONS.for_api_value(action_slug))
         and target.__class__
-        in CinderReport.get_action_helper_class(action.value).valid_targets
+        in CinderJob.get_action_helper_class(action.value).valid_targets
     ]
 
 
@@ -214,13 +214,13 @@ def cinder_webhook(request):
         log.info('Valid Payload from AMO queue: %s', payload)
         job_id = job.get('id', '')
         try:
-            cinder_report = CinderReport.objects.get(job_id=job_id)
-        except CinderReport.DoesNotExist:
-            log.debug('CinderReport instance not found for job id %s', job_id)
+            cinder_job = CinderJob.objects.get(job_id=job_id)
+        except CinderJob.DoesNotExist:
+            log.debug('CinderJob instance not found for job id %s', job_id)
             raise ValidationError('No matching job id found')
 
         enforcement_actions = filter_enforcement_actions(
-            payload.get('enforcement_actions') or [], cinder_report
+            payload.get('enforcement_actions') or [], cinder_job
         )
         if len(enforcement_actions) != 1:
             reason = (
@@ -234,7 +234,7 @@ def cinder_webhook(request):
             )
             raise ValidationError(f'Payload invalid: {reason}')
 
-        cinder_report.process_decision(
+        cinder_job.process_decision(
             decision_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
             decision_action=enforcement_actions[0],
@@ -259,37 +259,36 @@ def cinder_webhook(request):
     )
 
 
-def appeal(request, *, decision_id, **kwargs):
-    cinder_report = get_object_or_404(
-        CinderReport.objects.exclude(
-            decision_action=CinderReport.DECISION_ACTIONS.NO_DECISION
-        ),
-        decision_id=decision_id,
-    )
-    abuse_report = cinder_report.abuse_report
+def appeal(request, *, decision_id, abuse_report_id, **kwargs):
+    abuse_report = get_object_or_404(AbuseReport.objects, id=abuse_report_id)
+    if (
+        not abuse_report.cinder_job
+        or abuse_report.cinder_job.decision_id != decision_id
+        or abuse_report.cinder_job.decision_action
+        == CinderJob.DECISION_ACTIONS.NO_DECISION
+    ):
+        raise Http404
+
     context_data = {
         'decision_id': decision_id,
     }
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
     appeal_email_form = None
-    decision = cinder_report.decision_action
+    decision = abuse_report.cinder_job.decision_action
     if decision in (
-        CinderReport.DECISION_ACTIONS.AMO_APPROVE,
-        CinderReport.DECISION_ACTIONS.AMO_BAN_USER,
+        CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
     ):
         # Only person would should be appealing an approval is the reporter.
-        if (
-            decision == CinderReport.DECISION_ACTIONS.AMO_APPROVE
-            and abuse_report.reporter
-        ):
+        if decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE and abuse_report.reporter:
             # Authenticated reporter is the easy case, they should just be
             # authenticated with the right account.
             if not request.user.is_authenticated:
                 return redirect_for_login(request)
             valid_user_or_email_provided = request.user == abuse_report.reporter
         elif (
-            decision == CinderReport.DECISION_ACTIONS.AMO_BAN_USER
+            decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
             or abuse_report.reporter_email
         ):
             # Anonymous reporter appealing or banned user appealing is tricky,
@@ -299,7 +298,7 @@ def appeal(request, *, decision_id, **kwargs):
             # longer be able to log in.
             expected_email = (
                 abuse_report.user.email
-                if decision == CinderReport.DECISION_ACTIONS.AMO_BAN_USER
+                if decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
                 else abuse_report.reporter_email
             )
             appeal_email_form = AbuseAppealEmailForm(
@@ -337,11 +336,11 @@ def appeal(request, *, decision_id, **kwargs):
         # After this point, the user is either authenticated or has entered the
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
-        if cinder_report.can_be_appealed():
+        if abuse_report.cinder_job.can_be_appealed(abuse_report):
             appeal_form = AbuseAppealForm(post_data)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
-                    decision_id=decision_id,
+                    abuse_report_id=abuse_report.id,
                     appeal_text=appeal_form.cleaned_data['reason'],
                     user_id=request.user.pk,
                 )

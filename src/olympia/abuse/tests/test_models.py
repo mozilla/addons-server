@@ -17,7 +17,7 @@ from ..cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
-from ..models import AbuseReport, CinderReport
+from ..models import AbuseReport, CinderJob, CinderJobAppeal
 from ..utils import (
     CinderActionApproveAppealOverride,
     CinderActionApproveInitialDecision,
@@ -367,90 +367,98 @@ class TestAbuseManager(TestCase):
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
 
-class TestCinderReport(TestCase):
+class TestCinderJob(TestCase):
+    def test_target(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        # edge case, but handle having no associated abuse_reports
+        assert cinder_job.target is None
+
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            location=AbuseReport.LOCATION.BOTH,
+            cinder_job=cinder_job,
+        )
+        assert cinder_job.target == abuse_report.target == addon
+
     def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon.guid,
-                reason=AbuseReport.REASONS.ILLEGAL,
-                location=AbuseReport.LOCATION.BOTH,
-            )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            location=AbuseReport.LOCATION.BOTH,
         )
-        helper = cinder_report.get_entity_helper()
+        helper = CinderJob.get_entity_helper(abuse_report)
         # location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
         assert helper.version is None
 
-        cinder_report.abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(reason=AbuseReport.REASONS.POLICY_VIOLATION)
+        helper = CinderJob.get_entity_helper(abuse_report)
         # now reason is in REVIEWER_HANDLED it will be reported differently
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
         assert helper.version is None
 
-        cinder_report.abuse_report.update(addon_version=addon.current_version.version)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(addon_version=addon.current_version.version)
+        helper = CinderJob.get_entity_helper(abuse_report)
         # if we got a version too we pass it on to the helper
         assert isinstance(helper, CinderAddon)
         assert isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
         assert helper.version == addon.current_version
 
-        cinder_report.abuse_report.update(location=AbuseReport.LOCATION.AMO)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(location=AbuseReport.LOCATION.AMO)
+        helper = CinderJob.get_entity_helper(abuse_report)
         # but not if the location is not in REVIEWER_HANDLED (i.e. AMO)
         assert isinstance(helper, CinderAddon)
         assert not isinstance(helper, CinderAddonHandledByReviewers)
         assert helper.addon == addon
         assert helper.version == addon.current_version
 
-        cinder_report.abuse_report.update(guid=None, user=user, addon_version=None)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(guid=None, user=user, addon_version=None)
+        helper = CinderJob.get_entity_helper(abuse_report)
         assert isinstance(helper, CinderUser)
         assert helper.user == user
 
         rating = Rating.objects.create(addon=addon, user=user, rating=4)
-        cinder_report.abuse_report.update(user=None, rating=rating)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(user=None, rating=rating)
+        helper = CinderJob.get_entity_helper(abuse_report)
         assert isinstance(helper, CinderRating)
         assert helper.rating == rating
 
         collection = collection_factory()
-        cinder_report.abuse_report.update(rating=None, collection=collection)
-        helper = cinder_report.get_entity_helper()
+        abuse_report.update(rating=None, collection=collection)
+        helper = CinderJob.get_entity_helper(abuse_report)
         assert isinstance(helper, CinderCollection)
         assert helper.collection == collection
 
     def test_get_cinder_reporter(self):
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-            )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
         )
-        assert cinder_report.get_cinder_reporter() is None
+        assert CinderJob.get_cinder_reporter(abuse_report) is None
 
-        cinder_report.abuse_report.update(reporter_email='mr@mr')
-        entity = cinder_report.get_cinder_reporter()
+        abuse_report.update(reporter_email='mr@mr')
+        entity = CinderJob.get_cinder_reporter(abuse_report)
         assert isinstance(entity, CinderUnauthenticatedReporter)
         assert entity.email == 'mr@mr'
         assert entity.name is None
 
         authenticated_user = user_factory()
-        cinder_report.abuse_report.update(reporter=authenticated_user)
-        entity = cinder_report.get_cinder_reporter()
+        abuse_report.update(reporter=authenticated_user)
+        entity = CinderJob.get_cinder_reporter(abuse_report)
         assert isinstance(entity, CinderUser)
         assert entity.user == authenticated_user
 
     def test_report(self):
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-            )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
         )
         responses.add(
             responses.POST,
@@ -459,19 +467,27 @@ class TestCinderReport(TestCase):
             status=201,
         )
 
-        cinder_report.report()
+        CinderJob.report(abuse_report)
 
-        assert cinder_report.job_id == '1234-xyz'
+        cinder_job = CinderJob.objects.get()
+        assert cinder_job.job_id == '1234-xyz'
+        assert cinder_job.abusereport_set.get() == abuse_report
+
+        # And check if we get back the same job_id for a subsequent report we update
+
+        another_report = AbuseReport.objects.create(
+            guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
+        )
+        CinderJob.report(another_report)
+        cinder_job.reload()
+        assert CinderJob.objects.count() == 1
+        assert list(cinder_job.abusereport_set.all()) == [abuse_report, another_report]
 
     def test_get_action_helper(self):
-        DECISION_ACTIONS = CinderReport.DECISION_ACTIONS
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-            )
-        )
-        helper = cinder_report.get_action_helper()
-        assert helper.cinder_report == cinder_report
+        DECISION_ACTIONS = CinderJob.DECISION_ACTIONS
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        helper = cinder_job.get_action_helper()
+        assert helper.cinder_job == cinder_job
         assert helper.__class__ == CinderActionNotImplemented
 
         action_to_class = (
@@ -485,86 +501,107 @@ class TestCinderReport(TestCase):
             *action_to_class,
             (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveInitialDecision),
         ):
-            cinder_report.update(decision_action=action)
-            helper = cinder_report.get_action_helper()
+            cinder_job.update(decision_action=action)
+            helper = cinder_job.get_action_helper()
             assert helper.__class__ == ActionClass
-            assert helper.cinder_report == cinder_report
+            assert helper.cinder_job == cinder_job
 
         for action, ActionClass in (
             *action_to_class,
             (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveAppealOverride),
         ):
-            cinder_report.update(decision_action=action)
-            helper = cinder_report.get_action_helper(DECISION_ACTIONS.AMO_DISABLE_ADDON)
+            cinder_job.update(decision_action=action)
+            helper = cinder_job.get_action_helper(DECISION_ACTIONS.AMO_DISABLE_ADDON)
             assert helper.__class__ == ActionClass
-            assert helper.cinder_report == cinder_report
+            assert helper.cinder_job == cinder_job
 
     def test_process_decision(self):
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                user=user_factory(), reason=AbuseReport.REASONS.ILLEGAL
-            )
-        )
+        # abuse_report=AbuseReport.objects.create(
+        #         user=user_factory(), reason=AbuseReport.REASONS.ILLEGAL
+        #     )
+        cinder_job = CinderJob.objects.create(job_id='1234')
         new_date = datetime(2023, 1, 1)
 
         with mock.patch.object(CinderActionBanUser, 'process') as cinder_action_mock:
-            cinder_report.process_decision(
+            cinder_job.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
-                decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER.value,
             )
-        assert cinder_report.decision_id == '12345'
-        assert cinder_report.decision_date == new_date
-        assert (
-            cinder_report.decision_action == CinderReport.DECISION_ACTIONS.AMO_BAN_USER
-        )
+        assert cinder_job.decision_id == '12345'
+        assert cinder_job.decision_date == new_date
+        assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_action_mock.call_count == 1
 
     def test_can_be_appealed(self):
         addon = addon_factory()
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon.guid, reason=AbuseReport.REASONS.ILLEGAL
-            ),
+
+        cinder_job = CinderJob.objects.create(
             decision_id='4815162342-lost',
             decision_date=self.days_ago(179),
         )
-        assert cinder_report.can_be_appealed()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            cinder_job=cinder_job,
+        )
 
-        cinder_report.update(decision_date=None)
-        assert not cinder_report.can_be_appealed()
+        assert cinder_job.can_be_appealed(abuse_report)
 
-        cinder_report.update(decision_date=self.days_ago(185))
-        assert not cinder_report.can_be_appealed()
+        cinder_job.update(decision_date=None)
+        assert not cinder_job.can_be_appealed(abuse_report)
 
-        cinder_report.update(decision_date=self.days_ago(179), decision_id=None)
-        assert not cinder_report.can_be_appealed()
+        cinder_job.update(decision_date=self.days_ago(185))
+        assert not cinder_job.can_be_appealed(abuse_report)
 
-        cinder_report.update(decision_id='some-decision-id', appeal_id='some-appeal-id')
-        assert not cinder_report.can_be_appealed()
+        cinder_job.update(decision_date=self.days_ago(179), decision_id=None)
+        assert not cinder_job.can_be_appealed(abuse_report)
 
-        cinder_report.update(appeal_id=None)
-        assert cinder_report.can_be_appealed()
+        cinder_job.update(decision_id='some-decision-id')
+        assert cinder_job.can_be_appealed(abuse_report)
+
+        # not if there was already an appeal
+        appeal = CinderJobAppeal.objects.create(
+            appeal_id='some-appeal-id', abuse_report=abuse_report
+        )
+        abuse_report.refresh_from_db()
+        assert not cinder_job.can_be_appealed(abuse_report)
+
+        # but can for a different abuse report for the same job
+        assert cinder_job.can_be_appealed(
+            AbuseReport.objects.create(
+                guid=addon.guid,
+                reason=AbuseReport.REASONS.ILLEGAL,
+                cinder_job=cinder_job,
+            )
+        )
+
+        # or if the appeal didn't exist
+        appeal.delete()
+        abuse_report.refresh_from_db()
+        assert cinder_job.can_be_appealed(abuse_report)
 
         user = user_factory()
-        cinder_report.abuse_report.update(user=user, guid=None)
-        assert cinder_report.can_be_appealed()
+        abuse_report.update(user=user, guid=None)
+        assert cinder_job.can_be_appealed(abuse_report)
 
         rating = Rating.objects.create(addon=addon, user=user, rating=1)
-        cinder_report.abuse_report.update(user=None, rating=rating)
-        assert cinder_report.can_be_appealed()
+        abuse_report.update(user=None, rating=rating)
+        assert cinder_job.can_be_appealed(abuse_report)
 
         collection = collection_factory()
-        cinder_report.abuse_report.update(rating=None, collection=collection)
-        assert cinder_report.can_be_appealed()
+        abuse_report.update(rating=None, collection=collection)
+        assert cinder_job.can_be_appealed(abuse_report)
 
     def test_appeal(self):
-        cinder_report = CinderReport.objects.create(
-            abuse_report=AbuseReport.objects.create(
-                guid=addon_factory().guid, reason=AbuseReport.REASONS.ILLEGAL
-            ),
+        cinder_job = CinderJob.objects.create(
             decision_id='4815162342-lost',
             decision_date=self.days_ago(179),
+        )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            cinder_job=cinder_job,
         )
         responses.add(
             responses.POST,
@@ -573,6 +610,8 @@ class TestCinderReport(TestCase):
             status=201,
         )
 
-        cinder_report.appeal('appeal text', user_factory())
+        cinder_job.appeal(abuse_report, 'appeal text', user_factory())
 
-        assert cinder_report.appeal_id == '2432615184-tsol'
+        appeal = CinderJobAppeal.objects.get()
+        assert appeal.appeal_id == '2432615184-tsol'
+        assert appeal.abuse_report == abuse_report
