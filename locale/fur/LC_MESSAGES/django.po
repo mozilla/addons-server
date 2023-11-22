@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:10+0000\n"
+"PO-Revision-Date: 2023-11-22 05:19+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2102,43 +2102,43 @@ msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Lis iconis a scugnin jessi cuadradis e vê une dimension minime di 128×128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr ""
+msgstr "Tal câs di dimensions plui grandis, lis iconis a vignaran ridimensionadis a 128×128 pixels."
 
 msgid "Screenshots"
-msgstr ""
+msgstr "Videadis"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Furnìs almancul une videade dal to component adizionâl:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Furnìs une didascalie par cheste videade:"
 
 msgid "Add a Screenshot..."
-msgstr ""
+msgstr "Zonte une videade..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "A son supuartâts i formâts PNG e JPG, conseât PNG. La dimension massime e conseade pes videadis e je 2400×1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "La dimension minime e je 1000×750 e e covente une proporzion di 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
-msgstr ""
+msgstr "Vê videadis di anteprime te pagjine dal prodot al miore une vore la pussibilitât che al vegni instalât."
 
 msgid "Continue"
-msgstr ""
+msgstr "Continue"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Puedino chei altris condividi il to component adizionâl, a cundizion che tu vegnis ricognossût tant che autôr?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Puedino chei altris doprâ il to component adizionâl par finalitâts comerciâls?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Puedino chei altris doprâ il to component adizionâl par creâ lavôrs derivâts?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Sì, a cundizion che a vegnin condividûts te stesse maniere"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr ""
