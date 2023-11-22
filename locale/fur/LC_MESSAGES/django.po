@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-21 12:48+0000\n"
+"PO-Revision-Date: 2023-11-22 04:40+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -1967,22 +1967,22 @@ msgid "Experimental?"
 msgstr "Sperimentâl?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Se il to component adizionâl al è sperimentâl opûr a ogni mût nol è pront pe utilizazion de bande dai utents.  Il component adizionâl al sarà listât ma al varà une visibilitât ridote. "
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Chest component adizionâl al è sperimentâl."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Chest component adizionâl al è pront pe utilizazion de bande dai utents."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "Domandial paiaments?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Segne cheste casele tal câs che, par podê funzionâ, lis funzions principâls dal component a domandin prime une forme di paiament opûr daspò un periodi di prove."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Chest component adizionâl al è a paiament, al conten servizis o software a paiament opûr al domande hardware in plui par funzionâ."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
 msgstr ""
