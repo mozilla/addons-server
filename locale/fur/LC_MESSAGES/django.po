@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-22 05:45+0000\n"
+"PO-Revision-Date: 2023-11-23 05:20+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2258,34 +2258,36 @@ msgstr[0] "<strong>{0}</strong> utent atîf"
 msgstr[1] "<strong>{0}</strong> utents atîfs"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "Mande une gnove version"
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "Cancele e disative version"
 
 msgid "Are you sure you wish to cancel and disable version?"
-msgstr ""
+msgstr "Desideristu pardabon cancelâ e disativâ cheste version?"
 
 msgid "Yes, Cancel"
-msgstr ""
+msgstr "Sì, cancele"
 
 msgid "No, don't cancel"
-msgstr ""
+msgstr "No, no sta cancelâ"
 
 msgid "Name and Summary:"
-msgstr ""
+msgstr "Non e somari:"
 
 msgid "required"
-msgstr ""
+msgstr "obligatori"
 
 #, python-format
 msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Atenzion: i valôrs dal non/somari, in altris lenghis, al vignarà çoncjât par sta dentri dal limit di %(max_length)s caratars.  Par modificâ chescj cjamps, va su Modifiche pagjine dal prodot dopo vê "
+"completât il procès di cjariament in rêt."
 
 msgid "Add-on URL:"
-msgstr ""
+msgstr "URL dal component adizionâl:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
