@@ -17,10 +17,36 @@ def is_gate_active(request, name):
     return name in gates
 
 
+class DashSeperatorConvertor:
+    separator = '-'
+
+    @classmethod
+    def to_slug(cls, value):
+        return value.lower().replace('_', cls.separator) if value else value
+
+    @classmethod
+    def from_slug(cls, slug):
+        return slug.upper().replace(cls.separator, '_') if slug else slug
+
+
+class UnderscoreSeperatorConvertor:
+    """The seperator is already an underscore so this is optimized to not replace"""
+
+    @classmethod
+    def to_slug(cls, value):
+        return value.lower() if value else value
+
+    @classmethod
+    def from_slug(cls, slug):
+        return slug.upper() if slug else slug
+
+
 class APIChoiceEntry(ChoiceEntry):
+    convertor = UnderscoreSeperatorConvertor
+
     @property
     def api_value(self):
-        return str(self.value).lower() if self.value else self.value
+        return self.convertor.to_slug(self.constant)
 
 
 class APIChoices(Choices):
@@ -29,16 +55,28 @@ class APIChoices(Choices):
     in an API."""
 
     ChoiceEntryClass = APIChoiceEntry
+    convertor = ChoiceEntryClass.convertor
 
     @property
     def api_choices(self):
-        return tuple((entry[1], entry[0].lower()) for entry in self.entries)
+        return tuple(
+            (entry[1], self.convertor.to_slug(entry[0])) for entry in self.entries
+        )
 
     def has_api_value(self, value):
-        return self.has_constant(value.upper() if value else value)
+        return self.has_constant(self.convertor.from_slug(value))
 
     def for_api_value(self, value):
-        return self.for_constant(value.upper() if value else value)
+        return self.for_constant(self.convertor.from_slug(value))
+
+
+class APIChoiceWithDashEntry(APIChoiceEntry):
+    convertor = DashSeperatorConvertor
+
+
+class APIChoicesWithDash(APIChoices):
+    ChoiceEntryClass = APIChoiceWithDashEntry
+    convertor = ChoiceEntryClass.convertor
 
 
 class APIChoicesWithNone(APIChoices):

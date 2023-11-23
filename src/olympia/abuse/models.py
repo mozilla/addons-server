@@ -7,7 +7,7 @@ from extended_choices import Choices
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
-from olympia.api.utils import APIChoices, APIChoicesWithNone
+from olympia.api.utils import APIChoicesWithDash, APIChoicesWithNone
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -422,7 +422,7 @@ class CantBeAppealed(Exception):
 
 
 class CinderReport(ModelBase):
-    DECISION_ACTIONS = APIChoices(
+    DECISION_ACTIONS = APIChoicesWithDash(
         ('NO_DECISION', 0, 'No decision'),
         ('AMO_BAN_USER', 1, 'User ban'),
         ('AMO_DISABLE_ADDON', 2, 'Add-on disable'),
