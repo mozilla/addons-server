@@ -21,6 +21,7 @@ from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
 from olympia.users import notifications
 from olympia.users.models import DeniedName, UserProfile
+from olympia.users.utils import upload_picture
 
 
 log = olympia.core.logger.getLogger('accounts')

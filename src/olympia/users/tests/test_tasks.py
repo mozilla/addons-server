@@ -7,9 +7,9 @@ from django.test.utils import override_settings
 import pytest
 from PIL import Image
 
+from olympia.amo.tests import user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
-from olympia.users.models import UserProfile
 from olympia.users.tasks import delete_photo, resize_photo
 
 
@@ -19,7 +19,7 @@ pytestmark = pytest.mark.django_db
 def test_delete_photo():
     with tempfile.TemporaryDirectory(dir=settings.TMP_PATH) as tmp_media_path:
         with override_settings(MEDIA_ROOT=tmp_media_path):
-            user = UserProfile(pk=42)
+            user = user_factory()
             storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
             with storage.open(user.picture_path, mode='wb') as dst:
                 dst.write(b'test data\n')
