@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-23 05:20+0000\n"
+"PO-Revision-Date: 2023-11-23 05:30+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2290,49 +2290,51 @@ msgid "Add-on URL:"
 msgstr "URL dal component adizionâl:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr ""
+msgstr "Tal URL dopre dome letaris, numars, tratuts bas e tratuts."
 
 msgid "Name:"
-msgstr ""
+msgstr "Non:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+msgstr "Il non che al ven fûr su chest sît. Al pues jessi diviers dal non dentri dal component adizionâl che al ven mostrât in Firefox"
 
 msgid "Summary:"
-msgstr ""
+msgstr "Somari:"
 
 msgid "Description:"
-msgstr ""
+msgstr "Descrizion:"
 
 msgid "This add-on is experimental"
-msgstr ""
+msgstr "Chest component adizionâl al è sperimentâl"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Segne cheste opzion se il to component adizionâl al è sperimentâl o, a ogni mût, nol è pront pe utilizazion de bande dai utents.  Il component adizionâl al vignarà listât ma al varà une visibilitât "
+"ridote.  Tu puedis simpri modificâ cheste impostazion plui indenant."
 
 msgid "Support email:"
-msgstr ""
+msgstr "E-mail pal supuart:"
 
 msgid "Support website:"
-msgstr ""
+msgstr "Sît web di supuart:"
 
 msgid "License:"
-msgstr ""
+msgstr "Licence:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr ""
+msgstr "Sielç une licence adate pai dirits che tu intindis concedi."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr ""
+msgstr "Se il to component adizionâl al trasmet dâts dal dispositîf dal utent, e covente une informative su la riservatece che e spieghe ce dâts che a vegnin inviâts e cemût che a vegnin doprâts."
 
 msgid "Notes to Reviewer:"
-msgstr ""
+msgstr "Notis pai revisôrs:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "Isal alc in particolâr che i revisôrs a varessin di tignî in considerazion dilunc la revision di chest component adizionâl?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Visiti"
 
 #, python-format
 msgid ""
