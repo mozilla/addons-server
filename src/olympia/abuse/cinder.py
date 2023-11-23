@@ -3,6 +3,11 @@ from django.utils.functional import classproperty
 
 import requests
 
+from olympia.amo.utils import (
+    copy_file_to_backup_storage,
+    create_signed_url_for_file_backup,
+)
+
 
 class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
@@ -107,12 +112,21 @@ class CinderUser(CinderEntity):
         return str(self.user.id)
 
     def get_attributes(self):
-        return {
+        data = {
             'id': self.id,
             'name': self.user.display_name,
             'email': self.user.email,
             'fxa_id': self.user.fxa_id,
         }
+        if self.user.picture_type:
+            filename = copy_file_to_backup_storage(
+                self.user.picture_path, self.user.picture_type
+            )
+            data['avatar'] = {
+                'value': create_signed_url_for_file_backup(filename),
+                'mime_type': self.user.picture_type,
+            }
+        return data
 
     def get_context(self):
         cinder_addons = [CinderAddon(addon) for addon in self.user.addons.all()]

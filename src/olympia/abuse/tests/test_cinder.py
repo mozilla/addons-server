@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -11,6 +13,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.models import CollectionAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -499,6 +502,47 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
+        }
+
+    @mock.patch('google.cloud.storage.Client')
+    def test_build_report_payload_with_avatar(self, google_storage_client_mock):
+        fake_signed_avatar_url = (
+            'https://storage.example.com/signed_url.png?some=thing&else=another'
+        )
+        generate_signed_url = (
+            google_storage_client_mock.from_service_account_json()
+            .bucket()
+            .blob()
+            .generate_signed_url
+        )
+        generate_signed_url.return_value = fake_signed_avatar_url
+        user = self._create_dummy_target()
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), user.picture_path
+        )
+        user.update(picture_type='image/png')
+
+        reason = 'bad person!'
+        cinder_user = self.cinder_class(user)
+
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_user',
+            'entity': {
+                'id': str(user.id),
+                'avatar': {
+                    'value': fake_signed_avatar_url,
+                    'mime_type': 'image/png',
+                },
+                'name': user.display_name,
+                'email': user.email,
+                'fxa_id': user.fxa_id,
+            },
+            'reasoning': reason,
+            'context': {'entities': [], 'relationships': []},
         }
 
 
