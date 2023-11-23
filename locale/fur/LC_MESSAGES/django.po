@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-23 05:30+0000\n"
+"PO-Revision-Date: 2023-11-23 10:01+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2341,47 +2341,50 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Se tu âs cjariât in rêt il codiç sorzint cence includi istruzions, al covente fâlu cumò. Inserìs istruzions precisis pe compilazion che a permetin di creâ une copie esate dal codiç dal component "
+"adizionâl, come che al è indicât tes %(policy_requirements_open)spolitichis%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Dome tu e i revisôrs a podaran viodi chestis notis."
 
 msgid "Submit Version"
-msgstr ""
+msgstr "Mande la version"
 
 msgid "Describe Version"
-msgstr ""
+msgstr "Descrîf la version"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Notis de version:"
 
 msgid "Let your users know what's new and what's changed in this version."
-msgstr ""
+msgstr "Fâs cognossi ai utents lis novitâts e lis modifichis di cheste version."
 
 msgid "These notes will appear on the detail page."
-msgstr ""
+msgstr "Chestis notis a vignaran fûr te pagjine dai detais dal component adizionâl."
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "Cemût distribuî cheste version"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "Par scomençâ, selezione la modalitât di distribuzion di cheste version."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Tu puedis cjatâ plui informazions su chestis opzions leint <a %(a_attrs)s>Distribuzion e firme dai components adizionâi</a> su Laboratori estensions di Firefox."
 
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
 msgstr ""
+"Ducj i components adizionâi a scugnin sodisfâ lis <a %(a_attrs)s>Politichis sui components adizionâi di Mozilla</a> e a son sogjets a revision manuâl in cualsisei moment dopo vêju cjariâts in rêt."
 
 msgid "Submission Complete"
-msgstr ""
+msgstr "Inviament completât"
 
 msgid "Version Submitted"
-msgstr ""
+msgstr "La version e je stade cjariade in rêt"
 
 msgid "Preview of the version submitted"
-msgstr ""
+msgstr "Anteprime de version inviade"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr ""
