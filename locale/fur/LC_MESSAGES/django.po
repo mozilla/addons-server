@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-23 10:01+0000\n"
+"PO-Revision-Date: 2023-11-23 10:10+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2387,16 +2387,19 @@ msgid "Preview of the version submitted"
 msgstr "Anteprime de version inviade"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
-msgstr ""
+msgstr "Fat! Cheste version e sarà disponibile dopo che e varà passade la revision. A revision finide tu ricevarâs une notifiche."
 
 #, python-format
 msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"Fat! ✨ Tu ricevarâs une e-mail di conferme tal moment che cheste version e vignarà publicade su %(site_domain)s. Ten iniments che a podaressin coventâ fin a 24 oris prime che e vegni publicade o "
+"ancjemò di plui tal câs che il to component adizionâl al sedi stât selezionât pe revision manuâl. Controle la cartele de pueste malvolude se dopo 24 oris no tu viodis ancjemò la e-mail che ti vin "
+"mandât."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr ""
+msgstr "Il to component adizionâl al varà plui visibilitât se tu zontis une descrizion detaiade. Prepare la presentazion dal component adizionâl pe publicazion:"
 
 #, python-format
 msgid ""
