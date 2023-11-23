@@ -40,7 +40,11 @@ from olympia.amo.models import (
     ModelBase,
     OnChangeMixin,
 )
-from olympia.amo.utils import download_file_contents_from_backup_storage, id_to_path
+from olympia.amo.utils import (
+    backup_storage_enabled,
+    download_file_contents_from_backup_storage,
+    id_to_path,
+)
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
@@ -1311,7 +1315,7 @@ class BannedUserContent(ModelBase):
     picture_type = models.CharField(max_length=75, default=None, null=True, blank=True)
 
     def restore_avatar(self):
-        if self.picture_backup_name:
+        if self.picture_backup_name and backup_storage_enabled():
             upload = SimpleUploadedFile(
                 self.picture_backup_name,
                 download_file_contents_from_backup_storage(self.picture_backup_name),

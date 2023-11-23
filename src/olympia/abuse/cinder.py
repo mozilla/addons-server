@@ -4,6 +4,7 @@ from django.utils.functional import classproperty
 import requests
 
 from olympia.amo.utils import (
+    backup_storage_enabled,
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
@@ -118,7 +119,7 @@ class CinderUser(CinderEntity):
             'email': self.user.email,
             'fxa_id': self.user.fxa_id,
         }
-        if self.user.picture_type:
+        if self.user.picture_type and backup_storage_enabled():
             filename = copy_file_to_backup_storage(
                 self.user.picture_path, self.user.picture_type
             )

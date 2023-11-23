@@ -1286,6 +1286,12 @@ class BaseModelSerializerAndFormMixin:
                         )
 
 
+def backup_storage_enabled():
+    return (
+        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE and
+        settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET)
+
+
 def copy_file_to_backup_storage(local_file_path, content_type):
     storage_client = google_storage.Client.from_service_account_json(
         settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE

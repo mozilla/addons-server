@@ -505,6 +505,10 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         }
 
     @mock.patch('google.cloud.storage.Client')
+    @override_settings(
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
+        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
+    )
     def test_build_report_payload_with_avatar(self, google_storage_client_mock):
         fake_signed_avatar_url = (
             'https://storage.example.com/signed_url.png?some=thing&else=another'
