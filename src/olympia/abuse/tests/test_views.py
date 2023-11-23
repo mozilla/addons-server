@@ -862,10 +862,10 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=cinder_report.abuse_report.guid)
         assert filter_enforcement_actions([], cinder_report) == []
         actions_from_json = [
-            'amo_disable_addon',
-            'amo_ban_user',
-            'amo_approve',
-            'not_amo_action',  # not a valid action at all
+            'amo-disable_addon',
+            'amo-ban-user',
+            'amo-approve',
+            'not-amo-action',  # not a valid action at all
         ]
         assert filter_enforcement_actions(actions_from_json, cinder_report) == [
             CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -991,8 +991,8 @@ class TestCinderWebhook(TestCase):
         }
 
         data['payload']['enforcement_actions'] = [
-            'amo_disable_addon',
-            'amo_escalate_addon',
+            'amo-disable-addon',
+            'amo-escalate-addon',
         ]
         response = cinder_webhook(self.get_request(data=data))
         assert response.status_code == 200

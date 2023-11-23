@@ -4,14 +4,14 @@
         "appeal": {
             "appealed_decision": {
                 "enforcement_actions": [
-                    "amo_disable_addon"
+                    "amo-disable-addon"
                 ],
                 "id": "ae106e36-700c-4668-9618-851451dc5c2c",
                 "notes": "",
                 "policies": [
                     {
                         "enforcement_actions": [
-                            "amo_disable_addon"
+                            "amo-disable-addon"
                         ],
                         "id": "f73ad527-54ed-430c-86ff-80e15e2a352b",
                         "is_illegal": false,
@@ -34,7 +34,7 @@
             }
         },
         "enforcement_actions": [
-            "amo_disable_addon"
+            "amo-disable-addon"
         ],
         "entity": {
             "attributes": {
@@ -49,7 +49,7 @@
         "policies": [
             {
                 "enforcement_actions": [
-                    "amo_disable_addon"
+                    "amo-disable-addon"
                 ],
                 "id": "f73ad527-54ed-430c-86ff-80e15e2a352b",
                 "is_illegal": false,
