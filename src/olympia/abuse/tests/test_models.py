@@ -17,7 +17,7 @@ from ..cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
-from ..models import AbuseReport, CinderJob, CinderJobAppeal
+from ..models import AbuseReport, CinderJob, CinderJobAppeal, CinderPolicy
 from ..utils import (
     CinderActionApproveAppealOverride,
     CinderActionApproveInitialDecision,
@@ -516,22 +516,23 @@ class TestCinderJob(TestCase):
             assert helper.cinder_job == cinder_job
 
     def test_process_decision(self):
-        # abuse_report=AbuseReport.objects.create(
-        #         user=user_factory(), reason=AbuseReport.REASONS.ILLEGAL
-        #     )
         cinder_job = CinderJob.objects.create(job_id='1234')
         new_date = datetime(2023, 1, 1)
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
 
         with mock.patch.object(CinderActionBanUser, 'process') as cinder_action_mock:
             cinder_job.process_decision(
                 decision_id='12345',
                 decision_date=new_date,
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER.value,
+                policy_ids=['123-45', '678-90'],
             )
         assert cinder_job.decision_id == '12345'
         assert cinder_job.decision_date == new_date
         assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_action_mock.call_count == 1
+        assert list(cinder_job.policies.all()) == [policy_a, policy_b]
 
     def test_can_be_appealed(self):
         addon = addon_factory()

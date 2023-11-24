@@ -1,7 +1,8 @@
 from django.conf import settings
+from django.core import mail
+from django.urls import reverse
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
@@ -14,6 +15,7 @@ from olympia.core import set_user
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
 
+from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveAppealOverride,
     CinderActionApproveInitialDecision,
@@ -43,6 +45,28 @@ class TestCinderAction(TestCase):
         # action. We need it for the ActivityLog creation to work.
         set_user(self.task_user)
 
+    def test_email_policies_and_appeal_link(self):
+        self.cinder_job.abusereport_set.update(user=user_factory(), guid=None)
+        action = CinderActionBanUser(self.cinder_job)
+        self.cinder_job.policies.add(
+            CinderPolicy.objects.create(
+                uuid='1234', name='bad', text='This is bad thing'
+            )
+        )
+        action.process()
+        assert len(mail.outbox) == 1
+        assert 'This is bad thing' in mail.outbox[0].body
+        assert (
+            reverse(
+                'abuse.appeal',
+                kwargs={
+                    'abuse_report_id': self.cinder_job.abusereport_set.first().id,
+                    'decision_id': self.cinder_job.decision_id,
+                },
+            )
+            in mail.outbox[0].body
+        )
+
     def test_ban_user(self):
         user = user_factory()
         self.cinder_job.abusereport_set.update(user=user, guid=None)
@@ -54,8 +78,21 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.ADMIN_USER_BANNED.id)
         assert activity.arguments == [user]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [user.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {user.name}'
+        assert 'has been banned' in mail.outbox[0].body
 
-    def test_approve_user(self):
+    def test_approve_initial_user(self):
+        user = user_factory(banned=self.days_ago(1), deleted=True)
+        self.cinder_job.abusereport_set.update(user=user, guid=None)
+        action = CinderActionApproveInitialDecision(self.cinder_job)
+        action.process()
+        user.reload()
+        assert user.banned
+        assert len(mail.outbox) == 0
+
+    def test_approve_appeal_user(self):
         user = user_factory(banned=self.days_ago(1), deleted=True)
         self.cinder_job.abusereport_set.update(user=user, guid=None)
         action = CinderActionApproveAppealOverride(self.cinder_job)
@@ -66,9 +103,14 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.ADMIN_USER_UNBAN.id)
         assert activity.arguments == [user]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [user.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {user.name}'
+        assert 'has been restored to' in mail.outbox[0].body
 
     def test_disable_addon(self):
-        addon = addon_factory()
+        author = user_factory()
+        addon = addon_factory(users=(author,))
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
         action = CinderActionDisableAddon(self.cinder_job)
@@ -78,9 +120,15 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
         assert activity.arguments == [addon]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {addon.name}'
+        assert f'your Extension {addon.name}' in mail.outbox[0].body
+        assert 'has been disabled' in mail.outbox[0].body
 
     def test_approve_appeal_addon(self):
-        addon = addon_factory(status=amo.STATUS_DISABLED)
+        author = user_factory()
+        addon = addon_factory(status=amo.STATUS_DISABLED, users=(author,))
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
         action = CinderActionApproveAppealOverride(self.cinder_job)
@@ -90,6 +138,10 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.FORCE_ENABLE.id)
         assert activity.arguments == [addon]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {addon.name}'
+        assert 'has been restored to' in mail.outbox[0].body
 
     def test_approve_initial_addon(self):
         addon = addon_factory(status=amo.STATUS_DISABLED)
@@ -99,6 +151,7 @@ class TestCinderAction(TestCase):
         action.process()
         assert addon.reload().status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
 
     def test_escalate_addon(self):
         addon = addon_factory(file_kw={'is_signed': True})
@@ -154,9 +207,11 @@ class TestCinderAction(TestCase):
         )
         assert activity.arguments == [other_version]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 0
 
     def test_delete_collection(self):
-        collection = collection_factory(author=user_factory())
+        author = user_factory()
+        collection = collection_factory(author=author)
         self.cinder_job.abusereport_set.update(collection=collection, guid=None)
         action = CinderActionDeleteCollection(self.cinder_job)
         action.process()
@@ -167,6 +222,10 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.COLLECTION_DELETED.id)
         assert activity.arguments == [collection]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {collection.name}'
+        assert 'has been removed' in mail.outbox[0].body
 
     def test_approve_initial_collection(self):
         collection = collection_factory(author=user_factory(), deleted=True)
@@ -176,9 +235,11 @@ class TestCinderAction(TestCase):
         assert collection.reload()
         assert collection.deleted
         assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
 
     def test_approve_appeal_collection(self):
-        collection = collection_factory(author=user_factory(), deleted=True)
+        author = user_factory()
+        collection = collection_factory(author=author, deleted=True)
         self.cinder_job.abusereport_set.update(collection=collection, guid=None)
         action = CinderActionApproveAppealOverride(self.cinder_job)
         action.process()
@@ -188,9 +249,16 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.COLLECTION_UNDELETED.id)
         assert activity.arguments == [collection]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {collection.name}'
+        assert 'has been restored to' in mail.outbox[0].body
 
     def test_delete_rating(self):
-        rating = Rating.objects.create(addon=addon_factory(), user=user_factory())
+        author = user_factory()
+        rating = Rating.objects.create(
+            addon=addon_factory(), user=author, body='Saying something bad'
+        )
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
         ActivityLog.objects.all().delete()
         action = CinderActionDeleteRating(self.cinder_job)
@@ -200,6 +268,10 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.DELETE_RATING.id)
         assert activity.arguments == [rating.addon, rating]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == 'Mozilla Add-ons: Saying ...'
+        assert 'has been removed' in mail.outbox[0].body
 
     def test_approve_initial_rating(self):
         rating = Rating.objects.create(
@@ -210,12 +282,12 @@ class TestCinderAction(TestCase):
         action = CinderActionApproveInitialDecision(self.cinder_job)
         action.process()
         assert rating.reload().deleted
+        assert len(mail.outbox) == 0
         assert ActivityLog.objects.count() == 0
 
     def test_approve_appeal_rating(self):
-        rating = Rating.objects.create(
-            addon=addon_factory(), user=user_factory(), deleted=True
-        )
+        author = user_factory()
+        rating = Rating.objects.create(addon=addon_factory(), user=author, deleted=True)
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
         action = CinderActionApproveAppealOverride(self.cinder_job)
@@ -225,3 +297,7 @@ class TestCinderAction(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.UNDELETE_RATING.id)
         assert activity.arguments == [rating, rating.addon]
         assert activity.user == self.task_user
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [author.email]
+        assert mail.outbox[0].subject == f'Mozilla Add-ons: {rating}'
+        assert 'has been restored to' in mail.outbox[0].body

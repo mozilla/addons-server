@@ -1,6 +1,13 @@
+import random
+
+from django.conf import settings
+from django.template import loader
+from django.urls import reverse
+
 from olympia import amo
 from olympia.activity import log_create
 from olympia.addons.models import Addon
+from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -17,9 +24,36 @@ class CinderAction:
     def process(self):
         raise NotImplementedError
 
-    def notify_targets(self, targets):
-        # TODO: notify target
-        pass
+    def notify_owners(self, owners):
+        abuse_report = self.cinder_job.abusereport_set.first()
+        if not abuse_report:
+            return
+        name = getattr(abuse_report.target, 'name', abuse_report.target)
+        context_dict = {
+            'target': abuse_report.target,
+            'name': name,
+            'target_url': abuse_report.target.get_url_path(),
+            'reasons': [policy.text for policy in self.cinder_job.policies.all()],
+            'appeal_url': reverse(
+                'abuse.appeal',
+                kwargs={
+                    'abuse_report_id': abuse_report.id,
+                    'decision_id': self.cinder_job.decision_id,
+                },
+            ),
+            'SITE_URL': settings.SITE_URL,
+        }
+
+        subject = f'Mozilla Add-ons: {name}'
+        template = loader.get_template(f'abuse/emails/{self.__class__.__name__}.txt')
+        self.send_mail(
+            subject,
+            template.render(context_dict),
+            owners,
+        )
+
+    def send_mail(self, subject, message, recipients):
+        send_mail(subject, message, recipient_list=[user.email for user in recipients])
 
     def notify_reporters(self):
         for abuse_report in self.cinder_job.abusereport_set.all():
@@ -38,7 +72,7 @@ class CinderActionBanUser(CinderAction):
                 pk=self.target.pk
             ).ban_and_disable_related_content()
             self.notify_reporters()
-            self.notify_targets([self.target])
+            self.notify_owners([self.target])
 
 
 class CinderActionDisableAddon(CinderAction):
@@ -47,9 +81,30 @@ class CinderActionDisableAddon(CinderAction):
 
     def process(self):
         if isinstance(self.target, Addon) and self.target.status != amo.STATUS_DISABLED:
-            self.target.force_disable()
+            self.addon_version = (
+                self.target.current_version
+                or self.target.find_latest_version(channel=None, exclude=())
+            )
+            self.target.force_disable(skip_activity_log=True)
+            self.log_entry = log_create(amo.LOG.FORCE_DISABLE, self.target)
             self.notify_reporters()
-            self.notify_targets(self.target.authors.all())
+            self.notify_owners(self.target.authors.all())
+
+    def send_mail(self, subject, message, recipients):
+        from olympia.activity.utils import send_activity_mail
+
+        """We send addon related via activity mail instead for the integration"""
+
+        if version := self.addon_version:
+            unique_id = (
+                self.log_entry.id if self.log_entry else random.randrange(100000)
+            )
+            send_activity_mail(
+                subject, message, version, recipients, settings.ADDONS_EMAIL, unique_id
+            )
+        else:
+            # we didn't manage to find a version to associate with, we have to fall back
+            super().send_mail(subject, message, recipients)
 
 
 class CinderActionEscalateAddon(CinderAction):
@@ -63,10 +118,14 @@ class CinderActionEscalateAddon(CinderAction):
             reported_versions = set(
                 self.cinder_job.abusereport_set.values_list('addon_version', flat=True)
             )
-            version_objs = set(
-                self.target.versions(manager='unfiltered_for_relations')
-                .filter(version__in=reported_versions)
-                .no_transforms()
+            version_objs = (
+                set(
+                    self.target.versions(manager='unfiltered_for_relations')
+                    .filter(version__in=reported_versions)
+                    .no_transforms()
+                )
+                if reported_versions
+                else set()
             )
             # We need custom save() and post_save to be triggered, so we can't
             # optimize this via bulk_create().
@@ -94,7 +153,7 @@ class CinderActionDeleteCollection(CinderAction):
             log_create(amo.LOG.COLLECTION_DELETED, self.target)
             self.target.delete(clear_slug=False)
             self.notify_reporters()
-            self.notify_targets([self.target.author])
+            self.notify_owners([self.target.author])
 
 
 class CinderActionDeleteRating(CinderAction):
@@ -105,7 +164,7 @@ class CinderActionDeleteRating(CinderAction):
         if isinstance(self.target, Rating) and not self.target.deleted:
             self.target.delete(clear_flags=False)
             self.notify_reporters()
-            self.notify_targets([self.target.user])
+            self.notify_owners([self.target.user])
 
 
 class CinderActionApproveAppealOverride(CinderAction):
@@ -117,22 +176,22 @@ class CinderActionApproveAppealOverride(CinderAction):
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
-            self.notify_targets(target.authors.all())
+            self.notify_owners(target.authors.all())
 
         elif isinstance(target, UserProfile) and target.banned:
             UserProfile.objects.filter(
                 pk=target.pk
             ).unban_and_reenable_related_content()
-            self.notify_targets([target])
+            self.notify_owners([target])
 
         elif isinstance(target, Collection) and target.deleted:
             target.undelete()
             log_create(amo.LOG.COLLECTION_UNDELETED, target)
-            self.notify_targets([target.author])
+            self.notify_owners([target.author])
 
         elif isinstance(target, Rating) and target.deleted:
             target.undelete()
-            self.notify_targets([target.user])
+            self.notify_owners([target.user])
 
 
 class CinderActionApproveInitialDecision(CinderAction):

@@ -10,7 +10,7 @@ from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
-from .models import AbuseReport
+from .models import AbuseReport, CinderPolicy
 
 
 class AbuseReportTypeFilter(admin.SimpleListFilter):
@@ -349,4 +349,20 @@ class AbuseReportAdmin(AMOModelAdmin):
     mark_as_suspicious.short_description = 'Mark selected abuse reports as suspicious'
 
 
+class CinderPolicyAdmin(AMOModelAdmin):
+    fields = (
+        'created',
+        'uuid',
+        'name',
+        'text',
+    )
+    list_display = (
+        'uuid',
+        'name',
+    )
+    readonly_fields = ('created',)
+    view_on_site = False
+
+
 admin.site.register(AbuseReport, AbuseReportAdmin)
+admin.site.register(CinderPolicy, CinderPolicyAdmin)

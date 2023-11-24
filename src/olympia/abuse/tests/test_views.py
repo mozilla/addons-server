@@ -908,6 +908,7 @@ class TestCinderWebhook(TestCase):
                 decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
