@@ -1,5 +1,6 @@
 import shutil
 import tempfile
+from unittest import mock
 
 from django.conf import settings
 from django.test.utils import override_settings
@@ -7,28 +8,107 @@ from django.test.utils import override_settings
 import pytest
 from PIL import Image
 
-from olympia.amo.tests import user_factory
+from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
+from olympia.users.models import BannedUserContent
 from olympia.users.tasks import delete_photo, resize_photo
 
 
 pytestmark = pytest.mark.django_db
 
 
-def test_delete_photo():
-    with tempfile.TemporaryDirectory(dir=settings.TMP_PATH) as tmp_media_path:
-        with override_settings(MEDIA_ROOT=tmp_media_path):
-            user = user_factory()
-            storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
-            with storage.open(user.picture_path, mode='wb') as dst:
-                dst.write(b'test data\n')
+@override_settings(
+    GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
+    GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
+)
+class TestDeletePhoto(TestCase):
+    def setUp(self):
+        self.user = user_factory(deleted=True)
+        self.storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+        with self.storage.open(self.user.picture_path, mode='wb') as dst:
+            dst.write(b'fake image\n')
+        with self.storage.open(self.user.picture_path_original, mode='wb') as dst:
+            dst.write(b'fake original image\n')
+        patcher = mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
+        self.copy_file_to_backup_storage_mock = patcher.start()
+        self.copy_file_to_backup_storage_mock.return_value = 'picture-backup-name.png'
+        self.addCleanup(patcher.stop)
 
-            assert storage.exists(user.picture_path)
+    def test_delete_photo(self):
+        self.user.update(picture_type='image/png')
+        delete_photo(self.user.pk)
+        assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
 
-            delete_photo(user.pk)
+    def test_delete_photo_no_picture_type(self):
+        delete_photo(self.user.pk)
+        # Even if there is no picture_type, we delete the path on filesystem.
+        assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
 
-            assert not storage.exists(user.picture_path)
+    def test_delete_photo_banned_user_no_picture(self):
+        # Pretend we have a picture type but somehow the original is already
+        # gone. We can't backup it, we just don't want the task to fail.
+        self.user.update(banned=self.days_ago(1), picture_type='image/png')
+        self.storage.delete(self.user.picture_path_original)
+        delete_photo(self.user.pk)
+        # We did delete the other path though.
+        assert not self.storage.exists(self.user.picture_path)
+        # We didn't backup the original though, it wasn't there.
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
+
+    def test_delete_photo_banned_user_no_picture_type(self):
+        self.user.update(banned=self.days_ago(1))
+        delete_photo(self.user.pk)
+        # Even if there is no picture_type, we delete the path on filesystem.
+        assert not self.storage.exists(self.user.picture_path)
+        # We didn't backup it though, it shouldn't have been there.
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
+
+    @override_settings(
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE=None,
+        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET=None,
+    )
+    def test_delete_photo_banned_user_no_backup_storage_enabled(self):
+        self.user.update(banned=self.days_ago(1), picture_type='image/png')
+        delete_photo(self.user.pk)
+        assert not self.storage.exists(self.user.picture_path)
+        # We didn't backup the original, storage credentials are not set.
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
+
+    def test_delete_photo_banned_user_successful_backup(self):
+        self.user.update(banned=self.days_ago(1), picture_type='image/png')
+        original_path = str(self.user.picture_path_original)
+        delete_photo(self.user.pk)
+        assert not self.storage.exists(self.user.picture_path)
+        assert self.copy_file_to_backup_storage_mock.call_count == 1
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            original_path,
+            'image/png',
+        )
+        assert BannedUserContent.objects.filter(user=self.user).count() == 1
+        bac = BannedUserContent.objects.filter(user=self.user).get()
+        assert bac.picture_type == 'image/png'
+        assert bac.picture_backup_name == 'picture-backup-name.png'
+
+    def test_delete_photo_banned_user_successful_backup_bannedusercontent_exists(self):
+        self.user.update(banned=self.days_ago(1), picture_type='image/png')
+        BannedUserContent.objects.create(user=self.user)
+        original_path = str(self.user.picture_path_original)
+        delete_photo(self.user.pk)
+        assert not self.storage.exists(self.user.picture_path)
+        assert self.copy_file_to_backup_storage_mock.call_count == 1
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            original_path,
+            'image/png',
+        )
+        assert BannedUserContent.objects.filter(user=self.user).count() == 1
+        bac = BannedUserContent.objects.filter(user=self.user).get()
+        assert bac.picture_type == 'image/png'
+        assert bac.picture_backup_name == 'picture-backup-name.png'
 
 
 def test_resize_photo():
