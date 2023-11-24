@@ -1,5 +1,8 @@
-import django  # noqa
+import os.path
 from datetime import date, datetime, timedelta
+from ipaddress import IPv4Address
+from unittest import mock
+
 from django import forms
 from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
@@ -7,21 +10,17 @@ from django.core import mail
 from django.db import models
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from ipaddress import IPv4Address
-import os.path
-from olympia.amo.tests.test_helpers import get_uploaded_file
 
 import pytest
 import responses
 from freezegun import freeze_time
-from unittest import mock
 
-import olympia  # noqa
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.utils import SafeStorage
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
