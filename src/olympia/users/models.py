@@ -1312,7 +1312,7 @@ class BannedUserContent(ModelBase):
     )
     picture_type = models.CharField(max_length=75, default=None, null=True, blank=True)
 
-    def restore_avatar(self):
+    def restore_picture(self):
         if self.picture_backup_name and backup_storage_enabled():
             file_contents = download_file_contents_from_backup_storage(
                 self.picture_backup_name
@@ -1332,9 +1332,9 @@ class BannedUserContent(ModelBase):
         for addon in self.addons.all():
             addon.force_enable()
         try:
-            self.restore_avatar()
+            self.restore_picture()
         except Exception as e:
-            # If something wrong happens here, we won't restore the avatar
+            # If something wrong happens here, we won't restore the picture
             # but we want to be able to continue.
             log.exception(e)
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
