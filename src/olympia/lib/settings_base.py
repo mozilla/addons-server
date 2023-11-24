@@ -70,7 +70,7 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-    'captcha.recaptcha_test_key_error',
+    'django_recaptcha.recaptcha_test_key_error',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -527,7 +527,7 @@ INSTALLED_APPS = (
     'waffle',
     'django_jinja',
     'rangefilter',
-    'captcha',
+    'django_recaptcha',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',
