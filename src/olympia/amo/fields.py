@@ -8,7 +8,7 @@ from django.db import models
 from django.forms import fields
 from django.utils.translation import gettext_lazy as _
 
-from captcha.fields import ReCaptchaField as UpstreamReCaptchaField
+from django_recaptcha.fields import ReCaptchaField as UpstreamReCaptchaField
 
 
 class PositiveAutoField(models.AutoField):
