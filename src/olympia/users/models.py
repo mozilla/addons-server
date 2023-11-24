@@ -1314,9 +1314,12 @@ class BannedUserContent(ModelBase):
 
     def restore_avatar(self):
         if self.picture_backup_name and backup_storage_enabled():
+            file_contents = download_file_contents_from_backup_storage(
+                self.picture_backup_name
+            )
             upload = SimpleUploadedFile(
                 self.picture_backup_name,
-                download_file_contents_from_backup_storage(self.picture_backup_name),
+                file_contents,
                 content_type=self.picture_type,
             )
             upload_picture(self.user, upload)
@@ -1328,6 +1331,11 @@ class BannedUserContent(ModelBase):
         # soft-deleted.
         for addon in self.addons.all():
             addon.force_enable()
-        self.restore_avatar()
+        try:
+            self.restore_avatar()
+        except Exception as e:
+            # If something wrong happens here, we won't restore the avatar
+            # but we want to be able to continue.
+            log.exception(e)
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships
