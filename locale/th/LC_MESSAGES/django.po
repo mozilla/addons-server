@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-24 19:20+0000\n"
+"PO-Revision-Date: 2023-11-24 19:25+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -3143,7 +3143,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "มีแท็บที่เปิดอยู่เยอะมากเลยใช่ไหม? จัดระเบียบแท็บเหล่านั้นไว้ในแถบข้างให้ดูเรียบร้อย"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3210,7 +3210,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "ส่งบทความข่าว เรื่องราว บล็อกโพสต์ และอื่น ๆ ไปยัง Kindle ของคุณ"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
@@ -3245,7 +3245,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "ปรับสีของหน้าที่อยู่โดยรอบตัวเล่นวิดีโอให้มืดลงเพื่อประสบการณ์การรับชมแบบโฟกัส"
 
 #. editorial content for the discovery pane.
 #, python-format
@@ -3292,7 +3292,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "จัดการแท็บที่เปิดอยู่ของคุณในแถบข้างที่ดูเรียบร้อย"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3302,7 +3302,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "โหลดแท็บใหม่อัตโนมัติตามช่วงเวลาที่คุณตั้งไว้"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3312,7 +3312,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "เสริมการป้องกันการติดตามไปอีกชั้นเมื่อคุณท่องเว็บ"
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files right in Firefox—increase font size, page dimensions, and more."
