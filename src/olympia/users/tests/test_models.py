@@ -207,7 +207,7 @@ class TestUserProfile(TestCase):
         assert 'deleted your Mozilla account (we renamed Firefox Accounts' in email.body
 
     @mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
-    @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
+    @mock.patch('olympia.users.tasks.backup_storage_enabled', lambda: True)
     def test_ban_and_disable_related_content_bulk(
         self, copy_file_to_backup_storage_mock
     ):
