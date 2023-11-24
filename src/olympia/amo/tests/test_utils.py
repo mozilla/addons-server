@@ -533,8 +533,8 @@ def test_create_signed_url_for_file_backup(backup_storage_blob_mock):
 @mock.patch('olympia.amo.utils.backup_storage_blob')
 def test_download_file_contents_from_backup_storage(backup_storage_blob_mock):
     backup_file_name = 'sômeremotefile.png'
-    expected_contents = 'Fake Content'
-    download_as_bytes_mock = backup_storage_blob_mock.return_value.download_as_string
+    expected_contents = b'Fake Content'
+    download_as_bytes_mock = backup_storage_blob_mock.return_value.download_as_bytes
     download_as_bytes_mock.return_value = expected_contents
     assert (
         download_file_contents_from_backup_storage(backup_file_name)
