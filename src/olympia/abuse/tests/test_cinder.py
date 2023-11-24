@@ -284,6 +284,43 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             ],
         }
 
+    def test_build_report_payload_with_author_and_reporter_being_the_same(self):
+        user = user_factory()
+        addon = self._create_dummy_target(users=[user])
+        cinder_addon = self.cinder_class(addon)
+        data = cinder_addon.build_report_payload(
+            report_text='self reporting!', category=None, reporter=CinderUser(user)
+        )
+        assert data['context'] == {
+            'entities': [
+                {
+                    'entity_type': 'amo_user',
+                    'attributes': {
+                        'id': str(user.id),
+                        'name': user.display_name,
+                        'email': user.email,
+                        'fxa_id': user.fxa_id,
+                    },
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': str(user.id),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.id),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_author_of',
+                },
+                {
+                    'source_id': str(user.id),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.id),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_reporter_of',
+                },
+            ],
+        }
+
 
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
@@ -425,6 +462,52 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
         }
 
+    def test_build_report_payload_with_author_and_reporter_being_the_same(self):
+        user = self._create_dummy_target()
+        addon = addon_factory(users=[user])
+        cinder_user = self.cinder_class(user)
+        data = cinder_user.build_report_payload(
+            report_text='I dont like this guy', category=None, reporter=CinderUser(user)
+        )
+        assert data['context'] == {
+            'entities': [
+                {
+                    'entity_type': 'amo_addon',
+                    'attributes': {
+                        'id': str(addon.id),
+                        'guid': addon.guid,
+                        'slug': addon.slug,
+                        'name': str(addon.name),
+                    },
+                },
+                {
+                    'entity_type': 'amo_user',
+                    'attributes': {
+                        'id': str(user.id),
+                        'name': user.display_name,
+                        'email': user.email,
+                        'fxa_id': user.fxa_id,
+                    },
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': str(user.id),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.id),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_author_of',
+                },
+                {
+                    'source_id': str(user.id),
+                    'source_type': 'amo_user',
+                    'target_id': str(user.id),
+                    'target_type': 'amo_user',
+                    'relationship_type': 'amo_reporter_of',
+                },
+            ],
+        }
+
     def test_build_report_payload_addon_author(self):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
@@ -501,6 +584,55 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
         }
 
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_avatar(
+        self, copy_file_to_backup_storage_mock, create_signed_url_for_file_backup_mock
+    ):
+        copy_file_to_backup_storage_mock.return_value = 'some_remote_path.png'
+        fake_signed_avatar_url = (
+            'https://storage.example.com/signed_url.png?some=thing&else=another'
+        )
+        create_signed_url_for_file_backup_mock.return_value = fake_signed_avatar_url
+        user = self._create_dummy_target()
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), user.picture_path
+        )
+        user.update(picture_type='image/png')
+
+        reason = 'bad person!'
+        cinder_user = self.cinder_class(user)
+
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_user',
+            'entity': {
+                'id': str(user.id),
+                'avatar': {
+                    'value': fake_signed_avatar_url,
+                    'mime_type': 'image/png',
+                },
+                'name': user.display_name,
+                'email': user.email,
+                'fxa_id': user.fxa_id,
+            },
+            'reasoning': reason,
+            'context': {'entities': [], 'relationships': []},
+        }
+        assert copy_file_to_backup_storage_mock.call_count == 1
+        assert copy_file_to_backup_storage_mock.call_args[0] == (
+            user.picture_path,
+            user.picture_type,
+        )
+        assert create_signed_url_for_file_backup_mock.call_count == 1
+        assert create_signed_url_for_file_backup_mock.call_args[0] == (
+            'some_remote_path.png',
+        )
+
 
 class TestCinderRating(BaseTestCinderCase, TestCase):
     cinder_class = CinderRating
@@ -547,7 +679,53 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'target_id': str(rating.id),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
+                    },
+                ],
+            },
+        }
+
+    def test_build_report_payload_with_author_and_reporter_being_the_same(self):
+        rating = self._create_dummy_target()
+        user = rating.user
+        cinder_rating = self.cinder_class(rating)
+        data = cinder_rating.build_report_payload(
+            report_text='my own words!', category=None, reporter=CinderUser(user)
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_rating',
+            'entity': {
+                'id': str(rating.id),
+                'body': rating.body,
+            },
+            'reasoning': 'my own words!',
+            'context': {
+                'entities': [
+                    {
+                        'entity_type': 'amo_user',
+                        'attributes': {
+                            'id': str(user.id),
+                            'name': user.display_name,
+                            'email': user.email,
+                            'fxa_id': user.fxa_id,
+                        },
                     }
+                ],
+                'relationships': [
+                    {
+                        'source_id': str(user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(rating.id),
+                        'target_type': 'amo_rating',
+                        'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'source_id': str(user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(rating.id),
+                        'target_type': 'amo_rating',
+                        'relationship_type': 'amo_reporter_of',
+                    },
                 ],
             },
         }
@@ -615,4 +793,54 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             'entity_type': 'amo_collection',
             'queue_slug': self.cinder_class.queue,
             'reasoning': 'bad collection!',
+        }
+
+    def test_build_report_payload_with_author_and_reporter_being_the_same(self):
+        collection = self._create_dummy_target()
+        cinder_collection = self.cinder_class(collection)
+        user = collection.author
+
+        data = cinder_collection.build_report_payload(
+            report_text='Collect me!', category=None, reporter=CinderUser(user)
+        )
+        assert data == {
+            'context': {
+                'entities': [
+                    {
+                        'entity_type': 'amo_user',
+                        'attributes': {
+                            'id': str(user.id),
+                            'name': user.display_name,
+                            'email': user.email,
+                            'fxa_id': user.fxa_id,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_collection_author_of',
+                        'source_id': str(self.user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(collection.id),
+                        'target_type': 'amo_collection',
+                    },
+                    {
+                        'source_id': str(user.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(collection.id),
+                        'target_type': 'amo_collection',
+                        'relationship_type': 'amo_reporter_of',
+                    },
+                ],
+            },
+            'entity': {
+                'comments': ['Fôo', 'Bär', 'Alice'],
+                'description': str(collection.description),
+                'id': str(collection.pk),
+                'name': str(collection.name),
+                'slug': collection.slug,
+            },
+            'entity_type': 'amo_collection',
+            'queue_slug': self.cinder_class.queue,
+            'reasoning': 'Collect me!',
         }
