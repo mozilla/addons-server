@@ -501,6 +501,14 @@ class TestActivityLog(TestCase):
             ' (validation ignored) was signed.'
         )
 
+    def test_create_action_arg_or_kwarg(self):
+        assert ActivityLog.objects.create(amo.LOG.ADD_TAG).log == amo.LOG.ADD_TAG
+        assert ActivityLog.objects.create(action=amo.LOG.ADD_TAG).log == amo.LOG.ADD_TAG
+        assert ActivityLog.objects.create(amo.LOG.ADD_TAG.id).log == amo.LOG.ADD_TAG
+        assert (
+            ActivityLog.objects.create(action=amo.LOG.ADD_TAG.id).log == amo.LOG.ADD_TAG
+        )
+
 
 class TestDraftComment(TestCase):
     def test_default_requirements(self):

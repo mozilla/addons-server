@@ -2,6 +2,7 @@ import json
 import uuid
 from collections import defaultdict
 from copy import copy
+from inspect import isclass
 
 from django.apps import apps
 from django.conf import settings
@@ -20,6 +21,7 @@ from olympia.amo.fields import IPAddressBinaryField, PositiveAutoField
 from olympia.amo.models import BaseQuerySet, LongNameIndex, ManagerBase, ModelBase
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block
+from olympia.constants.activity import _LOG
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import ReviewActionReason
@@ -312,7 +314,7 @@ class ActivityLogManager(ManagerBase):
         )
         return qs
 
-    def create(self, action, *args, **kw):
+    def create(self, *args, **kw):
         """
         e.g. ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon),
              ActivityLog.objects.create(amo.LOG.ADD_FILE_TO_VERSION, file, version)
@@ -320,8 +322,19 @@ class ActivityLogManager(ManagerBase):
         """
         from olympia import core
 
+        # typical usage is action as first arg, but it could be a kwarg instead
+        if 'action' in kw:
+            action_arg = kw.pop('action')
+        else:
+            action_arg, *args = args
+
         # We might get action as an int, as that's what the model field is defined as
-        action = amo.LOG_BY_ID[action] if isinstance(action, int) else action
+        action = (
+            action_arg
+            if isclass(action_arg) and issubclass(action_arg, _LOG)
+            else amo.LOG_BY_ID[action_arg]
+        )
+
         user = kw.get('user', core.get_user())
 
         if not user:
