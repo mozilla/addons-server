@@ -218,7 +218,6 @@ class UserQuerySet(BaseQuerySet):
         # Soft-delete them
         ratings_qs.delete()
         # And then ban the users.
-        ids = []
         for user in users:
             activity.log_create(amo.LOG.ADMIN_USER_BANNED, user)
             log.info(
@@ -229,10 +228,9 @@ class UserQuerySet(BaseQuerySet):
             )
             user.banned = user.modified = datetime.now()
             user.deleted = True
-            ids.append(user.pk)
             # To delete their photo, avoid delete_picture() that updates
             # picture_type immediately.
-            delete_photo.delay(user.pk)
+            delete_photo.delay(user.pk, banned=user.banned)
         return self.bulk_update(users, fields=('banned', 'deleted', 'modified'))
 
     def unban_and_reenable_related_content(self):

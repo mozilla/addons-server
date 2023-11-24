@@ -65,6 +65,7 @@ class TestDeletePhoto(TestCase):
         delete_photo(self.user.pk)
         # Even if there is no picture_type, we delete the path on filesystem.
         assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
         # We didn't backup it though, it shouldn't have been there.
         assert self.copy_file_to_backup_storage_mock.call_count == 0
 
@@ -76,6 +77,7 @@ class TestDeletePhoto(TestCase):
         self.user.update(banned=self.days_ago(1), picture_type='image/png')
         delete_photo(self.user.pk)
         assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
         # We didn't backup the original, storage credentials are not set.
         assert self.copy_file_to_backup_storage_mock.call_count == 0
 
@@ -84,6 +86,7 @@ class TestDeletePhoto(TestCase):
         original_path = str(self.user.picture_path_original)
         delete_photo(self.user.pk)
         assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
         assert self.copy_file_to_backup_storage_mock.call_count == 1
         assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
             original_path,
@@ -100,6 +103,7 @@ class TestDeletePhoto(TestCase):
         original_path = str(self.user.picture_path_original)
         delete_photo(self.user.pk)
         assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
         assert self.copy_file_to_backup_storage_mock.call_count == 1
         assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
             original_path,
@@ -109,6 +113,31 @@ class TestDeletePhoto(TestCase):
         bac = BannedUserContent.objects.filter(user=self.user).get()
         assert bac.picture_type == 'image/png'
         assert bac.picture_backup_name == 'picture-backup-name.png'
+
+    def test_delete_photo_banned_kwarg_successful_backup_bannedusercontent_exists(self):
+        # User hasn't been banned yet but we are passing the banned kwarg to
+        # delete_photo to bypass the check.
+        self.user.update(picture_type='image/png')
+        BannedUserContent.objects.create(user=self.user)
+        original_path = str(self.user.picture_path_original)
+        delete_photo(self.user.pk, banned=self.days_ago(42))
+        assert not self.storage.exists(self.user.picture_path)
+        assert not self.storage.exists(self.user.picture_path_original)
+        assert self.copy_file_to_backup_storage_mock.call_count == 1
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            original_path,
+            'image/png',
+        )
+        assert BannedUserContent.objects.filter(user=self.user).count() == 1
+        bac = BannedUserContent.objects.filter(user=self.user).get()
+        assert bac.picture_type == 'image/png'
+        assert bac.picture_backup_name == 'picture-backup-name.png'
+
+    def test_delete_photo_not_banned_no_backup(self):
+        self.user.update(picture_type='image/png')
+        delete_photo(self.user.pk)
+        assert not self.storage.exists(self.user.picture_path)
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
 
 
 def test_resize_photo():

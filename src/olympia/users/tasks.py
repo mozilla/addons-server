@@ -21,7 +21,8 @@ def delete_photo(pk, **kw):
 
     user = UserProfile.objects.get(pk=pk)
     storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
-    if user.picture_type and user.banned:
+    banned = kw.get('banned') or user.banned
+    if user.picture_type and banned:
         if backup_storage_enabled() and storage.exists(user.picture_path_original):
             # When deleting a picture as part of a ban, we keep a copy of the
             # original picture for the duration of the potential appeal process.
