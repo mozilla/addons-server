@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-23 10:17+0000\n"
+"PO-Revision-Date: 2023-11-24 15:41+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2418,22 +2418,22 @@ msgid "Edit version {0}"
 msgstr "Modifiche version {0}"
 
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr ""
+msgstr "Ti visìn che il to component adizionâl al è sogjet a revision manuâl in cualsisei moment."
 
 msgid "Go to My Submissions"
-msgstr ""
+msgstr "Va ai miei inviaments"
 
 msgid "Source Code Upload"
-msgstr ""
+msgstr "Cjariament in rêt di codiç sorzint"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Ti covential cjariâ in rêt il codiç sorzint?"
 
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr ""
+msgstr "I revisôrs dai components adizionâi di Mozilla a scugnin podê rivâ a lei e a riprodusi il codiç de tô estension. In câs contrari, il to component adizionâl al podarès vignî refudât."
 
 msgid "Do you use any of the following in your extension?"
-msgstr ""
+msgstr "Dopristu cualchidun di chescj struments te tô estension?"
 
 msgid "Code generators or minifiers"
 msgstr ""
