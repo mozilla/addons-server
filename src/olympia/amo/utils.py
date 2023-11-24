@@ -1329,4 +1329,4 @@ def create_signed_url_for_file_backup(backup_file_name_remote):
 
 def download_file_contents_from_backup_storage(backup_file_name_remote):
     blob = backup_storage_blob(backup_file_name_remote)
-    return blob.download_as_string()
+    return blob.download_as_bytes()

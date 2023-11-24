@@ -534,12 +534,12 @@ def test_create_signed_url_for_file_backup(backup_storage_blob_mock):
 def test_download_file_contents_from_backup_storage(backup_storage_blob_mock):
     backup_file_name = 'sômeremotefile.png'
     expected_contents = 'Fake Content'
-    download_as_string_mock = backup_storage_blob_mock.return_value.download_as_string
-    download_as_string_mock.return_value = expected_contents
+    download_as_bytes_mock = backup_storage_blob_mock.return_value.download_as_string
+    download_as_bytes_mock.return_value = expected_contents
     assert (
         download_file_contents_from_backup_storage(backup_file_name)
         == expected_contents
     )
     assert backup_storage_blob_mock.call_count == 1
     assert backup_storage_blob_mock.call_args_list[0][0] == (backup_file_name,)
-    assert download_as_string_mock.call_count == 1
+    assert download_as_bytes_mock.call_count == 1
