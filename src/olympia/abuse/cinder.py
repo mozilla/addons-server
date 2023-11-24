@@ -39,7 +39,9 @@ class CinderEntity:
     def build_report_payload(self, *, report_text, category, reporter):
         context = self.get_context()
         if reporter:
-            context['entities'] += [reporter.get_entity_data()]
+            reporter_entity_data = reporter.get_entity_data()
+            if reporter_entity_data not in context['entities']:
+                context['entities'] += [reporter.get_entity_data()]
             context['relationships'] += [
                 reporter.get_relationship_data(self, 'amo_reporter_of')
             ]
