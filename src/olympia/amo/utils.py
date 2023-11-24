@@ -1287,22 +1287,26 @@ class BaseModelSerializerAndFormMixin:
 
 
 def backup_storage_enabled():
-    return (
+    return bool(
         settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
         and settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET
     )
 
 
-def copy_file_to_backup_storage(local_file_path, content_type):
+def backup_storage_blob(backup_file_name_remote):
     storage_client = google_storage.Client.from_service_account_json(
         settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
     )
     bucket = storage_client.bucket(settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET)
+    return bucket.blob(backup_file_name_remote)
+
+
+def copy_file_to_backup_storage(local_file_path, content_type):
     with open(local_file_path, 'rb') as f:
         hash_ = hashlib.sha256(f.read()).hexdigest()
     ext = guess_extension(content_type)
     backup_file_name_remote = f'{hash_}{ext}'
-    blob = bucket.blob(backup_file_name_remote)
+    blob = backup_storage_blob(backup_file_name_remote)
     # If the object already exists, generation_match_precondition set to 0 will
     # force the upload to fail. We want that, we don't need a second copy as
     # the name is based on the hash of the file.
@@ -1317,20 +1321,12 @@ def copy_file_to_backup_storage(local_file_path, content_type):
 
 
 def create_signed_url_for_file_backup(backup_file_name_remote):
-    storage_client = google_storage.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
-    )
-    bucket = storage_client.bucket(settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET)
-    blob = bucket.blob(backup_file_name_remote)
+    blob = backup_storage_blob(backup_file_name_remote)
     return blob.generate_signed_url(
         expiration=datetime.timedelta(days=REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS)
     )
 
 
 def download_file_contents_from_backup_storage(backup_file_name_remote):
-    storage_client = google_storage.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
-    )
-    bucket = storage_client.bucket(settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET)
-    blob = bucket.blob(backup_file_name_remote)
+    blob = backup_storage_blob(backup_file_name_remote)
     return blob.download_as_string()

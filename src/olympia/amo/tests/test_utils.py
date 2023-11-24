@@ -19,9 +19,15 @@ from google.api_core.exceptions import PreconditionFailed
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import (
     HttpResponseXSendFile,
     attach_trans_dict,
+    backup_storage_blob,
+    backup_storage_enabled,
+    copy_file_to_backup_storage,
+    create_signed_url_for_file_backup,
+    download_file_contents_from_backup_storage,
     extract_colors_from_image,
     get_locale_from_lang,
     id_to_path,
@@ -30,7 +36,7 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch,
     walkfiles,
 )
-from olympia.utils import backup_storage_enabled, copy_file_to_backup_storage
+from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 
 
 pytestmark = pytest.mark.django_db
@@ -419,17 +425,18 @@ def test_id_to_path_breadth(value, expected):
 
 def test_backup_storage_enabled():
     with override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE=None, GOOGLE_REPORTED_CONTENT_BUCKET=None
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE=None,
+        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET=None,
     ):
         assert not backup_storage_enabled()
     with override_settings(
         GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/something',
-        GOOGLE_REPORTED_CONTENT_BUCKET=None,
+        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET=None,
     ):
         assert not backup_storage_enabled()
     with override_settings(
         GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/something',
-        GOOGLE_REPORTED_CONTENT_BUCKET='buck',
+        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='buck',
     ):
         assert backup_storage_enabled()
 
@@ -439,19 +446,100 @@ def test_backup_storage_enabled():
     GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
     GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
 )
-def test_copy_file_to_backup_storage(google_storage_client_mock):
-    assert copy_file_to_backup_storage(local_file_path, 'image/png') == backup_file_name
-    assert blob.upload_from_filename.call_count == 1
-    assert blob.upload_from_filename.call_args == ()
+def test_backup_storage_setup(google_storage_client_mock):
+    from_service_account_json_mock = (
+        google_storage_client_mock.from_service_account_json
+    )
+    bucket_mock = from_service_account_json_mock.return_value.bucket
+    blob_mock = bucket_mock.return_value.blob
+    backup_file_name_remote = 'some_remöte_name.png'
+
+    assert backup_storage_blob(backup_file_name_remote) == blob_mock.return_value
+
+    assert from_service_account_json_mock.call_count == 1
+    assert from_service_account_json_mock.call_args_list[0][0] == (
+        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE,
+    )
+
+    assert bucket_mock.call_count == 1
+    assert bucket_mock.call_args_list[0][0] == (
+        settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET,
+    )
+    assert blob_mock.call_count == 1
+    assert blob_mock.call_args_list[0][0] == (backup_file_name_remote,)
 
 
-@mock.patch('google.cloud.storage.Client')
-@override_settings(
-    GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-    GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-)
-def test_copy_file_to_backup_storage_precondition_failed(google_storage_client_mock):
-    upload_from_filename.side_effect = PreconditionFailed
-    assert copy_file_to_backup_storage(local_file_path, 'image/png') == backup_file_name
-    assert blob.upload_from_filename.call_count == 1
-    assert blob.upload_from_filename.call_args == ()
+@mock.patch('olympia.amo.utils.backup_storage_blob')
+def test_copy_file_to_backup_storage(backup_storage_blob_mock):
+    local_file_path = get_image_path('sunbird-small.png')
+    expected_backup_file_name = (
+        '29125f1f4b1993cb472f278246c05c8ab271bf7e50c61abe126825ee6fa52ff3.png'
+    )
+    upload_from_filename_mock = (
+        backup_storage_blob_mock.return_value.upload_from_filename
+    )
+    upload_from_filename_mock.return_value = expected_backup_file_name
+
+    assert (
+        copy_file_to_backup_storage(local_file_path, 'image/png')
+        == expected_backup_file_name
+    )
+    assert backup_storage_blob_mock.call_count == 1
+    assert backup_storage_blob_mock.call_args_list[0][0] == (expected_backup_file_name,)
+    assert upload_from_filename_mock.call_count == 1
+    assert upload_from_filename_mock.call_args_list[0][0] == (local_file_path,)
+    assert upload_from_filename_mock.call_args_list[0][1] == {'if_generation_match': 0}
+
+
+@mock.patch('olympia.amo.utils.backup_storage_blob')
+def test_copy_file_to_backup_storage_precondition_failed(backup_storage_blob_mock):
+    local_file_path = get_image_path('sunbird-small.png')
+    expected_backup_file_name = (
+        '29125f1f4b1993cb472f278246c05c8ab271bf7e50c61abe126825ee6fa52ff3.png'
+    )
+    upload_from_filename_mock = (
+        backup_storage_blob_mock.return_value.upload_from_filename
+    )
+    upload_from_filename_mock.side_effect = PreconditionFailed('File exists')
+
+    assert (
+        copy_file_to_backup_storage(local_file_path, 'image/png')
+        == expected_backup_file_name
+    )
+    assert backup_storage_blob_mock.call_count == 1
+    assert backup_storage_blob_mock.call_args_list[0][0] == (expected_backup_file_name,)
+    assert upload_from_filename_mock.call_count == 1
+    assert upload_from_filename_mock.call_args_list[0][0] == (local_file_path,)
+    assert upload_from_filename_mock.call_args_list[0][1] == {'if_generation_match': 0}
+
+
+@mock.patch('olympia.amo.utils.backup_storage_blob')
+def test_create_signed_url_for_file_backup(backup_storage_blob_mock):
+    backup_file_name = 'sômeremotefile.png'
+    expected_signed_url = 'https://storage.example.com/fake-signed-url.png?foo=bar'
+    generate_signed_url_mock = backup_storage_blob_mock.return_value.generate_signed_url
+    generate_signed_url_mock.return_value = expected_signed_url
+    assert create_signed_url_for_file_backup(backup_file_name) == expected_signed_url
+
+    assert backup_storage_blob_mock.call_count == 1
+    assert backup_storage_blob_mock.call_args_list[0][0] == (backup_file_name,)
+    assert generate_signed_url_mock.call_count == 1
+    assert generate_signed_url_mock.call_args_list[0][0] == ()
+    assert generate_signed_url_mock.call_args_list[0][1] == {
+        'expiration': datetime.timedelta(days=REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS)
+    }
+
+
+@mock.patch('olympia.amo.utils.backup_storage_blob')
+def test_download_file_contents_from_backup_storage(backup_storage_blob_mock):
+    backup_file_name = 'sômeremotefile.png'
+    expected_contents = 'Fake Content'
+    download_as_string_mock = backup_storage_blob_mock.return_value.download_as_string
+    download_as_string_mock.return_value = expected_contents
+    assert (
+        download_file_contents_from_backup_storage(backup_file_name)
+        == expected_contents
+    )
+    assert backup_storage_blob_mock.call_count == 1
+    assert backup_storage_blob_mock.call_args_list[0][0] == (backup_file_name,)
+    assert download_as_string_mock.call_count == 1
