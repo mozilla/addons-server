@@ -113,21 +113,12 @@ class CinderUser(CinderEntity):
         return str(self.user.id)
 
     def get_attributes(self):
-        data = {
+        return {
             'id': self.id,
             'name': self.user.display_name,
             'email': self.user.email,
             'fxa_id': self.user.fxa_id,
         }
-        if self.user.picture_type and backup_storage_enabled():
-            filename = copy_file_to_backup_storage(
-                self.user.picture_path, self.user.picture_type
-            )
-            data['avatar'] = {
-                'value': create_signed_url_for_file_backup(filename),
-                'mime_type': self.user.picture_type,
-            }
-        return data
 
     def get_context(self):
         cinder_addons = [CinderAddon(addon) for addon in self.user.addons.all()]
@@ -196,6 +187,23 @@ class CinderAddon(CinderEntity):
                 for cinder_user in cinder_users
             ],
         }
+
+
+class CinderUserProfile(CinderUser):
+    # Same entity as CinderUser, but this is the one we're going to make
+    # reports against, as opposed to the one we'll be using in relationships.
+    # It includes extra metadata like the avatar.
+    def get_attributes(self):
+        data = super().get_attributes()
+        if self.user.picture_type and backup_storage_enabled():
+            filename = copy_file_to_backup_storage(
+                self.user.picture_path, self.user.picture_type
+            )
+            data['avatar'] = {
+                'value': create_signed_url_for_file_backup(filename),
+                'mime_type': self.user.picture_type,
+            }
+        return data
 
 
 class CinderRating(CinderEntity):

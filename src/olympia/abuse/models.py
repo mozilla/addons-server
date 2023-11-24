@@ -20,6 +20,7 @@ from .cinder import (
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
+    CinderUserProfile,
 )
 from .utils import (
     CinderActionApproveAppealOverride,
@@ -470,7 +471,7 @@ class CinderReport(ModelBase):
                 else:
                     return CinderAddon(target, version)
             elif isinstance(target, UserProfile):
-                return CinderUser(target)
+                return CinderUserProfile(target)
             elif isinstance(target, Rating):
                 return CinderRating(target)
             elif isinstance(target, Collection):
