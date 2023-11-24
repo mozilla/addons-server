@@ -3,7 +3,6 @@ import tempfile
 from unittest import mock
 
 from django.conf import settings
-from django.test.utils import override_settings
 
 import pytest
 from PIL import Image
@@ -18,10 +17,6 @@ from olympia.users.tasks import delete_photo, resize_photo
 pytestmark = pytest.mark.django_db
 
 
-@override_settings(
-    GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-    GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-)
 class TestDeletePhoto(TestCase):
     def setUp(self):
         self.user = user_factory(deleted=True)
@@ -30,10 +25,16 @@ class TestDeletePhoto(TestCase):
             dst.write(b'fake image\n')
         with self.storage.open(self.user.picture_path_original, mode='wb') as dst:
             dst.write(b'fake original image\n')
-        patcher = mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
-        self.copy_file_to_backup_storage_mock = patcher.start()
+
+        patcher1 = mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
+        self.copy_file_to_backup_storage_mock = patcher1.start()
         self.copy_file_to_backup_storage_mock.return_value = 'picture-backup-name.png'
-        self.addCleanup(patcher.stop)
+        self.addCleanup(patcher1.stop)
+
+        patcher2 = mock.patch('olympia.users.tasks.backup_storage_enabled')
+        self.backup_storage_enabled_mock = patcher2.start()
+        self.backup_storage_enabled_mock.return_value = True
+        self.addCleanup(patcher2.stop)
 
     def test_delete_photo(self):
         self.user.update(picture_type='image/png')
@@ -69,11 +70,8 @@ class TestDeletePhoto(TestCase):
         # We didn't backup it though, it shouldn't have been there.
         assert self.copy_file_to_backup_storage_mock.call_count == 0
 
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE=None,
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET=None,
-    )
     def test_delete_photo_banned_user_no_backup_storage_enabled(self):
+        self.backup_storage_enabled_mock.return_value = False
         self.user.update(banned=self.days_ago(1), picture_type='image/png')
         delete_photo(self.user.pk)
         assert not self.storage.exists(self.user.picture_path)

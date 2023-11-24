@@ -207,10 +207,7 @@ class TestUserProfile(TestCase):
         assert 'deleted your Mozilla account (we renamed Firefox Accounts' in email.body
 
     @mock.patch('olympia.users.tasks.copy_file_to_backup_storage')
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-    )
+    @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_ban_and_disable_related_content_bulk(
         self, copy_file_to_backup_storage_mock
     ):
@@ -380,10 +377,7 @@ class TestUserProfile(TestCase):
         }
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-    )
+    @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_unban_and_restore_banned_content(
         self, download_file_contents_from_backup_storage_mock
     ):
@@ -444,10 +438,7 @@ class TestUserProfile(TestCase):
         # tested in another test below.
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-    )
+    @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_unban_and_restore_banned_content_single(
         self, download_file_contents_from_backup_storage_mock
     ):
@@ -498,6 +489,7 @@ class TestUserProfile(TestCase):
         assert not self.storage.exists(user_multi.picture_path)
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
+    @mock.patch('olympia.users.models.backup_storage_enabled', lambda: False)
     def test_no_restoring_avatar_without_backup_storage_enabled(
         self, download_file_contents_from_backup_storage_mock
     ):

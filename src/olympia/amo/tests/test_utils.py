@@ -14,6 +14,7 @@ from django.utils.http import quote_etag
 import freezegun
 import pytest
 from babel import Locale
+from google.api_core.exceptions import PreconditionFailed
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -29,6 +30,7 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch,
     walkfiles,
 )
+from olympia.utils import backup_storage_enabled, copy_file_to_backup_storage
 
 
 pytestmark = pytest.mark.django_db
@@ -413,3 +415,43 @@ def test_id_to_path(value, expected):
 )
 def test_id_to_path_breadth(value, expected):
     assert id_to_path(value, breadth=2) == expected
+
+
+def test_backup_storage_enabled():
+    with override_settings(
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE=None, GOOGLE_REPORTED_CONTENT_BUCKET=None
+    ):
+        assert not backup_storage_enabled()
+    with override_settings(
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/something',
+        GOOGLE_REPORTED_CONTENT_BUCKET=None,
+    ):
+        assert not backup_storage_enabled()
+    with override_settings(
+        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/something',
+        GOOGLE_REPORTED_CONTENT_BUCKET='buck',
+    ):
+        assert backup_storage_enabled()
+
+
+@mock.patch('google.cloud.storage.Client')
+@override_settings(
+    GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
+    GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
+)
+def test_copy_file_to_backup_storage(google_storage_client_mock):
+    assert copy_file_to_backup_storage(local_file_path, 'image/png') == backup_file_name
+    assert blob.upload_from_filename.call_count == 1
+    assert blob.upload_from_filename.call_args == ()
+
+
+@mock.patch('google.cloud.storage.Client')
+@override_settings(
+    GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
+    GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
+)
+def test_copy_file_to_backup_storage_precondition_failed(google_storage_client_mock):
+    upload_from_filename.side_effect = PreconditionFailed
+    assert copy_file_to_backup_storage(local_file_path, 'image/png') == backup_file_name
+    assert blob.upload_from_filename.call_count == 1
+    assert blob.upload_from_filename.call_args == ()

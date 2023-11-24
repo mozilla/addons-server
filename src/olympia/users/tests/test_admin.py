@@ -5,7 +5,7 @@ from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage import default_storage as default_messages_storage
 from django.db import connection
 from django.test import RequestFactory
-from django.test.utils import CaptureQueriesContext, override_settings
+from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 from django.utils.formats import localize
 
@@ -741,10 +741,7 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         assert delete_picture_url in response.content.decode('utf-8')
 
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-    )
+    @mock.patch('olympia.users.admin.backup_storage_enabled', lambda: True)
     @mock.patch('olympia.users.admin.create_signed_url_for_file_backup')
     def test_banned_user_content_backup_picture(
         self, create_signed_url_for_file_backup_mock

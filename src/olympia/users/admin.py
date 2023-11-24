@@ -25,7 +25,7 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
-from olympia.amo.utils import create_signed_url_for_file_backup
+from olympia.amo.utils import backup_storage_enabled, create_signed_url_for_file_backup
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.constants.activity import LOG_STORE_IPS
@@ -89,7 +89,7 @@ class BannedUserContentInline(admin.TabularInline):
         return self.banned_content_link(obj, Rating)
 
     def picture_link(self, obj):
-        if obj.picture_backup_name:
+        if obj.picture_backup_name and backup_storage_enabled():
             url = create_signed_url_for_file_backup(obj.picture_backup_name)
             return mark_safe(f'<a href="{url}">{obj.picture_backup_name}</a>')
         return ''

@@ -504,22 +504,17 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
         }
 
-    @mock.patch('google.cloud.storage.Client')
-    @override_settings(
-        GOOGLE_APPLICATION_CREDENTIALS_STORAGE='/some/json',
-        GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET='some-bucket',
-    )
-    def test_build_report_payload_with_avatar(self, google_storage_client_mock):
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_avatar(
+        self, copy_file_to_backup_storage_mock, create_signed_url_for_file_backup_mock
+    ):
+        copy_file_to_backup_storage_mock.return_value = 'some_remote_path.png'
         fake_signed_avatar_url = (
             'https://storage.example.com/signed_url.png?some=thing&else=another'
         )
-        generate_signed_url = (
-            google_storage_client_mock.from_service_account_json()
-            .bucket()
-            .blob()
-            .generate_signed_url
-        )
-        generate_signed_url.return_value = fake_signed_avatar_url
+        create_signed_url_for_file_backup_mock.return_value = fake_signed_avatar_url
         user = self._create_dummy_target()
         self.root_storage.copy_stored_file(
             get_image_path('sunbird-small.png'), user.picture_path
@@ -548,6 +543,15 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
         }
+        assert copy_file_to_backup_storage_mock.call_count == 1
+        assert copy_file_to_backup_storage_mock.call_args[0] == (
+            user.picture_path,
+            user.picture_type,
+        )
+        assert create_signed_url_for_file_backup_mock.call_count == 1
+        assert create_signed_url_for_file_backup_mock.call_args[0] == (
+            'some_remote_path.png',
+        )
 
 
 class TestCinderRating(BaseTestCinderCase, TestCase):
