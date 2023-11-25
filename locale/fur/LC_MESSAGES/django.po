@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 07:21+0000\n"
+"PO-Revision-Date: 2023-11-25 07:38+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2497,22 +2497,22 @@ msgid "Use the fields below to upload your add-on package. After upload, a serie
 msgstr "Dopre i cjamps chi sot par cjariâ in rêt il pachet dal to component adizionâl. Dopo vêlu cjariât, il file al subirà une serie di provis di convalide automatizadis."
 
 msgid "Which applications is this version compatible with?"
-msgstr ""
+msgstr "Cun cualis aplicazions ise compatibile cheste version?"
 
 msgid "Administrative overrides"
-msgstr ""
+msgstr "Sostituzions aministrativis"
 
 msgid "Create a Theme Version"
-msgstr ""
+msgstr "Cree une version dal teme"
 
 msgid "Create a Theme"
-msgstr ""
+msgstr "Cree un teme"
 
 msgid "Theme generate"
-msgstr ""
+msgstr "Gjenerazion teme"
 
 msgid "Theme generator"
-msgstr ""
+msgstr "Gjeneradôr di teme"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
 msgstr ""
