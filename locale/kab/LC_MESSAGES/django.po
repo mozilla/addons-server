@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 12:31+0000\n"
+"PO-Revision-Date: 2023-11-25 12:34+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -4094,11 +4094,11 @@ msgstr "Cudd tignitin n yismal web ɣer yigmaḍ-ik n unadi."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Sekles asebtar web i meṛṛa — ula d tugniwin akked ufeṣṣel — deg yiwen ufaylu HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Beddel asebter web uqbel asiggez-is. Beddel igburen i d-yettbanen — kkes adellel neɣ yir agbur — i yal asebter wab i tebɣiḍ ad siggẓeḍ."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4566,7 +4566,7 @@ msgstr "<dd>%(review_author)s</dd>"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s"
-msgstr ""
+msgstr "s %(user)s ɣef %(date)s %(stars)s"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -4890,48 +4890,50 @@ msgid "Add-ons"
 msgstr "Izegrar"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Ddu γer usebter agejdan n Mozilla"
 
 msgid "About"
 msgstr "Γef"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Ablug n yizegrar Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Ablug n temɣiwent"
 
 msgid "Forum"
 msgstr "Anmager"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Amnir n ucegger"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Iminigen"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Tanarit"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Takebbanit"
 
 msgid "Products"
-msgstr ""
+msgstr "Ifarisen"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Tabaḍnit"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Inagan n tuqqna"
 
 msgid "Legal"
-msgstr ""
+msgstr "Usḍif"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Arama kan ur yeddi ara akked <a href=\"https://www.mozilla.org/about/legal/\">tizmilin tusdifin</a>, agbur n usmel-agi yella ddaw n turagt <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Creative Commons Attribution Share-Alike v3.0</a> neɣ ileqman imaynuten."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
