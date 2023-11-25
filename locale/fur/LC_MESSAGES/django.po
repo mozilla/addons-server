@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-24 15:58+0000\n"
+"PO-Revision-Date: 2023-11-25 07:05+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2476,16 +2476,16 @@ msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</
 msgstr "Par altris informazions, lei <a %(a_attrs)s>Inviament dal codiç sorzint</a> tal Laboratori estensions di Firefox."
 
 msgid "Upload source code:"
-msgstr ""
+msgstr "Cjame in rêt il codiç sorzint:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Acuardi di distribuzion pai components adizionâi"
 
 msgid "Upload Add-on"
-msgstr ""
+msgstr "Cjame component adizionâl"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Dulà ospitâ cheste version"
 
 msgid "Change"
 msgstr ""
