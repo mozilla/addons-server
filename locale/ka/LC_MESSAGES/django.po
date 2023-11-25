@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 22:36+0000\n"
+"PO-Revision-Date: 2023-11-25 22:43+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1934,7 +1934,7 @@ msgid "Add-on URL"
 msgstr "დამატების URL"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "შეარჩიეთ მოკლე, უნიკალური URL დაბოლოება, თქვენი დამატებისთვის."
+msgstr "შეარჩიეთ მოკლე, ბმულის განსხვავებული დაბოლოება, თქვენი დამატებისთვის."
 
 msgid "View Listing"
 msgstr "იხილეთ საიტზე"
@@ -3451,7 +3451,7 @@ msgstr "ისარგებლეთ სანიშნების გამ�
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr "მიუთითეთ სასურველი გვერდი, ახალი ჩანართებისთვის."
+msgstr "მიუთითეთ სასურველი გვერდი ახალი ჩანართებისთვის."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
