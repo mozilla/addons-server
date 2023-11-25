@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 07:38+0000\n"
+"PO-Revision-Date: 2023-11-25 07:42+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2515,22 +2515,22 @@ msgid "Theme generator"
 msgstr "Gjeneradôr di teme"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Atenzion: chestis proprietâts dal manifest, contignudis te ultime version dal component adizionâl cjamât in rêt, no son supuartadis de procedure vuidade, duncje a vignaran ignoradis:"
 
 msgid "Theme name"
-msgstr ""
+msgstr "Non dal teme"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "Selezione une imagjin di intestazion pal to teme"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "Altece conseade: 200 pixels"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "max 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG o GIF (cence animazion)"
 
 msgid "Aligned to top-right"
 msgstr ""
