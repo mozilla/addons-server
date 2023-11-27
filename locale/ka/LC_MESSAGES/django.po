@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 22:43+0000\n"
+"PO-Revision-Date: 2023-11-27 12:14+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1792,7 +1792,7 @@ msgstr "ბოლო მოქმედებები"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr "%(ago)s %(user)s-ის მიერ"
+msgstr "%(ago)s მომხმარებელი %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr "დამატებებთან დაკავშირებული ადრინდელი მოქმედებები "
