@@ -136,13 +136,16 @@ class TestCinderAction(TestCase):
         other_version = version_factory(
             addon=addon, file_kw={'status': amo.STATUS_DISABLED, 'is_signed': True}
         )
+        assert not other_version.due_date
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(addon_version=other_version.version)
         action.process()
         assert not listed_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.reload().needshumanreview_set.exists()
+        other_version.reload()
+        assert other_version.due_date
         assert (
-            other_version.reload().needshumanreview_set.get().reason
+            other_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_CINDER_ESCALATION
         )
         assert ActivityLog.objects.count() == 1
