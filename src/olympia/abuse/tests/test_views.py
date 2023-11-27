@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 )
 from olympia.ratings.models import Rating
 
-from ..models import AbuseReport, CinderReport
+from ..models import AbuseReport, CinderJob
 from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
 
 
@@ -811,6 +811,16 @@ class TestCinderWebhook(TestCase):
         with open(webhook_file) as file_object:
             return json.loads(file_object.read())
 
+    def _setup_reports(self):
+        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
+        guid = '1234'
+        cinder_job = CinderJob.objects.create(job_id=job_id)
+        return AbuseReport.objects.create(
+            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
+            guid=guid,
+            cinder_job=cinder_job,
+        )
+
     def get_request(self, **kwargs):
         data = kwargs.get('data', self.get_data())
         digest = hmac.new(
@@ -858,55 +868,49 @@ class TestCinderWebhook(TestCase):
         )
 
     def test_filter_enforcement_actions(self):
-        cinder_report = self._setup_report()
-        addon_factory(guid=cinder_report.abuse_report.guid)
-        assert filter_enforcement_actions([], cinder_report) == []
+        abuse_report = self._setup_reports()
+        cinder_job = abuse_report.cinder_job
+        addon_factory(guid=abuse_report.guid)
+        assert filter_enforcement_actions([], cinder_job) == []
         actions_from_json = [
             'amo-disable_addon',
             'amo-ban-user',
             'amo-approve',
             'not-amo-action',  # not a valid action at all
         ]
-        assert filter_enforcement_actions(actions_from_json, cinder_report) == [
-            CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        assert filter_enforcement_actions(actions_from_json, cinder_job) == [
+            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
             # no AMO_BAN_USER action because not a user target
-            CinderReport.DECISION_ACTIONS.AMO_APPROVE,
+            CinderJob.DECISION_ACTIONS.AMO_APPROVE,
         ]
 
         # check with another content type too
-        cinder_report.abuse_report.update(guid=None, user=user_factory())
-        assert filter_enforcement_actions(actions_from_json, cinder_report) == [
+        abuse_report.update(guid=None, user=user_factory())
+        assert filter_enforcement_actions(actions_from_json, cinder_job) == [
             # no AMO_DISABLE_ADDON action because not an add-on target
-            CinderReport.DECISION_ACTIONS.AMO_BAN_USER,
-            CinderReport.DECISION_ACTIONS.AMO_APPROVE,
+            CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+            CinderJob.DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def _setup_report(self):
-        job_id = 'd16e1ebc-b6df-4742-83c1-61f5ed3bd644'
-        abuse_report = AbuseReport.objects.create(
-            reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE, guid='1234'
-        )
-        return CinderReport.objects.create(job_id=job_id, abuse_report=abuse_report)
-
     def test_process_decision_called(self):
-        cinder_report = self._setup_report()
-        addon_factory(guid=cinder_report.abuse_report.guid)
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
         req = self.get_request()
-        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_called()
             process_mock.assert_called_with(
                 decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
-                decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
     def _test_wrong_queue(self, data):
-        self._setup_report()
+        self._setup_reports()
         req = self.get_request(data=data)
-        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
         assert response.status_code == 200
@@ -929,11 +933,11 @@ class TestCinderWebhook(TestCase):
         self._test_wrong_queue(data)
 
     def test_not_decision_event(self):
-        self._setup_report()
+        self._setup_reports()
         data = self.get_data()
         data['event'] = 'report.created'
         req = self.get_request(data=data)
-        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
         assert response.status_code == 200
@@ -947,7 +951,7 @@ class TestCinderWebhook(TestCase):
 
     def test_no_cinder_report(self):
         req = self.get_request()
-        with mock.patch.object(CinderReport, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_not_called()
         assert response.status_code == 200
@@ -960,8 +964,8 @@ class TestCinderWebhook(TestCase):
         }
 
     def test_invalid_decision_action(self):
-        cinder_report = self._setup_report()
-        addon_factory(guid=cinder_report.abuse_report.guid)
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
         data = self.get_data()
 
         data['payload']['enforcement_actions'] = []
@@ -1480,33 +1484,51 @@ class TestCollectionAbuseViewSetLoggedIn(CollectionAbuseViewSetTestBase, TestCas
 class TestAppeal(TestCase):
     def setUp(self):
         self.addon = addon_factory()
+        self.cinder_job = CinderJob.objects.create(
+            decision_id='my-decision-id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+            decision_date=self.days_ago(1),
+            created=self.days_ago(2),
+        )
         self.abuse_report = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
             guid=self.addon.guid,
-            created=self.days_ago(2),
-        )
-        self.cinder_report = CinderReport.objects.create(
-            abuse_report=self.abuse_report,
-            decision_id='my-decision-id',
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_APPROVE,
-            decision_date=self.days_ago(1),
-            created=self.abuse_report.created,
+            created=self.cinder_job.created,
+            cinder_job=self.cinder_job,
         )
         self.url = reverse(
-            'abuse.appeal', kwargs={'decision_id': self.cinder_report.decision_id}
+            'abuse.appeal',
+            kwargs={
+                'abuse_report_id': self.abuse_report.id,
+                'decision_id': self.cinder_job.decision_id,
+            },
         )
         patcher = mock.patch('olympia.abuse.views.appeal_to_cinder')
         self.addCleanup(patcher.stop)
         self.appeal_mock = patcher.start()
 
     def test_no_decision_yet(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.NO_DECISION
-        )
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.NO_DECISION)
         assert self.client.get(self.url).status_code == 404
 
     def test_no_such_decision(self):
-        url = reverse('abuse.appeal', kwargs={'decision_id': '1234-5678-9000'})
+        url = reverse(
+            'abuse.appeal',
+            kwargs={
+                'abuse_report_id': self.abuse_report.id,
+                'decision_id': '1234-5678-9000',
+            },
+        )
+        assert self.client.get(url).status_code == 404
+
+    def test_no_such_abuse_report(self):
+        url = reverse(
+            'abuse.appeal',
+            kwargs={
+                'abuse_report_id': self.abuse_report.id + 1,
+                'decision_id': self.cinder_job.decision_id,
+            },
+        )
         assert self.client.get(url).status_code == 404
 
     def test_appeal_approval_anonymous_report_with_no_email(self):
@@ -1563,12 +1585,12 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
-            'decision_id': self.cinder_report.decision_id,
+            'abuse_report_id': self.abuse_report.id,
             'user_id': None,
         }
 
     def test_appeal_approval_anonymous_report_with_email_post_cant_be_appealed(self):
-        self.cinder_report.update(decision_date=self.days_ago(200))
+        self.cinder_job.update(decision_date=self.days_ago(200))
         self.abuse_report.update(reporter_email='me@example.com')
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1621,7 +1643,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
     def test_appeal_approval_logged_in_report_cant_be_appealed(self):
-        self.cinder_report.update(decision_date=self.days_ago(200))
+        self.cinder_job.update(decision_date=self.days_ago(200))
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.client.force_login(self.user)
@@ -1636,15 +1658,15 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
     def test_appeal_rejection_not_logged_in(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         response = self.client.get(self.url)
         self.assertLoginRedirects(response, self.url)
 
     def test_appeal_rejection_not_author(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         user = user_factory()
         self.client.force_login(user)
@@ -1652,8 +1674,8 @@ class TestAppeal(TestCase):
         assert response.status_code == 403
 
     def test_appeal_rejection_author(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         user = user_factory()
         self.addon.authors.add(user)
@@ -1678,14 +1700,12 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
-            'decision_id': self.cinder_report.decision_id,
+            'abuse_report_id': self.abuse_report.id,
             'user_id': user.pk,
         }
 
     def test_appeal_banned_user(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER
-        )
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
         response = self.client.post(self.url, {'email': self.abuse_report.user.email})
         assert response.status_code == 200
@@ -1710,14 +1730,12 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I am not a bad guy',
-            'decision_id': self.cinder_report.decision_id,
+            'abuse_report_id': self.abuse_report.id,
             'user_id': None,
         }
 
     def test_appeal_banned_user_wrong_email(self):
-        self.cinder_report.update(
-            decision_action=CinderReport.DECISION_ACTIONS.AMO_BAN_USER
-        )
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
         response = self.client.post(self.url, {'email': 'me@example.com'})
         assert response.status_code == 200

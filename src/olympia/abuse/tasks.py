@@ -10,7 +10,7 @@ from olympia.amo.decorators import use_primary_db
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .models import AbuseReport, CinderReport
+from .models import AbuseReport, CinderJob
 
 
 @task
@@ -60,15 +60,14 @@ def report_to_cinder(abuse_report_id):
     abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
     if not abuse_report:
         return
-    cinder_report = CinderReport.objects.create(abuse_report=abuse_report)
-    cinder_report.report()
+    CinderJob.report(abuse_report)
 
 
 @task
 @use_primary_db
 @atomic
-def appeal_to_cinder(*, decision_id, appeal_text, user_id):
-    cinder_report = CinderReport.objects.get(decision_id=decision_id)
+def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id):
+    abuse_report = AbuseReport.objects.get(id=abuse_report_id)
     if user_id:
         user = UserProfile.objects.get(pk=user_id)
     else:
@@ -77,4 +76,4 @@ def appeal_to_cinder(*, decision_id, appeal_text, user_id):
         # anonymous reporter and we have their name/email in the abuse report
         # already.
         user = None
-    cinder_report.appeal(appeal_text, user)
+    abuse_report.cinder_job.appeal(abuse_report, appeal_text, user)
