@@ -34,7 +34,6 @@ class CinderActionBanUser(CinderAction):
 
     def process(self):
         if isinstance(self.target, UserProfile) and not self.target.banned:
-            log_create(amo.LOG.ADMIN_USER_BANNED, self.target)
             UserProfile.objects.filter(
                 pk=self.target.pk
             ).ban_and_disable_related_content()
