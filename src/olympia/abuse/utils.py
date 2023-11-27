@@ -34,7 +34,6 @@ class CinderActionBanUser(CinderAction):
 
     def process(self):
         if isinstance(self.target, UserProfile) and not self.target.banned:
-            log_create(amo.LOG.ADMIN_USER_BANNED, self.target)
             UserProfile.objects.filter(
                 pk=self.target.pk
             ).ban_and_disable_related_content()
@@ -69,12 +68,12 @@ class CinderActionEscalateAddon(CinderAction):
                 .filter(version__in=reported_versions)
                 .no_transforms()
             )
-            NeedsHumanReview.objects.bulk_create(
-                (
-                    NeedsHumanReview(version=version_obj, reason=reason, is_active=True)
-                    for version_obj in version_objs
+            # We need custom save() and post_save to be triggered, so we can't
+            # optimize this via bulk_create().
+            for version in version_objs:
+                NeedsHumanReview.objects.create(
+                    version=version, reason=reason, is_active=True
                 )
-            )
             # If we have more versions specified than versions we flagged, flag latest
             # to be safe. (Either because there was an unknown version, or a None)
             if (

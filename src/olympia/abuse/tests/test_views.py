@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 from unittest import mock
 
+from django.conf import settings
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_bytes
@@ -24,6 +25,7 @@ from olympia.amo.tests import (
     reverse_ns,
     user_factory,
 )
+from olympia.core import get_user, set_user
 from olympia.ratings.models import Rating
 
 from ..models import AbuseReport, CinderJob
@@ -806,6 +808,9 @@ class TestUserAbuseViewSetLoggedIn(UserAbuseViewSetTestBase, TestCase):
 @override_settings(CINDER_WEBHOOK_TOKEN='webhook-token')
 @override_settings(CINDER_QUEUE_PREFIX='amo-')
 class TestCinderWebhook(TestCase):
+    def setUp(self):
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+
     def get_data(self):
         webhook_file = os.path.join(TESTS_DIR, 'assets', 'cinder_webhook.json')
         with open(webhook_file) as file_object:
@@ -1009,6 +1014,13 @@ class TestCinderWebhook(TestCase):
                 ),
             }
         }
+
+    def test_set_user(self):
+        set_user(user_factory())
+        req = self.get_request()
+        response = cinder_webhook(req)
+        assert response.status_code == 200
+        assert get_user() == self.task_user
 
 
 class RatingAbuseViewSetTestBase:

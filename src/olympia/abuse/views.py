@@ -27,7 +27,9 @@ from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
 from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrottle
 from olympia.bandwagon.views import CollectionViewSet
+from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
+from olympia.users.models import UserProfile
 
 from .cinder import CinderEntity
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
@@ -196,6 +198,10 @@ def filter_enforcement_actions(enforcement_actions, cinder_report):
 @authentication_classes(())
 @permission_classes((CinderInboundPermission,))
 def cinder_webhook(request):
+    # Normally setting the user would be done in the authentication class but
+    # we don't have one here.
+    set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
+
     try:
         if request.data.get('event') != 'decision.created':
             log.info('Non-decision payload received: %s', str(request.data)[:255])
