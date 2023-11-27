@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.conf import settings
 from django.test.utils import override_settings
 
@@ -11,6 +13,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.models import CollectionAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -22,6 +25,7 @@ from ..cinder import (
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
+    CinderUserProfile,
 )
 
 
@@ -377,8 +381,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
 
 
-class TestCinderUser(BaseTestCinderCase, TestCase):
-    cinder_class = CinderUser
+class TestCinderUserProfile(BaseTestCinderCase, TestCase):
+    cinder_class = CinderUserProfile
 
     def _create_dummy_target(self, **kwargs):
         return user_factory(**kwargs)
@@ -583,6 +587,55 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 },
             ],
         }
+
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_picture(
+        self, copy_file_to_backup_storage_mock, create_signed_url_for_file_backup_mock
+    ):
+        copy_file_to_backup_storage_mock.return_value = 'some_remote_path.png'
+        fake_signed_picture_url = (
+            'https://storage.example.com/signed_url.png?some=thing&else=another'
+        )
+        create_signed_url_for_file_backup_mock.return_value = fake_signed_picture_url
+        user = self._create_dummy_target()
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), user.picture_path
+        )
+        user.update(picture_type='image/png')
+
+        reason = 'bad person!'
+        cinder_user = self.cinder_class(user)
+
+        data = cinder_user.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_user',
+            'entity': {
+                'id': str(user.id),
+                'avatar': {
+                    'value': fake_signed_picture_url,
+                    'mime_type': 'image/png',
+                },
+                'name': user.display_name,
+                'email': user.email,
+                'fxa_id': user.fxa_id,
+            },
+            'reasoning': reason,
+            'context': {'entities': [], 'relationships': []},
+        }
+        assert copy_file_to_backup_storage_mock.call_count == 1
+        assert copy_file_to_backup_storage_mock.call_args[0] == (
+            user.picture_path,
+            user.picture_type,
+        )
+        assert create_signed_url_for_file_backup_mock.call_count == 1
+        assert create_signed_url_for_file_backup_mock.call_args[0] == (
+            'some_remote_path.png',
+        )
 
 
 class TestCinderRating(BaseTestCinderCase, TestCase):

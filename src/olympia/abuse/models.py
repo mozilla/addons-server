@@ -9,6 +9,7 @@ from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.api.utils import APIChoicesWithDash, APIChoicesWithNone
 from olympia.bandwagon.models import Collection
+from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -19,6 +20,7 @@ from .cinder import (
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
+    CinderUserProfile,
 )
 from .utils import (
     CinderActionApproveAppealOverride,
@@ -432,7 +434,6 @@ class CinderReport(ModelBase):
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
     )
-    APPEAL_EXPIRATION_DAYS = 184
 
     job_id = models.CharField(max_length=36)
     abuse_report = models.OneToOneField(
@@ -451,7 +452,7 @@ class CinderReport(ModelBase):
             and self.decision_date
             and not self.appeal_id
             and self.decision_date
-            >= datetime.now() - timedelta(days=self.APPEAL_EXPIRATION_DAYS)
+            >= datetime.now() - timedelta(days=APPEAL_EXPIRATION_DAYS)
         )
 
     def get_entity_helper(self):
@@ -470,7 +471,7 @@ class CinderReport(ModelBase):
                 else:
                     return CinderAddon(target, version)
             elif isinstance(target, UserProfile):
-                return CinderUser(target)
+                return CinderUserProfile(target)
             elif isinstance(target, Rating):
                 return CinderRating(target)
             elif isinstance(target, Collection):

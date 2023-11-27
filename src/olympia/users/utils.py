@@ -268,3 +268,20 @@ class RestrictionChecker:
         except IndexError:
             msg = None
         return msg
+
+
+def upload_picture(user, picture):
+    from olympia.users.tasks import resize_photo
+
+    original = user.picture_path_original
+
+    storage = amo.utils.SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+    with storage.open(original, 'wb') as original_file:
+        for chunk in picture.chunks():
+            original_file.write(chunk)
+    user.update(picture_type=picture.content_type)
+    resize_photo.delay(
+        original,
+        user.picture_path,
+        set_modified_on=user.serializable_reference(),
+    )

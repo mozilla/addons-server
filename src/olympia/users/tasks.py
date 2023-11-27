@@ -1,27 +1,52 @@
 import olympia.core.logger
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on
-from olympia.amo.utils import SafeStorage, resize_image
+from olympia.amo.decorators import set_modified_on, use_primary_db
+from olympia.amo.utils import (
+    SafeStorage,
+    backup_storage_enabled,
+    copy_file_to_backup_storage,
+    resize_image,
+)
 
-from .models import UserProfile
+from .models import BannedUserContent, UserProfile
 
 
 task_log = olympia.core.logger.getLogger('z.task')
 
 
 @task
+@use_primary_db
 def delete_photo(pk, **kw):
     task_log.info('[1@None] Deleting photo for user: %s.' % pk)
 
-    user = UserProfile(id=pk)
+    user = UserProfile.objects.get(pk=pk)
     storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='userpics')
+    banned = kw.get('banned') or user.banned
+    if user.picture_type and banned:
+        if backup_storage_enabled() and storage.exists(user.picture_path_original):
+            # When deleting a picture as part of a ban, we keep a copy of the
+            # original picture for the duration of the potential appeal process.
+            picture_backup_name = copy_file_to_backup_storage(
+                user.picture_path_original, user.picture_type
+            )
+            task_log.info(
+                'Copied picture for banned user %s to %s', pk, picture_backup_name
+            )
+            BannedUserContent.objects.update_or_create(
+                user=user,
+                defaults={
+                    'picture_backup_name': picture_backup_name,
+                    'picture_type': user.picture_type,
+                },
+            )
+        user.update(picture_type=None)
     storage.delete(user.picture_path)
     storage.delete(user.picture_path_original)
 
 
 @task
 @set_modified_on
-def resize_photo(src, dst, locally=False, **kw):
+def resize_photo(src, dst, **kw):
     """Resizes userpics to 200x200"""
     task_log.info('[1@None] Resizing photo: %s' % dst)
 

@@ -3,6 +3,7 @@ import contextlib
 import datetime
 import errno
 import functools
+import hashlib
 import itertools
 import json
 import operator
@@ -14,6 +15,7 @@ import subprocess
 import tempfile
 import time
 import unicodedata
+from mimetypes import guess_extension
 from urllib.parse import (
     ParseResult,
     parse_qsl,
@@ -50,6 +52,8 @@ import markupsafe
 import pytz
 from babel import Locale
 from django_statsd.clients import statsd
+from google.api_core.exceptions import PreconditionFailed
+from google.cloud import storage as google_storage
 from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
@@ -57,6 +61,7 @@ from rest_framework.utils.formatting import lazy_format
 
 from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing
+from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.logger import getLogger
 from olympia.lib import unicodehelper
 from olympia.translations.models import Translation
@@ -1279,3 +1284,49 @@ class BaseModelSerializerAndFormMixin:
                         field.validators.append(
                             MaxLengthValidator(field.max_length, message=message)
                         )
+
+
+def backup_storage_enabled():
+    return bool(
+        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
+        and settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET
+    )
+
+
+def backup_storage_blob(backup_file_name_remote):
+    storage_client = google_storage.Client.from_service_account_json(
+        settings.GOOGLE_APPLICATION_CREDENTIALS_STORAGE
+    )
+    bucket = storage_client.bucket(settings.GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET)
+    return bucket.blob(backup_file_name_remote)
+
+
+def copy_file_to_backup_storage(local_file_path, content_type):
+    with open(local_file_path, 'rb') as f:
+        hash_ = hashlib.sha256(f.read()).hexdigest()
+    ext = guess_extension(content_type)
+    backup_file_name_remote = f'{hash_}{ext}'
+    blob = backup_storage_blob(backup_file_name_remote)
+    # If the object already exists, generation_match_precondition set to 0 will
+    # force the upload to fail. We want that, we don't need a second copy as
+    # the name is based on the hash of the file.
+    generation_match_precondition = 0
+    try:
+        blob.upload_from_filename(
+            local_file_path, if_generation_match=generation_match_precondition
+        )
+    except PreconditionFailed:
+        pass
+    return backup_file_name_remote
+
+
+def create_signed_url_for_file_backup(backup_file_name_remote):
+    blob = backup_storage_blob(backup_file_name_remote)
+    return blob.generate_signed_url(
+        expiration=datetime.timedelta(days=REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS)
+    )
+
+
+def download_file_contents_from_backup_storage(backup_file_name_remote):
+    blob = backup_storage_blob(backup_file_name_remote)
+    return blob.download_as_bytes()

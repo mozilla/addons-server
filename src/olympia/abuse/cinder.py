@@ -3,6 +3,12 @@ from django.utils.functional import classproperty
 
 import requests
 
+from olympia.amo.utils import (
+    backup_storage_enabled,
+    copy_file_to_backup_storage,
+    create_signed_url_for_file_backup,
+)
+
 
 class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
@@ -183,6 +189,23 @@ class CinderAddon(CinderEntity):
                 for cinder_user in cinder_users
             ],
         }
+
+
+class CinderUserProfile(CinderUser):
+    # Same entity as CinderUser, but this is the one we're going to make
+    # reports against, as opposed to the one we'll be using in relationships.
+    # It includes extra metadata like the avatar.
+    def get_attributes(self):
+        data = super().get_attributes()
+        if self.user.picture_type and backup_storage_enabled():
+            filename = copy_file_to_backup_storage(
+                self.user.picture_path, self.user.picture_type
+            )
+            data['avatar'] = {
+                'value': create_signed_url_for_file_backup(filename),
+                'mime_type': self.user.picture_type,
+            }
+        return data
 
 
 class CinderRating(CinderEntity):

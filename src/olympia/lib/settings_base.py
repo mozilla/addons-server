@@ -1502,13 +1502,28 @@ BLOCKLIST_REMOTE_SETTINGS_PASSWORD = env(
     'BLOCKLIST_KINTO_PASSWORD', default='amo_dev_password'
 )
 
-# The path to the current google service account configuration. This is
-# being used to query Google BigQuery as part of our stats processing.
+# The path to the current google service account configuration for BigQuery.
+# This is being used to query Google BigQuery as part of our stats processing.
 # If this is `None` we're going to use service mocks for testing
-GOOGLE_APPLICATION_CREDENTIALS = env('GOOGLE_APPLICATION_CREDENTIALS', default=None)
+GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
+    'GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY',
+    default=env('GOOGLE_APPLICATION_CREDENTIALS', default=None),
+)
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
 BIGQUERY_AMO_DATASET = 'amo_dev'
+
+# The path to the current google service account configuration for Google Cloud
+# Storage (should be able to upload, download and sign objects with its private
+# key).
+# This is being used to store copies of content being reported/banned.
+# If this is `None` we're going to use service mocks for testing
+GOOGLE_APPLICATION_CREDENTIALS_STORAGE = env(
+    'GOOGLE_APPLICATION_CREDENTIALS_STORAGE', default=None
+)
+GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET = env(
+    'GOOGLE_STORAGE_REPORTED_CONTENT_BUCKET', default=None
+)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 

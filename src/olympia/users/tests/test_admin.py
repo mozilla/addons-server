@@ -27,6 +27,7 @@ from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.admin import UserAdmin
 from olympia.users.models import (
+    BannedUserContent,
     EmailUserRestriction,
     IPNetworkUserRestriction,
     UserHistory,
@@ -739,6 +740,33 @@ class TestUserAdmin(TestCase):
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert delete_picture_url in response.content.decode('utf-8')
+
+    @mock.patch('olympia.users.admin.backup_storage_enabled', lambda: True)
+    @mock.patch('olympia.users.admin.create_signed_url_for_file_backup')
+    def test_banned_user_content_backup_picture(
+        self, create_signed_url_for_file_backup_mock
+    ):
+        banned_user_content = BannedUserContent.objects.create(
+            user=self.user,
+            picture_type='image/png',
+            picture_backup_name='something.png',
+        )
+        backup_picture_url = 'https://storage.example.com/signed-something.png'
+        create_signed_url_for_file_backup_mock.return_value = backup_picture_url
+
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, 'Admin:Advanced')
+        self.client.force_login(user)
+        response = self.client.get(self.detail_url, follow=True)
+
+        assert response.status_code == 200
+        assert create_signed_url_for_file_backup_mock.call_count == 1
+        assert create_signed_url_for_file_backup_mock.call_args_list[0][0] == (
+            banned_user_content.picture_backup_name,
+        )
+
+        assert backup_picture_url in response.content.decode('utf-8')
 
     def test_ban(self):
         ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk,))
