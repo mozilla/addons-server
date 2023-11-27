@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-20 07:43+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2023-11-27 13:06+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -2383,7 +2383,7 @@ msgid "Manage Listing"
 msgstr "Gerer le lista de presentation"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
-msgstr "Tu pote alsi modificar iste version pro adder notas de version o codification fonte, si tu invio include codification minimisate, concatenate o alteremente generate automaticamente."
+msgstr "Tu pote etiam modificar iste version pro adder notas de version, o codice fonte si tu invio include codice minimisate, concatenate o alteremente generate automaticamente."
 
 msgid "Edit version {0}"
 msgstr "Rediger version {0}"
@@ -2428,7 +2428,7 @@ msgid "Your source code must include:"
 msgstr "Tu codice fonte debe includer:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instructiones de fabrication passo-passo pro crear un copia exacte del codification del additivo, in un file README in tu codice fonte o in le notas de revisor sur le pagina sequente."
+msgstr "Instructiones de fabrication passo-passo pro crear un copia exacte del codice del additivo, in un file README in tu codice fonte o in le notas de revisor sur le pagina sequente."
 
 msgid "A build script that executes all necessary technical steps."
 msgstr "Un script de compilation que exeque tote le necessari grados technic."
@@ -2804,7 +2804,7 @@ msgid "End-User License Agreement"
 msgstr "End-User License Agreement"
 
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Nota que un EULA non es le mesme cosa que un licentia de codification, tal como le GPL o MPL. Illo es pertinente solo al additivos listate."
+msgstr "Nota que un EULA non es le mesme cosa que un licentia de codice, como le GPL o MPL. Illo es pertinente solo al additivos listate."
 
 msgid "Privacy Policy"
 msgstr "Politica de confidentialitate"
@@ -2815,7 +2815,7 @@ msgstr ""
 "additivos listate publicamente."
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code other than known libraries, upload its sources for review."
-msgstr "Si tu additivo contine codification minimisate, concatenate o alteremente generate automaticamente altere que note bibliothecas, carga su fontes pro revision."
+msgstr "Si tu additivo contine codice minimisate, concatenate o alteremente generate automaticamente, altere que bibliothecas cognoscite, incarga su codice fonte pro revision."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
@@ -2908,7 +2908,7 @@ msgid "Write Some Code"
 msgstr "Scribe alcun codice"
 
 msgid "Help make add-ons better by contributing your coding skills."
-msgstr "Adjuta a meliorar le additivos per tu habilitates de codification."
+msgstr "Adjuta a meliorar le additivos contribuente tu habilitates de programmation."
 
 #. editorial content for the secondary hero shelves.
 msgid "Get started"
@@ -3029,7 +3029,7 @@ msgid "Source code"
 msgstr "Codice fonte"
 
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Si tu additivo contine codification minimisate, concatenate o altere generate automaticamente, rende le fonte disponibile hic pro revisores."
+msgstr "Si tu additivo contine codice minimisate, concatenate o altere generate automaticamente, rende le codice fonte disponibile hic pro revisores."
 
 msgid "File {file_id}"
 msgstr "File {file_id}"
