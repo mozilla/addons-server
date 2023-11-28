@@ -1864,6 +1864,17 @@ class TestAddonModels(TestCase):
         addon.promoted.update(application_id=amo.ANDROID.id)
         assert addon.can_be_compatible_with_all_fenix_versions
 
+    def test_can_be_compatible_with_all_fenix_versions_property_sneak_peek(self):
+        addon = addon_factory()
+        assert not addon.can_be_compatible_with_all_fenix_versions
+
+        for guid in amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK:
+            addon.update(guid=guid)
+            assert addon.can_be_compatible_with_all_fenix_versions
+
+        addon.update(guid='@whatever')
+        assert not addon.can_be_compatible_with_all_fenix_versions
+
 
 class TestAddonUser(TestCase):
     def test_delete(self):

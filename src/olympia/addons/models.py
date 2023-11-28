@@ -1587,7 +1587,7 @@ class Addon(OnChangeMixin, ModelBase):
             self.promoted
             and self.promoted.group.can_be_compatible_with_all_fenix_versions
             and amo.ANDROID in self.promoted.approved_applications
-        )
+        ) or self.guid in amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK
 
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""

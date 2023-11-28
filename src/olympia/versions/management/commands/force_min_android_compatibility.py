@@ -16,20 +16,32 @@ log = olympia.core.logger.getLogger('z.versions.force_min_android_compatibility'
 class Command(BaseCommand):
     """
     Force current version of add-ons in the specified csv to be compatible with
-    Firefox for Android <MIN_VERSION_FENIX_GENERAL_AVAILABILITY> and higher.
+    Firefox for Android <MIN_VERSION_FENIX_GENERAL_AVAILABILITY> and higher,
+    or <MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK> and higher if using
+    --sneak-peek.
 
     Should not affect compatibility of add-ons recommended/line for Android.
     """
 
     help = (
         'Force add-ons to be compatible with Firefox for Android '
-        f'{amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY} and higher'
+        f'{amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY} and higher '
+        f'or {amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK} if using '
+        '--sneak-peek.'
     )
 
     def add_arguments(self, parser):
         parser.add_argument(
             'CSVFILE',
             help='Path to CSV file containing add-on ids.',
+        )
+        parser.add_argument(
+            '--sneak-peek',
+            action='store_true',
+            help=(
+                'Sneak peek mode - makes specified add-ons available in '
+                f'{amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK} instead.'
+            ),
         )
 
     def read_csv(self, path):
@@ -44,17 +56,23 @@ class Command(BaseCommand):
             ]
 
     def handle(self, *args, **kwargs):
+        sneak_peek_mode = kwargs.get('sneak_peek')
+        target_min_version = (
+            amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK
+            if sneak_peek_mode
+            else amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY
+        )
         addon_ids = self.read_csv(kwargs['CSVFILE'])
         min_version_fenix = AppVersion.objects.get(
             application=amo.ANDROID.id,
-            version=amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY,
+            version=target_min_version,
         )
         max_version_fenix = AppVersion.objects.get(
             application=amo.ANDROID.id, version=amo.DEFAULT_WEBEXT_MAX_VERSION
         )
         addons = (
             Addon.objects.filter(pk__in=addon_ids)
-            .no_transforms()
+            # .no_transforms()
             .select_related(
                 'promotedaddon', '_current_version', '_current_version__file'
             )
@@ -62,7 +80,7 @@ class Command(BaseCommand):
         count = 0
         skipped = 0
         for addon in addons:
-            if addon.can_be_compatible_with_all_fenix_versions:
+            if not sneak_peek_mode and addon.can_be_compatible_with_all_fenix_versions:
                 log.info(
                     'Skipping add-on id %d because it can be compatible with Fenix.',
                     addon.pk,
@@ -81,7 +99,8 @@ class Command(BaseCommand):
                 )
                 count += 1
         log.info(
-            'Done forcing Android compatibility on %d add-ons (%d skipped)',
+            'Done forcing Android compatibility to %s on %d add-ons (%d skipped)',
+            target_min_version,
             count,
             skipped,
         )
