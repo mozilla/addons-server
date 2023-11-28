@@ -725,6 +725,12 @@ def review(request, addon, channel=None):
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,
+        has_versions_with_due_date_in_other_channel=addon.versions(
+            manager='unfiltered_for_relations'
+        )
+        .exclude(channel=channel)
+        .filter(due_date__isnull=False)
+        .exists(),
         important_changes_log=important_changes_log,
         is_admin=is_admin,
         language_dict=dict(settings.LANGUAGES),

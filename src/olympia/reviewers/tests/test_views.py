@@ -2616,7 +2616,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(52):
+        with self.assertNumQueries(53):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2677,6 +2677,7 @@ class TestReview(ReviewBase):
             # 50. select all versions in channel for versions dropdown widget
             # 51. reviewer reasons for the reason dropdown
             # 52. select users by role for this add-on (?)
+            # 53. unreviewed versions in other channel
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -2778,6 +2779,59 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         score = doc('.listing-body .maliciousness-score')
         assert score.text() == 'Maliciousness Score:\n10% ?'
+
+    def test_item_history_unreviewed_version_in_unlisted_queue(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#unreviewed-other-queue .unreviewed-versions-warning')
+
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=datetime.now() + timedelta(hours=1, minutes=1),
+        )
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
+            'This add-on has 1 or more versions with a due date in another channel.'
+        )
+
+    def test_item_history_unreviewed_version_in_listed_queue(self):
+        self.addon.versions.update(channel=amo.CHANNEL_UNLISTED)
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
+
+        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+
+        unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#unreviewed-other-queue .unreviewed-versions-warning')
+
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+            due_date=datetime.now() + timedelta(hours=1, minutes=1),
+        )
+        self.addon.update_version()
+        assert self.addon.versions.filter(channel=amo.CHANNEL_LISTED).count() == 1
+
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning')
+        assert doc('#unreviewed-other-queue .unreviewed-versions-warning').text() == (
+            'This add-on has 1 or more versions with a due date in another channel.'
+        )
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
@@ -5275,7 +5329,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(53):
+        with self.assertNumQueries(54):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
