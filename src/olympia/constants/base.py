@@ -367,6 +367,42 @@ MAX_VERSION_FENNEC = '68.*'
 # to be lowered back to 120.0 later.
 MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '121.0a1'
 
+# The minimum version of Fenix where a select group of extensions are available
+# on top of the recommended ones. Will be dropped once we have full general
+# availability.
+MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK = '120.0'
+FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK = (
+    'android_scroll_bottom@davero.addons.mozilla.org',
+    'android_scroll_top@davero.addons.mozilla.org',
+    'admin@fastaddons.com_AutoHighlight',
+    'batterdarkerdocs@threethan.github.io',
+    'black-menu-for-wikipedia@carlosjeurissen.com',
+    '{c3c10168-4186-445c-9c5b-63f12b8e2c87}',
+    'deArrow@ajay.app',
+    'firefox-production@exactnote.com',
+    'formhistory@yahoo.com',
+    'ink-for-google@carlosjeurissen.com',
+    'jid1-TMndP6cdKgxLcQ@jetpack',
+    '{cb2b337b-99d7-4b86-aa04-84a6f5c3e218}',
+    'offline-qr-code@rugk.github.io',
+    '{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}',
+    '{60B7679C-BED9-11E5-998D-8526BB8E7F8B}',
+    'addon@rao-text-to-speech.com',
+    '{2b38afa0-3422-4988-95e4-43f59d2c8e7b}',
+    'reopen-in-private@apps.jeurissen.co',
+    '{c29f5416-192d-42ab-9da0-b4a82418752b}',
+    's3@translator',
+    'simple_gesture@utb.dip.jp',
+    'sitedelta-watch@schierla.de',
+    'tetrio-plus@example.com',
+    'user-agent-switcher@ninetailed.ninja',
+    'unchecker@ad5001.eu',
+    'view-page-source@apps.jeurissen.co',
+    'avi6106@gmail.com',
+    '{1e41b6c3-1ae3-41eb-89fc-f5c5eb5c1301}',
+    '{034d548e-9728-4e5a-9133-8ea588e47200}',
+)
+
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.
