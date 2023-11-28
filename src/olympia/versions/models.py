@@ -1227,6 +1227,7 @@ class VersionPreview(BasePreview, ModelBase):
     position = models.IntegerField(default=0)
     sizes = models.JSONField(default=dict)
     colors = models.JSONField(default=None, null=True)
+    image_hash = models.CharField(max_length=64, default='', blank=True, editable=False)
     media_folder = 'version-previews'
 
     class Meta:

@@ -1,5 +1,6 @@
 import collections
 import datetime
+import hashlib
 import os.path
 import tempfile
 from unittest import mock
@@ -472,9 +473,10 @@ def test_backup_storage_setup(google_storage_client_mock):
 @mock.patch('olympia.amo.utils.backup_storage_blob')
 def test_copy_file_to_backup_storage(backup_storage_blob_mock):
     local_file_path = get_image_path('sunbird-small.png')
-    expected_backup_file_name = (
-        '29125f1f4b1993cb472f278246c05c8ab271bf7e50c61abe126825ee6fa52ff3.png'
-    )
+    with open(local_file_path, 'rb') as f:
+        hash_ = hashlib.sha256(f.read())
+    hash_.update(os.path.abspath(local_file_path).encode('utf-8'))
+    expected_backup_file_name = f'{hash_.hexdigest()}.png'
     upload_from_filename_mock = (
         backup_storage_blob_mock.return_value.upload_from_filename
     )
@@ -494,9 +496,10 @@ def test_copy_file_to_backup_storage(backup_storage_blob_mock):
 @mock.patch('olympia.amo.utils.backup_storage_blob')
 def test_copy_file_to_backup_storage_precondition_failed(backup_storage_blob_mock):
     local_file_path = get_image_path('sunbird-small.png')
-    expected_backup_file_name = (
-        '29125f1f4b1993cb472f278246c05c8ab271bf7e50c61abe126825ee6fa52ff3.png'
-    )
+    with open(local_file_path, 'rb') as f:
+        hash_ = hashlib.sha256(f.read())
+    hash_.update(os.path.abspath(local_file_path).encode('utf-8'))
+    expected_backup_file_name = f'{hash_.hexdigest()}.png'
     upload_from_filename_mock = (
         backup_storage_blob_mock.return_value.upload_from_filename
     )

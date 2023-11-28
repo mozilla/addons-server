@@ -1,6 +1,8 @@
 import hashlib
+import mimetypes
 import os
 
+from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Q, Value
 from django.db.models.functions import Collate
@@ -20,7 +22,11 @@ from olympia.addons.models import (
 from olympia.addons.utils import compute_last_updated
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
-from olympia.amo.utils import extract_colors_from_image
+from olympia.amo.utils import (
+    copy_file_to_backup_storage,
+    extract_colors_from_image,
+    remove_icons,
+)
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
@@ -76,6 +82,54 @@ def update_addon_average_daily_users(data, **kw):
 @task
 def delete_preview_files(id, **kw):
     Preview.delete_preview_files(sender=None, instance=Preview(id=id))
+
+
+@task
+@use_primary_db
+def delete_all_addon_media_with_backup(id, **kwargs):
+    """Delete all media files for a given add-on by id, backing them up to
+    reported content bucket in cloud storage.
+
+    Used when force-disabling an add-on."""
+    addon = Addon.unfiltered.all().no_transforms().get(pk=id)
+    previews = list(Preview.objects.filter(addon__id=id).values_list('id', flat=True))
+    version_previews = list(
+        VersionPreview.objects.filter(version__addon__id=id).values_list(
+            'id', flat=True
+        )
+    )
+    if addon.icon_type and (ext := mimetypes.guess_extension(addon.icon_type)):
+        base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
+        icon_path = f'{base_icon_path}-original{ext}'
+        if storage.exists(icon_path):
+            backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
+            addon.update(icon_hash=os.path.splitext(backup_file_name)[0])
+        remove_icons(base_icon_path)
+    # FIXME: consider only deleting VersionPreview without making a backup?
+    # We should still have the XPI to do that, as they are generated
+    # automatically.
+    for preview in previews + version_previews:
+        if not storage.exists(preview.original_path):
+            continue
+        backup_file_name = copy_file_to_backup_storage(
+            preview.original_path, mimetypes.guess_type(preview.original_path)[0]
+        )
+        preview.update(image_hash=os.path.splitext(backup_file_name)[0])
+        preview.__class__.delete_preview_files(sender=None, instance=preview)
+
+
+@task
+@use_primary_db
+def restore_all_addon_media_from_backup(id, **kwargs):
+    # FIXME:
+    # - From icon_hash and all related Preview/VersionPreview with an image_hash:
+    # - download_file_contents_from_backup_storage
+    #   - Grab the extension from the expected path, rest of the remote filename
+    #     from the hash
+    #   - Don't fail if a backup is missing
+    # - copy the downloaded blob as original file
+    # - run the recreate_previews and whatever tasks needed to resize the icons
+    pass
 
 
 @task(acks_late=True)
@@ -357,12 +411,8 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
             dest_file = f'{dest_folder}-{size}.png'
             resize_image(source, dest_file, (size, size))
 
-        # Store the original hash, we'll return it to update the corresponding
-        # add-on. We only care about the first 8 chars of the md5, it's
-        # unlikely a new icon on the same add-on would get the same first 8
-        # chars, especially with icon changes being so rare in the first place.
         with open(source, 'rb') as fd:
-            icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
+            icon_hash = hashlib.sha256(fd.read()).hexdigest()
 
         # Keep a copy of the original image.
         dest_file = '%s-original.png' % dest_folder
@@ -397,11 +447,14 @@ def resize_preview(src, preview_pk, **kw):
             full_dst,
             amo.ADDON_PREVIEW_SIZES['full'],
         )
+        with open(src, 'rb') as fd:
+            image_hash = hashlib.sha256(fd.read()).hexdigest()
+
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
         preview.save()
-        return True
+        return {'image_hash': image_hash}
     except Exception as e:
         log.error('Error saving preview: %s' % e)
 

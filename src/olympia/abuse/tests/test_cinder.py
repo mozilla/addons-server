@@ -25,7 +25,6 @@ from ..cinder import (
     CinderRating,
     CinderUnauthenticatedReporter,
     CinderUser,
-    CinderUserProfile,
 )
 
 
@@ -381,8 +380,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
 
 
-class TestCinderUserProfile(BaseTestCinderCase, TestCase):
-    cinder_class = CinderUserProfile
+class TestCinderUser(BaseTestCinderCase, TestCase):
+    cinder_class = CinderUser
 
     def _create_dummy_target(self, **kwargs):
         return user_factory(**kwargs)

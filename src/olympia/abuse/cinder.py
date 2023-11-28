@@ -1,4 +1,8 @@
+import mimetypes
+import os.path
+
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.utils.functional import classproperty
 
 import requests
@@ -42,6 +46,12 @@ class CinderEntity:
             'relationship_type': relationship_type,
         }
 
+    def get_media_attributes(self):
+        # media attributes are typically only returned with reports (not as
+        # part of relationships or reporter data for instance) as they require
+        # us to make a copy of the media
+        return {}
+
     def build_report_payload(self, *, report_text, category, reporter):
         context = self.get_context()
         if reporter:
@@ -51,10 +61,11 @@ class CinderEntity:
             context['relationships'] += [
                 reporter.get_relationship_data(self, 'amo_reporter_of')
             ]
+        entity_attributes = {**self.get_attributes(), **self.get_media_attributes()}
         return {
             'queue_slug': self.queue,
             'entity_type': self.type,
-            'entity': self.get_attributes(),
+            'entity': entity_attributes,
             'reasoning': report_text,
             # FIXME: pass category in report_metadata ?
             # 'report_metadata': ??
@@ -122,6 +133,22 @@ class CinderUser(CinderEntity):
             'fxa_id': self.user.fxa_id,
         }
 
+    def get_media_attributes(self):
+        data = {}
+        if (
+            self.user.picture_type
+            and backup_storage_enabled()
+            and storage.exists(self.user.picture_path)
+        ):
+            filename = copy_file_to_backup_storage(
+                self.user.picture_path, self.user.picture_type
+            )
+            data['avatar'] = {
+                'value': create_signed_url_for_file_backup(filename),
+                'mime_type': self.user.picture_type,
+            }
+        return data
+
     def get_context(self):
         cinder_addons = [CinderAddon(addon) for addon in self.user.addons.all()]
         return {
@@ -180,6 +207,39 @@ class CinderAddon(CinderEntity):
             'name': str(self.addon.name),
         }
 
+    def get_media_attributes(self):
+        data = {}
+        if backup_storage_enabled():
+            if self.addon.icon_type:
+                icon_size = 64
+                icon_type = 'image/png'
+                icon_path = os.path.join(
+                    self.addon.get_icon_dir(), f'{self.addon.pk}-{icon_size}.png'
+                )
+                if storage.exists(icon_path):
+                    filename = copy_file_to_backup_storage(icon_path, icon_type)
+                    data['icon'] = {
+                        'value': create_signed_url_for_file_backup(filename),
+                        'mime_type': icon_type,
+                    }
+            previews = []
+            for preview in self.addon.previews.all():
+                if storage.exists(preview.image_path):
+                    content_type = mimetypes.guess_type(preview.image_path)
+                    filename = copy_file_to_backup_storage(
+                        preview.image_path, content_type
+                    )
+                    previews.append(
+                        {
+                            'value': create_signed_url_for_file_backup(filename),
+                            'mime_type': icon_type,
+                        }
+                    )
+            if previews:
+                data['previews'] = previews
+
+        return data
+
     def get_context(self):
         cinder_users = [CinderUser(author) for author in self.addon.authors.all()]
         return {
@@ -189,23 +249,6 @@ class CinderAddon(CinderEntity):
                 for cinder_user in cinder_users
             ],
         }
-
-
-class CinderUserProfile(CinderUser):
-    # Same entity as CinderUser, but this is the one we're going to make
-    # reports against, as opposed to the one we'll be using in relationships.
-    # It includes extra metadata like the avatar.
-    def get_attributes(self):
-        data = super().get_attributes()
-        if self.user.picture_type and backup_storage_enabled():
-            filename = copy_file_to_backup_storage(
-                self.user.picture_path, self.user.picture_type
-            )
-            data['avatar'] = {
-                'value': create_signed_url_for_file_backup(filename),
-                'mime_type': self.user.picture_type,
-            }
-        return data
 
 
 class CinderRating(CinderEntity):

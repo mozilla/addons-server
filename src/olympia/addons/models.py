@@ -500,7 +500,7 @@ class Addon(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), default=amo.STATUS_NULL
     )
     icon_type = models.CharField(max_length=25, blank=True, db_column='icontype')
-    icon_hash = models.CharField(max_length=8, blank=True, null=True)
+    icon_hash = models.CharField(max_length=64, blank=True, null=True)
     homepage = TranslatedField(max_length=255)
     support_email = TranslatedField(db_column='supportemail', max_length=100)
     support_url = TranslatedField(db_column='supporturl', max_length=255)
@@ -634,6 +634,7 @@ class Addon(OnChangeMixin, ModelBase):
         clean_slug(self, slug_field)
 
     def force_disable(self, skip_activity_log=False):
+        from olympia.addons.tasks import delete_all_addon_media_with_backup
         from olympia.reviewers.models import NeedsHumanReview
 
         if not skip_activity_log:
@@ -651,7 +652,11 @@ class Addon(OnChangeMixin, ModelBase):
         # https://github.com/mozilla/addons-server/issues/13194
         Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
+        delete_all_addon_media_with_backup.delay(self.pk)
+
     def force_enable(self, skip_activity_log=False):
+        from olympia.addons.tasks import restore_all_addon_media_from_backup
+
         if not skip_activity_log:
             activity.log_create(amo.LOG.FORCE_ENABLE, self)
         log.info(
@@ -671,6 +676,8 @@ class Addon(OnChangeMixin, ModelBase):
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
         self.update_status()
+
+        restore_all_addon_media_from_backup.delay(self.pk)
 
     def deny_resubmission(self):
         if not self.guid:
@@ -1224,7 +1231,11 @@ class Addon(OnChangeMixin, ModelBase):
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             # Use the icon hash if we have one as the cachebusting suffix,
             # otherwise fall back to the add-on modification date.
-            suffix = self.icon_hash or str(int(time.mktime(self.modified.timetuple())))
+            suffix = (
+                self.icon_hash[:8]
+                if self.icon_hash
+                else str(int(time.mktime(self.modified.timetuple())))
+            )
             path = '/'.join(
                 [
                     split_id.group(2) or '0',
@@ -2285,6 +2296,7 @@ class Preview(BasePreview, ModelBase):
     caption = TranslatedField(max_length=280)
     position = models.IntegerField(default=0)
     sizes = models.JSONField(default=dict)
+    image_hash = models.CharField(max_length=64, default='', blank=True, editable=False)
 
     class Meta:
         db_table = 'previews'

@@ -1301,11 +1301,20 @@ def backup_storage_blob(backup_file_name_remote):
     return bucket.blob(backup_file_name_remote)
 
 
-def copy_file_to_backup_storage(local_file_path, content_type):
+def generate_hash_for_backup_storage(local_file_path):
     with open(local_file_path, 'rb') as f:
-        hash_ = hashlib.sha256(f.read()).hexdigest()
+        hash_ = hashlib.sha256(f.read())
+    # The path itself is also part of the hash, so that we store different
+    # copies for different types and owners of content (2 different UserProfile
+    # or one UserProfile and one Addon should have different backup copies)
+    hash_.update(os.path.abspath(local_file_path).encode('utf-8'))
+    return hash_
+
+
+def copy_file_to_backup_storage(local_file_path, content_type):
+    hash_ = generate_hash_for_backup_storage(local_file_path)
     ext = guess_extension(content_type)
-    backup_file_name_remote = f'{hash_}{ext}'
+    backup_file_name_remote = f'{hash_.hexdigest()}{ext}'
     blob = backup_storage_blob(backup_file_name_remote)
     # If the object already exists, generation_match_precondition set to 0 will
     # force the upload to fail. We want that, we don't need a second copy as
