@@ -72,7 +72,7 @@ class Command(BaseCommand):
         )
         addons = (
             Addon.objects.filter(pk__in=addon_ids)
-            # .no_transforms()
+            .no_transforms()
             .select_related(
                 'promotedaddon', '_current_version', '_current_version__file'
             )
