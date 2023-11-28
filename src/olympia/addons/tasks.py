@@ -105,10 +105,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
             addon.update(icon_hash=os.path.splitext(backup_file_name)[0])
         remove_icons(base_icon_path)
-    # FIXME: consider only deleting VersionPreview without making a backup?
-    # We should still have the XPI to do that, as they are generated
-    # automatically.
-    for preview in previews + version_previews:
+    for preview in previews:
         if not storage.exists(preview.original_path):
             continue
         backup_file_name = copy_file_to_backup_storage(
@@ -116,19 +113,24 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         )
         preview.update(image_hash=os.path.splitext(backup_file_name)[0])
         preview.__class__.delete_preview_files(sender=None, instance=preview)
+    for preview in version_previews:
+        # VersionPreview are automatically generated from the xpi file so they
+        # don't require a dedicated backup.
+        preview.__class__.delete_preview_files(sender=None, instance=preview)
 
 
 @task
 @use_primary_db
 def restore_all_addon_media_from_backup(id, **kwargs):
     # FIXME:
-    # - From icon_hash and all related Preview/VersionPreview with an image_hash:
+    # - From icon_hash and all related Preview with an image_hash:
     # - download_file_contents_from_backup_storage
     #   - Grab the extension from the expected path, rest of the remote filename
     #     from the hash
     #   - Don't fail if a backup is missing
     # - copy the downloaded blob as original file
     # - run the recreate_previews and whatever tasks needed to resize the icons
+    #   and recreate the VersionPreview image for each affected version.
     pass
 
 
