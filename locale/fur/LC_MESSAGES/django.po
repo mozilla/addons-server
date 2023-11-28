@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-25 07:42+0000\n"
+"PO-Revision-Date: 2023-11-28 14:02+0000\n"
 "Last-Translator: Fabio Tomat <dark.tmtfx@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fur\n"
@@ -2533,60 +2533,62 @@ msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG o GIF (cence animazion)"
 
 msgid "Aligned to top-right"
-msgstr ""
+msgstr "Inlineât adalt a diestre"
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "Selezione une imagjin di intestazion divierse"
 
 msgid "Select colors for your theme"
-msgstr ""
+msgstr "Selezione i colôrs pal to teme"
 
 msgid "optional"
-msgstr ""
+msgstr "facoltatîf"
 
 msgid "Browser preview"
-msgstr ""
+msgstr "Anteprime dal navigadôr"
 
 msgid "Uploading Theme"
-msgstr ""
+msgstr "Daûr a cjamâ in rêt il teme"
 
 msgid "Finish Theme"
-msgstr ""
+msgstr "Complete teme"
 
 msgid "Back"
-msgstr ""
+msgstr "Indaûr"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Credenziâls API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
-msgstr ""
+msgstr "Par istruzions detaiadis, consulte la <a href=\"%(docs_url)s\">documentazion des APIs</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Ten segretis lis tôs clâfs API e <strong>no sta condividilis mai cun nissun</strong>, includûts i colaboradôrs di Mozilla."
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "Emitent JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "Segret JWT"
 
 #, python-format
 msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Par fâ richiestis API, mande un <a href=\"%(jwt_url)s\">Token Web JSON (JWT)</a> come intestazion de autorizazion. Tu varâs di gjenerâ un JWT par ogni richieste come che al è spiegât te <a "
+"href=\"%(docs_url)s\">documentazion des APIs</a>."
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "Fâs clic sul boton di conferme chi sot par gjenerâ lis credenziâls API pal utent <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "Un colegament di conferme ti vignarà inviât ae tô direzion e-mail. Dopo de conferme tu cjatarâs lis tôs clâfs API in cheste pagjine."
 
 msgid "You don't have any API credentials."
-msgstr ""
+msgstr "No tu âs nissune credenziâl API."
 
 msgid "Revoke"
 msgstr ""
