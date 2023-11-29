@@ -1,0 +1,12 @@
+Hello,
+
+Following further investigation, {{ name }} has been restored to {{ target_url }}.
+
+Thank you.
+
+To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ 
+and https://www.mozilla.org/about/legal/terms/mozilla/
+
+-- 
+Mozilla Add-ons Team
+{{ SITE_URL }}

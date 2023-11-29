@@ -228,6 +228,7 @@ def cinder_webhook(request):
         enforcement_actions = filter_enforcement_actions(
             payload.get('enforcement_actions') or [], cinder_job
         )
+        policy_ids = [policy['id'] for policy in payload.get('policies', [])]
         if len(enforcement_actions) != 1:
             reason = (
                 'more than one supported enforcement_actions'
@@ -244,6 +245,7 @@ def cinder_webhook(request):
             decision_id=source.get('decision', {}).get('id'),
             decision_date=process_datestamp(payload.get('timestamp')),
             decision_action=enforcement_actions[0],
+            policy_ids=policy_ids,
         )
 
     except ValidationError as exc:

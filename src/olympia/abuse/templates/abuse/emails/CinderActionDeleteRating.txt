@@ -1,0 +1,5 @@
+{% extends "abuse/emails/base.txt" %}{% block content %}
+
+Your rating {{ name }}, at {{ target_url }}, has been removed.
+
+{% endblock %}

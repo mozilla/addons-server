@@ -51,6 +51,7 @@ class CinderJob(ModelBase):
     )
     decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     decision_date = models.DateTimeField(default=None, null=True)
+    policies = models.ManyToManyField(to='abuse.CinderPolicy')
 
     @property
     def target(self):
@@ -134,13 +135,16 @@ class CinderJob(ModelBase):
         cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
         abuse.update(cinder_job=cinder_job)
 
-    def process_decision(self, *, decision_id, decision_date, decision_action):
+    def process_decision(
+        self, *, decision_id, decision_date, decision_action, policy_ids
+    ):
         existing_decision = self.decision_action
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
             decision_action=decision_action,
         )
+        self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision).process()
 
     def appeal(self, abuse_report, appeal_text, user):
@@ -551,3 +555,9 @@ class AbuseReport(ModelBase):
 
 class CantBeAppealed(Exception):
     pass
+
+
+class CinderPolicy(ModelBase):
+    uuid = models.CharField(max_length=36)
+    name = models.CharField(max_length=50)
+    text = models.TextField()
