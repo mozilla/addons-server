@@ -59,7 +59,7 @@ from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
-from olympia.amo import ADDON_ICON_SIZES
+from olympia.amo import ADDON_ICON_FORMAT, ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.logger import getLogger
@@ -677,8 +677,8 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
 
 
 def remove_icons(destination):
-    for size in ADDON_ICON_SIZES:
-        filename = f'{destination}-{size}.png'
+    for size in ADDON_ICON_SIZES + ('original',):
+        filename = f'{destination}-{size}.{ADDON_ICON_FORMAT}'
         if storage.exists(filename):
             storage.delete(filename)
 

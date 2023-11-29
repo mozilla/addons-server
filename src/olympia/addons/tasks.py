@@ -95,9 +95,9 @@ def delete_all_addon_media_with_backup(id, **kwargs):
     addon = Addon.unfiltered.all().get(pk=id)
     disabled_addon_content = DisabledAddonContent.objects.get_or_create(addon=addon)[0]
 
-    if addon.icon_type and (ext := mimetypes.guess_extension(addon.icon_type)):
+    if addon.icon_type:
         base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
-        icon_path = f'{base_icon_path}-original{ext}'
+        icon_path = f'{base_icon_path}-original.{amo.ADDON_ICON_FORMAT}'
         if storage.exists(icon_path):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
             disabled_addon_content.update(icon_backup_name=backup_file_name)
@@ -409,14 +409,14 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         # Resize in every size we want.
         dest_file = None
         for size in target_sizes:
-            dest_file = f'{dest_folder}-{size}.png'
+            dest_file = f'{dest_folder}-{size}.{amo.ADDON_ICON_FORMAT}'
             resize_image(source, dest_file, (size, size))
 
         with open(source, 'rb') as fd:
             icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
         # Keep a copy of the original image.
-        dest_file = '%s-original.png' % dest_folder
+        dest_file = '%s-original.{amo.ADDON_ICON_FORMAT}' % dest_folder
         os.rename(source, dest_file)
 
         return {'icon_hash': icon_hash}
