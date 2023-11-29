@@ -714,6 +714,11 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         response = self.client.get(self.url)
         assert response.status_code == expected_status_code
 
+        doc = pq(response.content)
+        # Images section would be broken and should not be displayed.
+        assert len(doc('h3')) == 3
+        assert 'Images' not in doc('h3').text()
+
         # In any case they won't be able to edit it.
         response = self.client.post(self.describe_edit_url, self.get_dict())
         assert response.status_code == 403
@@ -1592,6 +1597,13 @@ class TestEditDescribeStaticThemeListed(
             self.addon.current_version.previews.first().image_url
         )
         assert len(doc('div.edit-addon-section img')) == 1  # Just one preview.
+
+    def test_theme_preview_not_shown_mozilla_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert 'Preview' not in doc('h3').text()
+        assert len(doc('div.edit-addon-section img')) == 0
 
 
 class TestEditDescribeStaticThemeUnlisted(StaticMixin, TestEditDescribeUnlisted):
