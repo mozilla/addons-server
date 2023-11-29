@@ -444,6 +444,10 @@ def resize_icon(source, addon_id, target_sizes, **kw):
             dest_file = addon.get_icon_path(size)
             resize_image(source, dest_file, (size, size))
 
+        # Store the original hash, we'll return it to update the corresponding
+        # add-on. We only care about the first 8 chars of the md5, it's
+        # unlikely a new icon on the same add-on would get the same first 8
+        # chars, especially with icon changes being so rare in the first place.
         with open(source, 'rb') as fd:
             icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
@@ -452,7 +456,6 @@ def resize_icon(source, addon_id, target_sizes, **kw):
         if source != dest_file:
             dest_file = addon.get_icon_path('original')
             os.rename(source, dest_file)
-
         return {'icon_hash': icon_hash}
     except Exception as e:
         log.error(f'Error saving addon icon ({dest_file}): {e}')
