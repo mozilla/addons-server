@@ -101,7 +101,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         if storage.exists(icon_path):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
             disabled_addon_content.update(icon_backup_name=backup_file_name)
-        remove_icons(base_icon_path)
+        remove_icons(addon)
 
     for preview in Preview.objects.filter(addon__id=id):
         if not storage.exists(preview.original_path):
@@ -402,22 +402,25 @@ def update_addon_weekly_downloads(data):
 
 @task
 @set_modified_on
-def resize_icon(source, dest_folder, target_sizes, **kw):
+def resize_icon(source, addon_id, target_sizes, **kw):
     """Resizes addon icons."""
-    log.info('[1@None] Resizing icon: %s' % dest_folder)
+    log.info('[1@None] Resizing icon for addon %s' % addon_id)
+    addon = Addon(pk=addon_id)  # to make get_icon_path() work.
     try:
         # Resize in every size we want.
         dest_file = None
         for size in target_sizes:
-            dest_file = f'{dest_folder}-{size}.{amo.ADDON_ICON_FORMAT}'
+            dest_file = addon.get_icon_path(size)
             resize_image(source, dest_file, (size, size))
 
         with open(source, 'rb') as fd:
             icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
-        # Keep a copy of the original image.
-        dest_file = '%s-original.{amo.ADDON_ICON_FORMAT}' % dest_folder
-        os.rename(source, dest_file)
+        # Keep a copy of the original image. This might not be the right
+        # extension as it hasn't been converted into a different format.
+        if source != dest_file:
+            dest_file = addon.get_icon_path('original')
+            os.rename(source, dest_file)
 
         return {'icon_hash': icon_hash}
     except Exception as e:

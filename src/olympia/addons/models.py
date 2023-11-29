@@ -1208,6 +1208,11 @@ class Addon(OnChangeMixin, ModelBase):
             settings.MEDIA_ROOT, 'addon_icons', '%s' % (self.id // 1000)
         )
 
+    def get_icon_path(self, size):
+        return os.path.join(
+            self.get_icon_dir(), f'{self.pk}-{size}.{amo.ADDON_ICON_FORMAT}'
+        )
+
     def get_icon_url(self, size):
         """
         Returns the addon's icon url according to icon_type.
