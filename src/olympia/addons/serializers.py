@@ -12,9 +12,10 @@ from rest_framework import exceptions, serializers
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
+from olympia.addons.utils import remove_icons
 from olympia.amo import ADDON_TYPES
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import SafeStorage, remove_icons, slug_validator
+from olympia.amo.utils import SafeStorage, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,

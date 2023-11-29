@@ -20,13 +20,13 @@ from olympia.addons.models import (
     attach_tags,
     attach_translations_dict,
 )
-from olympia.addons.utils import compute_last_updated
+from olympia.addons.utils import compute_last_updated, remove_icons
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.utils import (
     copy_file_to_backup_storage,
+    download_file_contents_from_backup_storage,
     extract_colors_from_image,
-    remove_icons,
 )
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
@@ -123,14 +123,45 @@ def delete_all_addon_media_with_backup(id, **kwargs):
 @task
 @use_primary_db
 def restore_all_addon_media_from_backup(id, **kwargs):
-    # FIXME:
-    # - Gather remote file name from model that has icon and Previews
-    # - download_file_contents_from_backup_storage
-    #   - Don't fail if a backup is missing
-    # - copy the downloaded blob as original file
-    # - run the recreate_previews and whatever tasks needed to resize the icons
-    #   and recreate the VersionPreview image for each affected version.
-    pass
+    addon = Addon.unfiltered.all().get(pk=id)
+    disabled_addon_content = DisabledAddonContent.objects.filter(addon=addon).last()
+    if disabled_addon_content:
+        log.info('Found some disable content to restore for addon %s', addon.pk)
+        # FIXME: investigate icon issues
+        if disabled_addon_content.icon_backup_name:
+            icon_contents = download_file_contents_from_backup_storage(
+                disabled_addon_content.icon_backup_name
+            )
+            if icon_contents:
+                icon_path = addon.get_icon_path('original')
+                log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
+                with storage.open(icon_path, 'wb') as original_file:
+                    original_file.write(icon_contents)
+                resize_icon.delay(
+                    icon_path,
+                    addon.pk,
+                    amo.ADDON_ICON_SIZES,
+                    set_modified_on=addon.serializable_reference(),
+                )
+        for deleted_preview_file in disabled_addon_content.deletedpreviewfile_set.all():
+            preview = deleted_preview_file.preview
+            preview_contents = download_file_contents_from_backup_storage(
+                deleted_preview_file.backup_name
+            )
+            if preview_contents:
+                preview_path = preview.original_path
+                log.info('Restoring preview %s for addon %s', preview_path, addon.pk)
+                with storage.open(preview_path, 'wb') as original_file:
+                    original_file.write(preview_contents)
+                resize_preview.delay(
+                    preview_path,
+                    preview.pk,
+                    set_modified_on=addon.serializable_reference(),
+                )
+        index_addons.delay([addon.pk])
+        disabled_addon_content.delete()
+    if addon.type == amo.ADDON_STATICTHEME:
+        recreate_theme_previews([addon.pk])  # Will cause a reindex.
 
 
 @task(acks_late=True)

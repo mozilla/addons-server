@@ -34,6 +34,7 @@ from olympia.addons.models import (
 )
 from olympia.addons.utils import (
     fetch_translations_from_addon,
+    remove_icons,
     validate_version_number_is_gt_latest_signed_listed_version,
     verify_mozilla_trademark,
 )
@@ -41,7 +42,7 @@ from olympia.addons.views import AddonViewSet
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.utils import remove_icons, slug_validator
+from olympia.amo.utils import slug_validator
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
