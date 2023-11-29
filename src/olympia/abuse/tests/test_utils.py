@@ -123,7 +123,7 @@ class TestCinderAction(TestCase):
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
         assert mail.outbox[0].subject == f'Mozilla Add-ons: {addon.name}'
-        assert f'your Extension {addon.name}' in mail.outbox[0].body
+        assert f'Your Extension {addon.name}' in mail.outbox[0].body
         assert 'has been disabled' in mail.outbox[0].body
 
     def test_approve_appeal_addon(self):
@@ -270,7 +270,9 @@ class TestCinderAction(TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
-        assert mail.outbox[0].subject == 'Mozilla Add-ons: Saying ...'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: "Saying ..." for {rating.addon.name}'
+        )
         assert 'has been removed' in mail.outbox[0].body
 
     def test_approve_initial_rating(self):
@@ -287,7 +289,9 @@ class TestCinderAction(TestCase):
 
     def test_approve_appeal_rating(self):
         author = user_factory()
-        rating = Rating.objects.create(addon=addon_factory(), user=author, deleted=True)
+        rating = Rating.objects.create(
+            addon=addon_factory(), user=author, deleted=True, body='1234567890123456'
+        )
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
         action = CinderActionApproveAppealOverride(self.cinder_job)
@@ -299,5 +303,7 @@ class TestCinderAction(TestCase):
         assert activity.user == self.task_user
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
-        assert mail.outbox[0].subject == f'Mozilla Add-ons: {rating}'
+        assert mail.outbox[0].subject == (
+            f'Mozilla Add-ons: "1234567..." for {rating.addon.name}'
+        )
         assert 'has been restored to' in mail.outbox[0].body

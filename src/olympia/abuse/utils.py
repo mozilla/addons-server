@@ -28,7 +28,11 @@ class CinderAction:
         abuse_report = self.cinder_job.abusereport_set.first()
         if not abuse_report:
             return
-        name = getattr(abuse_report.target, 'name', abuse_report.target)
+        name = (
+            f'"{abuse_report.target}" for {abuse_report.target.addon.name}'
+            if isinstance(abuse_report.target, Rating)
+            else getattr(abuse_report.target, 'name', abuse_report.target)
+        )
         context_dict = {
             'target': abuse_report.target,
             'name': name,

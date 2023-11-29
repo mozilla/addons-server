@@ -1,5 +1,5 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 
-Due to the following reasons your rating {{ name }}, at {{ target_url }}, has been removed.
+Your rating {{ name }}, at {{ target_url }}, has been removed.
 
 {% endblock %}

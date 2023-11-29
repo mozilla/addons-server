@@ -11,9 +11,7 @@ Reasons:
 
 Thank you for your attention.
 
-********
-
-You have the right to appeal this decision for 6 months. See {{ appeal_url }} to start the appeal process. 
+You have the right to appeal this decision within 6 months. See {{ appeal_url }} for details on the appeal process. 
 
 To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ 
 and https://www.mozilla.org/about/legal/terms/mozilla/

@@ -1,6 +1,6 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 
-Due to the following reasons your account on {{ SITE_URL }} has been banned.
+Your account on {{ SITE_URL }} has been banned.
 You will not be able to log in, and any content you submitted has been removed.
 
 {% endblock %}

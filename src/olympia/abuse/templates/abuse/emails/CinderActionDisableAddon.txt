@@ -1,5 +1,5 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 
-Due to the following reasons your {{ target.get_type_display }} {{ name }}, at {{ target_url }}, has been disabled on {{ SITE_URL }} and no longer appears. Users who have previously installed your add-on will be able to continue using it.
+Your {{ target.get_type_display }} {{ name }}, at {{ target_url }}, has been disabled on {{ SITE_URL }} and no longer appears. Users who have previously installed your add-on will be able to continue using it.
 
 {% endblock %}
