@@ -15,6 +15,7 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
     DeniedGuid,
+    DisabledAddonContent,
     Preview,
     attach_tags,
     attach_translations_dict,
@@ -91,29 +92,29 @@ def delete_all_addon_media_with_backup(id, **kwargs):
     reported content bucket in cloud storage.
 
     Used when force-disabling an add-on."""
-    addon = Addon.unfiltered.all().no_transforms().get(pk=id)
-    previews = list(Preview.objects.filter(addon__id=id).values_list('id', flat=True))
-    version_previews = list(
-        VersionPreview.objects.filter(version__addon__id=id).values_list(
-            'id', flat=True
-        )
-    )
+    addon = Addon.unfiltered.all().get(pk=id)
+    disabled_addon_content = DisabledAddonContent.objects.get_or_create(addon=addon)[0]
+
     if addon.icon_type and (ext := mimetypes.guess_extension(addon.icon_type)):
         base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
         icon_path = f'{base_icon_path}-original{ext}'
         if storage.exists(icon_path):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
-            # FIXME: do something with backup_file_name
+            disabled_addon_content.update(icon_backup_name=backup_file_name)
         remove_icons(base_icon_path)
-    for preview in previews:
+
+    for preview in Preview.objects.filter(addon__id=id):
         if not storage.exists(preview.original_path):
             continue
         backup_file_name = copy_file_to_backup_storage(
             preview.original_path, mimetypes.guess_type(preview.original_path)[0]
         )
-        # FIXME: do something with backup_file_name
+        disabled_addon_content.previews.add(
+            preview, through_defaults={'backup_name': backup_file_name}
+        )
         preview.__class__.delete_preview_files(sender=None, instance=preview)
-    for preview in version_previews:
+
+    for preview in VersionPreview.objects.filter(version__addon__id=id):
         # VersionPreview are automatically generated from the xpi file so they
         # don't require a dedicated backup.
         preview.__class__.delete_preview_files(sender=None, instance=preview)

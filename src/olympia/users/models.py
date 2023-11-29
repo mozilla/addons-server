@@ -1299,7 +1299,7 @@ class BannedUserContent(ModelBase):
 
     user = models.OneToOneField(
         UserProfile,
-        related_name='content_disabled_on_ban',  # FIXME rename for consistency ?
+        related_name='content_disabled_on_ban',
         on_delete=models.CASCADE,
         primary_key=True,
     )

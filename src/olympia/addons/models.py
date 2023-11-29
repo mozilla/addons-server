@@ -2447,3 +2447,35 @@ class AddonBrowserMapping(ModelBase):
 
     class Meta:
         unique_together = ('browser', 'extension_id')
+
+
+class DisabledAddonContent(ModelBase):
+    """Link between an addon and the content that was deleted from disk when
+    it was force-disabled.
+
+    That link should be removed if the addon is force-enabled, and the content
+    restored from backup storage."""
+
+    addon = models.OneToOneField(
+        Addon,
+        related_name='content_deleted_on_force_disable',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    icon_backup_name = models.CharField(
+        max_length=75, default=None, null=True, blank=True
+    )
+    previews = models.ManyToManyField(Preview, through='DeletedPreviewFile')
+
+
+class DeletedPreviewFile(ModelBase):
+    """Model holding the backup name for a Preview whose file was deleted from
+    disk following a force-disable of the corresponding Addon.
+
+    Used with DisabledAddonContent"""
+
+    disabled_addon_content = models.ForeignKey(
+        DisabledAddonContent, on_delete=models.CASCADE
+    )
+    preview = models.ForeignKey(Preview, on_delete=models.CASCADE)
+    backup_name = models.CharField(max_length=75, default=None, null=True, blank=True)
