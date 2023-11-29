@@ -1,6 +1,6 @@
 Hello,
 
-Following further investigation, {{ name }} has been restored to {{ target_url}}.
+Following further investigation, {{ name }} has been restored to {{ target_url }}.
 
 Thank you.
 
