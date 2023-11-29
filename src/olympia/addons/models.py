@@ -2296,7 +2296,6 @@ class Preview(BasePreview, ModelBase):
     caption = TranslatedField(max_length=280)
     position = models.IntegerField(default=0)
     sizes = models.JSONField(default=dict)
-    image_hash = models.CharField(max_length=64, default='', blank=True, editable=False)
 
     class Meta:
         db_table = 'previews'

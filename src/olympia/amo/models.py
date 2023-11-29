@@ -489,17 +489,12 @@ class BasePreview:
 
     def _image_url(self, folder, file_ext):
         modified = int(time.mktime(self.modified.timetuple())) if self.modified else 0
-        suffix = (
-            image_hash[:8]
-            if (image_hash := getattr(self, 'image_hash', None))
-            else modified
-        )
 
         url = '/'.join(
             (
                 folder,
                 str(self.id // 1000),
-                f'{self.id}.{file_ext}?modified={suffix}',
+                f'{self.id}.{file_ext}?modified={modified}',
             )
         )
         return f'{settings.MEDIA_URL}{self.media_folder}/{url}'

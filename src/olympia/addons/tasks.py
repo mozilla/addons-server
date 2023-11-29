@@ -103,7 +103,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         icon_path = f'{base_icon_path}-original{ext}'
         if storage.exists(icon_path):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
-            addon.update(icon_hash=os.path.splitext(backup_file_name)[0])
+            # FIXME: do something with backup_file_name
         remove_icons(base_icon_path)
     for preview in previews:
         if not storage.exists(preview.original_path):
@@ -111,7 +111,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         backup_file_name = copy_file_to_backup_storage(
             preview.original_path, mimetypes.guess_type(preview.original_path)[0]
         )
-        preview.update(image_hash=os.path.splitext(backup_file_name)[0])
+        # FIXME: do something with backup_file_name
         preview.__class__.delete_preview_files(sender=None, instance=preview)
     for preview in version_previews:
         # VersionPreview are automatically generated from the xpi file so they
@@ -123,10 +123,8 @@ def delete_all_addon_media_with_backup(id, **kwargs):
 @use_primary_db
 def restore_all_addon_media_from_backup(id, **kwargs):
     # FIXME:
-    # - From icon_hash and all related Preview with an image_hash:
+    # - Gather remote file name from model that has icon and Previews
     # - download_file_contents_from_backup_storage
-    #   - Grab the extension from the expected path, rest of the remote filename
-    #     from the hash
     #   - Don't fail if a backup is missing
     # - copy the downloaded blob as original file
     # - run the recreate_previews and whatever tasks needed to resize the icons
@@ -449,14 +447,12 @@ def resize_preview(src, preview_pk, **kw):
             full_dst,
             amo.ADDON_PREVIEW_SIZES['full'],
         )
-        with open(src, 'rb') as fd:
-            image_hash = hashlib.sha256(fd.read()).hexdigest()
 
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
         preview.save()
-        return {'image_hash': image_hash}
+        return None
     except Exception as e:
         log.error('Error saving preview: %s' % e)
 
