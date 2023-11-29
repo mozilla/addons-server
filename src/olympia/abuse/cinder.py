@@ -1,5 +1,4 @@
 import mimetypes
-import os.path
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -214,10 +213,7 @@ class CinderAddon(CinderEntity):
             if self.addon.icon_type:
                 icon_size = max(amo.ADDON_ICON_SIZES)
                 icon_type = mimetypes.guess_type(f'icon.{amo.ADDON_ICON_FORMAT}')[0]
-                icon_path = os.path.join(
-                    self.addon.get_icon_dir(),
-                    f'{self.addon.pk}-{icon_size}.{amo.ADDON_ICON_FORMAT}',
-                )
+                icon_path = self.addon.get_icon_path(icon_size)
                 if icon_type and storage.exists(icon_path):
                     filename = copy_file_to_backup_storage(icon_path, icon_type)
                     data['icon'] = {
