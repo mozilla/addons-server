@@ -500,7 +500,7 @@ class Addon(OnChangeMixin, ModelBase):
         choices=STATUS_CHOICES.items(), default=amo.STATUS_NULL
     )
     icon_type = models.CharField(max_length=25, blank=True, db_column='icontype')
-    icon_hash = models.CharField(max_length=64, blank=True, null=True)
+    icon_hash = models.CharField(max_length=8, blank=True, null=True)
     homepage = TranslatedField(max_length=255)
     support_email = TranslatedField(db_column='supportemail', max_length=100)
     support_url = TranslatedField(db_column='supporturl', max_length=255)
@@ -1231,11 +1231,7 @@ class Addon(OnChangeMixin, ModelBase):
             split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             # Use the icon hash if we have one as the cachebusting suffix,
             # otherwise fall back to the add-on modification date.
-            suffix = (
-                self.icon_hash[:8]
-                if self.icon_hash
-                else str(int(time.mktime(self.modified.timetuple())))
-            )
+            suffix = self.icon_hash or str(int(time.mktime(self.modified.timetuple())))
             path = '/'.join(
                 [
                     split_id.group(2) or '0',

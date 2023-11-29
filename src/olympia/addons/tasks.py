@@ -412,7 +412,7 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
             resize_image(source, dest_file, (size, size))
 
         with open(source, 'rb') as fd:
-            icon_hash = hashlib.sha256(fd.read()).hexdigest()
+            icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
         # Keep a copy of the original image.
         dest_file = '%s-original.png' % dest_folder
@@ -452,7 +452,7 @@ def resize_preview(src, preview_pk, **kw):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
         preview.save()
-        return None
+        return True
     except Exception as e:
         log.error('Error saving preview: %s' % e)
 
