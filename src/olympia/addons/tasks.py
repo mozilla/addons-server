@@ -485,7 +485,6 @@ def resize_preview(src, preview_pk, **kw):
             full_dst,
             amo.ADDON_PREVIEW_SIZES['full'],
         )
-
         if not os.path.exists(os.path.dirname(orig_dst)):
             os.makedirs(os.path.dirname(orig_dst))
         os.rename(src, orig_dst)
