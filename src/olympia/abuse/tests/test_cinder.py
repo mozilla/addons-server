@@ -1,3 +1,4 @@
+import os.path
 from unittest import mock
 
 from django.conf import settings
@@ -6,6 +7,7 @@ from django.test.utils import override_settings
 import responses
 
 from olympia import amo
+from olympia.addons.models import Preview
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -17,6 +19,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.bandwagon.models import CollectionAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.versions.models import VersionPreview
 
 from ..cinder import (
     CinderAddon,
@@ -322,6 +325,121 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
+        }
+
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_previews_and_icon(
+        self,
+        copy_file_to_backup_storage_mock,
+        create_signed_url_for_file_backup_mock,
+    ):
+        copy_file_to_backup_storage_mock.side_effect = (
+            lambda fpath, type_: os.path.basename(fpath)
+        )
+        create_signed_url_for_file_backup_mock.side_effect = (
+            lambda rpath: f'https://cloud.example.com/{rpath}?some=thing'
+        )
+        addon = self._create_dummy_target()
+        addon.update(icon_type='image/jpeg')
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), addon.get_icon_path(128)
+        )
+        for position in range(1, 3):
+            preview = Preview.objects.create(addon=addon, position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+        (p0, p1) = list(addon.previews.all())
+        Preview.objects.create(addon=addon, position=5)  # No file, ignored
+        cinder_addon = self.cinder_class(addon)
+        reason = 'report with images'
+        data = cinder_addon.build_report_payload(
+            report_text=reason,
+            category=None,
+            reporter=None,
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_addon',
+            'entity': {
+                'id': str(addon.id),
+                'icon': {
+                    'mime_type': 'image/png',
+                    'value': f'https://cloud.example.com/{addon.pk}-128.png?some=thing',
+                },
+                'guid': addon.guid,
+                'slug': addon.slug,
+                'name': str(addon.name),
+                'previews': [
+                    {
+                        'mime_type': 'image/jpeg',
+                        'value': f'https://cloud.example.com/{p0.pk}.jpg?some=thing',
+                    },
+                    {
+                        'mime_type': 'image/jpeg',
+                        'value': f'https://cloud.example.com/{p1.pk}.jpg?some=thing',
+                    },
+                ],
+            },
+            'reasoning': reason,
+            'context': {'entities': [], 'relationships': []},
+        }
+
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_theme_previews(
+        self,
+        copy_file_to_backup_storage_mock,
+        create_signed_url_for_file_backup_mock,
+    ):
+        copy_file_to_backup_storage_mock.side_effect = (
+            lambda fpath, type_: os.path.basename(fpath)
+        )
+        create_signed_url_for_file_backup_mock.side_effect = (
+            lambda rpath: f'https://cloud.example.com/{rpath}?some=thing'
+        )
+        addon = self._create_dummy_target()
+        addon.update(type=amo.ADDON_STATICTHEME)
+        for position in range(1, 3):
+            preview = VersionPreview.objects.create(
+                version=addon.current_version, position=position
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+        p0 = addon.current_version.previews.all().get(
+            position=amo.THEME_PREVIEW_RENDERINGS['amo']['position']
+        )
+        VersionPreview.objects.create(
+            version=addon.current_version, position=5
+        )  # No file, ignored
+        cinder_addon = self.cinder_class(addon)
+        reason = 'report with images'
+        data = cinder_addon.build_report_payload(
+            report_text=reason,
+            category=None,
+            reporter=None,
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_addon',
+            'entity': {
+                'id': str(addon.id),
+                'guid': addon.guid,
+                'slug': addon.slug,
+                'name': str(addon.name),
+                'previews': [
+                    {
+                        'mime_type': 'image/png',
+                        'value': f'https://cloud.example.com/{p0.pk}.png?some=thing',
+                    },
+                ],
+            },
+            'reasoning': reason,
+            'context': {'entities': [], 'relationships': []},
         }
 
 
