@@ -7,6 +7,7 @@ from django.utils.functional import classproperty
 
 import requests
 
+from olympia import amo
 from olympia.amo.utils import (
     backup_storage_enabled,
     copy_file_to_backup_storage,
@@ -223,16 +224,25 @@ class CinderAddon(CinderEntity):
                         'mime_type': icon_type,
                     }
             previews = []
-            for preview in self.addon.previews.all():
-                if storage.exists(preview.image_path):
-                    content_type = mimetypes.guess_type(preview.image_path)
+            preview_objs = list(self.addon.previews.all()) + list(
+                # For themes, we automatically generate 2 previews with
+                # different sizes and format, we only need to expose one.
+                self.addon.current_version.previews.all().filter(
+                    position=amo.THEME_PREVIEW_RENDERINGS['amo']['position']
+                )
+                if self.addon.current_version
+                else []
+            )
+            for preview in preview_objs:
+                if storage.exists(preview.thumbnail_path):
+                    content_type = mimetypes.guess_type(preview.thumbnail_path)[0]
                     filename = copy_file_to_backup_storage(
-                        preview.image_path, content_type
+                        preview.thumbnail_path, content_type
                     )
-                    previews.append(
+                    data['previews'].append(
                         {
                             'value': create_signed_url_for_file_backup(filename),
-                            'mime_type': icon_type,
+                            'mime_type': content_type,
                         }
                     )
             if previews:
