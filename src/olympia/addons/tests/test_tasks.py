@@ -448,15 +448,18 @@ class TestResizeIcon(TestCase):
             os.makedirs(uploadto)
         except OSError:
             pass
+        fake_addon_id = 1234
         for rsize, expected_size in zip(resize_size, final_size, strict=True):
             # resize_icon moves the original
             shutil.copyfile(img, src.name)
             src_image = Image.open(src.name)
             assert src_image.size == original_size
-            dest_name = os.path.join(uploadto, '1234')
+            dest_name = os.path.join(
+                uploadto, str(fake_addon_id // 1000), str(fake_addon_id)
+            )
 
             with mock.patch('olympia.amo.utils.pngcrush_image') as pngcrush_mock:
-                return_value = resize_icon(src.name, dest_name, [rsize])
+                return_value = resize_icon(src.name, fake_addon_id, [rsize])
             dest_image = f'{dest_name}-{rsize}.png'
             assert pngcrush_mock.call_count == 1
             assert pngcrush_mock.call_args_list[0][0][0] == dest_image
