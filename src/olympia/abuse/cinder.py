@@ -239,7 +239,7 @@ class CinderAddon(CinderEntity):
                     filename = copy_file_to_backup_storage(
                         preview.thumbnail_path, content_type
                     )
-                    data['previews'].append(
+                    previews.append(
                         {
                             'value': create_signed_url_for_file_backup(filename),
                             'mime_type': content_type,
