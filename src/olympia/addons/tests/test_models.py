@@ -2305,7 +2305,7 @@ class TestAddonDelete(TestCase):
         AddonLog.objects.create(
             addon=addon,
             activity_log=ActivityLog.objects.create(
-                action=0, user=UserProfile.objects.create()
+                action=1, user=UserProfile.objects.create()
             ),
         )
         RssKey.objects.create(addon=addon)

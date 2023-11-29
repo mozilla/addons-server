@@ -990,7 +990,7 @@ class ReviewBase:
 
         args = (*args, *self.data.get('reasons', []))
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
-        self.log_entry = ActivityLog.create(action, *args, **kwargs)
+        self.log_entry = ActivityLog.objects.create(action, *args, **kwargs)
 
     def notify_email(
         self, template, subject, perm_setting='reviewer_reviewed', version=None
@@ -1074,7 +1074,9 @@ class ReviewBase:
         assert not (self.version and self.version.is_blocked)
         if self.file:
             if self.file.is_experiment:
-                ActivityLog.create(amo.LOG.EXPERIMENT_SIGNED, self.file, user=self.user)
+                ActivityLog.objects.create(
+                    amo.LOG.EXPERIMENT_SIGNED, self.file, user=self.user
+                )
             sign_file(self.file)
 
     def process_comment(self):
@@ -1515,7 +1517,9 @@ class ReviewUnlisted(ReviewBase):
         # Sign addon.
         self.sign_file()
         if self.file:
-            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, self.file, user=self.user)
+            ActivityLog.objects.create(
+                amo.LOG.UNLISTED_SIGNED, self.file, user=self.user
+            )
 
         self.set_file(amo.STATUS_APPROVED, self.file)
 
@@ -1612,7 +1616,9 @@ class ReviewUnlisted(ReviewBase):
             assert not version.is_blocked
             if version.file.status == amo.STATUS_AWAITING_REVIEW:
                 sign_file(version.file)
-            ActivityLog.create(amo.LOG.UNLISTED_SIGNED, version.file, user=self.user)
+            ActivityLog.objects.create(
+                amo.LOG.UNLISTED_SIGNED, version.file, user=self.user
+            )
             self.set_file(amo.STATUS_APPROVED, version.file)
             if self.human_review:
                 self.clear_specific_needs_human_review_flags(version)

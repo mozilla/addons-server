@@ -680,7 +680,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         version_factory(addon=addon)
         for version in addon.versions.all():
             # Add some activity logs, but no pending_rejection flag.
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -698,7 +698,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(days=2)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -716,7 +716,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -746,7 +746,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -767,7 +767,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -788,7 +788,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -814,7 +814,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -832,7 +832,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -863,7 +863,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -888,7 +888,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -917,7 +917,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -945,7 +945,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -980,7 +980,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_CONTENT_DELAYED,
                 version.addon,
                 version,
@@ -1016,7 +1016,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             )
             # The ActivityLog doesn't match a pending rejection, so we should
             # not send the notification here.
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION,
                 addon,
                 version,
@@ -1036,7 +1036,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             )
             # The ActivityLog doesn't have details, so we should
             # not send the notification here.
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED, addon, version, user=self.user
             )
         call_command('send_pending_rejection_last_warning_notifications')
@@ -1052,7 +1052,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             )
             # The ActivityLog doesn't have comments, so we should
             # not send the notification here.
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
@@ -1071,7 +1071,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,

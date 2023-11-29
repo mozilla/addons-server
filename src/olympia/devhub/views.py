@@ -386,7 +386,7 @@ def delete(request, addon_id, addon):
 @post_required
 def enable(request, addon_id, addon):
     addon.update(disabled_by_user=False)
-    ActivityLog.create(amo.LOG.USER_ENABLE, addon)
+    ActivityLog.objects.create(amo.LOG.USER_ENABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -406,7 +406,7 @@ def cancel(request, addon_id, addon, channel):
 @post_required
 def disable(request, addon_id, addon):
     addon.update(disabled_by_user=True)
-    ActivityLog.create(amo.LOG.USER_DISABLE, addon)
+    ActivityLog.objects.create(amo.LOG.USER_DISABLE, addon)
     return redirect(addon.get_dev_url('versions'))
 
 
@@ -905,12 +905,12 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
                 editable = False
                 if section == 'media':
-                    ActivityLog.create(amo.LOG.CHANGE_MEDIA, addon)
+                    ActivityLog.objects.create(amo.LOG.CHANGE_MEDIA, addon)
                 else:
-                    ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
+                    ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
 
                 if valid_slug != addon.slug:
-                    ActivityLog.create(
+                    ActivityLog.objects.create(
                         amo.LOG.ADDON_SLUG_CHANGED, addon, valid_slug, addon.slug
                     )
                 valid_slug = addon.slug
@@ -1132,7 +1132,7 @@ def version_edit(request, addon_id, addon, version_id):
                 timer.log_interval('3.form_saved')
 
             if 'approval_notes' in version_form.changed_data:
-                ActivityLog.create(
+                ActivityLog.objects.create(
                     amo.LOG.APPROVAL_NOTES_CHANGED, addon, version, request.user
                 )
 
@@ -1182,7 +1182,9 @@ def _log_max_version_change(addon, version, appversion):
         'target': appversion.version.version,
         'application': appversion.application,
     }
-    ActivityLog.create(amo.LOG.MAX_APPVERSION_UPDATED, addon, version, details=details)
+    ActivityLog.objects.create(
+        amo.LOG.MAX_APPVERSION_UPDATED, addon, version, details=details
+    )
 
 
 @dev_required
@@ -1867,7 +1869,7 @@ def request_review(request, addon_id, addon):
         messages.success(request, gettext('Review requested.'))
     else:
         messages.success(request, _('You must provide further details to proceed.'))
-    ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
+    ActivityLog.objects.create(amo.LOG.CHANGE_STATUS, addon, addon.status)
     return redirect(addon.get_dev_url('versions'))
 
 

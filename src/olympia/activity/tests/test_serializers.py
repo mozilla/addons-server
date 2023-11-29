@@ -11,7 +11,7 @@ class LogMixin:
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         details = {'comments': comments, 'version': version.version}
         kwargs = {'user': self.user, 'details': details}
-        al = ActivityLog.create(action, self.addon, version, **kwargs)
+        al = ActivityLog.objects.create(action, self.addon, version, **kwargs)
         if created:
             al.update(created=created)
         return al
@@ -89,7 +89,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
 
     def test_log_entry_without_details(self):
         # Create a log but without a details property.
-        self.entry = ActivityLog.create(
+        self.entry = ActivityLog.objects.create(
             amo.LOG.APPROVAL_NOTES_CHANGED,
             self.addon,
             self.addon.find_latest_version(channel=amo.CHANNEL_LISTED),

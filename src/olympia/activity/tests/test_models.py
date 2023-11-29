@@ -111,7 +111,7 @@ class TestActivityLog(TestCase):
 
     def test_basic(self):
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon)
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
         assert entries[0].arguments[0] == addon
@@ -121,7 +121,7 @@ class TestActivityLog(TestCase):
     def test_no_user(self):
         core.set_user(None)
         count = ActivityLog.objects.count()
-        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi')
+        ActivityLog.objects.create(amo.LOG.CUSTOM_TEXT, 'hi')
         assert count == ActivityLog.objects.count()
 
     def test_pseudo_objects(self):
@@ -138,12 +138,12 @@ class TestActivityLog(TestCase):
         If we are given (Addon, 3615) it should log in the AddonLog as well.
         """
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         assert AddonLog.objects.count() == 1
 
     def test_addon_log(self):
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
         assert addon.get_url_path() in str(entries[0])
@@ -155,7 +155,7 @@ class TestActivityLog(TestCase):
         self.make_addon_unlisted(addon)
         # Delete the status change log entry from making versions unlisted.
         ActivityLog.objects.for_addons(addon).delete()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
         entries = ActivityLog.objects.for_addons(addon)
         assert len(entries) == 1
         assert url_path not in str(entries[0])
@@ -181,7 +181,7 @@ class TestActivityLog(TestCase):
 
     def test_json_failboat(self):
         addon = Addon.objects.get()
-        ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon)
         entry = ActivityLog.objects.get()
         entry._arguments = 'failboat?'
         entry.save()
@@ -235,12 +235,12 @@ class TestActivityLog(TestCase):
             )
 
     def test_no_arguments(self):
-        ActivityLog.create(amo.LOG.CUSTOM_HTML)
+        ActivityLog.objects.create(amo.LOG.CUSTOM_HTML)
         entry = ActivityLog.objects.get()
         assert entry.arguments == []
 
     def test_output(self):
-        ActivityLog.create(amo.LOG.CUSTOM_TEXT, 'hi there')
+        ActivityLog.objects.create(amo.LOG.CUSTOM_TEXT, 'hi there')
         entry = ActivityLog.objects.get()
         assert str(entry) == 'hi there'
 
@@ -248,13 +248,13 @@ class TestActivityLog(TestCase):
         addon = Addon.objects.get()
         addon2 = addon_factory()
         with core.override_remote_addr('1.1.1.1'):
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 addon,
                 addon.current_version,
                 user=self.request.user,
             )
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADD_VERSION,
                 addon2,
                 addon2.current_version,
@@ -284,7 +284,7 @@ class TestActivityLog(TestCase):
         action = amo.LOG.REJECT_VERSION
         assert not getattr(action, 'store_ip', False)
         with core.override_remote_addr('127.0.4.8'):
-            activity = ActivityLog.create(
+            activity = ActivityLog.objects.create(
                 action,
                 addon,
                 addon.current_version,
@@ -296,7 +296,7 @@ class TestActivityLog(TestCase):
         action = amo.LOG.ADD_VERSION
         assert getattr(action, 'store_ip', False)
         with core.override_remote_addr('15.16.23.42'):
-            activity = ActivityLog.create(
+            activity = ActivityLog.objects.create(
                 action,
                 addon,
                 addon.current_version,
@@ -314,7 +314,7 @@ class TestActivityLog(TestCase):
         # Creating an activity log without any `reason` arguments doesn't
         # create a ReviewActionReasonLog.
         action = amo.LOG.REJECT_VERSION
-        ActivityLog.create(
+        ActivityLog.objects.create(
             action,
             addon,
             addon.current_version,
@@ -331,7 +331,7 @@ class TestActivityLog(TestCase):
             name='reason 2',
             is_active=True,
         )
-        ActivityLog.create(
+        ActivityLog.objects.create(
             action,
             addon,
             addon.current_version,
@@ -347,7 +347,7 @@ class TestActivityLog(TestCase):
 
     def test_version_log(self):
         version = Version.objects.all()[0]
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
         )
         entries = ActivityLog.objects.for_versions(version)
@@ -359,7 +359,7 @@ class TestActivityLog(TestCase):
         version = version_factory(addon=addon)
         addon_factory()  # To create an extra unrelated version
         for version in Version.objects.all():
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
             )
         entries = ActivityLog.objects.for_versions(addon.versions.all())
@@ -370,7 +370,7 @@ class TestActivityLog(TestCase):
         # Get the url before the addon is changed to unlisted.
         url_path = version.get_url_path()
         self.make_addon_unlisted(version.addon)
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
         )
         entries = ActivityLog.objects.for_versions(version)
@@ -380,7 +380,7 @@ class TestActivityLog(TestCase):
     def test_version_log_transformer(self):
         addon = Addon.objects.get()
         version = addon.current_version
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION, addon, version, user=self.request.user
         )
 
@@ -388,7 +388,7 @@ class TestActivityLog(TestCase):
             addon=addon, license=version.license, version='1.2.3'
         )
 
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION, addon, version_two, user=self.request.user
         )
 
@@ -404,9 +404,9 @@ class TestActivityLog(TestCase):
     def test_anonymize_user_for_developer_transformer(self):
         addon = Addon.objects.get()
         # This action's user can be shown.
-        ActivityLog.create(amo.LOG.CREATE_ADDON, addon, user=self.request.user)
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, addon, user=self.request.user)
         # This action's user should not be shown.
-        ActivityLog.create(amo.LOG.FORCE_DISABLE, addon, user=self.request.user)
+        ActivityLog.objects.create(amo.LOG.FORCE_DISABLE, addon, user=self.request.user)
 
         logs = ActivityLog.objects.all().transform(
             ActivityLog.transformer_anonymize_user_for_developer
@@ -424,7 +424,7 @@ class TestActivityLog(TestCase):
         addon.save()
         addon = addon.reload()
         au = AddonUser(addon=addon, user=self.user)
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.CHANGE_USER_WITH_ROLE, au.user, str(au.get_role_display()), addon
         )
         log = ActivityLog.objects.get()
@@ -443,7 +443,7 @@ class TestActivityLog(TestCase):
     def test_tag_no_match(self):
         addon = Addon.objects.get()
         tag = Tag.objects.create(tag_text='http://foo.com')
-        ActivityLog.create(amo.LOG.ADD_TAG, addon, tag)
+        ActivityLog.objects.create(amo.LOG.ADD_TAG, addon, tag)
         log = ActivityLog.objects.get()
         text = amo.utils.from_string('<p>{{ log }}</p>').render({'log': log})
         # There should only be one a, the link to the addon, but no tag link.
@@ -451,7 +451,9 @@ class TestActivityLog(TestCase):
 
     def test_change_status(self):
         addon = Addon.objects.get()
-        log = ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
+        log = ActivityLog.objects.create(
+            amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED
+        )
         expected = (
             '<a href="http://testserver/en-US/firefox/addon/a3615/">'
             'Delicious Bookmarks</a> status changed to Approved.'
@@ -489,12 +491,22 @@ class TestActivityLog(TestCase):
 
     def test_str_activity_file(self):
         addon = Addon.objects.get()
-        log = ActivityLog.create(amo.LOG.UNLISTED_SIGNED, addon.current_version.file)
+        log = ActivityLog.objects.create(
+            amo.LOG.UNLISTED_SIGNED, addon.current_version.file
+        )
         assert str(log) == (
             '<a href="http://testserver/firefox/downloads/file/67442/'
             'delicious_bookmarks-2.1.072.xpi">'
             'delicious_bookmarks-2.1.072.xpi</a>'
             ' (validation ignored) was signed.'
+        )
+
+    def test_create_action_arg_or_kwarg(self):
+        assert ActivityLog.objects.create(amo.LOG.ADD_TAG).log == amo.LOG.ADD_TAG
+        assert ActivityLog.objects.create(action=amo.LOG.ADD_TAG).log == amo.LOG.ADD_TAG
+        assert ActivityLog.objects.create(amo.LOG.ADD_TAG.id).log == amo.LOG.ADD_TAG
+        assert (
+            ActivityLog.objects.create(action=amo.LOG.ADD_TAG.id).log == amo.LOG.ADD_TAG
         )
 
 

@@ -240,7 +240,7 @@ class PreviewSerializer(AMOModelSerializer):
 
     def save(self, *args, **kwargs):
         instance = super().save(*args, **kwargs)
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.CHANGE_MEDIA, instance.addon, user=self.context['request'].user
         )
         return instance
@@ -701,7 +701,7 @@ class DeveloperVersionSerializer(VersionSerializer):
                 if appver and (
                     app not in existing_maxs or existing_maxs[app] != appver.max
                 ):
-                    ActivityLog.create(
+                    ActivityLog.objects.create(
                         amo.LOG.MAX_APPVERSION_UPDATED,
                         instance.addon,
                         instance,
@@ -718,7 +718,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             else:
                 instance.update(license=custom_license_field.create(custom_license))
         if custom_license or 'license' in validated_data:
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.CHANGE_LICENSE, instance.license, instance.addon, user=user
             )
         if 'source' in validated_data:
@@ -1240,14 +1240,14 @@ class AddonSerializer(AMOModelSerializer):
 
         if 'disabled_by_user' in validated_data:
             is_disabled = validated_data.pop('disabled_by_user')
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.USER_DISABLE if is_disabled else amo.LOG.USER_ENABLE,
                 instance,
                 user=user,
             )
         if 'icon' in validated_data:
             validated_data.pop('icon')
-            ActivityLog.create(amo.LOG.CHANGE_MEDIA, instance, user=user)
+            ActivityLog.objects.create(amo.LOG.CHANGE_MEDIA, instance, user=user)
         if 'tag_list' in validated_data:
             # Tag.add_tag and Tag.remove_tag have their own logging so don't repeat it.
             validated_data.pop('tag_list')
@@ -1256,7 +1256,7 @@ class AddonSerializer(AMOModelSerializer):
             validated_data.pop('version')
 
         if validated_data:
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.EDIT_PROPERTIES,
                 instance,
                 details=list(validated_data.keys()),
@@ -1318,7 +1318,7 @@ class AddonSerializer(AMOModelSerializer):
             # representation if there was one.
             self.fields['version'].write_only = False
         if 'slug' in validated_data:
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.ADDON_SLUG_CHANGED, instance, old_slug, instance.slug
             )
 

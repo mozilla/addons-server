@@ -658,8 +658,12 @@ class TestVersion(TestCase):
     def test_pending_activity_count(self):
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
         # Add some activity log messages
-        ActivityLog.create(amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user)
-        ActivityLog.create(amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
+        )
+        ActivityLog.objects.create(
+            amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1018,7 +1022,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         # Have a reviewer review a version.
         reviewer = user_factory()
         self.grant_permission(reviewer, 'Addons:Review')
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED, self.addon, self.version, user=reviewer
         )
 

@@ -110,9 +110,15 @@ def test_pending_activity_log_count_for_developer(
     user = user_factory()
     addon = addon_factory()
     version = addon.current_version
-    ActivityLog.create(action1, addon, version, user=user).update(created=days_ago(2))
-    ActivityLog.create(action2, addon, version, user=user).update(created=days_ago(1))
-    ActivityLog.create(action3, addon, version, user=user).update(created=days_ago(0))
+    ActivityLog.objects.create(action1, addon, version, user=user).update(
+        created=days_ago(2)
+    )
+    ActivityLog.objects.create(action2, addon, version, user=user).update(
+        created=days_ago(1)
+    )
+    ActivityLog.objects.create(action3, addon, version, user=user).update(
+        created=days_ago(0)
+    )
 
     count = jinja_helpers.pending_activity_log_count_for_developer(version)
     assert count == expected_count

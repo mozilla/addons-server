@@ -134,7 +134,7 @@ def sign_addons(addon_ids, force=False, send_emails=True, **kw):
             previous_version_str = str(version.version)
             version.update(version=bumped_version_number)
             addon = version.addon
-            ActivityLog.create(
+            ActivityLog.objects.create(
                 amo.LOG.VERSION_RESIGNED,
                 addon,
                 version,

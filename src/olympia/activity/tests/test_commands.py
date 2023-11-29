@@ -75,20 +75,22 @@ def test_backfill_ratinglog_command():
     user = user_factory()
     addon = addon_factory()
 
-    no_rating_in_args_log = ActivityLog.create(amo.LOG.ADD_RATING, user=user)
+    no_rating_in_args_log = ActivityLog.objects.create(amo.LOG.ADD_RATING, user=user)
     assert no_rating_in_args_log.arguments == []
 
     missing = Rating.objects.create(addon=addon, user=user)
-    missing_log = ActivityLog.create(amo.LOG.ADD_RATING, user=user)
+    missing_log = ActivityLog.objects.create(amo.LOG.ADD_RATING, user=user)
     missing_log.set_arguments((missing,))
     missing_log.save()
 
     has_rating = Rating.objects.create(addon=addon, user=user)
-    has_rating_log = ActivityLog.create(amo.LOG.ADD_RATING, has_rating, user=user)
+    has_rating_log = ActivityLog.objects.create(
+        amo.LOG.ADD_RATING, has_rating, user=user
+    )
     assert has_rating_log.arguments == [has_rating]
 
     has_rating_not_no_ratinglog_yet = Rating.objects.create(addon=addon, user=user)
-    has_rating_not_no_ratinglog_yet_log = ActivityLog.create(
+    has_rating_not_no_ratinglog_yet_log = ActivityLog.objects.create(
         amo.LOG.ADD_RATING, has_rating_not_no_ratinglog_yet, user=user
     )
     assert has_rating_not_no_ratinglog_yet_log.arguments == [
@@ -98,7 +100,9 @@ def test_backfill_ratinglog_command():
     has_rating_log.ratinglog_set.all().delete()
 
     other_action = Rating.objects.create(addon=addon, user=user)
-    other_action_log = ActivityLog.create(amo.LOG.CHANGE_STATUS, addon, user=user)
+    other_action_log = ActivityLog.objects.create(
+        amo.LOG.CHANGE_STATUS, addon, user=user
+    )
     assert other_action_log.arguments == [addon]
     other_action_log.set_arguments((addon, other_action))
     other_action_log.save()

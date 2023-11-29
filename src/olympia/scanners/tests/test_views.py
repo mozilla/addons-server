@@ -73,29 +73,33 @@ class TestScannerResultViewInternal(TestCase):
         good_result_1 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=good_version_1
         )
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, good_version_1, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.APPROVE_VERSION, good_version_1, user=self.user
+        )
         # result labelled as "good" because auto-approve has been confirmed
         good_version_2 = version_factory(addon=addon_factory())
         good_result_2 = ScannerResult.objects.create(
             scanner=CUSTOMS, version=good_version_2
         )
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, good_version_2, user=task_user)
-        ActivityLog.create(
+        ActivityLog.objects.create(
+            amo.LOG.APPROVE_VERSION, good_version_2, user=task_user
+        )
+        ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, good_version_2, user=self.user
         )
         # Simulate a reviewer who has confirmed auto-approval a second time. We
         # should not return duplicate results.
-        ActivityLog.create(
+        ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, good_version_2, user=self.user
         )
         # result NOT labelled as "good" because action is not correct.
         version_3 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_3)
-        ActivityLog.create(amo.LOG.REJECT_VERSION, version_3, user=self.user)
+        ActivityLog.objects.create(amo.LOG.REJECT_VERSION, version_3, user=self.user)
         # result NOT labelled as "good" because user is TASK_USER_ID
         version_4 = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=YARA, version=version_4)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_4, user=task_user)
+        ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_4, user=task_user)
 
         with override_settings(TASK_USER_ID=task_user.pk):
             response = self.client.get(self.url)
@@ -159,7 +163,7 @@ class TestScannerResultViewInternal(TestCase):
         good_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=CUSTOMS, version=good_version)
         VersionLog.objects.create(
-            activity_log=ActivityLog.create(
+            activity_log=ActivityLog.objects.create(
                 action=amo.LOG.APPROVE_VERSION,
                 version=good_version,
                 user=self.user,
@@ -198,7 +202,7 @@ class TestScannerResultViewInternal(TestCase):
         good_version = version_factory(addon=addon_factory())
         ScannerResult.objects.create(scanner=CUSTOMS, version=good_version)
         VersionLog.objects.create(
-            activity_log=ActivityLog.create(
+            activity_log=ActivityLog.objects.create(
                 action=amo.LOG.APPROVE_VERSION,
                 version=good_version,
                 user=self.user,
@@ -265,7 +269,7 @@ class TestScannerResultViewInternal(TestCase):
         # Result labelled as "good" because auto-approve has been confirmed.
         version_1 = version_factory(addon=addon_factory())
         result_1 = ScannerResult.objects.create(scanner=CUSTOMS, version=version_1)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
+        ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         # Oh noes! The version has been blocked.
         block_1 = block_factory(guid=version_1.addon.guid, updated_by=self.user)
         block_activity_log_save(block_1, change=False)
@@ -278,12 +282,20 @@ class TestScannerResultViewInternal(TestCase):
     def test_get_unique_bad_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
-        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user)
-        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user
+        )
+        ActivityLog.objects.create(
+            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user
+        )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
         ScannerResult.objects.create(scanner=MAD, version=version_2)
-        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user)
-        ActivityLog.create(amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user
+        )
+        ActivityLog.objects.create(
+            amo.LOG.BLOCKLIST_BLOCK_EDITED, version_2, user=self.user
+        )
 
         response = self.client.get(f'{self.url}?label=bad')
         results = self.assert_json_results(response, expected_results=2)
@@ -292,14 +304,22 @@ class TestScannerResultViewInternal(TestCase):
     def test_get_unique_good_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
         ScannerResult.objects.create(scanner=MAD, version=version_1)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
-        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user)
-        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user)
+        ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
+        )
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
+        )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
         ScannerResult.objects.create(scanner=MAD, version=version_2)
-        ActivityLog.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
-        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
-        ActivityLog.create(amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user)
+        ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
+        )
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user
+        )
 
         response = self.client.get(f'{self.url}?label=good')
         results = self.assert_json_results(response, expected_results=2)
