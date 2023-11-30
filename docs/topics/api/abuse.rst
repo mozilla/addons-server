@@ -244,6 +244,7 @@ so reports can be responded to if necessary.
 
     :<json string|int user: The id or username of the user to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-user-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
@@ -260,6 +261,7 @@ so reports can be responded to if necessary.
     :>json string user.url: The link to the profile page for of the user reported.
     :>json string user.username: The username of the user reported.
     :>json string message: The body/content of the abuse report.
+    :>json string|null lang: The language code of the locale used by the client for the application.
 
 
 .. _abuse-user-reason-parameter:
@@ -291,6 +293,7 @@ so reports can be responded to if necessary.
 
     :<json string|int rating: The id of the rating to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-rating-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
@@ -304,6 +307,7 @@ so reports can be responded to if necessary.
     :>json object rating: The user reported for abuse.
     :>json int rating.id: The id of the rating reported.
     :>json string message: The body/content of the abuse report.
+    :>json string|null lang: The language code of the locale used by the client for the application.
     :>json string|null reason: The reason for the report.
 
 
@@ -336,6 +340,7 @@ so reports can be responded to if necessary.
 
     :<json string|int collection: The id of the collection to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-collection-reason-parameter>`.
     :<json string|null reporter_name: The provided name of the reporter, if not authenticated.
     :<json string|null reporter_email: The provided email of the reporter, if not authenticated.
@@ -349,6 +354,7 @@ so reports can be responded to if necessary.
     :>json object collection: The collection reported for abuse.
     :>json int collection.id: The id of the collection reported.
     :>json string message: The body/content of the abuse report.
+    :>json string|null lang: The language code of the locale used by the client for the application.
 
 
 .. _abuse-collection-reason-parameter:

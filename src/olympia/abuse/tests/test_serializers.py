@@ -268,6 +268,7 @@ class TestUserAbuseReportSerializer(TestCase):
             'reporter_name': None,
             'user': serialized_user,
             'message': 'bad stuff',
+            'lang': None,
             'reason': None,
         }
 
@@ -303,6 +304,7 @@ class TestRatingAbuseReportSerializer(TestCase):
             },
             'reason': 'illegal',
             'message': 'bad stuff',
+            'lang': None,
         }
 
 
@@ -335,4 +337,5 @@ class TestCollectionAbuseReportSerializer(TestCase):
             },
             'reason': 'feedback_spam',
             'message': 'this is some spammy stûff',
+            'lang': None,
         }

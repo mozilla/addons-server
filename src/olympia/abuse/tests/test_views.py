@@ -765,6 +765,23 @@ class UserAbuseViewSetTestBase:
         self._setup_reportable_reason(None, 'Some message since no reason is provided')
         task_mock.assert_not_called()
 
+    def test_lang(self):
+        user = user_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'user': str(user.id),
+                'message': 'abuse!',
+                'lang': 'Lô-käl',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        report = AbuseReport.objects.get(user_id=user.id)
+        self.check_report(report, f'Abuse Report for User {user.pk}')
+        assert report.application_locale == 'Lô-käl'
+
 
 class TestUserAbuseViewSetLoggedOut(UserAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
@@ -1214,6 +1231,26 @@ class RatingAbuseViewSetTestBase:
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
 
+    def test_lang(self):
+        target_rating = Rating.objects.create(
+            addon=addon_factory(), user=user_factory(), body='Booh', rating=1
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'rating': str(target_rating.pk),
+                'message': 'abuse!',
+                'reason': 'illegal',
+                'lang': 'Lô-käl',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        report = AbuseReport.objects.get(rating=target_rating)
+        self.check_report(report, f'Abuse Report for Rating {target_rating.pk}')
+        assert report.application_locale == 'Lô-käl'
+
 
 class TestRatingAbuseViewSetLoggedOut(RatingAbuseViewSetTestBase, TestCase):
     def check_reporter(self, report):
@@ -1445,6 +1482,24 @@ class CollectionAbuseViewSetTestBase:
     def test_reportable_reason_does_not_call_cinder_with_waffle_off(self, task_mock):
         self._setup_reportable_reason('hateful_violent_deceptive')
         task_mock.assert_not_called()
+
+    def test_lang(self):
+        target_collection = collection_factory()
+        response = self.client.post(
+            self.url,
+            data={
+                'collection': str(target_collection.pk),
+                'message': 'abusé!',
+                'reason': 'hateful_violent_deceptive',
+                'lang': 'Lô-käl',
+            },
+            REMOTE_ADDR='123.45.67.89',
+        )
+        assert response.status_code == 201
+
+        report = AbuseReport.objects.get(collection=target_collection)
+        self.check_report(report, f'Abuse Report for Collection {target_collection.pk}')
+        assert report.application_locale == 'Lô-käl'
 
 
 class TestCollectionAbuseViewSetLoggedOut(CollectionAbuseViewSetTestBase, TestCase):
