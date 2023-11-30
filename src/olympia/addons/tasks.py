@@ -103,7 +103,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
             disabled_addon_content.update(icon_backup_name=backup_file_name)
         remove_icons(addon)
 
-    for preview in Preview.objects.filter(addon__id=id):
+    for preview in addon.previews.all():
         if not storage.exists(preview.original_path):
             continue
         backup_file_name = copy_file_to_backup_storage(
@@ -114,7 +114,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         )
         preview.__class__.delete_preview_files(sender=None, instance=preview)
 
-    for preview in VersionPreview.objects.filter(version__addon__id=id):
+    for preview in VersionPreview.objects.filter(version__addon=addon):
         # VersionPreview are automatically generated from the xpi file so they
         # don't require a dedicated backup.
         preview.__class__.delete_preview_files(sender=None, instance=preview)
@@ -127,7 +127,6 @@ def restore_all_addon_media_from_backup(id, **kwargs):
     disabled_addon_content = DisabledAddonContent.objects.filter(addon=addon).last()
     if disabled_addon_content:
         log.info('Found some disable content to restore for addon %s', addon.pk)
-        # FIXME: investigate icon issues
         if disabled_addon_content.icon_backup_name:
             icon_contents = download_file_contents_from_backup_storage(
                 disabled_addon_content.icon_backup_name
@@ -158,7 +157,6 @@ def restore_all_addon_media_from_backup(id, **kwargs):
                     preview.pk,
                     set_modified_on=addon.serializable_reference(),
                 )
-        index_addons.delay([addon.pk])
         disabled_addon_content.delete()
     if addon.type == amo.ADDON_STATICTHEME:
         recreate_theme_previews([addon.pk])  # Will cause a reindex.

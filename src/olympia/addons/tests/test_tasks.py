@@ -14,6 +14,7 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.indexers import AddonIndexer
+from olympia.addons.models import DeletedPreviewFile, DisabledAddonContent
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
@@ -25,6 +26,7 @@ from olympia.versions.models import Version, VersionPreview
 from olympia.zadmin.models import set_config
 
 from ..tasks import (
+    delete_all_addon_media_with_backup,
     disable_addons,
     flag_high_hotness_according_to_review_tier,
     index_addons,
@@ -569,3 +571,124 @@ def test_index_addons(index_objects_mock, unindex_objects_mock):
     index_addons((incomplete_addon.id,))
     index_objects_mock.assert_not_called()
     unindex_objects_mock.assert_called_once()
+
+
+class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
+    def setUp(self):
+        patcher = mock.patch('olympia.addons.tasks.copy_file_to_backup_storage')
+        self.addCleanup(patcher.stop)
+        self.copy_file_to_backup_storage_mock = patcher.start()
+        self.copy_file_to_backup_storage_mock.side_effect = (
+            lambda fpath, type_: f'mock-backup-{os.path.basename(fpath)}'
+        )
+        self.addon = addon_factory()
+
+    def test_delete_all_addon_media_with_backup(self):
+        self.addon.update(icon_type='image/jpeg')
+        for size in amo.ADDON_ICON_SIZES + ('original',):
+            self.root_storage.copy_stored_file(
+                get_image_path('sunbird-small.png'), self.addon.get_icon_path(size)
+            )
+        for position in range(1, 3):
+            preview = self.addon.previews.create(position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.original_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.image_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+
+        delete_all_addon_media_with_backup(self.addon.pk)
+
+        assert DisabledAddonContent.objects.filter(addon=self.addon).exists()
+        dac = DisabledAddonContent.objects.get(addon=self.addon)
+
+        for size in amo.ADDON_ICON_SIZES + ('original',):
+            assert not self.root_storage.exists(self.addon.get_icon_path(size))
+        assert (
+            dac.icon_backup_name
+            == self.copy_file_to_backup_storage_mock.side_effect(
+                self.addon.get_icon_path('original'), self.addon.icon_type
+            )
+        )
+
+        assert DeletedPreviewFile.objects.count() == self.addon.previews.count() == 2
+        for preview in self.addon.previews.all():
+            assert not self.root_storage.exists(preview.original_path)
+            assert not self.root_storage.exists(preview.image_path)
+            assert not self.root_storage.exists(preview.thumbnail_path)
+            assert DeletedPreviewFile.objects.get(preview=preview).backup_name == (
+                self.copy_file_to_backup_storage_mock.side_effect(
+                    preview.original_path, 'image/png'
+                )
+            )
+
+        assert self.copy_file_to_backup_storage_mock.call_count == 3
+        assert self.copy_file_to_backup_storage_mock.call_args_list[0][0] == (
+            self.addon.get_icon_path('original'),
+            'image/jpeg',
+        )
+        assert self.copy_file_to_backup_storage_mock.call_args_list[1][0] == (
+            self.addon.previews.all()[0].original_path,
+            'image/png',
+        )
+        assert self.copy_file_to_backup_storage_mock.call_args_list[2][0] == (
+            self.addon.previews.all()[1].original_path,
+            'image/png',
+        )
+
+    def test_delete_icon_and_preview_does_not_exist_on_filesystem(self):
+        for position in range(1, 3):
+            self.addon.previews.create(addon=self.addon, position=position)
+        delete_all_addon_media_with_backup(self.addon.pk)
+
+        assert DisabledAddonContent.objects.filter(addon=self.addon).exists()
+        dac = DisabledAddonContent.objects.get(addon=self.addon)
+        assert dac.icon_backup_name is None
+        assert DeletedPreviewFile.objects.count() == 0
+
+    def test_delete_addon_disabled_content_instance_exists(self):
+        DisabledAddonContent.objects.create(addon=self.addon, icon_backup_name='lol')
+        self.test_delete_all_addon_media_with_backup()
+
+    def test_delete_theme(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        for position in range(1, 3):
+            preview = self.addon.current_version.previews.create(position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.original_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.image_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+
+        delete_all_addon_media_with_backup(self.addon.pk)
+
+        # Pointless here, but useful indicator that we went through the task.
+        assert DisabledAddonContent.objects.filter(addon=self.addon).exists()
+
+        # Themes previews are automatically generated, so they shouldn't have
+        # been backuped, but should no longer exist on disk.
+        assert DeletedPreviewFile.objects.count() == 0
+        assert self.addon.current_version.previews.count() == 2
+        for preview in self.addon.current_version.previews.all():
+            assert not self.root_storage.exists(preview.original_path)
+            assert not self.root_storage.exists(preview.image_path)
+            assert not self.root_storage.exists(preview.thumbnail_path)
+
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
+
+    def restore_all_addon_media_from_backup(self):
+        pass
+
+    def restore_icon_and_preview_does_not_exist_in_backup(self):
+        pass
+
+    def restore_theme(self):
+        pass
