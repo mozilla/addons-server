@@ -212,7 +212,7 @@ class CinderAddon(CinderEntity):
         if backup_storage_enabled():
             if self.addon.icon_type:
                 icon_size = max(amo.ADDON_ICON_SIZES)
-                icon_type = mimetypes.guess_type(f'icon.{amo.ADDON_ICON_FORMAT}')[0]
+                icon_type, _ = mimetypes.guess_type(f'icon.{amo.ADDON_ICON_FORMAT}')
                 icon_path = self.addon.get_icon_path(icon_size)
                 if icon_type and storage.exists(icon_path):
                     filename = copy_file_to_backup_storage(icon_path, icon_type)
@@ -231,7 +231,7 @@ class CinderAddon(CinderEntity):
                 else []
             )
             for preview in preview_objs:
-                content_type = mimetypes.guess_type(preview.thumbnail_path)[0]
+                content_type, _ = mimetypes.guess_type(preview.thumbnail_path)
                 if content_type and storage.exists(preview.thumbnail_path):
                     filename = copy_file_to_backup_storage(
                         preview.thumbnail_path, content_type
