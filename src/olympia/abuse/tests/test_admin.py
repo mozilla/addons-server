@@ -16,6 +16,7 @@ from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    collection_factory,
     days_ago,
     grant_permission,
     user_factory,
@@ -25,7 +26,7 @@ from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import VersionPreview
 
 
-class TestAbuse(TestCase):
+class TestAbuseReportAdmin(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.addon1 = addon_factory(guid='@guid1', name='Neo')
@@ -71,8 +72,19 @@ class TestAbuse(TestCase):
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo'
         )
         # This is one against a user.
-        cls.report3 = AbuseReport.objects.create(
+        cls.report_user = AbuseReport.objects.create(
             user=user_factory(username='malicious_user'), message='Ehehehehe'
+        )
+        # This is one against a collection.
+        cls.report_collection = AbuseReport.objects.create(
+            collection=collection_factory(), message='Bad collection!'
+        )
+        # This is one against a rating.
+        cls.report_rating = AbuseReport.objects.create(
+            rating=Rating.objects.create(
+                addon=cls.addon1, body='ugh!', user=user_factory()
+            ),
+            message='Bad rating!',
         )
 
     def setUp(self):
@@ -116,6 +128,20 @@ class TestAbuse(TestCase):
         lis = doc('#changelist-filter li.selected')
         assert len(lis) == 5
         assert lis.text().split() == ['Users', 'All', 'All', 'All', 'All']
+
+        response = self.client.get(self.list_url, {'type': 'collection'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Ehehehehe' not in doc('#result_list').text()
+        assert 'Bad collection!' in doc('#result_list').text()
+
+        response = self.client.get(self.list_url, {'type': 'rating'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Ehehehehe' not in doc('#result_list').text()
+        assert 'Bad rating!' in doc('#result_list').text()
 
     def test_search_deactivated_if_not_filtering_by_type(self):
         response = self.client.get(self.list_url, {'q': 'Mysterious'}, follow=True)
@@ -161,6 +187,73 @@ class TestAbuse(TestCase):
         assert doc('#changelist-search')
         assert doc('#result_list tbody tr').length == 0
         assert 'Ehehehehe' not in doc('#result_list').text()
+
+    def test_search_collection(self):
+        response = self.client.get(
+            self.list_url, {'q': 'Bad', 'type': 'collection'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Bad collection!' in doc('#result_list').text()
+
+        collection = AbuseReport.objects.get(message='Bad collection!').collection
+        response = self.client.get(
+            self.list_url, {'q': collection.slug, 'type': 'collection'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Bad collection!' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': 'dfddfdf', 'type': 'collection'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 0
+        assert 'Bad collection!' not in doc('#result_list').text()
+
+    def test_search_rating(self):
+        response = self.client.get(
+            self.list_url, {'q': 'Bad', 'type': 'rating'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Bad rating!' in doc('#result_list').text()
+
+        rating = AbuseReport.objects.get(message='Bad rating!').rating
+        response = self.client.get(
+            self.list_url, {'q': f'{rating.body[:3]}*', 'type': 'rating'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Bad rating!' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': rating.id, 'type': 'rating'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Bad rating!' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': 'dfddfdf', 'type': 'rating'}, follow=True
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 0
+        assert 'Bad rating!' not in doc('#result_list').text()
 
     def test_search_addon(self):
         response = self.client.get(
@@ -293,7 +386,7 @@ class TestAbuse(TestCase):
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 5
+        assert doc('#result_list tbody tr').length == 7
         result_list_text = doc('#result_list').text()
         assert 'Soap' not in result_list_text
         assert 'Foo' not in result_list_text
@@ -491,15 +584,15 @@ class TestAbuse(TestCase):
         request._messages = default_messages_storage(request)
         reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
         assert reports.count() == 2
-        assert AbuseReport.objects.count() == 7
-        assert AbuseReport.unfiltered.count() == 7
+        assert AbuseReport.objects.count() == 9
+        assert AbuseReport.unfiltered.count() == 9
 
         action_callback = abuse_report_admin.get_actions(request)['delete_selected'][0]
         rval = action_callback(abuse_report_admin, request, reports)
         assert rval is None  # successful actions return None
         assert reports.count() == 0  # All should have been soft-deleted.
-        assert AbuseReport.objects.count() == 5  # Should have 1 unaffected.
-        assert AbuseReport.unfiltered.count() == 7  # We're only soft-deleting.
+        assert AbuseReport.objects.count() == 7  # Should have 1 unaffected.
+        assert AbuseReport.unfiltered.count() == 9  # We're only soft-deleting.
 
     def test_detail_addon_report(self):
         AddonApprovalsCounter.objects.create(
@@ -560,7 +653,7 @@ class TestAbuse(TestCase):
 
     def test_detail_user_report(self):
         self.detail_url = reverse(
-            'admin:abuse_abusereport_change', args=(self.report3.pk,)
+            'admin:abuse_abusereport_change', args=(self.report_user.pk,)
         )
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -568,3 +661,28 @@ class TestAbuse(TestCase):
         assert not doc('.addon-info-and-previews')
         assert not doc('.field-addon_name')
         assert 'malicious_user' in doc('.field-user').text()
+
+    def test_detail_collection_report(self):
+        self.detail_url = reverse(
+            'admin:abuse_abusereport_change', args=(self.report_collection.pk,)
+        )
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.addon-info-and-previews')
+        assert not doc('.field-addon_name')
+        assert (
+            str(self.report_collection.collection.name)
+            in doc('.field-collection').text()
+        )
+
+    def test_detail_rating_report(self):
+        self.detail_url = reverse(
+            'admin:abuse_abusereport_change', args=(self.report_rating.pk,)
+        )
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('.addon-info-and-previews')
+        assert not doc('.field-addon_name')
+        assert self.report_rating.rating.body in doc('.field-rating').text()

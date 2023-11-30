@@ -30,6 +30,8 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         """
         return (
             ('user', 'Users'),
+            ('collection', 'Collections'),
+            ('rating', 'Ratings'),
             ('addon', 'Add-ons'),
         )
 
@@ -41,6 +43,10 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
         """
         if self.value() == 'user':
             return queryset.filter(user__isnull=False)
+        elif self.value() == 'collection':
+            return queryset.filter(collection__isnull=False)
+        elif self.value() == 'rating':
+            return queryset.filter(rating__isnull=False)
         elif self.value() == 'addon':
             return queryset.filter(guid__isnull=False)
         return queryset
@@ -102,20 +108,24 @@ class AbuseReportAdmin(AMOModelAdmin):
         ('created', DateRangeFilter),
         MinimumReportsCountFilter,
     )
-    list_select_related = ('user',)
+    list_select_related = ('user', 'collection', 'rating')
     # Shouldn't be needed because those fields should all be readonly, but just
     # in case we change our mind, FKs should be raw id fields as usual in our
     # admin tools.
-    raw_id_fields = ('user', 'reporter')
+    raw_id_fields = ('user', 'collection', 'rating', 'reporter')
     # All fields except state must be readonly - the submitted data should
     # not be changed, only the state for triage.
     readonly_fields = (
         'created',
         'modified',
         'reporter',
+        'reporter_name',
+        'reporter_email',
         'country_code',
         'guid',
         'user',
+        'collection',
+        'rating',
         'message',
         'client_id',
         'addon_name',
@@ -145,6 +155,8 @@ class AbuseReportAdmin(AMOModelAdmin):
                     'created',
                     'modified',
                     'reporter',
+                    'reporter_name',
+                    'reporter_email',
                     'country_code',
                     'client_id',
                     'addon_signature',
@@ -165,11 +177,15 @@ class AbuseReportAdmin(AMOModelAdmin):
         ),
     )
     # The first fieldset is going to be dynamically added through
-    # get_fieldsets() depending on the target (add-on, user or unknown add-on),
-    # using the fields below:
+    # get_fieldsets() depending on the target (add-on, user, rating, collection,
+    # or unknown add-on), using the fields below:
     dynamic_fieldset_fields = {
         # User
         'user': (('User', {'fields': ('user',)}),),
+        # Collection
+        'collection': (('Collection', {'fields': ('collection',)}),),
+        # Rating
+        'rating': (('Rating', {'fields': ('rating',)}),),
         # Add-on, we only have the guid and maybe some extra addon_*
         # fields that were submitted with the report, we'll try to display the
         # addon card if we can find a matching add-on in the database though.
@@ -227,6 +243,17 @@ class AbuseReportAdmin(AMOModelAdmin):
                 'user__id',
                 'user__email__like',
             )
+        elif type_ == 'collection':
+            search_fields = (
+                'message',
+                'collection__slug',
+            )
+        elif type_ == 'rating':
+            search_fields = (
+                'message',
+                'rating__id',
+                'rating__body__like',
+            )
         else:
             search_fields = ()
         return search_fields
@@ -236,7 +263,13 @@ class AbuseReportAdmin(AMOModelAdmin):
         Return the field to use when all search terms are numeric, according to
         the type filter.
         """
-        return 'user_id' if request and request.GET.get('type') == 'user' else None
+        return (
+            f'{request_type}_id'
+            if request
+            and (request_type := request.GET.get('type'))
+            and request_type in ('user', 'rating', 'collection')
+            else None
+        )
 
     def get_search_results(self, request, qs, search_term):
         """
@@ -262,6 +295,10 @@ class AbuseReportAdmin(AMOModelAdmin):
     def get_fieldsets(self, request, obj=None):
         if obj.user:
             target = 'user'
+        elif obj.collection:
+            target = 'collection'
+        elif obj.rating:
+            target = 'rating'
         else:
             target = 'guid'
         return self.dynamic_fieldset_fields[target] + self.fieldsets
