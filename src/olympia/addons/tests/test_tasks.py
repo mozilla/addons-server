@@ -704,9 +704,9 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         )
         for position in range(1, 3):
             preview = self.addon.previews.create(position=position)
-            dac.previews.add(
-                preview,
-                through_defaults={'backup_name': f'preview-backup-{position}.png'},
+            dac.deletedpreviewfile_set.create(
+                preview=preview,
+                backup_name=f'preview-backup-{position}.png',
             )
         self.addon.update(icon_type='image/jpeg')
 
@@ -780,11 +780,9 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         )
         for position in range(1, 3):
             preview = self.addon.previews.create(position=position)
-            dac.previews.add(
-                preview,
-                through_defaults={
-                    'backup_name': f'does-not-exist-either-{position}.png'
-                },
+            dac.deletedpreviewfile_set.create(
+                preview=preview,
+                backup_name=f'does-not-exist-either-{position}.png',
             )
         self.addon.update(icon_type='image/jpeg')
 

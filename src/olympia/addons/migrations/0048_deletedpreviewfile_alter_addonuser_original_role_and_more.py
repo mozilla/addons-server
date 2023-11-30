@@ -81,12 +81,6 @@ class Migration(migrations.Migration):
                         blank=True, default=None, max_length=75, null=True
                     ),
                 ),
-                (
-                    "previews",
-                    models.ManyToManyField(
-                        through="addons.DeletedPreviewFile", to="addons.preview"
-                    ),
-                ),
             ],
             options={
                 "get_latest_by": "created",

@@ -2470,7 +2470,6 @@ class DisabledAddonContent(ModelBase):
     icon_backup_name = models.CharField(
         max_length=75, default=None, null=True, blank=True
     )
-    previews = models.ManyToManyField(Preview, through='DeletedPreviewFile')
 
 
 class DeletedPreviewFile(ModelBase):

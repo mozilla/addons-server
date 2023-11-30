@@ -109,8 +109,8 @@ def delete_all_addon_media_with_backup(id, **kwargs):
         backup_file_name = copy_file_to_backup_storage(
             preview.original_path, mimetypes.guess_type(preview.original_path)[0]
         )
-        disabled_addon_content.previews.add(
-            preview, through_defaults={'backup_name': backup_file_name}
+        disabled_addon_content.deletedpreviewfile_set.create(
+            preview=preview, backup_name=backup_file_name
         )
         preview.__class__.delete_preview_files(sender=None, instance=preview)
 
