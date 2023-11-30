@@ -760,7 +760,8 @@ class TestAddonModels(TestCase):
         for version in versions:
             assert version.deleted
 
-    def test_force_disable(self):
+    @patch('olympia.addons.tasks.delete_all_addon_media_with_backup')
+    def test_force_disable(self, delete_all_addon_media_with_backup_mock):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
         version1 = version_factory(addon=addon)
@@ -814,6 +815,9 @@ class TestAddonModels(TestCase):
                 is_active=True
             ).exists()
 
+        assert delete_all_addon_media_with_backup_mock.delay.call_count == 1
+        assert delete_all_addon_media_with_backup_mock.delay.call_args[0] == (addon.pk,)
+
     def test_force_disable_skip_activity_log(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
@@ -823,7 +827,8 @@ class TestAddonModels(TestCase):
         assert addon.status == amo.STATUS_DISABLED
         assert not ActivityLog.objects.exists()
 
-    def test_force_enable(self):
+    @patch('olympia.addons.tasks.restore_all_addon_media_from_backup')
+    def test_force_enable(self, restore_all_addon_media_from_backup_mock):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
         v1 = addon.current_version
@@ -857,6 +862,11 @@ class TestAddonModels(TestCase):
         log = ActivityLog.objects.latest('pk')
         assert log.action == amo.LOG.FORCE_ENABLE.id
 
+        assert restore_all_addon_media_from_backup_mock.delay.call_count == 1
+        assert restore_all_addon_media_from_backup_mock.delay.call_args[0] == (
+            addon.pk,
+        )
+
     def test_force_enable_skip_activity_log(self):
         core.set_user(UserProfile.objects.get(email='admin@mozilla.com'))
         addon = Addon.unfiltered.get(pk=3615)
@@ -865,6 +875,14 @@ class TestAddonModels(TestCase):
         addon.force_enable(skip_activity_log=True)
         assert addon.status == amo.STATUS_APPROVED
         assert not ActivityLog.objects.exists()
+
+    def test_get_icon_dir_and_path(self):
+        assert Addon(pk=4815162342).get_icon_dir().endswith('addon_icons/4815162')
+        assert (
+            Addon(pk=4815162342)
+            .get_icon_path('whatever')
+            .endswith('addon_icons/4815162/4815162342-whatever.png')
+        )
 
     def test_icon_url(self):
         """
