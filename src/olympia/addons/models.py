@@ -1,7 +1,6 @@
 import hashlib
 import itertools
 import os
-import re
 import time
 import uuid
 from datetime import datetime
@@ -1232,18 +1231,19 @@ class Addon(OnChangeMixin, ModelBase):
         if not self.icon_type:
             return self.get_default_icon_url(size)
         else:
-            # [1] is the whole ID, [2] is the directory
-            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             # Use the icon hash if we have one as the cachebusting suffix,
             # otherwise fall back to the add-on modification date.
             suffix = self.icon_hash or str(int(time.mktime(self.modified.timetuple())))
             path = '/'.join(
                 [
-                    split_id.group(2) or '0',
-                    f'{self.id}-{size}.png?modified={suffix}',
+                    # Path is the filesystem path, so it matches get_icon_dir()
+                    # and get_icon_path().
+                    'addon_icons',
+                    f'{self.id // 1000}',
+                    f'{self.id}-{size}.{amo.ADDON_ICON_FORMAT}?modified={suffix}',
                 ]
             )
-            return f'{settings.MEDIA_URL}addon_icons/{path}'
+            return f'{settings.MEDIA_URL}{path}'
 
     def get_default_icon_url(self, size):
         return staticfiles_storage.url(f'img/addon-icons/default-{size}.png')
