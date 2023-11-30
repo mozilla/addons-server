@@ -1,0 +1,5 @@
+{% extends "abuse/emails/base_reporter.txt" %}{% load i18n %}{% block content %}{# L10n: This is an email. Whitespace matters #}{% blocktranslate %}
+Thank you for your report about {{ name }}, at {{ target_url }}. Following further investigation we have decided to restore the content.
+
+You have the right to appeal this decision within 6 months. See {{ appeal_url }} for details on the appeal process.
+{% endblocktranslate %}{% endblock %}

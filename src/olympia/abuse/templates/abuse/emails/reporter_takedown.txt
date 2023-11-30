@@ -1,0 +1,3 @@
+{% extends "abuse/emails/base_reporter.txt" %}{% load i18n %}{% block content %}{# L10n: This is an email. Whitespace matters #}{% blocktranslate %}
+Thank you for your report about {{ name }}, at {{ target_url }}. We have taken action to remove the content.
+{% endblocktranslate %}{% endblock %}
