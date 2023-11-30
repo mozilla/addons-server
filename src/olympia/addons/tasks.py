@@ -159,7 +159,7 @@ def restore_all_addon_media_from_backup(id, **kwargs):
                 )
         disabled_addon_content.delete()
     if addon.type == amo.ADDON_STATICTHEME:
-        recreate_theme_previews([addon.pk])  # Will cause a reindex.
+        recreate_theme_previews.delay([addon.pk])
 
 
 @task(acks_late=True)

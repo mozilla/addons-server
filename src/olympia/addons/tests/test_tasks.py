@@ -32,6 +32,7 @@ from ..tasks import (
     index_addons,
     recreate_theme_previews,
     resize_icon,
+    restore_all_addon_media_from_backup,
     update_addon_average_daily_users,
     update_addon_hotness,
     update_addon_weekly_downloads,
@@ -575,12 +576,21 @@ def test_index_addons(index_objects_mock, unindex_objects_mock):
 
 class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
     def setUp(self):
-        patcher = mock.patch('olympia.addons.tasks.copy_file_to_backup_storage')
-        self.addCleanup(patcher.stop)
-        self.copy_file_to_backup_storage_mock = patcher.start()
+        patcher1 = mock.patch('olympia.addons.tasks.copy_file_to_backup_storage')
+        self.addCleanup(patcher1.stop)
+        self.copy_file_to_backup_storage_mock = patcher1.start()
         self.copy_file_to_backup_storage_mock.side_effect = (
             lambda fpath, type_: f'mock-backup-{os.path.basename(fpath)}'
         )
+        patcher2 = mock.patch(
+            'olympia.addons.tasks.download_file_contents_from_backup_storage'
+        )
+        self.addCleanup(patcher2.stop)
+        self.download_file_contents_from_backup_storage_mock = patcher2.start()
+        self.download_file_contents_from_backup_storage_mock.side_effect = (
+            lambda name: f'Content for {name}'.encode('utf-8')
+        )
+
         self.addon = addon_factory()
 
     def test_delete_all_addon_media_with_backup(self):
@@ -684,11 +694,132 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
 
         assert self.copy_file_to_backup_storage_mock.call_count == 0
 
-    def restore_all_addon_media_from_backup(self):
-        pass
+    @mock.patch('olympia.addons.tasks.resize_preview')
+    @mock.patch('olympia.addons.tasks.resize_icon')
+    def test_restore_all_addon_media_from_backup(
+        self, resize_icon_mock, resize_preview_mock
+    ):
+        dac = DisabledAddonContent.objects.create(
+            addon=self.addon, icon_backup_name='icon-backup.jpg'
+        )
+        for position in range(1, 3):
+            preview = self.addon.previews.create(position=position)
+            dac.previews.add(
+                preview,
+                through_defaults={'backup_name': f'preview-backup-{position}.png'},
+            )
+        self.addon.update(icon_type='image/jpeg')
 
-    def restore_icon_and_preview_does_not_exist_in_backup(self):
-        pass
+        restore_all_addon_media_from_backup(self.addon.pk)
 
-    def restore_theme(self):
-        pass
+        assert self.download_file_contents_from_backup_storage_mock.call_count == 3
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[0][
+            0
+        ] == ('icon-backup.jpg',)
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[1][
+            0
+        ] == ('preview-backup-1.png',)
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[2][
+            0
+        ] == ('preview-backup-2.png',)
+
+        assert resize_icon_mock.delay.call_count == 1
+        assert resize_icon_mock.delay.call_args_list[0][0] == (
+            self.addon.get_icon_path('original'),
+            self.addon.pk,
+            amo.ADDON_ICON_SIZES,
+        )
+        assert resize_icon_mock.delay.call_args_list[0][1] == {
+            'set_modified_on': self.addon.serializable_reference()
+        }
+        assert resize_preview_mock.delay.call_count == 2
+        assert resize_preview_mock.delay.call_args_list[0][0] == (
+            self.addon.previews.all()[0].original_path,
+            self.addon.previews.all()[0].pk,
+        )
+        assert resize_preview_mock.delay.call_args_list[0][1] == {
+            'set_modified_on': self.addon.serializable_reference()
+        }
+        assert resize_preview_mock.delay.call_args_list[1][0] == (
+            self.addon.previews.all()[1].original_path,
+            self.addon.previews.all()[1].pk,
+        )
+        assert resize_preview_mock.delay.call_args_list[1][1] == {
+            'set_modified_on': self.addon.serializable_reference()
+        }
+
+        assert not DisabledAddonContent.objects.filter(pk=dac.pk).exists()
+
+    @mock.patch('olympia.addons.tasks.resize_preview')
+    @mock.patch('olympia.addons.tasks.resize_icon')
+    def test_restore_all_addon_media_from_backup_no_disabled_addon_content_instance(
+        self, resize_icon_mock, resize_preview_mock
+    ):
+        for position in range(1, 3):
+            self.addon.previews.create(position=position)
+        self.addon.update(icon_type='image/jpeg')
+
+        restore_all_addon_media_from_backup(self.addon.pk)
+
+        assert self.download_file_contents_from_backup_storage_mock.call_count == 0
+        assert resize_icon_mock.delay.call_count == 0
+        assert resize_preview_mock.delay.call_count == 0
+
+        assert not DisabledAddonContent.objects.exists()
+
+    @mock.patch('olympia.addons.tasks.resize_preview')
+    @mock.patch('olympia.addons.tasks.resize_icon')
+    def test_restore_icon_and_preview_does_not_exist_in_backup(
+        self, resize_icon_mock, resize_preview_mock
+    ):
+        self.download_file_contents_from_backup_storage_mock.side_effect = (
+            lambda path: None
+        )
+        dac = DisabledAddonContent.objects.create(
+            addon=self.addon, icon_backup_name='does-not-exist.jpg'
+        )
+        for position in range(1, 3):
+            preview = self.addon.previews.create(position=position)
+            dac.previews.add(
+                preview,
+                through_defaults={
+                    'backup_name': f'does-not-exist-either-{position}.png'
+                },
+            )
+        self.addon.update(icon_type='image/jpeg')
+
+        restore_all_addon_media_from_backup(self.addon.pk)
+
+        assert self.download_file_contents_from_backup_storage_mock.call_count == 3
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[0][
+            0
+        ] == ('does-not-exist.jpg',)
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[1][
+            0
+        ] == ('does-not-exist-either-1.png',)
+        assert self.download_file_contents_from_backup_storage_mock.call_args_list[2][
+            0
+        ] == ('does-not-exist-either-2.png',)
+
+        assert resize_icon_mock.delay.call_count == 0
+        assert resize_preview_mock.delay.call_count == 0
+
+        assert not DisabledAddonContent.objects.filter(pk=dac.pk).exists()
+
+    @mock.patch('olympia.addons.tasks.recreate_theme_previews')
+    def test_restore_theme(self, recreate_theme_previews_mock):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        for position in range(1, 3):
+            self.addon.current_version.previews.create(position=position)
+
+        restore_all_addon_media_from_backup(self.addon.pk)
+
+        # Nothing to download for themes.
+        assert self.download_file_contents_from_backup_storage_mock.call_count == 0
+
+        assert not DisabledAddonContent.objects.exists()
+
+        assert recreate_theme_previews_mock.delay.call_count == 1
+        assert recreate_theme_previews_mock.delay.call_args_list[0][0] == (
+            [self.addon.pk],
+        )
