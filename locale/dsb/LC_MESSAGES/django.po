@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2023-11-14 22:45+0000\n"
+"PO-Revision-Date: 2023-12-01 12:07+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -3224,7 +3224,7 @@ msgstr "Wuzwigniśo tekst, klikniśo z pšaweju tastu a pśełožćo ned."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Pśewjeźćo slědkpytanja wobrazow z rědom pytnicow."
+msgstr "Pśewjeźćo pytane naslědk wobrazow z rědom pytnicow."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
