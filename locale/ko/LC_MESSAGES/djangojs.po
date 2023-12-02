@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-11-14 19:50+0000\n"
-"PO-Revision-Date: 2022-01-29 20:55+0000\n"
-"Last-Translator: Jiye Back <jiye080202@gmail.com>\n"
+"PO-Revision-Date: 2023-12-02 06:19+0000\n"
+"Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -65,7 +65,7 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "서버로부터 빈 응답을 받았습니다; 상태: {0}"
 
 msgid "Your extension has to be compatible with at least one application."
-msgstr ""
+msgstr "확장 기능은 최소한 하나의 애플리케이션과 호환되어야 합니다."
 
 msgid "Unexpected server error while validating."
 msgstr "유효성 검사 도중 예상치 못한 오류가 발생했습니다."
