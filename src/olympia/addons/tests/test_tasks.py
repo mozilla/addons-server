@@ -799,8 +799,8 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         assert resize_icon_mock.delay.call_count == 0
         assert resize_preview_mock.delay.call_count == 0
 
-        # We didn't use it so we kept the DisabledAddonContent object.
-        assert DisabledAddonContent.objects.exists()
+        # We deleted the DisabledAddonContent instance anyway.
+        assert not DisabledAddonContent.objects.exists()
 
     @mock.patch('olympia.addons.tasks.resize_preview')
     @mock.patch('olympia.addons.tasks.resize_icon')

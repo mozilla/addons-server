@@ -127,38 +127,43 @@ def delete_all_addon_media_with_backup(id, **kwargs):
 def restore_all_addon_media_from_backup(id, **kwargs):
     addon = Addon.unfiltered.all().get(pk=id)
     disabled_addon_content = DisabledAddonContent.objects.filter(addon=addon).last()
-    if disabled_addon_content and backup_storage_enabled():
+    if disabled_addon_content:
         log.info('Found some disable content to restore for addon %s', addon.pk)
-        if disabled_addon_content.icon_backup_name:
-            icon_contents = download_file_contents_from_backup_storage(
-                disabled_addon_content.icon_backup_name
+        if backup_storage_enabled():
+            if disabled_addon_content.icon_backup_name:
+                if icon_contents := download_file_contents_from_backup_storage(
+                    disabled_addon_content.icon_backup_name
+                ):
+                    icon_path = addon.get_icon_path('original')
+                    log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
+                    with storage.open(icon_path, 'wb') as original_file:
+                        original_file.write(icon_contents)
+                    resize_icon.delay(
+                        icon_path,
+                        addon.pk,
+                        amo.ADDON_ICON_SIZES,
+                        set_modified_on=addon.serializable_reference(),
+                    )
+            for deleted_preview in disabled_addon_content.deletedpreviewfile_set.all():
+                preview = deleted_preview.preview
+                if preview_contents := download_file_contents_from_backup_storage(
+                    deleted_preview.backup_name
+                ):
+                    preview_path = preview.original_path
+                    log.info(
+                        'Restoring preview %s for addon %s', preview_path, addon.pk
+                    )
+                    with storage.open(preview_path, 'wb') as original_file:
+                        original_file.write(preview_contents)
+                    resize_preview.delay(
+                        preview_path,
+                        preview.pk,
+                        set_modified_on=addon.serializable_reference(),
+                    )
+        else:
+            log.info(
+                'Backup storage disabled, not restoring content for addon %s', addon.pk
             )
-            if icon_contents:
-                icon_path = addon.get_icon_path('original')
-                log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
-                with storage.open(icon_path, 'wb') as original_file:
-                    original_file.write(icon_contents)
-                resize_icon.delay(
-                    icon_path,
-                    addon.pk,
-                    amo.ADDON_ICON_SIZES,
-                    set_modified_on=addon.serializable_reference(),
-                )
-        for deleted_preview_file in disabled_addon_content.deletedpreviewfile_set.all():
-            preview = deleted_preview_file.preview
-            preview_contents = download_file_contents_from_backup_storage(
-                deleted_preview_file.backup_name
-            )
-            if preview_contents:
-                preview_path = preview.original_path
-                log.info('Restoring preview %s for addon %s', preview_path, addon.pk)
-                with storage.open(preview_path, 'wb') as original_file:
-                    original_file.write(preview_contents)
-                resize_preview.delay(
-                    preview_path,
-                    preview.pk,
-                    set_modified_on=addon.serializable_reference(),
-                )
         disabled_addon_content.delete()
     if addon.type == amo.ADDON_STATICTHEME:
         recreate_theme_previews.delay([addon.pk])
