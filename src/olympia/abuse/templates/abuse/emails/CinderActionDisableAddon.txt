@@ -1,5 +1,3 @@
-{% extends "abuse/emails/base.txt" %}{% block content %}
-
-Your {{ target.get_type_display }} {{ name }}, at {{ target_url }}, has been disabled on {{ SITE_URL }} and no longer appears. Users who have previously installed your add-on will be able to continue using it.
-
+{% extends "abuse/emails/base.txt" %}{% block content %}{# L10n: This is an email. Whitespace matters #}
+Your {{ target.get_type_display }} {{ name }}, at {{ target_url }}, has been disabled on {{ SITE_URL }}, after we reviewed the content in response to a report by a third party, and found that it violated our Terms of Service. Users who have previously installed your add-on will be able to continue using it.
 {% endblock %}
