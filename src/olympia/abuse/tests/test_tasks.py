@@ -209,10 +209,19 @@ def test_addon_report_to_cinder():
     assert json.loads(request.body) == {
         'context': {'entities': [], 'relationships': []},
         'entity': {
+            'id': str(addon.id),
+            'average_daily_users': addon.average_daily_users,
+            'description': '',
             'guid': addon.guid,
-            'id': str(addon.pk),
+            'homepage': '',
+            'last_updated': str(addon.last_updated),
             'name': str(addon.name),
+            'release_notes': '',
             'slug': addon.slug,
+            'summary': str(addon.summary),
+            'support_email': '',
+            'support_url': '',
+            'version': str(addon.current_version.version),
         },
         'entity_type': 'amo_addon',
         'queue_slug': 'amo-dev-content-infringement',
@@ -297,10 +306,11 @@ def test_addon_appeal_to_cinder_authenticated():
     assert request.headers['authorization'] == 'Bearer fake-test-token'
     assert json.loads(request.body) == {
         'appealer_entity': {
+            'created': str(user.created),
             'email': user.email,
+            'fxa_id': user.fxa_id,
             'id': str(user.pk),
             'name': '',
-            'fxa_id': user.fxa_id,
         },
         'appealer_entity_type': 'amo_user',
         'decision_to_appeal_id': '4815162342-abc',

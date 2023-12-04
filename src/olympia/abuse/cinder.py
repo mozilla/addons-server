@@ -26,7 +26,11 @@ class CinderEntity:
     @property
     def id(self):
         # Ideally override this in subclasses to be more efficient
-        return str(self.get_attributes().get('id', ''))
+        return self.get_str(self.get_attributes().get('id', ''))
+
+    def get_str(self, field_content):
+        # To avoid returning 'None' for nullable fields.
+        return str(field_content) if field_content else ''
 
     def get_attributes(self):
         raise NotImplementedError
@@ -46,10 +50,11 @@ class CinderEntity:
             'relationship_type': relationship_type,
         }
 
-    def get_media_attributes(self):
-        # media attributes are typically only returned with reports (not as
-        # part of relationships or reporter data for instance) as they require
-        # us to make a copy of the media
+    def get_extended_attributes(self):
+        # Extended attributes are only returned with reports (not as part of
+        # relationships or reporter data for instance) as they require as they
+        # are more expensive to compute. Media that we need to make a copy of
+        # are typically returned there instead of in get_attributes().
         return {}
 
     def build_report_payload(self, *, report_text, category, reporter):
@@ -61,7 +66,7 @@ class CinderEntity:
             context['relationships'] += [
                 reporter.get_relationship_data(self, 'amo_reporter_of')
             ]
-        entity_attributes = {**self.get_attributes(), **self.get_media_attributes()}
+        entity_attributes = {**self.get_attributes(), **self.get_extended_attributes()}
         return {
             'queue_slug': self.queue,
             'entity_type': self.type,
@@ -123,17 +128,18 @@ class CinderUser(CinderEntity):
 
     @property
     def id(self):
-        return str(self.user.id)
+        return self.get_str(self.user.id)
 
     def get_attributes(self):
         return {
             'id': self.id,
-            'name': self.user.display_name,
+            'created': self.get_str(self.user.created),
             'email': self.user.email,
             'fxa_id': self.user.fxa_id,
+            'name': self.user.display_name,
         }
 
-    def get_media_attributes(self):
+    def get_extended_attributes(self):
         data = {}
         if (
             self.user.picture_type
@@ -147,6 +153,16 @@ class CinderUser(CinderEntity):
                 'value': create_signed_url_for_file_backup(filename),
                 'mime_type': self.user.picture_type,
             }
+        data.update(
+            {
+                'average_rating': int(self.user.averagerating or 0),
+                'num_addons_listed': self.user.num_addons_listed,
+                'biography': self.get_str(self.user.biography),
+                'homepage': self.get_str(self.user.homepage),
+                'location': self.get_str(self.user.location),
+                'occupation': self.get_str(self.user.occupation),
+            }
+        )
         return data
 
     def get_context(self):
@@ -197,17 +213,29 @@ class CinderAddon(CinderEntity):
 
     @property
     def id(self):
-        return str(self.addon.id)
+        return self.get_str(self.addon.id)
 
     def get_attributes(self):
+        # FIXME: translate translated fields in reporter's locale, send as
+        # dictionaries?
+        version = self.addon.current_version
         return {
             'id': self.id,
+            'average_daily_users': self.addon.average_daily_users,
+            'description': self.get_str(self.addon.description),
             'guid': self.addon.guid,
+            'homepage': self.get_str(self.addon.homepage),
+            'last_updated': self.get_str(self.addon.last_updated),
+            'name': self.get_str(self.addon.name),
+            'release_notes': self.get_str(version.release_notes) if version else '',
             'slug': self.addon.slug,
-            'name': str(self.addon.name),
+            'summary': self.get_str(self.addon.summary),
+            'support_email': self.get_str(self.addon.support_email),
+            'support_url': self.get_str(self.addon.support_url),
+            'version': self.get_str(version.version) if version else '',
         }
 
-    def get_media_attributes(self):
+    def get_extended_attributes(self):
         data = {}
         if backup_storage_enabled():
             if self.addon.icon_type:
@@ -245,6 +273,9 @@ class CinderAddon(CinderEntity):
             if previews:
                 data['previews'] = previews
 
+        promoted_group = self.addon.promoted_group()
+        if promoted_group.badged:
+            data['promoted_badge'] = self.get_str(promoted_group.name)
         return data
 
     def get_context(self):
@@ -266,12 +297,13 @@ class CinderRating(CinderEntity):
 
     @property
     def id(self):
-        return str(self.rating.id)
+        return self.get_str(self.rating.id)
 
     def get_attributes(self):
         return {
             'id': self.id,
             'body': self.rating.body,
+            'score': self.rating.rating,
         }
 
     def get_context(self):
@@ -294,16 +326,18 @@ class CinderCollection(CinderEntity):
 
     @property
     def id(self):
-        return str(self.collection.id)
+        return self.get_str(self.collection.id)
 
     def get_attributes(self):
+        # FIXME: translate translated fields in reporter's locale, send as
+        # dictionaries?
         return {
             'id': self.id,
-            'slug': self.collection.slug,
-            # FIXME: locales!
-            'name': str(self.collection.name),
-            'description': str(self.collection.description),
             'comments': self.collection.get_all_comments(),
+            'description': self.get_str(self.collection.description),
+            'modified': self.get_str(self.collection.modified),
+            'name': self.get_str(self.collection.name),
+            'slug': self.collection.slug,
         }
 
     def get_context(self):
