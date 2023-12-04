@@ -24,6 +24,7 @@ from olympia.addons.utils import compute_last_updated, remove_icons
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.utils import (
+    backup_storage_enabled,
     copy_file_to_backup_storage,
     download_file_contents_from_backup_storage,
     extract_colors_from_image,
@@ -98,7 +99,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
     if addon.icon_type:
         base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
         icon_path = f'{base_icon_path}-original.{amo.ADDON_ICON_FORMAT}'
-        if storage.exists(icon_path):
+        if backup_storage_enabled() and storage.exists(icon_path):
             backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
             disabled_addon_content.update(icon_backup_name=backup_file_name)
         remove_icons(addon)
@@ -106,12 +107,13 @@ def delete_all_addon_media_with_backup(id, **kwargs):
     for preview in addon.previews.all():
         if not storage.exists(preview.original_path):
             continue
-        backup_file_name = copy_file_to_backup_storage(
-            preview.original_path, mimetypes.guess_type(preview.original_path)[0]
-        )
-        disabled_addon_content.deletedpreviewfile_set.create(
-            preview=preview, backup_name=backup_file_name
-        )
+        if backup_storage_enabled() and storage.exists(preview.original_path):
+            backup_file_name = copy_file_to_backup_storage(
+                preview.original_path, mimetypes.guess_type(preview.original_path)[0]
+            )
+            disabled_addon_content.deletedpreviewfile_set.create(
+                preview=preview, backup_name=backup_file_name
+            )
         preview.__class__.delete_preview_files(sender=None, instance=preview)
 
     for preview in VersionPreview.objects.filter(version__addon=addon):
@@ -125,7 +127,7 @@ def delete_all_addon_media_with_backup(id, **kwargs):
 def restore_all_addon_media_from_backup(id, **kwargs):
     addon = Addon.unfiltered.all().get(pk=id)
     disabled_addon_content = DisabledAddonContent.objects.filter(addon=addon).last()
-    if disabled_addon_content:
+    if disabled_addon_content and backup_storage_enabled():
         log.info('Found some disable content to restore for addon %s', addon.pk)
         if disabled_addon_content.icon_backup_name:
             icon_contents = download_file_contents_from_backup_storage(

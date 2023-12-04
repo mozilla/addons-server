@@ -590,6 +590,10 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         self.download_file_contents_from_backup_storage_mock.side_effect = (
             lambda name: f'Content for {name}'.encode('utf-8')
         )
+        patcher3 = mock.patch('olympia.addons.tasks.backup_storage_enabled')
+        self.addCleanup(patcher3.stop)
+        self.backup_storage_enabled_mock = patcher3.start()
+        self.backup_storage_enabled_mock.return_value = True
 
         self.addon = addon_factory()
 
@@ -649,6 +653,28 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
             self.addon.previews.all()[1].original_path,
             'image/png',
         )
+
+    def test_delete_all_addon_media_with_backup_but_backup_storage_not_enabled(self):
+        self.backup_storage_enabled_mock.return_value = False
+        self.addon.update(icon_type='image/jpeg')
+        for size in amo.ADDON_ICON_SIZES + ('original',):
+            self.root_storage.copy_stored_file(
+                get_image_path('sunbird-small.png'), self.addon.get_icon_path(size)
+            )
+        for position in range(1, 3):
+            preview = self.addon.previews.create(position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.original_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.image_path
+            )
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+
+        delete_all_addon_media_with_backup(self.addon.pk)
+        assert self.copy_file_to_backup_storage_mock.call_count == 0
 
     def test_delete_icon_and_preview_does_not_exist_on_filesystem(self):
         for position in range(1, 3):
@@ -749,6 +775,32 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         }
 
         assert not DisabledAddonContent.objects.filter(pk=dac.pk).exists()
+
+    @mock.patch('olympia.addons.tasks.resize_preview')
+    @mock.patch('olympia.addons.tasks.resize_icon')
+    def test_restore_all_addon_media_from_backup_but_backup_storage_not_enabled(
+        self, resize_icon_mock, resize_preview_mock
+    ):
+        self.backup_storage_enabled_mock.return_value = False
+        dac = DisabledAddonContent.objects.create(
+            addon=self.addon, icon_backup_name='icon-backup.jpg'
+        )
+        for position in range(1, 3):
+            preview = self.addon.previews.create(position=position)
+            dac.deletedpreviewfile_set.create(
+                preview=preview,
+                backup_name=f'preview-backup-{position}.png',
+            )
+        self.addon.update(icon_type='image/jpeg')
+
+        restore_all_addon_media_from_backup(self.addon.pk)
+
+        assert self.download_file_contents_from_backup_storage_mock.call_count == 0
+        assert resize_icon_mock.delay.call_count == 0
+        assert resize_preview_mock.delay.call_count == 0
+
+        # We didn't use it so we kept the DisabledAddonContent object.
+        assert DisabledAddonContent.objects.exists()
 
     @mock.patch('olympia.addons.tasks.resize_preview')
     @mock.patch('olympia.addons.tasks.resize_icon')
