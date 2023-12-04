@@ -43,10 +43,20 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         max_length=10000,
         error_messages=error_messages,
     )
+    lang = serializers.CharField(
+        required=False, source='application_locale', max_length=255
+    )
 
     class Meta:
         model = AbuseReport
-        fields = ('reason', 'message', 'reporter', 'reporter_name', 'reporter_email')
+        fields = (
+            'lang',
+            'reason',
+            'message',
+            'reporter',
+            'reporter_name',
+            'reporter_email',
+        )
 
     def validate(self, data):
         if not data.get('reason'):
@@ -97,9 +107,6 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     appversion = serializers.CharField(
         required=False, source='application_version', max_length=255
     )
-    lang = serializers.CharField(
-        required=False, source='application_locale', max_length=255
-    )
     report_entry_point = ReverseChoiceField(
         choices=list(AbuseReport.REPORT_ENTRY_POINTS.api_choices),
         required=False,
@@ -148,7 +155,6 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'appversion',
             'client_id',
             'install_date',
-            'lang',
             'operating_system',
             'operating_system_version',
             'report_entry_point',

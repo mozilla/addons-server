@@ -468,6 +468,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2023-10-26: added ``location`` to abuse api. https://github.com/mozilla/addons-server/issues/21330
 * 2023-11-02: removed ``application`` from categories endpoint, flattened ``categories`` in addon detail/search endpoint. https://github.com/mozilla/addons-server/issues/5989
 * 2023-11-09: removed reviewers /enable and /disable endpoints. https://github.com/mozilla/addons-server/issues/21356
+* 2023-12-07: added ``lang`` parameter to all /abuse/report/ endpoints. https://github.com/mozilla/addons-server/issues/21529
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
