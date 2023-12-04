@@ -1,6 +1,8 @@
 import hashlib
+import mimetypes
 import os
 
+from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Q, Value
 from django.db.models.functions import Collate
@@ -13,14 +15,19 @@ from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon,
     DeniedGuid,
+    DisabledAddonContent,
     Preview,
     attach_tags,
     attach_translations_dict,
 )
-from olympia.addons.utils import compute_last_updated
+from olympia.addons.utils import compute_last_updated, remove_icons
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
-from olympia.amo.utils import extract_colors_from_image
+from olympia.amo.utils import (
+    copy_file_to_backup_storage,
+    download_file_contents_from_backup_storage,
+    extract_colors_from_image,
+)
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_filepath, parse_addon
@@ -76,6 +83,83 @@ def update_addon_average_daily_users(data, **kw):
 @task
 def delete_preview_files(id, **kw):
     Preview.delete_preview_files(sender=None, instance=Preview(id=id))
+
+
+@task
+@use_primary_db
+def delete_all_addon_media_with_backup(id, **kwargs):
+    """Delete all media files for a given add-on by id, backing them up to
+    reported content bucket in cloud storage.
+
+    Used when force-disabling an add-on."""
+    addon = Addon.unfiltered.all().get(pk=id)
+    disabled_addon_content = DisabledAddonContent.objects.get_or_create(addon=addon)[0]
+
+    if addon.icon_type:
+        base_icon_path = os.path.join(addon.get_icon_dir(), str(addon.pk))
+        icon_path = f'{base_icon_path}-original.{amo.ADDON_ICON_FORMAT}'
+        if storage.exists(icon_path):
+            backup_file_name = copy_file_to_backup_storage(icon_path, addon.icon_type)
+            disabled_addon_content.update(icon_backup_name=backup_file_name)
+        remove_icons(addon)
+
+    for preview in addon.previews.all():
+        if not storage.exists(preview.original_path):
+            continue
+        backup_file_name = copy_file_to_backup_storage(
+            preview.original_path, mimetypes.guess_type(preview.original_path)[0]
+        )
+        disabled_addon_content.deletedpreviewfile_set.create(
+            preview=preview, backup_name=backup_file_name
+        )
+        preview.__class__.delete_preview_files(sender=None, instance=preview)
+
+    for preview in VersionPreview.objects.filter(version__addon=addon):
+        # VersionPreview are automatically generated from the xpi file so they
+        # don't require a dedicated backup.
+        preview.__class__.delete_preview_files(sender=None, instance=preview)
+
+
+@task
+@use_primary_db
+def restore_all_addon_media_from_backup(id, **kwargs):
+    addon = Addon.unfiltered.all().get(pk=id)
+    disabled_addon_content = DisabledAddonContent.objects.filter(addon=addon).last()
+    if disabled_addon_content:
+        log.info('Found some disable content to restore for addon %s', addon.pk)
+        if disabled_addon_content.icon_backup_name:
+            icon_contents = download_file_contents_from_backup_storage(
+                disabled_addon_content.icon_backup_name
+            )
+            if icon_contents:
+                icon_path = addon.get_icon_path('original')
+                log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
+                with storage.open(icon_path, 'wb') as original_file:
+                    original_file.write(icon_contents)
+                resize_icon.delay(
+                    icon_path,
+                    addon.pk,
+                    amo.ADDON_ICON_SIZES,
+                    set_modified_on=addon.serializable_reference(),
+                )
+        for deleted_preview_file in disabled_addon_content.deletedpreviewfile_set.all():
+            preview = deleted_preview_file.preview
+            preview_contents = download_file_contents_from_backup_storage(
+                deleted_preview_file.backup_name
+            )
+            if preview_contents:
+                preview_path = preview.original_path
+                log.info('Restoring preview %s for addon %s', preview_path, addon.pk)
+                with storage.open(preview_path, 'wb') as original_file:
+                    original_file.write(preview_contents)
+                resize_preview.delay(
+                    preview_path,
+                    preview.pk,
+                    set_modified_on=addon.serializable_reference(),
+                )
+        disabled_addon_content.delete()
+    if addon.type == amo.ADDON_STATICTHEME:
+        recreate_theme_previews.delay([addon.pk])
 
 
 @task(acks_late=True)
@@ -347,14 +431,15 @@ def update_addon_weekly_downloads(data):
 
 @task
 @set_modified_on
-def resize_icon(source, dest_folder, target_sizes, **kw):
+def resize_icon(source, addon_id, target_sizes, **kw):
     """Resizes addon icons."""
-    log.info('[1@None] Resizing icon: %s' % dest_folder)
+    log.info('[1@None] Resizing icon for addon %s' % addon_id)
+    addon = Addon(pk=addon_id)  # to make get_icon_path() work.
     try:
         # Resize in every size we want.
         dest_file = None
         for size in target_sizes:
-            dest_file = f'{dest_folder}-{size}.png'
+            dest_file = addon.get_icon_path(size)
             resize_image(source, dest_file, (size, size))
 
         # Store the original hash, we'll return it to update the corresponding
@@ -364,10 +449,11 @@ def resize_icon(source, dest_folder, target_sizes, **kw):
         with open(source, 'rb') as fd:
             icon_hash = hashlib.md5(fd.read()).hexdigest()[:8]
 
-        # Keep a copy of the original image.
-        dest_file = '%s-original.png' % dest_folder
-        os.rename(source, dest_file)
-
+        # Keep a copy of the original image. This might not be the right
+        # extension as it hasn't been converted into a different format.
+        if source != dest_file:
+            dest_file = addon.get_icon_path('original')
+            os.rename(source, dest_file)
         return {'icon_hash': icon_hash}
     except Exception as e:
         log.error(f'Error saving addon icon ({dest_file}): {e}')

@@ -1,7 +1,6 @@
 import hashlib
 import itertools
 import os
-import re
 import time
 import uuid
 from datetime import datetime
@@ -634,6 +633,7 @@ class Addon(OnChangeMixin, ModelBase):
         clean_slug(self, slug_field)
 
     def force_disable(self, skip_activity_log=False):
+        from olympia.addons.tasks import delete_all_addon_media_with_backup
         from olympia.reviewers.models import NeedsHumanReview
 
         if not skip_activity_log:
@@ -651,7 +651,11 @@ class Addon(OnChangeMixin, ModelBase):
         # https://github.com/mozilla/addons-server/issues/13194
         Addon.disable_all_files([self], File.STATUS_DISABLED_REASONS.ADDON_DISABLE)
 
+        delete_all_addon_media_with_backup.delay(self.pk)
+
     def force_enable(self, skip_activity_log=False):
+        from olympia.addons.tasks import restore_all_addon_media_from_backup
+
         if not skip_activity_log:
             activity.log_create(amo.LOG.FORCE_ENABLE, self)
         log.info(
@@ -671,6 +675,8 @@ class Addon(OnChangeMixin, ModelBase):
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
         self.update_status()
+
+        restore_all_addon_media_from_backup.delay(self.pk)
 
     def deny_resubmission(self):
         if not self.guid:
@@ -1201,6 +1207,11 @@ class Addon(OnChangeMixin, ModelBase):
             settings.MEDIA_ROOT, 'addon_icons', '%s' % (self.id // 1000)
         )
 
+    def get_icon_path(self, size):
+        return os.path.join(
+            self.get_icon_dir(), f'{self.pk}-{size}.{amo.ADDON_ICON_FORMAT}'
+        )
+
     def get_icon_url(self, size):
         """
         Returns the addon's icon url according to icon_type.
@@ -1220,18 +1231,19 @@ class Addon(OnChangeMixin, ModelBase):
         if not self.icon_type:
             return self.get_default_icon_url(size)
         else:
-            # [1] is the whole ID, [2] is the directory
-            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
             # Use the icon hash if we have one as the cachebusting suffix,
             # otherwise fall back to the add-on modification date.
             suffix = self.icon_hash or str(int(time.mktime(self.modified.timetuple())))
             path = '/'.join(
                 [
-                    split_id.group(2) or '0',
-                    f'{self.id}-{size}.png?modified={suffix}',
+                    # Path is the filesystem path, so it matches get_icon_dir()
+                    # and get_icon_path().
+                    'addon_icons',
+                    f'{self.id // 1000}',
+                    f'{self.id}-{size}.{amo.ADDON_ICON_FORMAT}?modified={suffix}',
                 ]
             )
-            return f'{settings.MEDIA_URL}addon_icons/{path}'
+            return f'{settings.MEDIA_URL}{path}'
 
     def get_default_icon_url(self, size):
         return staticfiles_storage.url(f'img/addon-icons/default-{size}.png')
@@ -2440,3 +2452,34 @@ class AddonBrowserMapping(ModelBase):
 
     class Meta:
         unique_together = ('browser', 'extension_id')
+
+
+class DisabledAddonContent(ModelBase):
+    """Link between an addon and the content that was deleted from disk when
+    it was force-disabled.
+
+    That link should be removed if the addon is force-enabled, and the content
+    restored from backup storage."""
+
+    addon = models.OneToOneField(
+        Addon,
+        related_name='content_deleted_on_force_disable',
+        on_delete=models.CASCADE,
+        primary_key=True,
+    )
+    icon_backup_name = models.CharField(
+        max_length=75, default=None, null=True, blank=True
+    )
+
+
+class DeletedPreviewFile(ModelBase):
+    """Model holding the backup name for a Preview whose file was deleted from
+    disk following a force-disable of the corresponding Addon.
+
+    Used with DisabledAddonContent"""
+
+    disabled_addon_content = models.ForeignKey(
+        DisabledAddonContent, on_delete=models.CASCADE
+    )
+    preview = models.ForeignKey(Preview, on_delete=models.CASCADE)
+    backup_name = models.CharField(max_length=75, default=None, null=True, blank=True)

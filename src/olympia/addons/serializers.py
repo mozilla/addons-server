@@ -1,5 +1,4 @@
 import copy
-import os
 import re
 
 from django.core.exceptions import ValidationError as DjangoValidationError
@@ -13,9 +12,10 @@ from rest_framework import exceptions, serializers
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
+from olympia.addons.utils import remove_icons
 from olympia.amo import ADDON_TYPES
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.utils import SafeStorage, remove_icons, slug_validator
+from olympia.amo.utils import SafeStorage, slug_validator
 from olympia.amo.validators import (
     CreateOnlyValidator,
     OneOrMoreLetterOrNumberCharacterValidator,
@@ -1214,9 +1214,8 @@ class AddonSerializer(AMOModelSerializer):
     def _save_icon(self, uploaded_icon):
         # This is only used during update. For create it's impossible to send the icon
         # as formdata while also sending json for `version`.
-        destination = os.path.join(self.instance.get_icon_dir(), str(self.instance.id))
         if uploaded_icon:
-            original = f'{destination}-original.png'
+            original = self.instance.get_icon_path('original')
 
             storage = SafeStorage(root_setting='MEDIA_ROOT', rel_location='addon_icons')
             with storage.open(original, 'wb') as original_file:
@@ -1226,12 +1225,12 @@ class AddonSerializer(AMOModelSerializer):
             self.instance.update(icon_type=uploaded_icon.content_type)
             resize_icon.delay(
                 original,
-                destination,
+                self.instance.pk,
                 amo.ADDON_ICON_SIZES,
                 set_modified_on=self.instance.serializable_reference(),
             )
         else:
-            remove_icons(destination)
+            remove_icons(self.instance)
             self.instance.update(icon_type='')
 
     def log(self, instance, validated_data):

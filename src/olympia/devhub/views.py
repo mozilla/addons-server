@@ -336,7 +336,11 @@ def edit(request, addon_id, addon):
         if addon.current_version and addon.has_per_version_previews
         else addon.previews.all()
     )
-    header_preview = previews.first() if addon.type == amo.ADDON_STATICTHEME else None
+    header_preview = (
+        previews.first()
+        if addon.type == amo.ADDON_STATICTHEME and addon.status != amo.STATUS_DISABLED
+        else None
+    )
     data = {
         'page': 'edit',
         'addon': addon,
@@ -841,7 +845,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 'technical': forms.AddonFormTechnical,
             }
         )
-        if not static_theme:
+        if not static_theme and addon.status != amo.STATUS_DISABLED:
             models.update({'media': forms.AddonFormMedia})
     else:
         models.update(

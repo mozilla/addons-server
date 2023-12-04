@@ -59,7 +59,6 @@ from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
-from olympia.amo import ADDON_ICON_SIZES
 from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.logger import getLogger
@@ -674,13 +673,6 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
     new_size = im.size
     im.close()
     return (new_size, original_size)
-
-
-def remove_icons(destination):
-    for size in ADDON_ICON_SIZES:
-        filename = f'{destination}-{size}.png'
-        if storage.exists(filename):
-            storage.delete(filename)
 
 
 class ImageCheck:
@@ -1303,9 +1295,13 @@ def backup_storage_blob(backup_file_name_remote):
 
 def copy_file_to_backup_storage(local_file_path, content_type):
     with open(local_file_path, 'rb') as f:
-        hash_ = hashlib.sha256(f.read()).hexdigest()
+        hash_ = hashlib.sha256(f.read())
+    # The path itself is also part of the hash, so that we store different
+    # copies for different types and owners of content (2 different UserProfile
+    # or one UserProfile and one Addon should have different backup copies)
+    hash_.update(os.path.abspath(local_file_path).encode('utf-8'))
     ext = guess_extension(content_type)
-    backup_file_name_remote = f'{hash_}{ext}'
+    backup_file_name_remote = f'{hash_.hexdigest()}{ext}'
     blob = backup_storage_blob(backup_file_name_remote)
     # If the object already exists, generation_match_precondition set to 0 will
     # force the upload to fail. We want that, we don't need a second copy as

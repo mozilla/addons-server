@@ -228,6 +228,7 @@ VALID_CONTRIBUTION_DOMAINS = (
 
 # Icon upload sizes
 ADDON_ICON_SIZES = (32, 64, 128)
+ADDON_ICON_FORMAT = 'png'
 
 _dimensions = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes - see mozilla/addons-server#9487 & #16717 for background.

@@ -2344,7 +2344,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert self.addon.icon_type == 'image/png'
         resize_icon_mock.assert_called_with(
             f'{self.addon.get_icon_dir()}/{self.addon.id}-original.png',
-            f'{self.addon.get_icon_dir()}/{self.addon.id}',
+            self.addon.id,
             amo.ADDON_ICON_SIZES,
             set_modified_on=self.addon.serializable_reference(),
         )

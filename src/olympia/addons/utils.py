@@ -3,6 +3,7 @@ import uuid
 
 from django import forms
 from django.conf import settings
+from django.core.files.storage import default_storage as storage
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.utils.translation import gettext
 
@@ -194,3 +195,10 @@ def validate_version_number_is_gt_latest_signed_listed_version(addon, version_st
             version_string=version_string,
             previous_version_string=latest_version_string,
         )
+
+
+def remove_icons(addon):
+    for size in amo.ADDON_ICON_SIZES + ('original',):
+        filepath = addon.get_icon_path(size)
+        if storage.exists(filepath):
+            storage.delete(filepath)
