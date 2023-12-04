@@ -1,5 +1,3 @@
-{% extends "abuse/emails/base.txt" %}{% block content %}
-
-Your collection {{ name }}, at {{ target_url }}, has been removed.
-
+{% extends "abuse/emails/base.txt" %}{% block content %}{# L10n: This is an email. Whitespace matters #}
+Your collection {{ name }}, at {{ target_url }}, has been removed after we reviewed the content in response to a report by a third party, and found that it violated our Terms of Service.
 {% endblock %}
