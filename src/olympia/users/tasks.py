@@ -1,3 +1,6 @@
+import requests
+from requests.exceptions import HTTPError, RequestException
+
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
@@ -65,3 +68,28 @@ def update_user_ratings_task(data, **kw):
     )
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(averagerating=round(float(rating), 2))
+
+SOCKET_LABS_SERVER = "13776"
+SOCKET_LABS_API_KEY = "SgxdyqBI725lo6QBKpgp.U8jWGW9hgnFyYSocTSkBFvZdPIzO1NoOE6Aw8IcC"
+
+SOCKET_LABS_URL = f"https://api.socketlabs.com/v2/server/{SOCKET_LABS_SERVER}/suppressions/search?pageSize=5&pageNumber=0&sortField=emailAddress&sortDirection=dsc"
+
+@task(autoretry_for=(HTTPError,), max_retries=5, retry_backoff=True)
+def download_suppressed_emails_csv():
+    print("Start")
+    url = SOCKET_LABS_URL
+
+    headers = {
+    'Authorization': f"Bearer {SOCKET_LABS_API_KEY}"
+    }
+
+    response = requests.get(url, headers=headers)
+    # response.raise_for_status()
+
+    print("End")
+    print(response.text)
+    ## Make an API call to socketlabs
+
+    ## Save the response to a local file with a timestamp
+
+    ## Trigger a celery task to process suppressed emails

@@ -172,3 +172,17 @@ def test_resize_photo_poorly():
     # assert nothing happened
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)
+
+def test_download_suppressed_emails_csv_retriable_error():
+    # Make an API call to socketlabs that fails, but is retriable.
+    pass
+
+def test_download_suppressed_emails_csv_non_retriable_error():
+    # Make an API call to socketlabs that fails, and is not retriable.
+    pass
+
+def test_download_suppressed_emails_csv_success():
+    # Make an API call to socketlabs that succeeds.
+
+    # Save the response to a local file with a timestamp
+    pass
