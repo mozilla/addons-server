@@ -29,8 +29,7 @@ class CinderEntity:
         return self.get_str(self.get_attributes().get('id', ''))
 
     def get_str(self, field_content):
-        # To avoid returning 'None' for nullable fields.
-        return str(field_content) if field_content else ''
+        return str(field_content or '')
 
     def get_attributes(self):
         raise NotImplementedError
@@ -166,7 +165,12 @@ class CinderUser(CinderEntity):
         return data
 
     def get_context(self):
-        cinder_addons = [CinderAddon(addon) for addon in self.user.addons.all()]
+        cinder_addons = [
+            CinderAddon(addon)
+            for addon in self.user.addons.all()
+            .only_translations()
+            .select_related('promotedaddon')
+        ]
         return {
             'entities': [
                 cinder_addon.get_entity_data() for cinder_addon in cinder_addons
@@ -218,22 +222,24 @@ class CinderAddon(CinderEntity):
     def get_attributes(self):
         # FIXME: translate translated fields in reporter's locale, send as
         # dictionaries?
-        version = self.addon.current_version
-        return {
+        # We look at the promoted group to tell whether or not the add-on has
+        # a badge, but we don't care about the promotion being approved for the
+        # current version, it would make more queries and it's not useful for
+        # moderation purposes anyway.
+        promoted_group = self.addon.promoted_group(currently_approved=False)
+        data = {
             'id': self.id,
             'average_daily_users': self.addon.average_daily_users,
-            'description': self.get_str(self.addon.description),
             'guid': self.addon.guid,
-            'homepage': self.get_str(self.addon.homepage),
             'last_updated': self.get_str(self.addon.last_updated),
             'name': self.get_str(self.addon.name),
-            'release_notes': self.get_str(version.release_notes) if version else '',
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
-            'support_email': self.get_str(self.addon.support_email),
-            'support_url': self.get_str(self.addon.support_url),
-            'version': self.get_str(version.version) if version else '',
+            'promoted_badge': self.get_str(
+                promoted_group.name if promoted_group.badged else ''
+            ),
         }
+        return data
 
     def get_extended_attributes(self):
         data = {}
@@ -273,9 +279,21 @@ class CinderAddon(CinderEntity):
             if previews:
                 data['previews'] = previews
 
-        promoted_group = self.addon.promoted_group()
-        if promoted_group.badged:
-            data['promoted_badge'] = self.get_str(promoted_group.name)
+        # Those fields are only shown on the detail page, so we only have them
+        # in extended attributes to avoid sending them when we send an add-on
+        # as a related entity to something else.
+        data['description'] = self.get_str(self.addon.description)
+        if self.addon.current_version:
+            data['version'] = self.get_str(self.addon.current_version.version)
+            data['release_notes'] = self.get_str(
+                self.addon.current_version.release_notes
+            )
+        # In addition, the URL/email fields can't be sent if blank as they
+        # would not be considered valid by Cinder.
+        for field in ('homepage', 'support_email', 'support_url'):
+            if value := getattr(self.addon, field):
+                data[field] = self.get_str(value)
+
         return data
 
     def get_context(self):
