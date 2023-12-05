@@ -101,3 +101,7 @@ ADDONS_FRONTEND_PROXY_PORT = None
 VERIFY_FXA_ACCESS_TOKEN = False
 
 CINDER_API_TOKEN = 'fake-test-token'
+
+SOCKET_LABS_TOKEN = 'fake-test-token'
+SOCKET_LABS_SERVER_ID = '12345'
+SOCKET_LABS_HOST = 'https://fake-socketlabs.com/v1'

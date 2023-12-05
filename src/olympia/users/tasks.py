@@ -1,3 +1,15 @@
+import csv
+import io
+import itertools
+import uuid
+
+from django.conf import settings
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+
+import requests
+from requests.exceptions import HTTPError, Timeout
+
 import olympia.core.logger
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
@@ -8,7 +20,7 @@ from olympia.amo.utils import (
     resize_image,
 )
 
-from .models import BannedUserContent, UserProfile
+from .models import BannedUserContent, EmailBlock, UserProfile
 
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -65,3 +77,50 @@ def update_user_ratings_task(data, **kw):
     )
     for pk, rating in data:
         UserProfile.objects.filter(pk=pk).update(averagerating=round(float(rating), 2))
+
+
+BATCH_SIZE = 100
+
+
+@task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
+def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
+    url = (
+        f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/'
+        'suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc'
+    )
+    headers = {
+        'authorization': f'Bearer {settings.SOCKET_LABS_TOKEN}',
+    }
+    response = requests.get(url, headers=headers)
+
+    # Raise exception if not 200 like response
+    response.raise_for_status()
+
+    # Convert bytes to a file-like object
+    file_like_object = io.BytesIO(response.content)
+    # Create a Django ContentFile from the file-like object
+    django_file = ContentFile(file_like_object.read())
+    # Get 10 character uinique ID for file
+    file_id = str(uuid.uuid4())[:10]
+
+    # save csv to disk
+    file_path = default_storage.save(f'tmp/suppressions-{file_id}.csv', django_file)
+
+    task_log.info(f'Downloaded suppression list to {file_path}')
+
+    with default_storage.open(file_path, 'r') as csv_file:
+        csv_suppression_list = csv.reader(csv_file)
+
+        # Skip header
+        next(csv_suppression_list)
+
+        while True:
+            batch = list(itertools.islice(csv_suppression_list, batch_size))
+
+            if not batch:
+                break
+
+            email_blocks = [EmailBlock(email=record[3]) for record in batch]
+            EmailBlock.objects.bulk_create(email_blocks, ignore_conflicts=True)
+
+    default_storage.delete(file_path)
