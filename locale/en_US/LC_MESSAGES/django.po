@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-14 19:50+0000\n"
+"POT-Creation-Date: 2023-12-05 19:13+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -35,6 +35,12 @@ msgstr "Please ensure this field has no more than {max_length} characters."
 msgid "Invalid value"
 msgstr "Invalid value"
 
+msgid "\"{}\" for {}"
+msgstr "\"{}\" for {}"
+
+msgid "Mozilla Add-ons: {}"
+msgstr "Mozilla Add-ons: {}"
+
 msgid "Appeal reviewer decision"
 msgstr "Appeal reviewer decision"
 
@@ -49,6 +55,56 @@ msgstr "OK"
 
 msgid "This decision can't be appealed."
 msgstr "This decision can't be appealed."
+
+msgid "Hello,"
+msgstr "Hello,"
+
+msgid ""
+"\n"
+"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
+"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
+"\n"
+"-- \n"
+"Mozilla Add-ons Team\n"
+msgstr ""
+"\n"
+"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
+"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
+"\n"
+"-- \n"
+"Mozilla Add-ons Team\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+msgstr ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+msgstr ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
+msgstr ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
 
 msgid "No links are allowed."
 msgstr "No links are allowed."
@@ -942,6 +998,15 @@ msgstr "Collection {collection} deleted by moderator"
 
 msgid "Collection {collection} un-deleted by moderator"
 msgstr "Collection {collection} un-deleted by moderator"
+
+msgid "Review {rating} for {addon} un-deleted."
+msgstr "Review {rating} for {addon} un-deleted."
+
+msgid "User {user} content restored."
+msgstr "User {user} content restored."
+
+msgid "User {user} unbanned."
+msgstr "User {user} unbanned."
 
 msgid "Firefox"
 msgstr "Firefox"
