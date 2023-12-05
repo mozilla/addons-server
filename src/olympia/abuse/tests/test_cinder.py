@@ -1,4 +1,5 @@
 import os.path
+import random
 from unittest import mock
 
 from django.conf import settings
@@ -136,7 +137,12 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         return addon_factory(**kwargs)
 
     def test_build_report_payload(self):
-        addon = self._create_dummy_target()
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+        )
         reason = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
 
@@ -148,9 +154,19 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.id),
+                'average_daily_users': addon.average_daily_users,
+                'description': str(addon.description),
                 'guid': addon.guid,
-                'slug': addon.slug,
+                'homepage': str(addon.homepage),
+                'last_updated': str(addon.last_updated),
                 'name': str(addon.name),
+                'promoted_badge': '',
+                'release_notes': '',
+                'slug': addon.slug,
+                'summary': str(addon.summary),
+                'support_email': str(addon.support_email),
+                'support_url': str(addon.support_url),
+                'version': addon.current_version.version,
             },
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
@@ -197,6 +213,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(reporter_user.id),
+                        'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
@@ -229,6 +246,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(author.id),
+                        'created': str(author.created),
                         'name': author.display_name,
                         'email': author.email,
                         'fxa_id': author.fxa_id,
@@ -257,6 +275,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(author.id),
+                        'created': str(author.created),
                         'name': author.display_name,
                         'email': author.email,
                         'fxa_id': author.fxa_id,
@@ -266,6 +285,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(reporter_user.id),
+                        'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
@@ -303,6 +323,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(user.id),
+                        'created': str(user.created),
                         'name': user.display_name,
                         'email': user.email,
                         'fxa_id': user.fxa_id,
@@ -365,12 +386,14 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.id),
+                'average_daily_users': addon.average_daily_users,
+                'description': '',
+                'guid': addon.guid,
                 'icon': {
                     'mime_type': 'image/png',
                     'value': f'https://cloud.example.com/{addon.pk}-128.png?some=thing',
                 },
-                'guid': addon.guid,
-                'slug': addon.slug,
+                'last_updated': str(addon.last_updated),
                 'name': str(addon.name),
                 'previews': [
                     {
@@ -382,6 +405,11 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'value': f'https://cloud.example.com/{p1.pk}.jpg?some=thing',
                     },
                 ],
+                'promoted_badge': '',
+                'release_notes': '',
+                'slug': addon.slug,
+                'summary': str(addon.summary),
+                'version': str(addon.current_version.version),
             },
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
@@ -399,7 +427,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             lambda fpath, type_: os.path.basename(fpath)
         )
         create_signed_url_for_file_backup_mock.side_effect = (
-            lambda rpath: f'https://cloud.example.com/{rpath}?some=thing'
+            lambda rpath: f'https://cloud.example.com/{rpath}?what=ever'
         )
         addon = self._create_dummy_target()
         addon.update(type=amo.ADDON_STATICTHEME)
@@ -428,15 +456,22 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             'entity_type': 'amo_addon',
             'entity': {
                 'id': str(addon.id),
+                'average_daily_users': addon.average_daily_users,
+                'description': '',
                 'guid': addon.guid,
-                'slug': addon.slug,
+                'last_updated': str(addon.last_updated),
                 'name': str(addon.name),
                 'previews': [
                     {
                         'mime_type': 'image/png',
-                        'value': f'https://cloud.example.com/{p0.pk}.png?some=thing',
+                        'value': f'https://cloud.example.com/{p0.pk}.png?what=ever',
                     },
                 ],
+                'promoted_badge': '',
+                'release_notes': '',
+                'slug': addon.slug,
+                'summary': str(addon.summary),
+                'version': str(addon.current_version.version),
             },
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
@@ -505,7 +540,12 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         return user_factory(**kwargs)
 
     def test_build_report_payload(self):
-        user = self._create_dummy_target()
+        user = self._create_dummy_target(
+            biography='Bîo',
+            location='Deep space',
+            occupation='Blah',
+            homepage='http://home.example.com',
+        )
         reason = 'bad person!'
         cinder_user = self.cinder_class(user)
 
@@ -520,6 +560,13 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'name': user.display_name,
                 'email': user.email,
                 'fxa_id': user.fxa_id,
+                'homepage': user.homepage,
+                'average_rating': 0,
+                'num_addons_listed': 0,
+                'created': str(user.created),
+                'occupation': user.occupation,
+                'location': user.location,
+                'biography': user.biography,
             },
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
@@ -566,6 +613,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(reporter_user.id),
+                        'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
@@ -596,15 +644,20 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_addon',
                     'attributes': {
                         'id': str(addon.id),
+                        'average_daily_users': addon.average_daily_users,
                         'guid': addon.guid,
-                        'slug': addon.slug,
+                        'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
+                        'promoted_badge': '',
+                        'slug': addon.slug,
+                        'summary': str(addon.summary),
                     },
                 },
                 {
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(user.id),
+                        'created': str(user.created),
                         'name': user.display_name,
                         'email': user.email,
                         'fxa_id': user.fxa_id,
@@ -644,9 +697,13 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_addon',
                     'attributes': {
                         'id': str(addon.id),
+                        'average_daily_users': addon.average_daily_users,
                         'guid': addon.guid,
-                        'slug': addon.slug,
+                        'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
+                        'promoted_badge': '',
+                        'slug': addon.slug,
+                        'summary': str(addon.summary),
                     },
                 }
             ],
@@ -672,15 +729,20 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     'entity_type': 'amo_addon',
                     'attributes': {
                         'id': str(addon.id),
+                        'average_daily_users': addon.average_daily_users,
                         'guid': addon.guid,
-                        'slug': addon.slug,
+                        'last_updated': str(addon.last_updated),
                         'name': str(addon.name),
+                        'promoted_badge': '',
+                        'slug': addon.slug,
+                        'summary': str(addon.summary),
                     },
                 },
                 {
                     'entity_type': 'amo_user',
                     'attributes': {
                         'id': str(reporter_user.id),
+                        'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
@@ -740,6 +802,13 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'name': user.display_name,
                 'email': user.email,
                 'fxa_id': user.fxa_id,
+                'homepage': '',
+                'average_rating': 0,
+                'num_addons_listed': 0,
+                'created': str(user.created),
+                'occupation': '',
+                'location': '',
+                'biography': '',
             },
             'reasoning': reason,
             'context': {'entities': [], 'relationships': []},
@@ -763,7 +832,9 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
         self.addon = addon_factory()
 
     def _create_dummy_target(self, **kwargs):
-        return Rating.objects.create(addon=self.addon, user=self.user, **kwargs)
+        return Rating.objects.create(
+            addon=self.addon, user=self.user, rating=random.randint(0, 5), **kwargs
+        )
 
     def test_build_report_payload(self):
         rating = self._create_dummy_target()
@@ -779,6 +850,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.id),
                 'body': rating.body,
+                'score': rating.rating,
             },
             'reasoning': reason,
             'context': {
@@ -787,6 +859,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'entity_type': 'amo_user',
                         'attributes': {
                             'id': str(self.user.id),
+                            'created': str(self.user.created),
                             'name': self.user.display_name,
                             'email': self.user.email,
                             'fxa_id': self.user.fxa_id,
@@ -818,6 +891,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.id),
                 'body': rating.body,
+                'score': rating.rating,
             },
             'reasoning': 'my own words!',
             'context': {
@@ -826,6 +900,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                         'entity_type': 'amo_user',
                         'attributes': {
                             'id': str(user.id),
+                            'created': str(user.created),
                             'name': user.display_name,
                             'email': user.email,
                             'fxa_id': user.fxa_id,
@@ -888,6 +963,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                         'entity_type': 'amo_user',
                         'attributes': {
                             'id': str(self.user.id),
+                            'created': str(self.user.created),
                             'name': self.user.display_name,
                             'email': self.user.email,
                             'fxa_id': self.user.fxa_id,
@@ -907,6 +983,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             'entity': {
                 'comments': ['Fôo', 'Bär', 'Alice'],
                 'description': str(collection.description),
+                'modified': str(collection.modified),
                 'id': str(collection.pk),
                 'name': str(collection.name),
                 'slug': collection.slug,
@@ -931,6 +1008,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                         'entity_type': 'amo_user',
                         'attributes': {
                             'id': str(user.id),
+                            'created': str(user.created),
                             'name': user.display_name,
                             'email': user.email,
                             'fxa_id': user.fxa_id,
@@ -957,6 +1035,7 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             'entity': {
                 'comments': ['Fôo', 'Bär', 'Alice'],
                 'description': str(collection.description),
+                'modified': str(collection.modified),
                 'id': str(collection.pk),
                 'name': str(collection.name),
                 'slug': collection.slug,
