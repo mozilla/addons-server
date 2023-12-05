@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-11-14 19:50+0000\n"
+"POT-Creation-Date: 2023-12-05 19:13+0000\n"
 "PO-Revision-Date: 2020-05-22 17:03+0000\n"
 "Last-Translator: Siddhi Dave <siddhi_dave@yahoo.in>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,12 @@ msgstr ""
 msgid "Invalid value"
 msgstr ""
 
+msgid "\"{}\" for {}"
+msgstr ""
+
+msgid "Mozilla Add-ons: {}"
+msgstr ""
+
 msgid "Appeal reviewer decision"
 msgstr ""
 
@@ -47,6 +53,40 @@ msgid "OK"
 msgstr ""
 
 msgid "This decision can't be appealed."
+msgstr ""
+
+msgid "Hello,"
+msgstr ""
+
+msgid ""
+"\n"
+"To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/ \n"
+"and https://www.mozilla.org/about/legal/terms/mozilla/\n"
+"\n"
+"-- \n"
+"Mozilla Add-ons Team\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. After review, it has been determined that the content does not violate any policy and will remain visible.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. Following further investigation we have decided to restore the content.\n"
+"\n"
+"You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
+msgstr ""
+
+#, python-format
+msgid ""
+"\n"
+"Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
 msgstr ""
 
 msgid "No links are allowed."
@@ -866,6 +906,15 @@ msgid "Collection {collection} deleted by moderator"
 msgstr ""
 
 msgid "Collection {collection} un-deleted by moderator"
+msgstr ""
+
+msgid "Review {rating} for {addon} un-deleted."
+msgstr ""
+
+msgid "User {user} content restored."
+msgstr ""
+
+msgid "User {user} unbanned."
 msgstr ""
 
 msgid "Firefox"
