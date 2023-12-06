@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-06 21:13+0000\n"
+"PO-Revision-Date: 2023-12-06 21:46+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -4278,15 +4278,15 @@ msgstr "הצגת כל ההרחבות"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extension starter pack"
-msgstr ""
+msgstr "ערכת הרחבות למתחילים"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
-msgstr ""
+msgstr "הרחבות פרטיות ואבטחה"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "כלי פרודוקטיביות"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4391,7 +4391,7 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "Trending themes"
-msgstr "ערכות הנושא שמובילות לאחרונה"
+msgstr "ערכות נושא שמובילות לאחרונה"
 
 #. editorial content for the homepage shelves.
 msgid "See more trending themes"
