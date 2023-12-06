@@ -1,11 +1,8 @@
 import csv
-import io
 import itertools
-import uuid
+import tempfile
 
 from django.conf import settings
-from django.core.files.base import ContentFile
-from django.core.files.storage import default_storage
 
 import requests
 from requests.exceptions import HTTPError, Timeout
@@ -96,31 +93,22 @@ def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
     # Raise exception if not 200 like response
     response.raise_for_status()
 
-    # Convert bytes to a file-like object
-    file_like_object = io.BytesIO(response.content)
-    # Create a Django ContentFile from the file-like object
-    django_file = ContentFile(file_like_object.read())
-    # Get 10 character uinique ID for file
-    file_id = str(uuid.uuid4())[:10]
+    with tempfile.NamedTemporaryFile(
+        dir=settings.TMP_PATH, delete=not settings.DEBUG, mode='w+b'
+    ) as csv_file:
+        csv_file.write(response.content)
+        csv_file.seek(0)
 
-    # save csv to disk
-    file_path = default_storage.save(f'tmp/suppressions-{file_id}.csv', django_file)
+        with open(csv_file.name, 'r') as f:
+            csv_suppression_list = csv.reader(f)
 
-    task_log.info(f'Downloaded suppression list to {file_path}')
+            next(csv_suppression_list)
 
-    with default_storage.open(file_path, 'r') as csv_file:
-        csv_suppression_list = csv.reader(csv_file)
+            while True:
+                batch = list(itertools.islice(csv_suppression_list, batch_size))
 
-        # Skip header
-        next(csv_suppression_list)
+                if not batch:
+                    break
 
-        while True:
-            batch = list(itertools.islice(csv_suppression_list, batch_size))
-
-            if not batch:
-                break
-
-            email_blocks = [EmailBlock(email=record[3]) for record in batch]
-            EmailBlock.objects.bulk_create(email_blocks, ignore_conflicts=True)
-
-    default_storage.delete(file_path)
+                email_blocks = [EmailBlock(email=record[3]) for record in batch]
+                EmailBlock.objects.bulk_create(email_blocks, ignore_conflicts=True)

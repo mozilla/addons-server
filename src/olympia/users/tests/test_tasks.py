@@ -6,7 +6,6 @@ import uuid
 from unittest import mock
 
 from django.conf import settings
-from django.core.files.storage import default_storage
 
 import pytest
 import responses
@@ -276,39 +275,3 @@ class TestEmailBlock(TestCase):
 
         assert email_block.email == user.email
         assert EmailBlock.objects.count() == 1
-
-    @mock.patch.object(uuid, 'uuid4', return_value=static_id)
-    def test_delete_file_after_processing_records(self, mock_uuid):
-        csv = list_to_csv([])
-
-        responses.add(
-            responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
-            body=csv,
-            status=200,
-        )
-
-        sync_blocked_emails()
-
-        file_path = f'tmp/suppressions-{mock_uuid.return_value}.csv'
-
-        assert not default_storage.exists(file_path)
-
-        assert EmailBlock.objects.count() == 0
-
-
-"""
-Test scenarios:
-2. recieve bad response from api
-3. cannot reach API, timeout
-5. CSV is empty
-6. CSV contains existing email
-7. CSV contains unique email
-10. Deletes file if error occurs while processing recores.
-
-
-1. environment variables are undefined.
-4. File is deleted before able to read it.
-8. CSV contains same email twice
-9. CSV contains many records.
-"""
