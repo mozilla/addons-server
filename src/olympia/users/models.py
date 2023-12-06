@@ -1341,5 +1341,5 @@ class BannedUserContent(ModelBase):
         self.delete()  # Should delete the ManyToMany relationships
 
 
-class EmailBlock(ModelBase):
+class SuppressedEmail(ModelBase):
     email = models.EmailField(unique=True, null=False, max_length=75)

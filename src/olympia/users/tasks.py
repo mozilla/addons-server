@@ -17,7 +17,7 @@ from olympia.amo.utils import (
     resize_image,
 )
 
-from .models import BannedUserContent, EmailBlock, UserProfile
+from .models import BannedUserContent, SuppressedEmail, UserProfile
 
 
 task_log = olympia.core.logger.getLogger('z.task')
@@ -110,5 +110,5 @@ def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
                 if not batch:
                     break
 
-                email_blocks = [EmailBlock(email=record[3]) for record in batch]
-                EmailBlock.objects.bulk_create(email_blocks, ignore_conflicts=True)
+                email_blocks = [SuppressedEmail(email=record[3]) for record in batch]
+                SuppressedEmail.objects.bulk_create(email_blocks, ignore_conflicts=True)

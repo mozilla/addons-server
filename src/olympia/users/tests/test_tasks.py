@@ -16,7 +16,7 @@ from requests.exceptions import Timeout
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
-from olympia.users.models import BannedUserContent, EmailBlock
+from olympia.users.models import BannedUserContent, SuppressedEmail
 from olympia.users.tasks import delete_photo, resize_photo, sync_blocked_emails
 
 
@@ -194,7 +194,7 @@ def list_to_csv(data):
 static_id = uuid.uuid4()
 
 
-class TestEmailBlock(TestCase):
+class TestSuppressedEmail(TestCase):
     def test_retry_if_api_returns_bad_response(self):
         responses.add(
             responses.GET,
@@ -234,7 +234,7 @@ class TestEmailBlock(TestCase):
 
         sync_blocked_emails()
 
-        assert EmailBlock.objects.count() == 0
+        assert SuppressedEmail.objects.count() == 0
 
     def test_existing_email(self):
         user = user_factory()
@@ -248,14 +248,14 @@ class TestEmailBlock(TestCase):
             status=200,
         )
 
-        EmailBlock.objects.create(email=user.email)
+        SuppressedEmail.objects.create(email=user.email)
 
         sync_blocked_emails()
 
-        email_block = EmailBlock.objects.get(email=user.email)
+        email_block = SuppressedEmail.objects.get(email=user.email)
 
         assert email_block.email == user.email
-        assert EmailBlock.objects.count() == 1
+        assert SuppressedEmail.objects.count() == 1
 
     def test_unique_email(self):
         user = user_factory()
@@ -271,7 +271,7 @@ class TestEmailBlock(TestCase):
 
         sync_blocked_emails()
 
-        email_block = EmailBlock.objects.get(email=user.email)
+        email_block = SuppressedEmail.objects.get(email=user.email)
 
         assert email_block.email == user.email
-        assert EmailBlock.objects.count() == 1
+        assert SuppressedEmail.objects.count() == 1
