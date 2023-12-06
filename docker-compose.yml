@@ -87,6 +87,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
+    ports:
+    - "3306:3306"
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.3
