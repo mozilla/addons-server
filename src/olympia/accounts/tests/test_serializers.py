@@ -1,6 +1,5 @@
 from django.test.utils import override_settings
 
-from rest_framework import serializers
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -227,17 +226,6 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer, PermissionsTest
         with override_settings(DRF_API_GATES=gates):
             data = super().test_basic()
             assert 'fxa_edit_email_url' not in data
-
-    def test_validate_homepage(self):
-        domain = 'example.org'
-        allowed_url = 'http://github.com'
-        serializer = self.serializer(context={'request': self.request})
-
-        with override_settings(DOMAIN=domain):
-            with self.assertRaises(serializers.ValidationError):
-                serializer.validate_homepage(f'http://{domain}')
-            # It should not raise when value is allowed.
-            assert serializer.validate_homepage(allowed_url) == allowed_url
 
     def test_site_status(self):
         data = super().test_basic()

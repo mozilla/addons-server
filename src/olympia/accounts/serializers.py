@@ -16,6 +16,7 @@ from olympia.amo.utils import (
     unsubscribe_newsletter,
     urlparams,
 )
+from olympia.api.fields import HttpHttpsOnlyURLField
 from olympia.api.serializers import AMOModelSerializer, SiteStatusSerializer
 from olympia.api.utils import is_gate_active
 from olympia.api.validators import OneOrMorePrintableCharacterAPIValidator
@@ -93,6 +94,8 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     fxa_edit_email_url = serializers.SerializerMethodField()
     # Just Need to specify any field for the source - '*' is the entire obj.
     site_status = SiteStatusSerializer(source='*', read_only=True)
+    # Override homepage to use our own URLField with custom validation.
+    homepage = HttpHttpsOnlyURLField(required=False)
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
@@ -134,16 +137,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
                 gettext('This display name cannot be used.')
-            )
-        return value
-
-    def validate_homepage(self, value):
-        if settings.DOMAIN.lower() in value.lower():
-            raise serializers.ValidationError(
-                gettext(
-                    'The homepage field can only be used to link to '
-                    'external websites.'
-                )
             )
         return value
 

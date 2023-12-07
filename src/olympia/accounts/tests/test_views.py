@@ -1506,6 +1506,27 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
+    @override_settings(EXTERNAL_SITE_URL='https://example.org')
+    def test_validate_homepage(self):
+        self.client.login_api(self.user)
+        response = self.patch(data={'homepage': f'{settings.EXTERNAL_SITE_URL}/foo'})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'homepage': [
+                'This field can only be used to link to external websites. URLs '
+                f'on {settings.EXTERNAL_SITE_URL} are not allowed.'
+            ]
+        }
+
+        response = self.patch(data={'homepage': 'ftp://foo.bar'})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content)) == {
+            'homepage': ['Enter a valid URL.']
+        }
+
+        response = self.patch(data={'homepage': 'https://foo.bar'})
+        assert response.status_code == 200
+
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive
         assert not path.exists(self.user.picture_path)

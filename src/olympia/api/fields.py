@@ -2,7 +2,7 @@ import re
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.core.validators import RegexValidator
+from django.core.validators import URLValidator
 from django.utils.encoding import smart_str
 from django.utils.translation import get_language, gettext, gettext_lazy as _, override
 
@@ -11,6 +11,7 @@ from rest_framework import exceptions, fields, serializers
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import to_language
+from olympia.amo.validators import HttpHttpsURLValidator, NoAMOURLValidator
 from olympia.api.utils import is_gate_active
 from olympia.translations.models import Translation
 from olympia.translations.utils import default_locale
@@ -385,23 +386,6 @@ class OutgoingSerializerMixin:
     URL fields, but wrapped with our outgoing server.
     """
 
-    def __init__(self, **kwargs):
-        # By default prevent internal urls from being specified
-        allow_internal = kwargs.pop('allow_internal', False)
-        super().__init__(**kwargs)
-        if not allow_internal:
-            validator = RegexValidator(
-                regex=r'%s' % re.escape(settings.EXTERNAL_SITE_URL),
-                message=_(
-                    'This field can only be used to link to external websites.'
-                    ' URLs on %(domain)s are not allowed.',
-                )
-                % {'domain': settings.EXTERNAL_SITE_URL},
-                code='no_amo_url',
-                inverse_match=True,
-            )
-            self.validators.append(validator)
-
     def to_representation(self, value):
         data = super().to_representation(value)
         request = self.context.get('request', None)
@@ -434,19 +418,36 @@ class OutgoingSerializerMixin:
         return {'url': data, 'outgoing': outgoing}
 
 
-class URLTranslationField(serializers.URLField, TranslationSerializerField):
-    pass
+class HttpHttpsOnlyURLField(serializers.URLField):
+    def __init__(self, **kwargs):
+        # By default prevent internal urls from being specified
+        allow_internal = kwargs.pop('allow_internal', False)
+        super().__init__(**kwargs)
+
+        for idx, validator in enumerate(self.validators):
+            # Replace the default URLValidator with our own that only allows
+            # http/https.
+            if isinstance(validator, URLValidator):
+                self.validators[idx] = HttpHttpsURLValidator(
+                    message=validator.message, code=validator.code
+                )
+                break
+
+        if not allow_internal:
+            self.validators.append(NoAMOURLValidator())
 
 
 class EmailTranslationField(serializers.EmailField, TranslationSerializerField):
     pass
 
 
-class OutgoingURLField(OutgoingSerializerMixin, serializers.URLField):
+class OutgoingURLField(OutgoingSerializerMixin, HttpHttpsOnlyURLField):
     pass
 
 
-class OutgoingURLTranslationField(OutgoingSerializerMixin, URLTranslationField):
+class OutgoingURLTranslationField(
+    OutgoingSerializerMixin, HttpHttpsOnlyURLField, TranslationSerializerField
+):
     def get_es_instance(self):
         return OutgoingURLESTranslationField(source=self.source)
 

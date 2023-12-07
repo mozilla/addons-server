@@ -154,10 +154,10 @@ class CinderUser(CinderEntity):
             }
         data.update(
             {
-                'average_rating': int(self.user.averagerating or 0),
+                'average_rating': self.user.averagerating,
                 'num_addons_listed': self.user.num_addons_listed,
                 'biography': self.get_str(self.user.biography),
-                'homepage': self.get_str(self.user.homepage),
+                'homepage': self.get_str(self.user.homepage) or None,
                 'location': self.get_str(self.user.location),
                 'occupation': self.get_str(self.user.occupation),
             }
@@ -231,7 +231,7 @@ class CinderAddon(CinderEntity):
             'id': self.id,
             'average_daily_users': self.addon.average_daily_users,
             'guid': self.addon.guid,
-            'last_updated': self.get_str(self.addon.last_updated),
+            'last_updated': self.get_str(self.addon.last_updated) or None,
             'name': self.get_str(self.addon.name),
             'slug': self.addon.slug,
             'summary': self.get_str(self.addon.summary),
@@ -288,12 +288,11 @@ class CinderAddon(CinderEntity):
             data['release_notes'] = self.get_str(
                 self.addon.current_version.release_notes
             )
-        # In addition, the URL/email fields can't be sent if blank as they
-        # would not be considered valid by Cinder.
-        for field in ('homepage', 'support_email', 'support_url'):
-            if value := getattr(self.addon, field):
-                data[field] = self.get_str(value)
-
+        # The URL/email fields can't be sent as empty strings as they would not
+        # be considered valid by Cinder.
+        data['homepage'] = self.get_str(self.addon.homepage) or None
+        data['support_email'] = self.get_str(self.addon.support_email) or None
+        data['support_url'] = self.get_str(self.addon.support_url) or None
         return data
 
     def get_context(self):

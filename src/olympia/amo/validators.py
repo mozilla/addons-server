@@ -1,6 +1,9 @@
+import re
 import unicodedata
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator, URLValidator
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 
@@ -74,3 +77,22 @@ class PreventPartialUpdateValidator:
     def __call__(self, value, serializer_field):
         if serializer_field.parent.partial:
             raise fields.SkipField()
+
+
+def HttpHttpsURLValidator(message=None, code=None):
+    return URLValidator(message=message, code=code, schemes=('http', 'https'))
+
+
+def NoAMOURLValidator():
+    return RegexValidator(
+        regex=r'%s' % re.escape(settings.EXTERNAL_SITE_URL),
+        message=_(
+            'This field can only be used to link to external websites.'
+            ' URLs on %(domain)s are not allowed.',
+        )
+        # Not actually a domain, but the string was already translated with
+        # that parameter name.
+        % {'domain': settings.EXTERNAL_SITE_URL},
+        code='no_amo_url',
+        inverse_match=True,
+    )

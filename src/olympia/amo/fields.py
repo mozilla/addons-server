@@ -1,14 +1,13 @@
 import ipaddress
-import re
 
-from django.conf import settings
 from django.core import exceptions
-from django.core.validators import RegexValidator, URLValidator
 from django.db import models
 from django.forms import fields
 from django.utils.translation import gettext_lazy as _
 
 from django_recaptcha.fields import ReCaptchaField as UpstreamReCaptchaField
+
+from olympia.amo.validators import HttpHttpsURLValidator, NoAMOURLValidator
 
 
 class PositiveAutoField(models.AutoField):
@@ -69,19 +68,8 @@ class IPAddressBinaryField(VarBinaryField):
 class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
         self.default_validators = [
-            URLValidator(schemes=('http', 'https')),
-            # Reject AMO URLs, see:
-            # https://github.com/mozilla/addons-server/issues/9012
-            RegexValidator(
-                regex=r'%s' % re.escape(settings.DOMAIN),
-                message=_(
-                    'This field can only be used to link to external websites.'
-                    ' URLs on %(domain)s are not allowed.',
-                )
-                % {'domain': settings.DOMAIN},
-                code='no_amo_url',
-                inverse_match=True,
-            ),
+            HttpHttpsURLValidator(),
+            NoAMOURLValidator(),
         ]
         super().__init__(*args, **kwargs)
 

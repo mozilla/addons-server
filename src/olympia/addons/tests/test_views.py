@@ -1302,9 +1302,9 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
     @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
-            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'homepage': {'en-US': '#%^%&&%^&^&^*'},
             'support_email': {'en-US': '#%^%&&%^&^&^*'},
-            'support_url': {'fr': '#%^%&&%^&^&^*'},
+            'support_url': {'en-US': '#%^%&&%^&^&^*'},
         }
         response = self.request(**data)
 
@@ -1316,14 +1316,28 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
 
         data = {
-            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
-            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+            'homepage': {'en-US': f'{settings.EXTERNAL_SITE_URL}'},
+            'support_url': {'en-US': f'{settings.EXTERNAL_SITE_URL}/foo/'},
         }
         response = self.request(**data)
         msg = (
             'This field can only be used to link to external websites. '
             f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
         )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
+        }
+
+        data = {
+            'homepage': {'en-US': 'ftp://somewhere.com/foo'},
+            'support_url': {'en-US': 'ftp://somewhere.com'},
+        }
+        response = self.request(
+            data=data,
+        )
+        msg = 'Enter a valid URL.'
         assert response.status_code == 400, response.content
         assert response.data == {
             'homepage': [msg],
@@ -2242,7 +2256,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         data = {
-            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
+            'homepage': {'ro': f'{settings.EXTERNAL_SITE_URL}'},
             'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
         }
         response = self.request(
@@ -2252,6 +2266,20 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             'This field can only be used to link to external websites. '
             f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
         )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
+        }
+
+        data = {
+            'homepage': {'ro': 'ftp://somewhere.com/foo'},
+            'support_url': {'fr': 'ftp://somewhere.com'},
+        }
+        response = self.request(
+            data=data,
+        )
+        msg = 'Enter a valid URL.'
         assert response.status_code == 400, response.content
         assert response.data == {
             'homepage': [msg],
