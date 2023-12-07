@@ -1,17 +1,23 @@
+import csv
+import io
 import shutil
 import tempfile
+import uuid
 from unittest import mock
 
 from django.conf import settings
 
 import pytest
+import responses
+from celery.exceptions import Retry
 from PIL import Image
+from requests.exceptions import Timeout
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
-from olympia.users.models import BannedUserContent
-from olympia.users.tasks import delete_photo, resize_photo
+from olympia.users.models import BannedUserContent, SuppressedEmail
+from olympia.users.tasks import delete_photo, resize_photo, sync_blocked_emails
 
 
 pytestmark = pytest.mark.django_db
@@ -172,3 +178,100 @@ def test_resize_photo_poorly():
     # assert nothing happened
     src_image = Image.open(src.name)
     assert src_image.size == (339, 128)
+
+
+def list_to_csv(data):
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(['Zero', 'One', 'Two', 'Email'])
+
+    for item in data:
+        row = ['0', '1', '2', item if item is not None else '']
+        writer.writerow(row)
+    return output.getvalue()
+
+
+static_id = uuid.uuid4()
+
+
+class TestSuppressedEmail(TestCase):
+    def test_retry_if_api_returns_bad_response(self):
+        responses.add(
+            responses.GET,
+            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            status=500,
+        )
+
+        task = sync_blocked_emails.s()
+
+        with pytest.raises(Retry):
+            task.apply(throw=True)
+
+    def test_retry_if_api_returns_timeout(self):
+        def timeout_callback(request):
+            raise Timeout()
+
+        responses.add_callback(
+            responses.GET,
+            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            callback=timeout_callback,
+        )
+
+        task = sync_blocked_emails.s()
+
+        with pytest.raises(Retry):
+            task.apply(throw=True)
+
+    def test_empty_csv(self):
+        csv = list_to_csv([])
+
+        responses.add(
+            responses.GET,
+            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            body=csv,
+            status=200,
+        )
+
+        sync_blocked_emails()
+
+        assert SuppressedEmail.objects.count() == 0
+
+    def test_existing_email(self):
+        user = user_factory()
+
+        csv = list_to_csv([user.email])
+
+        responses.add(
+            responses.GET,
+            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            body=csv,
+            status=200,
+        )
+
+        SuppressedEmail.objects.create(email=user.email)
+
+        sync_blocked_emails()
+
+        email_block = SuppressedEmail.objects.get(email=user.email)
+
+        assert email_block.email == user.email
+        assert SuppressedEmail.objects.count() == 1
+
+    def test_unique_email(self):
+        user = user_factory()
+
+        csv = list_to_csv([user.email])
+
+        responses.add(
+            responses.GET,
+            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            body=csv,
+            status=200,
+        )
+
+        sync_blocked_emails()
+
+        email_block = SuppressedEmail.objects.get(email=user.email)
+
+        assert email_block.email == user.email
+        assert SuppressedEmail.objects.count() == 1
