@@ -1299,12 +1299,12 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
 
-    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+    @override_settings(DOMAIN='amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
-            'homepage': {'ro': '#%^%&&%^&^&^*'},
+            'homepage': {'en-US': '#%^%&&%^&^&^*'},
             'support_email': {'en-US': '#%^%&&%^&^&^*'},
-            'support_url': {'fr': '#%^%&&%^&^&^*'},
+            'support_url': {'en-US': '#%^%&&%^&^&^*'},
         }
         response = self.request(**data)
 
@@ -1316,14 +1316,28 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
 
         data = {
-            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
-            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+            'homepage': {'en-US': f'https://{settings.DOMAIN}'},
+            'support_url': {'en-US': f'https://{settings.DOMAIN}/foo/'},
         }
         response = self.request(**data)
         msg = (
             'This field can only be used to link to external websites. '
-            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+            f'URLs on {settings.DOMAIN} are not allowed.'
         )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
+        }
+
+        data = {
+            'homepage': {'en-US': 'ftp://somewhere.com/foo'},
+            'support_url': {'en-US': 'ftp://somewhere.com'},
+        }
+        response = self.request(
+            data=data,
+        )
+        msg = 'Enter a valid URL.'
         assert response.status_code == 400, response.content
         assert response.data == {
             'homepage': [msg],
@@ -2223,7 +2237,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.USER_ENABLE.id
 
-    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+    @override_settings(DOMAIN='amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             'homepage': {'ro': '#%^%&&%^&^&^*'},
@@ -2242,16 +2256,30 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         data = {
-            'homepage': {'ro': settings.EXTERNAL_SITE_URL},
-            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
+            'homepage': {'ro': f'https://{settings.DOMAIN}'},
+            'support_url': {'fr': f'https://{settings.DOMAIN}/foo/'},
         }
         response = self.request(
             data=data,
         )
         msg = (
             'This field can only be used to link to external websites. '
-            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
+            f'URLs on {settings.DOMAIN} are not allowed.'
         )
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'homepage': [msg],
+            'support_url': [msg],
+        }
+
+        data = {
+            'homepage': {'ro': 'ftp://somewhere.com/foo'},
+            'support_url': {'fr': 'ftp://somewhere.com'},
+        }
+        response = self.request(
+            data=data,
+        )
+        msg = 'Enter a valid URL.'
         assert response.status_code == 400, response.content
         assert response.data == {
             'homepage': [msg],
