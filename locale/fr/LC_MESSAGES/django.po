@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-07 21:19+0000\n"
+"PO-Revision-Date: 2023-12-07 21:23+0000\n"
 "Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -931,16 +931,16 @@ msgid "Collection {collection} deleted by moderator"
 msgstr "Collection {collection} supprimée par un modérateur"
 
 msgid "Collection {collection} un-deleted by moderator"
-msgstr "La collection {collection} n’a pas été supprimée par un modérateur"
+msgstr "Collection {collection} restaurée par un modérateur"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "Critique {rating} pour {addon} restaurée."
 
 msgid "User {user} content restored."
-msgstr ""
+msgstr "Le contenu de l’utilisateur ou de l’utilisatrice {user} a été restauré."
 
 msgid "User {user} unbanned."
-msgstr ""
+msgstr "Utilisateur ou utilisatrice {user} débanni·e."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4535,7 +4535,7 @@ msgstr "Voir plus d’extensions pour les réseaux sociaux choisies par l’équ
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Les meilleurs gestionnaires de téléchargement"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
