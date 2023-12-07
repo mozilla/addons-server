@@ -83,14 +83,16 @@ def HttpHttpsURLValidator(message=None, code=None):
     return URLValidator(message=message, code=code, schemes=('http', 'https'))
 
 
-def NoAMODomainValidator():
+def NoAMOURLValidator():
     return RegexValidator(
-        regex=r'%s' % re.escape(settings.DOMAIN),
+        regex=r'%s' % re.escape(settings.EXTERNAL_SITE_URL),
         message=_(
             'This field can only be used to link to external websites.'
             ' URLs on %(domain)s are not allowed.',
         )
-        % {'domain': settings.DOMAIN},
+        # Not actually a domain, but the string was already translated with
+        # that parameter name.
+        % {'domain': settings.EXTERNAL_SITE_URL},
         code='no_amo_url',
         inverse_match=True,
     )

@@ -11,7 +11,7 @@ from rest_framework import exceptions, fields, serializers
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import to_language
-from olympia.amo.validators import HttpHttpsURLValidator, NoAMODomainValidator
+from olympia.amo.validators import HttpHttpsURLValidator, NoAMOURLValidator
 from olympia.api.utils import is_gate_active
 from olympia.translations.models import Translation
 from olympia.translations.utils import default_locale
@@ -434,7 +434,7 @@ class HttpHttpsOnlyURLField(serializers.URLField):
                 break
 
         if not allow_internal:
-            self.validators.append(NoAMODomainValidator())
+            self.validators.append(NoAMOURLValidator())
 
 
 class EmailTranslationField(serializers.EmailField, TranslationSerializerField):

@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django_recaptcha.fields import ReCaptchaField as UpstreamReCaptchaField
 
-from olympia.amo.validators import HttpHttpsURLValidator, NoAMODomainValidator
+from olympia.amo.validators import HttpHttpsURLValidator, NoAMOURLValidator
 
 
 class PositiveAutoField(models.AutoField):
@@ -69,7 +69,7 @@ class HttpHttpsOnlyURLField(fields.URLField):
     def __init__(self, *args, **kwargs):
         self.default_validators = [
             HttpHttpsURLValidator(),
-            NoAMODomainValidator(),
+            NoAMOURLValidator(),
         ]
         super().__init__(*args, **kwargs)
 

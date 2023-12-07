@@ -1299,7 +1299,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert addon.is_disabled is True
         assert addon.disabled_by_user is True  # sets the user property
 
-    @override_settings(DOMAIN='amazing.site')
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             'homepage': {'en-US': '#%^%&&%^&^&^*'},
@@ -1316,13 +1316,13 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         }
 
         data = {
-            'homepage': {'en-US': f'https://{settings.DOMAIN}'},
-            'support_url': {'en-US': f'https://{settings.DOMAIN}/foo/'},
+            'homepage': {'en-US': f'{settings.EXTERNAL_SITE_URL}'},
+            'support_url': {'en-US': f'{settings.EXTERNAL_SITE_URL}/foo/'},
         }
         response = self.request(**data)
         msg = (
             'This field can only be used to link to external websites. '
-            f'URLs on {settings.DOMAIN} are not allowed.'
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
         )
         assert response.status_code == 400, response.content
         assert response.data == {
@@ -2237,7 +2237,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.USER_ENABLE.id
 
-    @override_settings(DOMAIN='amazing.site')
+    @override_settings(EXTERNAL_SITE_URL='https://amazing.site')
     def test_set_homepage_support_url_email(self):
         data = {
             'homepage': {'ro': '#%^%&&%^&^&^*'},
@@ -2256,15 +2256,15 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         }
 
         data = {
-            'homepage': {'ro': f'https://{settings.DOMAIN}'},
-            'support_url': {'fr': f'https://{settings.DOMAIN}/foo/'},
+            'homepage': {'ro': f'{settings.EXTERNAL_SITE_URL}'},
+            'support_url': {'fr': f'{settings.EXTERNAL_SITE_URL}/foo/'},
         }
         response = self.request(
             data=data,
         )
         msg = (
             'This field can only be used to link to external websites. '
-            f'URLs on {settings.DOMAIN} are not allowed.'
+            f'URLs on {settings.EXTERNAL_SITE_URL} are not allowed.'
         )
         assert response.status_code == 400, response.content
         assert response.data == {
