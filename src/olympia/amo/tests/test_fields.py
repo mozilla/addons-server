@@ -10,13 +10,13 @@ from olympia.amo.tests import TestCase
 
 
 class HttpHttpsOnlyURLFieldTestCase(TestCase):
-    domain = 'example.com'
+    external_site_url = 'https://example.com'
     max_length = None
 
     def setUp(self):
         super().setUp()
 
-        with override_settings(DOMAIN=self.domain):
+        with override_settings(EXTERNAL_SITE_URL=self.external_site_url):
             self.field = HttpHttpsOnlyURLField(max_length=self.max_length)
 
     def test_invalid_scheme_validation_error(self):
@@ -45,17 +45,13 @@ class HttpHttpsOnlyURLFieldTestCase(TestCase):
         with self.assertRaises(exceptions.ValidationError):
             assert self.field.clean('https://test.[com')
 
-    def test_with_domain_and_no_scheme(self):
+    def test_with_base_url(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(self.domain)
+            self.field.clean(self.external_site_url)
 
-    def test_with_domain_and_http(self):
+    def test_with_url_with_path_and_query(self):
         with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(f'http://{self.domain}')
-
-    def test_with_domain_and_https(self):
-        with self.assertRaises(exceptions.ValidationError):
-            self.field.clean(f'https://{self.domain}')
+            self.field.clean(f'{self.external_site_url}foo/bar?x=2')
 
     def test_domain_is_escaped_in_regex_validator(self):
         assert self.field.clean('example-com.fr') == 'http://example-com.fr'
