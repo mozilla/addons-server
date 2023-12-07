@@ -47,4 +47,5 @@ using the API.
    reviewers
    scanners
    shelves
+   suppressed_emails
    tags

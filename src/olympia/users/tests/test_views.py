@@ -7,7 +7,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.users.models import UserProfile
+from olympia.users.models import SuppressedEmail, UserProfile
 
 
 class UserViewBase(TestCase):
@@ -66,3 +66,33 @@ class TestSessionLength(UserViewBase):
 
         assert cookie.value != ''
         assert expiry >= four_weeks_from_now
+
+
+class TestSuppressedEmail(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.suppressed_email_address = 'suppressed@example.com'
+        cls.not_suppressed_email_address = 'not_suppressed@example.com'
+        cls.suppressed_email = SuppressedEmail.objects.create(
+            email=cls.suppressed_email_address
+        )
+
+    def get_url(slef, email=None):
+        url = reverse('users.suppressedemails')
+
+        if email is not None:
+            url += f'?email={email}'
+
+        return url
+
+    def test_400_for_missing_email(self):
+        response = self.client.get(self.get_url())
+        assert response.status_code == 400
+
+    def test_404_for_non_suppressed_email(self):
+        response = self.client.get(self.get_url(self.not_suppressed_email_address))
+        assert response.status_code == 404
+
+    def test_200_for_suppressed_email(self):
+        response = self.client.get(self.get_url(self.suppressed_email_address))
+        assert response.status_code == 200

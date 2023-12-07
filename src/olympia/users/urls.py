@@ -2,6 +2,8 @@ from django.urls import include, re_path
 
 from olympia.amo.views import frontend_view
 
+from . import views
+
 
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
@@ -21,8 +23,18 @@ users_patterns = [
     ),
 ]
 
+email_suppression_patterns = [
+    re_path(
+        r'^$',
+        views.SuppressedEmailDetailView.as_view(),
+        name='users.suppressedemails',
+    ),
+]
+
 urlpatterns = [
     # URLs for a single user.
     re_path(r'^user/%s/' % USER_ID, include(detail_patterns)),
     re_path(r'^users/', include(users_patterns)),
+    # URLs for email suppression.
+    re_path(r'^suppressed_emails/', include(email_suppression_patterns)),
 ]
