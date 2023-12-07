@@ -157,7 +157,7 @@ class CinderUser(CinderEntity):
                 'average_rating': self.user.averagerating,
                 'num_addons_listed': self.user.num_addons_listed,
                 'biography': self.get_str(self.user.biography),
-                'homepage': self.get_str(self.user.homepage),
+                'homepage': self.get_str(self.user.homepage) or None,
                 'location': self.get_str(self.user.location),
                 'occupation': self.get_str(self.user.occupation),
             }

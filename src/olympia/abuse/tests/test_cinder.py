@@ -808,7 +808,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'name': user.display_name,
                 'email': user.email,
                 'fxa_id': user.fxa_id,
-                'homepage': '',
+                'homepage': None,
                 'average_rating': None,
                 'num_addons_listed': 0,
                 'created': str(user.created),
