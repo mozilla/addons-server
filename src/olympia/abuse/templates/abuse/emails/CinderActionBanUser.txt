@@ -1,6 +1,6 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 
-Your account on {{ SITE_URL }} has been banned.
+Your account on {{ SITE_URL }} has been banned, after we reviewed the content in response to a report by a third party, and found that it violated our Terms of Service.
 You will not be able to log in, and any content you submitted has been removed.
 
 {% endblock %}
