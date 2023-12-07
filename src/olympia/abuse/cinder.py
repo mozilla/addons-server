@@ -321,7 +321,7 @@ class CinderRating(CinderEntity):
         return {
             'id': self.id,
             'body': self.rating.body,
-            'score': self.rating.rating or 0,
+            'score': self.rating.rating,
         }
 
     def get_context(self):

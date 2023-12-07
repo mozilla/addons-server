@@ -947,7 +947,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             'entity': {
                 'id': str(rating.id),
                 'body': rating.body,
-                'score': 0,
+                'score': None,
             },
             'reasoning': reason,
             'context': {
