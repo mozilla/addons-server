@@ -926,6 +926,70 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             },
         }
 
+    def test_build_report_payload_developer_reply(self):
+        addon_author = user_factory()
+        self.addon = addon_factory(users=(addon_author,))
+        original_rating = Rating.objects.create(
+            addon=self.addon, user=self.user, rating=random.randint(0, 5)
+        )
+        rating = Rating.objects.create(
+            addon=self.addon, user=addon_author, reply_to=original_rating
+        )
+        cinder_rating = self.cinder_class(rating)
+        reason = 'bad reply!'
+
+        data = cinder_rating.build_report_payload(
+            report_text=reason, category=None, reporter=None
+        )
+        assert data == {
+            'queue_slug': self.cinder_class.queue,
+            'entity_type': 'amo_rating',
+            'entity': {
+                'id': str(rating.id),
+                'body': rating.body,
+                'score': None,
+            },
+            'reasoning': reason,
+            'context': {
+                'entities': [
+                    {
+                        'entity_type': 'amo_user',
+                        'attributes': {
+                            'id': str(addon_author.id),
+                            'created': str(addon_author.created),
+                            'name': addon_author.display_name,
+                            'email': addon_author.email,
+                            'fxa_id': addon_author.fxa_id,
+                        },
+                    },
+                    {
+                        'entity_type': 'amo_rating',
+                        'attributes': {
+                            'id': str(original_rating.id),
+                            'body': original_rating.body,
+                            'score': original_rating.rating,
+                        },
+                    },
+                ],
+                'relationships': [
+                    {
+                        'source_id': str(addon_author.id),
+                        'source_type': 'amo_user',
+                        'target_id': str(rating.id),
+                        'target_type': 'amo_rating',
+                        'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'source_id': str(original_rating.id),
+                        'source_type': 'amo_rating',
+                        'target_id': str(rating.id),
+                        'target_type': 'amo_rating',
+                        'relationship_type': 'amo_rating_reply_to',
+                    },
+                ],
+            },
+        }
+
 
 class TestCinderCollection(BaseTestCinderCase, TestCase):
     cinder_class = CinderCollection

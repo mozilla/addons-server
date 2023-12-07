@@ -328,12 +328,19 @@ class CinderRating(CinderEntity):
         # Note: we are not currently sending the add-on the rating is for as
         # part of the context.
         cinder_user = CinderUser(self.rating.user)
-        return {
+        context = {
             'entities': [cinder_user.get_entity_data()],
             'relationships': [
-                cinder_user.get_relationship_data(self, 'amo_rating_author_of')
+                cinder_user.get_relationship_data(self, 'amo_rating_author_of'),
             ],
         }
+        if reply_to := getattr(self.rating, 'reply_to', None):
+            cinder_reply_to = CinderRating(reply_to)
+            context['entities'].append(cinder_reply_to.get_entity_data())
+            context['relationships'].append(
+                cinder_reply_to.get_relationship_data(self, 'amo_rating_reply_to')
+            )
+        return context
 
 
 class CinderCollection(CinderEntity):
