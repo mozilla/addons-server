@@ -851,7 +851,7 @@ class TestLazyChoiceField(TestCase):
         assert field.choices == {self.aa.id: 'aa', self.bb.id: 'bb'}
 
 
-@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+@override_settings(DOMAIN='amazing.site')
 class TestOutgoingURLField(TestCase):
     def test_adds_outgoing(self):
         field = OutgoingURLField()
@@ -865,7 +865,7 @@ class TestOutgoingURLField(TestCase):
         }
 
     def test_allow_internal(self):
-        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+        user_input = f'https://{settings.DOMAIN}/foo/baa/'
         with self.assertRaises(exceptions.ValidationError):
             OutgoingURLField().run_validation(user_input)
 
@@ -875,13 +875,13 @@ class TestOutgoingURLField(TestCase):
         OutgoingURLField(allow_internal=True).run_validation(user_input)
 
 
-@override_settings(EXTERNAL_SITE_URL='https://amazing.site')
+@override_settings(DOMAIN='amazing.site', EXTERNAL_SITE_URL='https://amazing.site')
 class TestAbsoluteOutgoingURLField(TestCase):
     def test_absolutifys(self):
         field = AbsoluteOutgoingURLField()
         assert field.to_representation('/foo/baa/') == {
-            'url': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
-            'outgoing': f'{settings.EXTERNAL_SITE_URL}/foo/baa/',
+            'url': f'https://{settings.DOMAIN}/foo/baa/',
+            'outgoing': f'https://{settings.DOMAIN}/foo/baa/',
         }
         assert field.to_representation('http://foo/baa/') == {
             'url': 'http://foo/baa/',
@@ -889,7 +889,7 @@ class TestAbsoluteOutgoingURLField(TestCase):
         }
 
     def test_allow_internal(self):
-        user_input = f'{settings.EXTERNAL_SITE_URL}/foo/baa/'
+        user_input = f'https://{settings.DOMAIN}/foo/baa/'
 
         # default is allow_internal=True so shouldn't raise
         AbsoluteOutgoingURLField().run_validation(user_input)
