@@ -6,6 +6,12 @@ from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 
+def get_versioned_api_routes(version, url_patterns):
+    route_pattern = r'^{}/'.format(version)
+
+    return (re_path(route_pattern, include((url_patterns, version))),)
+
+
 v3_api_urls = [
     re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v3)),
@@ -51,7 +57,7 @@ v5_api_urls = [
 
 urlpatterns = [
     re_path(r'^auth/', include((auth_urls, 'auth'))),
-    re_path(r'^v3/', include((v3_api_urls, 'v3'))),
-    re_path(r'^v4/', include((v4_api_urls, 'v4'))),
-    re_path(r'^v5/', include((v5_api_urls, 'v5'))),
+    *get_versioned_api_routes('v3', v3_api_urls),
+    *get_versioned_api_routes('v4', v4_api_urls),
+    *get_versioned_api_routes('v5', v5_api_urls),
 ]
