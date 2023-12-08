@@ -8,7 +8,8 @@ from django.test.utils import override_settings
 import responses
 
 from olympia import amo
-from olympia.addons.models import Preview
+from olympia.abuse.models import AbuseReport
+from olympia.addons.models import Addon, Preview
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -17,9 +18,10 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.tests.test_helpers import get_image_path
-from olympia.bandwagon.models import CollectionAddon
+from olympia.bandwagon.models import Collection, CollectionAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
 
 from ..cinder import (
@@ -27,6 +29,7 @@ from ..cinder import (
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
+    CinderReport,
     CinderUnauthenticatedReporter,
     CinderUser,
 )
@@ -42,7 +45,17 @@ class BaseTestCinderCase:
     def _create_dummy_target(self, **kwargs):
         raise NotImplementedError
 
-    def _test_report(self, cinder_instance):
+    def _guess_abuse_report_kwargs(self, target):
+        if isinstance(target, Addon):
+            return {'guid': target.guid}
+        elif isinstance(target, UserProfile):
+            return {'user': target}
+        elif isinstance(target, Rating):
+            return {'rating': target}
+        elif isinstance(target, Collection):
+            return {'collection': target}
+
+    def _test_report(self, target):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_report',
@@ -67,32 +80,32 @@ class BaseTestCinderCase:
             json={'job_id': '1234-xyz'},
             status=400,
         )
+        abuse_report = AbuseReport.objects.create(
+            **self._guess_abuse_report_kwargs(target)
+        )
+        report = CinderReport(abuse_report)
+        cinder_instance = self.cinder_class(target)
+        assert cinder_instance.report(report=report, reporter=None) == '1234-xyz'
         assert (
-            cinder_instance.report(report_text='reason', category=None, reporter=None)
+            cinder_instance.report(report=report, reporter=CinderUser(user_factory()))
             == '1234-xyz'
         )
         assert (
             cinder_instance.report(
-                report_text='reason', category=None, reporter=CinderUser(user_factory())
-            )
-            == '1234-xyz'
-        )
-        assert (
-            cinder_instance.report(
-                report_text='reason',
-                category=None,
+                report=report,
                 reporter=CinderUnauthenticatedReporter(name='name', email='e@ma.il'),
             )
             == '1234-xyz'
         )
+        # Last response is a 400, we raise for that.
         with self.assertRaises(ConnectionError):
-            cinder_instance.report(report_text='reason', category=None, reporter=None)
+            cinder_instance.report(report=report, reporter=None)
 
     def test_build_report_payload(self):
         raise NotImplementedError
 
     def test_report(self):
-        self._test_report(self.cinder_class(self._create_dummy_target()))
+        self._test_report(self._create_dummy_target())
 
     def _test_appeal(self, appealer, cinder_instance=None):
         fake_decision_id = 'decision-id-to-appeal-666'
@@ -143,17 +156,18 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             support_url='https://support.example.com/',
             description='Sôme description',
         )
-        reason = 'bad addon!'
+        message = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
         data = cinder_addon.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_addon',
             'entity': {
-                'id': str(addon.id),
+                'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
                 'description': str(addon.description),
                 'guid': addon.guid,
@@ -168,20 +182,49 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': str(addon.support_url),
                 'version': addon.current_version.version,
             },
-            'reasoning': reason,
-            'context': {'entities': [], 'relationships': []},
+            'reasoning': message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(addon.pk),
+                        'target_type': 'amo_addon',
+                    }
+                ],
+            },
         }
 
         # if we have an email or name
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
         data = cinder_addon.build_report_payload(
-            report_text=reason,
-            category=None,
+            report=CinderReport(abuse_report),
             reporter=CinderUnauthenticatedReporter(name, email),
         )
         assert data['context'] == {
             'entities': [
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
                 {
                     'entity_type': 'amo_unauthenticated_reporter',
                     'attributes': {
@@ -189,85 +232,80 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                         'name': name,
                         'email': email,
                     },
-                }
+                },
             ],
             'relationships': [
                 {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
                     'source_id': f'{name} : {email}',
                     'source_type': 'amo_unauthenticated_reporter',
-                    'target_id': str(addon.id),
-                    'target_type': 'amo_addon',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
-                }
+                },
             ],
         }
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
         data = cinder_addon.build_report_payload(
-            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+            report=CinderReport(abuse_report), reporter=CinderUser(reporter_user)
         )
         assert data['context'] == {
             'entities': [
                 {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+                {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(reporter_user.id),
+                        'id': str(reporter_user.pk),
                         'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
                     },
-                }
+                },
             ],
             'relationships': [
                 {
-                    'source_id': str(reporter_user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
+                },
+                {
+                    'source_id': str(reporter_user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
-                }
+                },
             ],
         }
 
     def test_build_report_payload_with_author(self):
         author = user_factory()
         addon = self._create_dummy_target(users=[author])
-        reason = 'bad addon!'
+        message = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
 
         data = cinder_addon.build_report_payload(
-            report_text=reason, category=None, reporter=None
-        )
-        assert data['context'] == {
-            'entities': [
-                {
-                    'entity_type': 'amo_user',
-                    'attributes': {
-                        'id': str(author.id),
-                        'created': str(author.created),
-                        'name': author.display_name,
-                        'email': author.email,
-                        'fxa_id': author.fxa_id,
-                    },
-                }
-            ],
-            'relationships': [
-                {
-                    'source_id': str(author.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(addon.id),
-                    'target_type': 'amo_addon',
-                    'relationship_type': 'amo_author_of',
-                }
-            ],
-        }
-
-        # and if the reporter is authenticated
-        reporter_user = user_factory()
-        data = cinder_addon.build_report_payload(
-            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data['context'] == {
             'entities': [
@@ -282,9 +320,63 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                     },
                 },
                 {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': str(author.id),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_author_of',
+                },
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+
+        # and if the reporter is authenticated
+        reporter_user = user_factory()
+        data = cinder_addon.build_report_payload(
+            report=CinderReport(abuse_report), reporter=CinderUser(reporter_user)
+        )
+        assert data['context'] == {
+            'entities': [
+                {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(reporter_user.id),
+                        'id': str(author.id),
+                        'created': str(author.created),
+                        'name': author.display_name,
+                        'email': author.email,
+                        'fxa_id': author.fxa_id,
+                    },
+                },
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+                {
+                    'entity_type': 'amo_user',
+                    'attributes': {
+                        'id': str(reporter_user.pk),
                         'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
@@ -296,15 +388,22 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 {
                     'source_id': str(author.id),
                     'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
                     'relationship_type': 'amo_author_of',
                 },
                 {
-                    'source_id': str(reporter_user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
+                },
+                {
+                    'source_id': str(reporter_user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
@@ -314,35 +413,54 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         user = user_factory()
         addon = self._create_dummy_target(users=[user])
         cinder_addon = self.cinder_class(addon)
+        message = 'self reporting!'
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+
         data = cinder_addon.build_report_payload(
-            report_text='self reporting!', category=None, reporter=CinderUser(user)
+            report=CinderReport(abuse_report), reporter=CinderUser(user)
         )
         assert data['context'] == {
             'entities': [
                 {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(user.id),
+                        'id': str(user.pk),
                         'created': str(user.created),
                         'name': user.display_name,
                         'email': user.email,
                         'fxa_id': user.fxa_id,
                     },
                 },
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
             ],
             'relationships': [
                 {
-                    'source_id': str(user.id),
+                    'source_id': str(user.pk),
                     'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
                     'relationship_type': 'amo_author_of',
                 },
                 {
-                    'source_id': str(user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
+                },
+                {
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
@@ -375,17 +493,18 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         (p0, p1) = list(addon.previews.all())
         Preview.objects.create(addon=addon, position=5)  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        reason = 'report with images'
+        message = 'report with images'
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+
         data = cinder_addon.build_report_payload(
-            report_text=reason,
-            category=None,
+            report=CinderReport(abuse_report),
             reporter=None,
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_addon',
             'entity': {
-                'id': str(addon.id),
+                'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
                 'description': '',
                 'homepage': None,
@@ -414,8 +533,29 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': None,
                 'version': str(addon.current_version.version),
             },
-            'reasoning': reason,
-            'context': {'entities': [], 'relationships': []},
+            'reasoning': message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(addon.pk),
+                        'target_type': 'amo_addon',
+                    },
+                ],
+            },
         }
 
     @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
@@ -448,17 +588,18 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             version=addon.current_version, position=5
         )  # No file, ignored
         cinder_addon = self.cinder_class(addon)
-        reason = 'report with images'
+        message = 'report with images'
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+
         data = cinder_addon.build_report_payload(
-            report_text=reason,
-            category=None,
+            report=CinderReport(abuse_report),
             reporter=None,
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_addon',
             'entity': {
-                'id': str(addon.id),
+                'id': str(addon.pk),
                 'average_daily_users': addon.average_daily_users,
                 'description': '',
                 'guid': addon.guid,
@@ -479,8 +620,29 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
                 'support_url': None,
                 'version': str(addon.current_version.version),
             },
-            'reasoning': reason,
-            'context': {'entities': [], 'relationships': []},
+            'reasoning': message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(addon.pk),
+                        'target_type': 'amo_addon',
+                    },
+                ],
+            },
         }
 
 
@@ -497,7 +659,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def test_report(self):
         addon = self._create_dummy_target()
         addon.current_version.file.update(is_signed=True)
-        self._test_report(self.cinder_class(addon))
+        self._test_report(addon)
         assert (
             addon.current_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
@@ -510,9 +672,22 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             addon=addon,
             file_kw={'is_signed': True, 'status': amo.STATUS_AWAITING_REVIEW},
         )
-        self._test_report(self.cinder_class(addon, other_version))
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_report',
+            json={'job_id': '1234-xyz'},
+            status=201,
+        )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid, addon_version=other_version.version
+        )
+        report = CinderReport(abuse_report)
+        cinder_instance = self.cinder_class(addon, other_version)
+        assert cinder_instance.report(report=report, reporter=None)
+        assert cinder_instance.report(report=report, reporter=None)
         assert not addon.current_version.needshumanreview_set.exists()
-        # that there's only one is required - _test_report calls report() multiple times
+        # We called report() multiple times but there should be only one
+        # needs human review instance.
         assert (
             other_version.needshumanreview_set.get().reason
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION
@@ -552,17 +727,18 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             occupation='Blah',
             homepage='http://home.example.com',
         )
-        reason = 'bad person!'
+        message = 'bad person!'
         cinder_user = self.cinder_class(user)
+        abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_user',
             'entity': {
-                'id': str(user.id),
+                'id': str(user.pk),
                 'name': user.display_name,
                 'email': user.email,
                 'fxa_id': user.fxa_id,
@@ -574,20 +750,49 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'location': user.location,
                 'biography': user.biography,
             },
-            'reasoning': reason,
-            'context': {'entities': [], 'relationships': []},
+            'reasoning': message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(user.pk),
+                        'target_type': 'amo_user',
+                    }
+                ],
+            },
         }
 
         # if we have an email or name
         name = 'Foxy McFox'
         email = 'foxy@mozilla'
         data = cinder_user.build_report_payload(
-            report_text=reason,
-            category=None,
+            report=CinderReport(abuse_report),
             reporter=CinderUnauthenticatedReporter(name, email),
         )
         assert data['context'] == {
             'entities': [
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
                 {
                     'entity_type': 'amo_unauthenticated_reporter',
                     'attributes': {
@@ -595,45 +800,68 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                         'name': name,
                         'email': email,
                     },
-                }
+                },
             ],
             'relationships': [
                 {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
+                    'target_type': 'amo_user',
+                },
+                {
                     'source_id': f'{name} : {email}',
                     'source_type': 'amo_unauthenticated_reporter',
-                    'target_id': str(user.id),
-                    'target_type': 'amo_user',
+                    'target_id': str(abuse_report.id),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
-                }
+                },
             ],
         }
 
         # and if the reporter is authenticated
         reporter_user = user_factory()
         data = cinder_user.build_report_payload(
-            report_text=reason, category=None, reporter=CinderUser(reporter_user)
+            report=CinderReport(abuse_report), reporter=CinderUser(reporter_user)
         )
         assert data['context'] == {
             'entities': [
                 {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+                {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(reporter_user.id),
+                        'id': str(reporter_user.pk),
                         'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
                         'fxa_id': reporter_user.fxa_id,
                     },
-                }
+                },
             ],
             'relationships': [
                 {
-                    'source_id': str(reporter_user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(user.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
                     'target_type': 'amo_user',
+                },
+                {
+                    'source_id': str(reporter_user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
-                }
+                },
             ],
         }
 
@@ -641,15 +869,18 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
         cinder_user = self.cinder_class(user)
+        message = 'I dont like this guy'
+        abuse_report = AbuseReport.objects.create(user=user, message=message)
+
         data = cinder_user.build_report_payload(
-            report_text='I dont like this guy', category=None, reporter=CinderUser(user)
+            report=CinderReport(abuse_report), reporter=CinderUser(user)
         )
         assert data['context'] == {
             'entities': [
                 {
                     'entity_type': 'amo_addon',
                     'attributes': {
-                        'id': str(addon.id),
+                        'id': str(addon.pk),
                         'average_daily_users': addon.average_daily_users,
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
@@ -660,9 +891,18 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     },
                 },
                 {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+                {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(user.id),
+                        'id': str(user.pk),
                         'created': str(user.created),
                         'name': user.display_name,
                         'email': user.email,
@@ -672,17 +912,24 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
             'relationships': [
                 {
-                    'source_id': str(user.id),
+                    'source_id': str(user.pk),
                     'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
                     'relationship_type': 'amo_author_of',
                 },
                 {
-                    'source_id': str(user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(user.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
                     'target_type': 'amo_user',
+                },
+                {
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
@@ -692,49 +939,18 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         user = self._create_dummy_target()
         addon = addon_factory(users=[user])
         cinder_user = self.cinder_class(user)
-        reason = 'bad person!'
+        message = 'bad person!'
+        abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data['context'] == {
             'entities': [
                 {
                     'entity_type': 'amo_addon',
                     'attributes': {
-                        'id': str(addon.id),
-                        'average_daily_users': addon.average_daily_users,
-                        'guid': addon.guid,
-                        'last_updated': str(addon.last_updated),
-                        'name': str(addon.name),
-                        'promoted_badge': '',
-                        'slug': addon.slug,
-                        'summary': str(addon.summary),
-                    },
-                }
-            ],
-            'relationships': [
-                {
-                    'source_id': str(user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(addon.id),
-                    'target_type': 'amo_addon',
-                    'relationship_type': 'amo_author_of',
-                }
-            ],
-        }
-
-        # and if the reporter is authenticated
-        reporter_user = user_factory()
-        data = cinder_user.build_report_payload(
-            report_text=reason, category=None, reporter=CinderUser(reporter_user)
-        )
-        assert data['context'] == {
-            'entities': [
-                {
-                    'entity_type': 'amo_addon',
-                    'attributes': {
-                        'id': str(addon.id),
+                        'id': str(addon.pk),
                         'average_daily_users': addon.average_daily_users,
                         'guid': addon.guid,
                         'last_updated': str(addon.last_updated),
@@ -745,9 +961,66 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                     },
                 },
                 {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_author_of',
+                },
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
+                    'target_type': 'amo_user',
+                },
+            ],
+        }
+
+        # and if the reporter is authenticated
+        reporter_user = user_factory()
+        data = cinder_user.build_report_payload(
+            report=CinderReport(abuse_report), reporter=CinderUser(reporter_user)
+        )
+        assert data['context'] == {
+            'entities': [
+                {
+                    'entity_type': 'amo_addon',
+                    'attributes': {
+                        'id': str(addon.pk),
+                        'average_daily_users': addon.average_daily_users,
+                        'guid': addon.guid,
+                        'last_updated': str(addon.last_updated),
+                        'name': str(addon.name),
+                        'promoted_badge': '',
+                        'slug': addon.slug,
+                        'summary': str(addon.summary),
+                    },
+                },
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': message,
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+                {
                     'entity_type': 'amo_user',
                     'attributes': {
-                        'id': str(reporter_user.id),
+                        'id': str(reporter_user.pk),
                         'created': str(reporter_user.created),
                         'name': reporter_user.display_name,
                         'email': reporter_user.email,
@@ -757,17 +1030,24 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             ],
             'relationships': [
                 {
-                    'source_id': str(user.id),
+                    'source_id': str(user.pk),
                     'source_type': 'amo_user',
-                    'target_id': str(addon.id),
+                    'target_id': str(addon.pk),
                     'target_type': 'amo_addon',
                     'relationship_type': 'amo_author_of',
                 },
                 {
-                    'source_id': str(reporter_user.id),
-                    'source_type': 'amo_user',
-                    'target_id': str(user.id),
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
                     'target_type': 'amo_user',
+                },
+                {
+                    'source_id': str(reporter_user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(abuse_report.pk),
+                    'target_type': 'amo_report',
                     'relationship_type': 'amo_reporter_of',
                 },
             ],
@@ -790,17 +1070,18 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
         )
         user.update(picture_type='image/png')
 
-        reason = 'bad person!'
+        message = 'bad person!'
         cinder_user = self.cinder_class(user)
+        abuse_report = AbuseReport.objects.create(user=user, message=message)
 
         data = cinder_user.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_user',
             'entity': {
-                'id': str(user.id),
+                'id': str(user.pk),
                 'avatar': {
                     'value': fake_signed_picture_url,
                     'mime_type': 'image/png',
@@ -816,8 +1097,29 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
                 'location': '',
                 'biography': '',
             },
-            'reasoning': reason,
-            'context': {'entities': [], 'relationships': []},
+            'reasoning': message,
+            'context': {
+                'entities': [
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    }
+                ],
+                'relationships': [
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(user.pk),
+                        'target_type': 'amo_user',
+                    }
+                ],
+            },
         }
         assert copy_file_to_backup_storage_mock.call_count == 1
         assert copy_file_to_backup_storage_mock.call_args[0] == (
@@ -845,40 +1147,57 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
     def test_build_report_payload(self):
         rating = self._create_dummy_target()
         cinder_rating = self.cinder_class(rating)
-        reason = 'bad rating!'
+        message = 'bad rating!'
+        abuse_report = AbuseReport.objects.create(rating=rating, message=message)
 
         data = cinder_rating.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_rating',
             'entity': {
-                'id': str(rating.id),
+                'id': str(rating.pk),
                 'body': rating.body,
                 'score': rating.rating,
             },
-            'reasoning': reason,
+            'reasoning': message,
             'context': {
                 'entities': [
                     {
                         'entity_type': 'amo_user',
                         'attributes': {
-                            'id': str(self.user.id),
+                            'id': str(self.user.pk),
                             'created': str(self.user.created),
                             'name': self.user.display_name,
                             'email': self.user.email,
                             'fxa_id': self.user.fxa_id,
                         },
-                    }
+                    },
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
                 ],
                 'relationships': [
                     {
-                        'source_id': str(self.user.id),
+                        'source_id': str(self.user.pk),
                         'source_type': 'amo_user',
-                        'target_id': str(rating.id),
+                        'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
+                    },
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(rating.pk),
+                        'target_type': 'amo_rating',
                     },
                 ],
             },
@@ -888,14 +1207,17 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
         rating = self._create_dummy_target()
         user = rating.user
         cinder_rating = self.cinder_class(rating)
+        message = 'my own words!'
+        abuse_report = AbuseReport.objects.create(rating=rating, message=message)
+
         data = cinder_rating.build_report_payload(
-            report_text='my own words!', category=None, reporter=CinderUser(user)
+            report=CinderReport(abuse_report), reporter=CinderUser(user)
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_rating',
             'entity': {
-                'id': str(rating.id),
+                'id': str(rating.pk),
                 'body': rating.body,
                 'score': rating.rating,
             },
@@ -905,27 +1227,43 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                     {
                         'entity_type': 'amo_user',
                         'attributes': {
-                            'id': str(user.id),
+                            'id': str(user.pk),
                             'created': str(user.created),
                             'name': user.display_name,
                             'email': user.email,
                             'fxa_id': user.fxa_id,
                         },
-                    }
+                    },
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
                 ],
                 'relationships': [
                     {
-                        'source_id': str(user.id),
+                        'source_id': str(user.pk),
                         'source_type': 'amo_user',
-                        'target_id': str(rating.id),
+                        'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
                     },
                     {
-                        'source_id': str(user.id),
-                        'source_type': 'amo_user',
-                        'target_id': str(rating.id),
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
+                    },
+                    {
+                        'source_id': str(user.pk),
+                        'source_type': 'amo_user',
+                        'target_id': str(abuse_report.pk),
+                        'target_type': 'amo_report',
                         'relationship_type': 'amo_reporter_of',
                     },
                 ],
@@ -942,20 +1280,21 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
             addon=self.addon, user=addon_author, reply_to=original_rating
         )
         cinder_rating = self.cinder_class(rating)
-        reason = 'bad reply!'
+        message = 'bad reply!'
+        abuse_report = AbuseReport.objects.create(rating=rating, message=message)
 
         data = cinder_rating.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'queue_slug': self.cinder_class.queue,
             'entity_type': 'amo_rating',
             'entity': {
-                'id': str(rating.id),
+                'id': str(rating.pk),
                 'body': rating.body,
                 'score': None,
             },
-            'reasoning': reason,
+            'reasoning': message,
             'context': {
                 'entities': [
                     {
@@ -971,26 +1310,42 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
                     {
                         'entity_type': 'amo_rating',
                         'attributes': {
-                            'id': str(original_rating.id),
+                            'id': str(original_rating.pk),
                             'body': original_rating.body,
                             'score': original_rating.rating,
                         },
+                    },
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
                     },
                 ],
                 'relationships': [
                     {
                         'source_id': str(addon_author.id),
                         'source_type': 'amo_user',
-                        'target_id': str(rating.id),
+                        'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_author_of',
                     },
                     {
-                        'source_id': str(original_rating.id),
+                        'source_id': str(original_rating.pk),
                         'source_type': 'amo_rating',
-                        'target_id': str(rating.id),
+                        'target_id': str(rating.pk),
                         'target_type': 'amo_rating',
                         'relationship_type': 'amo_rating_reply_to',
+                    },
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(rating.pk),
+                        'target_type': 'amo_rating',
                     },
                 ],
             },
@@ -1021,10 +1376,13 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
     def test_build_report_payload(self):
         collection = self._create_dummy_target()
         cinder_collection = self.cinder_class(collection)
-        reason = 'bad collection!'
+        message = 'bad collection!'
+        abuse_report = AbuseReport.objects.create(
+            collection=collection, message=message
+        )
 
         data = cinder_collection.build_report_payload(
-            report_text=reason, category=None, reporter=None
+            report=CinderReport(abuse_report), reporter=None
         )
         assert data == {
             'context': {
@@ -1032,22 +1390,38 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                     {
                         'entity_type': 'amo_user',
                         'attributes': {
-                            'id': str(self.user.id),
+                            'id': str(self.user.pk),
                             'created': str(self.user.created),
                             'name': self.user.display_name,
                             'email': self.user.email,
                             'fxa_id': self.user.fxa_id,
                         },
-                    }
+                    },
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
                 ],
                 'relationships': [
                     {
                         'relationship_type': 'amo_collection_author_of',
-                        'source_id': str(self.user.id),
+                        'source_id': str(self.user.pk),
                         'source_type': 'amo_user',
-                        'target_id': str(collection.id),
+                        'target_id': str(collection.pk),
                         'target_type': 'amo_collection',
-                    }
+                    },
+                    {
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(collection.pk),
+                        'target_type': 'amo_collection',
+                    },
                 ],
             },
             'entity': {
@@ -1060,16 +1434,20 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity_type': 'amo_collection',
             'queue_slug': self.cinder_class.queue,
-            'reasoning': 'bad collection!',
+            'reasoning': message,
         }
 
     def test_build_report_payload_with_author_and_reporter_being_the_same(self):
         collection = self._create_dummy_target()
         cinder_collection = self.cinder_class(collection)
         user = collection.author
+        message = 'Collect me!'
+        abuse_report = AbuseReport.objects.create(
+            collection=collection, message=message
+        )
 
         data = cinder_collection.build_report_payload(
-            report_text='Collect me!', category=None, reporter=CinderUser(user)
+            report=CinderReport(abuse_report), reporter=CinderUser(user)
         )
         assert data == {
             'context': {
@@ -1077,27 +1455,43 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
                     {
                         'entity_type': 'amo_user',
                         'attributes': {
-                            'id': str(user.id),
+                            'id': str(user.pk),
                             'created': str(user.created),
                             'name': user.display_name,
                             'email': user.email,
                             'fxa_id': user.fxa_id,
                         },
-                    }
+                    },
+                    {
+                        'attributes': {
+                            'id': str(abuse_report.pk),
+                            'locale': None,
+                            'message': message,
+                            'reason': None,
+                        },
+                        'entity_type': 'amo_report',
+                    },
                 ],
                 'relationships': [
                     {
                         'relationship_type': 'amo_collection_author_of',
-                        'source_id': str(self.user.id),
+                        'source_id': str(self.user.pk),
                         'source_type': 'amo_user',
-                        'target_id': str(collection.id),
+                        'target_id': str(collection.pk),
                         'target_type': 'amo_collection',
                     },
                     {
-                        'source_id': str(user.id),
-                        'source_type': 'amo_user',
-                        'target_id': str(collection.id),
+                        'relationship_type': 'amo_report_of',
+                        'source_id': str(abuse_report.pk),
+                        'source_type': 'amo_report',
+                        'target_id': str(collection.pk),
                         'target_type': 'amo_collection',
+                    },
+                    {
+                        'source_id': str(user.pk),
+                        'source_type': 'amo_user',
+                        'target_id': str(abuse_report.pk),
+                        'target_type': 'amo_report',
                         'relationship_type': 'amo_reporter_of',
                     },
                 ],
@@ -1112,5 +1506,32 @@ class TestCinderCollection(BaseTestCinderCase, TestCase):
             },
             'entity_type': 'amo_collection',
             'queue_slug': self.cinder_class.queue,
-            'reasoning': 'Collect me!',
+            'reasoning': message,
+        }
+
+
+class TestCinderReport(TestCase):
+    cinder_class = CinderReport
+
+    def test_reason_in_attributes(self):
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+        )
+        assert self.cinder_class(abuse_report).get_attributes() == {
+            'id': str(abuse_report.pk),
+            'locale': None,
+            'message': '',
+            'reason': "DSA: It violates Mozilla's Add-on Policies",
+        }
+
+    def test_locale_in_attributes(self):
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid, application_locale='en_US'
+        )
+        assert self.cinder_class(abuse_report).get_attributes() == {
+            'id': str(abuse_report.pk),
+            'locale': 'en_US',
+            'message': '',
+            'reason': None,
         }

@@ -207,7 +207,30 @@ def test_addon_report_to_cinder():
     request = responses.calls[0].request
     assert request.headers['authorization'] == 'Bearer fake-test-token'
     assert json.loads(request.body) == {
-        'context': {'entities': [], 'relationships': []},
+        'context': {
+            'entities': [
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': 'This is bad',
+                        'reason': 'DSA: It violates the law '
+                        'or contains content that '
+                        'violates the law',
+                    },
+                    'entity_type': 'amo_report',
+                }
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                }
+            ],
+        },
         'entity': {
             'id': str(addon.id),
             'average_daily_users': addon.average_daily_users,

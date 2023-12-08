@@ -18,6 +18,7 @@ from .cinder import (
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
+    CinderReport,
     CinderUnauthenticatedReporter,
     CinderUser,
 )
@@ -125,14 +126,14 @@ class CinderJob(ModelBase):
         return reporter
 
     @classmethod
-    def report(cls, abuse):
-        reporter = cls.get_cinder_reporter(abuse)
-        reason = AbuseReport.REASONS.for_value(abuse.reason)
-        job_id = cls.get_entity_helper(abuse).report(
-            report_text=abuse.message, category=reason.api_value, reporter=reporter
+    def report(cls, abuse_report):
+        report_entity = CinderReport(abuse_report)
+        reporter_entity = cls.get_cinder_reporter(abuse_report)
+        job_id = cls.get_entity_helper(abuse_report).report(
+            report=report_entity, reporter=reporter_entity
         )
         cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
-        abuse.update(cinder_job=cinder_job)
+        abuse_report.update(cinder_job=cinder_job)
 
     def process_decision(
         self, *, decision_id, decision_date, decision_action, policy_ids

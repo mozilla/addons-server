@@ -56,27 +56,35 @@ class CinderEntity:
         # are typically returned there instead of in get_attributes().
         return {}
 
-    def build_report_payload(self, *, report_text, category, reporter):
+    def build_report_payload(self, *, report, reporter):
         context = self.get_context()
-        if reporter:
-            reporter_entity_data = reporter.get_entity_data()
-            if reporter_entity_data not in context['entities']:
-                context['entities'] += [reporter.get_entity_data()]
+        if report:
+            context['entities'] += [report.get_entity_data()]
             context['relationships'] += [
-                reporter.get_relationship_data(self, 'amo_reporter_of')
+                report.get_relationship_data(self, 'amo_report_of')
             ]
+            if reporter:
+                reporter_entity_data = reporter.get_entity_data()
+                # Avoid duplicate entities: the reporter could be reporting
+                # themselves or an add-on they are an author of, for instance.
+                if reporter_entity_data not in context['entities']:
+                    context['entities'] += [reporter.get_entity_data()]
+                context['relationships'] += [
+                    reporter.get_relationship_data(report, 'amo_reporter_of')
+                ]
+            message = report.abuse_report.message
+        else:
+            message = ''
         entity_attributes = {**self.get_attributes(), **self.get_extended_attributes()}
         return {
             'queue_slug': self.queue,
             'entity_type': self.type,
             'entity': entity_attributes,
-            'reasoning': report_text,
-            # FIXME: pass category in report_metadata ?
-            # 'report_metadata': ??
+            'reasoning': message,
             'context': context,
         }
 
-    def report(self, *, report_text, category, reporter):
+    def report(self, *, report, reporter):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
@@ -86,9 +94,7 @@ class CinderEntity:
             'content-type': 'application/json',
             'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
         }
-        data = self.build_report_payload(
-            report_text=report_text, category=category, reporter=reporter
-        )
+        data = self.build_report_payload(report=report, reporter=reporter)
         response = requests.post(url, json=data, headers=headers)
         if response.status_code == 201:
             return response.json().get('job_id')
@@ -402,3 +408,34 @@ class CinderAddonHandledByReviewers(CinderAddon):
     def appeal(self, *args, **kwargs):
         self.flag_for_human_review(appeal=True)
         return super().appeal(*args, **kwargs)
+
+
+class CinderReport(CinderEntity):
+    type = 'amo_report'
+
+    def __init__(self, abuse_report):
+        self.abuse_report = abuse_report
+
+    @property
+    def id(self):
+        return self.get_str(self.abuse_report.id)
+
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'reason': self.abuse_report.get_reason_display()
+            if self.abuse_report.reason
+            else None,
+            'message': self.abuse_report.message,
+            'locale': self.abuse_report.application_locale,
+        }
+
+    def report(self, *args, **kwargs):
+        # It doesn't make sense to report this, it's just meant to be included
+        # as a relationship.
+        raise NotImplementedError
+
+    def appeal(self, *args, **kwargs):
+        # It doesn't make sense to report this, it's just meant to be included
+        # as a relationship.
+        raise NotImplementedError
