@@ -14,7 +14,7 @@ def clear_bad_homepage(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("users", "0013_bannedusercontent_picture_backup_name_and_more"),
+        ("users", "0014_suppressedemail"),
     ]
 
     operations = [
