@@ -94,7 +94,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             [
                 ['addon_id'],
                 *[[str(addon.pk)] for addon in addons_to_modify],
-                *[[str(addon.pk) for addon in addons_to_ignore_promoted]],
+                *[[str(addon.pk)] for addon in addons_to_ignore_promoted],
             ]
         )
 
