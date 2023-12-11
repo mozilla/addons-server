@@ -351,8 +351,8 @@
         decimals === -1
           ? getDecimals(number)
           : isNaN((decimals = mathAbs(decimals)))
-          ? 2
-          : decimals,
+            ? 2
+            : decimals,
       d = decPoint === undefined ? lang.decimalPoint : decPoint,
       t = thousandsSep === undefined ? lang.thousandsSep : thousandsSep,
       s = n < 0 ? '-' : '',
@@ -2543,12 +2543,12 @@
               cssTransformKey = isIE
                 ? '-ms-transform'
                 : isWebKit
-                ? '-webkit-transform'
-                : isFirefox
-                ? 'MozTransform'
-                : isOpera
-                ? '-o-transform'
-                : '';
+                  ? '-webkit-transform'
+                  : isFirefox
+                    ? 'MozTransform'
+                    : isOpera
+                      ? '-o-transform'
+                      : '';
               rotationStyle[cssTransformKey] = rotationStyle.transform =
                 'rotate(' + rotation + 'deg)';
             } else {
@@ -6516,8 +6516,8 @@
           y: inverted
             ? plotHeight - x - xWidth
             : neg
-            ? plotHeight - y - h
-            : plotHeight - y,
+              ? plotHeight - y - h
+              : plotHeight - y,
           width: inverted ? h : xWidth,
           height: inverted ? xWidth : h,
         },
@@ -6750,8 +6750,8 @@
           ? 0
           : 2 // top : bottom
         : axis.opposite
-        ? 1
-        : 3; // right : left
+          ? 1
+          : 3; // right : left
 
       axis.setOptions(userOptions);
 
@@ -8809,8 +8809,8 @@
           this.shared && !inverted && points.length > 1 && mouseEvent
             ? mouseEvent.chartY - chart.plotTop // place shared tooltip next to the mouse (#424)
             : inverted
-            ? chart.plotHeight - plotX
-            : plotY,
+              ? chart.plotHeight - plotX
+              : plotY,
         ];
       }
 
@@ -15901,8 +15901,8 @@
           labelDistance < 0 // alignment
             ? 'center'
             : point.half
-            ? 'right'
-            : 'left', // alignment
+              ? 'right'
+              : 'left', // alignment
           angle, // center angle
         ];
 
