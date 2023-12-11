@@ -1696,7 +1696,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert response.data['version'] == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 121.0a1 or higher, or ends with lower '
+                'range that starts with version 120.0 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
@@ -1705,7 +1705,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         request_data = {
             'version': {
                 'upload': self.upload.uuid,
-                'compatibility': {'android': {'min': '121.0a1', 'max': '*'}},
+                'compatibility': {'android': {'min': '120.0', 'max': '*'}},
             }
         }
         response = self.request(data=request_data)
@@ -3269,7 +3269,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 121.0a1 or higher, or ends with lower '
+                'range that starts with version 120.0 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
@@ -3285,7 +3285,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         assert response.data == {
             'compatibility': [
                 'Invalid version range. For Firefox for Android, you may only pick a '
-                'range that starts with version 121.0a1 or higher, or ends with lower '
+                'range that starts with version 120.0 or higher, or ends with lower '
                 'than version 79.0a1.'
             ]
         }
