@@ -360,10 +360,21 @@ class AbuseReport(ModelBase):
         blank=True,
         related_name='abuse_reported',
         on_delete=models.SET_NULL,
+        help_text='The user who submitted the report, if authenticated.',
     )
     # name and/or email can be provided instead for unauthenticated reporters
-    reporter_email = models.CharField(max_length=255, default=None, null=True)
-    reporter_name = models.CharField(max_length=255, default=None, null=True)
+    reporter_email = models.CharField(
+        max_length=255,
+        default=None,
+        null=True,
+        help_text='The provided email of the reporter, if not authenticated.',
+    )
+    reporter_name = models.CharField(
+        max_length=255,
+        default=None,
+        null=True,
+        help_text='The provided name of the reporter, if not authenticated.',
+    )
     country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon, a user or a rating.
     # - If user is set then guid and rating should be null.
@@ -379,7 +390,9 @@ class AbuseReport(ModelBase):
     collection = models.ForeignKey(
         Collection, null=True, related_name='abuse_reports', on_delete=models.SET_NULL
     )
-    message = models.TextField(blank=True)
+    message = models.TextField(
+        blank=True, help_text='The body/content of the abuse report.'
+    )
 
     state = models.PositiveSmallIntegerField(
         default=STATES.UNTRIAGED, choices=STATES.choices
@@ -388,10 +401,26 @@ class AbuseReport(ModelBase):
     # Extra optional fields for more information, giving some context that is
     # meant to be extracted automatically by the client (i.e. Firefox) and
     # submitted via the API.
-    client_id = models.CharField(default=None, max_length=64, blank=True, null=True)
-    addon_name = models.CharField(default=None, max_length=255, blank=True, null=True)
+    client_id = models.CharField(
+        default=None,
+        max_length=64,
+        blank=True,
+        null=True,
+        help_text="The client's hashed telemetry ID.",
+    )
+    addon_name = models.CharField(
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='The add-on name in the locale used by the client.',
+    )
     addon_summary = models.CharField(
-        default=None, max_length=255, blank=True, null=True
+        default=None,
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text='The add-on summary in the locale used by the client.',
     )
     addon_version = models.CharField(
         default=None, max_length=255, blank=True, null=True
@@ -429,10 +458,26 @@ class AbuseReport(ModelBase):
         null=True,
     )
     addon_install_method = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True, null=True
+        default=None,
+        choices=ADDON_INSTALL_METHODS.choices,
+        blank=True,
+        null=True,
+        help_text=(
+            'For addon_install_method and addon_install_source specifically,'
+            'if an unsupported value is sent, it will be silently changed to other'
+            'instead of raising a 400 error.'
+        ),
     )
     addon_install_source = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_SOURCES.choices, blank=True, null=True
+        default=None,
+        choices=ADDON_INSTALL_SOURCES.choices,
+        blank=True,
+        null=True,
+        help_text=(
+            'For addon_install_method and addon_install_source specifically,'
+            'if an unsupported value is sent, it will be silently changed to other'
+            'instead of raising a 400 error.'
+        ),
     )
     addon_install_source_url = models.CharField(
         # See addon_install_origin above as for why it's not an URLField.
@@ -445,7 +490,13 @@ class AbuseReport(ModelBase):
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True, null=True
     )
     location = models.PositiveSmallIntegerField(
-        default=None, choices=LOCATION.choices, blank=True, null=True
+        default=None,
+        choices=LOCATION.choices,
+        blank=True,
+        null=True,
+        help_text=(
+            'Where the content being reported is located - on AMO or inside the add-on.'
+        ),
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
 

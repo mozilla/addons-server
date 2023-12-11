@@ -7,7 +7,7 @@ from django.utils.deprecation import MiddlewareMixin
 
 class APIRequestMiddleware(MiddlewareMixin):
     def identify_request(self, request):
-        request.is_api = re.match(settings.DRF_API_REGEX, request.path_info)
+        request.is_api = re.match(settings.DRF_API_NOT_SWAGGER_REGEX, request.path_info)
 
     def process_request(self, request):
         self.identify_request(request)
