@@ -364,9 +364,8 @@ MIN_VERSION_FENIX = '79.0a1'
 # Last version we consider as "Fennec"
 MAX_VERSION_FENNEC = '68.*'
 
-# The minimum version of Fenix where extensions are all available. Expect this
-# to be lowered back to 120.0 later.
-MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '121.0a1'
+# The minimum version of Fenix where extensions are all available.
+MIN_VERSION_FENIX_GENERAL_AVAILABILITY = '120.0'
 
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
