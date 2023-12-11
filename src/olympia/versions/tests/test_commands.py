@@ -106,7 +106,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '121.0a1'
+                == '120.0'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
@@ -126,95 +126,6 @@ class TestForceMinAndroidCompatibility(TestCase):
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].originated_from
                 == amo.APPVERSIONS_ORIGINATED_FROM_UNKNOWN
-            )
-            assert not addon.current_version.file.reload().strict_compatibility
-
-        for addon in addons_to_ignore_not_in_csv:
-            if hasattr(addon.current_version, '_compatible_apps'):
-                del addon.current_version._compatible_apps
-            assert amo.ANDROID not in addon.current_version.compatible_apps
-
-    def test_sneak_peek(self):
-        addons_to_modify = [
-            addon_factory(
-                name='Not yet compatible with Android',
-                guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[0],
-            ),
-            addon_factory(
-                name='Already compatible with Android with strict_compatibility',
-                version_kw={
-                    'application': amo.ANDROID.id,
-                    'min_app_version': '48.0',
-                    'max_app_version': '68.*',
-                },
-                file_kw={'strict_compatibility': True},
-                guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[1],
-            ),
-            addon_factory(
-                name='Already compatible with Android',
-                version_kw={
-                    'application': amo.ANDROID.id,
-                    'min_app_version': '120.0',
-                    'max_app_version': '*',
-                },
-                guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[2],
-            ),
-        ]
-        # <Addon>.can_be_compatible_with_all_fenix_versions returns True for
-        # the sneak peek add-ons, so in this mode, we also alter promoted
-        # add-ons compatibility, it's the caller responsability not to include
-        # any if they don't want to override compatibility on add-ons already
-        # available in release.
-        addons_to_modify_promoted = [
-            addon_factory(
-                name='Recommended for Android',
-                version_kw={
-                    'application': amo.ANDROID.id,
-                    'min_app_version': '48.0',
-                    'max_app_version': '*',
-                },
-                promoted=RECOMMENDED,
-                guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[3],
-            ),
-            addon_factory(
-                name='Line for all',
-                version_kw={
-                    'application': amo.ANDROID.id,
-                    'min_app_version': '48.0',
-                    'max_app_version': '*',
-                },
-                promoted=LINE,
-                guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[4],
-            ),
-        ]
-        addons_to_ignore_not_in_csv = [
-            addon_factory(
-                name='Not in csv', guid=amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK[5]
-            )
-        ]
-        csv_path = self._create_csv(
-            [
-                ['addon_id'],
-                *[[str(addon.pk)] for addon in addons_to_modify],
-                *[[str(addon.pk)] for addon in addons_to_modify_promoted],
-            ]
-        )
-
-        call_command('force_min_android_compatibility', csv_path, '--sneak-peek')
-
-        for addon in addons_to_modify + addons_to_modify_promoted:
-            if hasattr(addon.current_version, '_compatible_apps'):
-                del addon.current_version._compatible_apps
-            assert amo.ANDROID in addon.current_version.compatible_apps
-            assert (
-                addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == amo.MIN_VERSION_FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK
-                == '120.0'
-            )
-            assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
-            assert (
-                addon.current_version.compatible_apps[amo.ANDROID].originated_from
-                == amo.APPVERSIONS_ORIGINATED_FROM_MIGRATION
             )
             assert not addon.current_version.file.reload().strict_compatibility
 
