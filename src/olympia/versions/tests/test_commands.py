@@ -106,7 +106,7 @@ class TestForceMinAndroidCompatibility(TestCase):
             assert amo.ANDROID in addon.current_version.compatible_apps
             assert (
                 addon.current_version.compatible_apps[amo.ANDROID].min.version
-                == '121.0a1'
+                == '120.0'
             )
             assert addon.current_version.compatible_apps[amo.ANDROID].max.version == '*'
             assert (
