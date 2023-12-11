@@ -104,6 +104,8 @@ DELETION_EMAIL = 'amo-notifications+deletion@mozilla.com'
 DRF_API_VERSIONS = ['auth', 'v3', 'v4', 'v5']
 DRF_API_REGEX = r'^/?api/(?:auth|v3|v4|v5)/'
 
+DRF_API_NOT_SWAGGER_REGEX = rf'{DRF_API_REGEX}(?!swagger|redoc).*$'
+
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
 CORS_ALLOW_ALL_ORIGINS = True
@@ -329,6 +331,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
     r'^registration\/',
     # Django's sitemap_index.xml template uses some syntax that jinja doesn't support
     r'sitemap_index.xml',
+    # Swagger URLs are for the API docs, use some syntax that jinja doesn't support
+    r'drf-yasg/swagger-ui.html',
+    r'drf-yasg/redoc.html',
 )
 
 TEMPLATES = [
@@ -528,6 +533,7 @@ INSTALLED_APPS = (
     'django_jinja',
     'rangefilter',
     'django_recaptcha',
+    'drf_yasg',
     # Django contrib apps
     'django.contrib.admin',
     'django.contrib.auth',

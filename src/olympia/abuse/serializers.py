@@ -44,7 +44,12 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
         error_messages=error_messages,
     )
     lang = serializers.CharField(
-        required=False, source='application_locale', max_length=255
+        required=False,
+        source='application_locale',
+        max_length=255,
+        help_text=(
+            'The language code of the locale used by the client for the application.'
+        ),
     )
 
     class Meta:
@@ -98,7 +103,9 @@ class BaseAbuseReportSerializer(AMOModelSerializer):
 
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
-    addon = serializers.SerializerMethodField()
+    addon = serializers.SerializerMethodField(
+        help_text='The add-on reported for abuse.'
+    )
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()),
         required=False,

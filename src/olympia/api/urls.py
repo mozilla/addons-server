@@ -1,9 +1,54 @@
+from django.conf import settings
 from django.urls import include, re_path
+
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
 from olympia.accounts.urls import accounts_v3, accounts_v4, auth_urls
 from olympia.addons.api_urls import addons_v3, addons_v4, addons_v5
 from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
+
+
+def get_versioned_api_routes(version, url_patterns):
+    route_pattern = r'^{}/'.format(version)
+
+    schema_view = get_schema_view(
+        openapi.Info(
+            title='AMO API',
+            default_version=version,
+            description='The official API for addons.mozilla.org.',
+        ),
+        public=True,
+        permission_classes=(permissions.AllowAny,),
+    )
+
+    routes = url_patterns
+
+    # For now, this feature is only enabled in dev mode
+    if settings.DEBUG:
+        routes.extend(
+            [
+                re_path(
+                    r'^swagger(?P<format>\.json|\.yaml)$',
+                    schema_view.without_ui(cache_timeout=0),
+                    name='schema-json',
+                ),
+                re_path(
+                    r'^swagger/$',
+                    schema_view.with_ui('swagger', cache_timeout=0),
+                    name='schema-swagger-ui',
+                ),
+                re_path(
+                    r'^redoc/$',
+                    schema_view.with_ui('redoc', cache_timeout=0),
+                    name='schema-redoc',
+                ),
+            ]
+        )
+
+    return (re_path(route_pattern, include((routes, version))),)
 
 
 v3_api_urls = [
@@ -51,7 +96,7 @@ v5_api_urls = [
 
 urlpatterns = [
     re_path(r'^auth/', include((auth_urls, 'auth'))),
-    re_path(r'^v3/', include((v3_api_urls, 'v3'))),
-    re_path(r'^v4/', include((v4_api_urls, 'v4'))),
-    re_path(r'^v5/', include((v5_api_urls, 'v5'))),
+    *get_versioned_api_routes('v3', v3_api_urls),
+    *get_versioned_api_routes('v4', v4_api_urls),
+    *get_versioned_api_routes('v5', v5_api_urls),
 ]

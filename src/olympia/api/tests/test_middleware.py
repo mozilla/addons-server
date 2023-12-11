@@ -36,6 +36,21 @@ class TestAPIRequestMiddleware(TestCase):
         APIRequestMiddleware(lambda: None).process_response(request, response)
         assert response['Vary'] == 'Foo, Bar'
 
+    def test_disabled_on_swagger(self):
+        """Test that we don't tag the request as API on swagger pages."""
+
+        urls = [
+            '/api/v3/swagger',
+            '/api/v3/swagger.json',
+            '/api/v4/swagger/',
+            '/api/v4/swagger.yaml',
+        ]
+
+        for url in urls:
+            request = self.request_factory.get(url)
+            APIRequestMiddleware(lambda: None).process_request(request)
+            assert not request.is_api
+
     def test_disabled_for_the_rest(self):
         """Test that we don't tag the request as API on "regular" pages."""
         request = self.request_factory.get('/overtherainbow')
