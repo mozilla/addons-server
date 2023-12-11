@@ -1,5 +1,4 @@
 import os
-import random
 import shutil
 import tempfile
 from datetime import datetime, timedelta
@@ -482,50 +481,6 @@ class TestCompatForm(TestCase):
         )
         self.make_addon_promoted(self.addon, RECOMMENDED, approve_version=True)
         del self.addon.promoted  # Reset property
-        data = None
-        formset = forms.CompatFormSet(
-            data, queryset=version.apps.all(), form_kwargs={'version': version}
-        )
-        content = formset.render()
-        doc = pq(content)
-        assert doc('#id_form-1-application')[0].attrib['value'] == str(amo.ANDROID.id)
-        assert len(doc('#id_form-1-min option')) == 13
-        assert len(doc('#id_form-1-max option')) == 16
-        assert [x.text for x in doc('#id_form-1-min option[disabled=disabled]')] == []
-        assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == []
-        data = {
-            'form-TOTAL_FORMS': 2,
-            'form-INITIAL_FORMS': 1,
-            'form-MIN_NUM_FORMS': 0,
-            'form-MAX_NUM_FORMS': 1000,
-            'form-0-min': version.apps.all()[0].min.pk,
-            'form-0-max': version.apps.all()[0].max.pk,
-            'form-0-application': amo.FIREFOX.id,
-            'form-0-id': version.apps.all()[0].pk,
-            'form-1-min': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='48.0'
-            ),
-            'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='121.0a1'
-            ),
-            'form-1-application': amo.ANDROID.id,
-            'form-1-id': '',
-        }
-        formset = forms.CompatFormSet(
-            data, queryset=version.apps.all(), form_kwargs={'version': version}
-        )
-        assert formset.is_valid()
-
-    def test_fenix_range_not_disabled_for_sneak_peek_android_extensions(self):
-        self.addon = Addon.objects.get(id=3615)
-        self.addon.update(guid=random.choice(amo.FENIX_GENERAL_AVAILABILITY_SNEAK_PEEK))
-        version = self.addon.current_version
-        ApplicationsVersions.objects.create(
-            version=version,
-            application=amo.ANDROID.id,
-            min=AppVersion.objects.get(application=amo.ANDROID.id, version='48.0'),
-            max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
-        )
         data = None
         formset = forms.CompatFormSet(
             data, queryset=version.apps.all(), form_kwargs={'version': version}
