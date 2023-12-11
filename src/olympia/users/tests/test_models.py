@@ -8,6 +8,7 @@ from django.contrib.auth import get_user
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.db import models
+from django.db.utils import IntegrityError
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -34,6 +35,8 @@ from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
+    SuppressedEmail,
+    SuppressedEmailVerification,
     UserEmailField,
     UserProfile,
     generate_auth_id,
@@ -1499,3 +1502,37 @@ def test_get_session_auth_hash_is_used_for_session_auth():
 
     user.update(auth_id=generate_auth_id())
     assert get_user(request) != user
+
+
+class TestSuppressedEmailVerification(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        cls.suppressed_email = SuppressedEmail.objects.create(email='test@example.com')
+
+    def test_raise_for_duplicate_email_block(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+
+        with pytest.raises(IntegrityError):
+            SuppressedEmailVerification.objects.create(
+                suppressed_email=email_verification.suppressed_email
+            )
+
+    def test_deletes_verification_with_block(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+        self.suppressed_email.delete()
+        assert not SuppressedEmailVerification.objects.filter(
+            pk=email_verification.pk
+        ).exists()
+
+    def test_expiration_thirty_days_after_creation(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+
+        expected_expiration_date = email_verification.created + timedelta(days=30)
+
+        assert email_verification.expiration == expected_expiration_date

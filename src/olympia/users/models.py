@@ -4,7 +4,8 @@ import os
 import random
 import re
 import time
-from datetime import datetime
+import uuid
+from datetime import datetime, timedelta
 from fnmatch import fnmatchcase
 from urllib.parse import urljoin
 
@@ -1343,3 +1344,18 @@ class BannedUserContent(ModelBase):
 
 class SuppressedEmail(ModelBase):
     email = models.EmailField(unique=True, null=False, max_length=75)
+
+
+class SuppressedEmailVerification(ModelBase):
+    confirmation_code = models.CharField(
+        max_length=255, null=False, blank=False, default=uuid.uuid4
+    )
+    suppressed_email = models.OneToOneField(
+        SuppressedEmail,
+        related_name='suppressed_email',
+        on_delete=models.CASCADE,
+    )
+
+    @property
+    def expiration(self):
+        return self.created + timedelta(days=30)
