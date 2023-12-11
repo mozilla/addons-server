@@ -403,7 +403,6 @@ class TestCompatForm(TestCase):
             '119.0a1',
             '119.0',
             '120.0a1',
-            '120.0',
         ]
         assert [x.text for x in doc('#id_form-1-max option[disabled=disabled]')] == [
             '79.0a1',
@@ -413,7 +412,6 @@ class TestCompatForm(TestCase):
             '119.0a1',
             '119.0',
             '120.0a1',
-            '120.0',
         ]
         data = {
             'form-TOTAL_FORMS': 2,
@@ -428,7 +426,7 @@ class TestCompatForm(TestCase):
                 version='48.0'
             ),
             'form-1-max': AppVersion.objects.filter(application=amo.ANDROID.id).get(
-                version='121.0a1'
+                version='120.0'
             ),
             'form-1-application': amo.ANDROID.id,
             'form-1-id': '',
