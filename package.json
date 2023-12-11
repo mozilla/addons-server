@@ -28,7 +28,7 @@
     "jest-date-mock": "^1.0.8",
     "jest-environment-jsdom": "^29.7.0",
     "lodash": "^4.17.21",
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "terser": "^5.24.0"
   }
 }
