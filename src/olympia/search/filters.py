@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 
 from django.utils import translation
 from django.utils.encoding import force_str
@@ -1011,14 +1011,15 @@ class SortingFilter(BaseFilterBackend):
                     or AddonPromotedQueryParam.query_param in request.GET
                 ) and not search_query_param
                 if is_random_sort_available:
-                    # We want randomness to change only once every 24 hours, so
-                    # we use a seed that depends on the date.
+                    # Third, we want randomness to change only once every hour,
+                    # so we use a seed that depends on the date + hour.
+                    now = datetime.now()
                     qs = qs.query(
                         'function_score',
                         functions=[
                             query.SF(
                                 'random_score',
-                                seed=date.today().toordinal(),
+                                seed=now.toordinal() * 24 + now.hour,
                                 field='id',
                             )
                         ],
