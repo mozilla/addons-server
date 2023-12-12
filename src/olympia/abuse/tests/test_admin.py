@@ -2,15 +2,11 @@ from datetime import date, datetime
 from urllib.parse import parse_qsl, urlparse
 
 from django.conf import settings
-from django.contrib import admin
-from django.contrib.messages.storage import default_storage as default_messages_storage
-from django.test import RequestFactory
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
 from olympia import amo
-from olympia.abuse.admin import AbuseReportAdmin
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import (
@@ -42,14 +38,12 @@ class TestAbuseReportAdmin(TestCase):
             addon_name='The One',
             guid=cls.addon1.guid,
             message='Foo',
-            state=AbuseReport.STATES.VALID,
             created=days_ago(98),
         )
         AbuseReport.objects.create(
             addon_name='The Two',
             guid=cls.addon2.guid,
             message='Bar',
-            state=AbuseReport.STATES.VALID,
         )
         AbuseReport.objects.create(
             addon_name='The Three',
@@ -126,8 +120,8 @@ class TestAbuseReportAdmin(TestCase):
 
         # Type filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        assert len(lis) == 5
-        assert lis.text().split() == ['Users', 'All', 'All', 'All', 'All']
+        assert len(lis) == 4
+        assert lis.text().split() == ['Users', 'All', 'All', 'All']
 
         response = self.client.get(self.list_url, {'type': 'collection'}, follow=True)
         assert response.status_code == 200
@@ -316,22 +310,6 @@ class TestAbuseReportAdmin(TestCase):
         assert doc('#changelist-search')
         assert doc('#result_list tbody tr').length == 2
 
-    def test_filter_by_state(self):
-        response = self.client.get(
-            self.list_url, {'state__exact': AbuseReport.STATES.VALID}, follow=True
-        )
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#result_list tbody tr').length == 2
-        result_list_text = doc('#result_list').text()
-        assert 'Foo' in result_list_text
-        assert 'Bar' in result_list_text
-
-        # State filter should be selected. The rest shouldn't.
-        lis = doc('#changelist-filter li.selected')
-        assert len(lis) == 5
-        assert lis.text().split() == ['All', 'Valid', 'All', 'All', 'All']
-
     def test_filter_by_reason(self):
         response = self.client.get(
             self.list_url, {'reason__exact': AbuseReport.REASONS.OTHER}, follow=True
@@ -343,8 +321,8 @@ class TestAbuseReportAdmin(TestCase):
 
         # Reason filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        assert len(lis) == 5
-        assert lis.text().split() == ['All', 'All', 'Other', 'All', 'All']
+        assert len(lis) == 4
+        assert lis.text().split() == ['All', 'Other', 'All', 'All']
 
     def test_filter_by_created(self):
         some_time_ago = self.days_ago(97).date()
@@ -364,16 +342,16 @@ class TestAbuseReportAdmin(TestCase):
 
         # Created filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        # We've got 5 filters, so usually we'd get 5 selected list items
+        # We've got 4 filters, so usually we'd get 5 selected list items
         # (because of the "All" default choice) but since 'created' is actually
-        # 2 fields, and we have submitted both, we now have 6 expected items.
-        assert len(lis) == 6
-        assert lis.text().split() == ['All', 'All', 'All', 'From:', 'To:', 'All']
-        elm = lis.eq(3).find('#id_created__range__gte')
+        # 2 fields, and we have submitted both, we now have 5 expected items.
+        assert len(lis) == 5
+        assert lis.text().split() == ['All', 'All', 'From:', 'To:', 'All']
+        elm = lis.eq(2).find('#id_created__range__gte')
         assert elm
         assert elm.attr('name') == 'created__range__gte'
         assert elm.attr('value') == even_more_time_ago.isoformat()
-        elm = lis.eq(4).find('#id_created__range__lte')
+        elm = lis.eq(3).find('#id_created__range__lte')
         assert elm
         assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
@@ -393,10 +371,10 @@ class TestAbuseReportAdmin(TestCase):
 
         # Created filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        # We've got 5 filters.
-        assert len(lis) == 5
-        assert lis.text().split() == ['All', 'All', 'All', 'From:', 'All']
-        elm = lis.eq(3).find('#id_created__range__gte')
+        # We've got 4 filters.
+        assert len(lis) == 4
+        assert lis.text().split() == ['All', 'All', 'From:', 'All']
+        elm = lis.eq(2).find('#id_created__range__gte')
         assert elm
         assert elm.attr('name') == 'created__range__gte'
         assert elm.attr('value') == not_long_ago.isoformat()
@@ -416,10 +394,10 @@ class TestAbuseReportAdmin(TestCase):
 
         # Created filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        # We've got 5 filters.
-        assert len(lis) == 5
-        assert lis.text().split() == ['All', 'All', 'All', 'To:', 'All']
-        elm = lis.eq(3).find('#id_created__range__lte')
+        # We've got 4 filters.
+        assert len(lis) == 4
+        assert lis.text().split() == ['All', 'All', 'To:', 'All']
+        elm = lis.eq(2).find('#id_created__range__lte')
         assert elm
         assert elm.attr('name') == 'created__range__lte'
         assert elm.attr('value') == some_time_ago.isoformat()
@@ -436,18 +414,13 @@ class TestAbuseReportAdmin(TestCase):
 
         # Minimum reports count filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
-        # We've got 5 filters.
-        assert len(lis) == 5
-        # There is no label for minimum reports count, so despite having 5 lis
-        # we only have 4 things in .text().
-        assert lis.text().split() == [
-            'All',
-            'All',
-            'All',
-            'All',
-        ]
+        # We've got 4 filters.
+        assert len(lis) == 4
+        # There is no label for minimum reports count, so despite having 4 lis
+        # we only have 3 things in .text().
+        assert lis.text().split() == ['All', 'All', 'All']
         # The 4th item should contain the input though.
-        elm = lis.eq(4).find('#id_minimum_reports_count')
+        elm = lis.eq(3).find('#id_minimum_reports_count')
         assert elm
         assert elm.attr('name') == 'minimum_reports_count'
         assert elm.attr('value') == '2'
@@ -491,13 +464,13 @@ class TestAbuseReportAdmin(TestCase):
         # Gather selected filters.
         lis = doc('#changelist-filter li.selected')
 
-        # We've got 5 filters, so usually we'd get 5 selected list items
+        # We've got 4 filters, so usually we'd get 4 selected list items
         # (because of the "All" default choice) but since 'created' is actually
-        # 2 fields, and we have submitted both, we now have 6 expected items.
-        assert len(lis) == 6
-        assert lis.text().split() == ['Add-ons', 'All', 'Other', 'From:', 'To:', 'All']
-        assert lis.eq(3).find('#id_created__range__gte')
-        assert lis.eq(4).find('#id_created__range__lte')
+        # 2 fields, and we have submitted both, we now have 5 expected items.
+        assert len(lis) == 5
+        assert lis.text().split() == ['Add-ons', 'Other', 'From:', 'To:', 'All']
+        assert lis.eq(2).find('#id_created__range__gte')
+        assert lis.eq(3).find('#id_created__range__lte')
 
         # The links used for 'normal' filtering should also contain all active
         # filters even our custom fancy ones. We just look at the selected
@@ -507,92 +480,6 @@ class TestAbuseReportAdmin(TestCase):
         for elm in links:
             parsed_href_query = parse_qsl(urlparse(elm.attrib['href']).query)
             assert set(parsed_href_query) == set(data.items())
-
-    def test_get_actions(self):
-        abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().get('/')
-        request.user = user_factory()
-        assert list(abuse_report_admin.get_actions(request).keys()) == []
-
-        # self.user has AbuseReports:Edit
-        request.user = self.user
-        assert list(abuse_report_admin.get_actions(request).keys()) == [
-            'mark_as_valid',
-            'mark_as_suspicious',
-        ]
-
-        # Advanced admins can also delete.
-        request.user = user_factory()
-        self.grant_permission(request.user, 'AbuseReports:Edit')
-        self.grant_permission(request.user, 'Admin:Advanced')
-        assert list(abuse_report_admin.get_actions(request).keys()) == [
-            'delete_selected',
-            'mark_as_valid',
-            'mark_as_suspicious',
-        ]
-
-    def test_action_mark_multiple_as_valid(self):
-        abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().post('/')
-        request.user = self.user
-        request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
-        assert reports.count() == 2
-        for report in reports.all():
-            assert report.state == AbuseReport.STATES.UNTRIAGED
-        other_report = AbuseReport.objects.get(guid='@guid1', message='')
-        assert other_report.state == AbuseReport.STATES.UNTRIAGED
-
-        action_callback = abuse_report_admin.get_actions(request)['mark_as_valid'][0]
-        rval = action_callback(abuse_report_admin, request, reports)
-        assert rval is None  # successful actions return None
-        for report in reports.all():
-            assert report.state == AbuseReport.STATES.VALID
-
-        # Other reports should be unaffected
-        assert other_report.reload().state == AbuseReport.STATES.UNTRIAGED
-
-    def test_action_mark_multiple_as_suspicious(self):
-        abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().post('/')
-        request.user = self.user
-        request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
-        assert reports.count() == 2
-        for report in reports.all():
-            assert report.state == AbuseReport.STATES.UNTRIAGED
-        other_report = AbuseReport.objects.get(guid='@guid1', message='')
-        assert other_report.state == AbuseReport.STATES.UNTRIAGED
-
-        action_callback = abuse_report_admin.get_actions(request)['mark_as_suspicious'][
-            0
-        ]
-        rval = action_callback(abuse_report_admin, request, reports)
-        assert rval is None  # successful actions return None
-        for report in reports.all():
-            assert report.state == AbuseReport.STATES.SUSPICIOUS
-
-        # Other reports should be unaffected
-        assert other_report.reload().state == AbuseReport.STATES.UNTRIAGED
-
-    def test_delete_multiple_action_soft_deletes(self):
-        abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().post('/', {'post': 'yes'})
-        request.user = user_factory()
-        self.grant_permission(request.user, 'AbuseReports:Edit')
-        self.grant_permission(request.user, 'Admin:Advanced')
-        request._messages = default_messages_storage(request)
-        reports = AbuseReport.objects.filter(guid__in=('@guid3', '@unknown_guid'))
-        assert reports.count() == 2
-        assert AbuseReport.objects.count() == 9
-        assert AbuseReport.unfiltered.count() == 9
-
-        action_callback = abuse_report_admin.get_actions(request)['delete_selected'][0]
-        rval = action_callback(abuse_report_admin, request, reports)
-        assert rval is None  # successful actions return None
-        assert reports.count() == 0  # All should have been soft-deleted.
-        assert AbuseReport.objects.count() == 7  # Should have 1 unaffected.
-        assert AbuseReport.unfiltered.count() == 9  # We're only soft-deleting.
 
     def test_detail_addon_report(self):
         AddonApprovalsCounter.objects.create(

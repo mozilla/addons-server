@@ -33,15 +33,7 @@ class Command(ProcessObjectsCommand):
     def get_tasks(self):
         def get_recalc_needed_filters():
             summary_modified_field = '_current_version__autoapprovalsummary__modified'
-            # We don't take deleted reports into account
-            valid_abuse_report_states = (
-                AbuseReport.STATES.UNTRIAGED,
-                AbuseReport.STATES.VALID,
-                AbuseReport.STATES.SUSPICIOUS,
-            )
-
             recent_abuse_reports_subquery = AbuseReport.objects.filter(
-                state__in=valid_abuse_report_states,
                 created__gte=OuterRef(summary_modified_field),
                 guid=OuterRef('guid'),
             )
@@ -53,7 +45,6 @@ class Command(ProcessObjectsCommand):
                     Exists(recent_abuse_reports_subquery),
                 )
                 | Q(
-                    authors__abuse_reports__state__in=valid_abuse_report_states,
                     authors__abuse_reports__created__gte=F(summary_modified_field),
                 )
                 # And check ratings that have a rating of 3 or less

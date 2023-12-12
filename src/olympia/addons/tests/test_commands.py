@@ -283,20 +283,6 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
         )
 
         # *not considered* - current version is auto-approved and
-        # has an abuse report through it's author that is recent enough
-        # BUT the abuse report is deleted.
-        author = user_factory()
-        auto_approved_addon8 = addon_factory(users=[author])
-        summary = AutoApprovalSummary.objects.create(
-            version=auto_approved_addon8.current_version, verdict=amo.AUTO_APPROVED
-        )
-        AbuseReport.objects.create(
-            user=author,
-            state=AbuseReport.STATES.DELETED,
-            created=summary.modified + timedelta(days=3),
-        )
-
-        # *not considered* - current version is auto-approved and
         # has a recent rating with rating <= 3
         # but the rating is deleted.
         auto_approved_addon9 = addon_factory()

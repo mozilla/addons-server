@@ -131,7 +131,6 @@ DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 DJANGO_PERMISSIONS_MAPPING.update(
     {
         'abuse.change_abusereport': ABUSEREPORTS_EDIT,
-        'abuse.delete_abusereport': ADMIN_ADVANCED,
         # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
         # This is just here to allow deletion of users, because django checks
         # foreign keys even though users are only soft-deleted and related objects
