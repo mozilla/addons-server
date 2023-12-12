@@ -1,4 +1,5 @@
 import copy
+from datetime import timedelta
 from unittest.mock import Mock, patch
 
 from django.test.client import RequestFactory
@@ -526,7 +527,7 @@ class TestSortingFilter(FilterTestsBase):
             self._filter(data={'q': 'something', 'promoted': 'line', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
-    @freeze_time('2020-02-26')
+    @freeze_time('2023-12-24')
     def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         # Note: this test does not call AddonFeaturedQueryParam so it won't
@@ -534,10 +535,58 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_featured_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737481, 'field': 'id'}}
+            {'random_score': {'seed': 17733072, 'field': 'id'}}
         ]
 
-    @freeze_time('2020-02-27')
+    def test_sort_random_seed(self):
+        with freeze_time('2023-12-24') as frozen_time:
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733072, 'field': 'id'}}
+            ]
+
+            # Stable within the hour
+            frozen_time.tick(delta=timedelta(minutes=59, seconds=59))
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733072, 'field': 'id'}}
+            ]
+
+            # Changes once hour changes.
+            frozen_time.tick(delta=timedelta(seconds=1))
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733073, 'field': 'id'}}
+            ]
+
+            # Stays stable again until next hour.
+            frozen_time.tick(delta=timedelta(minutes=59))
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733073, 'field': 'id'}}
+            ]
+
+            # Changes again once hour changes again.
+            frozen_time.tick(delta=timedelta(minutes=1))
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733074, 'field': 'id'}}
+            ]
+
+            # Next day means seed is incremented by 24 compared to original.
+            frozen_time.move_to('2023-12-25')
+            qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+            assert qs['sort'] == ['_score']
+            assert qs['query']['function_score']['functions'] == [
+                {'random_score': {'seed': 17733072 + 24, 'field': 'id'}}
+            ]
+
+    @freeze_time('2023-12-24')
     def test_sort_random(self):
         qs = self._filter(data={'promoted': 'recommended', 'sort': 'random'})
         # Note: this test does not call AddonPromotedQueryParam so it won't
@@ -545,7 +594,7 @@ class TestSortingFilter(FilterTestsBase):
         # TestCombinedFilter.test_filter_promoted_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
-            {'random_score': {'seed': 737482, 'field': 'id'}}
+            {'random_score': {'seed': 17733072, 'field': 'id'}}
         ]
 
     def test_sort_ratings(self):
@@ -1116,7 +1165,7 @@ class TestCombinedFilter(FilterTestsBase):
         }
         assert expected in should
 
-    @freeze_time('2020-02-26')
+    @freeze_time('2023-12-24')
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
@@ -1131,10 +1180,10 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {'seed': 737481, 'field': 'id'}}
+            {'random_score': {'seed': 17733072, 'field': 'id'}}
         ]
 
-    @freeze_time('2020-02-26')
+    @freeze_time('2023-12-24')
     def test_filter_promoted_sort_random(self):
         qs = self._filter(data={'promoted': 'verified', 'sort': 'random'})
         bool_ = qs['query']['bool']
@@ -1149,5 +1198,5 @@ class TestCombinedFilter(FilterTestsBase):
         assert qs['sort'] == ['_score']
 
         assert bool_['must'][0]['function_score']['functions'] == [
-            {'random_score': {'seed': 737481, 'field': 'id'}}
+            {'random_score': {'seed': 17733072, 'field': 'id'}}
         ]
