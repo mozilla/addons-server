@@ -95,7 +95,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     # Just Need to specify any field for the source - '*' is the entire obj.
     site_status = SiteStatusSerializer(source='*', read_only=True)
     # Override homepage to use our own URLField with custom validation.
-    homepage = HttpHttpsOnlyURLField(required=False)
+    homepage = HttpHttpsOnlyURLField(required=False, allow_blank=True)
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (

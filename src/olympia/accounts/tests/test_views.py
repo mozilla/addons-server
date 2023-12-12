@@ -1526,6 +1526,12 @@ class TestAccountViewSetUpdate(TestCase):
 
         response = self.patch(data={'homepage': 'https://foo.bar'})
         assert response.status_code == 200
+        assert self.user.reload().homepage == 'https://foo.bar'
+
+        # Can be blank to clear the value.
+        response = self.patch(data={'homepage': ''})
+        assert response.status_code == 200
+        assert self.user.reload().homepage == ''
 
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive
