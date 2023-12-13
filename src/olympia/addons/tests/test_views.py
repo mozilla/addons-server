@@ -580,6 +580,24 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # One additional query for region exclusions test
             self._test_url(lang='en-US', extra={'HTTP_X_COUNTRY_CODE': 'fr'})
 
+    @mock.patch('django_statsd.middleware.statsd.timing')
+    def test_statsd_timings(self, statsd_timing_mock):
+        self._test_url()
+        assert statsd_timing_mock.call_count == 4
+        assert (
+            statsd_timing_mock.call_args_list[0][0][0]
+            == 'timer.olympia.addons.models.transformer'
+        )
+        assert (
+            statsd_timing_mock.call_args_list[1][0][0]
+            == 'view.olympia.addons.views.AddonViewSet.GET'
+        )
+        assert (
+            statsd_timing_mock.call_args_list[2][0][0]
+            == 'view.olympia.addons.views.GET'
+        )
+        assert statsd_timing_mock.call_args_list[3][0][0] == 'view.GET'
+
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
         self.url = reverse_ns('addon-detail', kwargs={'pk': self.addon.slug})
@@ -5084,6 +5102,20 @@ class TestAddonSearchView(ESTestCase):
 
         # latest_unlisted_version should never be exposed in public search.
         assert 'latest_unlisted_version' not in result
+
+    @mock.patch('django_statsd.middleware.statsd.timing')
+    def test_statsd_timings(self, statsd_timing_mock):
+        self.perform_search(self.url)
+        assert statsd_timing_mock.call_count == 3
+        assert (
+            statsd_timing_mock.call_args_list[0][0][0]
+            == 'view.olympia.addons.views.AddonSearchView.GET'
+        )
+        assert (
+            statsd_timing_mock.call_args_list[1][0][0]
+            == 'view.olympia.addons.views.GET'
+        )
+        assert statsd_timing_mock.call_args_list[2][0][0] == 'view.GET'
 
     def test_empty(self):
         data = self.perform_search(self.url)
