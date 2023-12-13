@@ -159,7 +159,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         message = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
-
         data = cinder_addon.build_report_payload(
             report=CinderReport(abuse_report), reporter=None
         )

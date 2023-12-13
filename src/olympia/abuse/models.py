@@ -132,6 +132,7 @@ class CinderJob(ModelBase):
         )
         cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
         abuse_report.update(cinder_job=cinder_job)
+        cls.get_entity_helper(abuse_report).report_additional_context()
 
     def process_decision(
         self, *, decision_id, decision_date, decision_action, policy_ids
