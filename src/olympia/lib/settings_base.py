@@ -438,7 +438,7 @@ MIDDLEWARE = (
     # Statsd and logging come first to get timings etc. Munging REMOTE_ADDR
     # must come before middlewares potentially using REMOTE_ADDR, so it's
     # also up there.
-    'django_statsd.middleware.GraphiteRequestTimingMiddleware',
+    'olympia.amo.middleware.GraphiteRequestTimingMiddleware',
     # GraphiteMiddlewareNoAuth is a custom GraphiteMiddleware that doesn't
     # handle response.auth, to avoid evaluating request.user.
     'olympia.amo.middleware.GraphiteMiddlewareNoAuth',

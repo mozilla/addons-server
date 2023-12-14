@@ -1,6 +1,7 @@
 import contextlib
 import os
 import re
+import time
 import uuid
 from urllib.parse import quote
 
@@ -34,6 +35,9 @@ from django.utils.translation import activate, gettext_lazy as _
 
 import MySQLdb as mysql
 from django_statsd.clients import statsd
+from django_statsd.middleware import (
+    GraphiteRequestTimingMiddleware as GraphiteRequestTimingMiddlewareUpstream,
+)
 from rest_framework import permissions
 
 import olympia.core.logger
@@ -458,3 +462,22 @@ class GraphiteMiddlewareNoAuth(MiddlewareMixin):
     def process_exception(self, request, exception):
         if not isinstance(exception, Http404):
             statsd.incr('response.500')
+
+
+class GraphiteRequestTimingMiddleware(GraphiteRequestTimingMiddlewareUpstream):
+    """Like django-statsd's GraphiteRequestTimingMiddleware but handles class
+    based views correctly in Django 4.2, leveraging view_class attribute.
+
+    Inspired from Django's <HttpRequest>.resolver_match._func_path"""
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        view = view_func
+        if hasattr(view, 'view_class'):
+            view = view.view_class
+        if not hasattr(view, '__name__'):
+            # A class-based view
+            view = view.__class__
+
+        request._view_module = view.__module__
+        request._view_name = view.__name__
+        request._start_time = time.time()
