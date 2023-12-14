@@ -15,14 +15,12 @@ from olympia.amo.utils import (
 )
 
 
-# Number of relationships to send by default in each Cinder request.
-RELATIONSHIPS_BATCH_SIZE = 25
-
-
 class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
     _queue = 'content-infringement'
     type = None  # Needs to be defined by subclasses
+    # Number of relationships to send by default in each Cinder request.
+    RELATIONSHIPS_BATCH_SIZE = 25
 
     @classproperty
     def queue(cls):
@@ -116,6 +114,8 @@ class CinderEntity:
         # context already sent as part of the report.
         next(context_generator, {})
         for data in context_generator:
+            # Note: Cinder URLS are inconsistent. Per their documentation, that
+            # one needs a trailing slash.
             url = f'{settings.CINDER_SERVER_URL}graph/'
             headers = {
                 'accept': 'application/json',
@@ -202,7 +202,7 @@ class CinderUser(CinderEntity):
             .only_translations()
             .select_related('promotedaddon')
         ]
-        for chunk in chunked(cinder_addons, RELATIONSHIPS_BATCH_SIZE):
+        for chunk in chunked(cinder_addons, self.RELATIONSHIPS_BATCH_SIZE):
             yield {
                 'entities': [cinder_addon.get_entity_data() for cinder_addon in chunk],
                 'relationships': [
@@ -282,16 +282,15 @@ class CinderAddon(CinderEntity):
                         'mime_type': icon_type,
                     }
             previews = []
-            preview_objs = list(self.addon.previews.all()) + list(
-                # For themes, we automatically generate 2 previews with
-                # different sizes and format, we only need to expose one.
-                self.addon.current_version.previews.all().filter(
-                    position=amo.THEME_PREVIEW_RENDERINGS['amo']['position']
-                )
-                if self.addon.current_version
-                else []
-            )
-            for preview in preview_objs:
+            for preview in self.addon.current_previews:
+                if (
+                    self.addon.type == amo.ADDON_STATICTHEME
+                    and preview.position
+                    != amo.THEME_PREVIEW_RENDERINGS['amo']['position']
+                ):
+                    # For themes, we automatically generate 2 previews with
+                    # different sizes and format, we only need to expose one.
+                    continue
                 content_type, _ = mimetypes.guess_type(preview.thumbnail_path)
                 if content_type and storage.exists(preview.thumbnail_path):
                     filename = copy_file_to_backup_storage(
@@ -324,7 +323,7 @@ class CinderAddon(CinderEntity):
 
     def get_context_generator(self):
         cinder_users = [CinderUser(author) for author in self.addon.authors.all()]
-        for chunk in chunked(cinder_users, RELATIONSHIPS_BATCH_SIZE):
+        for chunk in chunked(cinder_users, self.RELATIONSHIPS_BATCH_SIZE):
             yield {
                 'entities': [cinder_user.get_entity_data() for cinder_user in chunk],
                 'relationships': [
