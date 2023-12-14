@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-09 17:43+0000\n"
+"PO-Revision-Date: 2023-12-14 16:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3754,7 +3754,7 @@ msgstr "Immagazina tu contrasignos con securitate e aperi session automaticament
 
 #. editorial content for the discovery pane.
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Plena automaticamente formularios. Salva un vice le datos inserite e illo se completara automaticamente le vices sequente."
+msgstr "Compilar automaticamente le formularios. Salva un vice le datos inserite e illos se compilara automaticamente le vices successive."
 
 #. editorial content for the discovery pane.
 msgid "Search privately with just a click."
