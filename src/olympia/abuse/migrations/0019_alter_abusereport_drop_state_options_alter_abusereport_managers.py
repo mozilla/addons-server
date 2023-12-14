@@ -22,8 +22,9 @@ class Migration(migrations.Migration):
             managers=[
             ],
         ),
-        migrations.RemoveField(
+        migrations.AlterField(
             model_name='abusereport',
             name='state',
+            field=models.BooleanField(default=None, null=True)
         ),
     ]
