@@ -3,8 +3,6 @@ from django.core.paginator import Paginator
 from django.db.models import Count
 from django.template import loader
 
-from olympia import amo
-from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.ratings.models import Rating
@@ -89,13 +87,11 @@ class AbuseReportAdmin(AMOModelAdmin):
             )
         }
 
-    actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
     list_display = (
         'target_name',
         'guid',
         'type',
-        'state',
         'distribution',
         'reason',
         'message_excerpt',
@@ -103,7 +99,6 @@ class AbuseReportAdmin(AMOModelAdmin):
     )
     list_filter = (
         AbuseReportTypeFilter,
-        'state',
         'reason',
         ('created', DateRangeFilter),
         MinimumReportsCountFilter,
@@ -113,8 +108,7 @@ class AbuseReportAdmin(AMOModelAdmin):
     # in case we change our mind, FKs should be raw id fields as usual in our
     # admin tools.
     raw_id_fields = ('user', 'collection', 'rating', 'reporter')
-    # All fields except state must be readonly - the submitted data should
-    # not be changed, only the state for triage.
+    # All fields must be readonly - the submitted data should not be changed.
     readonly_fields = (
         'created',
         'modified',
@@ -147,7 +141,7 @@ class AbuseReportAdmin(AMOModelAdmin):
         'location',
     )
     fieldsets = (
-        ('Abuse Report Core Information', {'fields': ('state', 'reason', 'message')}),
+        ('Abuse Report Core Information', {'fields': ('reason', 'message')}),
         (
             'Abuse Report Data',
             {
@@ -200,8 +194,11 @@ class AbuseReportAdmin(AMOModelAdmin):
     view_on_site = False  # Abuse reports have no public page to link to.
 
     def has_add_permission(self, request):
-        # Adding new abuse reports through the admin is useless, so we prevent
-        # it.
+        # Adding new abuse reports through the admin is useless, so we prevent it.
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        # Abuse reports shouldn't be deleted, only resolved
         return False
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
@@ -213,18 +210,6 @@ class AbuseReportAdmin(AMOModelAdmin):
             form_url,
             extra_context=extra_context,
         )
-
-    def delete_queryset(self, request, queryset):
-        """Given a queryset, soft-delete it from the database."""
-        queryset.update(state=AbuseReport.STATES.DELETED)
-
-    def get_actions(self, request):
-        actions = super().get_actions(request)
-        if not acl.action_allowed_for(request.user, amo.permissions.ABUSEREPORTS_EDIT):
-            # You need AbuseReports:Edit for the extra actions.
-            actions.pop('mark_as_valid')
-            actions.pop('mark_as_suspicious')
-        return actions
 
     def get_search_fields(self, request):
         """
@@ -364,26 +349,6 @@ class AbuseReportAdmin(AMOModelAdmin):
         return truncate_text(obj.message, 140)[0] if obj.message else ''
 
     message_excerpt.short_description = 'Message excerpt'
-
-    def mark_as_valid(self, request, qs):
-        for obj in qs:
-            obj.update(state=AbuseReport.STATES.VALID)
-        self.message_user(
-            request,
-            'The %d selected reports have been marked as valid.' % (qs.count()),
-        )
-
-    mark_as_valid.short_description = 'Mark selected abuse reports as valid'
-
-    def mark_as_suspicious(self, request, qs):
-        for obj in qs:
-            obj.update(state=AbuseReport.STATES.SUSPICIOUS)
-        self.message_user(
-            request,
-            'The %d selected reports have been marked as suspicious.' % (qs.count()),
-        )
-
-    mark_as_suspicious.short_description = 'Mark selected abuse reports as suspicious'
 
 
 class CinderPolicyAdmin(AMOModelAdmin):

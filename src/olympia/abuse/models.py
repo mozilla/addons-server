@@ -2,8 +2,6 @@ from datetime import datetime, timedelta
 
 from django.db import models
 
-from extended_choices import Choices
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
@@ -182,19 +180,6 @@ class AbuseReportQuerySet(BaseQuerySet):
 class AbuseReportManager(ManagerBase):
     _queryset_class = AbuseReportQuerySet
 
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instantiation and understand the consequences.
-        ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-
-    def get_queryset(self):
-        qs = super().get_queryset()
-        if not self.include_deleted:
-            qs = qs.exclude(state=self.model.STATES.DELETED)
-        return qs
-
     def for_addon(self, addon):
         return self.get_queryset().for_addon(addon)
 
@@ -340,12 +325,6 @@ class AbuseReport(ModelBase):
         ('AMO', 4, 'AMO'),
         ('UNIFIED_CONTEXT_MENU', 5, 'Unified extensions context menu'),
     )
-    STATES = Choices(
-        ('UNTRIAGED', 1, 'Untriaged'),
-        ('VALID', 2, 'Valid'),
-        ('SUSPICIOUS', 3, 'Suspicious'),
-        ('DELETED', 4, 'Deleted'),
-    )
     LOCATION = APIChoicesWithNone(
         ('AMO', 1, 'Add-on page on AMO'),
         ('ADDON', 2, 'Inside Add-on'),
@@ -393,10 +372,6 @@ class AbuseReport(ModelBase):
     )
     message = models.TextField(
         blank=True, help_text='The body/content of the abuse report.'
-    )
-
-    state = models.PositiveSmallIntegerField(
-        default=STATES.UNTRIAGED, choices=STATES.choices
     )
 
     # Extra optional fields for more information, giving some context that is
@@ -501,15 +476,10 @@ class AbuseReport(ModelBase):
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
 
-    unfiltered = AbuseReportManager(include_deleted=True)
     objects = AbuseReportManager()
 
     class Meta:
         db_table = 'abuse_reports'
-        # See comment in addons/models.py about base_manager_name. It needs to
-        # be unfiltered to prevent exceptions when dealing with relations or
-        # saving already deleted objects.
-        base_manager_name = 'unfiltered'
         indexes = [
             models.Index(fields=('created',), name='abuse_reports_created_idx'),
             models.Index(fields=('guid',), name='guid_idx'),
@@ -551,12 +521,6 @@ class AbuseReport(ModelBase):
                 ),
             ),
         ]
-
-    def delete(self, *args, **kwargs):
-        # AbuseReports are soft-deleted. Note that we keep relations, because
-        # the only possible relations are to users and add-ons, which are also
-        # soft-deleted.
-        return self.update(state=self.STATES.DELETED)
 
     @property
     def type(self):

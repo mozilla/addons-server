@@ -332,24 +332,6 @@ class TestAbuse(TestCase):
 
 
 class TestAbuseManager(TestCase):
-    def test_deleted(self):
-        report = AbuseReport.objects.create(guid='@foo')
-        deleted_report = AbuseReport.objects.create(guid='@baa')
-        assert AbuseReport.objects.count() == 2
-        assert AbuseReport.unfiltered.count() == 2
-
-        deleted_report.delete()
-
-        assert deleted_report.state == AbuseReport.STATES.DELETED
-        assert deleted_report.pk
-        assert report in AbuseReport.objects.all()
-        assert deleted_report not in AbuseReport.objects.all()
-        assert AbuseReport.objects.count() == 1
-
-        assert report in AbuseReport.unfiltered.all()
-        assert deleted_report in AbuseReport.unfiltered.all()
-        assert AbuseReport.unfiltered.count() == 2
-
     def test_for_addon_finds_by_author(self):
         addon = addon_factory(users=[user_factory()])
         report = AbuseReport.objects.create(user=addon.listed_authors[0])
