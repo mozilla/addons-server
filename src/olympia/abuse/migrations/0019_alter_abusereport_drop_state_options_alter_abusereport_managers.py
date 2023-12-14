@@ -25,6 +25,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='abusereport',
             name='state',
-            field=models.BooleanField(default=None, null=True)
+            field=models.PositiveSmallIntegerField(default=None, null=True)
         ),
     ]
