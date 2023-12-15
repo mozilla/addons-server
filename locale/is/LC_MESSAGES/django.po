@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-15 08:30+0000\n"
+"PO-Revision-Date: 2023-12-15 08:39+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: is\n"
@@ -4016,7 +4016,7 @@ msgstr "Allar emoji-táknmyndaþarfir þínar - með einum smelli."
 
 #. editorial content for the discovery pane.
 msgid "Mask your email address. Firefox Relay protects your identity & prevents junk mail."
-msgstr ""
+msgstr "Feldu tölvupóstfangið þitt. Firefox Relay verndar persónuauðkennin þín og kemur í veg fyrir ruslpóstsendingar."
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
@@ -4044,11 +4044,11 @@ msgstr "Fannstu áhugaverða mynd á vefnum? Notaðu TinEye til að finna hvaða
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr ""
+msgstr "Vistaðu myndir auðveldlega - gríptu þær bara af viðkomandi flipa."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Njóttu fullkominnar flipastýringar - lokaðu tvíteknum flipum, sameinaðu glugga, afritaðu titil flipa og fleira."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4060,7 +4060,7 @@ msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata me
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr ""
+msgstr "Sérsníddu útlit hvaða vefsíðu sem er. Breyttu litum, bakgrunni og fleira."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4068,7 +4068,7 @@ msgstr "Notaðu músarbendingar til að loka flipum, rata um vefsíður og fleir
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr ""
+msgstr "Einföld leið til að stilla stærð hvaða texta sem er – eða jafnvel stækka síðuna sjálfa."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4076,11 +4076,11 @@ msgstr "Sjáðu smámyndir af vefsíðum við hlið leitarniðurstaðna."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Vistaðu heilar vefsíður – þar á meðal myndir og stíl – sem eina HTML-skrá."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr ""
+msgstr "Breyttu vefsíðum áður en þær eru prentaðar. Gerðu víðtækar sjónrænar breytingar - fjarlægðu auglýsingar eða ósmekklegt efni - á hverri þeirri vefsíðu sem þú vilt prenta."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4180,7 +4180,7 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr ""
+msgstr "Þýddu vefsvæði í vafranum þínum án þess að nota skýið."
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
@@ -4208,7 +4208,7 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity tools"
-msgstr ""
+msgstr "Afkastahvetjandi verkfæri"
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
@@ -4356,15 +4356,15 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Skoðaðu fleira samfélagsmiðladót sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
-msgstr ""
+msgstr "Helstu niðurhalsstjórar"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr ""
+msgstr "Skoðaðu fleiri niðurhalsstjóra sem starfsfólk hefur valið"
 
 msgid "Unreviewed"
 msgstr "Óyfirfarið"
@@ -4380,7 +4380,7 @@ msgid "Could not parse the manifest file."
 msgstr "Ekki tókst að þátta manifest-skrána."
 
 msgid "Add-on ID is required for Firefox 47 and below."
-msgstr ""
+msgstr "Auðkenni viðbótar er krafist fyrir Firefox 47 og eldri."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
@@ -4449,7 +4449,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "You cannot submit a language pack"
-msgstr ""
+msgstr "Þú getur ekki sent inn tungumálapakka"
 
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
@@ -4870,48 +4870,50 @@ msgid "Add-ons"
 msgstr "Viðbætur"
 
 msgid "Go to Mozilla's homepage"
-msgstr ""
+msgstr "Fara á heimasíðu Mozilla"
 
 msgid "About"
 msgstr "Um hugbúnaðinn"
 
 msgid "Firefox Add-ons Blog"
-msgstr ""
+msgstr "Blogg um viðbætur Firefox"
 
 msgid "Community Blog"
-msgstr ""
+msgstr "Samfélagsblogg"
 
 msgid "Forum"
 msgstr "Vefspjall"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Leiðbeiningar fyrir umsagnir"
 
 msgid "Browsers"
-msgstr ""
+msgstr "Vafrar"
 
 msgid "Desktop"
-msgstr ""
+msgstr "Vinnutölvur"
 
 msgid "Enterprise"
-msgstr ""
+msgstr "Fyrirtæki"
 
 msgid "Products"
-msgstr ""
+msgstr "Hugbúnaður"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Friðhelgi"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Vefkökur"
 
 msgid "Legal"
-msgstr ""
+msgstr "Lagalegur fyrirvari"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Allstaðar nema þar sem <a href=\"https://www.mozilla.org/about/legal/\">annað er tekið fram</a> er efni á þessu vefsvæði með notkunarleyfinu <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License útg.3.0 </a> eða einhverri síðari tíma útfærslu þess."
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
@@ -4946,7 +4948,7 @@ msgstr "Nýjar staðfærslur"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "Þú ert með óvistaðar breytingar í <b>{0}</b> staðfærslunni. Viltu vista breytingarnar þínar áður en þú skiptir um staðfærslu?"
 
 msgid "Discard Changes"
 msgstr "Henda breytingum"
