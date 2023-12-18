@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-18 12:21+0000\n"
+"PO-Revision-Date: 2023-12-18 12:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -253,7 +253,7 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Ο λογαριασμός χρειάζεται ένα εμφανιζόμενο όνομα για να μπορεί να προστεθεί ως δημιουργός."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr "Αυτό το αναγνωριστικό δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
+msgstr "Αυτό το αναγνωριστικό URL δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
@@ -268,7 +268,7 @@ msgid "This field, or custom_license, is required for listed versions."
 msgstr "Αυτό το πεδίο, ή το «custom_license», απαιτείται για τις καταχωρημένες εκδόσεις."
 
 msgid "Wrong add-on type for this license."
-msgstr "Εσφαλμένος τύπος πρόσθετου για αυτήν την άδεια."
+msgstr "Εσφαλμένος τύπος προσθέτου για αυτήν την άδεια."
 
 msgid "Custom licenses are not supported for themes."
 msgstr "Οι προσαρμοσμένες άδειες δεν υποστηρίζονται για τα θέματα."
@@ -289,7 +289,7 @@ msgid "Source cannot be changed because this version has been reviewed by Mozill
 msgstr "Η πηγή δεν μπορεί να αλλάξει, επειδή αυτή η έκδοση έχει ελεγχθεί από τη Mozilla."
 
 msgid "This type of add-on does not allow custom compatibility."
-msgstr "Αυτός ο τύπος πρόσθετου δεν επιτρέπει προσαρμοσμένη συμβατότητα."
+msgstr "Αυτός ο τύπος προσθέτου δεν επιτρέπει προσαρμοσμένη συμβατότητα."
 
 msgid "My Add-ons"
 msgstr "Τα πρόσθετά μου"
@@ -518,7 +518,7 @@ msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Μη έγκυρο κύριο κλειδί ή αναγνωριστικό «%s» - το αντικείμενο δεν υπάρχει."
+msgstr "Μη έγκυρο κύριο κλειδί ή αναγνωριστικό URL «%s» - το αντικείμενο δεν υπάρχει."
 
 msgid "Confirmation for developer API keys"
 msgstr "Επιβεβαίωση για κλειδιά API προγραμματιστών"
@@ -931,10 +931,10 @@ msgid "Admin add-on-review cleared"
 msgstr "Η αξιολόγηση διαχειριστή για το πρόσθετο καταργήθηκε"
 
 msgid "{user_responsible} changed {addon} slug from {0} to {1}."
-msgstr "Ο/Η {user_responsible} άλλαξε το slug του {addon} από «{0}» σε «{1}»."
+msgstr "Ο/Η {user_responsible} άλλαξε το αναγνωριστικό URL του {addon} από «{0}» σε «{1}»."
 
 msgid "Add-on slug changed"
-msgstr "Το slug του προσθέτου άλλαξε"
+msgstr "Το αναγνωριστικό URL του προσθέτου άλλαξε"
 
 msgid "Collection {collection} deleted by moderator"
 msgstr "Η συλλογή «{collection}» διαγράφηκε από συντονιστή"
@@ -1460,11 +1460,11 @@ msgid "For more information about the MV3 extension roll-out or self-hosting MV3
 msgstr "Για περισσότερες πληροφορίες σχετικά με την κυκλοφορία ή την αυτοφιλοξενία επεκτάσεων MV3, επισκεφτείτε το https://mzl.la/3hIwQXX"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλούμε διαλέξτε κάποιο άλλο."
+msgstr "Αυτό το αναγνωριστικό URL χρησιμοποιείται ήδη. Παρακαλώ επιλέξτε κάποιο άλλο."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Το slug δεν μπορεί να είναι «%(slug)s». Παρακαλώ επιλέξτε κάποιο άλλο."
+msgstr "Το αναγνωριστικό URL δεν μπορεί να είναι «%(slug)s». Παρακαλώ επιλέξτε κάποιο άλλο."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -1498,7 +1498,7 @@ msgid "At least one author must be listed."
 msgstr "Θα πρέπει να αναγράφεται τουλάχιστον ένας δημιουργός."
 
 msgid "Slug incorrect."
-msgstr "Εσφαλμένο slug."
+msgstr "Εσφαλμένο αναγνωριστικό URL."
 
 msgid "Details"
 msgstr "Λεπτομέρειες"
@@ -1606,7 +1606,7 @@ msgid "Validation generated too many errors/warnings so %s messages were truncat
 msgstr "Η επικύρωση παρήγαγε πάρα πολλά σφάλματα/προειδοποιήσεις, επομένως κρύφτηκαν %s μηνύματα. Αφού διορθώσετε τα ορατά μηνύματα, θα μπορέσετε να δείτε τα υπόλοιπα."
 
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
-msgstr "Αυτό το πρόσθετο δεν είναι θέμα. Χρησιμοποιήστε τη σελίδα <a href=\"{link}\">Υποβολή νέου πρόσθετου</a> για να υποβάλετε νέες επεκτάσεις."
+msgstr "Αυτό το πρόσθετο δεν είναι θέμα. Χρησιμοποιήστε τη σελίδα <a href=\"{link}\">Υποβολή νέου προσθέτου</a> για να υποβάλετε νέες επεκτάσεις."
 
 msgid "Updated"
 msgstr "Ενημερώσεις"
@@ -2785,7 +2785,8 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Παρακαλούμε ολοκληρώστε το πρόσθετό σας προσθέτοντας μια έκδοση ή τα μεταδεδομένα που λείπουν."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετο σας δεν θα εμφανίζεται γενικά στις σελίδες μας αλλά θα μπορείτε να το δείτε μόνο απευθείας στη σελίδα προβολής του. "
+msgstr ""
+"Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετό σας δεν θα εμφανίζεται στη συλλογή μας, αλλά θα είναι δυνατή η πρόσβαση σε αυτό απευθείας από τη σελίδα λεπτομερειών του. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
 msgstr "Το πρόσθετο σας εμφανίζεται κανονικά στις σελίδες μας κι οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις."
@@ -3303,7 +3304,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Θέλετε σίγουρα να αποκρύψετε το πρόσθετό σας;"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Η ακύρωση του αιτήματος αξιολόγησής σας θα επισημάνει ως ελλιπές το πρόσθετο σας και όλες οι εκδόσεις που αναμένουν αξιολόγηση θα απενεργοποιηθούν."
+msgstr "Η ακύρωση του αιτήματος αξιολόγησής σας θα επισημάνει ως ελλιπές το πρόσθετό σας και όλες οι εκδόσεις που αναμένουν αξιολόγηση θα απενεργοποιηθούν."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας για αξιολόγηση;"
