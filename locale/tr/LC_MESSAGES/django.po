@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-13 17:03+0000\n"
+"PO-Revision-Date: 2023-12-18 14:52+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -4236,7 +4236,7 @@ msgstr "Gezinti verilerini doğrudan tarayıcı araç çubuğundan silin."
 
 #. editorial content for the primary hero shelves.
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
-msgstr ""
+msgstr "RSS beslemelerindeki güncellemeleri yer imi klasörlerinizde görün."
 
 #. editorial content for the primary hero shelves.
 msgid "Effective blocker against all types of ads."
