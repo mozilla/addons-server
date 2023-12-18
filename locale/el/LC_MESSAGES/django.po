@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-18 11:59+0000\n"
+"PO-Revision-Date: 2023-12-18 12:21+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -253,7 +253,7 @@ msgid "The account needs a display name before it can be added as an author."
 msgstr "Ο λογαριασμός χρειάζεται ένα εμφανιζόμενο όνομα για να μπορεί να προστεθεί ως δημιουργός."
 
 msgid "This slug cannot be used. Please choose another."
-msgstr "Αυτό το slug δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
+msgstr "Αυτό το αναγνωριστικό δεν μπορεί να χρησιμοποιηθεί. Παρακαλώ επιλέξτε κάποιο άλλο."
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Τα ονόματα προσθέτων δεν μπορούν να περιέχουν τα εμπορικά σήματα της Mozilla ή του Firefox."
@@ -518,7 +518,7 @@ msgstr "Απαιτείται μια τιμή στην προεπιλεγμένη
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "Μη έγκυρο pk ή slug «%s» - το αντικείμενο δεν υπάρχει."
+msgstr "Μη έγκυρο κύριο κλειδί ή αναγνωριστικό «%s» - το αντικείμενο δεν υπάρχει."
 
 msgid "Confirmation for developer API keys"
 msgstr "Επιβεβαίωση για κλειδιά API προγραμματιστών"
