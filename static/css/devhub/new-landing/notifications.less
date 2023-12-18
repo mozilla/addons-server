@@ -1,0 +1,47 @@
+
+/** Notifications **/
+.notification-box {
+  padding: 13px 13px 13px 58px;
+  font-family: "helvetica neue", arial, helvetica, sans-serif;
+  font-size: 13px;
+  position: relative;
+  background-color: #FFCD34;
+  color: #444;
+  display: flex;
+  align-items: center;
+  justify-self: space-around;
+}
+
+.notification-box p {
+   margin: 0 20px;
+}
+
+.notification-box button {
+  border: none;
+  padding: 5px 15px;
+}
+
+.notification-box:before {
+  content: "\00a0";
+  width: 32px;
+  height: 32px;
+  display: block;
+  left: 10px;
+  top: 50%;
+  margin-top: -16px;
+  position: absolute;
+  background-image:url(../../../img/zamboni/notifications.png);
+  background-position: 0 -225px;
+}
+
+.html-rtl .notification-box:before {
+  background-position: 0 -225px;
+  right: 10px;
+  left: auto;
+}
+
+
+.html-rtl .notification-box {
+  padding: 13px 58px 13px 13px;
+}
+

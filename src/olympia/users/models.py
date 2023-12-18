@@ -683,6 +683,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         )
         activity.log_create(action, user=user)
 
+    @property
+    def suppressed_email(self):
+        return SuppressedEmail.objects.filter(email=self.email).first()
+
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(

@@ -44,7 +44,7 @@ from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
-from olympia.users.models import IPNetworkUserRestriction, UserProfile
+from olympia.users.models import IPNetworkUserRestriction, SuppressedEmail, UserProfile
 from olympia.users.tests.test_views import UserViewBase
 from olympia.versions.models import Version, VersionPreview
 from olympia.zadmin.models import set_config
@@ -420,7 +420,8 @@ class TestHome(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
+        self.user_profile = UserProfile.objects.get(email='del@icio.us')
+        self.client.force_login(self.user_profile)
         self.url = reverse('devhub.index')
         self.addon = Addon.objects.get(pk=3615)
 
@@ -441,6 +442,38 @@ class TestHome(TestCase):
         doc = self.get_pq()
         selected_value = doc('#language option:selected').attr('value')
         assert selected_value == 'en-us'
+
+    @override_switch('suppressed-email', active=True)
+    def test_suppressed_email_logged_out(self):
+        self.client.logout()
+        SuppressedEmail.objects.create(email=self.user_profile.email)
+
+        doc = self.get_pq()
+
+        assert doc('#suppressed-email').length == 0
+
+    @override_switch('suppressed-email', active=True)
+    def test_suppressed_email_displayed(self):
+        SuppressedEmail.objects.create(email=self.user_profile.email)
+
+        doc = self.get_pq()
+
+        assert self.user_profile.email in doc('#suppressed-email').text()
+        assert doc('#suppressed-email').length == 1
+
+    @override_switch('suppressed-email', active=False)
+    def test_suppressed_email_hidden_by_flase(self):
+        SuppressedEmail.objects.create(email=self.user_profile.email)
+
+        doc = self.get_pq()
+
+        assert doc('#suppressed-email').length == 0
+
+    @override_switch('suppressed-email', active=False)
+    def test_unsuppressed_email(self):
+        doc = self.get_pq()
+
+        assert doc('#suppressed-email').length == 0
 
     def test_basic_logged_in(self):
         response = self.client.get(self.url)
