@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-18 12:31+0000\n"
+"PO-Revision-Date: 2023-12-18 12:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2789,7 +2789,7 @@ msgstr ""
 "Θα λάβετε ένα email όταν ολοκληρωθεί η αξιολόγηση. Μέχρι τότε, το πρόσθετό σας δεν θα εμφανίζεται στη συλλογή μας, αλλά θα είναι δυνατή η πρόσβαση σε αυτό απευθείας από τη σελίδα λεπτομερειών του. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr "Το πρόσθετο σας εμφανίζεται κανονικά στις σελίδες μας κι οι χρήστες θα λαμβάνουν αυτόματα ενημερώσεις."
+msgstr "Το πρόσθετό σας εμφανίζεται στη συλλογή μας και οι χρήστες λαμβάνουν αυτόματα ενημερώσεις."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.com."
 msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έναν διαχειριστή του ιστοτόπου και δεν εμφανίζεται πλέον στη συλλογή μας. Αν έχετε απορίες, παρακαλούμε επικοινωνήστε μαζί μας στο amo-admins@mozilla.com."
@@ -2797,7 +2797,7 @@ msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έ�
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
 "Το πρόσθετό σας δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση δεν θα γίνονται "
-"αποδεκτές σε αυτή την κατάσταση."
+"αποδεκτές σε αυτήν την κατάσταση."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
@@ -3135,7 +3135,7 @@ msgstr "Συμβατότητα"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
-"Η προσαρμογή των πληροφοριών για την εφαρμογή από εδώ, θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετο σας ακόμη κι αν το αρχείο install manifest του πακέτου υποδεικνύει ότι δεν είναι "
+"Η προσαρμογή των πληροφοριών της εφαρμογής από εδώ θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετό σας, ακόμα κι αν το αρχείο manifest εγκατάστασης του πακέτου υποδεικνύει ότι δεν είναι "
 "συμβατό."
 
 msgid "Add Another Application&hellip;"
@@ -3226,7 +3226,7 @@ msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα προϊόντος θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για το προϊόν δεν "
-"θα γίνονται αποδεκτές σε αυτή την κατάσταση."
+"θα γίνονται αποδεκτές σε αυτήν την κατάσταση."
 
 msgid "Listed versions"
 msgstr "Καταχωρημένες εκδόσεις"
@@ -3275,7 +3275,7 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr "<strong>Σημαντικό:</strong> Μόλις διαγραφεί μια έκδοση, δεν θα μπορείτε να μεταφορτώσετε μια νέα έκδοση με τον ίδιο αριθμό έκδοσης."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr "Θέλετε σίγουρα να διαγράψετε αυτή την έκδοση;"
+msgstr "Θέλετε σίγουρα να διαγράψετε αυτήν την έκδοση;"
 
 msgid "Delete Version"
 msgstr "Διαγραφή έκδοσης"
@@ -4620,7 +4620,7 @@ msgid "You cannot submit this type of add-on"
 msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο προσθέτου"
 
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο με ένα ID που λήγει με αυτή την κατάληξη"
+msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο με ένα ID που λήγει με αυτήν την κατάληξη"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
@@ -4789,7 +4789,7 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Μη έγκυρος συνδυασμός των παραμέτρων «%s» και «%s»."
 
 msgid "Return To AMO is currently disabled"
-msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτή τη στιγμή"
+msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτήν τη στιγμή"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε μορφή base64url;)"
