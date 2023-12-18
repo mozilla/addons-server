@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-07 14:50+0000\n"
+"PO-Revision-Date: 2023-12-18 11:51+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2138,7 +2138,7 @@ msgstr ""
 "επιπρόσθετες πληροφορίες που ενδέχεται να φανούν χρήσιμες. Αυτός ο λευκός πίνακας μπορεί να επεξεργαστεί και από τους ελεγκτές."
 
 msgid "Add-on Media for {0}"
-msgstr "Αρχεία πολυμέσων για το {0}"
+msgstr "Πολυμέσα προσθέτου για το {0}"
 
 msgid "Add-on icon"
 msgstr "Εικονίδιο προσθέτου"
@@ -2151,7 +2151,7 @@ msgstr ""
 "από τους εξής τύπους: .png, .jpg. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
 
 msgid "Select an icon for your add-on:"
-msgstr "Επιλογή εικονιδίου για το πρόσθετο σας:"
+msgstr "Επιλέξτε ένα εικονίδιο για το πρόσθετό σας:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -2190,7 +2190,7 @@ msgid "Screenshots"
 msgstr "Στιγμιότυπα"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Παρακαλώ παρέχετε τουλάχιστον ένα στιγμιότυπο του προσθέτου σας:"
+msgstr "Παραθέστε τουλάχιστον ένα στιγμιότυπο του προσθέτου σας:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr "Παρακαλούμε δώστε μια λεζάντα για το στιγμιότυπο:"
@@ -2280,7 +2280,7 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Εισαγάγετε το ακόλουθο κείμενο για να επιβεβαιώσετε την απόφασή σας: {slug}"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Παρακαλώ πείτε μας γιατί διαγράφετε το πρόσθετό σας:"
+msgstr "Πείτε μας γιατί διαγράφετε το πρόσθετό σας:"
 
 msgid "Actions"
 msgstr "Ενέργειες"
@@ -2459,7 +2459,7 @@ msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</
 msgstr "Όλα τα πρόσθετα πρέπει να συμμορφώνονται με τις <a %(a_attrs)s>πολιτικές προσθέτων της Mozilla</a> και ενδέχεται να υποβληθούν σε μη αυτόματο έλεγχο ανά πάσα στιγμή μετά την υποβολή."
 
 msgid "Submission Complete"
-msgstr "Ολοκληρώθηκε η υποβολή"
+msgstr "Η υποβολή ολοκληρώθηκε"
 
 msgid "Version Submitted"
 msgstr "Η έκδοση υπεβλήθη"
@@ -5043,7 +5043,7 @@ msgstr ""
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Επιστροφή στην αρχική σελίδα των πρόσθετων του {0}"
+msgstr "Επιστροφή στην αρχική σελίδα των Προσθέτων {0}"
 
 # Χωρίς τόνο λόγω του text-transform: uppercase
 msgid "Add-ons"
