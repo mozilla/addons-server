@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-18 11:51+0000\n"
+"PO-Revision-Date: 2023-12-18 11:59+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -121,7 +121,7 @@ msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Παρακαλούμε χρησιμοποιήστε εικόνες μικρότερες από %dMB."
+msgstr "Χρησιμοποιήστε εικόνες μικρότερες από %dMB."
 
 msgid "Need help?"
 msgstr "Χρειάζεστε βοήθεια;"
@@ -447,7 +447,7 @@ msgstr ""
 "ξανά αργότερα."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr "Μερικές λειτουργίες της σελίδας έχουν προς το παρόν απενεργοποιηθεί γιατί εκτελούμε εργασίες συντήρησης. Παρακαλούμε προσπαθήστε ξανά λίγο αργότερα."
+msgstr "Ορισμένες λειτουργίες της σελίδας έχουν απενεργοποιηθεί προσωρινά, καθώς εκτελούμε εργασίες συντήρησης. Δοκιμάστε ξανά λίγο αργότερα."
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -457,7 +457,7 @@ msgstr "Πρόσθετα για το {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
-msgstr "{0} πριν"
+msgstr "πριν από {0}"
 
 msgid "Title"
 msgstr "Τίτλος"
@@ -594,7 +594,7 @@ msgid "Approved"
 msgstr "Εγκρίθηκε"
 
 msgid "{addon} {version} given preliminary review."
-msgstr "Η έκδοση {version} του {addon} έχει αξιολογηθεί εισαγωγικώς."
+msgstr "Η έκδοση {version} του {addon} έχει αξιολογηθεί προκαταρκτικά."
 
 msgid "Preliminarily approved"
 msgstr "Εγκρίθηκε προκαταρκτικά"
@@ -1435,7 +1435,7 @@ msgstr "Πυρήνας"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr "Πρόσφατες αλλαγές για %s"
+msgstr "Πρόσφατες αλλαγές για το %s"
 
 msgid "Recent Changes for My Add-ons"
 msgstr "Πρόσφατες αλλαγές για τα πρόσθετα μου"
@@ -1624,7 +1624,7 @@ msgid "Rating"
 msgstr "Βαθμολογία"
 
 msgid "All My Add-ons"
-msgstr "Όλα μου τα πρόσθετα"
+msgstr "Όλα τα πρόσθετά μου"
 
 msgid "All Activity"
 msgstr "Όλη η δραστηριότητα"
@@ -1675,7 +1675,7 @@ msgid "<a href=\"{link}\">Please add two-factor authentication to your account t
 msgstr "<a href=\"{link}\">Παρακαλούμε προσθέστε την ταυτοποίηση δύο παραγόντων στον λογαριασμό σας για να υποβάλετε επεκτάσεις.</a>"
 
 msgid "Icons must be either PNG or JPG."
-msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή PNG ή JPG."
 
 msgid "Icons cannot be animated."
 msgstr "Δεν επιτρέπονται κινούμενα εικονίδια."
@@ -1693,7 +1693,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "Το εικονίδιο πρέπει να είναι τετράγωνο (ίδιο πλάτος και ύψος)."
 
 msgid "There was an error uploading your preview."
-msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
+msgstr "Προέκυψε σφάλμα κατά τη μεταφόρτωση της προεπισκόπησής σας."
 
 #, python-format
 msgid ""
@@ -1838,7 +1838,7 @@ msgid "Use the field below to upload your add-on package."
 msgstr "Χρησιμοποιήστε το πεδίο παρακάτω για να μεταφορτώσετε τη συσκευασία προσθέτου σας."
 
 msgid "After upload, a series of automated validation tests will be run on your file."
-msgstr "Μετά τη μεταφόρτωση, μια σειρά από αυτόματους ελέγχους εγκυρότητας θα εκτελεστεί στο αρχείο σας."
+msgstr "Μετά τη μεταφόρτωση, θα εκτελεστεί μια σειρά από αυτόματους ελέγχους εγκυρότητας στο αρχείο σας."
 
 msgid "Do you want your add-on to be distributed on this site?"
 msgstr "Θέλετε το πρόσθετό σας να διανεμηθεί σε αυτόν τον ιστότοπο;"
@@ -2034,7 +2034,7 @@ msgid "Add-on URL"
 msgstr "URL προσθέτου"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Επιλέξτε ένα σύντομο και μοναδικό URL slug για το πρόσθετο σας."
+msgstr "Επιλέξτε ένα σύντομο και μοναδικό URL (slug) για το πρόσθετό σας."
 
 msgid "View Listing"
 msgstr "Προβολή καταχώρησης"
