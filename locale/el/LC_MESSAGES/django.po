@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-18 12:46+0000\n"
+"PO-Revision-Date: 2023-12-19 10:20+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -188,7 +188,7 @@ msgstr "Καθορίστηκε άγνωστη ελάχιστη έκδοση εφ
 
 #, python-format
 msgid "Can not override compatibility information set in the manifest for this application (%s)"
-msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο μανιφέστο για αυτήν την εφαρμογή (%s)"
+msgstr "Δεν είναι δυνατή η παράκαμψη των πληροφοριών συμβατότητας που έχουν οριστεί στο αρχείο δήλωσης για αυτήν την εφαρμογή (%s)"
 
 #, python-format
 msgid "Images must be smaller than %dMB"
@@ -280,10 +280,10 @@ msgid "Add-on metadata is required to be set to create a listed version: {missin
 msgstr "Απαιτείται ορισμός μεταδεδομένων προσθέτου για τη δημιουργία μιας καταχωρισμένης έκδοσης: {missing_addon_metadata}."
 
 msgid "A GUID must be specified in the manifest."
-msgstr "Πρέπει να καθοριστεί ένα GUID στη δήλωση."
+msgstr "Πρέπει να καθοριστεί ένα GUID στο αρχείο δήλωσης."
 
 msgid "GUID mismatch between the URL and manifest."
-msgstr "Αναντιστοιχία GUID μεταξύ του URL και της δήλωσης."
+msgstr "Αναντιστοιχία GUID μεταξύ του URL και του αρχείου δήλωσης."
 
 msgid "Source cannot be changed because this version has been reviewed by Mozilla."
 msgstr "Η πηγή δεν μπορεί να αλλάξει, επειδή αυτή η έκδοση έχει ελεγχθεί από τη Mozilla."
@@ -2601,7 +2601,7 @@ msgid "Theme generator"
 msgstr "Δημιουργία θέματος"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr "Προειδοποίηση: οι εξής ιδιότητες μανιφέστου, που χρησιμοποίησε η πιο πρόσφατη μεταφόρτωσή σας στο μανιφέστο της, δεν υποστηρίζονται από τον οδηγό και θα παραβλεφθούν:"
+msgstr "Προειδοποίηση: οι εξής ιδιότητες δήλωσης, που χρησιμοποιήθηκαν στο αρχείο δήλωσης της πιο πρόσφατης έκδοσης, δεν υποστηρίζονται από τον οδηγό και θα αγνοηθούν:"
 
 msgid "Theme name"
 msgstr "Όνομα θέματος"
