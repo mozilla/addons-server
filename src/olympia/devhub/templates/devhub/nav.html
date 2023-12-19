@@ -6,6 +6,7 @@
     {% endtrans %}
   </a>
 </h1>
+{% include 'devhub/suppressed_email.html' %}
 <nav id="site-nav" class="menu-nav no-img c">
   <ul>
     {% if request.user.is_authenticated and request.user.is_developer %}

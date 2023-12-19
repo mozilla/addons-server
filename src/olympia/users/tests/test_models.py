@@ -912,6 +912,14 @@ class TestUserProfile(TestCase):
         lookup_field_random_string = UserProfile.get_lookup_field('my@mail.co')
         assert lookup_field_random_string == 'email'
 
+    def test_suppressed_email(self):
+        user = user_factory()
+        assert not user.suppressed_email
+
+        suppressed_email = SuppressedEmail.objects.create(email=user.email)
+
+        assert user.reload().suppressed_email == suppressed_email
+
 
 class TestDeniedName(TestCase):
     fixtures = ['users/test_backends']
