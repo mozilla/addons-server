@@ -1544,3 +1544,19 @@ class TestSuppressedEmailVerification(TestCase):
         expected_expiration_date = email_verification.created + timedelta(days=30)
 
         assert email_verification.expiration == expected_expiration_date
+
+    def test_default_status(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+
+        assert (
+            email_verification.status
+            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+        )
+
+    def test_only_valid_options(self):
+        with pytest.raises(ValueError):
+            SuppressedEmailVerification.objects.create(
+                suppressed_email=self.suppressed_email, status='invalid'
+            )

@@ -47,6 +47,7 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
+from olympia.api.utils import APIChoices
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -1351,6 +1352,12 @@ class SuppressedEmail(ModelBase):
 
 
 class SuppressedEmailVerification(ModelBase):
+    STATUS_CHOICES = APIChoices(
+        ('Pending', 0, 'Pending'),
+        ('Delivered', 1, 'Delivered'),
+        ('Failed', 2, 'Failed'),
+    )
+
     confirmation_code = models.CharField(
         max_length=255, null=False, blank=False, default=uuid.uuid4
     )
@@ -1358,6 +1365,9 @@ class SuppressedEmailVerification(ModelBase):
         SuppressedEmail,
         related_name='suppressed_email',
         on_delete=models.CASCADE,
+    )
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_CHOICES.choices, default=STATUS_CHOICES.Pending
     )
 
     @property
