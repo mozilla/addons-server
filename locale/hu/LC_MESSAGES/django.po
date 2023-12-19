@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-15 12:26+0000\n"
+"PO-Revision-Date: 2023-12-19 10:07+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -87,6 +87,10 @@ msgid ""
 "\n"
 "You have the right to appeal this decision within 6 months. See %(appeal_url)s for details on the appeal process.\n"
 msgstr ""
+"\n"
+"Köszönjük a bejelentést erről: %(name)s, ekkor: %(target_url)s. Az ellenőrzés után azt állapítottuk meg, hogy a tartalom nem sérti az irányelveinket, és továbbra is látható marad.\n"
+"\n"
+"A döntés ellen 6 hónapon belül fellebbezhet. A fellebbezési folyamat részleteiért lásd: %(appeal_url)s.\n"
 
 #, python-format
 msgid ""
@@ -630,16 +634,16 @@ msgid "Commented"
 msgstr "Hozzászólva"
 
 msgid "{tag} added to {addon}."
-msgstr "A(z) {tag} címke hozzáadásra került a(z) {addon} kiegészítőhöz."
+msgstr "A(z) {tag} címke hozzáadva a(z) {addon} kiegészítőhöz."
 
 msgid "{tag} removed from {addon}."
-msgstr "A(z) {tag} címke eltávolításra került a(z) {addon} kiegészítőtől."
+msgstr "A(z) {tag} címke eltávolítva a(z) {addon} kiegészítőtől."
 
 msgid "{addon} added to {collection}."
-msgstr "A(z) {addon} kiegészítő hozzáadásra került a(z) {collection} gyűjteményhez."
+msgstr "A(z) {addon} kiegészítő hozzáadva a(z) {collection} gyűjteményhez."
 
 msgid "{addon} removed from {collection}."
-msgstr "A(z) {addon} kiegészítő eltávolításra került a(z) {collection} gyűjteményből."
+msgstr "A(z) {addon} kiegészítő eltávolítva a(z) {collection} gyűjteményből."
 
 msgid "{rating} for {addon} written."
 msgstr "{rating} értékelés érkezett a(z) {addon} kiegészítőhöz."
@@ -679,7 +683,7 @@ msgid "{rating} for {addon} approved."
 msgstr "{rating} jóváhagyva a(z) {addon} kiegészítőhöz."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törlésre került."
+msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törölve."
 
 msgid "Application max version for {version} updated."
 msgstr "Az alkalmazás legmagasabb verziószáma frissítve lett erre: {version}."
@@ -851,7 +855,7 @@ msgid "GUID for {addon} added to DeniedGuid."
 msgstr "A(z) {addon} GUID-ja hozzáadva ehhez: DeniedGuid."
 
 msgid "GUID for {addon} removed from DeniedGuid."
-msgstr "A(z) {addon} GUID-ja eltávolításra került innen: DeniedGuid."
+msgstr "A(z) {addon} GUID-ja eltávolítva innen: DeniedGuid."
 
 msgid "Block {1} action for {0} signed off."
 msgstr "A(z) {1} művelet blokkolása aláírva ennél: {0}."
@@ -932,13 +936,13 @@ msgid "Collection {collection} un-deleted by moderator"
 msgstr "A(z) {collection} gyűjtemény törlését egy moderátor visszavonta"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "A(z) {addon} kiegészítőhöz tartozó {rating} értékelés törlése visszavonva."
 
 msgid "User {user} content restored."
-msgstr ""
+msgstr "{user} felhasználó tartalma helyreállítva."
 
 msgid "User {user} unbanned."
-msgstr ""
+msgstr "{user} felhasználó kitiltása visszavonva."
 
 msgid "Firefox"
 msgstr "Firefox"
