@@ -195,10 +195,21 @@ static_id = uuid.uuid4()
 
 
 class TestSuppressedEmail(TestCase):
+    def test_fails_missing_settings(self):
+        for setting in (
+            'SOCKET_LABS_TOKEN',
+            'SOCKET_LABS_HOST',
+            'SOCKET_LABS_SERVER_ID',
+        ):
+            with pytest.raises(Exception) as exc:
+                setattr(settings, setting, None)
+                sync_blocked_emails.s().apply(throw=True)
+                assert exc.match('SOCKET_LABS_TOKEN is not defined')
+
     def test_retry_if_api_returns_bad_response(self):
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             status=500,
         )
 
@@ -213,7 +224,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add_callback(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             callback=timeout_callback,
         )
 
@@ -227,7 +238,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )
@@ -243,7 +254,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )
@@ -264,7 +275,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )

@@ -79,11 +79,27 @@ def update_user_ratings_task(data, **kw):
 BATCH_SIZE = 100
 
 
+def assert_socket_labs_settings_defined():
+    if not settings.SOCKET_LABS_TOKEN:
+        raise Exception('SOCKET_LABS_TOKEN is not defined')
+
+    if not settings.SOCKET_LABS_HOST:
+        raise Exception('SOCKET_LABS_HOST is not defined')
+
+    if not settings.SOCKET_LABS_SERVER_ID:
+        raise Exception('SOCKET_LABS_SERVER_ID is not defined')
+
+
 @task(autoretry_for=(HTTPError, Timeout), max_retries=5, retry_backoff=True)
 def sync_blocked_emails(batch_size=BATCH_SIZE, **kw):
+    assert_socket_labs_settings_defined()
+
+    path = f'servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download'
+    params = {'sortField': 'suppressionLastUpdate', 'sortDirection': 'dsc'}
     url = (
-        f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/'
-        'suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc'
+        urllib.parse.urljoin(settings.SOCKET_LABS_HOST, path)
+        + '?'
+        + urllib.parse.urlencode(params)
     )
     headers = {
         'authorization': f'Bearer {settings.SOCKET_LABS_TOKEN}',
