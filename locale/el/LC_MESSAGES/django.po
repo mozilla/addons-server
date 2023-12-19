@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-19 10:20+0000\n"
+"PO-Revision-Date: 2023-12-19 10:28+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1444,7 +1444,7 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρίζονται πλέον στο AMO{blog_link_close}. Μπορείτε να δημιουργήσετε μια {doc_link_open}επέκταση αναζήτησης{doc_link_close}."
 
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Προς το παρόν, δεν υποστηρίζεται η μεταφόρτωση του Manifest V3. {start_href}Διαβάστε περισσότερα σχετικά με το χρονοδιάγραμμα υποστήριξης{end_href}."
+msgstr "Δεν υποστηρίζεται προς το παρόν η μεταφόρτωση για το Manifest V3. {start_href}Διαβάστε περισσότερα για το χρονοδιάγραμμα υποστήριξης{end_href}."
 
 msgid "Manifest V3 compatibility warning"
 msgstr "Προειδοποίηση συμβατότητας Manifest V3"
@@ -1727,37 +1727,38 @@ msgid "Header area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής επικεφαλίδας"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Το χρώμα του κειμένου και των εικονιδίων στην περιοχή επικεφαλίδας, εκτός της ενεργής καρτέλας. Πεδίο αρχείου manifest:  tab_background_text."
+msgstr "Το χρώμα του κειμένου και των εικονιδίων στην περιοχή επικεφαλίδας, εκτός της ενεργής καρτέλας. Πεδίο αρχείου δήλωσης:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Φόντο περιοχής γραμμής εργαλείων"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
-msgstr "Το χρώμα φόντου για τη γραμμή πλοήγησης, τη γραμμή σελιδοδεικτών και την ενεργή καρτέλα.  Πεδίο manifest:  toolbar."
+msgstr "Το χρώμα φόντου για τη γραμμή πλοήγησης, τη γραμμή σελιδοδεικτών και την ενεργή καρτέλα.  Πεδίο αρχείου δήλωσης:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Κείμενο και εικονίδια περιοχής γραμμής εργαλείων"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου manifest:  bookmark_text."
+msgstr "Το χρώμα του κειμένου και των εικονιδίων στη γραμμή εργαλείων και την ενεργή καρτέλα. Πεδίο αρχείου δήλωσης:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Φόντο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Το χρώμα φόντου για πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου manifest:  toolbar_field."
+msgstr "Το χρώμα φόντου για πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου δήλωσης:  toolbar_field."
 
 msgid "Toolbar field area text"
 msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλείων"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Το χρώμα του κειμένου στα πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου manifest:  toolbar_field_text."
+msgstr "Το χρώμα του κειμένου στα πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου δήλωσης:  toolbar_field_text."
 
 msgid "Tab highlight"
 msgstr "Επισήμανση καρτέλας"
 
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
-msgstr "Το χρώμα επισήμανσης της ενεργής καρτέλας. Εφαρμόζεται ως περίγραμμα γύρω από την καρτέλα στο Firefox 89+ και ως γραμμή πάνω από την καρτέλα σε παλαιότερα Firefox. Πεδίο manifest:  tab_line."
+msgstr ""
+"Το χρώμα επισήμανσης της ενεργής καρτέλας. Εφαρμόζεται ως περίγραμμα γύρω από την καρτέλα στο Firefox 89+ και ως γραμμή πάνω από την καρτέλα σε παλαιότερα Firefox. Πεδίο αρχείου δήλωσης:  tab_line."
 
 msgid "Review requested."
 msgstr "Ζητήθηκε αξιολόγηση."
@@ -2125,7 +2126,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "Το UUID του προσθέτου σας ορίζεται στη διακήρυξη εγκατάστασής του και είναι το μοναδικό αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του προσθέτου."
+msgstr "Το UUID του προσθέτου σας ορίζεται στο αρχείο δήλωσης της εγκατάστασής του και είναι το μοναδικό αναγνωριστικό του. Δεν μπορείτε να αλλάξετε το UUID μετά την υποβολή του προσθέτου."
 
 msgid "Whiteboard"
 msgstr "Πίνακας"
@@ -3135,7 +3136,7 @@ msgstr "Συμβατότητα"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
-"Η προσαρμογή των πληροφοριών της εφαρμογής από εδώ θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετό σας, ακόμα κι αν το αρχείο manifest εγκατάστασης του πακέτου υποδεικνύει ότι δεν είναι "
+"Η προσαρμογή των πληροφοριών της εφαρμογής από εδώ θα επιτρέψει στους χρήστες να εγκαταστήσουν το πρόσθετό σας, ακόμα κι αν το αρχείο δήλωσης εγκατάστασης του πακέτου υποδεικνύει ότι δεν είναι "
 "συμβατό."
 
 msgid "Add Another Application&hellip;"
@@ -4554,7 +4555,7 @@ msgid "This upload has already been submitted."
 msgstr "Αυτή η μεταφόρτωση έχει ήδη υποβληθεί."
 
 msgid "Could not parse the manifest file."
-msgstr "Αδυναμία λήψης αρχείου manifest."
+msgstr "Δεν ήταν δυνατή η ανάλυση του αρχείου δήλωσης."
 
 msgid "Add-on ID is required for Firefox 47 and below."
 msgstr "Το ID προσθέτου απαιτείται για το Firefox 47 και παλαιότερα."
@@ -4808,10 +4809,10 @@ msgid "You cannot add versions to an add-on that has status: %s."
 msgstr "Δεν μπορείτε να προσθέσετε εκδόσεις σε πρόσθετο με κατάσταση: %s."
 
 msgid "Version does not match the manifest file."
-msgstr "Η έκδοση δεν ταιριάζει με το αρχείο μανιφέστου."
+msgstr "Η έκδοση δεν ταιριάζει με το αρχείο δήλωσης."
 
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Παρακαλούμε καθορίστε το ID προσθέτου σας στο μανιφέστο αν είναι μεγαλύτερο από 64 χαρακτήρες."
+msgstr "Καθορίστε το ID του προσθέτου σας στο αρχείο δήλωσης αν είναι μεγαλύτερο από 64 χαρακτήρες."
 
 msgid "Invalid Add-on ID in URL or package"
 msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτο"
