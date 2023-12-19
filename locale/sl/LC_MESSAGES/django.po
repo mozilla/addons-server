@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-19 17:01+0000\n"
+"PO-Revision-Date: 2023-12-19 17:03+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4434,7 +4434,7 @@ msgstr "Več razširitev z oznako \"{tag}\""
 
 #. editorial content for the homepage shelves.
 msgid "Elite ad blockers"
-msgstr "Elitni zaviralci oglasov"
+msgstr "Prvovrstna orodja za blokiranje oglasov"
 
 #. editorial content for the homepage shelves.
 msgid "See more ad blocker staff picks"
