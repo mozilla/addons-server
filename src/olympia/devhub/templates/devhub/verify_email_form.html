@@ -1,0 +1,6 @@
+<form action="{{ url('devhub.email_verification') }}" method="post">
+  {% csrf_token %}
+  <button class="Button" type="submit">
+    {{ submit_text | default('Verify email address') }}
+  </button>
+</form>

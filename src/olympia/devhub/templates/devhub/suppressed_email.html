@@ -1,9 +1,14 @@
-{% if waffle.switch("suppressed-email") and request.user.is_authenticated and request.user.suppressed_email %}
+{% if waffle.switch("suppressed-email") and request.user.is_authenticated and request.user.suppressed_email and request.path != url('devhub.email_verification') %}
 <div class="notification-box warning" id="suppressed-email">
     <p>
         {% trans email=request.user.email %}
             We have discovered that your email "{{ email }}" is unable to receive emails from us. Please update your email address to one that can receive emails from us.
         {% endtrans %}
+        <a href="{{ url('devhub.email_verification') }}">
+            {% trans %}
+            Learn more
+            {% endtrans %}
+        </a>
     </p>
 </div>
 {% endif %}

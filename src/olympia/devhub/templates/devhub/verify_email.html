@@ -1,0 +1,57 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Email Address Verification') %}
+
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<div id="{{ state }}">
+{% if state == "email_verified" %}
+  {% trans %}
+  Your email address is verified.
+  {% endtrans %}
+{% elif state == "email_suppressed" %}
+  {% trans %}
+  Please verify your email by clicking "Verify email" above.
+  {% endtrans %}
+{% elif state == "verification_expired" %}
+  {% trans %}
+  Could not verify email address. The verification link has expired.
+  {% endtrans %}
+{% elif state == "verification_pending" %}
+  {% trans %}
+  Working... Please be patient.
+  {% endtrans %}
+  <div class="loader"></div>
+{% elif state == "verification_failed" %}
+  {% trans %}
+  Failed to send confirmation email. Please try again.
+  If you no longer have access to your email address, please update your mozilla account email address.
+  <a
+    href="https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts"
+    target="_blank"
+  >
+    Change email address
+  </a>
+  {% endtrans %}
+{% elif state == "verification_timedout" %}
+  {% trans %}
+  This is taking longer than expected. Try again.
+  {% endtrans %}
+{% elif state == "confirmation_pending" %}
+  {% trans email=request.user.email %}
+  An email with a confirmation link has been sent to your email address: {{ email }}. Please click the link to confirm your email address. If you did not receive the email, please check your spam folder.
+  {% endtrans %}
+{% elif state == "confirmation_unauthorized" %}
+  {% trans email=request.user.email %}
+  The provided code is associated with another user's email. Please use the link in the email sent to your email address {{ email }}.
+  {% endtrans %}
+{% endif %}
+{% if render_button %}
+  {% with submit_text=button_text %}
+    {% include 'devhub/verify_email_form.html' %}
+  {% endwith %}
+{% endif %}
+</div>
+{% endblock %}

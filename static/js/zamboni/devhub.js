@@ -5,6 +5,13 @@ $(document).ready(function () {
   // Edit Add-on
   $('#edit-addon').exists(initEditAddon);
 
+  // Poll for suppressed email removal updates.
+  $('#verification_pending').exists(function () {
+    setTimeout(function () {
+      window.location.reload();
+    }, 10_000);
+  });
+
   //Ownership
   $('#authors_confirmed').exists(function () {
     initAuthorFields();

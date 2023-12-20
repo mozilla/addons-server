@@ -241,3 +241,17 @@ h2.submission-count {
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+.loader {
+    border: 5px solid #f3f3f3; /* Light grey */
+    border-top: 5px solid #0C99D5; /* Blue */
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

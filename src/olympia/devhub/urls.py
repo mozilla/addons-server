@@ -268,5 +268,8 @@ urlpatterns = decorate(
         ),
         # logout page
         re_path(r'^logout', views.logout, name='devhub.logout'),
+        re_path(
+            r'^verify-email', views.email_verification, name='devhub.email_verification'
+        ),
     ],
 )

@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.core import mail
+from django.urls import reverse
 
 import pytest
 import responses
@@ -392,8 +393,9 @@ class TestSendSuppressedEmailConfirmation(TestCase):
         assert len(mail.outbox) == 1
 
         expected_confirmation_link = (
-            # TODO: replace with reverse devhub.email_verification
-            '' + '?code=' + str(verification.confirmation_code)
+            reverse('devhub.email_verification')
+            + '?code='
+            + str(verification.confirmation_code)
         )
         assert expected_confirmation_link in mail.outbox[0].body
         assert str(verification.confirmation_code)[-5:] in mail.outbox[0].subject
