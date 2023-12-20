@@ -688,6 +688,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def suppressed_email(self):
         return SuppressedEmail.objects.filter(email=self.email).first()
 
+    @property
+    def email_verification(self):
+        return SuppressedEmailVerification.objects.filter(
+            suppressed_email=self.suppressed_email
+        ).first()
+
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(
