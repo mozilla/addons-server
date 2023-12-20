@@ -1570,3 +1570,21 @@ class TestSuppressedEmailVerification(TestCase):
             SuppressedEmailVerification.objects.create(
                 suppressed_email=self.suppressed_email, status='invalid'
             )
+
+    def test_is_expired(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+        assert not email_verification.is_expired
+
+        with freeze_time(email_verification.created + timedelta(days=31)):
+            assert email_verification.is_expired
+
+    def test_is_timedout(self):
+        email_verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=self.suppressed_email
+        )
+        assert not email_verification.is_timedout
+
+        with freeze_time(email_verification.created + timedelta(seconds=31)):
+            assert email_verification.is_timedout

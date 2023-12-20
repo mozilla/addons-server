@@ -1379,3 +1379,11 @@ class SuppressedEmailVerification(ModelBase):
     @property
     def expiration(self):
         return self.created + timedelta(days=30)
+
+    @property
+    def is_expired(self):
+        return self.expiration < datetime.now()
+
+    @property
+    def is_timedout(self):
+        return self.created + timedelta(seconds=30) < datetime.now()
