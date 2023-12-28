@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-15 16:10+0000\n"
+"PO-Revision-Date: 2023-12-28 09:43+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1221,7 +1221,7 @@ msgid "Solid"
 msgstr "固體"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "下載具有純色和漸層色的 Firefox 佈景主題，讓瀏覽器更有您的風格。此分類包含大膽的紅色、粉彩、柔和的灰色等佈景主題。"
 
 msgid "Sports"
 msgstr "體育"
@@ -1233,7 +1233,7 @@ msgid "Websites"
 msgstr "網站"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "下載捕捉了網路精髓的 Firefox 佈景主題 — 迷人、不同凡響、與眾不同。"
 
 msgid "General"
 msgstr "一般"
@@ -3511,7 +3511,7 @@ msgstr "自訂任何網站外觀！頁面顏色、背景等等皆可調整。"
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab page to display a preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "自訂您的「新分頁」頁面，依照需求調整要顯示的方塊數量、背景圖像等。"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
