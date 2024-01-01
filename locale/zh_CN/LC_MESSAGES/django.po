@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-08 15:57+0000\n"
+"PO-Revision-Date: 2024-01-01 19:14+0000\n"
 "Last-Translator: Olvcpr423 <oliverchan86@outlook.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -4226,7 +4226,7 @@ msgstr "授人玫瑰，手有余香。"
 
 #. editorial content for the primary hero shelves.
 msgid "Translate websites in Firefox — privately — without using the cloud."
-msgstr "在 Firefox 中——私密地而非通过云服务——翻译网站。"
+msgstr "在 Firefox 中私密地翻译网站，不使用云服务。"
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
