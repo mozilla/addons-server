@@ -127,11 +127,11 @@ class CinderJob(ModelBase):
     def report(cls, abuse_report):
         report_entity = CinderReport(abuse_report)
         reporter_entity = cls.get_cinder_reporter(abuse_report)
-        job_id = cls.get_entity_helper(abuse_report).report(
-            report=report_entity, reporter=reporter_entity
-        )
+        entity_helper = cls.get_entity_helper(abuse_report)
+        job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
         cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
         abuse_report.update(cinder_job=cinder_job)
+        entity_helper.report_additional_context()
 
     def process_decision(
         self, *, decision_id, decision_date, decision_action, policy_ids

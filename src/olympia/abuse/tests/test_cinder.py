@@ -1,3 +1,4 @@
+import json
 import os.path
 import random
 from unittest import mock
@@ -37,6 +38,7 @@ from ..cinder import (
 
 class BaseTestCinderCase:
     cinder_class = None  # Override in child classes
+    expected_queries_for_report = -1  # Override in child classes
 
     @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
     def test_queue(self):
@@ -83,9 +85,15 @@ class BaseTestCinderCase:
         abuse_report = AbuseReport.objects.create(
             **self._guess_abuse_report_kwargs(target)
         )
+        # Force a reload on the abuse report and use abuse_report.target to
+        # clear any caching on the target, to force assertNumQueries to count
+        # queries for related objects on the target we might already have
+        # loaded before.
+        abuse_report.reload()
         report = CinderReport(abuse_report)
-        cinder_instance = self.cinder_class(target)
-        assert cinder_instance.report(report=report, reporter=None) == '1234-xyz'
+        cinder_instance = self.cinder_class(abuse_report.target)
+        with self.assertNumQueries(self.expected_queries_for_report):
+            assert cinder_instance.report(report=report, reporter=None) == '1234-xyz'
         assert (
             cinder_instance.report(report=report, reporter=CinderUser(user_factory()))
             == '1234-xyz'
@@ -145,6 +153,11 @@ class BaseTestCinderCase:
 
 class TestCinderAddon(BaseTestCinderCase, TestCase):
     cinder_class = CinderAddon
+    # 2 queries expected:
+    # - Authors (can't use the listed_authors transformer, we want non-listed as well,
+    #            and we have custom limits for batch-sending relationships)
+    # - Promoted add-on
+    expected_queries_for_report = 2
 
     def _create_dummy_target(self, **kwargs):
         return addon_factory(**kwargs)
@@ -159,7 +172,6 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         message = 'bad addon!'
         cinder_addon = self.cinder_class(addon)
         abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
-
         data = cinder_addon.build_report_payload(
             report=CinderReport(abuse_report), reporter=None
         )
@@ -645,9 +657,221 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             },
         }
 
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_build_report_payload_only_includes_first_batch_of_relationships(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.cinder_class(addon)
+        message = 'report for lots of relationships'
+        abuse_report = AbuseReport.objects.create(guid=addon.guid, message=message)
+        data = cinder_addon.build_report_payload(
+            report=CinderReport(abuse_report),
+            reporter=None,
+        )
+        # 2 addon<->user (out of 6) + 1 anonymous report
+        assert len(data['context']['relationships']) == 3
+        assert len(data['context']['entities']) == 3
+        first_author = addon.authors.all()[0]
+        second_author = addon.authors.all()[1]
+        assert data['context'] == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(first_author.created),
+                        'email': str(first_author.email),
+                        'fxa_id': None,
+                        'id': str(first_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(second_author.created),
+                        'email': str(second_author.email),
+                        'fxa_id': None,
+                        'id': str(second_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': 'report for lots of relationships',
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(first_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(second_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.cinder_class(addon)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}graph/',
+            status=202,
+        )
+
+        cinder_addon.report_additional_context()
+        assert len(responses.calls) == 2
+        data = json.loads(responses.calls[0].request.body)
+        # The first 2 authors should be skipped, they would have been sent with
+        # the main report request.
+        third_author = addon.authors.all()[2]
+        fourth_author = addon.authors.all()[3]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(third_author.created),
+                        'email': str(third_author.email),
+                        'fxa_id': None,
+                        'id': str(third_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(fourth_author.created),
+                        'email': str(fourth_author.email),
+                        'fxa_id': None,
+                        'id': str(fourth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(third_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(fourth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+        data = json.loads(responses.calls[1].request.body)
+        fifth_author = addon.authors.all()[4]
+        sixth_author = addon.authors.all()[5]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(fifth_author.created),
+                        'email': str(fifth_author.email),
+                        'fxa_id': None,
+                        'id': str(fifth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(sixth_author.created),
+                        'email': str(sixth_author.email),
+                        'fxa_id': None,
+                        'id': str(sixth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(fifth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(sixth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context_error(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.cinder_class(addon)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}graph/',
+            status=400,
+        )
+
+        with self.assertRaises(ConnectionError):
+            cinder_addon.report_additional_context()
+
 
 class TestCinderAddonHandledByReviewers(TestCinderAddon):
     cinder_class = CinderAddonHandledByReviewers
+    # Expected queries is a bit larger here because of activity log and
+    # needs human review checks + insertion.
+    # - 1 Fetch Version
+    # - 2 Fetch Translations for that Version
+    # - 3 Fetch NeedsHumanReview
+    # - 4 Fetch (task) User
+    # - 5 Create ActivityLog
+    # - 6 Create ActivityLogComment
+    # - 7 Create ActivityLogComment
+    # - 8 Create VersionLog
+    # - 9 Create NeedsHumanReview
+    # - 10 Fetch Versions to flag
+    # - 11 Update due date on Versions
+    # - 12 Fetch Latest signed Version
+    # The last 2 are for rendering the payload to Cinder like CinderAddon:
+    # - 13 Fetch Addon authors
+    # - 14 Fetch Promoted Addon
+    expected_queries_for_report = 14
 
     @override_settings(CINDER_QUEUE_PREFIX='amo-env-')
     def test_queue(self):
@@ -716,6 +940,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
 class TestCinderUser(BaseTestCinderCase, TestCase):
     cinder_class = CinderUser
+    # 2 queries expected:
+    # - Related add-ons
+    # - Number of listed add-ons
+    expected_queries_for_report = 2
 
     def _create_dummy_target(self, **kwargs):
         return user_factory(**kwargs)
@@ -1131,9 +1359,222 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
             'some_remote_path.png',
         )
 
+    @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_build_report_payload_only_includes_first_batch_of_relationships(self):
+        user = self._create_dummy_target()
+        for _ in range(0, 6):
+            user.addons.add(addon_factory())
+        cinder_user = self.cinder_class(user)
+        message = 'report for lots of relationships'
+        abuse_report = AbuseReport.objects.create(user=user, message=message)
+        data = cinder_user.build_report_payload(
+            report=CinderReport(abuse_report),
+            reporter=None,
+        )
+        # 2 user<->addon (out of 6) + 1 anonymous report
+        assert len(data['context']['relationships']) == 3
+        assert len(data['context']['entities']) == 3
+        first_addon = user.addons.all()[0]
+        second_addon = user.addons.all()[1]
+        assert data['context'] == {
+            'entities': [
+                {
+                    'attributes': {
+                        'average_daily_users': first_addon.average_daily_users,
+                        'guid': str(first_addon.guid),
+                        'id': str(first_addon.pk),
+                        'last_updated': str(first_addon.last_updated),
+                        'name': str(first_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(first_addon.slug),
+                        'summary': str(first_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+                {
+                    'attributes': {
+                        'average_daily_users': second_addon.average_daily_users,
+                        'guid': str(second_addon.guid),
+                        'id': str(second_addon.pk),
+                        'last_updated': str(second_addon.last_updated),
+                        'name': str(second_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(second_addon.slug),
+                        'summary': str(second_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': None,
+                        'message': 'report for lots of relationships',
+                        'reason': None,
+                    },
+                    'entity_type': 'amo_report',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(first_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(second_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(user.pk),
+                    'target_type': 'amo_user',
+                },
+            ],
+        }
+
+    @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context(self):
+        user = self._create_dummy_target()
+        for _ in range(0, 6):
+            user.addons.add(addon_factory())
+        cinder_user = self.cinder_class(user)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}graph/',
+            status=202,
+        )
+
+        cinder_user.report_additional_context()
+        assert len(responses.calls) == 2
+        data = json.loads(responses.calls[0].request.body)
+        # The first 2 addons should be skipped, they would have been sent with
+        # the main report request.
+        third_addon = user.addons.all()[2]
+        fourth_addon = user.addons.all()[3]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'average_daily_users': third_addon.average_daily_users,
+                        'guid': str(third_addon.guid),
+                        'id': str(third_addon.pk),
+                        'last_updated': str(third_addon.last_updated),
+                        'name': str(third_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(third_addon.slug),
+                        'summary': str(third_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+                {
+                    'attributes': {
+                        'average_daily_users': fourth_addon.average_daily_users,
+                        'guid': str(fourth_addon.guid),
+                        'id': str(fourth_addon.pk),
+                        'last_updated': str(fourth_addon.last_updated),
+                        'name': str(fourth_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(fourth_addon.slug),
+                        'summary': str(fourth_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(third_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(fourth_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+        data = json.loads(responses.calls[1].request.body)
+        fifth_addon = user.addons.all()[4]
+        sixth_addon = user.addons.all()[5]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'average_daily_users': fifth_addon.average_daily_users,
+                        'guid': str(fifth_addon.guid),
+                        'id': str(fifth_addon.pk),
+                        'last_updated': str(fifth_addon.last_updated),
+                        'name': str(fifth_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(fifth_addon.slug),
+                        'summary': str(fifth_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+                {
+                    'attributes': {
+                        'average_daily_users': sixth_addon.average_daily_users,
+                        'guid': str(sixth_addon.guid),
+                        'id': str(sixth_addon.pk),
+                        'last_updated': str(sixth_addon.last_updated),
+                        'name': str(sixth_addon.name),
+                        'promoted_badge': '',
+                        'slug': str(sixth_addon.slug),
+                        'summary': str(sixth_addon.summary),
+                    },
+                    'entity_type': 'amo_addon',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(fifth_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(user.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(sixth_addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+
+    @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context_error(self):
+        user = self._create_dummy_target()
+        for _ in range(0, 6):
+            user.addons.add(addon_factory())
+        cinder_user = self.cinder_class(user)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}graph/',
+            status=400,
+        )
+
+        with self.assertRaises(ConnectionError):
+            cinder_user.report_additional_context()
+
 
 class TestCinderRating(BaseTestCinderCase, TestCase):
     cinder_class = CinderRating
+    expected_queries_for_report = 1  # For the author
 
     def setUp(self):
         self.user = user_factory()
@@ -1354,6 +1795,7 @@ class TestCinderRating(BaseTestCinderCase, TestCase):
 
 class TestCinderCollection(BaseTestCinderCase, TestCase):
     cinder_class = CinderCollection
+    expected_queries_for_report = 1  # For the author
 
     def setUp(self):
         self.user = user_factory()

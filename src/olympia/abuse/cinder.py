@@ -9,6 +9,7 @@ import requests
 from olympia import amo
 from olympia.amo.utils import (
     backup_storage_enabled,
+    chunked,
     copy_file_to_backup_storage,
     create_signed_url_for_file_backup,
 )
@@ -18,6 +19,8 @@ class CinderEntity:
     # This queue is for reports that T&S / TaskUs look at
     _queue = 'content-infringement'
     type = None  # Needs to be defined by subclasses
+    # Number of relationships to send by default in each Cinder request.
+    RELATIONSHIPS_BATCH_SIZE = 25
 
     @classproperty
     def queue(cls):
@@ -34,8 +37,11 @@ class CinderEntity:
     def get_attributes(self):
         raise NotImplementedError
 
-    def get_context(self):
+    def get_context_generator(self):
         raise NotImplementedError
+
+    def get_empty_context(self):
+        return {'entities': [], 'relationships': []}
 
     def get_entity_data(self):
         return {'entity_type': self.type, 'attributes': self.get_attributes()}
@@ -56,8 +62,16 @@ class CinderEntity:
         # are typically returned there instead of in get_attributes().
         return {}
 
+    def get_cinder_http_headers(self):
+        return {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+
     def build_report_payload(self, *, report, reporter):
-        context = self.get_context()
+        generator = self.get_context_generator()
+        context = next(generator, self.get_empty_context())
         if report:
             context['entities'] += [report.get_entity_data()]
             context['relationships'] += [
@@ -89,28 +103,34 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}create_report'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
         data = self.build_report_payload(report=report, reporter=reporter)
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('job_id')
         else:
             raise ConnectionError(response.content)
+
+    def report_additional_context(self):
+        context_generator = self.get_context_generator()
+        # This is a new generator, so advance it once to avoid re-sending the
+        # context already sent as part of the report.
+        next(context_generator, {})
+
+        for data in context_generator:
+            # Note: Cinder URLS are inconsistent. Per their documentation, that
+            # one needs a trailing slash.
+            url = f'{settings.CINDER_SERVER_URL}graph/'
+            response = requests.post(
+                url, json=data, headers=self.get_cinder_http_headers()
+            )
+            if response.status_code != 202:
+                raise ConnectionError(response.content)
 
     def appeal(self, *, decision_id, appeal_text, appealer):
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}appeal'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
         data = {
             'queue_slug': self.queue,
             'appealer_entity_type': appealer.type,
@@ -118,7 +138,7 @@ class CinderEntity:
             'reasoning': appeal_text,
             'decision_to_appeal_id': decision_id,
         }
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('external_id')
         else:
@@ -130,6 +150,9 @@ class CinderUser(CinderEntity):
 
     def __init__(self, user):
         self.user = user
+        self.related_addons = (
+            self.user.addons.all().only_translations().select_related('promotedaddon')
+        )
 
     @property
     def id(self):
@@ -170,22 +193,16 @@ class CinderUser(CinderEntity):
         )
         return data
 
-    def get_context(self):
-        cinder_addons = [
-            CinderAddon(addon)
-            for addon in self.user.addons.all()
-            .only_translations()
-            .select_related('promotedaddon')
-        ]
-        return {
-            'entities': [
-                cinder_addon.get_entity_data() for cinder_addon in cinder_addons
-            ],
-            'relationships': [
-                self.get_relationship_data(cinder_addon, 'amo_author_of')
-                for cinder_addon in cinder_addons
-            ],
-        }
+    def get_context_generator(self):
+        cinder_addons = [CinderAddon(addon) for addon in self.related_addons]
+        for chunk in chunked(cinder_addons, self.RELATIONSHIPS_BATCH_SIZE):
+            yield {
+                'entities': [cinder_addon.get_entity_data() for cinder_addon in chunk],
+                'relationships': [
+                    self.get_relationship_data(cinder_addon, 'amo_author_of')
+                    for cinder_addon in chunk
+                ],
+            }
 
 
 class CinderUnauthenticatedReporter(CinderEntity):
@@ -202,9 +219,6 @@ class CinderUnauthenticatedReporter(CinderEntity):
             'email': self.email,
         }
 
-    def get_context(self):
-        return {}
-
     def report(self, *args, **kwargs):
         # It doesn't make sense to report a non fxa user
         raise NotImplementedError
@@ -220,6 +234,7 @@ class CinderAddon(CinderEntity):
     def __init__(self, addon, version=None):
         self.addon = addon
         self.version = version
+        self.related_users = self.addon.authors.all()
 
     @property
     def id(self):
@@ -261,16 +276,15 @@ class CinderAddon(CinderEntity):
                         'mime_type': icon_type,
                     }
             previews = []
-            preview_objs = list(self.addon.previews.all()) + list(
-                # For themes, we automatically generate 2 previews with
-                # different sizes and format, we only need to expose one.
-                self.addon.current_version.previews.all().filter(
-                    position=amo.THEME_PREVIEW_RENDERINGS['amo']['position']
-                )
-                if self.addon.current_version
-                else []
-            )
-            for preview in preview_objs:
+            for preview in self.addon.current_previews:
+                if (
+                    self.addon.type == amo.ADDON_STATICTHEME
+                    and preview.position
+                    != amo.THEME_PREVIEW_RENDERINGS['amo']['position']
+                ):
+                    # For themes, we automatically generate 2 previews with
+                    # different sizes and format, we only need to expose one.
+                    continue
                 content_type, _ = mimetypes.guess_type(preview.thumbnail_path)
                 if content_type and storage.exists(preview.thumbnail_path):
                     filename = copy_file_to_backup_storage(
@@ -301,15 +315,16 @@ class CinderAddon(CinderEntity):
         data['support_url'] = self.get_str(self.addon.support_url) or None
         return data
 
-    def get_context(self):
-        cinder_users = [CinderUser(author) for author in self.addon.authors.all()]
-        return {
-            'entities': [cinder_user.get_entity_data() for cinder_user in cinder_users],
-            'relationships': [
-                cinder_user.get_relationship_data(self, 'amo_author_of')
-                for cinder_user in cinder_users
-            ],
-        }
+    def get_context_generator(self):
+        cinder_users = [CinderUser(author) for author in self.related_users]
+        for chunk in chunked(cinder_users, self.RELATIONSHIPS_BATCH_SIZE):
+            yield {
+                'entities': [cinder_user.get_entity_data() for cinder_user in chunk],
+                'relationships': [
+                    cinder_user.get_relationship_data(self, 'amo_author_of')
+                    for cinder_user in chunk
+                ],
+            }
 
 
 class CinderRating(CinderEntity):
@@ -329,7 +344,7 @@ class CinderRating(CinderEntity):
             'score': self.rating.rating,
         }
 
-    def get_context(self):
+    def get_context_generator(self):
         # Note: we are not currently sending the add-on the rating is for as
         # part of the context.
         cinder_user = CinderUser(self.rating.user)
@@ -345,7 +360,7 @@ class CinderRating(CinderEntity):
             context['relationships'].append(
                 cinder_reply_to.get_relationship_data(self, 'amo_rating_reply_to')
             )
-        return context
+        yield context
 
 
 class CinderCollection(CinderEntity):
@@ -370,9 +385,9 @@ class CinderCollection(CinderEntity):
             'slug': self.collection.slug,
         }
 
-    def get_context(self):
+    def get_context_generator(self):
         cinder_user = CinderUser(self.collection.author)
-        return {
+        yield {
             'entities': [cinder_user.get_entity_data()],
             'relationships': [
                 cinder_user.get_relationship_data(self, 'amo_collection_author_of')
