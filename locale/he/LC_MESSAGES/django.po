@@ -118,9 +118,8 @@ msgstr "יש לך צורך בעזרה?"
 msgid "Notification [%s] does not exist"
 msgstr "התראה [%s] לא קיימת"
 
-#, fuzzy
 msgid "Add-ons Review Team"
-msgstr "מדריך סקירת תוספות"
+msgstr ""
 
 msgid "Review"
 msgstr "סקירה"
