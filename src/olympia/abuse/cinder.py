@@ -150,6 +150,9 @@ class CinderUser(CinderEntity):
 
     def __init__(self, user):
         self.user = user
+        self.related_addons = (
+            self.user.addons.all().only_translations().select_related('promotedaddon')
+        )
 
     @property
     def id(self):
@@ -191,12 +194,7 @@ class CinderUser(CinderEntity):
         return data
 
     def get_context_generator(self):
-        cinder_addons = [
-            CinderAddon(addon)
-            for addon in self.user.addons.all()
-            .only_translations()
-            .select_related('promotedaddon')
-        ]
+        cinder_addons = [CinderAddon(addon) for addon in self.related_addons]
         for chunk in chunked(cinder_addons, self.RELATIONSHIPS_BATCH_SIZE):
             yield {
                 'entities': [cinder_addon.get_entity_data() for cinder_addon in chunk],
@@ -236,6 +234,7 @@ class CinderAddon(CinderEntity):
     def __init__(self, addon, version=None):
         self.addon = addon
         self.version = version
+        self.related_users = self.addon.authors.all()
 
     @property
     def id(self):
@@ -317,7 +316,7 @@ class CinderAddon(CinderEntity):
         return data
 
     def get_context_generator(self):
-        cinder_users = [CinderUser(author) for author in self.addon.authors.all()]
+        cinder_users = [CinderUser(author) for author in self.related_users]
         for chunk in chunked(cinder_users, self.RELATIONSHIPS_BATCH_SIZE):
             yield {
                 'entities': [cinder_user.get_entity_data() for cinder_user in chunk],
