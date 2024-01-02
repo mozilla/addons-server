@@ -496,9 +496,8 @@ msgstr ""
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
-#, fuzzy
 msgid "Confirmation for developer API keys"
-msgstr "מידע נוסף על חשבונות מפתחים"
+msgstr ""
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "הכתובת המותאמת אישית הזאת כבר בשימוש על־ידי אחד משאר האוספים שלך."
