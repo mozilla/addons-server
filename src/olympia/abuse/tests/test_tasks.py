@@ -259,6 +259,83 @@ def test_addon_report_to_cinder():
 
 
 @pytest.mark.django_db
+def test_addon_report_to_cinder_different_locale():
+    names = {
+        'fr': 'French näme',
+        'en-US': 'English näme',
+    }
+    addon = addon_factory(name=names, slug='my-addon', default_locale='en-US')
+    abuse_report = AbuseReport.objects.create(
+        guid=addon.guid,
+        reason=AbuseReport.REASONS.ILLEGAL,
+        message='This is bad',
+        application_locale='fr',
+    )
+    assert not CinderJob.objects.exists()
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_report',
+        json={'job_id': '1234-xyz'},
+        status=201,
+    )
+
+    report_to_cinder.delay(abuse_report.id)
+
+    request = responses.calls[0].request
+    assert request.headers['authorization'] == 'Bearer fake-test-token'
+    assert json.loads(request.body) == {
+        'context': {
+            'entities': [
+                {
+                    'attributes': {
+                        'id': str(abuse_report.pk),
+                        'locale': 'fr',
+                        'message': 'This is bad',
+                        'reason': 'DSA: It violates the law '
+                        'or contains content that '
+                        'violates the law',
+                    },
+                    'entity_type': 'amo_report',
+                }
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_report_of',
+                    'source_id': str(abuse_report.pk),
+                    'source_type': 'amo_report',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                }
+            ],
+        },
+        'entity': {
+            'id': str(addon.id),
+            'average_daily_users': addon.average_daily_users,
+            'description': '',
+            'guid': addon.guid,
+            'homepage': None,
+            'last_updated': str(addon.last_updated),
+            'name': str(names['fr']),
+            'release_notes': '',
+            'promoted_badge': '',
+            'slug': addon.slug,
+            'summary': str(addon.summary),
+            'support_email': None,
+            'support_url': None,
+            'version': str(addon.current_version.version),
+        },
+        'entity_type': 'amo_addon',
+        'queue_slug': 'amo-dev-content-infringement',
+        'reasoning': 'This is bad',
+    }
+
+    assert CinderJob.objects.count() == 1
+    cinder_job = CinderJob.objects.get()
+    assert abuse_report.reload().cinder_job == cinder_job
+    assert cinder_job.job_id == '1234-xyz'
+
+
+@pytest.mark.django_db
 def test_addon_appeal_to_cinder():
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
