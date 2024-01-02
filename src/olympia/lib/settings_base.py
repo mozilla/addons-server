@@ -1318,6 +1318,9 @@ API_KEY_CONFIRMATION_DELAY = None
 # Default cache duration for the API, in seconds.
 API_CACHE_DURATION = 3 * 60
 
+# Default cache duration for the API on services.a.m.o., in seconds.
+API_CACHE_DURATION_SERVICES = 60 * 60
+
 # JWT authentication related settings:
 JWT_AUTH = {
     # Use HMAC using SHA-256 hash algorithm. It should be the default, but we
