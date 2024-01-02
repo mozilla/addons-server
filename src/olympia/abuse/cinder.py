@@ -62,6 +62,13 @@ class CinderEntity:
         # are typically returned there instead of in get_attributes().
         return {}
 
+    def get_cinder_http_headers(self):
+        return {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+
     def build_report_payload(self, *, report, reporter):
         generator = self.get_context_generator()
         context = next(generator, self.get_empty_context())
@@ -96,13 +103,8 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}create_report'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
         data = self.build_report_payload(report=report, reporter=reporter)
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('job_id')
         else:
@@ -113,16 +115,14 @@ class CinderEntity:
         # This is a new generator, so advance it once to avoid re-sending the
         # context already sent as part of the report.
         next(context_generator, {})
+
         for data in context_generator:
             # Note: Cinder URLS are inconsistent. Per their documentation, that
             # one needs a trailing slash.
             url = f'{settings.CINDER_SERVER_URL}graph/'
-            headers = {
-                'accept': 'application/json',
-                'content-type': 'application/json',
-                'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-            }
-            response = requests.post(url, json=data, headers=headers)
+            response = requests.post(
+                url, json=data, headers=self.get_cinder_http_headers()
+            )
             if response.status_code != 202:
                 raise ConnectionError(response.content)
 
@@ -131,11 +131,6 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}appeal'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
         data = {
             'queue_slug': self.queue,
             'appealer_entity_type': appealer.type,
@@ -143,7 +138,7 @@ class CinderEntity:
             'reasoning': appeal_text,
             'decision_to_appeal_id': decision_id,
         }
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('external_id')
         else:
