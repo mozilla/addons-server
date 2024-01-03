@@ -16,8 +16,8 @@ from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..models import AbuseReport, CinderJob, CinderJobAppeal
-from ..tasks import appeal_to_cinder, report_to_cinder
+from ..models import AbuseReport, CinderJob, CinderJobAppeal, CinderPolicy
+from ..tasks import appeal_to_cinder, report_to_cinder, resolve_job_in_cinder
 
 
 def addon_factory_with_abuse_reports(*args, **kwargs):
@@ -422,3 +422,42 @@ def test_addon_appeal_to_cinder_authenticated():
     appeal = CinderJobAppeal.objects.get()
     assert appeal.appeal_id == '2432615184-xyz'
     assert appeal.abuse_report == abuse_report
+
+
+@pytest.mark.django_db
+def test_resolve_job_in_cinder():
+    cinder_job = CinderJob.objects.create(job_id='999')
+    abuse_report = AbuseReport.objects.create(
+        guid=addon_factory().guid,
+        reason=AbuseReport.REASONS.POLICY_VIOLATION,
+        location=AbuseReport.LOCATION.AMO,
+        cinder_job=cinder_job,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}create_decision',
+        json={'uuid': '123'},
+        status=201,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
+        json={'external_id': cinder_job.job_id},
+        status=200,
+    )
+    policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
+
+    resolve_job_in_cinder.delay(
+        cinder_job_id=cinder_job.id,
+        review_text='some text',
+        decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        policy_ids=[policy.id],
+    )
+
+    request = responses.calls[0].request
+    request_body = json.loads(request.body)
+    assert request_body['policy_uuids'] == ['12345678']
+    assert request_body['reasoning'] == 'some text'
+    assert request_body['entity']['id'] == str(abuse_report.target.id)
+    cinder_job.reload()
+    assert cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON

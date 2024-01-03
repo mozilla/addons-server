@@ -144,6 +144,42 @@ class CinderEntity:
         else:
             raise ConnectionError(response.content)
 
+    def create_decision(self, *, review_text, policy_uuids):
+        if self.type is None:
+            # type needs to be defined by subclasses
+            raise NotImplementedError
+        url = f'{settings.CINDER_SERVER_URL}create_decision'
+        headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+        data = {
+            'queue_slug': self.queue,
+            'entity_type': self.type,
+            'entity': self.get_attributes(),
+            'reasoning': review_text,
+            'policy_uuids': policy_uuids,
+        }
+        response = requests.post(url, json=data, headers=headers)
+        if response.status_code == 201:
+            return response.json().get('uuid')
+        else:
+            raise ConnectionError(response.content)
+
+    def close_job(self, *, job_id):
+        url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'
+        headers = {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
+        }
+        response = requests.post(url, headers=headers)
+        if response.status_code == 200:
+            return response.json().get('external_id')
+        else:
+            raise ConnectionError(response.content)
+
 
 class CinderUser(CinderEntity):
     type = 'amo_user'
