@@ -104,4 +104,4 @@ CINDER_API_TOKEN = 'fake-test-token'
 
 SOCKET_LABS_TOKEN = 'fake-test-token'
 SOCKET_LABS_SERVER_ID = '12345'
-SOCKET_LABS_HOST = 'https://fake-socketlabs.com/v1'
+SOCKET_LABS_HOST = 'https://fake-socketlabs.com/v1/'

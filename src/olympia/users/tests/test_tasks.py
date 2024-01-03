@@ -1,23 +1,37 @@
 import csv
 import io
+import json
 import shutil
 import tempfile
 import uuid
 from unittest import mock
+from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
+from django.core import mail
 
 import pytest
 import responses
 from celery.exceptions import Retry
+from freezegun import freeze_time
 from PIL import Image
 from requests.exceptions import Timeout
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import SafeStorage
-from olympia.users.models import BannedUserContent, SuppressedEmail
-from olympia.users.tasks import delete_photo, resize_photo, sync_blocked_emails
+from olympia.users.models import (
+    BannedUserContent,
+    SuppressedEmail,
+    SuppressedEmailVerification,
+)
+from olympia.users.tasks import (
+    check_suppressed_email_confirmation,
+    delete_photo,
+    resize_photo,
+    send_suppressed_email_confirmation,
+    sync_blocked_emails,
+)
 
 
 pytestmark = pytest.mark.django_db
@@ -195,10 +209,21 @@ static_id = uuid.uuid4()
 
 
 class TestSuppressedEmail(TestCase):
+    def test_fails_missing_settings(self):
+        for setting in (
+            'SOCKET_LABS_TOKEN',
+            'SOCKET_LABS_HOST',
+            'SOCKET_LABS_SERVER_ID',
+        ):
+            with pytest.raises(Exception) as exc:
+                setattr(settings, setting, None)
+                sync_blocked_emails.s().apply(throw=True)
+                assert exc.match('SOCKET_LABS_TOKEN is not defined')
+
     def test_retry_if_api_returns_bad_response(self):
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             status=500,
         )
 
@@ -213,7 +238,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add_callback(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             callback=timeout_callback,
         )
 
@@ -227,7 +252,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )
@@ -243,7 +268,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )
@@ -264,7 +289,7 @@ class TestSuppressedEmail(TestCase):
 
         responses.add(
             responses.GET,
-            f'{settings.SOCKET_LABS_HOST}/servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/suppressions/download?sortField=suppressionLastUpdate&sortDirection=dsc',
             body=csv,
             status=200,
         )
@@ -275,3 +300,433 @@ class TestSuppressedEmail(TestCase):
 
         assert email_block.email == user.email
         assert SuppressedEmail.objects.count() == 1
+
+
+class TestSendSuppressedEmailConfirmation(TestCase):
+    def setUp(self):
+        self.user_profile = user_factory()
+
+    def test_fails_missing_settings(self):
+        for setting in (
+            'SOCKET_LABS_TOKEN',
+            'SOCKET_LABS_HOST',
+            'SOCKET_LABS_SERVER_ID',
+        ):
+            with pytest.raises(Exception) as exc:
+                setattr(settings, setting, None)
+                send_suppressed_email_confirmation.apply(1)
+                assert exc.match('SOCKET_LABS_TOKEN is not defined')
+
+    def test_invalid_suppressed_email(self):
+        assert SuppressedEmailVerification.objects.all().count() == 0
+        invalid_id = 1
+
+        with pytest.raises(Exception, match=f'invalid id: {invalid_id}'):
+            send_suppressed_email_confirmation.apply([invalid_id])
+
+    @mock.patch('olympia.users.tasks.check_suppressed_email_confirmation')
+    def test_socket_labs_returns_404(self, mock_check_suppressed_email_confirmation):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            )
+        )
+
+        responses.add(
+            responses.DELETE,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'suppressions/remove?emailAddress={verification.suppressed_email.email}'
+            ),
+            status=404,
+        )
+
+        mock_check_suppressed_email_confirmation.delay.return_value = None
+
+        try:
+            send_suppressed_email_confirmation.apply([verification.id])
+        except Exception as err:
+            pytest.fail('Unexpected exception: {0}'.format(err))
+
+        assert mock_check_suppressed_email_confirmation.delay.call_count == 1
+
+    def test_socket_labs_returns_5xx(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            )
+        )
+
+        responses.add(
+            responses.DELETE,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'suppressions/remove?emailAddress={verification.suppressed_email.email}'
+            ),
+            status=500,
+        )
+
+        with pytest.raises(Retry):
+            send_suppressed_email_confirmation.apply([verification.id])
+
+    @mock.patch('olympia.users.tasks.check_suppressed_email_confirmation')
+    def test_email_sent(self, mock_check_suppressed_email_confirmation):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            )
+        )
+        responses.add(
+            responses.DELETE,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'suppressions/remove?emailAddress={verification.suppressed_email.email}'
+            ),
+            status=201,
+        )
+
+        mock_check_suppressed_email_confirmation.delay.return_value = None
+
+        send_suppressed_email_confirmation.apply([verification.id])
+
+        assert len(mail.outbox) == 1
+
+        expected_confirmation_link = (
+            # TODO: replace with reverse devhub.email_verification
+            '' + '?code=' + str(verification.confirmation_code)
+        )
+        assert expected_confirmation_link in mail.outbox[0].body
+        assert str(verification.confirmation_code)[-5:] in mail.outbox[0].subject
+        assert mock_check_suppressed_email_confirmation.delay.call_count == 1
+
+    @mock.patch('olympia.users.tasks.check_suppressed_email_confirmation')
+    def test_retry_existing_verification(
+        self,
+        mock_check_suppressed_email_confirmation,
+    ):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+            status=SuppressedEmailVerification.STATUS_CHOICES.Failed,
+        )
+
+        responses.add(
+            responses.DELETE,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'suppressions/remove?emailAddress={verification.suppressed_email.email}'
+            ),
+            status=201,
+        )
+
+        mock_check_suppressed_email_confirmation.delay.return_value = None
+
+        assert verification.status == SuppressedEmailVerification.STATUS_CHOICES.Failed
+        send_suppressed_email_confirmation.apply([verification.id])
+        assert (
+            verification.reload().status
+            == SuppressedEmailVerification.STATUS_CHOICES.Pending
+        )
+
+
+class TestCheckSuppressedEmailConfirmation(TestCase):
+    def setUp(self):
+        self.user_profile = user_factory()
+
+    def test_fails_missing_settings(self):
+        for setting in (
+            'SOCKET_LABS_TOKEN',
+            'SOCKET_LABS_HOST',
+            'SOCKET_LABS_SERVER_ID',
+        ):
+            with pytest.raises(Exception) as exc:
+                setattr(settings, setting, None)
+                check_suppressed_email_confirmation.apply(1)
+                assert exc.match('SOCKET_LABS_TOKEN is not defined')
+
+    def test_no_verification_for_id(self):
+        invalid_id = 1
+
+        assert SuppressedEmailVerification.objects.all().count() == 0
+
+        with pytest.raises(
+            Exception,
+            match=f'invalid id: {invalid_id}',
+        ):
+            check_suppressed_email_confirmation.apply([invalid_id])
+
+    def test_socket_labs_returns_5xx(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=500,
+        )
+
+        with pytest.raises(Retry):
+            check_suppressed_email_confirmation.apply([verification.id])
+
+    def test_auth_header_present(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        with pytest.raises(Retry):
+            check_suppressed_email_confirmation.apply([verification.id])
+
+        assert (
+            settings.SOCKET_LABS_TOKEN
+            in responses.calls[0].request.headers['authorization']
+        )
+
+    @freeze_time('2023-06-26 11:00')
+    def test_format_date_params(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        responses.add(
+            responses.GET,
+            (
+                f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+                f'reports/recipient-search/'
+            ),
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [],
+                    'total': 0,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        with pytest.raises(Retry):
+            check_suppressed_email_confirmation.apply([verification.id])
+
+        parsed_url = urlparse(responses.calls[0].request.url)
+        search_params = parse_qs(parsed_url.query)
+
+        assert search_params['startDate'][0] == '2023-06-25T00:00:00+0100'
+        assert search_params['endDate'][0] == '2023-06-27T11:00:00+0100'
+
+    def test_pagination(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        response_size = 5
+
+        body = [{'subject': 'test'} for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [
+                        {
+                            'subject': f'test {code_snippet}',
+                            'status': 'Delivered',
+                        }
+                    ],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation.apply([verification.id, response_size])
+
+        assert len(responses.calls) == 2
+
+    def test_found_email(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        response_size = 5
+
+        body = [{'subject': 'test'} for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [
+                        {
+                            'subject': f'test {code_snippet}',
+                            'status': 'Delivered',
+                        }
+                    ],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        check_suppressed_email_confirmation.apply([verification.id, response_size])
+
+        assert (
+            verification.reload().status
+            == SuppressedEmailVerification.STATUS_CHOICES.Delivered
+        )
+
+    def test_invalid_status(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        response_size = 5
+
+        body = [{'subject': 'test'} for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+        code_snippet = str(verification.confirmation_code)[-5:]
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': [
+                        {
+                            'subject': f'test {code_snippet}',
+                            'status': 'InvalidStsatus',
+                        }
+                    ],
+                    'total': response_size + 1,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        with pytest.raises(Exception) as exc:
+            check_suppressed_email_confirmation.apply([verification.id, response_size])
+
+        exc_msg = str(exc.value)
+        assert f'invalid status: InvalidStsatus for {verification.id}' in exc_msg
+        for status in dict(SuppressedEmailVerification.STATUS_CHOICES).values():
+            assert status in exc_msg
+
+    def test_rsponse_does_not_contain_suppressed_email(self):
+        verification = SuppressedEmailVerification.objects.create(
+            suppressed_email=SuppressedEmail.objects.create(
+                email=self.user_profile.email
+            ),
+        )
+
+        response_size = 5
+
+        body = [{'subject': 'test'} for _ in range(response_size)]
+
+        url = (
+            f'{settings.SOCKET_LABS_HOST}servers/{settings.SOCKET_LABS_SERVER_ID}/'
+            f'reports/recipient-search/'
+        )
+
+        responses.add(
+            responses.GET,
+            url,
+            status=200,
+            body=json.dumps(
+                {
+                    'data': body,
+                    'total': response_size,
+                }
+            ),
+            content_type='application/json',
+        )
+
+        with pytest.raises(Retry):
+            check_suppressed_email_confirmation.apply([verification.id, response_size])
