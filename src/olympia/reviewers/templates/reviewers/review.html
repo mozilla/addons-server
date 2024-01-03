@@ -188,6 +188,28 @@
         </div>
       </div>
 
+      <div class="review-actions-section review-resolve-abuse-reports"
+           data-value="{{ actions_resolves_abuse_reports|join(' ') }}">
+          <label><strong>Outstanding abuse reports:</strong></label>
+          {% if unresolved_abuse_reports|length > 0 %}
+          {{ form.resolve_abuse_reports }}
+          {{ form.resolve_abuse_reports.errors }}
+          <label for="id_resolve_abuse_reports">{{ form.resolve_abuse_reports.label|format(unresolved_abuse_reports|length) }}</label>
+          <details>
+            <summary>
+              Show reports
+            </summary>
+            <ul>
+            {% for report in unresolved_abuse_reports %}
+              <li>{{ report.message }}</li>
+            {% endfor %}
+            </ul>
+          </details>
+          {% else %}
+          No reports to resolve
+          {% endif %}
+      </div>
+
       <div class="review-actions-section review-actions-files data-toggle review-files"
            data-value="{{ actions_full|join(' ') }}">
         <label><strong>Files:</strong></label>

@@ -3128,6 +3128,52 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.addon.status == amo.STATUS_NOMINATED
         assert len(mail.outbox) == 0
 
+    def _resolve_abuse_reports_called_everywhere_checkbox_shown(self, channel, actions):
+        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        AutoApprovalSummary.objects.create(
+            version=self.review_version, verdict=amo.AUTO_APPROVED, weight=42
+        )
+        self.setup_data(amo.STATUS_APPROVED, channel=channel)
+        self.helper.handler.data = {'versions': [self.review_version]}
+        resolves_actions = {
+            key: action
+            for key, action in self.helper.actions.items()
+            if action.get('resolves_abuse_reports', False)
+        }
+        assert list(resolves_actions.keys()) == actions
+
+        self.helper.handler.notify_email = lambda *arg, **kwarg: None
+        with patch.object(self.helper.handler, 'resolve_abuse_reports') as resolve_mock:
+            for action in resolves_actions.values():
+                action['method']()
+                resolve_mock.assert_called_once()
+                resolve_mock.reset_mock()
+
+    def test_resolve_abuse_reports_called_everywhere_checkbox_shown_listed(self):
+        self._resolve_abuse_reports_called_everywhere_checkbox_shown(
+            amo.CHANNEL_LISTED,
+            [
+                'public',
+                'confirm_auto_approved',
+                'clear_needs_human_review_multiple_versions',
+                'disable_addon',
+            ],
+        )
+
+    def test_resolve_abuse_reports_called_everywhere_checkbox_shown_unlisted(self):
+        self._resolve_abuse_reports_called_everywhere_checkbox_shown(
+            amo.CHANNEL_UNLISTED,
+            [
+                'public',
+                'approve_multiple_versions',
+                'confirm_multiple_versions',
+                'clear_needs_human_review_multiple_versions',
+                'disable_addon',
+            ],
+        )
+
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestReviewHelperSigning(TestReviewHelperBase):

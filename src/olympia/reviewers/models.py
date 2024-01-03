@@ -11,7 +11,7 @@ from django.urls import reverse
 
 import olympia.core.logger
 from olympia import activity, amo, core
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderPolicy
 from olympia.access import acl
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.models import ModelBase
@@ -695,6 +695,9 @@ class ReviewActionReason(ModelBase):
     addon_type = models.PositiveIntegerField(
         choices=amo.REASON_ADDON_TYPE_CHOICES.items(),
         default=amo.ADDON_ANY,
+    )
+    cinder_policy = models.ForeignKey(
+        CinderPolicy, null=True, on_delete=models.SET_NULL
     )
 
     def labelled_name(self):

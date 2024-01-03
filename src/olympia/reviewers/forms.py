@@ -283,6 +283,9 @@ class ReviewForm(forms.Form):
         widget=ReasonsChoiceWidget,
     )
     version_pk = forms.IntegerField(required=False, min_value=1)
+    resolve_abuse_reports = forms.BooleanField(
+        label='Resolve %s DSA related reports?', required=False
+    )
 
     def is_valid(self):
         # Some actions do not require comments and reasons.

@@ -15,6 +15,8 @@ import markupsafe
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderJob
+from olympia.abuse.tasks import resolve_job_in_cinder
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.activity.utils import notify_about_activity_log, send_activity_mail
@@ -385,7 +387,14 @@ class ReviewHelper:
     """
 
     def __init__(
-        self, *, addon, version=None, user=None, content_review=False, human_review=True
+        self,
+        *,
+        addon,
+        version=None,
+        user=None,
+        content_review=False,
+        human_review=True,
+        unresolved_abuse_reports=(),
     ):
         self.handler = None
         self.required = {}
@@ -400,6 +409,7 @@ class ReviewHelper:
             user = get_task_user()
         self.human_review = human_review
         self.user = user
+        self.unresolved_abuse_reports = unresolved_abuse_reports
         self.set_review_handler()
         self.actions = self.get_actions()
 
@@ -420,6 +430,7 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
+                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(
@@ -429,6 +440,7 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
+                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
         else:
             self.handler = ReviewFiles(
@@ -438,6 +450,7 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
+                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
 
     def get_actions(self):
@@ -577,6 +590,7 @@ class ReviewHelper:
                 and not version_is_blocked
             ),
             'allows_reasons': not is_static_theme,
+            'resolves_abuse_reports': True,
             'requires_reasons': False,
             'boilerplate_text': boilerplate_for_approve,
         }
@@ -634,6 +648,7 @@ class ReviewHelper:
                 and current_or_latest_listed_version_was_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
+            'resolves_abuse_reports': True,
         }
         actions['approve_multiple_versions'] = {
             'method': self.handler.approve_multiple_versions,
@@ -647,6 +662,7 @@ class ReviewHelper:
             'available': (can_approve_multiple),
             'allows_reasons': not is_static_theme,
             'requires_reasons': False,
+            'resolves_abuse_reports': True,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -728,6 +744,7 @@ class ReviewHelper:
             'available': (
                 not is_static_theme and version_is_unlisted and is_appropriate_reviewer
             ),
+            'resolves_abuse_reports': True,
         }
         actions['clear_pending_rejection_multiple_versions'] = {
             'method': self.handler.clear_pending_rejection_multiple_versions,
@@ -752,6 +769,7 @@ class ReviewHelper:
             'minimal': True,
             'comments': False,
             'available': is_appropriate_admin_reviewer,
+            'resolves_abuse_reports': True,
         }
         actions['set_needs_human_review_multiple_versions'] = {
             'method': self.handler.set_needs_human_review_multiple_versions,
@@ -827,6 +845,7 @@ class ReviewHelper:
             ),
             'allows_reasons': True,
             'requires_reasons': not is_static_theme,
+            'resolves_abuse_reports': True,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -864,6 +883,7 @@ class ReviewBase:
         review_type,
         content_review=False,
         human_review=True,
+        unresolved_abuse_reports=(),
     ):
         self.user = user
         self.human_review = human_review
@@ -879,6 +899,7 @@ class ReviewBase:
         )
         self.content_review = content_review
         self.redirect_url = None
+        self.unresolved_abuse_reports = unresolved_abuse_reports
 
     def set_addon(self):
         """Alter addon, set human_review_date timestamp on version being reviewed."""
@@ -917,6 +938,30 @@ class ReviewBase:
             assert not self.user.id == settings.TASK_USER_ID
             for version in versions:
                 self.addon.promotedaddon.approve_for_version(version)
+
+    def resolve_abuse_reports(self, decision):
+        if (
+            self.data.get('resolve_abuse_reports', False)
+            and self.unresolved_abuse_reports
+        ):
+            policy_ids = list(
+                {
+                    reason.cinder_policy_id
+                    for reason in self.data.get('reasons', ())
+                    if reason.cinder_policy_id
+                }
+            )
+            cinder_job_ids = {
+                report.cinder_job_id for report in self.unresolved_abuse_reports
+            }
+            # There should only be one job, but covering the bases:
+            for cinder_job_id in cinder_job_ids:
+                resolve_job_in_cinder.delay(
+                    cinder_job_id=cinder_job_id,
+                    review_text=self.data.get('comments', ''),
+                    decision=decision,
+                    policy_ids=policy_ids,
+                )
 
     def clear_all_needs_human_review_flags_in_channel(self, mad_too=True):
         """Clear needs_human_review flags on all versions in the same channel.
@@ -1123,6 +1168,7 @@ class ReviewBase:
             # The counter can be incremented.
             AddonApprovalsCounter.increment_for_addon(addon=self.addon)
             self.set_human_review_date()
+            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         else:
             # Automatic approval, reset the counter.
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
@@ -1251,6 +1297,7 @@ class ReviewBase:
                 pending_content_rejection=None,
             )
             self.set_human_review_date(version)
+            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
     def reject_multiple_versions(self):
         """Reject a list of versions.
@@ -1430,6 +1477,7 @@ class ReviewBase:
         self.log_action(
             amo.LOG.CLEAR_NEEDS_HUMAN_REVIEW, versions=self.data['versions']
         )
+        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
     def set_needs_human_review_multiple_versions(self):
         """Record human review flag on selected versions."""
@@ -1481,6 +1529,7 @@ class ReviewBase:
         self.notify_email(template, subject)
 
         log.info('Sending email for %s' % (self.addon))
+        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON)
 
 
 class ReviewAddon(ReviewBase):
@@ -1544,6 +1593,7 @@ class ReviewUnlisted(ReviewBase):
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
             self.set_human_review_date()
+            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         elif (
             not self.version.needshumanreview_set.filter(is_active=True)
             and (delay := self.addon.auto_approval_delayed_until_unlisted)
@@ -1596,6 +1646,7 @@ class ReviewUnlisted(ReviewBase):
             versions=self.data['versions'],
             timestamp=timestamp,
         )
+        self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
@@ -1646,6 +1697,7 @@ class ReviewUnlisted(ReviewBase):
                 addon=self.addon,
                 defaults={'auto_approval_disabled_until_next_approval_unlisted': False},
             )
+            self.resolve_abuse_reports(CinderJob.DECISION_ACTIONS.AMO_APPROVE)
 
     def unreject_multiple_versions(self):
         """Un-reject a list of versions."""
