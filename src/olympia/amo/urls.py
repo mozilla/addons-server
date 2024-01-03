@@ -9,6 +9,13 @@ services_patterns = [
         r'^__heartbeat__$', views.services_heartbeat, name='amo.services_heartbeat'
     ),
     re_path(r'^monitor\.json$', views.services_heartbeat, name='amo.services_monitor'),
+]
+
+shared_services_api_patterns = [
+    # These patterns are duplicated under /services/ and /api/v5/services/,
+    # which is useful to reach those services from an API request, to make them
+    # work with services.a.m.o. or test their behavior with request.is_api
+    # being True.
     re_path(r'^client_info', views.client_info, name='amo.client_info'),
     re_path(r'^403', views.handler403),
     re_path(r'^404', views.handler404),
@@ -17,17 +24,14 @@ services_patterns = [
 
 api_patterns = [
     re_path(r'^site/$', views.SiteStatusView.as_view(), name='amo-site-status'),
-    # This duplicates services patterns under /api/vX/services/, which is
-    # useful to reach those services from an API request, to make them work
-    # with services.a.m.o. or test their behavior with request.is_api being
-    # True.
-    re_path(r'^services/', include(services_patterns)),
+    re_path(r'^services/', include(shared_services_api_patterns)),
 ]
 
 urlpatterns = [
     re_path(r'^robots\.txt$', views.robots, name='robots.txt'),
     re_path(r'^contribute\.json$', views.contribute, name='contribute.json'),
     re_path(r'^services/', include(services_patterns)),
+    re_path(r'^services/', include(shared_services_api_patterns)),
     re_path(r'^__version__$', views.version, name='version.json'),
     re_path(r'^__heartbeat__$', views.front_heartbeat, name='amo.front_heartbeat'),
     re_path(

@@ -45,6 +45,7 @@ using the API.
    licenses
    ratings
    reviewers
+   services
    scanners
    shelves
    tags

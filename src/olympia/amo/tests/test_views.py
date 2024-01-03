@@ -60,6 +60,12 @@ class Test403(TestCase):
         assert response.status_code == 403
         self.assertTemplateUsed(response, 'amo/403.html')
 
+    def test_403_api_services_api(self):
+        response = self.client.get('/api/v5/services/403')
+        assert response.status_code == 403
+        data = json.loads(response.content)
+        assert data['detail'] == 'You do not have permission to perform this action.'
+
 
 class Test404(TestCase):
     def test_404_no_app(self):
@@ -85,6 +91,12 @@ class Test404(TestCase):
 
     def test_404_api_v4(self):
         response = self.client.get('/api/v4/lol')
+        assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == 'Not found.'
+
+    def test_404_api_services_api(self):
+        response = self.client.get('/api/v5/services/404')
         assert response.status_code == 404
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
@@ -122,6 +134,13 @@ class Test500(TestCase):
         request = RequestFactory().get('/api/v4/addons/addon/lol/')
         APIRequestMiddleware(lambda: None).process_exception(request, Exception())
         response = handler500(request)
+        assert response.status_code == 500
+        assert response['Content-Type'] == 'application/json'
+        data = json.loads(response.content)
+        assert data['detail'] == 'Internal Server Error'
+
+    def test_500_api_services_api(self):
+        response = self.client.get('/api/v5/services/500')
         assert response.status_code == 500
         assert response['Content-Type'] == 'application/json'
         data = json.loads(response.content)
