@@ -17,6 +17,11 @@ services_patterns = [
 
 api_patterns = [
     re_path(r'^site/$', views.SiteStatusView.as_view(), name='amo-site-status'),
+    # This duplicates services patterns under /api/vX/services/, which is
+    # useful to reach those services from an API request, to make them work
+    # with services.a.m.o. or test their behavior with request.is_api being
+    # True.
+    re_path(r'^services/', include(services_patterns)),
 ]
 
 urlpatterns = [

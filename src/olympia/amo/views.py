@@ -75,6 +75,7 @@ def client_info(request):
         'HTTP_X_COUNTRY_CODE',
         'HTTP_X_FORWARDED_FOR',
         'REMOTE_ADDR',
+        'SERVER_NAME',
     )
     data = {key: request.META.get(key) for key in keys}
     data['POST'] = request.POST

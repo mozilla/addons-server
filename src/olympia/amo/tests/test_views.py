@@ -637,6 +637,7 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': None,
             'HTTP_X_FORWARDED_FOR': None,
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {},
             'POST': {},
         }
@@ -654,6 +655,7 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {'foo': 'bar'},
             'POST': {},
         }
@@ -671,9 +673,22 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {},
             'POST': {'foo': 'bar'},
         }
+
+
+@pytest.mark.django_db
+def test_api_services():
+    client = Client()
+
+    response = client.get(reverse('v5:amo.client_info'))
+    assert response.status_code == 403
+
+    with override_settings(ENV='dev'):
+        response = client.get(reverse('v5:amo.client_info'))
+    assert response.status_code == 200
 
 
 TEST_SITEMAPS_DIR = os.path.join(
