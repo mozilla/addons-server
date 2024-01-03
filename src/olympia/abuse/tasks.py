@@ -1,12 +1,15 @@
 from datetime import datetime, timedelta
 
+from django.conf import settings
 from django.db.models import Count, F, OuterRef, Q, Subquery
 from django.db.transaction import atomic
+from django.utils import translation
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
@@ -60,7 +63,10 @@ def report_to_cinder(abuse_report_id):
     abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
     if not abuse_report:
         return
-    CinderJob.report(abuse_report)
+    with translation.override(
+        to_language(abuse_report.application_locale or settings.LANGUAGE_CODE)
+    ):
+        CinderJob.report(abuse_report)
 
 
 @task
