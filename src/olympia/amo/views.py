@@ -15,7 +15,7 @@ from django.template.response import TemplateResponse
 from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
-from rest_framework.exceptions import NotFound
+from rest_framework import exceptions as drf_exceptions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -75,6 +75,7 @@ def client_info(request):
         'HTTP_X_COUNTRY_CODE',
         'HTTP_X_FORWARDED_FOR',
         'REMOTE_ADDR',
+        'SERVER_NAME',
     )
     data = {key: request.META.get(key) for key in keys}
     data['POST'] = request.POST
@@ -109,6 +110,10 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request, exception=None, **kwargs):
+    if getattr(request, 'is_api', False):
+        return JsonResponse(
+            {'detail': str(drf_exceptions.PermissionDenied.default_detail)}, status=403
+        )
     return TemplateResponse(request, 'amo/403.html', status=403)
 
 
@@ -116,7 +121,9 @@ def handler403(request, exception=None, **kwargs):
 def handler404(request, exception=None, **kwargs):
     if getattr(request, 'is_api', False):
         # It's a v3+ api request (/api/vX/ or /api/auth/)
-        return JsonResponse({'detail': str(NotFound.default_detail)}, status=404)
+        return JsonResponse(
+            {'detail': str(drf_exceptions.NotFound.default_detail)}, status=404
+        )
     elif re.match(r'^/api/\d\.\d/', getattr(request, 'path_info', '')):
         # It's a legacy API request in the form of /api/X.Y/. We use path_info,
         # which is set in LocaleAndAppURLMiddleware, because there might be a
@@ -139,9 +146,7 @@ def handler500(request, **kwargs):
         # custom_exception_handler function in olympia.api.exceptions, but in
         # the rare case where the exception is caused by a middleware or django
         # itself, it might not, so we need to handle it here.
-        return HttpResponse(
-            json.dumps(base_500_data()), content_type='application/json', status=500
-        )
+        return JsonResponse(base_500_data(), status=500)
     return TemplateResponse(request, 'amo/500.html', status=500)
 
 

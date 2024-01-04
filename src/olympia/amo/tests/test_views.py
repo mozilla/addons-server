@@ -60,6 +60,12 @@ class Test403(TestCase):
         assert response.status_code == 403
         self.assertTemplateUsed(response, 'amo/403.html')
 
+    def test_403_api_services_api(self):
+        response = self.client.get('/api/v5/services/403')
+        assert response.status_code == 403
+        data = json.loads(response.content)
+        assert data['detail'] == 'You do not have permission to perform this action.'
+
 
 class Test404(TestCase):
     def test_404_no_app(self):
@@ -85,6 +91,12 @@ class Test404(TestCase):
 
     def test_404_api_v4(self):
         response = self.client.get('/api/v4/lol')
+        assert response.status_code == 404
+        data = json.loads(response.content)
+        assert data['detail'] == 'Not found.'
+
+    def test_404_api_services_api(self):
+        response = self.client.get('/api/v5/services/404')
         assert response.status_code == 404
         data = json.loads(response.content)
         assert data['detail'] == 'Not found.'
@@ -122,6 +134,13 @@ class Test500(TestCase):
         request = RequestFactory().get('/api/v4/addons/addon/lol/')
         APIRequestMiddleware(lambda: None).process_exception(request, Exception())
         response = handler500(request)
+        assert response.status_code == 500
+        assert response['Content-Type'] == 'application/json'
+        data = json.loads(response.content)
+        assert data['detail'] == 'Internal Server Error'
+
+    def test_500_api_services_api(self):
+        response = self.client.get('/api/v5/services/500')
         assert response.status_code == 500
         assert response['Content-Type'] == 'application/json'
         data = json.loads(response.content)
@@ -637,6 +656,7 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': None,
             'HTTP_X_FORWARDED_FOR': None,
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {},
             'POST': {},
         }
@@ -654,6 +674,7 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {'foo': 'bar'},
             'POST': {},
         }
@@ -671,9 +692,22 @@ def test_client_info():
             'HTTP_X_COUNTRY_CODE': 'FR',
             'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
             'REMOTE_ADDR': '127.0.0.1',
+            'SERVER_NAME': 'testserver',
             'GET': {},
             'POST': {'foo': 'bar'},
         }
+
+
+@pytest.mark.django_db
+def test_api_services():
+    client = Client()
+
+    response = client.get(reverse('v5:amo.client_info'))
+    assert response.status_code == 403
+
+    with override_settings(ENV='dev'):
+        response = client.get(reverse('v5:amo.client_info'))
+    assert response.status_code == 200
 
 
 TEST_SITEMAPS_DIR = os.path.join(
