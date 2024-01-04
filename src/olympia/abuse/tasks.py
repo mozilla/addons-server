@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.db.models import Count, F, OuterRef, Q, Subquery
-from django.db.transaction import atomic
 from django.utils import translation
 
 from olympia import amo
@@ -58,7 +57,6 @@ def flag_high_abuse_reports_addons_according_to_review_tier():
 
 @task
 @use_primary_db
-@atomic
 def report_to_cinder(abuse_report_id):
     abuse_report = AbuseReport.objects.filter(id=abuse_report_id).first()
     if not abuse_report:
@@ -71,7 +69,6 @@ def report_to_cinder(abuse_report_id):
 
 @task
 @use_primary_db
-@atomic
 def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id):
     abuse_report = AbuseReport.objects.get(id=abuse_report_id)
     if user_id:

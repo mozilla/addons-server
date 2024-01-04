@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.db import models
+from django.db.transaction import atomic
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -129,8 +130,14 @@ class CinderJob(ModelBase):
         reporter_entity = cls.get_cinder_reporter(abuse_report)
         entity_helper = cls.get_entity_helper(abuse_report)
         job_id = entity_helper.report(report=report_entity, reporter=reporter_entity)
-        cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
-        abuse_report.update(cinder_job=cinder_job)
+        with atomic():
+            cinder_job, _ = cls.objects.get_or_create(job_id=job_id)
+            abuse_report.update(cinder_job=cinder_job)
+        # Additional context can take a while, so it is reported outside the
+        # atomic() block so that the transaction can be committed quickly,
+        # ensuring the CinderJob exists as soon as possible (we need it to
+        # process any decisions). We don't need the database anymore at this
+        # point anyway.
         entity_helper.report_additional_context()
 
     def process_decision(
@@ -155,7 +162,10 @@ class CinderJob(ModelBase):
         appeal_id = self.get_entity_helper(abuse_report).appeal(
             decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
         )
-        CinderJobAppeal.objects.create(appeal_id=appeal_id, abuse_report=abuse_report)
+        with atomic():
+            CinderJobAppeal.objects.create(
+                appeal_id=appeal_id, abuse_report=abuse_report
+            )
 
 
 class CinderJobAppeal(ModelBase):
