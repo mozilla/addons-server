@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-09 19:28+0000\n"
-"Last-Translator: Pavel Cvrček <jasnapaka@jasnapaka.com>\n"
+"PO-Revision-Date: 2024-01-04 20:02+0000\n"
+"Last-Translator: soucet <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -3826,7 +3826,7 @@ msgstr "Prohledávejte Firefox prostřednictvím snadného přístupu ke svým o
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr "Máte spoustu otevřených panelů? Najděte ten, co hledáte, pomocí klávesové zkratky."
+msgstr "Máte spoustu otevřených panelů? Najděte ten, který hledáte, pomocí klávesové zkratky."
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
