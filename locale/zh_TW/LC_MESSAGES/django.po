@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-28 09:43+0000\n"
+"PO-Revision-Date: 2024-01-05 10:30+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3519,7 +3519,7 @@ msgstr "安全地儲存密碼，並在不同裝置間同步使用。"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web. Get the country location of the websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "知道您在網路上的去向。了解您造訪的網站所在國家。成為見多識廣的網路旅行者。"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
@@ -3536,7 +3536,7 @@ msgstr "點選工具列上的圖示，即可存取最近關閉的分頁。"
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "激發生產力。修改您的「新分頁」頁面以顯示美麗的背景、設定您的每日焦點等。"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -3672,7 +3672,7 @@ msgstr "針對特定或所有網站留下筆記，供以後查看。"
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "在桌機上使用類似手機的捲動體驗。使用「抓取並拖曳」風格的滑鼠移動方式。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3915,7 +3915,7 @@ msgstr "讓閱讀更清楚、更輕鬆。移除網頁文字周圍雜亂的部分
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block ads and get enhanced protection against malware and ad tracking."
-msgstr ""
+msgstr "封鎖廣告，並獲得不受惡意軟體與廣告追蹤的加強保護。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3959,7 +3959,7 @@ msgstr "使用語音識別功能在 Google、Yahoo、DuckDuckGo 進行搜型。"
 
 #. editorial content for the discovery pane.
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr ""
+msgstr "在 Amazon、Best Buy、eBay、Home Depot 和 Walmart 追蹤感興趣的商品，並在降價接收通知。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
