@@ -149,11 +149,6 @@ class CinderEntity:
             # type needs to be defined by subclasses
             raise NotImplementedError
         url = f'{settings.CINDER_SERVER_URL}create_decision'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
         data = {
             'queue_slug': self.queue,
             'entity_type': self.type,
@@ -161,7 +156,7 @@ class CinderEntity:
             'reasoning': review_text,
             'policy_uuids': policy_uuids,
         }
-        response = requests.post(url, json=data, headers=headers)
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
         if response.status_code == 201:
             return response.json().get('uuid')
         else:
@@ -169,12 +164,7 @@ class CinderEntity:
 
     def close_job(self, *, job_id):
         url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'
-        headers = {
-            'accept': 'application/json',
-            'content-type': 'application/json',
-            'authorization': f'Bearer {settings.CINDER_API_TOKEN}',
-        }
-        response = requests.post(url, headers=headers)
+        response = requests.post(url, headers=self.get_cinder_http_headers())
         if response.status_code == 200:
             return response.json().get('external_id')
         else:
