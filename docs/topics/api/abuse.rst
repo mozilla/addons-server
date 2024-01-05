@@ -211,7 +211,8 @@ to if necessary.
                      illegal  Violates the law or contains content that violates the law
                does_not_work  Doesn’t work, breaks websites, or slows Firefox down
                feedback_spam  Spam
-                       other  Something else
+              something_else  Something else
+                       other  Other
  ===========================  ================================================================
 
 
@@ -274,7 +275,7 @@ so reports can be responded to if necessary.
    hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
                      illegal  Violates the law or contains content that violates the law
                feedback_spam  Spam
-                       other  Something else
+              something_else  Something else
  ===========================  ================================================================
 
 --------------------------------
@@ -320,7 +321,7 @@ so reports can be responded to if necessary.
  ===========================  ================================================================
    hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
                      illegal  Violates the law or contains content that violates the law
-                       other  Something else
+              something_else  Something else
  ===========================  ================================================================
 
 
@@ -367,5 +368,5 @@ so reports can be responded to if necessary.
    hateful_violent_deceptive  Hateful, violent, deceptive, or other inappropriate content
                      illegal  Violates the law or contains content that violates the law
                feedback_spam  Spam
-                       other  Something else
+              something_else  Something else
  ===========================  ================================================================
