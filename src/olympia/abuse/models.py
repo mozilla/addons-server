@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 
 from django.db import models
+from django.db.models import Q
 from django.db.transaction import atomic
 
 from olympia import amo
@@ -43,6 +44,10 @@ class CinderJob(ModelBase):
         ('AMO_DELETE_RATING', 5, 'Rating delete'),
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
+    )
+    DECISION_ACTIONS.add_subset(
+        'UNRESOLVED',
+        ('NO_DECISION', 'AMO_ESCALATE_ADDON'),
     )
     job_id = models.CharField(max_length=36, unique=True)
     decision_action = models.PositiveSmallIntegerField(
@@ -167,6 +172,20 @@ class CinderJob(ModelBase):
                 appeal_id=appeal_id, abuse_report=abuse_report
             )
 
+    def resolve_job(self, review_text, decision, policies):
+        helper = self.get_entity_helper(self.abusereport_set.first())
+        decision_id = helper.create_decision(
+            review_text=review_text, policy_uuids=[policy.uuid for policy in policies]
+        )
+        with atomic():
+            self.update(
+                decision_action=decision,
+                decision_date=datetime.now(),
+                decision_id=decision_id,
+            )
+            self.policies.set(policies)
+        helper.close_job(job_id=self.job_id)
+
 
 class CinderJobAppeal(ModelBase):
     appeal_id = models.CharField(max_length=36, default=None, null=True)
@@ -186,12 +205,36 @@ class AbuseReportQuerySet(BaseQuerySet):
             .order_by('-created')
         )
 
+    def unresolved(self):
+        return self.filter(
+            Q(
+                cinder_job__decision_action__in=tuple(
+                    CinderJob.DECISION_ACTIONS.UNRESOLVED.values
+                )
+            )
+            | Q(cinder_job__isnull=True)
+        )
+
+    def reviewer_handled(self):
+        # Note this isn't as comprehensive as AbuseReport.reviewer_handled - it doesn't
+        # verify the guids are valid add-ons.
+        return self.exclude(guid=None).filter(
+            reason__in=tuple(AbuseReport.REASONS.REVIEWER_HANDLED.values),
+            location__in=tuple(AbuseReport.LOCATION.REVIEWER_HANDLED.values),
+        )
+
 
 class AbuseReportManager(ManagerBase):
     _queryset_class = AbuseReportQuerySet
 
     def for_addon(self, addon):
         return self.get_queryset().for_addon(addon)
+
+    def unresolved(self):
+        return self.get_queryset().unresolved()
+
+    def reviewer_handled(self):
+        return self.get_queryset().reviewer_handled()
 
 
 class AbuseReport(ModelBase):

@@ -937,6 +937,58 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             == NeedsHumanReview.REASON_ABUSE_ADDON_VIOLATION_APPEAL
         )
 
+    def test_create_decision(self):
+        target = self._create_dummy_target()
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'error': 'reason'},
+            status=400,
+        )
+        cinder_instance = self.cinder_class(target)
+        assert (
+            cinder_instance.create_decision(
+                review_text='some review text', policy_uuids=['12345678']
+            )
+            == '123'
+        )
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some review text'
+        assert request_body['entity']['id'] == str(target.id)
+
+        # Last response is a 400, we raise for that.
+        with self.assertRaises(ConnectionError):
+            cinder_instance.create_decision(
+                review_text='some review text', policy_uuids=['12345678']
+            )
+
+    def test_close_job(self):
+        target = self._create_dummy_target()
+        job_id = '123'
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel',
+            json={'external_id': job_id},
+            status=200,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel',
+            json={'error': 'reason'},
+            status=400,
+        )
+        cinder_instance = self.cinder_class(target)
+        assert cinder_instance.close_job(job_id=job_id) == job_id
+
 
 class TestCinderUser(BaseTestCinderCase, TestCase):
     cinder_class = CinderUser

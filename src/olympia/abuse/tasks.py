@@ -12,7 +12,7 @@ from olympia.amo.utils import to_language
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .models import AbuseReport, CinderJob
+from .models import AbuseReport, CinderJob, CinderPolicy
 
 
 @task
@@ -80,3 +80,11 @@ def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id):
         # already.
         user = None
     abuse_report.cinder_job.appeal(abuse_report, appeal_text, user)
+
+
+@task
+@use_primary_db
+def resolve_job_in_cinder(*, cinder_job_id, review_text, decision, policy_ids):
+    cinder_job = CinderJob.objects.get(id=cinder_job_id)
+    policies = CinderPolicy.objects.filter(id__in=policy_ids)
+    cinder_job.resolve_job(review_text, decision, policies)

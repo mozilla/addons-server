@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from unittest import mock
 
@@ -350,6 +351,41 @@ class TestAbuseManager(TestCase):
         report = AbuseReport.objects.create(guid='foo@bar')
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
+    def test_unresolved(self):
+        report_no_job = AbuseReport.objects.create(guid='1234')
+        report_unresolved_job = AbuseReport.objects.create(
+            guid='3456', cinder_job=CinderJob.objects.create(job_id='1')
+        )
+        AbuseReport.objects.create(
+            guid='5678',
+            cinder_job=CinderJob.objects.create(
+                job_id='2', decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+            ),
+        )
+        qs = AbuseReport.objects.unresolved()
+        assert len(qs) == 2
+        assert list(qs) == [report_no_job, report_unresolved_job]
+
+    def test_reviewer_handled(self):
+        AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            location=AbuseReport.LOCATION.BOTH,
+        )
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.ADDON,
+        )
+        AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.AMO,
+        )
+        qs = AbuseReport.objects.reviewer_handled()
+        assert len(qs) == 1
+        assert list(qs) == [abuse_report]
+
 
 class TestCinderJob(TestCase):
     def test_target(self):
@@ -600,3 +636,43 @@ class TestCinderJob(TestCase):
         appeal = CinderJobAppeal.objects.get()
         assert appeal.appeal_id == '2432615184-tsol'
         assert appeal.abuse_report == abuse_report
+
+    def test_resolve_job(self):
+        cinder_job = CinderJob.objects.create(job_id='999')
+        abuse_report = AbuseReport.objects.create(
+            guid=addon_factory().guid,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            location=AbuseReport.LOCATION.AMO,
+            cinder_job=cinder_job,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}create_decision',
+            json={'uuid': '123'},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/cancel',
+            json={'external_id': cinder_job.job_id},
+            status=200,
+        )
+        policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
+
+        cinder_job.resolve_job(
+            'some text',
+            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            policies,
+        )
+
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['policy_uuids'] == ['12345678']
+        assert request_body['reasoning'] == 'some text'
+        assert request_body['entity']['id'] == str(abuse_report.target.id)
+        cinder_job.reload()
+        assert cinder_job.decision_action == (
+            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        self.assertCloseToNow(cinder_job.decision_date)
+        assert list(cinder_job.policies.all()) == policies
