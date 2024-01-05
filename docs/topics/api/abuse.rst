@@ -211,7 +211,7 @@ to if necessary.
                      illegal  Violates the law or contains content that violates the law
                does_not_work  Doesn’t work, breaks websites, or slows Firefox down
                feedback_spam  Spam
-               something_else Something else
+              something_else  Something else
                        other  Other
  ===========================  ================================================================
 
