@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2024-01-05 10:30+0000\n"
+"PO-Revision-Date: 2024-01-05 10:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4165,7 +4165,7 @@ msgstr "在瀏覽器使用可繪製工作時間的時鐘，讓您更能掌握時
 
 #. editorial content for the primary hero shelves.
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
-msgstr ""
+msgstr "是否厭倦了「影片已暫停。要繼續觀看嗎？」的訊息？讓您在 YouTube 上暢聽喜歡的音樂而不受干擾。"
 
 #. editorial content for the primary hero shelves.
 msgid "Begone, annoying cookie warnings!"
@@ -4249,7 +4249,7 @@ msgstr "不使用雲端服務，直接使用在 Firefox 有隱私地翻譯網站
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr ""
+msgstr "封鎖浪費時間的網站。可以完全封鎖，或只在特定時間範圍內封鎖。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
