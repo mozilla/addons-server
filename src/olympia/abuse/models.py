@@ -233,6 +233,7 @@ class AbuseReport(ModelBase):
             'DSA: It violates the law or contains content that violates the law',
         ),
         ('POLICY_VIOLATION', 13, "DSA: It violates Mozilla's Add-on Policies"),
+        ('SOMETHING_ELSE', 14, 'DSA: Something else'),
         # Reporting reasons used in AMO Feedback flow - Feedback (non-DSA) categories
         (
             'DOES_NOT_WORK',
@@ -249,12 +250,12 @@ class AbuseReport(ModelBase):
     # Base reasons shared by all on-AMO content using AMO Feedback flow.
     REASONS.add_subset(
         'CONTENT_REASONS',
-        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'FEEDBACK_SPAM', 'OTHER'),
+        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'FEEDBACK_SPAM', 'SOMETHING_ELSE'),
     )
     # Those reasons will be reported to Cinder.
     REASONS.add_subset(
         'REPORTABLE_REASONS',
-        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'OTHER'),
+        ('HATEFUL_VIOLENT_DECEPTIVE', 'ILLEGAL', 'POLICY_VIOLATION', 'SOMETHING_ELSE'),
     )
     # Abuse in these locations are handled by reviewers
     REASONS.add_subset('REVIEWER_HANDLED', ('POLICY_VIOLATION',))
