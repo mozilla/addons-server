@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-19 17:03+0000\n"
+"PO-Revision-Date: 2024-01-05 06:59+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -4182,11 +4182,11 @@ msgstr "Ste na spletu našli zanimivo sliko? Uporabite TinEye in raziščite nje
 
 #. editorial content for the primary hero shelves.
 msgid "Save images easily — just grab them from your current tab."
-msgstr "Preprosto shranite slike – preprosto jih zgrabite s trenutnega zavihka."
+msgstr "Enostavno shranjevanje slik – prenesite jih s trenutnega zavihka."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr "Uživajte v vrhunskem nadzoru zavihkov — zaprite podvojene zavihke, združite okna, kopirajte naslov zavihka in drugo."
+msgstr "Imejte popoln nadzor nad zavihki – zapiranje podvojenih zavihkov, združevanje oken, kopiranje naslova zavihka in še mnogo več."
 
 #. editorial content for the primary hero shelves.
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
@@ -4198,7 +4198,7 @@ msgstr "Prilagodite miškine kretnje. Odkrijte nove načine za krmarjenje z več
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
-msgstr "Prilagodite videz katere koli spletne strani. Prestavljajte barve, ozadja strani in drugo."
+msgstr "Prilagodite videz katerekoli spletne strani! Zamenjajte barve, ozadja in še veliko več."
 
 #. editorial content for the primary hero shelves.
 msgid "Use mouse gestures to close tabs, navigate pages & more."
@@ -4206,7 +4206,7 @@ msgstr "Uporabljajte poteze z miško za zapiranje zavihkov, krmarjenje po strane
 
 #. editorial content for the primary hero shelves.
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
-msgstr "Preprost način za prilagajanje velikosti besedila katere koli strani — ali celo povečavo strani same."
+msgstr "Preprost način, da nastavite velikost besedila na katerikoli spletni strani – ali celo povečate stran samo."
 
 #. editorial content for the primary hero shelves.
 msgid "Enjoy thumbnail images of websites alongside your search returns."
@@ -4214,11 +4214,11 @@ msgstr "Opremite zadetke iskanja s predoglednimi ploščicami spletnih strani."
 
 #. editorial content for the primary hero shelves.
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr "Shranite celotno spletno stran – vključno s slikami in slogom – kot eno datoteko HTML."
+msgstr "Shranite celotne strani – vključno s slikami in slogi – kot eno datoteko HTML."
 
 #. editorial content for the primary hero shelves.
 msgid "Edit a web page before printing. Make sweeping visual changes — remove ads or unsavory content—to any web page you want to print."
-msgstr "Uredite spletno stran pred tiskanjem. Izvedite obsežne vizualne spremembe – odstranite oglase ali neprijetno vsebino – katere koli spletne strani, ki jo želite natisniti."
+msgstr "Uredite spletno stran pred tiskanjem. Opravite zajetne vizualne spremembe – odstranite oglase ali neželeno vsebino – preden jo natisnete."
 
 #. editorial content for the primary hero shelves.
 msgid "Web pages read aloud. 40+ languages supported."
@@ -4322,7 +4322,7 @@ msgstr "Prevajajte spletne strani v Firefoxu – zasebno – brez uporabe storit
 
 #. editorial content for the primary hero shelves.
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
-msgstr "Zavračajte spletne strani, ki vam zapravljajo čas. Blokirajte jih v celoti ali samo za časovna obdobja po vaši izbiri."
+msgstr "Blokirajte si spletne strani, ki vam kradejo čas – popolnoma ali samo za časovna obdobja po vaši izbiri."
 
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
@@ -4502,7 +4502,7 @@ msgstr "Najboljši upravitelji prenosov"
 
 #. editorial content for the homepage shelves.
 msgid "See more download manager staff picks"
-msgstr "Oglejte si več izbir osebja upravitelja prenosov"
+msgstr "Več osebno izbranih razširitev za upravljanje prenosov"
 
 msgid "Unreviewed"
 msgstr "Nepregledano"
