@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-06 21:46+0000\n"
+"PO-Revision-Date: 2024-01-06 16:35+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -41,7 +41,7 @@ msgid "\"{}\" for {}"
 msgstr ""
 
 msgid "Mozilla Add-ons: {}"
-msgstr ""
+msgstr "תוספות Mozilla‏: {}"
 
 msgid "Appeal reviewer decision"
 msgstr "ערעור על החלטת הסוקר"
@@ -59,7 +59,7 @@ msgid "This decision can't be appealed."
 msgstr "לא ניתן לערער על החלטה זו."
 
 msgid "Hello,"
-msgstr ""
+msgstr "שלום,"
 
 msgid ""
 "\n"
@@ -119,7 +119,7 @@ msgid "Notification [%s] does not exist"
 msgstr "התראה [%s] לא קיימת"
 
 msgid "Add-ons Review Team"
-msgstr ""
+msgstr "צוות סקירת תוספות"
 
 msgid "Review"
 msgstr "סקירה"
@@ -137,7 +137,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "ניתן להוסיף הערות רק לגרסאות עדכניות של תוספות."
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "תוכן הבקשה ארוך מדי."
 
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
 msgstr "חרגת מהמספר המרבי של קטגוריות לכל יישום ({MAX_CATEGORIES})"
@@ -497,7 +497,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
 
 msgid "Confirmation for developer API keys"
-msgstr ""
+msgstr "אישור למפתחות API למפתחים"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "הכתובת המותאמת אישית הזאת כבר בשימוש על־ידי אחד משאר האוספים שלך."
@@ -2183,7 +2183,7 @@ msgid "More information on Creative Commons licenses"
 msgstr "מידע נוסף על רישיונות Creative Commons"
 
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr ""
+msgstr "התוספת שלך מוגדרת כרגע ל״בלתי־נראית״."
 
 msgid "While in this state, \"On your own\" is the only distribution method available."
 msgstr ""
@@ -2393,7 +2393,7 @@ msgid "How to Distribute this Version"
 msgstr "כיצד להפיץ גרסה זו"
 
 msgid "To get started, select how you would like to distribute this version."
-msgstr ""
+msgstr "כדי להתחיל, נא לבחור איך להפיץ את הגרסה הזאת."
 
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
