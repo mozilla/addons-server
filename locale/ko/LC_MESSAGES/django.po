@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2023-12-05 19:13+0000\n"
-"PO-Revision-Date: 2023-12-08 19:37+0000\n"
+"PO-Revision-Date: 2024-01-07 17:09+0000\n"
 "Last-Translator: Kim YoungCheon <circcc@gmail.com>\n"
 "Language-Team: none\n"
 "Language: ko\n"
@@ -4395,7 +4395,7 @@ msgstr "인기 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Steam enhancers"
-msgstr ""
+msgstr "스팀 향상기"
 
 #. editorial content for the homepage shelves.
 msgid "See more Steam staff picks"
@@ -4411,11 +4411,11 @@ msgstr "창의성 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Social media extensions"
-msgstr ""
+msgstr "소셜 미디어 확장 기능"
 
 #. editorial content for the homepage shelves.
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "소셜 미디어 직원 추천 더보기"
 
 #. editorial content for the homepage shelves.
 msgid "Top download managers"
