@@ -5,6 +5,7 @@ import tempfile
 import urllib.parse
 
 from django.conf import settings
+from django.urls import reverse
 from django.utils.translation import gettext
 
 import requests
@@ -179,8 +180,9 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     verification.status = SuppressedEmailVerification.STATUS_CHOICES.Pending
 
     confirmation_link = (
-        # TODO: replace with email-verification reverse path
-        '' + '?code=' + str(verification.confirmation_code)
+        reverse('devhub.email_verification')
+        + '?code='
+        + str(verification.confirmation_code)
     )
 
     send_mail_jinja(
@@ -232,7 +234,7 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
         day=before.day,
     )
     end_date = datetime.datetime.now() + datetime.timedelta(days=1)
-    date_format = '%Y-%m-%dT%H:%M:%S%z+0100'
+    date_format = '%Y-%m-%d'
 
     params = {
         'toEmailAddress': email,

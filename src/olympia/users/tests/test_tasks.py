@@ -9,6 +9,7 @@ from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.core import mail
+from django.urls import reverse
 
 import pytest
 import responses
@@ -392,8 +393,9 @@ class TestSendSuppressedEmailConfirmation(TestCase):
         assert len(mail.outbox) == 1
 
         expected_confirmation_link = (
-            # TODO: replace with reverse devhub.email_verification
-            '' + '?code=' + str(verification.confirmation_code)
+            reverse('devhub.email_verification')
+            + '?code='
+            + str(verification.confirmation_code)
         )
         assert expected_confirmation_link in mail.outbox[0].body
         assert str(verification.confirmation_code)[-5:] in mail.outbox[0].subject
@@ -536,8 +538,8 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
         parsed_url = urlparse(responses.calls[0].request.url)
         search_params = parse_qs(parsed_url.query)
 
-        assert search_params['startDate'][0] == '2023-06-25T00:00:00+0100'
-        assert search_params['endDate'][0] == '2023-06-27T11:00:00+0100'
+        assert search_params['startDate'][0] == '2023-06-25'
+        assert search_params['endDate'][0] == '2023-06-27'
 
     def test_pagination(self):
         verification = SuppressedEmailVerification.objects.create(

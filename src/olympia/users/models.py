@@ -688,6 +688,12 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def suppressed_email(self):
         return SuppressedEmail.objects.filter(email=self.email).first()
 
+    @property
+    def email_verification(self):
+        return SuppressedEmailVerification.objects.filter(
+            suppressed_email=self.suppressed_email
+        ).first()
+
 
 class UserNotification(ModelBase):
     user = models.ForeignKey(
@@ -1373,3 +1379,11 @@ class SuppressedEmailVerification(ModelBase):
     @property
     def expiration(self):
         return self.created + timedelta(days=30)
+
+    @property
+    def is_expired(self):
+        return self.expiration < datetime.now()
+
+    @property
+    def is_timedout(self):
+        return self.created + timedelta(seconds=30) < datetime.now()
