@@ -267,13 +267,13 @@ def cinder_webhook(request):
     )
 
 
-def appeal(request, *, decision_id, abuse_report_id, **kwargs):
+def appeal(request, *, abuse_report_id, decision_id, **kwargs):
     abuse_report = get_object_or_404(AbuseReport.objects, id=abuse_report_id)
+    cinder_job = abuse_report.cinder_job
     if (
-        not abuse_report.cinder_job
-        or abuse_report.cinder_job.decision_id != decision_id
-        or abuse_report.cinder_job.decision_action
-        == CinderJob.DECISION_ACTIONS.NO_DECISION
+        not cinder_job
+        or cinder_job.decision_id != decision_id
+        or cinder_job.decision_action == CinderJob.DECISION_ACTIONS.NO_DECISION
     ):
         raise Http404
 
@@ -283,21 +283,24 @@ def appeal(request, *, decision_id, abuse_report_id, **kwargs):
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
     appeal_email_form = None
-    decision = abuse_report.cinder_job.decision_action
+    decision = cinder_job.decision_action
     if decision in (
         CinderJob.DECISION_ACTIONS.AMO_APPROVE,
         CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
     ):
         # Only person would should be appealing an approval is the reporter.
-        if decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE and abuse_report.reporter:
+        if (
+            abuse_report
+            and decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+            and abuse_report.reporter
+        ):
             # Authenticated reporter is the easy case, they should just be
             # authenticated with the right account.
             if not request.user.is_authenticated:
                 return redirect_for_login(request)
             valid_user_or_email_provided = request.user == abuse_report.reporter
-        elif (
-            decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
-            or abuse_report.reporter_email
+        elif decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER or (
+            abuse_report and abuse_report.reporter_email
         ):
             # Anonymous reporter appealing or banned user appealing is tricky,
             # we need the email to be submitted via POST to match. If there was
@@ -344,7 +347,12 @@ def appeal(request, *, decision_id, abuse_report_id, **kwargs):
         # After this point, the user is either authenticated or has entered the
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
-        if abuse_report.cinder_job.can_be_appealed(abuse_report):
+        is_reporter = (
+            cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+        )
+        if cinder_job.can_be_appealed(
+            is_reporter=is_reporter, abuse_report=abuse_report
+        ):
             appeal_form = AbuseAppealForm(post_data)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(

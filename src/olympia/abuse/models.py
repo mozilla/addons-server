@@ -46,6 +46,19 @@ class CinderJob(ModelBase):
         ('AMO_APPROVE', 7, 'Approved (no action)'),
     )
     DECISION_ACTIONS.add_subset(
+        'APPEALABLE_BY_AUTHOR',
+        (
+            'AMO_BAN_USER',
+            'AMO_DISABLE_ADDON',
+            'AMO_DELETE_RATING',
+            'AMO_DELETE_COLLECTION',
+        ),
+    )
+    DECISION_ACTIONS.add_subset(
+        'APPEALABLE_BY_REPORTER',
+        ('AMO_APPROVE',),
+    )
+    DECISION_ACTIONS.add_subset(
         'UNRESOLVED',
         ('NO_DECISION', 'AMO_ESCALATE_ADDON'),
     )
@@ -56,6 +69,14 @@ class CinderJob(ModelBase):
     decision_id = models.CharField(max_length=36, default=None, null=True, unique=True)
     decision_date = models.DateTimeField(default=None, null=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
+    appeal_job = models.ForeignKey(
+        to='abuse.CinderJob',
+        null=True,
+        on_delete=models.deletion.CASCADE,
+        # Cinder also consolidates appeal jobs, so a single appeal can be an
+        # appeal for multiple previous decisions (jobs).
+        related_name='appealed_jobs',
+    )
 
     @property
     def target(self):
@@ -66,14 +87,52 @@ class CinderJob(ModelBase):
             else None
         )
 
-    def can_be_appealed(self, abuse_report):
-        return (
+    def can_be_appealed_by_author(self):
+        return self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+
+    def can_be_appealed(self, *, is_reporter, abuse_report=None):
+        """
+        Whether or not the job contains a decision that can be appealed.
+        """
+        now = datetime.now()
+        base_criteria = (
             self.decision_id
             and self.decision_date
-            and self.decision_date
-            >= datetime.now() - timedelta(days=APPEAL_EXPIRATION_DAYS)
-            and not getattr(abuse_report, 'appeal', None)
+            and self.decision_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
+            # Can never appeal an original decision that has been appealed and
+            # for which we already have a new decision. In some cases the
+            # appealed decision (new decision id) can be appealed by the author
+            # though (see below).
+            and not getattr(self.appeal_job, 'decision_id', None)
         )
+        user_criteria = (
+            # Reporters can appeal decisions if they have a report and that
+            # report has no appeals yet (the decision itself might already be
+            # appealed - it can have multiple reporters). Note that we're only
+            # attaching the abuse report to the original job, not the appeal,
+            # by design. Reporters can never appeal an appeal job.
+            (
+                is_reporter
+                and abuse_report
+                and self.abusereport_set.filter(pk=abuse_report.pk).exists()
+                and not abuse_report.appeal_date
+                and self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+                and not self.appealed_jobs.exists()
+            )
+            or
+            # Authors can appeal decisions not already appealed. Note that the
+            # decision they are appealing might be a new decision following
+            # an appeal from a reporter who disagreed with our initial decision
+            # to keep the content up (always leaving a chance for the author
+            # to be notified and appeal a decision against them, even if they
+            # were not notified of an initial decision favorable to them).
+            (
+                not is_reporter
+                and not self.appeal_job
+                and self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+            )
+        )
+        return base_criteria and user_criteria
 
     @classmethod
     def get_entity_helper(cls, abuse_report):
@@ -168,9 +227,9 @@ class CinderJob(ModelBase):
             decision_id=self.decision_id, appeal_text=appeal_text, appealer=appealer
         )
         with atomic():
-            CinderJobAppeal.objects.create(
-                appeal_id=appeal_id, abuse_report=abuse_report
-            )
+            appeal_job, _ = self.__class__.objects.get_or_create(job_id=appeal_id)
+            self.update(appeal_job=appeal_job)
+            abuse_report.update(appeal_date=datetime.now())
 
     def resolve_job(self, review_text, decision, policies):
         helper = self.get_entity_helper(self.abusereport_set.first())
@@ -185,13 +244,6 @@ class CinderJob(ModelBase):
             )
             self.policies.set(policies)
         helper.close_job(job_id=self.job_id)
-
-
-class CinderJobAppeal(ModelBase):
-    appeal_id = models.CharField(max_length=36, default=None, null=True)
-    abuse_report = models.OneToOneField(
-        'abuse.AbuseReport', on_delete=models.CASCADE, related_name='appeal'
-    )
 
 
 class AbuseReportQuerySet(BaseQuerySet):
@@ -529,6 +581,7 @@ class AbuseReport(ModelBase):
         ),
     )
     cinder_job = models.ForeignKey(CinderJob, null=True, on_delete=models.SET_NULL)
+    appeal_date = models.DateTimeField(default=None, null=True)
 
     objects = AbuseReportManager()
 
