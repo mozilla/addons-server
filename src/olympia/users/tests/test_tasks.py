@@ -538,8 +538,8 @@ class TestCheckSuppressedEmailConfirmation(TestCase):
         parsed_url = urlparse(responses.calls[0].request.url)
         search_params = parse_qs(parsed_url.query)
 
-        assert search_params['startDate'][0] == '2023-06-25T00:00:00+0100'
-        assert search_params['endDate'][0] == '2023-06-27T11:00:00+0100'
+        assert search_params['startDate'][0] == '2023-06-25'
+        assert search_params['endDate'][0] == '2023-06-27'
 
     def test_pagination(self):
         verification = SuppressedEmailVerification.objects.create(

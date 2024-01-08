@@ -234,7 +234,7 @@ def check_suppressed_email_confirmation(suppressed_email_verification_id, page_s
         day=before.day,
     )
     end_date = datetime.datetime.now() + datetime.timedelta(days=1)
-    date_format = '%Y-%m-%dT%H:%M:%S%z+0100'
+    date_format = '%Y-%m-%d'
 
     params = {
         'toEmailAddress': email,
