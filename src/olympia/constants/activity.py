@@ -596,10 +596,10 @@ class REVIEWER_REPLY_VERSION(_LOG):
     review_queue = True
 
 
-class APPROVAL_NOTES_CHANGED(_LOG):
+class NOTES_FOR_REVIEWERS_CHANGED(_LOG):
     id = 142
-    format = _('Approval notes changed for {addon} {version}.')
-    short = _('Approval notes changed')
+    format = _('Notes for reviewers changed for {addon} {version}.')
+    short = _('Notes for reviewers changed')
     keep = True
     review_queue = True
     show_user_to_developer = True
