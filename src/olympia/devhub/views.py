@@ -2114,6 +2114,9 @@ def email_verification(request):
     email_verification = request.user.email_verification
     suppressed_email = request.user.suppressed_email
 
+    if not waffle.switch_is_active('suppressed-email'):
+        return redirect('devhub.addons')
+
     if request.method == 'POST':
         if email_verification:
             email_verification.delete()

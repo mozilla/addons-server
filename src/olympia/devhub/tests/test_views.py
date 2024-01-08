@@ -2184,6 +2184,7 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         )
 
 
+@override_switch('suppressed-email', active=True)
 class TestVerifyEmail(TestCase):
     def setUp(self):
         super().setUp()
@@ -2237,6 +2238,16 @@ class TestVerifyEmail(TestCase):
     def _assert_redirect_self(self, response, url=None):
         url = self.url if url is None else url
         self.assert3xx(response, url)
+
+    @override_switch('suppressed-email', active=False)
+    def test_suppressed_email_waffle_disabled(self):
+        self._create_suppressed_email(self.user_profile)
+
+        assert self.user_profile.suppressed_email
+
+        response = self._get()
+
+        self.assert3xx(response, reverse('devhub.addons'))
 
     def test_hide_suppressed_email_snippet(self):
         """
