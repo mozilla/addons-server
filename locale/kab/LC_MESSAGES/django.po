@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-11-25 12:34+0000\n"
 "Last-Translator: ZiriSut <rgebbid@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,9 +94,6 @@ msgstr "Iseɣwan gedlen."
 
 msgid "This display name cannot be used."
 msgstr "Isem-a ur yettwaseqdac ara."
-
-msgid "The homepage field can only be used to link to external websites."
-msgstr "Asebter agejdan ur yezmir ara ad yettwaseqdec anagar i tmerna n useɣwen ɣer yismal web iẓɣarayen."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
@@ -317,10 +314,6 @@ msgstr "Ifecka n tedbalt"
 msgid "Positive integer"
 msgstr "Amḍan ummid ilaw"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Urti-a ur yezmir ara ad yettwaseqdec ala i tmerna n yiseɣwan ɣer yismal web izɣarayen. Tansiwin URL yerran ɣer %(domain)s ur ttwaqbalent ara."
-
 msgid "Incorrect, please try again."
 msgstr "Mačči d ameɣtu, ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
@@ -341,6 +334,10 @@ msgstr "Yessefk ad yegber xaṛsum yiwen n usekkil."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Wali ma yella urti-a igber xarṣum asekkil neɣ azwil."
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "Urti-a ur yezmir ara ad yettwaseqdec ala i tmerna n yiseɣwan ɣer yismal web izɣarayen. Tansiwin URL yerran ɣer %(domain)s ur ttwaqbalent ara."
 
 msgid "Not allowed"
 msgstr "Ur yettusireg ara"
@@ -1703,6 +1700,15 @@ msgstr "Tasarutt API tamaynut tettwarna"
 msgid "API key revoked"
 msgstr "Tasarutt API tettwaḥwi"
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Izegrar inu ur d-uzgin ula deg yiwet n taggayt"
 
@@ -1762,6 +1768,14 @@ msgstr "Nadi tasemlit n tneflit"
 msgid "Search"
 msgstr "Nadi"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Seqdec urti daw-a akken ad tazned akemmus inek n uzegrir."
 
@@ -1780,6 +1794,39 @@ msgstr "Igmaḍ n usentem"
 
 msgid "Validated at:"
 msgstr "Yettwasentem di:"
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Armud aneggaru i yizegrar-inu"
@@ -2699,6 +2746,32 @@ msgstr ""
 "Tanemmirt,\n"
 "Tarbaεt n yizegrar n Mozilla"
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "Aruman"
 
@@ -2945,7 +3018,6 @@ msgstr "Aru kra n tengalt"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Mudd tallalt i usnerni n izegrar s uttekki s twezza-inek n tneflit."
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Bdu"
 
@@ -4268,7 +4340,7 @@ msgid "See all extensions"
 msgstr "Wali meṛṛa isiɣzaf"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "New Android extensions!"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -111,10 +111,6 @@ msgstr "No links are allowed."
 
 msgid "This display name cannot be used."
 msgstr "This display name cannot be used."
-
-#, fuzzy
-msgid "The homepage field can only be used to link to external websites."
-msgstr "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Images must be either PNG or JPG."
@@ -342,10 +338,6 @@ msgstr "Admin Tools"
 msgid "Positive integer"
 msgstr "Positive integer"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-
 msgid "Incorrect, please try again."
 msgstr "Incorrect, please try again."
 
@@ -368,6 +360,10 @@ msgstr "Must have at least one owner."
 #, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Must have at least one owner."
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 
 msgid "Not allowed"
 msgstr "Not allowed"
@@ -1850,6 +1846,15 @@ msgstr "New API key created"
 msgid "API key revoked"
 msgstr "API key revoked"
 
+msgid "Verify email"
+msgstr "Verify email"
+
+msgid "Try again"
+msgstr "Try again"
+
+msgid "Your email has been verified"
+msgstr "Your email has been verified"
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "My add-on doesn't fit into any of the categories"
 
@@ -1912,6 +1917,14 @@ msgstr "Search Developer Docs"
 msgid "Search"
 msgstr "Search"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr "Learn more"
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Use the field below to upload your add-on package."
 
@@ -1930,6 +1943,43 @@ msgstr "Validation Results"
 
 msgid "Validated at:"
 msgstr "Validated at:"
+
+msgid "Email Address Verification"
+msgstr "Email Address Verification"
+
+msgid "Your email address is verified."
+msgstr "Your email address is verified."
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr "Please verify your email by clicking \"Verify email\" above."
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr "Could not verify email address. The verification link has expired."
+
+msgid "Working... Please be patient."
+msgstr "Working... Please be patient."
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+
+msgid "This is taking longer than expected. Try again."
+msgstr "This is taking longer than expected. Try again."
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Recent Activity for My Add-ons"
@@ -2940,6 +2990,51 @@ msgstr ""
 "Thank you,\n"
 "The Mozilla Add-ons team\n"
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+
 msgid "Invisible"
 msgstr "Invisible"
 
@@ -3213,7 +3308,6 @@ msgstr "Write Some Code"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Help make add-ons better by contributing your coding skills."
 
-#. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Get started"
 msgstr "Getting Started"
@@ -4663,8 +4757,8 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Extension starter pack"
+msgid "New Android extensions!"
+msgstr "New Android extensions!"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

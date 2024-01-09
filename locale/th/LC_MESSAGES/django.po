@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-11-24 19:33+0000\n"
 "Last-Translator: aefgh39622@gmail.com <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -96,9 +96,6 @@ msgstr "ไม่มีลิงก์ที่ได้รับอนุญา
 
 msgid "This display name cannot be used."
 msgstr "ชื่อที่แสดงนี้ไม่สามารถใช้ได้"
-
-msgid "The homepage field can only be used to link to external websites."
-msgstr "เขตข้อมูลหน้าแรกสามารถใช้เพื่อเชื่อมโยงไปยังเว็บไซต์ภายนอกเท่านั้น"
 
 msgid "Images must be either PNG or JPG."
 msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
@@ -319,10 +316,6 @@ msgstr "เครื่องมือผู้ดูแล"
 msgid "Positive integer"
 msgstr "จำนวนเต็มบวก"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "เขตข้อมูลนี้สามารถใช้เพื่อเชื่อมโยงไปยังเว็บไซต์ภายนอกเท่านั้น และไม่อนุญาต URL ที่อยู่บน %(domain)s"
-
 msgid "Incorrect, please try again."
 msgstr "ไม่ถูกต้อง โปรดลองอีกครั้ง"
 
@@ -343,6 +336,10 @@ msgstr "ต้องมีตัวอักษรที่พิมพ์ได
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "ตรวจสอบให้แน่ใจว่าช่องกรอกนี้มีตัวอักษรหรือตัวเลขอย่างน้อยหนึ่งตัว"
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "เขตข้อมูลนี้สามารถใช้เพื่อเชื่อมโยงไปยังเว็บไซต์ภายนอกเท่านั้น และไม่อนุญาต URL ที่อยู่บน %(domain)s"
 
 msgid "Not allowed"
 msgstr "ไม่อนุญาต"
@@ -1708,6 +1705,15 @@ msgstr "สร้างกุญแจ API ใหม่แล้ว"
 msgid "API key revoked"
 msgstr "เพิกถอนกุญแจ API แล้ว"
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "ส่วนเสริมของฉันไม่ตรงกับหมวดหมู่ใด ๆ"
 
@@ -1767,6 +1773,14 @@ msgstr "ค้นหาเอกสารนักพัฒนา"
 msgid "Search"
 msgstr "ค้นหา"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "ใช้ฟิลด์ด้านล่างเพื่ออัปโหลดแพกเกจส่วนเสริมของคุณ"
 
@@ -1785,6 +1799,39 @@ msgstr "ผลการตรวจสอบ"
 
 msgid "Validated at:"
 msgstr "ตรวจสอบเมื่อ:"
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "กิจกรรมล่าสุดของส่วนเสริมของฉัน"
@@ -2647,6 +2694,32 @@ msgid ""
 "The Mozilla Add-ons team"
 msgstr ""
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "มองไม่เห็น"
 
@@ -2894,7 +2967,6 @@ msgstr "เขียนรหัสสักหน่อย"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "เริ่มต้นใช้งาน"
 
@@ -4224,7 +4296,7 @@ msgid "See all extensions"
 msgstr "ดูส่วนขยายทั้งหมด"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "New Android extensions!"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

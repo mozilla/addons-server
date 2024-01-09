@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-04-22 20:17+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,6 @@ msgid "No links are allowed."
 msgstr ""
 
 msgid "This display name cannot be used."
-msgstr ""
-
-msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
@@ -318,10 +315,6 @@ msgstr ""
 msgid "Positive integer"
 msgstr ""
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
-
 msgid "Incorrect, please try again."
 msgstr ""
 
@@ -341,6 +334,10 @@ msgid "Must contain at least one printable character."
 msgstr ""
 
 msgid "Ensure this field contains at least one letter or number character."
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Not allowed"
@@ -1692,6 +1689,15 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "El mio complementu nun encaxa en nenguna estaya"
 
@@ -1751,6 +1757,14 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
@@ -1768,6 +1782,39 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
+msgstr ""
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2623,6 +2670,32 @@ msgid ""
 "The Mozilla Add-ons team"
 msgstr ""
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "Invisible"
 
@@ -2868,7 +2941,6 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr ""
 
@@ -4186,7 +4258,7 @@ msgid "See all extensions"
 msgstr "Ver toles estensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "New Android extensions!"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

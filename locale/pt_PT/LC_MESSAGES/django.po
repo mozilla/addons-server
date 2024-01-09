@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-10-18 00:01+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
@@ -93,9 +93,6 @@ msgstr "Não são permitidas ligações."
 
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
-
-msgid "The homepage field can only be used to link to external websites."
-msgstr "O campo da página inicial só pode ser utilizado para ligações a sites externos."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
@@ -318,10 +315,6 @@ msgstr "Ferramentas de administrador"
 msgid "Positive integer"
 msgstr "Inteiro positivo"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Este campo apenas pode ser utilizado para ligações para sites externos. Endereços em %(domain)s não são permitidos."
-
 msgid "Incorrect, please try again."
 msgstr "Incorreto, por favor, tente novamente."
 
@@ -342,6 +335,10 @@ msgstr "Tem de conter pelo menos um caractere imprimível."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Certifique-se que este campo tem pelo menos uma letra ou caractere numérico."
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "Este campo apenas pode ser utilizado para ligações para sites externos. Endereços em %(domain)s não são permitidos."
 
 msgid "Not allowed"
 msgstr "Não permitido"
@@ -1729,6 +1726,15 @@ msgstr "Nova chave da API criada"
 msgid "API key revoked"
 msgstr "Chave da API revogada"
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "O meu extra não se enquadra em nenhuma das categorias"
 
@@ -1789,6 +1795,14 @@ msgstr "Procurar na documentação do programador"
 msgid "Search"
 msgstr "Pesquisa"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Use o campo em baixo para carregar o seu pacote do extra."
 
@@ -1807,6 +1821,39 @@ msgstr "Resultados de validação"
 
 msgid "Validated at:"
 msgstr "Validado a:"
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Atividade recente para os meus extras"
@@ -2735,6 +2782,32 @@ msgstr ""
 "Obrigado,\n"
 "A equipa de extras da Mozilla"
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "Invisível"
 
@@ -2991,7 +3064,6 @@ msgstr "Escrever algum código"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Ajude a criar extras melhores ao contribuir com suas capacidades de programação."
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Começar"
 
@@ -4326,8 +4398,8 @@ msgid "See all extensions"
 msgstr "Ver todas as extensões"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
-msgstr "Pacote inicial de extensão"
+msgid "New Android extensions!"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"

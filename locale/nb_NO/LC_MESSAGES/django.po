@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-06-23 07:10+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -93,9 +93,6 @@ msgstr "Ingen lenker tillatt."
 
 msgid "This display name cannot be used."
 msgstr "Dette visningsnavnet kan ikke brukes."
-
-msgid "The homepage field can only be used to link to external websites."
-msgstr "Hjemmesidefeltet kan bare brukes for å lenke til eksterne nettsider."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder må være enten PNG eller JPG."
@@ -317,10 +314,6 @@ msgstr "Adminverktøy"
 msgid "Positive integer"
 msgstr "Positivt heiltal"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "Dette feltet kan bare brukes for å lenke til eksterne nettsteder. Nettadresser på %(domain)s er ikke tillatt."
-
 msgid "Incorrect, please try again."
 msgstr "Feil, prøv igjen."
 
@@ -341,6 +334,10 @@ msgstr "Må inneholde minst ett tegn som kan skrives."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Se til dette feltet inneholder minst en bokstav eller et siffer."
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "Dette feltet kan bare brukes for å lenke til eksterne nettsteder. Nettadresser på %(domain)s er ikke tillatt."
 
 msgid "Not allowed"
 msgstr "Ikke tillatt"
@@ -1708,6 +1705,15 @@ msgstr "Ny API-nøkkel laget"
 msgid "API key revoked"
 msgstr "API-nøkkel tilbakekalt"
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Utvidelsen passer ikke i noen av kategoriene"
 
@@ -1767,6 +1773,14 @@ msgstr "Søk i utviklerdokumentasjon"
 msgid "Search"
 msgstr "Søk"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "Bruk feltet nedenfor for å laste opp utvidelsespakken din."
 
@@ -1785,6 +1799,39 @@ msgstr "Valideringsresultat"
 
 msgid "Validated at:"
 msgstr "Validert den:"
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nylig aktivitet for mine tillegg"
@@ -2669,6 +2716,32 @@ msgstr ""
 "Takk skal du ha,\n"
 "Mozilla tilleggsteam"
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "Usynlig"
 
@@ -2915,7 +2988,6 @@ msgstr "Skriv litt kode"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "Hjelp til med å gjøre tillegg bedre med å bidra med kodeferdighetene dine."
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "Kom i gang"
 
@@ -4239,7 +4311,7 @@ msgid "See all extensions"
 msgstr "Se alle utvidelser"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "New Android extensions!"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
