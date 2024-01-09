@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-09 22:19+0000\n"
+"PO-Revision-Date: 2024-01-09 22:30+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -105,6 +105,8 @@ msgid ""
 "\n"
 "Thank you for your report about %(name)s, at %(target_url)s. We have taken action to remove the content.\n"
 msgstr ""
+"\n"
+"תודה על הדיווח שלך על %(name)s, ב־%(target_url)s. בחרנו להסיר את התוכן.\n"
 
 msgid "No links are allowed."
 msgstr "קישורים אינם מותרים."
@@ -928,19 +930,19 @@ msgid "Add-on slug changed"
 msgstr ""
 
 msgid "Collection {collection} deleted by moderator"
-msgstr ""
+msgstr "האוסף {collection} נמחק על־ידי מנהל"
 
 msgid "Collection {collection} un-deleted by moderator"
-msgstr ""
+msgstr "בוטלה המחיקה של האוסף {collection} על־ידי מנהל"
 
 msgid "Review {rating} for {addon} un-deleted."
-msgstr ""
+msgstr "בוטלה המחיקה של הסקירה {rating} עבור {addon}."
 
 msgid "User {user} content restored."
-msgstr ""
+msgstr "התוכן של המשתמש {user} שוחזר."
 
 msgid "User {user} unbanned."
-msgstr ""
+msgstr "בוטלה ההגבלה של המשתמש {user}."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -1740,13 +1742,13 @@ msgid "API key revoked"
 msgstr "מפתח API נשלל"
 
 msgid "Verify email"
-msgstr ""
+msgstr "אימות דוא״ל"
 
 msgid "Try again"
-msgstr ""
+msgstr "ניסיון חוזר"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "כתובת הדוא״ל שלך אומתה"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "התוספת שלי לא מתאימה לאף אחת מהקטגוריות"
@@ -1810,11 +1812,11 @@ msgstr "חיפוש"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "שמנו לב שכתובת הדוא״ל שלך ״%(email)s״ אינו יכול לקבל מאיתנו הודעות דוא״ל. נא לעדכן את כתובת הדוא״ל שלך לכזו שיכולה לקבל מאיתנו הודעות."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
-msgstr ""
+msgstr "מידע נוסף"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "יש להשתמש בשדה שלהלן כדי להעלות את חבילת התוספת שלך."
@@ -1836,33 +1838,35 @@ msgid "Validated at:"
 msgstr "מועד הבדיקה:"
 
 msgid "Email Address Verification"
-msgstr ""
+msgstr "אימות כתובת דוא״ל"
 
 msgid "Your email address is verified."
-msgstr ""
+msgstr "כתובת הדוא״ל שלך מאומתת."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "נא לאמת את הדוא״ל שלך על־ידי לחיצה על ״אימות דוא״ל״ למעלה."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "לא ניתן היה לאמת את כתובת הדוא״ל. פג תוקף קישור האימות."
 
 msgid "Working... Please be patient."
-msgstr ""
+msgstr "בתהליך... נא להתאזר בסבלנות."
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
 msgstr ""
+"שליחת דוא״ל לאימות נכשלה. נא לנסות שוב. אם אין לך יותר גישה לכתובת הדוא״ל שלך, נא לעדכן את כתובת הדוא״ל של חשבון ה־mozilla שלך. <a href=\"https://support.mozilla.org/en-US/kb/change-primary-email-"
+"address-firefox-accounts\" target=\"_blank\" > שינוי כתובת דוא״ל </a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "פעולה זו לוקחת יותר זמן מהצפוי. נא לנסות שוב."
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
-msgstr ""
+msgstr "הודעת דוא״ל עם קישור לאימות נשלחה לכתובת הדוא״ל שלך: %(email)s. נא ללחוץ על הקישור כדי לאמת את כתובת הדוא״ל שלך. אם לא קיבלת את ההודעה, נא לבדוק בתיקיית הספאם שלך."
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
