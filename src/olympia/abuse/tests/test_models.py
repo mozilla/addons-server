@@ -18,7 +18,7 @@ from ..cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
-from ..models import AbuseReport, CinderJob, CinderJobAppeal, CinderPolicy
+from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
     CinderActionApproveAppealOverride,
     CinderActionApproveInitialDecision,
@@ -402,6 +402,16 @@ class TestCinderJob(TestCase):
         )
         assert cinder_job.target == abuse_report.target == addon
 
+        appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
+        cinder_job.update(appeal_job=appeal_job)
+        assert appeal_job.target == cinder_job.target == addon
+
+        appeal_appeal_job = CinderJob.objects.create(job_id='fake_appeal_appeal_job_id')
+        appeal_job.update(appeal_job=appeal_appeal_job)
+        assert (
+            appeal_appeal_job.target == appeal_job.target == cinder_job.target == addon
+        )
+
     def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()
@@ -676,3 +686,48 @@ class TestCinderJob(TestCase):
         )
         self.assertCloseToNow(cinder_job.decision_date)
         assert list(cinder_job.policies.all()) == policies
+
+    def test_abuse_reports(self):
+        job = CinderJob.objects.create(job_id='fake_job_id')
+        assert job.abuse_reports == set()
+
+        report = AbuseReport.objects.create(guid=addon_factory().guid, cinder_job=job)
+        assert job.abuse_reports == {report}
+
+        report2 = AbuseReport.objects.create(guid=addon_factory().guid, cinder_job=job)
+        assert job.abuse_reports == {report, report2}
+
+        appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
+        job.update(appeal_job=appeal_job)
+
+        assert appeal_job.abuse_reports == {report, report2}
+        assert job.abuse_reports == {report, report2}
+
+        appeal_appeal_job = CinderJob.objects.create(job_id='fake_appeal_appeal_job_id')
+        appeal_job.update(appeal_job=appeal_appeal_job)
+
+        assert appeal_appeal_job.abuse_reports == {report, report2}
+        assert appeal_job.abuse_reports == {report, report2}
+        assert job.abuse_reports == {report, report2}
+
+
+class TestCinderJobCanBeAppealed(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+
+    def test_reporter_can_appeal_approve_decision(self):
+        raise NotImplementedError
+
+    def test_reporter_cant_appeal_approve_decision_already_appealed(self):
+        raise NotImplementedError
+
+    def test_reporter_can_appeal_approve_decision_already_appealed_someone_else(self):
+        raise NotImplementedError
+
+    def test_reporter_cant_appeal_appealed_decision(self):
+        raise NotImplementedError
+
+    def test_etc(self):
+        raise NotImplementedError
+
+    # FIXME: more!

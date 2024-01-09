@@ -40,21 +40,17 @@ class CinderAction:
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
     def notify_owners(self, owners):
-        abuse_report = self.cinder_job.abusereport_set.first()
-        if not abuse_report:
-            return
         name = self.get_target_name()
         appeal_url = reverse(
-            'abuse.appeal',
+            'abuse.appeal_author',
             kwargs={
-                'abuse_report_id': abuse_report.id,
                 'decision_id': self.cinder_job.decision_id,
             },
         )
         context_dict = {
-            'target': abuse_report.target,
+            'target': self.cinder_job.target,
             'name': name,
-            'target_url': absolutify(abuse_report.target.get_url_path()),
+            'target_url': absolutify(self.cinder_job.target.get_url_path()),
             'reasons': [policy.text for policy in self.cinder_job.policies.all()],
             'appeal_url': absolutify(appeal_url),
             'SITE_URL': settings.SITE_URL,
@@ -73,7 +69,7 @@ class CinderAction:
 
     def notify_reporters(self):
         template = loader.get_template(self.reporter_template_path)
-        for abuse_report in self.cinder_job.abusereport_set.all():
+        for abuse_report in self.cinder_job.abuse_reports:
             email_address = (
                 abuse_report.reporter.email
                 if abuse_report.reporter
@@ -86,7 +82,7 @@ class CinderAction:
             ):
                 target_name = self.get_target_name()
                 appeal_url = reverse(
-                    'abuse.appeal',
+                    'abuse.appeal_reporter',
                     kwargs={
                         'abuse_report_id': abuse_report.id,
                         'decision_id': self.cinder_job.decision_id,

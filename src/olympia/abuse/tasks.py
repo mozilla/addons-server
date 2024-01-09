@@ -69,8 +69,11 @@ def report_to_cinder(abuse_report_id):
 
 @task
 @use_primary_db
-def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id):
-    abuse_report = AbuseReport.objects.get(id=abuse_report_id)
+def appeal_to_cinder(*, abuse_report_id, appeal_text, is_reporter, user_id):
+    if abuse_report_id:
+        abuse_report = AbuseReport.objects.get(id=abuse_report_id)
+    else:
+        abuse_report = None
     if user_id:
         user = UserProfile.objects.get(pk=user_id)
     else:
@@ -79,7 +82,12 @@ def appeal_to_cinder(*, abuse_report_id, appeal_text, user_id):
         # anonymous reporter and we have their name/email in the abuse report
         # already.
         user = None
-    abuse_report.cinder_job.appeal(abuse_report, appeal_text, user)
+    abuse_report.cinder_job.appeal(
+        abuse_report=abuse_report,
+        appeal_text=appeal_text,
+        is_reporter=is_reporter,
+        user=user,
+    )
 
 
 @task

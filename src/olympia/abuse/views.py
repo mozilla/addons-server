@@ -268,15 +268,28 @@ def cinder_webhook(request):
 
 
 def appeal(request, *, abuse_report_id, decision_id, **kwargs):
-    abuse_report = get_object_or_404(AbuseReport.objects, id=abuse_report_id)
-    cinder_job = abuse_report.cinder_job
+    cinder_job = get_object_or_404(
+        CinderJob.objects.exclude(
+            decision_action=CinderJob.DECISION_ACTIONS.NO_DECISION
+        ),
+        decision_id=decision_id,
+    )
+
+    if abuse_report_id:
+        abuse_report = get_object_or_404(
+            AbuseReport.objects, id=abuse_report_id, cinder_job=cinder_job
+        )
+    else:
+        abuse_report = None
+    # Reporter appeal: we need an abuse report.
     if (
-        not cinder_job
-        or cinder_job.decision_id != decision_id
-        or cinder_job.decision_action == CinderJob.DECISION_ACTIONS.NO_DECISION
+        abuse_report is None
+        and cinder_job.decision_action
+        in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
     ):
         raise Http404
 
+    target = cinder_job.target
     context_data = {
         'decision_id': decision_id,
     }
@@ -290,8 +303,8 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
     ):
         # Only person would should be appealing an approval is the reporter.
         if (
-            abuse_report
-            and decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+            decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+            and abuse_report
             and abuse_report.reporter
         ):
             # Authenticated reporter is the easy case, they should just be
@@ -308,7 +321,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             # form. We do the same for ban appeals, since the user would no
             # longer be able to log in.
             expected_email = (
-                abuse_report.user.email
+                target.email
                 if decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
                 else abuse_report.reporter_email
             )
@@ -329,12 +342,12 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             return redirect_for_login(request)
 
         allowed_users = []
-        if hasattr(abuse_report.target, 'authors'):
-            allowed_users = abuse_report.target.authors.all()
-        elif hasattr(abuse_report.target, 'author'):
-            allowed_users = [abuse_report.target.author]
-        elif hasattr(abuse_report.target, 'user'):
-            allowed_users = [abuse_report.target.user]
+        if hasattr(target, 'authors'):
+            allowed_users = target.authors.all()
+        elif hasattr(target, 'author'):
+            allowed_users = [target.author]
+        elif hasattr(target, 'user'):
+            allowed_users = [target.user]
         valid_user_or_email_provided = request.user in allowed_users
 
     if not valid_user_or_email_provided and not appeal_email_form:
@@ -356,8 +369,9 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             appeal_form = AbuseAppealForm(post_data)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
-                    abuse_report_id=abuse_report.id,
+                    abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
+                    is_reporter=is_reporter,
                     user_id=request.user.pk,
                 )
                 context_data['appeal_processed'] = True

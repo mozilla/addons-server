@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from itertools import chain
 
 from django.db import models
 from django.db.models import Q
@@ -80,12 +81,19 @@ class CinderJob(ModelBase):
 
     @property
     def target(self):
-        # this works because all abuse reports for a single job are for the same target
-        return (
-            self.abusereport_set.first().target
-            if self.abusereport_set.exists()
-            else None
-        )
+        # this works because all abuse reports for a single job and all appeals
+        # for a single job are for the same target.
+        if first_abuse_report := self.abusereport_set.first():
+            # Early return to avoid extra queries.
+            return first_abuse_report.target
+        appealed_job = self.appealed_jobs.first()
+        return appealed_job.target if appealed_job else None
+
+    @property
+    def abuse_reports(self):
+        return set(
+            chain.from_iterable(job.abuse_reports for job in self.appealed_jobs.all())
+        ) or set(self.abusereport_set.all())
 
     def can_be_appealed_by_author(self):
         return self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
@@ -216,8 +224,8 @@ class CinderJob(ModelBase):
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision).process()
 
-    def appeal(self, abuse_report, appeal_text, user):
-        if not self.can_be_appealed(abuse_report):
+    def appeal(self, *, abuse_report, appeal_text, is_reporter, user):
+        if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
         if user:
             appealer = CinderUser(user)
@@ -229,7 +237,8 @@ class CinderJob(ModelBase):
         with atomic():
             appeal_job, _ = self.__class__.objects.get_or_create(job_id=appeal_id)
             self.update(appeal_job=appeal_job)
-            abuse_report.update(appeal_date=datetime.now())
+            if abuse_report and is_reporter:
+                abuse_report.update(appeal_date=datetime.now())
 
     def resolve_job(self, review_text, decision, policies):
         helper = self.get_entity_helper(self.abusereport_set.first())
