@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-09 22:40+0000\n"
+"PO-Revision-Date: 2024-01-09 22:50+0000\n"
 "Last-Translator: Itiel <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2555,14 +2555,14 @@ msgid "Operating system and build environment requirements."
 msgstr "דרישות סביבת הידור קוד ומערכת הפעלה."
 
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
-msgstr ""
+msgstr "הגרסה הנדרשת והוראות ההתקנה של כל התוכנות בהן נעשה שימוש בתהליך הבנייה (כגון <span class=\"tech-emphasis\">node</span> ו־<span class=\"tech-emphasis\">npm</span>)."
 
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr ""
+msgstr "אסור שקובצי מקור (מלבד ספריות צד שלישי בקוד פתוח) יהיו מומרים משפת תכנות אחרת, משורשרים, ממוזערים או כאלו שנוצרו על־ידי מכונה."
 
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "למידע נוסף, נא לקרוא את <a %(a_attrs)s>הגשת קוד מקור</a> ב־Firefox Extension Workshop."
 
 msgid "Upload source code:"
 msgstr "העלאת קוד מקור:"
@@ -2610,7 +2610,7 @@ msgid "Theme generator"
 msgstr "מחולל ערכות נושא"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "אזהרה: מאפייני המניפסט הבאים שהעלאת הגרסה האחרונה שלך השתמשה בהם במניפסט אינם נתמכים באשף זה ויתעלמו מהם:"
 
 msgid "Theme name"
 msgstr "שם ערכת נושא"
@@ -2675,10 +2675,10 @@ msgstr "כדי להגיש בקשות API, יש לשלוח <a href=\"%(jwt_url)s\
 
 #, python-format
 msgid "Please click the confirm button below to generate API credentials for user <strong>%(name)s</strong>."
-msgstr ""
+msgstr "נא ללחוץ על כפתור האישור שלהלן כדי ליצור אישורי API עבור המשתמש <strong>%(name)s</strong>."
 
 msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr ""
+msgstr "קישור לאימות יישלח לכתובת הדוא״ל שלך. לאחר האימות ניתן יהיה למצוא את מפתחות ה־API שלך בדף זה."
 
 msgid "You don't have any API credentials."
 msgstr "אין לך פרטי גישה כלשהם ל־API."
