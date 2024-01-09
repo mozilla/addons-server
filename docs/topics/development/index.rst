@@ -19,4 +19,5 @@ Development
    translations
    search
    docs
+   waffle
    ../../../README.rst
