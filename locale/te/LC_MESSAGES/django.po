@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-12-05 19:13+0000\n"
+"POT-Creation-Date: 2024-01-09 18:11+0000\n"
 "PO-Revision-Date: 2023-09-18 13:35+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -93,9 +93,6 @@ msgstr "లంకెలు అనుమతించబడవు."
 
 msgid "This display name cannot be used."
 msgstr "ఈ పేరును వాడుకోలేరు."
-
-msgid "The homepage field can only be used to link to external websites."
-msgstr "హోమ్‌పేజీ ఫీల్డు బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడగలరు."
 
 msgid "Images must be either PNG or JPG."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
@@ -316,10 +313,6 @@ msgstr "అడ్మిన్ ఉపకరణాలు"
 msgid "Positive integer"
 msgstr "ధన పూర్ణాంకం"
 
-#, python-format
-msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr "ఈ ఖాళీని బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడాలి. %(domain)s లోని URLలు అనుమతించబడవు."
-
 msgid "Incorrect, please try again."
 msgstr "సరికాదు, దయచేసి మళ్లీ ప్రయత్నించండి."
 
@@ -340,6 +333,10 @@ msgstr "కనీసం ఒక ముద్రించదగిన అక్ష
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "ఈ ఖాళీలో కనీసం ఒక అక్షరం లేదా అంకె ఉండేట్లు నిర్ధారించుకోండి."
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "ఈ ఖాళీని బయటి వెబ్‌సైట్లకు లంకె చేయడానికి మాత్రమే వాడాలి. %(domain)s లోని URLలు అనుమతించబడవు."
 
 msgid "Not allowed"
 msgstr "అనుమతి లేదు"
@@ -1689,6 +1686,15 @@ msgstr "కొత్త API కీ సృష్టించబడింది"
 msgid "API key revoked"
 msgstr "API కీ ఉపసంహరించబడింది"
 
+msgid "Verify email"
+msgstr ""
+
+msgid "Try again"
+msgstr ""
+
+msgid "Your email has been verified"
+msgstr ""
+
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "నా పొడగింత ఏ వర్గానికి సరిపోదు"
 
@@ -1748,6 +1754,14 @@ msgstr "డెవలపర్ పత్రావళిలో వెతకండ�
 msgid "Search"
 msgstr "వెతుకు"
 
+#, python-format
+msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+msgid "Learn more"
+msgstr ""
+
 msgid "Use the field below to upload your add-on package."
 msgstr "మీ పొడగింత ప్యాకేజీని ఎక్కించడానికి క్రింది ఖాళీని ఉపయోగించండి."
 
@@ -1766,6 +1780,39 @@ msgstr "ధ్రువీకరణ ఫలితాలు"
 
 msgid "Validated at:"
 msgstr "ధృవీకరించబడింది:"
+
+msgid "Email Address Verification"
+msgstr ""
+
+msgid "Your email address is verified."
+msgstr ""
+
+msgid "Please verify your email by clicking \"Verify email\" above."
+msgstr ""
+
+msgid "Could not verify email address. The verification link has expired."
+msgstr ""
+
+msgid "Working... Please be patient."
+msgstr ""
+
+msgid ""
+"Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
+"US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
+msgstr ""
+
+msgid "This is taking longer than expected. Try again."
+msgstr ""
+
+#, python-format
+msgid ""
+"An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
+"folder."
+msgstr ""
+
+#, python-format
+msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
+msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "నా యాడ్-ఆన్ల ఇటీవలి కార్యకలాపం"
@@ -2620,6 +2667,32 @@ msgid ""
 "The Mozilla Add-ons team"
 msgstr ""
 
+msgid ""
+"Hello,\n"
+"\n"
+"Your email was successfully verified.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
+#, python-format
+msgid ""
+"Hello,\n"
+"\n"
+"You're receiving this message because you requested to verify your email.\n"
+"To finish this process, please click on the link below:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"If you didn't request this, please notify amo-admins@mozilla.com.\n"
+"\n"
+"Regards,\n"
+"\n"
+"The Mozilla Add-ons Team"
+msgstr ""
+
 msgid "Invisible"
 msgstr "అదృశ్యం"
 
@@ -2866,7 +2939,6 @@ msgstr "కొంత కోడ్ను వ్రాయండి"
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr "మీ కోడింగ్ నైపుణ్యాలను అందించడం ద్వారా పొడగింతలను మెరుగుపరచడంలో తోడ్పడండి."
 
-#. editorial content for the secondary hero shelves.
 msgid "Get started"
 msgstr "మొదలుపెట్టండి"
 
@@ -4184,7 +4256,7 @@ msgid "See all extensions"
 msgstr "పొడగింతలన్నీ చూడండి"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension starter pack"
+msgid "New Android extensions!"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
