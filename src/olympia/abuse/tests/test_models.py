@@ -718,6 +718,9 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_can_appeal_approve_decision(self):
         raise NotImplementedError
 
+    def test_reporter_cant_appeal_non_approve_decision(self):
+        raise NotImplementedError
+
     def test_reporter_cant_appeal_approve_decision_already_appealed(self):
         raise NotImplementedError
 
@@ -727,7 +730,22 @@ class TestCinderJobCanBeAppealed(TestCase):
     def test_reporter_cant_appeal_appealed_decision(self):
         raise NotImplementedError
 
-    def test_etc(self):
+    def test_reporter_cant_appeal_past_expiration_delay(self):
         raise NotImplementedError
 
-    # FIXME: more!
+    def test_author_can_appeal_disable_decision(self):
+        raise NotImplementedError
+
+    def test_author_cant_appeal_approve_decision(self):
+        raise NotImplementedError
+
+    def test_author_cant_appeal_disable_decision_already_appealed(self):
+        raise NotImplementedError
+
+    def test_author_can_appeal_appealed_decision(self):
+        raise NotImplementedError
+
+    def test_author_cant_appeal_appealed_appealed_decision(self):
+        # FIXME: I don't think we can set up that scenario, because we check
+        # the action too
+        raise NotImplementedError
