@@ -91,9 +91,14 @@ class CinderJob(ModelBase):
 
     @property
     def abuse_reports(self):
-        return set(
-            chain.from_iterable(job.abuse_reports for job in self.appealed_jobs.all())
-        ) or set(self.abusereport_set.all())
+        return (
+            list(
+                chain.from_iterable(
+                    job.abuse_reports for job in self.appealed_jobs.all()
+                )
+            )
+            or self.abusereport_set.all()
+        )
 
     def can_be_appealed_by_author(self):
         return self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
