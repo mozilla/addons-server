@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 03:03+0000\n"
+"PO-Revision-Date: 2024-01-10 03:09+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1791,7 +1791,7 @@ msgstr "搜尋"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "我們發現您的信箱「%(email)s」無法收到我們寄出的信件。請更換成能接收來自我們的郵件的信箱。"
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
@@ -2755,9 +2755,9 @@ msgstr ""
 "\n"
 "您的電子郵件信箱驗證成功。\n"
 "\n"
-"感謝，\n"
+"祝順利，\n"
 "\n"
-"Mozilla 附加元件團隊"
+"Mozilla 附加元件站管理團隊"
 
 #, python-format
 msgid ""
@@ -2774,6 +2774,18 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"您會收到這封信是因為您申請要驗證電子郵件信箱。\n"
+"要完成驗證，請點擊下方的鏈結：\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"若您並未申請驗證，請通知 amo-admins@mozilla.com。\n"
+"\n"
+"祝順利\n"
+"\n"
+"Mozilla 附加元件站管理團隊"
 
 msgid "Invisible"
 msgstr "隱藏"
@@ -4344,7 +4356,7 @@ msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
 msgid "New Android extensions!"
-msgstr ""
+msgstr "全新的 Android 擴充套件！"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
