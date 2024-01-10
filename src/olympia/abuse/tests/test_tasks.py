@@ -16,7 +16,7 @@ from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..models import AbuseReport, CinderJob, CinderJobAppeal, CinderPolicy
+from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..tasks import appeal_to_cinder, report_to_cinder, resolve_job_in_cinder
 
 
