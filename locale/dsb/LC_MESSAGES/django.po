@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 17:20+0000\n"
+"PO-Revision-Date: 2024-01-10 17:28+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1849,7 +1849,7 @@ msgid ""
 msgstr ""
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "To trajo dlej ako wótcakane. Wopytajśo hyšći raz."
 
 #, python-format
 msgid ""
@@ -1859,7 +1859,7 @@ msgstr ""
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr ""
+msgstr "Pódany kod jo z e-mailoweju adresu drugego wužywarja zwězany. Pšosym wužywajśo wótkaz w mejlce, kótaraž jo se pósłała na wašu e-mailowu adresu %(email)s."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Nejnowša aktiwita za móje dodanki"
@@ -2796,6 +2796,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witaj,\n"
+"\n"
+"waša e-mailowa adresa jo se wuspěšnje wobkšuśiła.\n"
+"\n"
+"Póstrowy,\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #, python-format
 msgid ""
@@ -2812,6 +2819,17 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajśo,\n"
+"\n"
+"dostawaśo toś tu powěsć, dokulaž sćo pominał, aby swóju e-mailowu adresu pśeglědał. Aby toś ten proces dokóńcył, klikniśo pšosym na slědujucy wótkaz:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Jolic njejsćo to pominał, sćelśo pšosym mejlku na amo-admins@mozilla.com.\n"
+"\n"
+"Póstrowy,\n"
+"\n"
+"Team dodankow Mozilla"
 
 msgid "Invisible"
 msgstr "Njewidobny"
@@ -4398,7 +4416,7 @@ msgstr "Wšykne rozšyrjenja pokazaś"
 
 #. editorial content for the secondary hero shelves.
 msgid "New Android extensions!"
-msgstr ""
+msgstr "Nowe rozšyrjenja Android!"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
