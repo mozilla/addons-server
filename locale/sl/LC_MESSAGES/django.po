@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-09 18:49+0000\n"
-"Last-Translator: Google Translate <pontoon-gt@example.com>\n"
+"PO-Revision-Date: 2024-01-10 16:52+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1742,7 +1742,7 @@ msgid "API key revoked"
 msgstr "Ključ API preklican"
 
 msgid "Verify email"
-msgstr "Potrdi e-poštni naslov"
+msgstr "Potrdi naslov"
 
 msgid "Try again"
 msgstr "Poskusi znova"
@@ -1811,7 +1811,7 @@ msgstr "Iskanje"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr "Ugotovili smo, da vaš e-poštni naslov \"%(email)s\" ne more prejemati naše e-pošte. Posodobite svoj e-poštni naslov na takšnega, ki bo lahko prejemal naša sporočila."
+msgstr "Ugotovili smo, da vaš e-poštni naslov \"%(email)s\" ne more prejemati naše e-pošte. Spremenite svoj e-poštni naslov na takšnega, ki bo lahko prejemal naša sporočila."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
@@ -1843,13 +1843,13 @@ msgid "Your email address is verified."
 msgstr "Vaš e-poštni naslov je potrjen."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr "Potrdite svoj e-poštni naslov s klikom na \"Potrdi e-poštni naslov\" zgoraj."
+msgstr "Potrdite svoj e-poštni naslov s klikom na \"Potrdi naslov\" zgoraj."
 
 msgid "Could not verify email address. The verification link has expired."
 msgstr "E-poštnega naslova ni bilo mogoče potrditi. Povezava za preverjanje je potekla."
 
 msgid "Working... Please be patient."
-msgstr "Dela ... Prosim za potrpežljivost."
+msgstr "Postopek teče ... Prosimo za potrpljenje."
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
