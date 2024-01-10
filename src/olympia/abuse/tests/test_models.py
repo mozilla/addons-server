@@ -8,6 +8,7 @@ from django.core.exceptions import ValidationError
 import responses
 
 from olympia.amo.tests import TestCase, addon_factory, collection_factory, user_factory
+from olympia.constants.abuse import APPEAL_EXPIRATION_DAYS
 from olympia.ratings.models import Rating
 
 from ..cinder import (
@@ -713,39 +714,164 @@ class TestCinderJob(TestCase):
 
 class TestCinderJobCanBeAppealed(TestCase):
     def setUp(self):
-        self.addon = addon_factory()
+        self.reporter = user_factory()
+        self.author = user_factory()
+        self.addon = addon_factory(users=[self.author])
+        self.initial_job = CinderJob.objects.create(job_id='fake_initial_job_id')
+        self.initial_report = AbuseReport.objects.create(
+            guid=self.addon.guid, cinder_job=self.initial_job, reporter=self.reporter
+        )
 
     def test_reporter_can_appeal_approve_decision(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        assert self.initial_job.can_be_appealed(
+            is_reporter=True, abuse_report=self.initial_report
+        )
+
+    def test_reporter_cant_appeal_approve_decision_if_abuse_report_is_not_passed(self):
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        assert not self.initial_job.can_be_appealed(is_reporter=True)
 
     def test_reporter_cant_appeal_non_approve_decision(self):
-        raise NotImplementedError
+        for decision_action in (
+            CinderJob.DECISION_ACTIONS.NO_DECISION,
+            CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+            CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            CinderJob.DECISION_ACTIONS.AMO_DELETE_RATING,
+            CinderJob.DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+        ):
+            self.initial_job.update(
+                decision_date=datetime.now(),
+                decision_id='fake_decision_id',
+                decision_action=decision_action,
+            )
+            assert not self.initial_job.can_be_appealed(
+                is_reporter=True, abuse_report=self.initial_report
+            )
 
     def test_reporter_cant_appeal_approve_decision_already_appealed(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        self.initial_report.update(appeal_date=datetime.now())
+        assert not self.initial_job.can_be_appealed(
+            is_reporter=True, abuse_report=self.initial_report
+        )
 
     def test_reporter_can_appeal_approve_decision_already_appealed_someone_else(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            cinder_job=self.initial_job,
+            reporter=user_factory(),
+            appeal_date=datetime.now(),
+        )
+        assert self.initial_job.can_be_appealed(
+            is_reporter=True, abuse_report=self.initial_report
+        )
 
     def test_reporter_cant_appeal_appealed_decision(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+            decision_date=datetime.now(),
+            decision_id='fake_appeal_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        self.initial_report.update(appeal_date=datetime.now())
+        # We should never end up in this situation where an AbuseReport is tied
+        # to a CinderJob from an appeal, but if that somehow happens we want to
+        # make sure it's impossible for a reporter to appeal an appeal.
+        new_report = AbuseReport.objects.create(
+            guid=self.addon.guid,
+            cinder_job=appeal_job,
+            reporter=user_factory(),
+            appeal_date=datetime.now(),
+        )
+        assert not appeal_job.can_be_appealed(is_reporter=True, abuse_report=new_report)
 
     def test_reporter_cant_appeal_past_expiration_delay(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=self.days_ago(APPEAL_EXPIRATION_DAYS + 1),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        assert not self.initial_job.can_be_appealed(
+            is_reporter=True, abuse_report=self.initial_report
+        )
 
     def test_author_can_appeal_disable_decision(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        assert self.initial_job.can_be_appealed(is_reporter=False)
 
-    def test_author_cant_appeal_approve_decision(self):
-        raise NotImplementedError
+    def test_author_cant_appeal_approve_or_escalation_decision(self):
+        for decision_action in (
+            CinderJob.DECISION_ACTIONS.NO_DECISION,
+            CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+            CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        ):
+            self.initial_job.update(
+                decision_date=datetime.now(),
+                decision_id='fake_decision_id',
+                decision_action=decision_action,
+            )
+            assert not self.initial_job.can_be_appealed(is_reporter=False)
 
     def test_author_cant_appeal_disable_decision_already_appealed(self):
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        assert not self.initial_job.can_be_appealed(is_reporter=False)
 
     def test_author_can_appeal_appealed_decision(self):
-        raise NotImplementedError
-
-    def test_author_cant_appeal_appealed_appealed_decision(self):
-        # FIXME: I don't think we can set up that scenario, because we check
-        # the action too
-        raise NotImplementedError
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+        )
+        appeal_job = CinderJob.objects.create(
+            job_id='fake_appeal_job_id',
+            decision_date=datetime.now(),
+            decision_id='fake_appeal_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        self.initial_job.update(appeal_job=appeal_job)
+        assert appeal_job.can_be_appealed(is_reporter=False)

@@ -100,9 +100,6 @@ class CinderJob(ModelBase):
             or self.abusereport_set.all()
         )
 
-    def can_be_appealed_by_author(self):
-        return self.decision_action in self.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
-
     def can_be_appealed(self, *, is_reporter, abuse_report=None):
         """
         Whether or not the job contains a decision that can be appealed.
