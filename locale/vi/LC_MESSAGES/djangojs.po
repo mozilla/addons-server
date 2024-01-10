@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2023-06-14 18:22+0000\n"
+"PO-Revision-Date: 2024-01-10 03:34+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -68,7 +68,7 @@ msgid "Your extension has to be compatible with at least one application."
 msgstr "Tiện ích mở rộng của bạn phải tương thích với ít nhất một ứng dụng."
 
 msgid "Unexpected server error while validating."
-msgstr "Xảy ra lỗi khi xác nhận từ máy chủ."
+msgstr "Xảy ra lỗi ở máy chủ khi xác thực."
 
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
 msgstr "Được đánh dấu là tương thích với Firefox dành cho Android trong manifest."
