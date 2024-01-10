@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 16:20+0000\n"
+"PO-Revision-Date: 2024-01-10 16:25+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1834,10 +1834,10 @@ msgid "Your email address is verified."
 msgstr "Waša e-mejlowa adresa je wobkrućena."
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "Klikńće prošu horjeka na „E-mejlowu adresu přepruwować“, zo byšće swoju e-mejlowu adresu přepruwował."
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "E-mejlowa adresa njeda so přepruwować. Přepruwowanski wotkaz je spadnjeny."
 
 msgid "Working... Please be patient."
 msgstr "Dźěła so… Mějće prošu sćerpnosć."
@@ -1858,7 +1858,7 @@ msgstr ""
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr ""
+msgstr "Podaty kod je z e-mejlowej adresu druheho wužiwarja zwjazany. Prošu wužiwajće wotkaz w mejlce, kotraž je so na wašu e-mejlowu adresu %(email)s pósłała."
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Najnowša aktiwita za moje přidatki"
