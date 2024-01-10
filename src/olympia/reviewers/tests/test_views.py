@@ -24,7 +24,7 @@ from rest_framework.test import APIRequestFactory
 from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.serializers import BaseUserSerializer
@@ -2616,7 +2616,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(53):
+        with self.assertNumQueries(54):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -2646,38 +2646,39 @@ class TestReview(ReviewBase):
             # 19. version autoapprovalsummary
             # 20. addonreusedguid
             # 21. blocklist
-            # 22. abuse reports count against user or addon
-            # 23. low ratings count
-            # 24. base version pk for comparison
-            # 25. count of all versions in channel
-            # 26. paginated list of versions in channel
-            # 27. scanner results for paginated list of versions
-            # 28. translations for paginated list of versions
-            # 29. applications versions for  paginated list of versions
-            # 30. activity log for  paginated list of versions
-            # 31. files for  paginated list of versions
-            # 32. versionreviewer flags exists to find out if pending rejection
-            # 33. count versions needing human review on other pages
-            # 34. count versions needing human review by mad on other pages
-            # 35. count versions pending rejection on other pages
-            # 36. whiteboard
-            # 37. reviewer subscriptions for listed
-            # 38. reviewer subscriptions for unlisted
-            # 39. config for motd
-            # 40. release savepoint (?)
-            # 41. count add-ons the user is a developer of
-            # 42. config for site notice
-            # 43. other add-ons with same guid
-            # 44. translations for... (?! id=1)
-            # 45. important activity log about the add-on
-            # 46. user for the activity (from the ActivityLog foreignkey)
-            # 47. user for the activity (from the ActivityLog arguments)
-            # 48. add-on for the activity
-            # 49. translation for the add-on for the activity
-            # 50. select all versions in channel for versions dropdown widget
-            # 51. reviewer reasons for the reason dropdown
-            # 52. select users by role for this add-on (?)
-            # 53. unreviewed versions in other channel
+            # 22. unresolved DSA related abuse reports
+            # 23. abuse reports count against user or addon
+            # 24. low ratings count
+            # 25. base version pk for comparison
+            # 26. count of all versions in channel
+            # 27. paginated list of versions in channel
+            # 28. scanner results for paginated list of versions
+            # 29. translations for paginated list of versions
+            # 30. applications versions for  paginated list of versions
+            # 31. activity log for  paginated list of versions
+            # 32. files for  paginated list of versions
+            # 33. versionreviewer flags exists to find out if pending rejection
+            # 34. count versions needing human review on other pages
+            # 35. count versions needing human review by mad on other pages
+            # 36. count versions pending rejection on other pages
+            # 37. whiteboard
+            # 38. reviewer subscriptions for listed
+            # 39. reviewer subscriptions for unlisted
+            # 40. config for motd
+            # 41. release savepoint (?)
+            # 42. count add-ons the user is a developer of
+            # 43. config for site notice
+            # 44. other add-ons with same guid
+            # 45. translations for... (?! id=1)
+            # 46. important activity log about the add-on
+            # 47. user for the activity (from the ActivityLog foreignkey)
+            # 48. user for the activity (from the ActivityLog arguments)
+            # 49. add-on for the activity
+            # 50. translation for the add-on for the activity
+            # 51. select all versions in channel for versions dropdown widget
+            # 52. reviewer reasons for the reason dropdown
+            # 53. select users by role for this add-on (?)
+            # 54. unreviewed versions in other channel
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5329,7 +5330,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [customs_rule.name]},
                 )
 
-        with self.assertNumQueries(54):
+        with self.assertNumQueries(55):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
@@ -5528,6 +5529,110 @@ class TestReview(ReviewBase):
         self.assertContains(response, profile_url)
         self.assertContains(
             response, f'{author.name}</a>,        <a href="{profile_url}">'
+        )
+
+    def test_resolve_abuse_reports_checkbox(self):
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.ADDON,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=CinderJob.objects.create(job_id='999'),
+            message='Its baaaad',
+        )
+        response = self.client.get(self.url)
+        self.assertContains(response, 'No reports to resolve')
+        self.assertNotContains(response, 'DSA related reports?')
+
+        with override_switch('enable-cinder-reporting', active=True):
+            response = self.client.get(self.url)
+            self.assertNotContains(response, 'No reports to resolve')
+            self.assertContains(response, 'Resolve 1 DSA related reports?')
+            self.assertContains(response, 'Its baaaad')
+
+    @override_switch('enable-cinder-reporting', active=True)
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    def test_abuse_reports_resolved_as_disable_addon_with_disable_action(
+        self, mock_resolve_task
+    ):
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        reason = ReviewActionReason.objects.create(
+            name='reason 1',
+            is_active=True,
+            canned_response='reason',
+            cinder_policy=CinderPolicy.objects.create(),
+        )
+        self.addon.update(status=amo.STATUS_APPROVED)
+        cinder_job = CinderJob.objects.create(job_id='123')
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.BOTH,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=cinder_job,
+        )
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.ADDON,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=cinder_job,
+        )
+
+        self.client.post(
+            self.url,
+            self.get_dict(
+                action='disable_addon',
+                reasons=[reason.id],
+                resolve_abuse_reports=True,
+            ),
+        )
+        assert self.get_addon().status == amo.STATUS_DISABLED
+        mock_resolve_task.assert_called_once_with(
+            cinder_job_id=cinder_job.id,
+            review_text='something',
+            decision=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            policy_ids=[reason.cinder_policy.id],
+        )
+
+    @override_switch('enable-cinder-reporting', active=True)
+    @mock.patch('olympia.reviewers.utils.resolve_job_in_cinder.delay')
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_abuse_reports_resolved_as_approve_with_approve_latest_version_action(
+        self, sign_file_mock, mock_resolve_task
+    ):
+        self.version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        reason = ReviewActionReason.objects.create(
+            name='reason 1',
+            is_active=True,
+            canned_response='reason',
+            cinder_policy=CinderPolicy.objects.create(),
+        )
+        cinder_job = CinderJob.objects.create(job_id='123')
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.BOTH,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=cinder_job,
+        )
+        AbuseReport.objects.create(
+            guid=self.addon.guid,
+            location=AbuseReport.LOCATION.ADDON,
+            reason=AbuseReport.REASONS.POLICY_VIOLATION,
+            cinder_job=cinder_job,
+        )
+        self.client.post(
+            self.url,
+            self.get_dict(
+                action='public', reasons=[reason.id], resolve_abuse_reports=True
+            ),
+        )
+
+        mock_resolve_task.assert_called_once_with(
+            cinder_job_id=cinder_job.id,
+            review_text='something',
+            decision=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+            policy_ids=[reason.cinder_policy.id],
         )
 
 
