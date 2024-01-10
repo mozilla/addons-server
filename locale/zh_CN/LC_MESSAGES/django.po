@@ -1831,7 +1831,7 @@ msgstr "此过程耗时过长，请重试"
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
-msgstr ""
+msgstr "包含确认链接的邮件已发送至您的邮箱地址：%(email)s，请点击邮件中的链接以确认邮箱地址。如果您没有收到邮件，请检查垃圾文件夹。"
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
