@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 02:49+0000\n"
+"PO-Revision-Date: 2024-01-10 03:05+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1738,7 +1738,7 @@ msgid "Try again"
 msgstr "Retentar"
 
 msgid "Your email has been verified"
-msgstr ""
+msgstr "Tu email ha essite verificate"
 
 msgid "My add-on doesn't fit into any of the categories"
 msgstr "Mi additivo non corresponde a alcun del categorias"
@@ -4376,7 +4376,7 @@ msgstr "Vider tote le extensiones"
 
 #. editorial content for the secondary hero shelves.
 msgid "New Android extensions!"
-msgstr ""
+msgstr "Nove extensiones de Android!"
 
 #. editorial content for the secondary hero shelves.
 msgid "Privacy & Security extensions"
