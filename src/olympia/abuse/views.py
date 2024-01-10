@@ -371,8 +371,8 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
                 appeal_to_cinder.delay(
                     abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
-                    is_reporter=is_reporter,
                     user_id=request.user.pk,
+                    is_reporter=is_reporter,
                 )
                 context_data['appeal_processed'] = True
             context_data['appeal_form'] = appeal_form

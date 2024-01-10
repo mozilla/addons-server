@@ -565,76 +565,20 @@ class TestCinderJob(TestCase):
         assert cinder_action_mock.call_count == 1
         assert list(cinder_job.policies.all()) == [policy_a, policy_b]
 
-    def test_can_be_appealed(self):
-        addon = addon_factory()
-
-        cinder_job = CinderJob.objects.create(
-            decision_id='4815162342-lost',
-            decision_date=self.days_ago(179),
-        )
-        abuse_report = AbuseReport.objects.create(
-            guid=addon.guid,
-            reason=AbuseReport.REASONS.ILLEGAL,
-            cinder_job=cinder_job,
-        )
-
-        assert cinder_job.can_be_appealed(abuse_report)
-
-        cinder_job.update(decision_date=None)
-        assert not cinder_job.can_be_appealed(abuse_report)
-
-        cinder_job.update(decision_date=self.days_ago(185))
-        assert not cinder_job.can_be_appealed(abuse_report)
-
-        cinder_job.update(decision_date=self.days_ago(179), decision_id=None)
-        assert not cinder_job.can_be_appealed(abuse_report)
-
-        cinder_job.update(decision_id='some-decision-id')
-        assert cinder_job.can_be_appealed(abuse_report)
-
-        # not if there was already an appeal
-        appeal = CinderJobAppeal.objects.create(
-            appeal_id='some-appeal-id', abuse_report=abuse_report
-        )
-        abuse_report.refresh_from_db()
-        assert not cinder_job.can_be_appealed(abuse_report)
-
-        # but can for a different abuse report for the same job
-        assert cinder_job.can_be_appealed(
-            AbuseReport.objects.create(
-                guid=addon.guid,
-                reason=AbuseReport.REASONS.ILLEGAL,
-                cinder_job=cinder_job,
-            )
-        )
-
-        # or if the appeal didn't exist
-        appeal.delete()
-        abuse_report.refresh_from_db()
-        assert cinder_job.can_be_appealed(abuse_report)
-
-        user = user_factory()
-        abuse_report.update(user=user, guid=None)
-        assert cinder_job.can_be_appealed(abuse_report)
-
-        rating = Rating.objects.create(addon=addon, user=user, rating=1)
-        abuse_report.update(user=None, rating=rating)
-        assert cinder_job.can_be_appealed(abuse_report)
-
-        collection = collection_factory()
-        abuse_report.update(rating=None, collection=collection)
-        assert cinder_job.can_be_appealed(abuse_report)
-
     def test_appeal(self):
-        cinder_job = CinderJob.objects.create(
-            decision_id='4815162342-lost',
-            decision_date=self.days_ago(179),
-        )
         abuse_report = AbuseReport.objects.create(
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.ILLEGAL,
-            cinder_job=cinder_job,
+            reporter=user_factory(),
         )
+        abuse_report.update(
+            cinder_job=CinderJob.objects.create(
+                decision_id='4815162342-lost',
+                decision_date=self.days_ago(179),
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE,
+            )
+        )
+        assert not abuse_report.appeal_date
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}appeal',
@@ -642,11 +586,18 @@ class TestCinderJob(TestCase):
             status=201,
         )
 
-        cinder_job.appeal(abuse_report, 'appeal text', user_factory())
+        abuse_report.cinder_job.appeal(
+            abuse_report=abuse_report,
+            appeal_text='appeal text',
+            user=abuse_report.reporter,
+            is_reporter=True,
+        )
 
-        appeal = CinderJobAppeal.objects.get()
-        assert appeal.appeal_id == '2432615184-tsol'
-        assert appeal.abuse_report == abuse_report
+        abuse_report.cinder_job.reload()
+        assert abuse_report.cinder_job.appeal_job
+        assert abuse_report.cinder_job.appeal_job.job_id == '2432615184-tsol'
+        abuse_report.reload()
+        assert abuse_report.appeal_date
 
     def test_resolve_job(self):
         cinder_job = CinderJob.objects.create(job_id='999')
@@ -690,26 +641,26 @@ class TestCinderJob(TestCase):
 
     def test_abuse_reports(self):
         job = CinderJob.objects.create(job_id='fake_job_id')
-        assert job.abuse_reports == set()
+        assert list(job.abuse_reports) == []
 
         report = AbuseReport.objects.create(guid=addon_factory().guid, cinder_job=job)
-        assert job.abuse_reports == {report}
+        assert list(job.abuse_reports) == [report]
 
         report2 = AbuseReport.objects.create(guid=addon_factory().guid, cinder_job=job)
-        assert job.abuse_reports == {report, report2}
+        assert list(job.abuse_reports) == [report, report2]
 
         appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
         job.update(appeal_job=appeal_job)
 
-        assert appeal_job.abuse_reports == {report, report2}
-        assert job.abuse_reports == {report, report2}
+        assert appeal_job.abuse_reports == [report, report2]
+        assert list(job.abuse_reports) == [report, report2]
 
         appeal_appeal_job = CinderJob.objects.create(job_id='fake_appeal_appeal_job_id')
         appeal_job.update(appeal_job=appeal_appeal_job)
 
-        assert appeal_appeal_job.abuse_reports == {report, report2}
-        assert appeal_job.abuse_reports == {report, report2}
-        assert job.abuse_reports == {report, report2}
+        assert list(appeal_appeal_job.abuse_reports) == [report, report2]
+        assert list(appeal_job.abuse_reports) == [report, report2]
+        assert list(job.abuse_reports) == [report, report2]
 
 
 class TestCinderJobCanBeAppealed(TestCase):
@@ -719,7 +670,10 @@ class TestCinderJobCanBeAppealed(TestCase):
         self.addon = addon_factory(users=[self.author])
         self.initial_job = CinderJob.objects.create(job_id='fake_initial_job_id')
         self.initial_report = AbuseReport.objects.create(
-            guid=self.addon.guid, cinder_job=self.initial_job, reporter=self.reporter
+            guid=self.addon.guid,
+            cinder_job=self.initial_job,
+            reporter=self.reporter,
+            reason=AbuseReport.REASONS.ILLEGAL,
         )
 
     def test_reporter_can_appeal_approve_decision(self):
@@ -788,6 +742,7 @@ class TestCinderJobCanBeAppealed(TestCase):
             cinder_job=self.initial_job,
             reporter=user_factory(),
             appeal_date=datetime.now(),
+            reason=AbuseReport.REASONS.ILLEGAL,
         )
         assert self.initial_job.can_be_appealed(
             is_reporter=True, abuse_report=self.initial_report
@@ -815,6 +770,7 @@ class TestCinderJobCanBeAppealed(TestCase):
             cinder_job=appeal_job,
             reporter=user_factory(),
             appeal_date=datetime.now(),
+            reason=AbuseReport.REASONS.ILLEGAL,
         )
         assert not appeal_job.can_be_appealed(is_reporter=True, abuse_report=new_report)
 
@@ -835,6 +791,40 @@ class TestCinderJobCanBeAppealed(TestCase):
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
         )
         assert self.initial_job.can_be_appealed(is_reporter=False)
+
+    def test_author_can_appeal_delete_decision_rating(self):
+        user = user_factory()
+        rating = Rating.objects.create(
+            addon=self.addon, user=user, rating=1, body='blah'
+        )
+        self.initial_report.update(guid=None, rating=rating)
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_RATING,
+        )
+        self.initial_job.can_be_appealed(is_reporter=False)
+
+    def test_author_can_appeal_delete_decision_collection(self):
+        user = user_factory()
+        collection = collection_factory(author=user)
+        self.initial_report.update(guid=None, collection=collection)
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_COLLECTION,
+        )
+        self.initial_job.can_be_appealed(is_reporter=False)
+
+    def test_author_can_appeal_ban_user(self):
+        user = user_factory()
+        self.initial_report.update(guid=None, user=user)
+        self.initial_job.update(
+            decision_date=datetime.now(),
+            decision_id='fake_decision_id',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+        )
+        self.initial_job.can_be_appealed(is_reporter=False)
 
     def test_author_cant_appeal_approve_or_escalation_decision(self):
         for decision_action in (

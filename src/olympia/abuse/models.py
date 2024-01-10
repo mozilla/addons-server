@@ -226,7 +226,7 @@ class CinderJob(ModelBase):
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
         self.get_action_helper(existing_decision).process()
 
-    def appeal(self, *, abuse_report, appeal_text, is_reporter, user):
+    def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
         if user:
