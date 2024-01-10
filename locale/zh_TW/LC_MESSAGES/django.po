@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 02:24+0000\n"
+"PO-Revision-Date: 2024-01-10 03:03+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -1823,31 +1823,31 @@ msgid "Your email address is verified."
 msgstr "電子郵件地址驗證成功。"
 
 msgid "Please verify your email by clicking \"Verify email\" above."
-msgstr ""
+msgstr "請點擊上方的「驗證信箱」按鈕來確認您的電子郵件地址有效。"
 
 msgid "Could not verify email address. The verification link has expired."
-msgstr ""
+msgstr "無法驗證電子郵件地址，驗證鏈結已失效。"
 
 msgid "Working... Please be patient."
-msgstr ""
+msgstr "處理中…請稍候。"
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
 "US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" > Change email address </a>"
-msgstr ""
+msgstr "無法傳送確認信，請稍候再試一次。若無法再使用該信箱，請更換您的 Mozilla 帳號信箱。<a href=\"https://support.mozilla.org/en-US/kb/change-primary-email-address-firefox-accounts\" target=\"_blank\" >更改電子郵件信箱</a>"
 
 msgid "This is taking longer than expected. Try again."
-msgstr ""
+msgstr "花的時間比預期的還久，請再試一次。"
 
 #, python-format
 msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
-msgstr ""
+msgstr "已將確認信寄送到您的電子郵件信箱：%(email)s，請點擊信上的鏈結進行確認。若您並未收到確認信，可到垃圾信件匣確認。"
 
 #, python-format
 msgid "The provided code is associated with another user's email. Please use the link in the email sent to your email address %(email)s."
-msgstr ""
+msgstr "此驗證碼與另一位使用者的信箱相關聯，請使用寄送到 %(email)s 信箱的驗證鏈結。"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "我的附加元件的近期活動"
@@ -2751,6 +2751,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"您好，\n"
+"\n"
+"您的電子郵件信箱驗證成功。\n"
+"\n"
+"感謝，\n"
+"\n"
+"Mozilla 附加元件團隊"
 
 #, python-format
 msgid ""
