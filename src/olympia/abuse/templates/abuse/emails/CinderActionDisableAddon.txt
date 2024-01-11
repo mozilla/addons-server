@@ -1,3 +1,5 @@
-{% extends "abuse/emails/base.txt" %}{% block content %}{# L10n: This is an email. Whitespace matters #}
-Your {{ target.get_type_display }} {{ name }}, at {{ target_url }}, has been disabled on {{ SITE_URL }}, after we reviewed the content in response to a report by a third party, and found that it violated our Terms of Service. Users who have previously installed your add-on will be able to continue using it.
+{% extends "abuse/emails/base.txt" %}{% block content %}
+Your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative of content that was submitted to Mozilla Add-ons{% endif %}.
+
+Our review found that your content violated Mozilla's policy regarding {{ reason }}.  Based on that finding, your {{ type }} has been permanently disabled on {{ target_url }} and is no longer available for download from Mozilla Add-ons, anywhere in the world. Users who have previously installed your add-on will be able to continue using it.
 {% endblock %}

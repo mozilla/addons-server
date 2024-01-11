@@ -1,3 +1,5 @@
-{% extends "abuse/emails/base.txt" %}{% block content %}{# L10n: This is an email. Whitespace matters #}
-Your collection {{ name }}, at {{ target_url }}, has been removed after we reviewed the content in response to a report by a third party, and found that it violated our Terms of Service.
+{% extends "abuse/emails/base.txt" %}{% block content %}
+Your collection {{ name }} was manually reviewed by the Mozilla Add-ons team, {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative{% endif %}.  
+
+Our review found that the description, name, or notes associated with your collection violated AMO’s policy regarding {{ reason }}.  Based on that finding, your collection has been permanently removed from {{ SITE_URL }}, and is no longer visible anywhere in the world.
 {% endblock %}

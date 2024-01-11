@@ -24,14 +24,16 @@ from .cinder import (
     CinderUser,
 )
 from .utils import (
-    CinderActionApproveAppealOverride,
+    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
+    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
+    CinderActionRemovalAffirmation,
 )
 
 
@@ -62,6 +64,15 @@ class CinderJob(ModelBase):
     DECISION_ACTIONS.add_subset(
         'UNRESOLVED',
         ('NO_DECISION', 'AMO_ESCALATE_ADDON'),
+    )
+    DECISION_ACTIONS.add_subset(
+        'REMOVING',
+        (
+            'AMO_BAN_USER',
+            'AMO_DISABLE_ADDON',
+            'AMO_DELETE_RATING',
+            'AMO_DELETE_COLLECTION',
+        ),
     )
     job_id = models.CharField(max_length=36, unique=True)
     decision_action = models.PositiveSmallIntegerField(
@@ -178,13 +189,31 @@ class CinderJob(ModelBase):
             cls.DECISION_ACTIONS.AMO_APPROVE: CinderActionApproveInitialDecision,
         }.get(decision_action, CinderActionNotImplemented)
 
-    def get_action_helper(self, existing_decision=DECISION_ACTIONS.NO_DECISION):
+    def get_action_helper(
+        self, existing_decision=DECISION_ACTIONS.NO_DECISION, override=False
+    ):
+        # Base case
+        CinderActionClass = self.get_action_helper_class(self.decision_action)
+
+        # But we use more specific actions for certain cases:
+        # Where there was an appeal/override from a remove action to approve
         if self.decision_action == self.DECISION_ACTIONS.AMO_APPROVE and (
-            existing_decision != self.DECISION_ACTIONS.NO_DECISION
+            existing_decision in self.DECISION_ACTIONS.REMOVING
         ):
-            CinderActionClass = CinderActionApproveAppealOverride
-        else:
-            CinderActionClass = self.get_action_helper_class(self.decision_action)
+            CinderActionClass = (
+                CinderActionApproveOverride if override else CinderActionApproveAppeal
+            )
+
+        # Where there was an appeal/override which didn't change from a remove action
+        elif self.decision_action == existing_decision and (
+            self.decision_action in self.DECISION_ACTIONS.REMOVING
+        ):
+            CinderActionClass = (
+                CinderActionNotImplemented
+                if override
+                else CinderActionRemovalAffirmation
+            )
+
         return CinderActionClass(self)
 
     @classmethod
@@ -215,7 +244,7 @@ class CinderJob(ModelBase):
         entity_helper.report_additional_context()
 
     def process_decision(
-        self, *, decision_id, decision_date, decision_action, policy_ids
+        self, *, decision_id, decision_date, decision_action, policy_ids, override=False
     ):
         if self.appealed_jobs.exists():
             existing_decision = self.appealed_jobs.first().decision_action
@@ -227,7 +256,7 @@ class CinderJob(ModelBase):
             decision_action=decision_action,
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
-        self.get_action_helper(existing_decision).process()
+        self.get_action_helper(existing_decision, override).process()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):

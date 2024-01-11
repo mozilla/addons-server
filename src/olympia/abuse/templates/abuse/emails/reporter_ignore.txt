@@ -1,5 +1,5 @@
 {% extends "abuse/emails/base_reporter.txt" %}{% load i18n %}{% block content %}{# L10n: This is an email. Whitespace matters #}{% blocktranslate %}
-Thank you for your report about {{ name }}, at {{ target_url }}. After review, it has been determined that the content does not violate any policy and will remain visible.
-
-You have the right to appeal this decision within 6 months. See {{ appeal_url }} for details on the appeal process.
-{% endblocktranslate %}{% endblock %}
+Thank you for your report about {{ name }}, at {{ target_url }}. After review, it has been determined that the content does not violate our add-on policies. It will therefore remain visible, and will not be subject to any moderation action.
+{% endblocktranslate %}
+{% if appeal_url %}{% blocktranslate %}You have the right to appeal this decision within 6 months from the date of this email. See {{ appeal_url }} for details on the appeal process.{% endblocktranslate %}{% endif %}
+{% endblock %}

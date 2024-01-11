@@ -24,6 +24,7 @@ class CinderAction:
     def __init__(self, cinder_job):
         self.cinder_job = cinder_job
         self.target = self.cinder_job.target
+        self.is_third_party_initiated = True  # will not always be true in the future
 
     def process(self):
         raise NotImplementedError
@@ -41,11 +42,23 @@ class CinderAction:
 
     def notify_owners(self, owners):
         name = self.get_target_name()
+        reason = ', '.join(policy.name for policy in self.cinder_job.policies.all())
+        target_type = (
+            self.target.get_type_display()
+            if isinstance(self.target, Addon)
+            else 'User profile'
+            if isinstance(self.target, UserProfile)
+            else self.target.__class__.__name__
+        )
+        reference_id = f'ref:{self.cinder_job.decision_id}'
         context_dict = {
-            'target': self.cinder_job.target,
+            'is_third_party_initiated': self.is_third_party_initiated,
             'name': name,
-            'target_url': absolutify(self.cinder_job.target.get_url_path()),
-            'reasons': [policy.text for policy in self.cinder_job.policies.all()],
+            'reason': reason,
+            'reference_id': reference_id,
+            'target': self.target,
+            'target_url': absolutify(self.target.get_url_path()),
+            'type': target_type,
             'SITE_URL': settings.SITE_URL,
         }
         if self.cinder_job.can_be_appealed(is_reporter=False):
@@ -58,7 +71,7 @@ class CinderAction:
                 )
             )
 
-        subject = f'Mozilla Add-ons: {name}'
+        subject = f'Mozilla Add-ons: {name} [{reference_id}]'
         template = loader.get_template(self.owner_template_path)
         self.send_mail(
             subject,
@@ -83,11 +96,13 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                subject = _('Mozilla Add-ons: {}').format(
-                    target_name,
+                reference_id = f'ref:{self.cinder_job.decision_id}/{abuse_report.id}'
+                subject = _('Mozilla Add-ons: {} [{}]').format(
+                    target_name, reference_id
                 )
                 context_dict = {
                     'name': target_name,
+                    'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
                     'SITE_URL': settings.SITE_URL,
                 }
@@ -212,13 +227,11 @@ class CinderActionDeleteRating(CinderAction):
             self.notify_owners([self.target.user])
 
 
-class CinderActionApproveAppealOverride(CinderAction):
+class CinderActionApproveAppeal(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
-    description = 'Reported content is within policy, after appeal/override'
-    reporter_template_path = 'abuse/emails/reporter_restore.txt'
+    description = 'Reported content is within policy, after appeal'
 
     def process(self):
-        self.notify_reporters()
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             target.force_enable()
@@ -240,6 +253,10 @@ class CinderActionApproveAppealOverride(CinderAction):
             self.notify_owners([target.user])
 
 
+class CinderActionApproveOverride(CinderActionApproveAppeal):
+    description = 'Reported content is within policy, after override'
+
+
 class CinderActionApproveInitialDecision(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, initial decision'
@@ -248,6 +265,22 @@ class CinderActionApproveInitialDecision(CinderAction):
     def process(self):
         self.notify_reporters()
         # If it's an initial decision approve there is nothing else to do
+
+
+class CinderActionRemovalAffirmation(CinderAction):
+    valid_targets = [Addon, UserProfile, Collection, Rating]
+    description = 'Reported content is still offending, after appeal.'
+
+    def process(self):
+        target = self.target
+        if isinstance(target, Addon):
+            self.notify_owners(target.authors.all())
+        elif isinstance(target, UserProfile):
+            self.notify_owners([target])
+        elif isinstance(target, Collection):
+            self.notify_owners([target.author])
+        elif isinstance(target, Rating):
+            self.notify_owners([target.user])
 
 
 class CinderActionNotImplemented(CinderAction):
