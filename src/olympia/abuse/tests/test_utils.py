@@ -91,7 +91,7 @@ class TestCinderAction(TestCase):
         assert 'does not violate any policy' in mail.outbox[1].body
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_no_auth.id,
                     'decision_id': self.cinder_job.decision_id,
@@ -101,7 +101,7 @@ class TestCinderAction(TestCase):
         )
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_auth.id,
                     'decision_id': self.cinder_job.decision_id,
@@ -123,9 +123,8 @@ class TestCinderAction(TestCase):
         assert 'This is bad thing' in mail.outbox[2].body
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_author',
                 kwargs={
-                    'abuse_report_id': self.cinder_job.abusereport_set.first().id,
                     'decision_id': self.cinder_job.decision_id,
                 },
             )
