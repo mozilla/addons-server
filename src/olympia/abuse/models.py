@@ -217,7 +217,10 @@ class CinderJob(ModelBase):
     def process_decision(
         self, *, decision_id, decision_date, decision_action, policy_ids
     ):
-        existing_decision = self.decision_action
+        if self.appealed_job.exists():
+            existing_decision = self.appealed_job.first().decision_action
+        else:
+            existing_decision = self.decision_action
         self.update(
             decision_id=decision_id,
             decision_date=decision_date,
