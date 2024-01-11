@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 03:09+0000\n"
+"PO-Revision-Date: 2024-01-11 08:10+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3614,7 +3614,7 @@ msgstr "知道您在網路上的去向。了解您造訪的網站所在國家。
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience. Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "加強您的閱讀體驗。移除文字周圍的雜亂元素，讓您閱讀的文字變得更具吸引力。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3656,7 +3656,7 @@ msgstr "讓 YouTube 有您的風格。在彈出式視窗中播放影片，只看
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "查詢任何網站的深入參與度和流量資訊。"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
@@ -3684,7 +3684,7 @@ msgstr "在您目前分頁的右方開啟新分頁而非分頁列尾端。"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam. Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "征服垃圾郵件。使用巧妙的臨時電子郵件地址來保持匿名，免受垃圾郵件的侵擾。"
 
 #. editorial content for the discovery pane.
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
@@ -3696,11 +3696,11 @@ msgstr "選取文字，按下彈出的按鈕，翻譯便會直接顯現。"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "直接前往您想要訪問的網站，而無需在兩個網站之間進行重新導向。"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "網頁版的 WhatsApp 。從 Firefox 的工具列面板中訪問 WhatsApp，以取得未讀討論串的通知。"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define. A great tool for exercising online self discipline."
@@ -3833,7 +3833,7 @@ msgstr "在任何網站反白文字，按右鍵即可快速在 YouTube 上搜尋
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge. When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "取得 Amazon 的優勢。當您在瀏覽其他網路商店的產品頁面時，若在 Amazon 上有售的話，您只要點一下按鈕就可以到 Amazon 查看該產品的銷售列表。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ultimate tab control—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -3849,7 +3849,7 @@ msgstr "設定在新分頁內容顯示自動背景色與圖片。"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "在每個「新分頁」上都會遇到可愛的小貓。抓一下小貓的耳朵後面，看看會發生什麼。"
 
 #. editorial content for the discovery pane.
 msgid "For those moments when you need to fire lasers out of a cat."
@@ -3873,7 +3873,7 @@ msgstr "為所有密碼欄位新增顯示/隱藏功能。"
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "調暗影片播放器以外的所有內容，讓您專注於正在觀看的內容。"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -3901,7 +3901,7 @@ msgstr "追蹤生產力。測量你花在電腦上，或是花在 Trello、JIRA�
 
 #. editorial content for the discovery pane.
 msgid "Save your favorite stuff on the web. Clip content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "儲存您喜歡的網頁內容。剪輯並儲存文章，影片，圖片等內容，以便用於個人專案或即時團隊協作。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3996,7 +3996,7 @@ msgstr "將完整的頁面 — 或是部份內容 — 存成一個 HTML 檔案�
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense of typical TOS agreements. This clever extension helps you quickly understand what you’re being asked to agree to."
-msgstr ""
+msgstr "切掉典型服務條款中不需要的部分。這個巧妙的擴充套件可幫助您快速了解要求您同意的內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
