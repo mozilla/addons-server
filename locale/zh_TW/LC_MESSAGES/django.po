@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-11 08:10+0000\n"
+"PO-Revision-Date: 2024-01-11 08:15+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3696,7 +3696,7 @@ msgstr "選取文字，按下彈出的按鈕，翻譯便會直接顯現。"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr "直接前往您想要訪問的網站，而無需在兩個網站之間進行重新導向。"
+msgstr "直接前往您想要開啟的網站，而無需在兩個網站之間進行重新導向。"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web. Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -4011,7 +4011,7 @@ msgstr "封鎖廣告，並獲得不受惡意軟體與廣告追蹤的加強保護
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
-msgstr ""
+msgstr "享用多線程下載。自動偵測不同可下載格式的媒體檔案。"
 
 #. editorial content for the discovery pane.
 msgid "Save images easily—just grab them from your current tab."
@@ -4019,30 +4019,30 @@ msgstr "更輕鬆就能儲存照片 — 直接從您目前所在的分頁一次�
 
 #. editorial content for the discovery pane.
 msgid "Measure web pages. Draw a digital ruler across any web page to check height, width, and alignment of page elements."
-msgstr ""
+msgstr "測量網頁。在任何網頁上繪製數位尺規以確認頁面中各元素的高度、寬度和對齊方式。"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy the benefits of strong password management."
-msgstr ""
+msgstr "享受強大的密碼管理器帶來的好處。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
-msgstr ""
+msgstr "自訂亮暗色調，使網頁更具視覺上的美感。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
-msgstr ""
+msgstr "封鎖讓人分心的網站。只需列出您想要擴充套件封鎖的網站，立即約束自己！"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr ""
+msgstr "更改網頁瀏覽器的外觀。輕鬆設計屬於自己的視覺主題，使 Firefox 隨心所欲。"
 
 #. editorial content for the discovery pane.
 msgid "Keep personal notes anywhere on the web. Simply use a sidebar to attach notes on specific web pages."
-msgstr ""
+msgstr "隨時隨地儲存個人網路筆記。只需使用側邊欄，便能在特定網頁上留下筆記。"
 
 #. editorial content for the discovery pane.
 msgid "Use speech recognition to enable voice search on Google, Yahoo, and DuckDuckGo."
@@ -4055,7 +4055,7 @@ msgstr "在 Amazon、Best Buy、eBay、Home Depot 和 Walmart 追蹤感興趣的
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
-msgstr ""
+msgstr "將網頁調暗或選擇自訂配色方案，直觀地根據自己的喜好來調整網路內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4268,7 +4268,7 @@ msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Go
 
 #. editorial content for the primary hero shelves.
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
-msgstr ""
+msgstr "隱藏您的電子郵件地址，以保護您的身份並隔絕垃圾郵件。最新的更新使 Firefox Relay 更加簡便易用。"
 
 #. editorial content for the primary hero shelves.
 msgid "Instantly translate any selected text on web pages."
