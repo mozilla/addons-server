@@ -630,8 +630,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         email_msg = template.render(
             context={
                 'site_url': site_url,
-                'name': self.name,
-                'is_mza_branding': True,
+                'name': self.name
             }
         )
         return {
