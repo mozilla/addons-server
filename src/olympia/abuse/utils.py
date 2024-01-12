@@ -40,25 +40,23 @@ class CinderAction:
         return f'abuse/emails/{self.__class__.__name__}.txt'
 
     def notify_owners(self, owners):
-        abuse_report = self.cinder_job.abusereport_set.first()
-        if not abuse_report:
-            return
         name = self.get_target_name()
-        appeal_url = reverse(
-            'abuse.appeal',
-            kwargs={
-                'abuse_report_id': abuse_report.id,
-                'decision_id': self.cinder_job.decision_id,
-            },
-        )
         context_dict = {
-            'target': abuse_report.target,
+            'target': self.cinder_job.target,
             'name': name,
-            'target_url': absolutify(abuse_report.target.get_url_path()),
+            'target_url': absolutify(self.cinder_job.target.get_url_path()),
             'reasons': [policy.text for policy in self.cinder_job.policies.all()],
-            'appeal_url': absolutify(appeal_url),
             'SITE_URL': settings.SITE_URL,
         }
+        if self.cinder_job.can_be_appealed(is_reporter=False):
+            context_dict['appeal_url'] = absolutify(
+                reverse(
+                    'abuse.appeal_author',
+                    kwargs={
+                        'decision_id': self.cinder_job.decision_id,
+                    },
+                )
+            )
 
         subject = f'Mozilla Add-ons: {name}'
         template = loader.get_template(self.owner_template_path)
@@ -73,7 +71,7 @@ class CinderAction:
 
     def notify_reporters(self):
         template = loader.get_template(self.reporter_template_path)
-        for abuse_report in self.cinder_job.abusereport_set.all():
+        for abuse_report in self.cinder_job.abuse_reports:
             email_address = (
                 abuse_report.reporter.email
                 if abuse_report.reporter
@@ -85,22 +83,26 @@ class CinderAction:
                 abuse_report.application_locale or settings.LANGUAGE_CODE
             ):
                 target_name = self.get_target_name()
-                appeal_url = reverse(
-                    'abuse.appeal',
-                    kwargs={
-                        'abuse_report_id': abuse_report.id,
-                        'decision_id': self.cinder_job.decision_id,
-                    },
-                )
                 subject = _('Mozilla Add-ons: {}').format(
                     target_name,
                 )
                 context_dict = {
-                    'appeal_url': absolutify(appeal_url),
                     'name': target_name,
                     'target_url': absolutify(self.target.get_url_path()),
                     'SITE_URL': settings.SITE_URL,
                 }
+                if self.cinder_job.can_be_appealed(
+                    is_reporter=True, abuse_report=abuse_report
+                ):
+                    context_dict['appeal_url'] = absolutify(
+                        reverse(
+                            'abuse.appeal_reporter',
+                            kwargs={
+                                'abuse_report_id': abuse_report.id,
+                                'decision_id': self.cinder_job.decision_id,
+                            },
+                        )
+                    )
                 message = template.render(context_dict)
                 send_mail(subject, message, recipient_list=[email_address])
 

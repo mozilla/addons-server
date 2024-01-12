@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.core import mail
 from django.urls import reverse
@@ -29,7 +31,11 @@ from ..utils import (
 
 class TestCinderAction(TestCase):
     def setUp(self):
-        self.cinder_job = CinderJob.objects.create(job_id='1234')
+        self.cinder_job = CinderJob.objects.create(
+            job_id='1234',
+            decision_id='4815162342',
+            decision_date=datetime.now(),
+        )
         self.abuse_report_no_auth = AbuseReport.objects.create(
             reason=AbuseReport.REASONS.HATEFUL_VIOLENT_DECEPTIVE,
             guid='1234',
@@ -62,25 +68,26 @@ class TestCinderAction(TestCase):
         assert mail.outbox[0].subject == mail.outbox[1].subject == subject
         assert 'further investigation' in mail.outbox[0].body
         assert 'further investigation' in mail.outbox[1].body
+        # The reporter can't appeal anymore.
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_no_auth.id,
                     'decision_id': self.cinder_job.decision_id,
                 },
             )
-            in mail.outbox[0].body
+            not in mail.outbox[0].body
         )
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_auth.id,
                     'decision_id': self.cinder_job.decision_id,
                 },
             )
-            in mail.outbox[1].body
+            not in mail.outbox[1].body
         )
 
     def _test_reporter_ignore_email(self, subject):
@@ -91,7 +98,7 @@ class TestCinderAction(TestCase):
         assert 'does not violate any policy' in mail.outbox[1].body
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_no_auth.id,
                     'decision_id': self.cinder_job.decision_id,
@@ -101,7 +108,7 @@ class TestCinderAction(TestCase):
         )
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_reporter',
                 kwargs={
                     'abuse_report_id': self.abuse_report_auth.id,
                     'decision_id': self.cinder_job.decision_id,
@@ -112,6 +119,7 @@ class TestCinderAction(TestCase):
 
     def test_email_policies_and_appeal_link(self):
         self.cinder_job.abusereport_set.update(user=user_factory(), guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         action = CinderActionBanUser(self.cinder_job)
         self.cinder_job.policies.add(
             CinderPolicy.objects.create(
@@ -123,9 +131,8 @@ class TestCinderAction(TestCase):
         assert 'This is bad thing' in mail.outbox[2].body
         assert (
             reverse(
-                'abuse.appeal',
+                'abuse.appeal_author',
                 kwargs={
-                    'abuse_report_id': self.cinder_job.abusereport_set.first().id,
                     'decision_id': self.cinder_job.decision_id,
                 },
             )
@@ -135,6 +142,7 @@ class TestCinderAction(TestCase):
     def test_ban_user(self):
         user = user_factory()
         self.cinder_job.abusereport_set.update(user=user, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         action = CinderActionBanUser(self.cinder_job)
         action.process()
         user.reload()
@@ -153,6 +161,7 @@ class TestCinderAction(TestCase):
     def test_approve_initial_user(self):
         user = user_factory(banned=self.days_ago(1), deleted=True)
         self.cinder_job.abusereport_set.update(user=user, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         action.process()
         user.reload()
@@ -163,6 +172,7 @@ class TestCinderAction(TestCase):
     def test_approve_appeal_user(self):
         user = user_factory(banned=self.days_ago(1), deleted=True)
         self.cinder_job.abusereport_set.update(user=user, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveAppealOverride(self.cinder_job)
         action.process()
         user.reload()
@@ -183,6 +193,9 @@ class TestCinderAction(TestCase):
         addon = addon_factory(users=(author,))
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         action = CinderActionDisableAddon(self.cinder_job)
         action.process()
         assert addon.reload().status == amo.STATUS_DISABLED
@@ -203,6 +216,7 @@ class TestCinderAction(TestCase):
         addon = addon_factory(status=amo.STATUS_DISABLED, users=(author,))
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveAppealOverride(self.cinder_job)
         action.process()
         assert addon.reload().status == amo.STATUS_NULL
@@ -221,6 +235,7 @@ class TestCinderAction(TestCase):
         addon = addon_factory(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         action.process()
         assert addon.reload().status == amo.STATUS_DISABLED
@@ -236,6 +251,9 @@ class TestCinderAction(TestCase):
         )
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(guid=addon.guid)
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON
+        )
         action = CinderActionEscalateAddon(self.cinder_job)
         action.process()
         assert addon.reload().status == amo.STATUS_APPROVED
@@ -288,6 +306,9 @@ class TestCinderAction(TestCase):
         author = user_factory()
         collection = collection_factory(author=author)
         self.cinder_job.abusereport_set.update(collection=collection, guid=None)
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_COLLECTION
+        )
         action = CinderActionDeleteCollection(self.cinder_job)
         action.process()
         assert collection.reload()
@@ -307,6 +328,7 @@ class TestCinderAction(TestCase):
     def test_approve_initial_collection(self):
         collection = collection_factory(author=user_factory(), deleted=True)
         self.cinder_job.abusereport_set.update(collection=collection, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveInitialDecision(self.cinder_job)
         action.process()
         assert collection.reload()
@@ -319,6 +341,7 @@ class TestCinderAction(TestCase):
         author = user_factory()
         collection = collection_factory(author=author, deleted=True)
         self.cinder_job.abusereport_set.update(collection=collection, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveAppealOverride(self.cinder_job)
         action.process()
         assert collection.reload()
@@ -340,6 +363,9 @@ class TestCinderAction(TestCase):
             addon=addon_factory(), user=author, body='Saying something bad'
         )
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
+        self.cinder_job.update(
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DELETE_RATING
+        )
         ActivityLog.objects.all().delete()
         action = CinderActionDeleteRating(self.cinder_job)
         action.process()
@@ -363,6 +389,7 @@ class TestCinderAction(TestCase):
             body='Saying something bad',
         )
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         ActivityLog.objects.all().delete()
         action = CinderActionApproveInitialDecision(self.cinder_job)
         action.process()
@@ -380,6 +407,7 @@ class TestCinderAction(TestCase):
         )
         ActivityLog.objects.all().delete()
         self.cinder_job.abusereport_set.update(rating=rating, guid=None)
+        self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         action = CinderActionApproveAppealOverride(self.cinder_job)
         action.process()
         assert not rating.reload().deleted

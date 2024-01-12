@@ -1564,10 +1564,16 @@ class TestAppeal(TestCase):
             created=self.cinder_job.created,
             cinder_job=self.cinder_job,
         )
-        self.url = reverse(
-            'abuse.appeal',
+        self.reporter_appeal_url = reverse(
+            'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id,
+                'decision_id': self.cinder_job.decision_id,
+            },
+        )
+        self.author_appeal_url = reverse(
+            'abuse.appeal_author',
+            kwargs={
                 'decision_id': self.cinder_job.decision_id,
             },
         )
@@ -1577,11 +1583,12 @@ class TestAppeal(TestCase):
 
     def test_no_decision_yet(self):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.NO_DECISION)
-        assert self.client.get(self.url).status_code == 404
+        assert self.client.get(self.reporter_appeal_url).status_code == 404
+        assert self.client.get(self.author_appeal_url).status_code == 404
 
     def test_no_such_decision(self):
         url = reverse(
-            'abuse.appeal',
+            'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id,
                 'decision_id': '1234-5678-9000',
@@ -1589,9 +1596,17 @@ class TestAppeal(TestCase):
         )
         assert self.client.get(url).status_code == 404
 
+        url = reverse(
+            'abuse.appeal_author',
+            kwargs={
+                'decision_id': '1234-5678-9000',
+            },
+        )
+        assert self.client.get(url).status_code == 404
+
     def test_no_such_abuse_report(self):
         url = reverse(
-            'abuse.appeal',
+            'abuse.appeal_reporter',
             kwargs={
                 'abuse_report_id': self.abuse_report.id + 1,
                 'decision_id': self.cinder_job.decision_id,
@@ -1600,12 +1615,12 @@ class TestAppeal(TestCase):
         assert self.client.get(url).status_code == 404
 
     def test_appeal_approval_anonymous_report_with_no_email(self):
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 403
 
     def test_appeal_approval_anonymous_report_with_email(self):
         self.abuse_report.update(reporter_email='me@example.com')
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1618,7 +1633,9 @@ class TestAppeal(TestCase):
 
     def test_appeal_approval_anonymous_report_with_email_post_invalid(self):
         self.abuse_report.update(reporter_email='me@example.com')
-        response = self.client.post(self.url, {'email': 'absolutelynotme@example.com'})
+        response = self.client.post(
+            self.reporter_appeal_url, {'email': 'absolutelynotme@example.com'}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1631,7 +1648,9 @@ class TestAppeal(TestCase):
 
     def test_appeal_approval_anonymous_report_with_email_post(self):
         self.abuse_report.update(reporter_email='me@example.com')
-        response = self.client.post(self.url, {'email': 'me@example.com'})
+        response = self.client.post(
+            self.reporter_appeal_url, {'email': 'me@example.com'}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1642,7 +1661,8 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
         response = self.client.post(
-            self.url, {'email': 'me@example.com', 'reason': 'I dont like this'}
+            self.reporter_appeal_url,
+            {'email': 'me@example.com', 'reason': 'I dont like this'},
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1655,12 +1675,13 @@ class TestAppeal(TestCase):
             'appeal_text': 'I dont like this',
             'abuse_report_id': self.abuse_report.id,
             'user_id': None,
+            'is_reporter': True,
         }
 
     def test_appeal_approval_anonymous_report_with_email_post_cant_be_appealed(self):
         self.cinder_job.update(decision_date=self.days_ago(200))
         self.abuse_report.update(reporter_email='me@example.com')
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1673,7 +1694,9 @@ class TestAppeal(TestCase):
         assert doc('#appeal-submit')
         assert self.appeal_mock.call_count == 0
 
-        response = self.client.post(self.url, {'email': 'me@example.com'})
+        response = self.client.post(
+            self.reporter_appeal_url, {'email': 'me@example.com'}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#id_email')
@@ -1686,22 +1709,22 @@ class TestAppeal(TestCase):
     def test_appeal_approval_logged_in_report_redirect_to_login(self):
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
-        response = self.client.get(self.url)
-        self.assertLoginRedirects(response, self.url)
+        response = self.client.get(self.reporter_appeal_url)
+        self.assertLoginRedirects(response, self.reporter_appeal_url)
 
     def test_appeal_approval_logged_in_report_wrong_user(self):
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.user2 = user_factory()
         self.client.force_login(self.user2)
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 403
 
     def test_appeal_approval_loggued_in_user(self):
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.client.force_login(self.user)
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#id_email')
@@ -1715,7 +1738,7 @@ class TestAppeal(TestCase):
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.client.force_login(self.user)
-        response = self.client.get(self.url)
+        response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#id_email')
@@ -1729,8 +1752,8 @@ class TestAppeal(TestCase):
         self.cinder_job.update(
             decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
-        response = self.client.get(self.url)
-        self.assertLoginRedirects(response, self.url)
+        response = self.client.get(self.author_appeal_url)
+        self.assertLoginRedirects(response, self.author_appeal_url)
 
     def test_appeal_rejection_not_author(self):
         self.cinder_job.update(
@@ -1738,7 +1761,7 @@ class TestAppeal(TestCase):
         )
         user = user_factory()
         self.client.force_login(user)
-        response = self.client.get(self.url)
+        response = self.client.get(self.author_appeal_url)
         assert response.status_code == 403
 
     def test_appeal_rejection_author(self):
@@ -1748,7 +1771,7 @@ class TestAppeal(TestCase):
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)
-        response = self.client.get(self.url)
+        response = self.client.get(self.author_appeal_url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#id_email')
@@ -1757,7 +1780,8 @@ class TestAppeal(TestCase):
         assert doc('#appeal-submit')
 
         response = self.client.post(
-            self.url, {'email': 'me@example.com', 'reason': 'I dont like this'}
+            self.author_appeal_url,
+            {'email': 'me@example.com', 'reason': 'I dont like this'},
         )
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1768,14 +1792,17 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I dont like this',
-            'abuse_report_id': self.abuse_report.id,
+            'abuse_report_id': None,
             'user_id': user.pk,
+            'is_reporter': False,
         }
 
     def test_appeal_banned_user(self):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
-        response = self.client.post(self.url, {'email': self.abuse_report.user.email})
+        response = self.client.post(
+            self.author_appeal_url, {'email': self.abuse_report.user.email}
+        )
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1786,7 +1813,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
         response = self.client.post(
-            self.url,
+            self.author_appeal_url,
             {'email': self.abuse_report.user.email, 'reason': 'I am not a bad guy'},
         )
         assert response.status_code == 200
@@ -1798,14 +1825,15 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.delay.call_args_list[0][0] == ()
         assert self.appeal_mock.delay.call_args_list[0][1] == {
             'appeal_text': 'I am not a bad guy',
-            'abuse_report_id': self.abuse_report.id,
+            'abuse_report_id': None,
             'user_id': None,
+            'is_reporter': False,
         }
 
     def test_appeal_banned_user_wrong_email(self):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_BAN_USER)
         self.abuse_report.update(guid=None, user=user_factory())
-        response = self.client.post(self.url, {'email': 'me@example.com'})
+        response = self.client.post(self.author_appeal_url, {'email': 'me@example.com'})
         assert response.status_code == 200
         doc = pq(response.content)
         email_input = doc('#id_email')[0]
@@ -1817,7 +1845,7 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
         response = self.client.post(
-            self.url,
+            self.author_appeal_url,
             {'email': 'me@example.com', 'reason': 'I am a bad guy'},
         )
         assert response.status_code == 200
