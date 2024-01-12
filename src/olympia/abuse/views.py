@@ -268,10 +268,11 @@ def cinder_webhook(request):
 
 
 def appeal(request, *, abuse_report_id, decision_id, **kwargs):
+    appealable_decisions = list(
+        CinderJob.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values.keys()
+    ) + list(CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values.keys())
     cinder_job = get_object_or_404(
-        CinderJob.objects.exclude(
-            decision_action=CinderJob.DECISION_ACTIONS.NO_DECISION
-        ),
+        CinderJob.objects.exclude(decision_action__in=appealable_decisions),
         decision_id=decision_id,
     )
 
