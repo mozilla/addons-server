@@ -180,8 +180,8 @@ def process_datestamp(date_string):
         return datetime.now()
 
 
-def filter_enforcement_actions(enforcement_actions, cinder_report):
-    target = cinder_report.target
+def filter_enforcement_actions(enforcement_actions, cinder_job):
+    target = cinder_job.target
     if not target:
         return []
     return [
@@ -219,16 +219,32 @@ def cinder_webhook(request):
 
         log.info('Valid Payload from AMO queue: %s', payload)
         job_id = job.get('id', '')
+
         try:
             cinder_job = CinderJob.objects.get(job_id=job_id)
         except CinderJob.DoesNotExist:
             log.debug('CinderJob instance not found for job id %s', job_id)
             raise ValidationError('No matching job id found')
 
+        decision_type = source.get('decision', {}).get('type')
+        if decision_type == 'confirm':
+            # Cinder doesn't send new enforcement_actions/policies for appeal
+            # confirmations, but we want to record something happened anyway,
+            # so we use the original decision action/policies.
+            root_for_policies_and_enforcement_actions = payload.get('appeal', {}).get(
+                'appealed_decision', {}
+            )
+        else:
+            root_for_policies_and_enforcement_actions = payload
         enforcement_actions = filter_enforcement_actions(
-            payload.get('enforcement_actions') or [], cinder_job
+            root_for_policies_and_enforcement_actions.get('enforcement_actions') or [],
+            cinder_job,
         )
-        policy_ids = [policy['id'] for policy in payload.get('policies', [])]
+        policy_ids = [
+            policy['id']
+            for policy in root_for_policies_and_enforcement_actions.get('policies', [])
+        ]
+
         if len(enforcement_actions) != 1:
             reason = (
                 'more than one supported enforcement_actions'
@@ -258,7 +274,7 @@ def cinder_webhook(request):
                     'not_handled_reason': exc.message,
                 }
             },
-            # cinder will retry indefinately on 4xx or 5xx so we return 200 even when
+            # cinder will retry indefinitely on 4xx or 5xx so we return 200 even when
             # it's an error
             status=status.HTTP_200_OK,
         )

@@ -1,38 +1,6 @@
 {
     "event": "decision.created",
     "payload": {
-        "appeal": {
-            "appealed_decision": {
-                "enforcement_actions": [
-                    "amo-disable-addon"
-                ],
-                "id": "ae106e36-700c-4668-9618-851451dc5c2c",
-                "notes": "",
-                "policies": [
-                    {
-                        "enforcement_actions": [
-                            "amo-disable-addon"
-                        ],
-                        "id": "f73ad527-54ed-430c-86ff-80e15e2a352b",
-                        "is_illegal": false,
-                        "name": "Harassment"
-                    }
-                ],
-                "type": "queue_review",
-                "user": {
-                    "email": "awilliamson@test.com",
-                    "groups": [
-                        {
-                            "name": "Admin"
-                        },
-                        {
-                            "name": "Everyone"
-                        }
-                    ],
-                    "name": "Andrew Williamson"
-                }
-            }
-        },
         "enforcement_actions": [
             "amo-disable-addon"
         ],
