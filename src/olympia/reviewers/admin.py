@@ -52,7 +52,7 @@ class NeedsHumanReviewAdmin(AMOModelAdmin):
         'created',
     )
 
-    actions = ['deactivate_selected', 'deactivate_selected']
+    actions = ['deactivate_selected', 'activate_selected']
 
     def deactivate_selected(modeladmin, request, queryset):
         for obj in queryset:
