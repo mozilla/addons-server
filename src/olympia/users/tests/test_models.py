@@ -14,7 +14,6 @@ from django.test.utils import override_settings
 
 import pytest
 import responses
-from freezegun import freeze_time
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
