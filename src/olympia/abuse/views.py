@@ -272,7 +272,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
         CinderJob.DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values
     ) + tuple(CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values)
     cinder_job = get_object_or_404(
-        CinderJob.objects.exclude(decision_action__in=appealable_decisions),
+        CinderJob.objects.filter(decision_action__in=appealable_decisions),
         decision_id=decision_id,
     )
 
