@@ -631,7 +631,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             context={
                 'site_url': site_url,
                 'name': self.name,
-                'is_mza_branding': datetime.now() >= amo.MZA_LAUNCH_DATETIME,
+                'is_mza_branding': True,
             }
         )
         return {
