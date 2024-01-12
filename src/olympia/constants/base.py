@@ -1,6 +1,5 @@
 import re
 from collections import namedtuple
-from datetime import datetime
 
 from django.utils.translation import gettext_lazy as _
 
