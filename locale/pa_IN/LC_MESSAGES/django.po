@@ -2593,7 +2593,7 @@ msgstr "ਥੀਮ ਤਿਆਰ"
 msgid "Theme generator"
 msgstr "ਥੀਮ ਜਰਨੇਟਰ"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "ਚੇਤਾਵਨੀ: ਨਿਮਨਲਿਖਤ ਮੈਨੀਫੈਸਟ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਜਿਹੜੀਆਂ ਤੁਹਾਡੇ ਸਭ ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਮੈਨੀਫੈਸਟਨ ਵਿੱਚ ਵਰਤੀਆਂ ਗਈਆਂ ਹਨ ਇਸ ਵਿਜ਼ਰਡ ਵਿੱਚ ਅਸਮਰਥਿਤ ਹਨ ਅਤੇ ਅਣਡਿੱਠੀਆਂ ਕੀਤੀਆਂ ਜਾਣਗੀਆਂ:"
 
 msgid "Theme name"

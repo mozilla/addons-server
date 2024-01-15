@@ -2575,7 +2575,7 @@ msgstr "테마 생성"
 msgid "Theme generator"
 msgstr "테마 생성기"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "경고: 가장 최신 버전의 매니페스트에서 사용된 다음 매니페스트 속성은 이 마법사에서 지원되지 않으며 무시됩니다:"
 
 msgid "Theme name"

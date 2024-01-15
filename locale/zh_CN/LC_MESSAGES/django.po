@@ -2548,7 +2548,7 @@ msgstr "主题生成"
 msgid "Theme generator"
 msgstr "主题生成器"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "警告：此向导不支持您最后所上传版本中清单文件使用的下列属性，它将忽略这些属性："
 
 msgid "Theme name"

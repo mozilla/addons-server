@@ -2616,7 +2616,7 @@ msgstr "Gjenerazion teme"
 msgid "Theme generator"
 msgstr "Gjeneradôr di teme"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Atenzion: chestis proprietâts dal manifest, contignudis te ultime version dal component adizionâl cjamât in rêt, no son supuartadis de procedure vuidade, duncje a vignaran ignoradis:"
 
 msgid "Theme name"

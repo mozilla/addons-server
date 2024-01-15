@@ -2661,7 +2661,7 @@ msgstr "Tema generato"
 msgid "Theme generator"
 msgstr "Strumento generazione temi"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Avviso: le seguenti proprietà del manifesto contenute nell’ultima versione caricata del componente aggiuntivo non sono supportate dalla procedura guidata, pertanto verranno ignorate:"
 
 msgid "Theme name"

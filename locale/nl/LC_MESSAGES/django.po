@@ -2613,7 +2613,7 @@ msgstr "Thema aanmaken"
 msgid "Theme generator"
 msgstr "Thema-generator"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Waarschuwing: de volgende manifest-eigenschappen die zijn gebruikt in het manifest van uw meest recente versie worden niet ondersteund in deze wizard en worden genegeerd:"
 
 msgid "Theme name"

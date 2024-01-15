@@ -2614,7 +2614,7 @@ msgstr "Prodhoje temën"
 msgid "Theme generator"
 msgstr "Prodhues temash"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Kujdes: vetitë vijuese të manifestit që ngarkimi juaj më i freskët përdor në manifestin e vet, nuk mbulohen në këtë ndihmës dhe do të shpërfillen:"
 
 msgid "Theme name"

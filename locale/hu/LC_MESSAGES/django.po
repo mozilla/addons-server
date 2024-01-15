@@ -2624,7 +2624,7 @@ msgstr "Téma generálás"
 msgid "Theme generator"
 msgstr "Téma generátor"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Figyelmeztetés: a következő, a legutóbbi verziófeltöltés során használt leírófájl tulajdonságokat ez a varázsló nem támogatja és figyelmen kívül fogja hagyni:"
 
 msgid "Theme name"

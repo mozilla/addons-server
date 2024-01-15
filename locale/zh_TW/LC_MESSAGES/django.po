@@ -2566,7 +2566,7 @@ msgstr "產生佈景主題"
 msgid "Theme generator"
 msgstr "佈景主題產生器"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "警告: 您最近上傳的版本當中的下列安裝資訊屬性不受此精靈支援，將被忽略:"
 
 msgid "Theme name"

@@ -2611,7 +2611,7 @@ msgstr "Generovanie témy vzhľadu"
 msgid "Theme generator"
 msgstr "Generátor témy vzhľadu"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Upozornenie: Nasledujúce vlastnosti manifestu, ktoré ste použili v manifeste vašej poslednej nahranej verzie, nie sú v tomto sprievodcovi podporované a budú ignorované:"
 
 msgid "Theme name"

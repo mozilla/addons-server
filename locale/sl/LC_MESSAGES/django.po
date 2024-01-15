@@ -2621,7 +2621,7 @@ msgstr "Ustvari temo"
 msgid "Theme generator"
 msgstr "Ustvarjalnik tem"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Pozor: naslednje lastnosti, ki jih je vaša najnovejša različica uporabila v svojem manifestu, so v tem čarovniku nepodprte in bodo prezrte:"
 
 msgid "Theme name"

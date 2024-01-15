@@ -2609,7 +2609,7 @@ msgstr "Drastwu napóraś"
 msgid "Theme generator"
 msgstr "Generator drastwow"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Warnowanje: Slědujuce manifestowe kakosći, kótarež wašo nejnowše wersijowe nagraśe jo wužyło w swójom manifesće, se w toś tom asistenśe njepódpěraju a budu se ignorěrowaś:"
 
 msgid "Theme name"
