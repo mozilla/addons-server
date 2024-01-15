@@ -354,40 +354,71 @@ class TestAbuseManager(TestCase):
         report = AbuseReport.objects.create(guid='foo@bar')
         assert list(AbuseReport.objects.for_addon(addon)) == [report]
 
-    def test_unresolved(self):
-        report_no_job = AbuseReport.objects.create(guid='1234')
-        report_unresolved_job = AbuseReport.objects.create(
-            guid='3456', cinder_job=CinderJob.objects.create(job_id='1')
+
+class TestCinderJobManager(TestCase):
+    def test_for_addon_finds_by_guid(self):
+        addon = addon_factory()
+        job = CinderJob.objects.create()
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=job)
+        assert list(CinderJob.objects.for_addon(addon)) == [job]
+
+    def test_for_addon_finds_by_original_guid(self):
+        addon = addon_factory(guid='foo@bar')
+        addon.update(guid='guid-reused-by-pk-42')
+        job = CinderJob.objects.create()
+        AbuseReport.objects.create(guid='foo@bar', cinder_job=job)
+        assert list(CinderJob.objects.for_addon(addon)) == [job]
+
+    def test_for_addon_appealed(self):
+        addon = addon_factory()
+        appeal_job = CinderJob.objects.create(job_id='appeal')
+        original_job = CinderJob.objects.create(
+            job_id='original', appeal_job=appeal_job
         )
+        AbuseReport.objects.create(guid=addon.guid, cinder_job=original_job)
+        assert list(CinderJob.objects.for_addon(addon)) == [original_job, appeal_job]
+
+    def test_unresolved(self):
+        job = CinderJob.objects.create(job_id='1')
+        AbuseReport.objects.create(guid='3456', cinder_job=job)
         AbuseReport.objects.create(
             guid='5678',
             cinder_job=CinderJob.objects.create(
                 job_id='2', decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON
             ),
         )
-        qs = AbuseReport.objects.unresolved()
-        assert len(qs) == 2
-        assert list(qs) == [report_no_job, report_unresolved_job]
+        qs = CinderJob.objects.unresolved()
+        assert len(qs) == 1
+        assert list(qs) == [job]
 
     def test_reviewer_handled(self):
         AbuseReport.objects.create(
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.ILLEGAL,
             location=AbuseReport.LOCATION.BOTH,
+            cinder_job=CinderJob.objects.create(job_id=1),
         )
-        abuse_report = AbuseReport.objects.create(
+        job = CinderJob.objects.create(job_id=2)
+        AbuseReport.objects.create(
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
             location=AbuseReport.LOCATION.ADDON,
+            cinder_job=job,
         )
         AbuseReport.objects.create(
             guid=addon_factory().guid,
             reason=AbuseReport.REASONS.POLICY_VIOLATION,
             location=AbuseReport.LOCATION.AMO,
+            cinder_job=CinderJob.objects.create(job_id=3),
         )
-        qs = AbuseReport.objects.reviewer_handled()
-        assert len(qs) == 1
-        assert list(qs) == [abuse_report]
+        qs = CinderJob.objects.reviewer_handled()
+        assert list(qs) == [job]
+
+        appeal_job = CinderJob.objects.create(job_id=4)
+        job.update(appeal_job=appeal_job)
+        qs = CinderJob.objects.reviewer_handled()
+        assert list(qs) == [job, appeal_job]
 
 
 class TestCinderJob(TestCase):

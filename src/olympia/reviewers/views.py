@@ -17,7 +17,6 @@ from django.utils.cache import patch_cache_control
 from django.views.decorators.cache import never_cache
 
 import pygit2
-import waffle
 from csp.decorators import csp as set_csp
 from rest_framework import status
 from rest_framework.decorators import action as drf_action
@@ -510,22 +509,12 @@ def review(request, addon, channel=None):
         # each version is auto-approvable or not.
         .transform(Version.transformer_auto_approvable)
     )
-    unresolved_abuse_reports = (
-        AbuseReport.objects.for_addon(addon)
-        .unresolved()
-        .reviewer_handled()
-        .exclude(cinder_job__isnull=True)
-        if waffle.switch_is_active('enable-cinder-reporting')
-        else AbuseReport.objects.none()
-    ).values_list('cinder_job_id', 'message', named=True)
-
     form_helper = ReviewHelper(
         addon=addon,
         version=version,
         user=request.user,
         content_review=content_review,
         human_review=True,
-        unresolved_abuse_reports=unresolved_abuse_reports,
     )
     form = ReviewForm(
         request.POST if request.method == 'POST' else None, helper=form_helper
@@ -770,7 +759,6 @@ def review(request, addon, channel=None):
             user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).exists(),
         unlisted=(channel == amo.CHANNEL_UNLISTED),
-        unresolved_abuse_reports=unresolved_abuse_reports,
         user_ratings=user_ratings,
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,

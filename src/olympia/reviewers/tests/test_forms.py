@@ -3,8 +3,10 @@ from datetime import datetime
 from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.abuse.models import AbuseReport, CinderJob
 from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase,
@@ -759,3 +761,73 @@ class TestReviewForm(TestCase):
 
         form = self.get_form(data={**data, 'version_pk': self.version.pk})
         assert form.is_valid(), form.errors
+
+    def test_resolve_cinder_jobs_choices(self):
+        abuse_kw = {
+            'guid': self.addon.guid,
+            'location': AbuseReport.LOCATION.ADDON,
+            'reason': AbuseReport.REASONS.POLICY_VIOLATION,
+        }
+        cinder_job_2_reports = CinderJob.objects.create(job_id='2 reports')
+        AbuseReport.objects.create(
+            **abuse_kw, cinder_job=cinder_job_2_reports, message='aaa'
+        )
+        AbuseReport.objects.create(
+            **abuse_kw, cinder_job=cinder_job_2_reports, message='bbb'
+        )
+        cinder_job_appealed = CinderJob.objects.create(
+            job_id='appealed',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        )
+        AbuseReport.objects.create(
+            **abuse_kw, cinder_job=cinder_job_appealed, message='ccc'
+        )
+        cinder_job_appeal = CinderJob.objects.create(job_id='appeal')
+        cinder_job_appealed.update(appeal_job=cinder_job_appeal)
+        cinder_job_escalated = CinderJob.objects.create(
+            job_id='escalated',
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_ESCALATE_ADDON,
+        )
+        AbuseReport.objects.create(
+            **abuse_kw, cinder_job=cinder_job_escalated, message='ddd'
+        )
+
+        AbuseReport.objects.create(
+            **{**abuse_kw, 'location': AbuseReport.LOCATION.AMO},
+            message='eee',
+            cinder_job=CinderJob.objects.create(job_id='not reviewer handled'),
+        )
+        AbuseReport.objects.create(
+            **{**abuse_kw},
+            message='fff',
+            cinder_job=CinderJob.objects.create(
+                job_id='already resovled',
+                decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            ),
+        )
+
+        assert len(self.get_form().fields['resolve_cinder_jobs'].choices) == 0
+
+        with override_switch('enable-cinder-reporting', active=True):
+            form = self.get_form()
+            choices = form.fields['resolve_cinder_jobs'].choices
+        qs_list = list(choices.queryset)
+        assert qs_list == [
+            # Only unresolved, reviewer handled, jobs are shown
+            cinder_job_escalated,
+            cinder_job_appeal,
+            cinder_job_2_reports,
+        ]
+
+        doc = pq(str(form['resolve_cinder_jobs']))
+        assert doc('label[for="id_resolve_cinder_jobs_0"]').text() == (
+            '[Escalation] "DSA: It violates Mozilla\'s Add-on Policies"'
+            '\nShow 1 reports\nddd'
+        )
+        assert doc('label[for="id_resolve_cinder_jobs_1"]').text() == (
+            '[Appeal] "DSA: It violates Mozilla\'s Add-on Policies"'
+            '\nShow 1 reports\nccc'
+        )
+        assert doc('label[for="id_resolve_cinder_jobs_2"]').text() == (
+            '"DSA: It violates Mozilla\'s Add-on Policies"\nShow 2 reports\naaa\nbbb'
+        )

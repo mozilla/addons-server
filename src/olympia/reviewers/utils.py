@@ -394,7 +394,6 @@ class ReviewHelper:
         user=None,
         content_review=False,
         human_review=True,
-        unresolved_abuse_reports=(),
     ):
         self.handler = None
         self.required = {}
@@ -409,7 +408,6 @@ class ReviewHelper:
             user = get_task_user()
         self.human_review = human_review
         self.user = user
-        self.unresolved_abuse_reports = unresolved_abuse_reports
         self.set_review_handler()
         self.actions = self.get_actions()
 
@@ -430,7 +428,6 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
-                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(
@@ -440,7 +437,6 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
-                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
         else:
             self.handler = ReviewFiles(
@@ -450,7 +446,6 @@ class ReviewHelper:
                 user=self.user,
                 human_review=self.human_review,
                 content_review=self.content_review,
-                unresolved_abuse_reports=self.unresolved_abuse_reports,
             )
 
     def get_actions(self):
@@ -883,7 +878,6 @@ class ReviewBase:
         review_type,
         content_review=False,
         human_review=True,
-        unresolved_abuse_reports=(),
     ):
         self.user = user
         self.human_review = human_review
@@ -899,7 +893,6 @@ class ReviewBase:
         )
         self.content_review = content_review
         self.redirect_url = None
-        self.unresolved_abuse_reports = unresolved_abuse_reports
 
     def set_addon(self):
         """Alter addon, set human_review_date timestamp on version being reviewed."""
@@ -940,10 +933,7 @@ class ReviewBase:
                 self.addon.promotedaddon.approve_for_version(version)
 
     def resolve_abuse_reports(self, decision):
-        if (
-            self.data.get('resolve_abuse_reports', False)
-            and self.unresolved_abuse_reports
-        ):
+        if cinder_jobs := self.data.get('resolve_cinder_jobs', ()):
             policy_ids = list(
                 {
                     reason.cinder_policy_id
@@ -951,13 +941,10 @@ class ReviewBase:
                     if reason.cinder_policy_id
                 }
             )
-            cinder_job_ids = {
-                report.cinder_job_id for report in self.unresolved_abuse_reports
-            }
-            # There should only be one job, but covering the bases:
-            for cinder_job_id in cinder_job_ids:
+            # with appeals and escaltions there could be multiple jobs
+            for cinder_job in cinder_jobs:
                 resolve_job_in_cinder.delay(
-                    cinder_job_id=cinder_job_id,
+                    cinder_job_id=cinder_job.id,
                     review_text=self.data.get('comments', ''),
                     decision=decision,
                     policy_ids=policy_ids,
