@@ -93,9 +93,9 @@ sphinxcontrib-httpdomain==1.8.1 \
 sphinxcontrib-serializinghtml==1.1.9 \
     --hash=sha256:0c64ff898339e1fac29abd2bf5f11078f3ec413cfe9c046d3120d7ca65530b54 \
     --hash=sha256:9b36e503703ff04f20e9675771df105e58aa029cfcbc23b8ed716019b7416ae1
-sphinxcontrib-applehelp==1.0.7 \
-    --hash=sha256:094c4d56209d1734e7d252f6e0b3ccc090bd52ee56807a5d9315b19c122ab15d \
-    --hash=sha256:39fdc8d762d33b01a7d8f026a3b7d71563ea3b72787d5f00ad8465bd9d6dfbfa
+sphinxcontrib-applehelp==1.0.8 \
+    --hash=sha256:c40a4f96f3776c4393d933412053962fac2b84f4c99a7982ba42e09576a70619 \
+    --hash=sha256:cb61eb0ec1b61f349e5cc36b2028e9e7ca765be05e49641c97241274753067b4
 sphinxcontrib-devhelp==1.0.5 \
     --hash=sha256:63b41e0d38207ca40ebbeabcf4d8e51f76c03e78cd61abe118cf4435c73d4212 \
     --hash=sha256:fe8009aed765188f08fcaadbb3ea0d90ce8ae2d76710b7e29ea7d047177dae2f
