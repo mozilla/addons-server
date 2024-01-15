@@ -36,6 +36,19 @@ class CinderAction:
             else getattr(self.target, 'name', self.target)
         )
 
+    def get_target_type(self):
+        match self.target:
+            case target if isinstance(target, Addon):
+                return target.get_type_display()
+            case target if isinstance(target, UserProfile):
+                return _('User profile')
+            case target if isinstance(target, Collection):
+                return _('Collection')
+            case target if isinstance(target, Rating):
+                return _('Rating')
+            case target:
+                return target.__class__.__name__
+
     @property
     def owner_template_path(self):
         return f'abuse/emails/{self.__class__.__name__}.txt'
@@ -43,13 +56,6 @@ class CinderAction:
     def notify_owners(self, owners):
         name = self.get_target_name()
         reason = ', '.join(policy.name for policy in self.cinder_job.policies.all())
-        target_type = (
-            self.target.get_type_display()
-            if isinstance(self.target, Addon)
-            else 'User profile'
-            if isinstance(self.target, UserProfile)
-            else self.target.__class__.__name__
-        )
         reference_id = f'ref:{self.cinder_job.decision_id}'
         context_dict = {
             'is_third_party_initiated': self.is_third_party_initiated,
@@ -58,7 +64,7 @@ class CinderAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': absolutify(self.target.get_url_path()),
-            'type': target_type,
+            'type': self.get_target_type(),
             'SITE_URL': settings.SITE_URL,
         }
         if self.cinder_job.can_be_appealed(is_reporter=False):
@@ -104,6 +110,7 @@ class CinderAction:
                     'name': target_name,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
+                    'type': self.get_target_type(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if self.cinder_job.can_be_appealed(
