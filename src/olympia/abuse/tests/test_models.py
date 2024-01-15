@@ -21,14 +21,16 @@ from ..cinder import (
 )
 from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
-    CinderActionApproveAppealOverride,
+    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
+    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
+    CinderActionRemovalAffirmation,
 )
 
 
@@ -527,24 +529,42 @@ class TestCinderJob(TestCase):
             (DECISION_ACTIONS.AMO_ESCALATE_ADDON, CinderActionEscalateAddon),
             (DECISION_ACTIONS.AMO_DELETE_COLLECTION, CinderActionDeleteCollection),
             (DECISION_ACTIONS.AMO_DELETE_RATING, CinderActionDeleteRating),
-        )
-        for action, ActionClass in (
-            *action_to_class,
             (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveInitialDecision),
-        ):
-            cinder_job.update(decision_action=action)
-            helper = cinder_job.get_action_helper()
+        )
+        action_existing_to_class = {
+            (new_action, existing_action): ActionClass
+            for new_action, ActionClass in action_to_class
+            for existing_action in DECISION_ACTIONS.values
+        }
+        for action in DECISION_ACTIONS.REMOVING.values:
+            action_existing_to_class[
+                (DECISION_ACTIONS.AMO_APPROVE, action)
+            ] = CinderActionApproveAppeal
+            action_existing_to_class[(action, action)] = CinderActionRemovalAffirmation
+
+        for (
+            new_action,
+            existing_action,
+        ), ActionClass in action_existing_to_class.items():
+            cinder_job.update(decision_action=new_action)
+            helper = cinder_job.get_action_helper(existing_action)
             assert helper.__class__ == ActionClass
             assert helper.cinder_job == cinder_job
 
-        for action, ActionClass in (
-            *action_to_class,
-            (DECISION_ACTIONS.AMO_APPROVE, CinderActionApproveAppealOverride),
-        ):
-            cinder_job.update(decision_action=action)
-            helper = cinder_job.get_action_helper(DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        # and repeat for the override edge case
+        for action in DECISION_ACTIONS.REMOVING.values:
+            action_existing_to_class[
+                (DECISION_ACTIONS.AMO_APPROVE, action)
+            ] = CinderActionApproveOverride
+            action_existing_to_class[(action, action)] = CinderActionNotImplemented
+
+        for (
+            new_action,
+            existing_action,
+        ), ActionClass in action_existing_to_class.items():
+            cinder_job.update(decision_action=new_action)
+            helper = cinder_job.get_action_helper(existing_action, override=True)
             assert helper.__class__ == ActionClass
-            assert helper.cinder_job == cinder_job
 
     def test_process_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')

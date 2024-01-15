@@ -60,7 +60,7 @@
             "decision": {
                 "id": "d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed",
                 "metadata": {},
-                "type": "override"
+                "type": "queue_review"
             },
             "job": {
                 "created_at": "2023-10-09T16: 35: 52.687552+00: 00",

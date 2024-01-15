@@ -1,0 +1,12 @@
+Hello,
+
+Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's add-on policies. We have conducted further investigation{% if not is_override %} in response to your appeal{% endif %}, and determined that the previous decision was inaccurate. Based on that determination, we have restored your {{ type }}, and is now available at {{ target_url }}.
+
+Thank you.
+
+To learn more about our policies, please visit: https://extensionworkshop.com/documentation/publish/add-on-policies/.
+
+[{{ reference_id }}]
+--
+Mozilla Add-ons Team
+{{ SITE_URL }}

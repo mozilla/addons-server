@@ -914,10 +914,10 @@ class TestCinderWebhook(TestCase):
             CinderJob.DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def test_process_decision_called(self):
+    def _test_process_decision_called(self, data, override):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
-        req = self.get_request()
+        req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'process_decision') as process_mock:
             response = cinder_webhook(req)
             process_mock.assert_called()
@@ -926,9 +926,19 @@ class TestCinderWebhook(TestCase):
                 decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
                 decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
+                override=override,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_process_decision_called_not_overide(self):
+        data = self.get_data()
+        return self._test_process_decision_called(data, False)
+
+    def test_process_decision_called_for_override(self):
+        data = self.get_data()
+        data['payload']['source']['decision']['type'] = 'override'
+        return self._test_process_decision_called(data, True)
 
     def _test_wrong_queue(self, data):
         self._setup_reports()
