@@ -190,7 +190,7 @@ class CinderJob(ModelBase):
         }.get(decision_action, CinderActionNotImplemented)
 
     def get_action_helper(
-        self, existing_decision=DECISION_ACTIONS.NO_DECISION, override=False
+        self, existing_decision=DECISION_ACTIONS.NO_DECISION, *, override=False
     ):
         # Base case
         CinderActionClass = self.get_action_helper_class(self.decision_action)
@@ -256,7 +256,7 @@ class CinderJob(ModelBase):
             decision_action=decision_action,
         )
         self.policies.add(*CinderPolicy.objects.filter(uuid__in=policy_ids))
-        self.get_action_helper(existing_decision, override).process()
+        self.get_action_helper(existing_decision, override=override).process()
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
