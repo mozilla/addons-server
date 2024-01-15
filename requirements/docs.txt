@@ -111,9 +111,9 @@ sphinxcontrib-htmlhelp==2.0.4 \
 sphinxcontrib-qthelp==1.0.6 \
     --hash=sha256:62b9d1a186ab7f5ee3356d906f648cacb7a6bdb94d201ee7adf26db55092982d \
     --hash=sha256:bf76886ee7470b934e363da7a954ea2825650013d367728588732c7350f49ea4
-sphinx-rtd-theme==1.3.0 \
-    --hash=sha256:46ddef89cc2416a81ecfbeaceab1881948c014b1b6e4450b815311a89fb977b0 \
-    --hash=sha256:590b030c7abb9cf038ec053b95e5380b5c70d61591eb0b552063fbe7c41f0931
+sphinx-rtd-theme==2.0.0 \
+    --hash=sha256:bd5d7b80622406762073a04ef8fadc5f9151261563d47027de09910ce03afe6b \
+    --hash=sha256:ec93d0856dc280cf3aee9a4c9807c60e027c7f7b461b77aeffed682e68f0e586
 snowballstemmer==2.2.0 \
     --hash=sha256:c8e1716e83cc398ae16824e5572ae04e0d9fc2c6b985fb0f900f5f0c96ecba1a \
     --hash=sha256:09b16deb8547d3412ad7b590689584cd0fe25ec8db3be37788be3810cbf19cb1
