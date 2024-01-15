@@ -2593,7 +2593,7 @@ msgstr "Công cụ tạo chủ đề"
 msgid "Theme generator"
 msgstr "Trình tạo chủ đề"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Cảnh báo: các thuộc tính tập tin manifest sau đây mà phiên bản tải lên gần đây nhất của bạn được sử dụng trong tập tin manifest không được hỗ trợ trong trình hướng dẫn này và sẽ bị bỏ qua:"
 
 msgid "Theme name"

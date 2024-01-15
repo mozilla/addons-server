@@ -2649,7 +2649,7 @@ msgstr "Δημιουργία θέματος"
 msgid "Theme generator"
 msgstr "Δημιουργία θέματος"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Προειδοποίηση: οι εξής ιδιότητες δήλωσης, που χρησιμοποιήθηκαν στο αρχείο δήλωσης της πιο πρόσφατης έκδοσης, δεν υποστηρίζονται από τον οδηγό και θα αγνοηθούν:"
 
 msgid "Theme name"

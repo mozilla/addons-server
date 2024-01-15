@@ -2610,7 +2610,7 @@ msgstr "Drastu wutworić"
 msgid "Theme generator"
 msgstr "Generator drastow"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Warnowanje: Slědowace manifestowe kajkosće, kotrež je waše najnowše wersijowe nahraće w swojim manifesće wužiło, so w tutym asistenće njepodpěruja a budu so ignorować:"
 
 msgid "Theme name"

@@ -2609,7 +2609,7 @@ msgstr "יצירת ערכת נושא"
 msgid "Theme generator"
 msgstr "מחולל ערכות נושא"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "אזהרה: מאפייני המניפסט הבאים שהעלאת הגרסה האחרונה שלך השתמשה בהם במניפסט אינם נתמכים באשף זה ויתעלמו מהם:"
 
 msgid "Theme name"

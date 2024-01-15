@@ -2611,7 +2611,7 @@ msgstr "Jana tema"
 msgid "Theme generator"
 msgstr "Penjana tema"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Amaran: sifat manifes dalam versi terbaru yang anda muat naik berikut tidak disokong oleh bestari ini dan akan diabaikan:"
 
 msgid "Theme name"

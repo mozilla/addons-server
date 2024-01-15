@@ -2633,7 +2633,7 @@ msgstr "Generar tema"
 msgid "Theme generator"
 msgstr "Generador de tema"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "Advertencia: no se admiten las siguientes propiedades del manifesto de la versión más reciente que has subido y se ignorarán:"
 
 msgid "Theme name"

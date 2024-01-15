@@ -2589,7 +2589,7 @@ msgstr "თემის დამზადება"
 msgid "Theme generator"
 msgstr "თემის დამამზადებელი"
 
-msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgid "Warning: the following manifest properties that your most recent version upload used in its manifest are unsupported in this wizard and will be ignored:"
 msgstr "გაფრთხილება: მანიფესტის მოცემული პარამეტრები, რომლებიც უახლესი ვერსიის ატვირთვისას გამოყენებულია მანიფესტში, არაა მხარდაჭერილი ამ მეგზურში და უგულებელყოფილი იქნება:"
 
 msgid "Theme name"
