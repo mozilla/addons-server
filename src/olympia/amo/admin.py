@@ -20,7 +20,7 @@ from django.db.models.constants import LOOKUP_SEP
 from django.http.request import QueryDict
 from django.utils.html import format_html, format_html_join
 
-from rangefilter.filter import DateRangeFilter as DateRangeFilterBase
+from rangefilter.filters import DateRangeFilter as DateRangeFilterBase
 
 from olympia.activity.models import IPLog
 from olympia.amo.models import GroupConcat, Inet6Ntoa
