@@ -45,6 +45,9 @@ class CinderJob(ModelBase):
         ('AMO_DELETE_RATING', 5, 'Rating delete'),
         ('AMO_DELETE_COLLECTION', 6, 'Collection delete'),
         ('AMO_APPROVE', 7, 'Approved (no action)'),
+        # Rejecting versions is not an available action for moderators in cinder
+        # - it is only handled by the reviewer tools by AMO Reviewers.
+        # It should not be sent by the cinder webhook, & does not have an action defined
         ('AMO_REJECT_VERSION_ADDON', 8, 'Add-on version reject'),
     )
     DECISION_ACTIONS.add_subset(
