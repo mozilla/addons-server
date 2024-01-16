@@ -1055,6 +1055,19 @@ class TestCinderWebhook(TestCase):
         addon_factory(guid=abuse_report.guid)
         data = self.get_data()
 
+        data['payload']['enforcement_actions'] = []
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Payload invalid: no supported enforcement_actions'
+                ),
+            }
+        }
+
         data['payload']['enforcement_actions'] = ['unknown_action']
         response = cinder_webhook(self.get_request(data=data))
         assert response.status_code == 200
