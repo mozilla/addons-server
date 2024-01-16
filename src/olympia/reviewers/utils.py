@@ -613,6 +613,7 @@ class ReviewHelper:
                 and is_appropriate_reviewer
             ),
             'allows_reasons': True,
+            'resolves_abuse_reports': True,
             'requires_reasons': not is_static_theme,
             'boilerplate_text': boilerplate_for_reject,
         }
@@ -681,6 +682,7 @@ class ReviewHelper:
             ),
             'available': (can_reject_multiple),
             'allows_reasons': True,
+            'resolves_abuse_reports': True,
             'requires_reasons': not is_static_theme,
             'boilerplate_text': boilerplate_for_reject,
         }
@@ -1205,6 +1207,9 @@ class ReviewBase:
             # at.
             self.clear_specific_needs_human_review_flags(self.version)
             self.set_human_review_date()
+            self.resolve_abuse_reports(
+                CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            )
 
         self.log_action(amo.LOG.REJECT_VERSION)
         template = '%s_to_rejected' % self.review_type
@@ -1415,7 +1420,6 @@ class ReviewBase:
         # don't need to notify the developer (we should already have done that
         # before) and don't need to award points.
         if self.human_review:
-            channel = latest_version.channel
             # Send the email to the developer. We need to pass the latest
             # version of the add-on instead of one of the versions we rejected,
             # it will be used to generate a token allowing the developer to
@@ -1438,6 +1442,9 @@ class ReviewBase:
                 template = 'reject_multiple_versions'
                 subject = 'Mozilla Add-ons: Versions disabled for %s%s'
             log.info('Sending email for %s' % (self.addon))
+            self.resolve_abuse_reports(
+                CinderJob.DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+            )
             self.notify_email(template, subject, version=latest_version)
 
     def unreject_latest_version(self):

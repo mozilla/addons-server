@@ -3156,7 +3156,9 @@ class TestReviewHelper(TestReviewHelperBase):
             amo.CHANNEL_LISTED,
             [
                 'public',
+                'reject',
                 'confirm_auto_approved',
+                'reject_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'disable_addon',
             ],
@@ -3168,6 +3170,7 @@ class TestReviewHelper(TestReviewHelperBase):
             [
                 'public',
                 'approve_multiple_versions',
+                'reject_multiple_versions',
                 'confirm_multiple_versions',
                 'clear_needs_human_review_multiple_versions',
                 'disable_addon',
