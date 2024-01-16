@@ -828,8 +828,8 @@ class TestCinderWebhook(TestCase):
     def setUp(self):
         self.task_user = user_factory(pk=settings.TASK_USER_ID)
 
-    def get_data(self):
-        webhook_file = os.path.join(TESTS_DIR, 'assets', 'cinder_webhook.json')
+    def get_data(self, filename='cinder_webhook.json'):
+        webhook_file = os.path.join(TESTS_DIR, 'assets', filename)
         with open(webhook_file) as file_object:
             return json.loads(file_object.read())
 
@@ -939,6 +939,60 @@ class TestCinderWebhook(TestCase):
         data = self.get_data()
         data['payload']['source']['decision']['type'] = 'override'
         return self._test_process_decision_called(data, True)
+
+    def test_process_decision_called_for_appeal_confirm_approve(self):
+        data = self.get_data(filename='cinder_webhook_appeal_confirm_approve.json')
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
+        original_cinder_job = CinderJob.objects.get()
+        original_cinder_job.update(
+            decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
+            appeal_job=CinderJob.objects.create(
+                job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
+            ),
+        )
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+        assert process_mock.call_count == 1
+        process_mock.assert_called_with(
+            decision_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
+            decision_date=datetime(2024, 1, 12, 15, 20, 19, 226428),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
+            policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
+            override=False,
+        )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_process_decision_called_for_appeal_disable(self):
+        data = self.get_data(filename='cinder_webhook_appeal_change_to_disable.json')
+        abuse_report = self._setup_reports()
+        addon_factory(guid=abuse_report.guid)
+        original_cinder_job = CinderJob.objects.get()
+        original_cinder_job.update(
+            decision_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            decision_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE.value,
+            appeal_job=CinderJob.objects.create(
+                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+            ),
+        )
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+            response = cinder_webhook(req)
+        assert process_mock.call_count == 1
+        process_mock.assert_called_with(
+            decision_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
+            decision_date=datetime(2024, 1, 12, 14, 53, 23, 438634),
+            decision_action=CinderJob.DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+            policy_ids=['86d7bf98-288c-4e78-9a63-3f5db96847b1'],
+            override=True,
+        )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
 
     def _test_wrong_queue(self, data):
         self._setup_reports()
