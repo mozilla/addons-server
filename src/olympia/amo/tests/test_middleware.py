@@ -336,6 +336,16 @@ class TestCacheControlMiddleware(TestCase):
             )(request)
             assert response['Cache-Control'] == 'max-age=180'
 
+    def test_services_amo_should_cache_for_one_hour(self):
+        request = self.request_factory.get('/api/v5/foo')
+        request.is_api = True
+        request.META['SERVER_NAME'] = settings.SERVICES_DOMAIN
+        for status_code in (200, 201, 202, 204, 301, 302, 303, 304):
+            response = CacheControlMiddleware(
+                lambda x, status=status_code: HttpResponse(status=status)
+            )(request)
+            assert response['Cache-Control'] == 'max-age=3600'
+
     def test_functional_should_cache(self):
         response = self.client.get(reverse_ns('amo-site-status'))
         assert response.status_code == 200

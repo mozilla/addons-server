@@ -406,7 +406,11 @@ class CacheControlMiddleware:
             and not max_age_from_response
         )
         if request_conditions and response_conditions:
-            patch_cache_control(response, max_age=settings.API_CACHE_DURATION)
+            if request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN:
+                max_age = settings.API_CACHE_DURATION_SERVICES
+            else:
+                max_age = settings.API_CACHE_DURATION
+            patch_cache_control(response, max_age=max_age)
         elif max_age_from_response is None:
             patch_cache_control(response, s_maxage=0)
         return response
