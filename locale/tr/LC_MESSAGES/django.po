@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-10 22:27+0000\n"
+"PO-Revision-Date: 2024-01-17 19:00+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -1854,7 +1854,7 @@ msgid "Could not verify email address. The verification link has expired."
 msgstr "E-posta adresi doğrulanamadı. Doğrulama bağlantısının süresi dolmuş."
 
 msgid "Working... Please be patient."
-msgstr ""
+msgstr "İşlem devam ediyor... Lütfen bekleyin."
 
 msgid ""
 "Failed to send confirmation email. Please try again. If you no longer have access to your email address, please update your mozilla account email address. <a href=\"https://support.mozilla.org/en-"
@@ -3660,7 +3660,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "İstediğiniz web sitesiyle ilgili kapsamlı etkileşim ve trafik bilgilerini alın."
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh, modern appearance to Wikipedia."
@@ -3767,7 +3767,7 @@ msgstr "Daha sonra incelemek için genel veya sitelere özel notlar oluşturun."
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
-msgstr ""
+msgstr "Bilgisayarınızda telefon gibi kaydırma. \"Tut ve sürükle\" tarzı fare hareketi sunar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3795,7 +3795,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 msgid "Automatically navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Bir web sitesinin güvenli sürümü varsa otomatik olarak bu sürüme geçin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -3961,7 +3961,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history. Make smart shopping decisions by receiving alerts for price changes on Amazon products you're interested in."
-msgstr ""
+msgstr "Amazon fiyat geçmişini takip edin. İlginizi çeken Amazon ürünlerindeki fiyat değişiklikleriyle ilgili uyarılar alarak akıllı alışveriş kararları verin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -4180,7 +4180,7 @@ msgstr "E-posta adresinizi maskeleyin. Firefox Relay, kimliğinizi korur ve iste
 
 #. editorial content for the discovery pane.
 msgid "Time--based theme changer. Make Firefox change colors as the time of day changes."
-msgstr ""
+msgstr "Zamana dayalı tema değiştirici. Saate göre Firefox'un renk değiştirmesini sağlayın."
 
 #. editorial content for the discovery pane.
 msgid "Declutter your Twitter experience."
