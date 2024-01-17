@@ -17,11 +17,12 @@ RAISE_ON_SIGNAL_ERROR = True
 API_THROTTLING = True
 
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
+SERVICES_DOMAIN = env('SERVICES_DOMAIN', default='services.addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 INTERNAL_SITE_URL = env('INTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
 EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default='https://addons-dev.allizom.org')
-SERVICES_URL = env('SERVICES_URL', default='https://services.addons-dev.allizom.org')
+SERVICES_URL = 'https://' + SERVICES_DOMAIN
 CODE_MANAGER_URL = env(
     'CODE_MANAGER_URL', default='https://code.addons-dev.allizom.org'
 )
