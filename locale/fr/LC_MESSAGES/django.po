@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-01-09 18:11+0000\n"
-"PO-Revision-Date: 2024-01-15 14:29+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2024-01-17 17:28+0000\n"
+"Last-Translator: Théo Chevalier <theochevalier@pm.me>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1846,7 +1846,7 @@ msgstr "Recherche"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
-msgstr ""
+msgstr "Nous avons découvert que votre adresse « %(email)s » ne peut pas recevoir d’e-mails de notre part. Pour en recevoir, veuillez mettre à jour votre adresse e-mail."
 
 #. editorial content for the secondary hero shelves.
 msgid "Learn more"
