@@ -94,11 +94,17 @@ class CinderJob(ModelBase):
     def target(self):
         # this works because all abuse reports for a single job and all appeals
         # for a single job are for the same target.
+        if initial_abuse_report := self.initial_abuse_report:
+            return initial_abuse_report.target
+        return None
+
+    @property
+    def initial_abuse_report(self):
         if first_abuse_report := self.abusereport_set.first():
             # Early return to avoid extra queries.
-            return first_abuse_report.target
+            return first_abuse_report
         appealed_job = self.appealed_jobs.first()
-        return appealed_job.target if appealed_job else None
+        return appealed_job.initial_abuse_report if appealed_job else None
 
     @property
     def abuse_reports(self):
@@ -261,6 +267,11 @@ class CinderJob(ModelBase):
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
+        # Author appeals can be done without an abuse report. Unfortunately
+        # though, at the moment we still need an abuse_report to call
+        # get_entity_helper(), so we grab the first one.
+        if abuse_report is None:
+            abuse_report = self.initial_abuse_report
         if user:
             appealer = CinderUser(user)
         else:

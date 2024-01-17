@@ -415,6 +415,36 @@ class TestCinderJob(TestCase):
             appeal_appeal_job.target == appeal_job.target == cinder_job.target == addon
         )
 
+    def test_initial_abuse_report(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        assert cinder_job.initial_abuse_report is None
+
+        addon = addon_factory()
+        abuse_report = AbuseReport.objects.create(
+            guid=addon.guid,
+            reason=AbuseReport.REASONS.ILLEGAL,
+            location=AbuseReport.LOCATION.BOTH,
+            cinder_job=cinder_job,
+        )
+        assert cinder_job.initial_abuse_report == abuse_report
+
+        appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
+        cinder_job.update(appeal_job=appeal_job)
+        assert (
+            appeal_job.initial_abuse_report
+            == cinder_job.initial_abuse_report
+            == abuse_report
+        )
+
+        appeal_appeal_job = CinderJob.objects.create(job_id='fake_appeal_appeal_job_id')
+        appeal_job.update(appeal_job=appeal_appeal_job)
+        assert (
+            appeal_appeal_job.initial_abuse_report
+            == appeal_job.initial_abuse_report
+            == cinder_job.initial_abuse_report
+            == abuse_report
+        )
+
     def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()

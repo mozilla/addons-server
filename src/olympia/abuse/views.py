@@ -299,13 +299,12 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
     valid_user_or_email_provided = False
     appeal_email_form = None
     decision = cinder_job.decision_action
-    if decision in (
-        CinderJob.DECISION_ACTIONS.AMO_APPROVE,
-        CinderJob.DECISION_ACTIONS.AMO_BAN_USER,
+    if decision in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
+        decision == CinderJob.DECISION_ACTIONS.AMO_BAN_USER
     ):
         # Only person would should be appealing an approval is the reporter.
         if (
-            decision == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+            decision in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             and abuse_report
             and abuse_report.reporter
         ):
@@ -363,7 +362,8 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
         is_reporter = (
-            cinder_job.decision_action == CinderJob.DECISION_ACTIONS.AMO_APPROVE
+            cinder_job.decision_action
+            in CinderJob.DECISION_ACTIONS.APPEALABLE_BY_REPORTER
         )
         if cinder_job.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
@@ -371,6 +371,7 @@ def appeal(request, *, abuse_report_id, decision_id, **kwargs):
             appeal_form = AbuseAppealForm(post_data)
             if appeal_form.is_bound and appeal_form.is_valid():
                 appeal_to_cinder.delay(
+                    decision_id=cinder_job.decision_id,
                     abuse_report_id=abuse_report.id if abuse_report else None,
                     appeal_text=appeal_form.cleaned_data['reason'],
                     user_id=request.user.pk,
