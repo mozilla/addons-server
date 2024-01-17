@@ -336,7 +336,7 @@ def test_addon_report_to_cinder_different_locale():
 
 
 @pytest.mark.django_db
-def test_addon_appeal_to_cinder():
+def test_addon_appeal_to_cinder_reporter():
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
         decision_id='4815162342-abc',
@@ -388,7 +388,7 @@ def test_addon_appeal_to_cinder():
 
 
 @pytest.mark.django_db
-def test_addon_appeal_to_cinder_authenticated_author():
+def test_addon_appeal_to_cinder_authenticated_reporter():
     user = user_factory(fxa_id='fake-fxa-id')
     addon = addon_factory()
     cinder_job = CinderJob.objects.create(
