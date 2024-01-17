@@ -411,7 +411,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
 
     appeal_to_cinder.delay(
         decision_id=cinder_job.decision_id,
-        abuse_report_id=abuse_report,
+        abuse_report_id=abuse_report.pk,
         appeal_text='I appeal',
         user_id=user.pk,
         is_reporter=True,
