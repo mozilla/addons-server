@@ -19,15 +19,15 @@ from olympia.reviewers.models import NeedsHumanReview
 
 from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
-    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
-    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
-    CinderActionRemovalAffirmation,
+    CinderActionOverrideApprove,
+    CinderActionTargetAppealApprove,
+    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -146,11 +146,11 @@ class BaseTestCinderAction:
         raise NotImplementedError
 
     def test_approve_appeal_success(self):
-        self._test_approve_appeal_override(CinderActionApproveAppeal)
+        self._test_approve_appeal_override(CinderActionTargetAppealApprove)
         assert 'in response to your appeal' in mail.outbox[0].body
 
     def test_approve_override(self):
-        self._test_approve_appeal_override(CinderActionApproveOverride)
+        self._test_approve_appeal_override(CinderActionOverrideApprove)
         assert 'in response to your appeal' not in mail.outbox[0].body
 
 
@@ -204,7 +204,7 @@ class TestCinderActionUser(BaseTestCinderAction, TestCase):
     def test_approve_appeal_decline(self):
         self.cinder_job.update(decision_action=CinderJob.DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action = CinderActionRemovalAffirmation(self.cinder_job)
+        action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
         action.process()
 
         self.user.reload()
@@ -323,7 +323,7 @@ class TestCinderActionAddon(BaseTestCinderAction, TestCase):
     def test_approve_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = CinderActionRemovalAffirmation(self.cinder_job)
+        action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
         action.process()
 
         self.addon.reload()
@@ -386,7 +386,7 @@ class TestCinderActionCollection(BaseTestCinderAction, TestCase):
 
     def test_approve_appeal_decline(self):
         self.collection.update(deleted=True)
-        action = CinderActionRemovalAffirmation(self.cinder_job)
+        action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
         action.process()
 
         self.collection.reload()
@@ -454,7 +454,7 @@ class TestCinderActionRating(BaseTestCinderAction, TestCase):
     def test_approve_appeal_decline(self):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = CinderActionRemovalAffirmation(self.cinder_job)
+        action = CinderActionTargetAppealRemovalAffirmation(self.cinder_job)
         action.process()
 
         self.rating.reload()

@@ -240,7 +240,7 @@ class CinderActionDeleteRating(CinderAction):
             self.notify_owners([self.target.user])
 
 
-class CinderActionApproveAppeal(CinderAction):
+class CinderActionTargetAppealApprove(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is within policy, after appeal'
 
@@ -266,7 +266,7 @@ class CinderActionApproveAppeal(CinderAction):
             self.notify_owners([target.user])
 
 
-class CinderActionApproveOverride(CinderActionApproveAppeal):
+class CinderActionOverrideApprove(CinderActionTargetAppealApprove):
     description = 'Reported content is within policy, after override'
 
 
@@ -280,7 +280,7 @@ class CinderActionApproveInitialDecision(CinderAction):
         # If it's an initial decision approve there is nothing else to do
 
 
-class CinderActionRemovalAffirmation(CinderAction):
+class CinderActionTargetAppealRemovalAffirmation(CinderAction):
     valid_targets = [Addon, UserProfile, Collection, Rating]
     description = 'Reported content is still offending, after appeal.'
 

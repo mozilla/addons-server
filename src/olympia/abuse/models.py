@@ -25,16 +25,16 @@ from .cinder import (
     CinderUser,
 )
 from .utils import (
-    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
-    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
-    CinderActionRemovalAffirmation,
+    CinderActionOverrideApprove,
+    CinderActionTargetAppealApprove,
+    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -213,7 +213,9 @@ class CinderJob(ModelBase):
             existing_decision in self.DECISION_ACTIONS.REMOVING
         ):
             CinderActionClass = (
-                CinderActionApproveOverride if override else CinderActionApproveAppeal
+                CinderActionOverrideApprove
+                if override
+                else CinderActionTargetAppealApprove
             )
 
         # Where there was an appeal/override which didn't change from a remove action
@@ -223,7 +225,7 @@ class CinderJob(ModelBase):
             CinderActionClass = (
                 CinderActionNotImplemented
                 if override
-                else CinderActionRemovalAffirmation
+                else CinderActionTargetAppealRemovalAffirmation
             )
 
         return CinderActionClass(self)

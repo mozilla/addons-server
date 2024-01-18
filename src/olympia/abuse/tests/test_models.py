@@ -22,16 +22,16 @@ from ..cinder import (
 )
 from ..models import AbuseReport, CinderJob, CinderPolicy
 from ..utils import (
-    CinderActionApproveAppeal,
     CinderActionApproveInitialDecision,
-    CinderActionApproveOverride,
     CinderActionBanUser,
     CinderActionDeleteCollection,
     CinderActionDeleteRating,
     CinderActionDisableAddon,
     CinderActionEscalateAddon,
     CinderActionNotImplemented,
-    CinderActionRemovalAffirmation,
+    CinderActionOverrideApprove,
+    CinderActionTargetAppealApprove,
+    CinderActionTargetAppealRemovalAffirmation,
 )
 
 
@@ -570,8 +570,10 @@ class TestCinderJob(TestCase):
         for action in DECISION_ACTIONS.REMOVING.values:
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionApproveAppeal
-            action_existing_to_class[(action, action)] = CinderActionRemovalAffirmation
+            ] = CinderActionTargetAppealApprove
+            action_existing_to_class[
+                (action, action)
+            ] = CinderActionTargetAppealRemovalAffirmation
 
         for (
             new_action,
@@ -586,7 +588,7 @@ class TestCinderJob(TestCase):
         for action in DECISION_ACTIONS.REMOVING.values:
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE, action)
-            ] = CinderActionApproveOverride
+            ] = CinderActionOverrideApprove
             action_existing_to_class[(action, action)] = CinderActionNotImplemented
 
         for (
